@@ -3367,11 +3367,17 @@ static u32 CreatePokedexMonSprite(u16 num, s16 x, s16 y)
 
 // Kanto-Merge: Zeilenraster der Zaehlung. Eine Textzeile ist 16 px hoch,
 // die Leerzeile unter der Ueberschrift entspricht einer davon.
-#define DEX_COUNT_TITLE_Y       21
-#define DEX_COUNT_OWN_LABEL_Y   53
-#define DEX_COUNT_OWN_VALUE_Y   69
-#define DEX_COUNT_SEEN_LABEL_Y  85
-#define DEX_COUNT_SEEN_VALUE_Y  101
+// Die fuenf Zeilen sitzen auf den Positionen der frueheren zwei Bloecke:
+//   TITLE      wo 'Johto' stand
+//   OWN_LABEL  wo Johtos 'Gesehen' stand
+//   OWN_VALUE  wo Johtos Zahlenzeile stand
+//   SEEN_LABEL wo Nationals 'Gesehen' stand
+//   SEEN_VALUE wo Nationals Zahlenzeile stand
+#define DEX_COUNT_TITLE_Y       (40 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET - 6)
+#define DEX_COUNT_OWN_LABEL_Y   (45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET + 6)
+#define DEX_COUNT_OWN_VALUE_Y   (55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET)
+#define DEX_COUNT_SEEN_LABEL_Y  (78 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET + 6)
+#define DEX_COUNT_SEEN_VALUE_Y  (88 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET)
 static void CreateInterfaceSprites(u8 page)
 {
     u8 spriteId;
