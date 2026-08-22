@@ -3385,7 +3385,10 @@ static u32 CreatePokedexMonSprite(u16 num, s16 x, s16 y)
 #define DEX_COUNT_SEEN_VALUE_Y  78
 
 // Linker Rand der Zahlen, relativ zu LIST_RIGHT_SIDE_TEXT_X.
-#define DEX_COUNT_VALUE_X_OFFSET 2
+// Beide Spritearten werden um ihren Mittelpunkt gesetzt: die Beschriftung
+// ist 64 px breit, eine Ziffer 8 px. Damit beide links buendig stehen,
+// muss die erste Ziffer 20 px weiter links sitzen.
+#define DEX_COUNT_VALUE_X_OFFSET (-20)
 static void CreateInterfaceSprites(u8 page)
 {
     u8 spriteId;
@@ -3464,9 +3467,9 @@ static void CreateInterfaceSprites(u8 page)
         // Kanto-Merge: Linksbuendig unter der Beschriftung statt rechtsbuendig.
         // Die Hunderterstelle setzt den linken Rand, 10er und 1er folgen.
         u8 counterXDist  = sPokedexView->seenCount > 999 ? 6 : 7;
-        u8 counterX100s  = LIST_RIGHT_SIDE_TEXT_X + DEX_COUNT_VALUE_X_OFFSET;
-        u8 counterX10s   = counterX100s + counterXDist;
-        u8 counterX1s    = counterX10s + counterXDist;
+        s16 counterX100s = LIST_RIGHT_SIDE_TEXT_X + DEX_COUNT_VALUE_X_OFFSET;
+        s16 counterX10s  = counterX100s + counterXDist;
+        s16 counterX1s   = counterX10s + counterXDist;
 
         // Kanto-Merge: Untereinander statt nebeneinander -
         //   Pokémon
