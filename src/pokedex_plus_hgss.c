@@ -3377,18 +3377,18 @@ static u32 CreatePokedexMonSprite(u16 num, s16 x, s16 y)
 // gesetzt, die Ueberschrift ist nur 32x16. Deshalb braucht 'Gefangen' und
 // 'Gesehen' einen eigenen X-Versatz nach rechts, sonst haengen sie links
 // aus dem Rahmen.
-#define DEX_COUNT_LABEL_X       (LIST_RIGHT_SIDE_TEXT_X + 8)
+#define DEX_COUNT_LABEL_X       (LIST_RIGHT_SIDE_TEXT_X + 12)
 #define DEX_COUNT_TITLE_Y       21
 #define DEX_COUNT_OWN_LABEL_Y   36
-#define DEX_COUNT_OWN_VALUE_Y   50
+#define DEX_COUNT_OWN_VALUE_Y   47
 #define DEX_COUNT_SEEN_LABEL_Y  64
-#define DEX_COUNT_SEEN_VALUE_Y  78
+#define DEX_COUNT_SEEN_VALUE_Y  75
 
 // Linker Rand der Zahlen, relativ zu LIST_RIGHT_SIDE_TEXT_X.
 // Beide Spritearten werden um ihren Mittelpunkt gesetzt: die Beschriftung
 // ist 64 px breit, eine Ziffer 8 px. Damit beide links buendig stehen,
 // muss die erste Ziffer 20 px weiter links sitzen.
-#define DEX_COUNT_VALUE_X_OFFSET (-20)
+#define DEX_COUNT_VALUE_X_OFFSET (-14)
 static void CreateInterfaceSprites(u8 page)
 {
     u8 spriteId;
