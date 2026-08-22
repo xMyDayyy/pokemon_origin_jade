@@ -281,3 +281,43 @@ VictoryRoad_3F_Text_TyraNotEnoughMons::
 	.string "you have only one POKéMON.$"
 #endif
 
+@ ============================================================================
+@ Kanto-Merge: Lavados sitzt in FRLG auf dem Wipfelberg, also auf den
+@ stillgelegten Sevii-Inseln. In Rot/Blau stand es auf der Siegesstrasse -
+@ dorthin kommt es zurueck, damit alle drei Voegel in Kanto erreichbar sind.
+@ Zapdos steht im Kraftwerk, Arktos auf den Seeschauminseln.
+@ ============================================================================
+
+VictoryRoad_3F_EventScript_Moltres::
+	lock
+	faceplayer
+	setwildbattle SPECIES_MOLTRES, 50
+	waitse
+	playmoncry SPECIES_MOLTRES, CRY_MODE_ENCOUNTER
+	message Text_Gyaoo
+	waitmessage
+	waitmoncry
+	delay 10
+	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, VictoryRoad_3F_EventScript_DefeatedMoltres
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, VictoryRoad_3F_EventScript_RanFromMoltres
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, VictoryRoad_3F_EventScript_RanFromMoltres
+	setflag FLAG_HIDE_MOLTRES_KANTO
+	release
+	end
+
+VictoryRoad_3F_EventScript_DefeatedMoltres::
+	setflag FLAG_HIDE_MOLTRES_KANTO
+	goto EventScript_RemoveStaticMon
+	end
+
+VictoryRoad_3F_EventScript_RanFromMoltres::
+	setvar VAR_0x8004, SPECIES_MOLTRES
+	goto EventScript_RemoveStaticMon
+	end

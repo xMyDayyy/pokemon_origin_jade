@@ -1375,7 +1375,13 @@
 #undef  FLAG_WORLD_MAP_VIRIDIAN_FOREST
 #define FLAG_WORLD_MAP_VIRIDIAN_FOREST                           (FRLG_FLAGS_START+0x296)
 
-#define FRLG_FLAGS_END (FRLG_FLAGS_START+0x296)
+
+// Kanto-Merge: Eigener Flag fuer das Lavados auf der Siegesstrasse.
+// FLAG_HIDE_MOLTRES gehoert HnS' Silberberg-Lavados und wird erst nach
+// deren Ruhmeshalle geloescht - damit waere unseres nie sichtbar.
+#define FLAG_HIDE_MOLTRES_KANTO                        (FRLG_FLAGS_START+0x297)
+
+#define FRLG_FLAGS_END (FRLG_FLAGS_START+0x297)
 
 #define FRLG_NUM_FLAG_BYTES (((FRLG_FLAGS_END - FRLG_FLAGS_START + 1) + 7) / 8)
 
