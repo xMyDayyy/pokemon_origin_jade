@@ -3,11 +3,18 @@ MtMoon_B2F_Frlg_MapScripts::
 	.byte 0
 
 MtMoon_B2F_OnTransition::
-	call_if_unset FLAG_GOT_FOSSIL_FROM_MT_MOON, MtMoon_B2F_EventScript_ShowFossils
+	@ Kanto-Merge: Jedes Fossil haengt an seinem eigenen Flag, damit man
+	@ beide mitnehmen kann. Vorher liess FLAG_GOT_FOSSIL_FROM_MT_MOON nach
+	@ der ersten Wahl beide verschwinden.
+	call_if_unset FLAG_GOT_DOME_FOSSIL, MtMoon_B2F_EventScript_ShowDomeFossil
+	call_if_unset FLAG_GOT_HELIX_FOSSIL, MtMoon_B2F_EventScript_ShowHelixFossil
 	end
 
-MtMoon_B2F_EventScript_ShowFossils::
+MtMoon_B2F_EventScript_ShowDomeFossil::
 	clearflag FLAG_HIDE_DOME_FOSSIL
+	return
+
+MtMoon_B2F_EventScript_ShowHelixFossil::
 	clearflag FLAG_HIDE_HELIX_FOSSIL
 	return
 
@@ -22,7 +29,8 @@ MtMoon_B2F_EventScript_MiguelTrigger::
 MtMoon_B2F_EventScript_Miguel::
 	lock
 	faceplayer
-	goto_if_set FLAG_GOT_FOSSIL_FROM_MT_MOON, MtMoon_B2F_EventScript_MiguelFossilPicked
+	goto_if_unset FLAG_GOT_DOME_FOSSIL, MtMoon_B2F_EventScript_MiguelGoPickFossil2
+	goto_if_set FLAG_GOT_HELIX_FOSSIL, MtMoon_B2F_EventScript_MiguelFossilPicked
 	goto_if_defeated TRAINER_SUPER_NERD_MIGUEL, MtMoon_B2F_EventScript_MiguelGoPickFossil
 	call MtMoon_B2F_EventScript_BattleMiguel
 	release
@@ -45,6 +53,12 @@ MtMoon_B2F_EventScript_MiguelFossilPicked::
 	release
 	end
 
+MtMoon_B2F_EventScript_MiguelGoPickFossil2::
+	goto_if_defeated TRAINER_SUPER_NERD_MIGUEL, MtMoon_B2F_EventScript_MiguelGoPickFossil
+	call MtMoon_B2F_EventScript_BattleMiguel
+	release
+	end
+
 MtMoon_B2F_EventScript_MiguelGoPickFossil::
 	msgbox MtMoon_B2F_Text_WellEachTakeAFossil
 	release
@@ -58,18 +72,10 @@ MtMoon_B2F_EventScript_DomeFossil::
 	removeobject LOCALID_DOME_FOSSIL
 	giveitem_msg MtMoon_B2F_Text_ObtainedDomeFossil, ITEM_DOME_FOSSIL, 1, MUS_RG_OBTAIN_KEY_ITEM
 	closemessage
-	delay 10
-	applymovement LOCALID_MIGUEL, MtMoon_B2F_Movement_MiguelToHelixFossil
-	waitmovement 0
-	copyobjectxytoperm LOCALID_MIGUEL
-	textcolor NPC_TEXT_COLOR_MALE
-	playfanfare MUS_RG_OBTAIN_KEY_ITEM
-	message MtMoon_B2F_Text_ThenThisFossilIsMine
-	waitmessage
-	waitfanfare
-	removeobject LOCALID_HELIX_FOSSIL
+	@ Kanto-Merge: Beide Fossilien bleiben liegen. Fuer 'alle 185 fangbar'
+	@ braucht es beide Entwicklungslinien - der Rivale nimmt das andere
+	@ deshalb nicht mehr mit.
 	setflag FLAG_GOT_DOME_FOSSIL
-	setflag FLAG_GOT_FOSSIL_FROM_MT_MOON
 	release
 	end
 
@@ -88,18 +94,7 @@ MtMoon_B2F_EventScript_HelixFossil::
 	removeobject LOCALID_HELIX_FOSSIL
 	giveitem_msg MtMoon_B2F_Text_ObtainedHelixFossil, ITEM_HELIX_FOSSIL, 1, MUS_RG_OBTAIN_KEY_ITEM
 	closemessage
-	delay 10
-	applymovement LOCALID_MIGUEL, MtMoon_B2F_Movement_MiguelToDomeFossil
-	waitmovement 0
-	copyobjectxytoperm LOCALID_MIGUEL
-	textcolor NPC_TEXT_COLOR_MALE
-	playfanfare MUS_RG_OBTAIN_KEY_ITEM
-	message MtMoon_B2F_Text_ThenThisFossilIsMine
-	waitmessage
-	waitfanfare
-	removeobject LOCALID_DOME_FOSSIL
 	setflag FLAG_GOT_HELIX_FOSSIL
-	setflag FLAG_GOT_FOSSIL_FROM_MT_MOON
 	release
 	end
 
