@@ -3377,12 +3377,12 @@ static u32 CreatePokedexMonSprite(u16 num, s16 x, s16 y)
 // gesetzt, die Ueberschrift ist nur 32x16. Deshalb braucht 'Gefangen' und
 // 'Gesehen' einen eigenen X-Versatz nach rechts, sonst haengen sie links
 // aus dem Rahmen.
-#define DEX_COUNT_LABEL_X       (LIST_RIGHT_SIDE_TEXT_X + 16)
+#define DEX_COUNT_LABEL_X       (LIST_RIGHT_SIDE_TEXT_X + 8)
 #define DEX_COUNT_TITLE_Y       21
-#define DEX_COUNT_OWN_LABEL_Y   38
-#define DEX_COUNT_OWN_VALUE_Y   54
-#define DEX_COUNT_SEEN_LABEL_Y  71
-#define DEX_COUNT_SEEN_VALUE_Y  87
+#define DEX_COUNT_OWN_LABEL_Y   36
+#define DEX_COUNT_OWN_VALUE_Y   50
+#define DEX_COUNT_SEEN_LABEL_Y  64
+#define DEX_COUNT_SEEN_VALUE_Y  78
 
 // Linker Rand der Zahlen, relativ zu LIST_RIGHT_SIDE_TEXT_X.
 #define DEX_COUNT_VALUE_X_OFFSET 2
