@@ -3373,11 +3373,16 @@ static u32 CreatePokedexMonSprite(u16 num, s16 x, s16 y)
 //   OWN_VALUE  wo Johtos Zahlenzeile stand
 //   SEEN_LABEL wo Nationals 'Gesehen' stand
 //   SEEN_VALUE wo Nationals Zahlenzeile stand
-#define DEX_COUNT_TITLE_Y       (40 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET - 6)
-#define DEX_COUNT_OWN_LABEL_Y   (45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET + 6)
-#define DEX_COUNT_OWN_VALUE_Y   (55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET)
-#define DEX_COUNT_SEEN_LABEL_Y  (78 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET + 6)
-#define DEX_COUNT_SEEN_VALUE_Y  (88 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET)
+// Die Beschriftungen sind 64x32-Sprites und werden um ihren Mittelpunkt
+// gesetzt, die Ueberschrift ist nur 32x16. Deshalb braucht 'Gefangen' und
+// 'Gesehen' einen eigenen X-Versatz nach rechts, sonst haengen sie links
+// aus dem Rahmen.
+#define DEX_COUNT_LABEL_X       (LIST_RIGHT_SIDE_TEXT_X + 16)
+#define DEX_COUNT_TITLE_Y       21
+#define DEX_COUNT_OWN_LABEL_Y   38
+#define DEX_COUNT_OWN_VALUE_Y   54
+#define DEX_COUNT_SEEN_LABEL_Y  71
+#define DEX_COUNT_SEEN_VALUE_Y  87
 
 // Linker Rand der Zahlen, relativ zu LIST_RIGHT_SIDE_TEXT_X.
 #define DEX_COUNT_VALUE_X_OFFSET 2
@@ -3474,10 +3479,10 @@ static void CreateInterfaceSprites(u8 page)
         // wo vorher 'Johto' stand.
         CreateSprite(&sHoennNationalTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, DEX_COUNT_TITLE_Y, 1);
         // Gefangen
-        spriteId = CreateSprite(&sSeenOwnTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, DEX_COUNT_OWN_LABEL_Y, 1);
+        spriteId = CreateSprite(&sSeenOwnTextSpriteTemplate, DEX_COUNT_LABEL_X, DEX_COUNT_OWN_LABEL_Y, 1);
         StartSpriteAnim(&gSprites[spriteId], 1);
         // Gesehen
-        CreateSprite(&sSeenOwnTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, DEX_COUNT_SEEN_LABEL_Y, 1);
+        CreateSprite(&sSeenOwnTextSpriteTemplate, DEX_COUNT_LABEL_X, DEX_COUNT_SEEN_LABEL_Y, 1);
 
         // Hoenn seen value - 100s
         seenOwnedCount = GetNationalPokedexCount(FLAG_GET_SEEN);
