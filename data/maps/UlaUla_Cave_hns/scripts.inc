@@ -9,7 +9,7 @@ Alola_Ulaula_BattleSandslash::
 	playmoncry SPECIES_SANDSLASH, 0
 	msgbox Alola_Ulaula_BattleSandslash_Text_0, MSGBOX_AUTOCLOSE
 	waitmoncry
-	setwildbattle SPECIES_SANDSLASH, 45
+	setwildbattle SPECIES_SANDSLASH, 60
 	dowildbattle
 	specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, B_OUTCOME_CAUGHT
@@ -42,7 +42,7 @@ Alola_Ulaula_BattleNinetales::
 	playmoncry SPECIES_NINETALES, 0
 	msgbox Alola_Ulaula_BattleSandslash_Text_0, MSGBOX_AUTOCLOSE
 	waitmoncry
-	setwildbattle SPECIES_NINETALES, 45
+	setwildbattle SPECIES_NINETALES, 60
 	dowildbattle
 	specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, B_OUTCOME_CAUGHT

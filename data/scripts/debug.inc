@@ -226,13 +226,8 @@ Debug_EventScript_Text_DefensiveIVs:
 #endif
 
 Debug_EventScript_Script_1::
-	clearflag FLAG_DEFEATED_OLIVINE_CITY_GYM
-	clearflag FLAG_DEFEATED_CIANWOOD_GYM
-	clearflag FLAG_DEFEATED_MAHOGANY_TOWN_GYM
-	clearflag FLAG_VISITED_VERMILION_CITY
-	setflag FLAG_HIDE_DOJO_CHUCK
-	setvar VAR_MAHOGANY_TOWN_STATE, 15
-	setvar VAR_NUM_BADGES, 6
+	special GameClear
+	waitstate
 	release
 	end
 
