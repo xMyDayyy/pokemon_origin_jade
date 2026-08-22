@@ -3364,6 +3364,14 @@ static u32 CreatePokedexMonSprite(u16 num, s16 x, s16 y)
 #define LIST_RIGHT_SIDE_TEXT_X 204
 #define LIST_RIGHT_SIDE_TEXT_X_OFFSET 15
 #define LIST_RIGHT_SIDE_TEXT_Y_OFFSET 13
+
+// Kanto-Merge: Zeilenraster der Zaehlung. Eine Textzeile ist 16 px hoch,
+// die Leerzeile unter der Ueberschrift entspricht einer davon.
+#define DEX_COUNT_TITLE_Y       21
+#define DEX_COUNT_OWN_LABEL_Y   53
+#define DEX_COUNT_OWN_VALUE_Y   69
+#define DEX_COUNT_SEEN_LABEL_Y  85
+#define DEX_COUNT_SEEN_VALUE_Y  101
 static void CreateInterfaceSprites(u8 page)
 {
     u8 spriteId;
@@ -3444,21 +3452,26 @@ static void CreateInterfaceSprites(u8 page)
         u8 counterX10s   = counterX1s - counterXDist;
         u8 counterX100s  = counterX10s - counterXDist;
 
-        // Kanto-Merge: Es gibt nur noch eine Zaehlung, deshalb steht oben
-        // 'Pokémon' statt einer Region, und der zweite Block entfaellt.
-        // Die Beschriftung sitzt an Kachel 160 in tileset_interface_hns.png,
+        // Kanto-Merge: Untereinander statt nebeneinander -
+        //   Pokémon
+        //   (Leerzeile)
+        //   Gefangen
+        //   <Zahl>
+        //   Gesehen
+        //   <Zahl>
+        // Die Ueberschrift sitzt an Kachel 160 in tileset_interface_hns.png,
         // wo vorher 'Johto' stand.
-        CreateSprite(&sHoennNationalTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, 40 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET - 6, 1);
-        // Gesehen
-        CreateSprite(&sSeenOwnTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET + 6, 1);
+        CreateSprite(&sHoennNationalTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, DEX_COUNT_TITLE_Y, 1);
         // Gefangen
-        spriteId = CreateSprite(&sSeenOwnTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET + 7, 1);
+        spriteId = CreateSprite(&sSeenOwnTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, DEX_COUNT_OWN_LABEL_Y, 1);
         StartSpriteAnim(&gSprites[spriteId], 1);
+        // Gesehen
+        CreateSprite(&sSeenOwnTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, DEX_COUNT_SEEN_LABEL_Y, 1);
 
         // Hoenn seen value - 100s
         seenOwnedCount = GetNationalPokedexCount(FLAG_GET_SEEN);
         drawNextDigit = FALSE;
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX100s, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 3);
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX100s, DEX_COUNT_SEEN_VALUE_Y, 3);
         digitNum = seenOwnedCount / 100;
         StartSpriteAnim(&gSprites[spriteId], digitNum);
         if (digitNum != 0)
@@ -3467,7 +3480,7 @@ static void CreateInterfaceSprites(u8 page)
             gSprites[spriteId].invisible = TRUE;
 
         // Hoenn seen value - 10s
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX10s, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 2);
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX10s, DEX_COUNT_SEEN_VALUE_Y, 2);
         digitNum = (seenOwnedCount % 100) / 10;
         if (digitNum != 0 || drawNextDigit)
             StartSpriteAnim(&gSprites[spriteId], digitNum);
@@ -3475,14 +3488,14 @@ static void CreateInterfaceSprites(u8 page)
             gSprites[spriteId].invisible = TRUE;
 
         // Hoenn seen value - 1s
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1s, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 1);
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1s, DEX_COUNT_SEEN_VALUE_Y, 1);
         digitNum = (seenOwnedCount % 100) % 10;
         StartSpriteAnim(&gSprites[spriteId], digitNum);
 
         seenOwnedCount = GetNationalPokedexCount(FLAG_GET_CAUGHT);
         // Hoenn owned value - 100s
         drawNextDigit = FALSE;
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX100s, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 3);
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX100s, DEX_COUNT_OWN_VALUE_Y, 3);
         digitNum = seenOwnedCount / 100;
         StartSpriteAnim(&gSprites[spriteId], digitNum);
         if (digitNum != 0)
@@ -3491,7 +3504,7 @@ static void CreateInterfaceSprites(u8 page)
             gSprites[spriteId].invisible = TRUE;
 
         // Hoenn owned value - 10s
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX10s, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 2);
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX10s, DEX_COUNT_OWN_VALUE_Y, 2);
         digitNum = (seenOwnedCount % 100) / 10;
         if (digitNum != 0 || drawNextDigit)
             StartSpriteAnim(&gSprites[spriteId], digitNum);
@@ -3499,7 +3512,7 @@ static void CreateInterfaceSprites(u8 page)
             gSprites[spriteId].invisible = TRUE;
 
         // Hoenn owned value - 1s
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1s, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 1);
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1s, DEX_COUNT_OWN_VALUE_Y, 1);
         digitNum = (seenOwnedCount % 100) % 10;
         StartSpriteAnim(&gSprites[spriteId], digitNum);
     }
