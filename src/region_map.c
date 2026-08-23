@@ -3049,7 +3049,6 @@ static bool32 UseBlueFlyDestIcon(u32 mapSecId)
     switch (mapSecId)
     {
     case MAPSEC_CHERRYGROVE_CITY:
-    case MAPSEC_INDIGO_PLATEAU:
     case MAPSEC_LAKE_OF_RAGE:
     case MAPSEC_LAVENDER_TOWN:
     case MAPSEC_MT_SILVER:
