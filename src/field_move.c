@@ -72,8 +72,11 @@ static bool32 IsFieldMoveUnlocked_RockSmash(void)
 
 static bool32 IsFieldMoveUnlocked_Strength(void)
 {
+    // Kanto-Merge: Orange-Orden. FRLG hat fuer diesen Zug keinen eigenen
+    // Zweig und faellt auf den Vorgabewert durch - den hatte ich in 0037
+    // uebersehen und einen Orden zu niedrig angesetzt.
     if (KantoRulesApply())
-        return FlagGet(FLAG_BADGE03_GET);
+        return FlagGet(FLAG_BADGE04_GET);
 
     if (IS_HNS)
     {
@@ -88,8 +91,11 @@ static bool32 IsFieldMoveUnlocked_Strength(void)
 
 static bool32 IsFieldMoveUnlocked_Surf(void)
 {
+    // Kanto-Merge: Seelen-Orden. FRLG hat fuer diesen Zug keinen eigenen
+    // Zweig und faellt auf den Vorgabewert durch - den hatte ich in 0037
+    // uebersehen und einen Orden zu niedrig angesetzt.
     if (KantoRulesApply())
-        return FlagGet(FLAG_BADGE04_GET);
+        return FlagGet(FLAG_BADGE05_GET);
 
     if (IS_HNS)
     {
