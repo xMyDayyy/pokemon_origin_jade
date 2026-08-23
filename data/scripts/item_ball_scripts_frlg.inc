@@ -669,3 +669,21 @@ SevenIsland_SevaultCanyon_House_EventScript_ItemLuckyPunch::
 SilphCo_4F_EventScript_ItemTM41::
 	finditem ITEM_TM41
 	end
+
+@ Kanto-Merge: Entwicklungsitems, die es in Kanto sonst nicht gibt.
+
+SilphCo_9F_EventScript_ItemUpGrade::
+	finditem ITEM_UP_GRADE
+	end
+
+SilphCo_10F_EventScript_ItemDubiousDisc::
+	finditem ITEM_DUBIOUS_DISC
+	end
+
+MtMoon_1F_EventScript_ItemProtector::
+	finditem ITEM_PROTECTOR
+	end
+
+PokemonMansion_2F_EventScript_ItemMagmarizer::
+	finditem ITEM_MAGMARIZER
+	end
