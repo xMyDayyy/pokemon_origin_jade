@@ -2281,6 +2281,18 @@ static void UNUSED Debug_NamingScreenNickname(void)
 
 void NameRival(void)
 {
+#if IS_HNS
+    u32 mapSec = gMapHeader.regionMapSectionId;
+
+    // Kanto-Merge: In Kanto wird Blau benannt, in Johto Silber. Beide haben
+    // einen eigenen Speicher, damit sie sich nicht ueberschreiben.
+    if (mapSec >= KANTO_MAPSEC_START && mapSec <= KANTO_MAPSEC_END)
+    {
+        StringCopy(gSaveBlock3Ptr->rivalNameKanto, gText_ExpandedPlaceholder_Green);
+        DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock3Ptr->rivalNameKanto, 0, 0, 0, 0, CB2_ReturnToFieldContinueScript);
+        return;
+    }
+#endif
     StringCopy(gSaveBlock2Ptr->rivalName, gText_ExpandedPlaceholder_Silver);
     DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, 0, 0, 0, 0, CB2_ReturnToFieldContinueScript);
 }

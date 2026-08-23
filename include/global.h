@@ -367,6 +367,11 @@ struct SaveBlock3
     u8 flagsFrlg[FRLG_NUM_FLAG_BYTES];
     u8 flagsFrlgTrainers[FRLG_TRAINER_FLAG_BYTES];
 #endif
+    // Kanto-Merge: Zwei Rivalen, einer je Region. rivalNameKanto haelt Blau
+    // aus FRLG, gSaveBlock2Ptr->rivalName bleibt Silber aus Johto. So zeigt
+    // eine spaetere Rueckreise nach Kanto nicht Silbers Namen in Blaus
+    // Dialogen.
+    u8 rivalNameKanto[PLAYER_NAME_LENGTH + 1];
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;

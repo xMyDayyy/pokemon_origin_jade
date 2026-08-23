@@ -307,7 +307,10 @@ void NewGameInitData(void)
         FlagSet(FLAG_EVEN_FASTER_JOY);
 
 #if IS_HNS
+    // Kanto-Merge: Beide Rivalen bekommen einen Vorgabenamen. Der Spieler
+    // benennt sie jeweils in ihrer Region selbst.
     StringCopy(gSaveBlock2Ptr->rivalName, gText_ExpandedPlaceholder_Silver);
+    StringCopy(gSaveBlock3Ptr->rivalNameKanto, gText_ExpandedPlaceholder_Green);
     InitMomSavings();
 #endif
 }

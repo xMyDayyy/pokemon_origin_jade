@@ -1,5 +1,6 @@
 #include "global.h"
 #include "string_util.h"
+#include "constants/region_map_sections.h"
 #include "text.h"
 #include "strings.h"
 #include "union_room_chat.h"
@@ -495,6 +496,17 @@ static const u8 *ExpandPlaceholder_RivalName(void)
     // {RIVAL} auch in Prof. Birks Labor "Silber" aus.
     if (IsHoennMapsec(gMapHeader.regionMapSectionId))
         return gText_ExpandedPlaceholder_May;
+
+    // Kanto-Merge: In Kanto meint {RIVAL} Blau, in Johto Silber. Beide haben
+    // einen eigenen Namensspeicher, damit eine spaetere Rueckreise nach Kanto
+    // nicht ploetzlich Silbers Namen in Blaus Dialogen zeigt.
+    if (gMapHeader.regionMapSectionId >= KANTO_MAPSEC_START
+     && gMapHeader.regionMapSectionId <= KANTO_MAPSEC_END)
+    {
+        if (gSaveBlock3Ptr->rivalNameKanto[0] != EOS)
+            return gSaveBlock3Ptr->rivalNameKanto;
+        return gText_ExpandedPlaceholder_Green;
+    }
 
     if (gSaveBlock2Ptr->rivalName[0] != EOS)
         return gSaveBlock2Ptr->rivalName;
