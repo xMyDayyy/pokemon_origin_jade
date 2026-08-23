@@ -60,6 +60,9 @@ CeruleanCity_EventScript_Rival::
 	applymovement LOCALID_CERULEAN_RIVAL, CeruleanCity_Movement_RivalExit
 	waitmovement 0
 	fadedefaultbgm
+	@ Kanto-Merge: removeobject wirkt nur bis zum naechsten Betreten der
+	@ Karte. Ohne den Flag stand der Rivale beim Wiederkommen erneut da.
+	setflag FLAG_HIDE_CERULEAN_RIVAL
 	removeobject LOCALID_CERULEAN_RIVAL
 	releaseall
 	end

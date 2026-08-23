@@ -60,15 +60,14 @@ MtMoon_B2F_EventScript_MiguelGoPickFossil2::
 	end
 
 MtMoon_B2F_EventScript_MiguelGoPickFossil::
-	msgbox MtMoon_B2F_Text_WellEachTakeAFossil
+	msgbox MtMoon_B2F_Text_MiguelTakeThemBoth
 	release
 	end
 
 MtMoon_B2F_EventScript_DomeFossil::
 	lock
 	faceplayer
-	msgbox MtMoon_B2F_Text_YouWantDomeFossil, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, MtMoon_B2F_EventScript_DontTakeFossil
+	@ Kanto-Merge: keine Wahl mehr noetig, beide Fossilien sind frei.
 	removeobject LOCALID_DOME_FOSSIL
 	giveitem_msg MtMoon_B2F_Text_ObtainedDomeFossil, ITEM_DOME_FOSSIL, 1, MUS_RG_OBTAIN_KEY_ITEM
 	closemessage
@@ -89,8 +88,7 @@ MtMoon_B2F_Movement_MiguelToHelixFossil::
 MtMoon_B2F_EventScript_HelixFossil::
 	lock
 	faceplayer
-	msgbox MtMoon_B2F_Text_YouWantHelixFossil, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, MtMoon_B2F_EventScript_DontTakeFossil
+	@ Kanto-Merge: keine Wahl mehr noetig, beide Fossilien sind frei.
 	removeobject LOCALID_HELIX_FOSSIL
 	giveitem_msg MtMoon_B2F_Text_ObtainedHelixFossil, ITEM_HELIX_FOSSIL, 1, MUS_RG_OBTAIN_KEY_ITEM
 	closemessage
@@ -150,9 +148,8 @@ MtMoon_B2F_Text_MiguelDefeat::
 
 MtMoon_B2F_Text_WellEachTakeAFossil::
 #if GERMAN
-	.string "Na gut, du hast gewonnen.\p"
-	.string "Nimm sie beide mit - ich habe\n"
-	.string "ohnehin keine Verwendung dafür.$"
+	.string "O.K., du kannst sie haben.\p"
+	.string "Nimm ruhig beide mit!$"
 #else
 	.string "We'll each take a fossil!\n"
 	.string "No being greedy!$"
@@ -316,3 +313,12 @@ MtMoon_B2F_Text_ObtainedDomeFossil::
 	.string "Obtained the DOME FOSSIL!$"
 #endif
 
+@ Kanto-Merge: Beim erneuten Ansprechen, solange noch ein Fossil liegt.
+MtMoon_B2F_Text_MiguelTakeThemBoth::
+#if GERMAN
+	.string "Wie gesagt, du kannst sie nehmen.\p"
+	.string "Ich wollte die eh nicht haben...$"
+#else
+	.string "Like I said, you can have them.\p"
+	.string "I didn't want them anyway...$"
+#endif

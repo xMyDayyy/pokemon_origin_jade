@@ -463,9 +463,6 @@ EventScript_ResetAllMapFlagsHnS::
 EventScript_ResetAllMapFlagsFrlg::
 	@ Kanto-Merge: Sarah sitzt zu Beginn bei uns im Haus, nicht bei sich.
 	setflag FLAG_HIDE_RIVALS_HOUSE_DAISY
-	@ Der Gehilfe an Route 3 verteilt in FRLG die Turbotreter. Die gibt bei
-	@ uns die Mutter, also steht er gar nicht erst da.
-	setflag FLAG_HIDE_PEWTER_CITY_RUNNING_SHOES_GUY
 	setflag FLAG_HIDE_OAK_IN_HIS_LAB
 	setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
 	setflag FLAG_HIDE_BILL_HUMAN_SEA_COTTAGE
