@@ -183,9 +183,9 @@ SaffronCity_Dojo_Text_ChoosePrizedFightingMon::
 	.string "Ich bin deiner Gnade unwürdig!\p"
 	.string "Trotzdem flehe ich dich an, unser\n"
 	.string "Emblem nicht als Trophäe mitzunehmen!\p"
-	.string "Zum Ersatz gebe ich dir ein\n"
-	.string "preisgekröntes Kampf-Pokémon!\p"
-	.string "Wähle eines von beiden aus!$"
+	.string "Zum Ersatz gebe ich dir unsere\n"
+	.string "preisgekrönten Kampf-Pokémon!\p"
+	.string "Nimm sie beide mit!$"
 #else
 	.string "Indeed, I have lost!\p"
 	.string "But, I beseech you, do not take\n"
@@ -350,7 +350,7 @@ SaffronCity_Dojo_Text_ReceivedMonFromKarateMaster2::
 
 SaffronCity_Dojo_Text_BetterNotGetGreedy::
 #if GERMAN
-	.string "Er sagte ein Pokémon...$"
+	.string "Dieser Ball ist schon leer.$"
 #else
 	.string "Better not get greedy…$"
 #endif

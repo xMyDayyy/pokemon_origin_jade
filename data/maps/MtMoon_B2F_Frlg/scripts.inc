@@ -150,13 +150,15 @@ MtMoon_B2F_Text_MiguelDefeat::
 
 MtMoon_B2F_Text_WellEachTakeAFossil::
 #if GERMAN
-	.string "Heh, nicht so gierig!\n"
-	.string "Ich sagte, ich gebe dir eines ab!$"
+	.string "Na gut, du hast gewonnen.\p"
+	.string "Nimm sie beide mit - ich habe\n"
+	.string "ohnehin keine Verwendung dafür.$"
 #else
 	.string "We'll each take a fossil!\n"
 	.string "No being greedy!$"
 #endif
 
+@ Kanto-Merge: seit beide Fossilien liegenbleiben ungenutzt.
 MtMoon_B2F_Text_ThenThisFossilIsMine::
 #if GERMAN
 	.string "O.K., dann gehört das hier mir!$"
