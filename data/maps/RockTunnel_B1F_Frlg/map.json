@@ -413,5 +413,16 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 30,
+      "y": 19,
+      "elevation": 0,
+      "item": "ITEM_OVAL_STONE",
+      "flag": "FLAG_HIDDEN_ITEM_ROCK_TUNNEL_B1F_OVAL_STONE",
+      "quantity": 1,
+      "underfoot": false
+    }
+  ]
 }

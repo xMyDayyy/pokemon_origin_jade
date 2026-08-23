@@ -1381,7 +1381,13 @@
 // deren Ruhmeshalle geloescht - damit waere unseres nie sichtbar.
 #define FLAG_HIDE_MOLTRES_KANTO                        (FRLG_FLAGS_START+0x297)
 
-#define FRLG_FLAGS_END (FRLG_FLAGS_START+0x297)
+
+// Kanto-Merge: Zwei Evo-Items, die HnS-Kanto als Versteck fuehrte.
+
+#define FLAG_HIDDEN_ITEM_CERULEAN_CAVE_B1F_ELECTIRIZER       (FRLG_FLAGS_START+0x298)
+#define FLAG_HIDDEN_ITEM_ROCK_TUNNEL_B1F_OVAL_STONE          (FRLG_FLAGS_START+0x299)
+
+#define FRLG_FLAGS_END (FRLG_FLAGS_START+0x299)
 
 #define FRLG_NUM_FLAG_BYTES (((FRLG_FLAGS_END - FRLG_FLAGS_START + 1) + 7) / 8)
 
