@@ -480,7 +480,8 @@ CeruleanCity_Text_OkayIllReturnStolenTM::
 
 CeruleanCity_Text_RecoveredTM28FromGrunt::
 #if GERMAN
-	.string "{PLAYER} erhält TM28!$"
+	.string "{PLAYER} nimmt dem Rüpel von\n"
+	.string "Team Rocket TM28 wieder ab!$"
 #else
 	.string "{PLAYER} recovered TM28 from\n"
 	.string "the TEAM ROCKET GRUNT.$"
@@ -497,9 +498,9 @@ CeruleanCity_Text_BetterGetMovingBye::
 
 CeruleanCity_Text_MakeRoomForThisCantRun::
 #if GERMAN
-	.string "Mach Platz für dieses coole Item!\p"
-	.string "Ich kann erst gehen, wenn ich es\n"
-	.string "dir gegeben habe!$"
+	.string "Mach Platz in deinem Beutel!\p"
+	.string "Ich kann erst gehen, wenn du es\n"
+	.string "genommen hast!$"
 #else
 	.string "Make room for this!\n"
 	.string "I can't run until I give it to you!$"

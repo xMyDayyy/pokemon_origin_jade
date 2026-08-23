@@ -2312,7 +2312,10 @@ static const struct NamingScreenTemplate sMonNamingScreenTemplate =
     .addGenderIcon = TRUE,
     .initialPage = KBPAGE_LETTERS_UPPER,
     .unused = 35,
-    .title = COMPOUND_STRING("Kosename f. {STR_VAR_1}"),
+    // Kanto-Merge: DrawMonTextEntryBox setzt den Artnamen davor und haengt
+    // diesen Titel mit hoechstens 15 Zeichen an. Der alte Text ergab
+    // 'GlurakKosename f. {ST' - ein Suffix passt hier, kein eigener Satz.
+    .title = COMPOUND_STRING(" benennen?"),
 };
 
 static const struct NamingScreenTemplate sWaldaWordsScreenTemplate =
