@@ -115,6 +115,8 @@ CeruleanCity_Movement_RivalEnter::
 	walk_down
 	step_end
 
+@ Kanto-Merge: Der Rivale lief weg, blieb stehen und kam wieder hoch -
+@ das war der Anlauf zur Ruhmesdatei. Die entfaellt, also geht er durch.
 CeruleanCity_Movement_RivalStartExit::
 	walk_right
 	walk_down
@@ -124,16 +126,10 @@ CeruleanCity_Movement_RivalStartExit::
 	walk_down
 	walk_down
 	walk_down
-	delay_16
-	delay_16
-	walk_left
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
 	step_end
 
+@ Kanto-Merge: Der Rivale lief weg, blieb stehen und kam wieder hoch -
+@ das war der Anlauf zur Ruhmesdatei. Die entfaellt, also geht er durch.
 CeruleanCity_Movement_RivalStartExitRight::
 	walk_left
 	walk_down
@@ -143,14 +139,6 @@ CeruleanCity_Movement_RivalStartExitRight::
 	walk_down
 	walk_down
 	walk_down
-	delay_16
-	delay_16
-	walk_right
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
 	step_end
 
 CeruleanCity_Movement_RivalExit::
