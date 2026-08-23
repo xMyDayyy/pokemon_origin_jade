@@ -12515,9 +12515,9 @@
                 "species": "SPECIES_PIKACHU"
               },
               {
-                "min_level": 6,
-                "max_level": 6,
-                "species": "SPECIES_KAKUNA"
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_BULBASAUR"
               },
               {
                 "min_level": 5,
@@ -12584,9 +12584,9 @@
                 "species": "SPECIES_PIKACHU"
               },
               {
-                "min_level": 6,
-                "max_level": 6,
-                "species": "SPECIES_METAPOD"
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_BULBASAUR"
               },
               {
                 "min_level": 5,
@@ -12653,9 +12653,9 @@
                 "species": "SPECIES_ZUBAT"
               },
               {
-                "min_level": 7,
-                "max_level": 7,
-                "species": "SPECIES_ZUBAT"
+                "min_level": 8,
+                "max_level": 8,
+                "species": "SPECIES_CHARMANDER"
               },
               {
                 "min_level": 8,
@@ -12722,9 +12722,9 @@
                 "species": "SPECIES_ZUBAT"
               },
               {
-                "min_level": 7,
-                "max_level": 7,
-                "species": "SPECIES_ZUBAT"
+                "min_level": 8,
+                "max_level": 8,
+                "species": "SPECIES_CHARMANDER"
               },
               {
                 "min_level": 8,
@@ -32997,9 +32997,9 @@
                 "species": "SPECIES_ABRA"
               },
               {
-                "min_level": 8,
-                "max_level": 8,
-                "species": "SPECIES_METAPOD"
+                "min_level": 10,
+                "max_level": 10,
+                "species": "SPECIES_SQUIRTLE"
               },
               {
                 "min_level": 12,
@@ -33151,9 +33151,9 @@
                 "species": "SPECIES_ABRA"
               },
               {
-                "min_level": 8,
-                "max_level": 8,
-                "species": "SPECIES_KAKUNA"
+                "min_level": 10,
+                "max_level": 10,
+                "species": "SPECIES_SQUIRTLE"
               },
               {
                 "min_level": 12,
@@ -70948,7 +70948,8 @@
               {
                 "min_level": 43,
                 "max_level": 45,
-                "species": "SPECIES_EXEGGCUTE"              },
+                "species": "SPECIES_EXEGGCUTE"
+              },
               {
                 "min_level": 43,
                 "max_level": 45,
@@ -71101,7 +71102,8 @@
               {
                 "min_level": 43,
                 "max_level": 45,
-                "species": "SPECIES_GRAVELER_ALOLA"              },
+                "species": "SPECIES_GRAVELER_ALOLA"
+              },
               {
                 "min_level": 43,
                 "max_level": 45,
@@ -71730,19 +71732,23 @@
               {
                 "min_level": 43,
                 "max_level": 45,
-                "species": "SPECIES_DIGLETT_ALOLA"              },
+                "species": "SPECIES_DIGLETT_ALOLA"
+              },
               {
                 "min_level": 43,
                 "max_level": 45,
-                "species": "SPECIES_CUBONE"              },
+                "species": "SPECIES_CUBONE"
+              },
               {
                 "min_level": 43,
                 "max_level": 45,
-                "species": "SPECIES_DIGLETT_ALOLA"              },
+                "species": "SPECIES_DIGLETT_ALOLA"
+              },
               {
                 "min_level": 43,
                 "max_level": 45,
-                "species": "SPECIES_CUBONE"              }
+                "species": "SPECIES_CUBONE"
+              }
             ]
           }
         },
@@ -71785,11 +71791,13 @@
               {
                 "min_level": 43,
                 "max_level": 45,
-                "species": "SPECIES_SANDSHREW_ALOLA"              },
+                "species": "SPECIES_SANDSHREW_ALOLA"
+              },
               {
                 "min_level": 43,
                 "max_level": 45,
-                "species": "SPECIES_VULPIX_ALOLA"              },
+                "species": "SPECIES_VULPIX_ALOLA"
+              },
               {
                 "min_level": 43,
                 "max_level": 45,
