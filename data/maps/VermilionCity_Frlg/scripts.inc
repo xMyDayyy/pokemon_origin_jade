@@ -69,12 +69,106 @@ VermilionCity_EventScript_CheckHasAuroraTicket::
 	end
 
 VermilionCity_EventScript_CheckSeagallopPresent::
+	@ Kanto-Merge: Die Seegallope fuhr zu den stillgelegten Sevii-Inseln.
+	@ Stattdessen dasselbe Faehrmenue wie in Olivia - die Liste
+	@ MULTI_VERMILION_HARBOR gab es bereits, sie haing nur an der
+	@ stillgelegten HnS-Karte.
 	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
-	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 5, VermilionCity_EventScript_ChooseSeagallopDestRainbowPass
-	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 1, VermilionCity_EventScript_ChooseSeagallopDestTriPass
-	msgbox VermilionCity_Text_TheShipSetSail
+	message VermilionCity_Text_WhereSail
+	multichoicegrid 1, 0, MULTI_VERMILION_HARBOR, 2, FALSE
+	switch VAR_RESULT
+	case 0, VermilionCity_EventScript_ChoseOlivine
+	case 1, VermilionCity_EventScript_ChoseSouthernIsland
+	case 2, VermilionCity_EventScript_ChoseBirthIsland
+	case 3, VermilionCity_EventScript_ChoseFarawayIsland
+	case 4, VermilionCity_EventScript_ChoseBattleFrontier
+	case 5, Common_EventScript_SailToHoenn
+	case 6, VermilionCity_EventScript_CancelSail
+	case MULTI_B_PRESSED, VermilionCity_EventScript_CancelSail
 	release
 	end
+
+VermilionCity_EventScript_CancelSail::
+	closemessage
+	release
+	end
+
+@ Ziele, die ein Ticket verlangen. Ohne bleibt der Matrose freundlich.
+VermilionCity_EventScript_ChoseSouthernIsland::
+	goto_if_unset FLAG_ENABLE_SHIP_SOUTHERN_ISLAND, VermilionCity_EventScript_NoTicket
+	checkitem ITEM_EON_TICKET
+	goto_if_eq VAR_RESULT, FALSE, VermilionCity_EventScript_NoTicket
+	closemessage
+	delay 20
+	warpsilent MAP_SOUTHERN_ISLAND_EXTERIOR, 13, 22
+	waitstate
+	release
+	end
+
+VermilionCity_EventScript_ChoseBirthIsland::
+	goto_if_unset FLAG_ENABLE_SHIP_BIRTH_ISLAND, VermilionCity_EventScript_NoTicket
+	checkitem ITEM_AURORA_TICKET
+	goto_if_eq VAR_RESULT, FALSE, VermilionCity_EventScript_NoTicket
+	closemessage
+	delay 20
+	warpsilent MAP_BIRTH_ISLAND_EXTERIOR, 15, 20
+	waitstate
+	release
+	end
+
+VermilionCity_EventScript_ChoseFarawayIsland::
+	goto_if_unset FLAG_ENABLE_SHIP_FARAWAY_ISLAND, VermilionCity_EventScript_NoTicket
+	checkitem ITEM_OLD_SEA_MAP
+	goto_if_eq VAR_RESULT, FALSE, VermilionCity_EventScript_NoTicket
+	closemessage
+	delay 20
+	warpsilent MAP_FARAWAY_ISLAND_ENTRANCE, 13, 38
+	waitstate
+	release
+	end
+
+VermilionCity_EventScript_ChoseBattleFrontier::
+	goto_if_unset FLAG_LANDMARK_BATTLE_FRONTIER, VermilionCity_EventScript_NoTicket
+	closemessage
+	delay 20
+	warpsilent MAP_BATTLE_FRONTIER_OUTSIDE_EAST, 3, 24
+	waitstate
+	release
+	end
+
+@ Nach Johto. Erst moeglich, wenn der Spieler dort gewesen ist.
+VermilionCity_EventScript_ChoseOlivine::
+	goto_if_unset FLAG_VISITED_JOHTO, VermilionCity_EventScript_NoTicket
+	closemessage
+	delay 20
+	warpsilent MAP_OLIVINE_CITY_HNS, 13, 43
+	waitstate
+	release
+	end
+
+VermilionCity_EventScript_NoTicket::
+	msgbox VermilionCity_Text_FerryNoTicket
+	closemessage
+	release
+	end
+
+VermilionCity_Text_WhereSail:
+#if GERMAN
+	.string "Wohin soll die Reise gehen?$"
+#else
+	.string "Where would you like to sail?$"
+#endif
+
+VermilionCity_Text_FerryNoTicket:
+#if GERMAN
+	.string "Dorthin kann ich dich noch nicht\n"
+	.string "bringen. Komm wieder, wenn du die\l"
+	.string "nötigen Papiere hast!$"
+#else
+	.string "I can't take you there yet.\n"
+	.string "Come back when you have the right\l"
+	.string "papers!$"
+#endif
 
 VermilionCity_EventScript_ChooseSeagallopDestRainbowPass::
 	call VermilionCity_EventScript_CheckHasMysticTicket
