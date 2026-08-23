@@ -45,8 +45,8 @@ CeruleanCity_House2_Text_RocketsStoleTMForDig::
 CeruleanCity_House2_Text_TeachDiglettDigWithoutTM::
 #if GERMAN
 	.string "Was weg ist, ist weg!\p"
-	.string "Ich werde Digda beibringen, ohne\n"
-	.string "den Schaufler zu graben!$"
+	.string "Dann bringe ich meinem Digda\n"
+	.string "Schaufler eben ohne TM bei!$"
 #else
 	.string "I figure what's lost is lost.\p"
 	.string "I decided to teach DIGLETT how to\n"
