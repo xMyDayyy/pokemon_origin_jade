@@ -5,14 +5,12 @@ IndigoPlateau_PokemonCenter_1F_Frlg_MapScripts::
 
 IndigoPlateau_PokemonCenter_1F_OnTransition::
 	setrespawn HEAL_LOCATION_INDIGO_PLATEAU
-	specialvar VAR_RESULT, IsNationalPokedexEnabled
-	call_if_eq VAR_RESULT, TRUE, IndigoPlateau_PokemonCenter_1F_EventScript_CheckBlockDoor
+	@ Kanto-Merge: zweite Haelfte derselben Sevii-Sperre wie in Patch 0089.
+	@ Bei aktivem Nationaldex und ohne FLAG_IS_CHAMPION stellte sich die
+	@ Waechterin auf (4,2) und damit direkt vor die Tuer. Da unser Dex seit
+	@ Patch 0049 von Anfang an im Nationalmodus laeuft, traf das sofort zu -
+	@ die Liga war zugestellt.
 	end
-
-IndigoPlateau_PokemonCenter_1F_EventScript_CheckBlockDoor::
-	goto_if_set FLAG_IS_CHAMPION, Common_EventScript_NopReturn
-	setobjectxyperm LOCALID_LEAGUE_DOOR_GUARD, 4, 2
-	return
 
 IndigoPlateau_PokemonCenter_1F_EventScript_DoorGuard::
 	lock
