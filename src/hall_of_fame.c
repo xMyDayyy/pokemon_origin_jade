@@ -780,14 +780,9 @@ static void Task_Hof_HandleExit(u8 taskId)
 
 static void StartCredits(void)
 {
-#if IS_HNS
-    // Kanto-Merge: Kanto ist das erste von drei Kapiteln. Der Abspann gehoert
-    // ans Ende der ganzen Reise, nicht hierher - nach der Ruhmeshalle geht es
-    // ohne Unterbrechung im Spiel weiter.
-    SetMainCallback2(CB2_ReturnToFieldFadeFromBlack);
-#else
+    // Kanto-Merge: Hier laeuft nur Hoenns Ruhmeshalle durch. Kantos Abspann
+    // haengt an SetWarpsToRollCredits in hall_of_fame_frlg.c.
     SetMainCallback2(CB2_StartCreditsSequence);
-#endif
 }
 
 #undef tDontSaveData
