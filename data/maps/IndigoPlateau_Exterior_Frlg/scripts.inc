@@ -91,8 +91,10 @@ IndigoPlateau_Exterior_EventScript_Credits::
 	@ warpen wir selbst nach Alabastia.
 	setrespawn HEAL_LOCATION_PALLET_TOWN
 	fadescreen FADE_TO_BLACK
-	warp MAP_PALLET_TOWN_PLAYERS_HOUSE_2F, 6, 5
+	warp MAP_PALLET_TOWN_PLAYERS_HOUSE_2F, 6, 6
 	waitstate
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
+	waitmovement 0
 	releaseall
 	end
 
