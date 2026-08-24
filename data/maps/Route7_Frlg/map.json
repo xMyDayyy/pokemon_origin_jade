@@ -1,7 +1,7 @@
 {
   "id": "MAP_ROUTE7",
   "name": "Route7_Frlg",
-  "layout": "LAYOUT_ROUTE7",
+  "layout": "LAYOUT_ROUTE7_HNS",
   "music": "MUS_RG_ROUTE3",
   "region_map_section": "MAPSEC_ROUTE_7",
   "requires_flash": false,
@@ -15,12 +15,12 @@
   "connections": [
     {
       "map": "MAP_CELADON_CITY",
-      "offset": -10,
+      "offset": -8,
       "direction": "left"
     },
     {
       "map": "MAP_SAFFRON_CITY_CONNECTION",
-      "offset": -10,
+      "offset": -8,
       "direction": "right"
     }
   ],
@@ -28,23 +28,62 @@
     {
       "type": "clone",
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE_FRLG",
-      "x": -8,
-      "y": 12,
+      "x": 0,
+      "y": 14,
       "target_local_id": "LOCALID_CELADON_BORDER_TREE",
       "target_map": "MAP_CELADON_CITY"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_JIGGLYPUFF",
+      "x": 2,
+      "y": 23,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
+      "x": 16,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "BERRY_TREE_TAMATO_1",
+      "script": "BerryTreeScript",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_PIDGEY",
+      "x": 5,
+      "y": 23,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
     }
   ],
   "warp_events": [
     {
       "x": 7,
-      "y": 14,
+      "y": 16,
       "elevation": 0,
       "dest_map": "MAP_UNDERGROUND_PATH_WEST_ENTRANCE",
       "dest_warp_id": "1"
     },
     {
       "x": 15,
-      "y": 10,
+      "y": 12,
       "elevation": 3,
       "dest_map": "MAP_ROUTE7_EAST_ENTRANCE",
       "dest_warp_id": "0"
@@ -55,7 +94,7 @@
     {
       "type": "sign",
       "x": 5,
-      "y": 14,
+      "y": 16,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route7_EventScript_UndergroundPathSign"
@@ -63,7 +102,7 @@
     {
       "type": "hidden_item",
       "x": 16,
-      "y": 15,
+      "y": 17,
       "elevation": 3,
       "item": "ITEM_WEPEAR_BERRY",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE7_WEPEAR_BERRY",

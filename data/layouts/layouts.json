@@ -14882,7 +14882,7 @@
       "secondary_tileset": "gTileset_Route40_Hns",
       "border_filepath": "data/layouts/Route12_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route12_hns/map.bin",
-      "game_version": "hns_kanto_retired",
+      "game_version": "hns",
       "layout_version": "hns"
     },
     {
@@ -14942,7 +14942,7 @@
       "secondary_tileset": "gTileset_CyclingRoad_Hns",
       "border_filepath": "data/layouts/Route17_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route17_hns/map.bin",
-      "game_version": "hns_kanto_retired",
+      "game_version": "hns",
       "layout_version": "hns"
     },
     {
@@ -15026,7 +15026,7 @@
       "secondary_tileset": "gTileset_CeruleanCity_Hns",
       "border_filepath": "data/layouts/Route24_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route24_hns/map.bin",
-      "game_version": "hns_kanto_retired",
+      "game_version": "hns",
       "layout_version": "hns"
     },
     {
@@ -15098,7 +15098,7 @@
       "secondary_tileset": "gTileset_Vermilion_Hns",
       "border_filepath": "data/layouts/Route6_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route6_hns/map.bin",
-      "game_version": "hns_kanto_retired",
+      "game_version": "hns",
       "layout_version": "hns"
     },
     {
@@ -15110,7 +15110,7 @@
       "secondary_tileset": "gTileset_CeladonCity_Hns",
       "border_filepath": "data/layouts/Route7_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route7_hns/map.bin",
-      "game_version": "hns_kanto_retired",
+      "game_version": "hns",
       "layout_version": "hns"
     },
     {
@@ -15122,7 +15122,7 @@
       "secondary_tileset": "gTileset_LavenderTown_Hns",
       "border_filepath": "data/layouts/Route8_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route8_hns/map.bin",
-      "game_version": "hns_kanto_retired",
+      "game_version": "hns",
       "layout_version": "hns"
     },
     {
@@ -15134,7 +15134,7 @@
       "secondary_tileset": "gTileset_LavenderTown_Hns",
       "border_filepath": "data/layouts/Route9_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route9_hns/map.bin",
-      "game_version": "hns_kanto_retired",
+      "game_version": "hns",
       "layout_version": "hns"
     },
     {
