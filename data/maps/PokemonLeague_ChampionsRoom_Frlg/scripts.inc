@@ -71,8 +71,13 @@ PokemonLeague_ChampionsRoom_EventScript_EnterRoom::
 	applymovement LOCALID_CHAMPIONS_ROOM_PROF_OAK, PokemonLeague_ChampionsRoom_Movement_OakEnter
 	waitmovement 0
 	delay 25
-	specialvar VAR_RESULT, GetStarterPokemon
-	bufferspeciesname STR_VAR_1, VAR_RESULT
+	@ Kanto-Merge: GetStarterPokemon liest sStarterMon, das ueber IS_FRLG
+	@ zwischen Kanto und Hoenn waehlt - im HnS-Build kam Geckarbor heraus.
+	@ VAR_STARTER_MON haelt ohnehin die FRLG-Nummer, daraus laesst sich die
+	@ Art direkt bestimmen.
+	call_if_eq VAR_STARTER_MON, 0, PokemonLeague_ChampionsRoom_EventScript_NameBulbasaur
+	call_if_eq VAR_STARTER_MON, 1, PokemonLeague_ChampionsRoom_EventScript_NameSquirtle
+	call_if_eq VAR_STARTER_MON, 2, PokemonLeague_ChampionsRoom_EventScript_NameCharmander
 	msgbox PokemonLeague_ChampionsRoom_Text_OakCongratulations
 	applymovement LOCALID_CHAMPIONS_ROOM_PROF_OAK, Common_Movement_WalkInPlaceFasterRight
 	applymovement LOCALID_KANTO_CHAMPIONS_ROOM_RIVAL, Common_Movement_WalkInPlaceFasterLeft
@@ -428,3 +433,14 @@ PokemonLeague_ChampionsRoom_Text_OakPlayerComeWithMe::
 	.string "Come with me!$"
 #endif
 
+PokemonLeague_ChampionsRoom_EventScript_NameBulbasaur::
+	bufferspeciesname STR_VAR_1, SPECIES_BULBASAUR
+	return
+
+PokemonLeague_ChampionsRoom_EventScript_NameSquirtle::
+	bufferspeciesname STR_VAR_1, SPECIES_SQUIRTLE
+	return
+
+PokemonLeague_ChampionsRoom_EventScript_NameCharmander::
+	bufferspeciesname STR_VAR_1, SPECIES_CHARMANDER
+	return
