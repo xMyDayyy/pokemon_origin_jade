@@ -58,8 +58,10 @@ CinnabarIsland_Gym_EventScript_DefeatedBlaine::
 	setflag FLAG_DEFEATED_BLAINE
 	setflag FLAG_BADGE07_GET
 	setrespawn HEAL_LOCATION_CINNABAR_ISLAND
-	setvar VAR_MAP_SCENE_CINNABAR_ISLAND, 1
-	clearflag FLAG_HIDE_CINNABAR_BILL
+	@ Kanto-Merge: Bill fuehrt in FRLG zu den Sevii-Inseln. Die sind
+	@ stillgelegt, der Warp lief ins Leere und das Spiel stuerzte ab.
+	@ setvar VAR_MAP_SCENE_CINNABAR_ISLAND, 1
+	@ clearflag FLAG_HIDE_CINNABAR_BILL
 	set_gym_trainers_frlg 7
 	goto CinnabarIsland_Gym_EventScript_GiveTM38
 	end
