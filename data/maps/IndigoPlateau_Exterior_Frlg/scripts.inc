@@ -86,9 +86,13 @@ IndigoPlateau_Exterior_EventScript_Credits::
 	removeobject LOCALID_CREDITS_RIVAL
 	removeobject LOCALID_CREDITS_PROF_OAK
 	@ Kanto-Merge: kein Abspann - Kanto ist das erste von drei Kapiteln.
-	@ Der Spieler laeuft am Ende nach Sueden weg; dorthin gehoert auch der
-	@ Rueckkehrpunkt, nicht nach Alabastia.
-	setrespawn HEAL_LOCATION_INDIGO_PLATEAU
+	@ In FRLG uebernimmt hier die Abspannrolle und setzt den Spieler danach
+	@ zu Hause ab. Ohne sie bleibt er ausserhalb des Bildes stehen, deshalb
+	@ warpen wir selbst nach Alabastia.
+	setrespawn HEAL_LOCATION_PALLET_TOWN
+	fadescreen FADE_TO_BLACK
+	warp MAP_PALLET_TOWN_PLAYERS_HOUSE_2F, 6, 5
+	waitstate
 	releaseall
 	end
 
