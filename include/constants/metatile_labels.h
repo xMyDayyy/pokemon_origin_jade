@@ -118,6 +118,10 @@
 #define METATILE_Building_TV_On   0x003
 
 // gTileset_BuildingFrlg
+// Kanto-Merge: TV im FRLG-Gebaeudetileset. Ermittelt aus dem Layout von
+// PalletTown_PlayersHouse_1F_Frlg, wo das TV-Skript auf 0x035 sitzt.
+#define METATILE_BuildingFrlg_TV_Off 0x035
+#define METATILE_BuildingFrlg_TV_On  0x036
 #define METATILE_BuildingFrlg_PCOff  0x062
 #define METATILE_BuildingFrlg_PCOn   0x063
 
