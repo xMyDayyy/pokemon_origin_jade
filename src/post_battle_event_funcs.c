@@ -42,7 +42,7 @@ int GameClear(void)
     if (IS_HNS && FlagGet(FLAG_VISITED_JOHTO))
         SetContinueGameWarpToHealLocation(HEAL_LOCATION_NEW_BARK_TOWN_HNS);
     else if (IS_HNS)
-        SetContinueGameWarpToHealLocation(HEAL_LOCATION_PALLET_TOWN);
+        SetContinueGameWarpToHealLocation(HEAL_LOCATION_INDIGO_PLATEAU);
     else if (gSaveBlock2Ptr->playerGender == MALE)
         SetContinueGameWarpToHealLocation(HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F);
     else
@@ -126,7 +126,7 @@ bool8 EnterHallOfFame(void)
     if (IS_HNS && FlagGet(FLAG_VISITED_JOHTO))
         SetContinueGameWarpToHealLocation(HEAL_LOCATION_NEW_BARK_TOWN_HNS);
     else if (IS_HNS)
-        SetContinueGameWarpToHealLocation(HEAL_LOCATION_PALLET_TOWN);
+        SetContinueGameWarpToHealLocation(HEAL_LOCATION_INDIGO_PLATEAU);
     else
         SetContinueGameWarpToHealLocation(HEAL_LOCATION_PALLET_TOWN);
     gaveAtLeastOneRibbon = FALSE;

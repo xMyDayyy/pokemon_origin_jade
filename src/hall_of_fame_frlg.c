@@ -699,15 +699,9 @@ static void Task_Hof_HandleExit(u8 taskId)
 
 static void SetWarpsToRollCredits(void)
 {
-    // Kanto-Merge: Der Wert 1 loest am Plateau die Abspannszene aus - Eich und
-    // der Rivale laufen auf, danach CB2_StartCreditsSequence. Kanto ist aber
-    // das erste von drei Kapiteln; der Abspann gehoert ans Ende der Reise.
-    // Mit 0 warpt der Spieler nur nach draussen und spielt weiter.
-#if IS_HNS
-    VarSet(VAR_MAP_SCENE_INDIGO_PLATEAU_EXTERIOR, 0);
-#else
+    // Kanto-Merge: Die Szene am Plateau bleibt, nur der Abspann an ihrem Ende
+    // entfaellt - siehe IndigoPlateau_Exterior_EventScript_Credits.
     VarSet(VAR_MAP_SCENE_INDIGO_PLATEAU_EXTERIOR, 1);
-#endif
     FlagSet(FLAG_HIDE_MAP_NAME_POPUP);
     gDisableMapMusicChangeOnMapLoad = MUSIC_DISABLE_KEEP;
     SetWarpDestination(MAP_GROUP(MAP_INDIGO_PLATEAU_EXTERIOR), MAP_NUM(MAP_INDIGO_PLATEAU_EXTERIOR), -1, 11, 6);

@@ -52,6 +52,14 @@ IndigoPlateau_Exterior_EventScript_Credits::
 	waitdooranim
 	delay 160
 
+	@ Kanto-Merge: Eich dreht sich zum Spieler und bestellt ihn ins Labor -
+	@ das ist der Anschluss an die Reise nach Johto.
+	applymovement LOCALID_CREDITS_PROF_OAK, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox IndigoPlateau_Exterior_Text_OakComeToMyLab
+	closemessage
+	delay 20
+
 	@ Oak looks at player, then walks off
 	applymovement LOCALID_PLAYER, IndigoPlateau_Exterior_Movement_PlayerWatchOakLeave
 	applymovement LOCALID_CREDITS_PROF_OAK, IndigoPlateau_Exterior_Movement_OakLeave
@@ -77,10 +85,23 @@ IndigoPlateau_Exterior_EventScript_Credits::
 	setvar VAR_MAP_SCENE_INDIGO_PLATEAU_EXTERIOR, 0
 	removeobject LOCALID_CREDITS_RIVAL
 	removeobject LOCALID_CREDITS_PROF_OAK
-	special CB2_StartCreditsSequence
-	waitstate
+	@ Kanto-Merge: kein Abspann - Kanto ist das erste von drei Kapiteln.
+	@ Der Spieler laeuft am Ende nach Sueden weg; dorthin gehoert auch der
+	@ Rueckkehrpunkt, nicht nach Alabastia.
+	setrespawn HEAL_LOCATION_INDIGO_PLATEAU
 	releaseall
 	end
+
+IndigoPlateau_Exterior_Text_OakComeToMyLab::
+#if GERMAN
+	.string "{PLAYER}, komm bitte in mein Labor!\p"
+	.string "Ich möchte noch etwas mit dir\n"
+	.string "besprechen.$"
+#else
+	.string "{PLAYER}, please come to my LAB!\p"
+	.string "There's something I'd like to\n"
+	.string "discuss with you.$"
+#endif
 
 IndigoPlateau_Exterior_Movement_PlayerLeave::
 	player_run_down
