@@ -16620,6 +16620,30 @@
       "blockdata_filepath": "data/layouts/NewSinjoh_KimonoHideout_hns/map.bin",
       "game_version": "hns",
       "layout_version": "hns"
+    },
+    {
+      "id": "LAYOUT_ROUTE21_NORTH_HNS",
+      "name": "Route21_North_hns_Layout",
+      "width": 24,
+      "height": 50,
+      "primary_tileset": "gTileset_Kanto_General_Hns",
+      "secondary_tileset": "gTileset_PalletTown_Hns",
+      "border_filepath": "data/layouts/Route21_North_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Route21_North_hns/map.bin",
+      "game_version": "hns",
+      "layout_version": "hns"
+    },
+    {
+      "id": "LAYOUT_ROUTE21_SOUTH_HNS",
+      "name": "Route21_South_hns_Layout",
+      "width": 24,
+      "height": 50,
+      "primary_tileset": "gTileset_Kanto_General_Hns",
+      "secondary_tileset": "gTileset_PalletTown_Hns",
+      "border_filepath": "data/layouts/Route21_South_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Route21_South_hns/map.bin",
+      "game_version": "hns",
+      "layout_version": "hns"
     }
   ]
 }

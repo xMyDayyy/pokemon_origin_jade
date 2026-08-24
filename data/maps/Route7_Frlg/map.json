@@ -19,8 +19,8 @@
       "direction": "left"
     },
     {
-      "map": "MAP_SAFFRON_CITY_CONNECTION",
-      "offset": -8,
+      "map": "MAP_SAFFRON_CITY",
+      "offset": -15,
       "direction": "right"
     }
   ],
