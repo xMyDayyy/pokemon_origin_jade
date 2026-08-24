@@ -503,8 +503,20 @@ static const u8 *ExpandPlaceholder_RivalName(void)
     if (gMapHeader.regionMapSectionId >= KANTO_MAPSEC_START
      && gMapHeader.regionMapSectionId <= KANTO_MAPSEC_END)
     {
-        if (gSaveBlock3Ptr->rivalNameKanto[0] != EOS)
-            return gSaveBlock3Ptr->rivalNameKanto;
+        // Der Name muss innerhalb des Feldes enden. Ein Spielstand aus der
+        // Zeit vor diesem Feld enthaelt dort Zufallsdaten; ohne
+        // Abschlusszeichen liest der Textausgeber darueber hinaus und das
+        // Spiel stuerzt ab.
+        {
+            u32 i;
+
+            for (i = 0; i < PLAYER_NAME_LENGTH + 1; i++)
+            {
+                if (gSaveBlock3Ptr->rivalNameKanto[i] == EOS)
+                    return i != 0 ? gSaveBlock3Ptr->rivalNameKanto
+                                  : gText_ExpandedPlaceholder_Green;
+            }
+        }
         return gText_ExpandedPlaceholder_Green;
     }
 
