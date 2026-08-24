@@ -17,8 +17,10 @@ IndigoPlateau_PokemonCenter_1F_EventScript_CheckBlockDoor::
 IndigoPlateau_PokemonCenter_1F_EventScript_DoorGuard::
 	lock
 	faceplayer
-	specialvar VAR_RESULT, IsNationalPokedexEnabled
-	goto_if_eq VAR_RESULT, TRUE, IndigoPlateau_PokemonCenter_1F_EventScript_CheckSeviiIslandComplete
+	@ Kanto-Merge: In FRLG steht der Nationaldex fuer 'das Nachspiel hat
+	@ begonnen' - dann ist Lorelei auf den Sevii-Inseln. Bei uns laeuft der
+	@ Dex seit Patch 0049 von Anfang an im Nationalmodus, und die Inseln
+	@ sind stillgelegt. Die Abfrage haette die Liga dauerhaft gesperrt.
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_FaceEliteFourGoodLuck
 	release
 	end
