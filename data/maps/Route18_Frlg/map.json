@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE18",
   "name": "Route18_Frlg",
   "game_version": "hns",
-  "layout": "LAYOUT_ROUTE18",
+  "layout": "LAYOUT_ROUTE18_HNS",
   "music": "MUS_RG_ROUTE3",
   "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_ROUTE_18",

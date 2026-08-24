@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE25",
   "name": "Route25_Frlg",
   "game_version": "hns",
-  "layout": "LAYOUT_ROUTE25",
+  "layout": "LAYOUT_ROUTE25_HNS",
   "music": "MUS_RG_ROUTE24",
   "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_ROUTE_25",
@@ -18,7 +18,7 @@
   "connections": [
     {
       "map": "MAP_ROUTE24",
-      "offset": 0,
+      "offset": 9,
       "direction": "left"
     }
   ],
@@ -26,8 +26,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_HIKER_FRLG",
-      "x": 11,
-      "y": 4,
+      "x": 45,
+      "y": 13,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
@@ -40,8 +40,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER_FRLG",
-      "x": 18,
-      "y": 2,
+      "x": 52,
+      "y": 11,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -54,8 +54,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_HIKER_FRLG",
-      "x": 17,
-      "y": 7,
+      "x": 51,
+      "y": 16,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
@@ -68,8 +68,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER_FRLG",
-      "x": 22,
-      "y": 4,
+      "x": 56,
+      "y": 13,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -82,8 +82,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER_FRLG",
-      "x": 22,
-      "y": 8,
+      "x": 56,
+      "y": 17,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
@@ -96,8 +96,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_HIKER_FRLG",
-      "x": 27,
-      "y": 9,
+      "x": 61,
+      "y": 18,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 1,
@@ -110,8 +110,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CAMPER_FRLG",
-      "x": 28,
-      "y": 4,
+      "x": 62,
+      "y": 13,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -124,8 +124,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER_FRLG",
-      "x": 36,
-      "y": 4,
+      "x": 70,
+      "y": 13,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WALK_DOWN_AND_UP",
       "movement_range_x": 1,
@@ -138,8 +138,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LASS_FRLG",
-      "x": 42,
-      "y": 5,
+      "x": 76,
+      "y": 14,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -152,8 +152,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 26,
-      "y": 2,
+      "x": 60,
+      "y": 11,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -166,8 +166,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE_FRLG",
-      "x": 30,
-      "y": 3,
+      "x": 64,
+      "y": 12,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -180,8 +180,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BEAUTY_FRLG",
-      "x": 49,
-      "y": 10,
+      "x": 83,
+      "y": 19,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
@@ -194,8 +194,8 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MAN",
-      "x": 49,
-      "y": 11,
+      "x": 83,
+      "y": 20,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
@@ -208,8 +208,8 @@
   ],
   "warp_events": [
     {
-      "x": 51,
-      "y": 4,
+      "x": 85,
+      "y": 13,
       "elevation": 0,
       "dest_map": "MAP_ROUTE25_SEA_COTTAGE",
       "dest_warp_id": "1"
@@ -219,16 +219,16 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 48,
-      "y": 4,
+      "x": 82,
+      "y": 13,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route25_EventScript_SeaCottageSign"
     },
     {
       "type": "hidden_item",
-      "x": 14,
-      "y": 2,
+      "x": 48,
+      "y": 11,
       "elevation": 3,
       "item": "ITEM_ELIXIR",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE25_ELIXIR",
@@ -237,8 +237,8 @@
     },
     {
       "type": "hidden_item",
-      "x": 58,
-      "y": 6,
+      "x": 92,
+      "y": 15,
       "elevation": 3,
       "item": "ITEM_ETHER",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE25_ETHER",
@@ -247,8 +247,8 @@
     },
     {
       "type": "hidden_item",
-      "x": 33,
-      "y": 8,
+      "x": 67,
+      "y": 17,
       "elevation": 3,
       "item": "ITEM_ORAN_BERRY",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE25_ORAN_BERRY",
@@ -257,8 +257,8 @@
     },
     {
       "type": "hidden_item",
-      "x": 40,
-      "y": 3,
+      "x": 74,
+      "y": 12,
       "elevation": 3,
       "item": "ITEM_BLUK_BERRY",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE25_BLUK_BERRY",

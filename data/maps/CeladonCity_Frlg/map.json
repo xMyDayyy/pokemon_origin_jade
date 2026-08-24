@@ -1,7 +1,7 @@
 {
   "id": "MAP_CELADON_CITY",
   "name": "CeladonCity_Frlg",
-  "layout": "LAYOUT_CELADON_CITY",
+  "layout": "LAYOUT_CELADON_CITY_HNS",
   "music": "MUS_RG_CELADON",
   "region_map_section": "MAPSEC_CELADON_CITY",
   "requires_flash": false,
@@ -15,7 +15,7 @@
   "connections": [
     {
       "map": "MAP_ROUTE16",
-      "offset": 10,
+      "offset": -5,
       "direction": "left"
     },
     {
@@ -221,8 +221,8 @@
   ],
   "warp_events": [
     {
-      "x": 34,
-      "y": 21,
+      "x": 35,
+      "y": 19,
       "elevation": 0,
       "dest_map": "MAP_CELADON_CITY_GAME_CORNER",
       "dest_warp_id": "0"
@@ -263,7 +263,7 @@
       "dest_warp_id": "1"
     },
     {
-      "x": 11,
+      "x": 12,
       "y": 30,
       "elevation": 0,
       "dest_map": "MAP_CELADON_CITY_GYM",
@@ -277,7 +277,7 @@
       "dest_warp_id": "1"
     },
     {
-      "x": 41,
+      "x": 36,
       "y": 29,
       "elevation": 0,
       "dest_map": "MAP_CELADON_CITY_HOUSE1",

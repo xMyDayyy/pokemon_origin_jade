@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE3",
   "name": "Route3_Frlg",
   "game_version": "hns",
-  "layout": "LAYOUT_ROUTE3",
+  "layout": "LAYOUT_ROUTE3_HNS",
   "music": "MUS_RG_ROUTE3",
   "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_ROUTE_3",
@@ -23,7 +23,7 @@
     },
     {
       "map": "MAP_PEWTER_CITY",
-      "offset": -10,
+      "offset": -15,
       "direction": "left"
     }
   ],

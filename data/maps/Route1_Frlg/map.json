@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE1",
   "name": "Route1_Frlg",
   "game_version": "hns",
-  "layout": "LAYOUT_ROUTE1",
+  "layout": "LAYOUT_ROUTE1_HNS",
   "music": "MUS_RG_ROUTE1",
   "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_ROUTE_1",
@@ -18,12 +18,12 @@
   "connections": [
     {
       "map": "MAP_VIRIDIAN_CITY",
-      "offset": -12,
+      "offset": -2,
       "direction": "up"
     },
     {
       "map": "MAP_PALLET_TOWN",
-      "offset": 0,
+      "offset": 12,
       "direction": "down"
     }
   ],
@@ -31,7 +31,7 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CLERK",
-      "x": 6,
+      "x": 18,
       "y": 28,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
@@ -45,7 +45,7 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BOY",
-      "x": 19,
+      "x": 31,
       "y": 16,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
@@ -62,7 +62,7 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 9,
+      "x": 21,
       "y": 31,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",

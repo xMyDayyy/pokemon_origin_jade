@@ -2,7 +2,7 @@
   "id": "MAP_FUCHSIA_CITY",
   "name": "FuchsiaCity_Frlg",
   "game_version": "hns",
-  "layout": "LAYOUT_FUCHSIA_CITY",
+  "layout": "LAYOUT_FUCHSIA_CITY_HNS",
   "music": "MUS_RG_FUCHSIA",
   "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_FUCHSIA_CITY",
@@ -28,7 +28,7 @@
     },
     {
       "map": "MAP_ROUTE15",
-      "offset": 10,
+      "offset": 15,
       "direction": "right"
     }
   ],
@@ -260,7 +260,7 @@
   ],
   "warp_events": [
     {
-      "x": 24,
+      "x": 26,
       "y": 5,
       "elevation": 0,
       "dest_map": "MAP_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE",

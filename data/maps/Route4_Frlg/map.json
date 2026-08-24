@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE4",
   "name": "Route4_Frlg",
   "game_version": "hns",
-  "layout": "LAYOUT_ROUTE4",
+  "layout": "LAYOUT_ROUTE4_HNS",
   "music": "MUS_RG_ROUTE3",
   "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_ROUTE_4",
@@ -23,7 +23,7 @@
     },
     {
       "map": "MAP_CERULEAN_CITY",
-      "offset": -10,
+      "offset": -7,
       "direction": "right"
     }
   ],
