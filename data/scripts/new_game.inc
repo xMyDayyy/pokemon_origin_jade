@@ -467,6 +467,10 @@ EventScript_ResetAllMapFlagsFrlg::
 	setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
 	setflag FLAG_HIDE_BILL_HUMAN_SEA_COTTAGE
 	setflag FLAG_HIDE_PEWTER_CITY_RUNNING_SHOES_GUY
+	@ Kanto-Merge: Die Wache am Torhaus haelt in HnS den Weg nach Kanto zu,
+	@ solange der Spieler aus Johto kommt. Bei uns beginnt die Reise in
+	@ Kanto - sie steht dort von Anfang an nicht.
+	setflag FLAG_INDIGOJUNCTION_HIDE_KANTO_GUARD
 	setflag FLAG_HIDE_POKEHOUSE_FUJI
 	setflag FLAG_HIDE_LIFT_KEY
 	setflag FLAG_HIDE_SILPH_SCOPE
