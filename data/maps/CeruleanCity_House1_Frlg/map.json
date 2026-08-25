@@ -1,10 +1,8 @@
 {
   "id": "MAP_CERULEAN_CITY_HOUSE1",
   "name": "CeruleanCity_House1_Frlg",
-  "game_version": "hns",
   "layout": "LAYOUT_CERULEAN_CITY_HOUSE1",
   "music": "MUS_RG_FUCHSIA",
-  "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_CERULEAN_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -13,12 +11,10 @@
   "allow_escaping": false,
   "allow_running": false,
   "show_map_name": false,
-  "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": null,
   "object_events": [
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN_FRLG",
       "x": 6,
       "y": 5,
@@ -53,15 +49,11 @@
       "elevation": 0,
       "dest_map": "MAP_CERULEAN_CITY",
       "dest_warp_id": "0"
-    },
-    {
-      "x": 3,
-      "y": 1,
-      "elevation": 3,
-      "dest_map": "MAP_CERULEAN_CITY",
-      "dest_warp_id": "8"
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [],
+  "floor_number": 0,
+  "game_version": "hns",
+  "region": "REGION_KANTO"
 }

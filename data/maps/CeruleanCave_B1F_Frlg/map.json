@@ -1,10 +1,8 @@
 {
   "id": "MAP_CERULEAN_CAVE_B1F",
   "name": "CeruleanCave_B1F_Frlg",
-  "game_version": "hns",
   "layout": "LAYOUT_CERULEAN_CAVE_B1F_HNS",
   "music": "MUS_RG_ROCKET_HIDEOUT",
-  "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_CERULEAN_CAVE",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -13,12 +11,10 @@
   "allow_escaping": true,
   "allow_running": true,
   "show_map_name": true,
-  "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": null,
   "object_events": [
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 32,
       "y": 9,
@@ -32,10 +28,9 @@
       "flag": "FLAG_HIDE_CERULEAN_CAVE_B1F_ULTRA_BALL"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 33,
-      "y": 2,
+      "x": 21,
+      "y": 6,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -46,10 +41,9 @@
       "flag": "FLAG_HIDE_CERULEAN_CAVE_B1F_MAX_REVIVE"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MEWTWO",
-      "x": 8,
-      "y": 12,
+      "x": 5,
+      "y": 9,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -60,10 +54,9 @@
       "flag": "FLAG_HIDE_MEWTWO"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK_FRLG",
-      "x": 38,
-      "y": 1,
+      "x": 24,
+      "y": 15,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -74,10 +67,9 @@
       "flag": "FLAG_TEMP_12"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK_FRLG",
-      "x": 39,
-      "y": 2,
+      "x": 26,
+      "y": 15,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -88,10 +80,9 @@
       "flag": "FLAG_TEMP_13"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK_FRLG",
-      "x": 36,
-      "y": 1,
+      "x": 8,
+      "y": 8,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -102,10 +93,9 @@
       "flag": "FLAG_TEMP_14"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK_FRLG",
-      "x": 38,
-      "y": 4,
+      "x": 16,
+      "y": 6,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -116,10 +106,9 @@
       "flag": "FLAG_TEMP_15"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK_FRLG",
-      "x": 36,
-      "y": 5,
+      "x": 18,
+      "y": 11,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -130,10 +119,9 @@
       "flag": "FLAG_TEMP_16"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK_FRLG",
-      "x": 3,
-      "y": 2,
+      "x": 9,
+      "y": 11,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -144,10 +132,9 @@
       "flag": "FLAG_TEMP_17"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK_FRLG",
-      "x": 5,
-      "y": 1,
+      "x": 34,
+      "y": 21,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -158,10 +145,9 @@
       "flag": "FLAG_TEMP_18"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK_FRLG",
-      "x": 7,
-      "y": 1,
+      "x": 12,
+      "y": 17,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -172,10 +158,9 @@
       "flag": "FLAG_TEMP_19"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK_FRLG",
-      "x": 4,
-      "y": 4,
+      "x": 23,
+      "y": 5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -310,19 +295,57 @@
       "elevation": 3,
       "dest_map": "MAP_CERULEAN_CAVE_1F",
       "dest_warp_id": "2"
+    },
+    {
+      "x": 6,
+      "y": 7,
+      "elevation": 3,
+      "dest_map": "MAP_CERULEAN_CAVE_1F",
+      "dest_warp_id": "7"
+    },
+    {
+      "x": 8,
+      "y": 15,
+      "elevation": 3,
+      "dest_map": "MAP_CERULEAN_CAVE_1F",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 24,
+      "y": 11,
+      "elevation": 3,
+      "dest_map": "MAP_CERULEAN_CAVE_1F",
+      "dest_warp_id": "6"
+    },
+    {
+      "x": 27,
+      "y": 10,
+      "elevation": 3,
+      "dest_map": "MAP_CERULEAN_CAVE_1F",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 34,
+      "y": 5,
+      "elevation": 3,
+      "dest_map": "MAP_CERULEAN_CAVE_1F",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [],
   "bg_events": [
     {
       "type": "hidden_item",
-      "x": 21,
-      "y": 12,
+      "x": 16,
+      "y": 19,
       "elevation": 0,
       "item": "ITEM_ELECTIRIZER",
       "flag": "FLAG_HIDDEN_ITEM_CERULEAN_CAVE_B1F_ELECTIRIZER",
       "quantity": 1,
       "underfoot": false
     }
-  ]
+  ],
+  "floor_number": 0,
+  "game_version": "hns",
+  "region": "REGION_KANTO"
 }

@@ -1,10 +1,8 @@
 {
   "id": "MAP_ROUTE3",
   "name": "Route3_Frlg",
-  "game_version": "hns",
   "layout": "LAYOUT_ROUTE3_HNS",
   "music": "MUS_RG_ROUTE3",
-  "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_ROUTE_3",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -13,7 +11,6 @@
   "allow_escaping": false,
   "allow_running": true,
   "show_map_name": true,
-  "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
@@ -29,7 +26,6 @@
   ],
   "object_events": [
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER_FRLG",
       "x": 70,
       "y": 13,
@@ -43,7 +39,6 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LASS_FRLG",
       "x": 40,
       "y": 11,
@@ -57,10 +52,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER_FRLG",
-      "x": 32,
-      "y": 6,
+      "x": 68,
+      "y": 7,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
@@ -71,10 +65,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LASS_FRLG",
       "x": 30,
-      "y": 3,
+      "y": 5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
@@ -85,10 +78,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER_FRLG",
-      "x": 25,
-      "y": 4,
+      "x": 51,
+      "y": 5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -99,10 +91,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER_FRLG",
-      "x": 29,
-      "y": 10,
+      "x": 16,
+      "y": 13,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
@@ -113,12 +104,11 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LASS_FRLG",
-      "x": 19,
-      "y": 9,
+      "x": 15,
+      "y": 10,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NORMAL",
@@ -127,24 +117,22 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER_FRLG",
-      "x": 12,
-      "y": 6,
+      "x": 11,
+      "y": 5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "3",
+      "trainer_sight_or_berry_tree_id": "4",
       "script": "Route3_EventScript_Colton",
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER_FRLG",
-      "x": 17,
-      "y": 4,
+      "x": 22,
+      "y": 3,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -159,7 +147,7 @@
       "x": 31,
       "y": 11,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -168,13 +156,13 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_ARBOK",
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_NIDORAN_M",
       "x": 51,
       "y": 11,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
@@ -185,7 +173,7 @@
       "x": 20,
       "y": 1,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -194,13 +182,13 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_SANDSHREW",
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_NIDORAN_F",
       "x": 64,
       "y": 6,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
+      "movement_range_x": 3,
+      "movement_range_y": 3,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
@@ -208,10 +196,10 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_PIDGEY",
-      "x": 82,
-      "y": 12,
+      "x": 79,
+      "y": 8,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -222,7 +210,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
       "x": 75,
-      "y": 14,
+      "y": 13,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
@@ -230,6 +218,19 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "BERRY_TREE_POMEG_1",
       "script": "BerryTreeScript",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_MANKEY",
+      "x": 49,
+      "y": 3,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
       "flag": "0"
     }
   ],
@@ -246,7 +247,7 @@
     },
     {
       "type": "hidden_item",
-      "x": 26,
+      "x": 22,
       "y": 9,
       "elevation": 3,
       "item": "ITEM_ORAN_BERRY",
@@ -254,5 +255,8 @@
       "quantity": 1,
       "underfoot": false
     }
-  ]
+  ],
+  "floor_number": 0,
+  "game_version": "hns",
+  "region": "REGION_KANTO"
 }

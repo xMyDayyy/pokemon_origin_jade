@@ -1135,6 +1135,5 @@ PewterCity_Text_RunningShoesLetterFromMom::
 @ Kanto-Merge: Die Turbotreter kommen bereits von der Mutter in Alabastia.
 PewterCity_EventScript_AideAlreadyHasShoes::
 	setflag FLAG_HIDE_PEWTER_CITY_RUNNING_SHOES_GUY
-	setvar VAR_MAP_SCENE_PEWTER_CITY, 2
 	removeobject LOCALID_PEWTER_AIDE
 	return

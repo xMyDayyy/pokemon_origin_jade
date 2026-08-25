@@ -1,10 +1,8 @@
 {
   "id": "MAP_ROUTE4",
   "name": "Route4_Frlg",
-  "game_version": "hns",
   "layout": "LAYOUT_ROUTE4_HNS",
   "music": "MUS_RG_ROUTE3",
-  "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_ROUTE_4",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -13,7 +11,6 @@
   "allow_escaping": false,
   "allow_running": true,
   "show_map_name": true,
-  "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
@@ -29,7 +26,6 @@
   ],
   "object_events": [
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_1_FRLG",
       "x": 9,
       "y": 8,
@@ -43,10 +39,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LASS_FRLG",
-      "x": 75,
-      "y": 3,
+      "x": 77,
+      "y": 4,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
@@ -57,10 +52,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 67,
-      "y": 5,
+      "y": 4,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -71,7 +65,6 @@
       "flag": "FLAG_HIDE_ROUTE4_TM05"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BOY",
       "x": 15,
       "y": 14,
@@ -85,10 +78,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BLACKBELT",
-      "x": 47,
-      "y": 3,
+      "x": 56,
+      "y": 12,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
@@ -99,10 +91,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BLACKBELT",
-      "x": 50,
-      "y": 3,
+      "x": 60,
+      "y": 12,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
@@ -121,7 +112,7 @@
       "target_map": "MAP_CERULEAN_CITY"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_PIDGEY",
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_MANKEY",
       "x": 58,
       "y": 0,
       "elevation": 0,
@@ -188,8 +179,8 @@
   ],
   "warp_events": [
     {
-      "x": 19,
-      "y": 5,
+      "x": 18,
+      "y": 9,
       "elevation": 3,
       "dest_map": "MAP_MT_MOON_1F",
       "dest_warp_id": "3"
@@ -213,24 +204,24 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 18,
-      "y": 7,
+      "x": 9,
+      "y": 9,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route4_EventScript_MtMoonSign"
     },
     {
       "type": "sign",
-      "x": 34,
-      "y": 7,
+      "x": 40,
+      "y": 6,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route4_EventScript_RouteSign"
     },
     {
       "type": "hidden_item",
-      "x": 43,
-      "y": 2,
+      "x": 76,
+      "y": 15,
       "elevation": 3,
       "item": "ITEM_GREAT_BALL",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE4_GREAT_BALL",
@@ -240,7 +231,7 @@
     {
       "type": "hidden_item",
       "x": 5,
-      "y": 4,
+      "y": 5,
       "elevation": 3,
       "item": "ITEM_PERSIM_BERRY",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE4_PERSIM_BERRY",
@@ -249,13 +240,16 @@
     },
     {
       "type": "hidden_item",
-      "x": 67,
-      "y": 17,
+      "x": 49,
+      "y": 16,
       "elevation": 3,
       "item": "ITEM_RAZZ_BERRY",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE4_RAZZ_BERRY",
       "quantity": 1,
       "underfoot": false
     }
-  ]
+  ],
+  "floor_number": 0,
+  "game_version": "hns",
+  "region": "REGION_KANTO"
 }

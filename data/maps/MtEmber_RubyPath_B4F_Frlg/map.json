@@ -1,10 +1,8 @@
 {
   "id": "MAP_MT_EMBER_RUBY_PATH_B4F",
   "name": "MtEmber_RubyPath_B4F_Frlg",
-  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_MT_EMBER_RUBY_PATH_B4F",
   "music": "MUS_RG_SEVII_CAVE",
-  "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_MT_EMBER",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -13,7 +11,6 @@
   "allow_escaping": true,
   "allow_running": true,
   "show_map_name": true,
-  "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": null,
   "object_events": [],
@@ -243,5 +240,8 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
       "script": "MtEmber_RubyPath_B4F_EventScript_BrailleWXYZ"
     }
-  ]
+  ],
+  "floor_number": 0,
+  "game_version": "frlg_sevii_retired",
+  "region": "REGION_KANTO"
 }

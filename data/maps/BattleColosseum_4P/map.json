@@ -1,7 +1,6 @@
 {
   "id": "MAP_BATTLE_COLOSSEUM_4P",
   "name": "BattleColosseum_4P",
-  "game_version": "hns",
   "layout": "LAYOUT_BATTLE_COLOSSEUM_4P",
   "music": "MUS_EVER_GRANDE",
   "region_map_section": "MAPSEC_DYNAMIC",
@@ -83,5 +82,6 @@
       "script": "EventScript_BattleColosseum_4P_PlayerSpot3"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+  "game_version": "hns"
 }

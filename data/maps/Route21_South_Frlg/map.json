@@ -1,10 +1,8 @@
 {
   "id": "MAP_ROUTE21_SOUTH",
   "name": "Route21_South_Frlg",
-  "game_version": "hns",
   "layout": "LAYOUT_ROUTE21_SOUTH_HNS",
   "music": "MUS_RG_ROUTE3",
-  "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_ROUTE_21",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -13,7 +11,6 @@
   "allow_escaping": false,
   "allow_running": true,
   "show_map_name": true,
-  "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
@@ -29,7 +26,6 @@
   ],
   "object_events": [
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_FISHER",
       "x": 11,
       "y": 8,
@@ -43,7 +39,6 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_FISHER",
       "x": 14,
       "y": 15,
@@ -57,7 +52,6 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M_WATER",
       "x": 15,
       "y": 24,
@@ -71,7 +65,6 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M_WATER",
       "x": 15,
       "y": 38,
@@ -85,7 +78,6 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M_WATER",
       "x": 10,
       "y": 29,
@@ -101,5 +93,8 @@
   ],
   "warp_events": [],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [],
+  "floor_number": 0,
+  "game_version": "hns",
+  "region": "REGION_KANTO"
 }
