@@ -1398,8 +1398,13 @@
 // Kanto-Merge: Mew in der Kammer hinter dem Mondberg (B3F), erreichbar
 // erst mit VM Staerke. Gleiches Muster wie FLAG_HIDE_MOLTRES_KANTO.
 #define FLAG_HIDE_MEW_KANTO                                  (FRLG_FLAGS_START+0x29E)
+// Versteckte Items auf Mondberg B3F. 0x277 fuellt eine Luecke im Block,
+// 0x29F ist der letzte Slot, der ohne Vergroesserung von flagsFrlg
+// (84 Bytes) auskommt - der Block ist damit voll.
+#define FLAG_HIDDEN_ITEM_MT_MOON_B3F_FULL_HEAL               (FRLG_FLAGS_START+0x277)
+#define FLAG_HIDDEN_ITEM_MT_MOON_B3F_ULTRA_BALL              (FRLG_FLAGS_START+0x29F)
 
-#define FRLG_FLAGS_END (FRLG_FLAGS_START+0x29E)
+#define FRLG_FLAGS_END (FRLG_FLAGS_START+0x29F)
 
 #define FRLG_NUM_FLAG_BYTES (((FRLG_FLAGS_END - FRLG_FLAGS_START + 1) + 7) / 8)
 
