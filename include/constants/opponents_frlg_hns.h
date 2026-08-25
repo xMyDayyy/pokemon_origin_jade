@@ -1267,6 +1267,14 @@
 
 #define FRLG_TRAINERS_END (FRLG_TRAINER_OFFSET+623)
 
+// ACHTUNG, Falle fuer die Zukunft: Direkt hinter FRLG_TRAINERS_END
+// beginnen die HnS-Rueckkampfstufen (HNS_REMATCH_TIERS_START = 2324).
+// Neue FRLG-Trainer koennen deshalb NICHT einfach angehaengt werden -
+// ihre Trainerflags (0x500 + ID) wuerden mit den Rueckkampf-Flags
+// kollidieren. Wenn nach dem Release Trainer dazukommen sollen: eigenen
+// ID-Bereich hinter HNS_REMATCH_TIERS_END anlegen, viertes Flag-Array
+// ans Ende von SaveBlock3 anhaengen und in GetFlagPointer routen.
+
 // Die Trainerflags dieser IDs (TRAINER_FLAGS_START + id) laegen im
 // SYS_FLAGS-Bereich. Sie werden in GetFlagPointer nach SaveBlock3 umgeleitet.
 #define FRLG_TRAINER_FLAGS_START (0x500 + FRLG_TRAINER_OFFSET + 1)

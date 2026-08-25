@@ -1404,7 +1404,14 @@
 #define FLAG_HIDDEN_ITEM_MT_MOON_B3F_FULL_HEAL               (FRLG_FLAGS_START+0x277)
 #define FLAG_HIDDEN_ITEM_MT_MOON_B3F_ULTRA_BALL              (FRLG_FLAGS_START+0x29F)
 
-#define FRLG_FLAGS_END (FRLG_FLAGS_START+0x29F)
+// Vorbereitung auf die Zukunft (vor Release, es existieren noch keine
+// Spielstaende): Reserve fuer Items, Objekte und Events. 0x2A0 bis 0x3FF
+// sind frei vergebbar (352 Flags). Nach dem Release ist diese Grenze
+// eingefroren - der Block darf dann nur noch per Anhang am Ende von
+// SaveBlock3 wachsen.
+#define FRLG_FLAGS_RESERVE_START (FRLG_FLAGS_START+0x2A0)
+
+#define FRLG_FLAGS_END (FRLG_FLAGS_START+0x3FF)
 
 #define FRLG_NUM_FLAG_BYTES (((FRLG_FLAGS_END - FRLG_FLAGS_START + 1) + 7) / 8)
 

@@ -8,7 +8,11 @@
 // Quellen: FRLG-Kartenskripte und Coord-/Objekt-Vars aus den map.json.
 
 #define FRLG_VARS_START 0x4200
-#define FRLG_VARS_COUNT 128
+// Vorbereitung auf die Zukunft (vor Release): 64 Reserve-Vars fuer neue
+// Szenen, Zaehler und Zustaende, frei ab (FRLG_VARS_START+0x80). Die
+// Slots 0x7D bis 0x7F am alten Ende sind bereits vergeben. Nach dem
+// Release ist diese Zahl eingefroren.
+#define FRLG_VARS_COUNT 192
 #define FRLG_VARS_END   (FRLG_VARS_START+FRLG_VARS_COUNT-1)
 
 #undef  VAR_DEOXYS_INTERACTION_NUM
