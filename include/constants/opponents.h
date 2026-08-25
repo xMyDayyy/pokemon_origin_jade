@@ -875,9 +875,13 @@
 #define TRAINERS_COUNT                      TRAINERS_COUNT_FRLG
 #define MAX_TRAINERS_COUNT                  MAX_TRAINERS_COUNT_FRLG
 #elif IS_HNS
-// Kanto-Merge: FRLG-Trainer liegen hinter den HnS/Hoenn-Trainern.
-#define TRAINERS_COUNT                      (FRLG_TRAINERS_END + 1)
-#define MAX_TRAINERS_COUNT                  (FRLG_TRAINERS_END + 3)
+// Kanto-Merge: FRLG-Trainer liegen hinter den HnS/Hoenn-Trainern, die
+// HnS-Rueckkampfstufen (HNS_REMATCH_TIERS_*) wiederum hinter den FRLG-Trainern.
+#if HNS_REMATCH_TIERS_START != FRLG_TRAINERS_END + 1
+#error "HNS_REMATCH_TIERS_START muss direkt hinter FRLG_TRAINERS_END liegen (opponents_hns.h anpassen)"
+#endif
+#define TRAINERS_COUNT                      (HNS_REMATCH_TIERS_END + 1)
+#define MAX_TRAINERS_COUNT                  (HNS_REMATCH_TIERS_END + 3)
 #else
 #define TRAINERS_COUNT                      TRAINERS_COUNT_EMERALD
 #define MAX_TRAINERS_COUNT                  MAX_TRAINERS_COUNT_EMERALD

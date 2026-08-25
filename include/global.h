@@ -290,6 +290,7 @@ struct ChallengeSettings
     u8 tx_Random_Items:1;
     u8 tx_Random_Static:1;
     u8 tx_Random_Starter:1;
+    u8 tx_Random_GenScope:1; // 0 = all gens, 1 = Gen 1-3 families only
     // Challenges
     u8 tx_Challenges_EvoLimit:2;
     u8 tx_Challenges_Nuzlocke:1;
@@ -372,6 +373,12 @@ struct SaveBlock3
     // eine spaetere Rueckreise nach Kanto nicht Silbers Namen in Blaus
     // Dialogen.
     u8 rivalNameKanto[PLAYER_NAME_LENGTH + 1];
+#if IS_HNS
+    // HnS 2.0.1: Trainerflags der Rueckkampfstufen von Irwin, Derek und
+    // Beverly (IDs HNS_REMATCH_TIERS_START..END, siehe opponents_hns.h).
+    // Ans Struct-Ende angehaengt = save-vertraeglich.
+    u8 flagsHnsRematchTiers[HNS_REMATCH_TIER_FLAG_BYTES];
+#endif
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;

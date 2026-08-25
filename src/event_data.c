@@ -246,6 +246,9 @@ u8 *GetFlagPointer(u16 id)
     // HnS/Hoenn-Trainern, TRAINER_FLAGS_START + id waere sonst in SYS_FLAGS.
     else if (id >= FRLG_TRAINER_FLAGS_START && id <= FRLG_TRAINER_FLAGS_END)
         return &gSaveBlock3Ptr->flagsFrlgTrainers[(id - FRLG_TRAINER_FLAGS_START) / 8];
+    // HnS 2.0.1: Rueckkampfstufen Irwin/Derek/Beverly, gleiche Umleitung.
+    else if (id >= HNS_REMATCH_TIER_FLAGS_START && id <= HNS_REMATCH_TIER_FLAGS_END)
+        return &gSaveBlock3Ptr->flagsHnsRematchTiers[(id - HNS_REMATCH_TIER_FLAGS_START) / 8];
     else if (id < SPECIAL_FLAGS_START)
         return &gSaveBlock1Ptr->flags[id / 8];
 #if TESTING

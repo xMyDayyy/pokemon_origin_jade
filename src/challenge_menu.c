@@ -22,6 +22,7 @@
 #include "constants/songs.h"
 #include "battle_main.h"
 #include "random.h"
+#include "config/randomizer.h"
 #include "overworld.h"
 #include "script.h"
 #include "challenge_menu.h"
@@ -133,7 +134,7 @@ enum {
 };
 
 // Maximum items in any single tab
-#define MAX_ITEMS_PER_TAB 16
+#define MAX_ITEMS_PER_TAB 20
 #define ITEMS_VISIBLE 5
 #define Y_DIFF 16
 
@@ -173,6 +174,7 @@ static EWRAM_DATA bool8 sIsInitialSetup = FALSE;
 enum {
     LOCK_FREE,
     LOCK_ONEWAY_DOWN,
+    LOCK_ONEWAY_UP,
     LOCK_FULL,
 };
 
@@ -205,7 +207,7 @@ static const u8 sMidGameLockPolicy[TAB_COUNT * MAX_ITEMS_PER_TAB] = {
     // TAB_DIFFICULTY
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_PARTY_LIMIT]    = LOCK_ONEWAY_DOWN,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_LEVEL_CAP]      = LOCK_ONEWAY_DOWN,
-    [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_EXP_MULTIPLIER] = LOCK_ONEWAY_DOWN,
+    [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_EXP_MULTIPLIER] = LOCK_FREE,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_ITEM_PLAYER]    = LOCK_ONEWAY_DOWN,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_ITEM_TRAINER]   = LOCK_ONEWAY_DOWN,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_MAX_PARTY_IVS]  = LOCK_ONEWAY_DOWN,
@@ -1815,6 +1817,13 @@ static void ProcessLeftRight(void)
         return;
     }
 
+    if (*sel != prev && GetLockPolicy(sMenu->currentTab, itemIndex) == LOCK_ONEWAY_UP && *sel < prev)
+    {
+        *sel = prev;
+        PlaySE(SE_FAILURE);
+        return;
+    }
+
     if (*sel != prev)
     {
         // When GAMEMODE changes to RECOMMENDED, apply presets
@@ -1990,6 +1999,7 @@ static void Task_ConfirmSaveYes(u8 taskId)
         cs->tx_Random_Static           = 0;
         cs->tx_Random_Similar          = 0;
         cs->tx_Random_IncludeLegendaries = 0;
+        cs->tx_Random_GenScope         = RANDOMIZER_DEFAULT_GEN_SCOPE_1_3;
         cs->tx_Random_Type             = 0;
         cs->tx_Random_Moves            = 0;
         cs->tx_Random_Abilities        = 0;
@@ -2008,6 +2018,8 @@ static void Task_ConfirmSaveYes(u8 taskId)
         cs->tx_Random_Static           = *GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_STATIC);
         cs->tx_Random_Similar          = !(*GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_SIMILAR));
         cs->tx_Random_IncludeLegendaries = *GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_LEGENDARIES);
+        // Origin Jade: kein Menuepunkt dafuer (siehe config/randomizer.h).
+        cs->tx_Random_GenScope         = RANDOMIZER_DEFAULT_GEN_SCOPE_1_3;
         cs->tx_Random_Type             = *GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_TYPE);
         cs->tx_Random_Moves            = *GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_MOVES);
         cs->tx_Random_Abilities        = *GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_ABILITIES);

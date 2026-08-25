@@ -6995,7 +6995,9 @@ void ItemUseCB_PokeBall(u8 taskId, TaskFunc task)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
     u16 currBall = GetMonData(mon, MON_DATA_POKEBALL);
-    u16 newBall = gSpecialVar_ItemId;
+    // HnS 2.0.1: Item-ID -> Ball-ID, sonst landet z.B. der GS-Ball als
+    // ungueltige Ball-ID im Mon und das Spiel stuerzt ab.
+    u16 newBall = ItemIdToBallId(gSpecialVar_ItemId);
     static const u8 sText_MonBallWasChanged[] = _("{STR_VAR_1} wurde in {STR_VAR_2} gelegt.{PAUSE_UNTIL_PRESS}");
 
     if (currBall == newBall)
@@ -7008,7 +7010,7 @@ void ItemUseCB_PokeBall(u8 taskId, TaskFunc task)
     else
     {
         GetMonNickname(mon, gStringVar1);
-        CopyItemName(newBall, gStringVar2);
+        CopyItemName(gSpecialVar_ItemId, gStringVar2);
         PlaySE(SE_SELECT);
         gPartyMenuUseExitCallback = TRUE;
         SetMonData(mon, MON_DATA_POKEBALL, &newBall);

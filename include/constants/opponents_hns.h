@@ -630,6 +630,35 @@
 #define TRAINER_WESSEL_HNS                            615
 #define TRAINER_SKYLAR_HNS                            616
 
+
+// Telefon-Rueckkampfstufen fuer Irwin, Derek und Beverly (HnS 2.0.1, Commit
+// 313d4290e8). Upstream haengt sie bei 619-630 an - bei uns sind das die
+// Hoenn-Trainer (TRAINER_SAWYER_1 = 619). Im HnS/Hoenn-Block sind nur noch
+// 330, 1478 und 1479 frei, deshalb liegen sie hinter dem FRLG-Block. Ihre
+// Trainerflags (TRAINER_FLAGS_START + id) laegen in SYS_FLAGS und werden in
+// GetFlagPointer nach SaveBlock3 (flagsHnsRematchTiers) umgeleitet - so
+// bleiben alle bestehenden Flag- und Trainer-IDs unveraendert.
+#define HNS_REMATCH_TIERS_START               2324  // = FRLG_TRAINERS_END + 1
+#define TRAINER_IRWIN_2_HNS                   (HNS_REMATCH_TIERS_START + 0)
+#define TRAINER_IRWIN_3_HNS                   (HNS_REMATCH_TIERS_START + 1)
+#define TRAINER_IRWIN_4_HNS                   (HNS_REMATCH_TIERS_START + 2)
+#define TRAINER_IRWIN_5_HNS                   (HNS_REMATCH_TIERS_START + 3)
+#define TRAINER_DEREK_2_HNS                   (HNS_REMATCH_TIERS_START + 4)
+#define TRAINER_DEREK_3_HNS                   (HNS_REMATCH_TIERS_START + 5)
+#define TRAINER_DEREK_4_HNS                   (HNS_REMATCH_TIERS_START + 6)
+#define TRAINER_DEREK_5_HNS                   (HNS_REMATCH_TIERS_START + 7)
+#define TRAINER_BEVERLY_2_HNS                 (HNS_REMATCH_TIERS_START + 8)
+#define TRAINER_BEVERLY_3_HNS                 (HNS_REMATCH_TIERS_START + 9)
+#define TRAINER_BEVERLY_4_HNS                 (HNS_REMATCH_TIERS_START + 10)
+#define TRAINER_BEVERLY_5_HNS                 (HNS_REMATCH_TIERS_START + 11)
+#define HNS_REMATCH_TIERS_END                 (HNS_REMATCH_TIERS_START + 11)
+#define HNS_REMATCH_TIERS_COUNT               (HNS_REMATCH_TIERS_END - HNS_REMATCH_TIERS_START + 1)
+
+// Flags dieser IDs (siehe GetFlagPointer).
+#define HNS_REMATCH_TIER_FLAGS_START          (0x500 + HNS_REMATCH_TIERS_START)
+#define HNS_REMATCH_TIER_FLAGS_END            (0x500 + HNS_REMATCH_TIERS_END)
+#define HNS_REMATCH_TIER_FLAG_BYTES           ((HNS_REMATCH_TIERS_COUNT + 7) / 8)
+
 // 618 is TRAINER_TANYA_HNS, relocated out of the TRAINER_FRONTIER_BRAIN slot (330).
 
 // Top-Vier-Rueckkaempfe (Origin Jade). Nur EINE Steigerungsstufe je Mitglied:

@@ -226,8 +226,9 @@ Debug_EventScript_Text_DefensiveIVs:
 #endif
 
 Debug_EventScript_Script_1::
-	special GameClear
-	waitstate
+	giveegg SPECIES_TOGEPI
+	givemon SPECIES_NATU, 5
+	givenamedmon 1
 	release
 	end
 

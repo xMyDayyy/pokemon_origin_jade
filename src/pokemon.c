@@ -1512,7 +1512,18 @@ static const enum NationalDexOrder sObtainableToNationalOrder[OBTAINABLE_DEX_COU
     OBTAINABLE_TO_NATIONAL(WOOPER_PALDEA),
 #endif // P_PALDEAN_FORMS
     OBTAINABLE_TO_NATIONAL(CLODSIRE),
+    // Other
+    // Origin Jade: Die Regis stehen oben in Hoenn-Reihenfolge hinter Metagross
+    // (Nationaldex 377-379), nicht wie in HnS 2.0.1 hier am Ende. Upstream
+    // (d403c9ed69) hat die obere Kopie entfernt, wir die untere - doppelt
+    // darf der Eintrag nicht sein, sonst verschiebt sich der Dex ab Latias.
     OBTAINABLE_TO_NATIONAL(ARCEUS),
+    OBTAINABLE_TO_NATIONAL(TAPU_KOKO),
+    OBTAINABLE_TO_NATIONAL(TAPU_LELE),
+    OBTAINABLE_TO_NATIONAL(TAPU_BULU),
+    OBTAINABLE_TO_NATIONAL(TAPU_FINI),
+    OBTAINABLE_TO_NATIONAL(NOIBAT),
+    OBTAINABLE_TO_NATIONAL(NOIVERN),
 };
 
 #endif

@@ -4,6 +4,12 @@
 #define RANDOMIZER_AVAILABLE                   1
 #define RANDOMIZER_SEED_IS_TRAINER_ID          1
 
+// HnS 2.0.1 "GEN SCOPE" (Gen 1-3 families only). Origin Jade hat Gen 4-9 in
+// species_enabled.h komplett abgeschaltet - der Pool ist damit ohnehin Gen 1-3
+// plus Cross-Gen-Entwicklungen. Der Filter bleibt im Code (Save-Layout und
+// kuenftige Merges), ist aber aus (FALSE) und hat keinen Menuepunkt.
+#define RANDOMIZER_DEFAULT_GEN_SCOPE_1_3       FALSE
+
 // The rest of these defines are only usable from C code
 #ifndef __ASSEMBLER__
 

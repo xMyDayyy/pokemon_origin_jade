@@ -12,6 +12,7 @@
 #include "trainer_hill.h"
 #include "link.h"
 #include "constants/game_stat.h"
+#include "constants/rematches.h"
 #include "event_data.h"
 
 static u16 CalculateChecksum(void *, u16);
@@ -79,6 +80,18 @@ struct
 // These will produce an error if a save struct is larger than the space
 // alloted for it in the flash.
 STATIC_ASSERT(sizeof(struct SaveBlock3) <= SAVE_BLOCK_3_CHUNK_SIZE * NUM_SECTORS_PER_SLOT, SaveBlock3FreeSpace);
+
+// ChallengeSettings is a packed bitfield block living in SaveBlock3 ahead of
+// registeredItemHold, so growing it shifts that member and silently corrupts
+// existing saves. The size is pinned here to turn that into a build error.
+// Note the ABI: CFLAGS uses -mabi=apcs-gnu, which rounds every struct up to a
+// multiple of 4 bytes, so the 31 bytes of fields occupy 32 and the last byte is
+// trailing padding. Headroom before the size actually moves (to 36, not 33):
+// 12 spare bits scattered through the field bytes, wherever a wide bitfield had
+// to skip the tail of a partly-filled byte, plus the 8 bits of trailing padding.
+// If this fires, that headroom is gone and the new setting needs a save
+// migration rather than another field.
+STATIC_ASSERT(sizeof(struct ChallengeSettings) == 32, ChallengeSettingsLayoutPinned);
 STATIC_ASSERT(sizeof(struct SaveBlock2) <= SECTOR_DATA_SIZE, SaveBlock2FreeSpace);
 STATIC_ASSERT(sizeof(struct SaveBlock1) <= SECTOR_DATA_SIZE * (SECTOR_ID_SAVEBLOCK1_END - SECTOR_ID_SAVEBLOCK1_START + 1), SaveBlock1FreeSpace);
 STATIC_ASSERT(sizeof(struct PokemonStorage) <= SECTOR_DATA_SIZE * (SECTOR_ID_PKMN_STORAGE_END - SECTOR_ID_PKMN_STORAGE_START + 1), PokemonStorageFreeSpace);
@@ -930,6 +943,32 @@ u8 LoadGameSave(u8 saveType)
         FlagClear(FLAG_ITEM_ICEPATH4_TM_AVALANCHE);
         FlagClear(FLAG_ITEM_VICTORYROAD1_TM_EARTHQUAKE);
         gSaveBlock1Ptr->saveVersion = 2;
+    }
+
+    if (gSaveBlock1Ptr->saveVersion < 4)
+    {
+#if FREE_MATCH_CALL == FALSE
+        // Irwin, Derek and Beverly used to fill all five rematch slots with their
+        // first-battle trainer ID, so SetRematchIdForTrainer counted every slot as
+        // already beaten and stored REMATCHES_COUNT. Now that they have real tiers,
+        // knock any pending rematch back to the first one so it lines up with the
+        // tier the player will actually be handed. Harmless on non-HnS builds, where
+        // these slots are Brooke/Jessica/John & Jay and the value is only ever
+        // tested against zero.
+        static const u8 sRematchIdsToReset[] = {
+            REMATCH_BROOKE,       // Irwin
+            REMATCH_JESSICA,      // Derek
+            REMATCH_JOHN_AND_JAY, // Beverly
+        };
+        u32 i;
+
+        for (i = 0; i < ARRAY_COUNT(sRematchIdsToReset); i++)
+        {
+            if (gSaveBlock1Ptr->trainerRematches[sRematchIdsToReset[i]] != 0)
+                gSaveBlock1Ptr->trainerRematches[sRematchIdsToReset[i]] = 1;
+        }
+#endif //FREE_MATCH_CALL
+        gSaveBlock1Ptr->saveVersion = 4;
     }
 
     // Add version migration steps here:

@@ -2935,9 +2935,17 @@ HnsItemDone_\@:
 	.endm
 
 	@ Adds the specified item to the bag, then prints a message with fanfare. See description of msgreceiveditem.
+	@ Origin Jade: FRLG-Kanto vergibt Arenaleiter-TMs und NPC-Geschenke ueber
+	@ dieses Makro statt ueber Std_ObtainItem. Damit der Item-Randomizer auch
+	@ hier greift, laeuft der Gegenstand vorher durch ObtainItemRandomize
+	@ (VMs, Schluesselitems und Quest-Items bleiben dort unangetastet).
 	.macro giveitem_msg msg:req, item:req, amount=1, fanfare=MUS_LEVEL_UP
-	additem \item, \amount
-	msgreceiveditem \msg, \item, \amount, \fanfare
+	setorcopyvar VAR_0x8000, \item
+#if RANDOMIZER_AVAILABLE
+	callnative ObtainItemRandomize_NativeCall
+#endif
+	additem VAR_0x8000, \amount
+	msgreceiveditem \msg, VAR_0x8000, \amount, \fanfare
 	.endm
 
 	@ Depends on the provided function. With the default argument, unlocks the specified entry in the Fame Checker.
