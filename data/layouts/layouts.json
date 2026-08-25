@@ -16644,6 +16644,34 @@
       "blockdata_filepath": "data/layouts/Route21_South_hns/map.bin",
       "game_version": "hns",
       "layout_version": "hns"
+    },
+    {
+      "id": "LAYOUT_MT_MOON_B3F_FRLG",
+      "name": "MtMoon_B3F_Frlg_Layout",
+      "width": 48,
+      "height": 40,
+      "primary_tileset": "gTileset_General_Frlg",
+      "secondary_tileset": "gTileset_Cave_Frlg",
+      "border_filepath": "data/layouts/MtMoon_B3F_Frlg/border.bin",
+      "blockdata_filepath": "data/layouts/MtMoon_B3F_Frlg/map.bin",
+      "border_width": 2,
+      "border_height": 2,
+      "game_version": "hns",
+      "layout_version": "frlg"
+    },
+    {
+      "id": "LAYOUT_MT_MOON_CAVE_FRLG",
+      "name": "MtMoon_Cave_Frlg_Layout",
+      "width": 48,
+      "height": 22,
+      "primary_tileset": "gTileset_General_Frlg",
+      "secondary_tileset": "gTileset_Cave_Frlg",
+      "border_filepath": "data/layouts/MtMoon_Cave_Frlg/border.bin",
+      "blockdata_filepath": "data/layouts/MtMoon_Cave_Frlg/map.bin",
+      "border_width": 2,
+      "border_height": 2,
+      "game_version": "hns",
+      "layout_version": "frlg"
     }
   ]
 }

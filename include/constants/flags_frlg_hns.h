@@ -1395,7 +1395,11 @@
 #define FLAG_HIDE_MTMOON_1F_PROTECTOR                        (FRLG_FLAGS_START+0x29C)
 #define FLAG_HIDE_POKEMONMANSION_2F_MAGMARIZER               (FRLG_FLAGS_START+0x29D)
 
-#define FRLG_FLAGS_END (FRLG_FLAGS_START+0x29D)
+// Kanto-Merge: Mew in der Kammer hinter dem Mondberg (B3F), erreichbar
+// erst mit VM Staerke. Gleiches Muster wie FLAG_HIDE_MOLTRES_KANTO.
+#define FLAG_HIDE_MEW_KANTO                                  (FRLG_FLAGS_START+0x29E)
+
+#define FRLG_FLAGS_END (FRLG_FLAGS_START+0x29E)
 
 #define FRLG_NUM_FLAG_BYTES (((FRLG_FLAGS_END - FRLG_FLAGS_START + 1) + 7) / 8)
 
