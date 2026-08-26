@@ -274,3 +274,63 @@ Route25_Text_AreYouHereAlone::
 	.string "Well, it should be as a couple.$"
 #endif
 
+
+@ Nugget-Rocket, von Route 24 hierher verlegt. Der Rocket steht auf
+@ (19,27), die drei Spuren liegen links von ihm auf Zeile 27. Kampf und
+@ Texte kommen weiter aus Route24_Frlg/scripts.inc; BattleRocket setzt
+@ VAR_MAP_SCENE_ROUTE24 auf 1 und entschaerft damit auch diese Trigger.
+Route25_EventScript_RocketTriggerLeft::
+	lockall
+	setvar VAR_TEMP_1, 2
+	goto Route25_EventScript_RocketTrigger
+	end
+
+Route25_EventScript_RocketTriggerMid::
+	lockall
+	setvar VAR_TEMP_1, 1
+	goto Route25_EventScript_RocketTrigger
+	end
+
+Route25_EventScript_RocketTriggerRight::
+	lockall
+	setvar VAR_TEMP_1, 0
+	goto Route25_EventScript_RocketTrigger
+	end
+
+Route25_EventScript_RocketTrigger::
+	textcolor NPC_TEXT_COLOR_MALE
+	call_if_eq VAR_TEMP_1, 2, Route25_EventScript_RocketApproach2
+	call_if_eq VAR_TEMP_1, 1, Route25_EventScript_RocketApproach1
+	call_if_eq VAR_TEMP_1, 0, Route25_EventScript_RocketTurn
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+	waitmovement 0
+	msgbox Route24_Text_JustEarnedFabulousPrize
+	checkitemspace ITEM_NUGGET
+	goto_if_eq VAR_RESULT, FALSE, Route24_EventScript_NoRoomForNuggetTrigger
+	call Route24_EventScript_BattleRocket
+	releaseall
+	end
+
+Route25_EventScript_RocketApproach2::
+	applymovement LOCALID_ROUTE24_ROCKET, Route25_Movement_RocketApproach2
+	waitmovement 0
+	return
+
+Route25_EventScript_RocketApproach1::
+	applymovement LOCALID_ROUTE24_ROCKET, Route25_Movement_RocketApproach1
+	waitmovement 0
+	return
+
+Route25_EventScript_RocketTurn::
+	applymovement LOCALID_ROUTE24_ROCKET, Common_Movement_WalkInPlaceFasterLeft
+	waitmovement 0
+	return
+
+Route25_Movement_RocketApproach2:
+	walk_left
+	walk_left
+	step_end
+
+Route25_Movement_RocketApproach1:
+	walk_left
+	step_end

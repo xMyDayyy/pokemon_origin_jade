@@ -336,7 +336,7 @@
       "x": 18,
       "y": 27,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_MAP_SCENE_ROUTE24",
       "var_value": "0",
       "script": "Route25_EventScript_RocketTriggerRight"
     },
@@ -345,7 +345,7 @@
       "x": 17,
       "y": 27,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_MAP_SCENE_ROUTE24",
       "var_value": "0",
       "script": "Route25_EventScript_RocketTriggerMid"
     },
@@ -354,7 +354,7 @@
       "x": 16,
       "y": 27,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_MAP_SCENE_ROUTE24",
       "var_value": "0",
       "script": "Route25_EventScript_RocketTriggerLeft"
     }
