@@ -234,6 +234,13 @@
       "elevation": 3,
       "dest_map": "MAP_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE",
       "dest_warp_id": "1"
+    },
+    {
+      "x": 8,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE2",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],

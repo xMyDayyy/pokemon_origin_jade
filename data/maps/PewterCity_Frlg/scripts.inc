@@ -490,8 +490,6 @@ PewterCity_EventScript_CheckedOutMuseum::
 	end
 
 .macro walk_to_museum
-	walk_down
-	walk_down
 	walk_left
 	walk_left
 	walk_left
@@ -502,6 +500,11 @@ PewterCity_EventScript_CheckedOutMuseum::
 	walk_left
 	walk_left
 	walk_left
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
 	walk_up
 	walk_up
 	walk_up
@@ -517,9 +520,6 @@ PewterCity_EventScript_CheckedOutMuseum::
 .endm
 
 .macro walk_to_museum_south
-	walk_down
-	walk_down
-	walk_down
 	walk_left
 	walk_left
 	walk_left
@@ -529,6 +529,11 @@ PewterCity_EventScript_CheckedOutMuseum::
 	walk_left
 	walk_left
 	walk_left
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
 	walk_up
 	walk_up
 	walk_up
