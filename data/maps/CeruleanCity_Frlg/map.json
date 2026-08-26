@@ -302,33 +302,6 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 41,
-      "y": 7,
-      "elevation": 3,
-      "var": "VAR_MAP_SCENE_CERULEAN_CITY_RIVAL",
-      "var_value": "0",
-      "script": "CeruleanCity_EventScript_RivalTriggerLeft"
-    },
-    {
-      "type": "trigger",
-      "x": 42,
-      "y": 7,
-      "elevation": 3,
-      "var": "VAR_MAP_SCENE_CERULEAN_CITY_RIVAL",
-      "var_value": "0",
-      "script": "CeruleanCity_EventScript_RivalTriggerMid"
-    },
-    {
-      "type": "trigger",
-      "x": 43,
-      "y": 7,
-      "elevation": 3,
-      "var": "VAR_MAP_SCENE_CERULEAN_CITY_RIVAL",
-      "var_value": "0",
-      "script": "CeruleanCity_EventScript_RivalTriggerRight"
-    },
-    {
-      "type": "trigger",
       "x": 45,
       "y": 28,
       "elevation": 3,
@@ -344,6 +317,69 @@
       "var": "VAR_MAP_SCENE_CERULEAN_CITY_ROCKET",
       "var_value": "0",
       "script": "CeruleanCity_EventScript_GruntTriggerBottom"
+    },
+    {
+      "type": "trigger",
+      "x": 40,
+      "y": 20,
+      "elevation": 3,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "CeruleanCity_EventScript_PolicemanBlock"
+    },
+    {
+      "type": "trigger",
+      "x": 41,
+      "y": 20,
+      "elevation": 3,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "CeruleanCity_EventScript_PolicemanBlock"
+    },
+    {
+      "type": "trigger",
+      "x": 42,
+      "y": 20,
+      "elevation": 3,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "CeruleanCity_EventScript_PolicemanBlock"
+    },
+    {
+      "type": "trigger",
+      "x": 43,
+      "y": 20,
+      "elevation": 3,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "CeruleanCity_EventScript_PolicemanBlock"
+    },
+    {
+      "type": "trigger",
+      "x": 41,
+      "y": 7,
+      "elevation": 3,
+      "var": "VAR_MAP_SCENE_CERULEAN_CITY_RIVAL",
+      "var_value": "0",
+      "script": "CeruleanCity_EventScript_RivalTriggerLeft"
+    },
+    {
+      "type": "trigger",
+      "x": 42,
+      "y": 7,
+      "elevation": 3,
+      "var": "VAR_MAP_SCENE_CERULEAN_CITY_RIVAL",
+      "var_value": "0",
+      "script": "CeruleanCity_EventScript_RivalTriggerMidL"
+    },
+    {
+      "type": "trigger",
+      "x": 43,
+      "y": 7,
+      "elevation": 3,
+      "var": "VAR_MAP_SCENE_CERULEAN_CITY_RIVAL",
+      "var_value": "0",
+      "script": "CeruleanCity_EventScript_RivalTriggerMidR"
     },
     {
       "type": "trigger",

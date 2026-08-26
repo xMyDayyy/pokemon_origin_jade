@@ -19,17 +19,24 @@ CeruleanCity_EventScript_RivalTriggerLeft::
 	goto CeruleanCity_EventScript_Rival
 	end
 
-CeruleanCity_EventScript_RivalTriggerMid::
+CeruleanCity_EventScript_RivalTriggerMidL::
 	lockall
 	setvar VAR_TEMP_1, 1
-	setobjectxyperm LOCALID_CERULEAN_RIVAL, 23, 0
+	setobjectxyperm LOCALID_CERULEAN_RIVAL, 42, 1
+	goto CeruleanCity_EventScript_Rival
+	end
+
+CeruleanCity_EventScript_RivalTriggerMidR::
+	lockall
+	setvar VAR_TEMP_1, 1
+	setobjectxyperm LOCALID_CERULEAN_RIVAL, 43, 1
 	goto CeruleanCity_EventScript_Rival
 	end
 
 CeruleanCity_EventScript_RivalTriggerRight::
 	lockall
 	setvar VAR_TEMP_1, 2
-	setobjectxyperm LOCALID_CERULEAN_RIVAL, 24, 0
+	setobjectxyperm LOCALID_CERULEAN_RIVAL, 44, 1
 	goto CeruleanCity_EventScript_Rival
 	end
 
@@ -222,6 +229,33 @@ CeruleanCity_EventScript_Policeman::
 	waitmovement 0
 	release
 	end
+
+@ Sperr-Trigger auf den vier Kacheln links des Polizisten (40-43, 20).
+@ Aktiv, solange der Wachdienst laeuft (bis Bill das Ticket gibt, wie
+@ BlockExits). Der Spieler wird einen Schritt nach oben zurueckgesetzt.
+@ Nach dem Ticket entschaerft der erste Kontakt alle vier Trigger fuer
+@ den Kartenbesuch (VAR_TEMP_0 wird beim Betreten der Karte genullt).
+CeruleanCity_EventScript_PolicemanBlock::
+	lockall
+	goto_if_set FLAG_GOT_SS_TICKET, CeruleanCity_EventScript_PolicemanBlockOver
+	applymovement LOCALID_CERULEAN_POLICEMAN, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox CeruleanCity_Text_PeopleHereWereRobbed
+	closemessage
+	applymovement LOCALID_CERULEAN_POLICEMAN, Common_Movement_FaceOriginalDirection
+	applymovement OBJ_EVENT_ID_PLAYER, CeruleanCity_Movement_PushPlayerUp
+	waitmovement 0
+	releaseall
+	end
+
+CeruleanCity_EventScript_PolicemanBlockOver::
+	setvar VAR_TEMP_0, 1
+	releaseall
+	end
+
+CeruleanCity_Movement_PushPlayerUp:
+	walk_up
+	step_end
 
 CeruleanCity_EventScript_LittleBoy::
 	lock
