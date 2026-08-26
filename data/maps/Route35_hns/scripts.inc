@@ -303,11 +303,6 @@ Route35_Text_IrwinRegister:
 	.string "But your prowess electrified me!$"
 #endif
 
-Route35_Text_IrwinRegister:
-	.string "I was going to dazzle you with my\n"
-	.string "prize POKéMON.\p"
-	.string "But your prowess electrified me!$"
-
 Route35_Text_ArnieRegister:
 #if GERMAN
 	.string "Mit meinem Bluzuk habe ich das\n"
