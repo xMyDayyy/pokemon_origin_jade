@@ -6,10 +6,10 @@ Alola_Ulaula_BattleSandslash::
 	lock
 	faceplayer
 	setflag FLAG_BATTLED_SANDSLASH
-	playmoncry SPECIES_SANDSLASH, 0
+	playmoncry SPECIES_SANDSLASH_ALOLA, 0
 	msgbox Alola_Ulaula_BattleSandslash_Text_0, MSGBOX_AUTOCLOSE
 	waitmoncry
-	setwildbattle SPECIES_SANDSLASH, 60
+	setwildbattle SPECIES_SANDSLASH_ALOLA, 60
 	dowildbattle
 	specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, B_OUTCOME_CAUGHT
@@ -39,10 +39,10 @@ Alola_Ulaula_BattleNinetales::
 	lock
 	faceplayer
 	setflag FLAG_BATTLED_NINETALES
-	playmoncry SPECIES_NINETALES, 0
+	playmoncry SPECIES_NINETALES_ALOLA, 0
 	msgbox Alola_Ulaula_BattleSandslash_Text_0, MSGBOX_AUTOCLOSE
 	waitmoncry
-	setwildbattle SPECIES_NINETALES, 60
+	setwildbattle SPECIES_NINETALES_ALOLA, 60
 	dowildbattle
 	specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, B_OUTCOME_CAUGHT

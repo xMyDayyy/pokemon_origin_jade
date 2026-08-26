@@ -279,7 +279,11 @@ VerdanturfTown_BattleTentLobby_Text_TakeChallenge:
 	.string "Möchtest du dich der Herausforderung\n"
 	.string "des Wiesenflur Kampfcamps stellen?$"
 #else
+#if IS_HNS
+	.string "Do you wish to take the PALACE\n"
+#else
 	.string "Do you wish to take the VERDANTURF\n"
+#endif
 	.string "BATTLE TENT challenge?$"
 #endif
 

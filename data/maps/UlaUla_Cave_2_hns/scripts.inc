@@ -5,10 +5,10 @@ UlaUla_Cave_2_hns_MapScripts::
 Alola_Ulaula_BattleMuk::
 	lock
 	faceplayer
-	playmoncry SPECIES_MUK, 0
+	playmoncry SPECIES_MUK_ALOLA, 0
 	msgbox Alola_Ulaula_BattleMuk_Text_0, MSGBOX_AUTOCLOSE
 	waitmoncry
-	setwildbattle SPECIES_MUK, 60
+	setwildbattle SPECIES_MUK_ALOLA, 60
 	dowildbattle
 	specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, B_OUTCOME_CAUGHT
@@ -35,8 +35,4 @@ Alola_Ulaula_BattleMuk_3:
 
 
 Alola_Ulaula_BattleMuk_Text_0:
-#if GERMAN
-	.string "Urgs!$"
-#else
 	.string "Gaaah!$"
-#endif

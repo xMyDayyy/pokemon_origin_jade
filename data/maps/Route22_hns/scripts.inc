@@ -393,7 +393,7 @@ Route22_Text_Silver4:
 	.string "Ich werde ganz alleine stark werden!$"
 #else
 	.string "{RIVAL}: I don't want to\n"
-	.string "Understand you!\p"
+	.string "understand you!\p"
 	.string "I will never become someone like\n"
 	.string "you.\p"
 	.string "A coward when you're alone and\n"
