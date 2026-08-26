@@ -114,7 +114,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
-      "flag": "FLAG_TEMP_13"
+      "flag": "0"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE_FRLG",
@@ -127,7 +127,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
-      "flag": "FLAG_TEMP_15"
+      "flag": "0"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_ELECTABUZZ",
@@ -233,8 +233,8 @@
       "x": 10,
       "y": 67,
       "elevation": 3,
-      "dest_map": "MAP_ROCK_TUNNEL_1F",
-      "dest_warp_id": "5"
+      "dest_map": "MAP_ROCK_TUNNEL_B1F",
+      "dest_warp_id": "4"
     },
     {
       "x": 13,
