@@ -20,17 +20,17 @@
     },
     {
       "map": "MAP_ROUTE6",
-      "offset": 12,
+      "offset": -12,
       "direction": "down"
     },
     {
       "map": "MAP_ROUTE7",
-      "offset": 10,
+      "offset": 15,
       "direction": "left"
     },
     {
       "map": "MAP_ROUTE8",
-      "offset": 10,
+      "offset": 6,
       "direction": "right"
     }
   ],

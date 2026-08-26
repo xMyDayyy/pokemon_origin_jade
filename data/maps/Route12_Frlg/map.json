@@ -15,17 +15,17 @@
   "connections": [
     {
       "map": "MAP_LAVENDER_TOWN",
-      "offset": 0,
+      "offset": -2,
       "direction": "up"
     },
     {
       "map": "MAP_ROUTE13",
-      "offset": -48,
+      "offset": -65,
       "direction": "down"
     },
     {
       "map": "MAP_ROUTE11",
-      "offset": 35,
+      "offset": 27,
       "direction": "left"
     }
   ],
