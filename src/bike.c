@@ -1,4 +1,5 @@
 #include "global.h"
+#include "regions.h"
 #include "bike.h"
 #include "event_object_movement.h"
 #include "field_player_avatar.h"
@@ -1140,7 +1141,10 @@ static u8 AcroBike_GetJumpDirection(void)
     // No acro tricks (side jump / turn jump) in these builds.
     // The trick history is fed unmasked keys from MovePlayerAvatar, so masking
     // B in MovePlayerOnBike alone isn't enough to suppress the jumps.
-    if (IS_HNS || IS_FRLG)
+    // Origin Jade: In Hoenn bleiben die Acro-Tricks erhalten - die
+    // Gelaender-Huepfer (Route 119, Fahrradstrecken) sind dort Pflichtweg.
+    // Gesperrt wird nur in Kanto, Johto und den uebrigen Regionen.
+    if ((IS_HNS || IS_FRLG) && GetCurrentRegion() != REGION_HOENN)
         return DIR_NONE;
 
     for (i = 0; i < ARRAY_COUNT(sAcroBikeTricksList); i++)
