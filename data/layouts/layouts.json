@@ -15021,7 +15021,7 @@
       "id": "LAYOUT_ROUTE24_HNS",
       "name": "Route24_hns_Layout",
       "width": 30,
-      "height": 22,
+      "height": 57,
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_CeruleanCity_Hns",
       "border_filepath": "data/layouts/Route24_hns/border.bin",
@@ -15032,7 +15032,7 @@
     {
       "id": "LAYOUT_ROUTE25_HNS",
       "name": "Route25_hns_Layout",
-      "width": 112,
+      "width": 82,
       "height": 35,
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_CeruleanCity_Hns",

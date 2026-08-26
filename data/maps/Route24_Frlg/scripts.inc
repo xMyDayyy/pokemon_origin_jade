@@ -22,31 +22,6 @@ Route24_EventScript_RocketPostBattle::
 	release
 	end
 
-Route24_EventScript_RocketTriggerLeft::
-	lockall
-	setvar VAR_TEMP_1, 0
-	goto Route24_EventScript_RocketTrigger
-	end
-
-Route24_EventScript_RocketTriggerRight::
-	lockall
-	setvar VAR_TEMP_1, 1
-	goto Route24_EventScript_RocketTrigger
-	end
-
-Route24_EventScript_RocketTrigger::
-	textcolor NPC_TEXT_COLOR_MALE
-	call_if_eq VAR_TEMP_1, 0, Route24_EventScript_RocketApproachPlayer
-	call_if_eq VAR_TEMP_1, 1, Route24_EventScript_RocketMotionToPlayer
-	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
-	waitmovement 0
-	msgbox Route24_Text_JustEarnedFabulousPrize
-	checkitemspace ITEM_NUGGET
-	goto_if_eq VAR_RESULT, FALSE, Route24_EventScript_NoRoomForNuggetTrigger
-	call Route24_EventScript_BattleRocket
-	releaseall
-	end
-
 Route24_EventScript_BattleRocket::
 	giveitem_msg Route24_Text_ReceivedNuggetFromMysteryTrainer, ITEM_NUGGET
 	message Route24_Text_JoinTeamRocket
@@ -57,16 +32,6 @@ Route24_EventScript_BattleRocket::
 	trainerbattle_no_intro TRAINER_TEAM_ROCKET_GRUNT_6, Route24_Text_RocketDefeat
 	msgbox Route24_Text_YoudBecomeTopRocketLeader
 	setvar VAR_MAP_SCENE_ROUTE24, 1
-	return
-
-Route24_EventScript_RocketApproachPlayer::
-	applymovement LOCALID_ROUTE24_ROCKET, Route24_Movement_RocketApproachPlayer
-	waitmovement 0
-	return
-
-Route24_EventScript_RocketMotionToPlayer::
-	applymovement LOCALID_ROUTE24_ROCKET, Common_Movement_WalkInPlaceFasterLeft
-	waitmovement 0
 	return
 
 Route24_EventScript_NoRoomForNuggetTrigger::
@@ -83,9 +48,6 @@ Route24_EventScript_RocketWalkBackToPos::
 	waitmovement 0
 	return
 
-Route24_Movement_RocketApproachPlayer::
-	walk_left
-	step_end
 
 Route24_Movement_RocketWalkBackToPos::
 	walk_right
@@ -329,3 +291,63 @@ Route24_Text_CalePostBattle::
 #else
 	.string "I did my best. I have no regrets!$"
 #endif
+
+@ Nugget-Rocket. Szene liegt im noerdlichen Teil, der von Route 25 uebernommen wurde. Der Rocket steht auf
+@ (19,27), die drei Spuren liegen links von ihm auf Zeile 27. Kampf und
+@ Texte kommen weiter aus Route24_Frlg/scripts.inc; BattleRocket setzt
+@ VAR_MAP_SCENE_ROUTE24 auf 1 und entschaerft damit auch diese Trigger.
+Route24_EventScript_RocketTriggerLeft::
+	lockall
+	setvar VAR_TEMP_1, 2
+	goto Route24_EventScript_RocketTrigger
+	end
+
+Route24_EventScript_RocketTriggerMid::
+	lockall
+	setvar VAR_TEMP_1, 1
+	goto Route24_EventScript_RocketTrigger
+	end
+
+Route24_EventScript_RocketTriggerRight::
+	lockall
+	setvar VAR_TEMP_1, 0
+	goto Route24_EventScript_RocketTrigger
+	end
+
+Route24_EventScript_RocketTrigger::
+	textcolor NPC_TEXT_COLOR_MALE
+	call_if_eq VAR_TEMP_1, 2, Route24_EventScript_RocketApproach2
+	call_if_eq VAR_TEMP_1, 1, Route24_EventScript_RocketApproach1
+	call_if_eq VAR_TEMP_1, 0, Route24_EventScript_RocketTurn
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+	waitmovement 0
+	msgbox Route24_Text_JustEarnedFabulousPrize
+	checkitemspace ITEM_NUGGET
+	goto_if_eq VAR_RESULT, FALSE, Route24_EventScript_NoRoomForNuggetTrigger
+	call Route24_EventScript_BattleRocket
+	releaseall
+	end
+
+Route24_EventScript_RocketApproach2::
+	applymovement LOCALID_ROUTE24_ROCKET, Route24_Movement_RocketApproach2
+	waitmovement 0
+	return
+
+Route24_EventScript_RocketApproach1::
+	applymovement LOCALID_ROUTE24_ROCKET, Route24_Movement_RocketApproach1
+	waitmovement 0
+	return
+
+Route24_EventScript_RocketTurn::
+	applymovement LOCALID_ROUTE24_ROCKET, Common_Movement_WalkInPlaceFasterLeft
+	waitmovement 0
+	return
+
+Route24_Movement_RocketApproach2:
+	walk_left
+	walk_left
+	step_end
+
+Route24_Movement_RocketApproach1:
+	walk_left
+	step_end
