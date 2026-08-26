@@ -216,7 +216,8 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "5",
       "script": "CeruleanCity_EventScript_Policeman",
-      "flag": "0"
+      "flag": "0",
+      "local_id": "LOCALID_CERULEAN_POLICEMAN"
     }
   ],
   "warp_events": [

@@ -613,6 +613,8 @@ gStdScripts_End::
 	.include "data/maps/MtMoon_1F_Frlg/scripts.inc"
 	.include "data/maps/MtMoon_B1F_Frlg/scripts.inc"
 	.include "data/maps/MtMoon_B2F_Frlg/scripts.inc"
+	.include "data/maps/MtMoon_B3F_Frlg/scripts.inc"
+	.include "data/maps/MtMoon_Cave_Frlg/scripts.inc"
 	.include "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
 	.include "data/maps/SSAnne_1F_Corridor_Frlg/scripts.inc"
 	.include "data/maps/SSAnne_2F_Corridor_Frlg/scripts.inc"
