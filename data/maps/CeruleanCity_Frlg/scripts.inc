@@ -9,8 +9,8 @@ CeruleanCity_OnTransition::
 
 CeruleanCity_EventScript_BlockExits::
 	setobjectxyperm LOCALID_CERULEAN_POLICEMAN, 44, 20
-	setobjectxyperm LOCALID_CERULEAN_SLOWBRO, 32, 44
-	setobjectxyperm LOCALID_CERULEAN_LASS, 33, 44
+	setobjectxyperm LOCALID_CERULEAN_SLOWBRO, 32, 45
+	setobjectxyperm LOCALID_CERULEAN_LASS, 33, 45
 	return
 
 CeruleanCity_EventScript_RivalTriggerLeft::
