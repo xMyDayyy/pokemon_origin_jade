@@ -1,10 +1,8 @@
 {
   "id": "MAP_POKEMON_LEAGUE_LORELEIS_ROOM",
   "name": "PokemonLeague_LoreleisRoom_Frlg",
-  "game_version": "hns",
   "layout": "LAYOUT_POKEMON_LEAGUE_LORELEIS_ROOM",
   "music": "MUS_RG_GYM",
-  "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_POKEMON_LEAGUE",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -13,12 +11,10 @@
   "allow_escaping": false,
   "allow_running": false,
   "show_map_name": false,
-  "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_LORELEI",
-  "connections": 0,
+  "connections": null,
   "object_events": [
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LORELEI",
       "x": 6,
       "y": 5,
@@ -49,5 +45,8 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [],
+  "floor_number": 0,
+  "game_version": "hns",
+  "region": "REGION_KANTO"
 }

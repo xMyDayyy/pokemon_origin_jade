@@ -50,7 +50,7 @@ ViridianCity_EventScript_GymDoorLocked::
 	end
 
 ViridianCity_Movement_JumpDownLedge::
-	jump_2_down
+	walk_down
 	step_end
 
 ViridianCity_EventScript_CitySign::
