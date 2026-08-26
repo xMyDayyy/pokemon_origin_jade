@@ -1,10 +1,8 @@
 {
   "id": "MAP_ROUTE16_NORTH_ENTRANCE_1F",
   "name": "Route16_NorthEntrance_1F_Frlg",
-  "game_version": "hns",
   "layout": "LAYOUT_ROUTE16_NORTH_ENTRANCE_1F",
   "music": "MUS_RG_PEWTER",
-  "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_ROUTE_16",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -13,15 +11,13 @@
   "allow_escaping": false,
   "allow_running": true,
   "show_map_name": false,
-  "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": null,
   "object_events": [
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
       "x": 6,
-      "y": 8,
+      "y": 2,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -30,54 +26,26 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route16_NorthEntrance_1F_EventScript_Guard",
       "flag": "0"
-    },
-    {
-      "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
-      "x": 7,
-      "y": 4,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route16_NorthEntrance_1F_EventScript_OldMan",
-      "flag": "0"
     }
   ],
   "warp_events": [
     {
       "x": 1,
-      "y": 3,
-      "elevation": 3,
-      "dest_map": "MAP_ROUTE16",
-      "dest_warp_id": "1"
-    },
-    {
-      "x": 11,
-      "y": 3,
-      "elevation": 3,
-      "dest_map": "MAP_ROUTE16",
-      "dest_warp_id": "2"
-    },
-    {
-      "x": 1,
-      "y": 12,
+      "y": 6,
       "elevation": 3,
       "dest_map": "MAP_ROUTE16",
       "dest_warp_id": "3"
     },
     {
       "x": 11,
-      "y": 12,
+      "y": 6,
       "elevation": 3,
       "dest_map": "MAP_ROUTE16",
       "dest_warp_id": "4"
     },
     {
       "x": 9,
-      "y": 16,
+      "y": 10,
       "elevation": 3,
       "dest_map": "MAP_ROUTE16_NORTH_ENTRANCE_2F",
       "dest_warp_id": "0"
@@ -87,7 +55,7 @@
     {
       "type": "trigger",
       "x": 10,
-      "y": 12,
+      "y": 6,
       "elevation": 3,
       "var": "VAR_MAP_SCENE_ROUTE16",
       "var_value": "1",
@@ -96,7 +64,7 @@
     {
       "type": "trigger",
       "x": 2,
-      "y": 12,
+      "y": 6,
       "elevation": 3,
       "var": "VAR_MAP_SCENE_ROUTE16",
       "var_value": "0",
@@ -105,7 +73,7 @@
     {
       "type": "trigger",
       "x": 6,
-      "y": 10,
+      "y": 4,
       "elevation": 3,
       "var": "VAR_TEMP_1",
       "var_value": "0",
@@ -114,7 +82,7 @@
     {
       "type": "trigger",
       "x": 6,
-      "y": 11,
+      "y": 5,
       "elevation": 3,
       "var": "VAR_TEMP_1",
       "var_value": "0",
@@ -123,7 +91,7 @@
     {
       "type": "trigger",
       "x": 1,
-      "y": 13,
+      "y": 7,
       "elevation": 3,
       "var": "VAR_MAP_SCENE_ROUTE16",
       "var_value": "0",
@@ -132,7 +100,7 @@
     {
       "type": "trigger",
       "x": 1,
-      "y": 11,
+      "y": 5,
       "elevation": 3,
       "var": "VAR_MAP_SCENE_ROUTE16",
       "var_value": "0",
@@ -141,7 +109,7 @@
     {
       "type": "trigger",
       "x": 11,
-      "y": 11,
+      "y": 5,
       "elevation": 3,
       "var": "VAR_MAP_SCENE_ROUTE16",
       "var_value": "1",
@@ -150,7 +118,7 @@
     {
       "type": "trigger",
       "x": 11,
-      "y": 13,
+      "y": 7,
       "elevation": 3,
       "var": "VAR_MAP_SCENE_ROUTE16",
       "var_value": "1",
@@ -159,7 +127,7 @@
     {
       "type": "trigger",
       "x": 6,
-      "y": 12,
+      "y": 6,
       "elevation": 3,
       "var": "VAR_TEMP_1",
       "var_value": "0",
@@ -168,7 +136,7 @@
     {
       "type": "trigger",
       "x": 6,
-      "y": 13,
+      "y": 7,
       "elevation": 3,
       "var": "VAR_TEMP_1",
       "var_value": "0",
@@ -177,12 +145,15 @@
     {
       "type": "trigger",
       "x": 6,
-      "y": 14,
+      "y": 8,
       "elevation": 3,
       "var": "VAR_TEMP_1",
       "var_value": "0",
       "script": "Route16_NorthEntrance_1F_EventScript_NeedBikeTriggerBottom"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+  "floor_number": 0,
+  "game_version": "hns",
+  "region": "REGION_KANTO"
 }

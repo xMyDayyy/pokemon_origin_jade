@@ -1,10 +1,8 @@
 {
   "id": "MAP_ROUTE17",
   "name": "Route17_Frlg",
-  "game_version": "hns",
   "layout": "LAYOUT_ROUTE17_HNS",
   "music": "MUS_RG_ROUTE3",
-  "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_ROUTE_17",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -13,26 +11,24 @@
   "allow_escaping": false,
   "allow_running": true,
   "show_map_name": true,
-  "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
       "map": "MAP_ROUTE16",
-      "offset": -19,
+      "offset": 0,
       "direction": "up"
     },
     {
       "map": "MAP_ROUTE18",
-      "offset": 0,
+      "offset": 6,
       "direction": "down"
     }
   ],
   "object_events": [
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
-      "x": 0,
-      "y": 29,
+      "x": 23,
+      "y": 23,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WALK_DOWN_AND_UP",
       "movement_range_x": 1,
@@ -43,10 +39,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
-      "x": 0,
-      "y": 26,
+      "x": 13,
+      "y": 20,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WALK_DOWN_AND_UP",
       "movement_range_x": 1,
@@ -57,10 +52,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
-      "x": 4,
-      "y": 35,
+      "x": 15,
+      "y": 46,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_RIGHT_DOWN_LEFT_UP",
       "movement_range_x": 4,
@@ -71,10 +65,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
-      "x": 7,
-      "y": 52,
+      "x": 23,
+      "y": 64,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WALK_DOWN_AND_UP",
       "movement_range_x": 1,
@@ -85,10 +78,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
-      "x": 0,
-      "y": 49,
+      "x": 20,
+      "y": 50,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT_AND_RIGHT",
       "movement_range_x": 1,
@@ -99,10 +91,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
-      "x": 0,
-      "y": 72,
+      "x": 12,
+      "y": 79,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
@@ -113,10 +104,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
-      "x": 10,
-      "y": 72,
+      "x": 24,
+      "y": 79,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
@@ -127,10 +117,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
-      "x": 7,
-      "y": 105,
+      "x": 13,
+      "y": 104,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WALK_DOWN_AND_UP",
       "movement_range_x": 1,
@@ -141,10 +130,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
-      "x": 5,
-      "y": 145,
+      "x": 22,
+      "y": 147,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_LEFT_DOWN_RIGHT_UP",
       "movement_range_x": 8,
@@ -155,10 +143,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
-      "x": 0,
-      "y": 127,
+      "x": 14,
+      "y": 129,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WALK_DOWN_AND_UP",
       "movement_range_x": 1,
@@ -213,56 +200,56 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 1,
-      "y": 108,
+      "x": 18,
+      "y": 121,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route17_EventScript_RouteSign"
     },
     {
       "type": "sign",
-      "x": 1,
-      "y": 94,
+      "x": 18,
+      "y": 111,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route17_EventScript_TrainerTips2"
     },
     {
       "type": "sign",
-      "x": 1,
-      "y": 79,
+      "x": 18,
+      "y": 77,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route17_EventScript_TrainerTips1"
     },
     {
       "type": "sign",
-      "x": 1,
-      "y": 64,
+      "x": 18,
+      "y": 4,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route17_EventScript_ItemsNotice"
     },
     {
       "type": "sign",
-      "x": 1,
-      "y": 136,
+      "x": 18,
+      "y": 145,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route17_EventScript_BallsNotice"
     },
     {
       "type": "sign",
-      "x": 0,
-      "y": 157,
+      "x": 21,
+      "y": 156,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route17_EventScript_CyclingRoadSign"
     },
     {
       "type": "hidden_item",
-      "x": 7,
-      "y": 94,
+      "x": 18,
+      "y": 87,
       "elevation": 3,
       "item": "ITEM_RARE_CANDY",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE17_RARE_CANDY",
@@ -271,8 +258,8 @@
     },
     {
       "type": "hidden_item",
-      "x": 0,
-      "y": 64,
+      "x": 18,
+      "y": 43,
       "elevation": 3,
       "item": "ITEM_FULL_RESTORE",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE17_FULL_RESTORE",
@@ -281,8 +268,8 @@
     },
     {
       "type": "hidden_item",
-      "x": 0,
-      "y": 79,
+      "x": 18,
+      "y": 53,
       "elevation": 3,
       "item": "ITEM_PP_UP",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE17_PP_UP",
@@ -291,8 +278,8 @@
     },
     {
       "type": "hidden_item",
-      "x": 0,
-      "y": 136,
+      "x": 13,
+      "y": 143,
       "elevation": 3,
       "item": "ITEM_MAX_REVIVE",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE17_MAX_REVIVE",
@@ -301,13 +288,16 @@
     },
     {
       "type": "hidden_item",
-      "x": 3,
-      "y": 157,
+      "x": 15,
+      "y": 156,
       "elevation": 3,
       "item": "ITEM_MAX_ELIXIR",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE17_MAX_ELIXIR",
       "quantity": 1,
       "underfoot": false
     }
-  ]
+  ],
+  "floor_number": 0,
+  "game_version": "hns",
+  "region": "REGION_KANTO"
 }

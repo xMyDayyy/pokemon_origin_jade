@@ -20,7 +20,7 @@
     },
     {
       "map": "MAP_ROUTE9",
-      "offset": -21,
+      "offset": -26,
       "direction": "left"
     }
   ],
@@ -47,7 +47,7 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "1",
+      "trainer_sight_or_berry_tree_id": "2",
       "script": "Route10_EventScript_Clark",
       "flag": "0"
     },
@@ -182,7 +182,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_SPEAROW",
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_EKANS",
       "x": 29,
       "y": 25,
       "elevation": 0,
@@ -195,13 +195,26 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_VOLTORB",
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_SPEAROW",
       "x": 10,
       "y": 6,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
       "movement_range_x": 8,
       "movement_range_y": 8,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_MAGNEMITE",
+      "x": 13,
+      "y": 50,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
@@ -293,7 +306,7 @@
     },
     {
       "type": "hidden_item",
-      "x": 9,
+      "x": 21,
       "y": 40,
       "elevation": 3,
       "item": "ITEM_CHERI_BERRY",
@@ -303,8 +316,8 @@
     },
     {
       "type": "hidden_item",
-      "x": 21,
-      "y": 40,
+      "x": 1,
+      "y": 12,
       "elevation": 3,
       "item": "ITEM_PERSIM_BERRY",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE10_PERSIM_BERRY",

@@ -1,10 +1,8 @@
 {
   "id": "MAP_ROUTE16",
   "name": "Route16_Frlg",
-  "game_version": "hns",
   "layout": "LAYOUT_ROUTE16_HNS",
   "music": "MUS_RG_ROUTE3",
-  "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_ROUTE_16",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -13,12 +11,11 @@
   "allow_escaping": false,
   "allow_running": true,
   "show_map_name": true,
-  "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
       "map": "MAP_ROUTE17",
-      "offset": 19,
+      "offset": 0,
       "direction": "down"
     },
     {
@@ -29,10 +26,9 @@
   ],
   "object_events": [
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
-      "x": 20,
-      "y": 32,
+      "x": 28,
+      "y": 40,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -43,10 +39,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
-      "x": 18,
-      "y": 34,
+      "x": 25,
+      "y": 42,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -57,10 +52,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
-      "x": 16,
-      "y": 32,
+      "x": 22,
+      "y": 40,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -71,10 +65,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
-      "x": 12,
-      "y": 32,
+      "x": 17,
+      "y": 40,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -85,10 +78,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
-      "x": 14,
-      "y": 34,
+      "x": 20,
+      "y": 42,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -99,10 +91,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
-      "x": 10,
-      "y": 34,
+      "x": 15,
+      "y": 42,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -114,10 +105,9 @@
     },
     {
       "local_id": "LOCALID_ROUTE16_CUT_TREE",
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE_FRLG",
-      "x": 45,
-      "y": 31,
+      "x": 46,
+      "y": 34,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -128,10 +118,9 @@
       "flag": "FLAG_TEMP_12"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BEAUTY_FRLG",
-      "x": 34,
-      "y": 25,
+      "x": 43,
+      "y": 30,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -142,10 +131,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MAN",
-      "x": 35,
-      "y": 25,
+      "x": 44,
+      "y": 30,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -156,10 +144,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SNORLAX",
-      "x": 35,
-      "y": 33,
+      "x": 49,
+      "y": 43,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -244,29 +231,15 @@
       "dest_warp_id": "1"
     },
     {
-      "x": 24,
-      "y": 26,
-      "elevation": 3,
-      "dest_map": "MAP_ROUTE16_NORTH_ENTRANCE_1F",
-      "dest_warp_id": "0"
-    },
-    {
-      "x": 31,
-      "y": 26,
-      "elevation": 3,
-      "dest_map": "MAP_ROUTE16_NORTH_ENTRANCE_1F",
-      "dest_warp_id": "1"
-    },
-    {
-      "x": 24,
-      "y": 33,
+      "x": 36,
+      "y": 42,
       "elevation": 3,
       "dest_map": "MAP_ROUTE16_NORTH_ENTRANCE_1F",
       "dest_warp_id": "2"
     },
     {
-      "x": 31,
-      "y": 33,
+      "x": 43,
+      "y": 42,
       "elevation": 3,
       "dest_map": "MAP_ROUTE16_NORTH_ENTRANCE_1F",
       "dest_warp_id": "3"
@@ -276,29 +249,32 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 10,
-      "y": 37,
+      "x": 16,
+      "y": 46,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route16_EventScript_RouteSign"
     },
     {
       "type": "sign",
-      "x": 37,
-      "y": 31,
+      "x": 44,
+      "y": 40,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route16_EventScript_CyclingRoadSign"
     },
     {
       "type": "hidden_item",
-      "x": 35,
-      "y": 33,
+      "x": 49,
+      "y": 43,
       "elevation": 3,
       "item": "ITEM_LEFTOVERS",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE16_LEFTOVERS",
       "quantity": 1,
       "underfoot": true
     }
-  ]
+  ],
+  "floor_number": 0,
+  "game_version": "hns",
+  "region": "REGION_KANTO"
 }
