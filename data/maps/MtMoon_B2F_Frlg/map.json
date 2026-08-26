@@ -212,7 +212,7 @@
     {
       "x": 5,
       "y": 10,
-      "elevation": 3,
+      "elevation": 4,
       "dest_map": "MAP_MT_MOON_B1F",
       "dest_warp_id": "6"
     },
@@ -229,7 +229,7 @@
       "type": "trigger",
       "x": 14,
       "y": 11,
-      "elevation": 3,
+      "elevation": 5,
       "var": "VAR_MAP_SCENE_MT_MOON_B2F",
       "var_value": "0",
       "script": "MtMoon_B2F_EventScript_MiguelTrigger"
