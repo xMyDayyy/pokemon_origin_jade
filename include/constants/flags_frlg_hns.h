@@ -1411,6 +1411,11 @@
 // SaveBlock3 wachsen.
 #define FRLG_FLAGS_RESERVE_START (FRLG_FLAGS_START+0x2A0)
 
+// Hafen Orania City, Zwei-Schiff-Logik. Die S.S. Anne nutzt weiterhin
+// FLAG_HIDE_SS_ANNE (0x158). Die S.S. Aqua startet versteckt (gesetzt in
+// new_game.inc) und wird sichtbar, sobald die Story sie einlaufen laesst.
+#define FLAG_HIDE_VERMILION_SS_AQUA                          (FRLG_FLAGS_START+0x2A0)
+
 #define FRLG_FLAGS_END (FRLG_FLAGS_START+0x3FF)
 
 #define FRLG_NUM_FLAG_BYTES (((FRLG_FLAGS_END - FRLG_FLAGS_START + 1) + 7) / 8)

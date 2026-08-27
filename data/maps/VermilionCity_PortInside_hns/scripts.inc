@@ -1,5 +1,70 @@
 VermilionCity_PortInside_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, VermilionPort_OnFrame
 	.byte 0
+
+VermilionPort_OnFrame::
+	map_script_2 VAR_MAP_SCENE_VERMILION_CITY, 1, VermilionPort_EventScript_SSAnneDeparts
+	.2byte 0
+
+@ Phase 2: Der Spieler verlaesst die S.S. Anne mit der VM01. Das Schiff laeuft
+@ aus, der Hafen bleibt vorerst leer. Die frueher hier zustaendige Szene auf
+@ SSAnne_Exterior entfaellt, das FRLG-Aussendeck wird nicht mehr betreten.
+VermilionPort_EventScript_SSAnneDeparts::
+	lockall
+	delay 30
+	playse SE_SHIP
+	removeobject LOCALID_VERMILION_PORT_SS_ANNE
+	setflag FLAG_HIDE_SS_ANNE
+	delay 60
+	msgbox VermilionPort_Text_SSAnneDeparted, MSGBOX_DEFAULT
+	closemessage
+	setvar VAR_MAP_SCENE_VERMILION_CITY, 3
+	releaseall
+	end
+
+@ Phase 1: Solange die S.S. Anne im Hafen liegt, fuehrt der Matrose an Bord.
+VermilionPort_EventScript_BoardSSAnne::
+	msgbox VermilionPort_Text_AllAboardSSAnne, MSGBOX_DEFAULT
+	call VermilionPort_EventScript_EnterShip
+	warpsilent MAP_SSANNE_1F_CORRIDOR, 19, 2
+	waitstate
+	release
+	end
+
+@ Phase 3: Anne ausgelaufen, Aqua noch nicht da.
+VermilionPort_EventScript_NoShipInPort::
+	msgbox VermilionPort_Text_NoShipInPort, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+VermilionPort_Text_SSAnneDeparted:
+#if GERMAN
+	.string "Die S.S. Anne hat abgelegt.\p"
+	.string "Sie kehrt so bald nicht zurück.$"
+#else
+	.string "The S.S. ANNE has set sail.\p"
+	.string "She won't return for a long time.$"
+#endif
+
+VermilionPort_Text_AllAboardSSAnne:
+#if GERMAN
+	.string "Willkommen an Bord der S.S. Anne!\n"
+	.string "Hier entlang, bitte.$"
+#else
+	.string "Welcome aboard the S.S. ANNE!\n"
+	.string "Right this way, please.$"
+#endif
+
+VermilionPort_Text_NoShipInPort:
+#if GERMAN
+	.string "Zurzeit liegt kein Schiff im Hafen.\p"
+	.string "Schau doch später noch einmal\n"
+	.string "vorbei.$"
+#else
+	.string "There's no ship in port right now.\p"
+	.string "Come back another time.$"
+#endif
 
 VermilionPortIndoor_EventScript_Teacher::
 	msgbox VermilionPortPassage_Text_Teacher, MSGBOX_NPC
@@ -31,12 +96,27 @@ VermilionPort_Text_SuperNerd:
 VermilionPort_EventScript_Sailor::
 	lock
 	faceplayer
+	@ Phase 1: S.S. Anne liegt im Hafen, Fahrschein noetig.
+	goto_if_unset FLAG_HIDE_SS_ANNE, VermilionPort_EventScript_SSAnnePresent
+	@ Phase 3: Anne ausgelaufen, Aqua noch nicht eingelaufen.
+	goto_if_set FLAG_HIDE_VERMILION_SS_AQUA, VermilionPort_EventScript_NoShipInPort
+	@ Phase 4: ab hier die bestehende S.S.-Aqua-Logik.
 	goto_if_unset FLAG_RETURNED_MACHINE_PART, VermilionPort_EventScript_SailorCantSail
 	goto_if_ge VAR_SSAQUA_STATE, 7, VermilionPort_EventScript_Sailor_AfterKanto
 	msgbox VermilionPort_Text_AskBoard, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, FALSE, VermilionPort_EventScript_Sailor_Refused
 	checkitem ITEM_SS_TICKET
 	goto_if_eq VAR_RESULT, TRUE, VermilionPort_EventScript_Sailor_MaidenVoyage
+	msgbox VermilionPort_Text_NoTicket, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+VermilionPort_EventScript_SSAnnePresent::
+	msgbox VermilionPort_Text_AskBoard, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, FALSE, VermilionPort_EventScript_Sailor_Refused
+	checkitem ITEM_SS_TICKET
+	goto_if_eq VAR_RESULT, TRUE, VermilionPort_EventScript_BoardSSAnne
 	msgbox VermilionPort_Text_NoTicket, MSGBOX_DEFAULT
 	closemessage
 	release
