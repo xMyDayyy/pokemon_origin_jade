@@ -787,6 +787,8 @@ gStdScripts_End::
 	.include "data/maps/VermilionCity_Mart_Frlg/scripts.inc"
 	.include "data/maps/VermilionCity_Gym_Frlg/scripts.inc"
 	.include "data/maps/VermilionCity_House3_Frlg/scripts.inc"
+	.include "data/maps/VermilionCity_PortOutside_Frlg/scripts.inc"
+	.include "data/maps/VermilionCity_PortInside_Frlg/scripts.inc"
 	.include "data/maps/CeladonCity_DepartmentStore_1F_Frlg/scripts.inc"
 	.include "data/maps/CeladonCity_DepartmentStore_2F_Frlg/scripts.inc"
 	.include "data/maps/CeladonCity_DepartmentStore_3F_Frlg/scripts.inc"
