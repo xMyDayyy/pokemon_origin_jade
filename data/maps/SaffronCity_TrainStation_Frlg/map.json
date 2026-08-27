@@ -15,7 +15,7 @@
   "connections": null,
   "object_events": [
     {
-      "local_id": "LOCALID_SAFFRON_STATION_ATTENDANT",
+      "local_id": "LOCALID_SAFFRON_STATION_FRLG_ATTENDANT",
       "graphics_id": "OBJ_EVENT_GFX_OFFICER_HNS",
       "x": 137,
       "y": 20,
@@ -25,7 +25,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SaffronStation_EventScript_Attendant",
+      "script": "SaffronStationFrlg_EventScript_Attendant",
       "flag": "0"
     },
     {
@@ -38,7 +38,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SaffronStation_EventScript_Teacher",
+      "script": "SaffronStationFrlg_EventScript_Teacher",
       "flag": "0"
     },
     {
@@ -51,7 +51,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SaffronStation_EventScript_Lass",
+      "script": "SaffronStationFrlg_EventScript_Lass",
       "flag": "0"
     },
     {
@@ -64,11 +64,11 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SaffronStation_EventScript_Nerd",
+      "script": "SaffronStationFrlg_EventScript_Nerd",
       "flag": "0"
     },
     {
-      "local_id": "LOCALID_SAFFRON_STATION_TRAIN",
+      "local_id": "LOCALID_SAFFRON_STATION_FRLG_TRAIN",
       "graphics_id": "OBJ_EVENT_GFX_TRAIN_WEST_HNS",
       "x": 152,
       "y": 5,
