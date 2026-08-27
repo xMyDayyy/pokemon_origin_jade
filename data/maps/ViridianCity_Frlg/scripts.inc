@@ -16,13 +16,14 @@ ViridianCity_EventScript_SetOldManNormal::
 
 ViridianCity_EventScript_SetOldManStandingByRoad::
 	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_OLD_MAN_1
-	setobjectxyperm LOCALID_TUTORIAL_MAN, 24, 8
+	setobjectxyperm LOCALID_TUTORIAL_MAN, 24, 9
 	setobjectmovementtype LOCALID_TUTORIAL_MAN, MOVEMENT_TYPE_LOOK_AROUND
 	return
 
 ViridianCity_EventScript_SetOldManBlockingRoad::
 	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_OLD_MAN_LYING_DOWN
 	setobjectxyperm LOCALID_TUTORIAL_MAN, 24, 11
+	setobjectxyperm LOCALID_VIRIDIAN_WOMAN, 23, 12
 	setobjectmovementtype LOCALID_TUTORIAL_MAN, MOVEMENT_TYPE_FACE_DOWN
 	return
 
