@@ -16672,6 +16672,18 @@
       "border_width": 2,
       "game_version": "hns",
       "layout_version": "frlg"
+    },
+    {
+      "id": "LAYOUT_SAFFRON_CITY_TRAIN_STATION_FRLG",
+      "name": "SaffronCity_TrainStation_Frlg_Layout",
+      "width": 154,
+      "height": 28,
+      "primary_tileset": "gTileset_Johto_Building_Hns",
+      "secondary_tileset": "gTileset_GoldenrodCity_TrainStation_Hns",
+      "border_filepath": "data/layouts/SaffronCity_TrainStation_Frlg/border.bin",
+      "blockdata_filepath": "data/layouts/SaffronCity_TrainStation_Frlg/map.bin",
+      "game_version": "hns_kanto_retired",
+      "layout_version": "hns"
     }
   ]
 }

@@ -2370,3 +2370,5 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/Akala_Cave_hns/scripts.inc"
 
 .endif
+
+	.include "data/maps/SaffronCity_TrainStation_Frlg/scripts.inc"

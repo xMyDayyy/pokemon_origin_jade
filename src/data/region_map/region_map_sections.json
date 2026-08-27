@@ -56,7 +56,7 @@
     },
     {
       "id": "MAPSEC_PACIFIDLOG_TOWN",
-      "name": "Flo\u00dfbrunn",
+      "name": "Floßbrunn",
       "x": 17,
       "y": 10,
       "width": 1,
@@ -65,7 +65,7 @@
     },
     {
       "id": "MAPSEC_PETALBURG_CITY",
-      "name": "Bl\u00fctenburg City",
+      "name": "Blütenburg City",
       "x": 1,
       "y": 9,
       "width": 1,
@@ -497,7 +497,7 @@
     },
     {
       "id": "MAPSEC_GRANITE_CAVE",
-      "name": "Granith\u00f6hle",
+      "name": "Granithöhle",
       "x": 1,
       "y": 13,
       "width": 1,
@@ -533,7 +533,7 @@
     },
     {
       "id": "MAPSEC_PETALBURG_WOODS",
-      "name": "Bl\u00fctenburgwald",
+      "name": "Blütenburgwald",
       "x": 0,
       "y": 8,
       "width": 1,
@@ -569,7 +569,7 @@
     },
     {
       "id": "MAPSEC_METEOR_FALLS",
-      "name": "Meteorf\u00e4lle",
+      "name": "Meteorfälle",
       "x": 0,
       "y": 3,
       "width": 1,
@@ -578,7 +578,7 @@
     },
     {
       "id": "MAPSEC_METEOR_FALLS2",
-      "name": "Meteorf\u00e4lle",
+      "name": "Meteorfälle",
       "x": 1,
       "y": 2,
       "width": 1,
@@ -605,7 +605,7 @@
     },
     {
       "id": "MAPSEC_SHOAL_CAVE",
-      "name": "K\u00fcstenh\u00f6hle",
+      "name": "Küstenhöhle",
       "x": 24,
       "y": 4,
       "width": 1,
@@ -614,7 +614,7 @@
     },
     {
       "id": "MAPSEC_SEAFLOOR_CAVERN",
-      "name": "Tiefseeh\u00f6hle",
+      "name": "Tiefseehöhle",
       "x": 24,
       "y": 9,
       "width": 1,
@@ -623,7 +623,7 @@
     },
     {
       "id": "MAPSEC_UNDERWATER_SEAFLOOR_CAVERN",
-      "name": "Tiefseeh\u00f6hle",
+      "name": "Tiefseehöhle",
       "x": 24,
       "y": 9,
       "width": 1,
@@ -632,7 +632,7 @@
     },
     {
       "id": "MAPSEC_VICTORY_ROAD",
-      "name": "Siegesstra\u00dfe",
+      "name": "Siegesstraße",
       "x": 27,
       "y": 9,
       "width": 1,
@@ -650,7 +650,7 @@
     },
     {
       "id": "MAPSEC_CAVE_OF_ORIGIN",
-      "name": "Urzeith\u00f6hle",
+      "name": "Urzeithöhle",
       "x": 21,
       "y": 7,
       "width": 1,
@@ -659,7 +659,7 @@
     },
     {
       "id": "MAPSEC_SOUTHERN_ISLAND",
-      "name": "Insel im S\u00fcden",
+      "name": "Insel im Süden",
       "x": 12,
       "y": 14,
       "width": 1,
@@ -731,7 +731,7 @@
     },
     {
       "id": "MAPSEC_ISLAND_CAVE",
-      "name": "Inselh\u00f6hle",
+      "name": "Inselhöhle",
       "x": 0,
       "y": 10,
       "width": 1,
@@ -740,7 +740,7 @@
     },
     {
       "id": "MAPSEC_DESERT_RUINS",
-      "name": "W\u00fcstenruine",
+      "name": "Wüstenruine",
       "x": 8,
       "y": 3,
       "width": 1,
@@ -758,7 +758,7 @@
     },
     {
       "id": "MAPSEC_INSIDE_OF_TRUCK",
-      "name": "Im M\u00f6belwagen",
+      "name": "Im Möbelwagen",
       "in_hns": true
     },
     {
@@ -1168,7 +1168,7 @@
     },
     {
       "id": "MAPSEC_DIGLETTS_CAVE",
-      "name": "Digdas H\u00f6hle",
+      "name": "Digdas Höhle",
       "x": 15,
       "y": 9,
       "width": 1,
@@ -1177,7 +1177,7 @@
     },
     {
       "id": "MAPSEC_KANTO_VICTORY_ROAD",
-      "name": "Siegesstra\u00dfe",
+      "name": "Siegesstraße",
       "x": 2,
       "y": 4,
       "width": 1,
@@ -1204,7 +1204,7 @@
     },
     {
       "id": "MAPSEC_POKEMON_MANSION",
-      "name": "Pok\u00e9mon-Haus",
+      "name": "Pokémon-Haus",
       "x": 4,
       "y": 14,
       "width": 1,
@@ -1222,7 +1222,7 @@
     },
     {
       "id": "MAPSEC_POKEMON_LEAGUE",
-      "name": "Pok\u00e9mon Liga",
+      "name": "Pokémon Liga",
       "x": 2,
       "y": 3,
       "width": 1,
@@ -1249,7 +1249,7 @@
     },
     {
       "id": "MAPSEC_POKEMON_TOWER",
-      "name": "Pok\u00e9mon Turm",
+      "name": "Pokémon Turm",
       "x": 18,
       "y": 6,
       "width": 1,
@@ -1258,7 +1258,7 @@
     },
     {
       "id": "MAPSEC_CERULEAN_CAVE",
-      "name": "Azuria-H\u00f6hle",
+      "name": "Azuria-Höhle",
       "x": 13,
       "y": 3,
       "width": 1,
@@ -1308,7 +1308,7 @@
     },
     {
       "id": "MAPSEC_FIVE_ISLAND",
-      "name": "Eiland F\u00fcnf",
+      "name": "Eiland Fünf",
       "x": 16,
       "y": 11,
       "width": 1,
@@ -1332,7 +1332,7 @@
     },
     {
       "id": "MAPSEC_KINDLE_ROAD",
-      "name": "Gl\u00fchweg",
+      "name": "Glühweg",
       "x": 2,
       "y": 3,
       "width": 1,
@@ -1356,7 +1356,7 @@
     },
     {
       "id": "MAPSEC_BOND_BRIDGE",
-      "name": "Bundbr\u00fccke",
+      "name": "Bundbrücke",
       "x": 13,
       "y": 12,
       "width": 4,
@@ -1396,7 +1396,7 @@
     },
     {
       "id": "MAPSEC_MEMORIAL_PILLAR",
-      "name": "Gedenks\u00e4ule",
+      "name": "Gedenksäule",
       "x": 18,
       "y": 12,
       "width": 1,
@@ -1412,7 +1412,7 @@
     },
     {
       "id": "MAPSEC_GREEN_PATH",
-      "name": "Gr\u00fcner Pfad",
+      "name": "Grüner Pfad",
       "x": 15,
       "y": 3,
       "width": 3,
@@ -1519,7 +1519,7 @@
     },
     {
       "id": "MAPSEC_ICEFALL_CAVE",
-      "name": "Eiskaskadenh\u00f6hle",
+      "name": "Eiskaskadenhöhle",
       "x": 3,
       "y": 4,
       "width": 1,
@@ -1551,7 +1551,7 @@
     },
     {
       "id": "MAPSEC_LOST_CAVE",
-      "name": "Verlorene H\u00f6hle",
+      "name": "Verlorene Höhle",
       "x": 18,
       "y": 9,
       "width": 1,
@@ -1567,7 +1567,7 @@
     },
     {
       "id": "MAPSEC_ALTERING_CAVE_FRLG",
-      "name": "Wandelh\u00f6hle",
+      "name": "Wandelhöhle",
       "x": 15,
       "y": 0,
       "width": 1,
@@ -1592,7 +1592,7 @@
     },
     {
       "id": "MAPSEC_TANOBY_KEY",
-      "name": "Tanibo-Schl\u00fcssel",
+      "name": "Tanibo-Schlüssel",
       "x": 6,
       "y": 9,
       "width": 1,
@@ -1640,7 +1640,7 @@
     },
     {
       "id": "MAPSEC_SCUFIB_CHAMBER",
-      "name": "F\u00fcnibisku-Kammer",
+      "name": "Fünibisku-Kammer",
       "x": 9,
       "y": 12,
       "width": 1,
@@ -1710,7 +1710,7 @@
     },
     {
       "id": "MAPSEC_ARTISAN_CAVE",
-      "name": "H\u00f6hlenatelier",
+      "name": "Höhlenatelier",
       "x": 22,
       "y": 12,
       "width": 1,
@@ -1719,17 +1719,17 @@
     },
     {
       "id": "MAPSEC_MARINE_CAVE",
-      "name": "Ozeanh\u00f6hle",
+      "name": "Ozeanhöhle",
       "in_hns": true
     },
     {
       "id": "MAPSEC_UNDERWATER_MARINE_CAVE",
-      "name": "Ozeanh\u00f6hle",
+      "name": "Ozeanhöhle",
       "in_hns": true
     },
     {
       "id": "MAPSEC_TERRA_CAVE",
-      "name": "Terrah\u00f6hle",
+      "name": "Terrahöhle",
       "in_hns": true
     },
     {
@@ -1761,7 +1761,7 @@
     },
     {
       "id": "MAPSEC_DESERT_UNDERPASS",
-      "name": "W\u00fcstentunnel",
+      "name": "Wüstentunnel",
       "x": 2,
       "y": 0,
       "width": 1,
@@ -1770,7 +1770,7 @@
     },
     {
       "id": "MAPSEC_ALTERING_CAVE",
-      "name": "Wandelh\u00f6hle",
+      "name": "Wandelhöhle",
       "x": 6,
       "y": 8,
       "width": 1,
@@ -1841,6 +1841,42 @@
       "width": 1,
       "height": 1,
       "in_hns": true
+    },
+    {
+      "id": "MAPSEC_ROUTE_27"
+    },
+    {
+      "id": "MAPSEC_NEW_BARK_TOWN"
+    },
+    {
+      "id": "MAPSEC_ROUTE_29"
+    },
+    {
+      "id": "MAPSEC_ROUTE_41"
+    },
+    {
+      "id": "MAPSEC_ROUTE_32"
+    },
+    {
+      "id": "MAPSEC_ROUTE_38"
+    },
+    {
+      "id": "MAPSEC_CIANWOOD_CITY"
+    },
+    {
+      "id": "MAPSEC_OLIVINE_CITY"
+    },
+    {
+      "id": "MAPSEC_AZALEA_TOWN"
+    },
+    {
+      "id": "MAPSEC_ROUTE_39"
+    },
+    {
+      "id": "MAPSEC_ROUTE_40"
+    },
+    {
+      "id": "MAPSEC_ROUTE_33"
     }
   ],
   "hns_map_sections": [
@@ -1895,7 +1931,7 @@
     {
       "height": 1,
       "id": "MAPSEC_SOUTHERN_ISLAND",
-      "name": "Insel im S\u00fcden",
+      "name": "Insel im Süden",
       "width": 1,
       "x": 12,
       "y": 14
@@ -1952,7 +1988,7 @@
     {
       "height": 1,
       "id": "MAPSEC_VICTORY_ROAD",
-      "name": "Siegesstra\u00dfe",
+      "name": "Siegesstraße",
       "width": 1,
       "x": 24,
       "y": 5
@@ -2256,7 +2292,7 @@
     {
       "height": 1,
       "id": "MAPSEC_DIGLETTS_CAVE",
-      "name": "Digdas H\u00f6hle",
+      "name": "Digdas Höhle",
       "width": 1,
       "x": 15,
       "y": 9
@@ -2288,7 +2324,7 @@
     {
       "height": 1,
       "id": "MAPSEC_CERULEAN_CAVE",
-      "name": "Azuria-H\u00f6hle",
+      "name": "Azuria-Höhle",
       "width": 1,
       "x": 13,
       "y": 3
@@ -2312,7 +2348,7 @@
     {
       "height": 1,
       "id": "MAPSEC_KANTO_VICTORY_ROAD",
-      "name": "Siegesstra\u00dfe",
+      "name": "Siegesstraße",
       "width": 1,
       "x": 3,
       "y": 4
@@ -2320,7 +2356,7 @@
     {
       "height": 2,
       "id": "MAPSEC_POKEMON_LEAGUE",
-      "name": "Pok\u00e9mon-Liga",
+      "name": "Pokémon-Liga",
       "width": 1,
       "x": 24,
       "y": 3
@@ -2328,7 +2364,7 @@
     {
       "height": 1,
       "id": "MAPSEC_POKEMON_TOWER",
-      "name": "Pok\u00e9mon-Turm",
+      "name": "Pokémon-Turm",
       "width": 1,
       "x": 18,
       "y": 6
@@ -2336,7 +2372,7 @@
     {
       "height": 1,
       "id": "MAPSEC_POKEMON_MANSION",
-      "name": "Pok\u00e9mon-Villa",
+      "name": "Pokémon-Villa",
       "width": 1,
       "x": 4,
       "y": 14
@@ -2664,7 +2700,7 @@
     {
       "height": 1,
       "id": "MAPSEC_CLIFF_CAVE",
-      "name": "Felsschlundh\u00f6hle",
+      "name": "Felsschlundhöhle",
       "width": 1,
       "x": 3,
       "y": 11
@@ -2672,7 +2708,7 @@
     {
       "height": 2,
       "id": "MAPSEC_DARK_CAVE",
-      "name": "Dunkelh\u00f6hle",
+      "name": "Dunkelhöhle",
       "width": 3,
       "x": 15,
       "y": 4
@@ -2680,7 +2716,7 @@
     {
       "height": 1,
       "id": "MAPSEC_DRAGONS_DEN",
-      "name": "Drachenh\u00f6hle",
+      "name": "Drachenhöhle",
       "width": 1,
       "x": 18,
       "y": 1
@@ -2736,7 +2772,7 @@
     {
       "height": 4,
       "id": "MAPSEC_VICTORY_ROAD_HNS",
-      "name": "Siegesstra\u00dfe",
+      "name": "Siegesstraße",
       "width": 1,
       "x": 16,
       "y": 4
@@ -2864,7 +2900,7 @@
     {
       "height": 1,
       "id": "MAPSEC_TOHJO_FALLS",
-      "name": "Tohjo-F\u00e4lle",
+      "name": "Tohjo-Fälle",
       "width": 1,
       "x": 20,
       "y": 9
@@ -2936,7 +2972,7 @@
     {
       "height": 1,
       "id": "MAPSEC_PACIFIDLOG_TOWN",
-      "name": "Flo\u00dfbrunn",
+      "name": "Floßbrunn",
       "width": 1,
       "x": 17,
       "y": 10
@@ -2944,7 +2980,7 @@
     {
       "height": 1,
       "id": "MAPSEC_PETALBURG_CITY",
-      "name": "Bl\u00fctenburg City",
+      "name": "Blütenburg City",
       "width": 1,
       "x": 1,
       "y": 9
@@ -3320,7 +3356,7 @@
     {
       "height": 1,
       "id": "MAPSEC_GRANITE_CAVE",
-      "name": "Granith\u00f6hle",
+      "name": "Granithöhle",
       "width": 1,
       "x": 1,
       "y": 13
@@ -3336,7 +3372,7 @@
     {
       "height": 1,
       "id": "MAPSEC_PETALBURG_WOODS",
-      "name": "Bl\u00fctenburgwald",
+      "name": "Blütenburgwald",
       "width": 1,
       "x": 0,
       "y": 8
@@ -3360,7 +3396,7 @@
     {
       "height": 1,
       "id": "MAPSEC_METEOR_FALLS",
-      "name": "Meteorf\u00e4lle",
+      "name": "Meteorfälle",
       "width": 1,
       "x": 0,
       "y": 3
@@ -3368,7 +3404,7 @@
     {
       "height": 1,
       "id": "MAPSEC_METEOR_FALLS2",
-      "name": "Meteorf\u00e4lle",
+      "name": "Meteorfälle",
       "width": 1,
       "x": 1,
       "y": 2
@@ -3392,7 +3428,7 @@
     {
       "height": 1,
       "id": "MAPSEC_SHOAL_CAVE",
-      "name": "K\u00fcstenh\u00f6hle",
+      "name": "Küstenhöhle",
       "width": 1,
       "x": 24,
       "y": 4
@@ -3400,7 +3436,7 @@
     {
       "height": 1,
       "id": "MAPSEC_SEAFLOOR_CAVERN",
-      "name": "Tiefseeh\u00f6hle",
+      "name": "Tiefseehöhle",
       "width": 1,
       "x": 24,
       "y": 9
@@ -3408,7 +3444,7 @@
     {
       "height": 1,
       "id": "MAPSEC_UNDERWATER_SEAFLOOR_CAVERN",
-      "name": "Tiefseeh\u00f6hle",
+      "name": "Tiefseehöhle",
       "width": 1,
       "x": 24,
       "y": 9
@@ -3424,7 +3460,7 @@
     {
       "height": 1,
       "id": "MAPSEC_CAVE_OF_ORIGIN",
-      "name": "Urzeith\u00f6hle",
+      "name": "Urzeithöhle",
       "width": 1,
       "x": 21,
       "y": 7
@@ -3488,7 +3524,7 @@
     {
       "height": 1,
       "id": "MAPSEC_ISLAND_CAVE",
-      "name": "Inselh\u00f6hle",
+      "name": "Inselhöhle",
       "width": 1,
       "x": 0,
       "y": 10
@@ -3496,7 +3532,7 @@
     {
       "height": 1,
       "id": "MAPSEC_DESERT_RUINS",
-      "name": "W\u00fcstenruine",
+      "name": "Wüstenruine",
       "width": 1,
       "x": 8,
       "y": 3
@@ -3512,7 +3548,7 @@
     {
       "height": 1,
       "id": "MAPSEC_INSIDE_OF_TRUCK",
-      "name": "Im M\u00f6belwagen",
+      "name": "Im Möbelwagen",
       "width": 1,
       "x": 0,
       "y": 0
@@ -3611,7 +3647,7 @@
     {
       "height": 1,
       "id": "MAPSEC_ARTISAN_CAVE",
-      "name": "H\u00f6hlenatelier",
+      "name": "Höhlenatelier",
       "width": 1,
       "x": 22,
       "y": 12
@@ -3619,7 +3655,7 @@
     {
       "height": 1,
       "id": "MAPSEC_MARINE_CAVE",
-      "name": "Ozeanh\u00f6hle",
+      "name": "Ozeanhöhle",
       "width": 1,
       "x": 0,
       "y": 0
@@ -3627,7 +3663,7 @@
     {
       "height": 1,
       "id": "MAPSEC_UNDERWATER_MARINE_CAVE",
-      "name": "Ozeanh\u00f6hle",
+      "name": "Ozeanhöhle",
       "width": 1,
       "x": 0,
       "y": 0
@@ -3635,7 +3671,7 @@
     {
       "height": 1,
       "id": "MAPSEC_TERRA_CAVE",
-      "name": "Terrah\u00f6hle",
+      "name": "Terrahöhle",
       "width": 1,
       "x": 0,
       "y": 0
@@ -3667,7 +3703,7 @@
     {
       "height": 1,
       "id": "MAPSEC_DESERT_UNDERPASS",
-      "name": "W\u00fcstentunnel",
+      "name": "Wüstentunnel",
       "width": 1,
       "x": 2,
       "y": 0
@@ -3675,7 +3711,7 @@
     {
       "height": 1,
       "id": "MAPSEC_ALTERING_CAVE",
-      "name": "Wandelh\u00f6hle",
+      "name": "Wandelhöhle",
       "width": 1,
       "x": 6,
       "y": 8
