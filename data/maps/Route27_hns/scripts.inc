@@ -26,7 +26,10 @@ Route27_Text_BaobaName:
 Route27_EventScript_FirstSteps::
     lock
     playse SE_PIN
-    setflag FLAG_VISITED_KANTO
+    @ Origin Jade: FLAG_VISITED_KANTO stammt aus dem HnS-Kanon (Start in Johto).
+    @ Hier startet der Spieler in Kanto; der Karten-Merge haengt an
+    @ FLAG_VISITED_JOHTO und wird in Route26North_hns gesetzt. Das alte setflag
+    @ steuerte nichts mehr und ist entfernt.
     applymovement2 LOCALID_ROUTE27_FATMAN, Common_Movement_ExclamationMark
     turnobject LOCALID_ROUTE27_FATMAN, DIR_WEST
     delay 30

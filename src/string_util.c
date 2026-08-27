@@ -572,11 +572,25 @@ static const u8 *ExpandPlaceholder_Region(void)
     if (IS_HNS)
     {
         // Origin Jade: {REGION} richtet sich nach dem Standort des Spielers.
-        // Die Wandkarte im Kinderzimmer von Wurzelheim sprach sonst von
-        // "Johto und Kanto" (Discord-Report).
-        if (GetCurrentRegion() == REGION_HOENN)
+        // Wandkarten in Pokémon-Centern, Häusern usw. nennen damit immer die
+        // Region, in der der Spieler gerade steht.
+        //
+        // Vorher haengte die Weiche an FLAG_VISITED_KANTO (HnS-Kanon: Start in
+        // Johto, Kanto kommt spaeter dazu). In Origin Jade ist Kanto die
+        // Startregion, das Flag also die ganze Kanto-Haelfte ueber ungesetzt -
+        // jede Wandkarte in Kanto sprach von "Johto" (Befund Indigo Plateau).
+        // Nach dem Uebertritt haette sie "Johto & Kanto" gesagt, obwohl der
+        // Platzhalter den aktuellen Standort benennen soll.
+        switch (GetCurrentRegion())
+        {
+        case REGION_HOENN:
             return gText_Hoenn;
-        return FlagGet(FLAG_VISITED_KANTO) ? gText_JohtoKanto : gText_Johto;
+        case REGION_JOHTO:
+            return gText_Johto;
+        case REGION_KANTO:
+        default:
+            return gText_Kanto;
+        }
     }
     else if (IS_FRLG)
         return gText_Kanto;

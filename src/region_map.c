@@ -170,7 +170,7 @@ static const u8 sRegionMapPlayerIcon_KrisGfx[] = INCBIN_U8("graphics/pokenav/reg
 #include "data/region_map/region_map_entries.h"
 
 #if IS_HNS
-// JK combined map coordinates, used once FLAG_VISITED_KANTO is set
+// JK combined map coordinates, used once FLAG_VISITED_JOHTO is set
 // (despite the name - see the JK layout: Viola City sits at 7/5 there).
 // The auto-generated gRegionMapEntries carries the Johto-only coordinates
 // for Johto/Kanto mapsecs plus the Emerald coordinates for Hoenn mapsecs,

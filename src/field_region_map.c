@@ -237,7 +237,26 @@ static void PrintTitleWindowText(void)
     static const u8 FlyPromptText[] = _("{R_BUTTON} FLY");
     const u8 *region;
     if (IS_HNS)
-        region = gText_Johto;
+    {
+        // Origin Jade: Die Ueberschrift folgt der tatsaechlich gezeigten Karte.
+        // Fest verdrahtetes "Johto" liess die Wandkarte in Kanto und Hoenn
+        // die falsche Region ausweisen.
+        switch (GetRegionMapType(gMapHeader.regionMapSectionId))
+        {
+        case REGION_MAP_HOENN:
+            region = gText_Hoenn;
+            break;
+        case REGION_MAP_JK:
+            region = gText_JohtoKanto;
+            break;
+        case REGION_MAP_JOHTO:
+            region = gText_Johto;
+            break;
+        default:
+            region = gText_Kanto;
+            break;
+        }
+    }
     else if (IS_FRLG)
         region = gText_Kanto;
     else

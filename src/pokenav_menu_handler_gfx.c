@@ -12,6 +12,7 @@
 #include "sound.h"
 #include "gym_leader_rematch.h"
 #include "window.h"
+#include "region_map.h"
 #include "strings.h"
 #include "scanline_effect.h"
 #include "constants/songs.h"
@@ -338,7 +339,9 @@ static const struct WindowTemplate sOptionDescWindowTemplate =
 };
 
 #if IS_HNS
+static const u8 *const sHnSMapPageDescriptionKanto = COMPOUND_STRING("Erforsche die Karte von Kanto");
 static const u8 *const sHnSMapPageDescriptionJohto = COMPOUND_STRING("Erforsche die Karte von Johto");
+static const u8 *const sHnSMapPageDescriptionHoenn = COMPOUND_STRING("Erforsche die Karte von Hoenn");
 static const u8 *const sHnSMapPageDescriptionJohtoKanto = COMPOUND_STRING("Erforsche die komplette Karte");
 #endif
 
@@ -1308,8 +1311,27 @@ static void PrintCurrentOptionDescription(void)
     int menuItem = GetCurrentMenuItemId();
     const u8 *desc;
 #if IS_HNS
+    // Origin Jade: Beschreibung folgt der Karte, die sich hinter dem Eintrag
+    // oeffnet. FLAG_VISITED_KANTO wird erst auf Route 27 gesetzt, in Kanto las
+    // sich der Eintrag deshalb die ganze Zeit als "Karte von Johto".
     if (menuItem == POKENAV_MENUITEM_MAP)
-        desc = FlagGet(FLAG_VISITED_KANTO) ? sHnSMapPageDescriptionJohtoKanto : sHnSMapPageDescriptionJohto;
+    {
+        switch (GetRegionMapType(gMapHeader.regionMapSectionId))
+        {
+        case REGION_MAP_HOENN:
+            desc = sHnSMapPageDescriptionHoenn;
+            break;
+        case REGION_MAP_JK:
+            desc = sHnSMapPageDescriptionJohtoKanto;
+            break;
+        case REGION_MAP_JOHTO:
+            desc = sHnSMapPageDescriptionJohto;
+            break;
+        default:
+            desc = sHnSMapPageDescriptionKanto;
+            break;
+        }
+    }
     else
 #endif
         desc = sPageDescriptions[menuItem];
