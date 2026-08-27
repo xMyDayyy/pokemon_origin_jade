@@ -15,7 +15,7 @@
   "connections": null,
   "object_events": [
     {
-      "local_id": "LOCALID_VERMILIONMARINA_SAILOR",
+      "local_id": "LOCALID_VERMILIONMARINA_FRLG_SAILOR",
       "graphics_id": "OBJ_EVENT_GFX_SAILOR_HNS",
       "x": 8,
       "y": 10,
@@ -25,11 +25,11 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "VermilionPort_EventScript_Sailor",
+      "script": "VermilionPortFrlg_EventScript_Sailor",
       "flag": "0"
     },
     {
-      "local_id": "LOCALID_VERMILIONMARINA_BOAT",
+      "local_id": "LOCALID_VERMILIONMARINA_FRLG_BOAT",
       "graphics_id": "OBJ_EVENT_GFX_SS_AQUA_HNS",
       "x": 8,
       "y": 13,
@@ -52,7 +52,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "VermilionPortIndoor_EventScript_Nerd",
+      "script": "VermilionPortIndoorFrlg_EventScript_Nerd",
       "flag": "0"
     },
     {
@@ -65,11 +65,11 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "VermilionPortIndoor_EventScript_Teacher",
+      "script": "VermilionPortIndoorFrlg_EventScript_Teacher",
       "flag": "0"
     },
     {
-      "local_id": "LOCALID_VERMILION_PORT_SS_ANNE",
+      "local_id": "LOCALID_VERMILION_PORT_FRLG_SS_ANNE",
       "graphics_id": "OBJ_EVENT_GFX_SS_ANNE",
       "x": 8,
       "y": 13,
