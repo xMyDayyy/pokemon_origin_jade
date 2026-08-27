@@ -16684,6 +16684,30 @@
       "blockdata_filepath": "data/layouts/SaffronCity_TrainStation_Frlg/map.bin",
       "game_version": "hns_kanto_retired",
       "layout_version": "hns"
+    },
+    {
+      "id": "LAYOUT_VERMILION_CITY_PORT_INSIDE_FRLG",
+      "name": "VermilionCity_PortInside_Frlg_Layout",
+      "width": 18,
+      "height": 28,
+      "primary_tileset": "gTileset_Johto_General_Hns",
+      "secondary_tileset": "gTileset_PortIndoor_Hns",
+      "border_filepath": "data/layouts/VermilionCity_PortInside_Frlg/border.bin",
+      "blockdata_filepath": "data/layouts/VermilionCity_PortInside_Frlg/map.bin",
+      "game_version": "hns_kanto_retired",
+      "layout_version": "hns"
+    },
+    {
+      "id": "LAYOUT_VERMILION_CITY_PORT_OUTSIDE_FRLG",
+      "name": "VermilionCity_PortOutside_Frlg_Layout",
+      "width": 52,
+      "height": 23,
+      "primary_tileset": "gTileset_Kanto_General_Hns",
+      "secondary_tileset": "gTileset_PortIndoor_Hns",
+      "border_filepath": "data/layouts/VermilionCity_PortOutside_Frlg/border.bin",
+      "blockdata_filepath": "data/layouts/VermilionCity_PortOutside_Frlg/map.bin",
+      "game_version": "hns_kanto_retired",
+      "layout_version": "hns"
     }
   ]
 }

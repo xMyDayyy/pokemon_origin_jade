@@ -1,7 +1,7 @@
 {
-  "id": "MAP_VERMILION_CITY_PORT_INSIDE_HNS",
-  "name": "VermilionCity_PortInside_hns",
-  "layout": "LAYOUT_VERMILION_CITY_PORT_INSIDE_HNS",
+  "id": "MAP_VERMILION_CITY_PORT_INSIDE_FRLG",
+  "name": "VermilionCity_PortInside_Frlg",
+  "layout": "LAYOUT_VERMILION_CITY_PORT_INSIDE_FRLG",
   "music": "MUS_HG_VERMILION",
   "region_map_section": "MAPSEC_VERMILION_CITY",
   "requires_flash": false,
@@ -88,7 +88,7 @@
       "x": 8,
       "y": 2,
       "elevation": 0,
-      "dest_map": "MAP_VERMILION_CITY_PORT_OUTSIDE_HNS",
+      "dest_map": "MAP_VERMILION_CITY_PORT_OUTSIDE_FRLG",
       "dest_warp_id": "0"
     }
   ],

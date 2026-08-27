@@ -22,6 +22,11 @@
       "map": "MAP_ROUTE11",
       "offset": -3,
       "direction": "right"
+    },
+    {
+      "map": "MAP_VERMILION_CITY_PORT_OUTSIDE_FRLG",
+      "offset": 23,
+      "direction": "down"
     }
   ],
   "object_events": [
