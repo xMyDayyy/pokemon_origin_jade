@@ -58,7 +58,7 @@ GoldenrodCity_TrainStation_EventScript_BoardTrain::
 	special RemoveCameraObject
 	setvar VAR_TRAIN, 1
 	delay 60
-	warp MAP_SAFFRON_CITY_TRAIN_STATION_HNS, 1
+	warp MAP_SAFFRON_CITY_TRAIN_STATION_FRLG, 1
 	waitstate
 	delay 60
 	end
