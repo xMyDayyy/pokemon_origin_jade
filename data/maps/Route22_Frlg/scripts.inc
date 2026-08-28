@@ -184,7 +184,6 @@ Route22_Movement_PlayerFaceRival::
 	delay_16
 	delay_16
 	delay_8
-	walk_in_place_faster_up
 	step_end
 
 Route22_EventScript_LateRivalTriggerTop::
