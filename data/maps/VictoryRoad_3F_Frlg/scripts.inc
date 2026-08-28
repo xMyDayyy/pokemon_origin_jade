@@ -291,7 +291,7 @@ VictoryRoad_3F_Text_TyraNotEnoughMons::
 VictoryRoad_3F_EventScript_Moltres::
 	lock
 	faceplayer
-	setwildbattle SPECIES_MOLTRES, 50
+	setwildbattle SPECIES_MOLTRES, 40
 	waitse
 	playmoncry SPECIES_MOLTRES, CRY_MODE_ENCOUNTER
 	message Text_Gyaoo
