@@ -754,7 +754,7 @@ static u8 GetHnSTrainerStars(struct TrainerCard *trainerCard)
         stars++;
     if (FlagGet(FLAG_IS_HOENN_CHAMPION))
         stars++;
-    if (FlagGet(TRAINER_FLAGS_START + TRAINER_RED_2_HNS))
+    if (FlagGet(TrainerIdToFlagId(TRAINER_RED_2_HNS)))
         stars++;
 
     return stars;

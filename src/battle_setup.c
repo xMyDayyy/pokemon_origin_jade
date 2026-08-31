@@ -1387,14 +1387,33 @@ static void TryUpdateGymLeaderRematchFromTrainer(void)
         UpdateGymLeaderRematch();
 }
 
+// Kanto-Merge: Trainer-ID -> Flag-ID. Die FRLG-Trainer und die HnS-Rueckkampf-
+// stufen liegen hinter TRAINER_FLAGS_END; ihre Flags bekommen deshalb ein
+// eigenes Fenster oberhalb des Hoenn-Blocks (siehe opponents_frlg_hns.h).
+// GetFlagPointer leitet diese Fenster nach SaveBlock3 um. Jede Stelle, die
+// aus einer Trainer-ID eine Flag-ID macht, MUSS ueber diese Funktion gehen -
+// ein blankes TRAINER_FLAGS_START + id landet sonst wieder in fremden Flags.
+u16 TrainerIdToFlagId(u16 trainerId)
+{
+#if IS_HNS
+    if (trainerId > FRLG_TRAINER_OFFSET && trainerId <= FRLG_TRAINERS_END)
+        return FRLG_TRAINER_FLAGS_START + (trainerId - (FRLG_TRAINER_OFFSET + 1));
+
+    if (trainerId >= HNS_REMATCH_TIERS_START && trainerId <= HNS_REMATCH_TIERS_END)
+        return HNS_REMATCH_TIER_FLAGS_START + (trainerId - HNS_REMATCH_TIERS_START);
+#endif
+
+    return TRAINER_FLAGS_START + trainerId;
+}
+
 static u16 GetTrainerAFlag(void)
 {
-    return TRAINER_FLAGS_START + TRAINER_BATTLE_PARAM.opponentA;
+    return TrainerIdToFlagId(TRAINER_BATTLE_PARAM.opponentA);
 }
 
 static u16 GetTrainerBFlag(void)
 {
-    return TRAINER_FLAGS_START + TRAINER_BATTLE_PARAM.opponentB;
+    return TrainerIdToFlagId(TRAINER_BATTLE_PARAM.opponentB);
 }
 
 static bool32 IsPlayerDefeated(u32 battleOutcome)
@@ -1605,7 +1624,7 @@ void SetUpTwoTrainersBattle(void)
 bool32 GetTrainerFlagFromScriptPointer(const u8 *data)
 {
     TrainerBattleParameter *temp = (TrainerBattleParameter*)(data + OPCODE_OFFSET);
-    return FlagGet(TRAINER_FLAGS_START + temp->params.opponentA);
+    return FlagGet(TrainerIdToFlagId(temp->params.opponentA));
 }
 
 bool32 GetRematchFromScriptPointer(const u8 *data)
@@ -1663,17 +1682,17 @@ static void UNUSED SetBattledTrainerFlag(void)
 
 bool8 HasTrainerBeenFought(u16 trainerId)
 {
-    return FlagGet(TRAINER_FLAGS_START + trainerId);
+    return FlagGet(TrainerIdToFlagId(trainerId));
 }
 
 void SetTrainerFlag(u16 trainerId)
 {
-    FlagSet(TRAINER_FLAGS_START + trainerId);
+    FlagSet(TrainerIdToFlagId(trainerId));
 }
 
 void ClearTrainerFlag(u16 trainerId)
 {
-    FlagClear(TRAINER_FLAGS_START + trainerId);
+    FlagClear(TrainerIdToFlagId(trainerId));
 }
 
 void BattleSetup_StartTrainerBattle(void)

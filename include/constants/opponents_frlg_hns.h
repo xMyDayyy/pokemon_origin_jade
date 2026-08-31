@@ -1277,8 +1277,25 @@
 
 // Die Trainerflags dieser IDs (TRAINER_FLAGS_START + id) laegen im
 // SYS_FLAGS-Bereich. Sie werden in GetFlagPointer nach SaveBlock3 umgeleitet.
-#define FRLG_TRAINER_FLAGS_START (0x500 + FRLG_TRAINER_OFFSET + 1)
-#define FRLG_TRAINER_FLAGS_END   (0x500 + FRLG_TRAINERS_END)
+//
+// ACHTUNG: 0x500 + id ergibt fuer diesen Block 0xBA5-0xE13 - und das liegt
+// mitten im Hoenn-Flagblock (HOENN_FLAGS_START = 0xB72, HOENN_FLAGS_END =
+// 0xF53). Der alte Kommentar oben las 0xB72 faelschlich als Ende statt als
+// Anfang. Folge: 615 Hoenn-Flags teilten sich ein Bit mit je einem
+// FRLG-Trainer - Kaefersammler Gregor auf Route 3 setzte z.B.
+// FLAG_ENABLE_ROXANNE_FIRST_CALL und Felizia rief in Kanto an.
+//
+// Die Trainer-IDs bleiben unveraendert; nur die Flag-IDs bekommen ein
+// eigenes virtuelles Fenster oberhalb aller Hoenn-Flags und unterhalb von
+// SPECIAL_FLAGS_START (0x4000). Umgerechnet wird in TrainerIdToFlagId().
+//
+// Der Rest mod 8 muss dem alten Fensteranfang (0xBA5 -> 5) entsprechen:
+// GetFlagPointer bildet Byte ueber (id - START) / 8, das Bit aber ueber
+// id & 7. Bleibt der Rest gleich, liegen alle Bits in bestehenden
+// Spielstaenden unveraendert an ihrem Platz.
+#define FRLG_TRAINER_FLAGS_BASE  0x3400
+#define FRLG_TRAINER_FLAGS_START (FRLG_TRAINER_FLAGS_BASE + ((0x500 + FRLG_TRAINER_OFFSET + 1) & 7))
+#define FRLG_TRAINER_FLAGS_END   (FRLG_TRAINER_FLAGS_START + (FRLG_TRAINERS_END - FRLG_TRAINER_OFFSET) - 1)
 #define FRLG_TRAINER_FLAG_BYTES  (((FRLG_TRAINER_FLAGS_END - FRLG_TRAINER_FLAGS_START + 1) + 7) / 8)
 
 #endif // GUARD_CONSTANTS_OPPONENTS_FRLG_HNS_H

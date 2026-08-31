@@ -236,6 +236,24 @@ u16 VarGetObjectEventGraphicsId(u8 id)
     return VarGet(VAR_OBJ_GFX_ID_0 + id);
 }
 
+#if IS_HNS
+// Die beiden umgeleiteten Fenster muessen komplett ausserhalb des
+// Hoenn-Flagblocks liegen. Lagen sie darin, teilten sich Trainerflags und
+// Hoenn-Flags dasselbe Bit - genau der Fehler, durch den ein besiegter
+// Kaefersammler auf Route 3 Felizias Erstanruf ausgeloest hat.
+STATIC_ASSERT(FRLG_TRAINER_FLAGS_START > HOENN_FLAGS_END, sFrlgTrainerFlagsAboveHoenn);
+STATIC_ASSERT(FRLG_TRAINER_FLAGS_START > FRLG_FLAGS_END, sFrlgTrainerFlagsAboveFrlgFlags);
+STATIC_ASSERT(FRLG_TRAINER_FLAGS_END < SPECIAL_FLAGS_START, sFrlgTrainerFlagsBelowSpecial);
+STATIC_ASSERT(HNS_REMATCH_TIER_FLAGS_START > FRLG_TRAINER_FLAGS_END, sRematchTierFlagsAboveFrlgTrainers);
+STATIC_ASSERT(HNS_REMATCH_TIER_FLAGS_END < SPECIAL_FLAGS_START, sRematchTierFlagsBelowSpecial);
+
+// Byte-Index und Bit-Index werden unterschiedlich berechnet ((id - START) / 8
+// gegen id & 7). Nur wenn der Rest mod 8 der alten Fensterbasis erhalten
+// bleibt, liegen die Bits in bestehenden Spielstaenden weiter am selben Platz.
+STATIC_ASSERT((FRLG_TRAINER_FLAGS_START & 7) == ((0x500 + FRLG_TRAINER_OFFSET + 1) & 7), sFrlgTrainerFlagsBitAligned);
+STATIC_ASSERT((HNS_REMATCH_TIER_FLAGS_START & 7) == ((0x500 + HNS_REMATCH_TIERS_START) & 7), sRematchTierFlagsBitAligned);
+#endif
+
 u8 *GetFlagPointer(u16 id)
 {
     if (id == 0)

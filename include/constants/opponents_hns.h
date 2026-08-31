@@ -654,9 +654,14 @@
 #define HNS_REMATCH_TIERS_END                 (HNS_REMATCH_TIERS_START + 11)
 #define HNS_REMATCH_TIERS_COUNT               (HNS_REMATCH_TIERS_END - HNS_REMATCH_TIERS_START + 1)
 
-// Flags dieser IDs (siehe GetFlagPointer).
-#define HNS_REMATCH_TIER_FLAGS_START          (0x500 + HNS_REMATCH_TIERS_START)
-#define HNS_REMATCH_TIER_FLAGS_END            (0x500 + HNS_REMATCH_TIERS_END)
+// Flags dieser IDs (siehe GetFlagPointer). 0x500 + id ergaebe 0xE14-0xE1F
+// und laege damit im Hoenn-Flagblock (0xB72-0xF53) - gleiche Falle wie beim
+// FRLG-Block, siehe opponents_frlg_hns.h. Eigenes Fenster direkt hinter dem
+// FRLG-Trainerfenster; der Rest mod 8 (0xE14 -> 4) bleibt erhalten, damit
+// bestehende Spielstaende ihre Bits behalten.
+#define HNS_REMATCH_TIER_FLAGS_BASE           0x3680
+#define HNS_REMATCH_TIER_FLAGS_START          (HNS_REMATCH_TIER_FLAGS_BASE + ((0x500 + HNS_REMATCH_TIERS_START) & 7))
+#define HNS_REMATCH_TIER_FLAGS_END            (HNS_REMATCH_TIER_FLAGS_START + HNS_REMATCH_TIERS_COUNT - 1)
 #define HNS_REMATCH_TIER_FLAG_BYTES           ((HNS_REMATCH_TIERS_COUNT + 7) / 8)
 
 // 618 is TRAINER_TANYA_HNS, relocated out of the TRAINER_FRONTIER_BRAIN slot (330).
