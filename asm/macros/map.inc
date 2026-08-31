@@ -108,8 +108,14 @@
 	.if \flag < FLAG_HIDDEN_ITEMS_START
 	.error "Hidden Item flag \flag is too small. Must be >= FLAG_HIDDEN_ITEMS_START."
 	.endif
-	.if \item >= (1 << 12)
-	.error "quantity \quantity too large"
+	@ Origin Jade: hiddenItemId ist 13 Bit breit (struct BgEvent). Ohne diese
+	@ Pruefung lief der Offset still ueber, die Flag-ID wurde abgeschnitten und
+	@ zeigte auf Speicher hinter gSaveBlock1Ptr->flags.
+	.if ((\flag) - FLAG_HIDDEN_ITEMS_START) >= (1 << 13)
+	.error "Hidden Item flag \flag is too far above FLAG_HIDDEN_ITEMS_START. Offset must fit in 13 bits."
+	.endif
+	.if \item >= (1 << 11)
+	.error "item \item too large"
 	.endif
 	.if \quantity >= (1 << 7)
 	.error "quantity \quantity too large"

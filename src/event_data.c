@@ -237,6 +237,12 @@ u16 VarGetObjectEventGraphicsId(u8 id)
 }
 
 #if IS_HNS
+// Der FRLG-Block muss oberhalb des Hoenn-Blocks liegen und zugleich so tief,
+// dass jede Hidden-Item-Flag noch in das 13-Bit-Feld von struct BgEvent passt.
+STATIC_ASSERT(FRLG_FLAGS_START > HOENN_FLAGS_END, sFrlgFlagsAboveHoenn);
+STATIC_ASSERT((FRLG_FLAGS_END - FLAG_HIDDEN_ITEMS_START) < (1 << 13), sFrlgFlagsFitHiddenItemField);
+STATIC_ASSERT((FRLG_FLAGS_START & 7) == 0, sFrlgFlagsBitAligned);
+
 // Die beiden umgeleiteten Fenster muessen komplett ausserhalb des
 // Hoenn-Flagblocks liegen. Lagen sie darin, teilten sich Trainerflags und
 // Hoenn-Flags dasselbe Bit - genau der Fehler, durch den ein besiegter

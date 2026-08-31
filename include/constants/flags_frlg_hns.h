@@ -9,7 +9,20 @@
 // EventScript_ResetAllMapFlagsFrlg.
 
 // Eigener Adressraum ausserhalb von SaveBlock1 (dort sind nur 4 Byte frei).
-#define FRLG_FLAGS_START 0x3000
+//
+// Die Obergrenze setzen die Hidden Items: bg_hidden_item_event legt
+// (flag - FLAG_HIDDEN_ITEMS_START) in ein 13-Bit-Feld (global.fieldmap.h,
+// struct BgEvent). Mit dem alten Anfang 0x3000 ergaben sich Offsets bis
+// 12725 - 186 Kanto-Verstecke liefen ueber, ihre Flag-ID wurde auf 13 Bit
+// abgeschnitten und landete bei 0x11B3-0x129F, also ausserhalb von
+// SaveBlock1.flags. Jedes Aufheben schrieb dort in gSaveBlock1Ptr->vars.
+//
+// Der Block liegt jetzt so, dass der groesste Offset unter 8192 bleibt:
+// FRLG_FLAGS_END - FLAG_HIDDEN_ITEMS_START = 0x13FF - 0xEA = 4885.
+// Untergrenze ist HOENN_FLAGS_END (0xF53), damit sich die Bereiche nicht
+// ueberschneiden. Der Rest mod 8 bleibt 0 wie bei 0x3000, deshalb aendert
+// sich an flagsFrlg in SaveBlock3 nichts - Spielstaende bleiben gueltig.
+#define FRLG_FLAGS_START 0x1000
 
 #undef  FLAG_BEAT_RIVAL_IN_OAKS_LAB
 #define FLAG_BEAT_RIVAL_IN_OAKS_LAB                              (FRLG_FLAGS_START+0x0)
