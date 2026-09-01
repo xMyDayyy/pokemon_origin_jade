@@ -77,8 +77,13 @@ DayCare_Text_TakeGoodCareOfIt::
 #endif
 
 DayCare_Text_SeeWifeIfYouWantToPickUpMon::
+#if GERMAN
+	.string "Wenn du dein Pokémon abholen\n"
+	.string "willst, sprich mit meiner Frau.$"
+#else
 	.string "ポケモンを　ひきとりたい　ときは\n"
 	.string "ばさんに　いって　おくれ$"
+#endif
 
 DayCare_Text_YourMonsAreDoingFine::
 #if GERMAN
@@ -148,8 +153,13 @@ DayCare_Text_HusbandWasLookingForYou::
 #endif
 
 DayCare_Text_FineThenComeAgain::
+#if GERMAN
+	.string "Na schön.\n"
+	.string "Schau wieder vorbei.$"
+#else
 	.string "Oh, fine, then.\n"
 	.string "Come again.$"
+#endif
 
 DayCare_Text_NotEnoughMoney::
 #if GERMAN
@@ -168,8 +178,13 @@ DayCare_Text_TakeOtherOneBackToo::
 #endif
 
 DayCare_Text_ComeAgain::
+#if GERMAN
+	.string "In Ordnung.\n"
+	.string "Schau wieder vorbei.$"
+#else
 	.string "Fine.\n"
 	.string "Come again.$"
+#endif
 
 DayCare_Text_GoodToSeeYou::
 #if GERMAN
@@ -202,7 +217,12 @@ DayCare_Text_YourPartyIsFull::
 #endif
 
 DayCare_Text_TakeBackWhichMon::
+#if GERMAN
+	.string "Welches Pokémon möchtest du\n"
+	.string "abholen?$"
+#else
 	.string "どっちの　ポケモンを　ひきとるかい？$"
+#endif
 
 DayCare_Text_ItWillCostX::
 #if GERMAN

@@ -1177,8 +1177,13 @@ Route19_Text_AnyaRematchIntro::
 #endif
 
 Route19_Text_AliceRematchIntro::
+#if GERMAN
+	.string "Schwimmen ist herrlich!\n"
+	.string "Sonnenbrand nicht!$"
+#else
 	.string "Swimming's great!\n"
 	.string "Sunburns aren't!$"
+#endif
 
 Route19_Text_AxleRematchIntro::
 #if GERMAN
@@ -1342,8 +1347,13 @@ Route21_North_Text_SpencerRematchIntro::
 
 @ Unused trainer from RB that had a rematch intro added
 Route21_North_Text_CueBallRematchIntro::
+#if GERMAN
+	.string "Auch heute bin ich wieder\n"
+	.string "zum Schwimmen hier!$"
+#else
 	.string "きょうも　およぎに\n"
 	.string "きちまったぜ$"
+#endif
 
 Route21_South_Text_JackRematchIntro::
 #if GERMAN

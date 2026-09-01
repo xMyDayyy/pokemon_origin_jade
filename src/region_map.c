@@ -871,6 +871,12 @@ static const u8 sMapHealLocations[][3] =
     [MAPSEC_CINNABAR_ISLAND] = {MAP_GROUP(MAP_CINNABAR_ISLAND), MAP_NUM(MAP_CINNABAR_ISLAND), HEAL_LOCATION_CINNABAR_ISLAND},
     [MAPSEC_SAFFRON_CITY] = {MAP_GROUP(MAP_SAFFRON_CITY), MAP_NUM(MAP_SAFFRON_CITY), HEAL_LOCATION_SAFFRON_CITY},
     [MAPSEC_INDIGO_PLATEAU] = {MAP_GROUP(MAP_INDIGO_PLATEAU_EXTERIOR), MAP_NUM(MAP_INDIGO_PLATEAU_EXTERIOR), HEAL_LOCATION_INDIGO_PLATEAU},
+    // Die beiden Routen mit Pokemon-Center fehlten hier. Ohne sie gewann der
+    // HnS-Eintrag weiter oben, und der zeigt auf HEAL_LOCATION_ROUTE4_HNS bzw.
+    // HEAL_LOCATION_ROUTE10_HNS - beide liegen auf den stillgelegten
+    // HnS-Karten und haben nicht einmal ein respawn_map.
+    [MAPSEC_ROUTE_4] = {MAP_GROUP(MAP_ROUTE4), MAP_NUM(MAP_ROUTE4), HEAL_LOCATION_ROUTE4},
+    [MAPSEC_ROUTE_10] = {MAP_GROUP(MAP_ROUTE10), MAP_NUM(MAP_ROUTE10), HEAL_LOCATION_ROUTE10},
 };
 
 static const u8 *const sEverGrandeCityNames[] =
