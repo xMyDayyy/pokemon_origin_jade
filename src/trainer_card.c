@@ -1,4 +1,5 @@
 #include "global.h"
+#include "battle_setup.h"
 #include "scanline_effect.h"
 #include "palette.h"
 #include "task.h"
