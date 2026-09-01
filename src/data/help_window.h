@@ -46,16 +46,11 @@ const struct HelpWindow gHelpWindowInfo[] =
     [HELP_TELEPORTER_WINDOW] =
     {
         .header = COMPOUND_STRING("Optionaler Bonus-Inhalt: Teleporter"),
-        .desc = COMPOUND_STRING("Der Teleporter verwandelt Pokémon
-"
-                                "dauerhaft in ihre Galar-Formen.
-"
-                                "Galar-Formen werden weder für die
-"
-                                "Story noch für die Vervollständigung
-"
-                                "des Nationalen Pokédex benötigt.
-"
+        .desc = COMPOUND_STRING("Der Teleporter verwandelt Pokémon\n"
+                                "dauerhaft in ihre Galar-Formen.\n"
+                                "Galar-Formen werden weder für die\n"
+                                "Story noch für die Vervollständigung\n"
+                                "des Nationalen Pokédex benötigt.\n"
                             ),
         .headerFont = FONT_NORMAL,
         .descFont = FONT_NORMAL,

@@ -182,7 +182,7 @@
       "flag": "FLAG_TEMP_13"
     },
     {
-      "local_id": "LOCALID_ROUTE14_BORDER_TREE",
+      "local_id": "LOCALID_ROUTE14_BORDER_TREE_2",
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE_FRLG",
       "x": -3,
       "y": 46,
