@@ -304,9 +304,14 @@ Route121_SafariZoneEntrance_Text_YouNeedPokeblockCase:
 	.string "erfolgreicher, wenn du {POKEBLOCK}\l"
 	.string "benutzen würdest.\p"
 	.string "Bitte besorge dir doch eine {POKEBLOCK}Box.\p"
+#if IS_HNS
+	.string "Der Junge dort drüben hat vielleicht\n"
+	.string "eine für dich.$"
+#else
 	.string "Vielleicht erhältst du in der\n"
 	.string "Wettbewerbshalle von Seegrasulb City\l"
 	.string "eine.$"
+#endif
 #else
 	.string "Excuse me!\n"
 	.string "You seem to be without a {POKEBLOCK} CASE.\p"
@@ -314,7 +319,11 @@ Route121_SafariZoneEntrance_Text_YouNeedPokeblockCase:
 	.string "fruitful if you use {POKEBLOCK}S.\p"
 	.string "Please come back with a {POKEBLOCK} CASE.\p"
 	.string "You may obtain a {POKEBLOCK} CASE from\n"
+#if IS_HNS
+	.string "that boy over there.$"
+#else
 	.string "the LILYCOVE CONTEST HALL.$"
+#endif
 #endif
 
 SafariZone_South_Text_StillHaveTimeExit:

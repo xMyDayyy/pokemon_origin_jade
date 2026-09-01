@@ -74,23 +74,41 @@ FarawayIsland_Entrance_Text_SailorReturn:
 #if GERMAN
 	.string "Kapitän Brack ist manchmal\n"
 	.string "unberechenbar…\p"
+#if IS_HNS
+	.string "Möchtest du zurück nach Oliviana\n"
+	.string "City?$"
+#else
 	.string "Möchtest du zurück nach Seegrasulb\n"
 	.string "City?$"
+#endif
 #else
 	.string "CAPT. BRINEY can be so maddeningly\n"
 	.string "fickle…\p"
+#if IS_HNS
+	.string "Do you want to return to OLIVINE?$"
+#else
 	.string "Do you want to return to LILYCOVE?$"
+#endif
 #endif
 
 BirthIsland_Harbor_Text_SailorReturn:
 #if GERMAN
 	.string "Diese Insel hat wirklich eine höchst\n"
 	.string "merkwürdige Form, findest du nicht?\l"
-	.string "Möchtest du zurück nach Seegrasulb\l"
+#if IS_HNS
+	.string "Möchtest du zurück nach Oliviana\l"
 	.string "City?$"
 #else
+	.string "Möchtest du zurück nach Seegrasulb\l"
+	.string "City?$"
+#endif
+#else
 	.string "What an oddly shaped island, eh?\n"
+#if IS_HNS
+	.string "Do you want to return to OLIVINE?$"
+#else
 	.string "Do you want to return to LILYCOVE?$"
+#endif
 #endif
 
 EventTicket_Text_OddTicketsWhereTo:
