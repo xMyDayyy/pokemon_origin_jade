@@ -34,6 +34,10 @@ LavenderTown_EventScript_TownSign::
 	msgbox LavenderTown_Text_TownSign, MSGBOX_SIGN
 	end
 
+LavenderTown_EventScript_BlockedHouse::
+	msgbox LavenderTown_Text_BlockedHouse, MSGBOX_SIGN
+	end
+
 LavenderTown_EventScript_SilphScopeNotice::
 	msgbox LavenderTown_Text_SilphScopeNotice, MSGBOX_SIGN
 	end
@@ -105,6 +109,15 @@ LavenderTown_Text_TownSign::
 #else
 	.string "LAVENDER TOWN\n"
 	.string "The Noble Purple Town$"
+#endif
+
+LavenderTown_Text_BlockedHouse::
+#if GERMAN
+	.string "Geschlossen!\n"
+	.string "Dieses Haus ist verflucht!$"
+#else
+	.string "Closed!\n"
+	.string "This House is haunted!$"
 #endif
 
 LavenderTown_Text_SilphScopeNotice::
