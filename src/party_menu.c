@@ -3002,12 +3002,18 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
                 }
             }
         }
-        if (numFieldMoves < maxFieldMoves && CanLearnTeachableMove(GetMonData(&mons[slotId], MON_DATA_SPECIES), MOVE_FLY))
+        // Kanto-Merge: Dieselbe Bedingung wie im Zweig darueber. Hier fehlte
+        // sie bisher komplett, Fliegen erschien also ohne VM und ohne Orden,
+        // sobald nicht das erste Teammitglied gewaehlt war.
+        if (numFieldMoves < maxFieldMoves && CheckBagHasItem(ITEM_HM02, 1)
+         && IsFieldMoveUnlocked(FIELD_MOVE_FLY)
+         && CanLearnTeachableMove(GetMonData(&mons[slotId], MON_DATA_SPECIES), MOVE_FLY))
         {
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, FIELD_MOVE_FLY + MENU_FIELD_MOVES);
             numFieldMoves++;
         }
         if (numFieldMoves < maxFieldMoves && CheckBagHasItem(ITEM_HM05, 1)
+         && IsFieldMoveUnlocked(FIELD_MOVE_FLASH)
          && CanLearnTeachableMove(GetMonData(&mons[slotId], MON_DATA_SPECIES), MOVE_FLASH))
         {
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, FIELD_MOVE_FLASH + MENU_FIELD_MOVES);
