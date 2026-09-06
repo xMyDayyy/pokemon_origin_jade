@@ -65,6 +65,7 @@ enum {
 
 enum {
     ITEM_FEATURES_RTC_TYPE,
+    ITEM_FEATURES_RTC_SPEED,
     ITEM_FEATURES_SHINY_CHANCE,
     ITEM_FEATURES_SHINY_COLOR,
     ITEM_FEATURES_ITEM_DROP,
@@ -555,6 +556,12 @@ static const u8 *const sChoices_BanUnban[] = {
     COMPOUND_STRING("Erlaubt"),
 };
 
+static const u8 *const sChoices_RtcSpeed[] = {
+    COMPOUND_STRING("Schnell"),
+    COMPOUND_STRING("Normal"),
+    COMPOUND_STRING("Langsam"),
+};
+
 static const u8 *const sChoices_RtcFake[] = {
     COMPOUND_STRING("RTC"),
     COMPOUND_STRING("Fake RTC"),
@@ -650,6 +657,12 @@ static const u8 *const sChoices_BstEqual[] = {
 // FEATURES descriptions + table
 // =============================================================================
 
+static const u8 *const sDesc_RtcSpeed[] = {
+    COMPOUND_STRING("1 Std. echt = 1 Tag im Spiel.\nBeeren wachsen sehr schnell."),
+    COMPOUND_STRING("2 Std. echt = 1 Tag im Spiel.\nBeeren wachsen zügig."),
+    COMPOUND_STRING("4 Std. echt = 1 Tag im Spiel.\nBeeren wachsen gemächlich."),
+};
+
 static const u8 *const sDesc_RtcType[] = {
     COMPOUND_STRING("Normale Echtzeit-Uhr verwenden."),
     COMPOUND_STRING("Gefälschte Echtzeit-Uhr.\n1h echt = 1 Tag im Spiel."),
@@ -683,6 +696,12 @@ static const struct ChallengeMenuItem sTabItems_Features[] = {
         .descriptions = sDesc_RtcType,
         .numChoices   = 2,
         .choiceNames  = sChoices_RtcFake,
+    },
+    [ITEM_FEATURES_RTC_SPEED] = {
+        .name         = COMPOUND_STRING("Uhr-Tempo"),
+        .descriptions = sDesc_RtcSpeed,
+        .numChoices   = 3,
+        .choiceNames  = sChoices_RtcSpeed,
     },
     [ITEM_FEATURES_SHINY_CHANCE] = {
         .name         = COMPOUND_STRING("Shiny-Chance"),
@@ -1317,6 +1336,16 @@ static bool8 CheckConditions(u8 tab, u8 itemIndex)
                 return FALSE;
         default:
             return *GetSelectionPtr(TAB_MODE, ITEM_MODE_GAMEMODE) == 1; // CUSTOM
+        }
+    case TAB_FEATURES:
+        switch (itemIndex)
+        {
+        case ITEM_FEATURES_RTC_SPEED:
+            // Nur waehlbar, wenn die Fake-Uhr ueberhaupt laeuft. Bei echter
+            // Uhr gibt es kein Tempo einzustellen.
+            return *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_RTC_TYPE) == 1;
+        default:
+            return TRUE;
         }
     case TAB_RANDOMIZER:
     {
@@ -2003,6 +2032,7 @@ static void Task_ConfirmSaveYes(u8 taskId)
 
     // Features tab
     cs->tx_Features_RTCType        = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_RTC_TYPE);
+    cs->tx_Features_RtcSpeed       = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_RTC_SPEED);
     cs->tx_Features_ShinyChance    = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_SHINY_CHANCE);
     cs->tx_Features_WildMonDropItems = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_ITEM_DROP);
     cs->tx_Features_FrontierBans   = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_FRONTIER_BANS);
@@ -2243,6 +2273,7 @@ void CB2_InitChallengeMenu(void)
 
             // Features tab
             *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_RTC_TYPE)     = cs->tx_Features_RTCType;
+            *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_RTC_SPEED)    = cs->tx_Features_RtcSpeed;
             *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_SHINY_CHANCE) = cs->tx_Features_ShinyChance;
             *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_ITEM_DROP)    = cs->tx_Features_WildMonDropItems;
             *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_FRONTIER_BANS)= cs->tx_Features_FrontierBans;

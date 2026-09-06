@@ -338,6 +338,10 @@ struct ChallengeSettings
     u8 tx_Features_FrontierBans:1;
     u8 tx_Difficulty_EscapeRopeDig:1;
     u8 tx_Features_ShinyChance:4;
+    // Origin Jade: Taktrate der Fake-Uhr. 0 ist der bisherige Wert, damit
+    // bestehende Spielstaende ihr Verhalten behalten. Ans Ende des Structs
+    // angehaengt, es belegt die vier freien Bits des letzten Bytes.
+    u8 tx_Features_RtcSpeed:2;
 };
 
 struct SaveBlock3

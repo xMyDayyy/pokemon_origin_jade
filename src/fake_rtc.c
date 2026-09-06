@@ -111,7 +111,19 @@ void FakeRtc_ManuallySetTime(u32 day, u32 hour, u32 minute, u32 second)
 u32 FakeRtc_GetSecondsRatio(void)
 {
     if (UseFakeRtc() && OW_ALTERED_TIME_RATIO == GEN_LATEST)
-        return 24;
+    {
+        // Origin Jade: Taktrate ueber das Herausforderungsmenue waehlbar.
+        // Der Wert ist der Faktor gegenueber der Echtzeit, er bestimmt also
+        // auch, wie schnell Beeren wachsen und taegliche Ereignisse kommen.
+        // Stufe 0 entspricht dem bisherigen Verhalten, damit bestehende
+        // Spielstaende unveraendert weiterlaufen.
+        switch (gSaveBlock3Ptr->challengeSettings.tx_Features_RtcSpeed)
+        {
+        case 0:  return 24; // Schnell: 1 Stunde echt  = 1 Tag im Spiel
+        case 1:  return 12; // Normal:  2 Stunden echt = 1 Tag im Spiel
+        default: return 6;  // Langsam: 4 Stunden echt = 1 Tag im Spiel
+        }
+    }
 
     return (OW_ALTERED_TIME_RATIO == GEN_8_PLA)   ? 60 :
            (OW_ALTERED_TIME_RATIO == GEN_9)       ? 20 :
