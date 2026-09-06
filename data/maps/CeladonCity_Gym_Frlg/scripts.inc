@@ -142,15 +142,15 @@ CeladonCity_Gym_Text_ErikaPostBattle::
 
 CeladonCity_Gym_Text_ExplainRainbowBadgeTakeThis::
 #if GERMAN
-	.string "Der Farborden lässt Pokémon bis\n"
-	.string "Level 50 deinen Befehlen folgen!\p"
+	.string "Der Farborden ist dein verdienter\n"
+	.string "Lohn.\p"
 	.string "Außerdem können deine Pokémon nun\n"
 	.string "Stärke außerhalb von Kämpfen\l"
 	.string "anwenden.\p"
 	.string "Nimm bitte noch dieses Geschenk:$"
 #else
-	.string "The RAINBOWBADGE will make\n"
-	.string "POKéMON up to Lv. 50 obey.\p"
+	.string "The RAINBOWBADGE is your\n"
+	.string "well-earned reward.\p"
 	.string "It also allows POKéMON to use\n"
 	.string "STRENGTH in and out of battle.\p"
 	.string "Please also take this with you.$"

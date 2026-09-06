@@ -10,6 +10,7 @@
 #include "diploma.h"
 #include "voltorb_flip.h"
 #include "event_data.h"
+#include "caps.h"
 #include "event_object_movement.h"
 #include "fieldmap.h"
 #include "field_camera.h"
@@ -6276,5 +6277,14 @@ void GivePartyMonNationalRibbon(void)
 u16 IsPlayerInHoenn(void)
 {
     gSpecialVar_Result = (GetCurrentRegion() == REGION_HOENN);
+    return gSpecialVar_Result;
+}
+
+// Origin Jade: Liefert die Anzahl der Orden. Die Arenaleiter brauchen sie, weil
+// Koga und Sabrina in beliebiger Reihenfolge machbar sind und nur derjenige die
+// naechste Gehorsamsgrenze ansagen soll, der den sechsten Orden vergibt.
+u16 GetPlayerBadgeCount(void)
+{
+    gSpecialVar_Result = GetCurrentBadgeCount();
     return gSpecialVar_Result;
 }

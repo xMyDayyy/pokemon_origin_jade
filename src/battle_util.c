@@ -5,6 +5,7 @@
 #include "battle_environment.h"
 #include "battle_pyramid.h"
 #include "battle_util.h"
+#include "caps.h"
 #include "battle_controllers.h"
 #include "battle_interface.h"
 #include "battle_setup.h"
@@ -5725,25 +5726,30 @@ enum Obedience GetAttackerObedienceForAction(void)
         return OBEYS;
     if (B_OBEDIENCE_MECHANICS < GEN_8 && !IsOtherTrainer(gBattleMons[gBattlerAttacker].otId, gBattleMons[gBattlerAttacker].otName))
         return OBEYS;
-    if (FlagGet(FLAG_BADGE08_GET)) // Rain Badge, ignore obedience altogether
-        return OBEYS;
+    // Origin Jade: Die Grenze haengt an der Anzahl der Orden, nicht an
+    // bestimmten Ordensflags. Koga und Sabrina sind in beliebiger Reihenfolge
+    // machbar, ein Bezug auf einzelne Flags waere dort mehrdeutig.
+    //
+    // Der achte Orden hebt die Grenze nicht mehr auf, sondern setzt sie auf 50.
+    // Kanto endet bei Level 52, in Johto folgen eigene Grenzen.
+    // GetCurrentBadgeCount zaehlt nur die acht Kanto-Orden; die Johto-Orden
+    // liegen auf FLAG_BADGE09 bis 16 und fliessen noch nicht ein.
+    //
+    // Die Arenaleiter sagen dieselben Werte an: Orania nennt 25, wer den
+    // sechsten Orden vergibt nennt 40, Vertania nennt 50.
+    {
+        // Ohne Orden 10, danach je Orden fuenf mehr.
+        static const u8 sObedienceLevelByBadges[NUM_BADGES_CAPPED + 1] =
+        {
+            10, 15, 20, 25, 30, 35, 40, 45, 50
+        };
+        u8 badgeCount = GetCurrentBadgeCount();
 
-    obedienceLevel = 10;
+        if (badgeCount > NUM_BADGES_CAPPED)
+            badgeCount = NUM_BADGES_CAPPED;
 
-    if (FlagGet(FLAG_BADGE01_GET)) // Stone Badge
-        obedienceLevel = 20;
-    if (FlagGet(FLAG_BADGE02_GET)) // Knuckle Badge
-        obedienceLevel = 30;
-    if (FlagGet(FLAG_BADGE03_GET)) // Dynamo Badge
-        obedienceLevel = 40;
-    if (FlagGet(FLAG_BADGE04_GET)) // Heat Badge
-        obedienceLevel = 50;
-    if (FlagGet(FLAG_BADGE05_GET)) // Balance Badge
-        obedienceLevel = 60;
-    if (FlagGet(FLAG_BADGE06_GET)) // Feather Badge
-        obedienceLevel = 70;
-    if (FlagGet(FLAG_BADGE07_GET)) // Mind Badge
-        obedienceLevel = 80;
+        obedienceLevel = sObedienceLevelByBadges[badgeCount];
+    }
 
     if (B_OBEDIENCE_MECHANICS >= GEN_8
      && !IsOtherTrainer(gBattleMons[gBattlerAttacker].otId, gBattleMons[gBattlerAttacker].otName))

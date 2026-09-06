@@ -166,8 +166,8 @@ ViridianCity_Gym_Text_GiovanniPostBattle::
 
 ViridianCity_Gym_Text_ExplainEarthBadgeTakeThis::
 #if GERMAN
-	.string "Als Träger des Erdordens werden dir alle\n"
-	.string "Pokémon jeglichen Levels gehorchen!\p"
+	.string "Mit dem Erdorden gehorchen dir\n"
+	.string "getauschte Pokémon bis Level 50!\p"
 	.string "Er stellt den Beweis deines Könnens\n"
 	.string "als Pokémon Trainer dar!\p"
 	.string "Außerdem gewährt er dir den Zugang\n"
@@ -175,8 +175,8 @@ ViridianCity_Gym_Text_ExplainEarthBadgeTakeThis::
 	.string "Nimm dieses Geschenk mit in dein\n"
 	.string "Pokémon Liga-Abenteuer!$"
 #else
-	.string "The EARTHBADGE makes POKéMON of\n"
-	.string "any level obey without question.\p"
+	.string "The EARTHBADGE makes traded\n"
+	.string "POKéMON up to Lv. 50 obey.\p"
 	.string "It is evidence of your mastery as\n"
 	.string "a POKéMON TRAINER.\p"
 	.string "With it, you can challenge the\n"

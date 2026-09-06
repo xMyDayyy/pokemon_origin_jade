@@ -721,3 +721,4 @@ gSpecials::
 	def_special UpdateEliteFourRematch
 	def_special IsPlayerInHoenn
 	def_special IsPartyLimitChallengeActive
+	def_special GetPlayerBadgeCount

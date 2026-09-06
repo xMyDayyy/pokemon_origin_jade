@@ -4,7 +4,7 @@
 #include "caps.h"
 #include "pokemon.h"
 
-static u8 GetCurrentBadgeCount(void)
+u8 GetCurrentBadgeCount(void)
 {
     u16 i;
     u8 badgeCount = 0;

@@ -103,9 +103,8 @@ CeruleanCity_Gym_Text_ExplainTM03::
 
 CeruleanCity_Gym_Text_ExplainCascadeBadge::
 #if GERMAN
-	.string "Der Quellorden lässt alle Pokémon bis\n"
-	.string "Level 30 deinen Befehlen gehorchen!\p"
-	.string "Sogar Außenseiter gehorchen dir!\p"
+	.string "Der Quellorden ist der Beweis, dass du\n"
+	.string "mich besiegt hast!\p"
 	.string "Deine Pokémon können den Zerschneider\n"
 	.string "nun jederzeit einsetzen!\p"
 	.string "Du kannst kleine Büsche zerhacken\n"
@@ -113,10 +112,8 @@ CeruleanCity_Gym_Text_ExplainCascadeBadge::
 	.string "Zu guter Letzt schenke ich dir\n"
 	.string "noch meine Lieblings-TM!$"
 #else
-	.string "The CASCADEBADGE makes all\n"
-	.string "POKéMON up to Lv. 30 obey.\p"
-	.string "That includes even outsiders you\n"
-	.string "got in trades.\p"
+	.string "The CASCADEBADGE is proof that\n"
+	.string "you defeated me.\p"
 	.string "There's more. You can now use CUT\n"
 	.string "anytime, even out of battle.\p"
 	.string "You can CUT down small trees to\n"

@@ -1354,6 +1354,25 @@ Common_EventScript_OutOfCenterPartyHeal::
 	fadescreenswapbuffers FADE_FROM_BLACK
 	return
 
+@ Origin Jade: Koga und Sabrina sind in beliebiger Reihenfolge machbar. Nur
+@ diejenige Arena, die tatsaechlich den sechsten Orden vergibt, sagt die
+@ naechste Gehorsamsgrenze an.
+Common_EventScript_ObedienceLevel40IfSixthBadge::
+	special GetPlayerBadgeCount
+	goto_if_ne VAR_RESULT, 6, Common_EventScript_ObedienceLevel40Done
+	msgbox Common_Text_ObedienceLevel40
+Common_EventScript_ObedienceLevel40Done::
+	return
+
+Common_Text_ObedienceLevel40::
+#if GERMAN
+	.string "Mit sechs Orden gehorchen dir\n"
+	.string "getauschte Pokémon bis Level 40!\p"
+#else
+	.string "With six BADGES, traded POKéMON\n"
+	.string "up to Lv. 40 will obey you!\p"
+#endif
+
 EventScript_RegionMap::
 	lockall
 	msgbox Common_Text_LookCloserAtMap, MSGBOX_DEFAULT

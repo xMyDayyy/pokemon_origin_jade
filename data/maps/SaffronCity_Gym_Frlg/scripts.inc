@@ -16,6 +16,7 @@ SaffronCity_Gym_EventScript_DefeatedSabrina::
 	setflag FLAG_DEFEATED_SABRINA
 	setflag FLAG_BADGE06_GET
 	set_gym_trainers_frlg 6
+	call Common_EventScript_ObedienceLevel40IfSixthBadge
 	goto SaffronCity_Gym_EventScript_GiveTM04
 	end
 
@@ -146,19 +147,14 @@ SaffronCity_Gym_Text_SabrinaPostBattle::
 
 SaffronCity_Gym_Text_ExplainMarshBadgeTakeThis::
 #if GERMAN
-	.string "Der Sumpforden lässt Pokémon bis\n"
-	.string "Level 70 deinen Befehlen folgen!\p"
-	.string "Stärkere Pokémon könnten sich dir\n"
-	.string "widersetzen und deine Befehle\l"
-	.string "ignorieren!\p"
+	.string "Nimm den Sumpforden als Zeichen\n"
+	.string "deines Sieges.\p"
 	.string "Achte darauf, dass du deine Pokémon\n"
 	.string "jederzeit unter Kontrolle hast!\p"
 	.string "Warte! Nimm noch diese TM von mir!$"
 #else
-	.string "The MARSHBADGE makes POKéMON up\n"
-	.string "to Lv. 70 obey you.\p"
-	.string "Stronger POKéMON will become wild,\n"
-	.string "ignoring your orders in battle.\p"
+	.string "Take the MARSHBADGE as proof of\n"
+	.string "your victory.\p"
 	.string "Just don't raise your POKéMON too\n"
 	.string "much to avoid that problem.\p"
 	.string "Wait, please take this TM with you.$"

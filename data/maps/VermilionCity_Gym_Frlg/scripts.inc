@@ -216,6 +216,8 @@ VermilionCity_Gym_EventScript_DefeatedLtSurge::
 	setflag FLAG_DEFEATED_LT_SURGE
 	setflag FLAG_BADGE03_GET
 	set_gym_trainers_frlg 3
+	@ Ab drei Orden gehorchen getauschte Pokemon bis Level 25.
+	msgbox VermilionCity_Gym_Text_ObedienceLevel20
 	goto VermilionCity_Gym_EventScript_GiveTM34
 	end
 
@@ -571,3 +573,17 @@ VermilionCity_Gym_Text_OnlyTrashLocksWereReset::
 	.string "The electric locks were reset!$"
 #endif
 
+VermilionCity_Gym_Text_ObedienceLevel20::
+#if GERMAN
+	.string "Und noch etwas: Mit drei Orden\n"
+	.string "gehorchen dir getauschte Pokémon\l"
+	.string "bis Level 25!\p"
+	.string "Stärkere hören vielleicht nicht\n"
+	.string "auf dich.$"
+#else
+	.string "One more thing. With three BADGES,\n"
+	.string "traded POKéMON up to Lv. 25 will\l"
+	.string "obey you!\p"
+	.string "Stronger ones may ignore your\n"
+	.string "orders.$"
+#endif

@@ -15,6 +15,7 @@ FuchsiaCity_Gym_EventScript_DefeatedKoga::
 	setflag FLAG_DEFEATED_KOGA
 	setflag FLAG_BADGE05_GET
 	set_gym_trainers_frlg 5
+	call Common_EventScript_ObedienceLevel40IfSixthBadge
 	goto FuchsiaCity_Gym_EventScript_GiveTM06
 	end
 
