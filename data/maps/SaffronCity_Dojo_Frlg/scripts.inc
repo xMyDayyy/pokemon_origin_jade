@@ -200,9 +200,9 @@ SaffronCity_Dojo_Text_ChoosePrizedFightingMon::
 	.string "Indeed, I have lost!\p"
 	.string "But, I beseech you, do not take\n"
 	.string "our emblem as your trophy!\p"
-	.string "In return, I will give you a prized\n"
-	.string "FIGHTING POKéMON!\p"
-	.string "Choose whichever one you like!$"
+	.string "In return, I will give you both of\n"
+	.string "our prized FIGHTING POKéMON!\p"
+	.string "Take them both with you!$"
 #endif
 
 SaffronCity_Dojo_Text_StayAndTrainWithUs::
@@ -362,7 +362,7 @@ SaffronCity_Dojo_Text_BetterNotGetGreedy::
 #if GERMAN
 	.string "Dieser Ball ist schon leer.$"
 #else
-	.string "Better not get greedy…$"
+	.string "This BALL is already empty.$"
 #endif
 
 SaffronCity_Dojo_Text_EnemiesOnEverySide::
