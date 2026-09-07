@@ -4,6 +4,11 @@ MtSilver_PokemonCenter_hns_MapScripts::
 
 MtSilver_PokemonCenter_OnTransition::
 	setrespawn HEAL_LOCATION_MT_SILVER_HNS
+#if SINJOH_CONTENT_AVAILABLE == FALSE
+	setflag FLAG_HIDE_MT_SILVER_PC_MEARA
+#else
+	clearflag FLAG_HIDE_MT_SILVER_PC_MEARA
+#endif
 	end
 
 MtSilver_PokemonCenter_EventScript_Meara::
