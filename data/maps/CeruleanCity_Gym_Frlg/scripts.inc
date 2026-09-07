@@ -80,7 +80,7 @@ CeruleanCity_Gym_Text_MistyIntro::
 	.string "Pokémon?\p"
 	.string "Meine Strategie basiert auf dem\n"
 	.string "gnadenlosen Offensiv-Einsatz von\l"
-	.string "Wasser-Pokémon!{PLAY_BGM}?À$"
+	.string "Wasser-Pokémon!$"
 #else
 	.string "Hi, you're a new face!\p"
 	.string "Only those TRAINERS who have a\n"

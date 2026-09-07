@@ -98,7 +98,7 @@ FuchsiaCity_Gym_Text_KogaIntro::
 	.string "Wie du willst! Erlebe eine Welt des\n"
 	.string "Schreckens, bevor ich dich besiege!\p"
 	.string "An meinen Schlaf- und Gift-\n"
-	.string "Attacken sollst du verzweifeln!{PLAY_BGM}?À$"
+	.string "Attacken sollst du verzweifeln!$"
 #else
 	.string "KOGA: Fwahahaha!\p"
 	.string "A mere child like you dares to\n"

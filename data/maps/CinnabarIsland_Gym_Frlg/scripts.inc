@@ -720,7 +720,7 @@ CinnabarIsland_Gym_Text_BlaineIntro::
 	.string "Siegesträume meiner Gegner in Flammen\l"
 	.string "aufgehen!\p"
 	.string "Du solltest Feuerheiler\n"
-	.string "parat halten!{PLAY_BGM}?À$"
+	.string "parat halten!$"
 #else
 	.string "Hah!\p"
 	.string "I am BLAINE, the red-hot LEADER\n"

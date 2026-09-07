@@ -106,7 +106,7 @@ SaffronCity_Gym_Text_SabrinaIntro::
 	.string "Psychokinese Löffel zu verbiegen.\p"
 	.string "Ich verabscheue den Kampf!\n"
 	.string "Aber wenn du es wünschst, beweise ich\l"
-	.string "dir meine Kräfte!{PLAYER}?À$"
+	.string "dir meine Kräfte!$"
 #else
 	.string "I had a vision of your arrival.\p"
 	.string "I have had psychic powers since\n"

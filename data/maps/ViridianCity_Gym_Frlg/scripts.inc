@@ -114,7 +114,7 @@ ViridianCity_Gym_Text_GiovanniIntro::
 	.string "aufgespürt! Also gut! Dieses Mal kenne\l"
 	.string "ich keine Gnade!\p"
 	.string "Ich, Giovanni, der größte aller\n"
-	.string "Trainer, fordere Revanche!{PLAY_BGM}éÀ$"
+	.string "Trainer, fordere Revanche!$"
 #else
 	.string "Fwahahaha!\n"
 	.string "Welcome to my hideout!\p"

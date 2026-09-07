@@ -298,7 +298,7 @@ VermilionCity_Gym_Text_LtSurgeIntro::
 	.string "Elektro-Pokémon gerettet!\p"
 	.string "Sie haben meine Gegner mit Strom\n"
 	.string "paralysiert!\p"
-	.string "Das Gleiche steht dir nun bevor!{PLAY_BGM}?À$"
+	.string "Das Gleiche steht dir nun bevor!$"
 #else
 	.string "Hey, kid! What do you think you're\n"
 	.string "doing here?\p"

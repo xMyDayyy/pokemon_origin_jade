@@ -96,7 +96,7 @@ PewterCity_Gym_Text_BrockIntro::
 	.string "Deshalb trainiere ich Stein-Pokémon!\p"
 	.string "Willst du es noch immer mit mir\n"
 	.string "aufnehmen?\p"
-	.string "O.k.! Zeige mir, wie gut du bist!{PLAY_BGM}?À$"
+	.string "O.k.! Zeige mir, wie gut du bist!$"
 #else
 	.string "So, you're here. I'm BROCK.\n"
 	.string "I'm PEWTER's GYM LEADER.\p"
