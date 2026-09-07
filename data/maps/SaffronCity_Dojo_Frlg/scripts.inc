@@ -3,18 +3,28 @@ SaffronCity_Dojo_Frlg_MapScripts::
 
 SaffronCity_Dojo_EventScript_TriggerMasterBattleLeft::
 	lockall
-	setvar VAR_MAP_SCENE_SAFFRON_CITY_DOJO, 1
 	applymovement LOCALID_KARATE_MASTER, Common_Movement_WalkInPlaceFasterLeft
 	waitmovement 0
-	releaseall
-	end
+	goto SaffronCity_Dojo_EventScript_MasterBattleFromTrigger
 
 SaffronCity_Dojo_EventScript_TriggerMasterBattleRight::
 	lockall
-	setvar VAR_MAP_SCENE_SAFFRON_CITY_DOJO, 1
 	applymovement LOCALID_KARATE_MASTER, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
-	releaseall
+	goto SaffronCity_Dojo_EventScript_MasterBattleFromTrigger
+
+@ Origin Jade: Der Karatemeister steht auf (6,5) und deckt mit seiner Sichtlinie
+@ nur Spalte 6 ab. Die Baelle liegen auf (5,3) und (7,3), erreichbar ueber die
+@ Spalten 5 und 7. Frueher haben die beiden Trigger ihn nur umgedreht und darauf
+@ gesetzt, dass die Sichtlinie danach greift; ging das schief, war der Trigger
+@ trotzdem verbraucht und er liess sich dauerhaft umgehen. Der Kampf startet
+@ jetzt direkt aus dem Trigger.
+SaffronCity_Dojo_EventScript_MasterBattleFromTrigger::
+	msgbox SaffronCity_Dojo_Text_MasterKoichiIntro, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_no_intro TRAINER_BLACK_BELT_KOICHI, SaffronCity_Dojo_Text_MasterKoichiDefeat
+	setvar VAR_MAP_SCENE_SAFFRON_CITY_DOJO, 1
+	msgbox SaffronCity_Dojo_Text_ChoosePrizedFightingMon, MSGBOX_AUTOCLOSE
 	end
 
 SaffronCity_Dojo_EventScript_HitmonleeBall::
