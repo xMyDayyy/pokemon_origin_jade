@@ -1367,10 +1367,10 @@ Common_EventScript_ObedienceLevel40Done::
 Common_Text_ObedienceLevel40::
 #if GERMAN
 	.string "Mit sechs Orden gehorchen dir\n"
-	.string "getauschte Pokémon bis Level 40!\p"
+	.string "getauschte Pokémon bis Level 40!$"
 #else
 	.string "With six BADGES, traded POKéMON\n"
-	.string "up to Lv. 40 will obey you!\p"
+	.string "up to Lv. 40 will obey you!$"
 #endif
 
 EventScript_RegionMap::
