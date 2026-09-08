@@ -85,7 +85,7 @@ CeladonCity_Gym_EventScript_GymStatuePostVictory::
 
 CeladonCity_Gym_Text_ErikaIntro::
 #if GERMAN
-	.string "Ist das Wetter nicht wundervoll?\n"
+	.string "{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}Ist das Wetter nicht wundervoll?\n"
 	.string "Einfach herrlich!\p"
 	.string "Du meine Güte... ich muss kurz\n"
 	.string "eingenickt sein! Willkommen!\p"
@@ -111,7 +111,7 @@ CeladonCity_Gym_Text_ErikaIntro::
 	.string "GRASS type.\p"
 	.string "…Oh, I'm sorry, I had no idea that\n"
 	.string "you wished to challenge me.\p"
-	.string "Very well, but I shall not lose.{PLAY_BGM MUS_RG_ENCOUNTER_GYM_LEADER}$"
+	.string "Very well, but I shall not lose.{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}$"
 #endif
 
 CeladonCity_Gym_Text_ErikaDefeat::
