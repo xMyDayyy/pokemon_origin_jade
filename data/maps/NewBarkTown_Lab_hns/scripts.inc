@@ -106,16 +106,24 @@ NewBarkTown_Lab_Text_ElmAideIsWaiting:
 	.string "In VIOLET CITY!$"
 #endif
 
+@ Uebergang nach Johto: der Spieler kommt nicht als Anfaenger, sondern mit
+@ dem GS-Ball von Prof. Eich. Die Ja/Nein-Bitte entfaellt, Lind nimmt den
+@ Ball entgegen und macht daraus den Auftrag zu Mr. Pokemon.
 NewBarkTown_Lab_EventScript_ElmIntro::
-	msgbox NewBarkTown_Lab_Text_ElmIntro, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, NewBarkTown_Lab_EventScript_ElmAccepted
-	goto_if_eq VAR_RESULT, NO, NewBarkTown_Lab_EventScript_ElmRefused
+	@ Der Weg nach Johto steht jedem Champion offen, auch ohne Umweg ueber
+	@ Eichs Labor. Ohne den Ball verweist Lind zurueck.
+	checkitem ITEM_GS_BALL
+	goto_if_eq VAR_RESULT, FALSE, NewBarkTown_Lab_EventScript_ElmNoGsBall
+	msgbox NewBarkTown_Lab_Text_ElmGsBallHandover, MSGBOX_DEFAULT
+	removeitem ITEM_GS_BALL
+	setvar VAR_JOHTO_HANDOVER, 3
+	goto NewBarkTown_Lab_EventScript_ElmAccepted
 	end
 
-NewBarkTown_Lab_EventScript_ElmRefused::
-	msgbox NewBarkTown_Lab_Text_ElmRefused, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, NewBarkTown_Lab_EventScript_ElmAccepted
-	goto_if_eq VAR_RESULT, NO, NewBarkTown_Lab_EventScript_ElmRefused
+NewBarkTown_Lab_EventScript_ElmNoGsBall::
+	msgbox NewBarkTown_Lab_Text_ElmNoGsBall, MSGBOX_DEFAULT
+	closemessage
+	release
 	end
 
 NewBarkTown_Lab_EventScript_ElmAccepted::
@@ -696,11 +704,56 @@ NewBarkTown_Lab_Text_ElmIntro:
 
 NewBarkTown_Lab_Text_ElmAccepted:
 #if GERMAN
-	.string "Danke, {PLAYER}!\n"
-	.string "Du bist eine große Hilfe!$"
+	.string "Lind: Unglaublich…\p"
+	.string "Ich habe von diesem Ball gelesen,\n"
+	.string "aber nie einen in der Hand gehabt.\p"
+	.string "Vielen Dank, {PLAYER}. Und Eich\n"
+	.string "richte bitte aus, dass er der Erste\l"
+	.string "ist, der davon hört.$"
 #else
-	.string "Thanks, {PLAYER}!\n"
-	.string "You're a great help!$"
+	.string "ELM: Incredible…\p"
+	.string "I have read about this BALL, but I\n"
+	.string "have never held one.\p"
+	.string "Thank you, {PLAYER}. And please tell\n"
+	.string "OAK he will be the first to hear\l"
+	.string "what I find.$"
+#endif
+
+NewBarkTown_Lab_Text_ElmNoGsBall:
+#if GERMAN
+	.string "Lind: Du musst {PLAYER} sein.\p"
+	.string "Prof. Eich hat mir geschrieben, dass\n"
+	.string "du mir etwas bringst.\p"
+	.string "Hast du es dabei? Ich sehe nichts.\p"
+	.string "Frag ihn noch einmal, bevor du\n"
+	.string "weiterreist.$"
+#else
+	.string "ELM: You must be {PLAYER}.\p"
+	.string "PROF. OAK wrote to say you would\n"
+	.string "bring me something.\p"
+	.string "Do you have it? I see nothing.\p"
+	.string "Ask him again before you travel on.$"
+#endif
+
+NewBarkTown_Lab_Text_ElmGsBallHandover:
+#if GERMAN
+	.string "Lind: Du musst {PLAYER} sein.\p"
+	.string "Prof. Eich hat mir geschrieben, dass\n"
+	.string "du kommst. Der Champion von Kanto,\l"
+	.string "als Bote.\p"
+	.string "Er hätte niemanden schicken müssen.\n"
+	.string "Aber offenbar wollte er, dass ihn\l"
+	.string "jemand bringt, dem er vertraut.\p"
+	.string "Zeig ihn mir.$"
+#else
+	.string "ELM: You must be {PLAYER}.\p"
+	.string "PROF. OAK wrote to say you were\n"
+	.string "coming. The CHAMPION of KANTO, as\l"
+	.string "a courier.\p"
+	.string "He need not have sent anyone.\p"
+	.string "But it seems he wanted it carried\n"
+	.string "by someone he trusts.\p"
+	.string "Let me see it.$"
 #endif
 
 NewBarkTown_Lab_Text_ElmRefused:
@@ -780,17 +833,23 @@ NewBarkTown_Lab_Text_ElmMissionFromMrPokemon:
 
 NewBarkTown_Lab_Text_ElmChooseAPokemon:
 #if GERMAN
-	.string "Nimm eines der Pokémon aus diesen\n"
-	.string "Pokébällen.\p"
-	.string "Du wirst der erste Partner dieses\n"
-	.string "Pokémon sein, {PLAYER}!\p"
-	.string "Wähle jetzt!$"
+	.string "Und damit du nicht mit leeren Händen\n"
+	.string "gehst: nimm eines der Pokémon aus\l"
+	.string "diesen Pokébällen.\p"
+	.string "Ich weiß, du hast längst ein Team.\p"
+	.string "Aber diese drei warten seit Wochen\n"
+	.string "auf jemanden, und ich wüsste keinen\l"
+	.string "besseren.\p"
+	.string "Wähle!$"
 #else
-	.string "I want you to raise one of\n"
-	.string "the POKéMON contained in these BALLS.\p"
-	.string "You'll be that POKéMON's\n"
-	.string "first partner, {PLAYER}!\p"
-	.string "Go on. Pick one!$"
+	.string "And so you do not leave empty-\n"
+	.string "handed: take one of the POKéMON\l"
+	.string "from these BALLS.\p"
+	.string "I know you have a team already.\p"
+	.string "But these three have been waiting\n"
+	.string "for weeks, and I can think of no one\l"
+	.string "better.\p"
+	.string "Choose!$"
 #endif
 
 NewBarkTown_Lab_Text_ElmWhereGoing:
