@@ -89,6 +89,8 @@ Route22_Movement_UnusedRivalExit:: @ 8
 	walk_right
 	step_end
 
+@ Origin Jade: nach Schritt 13 ist der Rivale aus dem Bild; die restlichen
+@ 16 Schritte liefen unsichtbar weiter und haben den Spieler solange gesperrt.
 Route22_Movement_EarlyRivalExit::
 	walk_down
 	walk_right
@@ -103,24 +105,10 @@ Route22_Movement_EarlyRivalExit::
 	walk_down
 	walk_down
 	walk_down
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
 	step_end
 
+@ Origin Jade: nach Schritt 15 ist der Rivale aus dem Bild; die restlichen
+@ 15 Schritte liefen unsichtbar weiter und haben den Spieler solange gesperrt.
 Route22_Movement_EarlyRivalExitBottom::
 	walk_up
 	walk_right
@@ -136,21 +124,6 @@ Route22_Movement_EarlyRivalExitBottom::
 	walk_down
 	walk_down
 	walk_down
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_right
-	walk_right
-	walk_right
-	walk_right
 	walk_right
 	step_end
 
@@ -419,6 +392,8 @@ Route22_Movement_RivalApproachTop::
 	walk_right
 	step_end
 
+@ Origin Jade: nach Schritt 13 ist der Rivale aus dem Bild; die restlichen
+@ 17 Schritte liefen unsichtbar weiter und haben den Spieler solange gesperrt.
 Route22_Movement_RivalExitTop::
 	walk_down
 	walk_down
@@ -433,21 +408,4 @@ Route22_Movement_RivalExitTop::
 	walk_down
 	walk_down
 	walk_down
-	walk_down
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
 	step_end
