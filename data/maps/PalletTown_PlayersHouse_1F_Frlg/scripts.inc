@@ -152,9 +152,196 @@ PalletTown_PlayersHouse_1F_EventScript_MomHeal::
 	msgbox PalletTown_PlayersHouse_1F_Text_YouShouldTakeQuickRest
 	closemessage
 	call Common_EventScript_OutOfCenterPartyHeal
-	msgbox PalletTown_PlayersHouse_1F_Text_LookingGreatTakeCare
+	incrementgamestat GAME_STAT_RESTED_AT_HOME
+	call PalletTown_PlayersHouse_1F_EventScript_MomSavingsMenu
 	release
 	end
+
+@ ============================================================================
+@ Kanto-Merge: Sparschwein der Mutter. Lag in HnS bei der Mutter in
+@ Neuborkia; dort wohnt der Spieler bei uns nicht mehr. Die Specials und
+@ die Kaeufe ueber ShouldDoMomCall sind unveraendert, nur der Ort wechselt.
+@ ============================================================================
+PalletTown_PlayersHouse_1F_EventScript_MomSavingsMenu::
+	special Special_MomEnsureInitialized
+	msgbox PalletTown_PlayersHouse_1F_Text_MomAnythingElse, MSGBOX_DEFAULT
+	multichoice 0, 0, MULTI_MOM_MENU, FALSE
+	switch VAR_RESULT
+	case 0, PalletTown_PlayersHouse_1F_EventScript_CheckSavings
+	case 1, PalletTown_PlayersHouse_1F_EventScript_Deposit
+	case 2, PalletTown_PlayersHouse_1F_EventScript_Withdraw
+	case 3, PalletTown_PlayersHouse_1F_EventScript_ToggleSaving
+	case 4, PalletTown_PlayersHouse_1F_EventScript_ExitSavings
+	case MULTI_B_PRESSED, PalletTown_PlayersHouse_1F_EventScript_ExitSavings
+	end
+
+PalletTown_PlayersHouse_1F_EventScript_CheckSavings::
+	special Special_MomGetBalance
+	msgbox PalletTown_PlayersHouse_1F_Text_CurrentSavings, MSGBOX_DEFAULT
+	goto PalletTown_PlayersHouse_1F_EventScript_MomSavingsMenu
+	end
+
+PalletTown_PlayersHouse_1F_EventScript_Deposit::
+	checkmoney 1
+	compare VAR_RESULT, FALSE
+	goto_if_eq PalletTown_PlayersHouse_1F_EventScript_DepositFailed
+	closemessage
+	special Special_MomOpenDepositInput
+	waitstate
+	compare VAR_0x8000, 0
+	goto_if_eq PalletTown_PlayersHouse_1F_EventScript_MomSavingsMenu
+	msgbox PalletTown_PlayersHouse_1F_Text_DepositSuccess, MSGBOX_DEFAULT
+	goto PalletTown_PlayersHouse_1F_EventScript_MomSavingsMenu
+	end
+
+PalletTown_PlayersHouse_1F_EventScript_DepositFailed::
+	msgbox PalletTown_PlayersHouse_1F_Text_NoMoneyToDeposit, MSGBOX_DEFAULT
+	goto PalletTown_PlayersHouse_1F_EventScript_MomSavingsMenu
+	end
+
+PalletTown_PlayersHouse_1F_EventScript_Withdraw::
+	special Special_MomGetBalance
+	compare VAR_RESULT, 0
+	goto_if_eq PalletTown_PlayersHouse_1F_EventScript_WithdrawFailed
+	closemessage
+	special Special_MomOpenWithdrawInput
+	waitstate
+	compare VAR_0x8000, 0
+	goto_if_eq PalletTown_PlayersHouse_1F_EventScript_MomSavingsMenu
+	msgbox PalletTown_PlayersHouse_1F_Text_WithdrawSuccess, MSGBOX_DEFAULT
+	goto PalletTown_PlayersHouse_1F_EventScript_MomSavingsMenu
+	end
+
+PalletTown_PlayersHouse_1F_EventScript_WithdrawFailed::
+	msgbox PalletTown_PlayersHouse_1F_Text_NoMoneyToWithdraw, MSGBOX_DEFAULT
+	goto PalletTown_PlayersHouse_1F_EventScript_MomSavingsMenu
+	end
+
+PalletTown_PlayersHouse_1F_EventScript_ToggleSaving::
+	special Special_MomIsSavingEnabled
+	compare VAR_RESULT, TRUE
+	goto_if_eq PalletTown_PlayersHouse_1F_EventScript_DisableSaving
+	msgbox PalletTown_PlayersHouse_1F_Text_EnableSaving, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq PalletTown_PlayersHouse_1F_EventScript_ConfirmEnable
+	goto PalletTown_PlayersHouse_1F_EventScript_MomSavingsMenu
+	end
+
+PalletTown_PlayersHouse_1F_EventScript_ConfirmEnable::
+	special Special_MomEnableSaving
+	msgbox PalletTown_PlayersHouse_1F_Text_SavingEnabled, MSGBOX_DEFAULT
+	goto PalletTown_PlayersHouse_1F_EventScript_MomSavingsMenu
+	end
+
+PalletTown_PlayersHouse_1F_EventScript_DisableSaving::
+	msgbox PalletTown_PlayersHouse_1F_Text_DisableSaving, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq PalletTown_PlayersHouse_1F_EventScript_ConfirmDisable
+	goto PalletTown_PlayersHouse_1F_EventScript_MomSavingsMenu
+	end
+
+PalletTown_PlayersHouse_1F_EventScript_ConfirmDisable::
+	special Special_MomDisableSaving
+	msgbox PalletTown_PlayersHouse_1F_Text_SavingDisabled, MSGBOX_DEFAULT
+	goto PalletTown_PlayersHouse_1F_EventScript_MomSavingsMenu
+	end
+
+PalletTown_PlayersHouse_1F_EventScript_ExitSavings::
+	msgbox PalletTown_PlayersHouse_1F_Text_Goodbye, MSGBOX_DEFAULT
+	return
+
+PalletTown_PlayersHouse_1F_Text_MomAnythingElse:
+#if GERMAN
+	.string "Kann ich dir sonst noch helfen,\n"
+	.string "Liebling?$"
+#else
+	.string "Is there anything else I can\n"
+	.string "help you with, sweetie?$"
+#endif
+
+PalletTown_PlayersHouse_1F_Text_CurrentSavings:
+#if GERMAN
+	.string "Ich habe {STR_VAR_2} für dich gespart.$"
+#else
+	.string "I'm holding {STR_VAR_2}\n"
+	.string "for you right now.$"
+#endif
+
+PalletTown_PlayersHouse_1F_Text_EnableSaving:
+#if GERMAN
+	.string "Möchtest du, dass ich etwas von\n"
+	.string "dem Geld spare, das du verdienst?$"
+#else
+	.string "Do you want me to save some of the\n"
+	.string "money you earn?$"
+#endif
+
+PalletTown_PlayersHouse_1F_Text_SavingEnabled:
+#if GERMAN
+	.string "Okay! Ich spare 25% des Geldes von\n"
+	.string "deinen Kämpfen.$"
+#else
+	.string "Okay! I'll save 25% of\n"
+	.string "the money you earn from battles.$"
+#endif
+
+PalletTown_PlayersHouse_1F_Text_DisableSaving:
+#if GERMAN
+	.string "Möchtest du, dass ich nicht mehr für\n"
+	.string "dich spare?$"
+#else
+	.string "Would you like me to stop\n"
+	.string "saving for you?$"
+#endif
+
+PalletTown_PlayersHouse_1F_Text_SavingDisabled:
+#if GERMAN
+	.string "Okay, ich höre auf zu sparen.$"
+#else
+	.string "Okay, I'll stop saving.$"
+#endif
+
+PalletTown_PlayersHouse_1F_Text_Goodbye:
+#if GERMAN
+	.string "Sei vorsichtig, Liebling!$"
+#else
+	.string "Take care, sweetie!$"
+#endif
+
+PalletTown_PlayersHouse_1F_Text_DepositSuccess:
+#if GERMAN
+	.string "Mama: Hört sich gut an!\n"
+	.string "Das kommt ins Sparschwein.$"
+#else
+	.string "MOM: That sounds good!\n"
+	.string "Into the piggy bank it goes.$"
+#endif
+
+PalletTown_PlayersHouse_1F_Text_WithdrawSuccess:
+#if GERMAN
+	.string "Mama: Hier!$"
+#else
+	.string "MOM: Here you go!$"
+#endif
+
+PalletTown_PlayersHouse_1F_Text_NoMoneyToDeposit:
+#if GERMAN
+	.string "Mama: Du hast leider kein Geld,\n"
+	.string "das du sparen könntest, Liebling.$"
+#else
+	.string "MOM: You don't have any money to\n"
+	.string "save right now, sweetie.$"
+#endif
+
+PalletTown_PlayersHouse_1F_Text_NoMoneyToWithdraw:
+#if GERMAN
+	.string "Mama: Ich habe noch kein Geld\n"
+	.string "für dich, Liebling.$"
+#else
+	.string "MOM: I don't have any money for\n"
+	.string "you yet, sweetie.$"
+#endif
+
 
 @ Displays special text if interacted with from side or back (which are normally inaccessible)
 PalletTown_PlayersHouse_1F_EventScript_TV::

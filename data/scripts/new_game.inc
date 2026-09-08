@@ -524,5 +524,12 @@ EventScript_ResetAllMapFlagsFrlg::
 	setflag FLAG_HIDE_FAME_CHECKER_LT_SURGE_JOURNAL
 	setflag FLAG_HIDE_SAFFRON_CITY_POKECENTER_SABRINA_JOURNALS
 	setvar VAR_MASSAGE_COOLDOWN_STEP_COUNTER, 500
+	@ Kanto-Merge: Das Haus in Neuborkia gehoert nicht mehr dem Spieler. Der
+	@ HnS-Spielstart, der dort haengt, wird uebersprungen: VAR_NEWBARK_TOWN_STATE
+	@ steht sonst auf 0 und loest im Obergeschoss die Wanduhr-Szene samt
+	@ Startfenster aus, im Erdgeschoss die Szene mit PokeCom und Turbotretern.
+	setvar VAR_NEWBARK_TOWN_STATE, 5
+	setflag FLAG_SET_WALL_CLOCK
+	setflag FLAG_MOM_VISITED
 	end
 #endif
