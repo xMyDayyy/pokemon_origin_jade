@@ -28,7 +28,7 @@
       "flag": "FLAG_HIDE_MOLTRES_KANTO"
     },
     {
-      "local_id": "LOCALID_VICTORY_ROAD_3F_BOULDER1",
+      "local_id": "LOCALID_VICTORY_ROAD_4F_BOULDER1",
       "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
       "x": 7,
       "y": 9,
@@ -42,7 +42,7 @@
       "flag": "0"
     },
     {
-      "local_id": "LOCALID_VICTORY_ROAD_3F_BOULDER1",
+      "local_id": "LOCALID_VICTORY_ROAD_4F_BOULDER2",
       "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
       "x": 8,
       "y": 9,
@@ -56,7 +56,7 @@
       "flag": "0"
     },
     {
-      "local_id": "LOCALID_VICTORY_ROAD_3F_BOULDER1",
+      "local_id": "LOCALID_VICTORY_ROAD_4F_BOULDER3",
       "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
       "x": 9,
       "y": 9,
