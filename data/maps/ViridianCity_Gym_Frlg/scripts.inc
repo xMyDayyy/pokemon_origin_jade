@@ -4,7 +4,7 @@ ViridianCity_Gym_Frlg_MapScripts::
 ViridianCity_Gym_EventScript_Giovanni::
 	famechecker FAMECHECKER_GIOVANNI, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
 	trainerbattle_single TRAINER_LEADER_GIOVANNI, ViridianCity_Gym_Text_GiovanniIntro, ViridianCity_Gym_Text_GiovanniDefeat, ViridianCity_Gym_EventScript_DefeatedGiovanni, NO_MUSIC
-	goto_if_unset FLAG_GOT_TM26_FROM_GIOVANNI, ViridianCity_Gym_EventScript_GiveTM26
+	goto_if_unset FLAG_GOT_TM26_FROM_GIOVANNI, ViridianCity_Gym_EventScript_GiveRockSmash
 	msgbox ViridianCity_Gym_Text_GiovanniPostBattle
 	closemessage
 	fadescreen FADE_TO_BLACK
@@ -20,20 +20,23 @@ ViridianCity_Gym_EventScript_DefeatedGiovanni::
 	setflag FLAG_BADGE08_GET
 	setvar VAR_MAP_SCENE_ROUTE22, 3
 	set_gym_trainers_frlg 8
-	goto ViridianCity_Gym_EventScript_GiveTM26
+	goto ViridianCity_Gym_EventScript_GiveRockSmash
 	end
 
-ViridianCity_Gym_EventScript_GiveTM26::
+@ Origin Jade: Giovanni gibt die VM Zertruemmerer statt TM26. Sie ist damit
+@ vor dem Endgame erreichbar; FLAG_GOT_TM26_FROM_GIOVANNI bleibt als Merker,
+@ um bestehende Spielstaende nicht zu stoeren.
+ViridianCity_Gym_EventScript_GiveRockSmash::
 	msgbox ViridianCity_Gym_Text_ExplainEarthBadgeTakeThis
-	checkitemspace ITEM_TM26
-	goto_if_eq VAR_RESULT, FALSE, ViridianCity_Gym_EventScript_NoRoomForTM26
-	giveitem_msg ViridianCity_Gym_Text_ReceivedTM26FromGiovanni, ITEM_TM26
+	checkitemspace ITEM_HM_ROCK_SMASH
+	goto_if_eq VAR_RESULT, FALSE, ViridianCity_Gym_EventScript_NoRoomForRockSmash
+	giveitem_msg ViridianCity_Gym_Text_ReceivedRockSmashFromGiovanni, ITEM_HM_ROCK_SMASH
 	setflag FLAG_GOT_TM26_FROM_GIOVANNI
-	msgbox ViridianCity_Gym_Text_ExplainTM26
+	msgbox ViridianCity_Gym_Text_ExplainRockSmash
 	release
 	end
 
-ViridianCity_Gym_EventScript_NoRoomForTM26::
+ViridianCity_Gym_EventScript_NoRoomForRockSmash::
 	msgbox ViridianCity_Gym_Text_YouDoNotHaveSpace
 	release
 	end
@@ -172,8 +175,10 @@ ViridianCity_Gym_Text_ExplainEarthBadgeTakeThis::
 	.string "als Pokémon Trainer dar!\p"
 	.string "Außerdem gewährt er dir den Zugang\n"
 	.string "zur Pokémon Liga!\p"
-	.string "Nimm dieses Geschenk mit in dein\n"
-	.string "Pokémon Liga-Abenteuer!$"
+	.string "Du hast meinen Traum vom Wiederaufbau\n"
+	.string "von Team Rocket zertrümmert.\p"
+	.string "Nimm also das hier. Es ist keine TM.\n"
+	.string "Es passt einfach besser zu dir.$"
 #else
 	.string "The EARTHBADGE makes traded\n"
 	.string "POKéMON up to Lv. 50 obey.\p"
@@ -181,33 +186,34 @@ ViridianCity_Gym_Text_ExplainEarthBadgeTakeThis::
 	.string "a POKéMON TRAINER.\p"
 	.string "With it, you can challenge the\n"
 	.string "POKéMON LEAGUE.\p"
-	.string "Also, take this TM.\p"
-	.string "Consider it a gift for your POKéMON\n"
-	.string "LEAGUE challenge.$"
+	.string "You have smashed my dream of\n"
+	.string "rebuilding TEAM ROCKET.\p"
+	.string "So take this. It is not a TM.\n"
+	.string "It simply suits you better.$"
 #endif
 
-ViridianCity_Gym_Text_ReceivedTM26FromGiovanni::
+ViridianCity_Gym_Text_ReceivedRockSmashFromGiovanni::
 #if GERMAN
-	.string "{PLAYER} erhält TM26!$"
+	.string "{PLAYER} erhält VM06!$"
 #else
-	.string "{PLAYER} received TM26\n"
+	.string "{PLAYER} received HM06\n"
 	.string "from GIOVANNI.$"
 #endif
 
-ViridianCity_Gym_Text_ExplainTM26::
+ViridianCity_Gym_Text_ExplainRockSmash::
 #if GERMAN
-	.string "TM26 ist Erdbeben!\p"
-	.string "Eine sehr starke Attacke, die ein\n"
-	.string "starkes Beben verursacht.\p"
-	.string "Ich habe sie vor langer Zeit\n"
-	.string "geschaffen, als ich hier noch\l"
-	.string "Arenaleiter war.$"
+	.string "VM06 ist Zertrümmerer.\p"
+	.string "Sie zerschlägt Felsen, die anderen\n"
+	.string "im Weg stehen.\p"
+	.string "Ich habe sie hier gebraucht, als ich\n"
+	.string "noch Arenaleiter war. Jetzt brauche\l"
+	.string "ich sie nicht mehr.$"
 #else
-	.string "TM26 contains EARTHQUAKE.\p"
-	.string "It is a powerful attack that causes\n"
-	.string "a massive tremor.\p"
-	.string "I made it when I ran the GYM here,\n"
-	.string "far too long ago… $"
+	.string "HM06 contains ROCK SMASH.\p"
+	.string "It shatters the rocks that stand in\n"
+	.string "other people's way.\p"
+	.string "I needed it when I ran the GYM here.\n"
+	.string "I have no use for it anymore.$"
 #endif
 
 ViridianCity_Gym_Text_YouDoNotHaveSpace::
