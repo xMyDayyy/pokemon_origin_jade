@@ -454,6 +454,10 @@ EventScript_ResetAllMapFlagsHnS::
 
 	additem ITEM_EXP_SHARE
 	additem ITEM_GB_PLAYER
+	@ Origin Jade: Der EP-Teiler ist von Anfang an eingeschaltet, das
+	@ Levelband der Regionen ist darauf geeicht. Wer ihn nicht mag, schaltet
+	@ ihn im Beutel ab.
+	setflag FLAG_EXP_SHARE_ENABLED
 	setrespawn HEAL_LOCATION_NEW_BARK_TOWN_HNS
 
 	call EventScript_ResetAllBerries
