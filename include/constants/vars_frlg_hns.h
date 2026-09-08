@@ -124,6 +124,9 @@
 //   3 = GS-Ball bei Prof. Lind abgegeben.
 #define VAR_JOHTO_HANDOVER (FRLG_VARS_START+0x7C)
 
+// Kanto-Merge: 0 = Wanduhr im Obergeschoss noch nicht gestellt, 1 = gestellt.
+#define VAR_PALLET_HOUSE_CLOCK (FRLG_VARS_START+0x7B)
+
 // Belegt: 0x2F von 0x80
 
 #endif // GUARD_CONSTANTS_VARS_FRLG_HNS_H

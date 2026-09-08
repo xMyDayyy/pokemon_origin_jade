@@ -529,7 +529,6 @@ EventScript_ResetAllMapFlagsFrlg::
 	@ steht sonst auf 0 und loest im Obergeschoss die Wanduhr-Szene samt
 	@ Startfenster aus, im Erdgeschoss die Szene mit PokeCom und Turbotretern.
 	setvar VAR_NEWBARK_TOWN_STATE, 5
-	setflag FLAG_SET_WALL_CLOCK
 	setflag FLAG_MOM_VISITED
 	end
 #endif
