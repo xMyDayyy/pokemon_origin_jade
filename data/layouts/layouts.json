@@ -16708,6 +16708,20 @@
       "blockdata_filepath": "data/layouts/VermilionCity_PortOutside_Frlg/map.bin",
       "game_version": "hns",
       "layout_version": "hns"
+    },
+    {
+      "id": "LAYOUT_VICTORY_ROAD_4F_FRLG",
+      "name": "VictoryRoad_4F_Layout",
+      "width": 17,
+      "height": 17,
+      "primary_tileset": "gTileset_General_Frlg",
+      "secondary_tileset": "gTileset_Cave_Frlg",
+      "border_filepath": "data/layouts/VictoryRoad_4F_Frlg/border.bin",
+      "blockdata_filepath": "data/layouts/VictoryRoad_4F_Frlg/map.bin",
+      "border_height": 2,
+      "border_width": 2,
+      "game_version": "hns",
+      "layout_version": "frlg"
     }
   ]
 }
