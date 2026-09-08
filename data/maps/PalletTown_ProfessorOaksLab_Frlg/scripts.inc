@@ -570,6 +570,10 @@ PalletTown_ProfessorOaksLab_EventScript_RivalChoseStarter::
 PalletTown_ProfessorOaksLab_EventScript_ProfOak::
 	lock
 	faceplayer
+	@ Uebergang nach Johto: der GS-Ball geht der Dex-Bewertung vor, sonst
+	@ laeuft der frisch gekroente Champion in die Bewertung statt in den Auftrag.
+	goto_if_eq VAR_JOHTO_HANDOVER, 1, PalletTown_ProfessorOaksLab_EventScript_GiveGsBall
+	goto_if_eq VAR_JOHTO_HANDOVER, 2, PalletTown_ProfessorOaksLab_EventScript_GsBallReminder
 	goto_if_set SHOWED_OAK_COMPLETE_DEX, PalletTown_ProfessorOaksLab_EventScript_OakJustShownCompleteDex
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 9, PalletTown_ProfessorOaksLab_EventScript_RatePokedex
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 8, PalletTown_ProfessorOaksLab_EventScript_MonsAroundWorldWait
@@ -580,6 +584,26 @@ PalletTown_ProfessorOaksLab_EventScript_ProfOak::
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 4, PalletTown_ProfessorOaksLab_EventScript_OakBattleMonForItToGrow
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 3, PalletTown_ProfessorOaksLab_EventScript_OakCanReachNextTownWithMon
 	msgbox PalletTown_ProfessorOaksLab_Text_OakWhichOneWillYouChoose
+	release
+	end
+
+PalletTown_ProfessorOaksLab_EventScript_GiveGsBall::
+	msgbox PalletTown_ProfessorOaksLab_Text_OakGsBallIntro
+	checkitemspace ITEM_GS_BALL
+	goto_if_eq VAR_RESULT, FALSE, PalletTown_ProfessorOaksLab_EventScript_GsBallNoRoom
+	giveitem_msg PalletTown_ProfessorOaksLab_Text_ReceivedGsBall, ITEM_GS_BALL
+	msgbox PalletTown_ProfessorOaksLab_Text_OakGsBallMission
+	setvar VAR_JOHTO_HANDOVER, 2
+	release
+	end
+
+PalletTown_ProfessorOaksLab_EventScript_GsBallNoRoom::
+	msgbox PalletTown_ProfessorOaksLab_Text_OakGsBallNoRoom
+	release
+	end
+
+PalletTown_ProfessorOaksLab_EventScript_GsBallReminder::
+	msgbox PalletTown_ProfessorOaksLab_Text_OakGsBallReminder
 	release
 	end
 
@@ -1495,6 +1519,79 @@ PalletTown_ProfessorOaksLab_Text_OakBePatientRival::
 #else
 	.string "OAK: Be patient, {RIVAL}.\n"
 	.string "You can have one, too!$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakGsBallIntro::
+#if GERMAN
+	.string "Eich: Da bist du ja, {PLAYER}!\p"
+	.string "Ich habe hier etwas, das mir seit\n"
+	.string "Wochen keine Ruhe lässt.\p"
+	.string "Ein Kollege aus Johto hat ihn mir\n"
+	.string "geschickt. Sieh ihn dir an.$"
+#else
+	.string "OAK: There you are, {PLAYER}!\p"
+	.string "I have something here that has kept\n"
+	.string "me awake for weeks.\p"
+	.string "A colleague in JOHTO sent it to me.\n"
+	.string "See for yourself.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_ReceivedGsBall::
+#if GERMAN
+	.string "{PLAYER} erhält den GS-Ball!$"
+#else
+	.string "{PLAYER} received the GS BALL!$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakGsBallMission::
+#if GERMAN
+	.string "Er lässt sich nicht öffnen, und\n"
+	.string "kein Gerät von mir erkennt, was\l"
+	.string "darin steckt.\p"
+	.string "In Neuborkia in Johto forscht\n"
+	.string "Professor Lind. Er kennt sich mit\l"
+	.string "solchen Bällen besser aus als ich.\p"
+	.string "Bring ihn zu ihm, {PLAYER}.\p"
+	.string "Der Weg nach Johto fuehrt ueber das\n"
+	.string "Torhaus an Route 22. Geh dort nach\l"
+	.string "Süden.\p"
+	.string "Ich weiß, dass ich viel verlange.\n"
+	.string "Aber es gibt niemanden, dem ich\l"
+	.string "das lieber anvertrauen würde.$"
+#else
+	.string "It will not open, and none of my\n"
+	.string "instruments can tell what is inside.\p"
+	.string "PROF. ELM does his research in\n"
+	.string "NEW BARK TOWN, in JOHTO. He knows\l"
+	.string "far more about such BALLS than I do.\p"
+	.string "Take it to him, {PLAYER}.\p"
+	.string "The way to JOHTO runs through the\n"
+	.string "gate on ROUTE 22. Head south there.\p"
+	.string "I know this is a great deal to ask.\n"
+	.string "But there is no one I would rather\l"
+	.string "entrust it to.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakGsBallNoRoom::
+#if GERMAN
+	.string "Eich: In deinem Beutel ist kein\n"
+	.string "Platz mehr. Räum erst auf.$"
+#else
+	.string "OAK: There is no room left in your\n"
+	.string "BAG. Make some space first.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakGsBallReminder::
+#if GERMAN
+	.string "Eich: Professor Lind wartet in\n"
+	.string "Neuborkia auf den GS-Ball.\p"
+	.string "Über das Torhaus an Route 22 nach\n"
+	.string "Süden, dann findest du den Weg.$"
+#else
+	.string "OAK: PROF. ELM is waiting for the\n"
+	.string "GS BALL in NEW BARK TOWN.\p"
+	.string "Through the gate on ROUTE 22 and\n"
+	.string "head south. You will find the way.$"
 #endif
 
 PalletTown_ProfessorOaksLab_Text_OakWhichOneWillYouChoose::

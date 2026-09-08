@@ -119,6 +119,11 @@
 // Kanto-Merge: Schrittzaehler fuer den Anruf der Mutter.
 #define VAR_HNS_MOM_CALL_STEPS (FRLG_VARS_START+0x7E)
 
+// Uebergang nach Johto:
+//   0 = nichts, 1 = Eich hat ins Labor gebeten, 2 = GS-Ball erhalten,
+//   3 = GS-Ball bei Prof. Lind abgegeben.
+#define VAR_JOHTO_HANDOVER (FRLG_VARS_START+0x7C)
+
 // Belegt: 0x2F von 0x80
 
 #endif // GUARD_CONSTANTS_VARS_FRLG_HNS_H

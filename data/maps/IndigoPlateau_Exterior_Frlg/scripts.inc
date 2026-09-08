@@ -57,6 +57,8 @@ IndigoPlateau_Exterior_EventScript_Credits::
 	applymovement LOCALID_CREDITS_PROF_OAK, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox IndigoPlateau_Exterior_Text_OakComeToMyLab
+	@ Ab hier haelt Eich im Labor den GS-Ball fuer den Spieler bereit.
+	setvar VAR_JOHTO_HANDOVER, 1
 	closemessage
 	delay 20
 
