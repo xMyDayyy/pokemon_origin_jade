@@ -5033,7 +5033,7 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Rhyhorn
-Level: 37
+Level: 39
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Take Down
 - Rock Blast
@@ -5041,7 +5041,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Earthquake
 
 Dugtrio
-Level: 34
+Level: 39
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Slash
 - Sand Tomb
@@ -5049,7 +5049,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Earthquake
 
 Nidoqueen
-Level: 36
+Level: 40
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Body Slam
 - Double Kick
@@ -5057,7 +5057,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Earthquake
 
 Nidoking
-Level: 37
+Level: 40
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Thrash
 - Double Kick
@@ -6842,7 +6842,7 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Mugshot: Purple
 
 Dewgong
-Level: 43
+Level: 42
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Ice Beam
 - Surf
@@ -6866,7 +6866,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Yawn
 
 Jynx
-Level: 44
+Level: 43
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Ice Punch
 - Double Slap
@@ -6893,7 +6893,7 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Mugshot: Green
 
 Onix
-Level: 42
+Level: 44
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Earthquake
 - Rock Tomb
@@ -6901,7 +6901,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Roar
 
 Hitmonchan
-Level: 43
+Level: 44
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Sky Uppercut
 - Mach Punch
@@ -6909,7 +6909,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Counter
 
 Hitmonlee
-Level: 43
+Level: 45
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Mega Kick
 - Foresight
@@ -6917,7 +6917,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Facade
 
 Onix
-Level: 44
+Level: 45
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Double Edge
 - Earthquake
@@ -6944,7 +6944,7 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Mugshot: Pink
 
 Gengar
-Level: 44
+Level: 46
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Shadow Punch
 - Confuse Ray
@@ -6952,7 +6952,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Double Team
 
 Golbat
-Level: 44
+Level: 46
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Confuse Ray
 - Poison Fang
@@ -6960,7 +6960,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Bite
 
 Haunter
-Level: 43
+Level: 47
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Hypnosis
 - Dream Eater
@@ -6968,7 +6968,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Mean Look
 
 Arbok
-Level: 46
+Level: 47
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Sludge Bomb
 - Screech
@@ -6995,7 +6995,7 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Mugshot: Blue
 
 Gyarados
-Level: 46
+Level: 47
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Hyper Beam
 - Dragon Rage
@@ -7003,7 +7003,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Bite
 
 Dragonair
-Level: 44
+Level: 47
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Hyper Beam
 - Safeguard
@@ -7011,7 +7011,7 @@ IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Outrage
 
 Dragonair
-Level: 44
+Level: 48
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Hyper Beam
 - Safeguard
@@ -7067,7 +7067,7 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Staryu
-Level: 13
+Level: 15
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Tackle
 - Harden
@@ -7093,7 +7093,7 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Voltorb
-Level: 16
+Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Sonic Boom
 - Tackle
@@ -7101,7 +7101,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Shock Wave
 
 Pikachu
-Level: 13
+Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Quick Attack
 - Thunder Wave
@@ -7127,7 +7127,7 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Victreebel
-Level: 23
+Level: 21
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Stun Spore
 - Acid
@@ -7135,7 +7135,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Giga Drain
 
 Tangela
-Level: 19
+Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Poison Powder
 - Constrict
@@ -7161,7 +7161,7 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Koffing
-Level: 30
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Self Destruct
 - Sludge
@@ -7169,7 +7169,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Toxic
 
 Muk
-Level: 31
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Minimize
 - Sludge
@@ -7177,7 +7177,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Toxic
 
 Koffing
-Level: 30
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Self Destruct
 - Sludge
@@ -7203,7 +7203,7 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Growlithe
-Level: 34
+Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Bite
 - Roar
@@ -7211,7 +7211,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Fire Blast
 
 Ponyta
-Level: 32
+Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Stomp
 - Bounce
@@ -7219,7 +7219,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Fire Blast
 
 Rapidash
-Level: 34
+Level: 37
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Stomp
 - Bounce
@@ -7245,7 +7245,7 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Kadabra
-Level: 31
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Psybeam
 - Reflect
@@ -7253,7 +7253,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Calm Mind
 
 Mr Mime
-Level: 30
+Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Barrier
 - Psybeam
@@ -7261,7 +7261,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Calm Mind
 
 Venomoth
-Level: 31
+Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Psybeam
 - Gust
@@ -7785,7 +7785,7 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Mugshot: Yellow
 
 Pidgeot
-Level: 49
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Aerial Ace
 - Feather Dance
@@ -7793,7 +7793,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Whirlwind
 
 Alakazam
-Level: 47
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psychic
 - Future Sight
@@ -7801,7 +7801,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Reflect
 
 Rhydon
-Level: 49
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Take Down
 - Earthquake
@@ -7809,7 +7809,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Scary Face
 
 Arcanine
-Level: 49
+Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Extreme Speed
 - Flamethrower
@@ -7817,7 +7817,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Bite
 
 Exeggutor
-Level: 50
+Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Giga Drain
 - Egg Bomb
@@ -7844,7 +7844,7 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Mugshot: Yellow
 
 Pidgeot
-Level: 49
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Aerial Ace
 - Feather Dance
@@ -7852,7 +7852,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Whirlwind
 
 Alakazam
-Level: 47
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psychic
 - Future Sight
@@ -7860,7 +7860,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Reflect
 
 Rhydon
-Level: 49
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Take Down
 - Earthquake
@@ -7868,7 +7868,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Scary Face
 
 Gyarados
-Level: 49
+Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hydro Pump
 - Dragon Rage
@@ -7876,7 +7876,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Thrash
 
 Arcanine
-Level: 50
+Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Extreme Speed
 - Flamethrower
@@ -7903,7 +7903,7 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Mugshot: Yellow
 
 Pidgeot
-Level: 49
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Aerial Ace
 - Feather Dance
@@ -7911,7 +7911,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Whirlwind
 
 Alakazam
-Level: 47
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psychic
 - Future Sight
@@ -7919,7 +7919,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Reflect
 
 Rhydon
-Level: 49
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Take Down
 - Earthquake
@@ -7927,7 +7927,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Scary Face
 
 Exeggutor
-Level: 49
+Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Giga Drain
 - Egg Bomb
@@ -7935,7 +7935,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Light Screen
 
 Gyarados
-Level: 50
+Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hydro Pump
 - Dragon Rage
