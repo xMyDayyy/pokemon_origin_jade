@@ -342,16 +342,17 @@ Route27_Text_CooltrainerfMeganAfter:
 
 Route27_Text_PsychicGilbertSeen:
 #if GERMAN
-	.string "Lass mich raten, woran du jetzt denkst.\p"
+	.string "Lass mich raten, woran du jetzt\n"
+	.string "denkst.\p"
 	.string "Mmmmmmm…\p"
-	.string "Ich weiß! Du denkst darüber nach, zur\n"
-	.string "Pokémon Liga zu gehen!$"
+	.string "Ich weiß! Du bist der Champ aus\n"
+	.string "Kanto und hast hier etwas vor!$"
 #else
-    .string "Don't say a thing!\p"
-    .string "Let me guess what you're thinking.\p"
-    .string "Mmmmmmm…\p"
-    .string "I got it! You're on the POKéMON\n"
-    .string "LEAGUE challenge!$"
+	.string "Let me guess what is on your mind.\p"
+	.string "Mmmmmmm…\p"
+	.string "I have it! You are the CHAMPION\n"
+	.string "from KANTO, and you are here for\l"
+	.string "a reason!$"
 #endif
 
 Route27_Text_PsychicGilbertBeaten:
@@ -363,13 +364,15 @@ Route27_Text_PsychicGilbertBeaten:
 
 Route27_Text_PsychicGilbertAfter:
 #if GERMAN
-	.string "Mit deinen Fähigkeiten wirst du in der\n"
-	.string "Liga bestehen.\p"
-	.string "Das sagt meine Vorahnung.$"
+	.string "Meine Vorahnung sagt mir, dass du\n"
+	.string "in Johto noch viel vorhast.\p"
+	.string "Und dass es dort nicht leichter\n"
+	.string "wird als in Kanto.$"
 #else
-    .string "With your skills, you'll do well at\n"
-    .string "the LEAGUE.\p"
-    .string "That's what my premonition says.$"
+	.string "My premonition tells me you have\n"
+	.string "much left to do in JOHTO.\p"
+	.string "And that it will be no easier there\n"
+	.string "than it was in KANTO.$"
 #endif
 
 Route27_Text_BirdKeeperJoseSeen:
@@ -478,9 +481,9 @@ Route27_Text_FisherScottSeen:
 	.string "Ich fühle mich so stark, dass ich den\n"
 	.string "Liga-Champ besiegen könnte!$"
 #else
-    .string "I'm feeling great today!\p"
-    .string "I feel like I could boot even the\n"
-    .string "LEAGUE CHAMP!$"
+	.string "I feel great today!\p"
+	.string "I feel strong enough to beat the\n"
+	.string "LEAGUE CHAMPION!$"
 #endif
 
 Route27_Text_FisherScottBeaten:
@@ -493,9 +496,14 @@ Route27_Text_FisherScottBeaten:
 
 Route27_Text_FisherScottAfter:
 #if GERMAN
-	.string "Angeln und Pokémon sind sehr ähnlich.\n"
-	.string "Wenn du einmal aufgibst, ist es vorbei.$"
+	.string "Moment mal. Du kommst aus Kanto…\p"
+	.string "Du bist der Liga-Champ, oder?\p"
+	.string "Dann nehme ich die Niederlage\n"
+	.string "zurück. Das war eine Ehre.$"
 #else
-    .string "Just like in fishing, it's all over\n"
-    .string "in POKéMON if you give up.$"
+	.string "Hold on. You came from KANTO…\p"
+	.string "You are the LEAGUE CHAMPION, are\n"
+	.string "you not?\p"
+	.string "Then I take back my defeat.\n"
+	.string "That was an honour.$"
 #endif
