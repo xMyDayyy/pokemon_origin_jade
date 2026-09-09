@@ -512,20 +512,15 @@ Route39_EventScript_Sign3::
 
 Route39_Text_TrainerTips:
 #if GERMAN
-	.string "Tipps für Trainer\p"
-	.string "Benutze Kopfnuss, um Pokémon aus\n"
-	.string "Bäumen zu schütteln. Von jedem Baum\l"
-	.string "könnte ein anderes Pokémon purzeln!\p"
-	.string "Probiere Kopfnuss also an möglichst\n"
-	.string "vielen verschiedenen Bäumen aus!$"
+	.string "Route 39\p"
+	.string "Nach Norden: Olivia City und der\n"
+	.string "Leuchtturm.\p"
+	.string "Nach Süden: die Farm Bauer.$"
 #else
-	.string "TRAINER TIPS\p"
-	.string "Use HEADBUTT on trees to shake\n"
-	.string "POKéMON out.\p"
-	.string "Different kinds of POKéMON\n"
-	.string "drop out of trees.\p"
-	.string "Use HEADBUTT on any tree\n"
-	.string "you see!$"
+	.string "ROUTE 39\p"
+	.string "North: OLIVINE CITY and the\n"
+	.string "LIGHTHOUSE.\p"
+	.string "South: MOOMOO FARM.$"
 #endif
 
 Route39_Text_DerekRegister:

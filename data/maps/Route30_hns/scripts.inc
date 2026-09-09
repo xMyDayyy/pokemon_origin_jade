@@ -297,17 +297,13 @@ Route30_Text_MrPokemonsHouseSign:
 
 Route30_Text_TrainerTips:
 #if GERMAN
-	.string "Tipps für Trainer\p"
-	.string "Wer einem anderen Trainer die\n"
-	.string "Pokémon klaut, ist ein Dieb!\p"
-	.string "Deshalb dürfen Pokébälle auch nur bei\n"
-	.string "wilden Pokémon eingesetzt werden!$"
+	.string "Route 30\p"
+	.string "Nach Norden: Route 31 und Violet City.\n"
+	.string "Nach Süden: Neuborkia.$"
 #else
-	.string "TRAINER TIPS\p"
-	.string "No stealing other people's\n"
-	.string "POKéMON!\p"
-	.string "POKé BALLS are to be thrown\n"
-	.string "only at wild POKéMON!$"
+	.string "ROUTE 30\p"
+	.string "North: ROUTE 31 and VIOLET CITY.\n"
+	.string "South: NEW BARK TOWN.$"
 #endif
 
 Route30_Text_JoeyRegister:

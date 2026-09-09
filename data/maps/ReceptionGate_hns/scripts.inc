@@ -132,14 +132,16 @@ VictoryRoadGate_Text_LeftBlackBelt:
 
 VictoryRoadGate_Text_RightBlackBelt:
 #if GERMAN
-	.string "Du bist auf dem Weg zur Pokémon Liga,\n"
-	.string "nicht wahr?\p"
-	.string "Die Top Vier sind so stark, dass es\n"
-	.string "einem Angst macht. Sie erwarten dich!$"
+	.string "Du kommst von drüben, oder?\p"
+	.string "Man sieht es an der Art, wie jemand\n"
+	.string "durch die Tür kommt.\p"
+	.string "Hier fängt Johto an. Viel Glück.$"
 #else
-    .string "Off to the POKéMON LEAGUE, are you?\p"
-    .string "The ELITE FOUR are so strong it's\n"
-    .string "scary, and they're ready for you!$"
+	.string "You have come from over there,\n"
+	.string "have you not?\p"
+	.string "You can tell by the way a person\n"
+	.string "walks through that door.\p"
+	.string "JOHTO starts here. Good luck.$"
 #endif
 
 @ ============================================================================

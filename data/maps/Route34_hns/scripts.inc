@@ -356,17 +356,15 @@ Route34_Text_Sign_Route34:
 
 Route34_Text_TrainerTips:
 #if GERMAN
-	.string "Tipps für Trainer\p"
-	.string "Bäume mit Beeren\n"
-	.string "tragen jeden Tag neue Beeren.\p"
-	.string "Merke dir, welche Beeren\n"
-	.string "an den Bäumen wachsen.$"
+	.string "Route 34\p"
+	.string "Die Beerenbäume hier gehören der\n"
+	.string "Pension. Bitte nur nehmen, was\l"
+	.string "am Boden liegt.$"
 #else
-	.string "TRAINER TIPS\p"
-	.string "BERRY trees grow new BERRIES\n"
-	.string "several times a day.\p"
-	.string "Note which trees bear which\n"
-	.string "BERRIES.$"
+	.string "ROUTE 34\p"
+	.string "The BERRY trees here belong to the\n"
+	.string "DAY CARE. Please take only what has\l"
+	.string "fallen.$"
 #endif
 
 Route34_Text_CooltrainerIrene_Seen:

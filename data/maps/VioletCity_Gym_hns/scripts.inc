@@ -232,11 +232,11 @@ VioletGym_Text_BirdKeeperAbe_Beaten:
 
 VioletGym_Text_BirdKeeperAbe_After:
 #if GERMAN
-	.string "Peinlich, gegen einen Anfänger-\n"
-	.string "Trainer zu verlieren…$"
+	.string "Peinlich. Ich hätte wissen müssen,\n"
+	.string "wen ich vor mir habe.$"
 #else
-	.string "This is pathetic, losing to some\n"
-	.string "rookie trainer…$"
+	.string "Embarrassing. I should have known\n"
+	.string "who I was up against.$"
 #endif
 
 VioletGym_Text_GymGuide_Intro:

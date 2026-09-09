@@ -339,17 +339,13 @@ Route43_Sign2:
 
 Route43_TrainerTips:
 #if GERMAN
-    .string "Tipps für Trainer\p"
-    .string "Alle Pokémon haben Vor-\n"
-    .string "und Nachteile, je nach Typ.\p"
-    .string "Haben sie unterschiedliche Typen,\n"
-    .string "kann auch ein schwächeres gewinnen.$"
+	.string "Route 43\p"
+	.string "Zutritt zum Kraftwerk nur mit\n"
+	.string "Genehmigung.\p"
+	.string "Nach Norden: Mahagonia City.$"
 #else
-    .string "TRAINER TIPS\p"
-    .string "All POKéMON have pros and cons\n"
-    .string "depending on their types.\p"
-    .string "If their types differ, a higher-\n"
-    .string "level POKéMON may lose in battle.\p"
-    .string "Learn which types are strong and\n"
-    .string "weak against your POKéMON's type.$"
+	.string "ROUTE 43\p"
+	.string "Entry to the POWER PLANT by\n"
+	.string "permit only.\p"
+	.string "North: MAHOGANY TOWN.$"
 #endif

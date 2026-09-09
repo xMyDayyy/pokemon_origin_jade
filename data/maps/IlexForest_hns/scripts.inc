@@ -758,18 +758,21 @@ IlexForest_Text_Lass:
 
 IlexForest_Text_Signpost:
 #if GERMAN
-	.string "Tipps für Trainer\p"
-	.string "Der Steineichenwald ist so dicht mit\n"
-	.string "Bäumen bewachsen, dass sich der Himmel\l"
-	.string "hinter dem Dickicht nur noch dunkel\l"
-	.string "erahnen lässt.\p"
-	.string "Pass auf, wo du hintrittst! Viele Leute\n"
-	.string "lassen hier ihre Sachen liegen!$"
+	.string "Steineichenwald\p"
+	.string "So dicht bewachsen, dass sich der\n"
+	.string "Himmel hinter dem Dickicht nur noch\l"
+	.string "dunkel erahnen lässt.\p"
+	.string "Pass auf, wo du hintrittst. Hier ist\n"
+	.string "schon manchem etwas aus der Tasche\l"
+	.string "gefallen.$"
 #else
-	.string "ILEX FOREST is so overgrown with\n"
-	.string "trees that you can't see the sky.\p"
-	.string "Please watch out for items that may\n"
-	.string "have been dropped.$"
+	.string "ILEX FOREST\p"
+	.string "So overgrown with trees that the sky\n"
+	.string "is barely a glimmer through the\l"
+	.string "canopy.\p"
+	.string "Watch where you tread. More than one\n"
+	.string "traveller has dropped something\l"
+	.string "here.$"
 #endif
 
 IlexForest_Text_Shrine:

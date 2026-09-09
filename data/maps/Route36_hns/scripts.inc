@@ -451,34 +451,24 @@ Route36_Text_Sign_RuinsNorth:
 
 Route36_Text_Tips1:
 #if GERMAN
-	.string "Tipps für Trainer Pokémon-Werte\n"
-	.string "unterscheiden sich, selbst bei gleicher\l"
-	.string "Art.\p"
-	.string "Anfangs wirken sie ähnlich.\p"
-	.string "Doch mit dem Wachstum werden\n"
-	.string "die Unterschiede deutlich.$"
+	.string "Route 36\p"
+	.string "Westlich liegt Teak City,\n"
+	.string "östlich die Ruinen von Alph.$"
 #else
-	.string "TRAINER TIPS\n"
-	.string "POKéMON stats vary--even within\l"
-	.string "the same species.\p"
-	.string "Their stats may be similar at first.\p"
-	.string "However, differences will become\n"
-	.string "pronounced as the POKéMON grow.$"
+	.string "ROUTE 36\p"
+	.string "ECRUTEAK CITY lies to the west,\n"
+	.string "the RUINS OF ALPH to the east.$"
 #endif
 
 Route36_Text_Tips2:
 #if GERMAN
-	.string "Tipps für Trainer Nutze Schaufler, um\n"
-	.string "zum Eingang eines Ortes\l"
-	.string "zurückzukehren.\p"
-	.string "Sehr praktisch zum Erkunden von\n"
-	.string "Höhlen und besonderen Orten.$"
+	.string "Route 36\p"
+	.string "Achtung, Wurzeln und loses Geröll.\n"
+	.string "Wanderer bitte vorsichtig gehen.$"
 #else
-	.string "TRAINER TIPS\n"
-	.string "Use DIG to return to the entrance of\n"
-	.string "any place.\p"
-	.string "It is convenient for exploring\n"
-	.string "caves and other landmarks.$"
+	.string "ROUTE 36\p"
+	.string "Watch for roots and loose stones.\n"
+	.string "Travellers, tread carefully.$"
 #endif
 
 Route36_Text_AlanRegister:

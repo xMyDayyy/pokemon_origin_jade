@@ -156,16 +156,13 @@ Route26_Text_GavenRematchDefeat:
 
 Route26_Text_GavenPostRematch:
 #if GERMAN
-	.string "Um zur Pokémon Liga zu kommen,\n"
-	.string "musst du durch die Siegesstraße.\p"
-	.string "Aber die Siegesstraße hat es in\n"
-	.string "sich.\p"
-	.string "Fast niemand wagt sich dorthin!$"
+	.string "Die Siegesstraße hat es in sich.\p"
+	.string "Du bist da durch und stehst trotzdem\n"
+	.string "noch. Das sagt genug.$"
 #else
-    .string "To get to POKéMON LEAGUE, you have\n"
-    .string "to get through VICTORY ROAD.\p"
-    .string "But VICTORY ROAD is tough.\p"
-    .string "Practically nobody goes there!$"
+	.string "VICTORY ROAD is no small thing.\p"
+	.string "You went through it and you are\n"
+	.string "still standing. That says enough.$"
 #endif
 
 Route26_Text_CooltrainerfJoyceSeen:

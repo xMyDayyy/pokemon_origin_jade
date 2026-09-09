@@ -1319,13 +1319,15 @@ NewBarkTown_Lab_Text_AideAlwaysBusy:
 
 NewBarkTown_Lab_Text_AideSave:
 #if GERMAN
-	.string "Vergiss nicht, regelmäßig zu speichern!\p"
-	.string "Drücke Start und dann Sichern!$"
+	.string "Der Professor arbeitet oft bis in die\n"
+	.string "Nacht.\p"
+	.string "Seit deine Lieferung da ist, geht er\n"
+	.string "gar nicht mehr heim.$"
 #else
-	.string "Don't forget to save your game\n"
-	.string "regularly!\p"
-	.string "Press the START button, then\n"
-	.string "SAVE the game!$"
+	.string "The PROFESSOR often works late\n"
+	.string "into the night.\p"
+	.string "Since your delivery arrived, he has\n"
+	.string "not gone home at all.$"
 #endif
 
 NewBarkTown_Lab_Text_AideTheftTestimony:
