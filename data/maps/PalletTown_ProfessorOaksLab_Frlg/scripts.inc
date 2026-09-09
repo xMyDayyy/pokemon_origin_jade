@@ -1552,9 +1552,8 @@ PalletTown_ProfessorOaksLab_Text_OakGsBallMission::
 	.string "Professor Lind. Er kennt sich mit\l"
 	.string "solchen Bällen besser aus als ich.\p"
 	.string "Bring ihn zu ihm, {PLAYER}.\p"
-	.string "Der Weg nach Johto fuehrt ueber das\n"
-	.string "Torhaus an Route 22. Geh dort nach\l"
-	.string "Süden.\p"
+	.string "Im Süden von Route 23 kommst du\n"
+	.string "nach Johto.\p"
 	.string "Ich weiß, dass ich viel verlange.\n"
 	.string "Aber es gibt niemanden, dem ich\l"
 	.string "das lieber anvertrauen würde.$"
@@ -1565,8 +1564,8 @@ PalletTown_ProfessorOaksLab_Text_OakGsBallMission::
 	.string "NEW BARK TOWN, in JOHTO. He knows\l"
 	.string "far more about such BALLS than I do.\p"
 	.string "Take it to him, {PLAYER}.\p"
-	.string "The way to JOHTO runs through the\n"
-	.string "gate on ROUTE 22. Head south there.\p"
+	.string "Head south from ROUTE 23 and you\n"
+	.string "will reach JOHTO.\p"
 	.string "I know this is a great deal to ask.\n"
 	.string "But there is no one I would rather\l"
 	.string "entrust it to.$"
@@ -1585,13 +1584,13 @@ PalletTown_ProfessorOaksLab_Text_OakGsBallReminder::
 #if GERMAN
 	.string "Eich: Professor Lind wartet in\n"
 	.string "Neuborkia auf den GS-Ball.\p"
-	.string "Über das Torhaus an Route 22 nach\n"
-	.string "Süden, dann findest du den Weg.$"
+	.string "Im Süden von Route 23 geht es\n"
+	.string "hinüber.$"
 #else
 	.string "OAK: PROF. ELM is waiting for the\n"
 	.string "GS BALL in NEW BARK TOWN.\p"
-	.string "Through the gate on ROUTE 22 and\n"
-	.string "head south. You will find the way.$"
+	.string "Head south from ROUTE 23 and you\n"
+	.string "will get there.$"
 #endif
 
 PalletTown_ProfessorOaksLab_Text_OakWhichOneWillYouChoose::
