@@ -15,6 +15,13 @@ Debug_EventScript_HnsWarpOlivinePort::
 	waitstate
 	end
 
+@ Testwerkzeug: springt in Prof. Eichs Labor in Alabastia, wo nach dem
+@ Kanto-Durchlauf der GS-Ball uebergeben wird.
+Debug_EventScript_JohtoTestWarpOaksLab::
+	warp MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB, 6, 11
+	waitstate
+	end
+
 Debug_CheatStart::
 	setflag FLAG_SYS_POKEMON_GET
 	setflag FLAG_RESCUED_BIRCH

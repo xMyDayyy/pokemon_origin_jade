@@ -275,6 +275,7 @@ static void DebugAction_Util_WatchCredits(u8 taskId);
 static void DebugAction_Util_CheatStart(u8 taskId);
 static void DebugAction_Util_HnsFinishJohtoKanto(u8 taskId);
 static void DebugAction_Util_KantoTest(u8 taskId);
+static void DebugAction_Util_JohtoTest(u8 taskId);
 static void DebugAction_Util_KantoRepair(u8 taskId);
 
 static void DebugAction_TimeMenu_ChangeTimeOfDay(u8 taskId);
@@ -378,6 +379,7 @@ extern const u8 Debug_VarsNotSetBattleConfigMessage[];
 extern const u8 Debug_FlagsAndVarNotSetBattleConfigMessage[];
 extern const u8 Debug_EventScript_FontTest[];
 extern const u8 Debug_EventScript_HnsWarpOlivinePort[];
+extern const u8 Debug_EventScript_JohtoTestWarpOaksLab[];
 extern const u8 Debug_EventScript_CheckEVs[];
 extern const u8 Debug_EventScript_CheckIVs[];
 extern const u8 Debug_EventScript_GivePokerus[];
@@ -588,6 +590,7 @@ static const struct DebugMenuOption sDebugMenu_Actions_Utilities[] =
     { COMPOUND_STRING("Cheat start"),       DebugAction_Util_CheatStart },
     { COMPOUND_STRING("Hoenn Test"), DebugAction_Util_HnsFinishJohtoKanto },
     { COMPOUND_STRING("Kanto Test"), DebugAction_Util_KantoTest },
+    { COMPOUND_STRING("Johto Test"), DebugAction_Util_JohtoTest },
     { COMPOUND_STRING("Kanto Flag-Reparatur"), DebugAction_Util_KantoRepair },
     { COMPOUND_STRING("Berry Functions…"),  DebugAction_OpenSubMenu, sDebugMenu_Actions_BerryFunctions },
     { COMPOUND_STRING("EWRAM Counters…"),   DebugAction_ExecuteScript, Debug_EventScript_EWRAMCounters },
@@ -2001,6 +2004,93 @@ static void DebugAction_Util_KantoTest(u8 taskId)
 }
 #else
 static void DebugAction_Util_KantoTest(u8 taskId)
+{
+    Debug_DestroyMenu_Full(taskId);
+    ScriptContext_Enable();
+}
+#endif
+
+#if IS_HNS
+// Testwerkzeug fuer den Uebergang nach Johto: setzt den Spielstand auf das
+// Ende von Kanto - acht Orden, Champion, alle Flugpunkte der Region - und
+// springt in Prof. Eichs Labor. Dort wartet der GS-Ball; von da an laesst
+// sich die gesamte Kette bis zu Prof. Lind in Neuborkia durchspielen.
+static void DebugAction_Util_JohtoTest(u8 taskId)
+{
+    static const u16 sKantoVisitedFlags[] =
+    {
+        FLAG_VISITED_PALLET_TOWN,    FLAG_VISITED_OAKS_LAB,
+        FLAG_VISITED_VIRIDIAN_CITY,  FLAG_VISITED_PEWTER_CITY,
+        FLAG_VISITED_CERULEAN_CITY,  FLAG_VISITED_VERMILION_CITY,
+        FLAG_VISITED_LAVENDER_TOWN,  FLAG_VISITED_CELADON_CITY,
+        FLAG_VISITED_SAFFRON_CITY,   FLAG_VISITED_FUCHSIA_CITY,
+        FLAG_VISITED_CINNABAR_ISLAND, FLAG_VISITED_INDIGO_PLATEAU,
+    };
+    // Testteam auf Ligahoehe, nicht auf Kampfbalance ausgelegt.
+    static const u16 sTeamSpecies[] =
+    {
+        SPECIES_CHARIZARD, SPECIES_GENGAR,    SPECIES_LAPRAS,
+        SPECIES_ALAKAZAM,  SPECIES_SANDSLASH, SPECIES_ZAPDOS,
+    };
+    u32 i;
+    u16 f;
+
+    // Kanto-Orden. In Origin Jade ist Kanto die erste Region und benutzt
+    // FLAG_BADGE01..08; die Bloecke 09-16 gehoeren Johto.
+    for (f = FLAG_BADGE01_GET; f <= FLAG_BADGE08_GET; f++)
+        FlagSet(f);
+
+    FlagSet(FLAG_SYS_GAME_CLEAR);
+    FlagSet(FLAG_IS_KANTO_CHAMPION);
+    FlagSet(FLAG_SYS_POKEDEX_GET);
+    FlagSet(FLAG_SYS_POKEMON_GET);
+    FlagSet(FLAG_SYS_POKENAV_GET);
+    FlagSet(FLAG_HAS_MATCH_CALL);
+    FlagSet(FLAG_ADDED_MATCH_CALL_TO_POKENAV);
+    FlagSet(FLAG_ADVENTURE_STARTED);
+    FlagSet(FLAG_RECEIVED_RUNNING_SHOES);
+    FlagSet(FLAG_SYS_B_DASH);
+    FlagSet(FLAG_SET_WALL_CLOCK);
+    FlagSet(FLAG_EXP_SHARE_ENABLED);
+    // Der HnS-Spielstart im Haus in Neuborkia bleibt still, wie im regulaeren
+    // Spielstand auch.
+    VarSet(VAR_NEWBARK_TOWN_STATE, 5);
+    FlagSet(FLAG_MOM_VISITED);
+    VarSet(VAR_PALLET_HOUSE_CLOCK, 1);
+
+    for (i = 0; i < ARRAY_COUNT(sKantoVisitedFlags); i++)
+        FlagSet(sKantoVisitedFlags[i]);
+
+    // Eich hat den Spieler nach der Ruhmeshalle ins Labor bestellt. Damit
+    // greift beim Ansprechen sofort die GS-Ball-Uebergabe.
+    VarSet(VAR_JOHTO_HANDOVER, 1);
+    // Eich steht im Labor - regulaer raeumt das PalletTown_Frlg beim ersten
+    // Betreten weg, der Testsprung ueberspringt das.
+    FlagClear(FLAG_HIDE_OAK_IN_HIS_LAB);
+
+    ZeroPlayerPartyMons();
+    for (i = 0; i < ARRAY_COUNT(sTeamSpecies); i++)
+        ScriptGiveMon(sTeamSpecies[i], 52, ITEM_NONE);
+    CalculatePlayerPartyCount();
+    SetMoney(&gSaveBlock1Ptr->money, 100000);
+
+    // Alle VMs, damit die Routen 26 und 27 begehbar sind.
+    for (i = NUM_TECHNICAL_MACHINES + 1; i <= NUM_ALL_MACHINES; i++)
+        AddBagItem(GetTMHMItemId(i), 1);
+    AddBagItem(ITEM_RARE_CANDY, MAX_BAG_ITEM_CAPACITY);
+
+    // Kanto-Dex vollstaendig, Johto bleibt offen.
+    for (i = 1; i <= NATIONAL_DEX_MEW; i++)
+    {
+        GetSetPokedexFlag(i, FLAG_SET_SEEN);
+        GetSetPokedexFlag(i, FLAG_SET_CAUGHT);
+    }
+
+    PlaySE(SE_EXP_MAX);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_EventScript_JohtoTestWarpOaksLab);
+}
+#else
+static void DebugAction_Util_JohtoTest(u8 taskId)
 {
     Debug_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
