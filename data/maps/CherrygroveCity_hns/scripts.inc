@@ -279,108 +279,105 @@ CherryGroveCity_Silver_AfterBattle::
 
 CherrygroveCity_Text_GuideGentIntro:
 #if GERMAN
-	.string "Du bist noch nicht lange Trainer, oder?\n"
-	.string "Aha, Volltreffer! Wusste ich’s doch!\p"
-	.string "Aber das ist schon in Ordnung. Es ist\n"
-	.string "noch kein Meister vom Himmel gefallen!\p"
-	.string "Keine Sorge, ich bringe dir gerne ein\n"
-	.string "paar Tricks bei!\p"
-	.string "Komm, folge mir!$"
+	.string "Hallo! Dich habe ich hier noch nie\n"
+	.string "gesehen.\p"
+	.string "Ich zeige Neuankömmlingen gern die\n"
+	.string "Stadt. Kirschheim ist klein, aber sie\l"
+	.string "hat ihre Geschichten.\p"
+	.string "Hast du einen Moment?$"
 #else
-	.string "You're a rookie trainer,\n"
-	.string "aren't you? I can tell!\p"
-	.string "That's OK! Everyone is a\n"
-	.string "rookie at some point!\p"
-	.string "If you'd like, I can teach\n"
-	.string "you a few things.$"
+	.string "Hello! I have never seen you here\n"
+	.string "before.\p"
+	.string "I like showing newcomers around.\n"
+	.string "CHERRYGROVE is small, but it has\l"
+	.string "its stories.\p"
+	.string "Do you have a moment?$"
 #endif
 
 CherrygroveCity_Text_GuideGentTourStart:
 #if GERMAN
-	.string "Na gut!\n"
-	.string "Los geht’s!$"
+	.string "Wunderbar! Dann komm mit.$"
 #else
-	.string "OK, then!\n"
-	.string "Follow me!$"
+	.string "Wonderful! Come along then.$"
 #endif
 
 CherrygroveCity_Text_GuideGentPokecenter:
 #if GERMAN
-	.string "Das hier ist ein Pokémon-Center.\n"
-	.string "Wenn deine Pokémon verletzt sind, und\l"
-	.string "du sie hier abgibst, werden sie\l"
-	.string "umgehend für dich geheilt!\p"
-	.string "Ich kann dir schon jetzt sagen, dass du\n"
-	.string "hier bald Stammkunde sein wirst!\l"
-	.string "Du kannst mich beim Wort nehmen!$"
+	.string "Unser Pokémon-Center.\p"
+	.string "Die Schwester hier kennt jeden\n"
+	.string "Trainer, der je nach Johto gekommen\l"
+	.string "ist. Und sie vergisst keinen.\p"
+	.string "Frag sie mal nach früher.$"
 #else
-	.string "This is a POKéMON CENTER.\p"
-	.string "They heal your POKéMON in no\n"
-	.string "time at all.\p"
-	.string "You'll be relying on them a lot,\n"
-	.string "so you better learn about them.$"
+	.string "Our POKéMON CENTER.\p"
+	.string "The nurse here has met every trainer\n"
+	.string "who ever came to JOHTO. And she\l"
+	.string "forgets none of them.\p"
+	.string "Ask her about the old days sometime.$"
 #endif
 
 CherrygroveCity_Text_GuideGentMart:
 #if GERMAN
-	.string "Das hier ist ein Pokémon-Supermarkt.\n"
-	.string "Hier werden Bälle verkauft, mit denen du\l"
-	.string "Pokémon fangen kannst, und noch viele\l"
-	.string "weitere nützliche Items.$"
+	.string "Der Markt.\p"
+	.string "Die Lieferungen kommen über See,\n"
+	.string "deshalb ist das Sortiment hier oft\l"
+	.string "anders als im Landesinneren.\p"
+	.string "Ein Blick lohnt sich.$"
 #else
-	.string "This is a POKéMON MART.\p"
-	.string "They sell BALLS for catching wild\n"
-	.string "POKéMON and other useful items.$"
+	.string "The MART.\p"
+	.string "Deliveries come in by sea, so the\n"
+	.string "stock here often differs from what\l"
+	.string "you find inland.\p"
+	.string "Worth a look.$"
 #endif
 
 CherrygroveCity_Text_GuideGentRoute30:
 #if GERMAN
-	.string "Route 30 liegt hier entlang.\p"
-	.string "Dort kämpfen Trainer mit ihren\n"
-	.string "geschätzten Pokémon.$"
+	.string "Dort geht es auf Route 30 und weiter\n"
+	.string "nach Violet City.\p"
+	.string "Wer nach Johto kommt, nimmt fast\n"
+	.string "immer diesen Weg.$"
 #else
-	.string "ROUTE 30 is out this way.\p"
-	.string "Trainers will be battling\n"
-	.string "their prized POKéMON there.$"
+	.string "That way lies ROUTE 30 and on to\n"
+	.string "VIOLET CITY.\p"
+	.string "Almost everyone who comes to JOHTO\n"
+	.string "takes that road.$"
 #endif
 
 CherrygroveCity_Text_GuideGentSea:
 #if GERMAN
-	.string "Und das ist das Meer, wie du siehst.\p"
-	.string "Bestimmte Pokémon halten sich \n"
-	.string "ausschließlich im Wasser auf!$"
+	.string "Und das Meer.\p"
+	.string "Bei klarem Wetter sieht man von hier\n"
+	.string "bis zur Küste von Kanto hinüber.\p"
+	.string "Manche sagen, das sei nur Einbildung.$"
 #else
-	.string "This is the sea, as you can see.\p"
-	.string "Some POKéMON are found only in\n"
-	.string "in water.$"
+	.string "And the sea.\p"
+	.string "On a clear day you can see all the\n"
+	.string "way across to the KANTO coast.\p"
+	.string "Some say that is only imagination.$"
 #endif
 
 CherrygroveCity_Text_GuideGentMap:
 #if GERMAN
-	.string "Hier…\p"
-	.string "Das ist mein Haus! Danke für deine\n"
-	.string "Gesellschaft.\p"
-	.string "Wenn du dich mal verirrst, sieh auf\n"
-	.string "deine Karte!\p"
-	.string "Ich wünsche dir viel Glück auf deiner\n"
-	.string "Reise!$"
+	.string "Und hier wohne ich.\p"
+	.string "Danke für deine Gesellschaft. Ich rede\n"
+	.string "gern, wenn mir jemand zuhört.\p"
+	.string "Viel Glück, wo auch immer du hinwillst.$"
 #else
-	.string "Here…\p"
-	.string "It's my house! Thanks for\n"
-	.string "your company.\p"
-	.string "Oh, and if you're ever lost, check\n"
-	.string "the MAP on your POKéGEAR!\p"
-	.string "I wish you luck on your journey!$"
+	.string "And this is where I live.\p"
+	.string "Thank you for your company. I do like\n"
+	.string "to talk when someone listens.\p"
+	.string "Good luck, wherever you are headed.$"
 #endif
 
 CherrygroveCity_Text_GuideGentDecline:
 #if GERMAN
-	.string "Oh… Dabei mache ich das so gern…\p"
-	.string "Gut. Komm zu mir, wann immer du willst.$"
+	.string "Oh… Dabei mache ich das so gern.\p"
+	.string "Gut. Komm zu mir, wann immer du\n"
+	.string "willst.$"
 #else
-	.string "Oh… It's something I enjoy\n"
-	.string "doing…\p"
-	.string "Fine. Come see me whenever\n"
+	.string "Oh… And I do so enjoy it.\p"
+	.string "Very well. Come and see me whenever\n"
 	.string "you like.$"
 #endif
 
