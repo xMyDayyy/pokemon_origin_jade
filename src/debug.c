@@ -2026,11 +2026,70 @@ static void DebugAction_Util_JohtoTest(u8 taskId)
         FLAG_VISITED_SAFFRON_CITY,   FLAG_VISITED_FUCHSIA_CITY,
         FLAG_VISITED_CINNABAR_ISLAND, FLAG_VISITED_INDIGO_PLATEAU,
     };
-    // Testteam auf Ligahoehe, nicht auf Kampfbalance ausgelegt.
+    // Dasselbe Team wie im Kanto-Test.
     static const u16 sTeamSpecies[] =
     {
         SPECIES_CHARIZARD, SPECIES_GENGAR,    SPECIES_LAPRAS,
         SPECIES_ALAKAZAM,  SPECIES_SANDSLASH, SPECIES_ZAPDOS,
+    };
+    // Alles, was der Spielanfang bis zur Uebergabe des Pokedex abhandelt.
+    static const u16 sEarlyGameFlags[] =
+    {
+        FLAG_ADVENTURE_STARTED,     FLAG_OPENED_START_MENU,
+        FLAG_SYS_POKEMON_GET,       FLAG_SYS_POKEDEX_GET,
+        FLAG_BEAT_RIVAL_IN_OAKS_LAB,
+        FLAG_GOT_POKEBALLS_FROM_OAK_AFTER_22_RIVAL,
+        FLAG_OAK_SKIP_22_RIVAL_CHECK,
+        FLAG_PALLET_LADY_NOT_BLOCKING_SIGN,
+        FLAG_HIDE_PALLET_HOUSE_DAISY,
+        FLAG_HIDE_RIVALS_HOUSE_DAISY,
+        FLAG_RECEIVED_RUNNING_SHOES, FLAG_SYS_B_DASH,
+        FLAG_SET_WALL_CLOCK,        FLAG_EXP_SHARE_ENABLED,
+        FLAG_HAS_MATCH_CALL,        FLAG_ADDED_MATCH_CALL_TO_POKENAV,
+        FLAG_SYS_POKENAV_GET,
+    };
+    // Alle Variablen, die in Kanto Szenen ausloesen, jeweils auf einen Wert
+    // hinter ihrem letzten Triggerwert. Ohne das laufen beim Testdurchgang
+    // ueberall Szenen an, die der Spieler laengst hinter sich haben muesste -
+    // der Rivale in Azuria, Rocket im Mondberg, die Silph-Szenen und so fort.
+    // Ermittelt aus allen map_script_2- und coord_event-Eintraegen der
+    // gebauten FRLG-Karten. VAR_TEMP_*, VAR_TRAIN und die
+    // Siegesstrassen-Felsbrocken sind bewusst ausgenommen: die ersten werden
+    // beim Kartenwechsel zurueckgesetzt, die anderen steuern Raetsel, die sich
+    // beim Betreten neu aufbauen.
+    static const struct { u16 var; u16 value; } sKantoSceneVars[] =
+    {
+        { VAR_MAP_SCENE_CERULEAN_CITY_RIVAL, 1 },
+        { VAR_MAP_SCENE_CERULEAN_CITY_ROCKET, 1 },
+        { VAR_MAP_SCENE_CINNABAR_ISLAND, 4 },
+        { VAR_MAP_SCENE_CINNABAR_ISLAND_2, 2 },
+        { VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 4 },
+        { VAR_MAP_SCENE_INDIGO_PLATEAU_EXTERIOR, 2 },
+        { VAR_MAP_SCENE_MT_MOON_B2F, 1 },
+        { VAR_MAP_SCENE_PALLET_TOWN_OAK, 3 },
+        { VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F, 1 },
+        { VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 8 },
+        { VAR_MAP_SCENE_PEWTER_CITY, 2 },
+        { VAR_MAP_SCENE_PEWTER_CITY_MUSEUM_1F, 1 },
+        { VAR_MAP_SCENE_POKEMON_LEAGUE, 4 },
+        { VAR_MAP_SCENE_POKEMON_TOWER_2F, 1 },
+        { VAR_MAP_SCENE_POKEMON_TOWER_6F, 1 },
+        { VAR_MAP_SCENE_ROUTE16, 2 },
+        { VAR_MAP_SCENE_ROUTE22, 4 },
+        { VAR_MAP_SCENE_ROUTE23, 1 },
+        { VAR_MAP_SCENE_ROUTE24, 1 },
+        { VAR_MAP_SCENE_ROUTE5_ROUTE6_ROUTE7_ROUTE8_GATES, 1 },
+        { VAR_MAP_SCENE_SAFFRON_CITY_DOJO, 1 },
+        { VAR_MAP_SCENE_SAFFRON_CITY_POKEMON_TRAINER_FAN_CLUB, 2 },
+        { VAR_MAP_SCENE_SEAFOAM_ISLANDS_B4F, 2 },
+        { VAR_MAP_SCENE_SILPH_CO_11F, 1 },
+        { VAR_MAP_SCENE_SILPH_CO_7F, 1 },
+        { VAR_MAP_SCENE_S_S_ANNE_2F_CORRIDOR, 1 },
+        { VAR_MAP_SCENE_VERMILION_CITY, 3 },
+        { VAR_MAP_SCENE_VIRIDIAN_CITY_GYM_DOOR, 1 },
+        { VAR_MAP_SCENE_VIRIDIAN_CITY_MART, 1 },
+        { VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 2 },
+        { VAR_PALLET_HOUSE_INTRO, 1 },
     };
     u32 i;
     u16 f;
@@ -2041,17 +2100,12 @@ static void DebugAction_Util_JohtoTest(u8 taskId)
         FlagSet(f);
 
     FlagSet(FLAG_SYS_GAME_CLEAR);
+    // Nur der Kanto-Titel. FLAG_IS_CHAMPION ist in diesem Aufbau der
+    // Johto-Titel; die Top Vier dort entscheiden daran, ob sie einen
+    // Erstkampf oder eine Revanche fuehren.
     FlagSet(FLAG_IS_KANTO_CHAMPION);
-    FlagSet(FLAG_SYS_POKEDEX_GET);
-    FlagSet(FLAG_SYS_POKEMON_GET);
-    FlagSet(FLAG_SYS_POKENAV_GET);
-    FlagSet(FLAG_HAS_MATCH_CALL);
-    FlagSet(FLAG_ADDED_MATCH_CALL_TO_POKENAV);
-    FlagSet(FLAG_ADVENTURE_STARTED);
-    FlagSet(FLAG_RECEIVED_RUNNING_SHOES);
-    FlagSet(FLAG_SYS_B_DASH);
-    FlagSet(FLAG_SET_WALL_CLOCK);
-    FlagSet(FLAG_EXP_SHARE_ENABLED);
+    for (i = 0; i < ARRAY_COUNT(sEarlyGameFlags); i++)
+        FlagSet(sEarlyGameFlags[i]);
     // Der HnS-Spielstart im Haus in Neuborkia bleibt still, wie im regulaeren
     // Spielstand auch.
     VarSet(VAR_NEWBARK_TOWN_STATE, 5);
@@ -2060,6 +2114,8 @@ static void DebugAction_Util_JohtoTest(u8 taskId)
 
     for (i = 0; i < ARRAY_COUNT(sKantoVisitedFlags); i++)
         FlagSet(sKantoVisitedFlags[i]);
+    for (i = 0; i < ARRAY_COUNT(sKantoSceneVars); i++)
+        VarSet(sKantoSceneVars[i].var, sKantoSceneVars[i].value);
 
     // Eich hat den Spieler nach der Ruhmeshalle ins Labor bestellt. Damit
     // greift beim Ansprechen sofort die GS-Ball-Uebergabe.
@@ -2070,17 +2126,19 @@ static void DebugAction_Util_JohtoTest(u8 taskId)
 
     ZeroPlayerPartyMons();
     for (i = 0; i < ARRAY_COUNT(sTeamSpecies); i++)
-        ScriptGiveMon(sTeamSpecies[i], 52, ITEM_NONE);
+        ScriptGiveMon(sTeamSpecies[i], MAX_LEVEL, ITEM_NONE);
     CalculatePlayerPartyCount();
     SetMoney(&gSaveBlock1Ptr->money, 100000);
 
-    // Alle VMs, damit die Routen 26 und 27 begehbar sind.
-    for (i = NUM_TECHNICAL_MACHINES + 1; i <= NUM_ALL_MACHINES; i++)
-        AddBagItem(GetTMHMItemId(i), 1);
+    // VM01 bis VM06: Zerschneider, Fliegen, Surfer, Staerke, Blitz,
+    // Zertruemmerer. Kaskade, Strudel und Taucher kommen erst spaeter.
+    for (i = ITEM_HM01; i <= ITEM_HM06; i++)
+        AddBagItem(i, 1);
     AddBagItem(ITEM_RARE_CANDY, MAX_BAG_ITEM_CAPACITY);
 
-    // Kanto-Dex vollstaendig, Johto bleibt offen.
-    for (i = 1; i <= NATIONAL_DEX_MEW; i++)
+    // 185 Arten im Dex - ein Stand, wie ihn ein gruendlicher Kanto-Durchgang
+    // hinterlaesst, ohne den Dex vollstaendig zu machen.
+    for (i = 1; i <= 185; i++)
     {
         GetSetPokedexFlag(i, FLAG_SET_SEEN);
         GetSetPokedexFlag(i, FLAG_SET_CAUGHT);
