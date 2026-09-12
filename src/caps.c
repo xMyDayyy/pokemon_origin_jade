@@ -70,10 +70,14 @@ u32 GetCurrentLevelCap(void)
             badgeCount = 8;
 
 #if IS_HNS
-        if (FlagGet(FLAG_IS_KANTO_CHAMPION))
+        // Origin Jade laeuft Kanto, Johto, Hoenn. FLAG_IS_KANTO_CHAMPION faellt
+        // also zuerst, FLAG_IS_CHAMPION ist der Johto-Titel und kommt danach.
+        // In HnS war die Reihenfolge umgekehrt, deshalb hingen die beiden
+        // Deckel vertauscht.
+        if (FlagGet(FLAG_IS_CHAMPION))
             return MAX_LEVEL;
 
-        if (FlagGet(FLAG_IS_CHAMPION))
+        if (FlagGet(FLAG_IS_KANTO_CHAMPION))
             return KANTO_MAX_LEVEL;
 #else
         if (FlagGet(FLAG_IS_CHAMPION))
