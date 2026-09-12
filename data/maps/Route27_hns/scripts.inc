@@ -266,11 +266,13 @@ Route27_Text_CooltrainerfReenaBeaten:
 
 Route27_Text_CooltrainerfReenaAfter:
 #if GERMAN
-	.string "Du bist nur ein Kind, aber ich\n"
-	.string "unterschätze dich nicht.$"
+	.string "Ich habe dich unterschätzt.\p"
+	.string "Das passiert mir hier draußen selten\n"
+	.string "zweimal.$"
 #else
-    .string "You're just a kid, but you're not\n"
-    .string "to be underestimated either.$"
+	.string "I underestimated you.\p"
+	.string "Out here that rarely happens to me\n"
+	.string "twice.$"
 #endif
 
 Route27_Text_ReenaRegister:
@@ -326,18 +328,17 @@ Route27_Text_CooltrainerfMeganBeaten:
 
 Route27_Text_CooltrainerfMeganAfter:
 #if GERMAN
-	.string "Ich vergleiche entwickelte und nicht\n"
-	.string "entwickelte Pokémon miteinander und\l"
-	.string "erforsche so ihre Eigenschaften.\p"
-	.string "Entwickelte Pokémon sind zwar stärker,\n"
-	.string "aber sie erlernen erst spät Attacken.$"
+	.string "Hier an der Grenze treffe ich Pokémon\n"
+	.string "aus beiden Regionen.\p"
+	.string "Manche sehen gleich aus und\n"
+	.string "verhalten sich völlig verschieden.\p"
+	.string "Das schreibe ich alles auf.$"
 #else
-    .string "I'm checking out pre- and post-\n"
-    .string "evolution POKéMON.\p"
-    .string "Evolution really does make\n"
-    .string "POKéMON stronger.\p"
-    .string "But evolved forms also learn\n"
-    .string "moves later on.$"
+	.string "Here at the border I meet POKéMON\n"
+	.string "from both regions.\p"
+	.string "Some look alike and behave nothing\n"
+	.string "like each other.\p"
+	.string "I write it all down.$"
 #endif
 
 Route27_Text_PsychicGilbertSeen:
