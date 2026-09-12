@@ -433,6 +433,13 @@ NewBarkTown_Lab_EventScript_PoliceYes::
 	waitmovement 0
 	msgbox NewBarkTown_Lab_Text_ElmAfterTheft4, MSGBOX_DEFAULT
 	closemessage
+	@ Uebergang nach Johto: Der Spieler bringt seinen Pokedex aus Kanto mit.
+	@ Statt eines neuen Geraets ruestet Lind das vorhandene fuer Johto auf.
+	msgbox NewBarkTown_Lab_Text_ElmJohtoDex, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_ITEM
+	message NewBarkTown_Lab_Text_JohtoDexUpgrade
+	waitfanfare
+	closemessage
 	setvar VAR_NEWBARKTOWN_LABSTATE, 5
 	setvar VAR_NEWBARK_TOWN_STATE, 4
 	setflag FLAG_HIDE_MOMS_FRIEND
@@ -1068,6 +1075,33 @@ NewBarkTown_Lab_Text_ElmAfterTheft4:
 	.string "championship will be a long one.\p"
 	.string "Before you leave, make sure\n"
 	.string "that you talk to your mom.$"
+#endif
+
+NewBarkTown_Lab_Text_ElmJohtoDex:
+#if GERMAN
+	.string "Ach, und noch etwas.\p"
+	.string "Dein Pokédex stammt aus Kanto. Für\n"
+	.string "unsere Arten hier fehlen ihm die\l"
+	.string "Einträge.\p"
+	.string "Gib ihn mir kurz… so.\p"
+	.string "Jetzt zählt er auch, was dir in Johto\n"
+	.string "begegnet.$"
+#else
+	.string "Oh, and one more thing.\p"
+	.string "Your POKéDEX comes from KANTO. It\n"
+	.string "has no entries for our species here.\p"
+	.string "Let me have it for a moment… there.\p"
+	.string "Now it counts what you meet in JOHTO\n"
+	.string "as well.$"
+#endif
+
+NewBarkTown_Lab_Text_JohtoDexUpgrade:
+#if GERMAN
+	.string "Der Pokédex von {PLAYER} wurde für\n"
+	.string "Johto erweitert!$"
+#else
+	.string "{PLAYER}'s POKéDEX was upgraded\n"
+	.string "for JOHTO!$"
 #endif
 
 NewBarkTown_Lab_Text_ElmStudyingEgg:

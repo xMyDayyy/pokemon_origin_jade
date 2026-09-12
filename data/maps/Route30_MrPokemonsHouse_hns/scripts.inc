@@ -23,27 +23,11 @@ MrPokemonHouse_EventScript_GiveEgg::
 
 	msgbox MrPokemonHouse_Text_Intro3, MSGBOX_DEFAULT
 	msgbox MrPokemonHouse_Text_Intro4, MSGBOX_DEFAULT
-	turnobject LOCALID_ROUTE30_OAK, DIR_WEST
 	msgbox MrPokemonHouse_Text_Intro5, MSGBOX_DEFAULT
 	closemessage
-	playbgm MUS_HG_OAK, FALSE
-	applymovement LOCALID_ROUTE30_OAK, MrPokemonHouse_Movement_OakToPlayer
-	waitmovement 0
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
-	msgbox MrPokemonHouse_Text_OakIntro, MSGBOX_DEFAULT
-
-
-	playfanfare MUS_OBTAIN_ITEM
-	message MrPokemonHouse_Text_GetDex
-	waitfanfare
-
-
-	msgbox MrPokemonHouse_Text_OakParting, MSGBOX_DEFAULT
-	closemessage
-	applymovement LOCALID_ROUTE30_OAK, MrPokemonHouse_Movement_OakLeave
-	waitmovement 0
-	playse SE_EXIT
-	removeobject LOCALID_ROUTE30_OAK
+	@ Uebergang nach Johto: Prof. Eich tritt hier nicht mehr auf. Er hat den
+	@ Spieler selbst hergeschickt und sitzt in Alabastia; und einen Pokedex
+	@ braucht ein Champion von Kanto nicht mehr ueberreicht zu bekommen.
 	setflag FLAG_DELIVERED_EGG
 	turnobject OBJ_EVENT_ID_PLAYER DIR_NORTH
 	fadedefaultbgm
@@ -59,7 +43,6 @@ MrPokemonHouse_EventScript_GiveEgg::
 
 	setvar VAR_NEWBARKTOWN_LABSTATE, 4
 	setflag FLAG_HIDE_SILVER_NEWBARKTOWN
-	setflag FLAG_SYS_POKEDEX_GET
 	checkrandomizer
 	call_if_eq VAR_RESULT, TRUE, MrPokemonHouse_EventScript_GiveNatDexRandomizer
 	clearflag FLAG_HIDE_LAB_POLICEMAN
@@ -198,19 +181,22 @@ MrPokemonHouse_Text_Intro3:
 
 MrPokemonHouse_Text_Intro4:
 #if GERMAN
-	.string "Sogar Prof. Eich schätzt ihn sehr.$"
+	.string "Prof. Eich hat mir geschrieben, dass\n"
+	.string "du kommen würdest.\p"
+	.string "Er hält große Stücke auf dich.$"
 #else
-	.string "Even PROF.OAK here recognizes\n"
-	.string "that.$"
+	.string "PROF. OAK wrote to say that you\n"
+	.string "would be coming.\p"
+	.string "He thinks very highly of you.$"
 #endif
 
 MrPokemonHouse_Text_Intro5:
 #if GERMAN
-	.string "Ich gehe davon aus, dass Prof. Lind\n"
-	.string "mehr über das Ei weiß.$"
+	.string "Bring es zu Prof. Lind. Er weiß mehr\n"
+	.string "über dieses Ei als ich.$"
 #else
-	.string "If my assumption is correct,\n"
-	.string "PROF.ELM will know it.$"
+	.string "Take it to PROF. ELM. He knows more\n"
+	.string "about this EGG than I do.$"
 #endif
 
 MrPokemonHouse_Text_Heal:
