@@ -2111,6 +2111,8 @@ static void DebugAction_Util_JohtoTest(u8 taskId)
     VarSet(VAR_NEWBARK_TOWN_STATE, 5);
     FlagSet(FLAG_MOM_VISITED);
     VarSet(VAR_PALLET_HOUSE_CLOCK, 1);
+    // Baobas Anruf auf Route 27 bleibt aus, wie im regulaeren Spielstand auch.
+    VarSet(VAR_ROUTE27_BAOBA_CALL, 1);
 
     for (i = 0; i < ARRAY_COUNT(sKantoVisitedFlags); i++)
         FlagSet(sKantoVisitedFlags[i]);

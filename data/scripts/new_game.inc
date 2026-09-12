@@ -530,5 +530,10 @@ EventScript_ResetAllMapFlagsFrlg::
 	@ Startfenster aus, im Erdgeschoss die Szene mit PokeCom und Turbotretern.
 	setvar VAR_NEWBARK_TOWN_STATE, 5
 	setflag FLAG_MOM_VISITED
+	@ Kanto-Merge: Aufseher Baoba ruft auf Route 27 an und meldet, die
+	@ Safari-Zone sei vergroessert worden. In HnS kennt der Spieler ihn zu dem
+	@ Zeitpunkt laengst; bei uns betritt er Johto gerade erst. Der Anruf wird
+	@ stillgelegt, die Erweiterung kommt ueber Baobas eigene Questlinie.
+	setvar VAR_ROUTE27_BAOBA_CALL, 1
 	end
 #endif
