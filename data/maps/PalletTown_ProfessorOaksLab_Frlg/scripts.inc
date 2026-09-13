@@ -593,6 +593,12 @@ PalletTown_ProfessorOaksLab_EventScript_GiveGsBall::
 	goto_if_eq VAR_RESULT, FALSE, PalletTown_ProfessorOaksLab_EventScript_GsBallNoRoom
 	giveitem_msg PalletTown_ProfessorOaksLab_Text_ReceivedGsBall, ITEM_GS_BALL
 	msgbox PalletTown_ProfessorOaksLab_Text_OakGsBallMission
+	@ Der Pokedex stammt von Eich, also ruestet auch er ihn fuer Johto auf.
+	msgbox PalletTown_ProfessorOaksLab_Text_OakJohtoDex
+	playfanfare MUS_OBTAIN_ITEM
+	message PalletTown_ProfessorOaksLab_Text_JohtoDexUpgrade
+	waitfanfare
+	closemessage
 	setvar VAR_JOHTO_HANDOVER, 2
 	release
 	end
@@ -681,6 +687,13 @@ PalletTown_ProfessorOaksLab_EventScript_ReceiveDexScene::
 	waitfanfare
 	call EventScript_RestorePrevTextColor
 	setflag FLAG_SYS_POKEDEX_GET
+	@ Kanto-Merge: Ab hier laeuft die Reise. In HnS haengen beide Flags am
+	@ Ende des Prologs in Neuborkia, wenn Prof. Lind nach dem Botengang und
+	@ dem Diebstahl abschliesst. Die entsprechende Stelle in Kanto ist die
+	@ Uebergabe des Pokedex nach dem Paket fuer Eich: Starter, Botengang,
+	@ Rueckkehr, Abschluss - danach beginnt die eigentliche Reise.
+	setflag FLAG_ADVENTURE_STARTED
+	setflag FLAG_START_NUZLOCKE
 	@ Kanto-Merge: Der Dex laeuft von Anfang an im Nationalmodus. Er zeigt
 	@ ohnehin nur bis zur hoechsten gesehenen Nummer, in Kanto also 1-151.
 	@ Damit braucht es keine getrennten Regionalmodi.
@@ -1569,6 +1582,36 @@ PalletTown_ProfessorOaksLab_Text_OakGsBallMission::
 	.string "I know this is a great deal to ask.\n"
 	.string "But there is no one I would rather\l"
 	.string "entrust it to.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakJohtoDex:
+#if GERMAN
+	.string "Eines noch. Gib mir deinen Pokédex.\p"
+	.string "Johto hat Arten, die es hier nicht\n"
+	.string "gibt. Dein Gerät kennt sie nicht.\p"
+	.string "So… fertig.\p"
+	.string "Jetzt zählt er auch, was dir drüben\n"
+	.string "begegnet.\p"
+	.string "Wäre ja gelacht, wenn ich das nicht\n"
+	.string "hinbekäme.$"
+#else
+	.string "One more thing. Give me your POKéDEX.\p"
+	.string "JOHTO has species we do not have\n"
+	.string "here. Your device does not know them.\p"
+	.string "There… done.\p"
+	.string "Now it counts what you meet over\n"
+	.string "there as well.\p"
+	.string "It would be a poor show if I could\n"
+	.string "not manage that.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_JohtoDexUpgrade:
+#if GERMAN
+	.string "Der Pokédex von {PLAYER} wurde für\n"
+	.string "Johto erweitert!$"
+#else
+	.string "{PLAYER}'s POKéDEX was upgraded\n"
+	.string "for JOHTO!$"
 #endif
 
 PalletTown_ProfessorOaksLab_Text_OakGsBallNoRoom::
