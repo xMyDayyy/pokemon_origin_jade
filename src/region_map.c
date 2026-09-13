@@ -3022,22 +3022,26 @@ static const struct FlyLocation sFlyLocations[] =
     { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_MAHOGANY_TOWN, .flag = FLAG_VISITED_MAHOGANY_TOWN },
     { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_LAKE_OF_RAGE, .flag = FLAG_VISITED_LAKE_OF_RAGE },
     { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_BLACKTHORN_CITY, .flag = FLAG_VISITED_BLACKTHORN_CITY },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_INDIGO_PLATEAU, .flag = FLAG_VISITED_INDIGO_PLATEAU },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_INDIGO_PLATEAU, .flag = FLAG_WORLD_MAP_INDIGO_PLATEAU_EXTERIOR },
     { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_MT_SILVER, .flag = FLAG_VISITED_MT_SILVER },
     { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_ROUTE_26, .flag = FLAG_VISITED_RECEPTION_GATE },
     // Combined JK map fly destinations (Kanto)
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_PALLET_TOWN, .flag = FLAG_VISITED_PALLET_TOWN },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_VIRIDIAN_CITY, .flag = FLAG_VISITED_VIRIDIAN_CITY },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_PEWTER_CITY, .flag = FLAG_VISITED_PEWTER_CITY },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_CERULEAN_CITY, .flag = FLAG_VISITED_CERULEAN_CITY },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_VERMILION_CITY, .flag = FLAG_VISITED_VERMILION_CITY },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_LAVENDER_TOWN, .flag = FLAG_VISITED_LAVENDER_TOWN },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_CELADON_CITY, .flag = FLAG_VISITED_CELADON_CITY },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_SAFFRON_CITY, .flag = FLAG_VISITED_SAFFRON_CITY },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_FUCHSIA_CITY, .flag = FLAG_VISITED_FUCHSIA_CITY },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_CINNABAR_ISLAND, .flag = FLAG_VISITED_CINNABAR_ISLAND },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_ROUTE_4, .flag = FLAG_VISITED_ROUTE4 },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_ROUTE_10, .flag = FLAG_VISITED_ROUTE10 },
+    // Kanto-Merge: Die Kanto-Staedte werden auf der JK-Ansicht ueber dieselben
+    // FLAG_WORLD_MAP_* gezeichnet wie auf der Kanto-Ansicht. Die
+    // FLAG_VISITED_* von HnS setzt in Origin Jade niemand: unsere
+    // Kanto-Karten sind die FRLG-Fassungen, und die rufen setworldmapflag.
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_PALLET_TOWN, .flag = FLAG_WORLD_MAP_PALLET_TOWN },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_VIRIDIAN_CITY, .flag = FLAG_WORLD_MAP_VIRIDIAN_CITY },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_PEWTER_CITY, .flag = FLAG_WORLD_MAP_PEWTER_CITY },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_CERULEAN_CITY, .flag = FLAG_WORLD_MAP_CERULEAN_CITY },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_VERMILION_CITY, .flag = FLAG_WORLD_MAP_VERMILION_CITY },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_LAVENDER_TOWN, .flag = FLAG_WORLD_MAP_LAVENDER_TOWN },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_CELADON_CITY, .flag = FLAG_WORLD_MAP_CELADON_CITY },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_SAFFRON_CITY, .flag = FLAG_WORLD_MAP_SAFFRON_CITY },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_FUCHSIA_CITY, .flag = FLAG_WORLD_MAP_FUCHSIA_CITY },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_CINNABAR_ISLAND, .flag = FLAG_WORLD_MAP_CINNABAR_ISLAND },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_ROUTE_4, .flag = FLAG_WORLD_MAP_ROUTE4_POKEMON_CENTER_1F },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_ROUTE_10, .flag = FLAG_WORLD_MAP_ROUTE10_POKEMON_CENTER_1F },
 #endif
 };
 
