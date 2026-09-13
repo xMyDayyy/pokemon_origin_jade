@@ -1870,6 +1870,28 @@ static void InitMapBasedOnPlayerLocation(void)
         y = GetActiveRegionMapEntries()[sRegionMap->mapSecId].height - 1;
     }
 
+#if IS_HNS
+    // Kanto-Merge: Route 26 besteht aus zwei Karten, Route26North mit 30 und
+    // Route26 mit 81 Zeilen, die sich eine Mapsec teilen. Die Skalierung oben
+    // rechnet je Karte, verteilt also allein die Nordhaelfte ueber alle vier
+    // Zellen des Streifens - der Spieler stand am Ende von Route 26, obwohl er
+    // erst ein Viertel davon gelaufen war. Hier ueber die Gesamthoehe rechnen.
+    if (sRegionMap->mapSecId == MAPSEC_ROUTE_26)
+    {
+        const struct MapHeader *north = Overworld_GetMapHeaderByGroupAndId(MAP_GROUP(MAP_ROUTE26NORTH_HNS), MAP_NUM(MAP_ROUTE26NORTH_HNS));
+        const struct MapHeader *south = Overworld_GetMapHeaderByGroupAndId(MAP_GROUP(MAP_ROUTE26_HNS), MAP_NUM(MAP_ROUTE26_HNS));
+        u32 combined = north->mapLayout->height + south->mapLayout->height;
+        u32 rows = GetActiveRegionMapEntries()[MAPSEC_ROUTE_26].height;
+        u32 offset = (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_ROUTE26NORTH_HNS)
+                   && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ROUTE26NORTH_HNS))
+                   ? 0 : north->mapLayout->height;
+
+        y = (offset + gSaveBlock1Ptr->pos.y) * rows / combined;
+        if (y >= rows)
+            y = rows - 1;
+    }
+#endif
+
 #if !IS_HNS
     switch (sRegionMap->mapSecId)
     {
