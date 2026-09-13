@@ -2017,6 +2017,20 @@ static void DebugAction_Util_KantoTest(u8 taskId)
 // sich die gesamte Kette bis zu Prof. Lind in Neuborkia durchspielen.
 static void DebugAction_Util_JohtoTest(u8 taskId)
 {
+    // Flugpunkte. FLAG_VISITED_* steuert die Flugliste,
+    // FLAG_WORLD_MAP_* die Markierung auf der Regionskarte. Beide werden
+    // regulaer beim ersten Betreten gesetzt, was der Testsprung ueberspringt.
+    static const u16 sKantoWorldMapFlags[] =
+    {
+        FLAG_WORLD_MAP_PALLET_TOWN,      FLAG_WORLD_MAP_VIRIDIAN_CITY,
+        FLAG_WORLD_MAP_PEWTER_CITY,      FLAG_WORLD_MAP_CERULEAN_CITY,
+        FLAG_WORLD_MAP_LAVENDER_TOWN,    FLAG_WORLD_MAP_VERMILION_CITY,
+        FLAG_WORLD_MAP_CELADON_CITY,     FLAG_WORLD_MAP_FUCHSIA_CITY,
+        FLAG_WORLD_MAP_SAFFRON_CITY,     FLAG_WORLD_MAP_CINNABAR_ISLAND,
+        FLAG_WORLD_MAP_INDIGO_PLATEAU_EXTERIOR,
+        FLAG_WORLD_MAP_ROUTE4_POKEMON_CENTER_1F,
+        FLAG_WORLD_MAP_ROUTE10_POKEMON_CENTER_1F,
+    };
     static const u16 sKantoVisitedFlags[] =
     {
         FLAG_VISITED_PALLET_TOWN,    FLAG_VISITED_OAKS_LAB,
@@ -2118,6 +2132,8 @@ static void DebugAction_Util_JohtoTest(u8 taskId)
 
     for (i = 0; i < ARRAY_COUNT(sKantoVisitedFlags); i++)
         FlagSet(sKantoVisitedFlags[i]);
+    for (i = 0; i < ARRAY_COUNT(sKantoWorldMapFlags); i++)
+        FlagSet(sKantoWorldMapFlags[i]);
     for (i = 0; i < ARRAY_COUNT(sKantoSceneVars); i++)
         VarSet(sKantoSceneVars[i].var, sKantoSceneVars[i].value);
 
