@@ -249,6 +249,10 @@ static const struct RegionMapLocation sRegionMapEntries_Johto[] = {
     [MAPSEC_ROUTE_20]          = { 20, 13, 2, 1, COMPOUND_STRING("Route 20") },
     [MAPSEC_ROUTE_21]          = { 19, 12, 1, 1, COMPOUND_STRING("Route 21") },
     [MAPSEC_ROUTE_22]          = { 17, 7,  2, 1, COMPOUND_STRING("Route 22") },
+    // Kanto-Merge: Route 23 fehlte in der Johto-Tabelle, damit blieb die
+    // Ortseinblendung dort leer, sobald die JK-Ansicht aktiv ist. Sie teilt
+    // sich die Zelle mit der Siegesstrasse, wie im JK-Raster angelegt.
+    [MAPSEC_ROUTE_23]          = { 16, 4,  1, 4, COMPOUND_STRING("Route 23") },
     [MAPSEC_ROUTE_24]          = { 24, 0,  1, 2, COMPOUND_STRING("Route 24") },
     [MAPSEC_ROUTE_25]          = { 25, 0,  1, 1, COMPOUND_STRING("Route 25") },
     [MAPSEC_VIRIDIAN_FOREST]   = { 19, 4,  1, 2, COMPOUND_STRING("Vertania-Wald") },
@@ -2095,8 +2099,14 @@ static u8 GetMapsecType(mapsec_u16_t mapSecId)
         return FlagGet(FLAG_VISITED_MT_SILVER) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_ROUTE_26:
         return FlagGet(FLAG_VISITED_RECEPTION_GATE) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
-        return FlagGet(FLAG_VISITED_ROUTE10) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
-        return FlagGet(FLAG_VISITED_ROUTE4) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    // Kanto-Merge: Die beiden Sprungmarken fehlten - die Rueckgaben standen
+    // ohne case dahinter und waren damit unerreichbar. Beide Center liegen in
+    // Kanto und werden ueber setworldmapflag gesetzt, nicht ueber
+    // FLAG_VISITED_*.
+    case MAPSEC_ROUTE_10:
+        return FlagGet(FLAG_WORLD_MAP_ROUTE10_POKEMON_CENTER_1F) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    case MAPSEC_ROUTE_4:
+        return FlagGet(FLAG_WORLD_MAP_ROUTE4_POKEMON_CENTER_1F) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
 #endif
 #if !IS_HNS
         return FlagGet(FLAG_WORLD_MAP_ONE_ISLAND) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
@@ -3058,6 +3068,8 @@ static bool32 UseBlueFlyDestIcon(u32 mapSecId)
     // Kanto-Merge: Blau ueberall dort, wo es keine Arena gibt - rot bleibt
     // den Arenastaedten vorbehalten. Die Liste ist aus den Karten erzeugt:
     // jede Mapsec in sFlyLocations, zu der kein aktives *Gym* gehoert.
+    // Ausnahme ist das Indigo-Plateau: die Liga zaehlt als Arena und bleibt
+    // deshalb rot.
     switch (mapSecId)
     {
     case MAPSEC_CHERRYGROVE_CITY:
@@ -3066,9 +3078,9 @@ static bool32 UseBlueFlyDestIcon(u32 mapSecId)
     case MAPSEC_MT_SILVER:
     case MAPSEC_NEW_BARK_TOWN:
     case MAPSEC_PALLET_TOWN:
-    case MAPSEC_ROUTE_10_POKECENTER:
+    case MAPSEC_ROUTE_10:
     case MAPSEC_ROUTE_26:
-    case MAPSEC_ROUTE_4_POKECENTER:
+    case MAPSEC_ROUTE_4:
     case MAPSEC_SAFARI_ZONE_GATE:
         return TRUE;
     default:

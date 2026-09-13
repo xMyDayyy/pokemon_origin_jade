@@ -257,13 +257,13 @@ NewBarkTown_Text_FatManState2:
 
 NewBarkTown_Text_FatManState3:
 #if GERMAN
-	.string "Tag, {PLAYER}!\p"
-	.string "Es heißt, Professor Lind habe\n"
-	.string "neue Pokémon gefunden!$"
+	.string "Tag!\p"
+	.string "Es heißt, Professor Lind habe neue\n"
+	.string "Pokémon gefunden!$"
 #else
-	.string "Yo, {PLAYER}!\p"
-	.string "I hear PROF.ELM discovered\n"
-	.string "some new POKéMON.$"
+	.string "Hello there!\p"
+	.string "They say PROF. ELM has found new\n"
+	.string "POKéMON!$"
 #endif
 
 NewBarkTown_Text_LassState2:
@@ -292,14 +292,13 @@ NewBarkTown_Text_LassState3:
 
 NewBarkTown_Text_LassState4:
 #if GERMAN
-	.string "Oh, heißt das etwa, du verlässt\n"
-	.string "uns schon wieder, {PLAYER}?\p"
-	.string "Gib auf jeden Fall deiner Mutter\n"
-	.string "Bescheid, bevor du aufbrichst!$"
+	.string "Oh, du ziehst schon weiter?\p"
+	.string "Dabei war es gerade erst spannend\n"
+	.string "hier.$"
 #else
-	.string "Hi, {PLAYER}! Leaving again?\p"
-	.string "You should tell your mom if\n"
-	.string "you are leaving.$"
+	.string "Oh, moving on already?\p"
+	.string "And things were just getting\n"
+	.string "interesting around here.$"
 #endif
 
 NewBarkTown_Text_LassState5:
@@ -350,9 +349,9 @@ NewBarkTown_EventScript_ElmsHouseMailbox::
 
 NewBarkTown_Text_PlayersHouse:
 #if GERMAN
-	.string "Haus von {PLAYER}$"
+	.string "Ein Wohnhaus$"
 #else
-	.string "{PLAYER}'S HOUSE$"
+	.string "A house$"
 #endif
 
 NewBarkTown_Text_ElmsHouse:
