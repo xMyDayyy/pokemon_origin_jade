@@ -37,11 +37,6 @@ Route27_EventScript_FirstSteps::
     call_if_eq VAR_TEMP_1, 24, Route27_EventScript_FirstStepsWalkTop
     call_if_eq VAR_TEMP_1, 25, Route27_EventScript_FirstStepsWalkBot
 
-    msgbox Route27_Text_FisherHey, MSGBOX_DEFAULT
-    msgbox Route27_Text_FisherMessage, MSGBOX_DEFAULT
-    closemessage
-    turnobject LOCALID_ROUTE27_FATMAN, DIR_SOUTH
-
     @integrated flagheap
     setflag FLAG_HIDE_VICTORY_ROAD_SILVER
     setflag FLAG_HIDE_INDIGO_PLATEAU_SILVER
@@ -88,10 +83,6 @@ Route27_EventScript_Item_DragonClaw::
 
 Route27_EventScript_Item_Destiny_Knot::
     finditem ITEM_DESTINY_KNOT
-    end
-
-Route27_EventScript_Fatman::
-    msgbox Route27_Text_FisherMessage, MSGBOX_NPC
     end
 
 Route27_EventScript_Blake::
@@ -175,26 +166,6 @@ Route27_EventScript_Scott::
 Route27_EventScript_TohjoFallsSign::
     msgbox TohjoFalls_Text_Sign, MSGBOX_SIGN
     end
-
-Route27_Text_FisherHey:
-#if GERMAN
-	.string "Hey$"
-#else
-    .string "Hey!$"
-#endif
-
-Route27_Text_FisherMessage:
-#if GERMAN
-	.string "Soll ich dir was sagen?\p"
-	.string "Du hast eben den ersten Schritt in\n"
-	.string "Richtung Kanto getan!\p"
-	.string "Wirf mal einen Blick auf deine Karte!$"
-#else
-    .string "Do you know what you just did?\p"
-    .string "You've taken your first step into\n"
-    .string "KANTO.\p"
-    .string "Check your POKéGEAR MAP and see.$"
-#endif
 
 Route27_Text_CooltrainermBlakeSeen:
 #if GERMAN
