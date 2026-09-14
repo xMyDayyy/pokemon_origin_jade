@@ -11,16 +11,13 @@ CherrygroveCity_House2_EventScript_GuideGent::
 
 CherrygroveCity_GuideHouse_Text_GuideGent:
 #if GERMAN
-	.string "Als ich noch ein kleiner Junge\n"
-	.string "war, war ich ein Spitzentrainer!\p"
-	.string "Hier ein guter Rat:\n"
-	.string "Fang viele Pokémon!\p"
-	.string "Behandle sie alle mit Respekt und\n"
-	.string "Freundschaftlichkeit!$"
+	.string "Als ich noch ein kleiner Junge war,\n"
+	.string "war ich ein Spitzentrainer!\p"
+	.string "Heute sitze ich hier und erzähle\n"
+	.string "davon. So ändern sich die Zeiten.$"
 #else
-	.string "When I was a wee lad, I was a\n"
-	.string "hotshot trainer!\p"
-	.string "Here's a word of advice:\n"
-	.string "Catch lots of POKéMON!\p"
-	.string "Treat them all with kindness!$"
+	.string "When I was a boy, I was a top\n"
+	.string "trainer!\p"
+	.string "Now I sit here and talk about it.\n"
+	.string "How times change.$"
 #endif

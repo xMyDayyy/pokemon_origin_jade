@@ -251,23 +251,24 @@ Route30_Text_YoungsterDirectionsToMrPokemon:
 
 Route30_Text_YoungsterEveryoneIsBattling:
 #if GERMAN
-	.string "Jedem macht das Kämpfen Spaß!$"
+	.string "Hier oben kämpft jeder gegen jeden.\p"
+	.string "Wer durchwill, kommt nicht drumherum.$"
 #else
-	.string "Everyone's having fun\n"
-	.string "battling!\p"
-	.string "You should too!$"
+	.string "Up here everyone battles everyone.\p"
+	.string "There is no way through without it.$"
 #endif
 
 Route30_Text_CooltrainerF:
 #if GERMAN
-	.string "Ich selbst bin keine Trainerin!\p"
-	.string "Aber wenn dir ein Trainer in die Augen\n"
-	.string "sieht, solltest du dich auf einen Kampf\l"
-	.string "vorbereiten!$"
+	.string "Ich selbst bin keine Trainerin.\p"
+	.string "Aber ich sehe genug von ihnen, um zu\n"
+	.string "erkennen, wer etwas kann.\p"
+	.string "Du gehörst dazu.$"
 #else
-	.string "I'm not a trainer.\p"
-	.string "But if you look one in the\n"
-	.string "eyes, prepare to battle.$"
+	.string "I am not a trainer myself.\p"
+	.string "But I see enough of them to tell who\n"
+	.string "knows what they are doing.\p"
+	.string "You are one of them.$"
 #endif
 
 Route30_Text_Sign:

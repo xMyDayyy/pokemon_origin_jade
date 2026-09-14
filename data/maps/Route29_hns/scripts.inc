@@ -173,85 +173,62 @@ Route29_Text_OldMan1:
 
 Route29_Text_OldMan2:
 #if GERMAN
-	.string "Ich habe dich schon ein paar Mal\n"
-	.string "gesehen.\p"
-	.string "Wie viele Pokémon hast du gefangen?\p"
-	.string "Soll ich dir zeigen, wie man Pokémon\n"
-	.string "fängt?$"
+	.string "Dich habe ich hier noch nie gesehen.\p"
+	.string "Du kommst von drüben, stimmt's?\p"
+	.string "Soll ich dir zeigen, wo hier was\n"
+	.string "lebt?$"
 #else
-	.string "I've seen you a couple times.\n"
-	.string "How many POKéMON have you caught?\p"
-	.string "Would you like me to tell you\n"
-	.string "how to catch POKéMON?$"
+	.string "I have never seen you here before.\p"
+	.string "You came from over there, did you\n"
+	.string "not?\p"
+	.string "Shall I tell you what lives around\n"
+	.string "here?$"
 #endif
 
 Route29_Text_OldManExplanation:
 #if GERMAN
-	.string "Wenn du sie zuerst schwächst, lassen\n"
-	.string "sich Pokémon leichter fangen.\p"
-	.string "Wirf dann einen Ball aus deinem\n"
-	.string "Beutel! Jeder Ball reicht.\p"
-	.string "Wenn du mehr lernen willst, geh zur\n"
-	.string "Akademie in Viola City!\p"
-	.string "Die Schüler dort wissen viel über\n"
-	.string "Pokémon.$"
+	.string "Im hohen Gras sind vor allem\n"
+	.string "Rattfratz und Tannza unterwegs.\p"
+	.string "Nachts kommen Hoothoot dazu.\p"
+	.string "Klingt bescheiden, ich weiß.\n"
+	.string "Aber jeder fängt irgendwo an.$"
 #else
-	.string "If you weaken them first,\n"
-	.string "POKéMON are easier to catch.\p"
-	.string "Then, throw a ball at them from\n"
-	.string "your bag! Any ball will do.\p"
-	.string "If you want to learn more,\n"
-	.string "go to the ACADEMY in VIOLET CITY!\p"
-	.string "The students there know a lot\n"
-	.string "about POKéMON.$"
+	.string "The tall grass here is mostly\n"
+	.string "RATTATA and SENTRET.\p"
+	.string "At night the HOOTHOOT come out.\p"
+	.string "Modest, I know. But everyone starts\n"
+	.string "somewhere.$"
 #endif
 
 Route29_Text_OldManDeclined:
 #if GERMAN
 	.string "Oh… Na gut.\p"
-	.string "Untersuche jede Route, um verschiedene\n"
-	.string "Pokémon zu finden.\p"
-	.string "Dein Pokédex zeigt dir auch, wo sie\n"
-	.string "leben!\p"
-	.string "Wenn du mehr lernen willst, geh zur\n"
-	.string "Akademie in Viola City!\p"
-	.string "Die Schüler wissen viel über Pokémon.$"
+	.string "Dann viel Glück auf dem Weg.$"
 #else
-	.string "Oh. Fine, then.\p"
-	.string "Check every route to find\n"
-	.string "different types of POKéMON.\p"
-	.string "Your POKéDEX shows where you can\n"
-	.string "find them too!\p"
-	.string "If you want to learn more,\n"
-	.string "go to the ACADEMY in VIOLET CITY!\p"
-	.string "The students know a lot about\n"
-	.string "POKéMON.$"
+	.string "Oh… Very well.\p"
+	.string "Good luck on the road, then.$"
 #endif
 
 Route29_Text_Youngster:
 #if GERMAN
-	.string "Tag! Wie geht’s deinem Pokémon-Team?\p"
-	.string "Ist es schwach und nicht bereit zu\n"
-	.string "kämpfen, machst du besser einen großen\l"
-	.string "Bogen um hohes Gras.$"
+	.string "Tag! Bist du auf der Durchreise?\p"
+	.string "Hier kommt selten jemand vorbei, der\n"
+	.string "nicht aus Neuborkia ist.$"
 #else
-	.string "Yo. How are your POKéMON?\p"
-	.string "If they're weak and not ready\n"
-	.string "for battle, keep out of the grass.$"
+	.string "Hello! Just passing through?\p"
+	.string "We rarely get anyone here who is not\n"
+	.string "from NEW BARK TOWN.$"
 #endif
 
 Route29_Text_Lass:
 #if GERMAN
 	.string "Siehst du die Stufen hier?\p"
-	.string "Es erfordert zwar etwas Mut, sie\n"
-	.string "herunterzuspringen, aber so kannst du\l"
-	.string "auf dem Weg nach Neuborkia das hohe\l"
-	.string "Gras umgehen.$"
+	.string "Springen geht nur abwärts. Wer\n"
+	.string "zurück will, muss außen herum.$"
 #else
-	.string "See those ledges?\n"
-	.string "It's scary to jump off them.\p"
-	.string "But you can go to NEW BARK\n"
-	.string "without walking through the grass.$"
+	.string "See these ledges?\p"
+	.string "You can only jump down. Going back\n"
+	.string "means walking around.$"
 #endif
 
 Route29_Text_Girl:

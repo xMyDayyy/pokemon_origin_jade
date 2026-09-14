@@ -70,18 +70,15 @@ Cherrygrove_Pokemart_Text_CooltrainerM_PokeBallsInStock:
 
 Cherrygrove_Pokemart_Text_Youngster:
 #if GERMAN
-	.string "Als ich durch das hohe Gras spaziert\n"
-	.string "bin, wurde mein Pokémon von einem\l"
-	.string "Käfer-Pokémon vergiftet!\p"
-	.string "Auf dem Weg zurück ist es dann immer\n"
-	.string "schwächer geworden.\p"
-	.string "Du solltest ständig ein Gegengift mit dir\n"
-	.string "führen!$"
+	.string "Die Käfer-Pokémon im hohen Gras\n"
+	.string "vergiften gern, wenn man sie\l"
+	.string "unterschätzt.\p"
+	.string "Hier deckt sich jeder mit Gegengift\n"
+	.string "ein, bevor er nach Norden geht.$"
 #else
-	.string "When I was walking in the grass, a\n"
-	.string "bug POKéMON poisoned my POKéMON!\p"
-	.string "I just kept going, but then my\n"
-	.string "POKéMON fainted.\p"
-	.string "You should keep an ANTIDOTE\n"
-	.string "with you.$"
+	.string "The BUG POKéMON in the tall grass\n"
+	.string "like to poison anyone who\l"
+	.string "underestimates them.\p"
+	.string "Everyone here stocks up on ANTIDOTE\n"
+	.string "before heading north.$"
 #endif
