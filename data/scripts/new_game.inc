@@ -535,5 +535,9 @@ EventScript_ResetAllMapFlagsFrlg::
 	@ Zeitpunkt laengst; bei uns betritt er Johto gerade erst. Der Anruf wird
 	@ stillgelegt, die Erweiterung kommt ueber Baobas eigene Questlinie.
 	setvar VAR_ROUTE27_BAOBA_CALL, 1
+	@ Kanto-Merge: Der Polizist in Linds Labor gehoert zur Diebstahlsepisode und
+	@ wird erst in Mr. Pokemons Haus eingeblendet. Ohne dieses Flag steht er von
+	@ Anfang an im Labor.
+	setflag FLAG_HIDE_LAB_POLICEMAN
 	end
 #endif

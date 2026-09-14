@@ -20,17 +20,17 @@ NewBarkTown_House2_EventScript_ElmsSon::
 
 NewBarkTown_House2_Text_ElmsWife:
 #if GERMAN
-	.string "Ach du bist es, {PLAYER}!\p"
+	.string "Oh, ein Besucher! Das ist selten.\p"
 	.string "Mein Mann ist immer so beschäftigt.\n"
 	.string "Ich hoffe, er überarbeitet sich nicht!\p"
 	.string "Wenn er in seiner Pokémon-Forschung\n"
 	.string "versinkt, vergisst er sogar zu essen.$"
 #else
-	.string "Hi, {PLAYER}! My husband's always\n"
-	.string "so busy--I hope he's OK.\p"
-	.string "When he's caught up in his\n"
-	.string "POKéMON research, he even\l"
-	.string "forgets to eat.$"
+	.string "Oh, a visitor! That is rare.\p"
+	.string "My husband is always so busy. I hope\n"
+	.string "he does not overwork himself!\p"
+	.string "When he sinks into his POKéMON\n"
+	.string "research, he even forgets to eat.$"
 #endif
 
 NewBarkTown_House2_Text_ElmsSon:

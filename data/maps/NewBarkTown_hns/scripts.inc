@@ -249,10 +249,11 @@ NewBarkTown_Text_Wooper:
 
 NewBarkTown_Text_FatManState2:
 #if GERMAN
-	.string "Wow, dein PokéCom ist beeindruckend!$"
+	.string "Ein PokéCom! So eins hätte ich auch\n"
+	.string "gern.$"
 #else
-	.string "Wow, your POKéGEAR is impressive!\n"
-	.string "Did your mom get it for you?$"
+	.string "A POKéGEAR! I would like one of\n"
+	.string "those myself.$"
 #endif
 
 NewBarkTown_Text_FatManState3:
@@ -268,17 +269,13 @@ NewBarkTown_Text_FatManState3:
 
 NewBarkTown_Text_LassState2:
 #if GERMAN
-	.string "Du weißt doch, wie gefährlich es ist,\n"
-	.string "ohne Pokémon das Haus zu verlassen!\p"
-	.string "Der Weg bis in die Nachbarstadt ist\n"
-	.string "schließlich von hohem Gras umgeben, wo\l"
-	.string "dir lauter wilde Pokémon auflauern!$"
+	.string "Du bist nicht von hier, oder?\p"
+	.string "Hier kennt jeder jeden. Fremde\n"
+	.string "fallen auf.$"
 #else
-	.string "Wait, {PLAYER}!\p"
-	.string "It's dangerous to go out\n"
-	.string "without a POKéMON!\p"
-	.string "Wild POKéMON jump out of the grass\n"
-	.string "on the way to the next town.$"
+	.string "You are not from here, are you?\p"
+	.string "Everyone knows everyone here.\n"
+	.string "Strangers stand out.$"
 #endif
 
 NewBarkTown_Text_LassState3:
@@ -303,12 +300,13 @@ NewBarkTown_Text_LassState4:
 
 NewBarkTown_Text_LassState5:
 #if GERMAN
-	.string "Mit dem PokéCom kannst du jederzeit\n"
-	.string "deine Mutter anrufen und ihr erzählen,\l"
-	.string "wie es dir so geht!$"
+	.string "Mit einem PokéCom kann man von\n"
+	.string "überall aus telefonieren.\p"
+	.string "Sogar bis nach Kanto, heißt es.$"
 #else
-	.string "Call your mom on your POKéGEAR\n"
-	.string "to let her know how you're doing.$\p"
+	.string "With a POKéGEAR you can call from\n"
+	.string "anywhere.\p"
+	.string "Even as far as KANTO, they say.$"
 #endif
 
 NewBarkTown_Text_Silver1:
@@ -334,9 +332,9 @@ NewBarkTown_Text_Sign:
 	.string "Neuborkia\n"
 	.string "Die Stadt der ersten Schritte$"
 #else
-	.string "NEW BARK TOWN\p"
-	.string "The Town Where the Winds of\n"
-	.string "a New Beginning Blow$"
+	.string "NEW BARK TOWN\n"
+	.string "The town where the winds of a new\l"
+	.string "beginning blow$"
 #endif
 
 NewBarkTown_EventScript_PlayersHouseMailbox::

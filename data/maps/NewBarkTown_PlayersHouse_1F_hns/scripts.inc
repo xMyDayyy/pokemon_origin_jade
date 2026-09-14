@@ -257,15 +257,13 @@ NewBarkTown_PlayersHouse_1F_Text_MomsFriend:
 	.string "Ich bin nur zu Besuch. Wir kennen\n"
 	.string "uns von früher.\p"
 	.string "Meine Tochter will unbedingt\n"
-	.string "Prof. Linds Assistentin werden.\p"
-	.string "Sie liebt Pokémon wirklich sehr!$"
+	.string "Prof. Linds Assistentin werden.$"
 #else
 	.string "Oh, a guest! We rarely get those.\p"
 	.string "I am only visiting. We have known\n"
 	.string "each other for years.\p"
 	.string "My daughter is set on becoming\n"
-	.string "PROF. ELM's assistant.\p"
-	.string "She really does love POKéMON!$"
+	.string "PROF. ELM's assistant.$"
 #endif
 
 NewBarkTown_PlayersHouse_1F_Text_MomLeaving:

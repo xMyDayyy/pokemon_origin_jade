@@ -83,8 +83,11 @@ NewBarkTown_Lab_EventScript_Elm_AfterEggCheck:
 	goto_if_ge VAR_NEWBARKTOWN_LABSTATE, 6, NewBarkTown_Lab_EventScript_ElmState5
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 2, CopNewBarkTown_Lab_EventScript_ElmState2
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 3, CopNewBarkTown_Lab_EventScript_ElmState2
-	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_Lab_EventScript_MrPokemon
+	@ Uebergang nach Johto: Reihenfolge gedreht. FLAG_SYS_POKEMON_GET steht seit
+	@ Kanto, damit waere Lind bei Zustand 1 sofort auf den Mr.-Pokemon-Auftrag
+	@ gesprungen, statt zur Wahl aus den drei Baellen aufzufordern.
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_ElmChoosePokemon
+	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_Lab_EventScript_MrPokemon
 	end
 
 NewBarkTown_Lab_EventScript_ElmAideIsWaiting::
@@ -176,7 +179,9 @@ NewBarkTown_Lab_EventScript_ShouldntTouch::
 
 NewBarkTown_Lab_EventScript_ChikoritaBall::
 	lock
-	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_Lab_EventScript_ShouldntTouch
+	@ Uebergang nach Johto: Die alte Sperre pruefte FLAG_SYS_POKEMON_GET. Der
+	@ Spieler hat seit Kanto Pokemon, damit war jeder Ball gesperrt, obwohl
+	@ Prof. Lind ausdruecklich zum Zugreifen auffordert.
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_ChikoritaBall_Choice
 	msgbox NewBarkTown_Lab_Text_ShouldntTouch, MSGBOX_DEFAULT
 	release
@@ -198,7 +203,9 @@ NewBarkTown_Lab_EventScript_ChikoritaBall_Choice::
 
 NewBarkTown_Lab_EventScript_CyndaquilBall::
 	lock
-	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_Lab_EventScript_ShouldntTouch
+	@ Uebergang nach Johto: Die alte Sperre pruefte FLAG_SYS_POKEMON_GET. Der
+	@ Spieler hat seit Kanto Pokemon, damit war jeder Ball gesperrt, obwohl
+	@ Prof. Lind ausdruecklich zum Zugreifen auffordert.
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_CyndaquilBall_Choice
 	msgbox NewBarkTown_Lab_Text_ShouldntTouch, MSGBOX_DEFAULT
 	closemessage
@@ -220,7 +227,9 @@ NewBarkTown_Lab_EventScript_CyndaquilBall_Choice::
 
 NewBarkTown_Lab_EventScript_TotodileBall::
 	lock
-	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_Lab_EventScript_ShouldntTouch
+	@ Uebergang nach Johto: Die alte Sperre pruefte FLAG_SYS_POKEMON_GET. Der
+	@ Spieler hat seit Kanto Pokemon, damit war jeder Ball gesperrt, obwohl
+	@ Prof. Lind ausdruecklich zum Zugreifen auffordert.
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_TotodileBall_Choice
 	msgbox NewBarkTown_Lab_Text_ShouldntTouch, MSGBOX_DEFAULT
 	release
@@ -307,7 +316,9 @@ NewBarkTown_Lab_EventScript_ChoseStarter_NicknameStarter_Nuzlocke::
 	end
 
 NewBarkTown_Lab_EventScript_MrPokemon::
-	setvar VAR_NEWBARKTOWN_LABSTATE, 2
+	@ Uebergang nach Johto: Der Assistent mit dem Trank entfaellt, deshalb geht
+	@ es von der Wahl direkt auf Zustand 3.
+	setvar VAR_NEWBARKTOWN_LABSTATE, 3
 	setvar VAR_NEWBARK_TOWN_STATE, 3
 	msgbox NewBarkTown_Lab_Text_ElmDirections1_Register, MSGBOX_DEFAULT
 	playfanfare MUS_REGISTER_MATCH_CALL
@@ -358,23 +369,6 @@ NewBarkTown_Lab_EventScript_HealingMachine2::
 	end
 
 
-
-NewBarkTown_Lab_EventScript_TriggerAideGivePotion::
-	lock
-	applymovement LOCALID_AIDE1, NewBarkTown_Lab_Movement_Aide1WalkToPlayer
-	waitmovement 0
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
-	msgbox NewBarkTown_Lab_Text_AideGivePotion, MSGBOX_DEFAULT
-	closemessage
-	giveitem ITEM_POTION
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_FIRST_POTION
-	setvar VAR_NEWBARKTOWN_LABSTATE, 3
-	applymovement LOCALID_AIDE1, NewBarkTown_Lab_Movement_Aide1LeavePlayer
-	waitmovement 0
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
-	release
-	end
 
 NewBarkTown_Lab_EventScript_HideCyndaquil::
 	setflag FLAG_HIDE_CYNDAQUILBALL
@@ -1044,44 +1038,28 @@ NewBarkTown_Lab_Text_ElmAfterTheft4:
 #if GERMAN
 	.string "Aber… Ist es ein Pokémon-Ei?\p"
 	.string "Wenn ja, ist es eine große Entdeckung!\p"
-	.string "Lind: Was?!?\p"
-	.string "Prof. Eich gab dir einen Pokédex?\p"
-	.string "{PLAYER}, stimmt das?\n"
-	.string "Unglaublich!\p"
-	.string "Er erkennt das Potential von\n"
-	.string "Menschen als Trainer.\p"
-	.string "Wow, {PLAYER}. Du könntest Champion\n"
-	.string "werden.\p"
-	.string "Du kommst gut mit Pokémon klar.\p"
-	.string "Versuche die Arenaleiter\n"
-	.string "herauszufordern.\p"
-	.string "Die nächste Arena ist in Viola City.\p"
-	.string "…{PLAYER}. Der Weg zum Sieg wird lang\n"
-	.string "sein.\p"
-	.string "Bevor du gehst, sprich besser mit\n"
-	.string "deiner Mutter.$"
+	.string "Lind: Und du hast mir beides gebracht,\n"
+	.string "den GS-Ball und das Ei.\p"
+	.string "Prof. Eich hat nicht zu viel\n"
+	.string "versprochen.\p"
+	.string "Wenn du hier schon unterwegs bist:\n"
+	.string "die Arenen in Johto sind eine andere\l"
+	.string "Nummer als die in Kanto.\p"
+	.string "Die nächste ist in Viola City.\p"
+	.string "Ich melde mich, sobald ich etwas\n"
+	.string "über den Ball herausfinde.$"
 #else
-	.string "But… Is it a POKéMON EGG?\p"
-	.string "If it is, it is a great\n"
-	.string "discovery!\p"
-	.string "ELM: What?!?\p"
-	.string "PROF.OAK gave you a POKéDEX?\p"
-	.string "{PLAYER}, is that true?\n"
-	.string "Th-that's incredible!\p"
-	.string "He is superb at seeing the\n"
-	.string "potential of people as trainers.\p"
-	.string "Wow, {PLAYER}. You may have what\n"
-	.string "it takes to become the CHAMPION.\p"
-	.string "You seem to be getting on\n"
-	.string "great with POKéMON too.\p"
-	.string "You should take the POKéMON\n"
-	.string "GYM challenge.\p"
-	.string "The closest GYM would be the\n"
-	.string "one in VIOLET CITY.\p"
-	.string "…{PLAYER}. The road to the\n"
-	.string "championship will be a long one.\p"
-	.string "Before you leave, make sure\n"
-	.string "that you talk to your mom.$"
+	.string "But… is it a POKéMON EGG?\p"
+	.string "If so, it is a great discovery!\p"
+	.string "ELM: And you brought me both, the\n"
+	.string "GS BALL and the EGG.\p"
+	.string "PROF. OAK did not overstate it.\p"
+	.string "While you are here: the GYMS in\n"
+	.string "JOHTO are a different matter from\l"
+	.string "the ones in KANTO.\p"
+	.string "The next one is in VIOLET CITY.\p"
+	.string "I will be in touch as soon as I learn\n"
+	.string "anything about the BALL.$"
 #endif
 
 NewBarkTown_Lab_Text_ElmStudyingEgg:
