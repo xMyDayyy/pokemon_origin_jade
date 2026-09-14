@@ -631,52 +631,9 @@
 #define TRAINER_SKYLAR_HNS                            616
 
 
-// Phone rematch tiers for Irwin, Derek and Beverly. Appended at the end of the list
-// on purpose: trainer IDs index FLAG_TRAINER_FLAG_START, so inserting mid-list
-// would shift every later trainer's "defeated" flag and corrupt existing saves.
-#define TRAINER_IRWIN_2_HNS                   619
-#define TRAINER_IRWIN_3_HNS                   620
-#define TRAINER_IRWIN_4_HNS                   621
-#define TRAINER_IRWIN_5_HNS                   622
-#define TRAINER_DEREK_2_HNS                   623
-#define TRAINER_DEREK_3_HNS                   624
-#define TRAINER_DEREK_4_HNS                   625
-#define TRAINER_DEREK_5_HNS                   626
-#define TRAINER_BEVERLY_2_HNS                 627
-#define TRAINER_BEVERLY_3_HNS                 628
-#define TRAINER_BEVERLY_4_HNS                 629
-#define TRAINER_BEVERLY_5_HNS                 630
-
 // 618 is TRAINER_TANYA_HNS, relocated out of the TRAINER_FRONTIER_BRAIN slot (330).
 
-// Post-OBC (Battle Championship) rematch teams for the Gym Leaders, Elite Four,
-// Lance, Blue and Red. Appended at the end of the list for the same save-index
-// reason as the phone rematch tiers above.
-#define TRAINER_FALKNER_POSTOBC_HNS           631
-#define TRAINER_BUGSY_POSTOBC_HNS             632
-#define TRAINER_WHITNEY_POSTOBC_HNS           633
-#define TRAINER_MORTY_POSTOBC_HNS             634
-#define TRAINER_CHUCK_POSTOBC_HNS             635
-#define TRAINER_JASMINE_POSTOBC_HNS           636
-#define TRAINER_PRYCE_POSTOBC_HNS             637
-#define TRAINER_CLAIR_POSTOBC_HNS             638
-#define TRAINER_BROCK_POSTOBC_HNS             639
-#define TRAINER_LTSURGE_POSTOBC_HNS           640
-#define TRAINER_JANINE_POSTOBC_HNS            641
-#define TRAINER_SABRINA_POSTOBC_HNS           642
-#define TRAINER_BLAINE_POSTOBC_HNS            643
-#define TRAINER_BLUE_POSTOBC_HNS              644
-#define TRAINER_WILL_POSTOBC_HNS              645
-#define TRAINER_KOGA_POSTOBC_HNS              646
-#define TRAINER_BRUNO_POSTOBC_HNS             647
-#define TRAINER_KAREN_POSTOBC_HNS             648
-#define TRAINER_LANCE_POSTOBC_HNS             649
-#define TRAINER_RED_POSTOBC_HNS               650
-#define TRAINER_MISTY_POSTOBC_HNS             651
-#define TRAINER_ERIKA_POSTOBC_HNS             652
 
-#define TRAINERS_COUNT_HNS                       653
-#define MAX_TRAINERS_COUNT_HNS                   864
 
 // Telefon-Rueckkampfstufen fuer Irwin, Derek und Beverly (HnS 2.0.1, Commit
 // 313d4290e8). Upstream haengt sie bei 619-630 an - bei uns sind das die
@@ -698,7 +655,33 @@
 #define TRAINER_BEVERLY_3_HNS                 (HNS_REMATCH_TIERS_START + 9)
 #define TRAINER_BEVERLY_4_HNS                 (HNS_REMATCH_TIERS_START + 10)
 #define TRAINER_BEVERLY_5_HNS                 (HNS_REMATCH_TIERS_START + 11)
-#define HNS_REMATCH_TIERS_END                 (HNS_REMATCH_TIERS_START + 11)
+// Post-OBC-Rueckkampfteams der Arenaleiter, Top Vier, Siegfried, Blau und Rot
+// (HnS 2.0.5). Upstream haengt sie auf 631 bis 652 an - bei uns sind das
+// Hoenn-Trainer, 631 ist TRAINER_ED und 652 TRAINER_ARCHIE. Sie liegen
+// deshalb im selben umgeleiteten Bereich wie die Telefon-Rueckkampfstufen.
+#define TRAINER_FALKNER_POSTOBC_HNS           (HNS_REMATCH_TIERS_START + 12)
+#define TRAINER_BUGSY_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 13)
+#define TRAINER_WHITNEY_POSTOBC_HNS           (HNS_REMATCH_TIERS_START + 14)
+#define TRAINER_MORTY_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 15)
+#define TRAINER_CHUCK_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 16)
+#define TRAINER_JASMINE_POSTOBC_HNS           (HNS_REMATCH_TIERS_START + 17)
+#define TRAINER_PRYCE_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 18)
+#define TRAINER_CLAIR_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 19)
+#define TRAINER_BROCK_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 20)
+#define TRAINER_LTSURGE_POSTOBC_HNS           (HNS_REMATCH_TIERS_START + 21)
+#define TRAINER_JANINE_POSTOBC_HNS            (HNS_REMATCH_TIERS_START + 22)
+#define TRAINER_SABRINA_POSTOBC_HNS           (HNS_REMATCH_TIERS_START + 23)
+#define TRAINER_BLAINE_POSTOBC_HNS            (HNS_REMATCH_TIERS_START + 24)
+#define TRAINER_BLUE_POSTOBC_HNS              (HNS_REMATCH_TIERS_START + 25)
+#define TRAINER_WILL_POSTOBC_HNS              (HNS_REMATCH_TIERS_START + 26)
+#define TRAINER_KOGA_POSTOBC_HNS              (HNS_REMATCH_TIERS_START + 27)
+#define TRAINER_BRUNO_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 28)
+#define TRAINER_KAREN_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 29)
+#define TRAINER_LANCE_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 30)
+#define TRAINER_RED_POSTOBC_HNS               (HNS_REMATCH_TIERS_START + 31)
+#define TRAINER_MISTY_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 32)
+#define TRAINER_ERIKA_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 33)
+#define HNS_REMATCH_TIERS_END                 (HNS_REMATCH_TIERS_START + 33)
 #define HNS_REMATCH_TIERS_COUNT               (HNS_REMATCH_TIERS_END - HNS_REMATCH_TIERS_START + 1)
 
 // Flags dieser IDs (siehe GetFlagPointer). 0x500 + id ergaebe 0xE14-0xE1F
