@@ -67,39 +67,39 @@ BugContest_EventScript_Didntcatch::
 
 BugContest_EventScript_First::
 	msgbox BugContest_Text_First1, MSGBOX_DEFAULT
-	playfanfare MUS_OBTAIN_BERRY
+	playfanfare MUS_HG_BUG_CONTEST_3RD_PLACE
 	waitfanfare
 	msgbox BugContest_Text_First2, MSGBOX_DEFAULT
-	playfanfare MUS_OBTAIN_BERRY
+	playfanfare MUS_HG_BUG_CONTEST_2ND_PLACE
 	waitfanfare
 	msgbox BugContest_Text_First3, MSGBOX_DEFAULT
-	playfanfare MUS_OBTAIN_BADGE
+	playfanfare MUS_HG_BUG_CONTEST_1ST_PLACE
 	waitfanfare
 	closemessage
 	return
 
 BugContest_EventScript_Second::
 	msgbox BugContest_Text_Second1, MSGBOX_DEFAULT
-	playfanfare MUS_OBTAIN_BERRY
+	playfanfare MUS_HG_BUG_CONTEST_3RD_PLACE
 	waitfanfare
 	msgbox BugContest_Text_Second2, MSGBOX_DEFAULT
-	playfanfare MUS_OBTAIN_BERRY
+	playfanfare MUS_HG_BUG_CONTEST_2ND_PLACE
 	waitfanfare
 	msgbox BugContest_Text_Second3, MSGBOX_DEFAULT
-	playfanfare MUS_OBTAIN_BADGE
+	playfanfare MUS_HG_BUG_CONTEST_1ST_PLACE
 	waitfanfare
 	closemessage
 	return
 
 BugContest_EventScript_Third::
 	msgbox BugContest_Text_Third1, MSGBOX_DEFAULT
-	playfanfare MUS_OBTAIN_BERRY
+	playfanfare MUS_HG_BUG_CONTEST_3RD_PLACE
 	waitfanfare
 	msgbox BugContest_Text_Third2, MSGBOX_DEFAULT
-	playfanfare MUS_OBTAIN_BERRY
+	playfanfare MUS_HG_BUG_CONTEST_2ND_PLACE
 	waitfanfare
 	msgbox BugContest_Text_Third3, MSGBOX_DEFAULT
-	playfanfare MUS_OBTAIN_BADGE
+	playfanfare MUS_HG_BUG_CONTEST_1ST_PLACE
 	waitfanfare
 	closemessage
 	return
@@ -124,164 +124,80 @@ BugContest_EventScript_SideEnd::
 	end
 
 BugContest_Text_Judging0::
-#if GERMAN
-	.string "Das Käferturnier ist vorbei.\p"
-	.string "Welches Pokémon soll teilnehmen?$"
-#else
 	.string "The contest has now concluded.\n"
 	.string "Please pick the POKéMON you would\l"
 	.string "like to keep and have judged.$"
-#endif
 
 BugContest_Text_Judging1::
-#if GERMAN
-	.string "Wir bewerten jetzt die gefangenen\n"
-	.string "Pokémon!\p"
-	.string "……\n"
-	.string "……\p"
-	.string "Die Gewinner stehen fest!\p"
-	.string "Bist du bereit?$"
-#else
 	.string "We will now judge the POKéMON\n"
 	.string "you've caught.\p"
 	.string "...................\n"
 	.string "...................\p"
 	.string "We have chosen the winners! Are\n"
 	.string "ready for this?$"
-#endif
 
 BugContest_Text_WrongChoiceMon:
-#if GERMAN
-	.string "Welches Pokémon soll teilnehmen?$"
-#else
 	.string "Please pick the POKéMON you would\n"
 	.string "like to keep and have judged.$"
-#endif
 
 BugContest_Text_DidntCatch:
-#if GERMAN
-	.string "Du hast kein Käfer-Pokémon gefangen.\p"
-	.string "Hier hast du deine Pokémon zurück.\n"
-	.string "Bitte schön!$"
-#else
 	.string "Oh no! You didn't catch a POKéMON.\n"
 	.string "You've forfeited the competition.\p"
 	.string "Your party will now be returned.$"
-#endif
 
 BugContest_Text_TimesUp:
-#if GERMAN
-	.string "Ding-dong! Die Zeit ist abgelaufen!\n"
-	.string "Das Käferturnier ist vorbei.$"
-#else
 	.string "Ding-dong! Time's up!$"
-#endif
 
 BugContest_Text_WhiteOut:
-#if GERMAN
-	.string "{PLAYER} hat kein kampffähiges\n"
-	.string "Pokémon mehr!\p"
-	.string "Das Käferturnier ist vorbei.$"
-#else
 	.string "{PLAYER} is out of useable POKéMON.\n"
 	.string "{PLAYER} forfeited the contest.$"
-#endif
 
 BugContest_Text_First1:
-#if GERMAN
-	.string "Auf dem 3. Platz: Ass-Trainerin\n"
-	.string "Belinda mit einem Safcon!$"
-#else
 	.string "Placing third is the COOLTRAINER\n"
 	.string "BELINDA, who caught a wriggling\l"
 	.string "BUTTERFREE!$"
-#endif
-
 BugContest_Text_First2:
-	.string "Auf dem 2. Platz: Käfersammler\n"
-	.string "Shaun mit einem Pinsir!$"
-
+	.string "Placing second is the BUGCATCHER\n"
+	.string "SHAUN, who caught a writhing\l"
+	.string "PINSIR!$"
 BugContest_Text_First3:
-#if GERMAN
-	.string "Und! Der 1. Platz beim Käferturnier geht\n"
-	.string "aaan…\p"
-	.string "{PLAYER} mit einem {STR_VAR_1}!$"
-#else
 	.string "This Bug-Catching Contest Winner\n"
 	.string "is...\p"
 	.string "{PLAYER}, who caught a whopping\n"
 	.string "{STR_VAR_1}!$"
-#endif
 
 BugContest_Text_Second1:
-#if GERMAN
-	.string "Auf dem 3. Platz: Ass-Trainerin\n"
-	.string "Belinda mit einem Safcon!$"
-#else
-	.string "Placing second is the COOLTRAINER\n"
+	.string "Placing third is the COOLTRAINER\n"
 	.string "BELINDA, who caught a wriggling\l"
 	.string "BUTTERFREE!$"
-#endif
-
 BugContest_Text_Second2:
-	.string "Auf dem 2. Platz: {PLAYER} mit\n"
-	.string "einem {STR_VAR_1}!$"
-
+	.string "Placing second is {PLAYER}, who\n"
+	.string "caught a writhing {STR_VAR_1}!$"
 BugContest_Text_Second3:
-#if GERMAN
-	.string "Und! Der 1. Platz beim Käferturnier geht\n"
-	.string "aaan…\p"
-	.string "Käfersammler Shaun mit einem Pinsir!$"
-#else
 	.string "This Bug-Catching Contest Winner\n"
 	.string "is...\p"
 	.string "BUGCATCHER SHAUN, who caught a\n"
 	.string "whopping PINSIR!$"
-#endif
 
 BugContest_Text_Third1:
-#if GERMAN
-	.string "Auf dem 3. Platz: {PLAYER} mit\n"
-	.string "einem {STR_VAR_1}!$"
-#else
 	.string "Placing third is {PLAYER}, who\n"
 	.string "caught a wriggling {STR_VAR_1}!$"
-#endif
-
 BugContest_Text_Third2:
-	.string "Auf dem 2. Platz: Ass-Trainerin\n"
-	.string "Belinda mit einem Safcon!$"
-
+	.string "Placing second is the COOLTRAINER\n"
+	.string "BELINDA, who caught a writhing\l"
+	.string "BUTTERFREE!$"
 BugContest_Text_Third3:
-#if GERMAN
-	.string "Und! Der 1. Platz beim Käferturnier geht\n"
-	.string "aaan…\p"
-	.string "Käfersammler Shaun mit einem Pinsir!$"
-#else
 	.string "This Bug-Catching Contest Winner\n"
 	.string "is...\p"
 	.string "BUGCATCHER SHAUN, who caught a\n"
 	.string "whopping PINSIR!$"
-#endif
 
 BugContest_Text_TakePartInFuture:
-#if GERMAN
-	.string "Wir würden uns freuen, euch beim\n"
-	.string "nächsten Turnier wiederzusehen!$"
-#else
 	.string "Thank you for participating!\n"
 	.string "We hope you'll take part in the\l"
 	.string "future.$"
-#endif
 
 BugContest_Text_TransferAndReturn:
-#if GERMAN
-	.string "Dein Käfer-Pokémon wurde in eine\n"
-	.string "Box im PC übertragen.\p"
-	.string "Hier hast du deine Pokémon zurück.\n"
-	.string "Bitte schön!$"
-#else
 	.string "Your chosen BUG POKéMON will now\n"
 	.string "be sent to the PC and your party\l"
 	.string "will be returned to you.$"
-#endif

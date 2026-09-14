@@ -106,7 +106,7 @@ static void SpriteCB_MoveWildMonToRight(struct Sprite *sprite);
 static void SpriteCB_WildMonShowHealthbox(struct Sprite *sprite);
 static void SpriteCB_WildMonAnimate(struct Sprite *sprite);
 static void SpriteCB_AnimFaintOpponent(struct Sprite *sprite);
-static void SpriteCB_BlinkVisible(struct Sprite *sprite);
+void SpriteCB_BlinkVisible(struct Sprite *sprite);
 static void SpriteCB_Idle(struct Sprite *sprite);
 static void SpriteCB_BattleSpriteSlideLeft(struct Sprite *sprite);
 static void TurnValuesCleanUp(bool8 var0);
@@ -2920,13 +2920,27 @@ void SpriteCB_ShowAsMoveTarget(struct Sprite *sprite)
     sprite->callback = SpriteCB_BlinkVisible;
 }
 
-static void SpriteCB_BlinkVisible(struct Sprite *sprite)
+void SpriteCB_BlinkVisible(struct Sprite *sprite)
 {
     if (--sprite->data[3] == 0)
     {
         sprite->invisible ^= 1;
         sprite->data[3] = 8;
     }
+}
+
+// Only battlers that were actually made to blink as a move target may have their
+// visibility restored from data[4], otherwise e.g. the attacker of a spread move
+// that doesn't target itself would get its visibility set from stale sprite data.
+bool32 ShouldHideBattler(enum BattlerId battler)
+{
+    SpriteCallback callback;
+
+    if (!IsBattlerAlive(battler) || !gBattleSpritesDataPtr->healthBoxesData[battler].healthboxIsBouncing)
+        return FALSE;
+
+    callback = gSprites[gBattlerSpriteIds[battler]].callback;
+    return callback == SpriteCB_ShowAsMoveTarget || callback == SpriteCB_BlinkVisible;
 }
 
 void SpriteCB_HideAsMoveTarget(struct Sprite *sprite)
@@ -3265,7 +3279,11 @@ static void BattleStartClearSetData(void)
     gBattleStruct->runTries = 0;
     gBattleStruct->safariGoNearCounter = 0;
     gBattleStruct->safariPkblThrowCounter = 0;
+    // Species with a catch rate under 13 would truncate to a factor of 0, which
+    // zeroes the capture odds and leaves bait/rock unable to move it off 0.
     gBattleStruct->safariCatchFactor = gSpeciesInfo[GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)].catchRate * 100 / 1275;
+    if (gBattleStruct->safariCatchFactor == 0)
+        gBattleStruct->safariCatchFactor = 1;
     gBattleStruct->safariEscapeFactor = 3;
     gBattleStruct->wildVictorySong = 0;
     // Amulet Coin applies as long as any party mon holds it, even if that mon never enters the battle.
@@ -3825,6 +3843,18 @@ static void DoBattleIntro(void)
             if (runPressed)
             {
                 battler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+                if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
+                {
+                    // The player has no battler in a Safari battle (its gBattleMons entry is
+                    // zeroed above), so the speed-based escape check can never succeed. Running
+                    // from the Safari Zone always works, exactly as HandleAction_SafariZoneRun does.
+                    gBattlerAttacker = battler;
+                    PlaySE(SE_FLEE);
+                    gCurrentTurnActionNumber = gBattlersCount;
+                    gBattleOutcome = B_OUTCOME_RAN;
+                    gBattleMainFunc = HandleEndTurn_RanFromBattle;
+                    return;
+                }
                 if (IsRunningFromBattleImpossible(battler) == BATTLE_RUN_SUCCESS && TryRunFromBattle(battler))
                 {
                     gBattleMainFunc = HandleEndTurn_RanFromBattle;
@@ -5589,18 +5619,28 @@ static void HandleEndTurn_BattleWon(void)
         BattleStopLowHpSound();
         gBattlescriptCurrInstr = BattleScript_FrontierTrainerBattleWon;
 
+        // This branch covers three things at once: the Battle Frontier, Trainer Hill, and
+        // the Battle Tents in Trainer Hill's courtyard (which set BATTLE_TYPE_PALACE/ARENA/
+        // FACTORY, all inside the BATTLE_TYPE_FRONTIER mask). The Frontier is a Hoenn
+        // institution and stays on the Emerald themes throughout; Trainer Hill and the Tents
+        // are Johto and take the HG ones, matching what GetBattleBGM gives them. They are
+        // told apart by map section, since the battle type flags do not separate the Tents
+        // from the Frontier proper.
         if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_FRONTIER_BRAIN)
-        #if IS_HNS
-            PlayBGM(MUS_HG_VICTORY_FRONTIER_BRAIN);
-        #else
+        {
+            // Brains only ever appear in the Battle Frontier, so this is always Emerald.
             PlayBGM(MUS_VICTORY_GYM_LEADER);
-        #endif
-        else
-        #if IS_HNS
+        }
+    #if IS_HNS
+        else if (gMapHeader.regionMapSectionId == MAPSEC_TRAINER_HILL)
+        {
             PlayBGM(MUS_HG_VICTORY_TRAINER);
-        #else
+        }
+    #endif
+        else
+        {
             PlayBGM(MUS_VICTORY_TRAINER);
-        #endif
+        }
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && !(gBattleTypeFlags & BATTLE_TYPE_LINK))
     {
@@ -5611,8 +5651,26 @@ static void HandleEndTurn_BattleWon(void)
         {
         case TRAINER_CLASS_ELITE_FOUR:
         case TRAINER_CLASS_CHAMPION:
+        // HnS uses its own class constants for these, so without them the Johto/Kanto
+        // Elite Four and Champions fell through to the ordinary trainer victory theme.
+        case TRAINER_CLASS_ELITE_FOUR_HNS:
+        case TRAINER_CLASS_CHAMPION_HNS:
+        case TRAINER_CLASS_PKMN_TRAINER_1_HNS:
+        // Same for FR/LG, which has no separate league victory theme at all - its
+        // Elite Four and Champion share the Gym Leader one.
+        case TRAINER_CLASS_ELITE_FOUR_FRLG:
+        case TRAINER_CLASS_CHAMPION_FRLG:
         #if IS_HNS
-            PlayBGM(MUS_HG_VICTORY_GYM_LEADER);
+            // Steven is an Emerald guest, so he keeps the Emerald league victory theme
+            // to match the Emerald champion battle theme GetBattleBGM gives him. No
+            // facility check needed here, the Frontier and Trainer Hill are handled by
+            // the branch above, so opponentA is always a real gTrainers id at this point.
+            if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_STEVEN_HNS)
+                PlayBGM(MUS_VICTORY_LEAGUE);
+            else
+                PlayBGM(MUS_HG_VICTORY_GYM_LEADER);
+        #elif IS_FRLG
+            PlayBGM(MUS_RG_VICTORY_GYM_LEADER);
         #else
             PlayBGM(MUS_VICTORY_LEAGUE);
         #endif
@@ -5626,8 +5684,13 @@ static void HandleEndTurn_BattleWon(void)
             PlayBGM(MUS_VICTORY_AQUA_MAGMA);
             break;
         case TRAINER_CLASS_LEADER:
+        case TRAINER_CLASS_LEADER_HNS:
+        case TRAINER_CLASS_LEADER_KANTO_HNS:
+        case TRAINER_CLASS_LEADER_FRLG:
         #if IS_HNS
             PlayBGM(MUS_HG_VICTORY_GYM_LEADER);
+        #elif IS_FRLG
+            PlayBGM(MUS_RG_VICTORY_GYM_LEADER);
         #else
             PlayBGM(MUS_VICTORY_GYM_LEADER);
         #endif

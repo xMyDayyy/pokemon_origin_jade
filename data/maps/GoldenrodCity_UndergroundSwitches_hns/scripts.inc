@@ -54,13 +54,9 @@ GoldenrodCity_UndergroundSwitches_EventScript_AntiSoftLock_TP::
 	end
 
 GoldenrodCity_UndergroundSwitches_EventScript_AntiSoftLock_Text::
-#if GERMAN
-	.string "Zurück zum Eingang gehen und die\n"
-	.string "Schalter zurücksetzen?$"
-#else
+	.string "You may be stuck.\p"
 	.string "Go back to the entrance\n"
 	.string "and reset switches?$"
-#endif
 
 @ 3->2->1
 
@@ -93,9 +89,9 @@ GoldenrodCity_UndergroundSwitches_EventScript_Panel1Activate:: @unlock basic
 	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall1
 	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall2
 	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall3
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4
+	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4	
 	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall5
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6
+	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6	
 	special DrawWholeMapView
 	waitse
 	release
@@ -147,9 +143,9 @@ GoldenrodCity_UndergroundSwitches_EventScript_Panel2Activate:: @unlock basic
 	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall1
 	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall2
 	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall3
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4
+	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4	
 	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall5
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6
+	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6	
 	special DrawWholeMapView
 	waitse
 	release
@@ -163,9 +159,9 @@ GoldenrodCity_UndergroundSwitches_EventScript_Panel2ActivateWrong:: @unlock basi
 	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall1
 	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall2
 	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall3
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4
+	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4	
 	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall5
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6
+	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6	
 	special DrawWholeMapView
 	waitse
 	release
@@ -180,9 +176,9 @@ GoldenrodCity_UndergroundSwitches_EventScript_Panel2ActivateCorrect:: @unlock it
 	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall1
 	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall2
 	call GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall3
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4
+	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall4	
 	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall5
-	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6
+	call GoldenrodCity_UndergroundSwitches_EventScript_CreateWall6	
 	special DrawWholeMapView
 	waitse
 	release
@@ -293,7 +289,7 @@ GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall1::
 	setmetatile 5, 7, 0x378, FALSE
 	setmetatile 6, 7, 0x379, FALSE
 	setmetatile 7, 7, 0x37A, FALSE
-
+	
 	setmetatile 5, 8, 0x380, FALSE
 	setmetatile 6, 8, 0x381, FALSE
 	setmetatile 7, 8, 0x382, FALSE
@@ -303,7 +299,7 @@ GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall2::
 	setmetatile 14, 7, 0x378, FALSE
 	setmetatile 15, 7, 0x379, FALSE
 	setmetatile 16, 7, 0x37A, FALSE
-
+	
 	setmetatile 14, 8, 0x380, FALSE
 	setmetatile 15, 8, 0x381, FALSE
 	setmetatile 16, 8, 0x382, FALSE
@@ -313,7 +309,7 @@ GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall3::
 	setmetatile 23, 7, 0x378, FALSE
 	setmetatile 24, 7, 0x379, FALSE
 	setmetatile 25, 7, 0x37A, FALSE
-
+	
 	setmetatile 23, 8, 0x380, FALSE
 	setmetatile 24, 8, 0x381, FALSE
 	setmetatile 25, 8, 0x382, FALSE
@@ -323,7 +319,7 @@ GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall4::
 	setmetatile 5, 11, 0x378, FALSE
 	setmetatile 6, 11, 0x379, FALSE
 	setmetatile 7, 11, 0x37A, FALSE
-
+	
 	setmetatile 5, 12, 0x380, FALSE
 	setmetatile 6, 12, 0x381, FALSE
 	setmetatile 7, 12, 0x382, FALSE
@@ -333,7 +329,7 @@ GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall5::
 	setmetatile 14, 11, 0x378, FALSE
 	setmetatile 15, 11, 0x379, FALSE
 	setmetatile 16, 11, 0x37A, FALSE
-
+	
 	setmetatile 14, 12, 0x380, FALSE
 	setmetatile 15, 12, 0x381, FALSE
 	setmetatile 16, 12, 0x382, FALSE
@@ -343,7 +339,7 @@ GoldenrodCity_UndergroundSwitches_EventScript_RemoveWall6::
 	setmetatile 23, 11, 0x378, FALSE
 	setmetatile 24, 11, 0x379, FALSE
 	setmetatile 25, 11, 0x37A, FALSE
-
+	
 	setmetatile 23, 12, 0x380, FALSE
 	setmetatile 24, 12, 0x381, FALSE
 	setmetatile 25, 12, 0x382, FALSE
@@ -481,7 +477,7 @@ GoldenrodCity_UndergroundSwitches_Movement_SilverLeaveBot:
 	walk_up
 	walk_up
 	face_right
-	step_end
+	step_end	
 
 GoldenrodCity_UndergroundSwitches_EventScript_Grunt10::
     trainerbattle_single TRAINER_GRUNT_10_HNS, GoldenrodUnderground_Text_GruntM11Seen, GoldenrodUnderground_Text_GruntM11Beaten
@@ -526,18 +522,6 @@ GoldenrodCity_UndergroundSwitches_EventScript_Item_SmokeBall::
 	end
 
 GoldenrodUnderground_Text_SilverBefore:
-#if GERMAN
-	.string "Halt!\p"
-	.string "Ich hab dich gesehen und bin dir\n"
-	.string "gefolgt.\p"
-	.string "Ich kann dich hier nicht gebrauchen,\n"
-	.string "während ich Team Rocket erledige.\p"
-	.string "…Moment. Du hast mich schon mal\n"
-	.string "besiegt, oder?\p"
-	.string "Das war ein Zufall.\p"
-	.string "Ich trainierte mein Team und werde\n"
-	.string "jetzt meine Schulden begleichen!$"
-#else
     .string "Hold it!\p"
     .string "I saw you, so I tailed you.\p"
     .string "I don't need you underfoot while I\n"
@@ -547,38 +531,14 @@ GoldenrodUnderground_Text_SilverBefore:
     .string "That was just a fluke.\p"
     .string "I've been training my team and now\n"
     .string "I will repay my debts!$"
-#endif
 
 GoldenrodUnderground_Text_SilverWin:
-#if GERMAN
-	.string "Wie ist das möglich? Wie konnte ich nur\n"
-	.string "verlieren?\p"
-	.string "Ich hatte doch alle starken Pokémon!\n"
-	.string "Und ich habe mich nicht zurückgehalten!\p"
-	.string "Wie kann das also sein?$"
-#else
     .string "…Why… Why do I lose?\p"
     .string "I've assembled the toughest POKéMON.\p"
     .string "I didn't ease up on the gas.\p"
     .string "So why do I lose?$"
-#endif
 
 GoldenrodUnderground_Text_SilverAfter:
-#if GERMAN
-	.string "…Ich verstehe nicht…\p"
-	.string "Stimmt es, was Siegfried sagte?\p"
-	.string "Dass ich Pokémon nicht richtig\n"
-	.string "behandle?\p"
-	.string "Liebe…\p"
-	.string "Vertrauen…\p"
-	.string "Fehlt mir das wirklich?\p"
-	.string "Hält es mich vom Sieg ab?\p"
-	.string "Ich… Ich verstehe es nicht.\p"
-	.string "Doch hier endet es nicht.\p"
-	.string "Nicht jetzt. Nicht wegen diesem Kampf.\p"
-	.string "Ich gebe meinen Traum nicht auf,\n"
-	.string "der weltbeste Trainer zu werden!$"
-#else
     .string "…I don't understand…\p"
     .string "Is what that LANCE guy said true?\p"
     .string "That I don't treat POKéMON properly?\p"
@@ -591,229 +551,101 @@ GoldenrodUnderground_Text_SilverAfter:
     .string "Not now. Not because of this.\p"
     .string "I won't give up my dream of becoming\n"
     .string "the world's best POKéMON trainer!$"
-#endif
 
 GoldenrodUnderground_Text_SilverLoss:
-#if GERMAN
-	.string "Jetzt kennst du meine wahre Macht!\p"
-	.string "Mit ihr werde ich Team Rocket schlagen!\n"
-	.string "Ja, und diesen Siegfried werde ich auch\l"
-	.string "vollends in die Knie zwingen!$"
-#else
     .string "Humph. This is my real power, wimp.\p"
     .string "I'll make TEAM ROCKET history.\p"
     .string "And I'm going to grind that LANCE\n"
     .string "under my heels.$"
-#endif
 
 GoldenrodUnderground_Text_GruntM11Seen:
-#if GERMAN
-	.string "Ein Tor auf, das andere zu.\p"
-	.string "Wetten, du kommst nicht dort hin?$"
-#else
     .string "Open one shutter, another closes.\p"
     .string "Bet you can't get where you want!$"
-#endif
 
 GoldenrodUnderground_Text_GruntM11Beaten:
-#if GERMAN
-	.string "Mist! Ich bin an Unentschlos-\n"
-	.string "senheit gescheitert!$"
-#else
     .string "Drat! I was sunk by indecision!$"
-#endif
 
 GoldenrodUnderground_Text_GruntM11After:
-#if GERMAN
-	.string "Ich bin auch verwirrt…\p"
-	.string "Der Schalter am Ende muss zuerst\n"
-	.string "gedrückt werden, aber…$"
-#else
     .string "I'm confused too… The switch on the\n"
     .string "end is the one to press first, but…$"
-#endif
 
 GoldenrodUnderground_Text_GruntM25Seen:
-#if GERMAN
-	.string "Kwahaha!\p"
-	.string "Verwirrt von den Toren?\p"
-	.string "Ich gebe dir einen Tipp, wenn du mich\n"
-	.string "besiegst!$"
-#else
     .string "Kwahaha!\p"
     .string "Confounded by the shutters, are we?\p"
     .string "I'll let you in on a secret if you\n"
     .string "can beat me!$"
-#endif
 
 GoldenrodUnderground_Text_GruntM25Beaten:
-#if GERMAN
-	.string "Argh… Ich hab’s vermasselt.$"
-#else
     .string "Uwww… I blew it.$"
-#endif
 
 GoldenrodUnderground_Text_GruntM25After:
-#if GERMAN
-	.string "Gut. Ein Hinweis!\p"
-	.string "Wechsle die Reihenfolge der Schalter.\p"
-	.string "Dann öffnen und schließen die\n"
-	.string "Tore anders.$"
-#else
     .string "All right. A hint!\p"
     .string "Change the order of switching.\p"
     .string "That'll change the ways the shutters\n"
     .string "open and close.$"
-#endif
 
 GoldenrodUnderground_Text_BurglarDuncanSeen:
-#if GERMAN
-	.string "Raus mit deinen Sachen!$"
-#else
     .string "Fork over your goodies!$"
-#endif
 
 GoldenrodUnderground_Text_BurglarDuncanBeaten:
-#if GERMAN
-	.string "Eleni$"
-#else
     .string "Mercy!$"
-#endif
 
 GoldenrodUnderground_Text_BurglarDuncanAfter:
-#if GERMAN
-	.string "Stehlen und Hehlen! Das ist meine\n"
-	.string "Methode…$"
-#else
     .string "Steal and sell! That's basic in\n"
     .string "crime, kid!$"
-#endif
 
 GoldenrodUnderground_Text_BurglarEddieSeen:
-#if GERMAN
-	.string "Sie haben den Bau abgebrochen, noch\n"
-	.string "ehe sie fertig waren. Nun wühle ich mich\l"
-	.string "durch die Überreste.$"
-#else
     .string "They ditched this project before they\n"
     .string "finished.\p"
     .string "I'm searching for leftover loot.$"
-#endif
 
 GoldenrodUnderground_Text_BurglarEddieBeaten:
-#if GERMAN
-	.string "Übertrieben!$"
-#else
     .string "Over the top!$"
-#endif
 
 GoldenrodUnderground_Text_BurglarEddieAfter:
-#if GERMAN
-	.string "Untergrund-Warenhaus?\p"
-	.string "Warum willst du dahin?\p"
-	.string "Da ist nichts.$"
-#else
     .string "UNDERGROUND WAREHOUSE?\p"
     .string "What do you want to go there for?\p"
     .string "There's nothing down there.$"
-#endif
 
 GoldenrodUnderground_Text_GruntM13Seen:
-#if GERMAN
-	.string "Verlaufen? Erzähl das deiner Mama.\n"
-	.string "Sobald du mir unter die Augen kommst,\l"
-	.string "bist du nur noch eines: mein Opfer!$"
-#else
     .string "I don't care if you're lost.\p"
     .string "You show up here, you're nothing but\n"
     .string "a victim!$"
-#endif
 
 GoldenrodUnderground_Text_GruntM13Beaten:
-#if GERMAN
-	.string "Urks! Du hältst dich wohl für ganz cool,\n"
-	.string "was?$"
-#else
     .string "Urk! Yeah, think you're cool, huh?$"
-#endif
 
 GoldenrodUnderground_Text_GruntM13After:
-#if GERMAN
-	.string "Du musst Eis in den Adern haben,\p"
-	.string "um Team Rocket zu dissen.$"
-#else
     .string "You must have ice in your veins to\n"
-    .string "dis TEAM ROCKET.$"
-#endif
+    .string "diss TEAM ROCKET.$"
 
 GoldenrodUnderground_Text_GruntF3Seen:
-#if GERMAN
-	.string "Hast du dich verirrt? Nein, das kann\n"
-	.string "nicht sein.\p"
-	.string "Es ist keine Angst in deinem Blick. Aber\n"
-	.string "das macht nichts. Ich bringe dir schon\l"
-	.string "bei, was wahre Angst ist!$"
-#else
     .string "Are you lost? No, you can't be.\p"
     .string "You don't have that scared look.\p"
     .string "I'll give you something to be\n"
     .string "scared about!$"
-#endif
 
 GoldenrodUnderground_Text_GruntF3Beaten:
-#if GERMAN
-	.string "Wie konntest du…?$"
-#else
     .string "How could you?$"
-#endif
 
 GoldenrodUnderground_Text_GruntF3After:
-#if GERMAN
-	.string "Geh, Hinfort! Verschwinde!\p"
-	.string "Mir egal wo!$"
-#else
     .string "Go wherever you'd like! Get lost!\n"
     .string "See if I care!$"
-#endif
 
 GoldenrodUnderground_Text_Switch1:
-#if GERMAN
-	.string "Schalter 1 aktiviert.$"
-#else
     .string "SWITCH 1 activated.$"
-#endif
 
 GoldenrodUnderground_Text_Switch2:
-#if GERMAN
-	.string "Schalter 2 aktiviert.$"
-#else
     .string "SWITCH 2 activated.$"
-#endif
 
 GoldenrodUnderground_Text_Switch3:
-#if GERMAN
-	.string "Schalter 3 aktiviert.$"
-#else
     .string "SWITCH 3 activated.$"
-#endif
 
 GoldenrodUnderground_Text_Switch1Off:
-#if GERMAN
-	.string "Schalter 1 deaktiviert.$"
-#else
     .string "SWITCH 1 deactivated.$"
-#endif
 
 GoldenrodUnderground_Text_Switch2Off:
-#if GERMAN
-	.string "Schalter 2 deaktiviert.$"
-#else
     .string "SWITCH 2 deactivated.$"
-#endif
 
 GoldenrodUnderground_Text_Switch3Off:
-#if GERMAN
-	.string "Schalter 3 deaktiviert.$"
-#else
     .string "SWITCH 3 deactivated.$"
-#endif

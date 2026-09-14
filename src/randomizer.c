@@ -464,46 +464,28 @@ static inline bool32 IsKeyItem(u16 itemId)
     return gItemsInfo[itemId].pocket == POCKET_KEY_ITEMS;
 }
 
-// Origin Jade: Quest-Items, die nicht im Schluesselitem-Fach liegen, aber per
-// checkitem/removeitem abgefragt werden. Werden sie ausgewuerfelt, laeuft die
-// Quest ins Leere:
-//  - Helix-/Dom-Fossil, Alter Bernstein: Mondberg / Prismania-Museum ->
-//    Zinnoberinsel-Labor (removeitem), FLAG_GOT_* bleibt aber gesetzt
-//  - Wurzel-/Klauenfossil: Wuestenturm / Wuestentunnel -> Devon Corp 2F
-//  - Kuestensalz/-schale: Kuestenhoehle -> Seegesang (Muschelglocke)
-// Der GS-Ball (Kurts Celebi-Kette) stammt aus HnS 2.0.1.
-static inline bool32 IsQuestItemOutsideKeyPocket(u16 itemId)
-{
-    switch (itemId)
-    {
-    case ITEM_GS_BALL:
-    case ITEM_HELIX_FOSSIL:
-    case ITEM_DOME_FOSSIL:
-    case ITEM_OLD_AMBER:
-    case ITEM_ROOT_FOSSIL:
-    case ITEM_CLAW_FOSSIL:
-    case ITEM_SHOAL_SALT:
-    case ITEM_SHOAL_SHELL:
-        return TRUE;
-    default:
-        return FALSE;
-    }
-}
-
 static inline bool32 ShouldRandomizeItem(u16 itemId)
 {
-    return !(IsItemHM(itemId) || IsKeyItem(itemId) || IsQuestItemOutsideKeyPocket(itemId) || itemId == ITEM_NONE);
+    // ITEM_GS_BALL sits in POCKET_POKE_BALLS rather than POCKET_KEY_ITEMS, so the key-item
+    // check below doesn't cover it. It gates Kurt's Celebi chain (checkitem/removeitem in
+    // AzaleaTown_KurtsHouse_hns), so rolling it into something else softlocks that quest.
+    return !(IsItemHM(itemId) || IsKeyItem(itemId) || itemId == ITEM_GS_BALL || itemId == ITEM_NONE);
 }
 
 #include "data/randomizer/item_whitelist.h"
 
-static u16 RandomizeFoundItemWithSeed(u16 itemId, u32 mapSeed)
+u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u8 localId)
 {
     struct Sfc32State state;
     u16 result;
+    u32 mapSeed;
 
     if (!ShouldRandomizeItem(itemId))
         return itemId;
+
+    mapSeed = ((u32)mapGroup) << 16;
+    mapSeed |= ((u32)mapNum) << 8;
+    mapSeed |= localId;
 
     state = RandomizerRandSeed(RANDOMIZER_REASON_FIELD_ITEM, mapSeed, itemId);
 
@@ -516,14 +498,6 @@ static u16 RandomizeFoundItemWithSeed(u16 itemId, u32 mapSeed)
 
     return result;
 
-}
-
-u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u8 localId)
-{
-    u32 mapSeed = ((u32)mapGroup) << 16;
-    mapSeed |= ((u32)mapNum) << 8;
-    mapSeed |= localId;
-    return RandomizeFoundItemWithSeed(itemId, mapSeed);
 }
 
 static inline void RandomizeFoundItemScript(u16 *scriptVar)
@@ -546,14 +520,7 @@ void FindItemRandomize_NativeCall(struct ScriptContext *ctx)
 
 void FindHiddenItemRandomize_NativeCall(struct ScriptContext *ctx)
 {
-    // Origin Jade: Versteckte Items sind BG-Events ohne Object-Event.
-    // gSelectedObjectEvent zeigt hier noch auf das zuletzt angesprochene
-    // Objekt - der Wurf haette sich mit jedem NPC-Gespraech geaendert, und
-    // zwei gleiche versteckte Items einer Karte waeren identisch gewesen.
-    // Das Flag des Items (VAR_0x8004, siehe field_control_avatar.c) ist
-    // spielweit eindeutig und dient deshalb als Seed.
-    if (RandomizerFeatureEnabled(RANDOMIZE_FIELD_ITEMS))
-        gSpecialVar_0x8005 = RandomizeFoundItemWithSeed(gSpecialVar_0x8005, 0x80000000u | gSpecialVar_0x8004);
+    RandomizeFoundItemScript(&gSpecialVar_0x8005);
 }
 
 // Items handed over by NPCs (the `giveitem` macro / STD_OBTAIN_ITEM). These have no
@@ -1195,6 +1162,44 @@ static inline bool32 IsAbilityIllegal(u16 ability)
     return FALSE;
 }
 
+// Abilities are randomized per (species, ability slot), but a species' empty or
+// duplicate slots must not turn into extra distinct abilities: Ability Capsule,
+// Ability Patch and the Pokedex all decide how many abilities a species has from
+// the base data. Collapse such slots onto the slot the base data actually uses so
+// a randomized species keeps the same ability count as it has in vanilla.
+static u8 GetEffectiveAbilitySlot(u16 species, u8 abilityNum)
+{
+    u32 i;
+
+    if (abilityNum < NUM_ABILITY_SLOTS && GetSpeciesAbility(species, abilityNum) != ABILITY_NONE)
+    {
+        // Matches the Ability Capsule check: a second ability identical to the
+        // first is not a separate ability.
+        if (abilityNum == 1 && GetSpeciesAbility(species, 1) == GetSpeciesAbility(species, 0))
+            return 0;
+        return abilityNum;
+    }
+
+    // Empty slot: mirror the fallback order GetAbilityBySpecies uses, so the
+    // randomized ability lands on the slot the base data actually resolves to.
+    if (abilityNum >= NUM_NORMAL_ABILITY_SLOTS)
+    {
+        for (i = NUM_NORMAL_ABILITY_SLOTS; i < NUM_ABILITY_SLOTS; i++)
+        {
+            if (GetSpeciesAbility(species, i) != ABILITY_NONE)
+                return i;
+        }
+    }
+
+    for (i = 0; i < NUM_ABILITY_SLOTS; i++)
+    {
+        if (GetSpeciesAbility(species, i) != ABILITY_NONE)
+            return i;
+    }
+
+    return 0;
+}
+
 u16 RandomizeAbility(u16 species, u8 abilityNum, u16 originalAbility)
 {
     if (RandomizerFeatureEnabled(RANDOMIZE_ABILITIES) && originalAbility != ABILITY_NONE)
@@ -1202,6 +1207,8 @@ u16 RandomizeAbility(u16 species, u8 abilityNum, u16 originalAbility)
         struct Sfc32State state;
         u16 result;
         u32 seed;
+
+        abilityNum = GetEffectiveAbilitySlot(species, abilityNum);
 
         seed = ((u32)species) << 8;
         seed |= abilityNum;

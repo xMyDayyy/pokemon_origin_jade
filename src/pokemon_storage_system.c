@@ -2726,7 +2726,7 @@ static void Task_OnSelectedMon(u8 taskId)
             {
                 sStorage->state = 3;
             }
-            else if (sStorage->displayMonIsEgg)
+            else if (sStorage->displayMonIsEgg && !OW_PC_RELEASE_EGGS)
             {
                 sStorage->state = 5; // Cannot release an Egg.
             }
@@ -2895,7 +2895,8 @@ static void Task_WithdrawMon(u8 taskId)
             PrintMessage(MSG_PARTY_FULL);
             sStorage->state = 1;
         }
-        else if (IsBoxMonNuzlockeDead(StorageGetCurrentBox(), sCursorPosition))
+        else if (IsMovingMonNuzlockeDead()
+              || (!sIsMonBeingMoved && IsBoxMonNuzlockeDead(StorageGetCurrentBox(), sCursorPosition)))
         {
             PrintMessage(MSG_NUZLOCKE_FAINTED);
             sStorage->state = 1;

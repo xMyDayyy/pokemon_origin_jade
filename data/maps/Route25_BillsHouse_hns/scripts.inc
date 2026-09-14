@@ -36,18 +36,10 @@ Route25_BillsHouse_hns_EventScript_TeleporterTest::
 	end
 
 Route25_BillsHouse_Text_Teleporter:
-#if GERMAN
-	.string "Galar Transformator:\p"
-	.string "Diese Maschine transformiert Ein\n"
-	.string "Pokémon in seine Galar-Form Prozess ist\l"
-	.string "permanent.\l"
-	.string "Fortsetzen?$"
-#else
 	.string "THIS MACHINE WILL TRANSFORM\n"
 	.string "A POKéMON INTO ITS GALARIAN FORM\l"
 	.string "THIS PROCESS IS PERMANENT.\l"
 	.string "WOULD YOU LIKE TO PROCEED?$"
-#endif
 
 Route25_BillsHouse_hns_PickMeowth::
 	setvar VAR_0x8004, SPECIES_MEOWTH
@@ -190,7 +182,7 @@ Route25_BillsHouse_hns_CutsceneBeforeTeleport::
 	opendoor 10, 3
 	waitdooranim
 	playmoncry VAR_TEMP_0, CRY_MODE_NORMAL
-	waitmoncry
+	waitmoncry 
 	applymovement LOCALID_BILLS_GRANDPA_OLD_MON, Common_Movement_WalkUp1
 	waitmovement 0
 	turnobject LOCALID_BILLS_GRANDPA_OLD_MON, DIR_SOUTH
@@ -234,7 +226,7 @@ Route25_BillsHouse_hns_CutsceneTeleport::
 	clearflag FLAG_TEMP_2
 	copyvar VAR_OBJ_GFX_ID_1, VAR_TEMP_1
 	addvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_MON_BASE
-
+	
 Route25_BillsHouse_hns_CutsceneAfterTeleport::
 	opendoor 3, 3
 	delay 10
@@ -272,6 +264,7 @@ Route25_BillsHouse_hns_CutsceneCleanup::
 	delay 60
 	callnative UpdateFollowingPokemon
 	fadescreen FADE_FROM_BLACK
+	setflag FLAG_USED_TELEPORTER
 	releaseall
 	end
 
@@ -323,123 +316,55 @@ Route25_BillsHouse_Movement_ShowPlayer:
 	step_end
 
 Route25_BillsHouse_hns_Text_Meowth:
-#if GERMAN
-	.string "Mauzi$"
-#else
 	.string "MEOWTH$"
-#endif
 
 Route25_BillsHouse_hns_Text_Ponyta:
-#if GERMAN
-	.string "Ponita$"
-#else
 	.string "PONYTA$"
-#endif
 
 Route25_BillsHouse_hns_Text_Rapidash:
-#if GERMAN
-	.string "Gallopa$"
-#else
 	.string "RAPIDASH$"
-#endif
 
 Route25_BillsHouse_hns_Text_Slowpoke:
-#if GERMAN
-	.string "Flegmon$"
-#else
 	.string "SLOWPOKE$"
-#endif
 
 Route25_BillsHouse_hns_Text_Slowbro:
-#if GERMAN
-	.string "Lahmus$"
-#else
 	.string "SLOWBRO$"
-#endif
 
 Route25_BillsHouse_hns_Text_Slowking:
-#if GERMAN
-	.string "Laschoking$"
-#else
 	.string "SLOWKING$"
-#endif
 
 Route25_BillsHouse_hns_Text_Farfetchd:
-#if GERMAN
-	.string "Farfetch'D$"
-#else
 	.string "FARFETCH'D$"
-#endif
 
 Route25_BillsHouse_hns_Text_Weezing:
-#if GERMAN
-	.string "Smogmog$"
-#else
 	.string "WEEZING$"
-#endif
 
 Route25_BillsHouse_hns_Text_MrMime:
-#if GERMAN
-	.string "Pantimos$"
-#else
 	.string "MR. MIME$"
-#endif
 
 Route25_BillsHouse_hns_Text_Articuno:
-#if GERMAN
-	.string "Arktos$"
-#else
 	.string "ARTICUNO$"
-#endif
 
 Route25_BillsHouse_hns_Text_Zapdos:
-#if GERMAN
-	.string "Zapdos$"
-#else
 	.string "ZAPDOS$"
-#endif
 
 Route25_BillsHouse_hns_Text_Moltres:
-#if GERMAN
-	.string "Lavados$"
-#else
 	.string "MOLTRES$"
-#endif
 
 Route25_BillsHouse_hns_Text_Corsola:
-#if GERMAN
-	.string "Corasonn$"
-#else
 	.string "CORSOLA$"
-#endif
 
 Route25_BillsHouse_hns_Text_Zigzagoon:
-#if GERMAN
-	.string "Zigzachs$"
-#else
 	.string "ZIGZAGOON$"
-#endif
 
 Route25_BillsHouse_hns_Text_Linoone:
-#if GERMAN
-	.string "Geradaks$"
-#else
 	.string "LINOONE$"
-#endif
 
 Route25_BillsHouse_hns_Text_Cancel:
-#if GERMAN
-	.string "Abbruch$"
-#else
 	.string "CANCEL$"
-#endif
 
 Route25_BillsHouse_hns_Text_NotInParty:
-#if GERMAN
-	.string "Pokémon nicht gefunden.$"
-#else
 	.string "POKéMON NOT DETECTED.$"
-#endif
 
 @VAR_BILLS_GRANDPA
 
@@ -611,95 +536,44 @@ Route25_BillsHouse_Movement_MonCelebration:
 	step_end
 
 Route25_BillsHouse_Text_GrandpaIntro:
-#if GERMAN
-	.string "Hm?\n"
-	.string "Bist du hier, um meinen Enkel zu sehen?\p"
-	.string "Sein Name ist Bill, und er macht in Johto\n"
-	.string "beruflich… irgendwas mit Computern.\p"
-	.string "Deshalb hüte ich hier das Haus für ihn.$"
-#else
 	.string "Hm? You know BILL? He's my\n"
 	.string "grandson.\p"
 	.string "He's in JOHTO. He does\n"
 	.string "something with PCs, so I'm\l"
 	.string "housesitting.$"
-#endif
 
 Route25_BillsHouse_Text_GrampsMeowth:
-#if GERMAN
-	.string "Mein Enkel Bill erzählte mir von einem\n"
-	.string "Pokémon mit scharfen Krallen, einer\l"
-	.string "Münze auf dem\p"
-	.string "Kopf und dem Ruf, Glück zu bringen.$"
-#else
 	.string "My grandson BILL told me about\n"
 	.string "a POKéMON that has sharp claws,\l"
 	.string "a charm on its head, and is\p"
 	.string "said to bring good fortune.$"
-#endif
 
 Route25_BillsHouse_Text_GrampsZigzagoon:
-#if GERMAN
-	.string "Bill erwähnte ein Pokémon, das im\n"
-	.string "Zickzack umherläuft.\p"
-	.string "Es soll ein echter kleiner Sammler sein.$"
-#else
 	.string "BILL mentioned a POKéMON that\n"
 	.string "runs around in a zigzag\l"
 	.string "pattern.\p"
 	.string "It's quite the little\n"
 	.string "scavenger, I hear.$"
-#endif
 
 Route25_BillsHouse_Text_GrampsPonyta:
-#if GERMAN
-	.string "Kennst du das Pokémon mit der\n"
-	.string "feurigen Mähne?\p"
-	.string "Es soll schneller laufen als die meisten\n"
-	.string "Züge.$"
-#else
 	.string "Do you know of a POKéMON with\n"
 	.string "a fiery mane?\p"
 	.string "I hear it can run faster than\n"
 	.string "most trains.$"
-#endif
 
 Route25_BillsHouse_Text_GrampsFarfetchd:
-#if GERMAN
-	.string "Bill erzählte mir von einem Pokémon, das\n"
-	.string "immer eine Lauchstange mit sich trägt.\p"
-	.string "Schon ein seltsames Wesen.$"
-#else
 	.string "BILL told me about a POKéMON\n"
 	.string "that always carries a stalk\l"
 	.string "of leek with it.\p"
 	.string "Quite the peculiar creature.$"
-#endif
 
 Route25_BillsHouse_Text_GrampsSlowpoke:
-#if GERMAN
-	.string "Kennst du das Pokémon, das ständig ins\n"
-	.string "Leere starrt?\p"
-	.string "Sein Schweif wird oft auf dem\n"
-	.string "Schwarzmarkt verkauft.$"
-#else
 	.string "Do you know the POKéMON that\n"
 	.string "is always staring blankly?\p"
 	.string "Its tail is often sold on the\n"
 	.string "black market.$"
-#endif
 
 Route25_BillsHouse_Text_TeleporterUnlocked:
-#if GERMAN
-	.string "Ach, noch etwas!\p"
-	.string "Bill hat eine Notiz hinterlassen. Falls\n"
-	.string "ich jemanden finde, der Pokémon\l"
-	.string "wirklich\p"
-	.string "schätzt, soll ich ihn seine Maschine\n"
-	.string "nutzen lassen.\p"
-	.string "Benutz ihn jederzeit!\p"
-	.string "Nimm einfach den Computer dort.$"
-#else
 	.string "Oh, one more thing!\p"
 	.string "BILL's TELEPORTER.\n"
 	.string "That's the big machine over there.\p"
@@ -709,87 +583,43 @@ Route25_BillsHouse_Text_TeleporterUnlocked:
 	.string "You're welcome to try it, if\n"
 	.string "you'd like!\p"
 	.string "Just use that computer over there.$"
-#endif
 
 Route25_BillsHouse_Text_AskToSeeMon:
-#if GERMAN
-	.string "Hast du so ein Pokémon? Wenn ja,\n"
-	.string "dann würde ich es gerne sehen…$"
-#else
 	.string "If you have that POKéMON, may I\n"
 	.string "see it, please?$"
-#endif
 
 Route25_BillsHouse_Text_ExcitedToSee:
-#if GERMAN
-	.string "Oh, du willst mir echt eins zeigen?\n"
-	.string "Wie lieb von dir!$"
-#else
 	.string "You will show me? How good of\n"
 	.string "you!$"
-#endif
 
 Route25_BillsHouse_Text_YouDontHaveIt:
-#if GERMAN
-	.string "Ach so, schade…$"
-#else
 	.string "You don't have it?\n"
 	.string "That's too bad…$"
-#endif
 
 Route25_BillsHouse_Text_ShownPokemon:
-#if GERMAN
-	.string "Ah, das ist also {STR_VAR_1}?\p"
-	.string "Ist das nicht niedlich?\n"
-	.string "Vielen Dank dafür.$"
-#else
 	.string "Ah, so that is {STR_VAR_1}?\p"
 	.string "Isn't it cute! That's so kind\n"
 	.string "of you.$"
-#endif
 
 Route25_BillsHouse_Text_Appreciation:
-#if GERMAN
-	.string "Danke!\p"
-	.string "Bitte nimm dies als Zeichen meiner\n"
-	.string "Dankbarkeit.$"
-#else
 	.string "Thanks!\p"
 	.string "This is a token of my\n"
 	.string "appreciation.$"
-#endif
 
 Route25_BillsHouse_Text_ComeAgain:
-#if GERMAN
-	.string "Besuche mich bitte mal wieder!$"
-#else
 	.string "Come visit again sometime.$"
-#endif
 
 Route25_BillsHouse_Text_ShownAll:
-#if GERMAN
-	.string "Danke, dass du mir so viele niedliche\n"
-	.string "Pokémon gezeigt hast!\l"
-	.string "Ich habe mich wirklich gut amüsiert.\p"
-	.string "Das verleiht mir richtig Lebensenergie!$"
-#else
 	.string "Thanks for showing me so many\n"
 	.string "cute POKéMON.\p"
 	.string "I really enjoyed myself. I'm\n"
 	.string "glad I've lived such a long life.\p"
-	.string "Feel free to use the GALARIAN\n"
-	.string "RECOMBINATOR whenever you like.$"
-#endif
+	.string "Feel free to use the TELEPORTER\n"
+	.string "whenever you like.$"
 
 Route25_BillsHouse_Text_WrongPokemon:
-#if GERMAN
-	.string "Hm…\p"
-	.string "Ich glaube, das ist nicht das Pokémon,\n"
-	.string "von dem ich gehört habe…$"
-#else
 	.string "Hm?\p"
 	.string "That's not the POKéMON that I\n"
 	.string "was told about.$"
-#endif
 
 

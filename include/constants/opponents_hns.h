@@ -474,7 +474,7 @@
 #define TRAINER_RIVAL_TOTODILE_5_HNS                  461
 #define TRAINER_RIVAL_TOTODILE_6_HNS                  462
 #define TRAINER_RIVAL_TOTODILE_7_HNS                  463
-#define TRAINER_RED_2_HNS                             464
+#define TRAINER_RED_HNS                             464
 #define TRAINER_EUSINE_HNS                            465
 #define TRAINER_GIOVANNI_HNS                          466
 #define TRAINER_PROTON_1_HNS                          467
@@ -630,6 +630,53 @@
 #define TRAINER_WESSEL_HNS                            615
 #define TRAINER_SKYLAR_HNS                            616
 
+
+// Phone rematch tiers for Irwin, Derek and Beverly. Appended at the end of the list
+// on purpose: trainer IDs index FLAG_TRAINER_FLAG_START, so inserting mid-list
+// would shift every later trainer's "defeated" flag and corrupt existing saves.
+#define TRAINER_IRWIN_2_HNS                   619
+#define TRAINER_IRWIN_3_HNS                   620
+#define TRAINER_IRWIN_4_HNS                   621
+#define TRAINER_IRWIN_5_HNS                   622
+#define TRAINER_DEREK_2_HNS                   623
+#define TRAINER_DEREK_3_HNS                   624
+#define TRAINER_DEREK_4_HNS                   625
+#define TRAINER_DEREK_5_HNS                   626
+#define TRAINER_BEVERLY_2_HNS                 627
+#define TRAINER_BEVERLY_3_HNS                 628
+#define TRAINER_BEVERLY_4_HNS                 629
+#define TRAINER_BEVERLY_5_HNS                 630
+
+// 618 is TRAINER_TANYA_HNS, relocated out of the TRAINER_FRONTIER_BRAIN slot (330).
+
+// Post-OBC (Battle Championship) rematch teams for the Gym Leaders, Elite Four,
+// Lance, Blue and Red. Appended at the end of the list for the same save-index
+// reason as the phone rematch tiers above.
+#define TRAINER_FALKNER_POSTOBC_HNS           631
+#define TRAINER_BUGSY_POSTOBC_HNS             632
+#define TRAINER_WHITNEY_POSTOBC_HNS           633
+#define TRAINER_MORTY_POSTOBC_HNS             634
+#define TRAINER_CHUCK_POSTOBC_HNS             635
+#define TRAINER_JASMINE_POSTOBC_HNS           636
+#define TRAINER_PRYCE_POSTOBC_HNS             637
+#define TRAINER_CLAIR_POSTOBC_HNS             638
+#define TRAINER_BROCK_POSTOBC_HNS             639
+#define TRAINER_LTSURGE_POSTOBC_HNS           640
+#define TRAINER_JANINE_POSTOBC_HNS            641
+#define TRAINER_SABRINA_POSTOBC_HNS           642
+#define TRAINER_BLAINE_POSTOBC_HNS            643
+#define TRAINER_BLUE_POSTOBC_HNS              644
+#define TRAINER_WILL_POSTOBC_HNS              645
+#define TRAINER_KOGA_POSTOBC_HNS              646
+#define TRAINER_BRUNO_POSTOBC_HNS             647
+#define TRAINER_KAREN_POSTOBC_HNS             648
+#define TRAINER_LANCE_POSTOBC_HNS             649
+#define TRAINER_RED_POSTOBC_HNS               650
+#define TRAINER_MISTY_POSTOBC_HNS             651
+#define TRAINER_ERIKA_POSTOBC_HNS             652
+
+#define TRAINERS_COUNT_HNS                       653
+#define MAX_TRAINERS_COUNT_HNS                   864
 
 // Telefon-Rueckkampfstufen fuer Irwin, Derek und Beverly (HnS 2.0.1, Commit
 // 313d4290e8). Upstream haengt sie bei 619-630 an - bei uns sind das die
