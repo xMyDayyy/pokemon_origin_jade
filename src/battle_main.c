@@ -10,7 +10,7 @@
 #include "battle_hold_effects.h"
 #include "battle_interface.h"
 #include "battle_main.h"
-#include "hoenn_level_scaling.h"
+#include "level_scaling.h"
 #include "battle_message.h"
 #include "battle_pyramid.h"
 #include "battle_scripts.h"
@@ -2029,13 +2029,13 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
         u32 monIndices[monsCount];
         DoTrainerPartyPool(trainer, monIndices, monsCount, battleTypeFlags);
 
-        // Hoenn-Levelscaling: hoechstes Originallevel des Teams als
-        // Referenz, damit die Teamstruktur beim Skalieren erhalten bleibt.
-        u8 hoennPartyMaxLvl = 0;
+        // Levelscaling (Hoenn/Johto): hoechstes Originallevel des Teams
+        // als Referenz, damit die Teamstruktur beim Skalieren erhalten bleibt.
+        u8 scalingPartyMaxLvl = 0;
         for (i = 0; i < monsCount; i++)
         {
-            if (trainer->party[monIndices[i]].lvl > hoennPartyMaxLvl)
-                hoennPartyMaxLvl = trainer->party[monIndices[i]].lvl;
+            if (trainer->party[monIndices[i]].lvl > scalingPartyMaxLvl)
+                scalingPartyMaxLvl = trainer->party[monIndices[i]].lvl;
         }
 
         for (i = 0; i < monsCount; i++)
@@ -2070,12 +2070,12 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 otId.value = HIHALF(personalityValue) ^ LOHALF(personalityValue);
             }
             {
-                u8 hoennScaledLvl = HoennScaleTrainerMonLevel(trainer, partyData[monIndex].lvl, hoennPartyMaxLvl);
-                u16 species = HoennScaleTrainerMonSpecies(partyData[monIndex].species, hoennScaledLvl);
+                u8 scaledLvl = ScaleTrainerMonLevel(trainer, partyData[monIndex].lvl, scalingPartyMaxLvl);
+                u16 species = ScaleTrainerMonSpecies(partyData[monIndex].species, scaledLvl);
                 #if RANDOMIZER_AVAILABLE == TRUE
                 species = RandomizeTrainerMon(trainer->trainerClass, i, monsCount, species);
                 #endif
-                CreateMon(&party[i], species, hoennScaledLvl, personalityValue, otId);
+                CreateMon(&party[i], species, scaledLvl, personalityValue, otId);
             }
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);
 

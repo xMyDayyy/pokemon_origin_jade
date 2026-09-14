@@ -4,7 +4,7 @@
 #include "text.h"
 #include "strings.h"
 #include "union_room_chat.h"
-#include "hoenn_level_scaling.h"
+#include "level_scaling.h"
 #include "regions.h"
 #include "event_data.h"
 

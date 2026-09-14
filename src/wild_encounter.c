@@ -20,7 +20,7 @@
 #include "script.h"
 #include "tv.h"
 #include "wild_encounter.h"
-#include "hoenn_level_scaling.h"
+#include "level_scaling.h"
 #include "randomizer.h"
 #include "battle_debug.h"
 #include "battle_pike.h"
@@ -654,7 +654,7 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum 
         break;
     }
 
-    level = HoennScaleWildMonLevel(ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, area));
+    level = ScaleWildMonLevel(ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, area));
     if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(level))
         return FALSE;
     if ((gMapHeader.mapLayoutId != LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS && gMapHeader.mapLayoutId != LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS_HNS) && flags & WILD_CHECK_KEEN_EYE && !IsAbilityAllowingEncounter(level))
@@ -674,7 +674,7 @@ static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 
 {
     u8 wildMonIndex = ChooseWildMonIndex_Fishing(rod);
     u16 wildMonSpecies = wildMonInfo->wildPokemon[wildMonIndex].species;
-    u8 level = HoennScaleWildMonLevel(ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, WILD_AREA_FISHING));
+    u8 level = ScaleWildMonLevel(ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, WILD_AREA_FISHING));
 
     #if RANDOMIZER_AVAILABLE == TRUE
     wildMonSpecies = RandomizeWildEncounter(wildMonSpecies, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, WILD_AREA_FISHING, wildMonIndex);
@@ -688,7 +688,7 @@ static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 
 static bool8 SetUpMassOutbreakEncounter(u8 flags)
 {
     u16 i;
-    u8 outbreakLevel = HoennScaleWildMonLevel(gSaveBlock1Ptr->outbreakPokemonLevel);
+    u8 outbreakLevel = ScaleWildMonLevel(gSaveBlock1Ptr->outbreakPokemonLevel);
 
     if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(outbreakLevel))
         return FALSE;
@@ -1071,7 +1071,7 @@ void FishingWildEncounter(u8 rod)
     gIsFishingEncounter = TRUE;
     if (CheckFeebas() == TRUE)
     {
-        u8 level = HoennScaleWildMonLevel(ChooseWildMonLevel(&sWildFeebas, 0, WILD_AREA_FISHING));
+        u8 level = ScaleWildMonLevel(ChooseWildMonLevel(&sWildFeebas, 0, WILD_AREA_FISHING));
 
         species = sWildFeebas.species;
         CreateWildMon(species, level);

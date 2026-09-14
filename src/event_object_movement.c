@@ -10,7 +10,7 @@
 #include "decompress.h"
 #include "event_data.h"
 #include "event_object_movement.h"
-#include "hoenn_level_scaling.h"
+#include "level_scaling.h"
 #include "event_scripts.h"
 #include "faraway_island.h"
 #include "field_camera.h"

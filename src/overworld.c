@@ -1,6 +1,6 @@
 #include "global.h"
 #include "overworld.h"
-#include "hoenn_level_scaling.h"
+#include "level_scaling.h"
 #include "constants/heal_locations.h"
 #include "battle_pyramid.h"
 #include "battle_setup.h"

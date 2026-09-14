@@ -1,7 +1,7 @@
 #include "global.h"
 #include "event_data.h"
 #include "overworld.h"
-#include "hoenn_level_scaling.h"
+#include "level_scaling.h"
 #include "hoenn_licenses.h"
 
 // Eigene Bitmaske in VAR_HOENN_LICENSES, unabhaengig von den Johto-Orden.

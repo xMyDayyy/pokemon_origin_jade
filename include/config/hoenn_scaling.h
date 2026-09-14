@@ -23,12 +23,15 @@
 //             -Vertreter): Bandoberrand + HOENN_SCALING_BOSS_EXTRA.
 //  - Artenzusammensetzung bleibt Vanilla - es skalieren NUR Level.
 //    Basisformen bleiben fangbar und selbst entwickelbar.
-//  - Gilt NUR in der Hoenn-Welt (Mapsection-Guard). Johto/Kanto
-//    behalten die HnS-Balance. Feste Event-/Legendaren-Begegnungen,
-//    Roamer und die Kampfzone sind nicht betroffen.
-//  - Erfahrung: In der Hoenn-Welt gilt die Gen-5-Formel (gewichtet
-//    nach Leveldifferenz), damit die Exp-Rueckkopplung des Scalings
-//    nicht explodiert. Johto/Kanto behalten die Gen-3-Formel.
+//  - Gilt NUR in der Hoenn-Welt (Mapsection-Guard). Johto laeuft nach
+//    denselben Regeln, aber mit eigener Datei (config/johto_scaling.h);
+//    Kanto behaelt seine handgesetzte Levelleiter. Feste Event-/
+//    Legendaren-Begegnungen, Roamer und die Kampfzone sind nicht
+//    betroffen.
+//  - Erfahrung: Ueberall dort, wo skaliert wird (Hoenn UND Johto),
+//    gilt die Gen-5-Formel (gewichtet nach Leveldifferenz), damit die
+//    Exp-Rueckkopplung des Scalings nicht explodiert. Kanto behaelt
+//    die Gen-3-Formel.
 // =====================================================================
 
 #define HOENN_LEVEL_SCALING          TRUE  // Hauptschalter

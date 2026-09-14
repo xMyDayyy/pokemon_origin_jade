@@ -21,7 +21,7 @@
 #include "fldeff.h"
 #include "regions.h"
 #include "region_map.h"
-#include "hoenn_level_scaling.h"
+#include "level_scaling.h"
 #include "decompress.h"
 #include "constants/region_map_sections.h"
 #include "heal_location.h"
