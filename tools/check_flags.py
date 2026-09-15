@@ -55,6 +55,14 @@ KNOWN_ALIAS_PREFIXES = (
 # ihres Blocks. Das ist keine Doppelbelegung.
 ANCHOR_SUFFIXES = ("_START", "_END", "_COUNT", "_BASE", "_SIZE")
 
+# Namen, die per Definition dasselbe Flag meinen (Emerald- und FRLG-Schreibweise
+# derselben Sache). Werden nicht gemeldet.
+KNOWN_ALIASES = {
+    frozenset({"FLAG_SYS_CYCLING_ROAD", "FLAG_SYS_ON_CYCLING_ROAD"}),
+    frozenset({"FLAG_SYS_MYSTERY_EVENT_ENABLE", "FLAG_SYS_MYSTERY_GIFT_ENABLE"}),
+    frozenset({"FLAG_SYS_PC_BILL", "FLAG_SYS_PC_LANETTE"}),
+}
+
 
 def read_defines(paths):
     """Sammelt alle #define-Zeilen. Letzte Definition gewinnt."""
@@ -129,6 +137,8 @@ def check(kind, headers, prefix, verbose, show_free):
         if value <= 0 or len(names) < 2:
             continue
         real = [n for n in names if not is_alias_name(n)]
+        if frozenset(real) in KNOWN_ALIASES:
+            continue
         if len(real) > 1:
             collisions[value] = sorted(real)
 
