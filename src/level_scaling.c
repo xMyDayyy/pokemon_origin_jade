@@ -301,6 +301,9 @@ static bool32 IsBossTrainer(const struct Trainer *trainer)
     case TRAINER_CLASS_ELITE_FOUR_HNS:
     case TRAINER_CLASS_CHAMPION_HNS:
     case TRAINER_CLASS_ROCKET_ADMIN_HNS:
+    // Silber ist in Johto kein Routentrainer, sondern der wiederkehrende
+    // Gradmesser - er bekommt denselben Aufschlag wie die Arenaleiter.
+    case TRAINER_CLASS_RIVAL_HNS:
         return TRUE;
     default:
         return FALSE;
