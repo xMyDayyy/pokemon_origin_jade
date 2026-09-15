@@ -60,6 +60,9 @@ PokemonLeague_HallOfFame_EventScript_SetFirstGameClearFlags::
 	clearflag FLAG_HIDE_AZALEA_TOWN_TAILED_SLOWPOKES
 	clearflag FLAG_HIDE_LEAGUE_BLACKBELT
 	setflag FLAG_IS_CHAMPION
+	@ Origin Jade: FLAG_IS_CHAMPION setzt schon die Kanto-Liga. Johto
+	@ braucht ein eigenes Flag, um den eigenen Abschluss zu erkennen.
+	setflag FLAG_IS_JOHTO_CHAMPION
 	setflag FLAG_HIDE_BATTLEFRONTIER_ENGINEER
 	setvar VAR_LEAGUE_STATE, 1
 	setvar VAR_NEWBARK_TOWN_STATE, 6

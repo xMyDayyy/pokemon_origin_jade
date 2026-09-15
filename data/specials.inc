@@ -717,6 +717,9 @@ gSpecials::
 	def_special SetHoennLicense
 	def_special CheckHoennLicense
 	def_special SetJohtoPermit
+	def_special SetJohtoBadge
+	def_special CheckJohtoBadge
+	def_special CountJohtoBadges
 	def_special CheckFieldPermission
 	def_special BufferFieldPermissionTerm
 	def_special CheckItemHandoverPointless

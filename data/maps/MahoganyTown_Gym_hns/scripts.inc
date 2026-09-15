@@ -92,6 +92,10 @@ MahoganyTown_Gym_EventScript_PryceVictory::
 	setvar VAR_0x8004, 6
 	special SetJohtoBadge
 	setflag FLAG_BADGE07_GET
+	@ Pryce: Johto-Orden 7. Die Flag oben teilt sich Johto mit Kanto und
+	@ ist nach der Kanto-Liga laengst gesetzt - gezaehlt wird in VAR_JOHTO_BADGES.
+	setvar VAR_0x8004, 6
+	special SetJohtoBadge
 	@ Der Orden ist zugleich die Befugnis fuer Taucher - siehe
 	@ src/johto_permits.c. Die Ordensflags teilt sich Johto mit Kanto.
 	setvar VAR_0x8004, PERM_DIVE

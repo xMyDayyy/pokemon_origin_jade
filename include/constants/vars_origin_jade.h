@@ -42,6 +42,11 @@
 // ---------------------------------------------------------------------
 // VM-Befugnisse als Bitmaske, siehe include/johto_permits.h.
 #define VAR_JOHTO_PERMITS           (OJ_VARS_JOHTO + 0)
+// Kein VAR_JOHTO_BADGES hier: das gibt es seit dem Kanto-Merge schon in
+// constants/vars_frlg_hns.h, und der Trainerpass liest es bereits aus.
+// Gefuellt wird es erst jetzt (src/johto_badges.c).
+// Stand der Anreise aus Kanto, Gegenstueck zu VAR_HOENN_ARRIVAL_STATE.
+#define VAR_JOHTO_ARRIVAL_STATE     (OJ_VARS_JOHTO + 1)
 
 // ---------------------------------------------------------------------
 // Hoenn (OJ_VARS_HOENN + 0 bis + 23)

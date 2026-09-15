@@ -72,6 +72,10 @@ GoldenrodCity_Gym_EventScript_WhitneyBadge::
 	setvar VAR_0x8004, 2
 	special SetJohtoBadge
 	setflag FLAG_BADGE03_GET
+	@ Whitney: Johto-Orden 3. Die Flag oben teilt sich Johto mit Kanto und
+	@ ist nach der Kanto-Liga laengst gesetzt - gezaehlt wird in VAR_JOHTO_BADGES.
+	setvar VAR_0x8004, 2
+	special SetJohtoBadge
 	@ Der Orden ist zugleich die Befugnis fuer Staerke - siehe
 	@ src/johto_permits.c. Die Ordensflags teilt sich Johto mit Kanto.
 	setvar VAR_0x8004, PERM_STRENGTH

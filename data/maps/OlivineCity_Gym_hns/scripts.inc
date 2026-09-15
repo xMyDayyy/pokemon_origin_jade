@@ -297,6 +297,10 @@ OlivineCity_Gym_EventScript_JasmineVictory::
 	setvar VAR_0x8004, 5
 	special SetJohtoBadge
 	setflag FLAG_BADGE06_GET
+	@ Jasmine: Johto-Orden 6. Die Flag oben teilt sich Johto mit Kanto und
+	@ ist nach der Kanto-Liga laengst gesetzt - gezaehlt wird in VAR_JOHTO_BADGES.
+	setvar VAR_0x8004, 5
+	special SetJohtoBadge
 	setflag FLAG_DEFEATED_OLIVINE_CITY_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 6

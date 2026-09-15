@@ -38,6 +38,10 @@ VioletCity_Gym_EventScript_Falkner::
 	setvar VAR_0x8004, 0
 	special SetJohtoBadge
 	setflag FLAG_BADGE01_GET
+	@ Falkner: Johto-Orden 1. Die Flag oben teilt sich Johto mit Kanto und
+	@ ist nach der Kanto-Liga laengst gesetzt - gezaehlt wird in VAR_JOHTO_BADGES.
+	setvar VAR_0x8004, 0
+	special SetJohtoBadge
 	@ Der Orden ist zugleich die Befugnis fuer Zertruemmerer - siehe
 	@ src/johto_permits.c. Die Ordensflags teilt sich Johto mit Kanto.
 	setvar VAR_0x8004, PERM_ROCK_SMASH

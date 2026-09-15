@@ -535,6 +535,10 @@ AzaleaTown_Gym_EventScript_Bugsy::
 	setvar VAR_0x8004, 1
 	special SetJohtoBadge
 	setflag FLAG_BADGE02_GET
+	@ Bugsy: Johto-Orden 2. Die Flag oben teilt sich Johto mit Kanto und
+	@ ist nach der Kanto-Liga laengst gesetzt - gezaehlt wird in VAR_JOHTO_BADGES.
+	setvar VAR_0x8004, 1
+	special SetJohtoBadge
 	@ Der Orden ist zugleich die Befugnis fuer Zerschneider - siehe
 	@ src/johto_permits.c. Die Ordensflags teilt sich Johto mit Kanto.
 	setvar VAR_0x8004, PERM_CUT

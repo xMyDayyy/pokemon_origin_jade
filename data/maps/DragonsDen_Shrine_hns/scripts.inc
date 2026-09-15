@@ -323,6 +323,10 @@ DragonsDen_Shrine_EventScript_ClairEnter::
 	setvar VAR_0x8004, 7
 	special SetJohtoBadge
 	setflag FLAG_BADGE08_GET
+	@ Clair: Johto-Orden 8. Die Flag oben teilt sich Johto mit Kanto und
+	@ ist nach der Kanto-Liga laengst gesetzt - gezaehlt wird in VAR_JOHTO_BADGES.
+	setvar VAR_0x8004, 7
+	special SetJohtoBadge
 	@ Der Orden ist zugleich die Befugnis fuer Kaskade - siehe
 	@ src/johto_permits.c. Die Ordensflags teilt sich Johto mit Kanto.
 	setvar VAR_0x8004, PERM_WATERFALL

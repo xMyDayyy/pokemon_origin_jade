@@ -71,6 +71,10 @@ CianwoodGym_EventScript_ChuckVictory::
 	setvar VAR_0x8004, 4
 	special SetJohtoBadge
 	setflag FLAG_BADGE05_GET
+	@ Chuck: Johto-Orden 5. Die Flag oben teilt sich Johto mit Kanto und
+	@ ist nach der Kanto-Liga laengst gesetzt - gezaehlt wird in VAR_JOHTO_BADGES.
+	setvar VAR_0x8004, 4
+	special SetJohtoBadge
 	setflag FLAG_DEFEATED_CIANWOOD_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 5

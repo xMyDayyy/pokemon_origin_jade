@@ -47,6 +47,10 @@ EcruteakCity_Gym_EventScript_Morty::
 	setvar VAR_0x8004, 3
 	special SetJohtoBadge
 	setflag FLAG_BADGE04_GET
+	@ Morty: Johto-Orden 4. Die Flag oben teilt sich Johto mit Kanto und
+	@ ist nach der Kanto-Liga laengst gesetzt - gezaehlt wird in VAR_JOHTO_BADGES.
+	setvar VAR_0x8004, 3
+	special SetJohtoBadge
 	@ Der Orden ist zugleich die Befugnis fuer Surfer - siehe
 	@ src/johto_permits.c. Die Ordensflags teilt sich Johto mit Kanto.
 	setvar VAR_0x8004, PERM_SURF
