@@ -67,6 +67,13 @@
 // der Spieler auch hier Champion ist. Steuert Anruftexte und alles, was
 // nach der Johto-Liga anders laufen soll.
 #define FLAG_IS_JOHTO_CHAMPION                       (OJ_FLAGS_JOHTO + 0)
+// Johto-Starter aus Linds Labor erhalten. Eigenes Flag, weil HnS dafuer
+// FLAG_SYS_POKEMON_GET benutzt - das ist aber "hat sein erstes Pokemon"
+// und in Origin Jade laengst von Eichs Labor gesetzt.
+#define FLAG_RECEIVED_JOHTO_STARTER                  (OJ_FLAGS_JOHTO + 1)
+// Einmalige Nachruestung beim ersten Betreten von Neuborkia: HnS setzt
+// seine Johto-Startwerte im Haus der Mutter, das Origin Jade ueberspringt.
+#define FLAG_JOHTO_ARRIVAL_DONE                      (OJ_FLAGS_JOHTO + 2)
 
 // ---------------------------------------------------------------------
 // Hoenn (OJ_FLAGS_HOENN + 0 bis + 95)

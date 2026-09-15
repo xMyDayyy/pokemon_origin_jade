@@ -83,11 +83,13 @@ NewBarkTown_Lab_EventScript_Elm_AfterEggCheck:
 	goto_if_ge VAR_NEWBARKTOWN_LABSTATE, 6, NewBarkTown_Lab_EventScript_ElmState5
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 2, CopNewBarkTown_Lab_EventScript_ElmState2
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 3, CopNewBarkTown_Lab_EventScript_ElmState2
-	@ Uebergang nach Johto: Reihenfolge gedreht. FLAG_SYS_POKEMON_GET steht seit
+	@ Uebergang nach Johto: Die alte Abfrage auf FLAG_SYS_POKEMON_GET stand seit
 	@ Kanto, damit waere Lind bei Zustand 1 sofort auf den Mr.-Pokemon-Auftrag
-	@ gesprungen, statt zur Wahl aus den drei Baellen aufzufordern.
+	@ gesprungen, statt zur Wahl aus den drei Baellen aufzufordern. Sie ganz zu
+	@ streichen liess den Auftrag aber nie starten - jetzt entscheidet das
+	@ eigene FLAG_RECEIVED_JOHTO_STARTER.
+	goto_if_set FLAG_RECEIVED_JOHTO_STARTER, NewBarkTown_Lab_EventScript_MrPokemon
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_ElmChoosePokemon
-	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_Lab_EventScript_MrPokemon
 	end
 
 NewBarkTown_Lab_EventScript_ElmAideIsWaiting::
@@ -179,9 +181,11 @@ NewBarkTown_Lab_EventScript_ShouldntTouch::
 
 NewBarkTown_Lab_EventScript_ChikoritaBall::
 	lock
-	@ Uebergang nach Johto: Die alte Sperre pruefte FLAG_SYS_POKEMON_GET. Der
-	@ Spieler hat seit Kanto Pokemon, damit war jeder Ball gesperrt, obwohl
-	@ Prof. Lind ausdruecklich zum Zugreifen auffordert.
+	@ Uebergang nach Johto: Die alte Sperre pruefte FLAG_SYS_POKEMON_GET und
+	@ sperrte damit jeden Ball, obwohl Lind zum Zugreifen auffordert. Ohne
+	@ Sperre liessen sich aber alle drei nehmen - jetzt sperrt das eigene
+	@ FLAG_RECEIVED_JOHTO_STARTER genau ab dem ersten.
+	goto_if_set FLAG_RECEIVED_JOHTO_STARTER, NewBarkTown_Lab_EventScript_ShouldntTouch
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_ChikoritaBall_Choice
 	msgbox NewBarkTown_Lab_Text_ShouldntTouch, MSGBOX_DEFAULT
 	release
@@ -203,9 +207,11 @@ NewBarkTown_Lab_EventScript_ChikoritaBall_Choice::
 
 NewBarkTown_Lab_EventScript_CyndaquilBall::
 	lock
-	@ Uebergang nach Johto: Die alte Sperre pruefte FLAG_SYS_POKEMON_GET. Der
-	@ Spieler hat seit Kanto Pokemon, damit war jeder Ball gesperrt, obwohl
-	@ Prof. Lind ausdruecklich zum Zugreifen auffordert.
+	@ Uebergang nach Johto: Die alte Sperre pruefte FLAG_SYS_POKEMON_GET und
+	@ sperrte damit jeden Ball, obwohl Lind zum Zugreifen auffordert. Ohne
+	@ Sperre liessen sich aber alle drei nehmen - jetzt sperrt das eigene
+	@ FLAG_RECEIVED_JOHTO_STARTER genau ab dem ersten.
+	goto_if_set FLAG_RECEIVED_JOHTO_STARTER, NewBarkTown_Lab_EventScript_ShouldntTouch
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_CyndaquilBall_Choice
 	msgbox NewBarkTown_Lab_Text_ShouldntTouch, MSGBOX_DEFAULT
 	closemessage
@@ -227,9 +233,11 @@ NewBarkTown_Lab_EventScript_CyndaquilBall_Choice::
 
 NewBarkTown_Lab_EventScript_TotodileBall::
 	lock
-	@ Uebergang nach Johto: Die alte Sperre pruefte FLAG_SYS_POKEMON_GET. Der
-	@ Spieler hat seit Kanto Pokemon, damit war jeder Ball gesperrt, obwohl
-	@ Prof. Lind ausdruecklich zum Zugreifen auffordert.
+	@ Uebergang nach Johto: Die alte Sperre pruefte FLAG_SYS_POKEMON_GET und
+	@ sperrte damit jeden Ball, obwohl Lind zum Zugreifen auffordert. Ohne
+	@ Sperre liessen sich aber alle drei nehmen - jetzt sperrt das eigene
+	@ FLAG_RECEIVED_JOHTO_STARTER genau ab dem ersten.
+	goto_if_set FLAG_RECEIVED_JOHTO_STARTER, NewBarkTown_Lab_EventScript_ShouldntTouch
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_TotodileBall_Choice
 	msgbox NewBarkTown_Lab_Text_ShouldntTouch, MSGBOX_DEFAULT
 	release
@@ -260,21 +268,47 @@ NewBarkTown_Lab_EventScript_DeclinedStarter::
 NewBarkTown_Lab_EventScript_ChoseStarter::
 	@callnative EnableStaticRandomizer
 	hidemonpic
-	removeobject VAR_LAST_TALKED
+	@ Erst sperren, dann geben: bricht das Geben ab, duerfen die anderen
+	@ beiden Baelle trotzdem nicht mehr genommen werden. Die Objekte 4, 5
+	@ und 6 sind die drei Baelle auf dem Tisch.
+	setflag FLAG_RECEIVED_JOHTO_STARTER
+	setflag FLAG_HIDE_CHIKORITABALL
+	setflag FLAG_HIDE_CYNDAQUILBALL
+	setflag FLAG_HIDE_TOTODILEBALL
+	removeobject 4
+	removeobject 5
+	removeobject 6
 	msgbox NewBarkTown_Lab_Text_ChoseStarter, MSGBOX_DEFAULT
 	call_if_eq VAR_STARTER_MON, 0, NewBarkTown_Lab_EventScript_GiveStarter_Chikorita
 	call_if_eq VAR_STARTER_MON, 1, NewBarkTown_Lab_EventScript_GiveStarter_Cyndaquil
 	call_if_eq VAR_STARTER_MON, 2, NewBarkTown_Lab_EventScript_GiveStarter_Totodile
-	setflag FLAG_SYS_POKEMON_GET
+	@ givemon legt ab, wo das Pokemon gelandet ist: 0 Team, 1 Box, 2 gar nicht.
+	@ Wer aus Kanto kommt, hat oft ein volles Team - in HnS konnte das nicht
+	@ vorkommen, dort war die Party leer.
+	copyvar VAR_TEMP_3, VAR_RESULT
 	playfanfare MUS_OBTAIN_ITEM
 	bufferspeciesname STR_VAR_1, PLAYER_STARTER_SPECIES
 	message NewBarkTown_Lab_Text_ReceivedStarter
 	waitfanfare
+	waitmessage
+	goto_if_ne VAR_TEMP_3, 0, NewBarkTown_Lab_EventScript_StarterToBox
+	@ Der Benenndialog benennt den Teamplatz aus VAR_0x8004. HnS setzt dort
+	@ fest 0, weil der Starter das erste Pokemon war - bei uns waere das das
+	@ Kanto-Team. Der Neuzugang haengt hinten dran.
+	specialvar VAR_RESULT, CalculatePlayerPartyCount
+	subvar VAR_RESULT, 1
+	copyvar VAR_0x8004, VAR_RESULT
 	specialvar VAR_RESULT, IsNuzlockeNicknamingActive
 	goto_if_eq VAR_RESULT, TRUE, NewBarkTown_Lab_EventScript_ChoseStarter_NicknameStarter_Nuzlocke
 	msgbox NewBarkTown_Lab_Text_Nickname, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, NewBarkTown_Lab_EventScript_NicknameStarter
 	callnative UpdateFollowingPokemon
+	release
+	end
+
+NewBarkTown_Lab_EventScript_StarterToBox::
+	msgbox NewBarkTown_Lab_Text_StarterToBox, MSGBOX_DEFAULT
+	closemessage
 	release
 	end
 
@@ -302,7 +336,7 @@ NewBarkTown_Lab_EventScript_GiveStarter_Shiny::
 	return
 
 NewBarkTown_Lab_EventScript_NicknameStarter::
-	setvar VAR_0x8004, 0
+	@ VAR_0x8004 steht bereits auf dem Platz des Neuzugangs.
 	call Common_EventScript_NameReceivedPartyMon
 	release
 	end
@@ -310,7 +344,7 @@ NewBarkTown_Lab_EventScript_NicknameStarter::
 NewBarkTown_Lab_EventScript_ChoseStarter_NicknameStarter_Nuzlocke::
 	message NewBarkTown_Lab_Text_Nickname
 	waitmessage
-	setvar VAR_0x8004, 0
+	@ VAR_0x8004 steht bereits auf dem Platz des Neuzugangs.
 	call Common_EventScript_NameReceivedPartyMon
 	release
 	end
@@ -805,9 +839,7 @@ NewBarkTown_Lab_Text_ElmMissionFromMrPokemon:
 	.string "Hm, was mache ich jetzt nur…\p"
 	.string "Ich hab’s!\p"
 	.string "Du könntest der Sache doch für mich\n"
-	.string "nachgehen, oder? Was sagst du?\p"
-	.string "Los, du darfst dir dafür auch eins\n"
-	.string "dieser Pokémon hier aussuchen!$"
+	.string "nachgehen, oder? Was sagst du?$"
 #else
 	.string "Hey, listen.\p"
 	.string "I have an acquaintance called\n"
@@ -896,6 +928,17 @@ NewBarkTown_Lab_Text_ChoseStarter:
 #else
 	.string "ELM: I think that's a great\n"
 	.string "POKéMON too!$"
+#endif
+
+NewBarkTown_Lab_Text_StarterToBox:
+#if GERMAN
+	.string "Lind: Dein Team ist voll - ich habe es\n"
+	.string "dir auf die PC-Box geschickt.\p"
+	.string "Schau es dir an, wenn du Platz hast.$"
+#else
+	.string "ELM: Your party is full, so I sent it\n"
+	.string "to your PC BOX.\p"
+	.string "Take a look when you have room.$"
 #endif
 
 NewBarkTown_Lab_Text_ReceivedStarter:

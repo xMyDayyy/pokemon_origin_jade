@@ -27,9 +27,28 @@ NewBarkTown_Text_ElmName:
 #endif
 
 NewBarkTown_OnTransition::
+	call_if_unset FLAG_JOHTO_ARRIVAL_DONE, NewBarkTown_EventScript_JohtoArrivalSetup
 	goto_if_eq VAR_NEWBARK_TOWN_STATE, 2, NewBarkTown_Set_TalkToElm
 	goto_if_eq VAR_NEWBARK_TOWN_STATE, 4, NewBarkTown_Set_TalkToMom
 	end
+
+@ Origin Jade: HnS setzt seine Johto-Startwerte im Haus der Mutter, waehrend
+@ der Spieler dort seine Ausruestung bekommt. Wer als Champion aus Kanto
+@ kommt, laeuft durch diese Szene nie - und betrat Johto deshalb ohne diese
+@ Flags. Sichtbar wurde das am Polizisten, der von Anfang an im Labor stand,
+@ obwohl er erst zur Diebstahlszene gehoert.
+NewBarkTown_EventScript_JohtoArrivalSetup::
+	setflag FLAG_JOHTO_ARRIVAL_DONE
+	setflag FLAG_HIDE_LAB_POLICEMAN
+	setflag FLAG_VISITED_NEWBARK_TOWN
+	@ Pokegear und Anrufliste: in Kanto laengst vorhanden, die Johto-Seite
+	@ haengt aber an diesen Flags.
+	setflag FLAG_SYS_POKENAV_GET
+	setflag FLAG_HAS_MATCH_CALL
+	setflag FLAG_RECEIVED_POKENAV
+	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
+	setflag FLAG_REGISTER_RIVAL_POKENAV
+	return
 
 NewBarkTown_Set_TalkToElm::
 	clearflag FLAG_HIDE_SILVER_NEWBARKTOWN
