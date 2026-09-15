@@ -5,6 +5,20 @@ Route27_hns_MapScripts::
 
 Route27_OnTransition:
 	callnative SetTimeBasedEncounters
+	@ Origin Jade: Der dicke Mann am Wegrand ist entfernt, mit ihm die Szene
+	@ Route27_EventScript_FirstSteps. Sie enthielt aber einen Flagblock, der
+	@ Silber und Marys Vater an der Liga versteckt, die Wachen am Torhaus
+	@ einblendet und die TM Sandsturm wieder vergibt. Der laeuft jetzt hier,
+	@ einmalig ueber VAR_ROUTE27_STATE.
+	goto_if_ne VAR_ROUTE27_STATE, 0, Route27_OnTransitionDone
+	setflag FLAG_HIDE_VICTORY_ROAD_SILVER
+	setflag FLAG_HIDE_INDIGO_PLATEAU_SILVER
+	setflag FLAG_HIDE_INDIGO_PLATEAU_MARY_OAK
+	clearflag FLAG_GOT_TM_SANDSTORM
+	clearflag FLAG_INDIGOJUNCTION_HIDE_SILVER_GUARD
+	clearflag FLAG_INDIGOJUNCTION_HIDE_KANTO_GUARD
+	setvar VAR_ROUTE27_STATE, 1
+Route27_OnTransitionDone:
 	end
 
 Route27_EventScript_BaobaCall::
@@ -22,52 +36,6 @@ Route27_Text_BaobaName:
 #else
 	.string "BAOBA$"
 #endif
-
-Route27_EventScript_FirstSteps::
-    lock
-    playse SE_PIN
-    @ Origin Jade: FLAG_VISITED_KANTO stammt aus dem HnS-Kanon (Start in Johto).
-    @ Hier startet der Spieler in Kanto; der Karten-Merge haengt an
-    @ FLAG_VISITED_JOHTO und wird in Route26North_hns gesetzt. Das alte setflag
-    @ steuerte nichts mehr und ist entfernt.
-    applymovement2 LOCALID_ROUTE27_FATMAN, Common_Movement_ExclamationMark
-    turnobject LOCALID_ROUTE27_FATMAN, DIR_WEST
-    delay 30
-    getplayerxy VAR_TEMP_0, VAR_TEMP_1
-    call_if_eq VAR_TEMP_1, 24, Route27_EventScript_FirstStepsWalkTop
-    call_if_eq VAR_TEMP_1, 25, Route27_EventScript_FirstStepsWalkBot
-
-    @integrated flagheap
-    setflag FLAG_HIDE_VICTORY_ROAD_SILVER
-    setflag FLAG_HIDE_INDIGO_PLATEAU_SILVER
-    setflag FLAG_HIDE_INDIGO_PLATEAU_MARY_OAK
-
-    clearflag FLAG_GOT_TM_SANDSTORM
-    clearflag FLAG_INDIGOJUNCTION_HIDE_SILVER_GUARD
-    clearflag FLAG_INDIGOJUNCTION_HIDE_KANTO_GUARD
-
-    setvar VAR_ROUTE27_STATE, 1
-    release
-    end
-
-Route27_EventScript_FirstStepsWalkTop::
-    applymovement2 LOCALID_ROUTE27_FATMAN, Route27_Movement_WalkTop
-    waitmovement 0
-    return
-Route27_EventScript_FirstStepsWalkBot::
-    applymovement2 LOCALID_ROUTE27_FATMAN, Route27_Movement_WalkBot
-    waitmovement 0
-    return
-
-Route27_Movement_WalkTop:
-    face_left
-    walk_left
-    step_end
-
-Route27_Movement_WalkBot:
-    walk_down
-    walk_left
-    step_end
 
 Route27_EventScript_Item_Moonstone::
     finditem ITEM_MOON_STONE
