@@ -47,6 +47,10 @@ EcruteakCity_Gym_EventScript_Morty::
 	setvar VAR_0x8004, 3
 	special SetJohtoBadge
 	setflag FLAG_BADGE04_GET
+	@ Der Orden ist zugleich die Befugnis fuer Surfer - siehe
+	@ src/johto_permits.c. Die Ordensflags teilt sich Johto mit Kanto.
+	setvar VAR_0x8004, PERM_SURF
+	special SetJohtoPermit
 	setflag FLAG_DEFEATED_ECRUTEAK_CITY_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 4

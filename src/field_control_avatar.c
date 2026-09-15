@@ -13,6 +13,7 @@
 #include "fieldmap.h"
 #include "field_control_avatar.h"
 #include "hoenn_licenses.h"
+#include "johto_permits.h"
 #include "field_message_box.h"
 #include "field_move.h"
 #include "field_effect.h"
@@ -713,8 +714,10 @@ static bool32 TrySetupDiveDownScript(void)
     }
 
 #if IS_HNS
-    // Tauchen waere moeglich, nur die Hoenn-Lizenz fehlt.
-    if (HoennLicensesApply() && !HasHoennLicense(LIC_DIVE) && TrySetDiveWarp() == 2)
+    // Tauchen waere moeglich, nur die Erlaubnis bzw. Befugnis fehlt.
+    if (((HoennLicensesApply() && !HasHoennLicense(LIC_DIVE))
+      || (JohtoPermitsApply() && !HasJohtoPermit(PERM_DIVE)))
+     && TrySetDiveWarp() == 2)
     {
         ScriptContext_SetupScript(EventScript_NoDiveLicense);
         return TRUE;

@@ -72,6 +72,10 @@ GoldenrodCity_Gym_EventScript_WhitneyBadge::
 	setvar VAR_0x8004, 2
 	special SetJohtoBadge
 	setflag FLAG_BADGE03_GET
+	@ Der Orden ist zugleich die Befugnis fuer Staerke - siehe
+	@ src/johto_permits.c. Die Ordensflags teilt sich Johto mit Kanto.
+	setvar VAR_0x8004, PERM_STRENGTH
+	special SetJohtoPermit
 	setflag FLAG_DEFEATED_GOLDENROD_CITY_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 3

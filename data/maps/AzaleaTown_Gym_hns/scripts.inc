@@ -535,6 +535,10 @@ AzaleaTown_Gym_EventScript_Bugsy::
 	setvar VAR_0x8004, 1
 	special SetJohtoBadge
 	setflag FLAG_BADGE02_GET
+	@ Der Orden ist zugleich die Befugnis fuer Zerschneider - siehe
+	@ src/johto_permits.c. Die Ordensflags teilt sich Johto mit Kanto.
+	setvar VAR_0x8004, PERM_CUT
+	special SetJohtoPermit
 	setflag FLAG_DEFEATED_AZALEA_TOWN_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 2

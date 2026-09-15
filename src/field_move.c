@@ -5,6 +5,7 @@
 #include "fldeff_misc.h"
 #include "party_menu.h"
 #include "hoenn_licenses.h"
+#include "johto_permits.h"
 #include "constants/region_map_sections.h"
 #include "constants/field_move.h"
 #include "constants/moves.h"
@@ -28,9 +29,13 @@ static bool32 IsFieldMoveUnlocked_Cut(void)
 
     if (IS_HNS)
     {
-        // In Hoenn zaehlt die Lizenz, ausserhalb weiterhin der Johto-Orden.
+        // In Hoenn zaehlt die Lizenz, in Johto die Befugnis.
         if (HoennLicensesApply())
             return HasHoennLicense(LIC_CUT);
+        // In Johto zaehlt die Befugnis. Der Johto-Orden taugt nicht als
+        // Schwelle: Kanto setzt dieselben Flags und hat sie laengst alle.
+        if (JohtoPermitsApply())
+            return HasJohtoPermit(PERM_CUT);
         return FlagGet(FLAG_BADGE02_GET);
     }
     if (IS_FRLG)
@@ -59,9 +64,13 @@ static bool32 IsFieldMoveUnlocked_RockSmash(void)
 
     if (IS_HNS)
     {
-        // In Hoenn zaehlt die Lizenz, ausserhalb weiterhin der Johto-Orden.
+        // In Hoenn zaehlt die Lizenz, in Johto die Befugnis.
         if (HoennLicensesApply())
             return HasHoennLicense(LIC_ROCK_SMASH);
+        // In Johto zaehlt die Befugnis. Der Johto-Orden taugt nicht als
+        // Schwelle: Kanto setzt dieselben Flags und hat sie laengst alle.
+        if (JohtoPermitsApply())
+            return HasJohtoPermit(PERM_ROCK_SMASH);
         return FlagGet(FLAG_BADGE01_GET);
     }
     if (IS_FRLG)
@@ -80,9 +89,13 @@ static bool32 IsFieldMoveUnlocked_Strength(void)
 
     if (IS_HNS)
     {
-        // In Hoenn zaehlt die Lizenz, ausserhalb weiterhin der Johto-Orden.
+        // In Hoenn zaehlt die Lizenz, in Johto die Befugnis.
         if (HoennLicensesApply())
             return HasHoennLicense(LIC_STRENGTH);
+        // In Johto zaehlt die Befugnis. Der Johto-Orden taugt nicht als
+        // Schwelle: Kanto setzt dieselben Flags und hat sie laengst alle.
+        if (JohtoPermitsApply())
+            return HasJohtoPermit(PERM_STRENGTH);
         return FlagGet(FLAG_BADGE03_GET);
     }
 
@@ -99,9 +112,13 @@ static bool32 IsFieldMoveUnlocked_Surf(void)
 
     if (IS_HNS)
     {
-        // In Hoenn zaehlt die Lizenz, ausserhalb weiterhin der Johto-Orden.
+        // In Hoenn zaehlt die Lizenz, in Johto die Befugnis.
         if (HoennLicensesApply())
             return HasHoennLicense(LIC_SURF);
+        // In Johto zaehlt die Befugnis. Der Johto-Orden taugt nicht als
+        // Schwelle: Kanto setzt dieselben Flags und hat sie laengst alle.
+        if (JohtoPermitsApply())
+            return HasJohtoPermit(PERM_SURF);
         return FlagGet(FLAG_BADGE04_GET);
     }
 
@@ -125,9 +142,13 @@ static bool32 IsFieldMoveUnlocked_Dive(void)
 {
     if (IS_HNS)
     {
-        // In Hoenn zaehlt die Lizenz, ausserhalb weiterhin der Johto-Orden.
+        // In Hoenn zaehlt die Lizenz, in Johto die Befugnis.
         if (HoennLicensesApply())
             return HasHoennLicense(LIC_DIVE);
+        // In Johto zaehlt die Befugnis. Der Johto-Orden taugt nicht als
+        // Schwelle: Kanto setzt dieselben Flags und hat sie laengst alle.
+        if (JohtoPermitsApply())
+            return HasJohtoPermit(PERM_DIVE);
         return FlagGet(FLAG_BADGE07_GET);
     }
 
@@ -141,9 +162,13 @@ static bool32 IsFieldMoveUnlocked_Waterfall(void)
 
     if (IS_HNS)
     {
-        // In Hoenn zaehlt die Lizenz, ausserhalb weiterhin der Johto-Orden.
+        // In Hoenn zaehlt die Lizenz, in Johto die Befugnis.
         if (HoennLicensesApply())
             return HasHoennLicense(LIC_WATERFALL);
+        // In Johto zaehlt die Befugnis. Der Johto-Orden taugt nicht als
+        // Schwelle: Kanto setzt dieselben Flags und hat sie laengst alle.
+        if (JohtoPermitsApply())
+            return HasJohtoPermit(PERM_WATERFALL);
         return FlagGet(FLAG_BADGE08_GET);
     }
     if (IS_FRLG)

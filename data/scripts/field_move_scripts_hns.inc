@@ -1,6 +1,7 @@
-@ HnS: In Hoenn braucht jede Feldattacke eine Erlaubnis (siehe
-@ src/hoenn_licenses.c). Vor dem Index in VAR_0x8004 aufrufen; Ergebnis
-@ FALSE heisst "hier nicht erlaubt". Ausserhalb von Hoenn immer TRUE.
+@ HnS: In Hoenn braucht jede Feldattacke eine Erlaubnis (src/hoenn_licenses.c),
+@ in Johto eine Befugnis (src/johto_permits.c). Vor dem Aufruf den Index in
+@ VAR_0x8004 legen; Ergebnis FALSE heisst "hier nicht erlaubt". Ausserhalb
+@ beider Regionen immer TRUE.
 EventScript_NoDiveLicense::
 	lockall
 	playse SE_SELECT
@@ -9,16 +10,18 @@ EventScript_NoDiveLicense::
 	end
 
 EventScript_NeedHoennLicense::
+	@ Das Wort kommt aus der Region: Erlaubnis in Hoenn, Befugnis in Johto.
+	special BufferFieldPermissionTerm
 	msgbox Text_NeedHoennLicense, MSGBOX_DEFAULT
 	releaseall
 	end
 
 Text_NeedHoennLicense:
 #if GERMAN
-	.string "Mit einer Erlaubnis könnte man hier\n"
+	.string "Mit einer {STR_VAR_2} könnte man hier\n"
 	.string "{STR_VAR_1} einsetzen.$"
 #else
-	.string "With a licence, {STR_VAR_1} could be\n"
+	.string "With a {STR_VAR_2}, {STR_VAR_1} could be\n"
 	.string "used here.$"
 #endif
 
@@ -27,7 +30,7 @@ EventScript_CutTree::
 	lockall
 	buffermovename STR_VAR_1, MOVE_CUT
 	setvar VAR_0x8004, LIC_CUT
-	special CheckHoennLicense
+	special CheckFieldPermission
 	goto_if_eq VAR_RESULT, FALSE, EventScript_NeedHoennLicense
 	@ HnS: die VM im Beutel genuegt, das Pokemon muss Zerschneider nicht koennen.
 	checkfieldmove FIELD_MOVE_CUT, TRUE
@@ -111,7 +114,7 @@ EventScript_RockSmash::
 	lockall
 	buffermovename STR_VAR_1, MOVE_ROCK_SMASH
 	setvar VAR_0x8004, LIC_ROCK_SMASH
-	special CheckHoennLicense
+	special CheckFieldPermission
 	goto_if_eq VAR_RESULT, FALSE, EventScript_NeedHoennLicense
 	@ HnS: die VM im Beutel genuegt, das Pokemon muss Zertruemmerer nicht koennen.
 	checkfieldmove FIELD_MOVE_ROCK_SMASH, TRUE
@@ -395,7 +398,7 @@ EventScript_StrengthBoulder::
 	lockall
 	buffermovename STR_VAR_1, MOVE_STRENGTH
 	setvar VAR_0x8004, LIC_STRENGTH
-	special CheckHoennLicense
+	special CheckFieldPermission
 	goto_if_eq VAR_RESULT, FALSE, EventScript_NeedHoennLicense
 	@ HnS: Staerke haengt an der Hoenn-Erlaubnis, nicht am Johto-Orden.
 	checkitem ITEM_HM_STRENGTH
@@ -496,7 +499,7 @@ EventScript_CannotUseWaterfall::
 	lockall
 	buffermovename STR_VAR_1, MOVE_WATERFALL
 	setvar VAR_0x8004, LIC_WATERFALL
-	special CheckHoennLicense
+	special CheckFieldPermission
 	goto_if_eq VAR_RESULT, FALSE, EventScript_NeedHoennLicense
 
 EventScript_CantWaterfall::

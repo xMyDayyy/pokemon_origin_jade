@@ -4,6 +4,7 @@
 #include "config/randomizer.h"
 #include "constants/global.h"
 #include "constants/hoenn_licenses.h"
+#include "constants/johto_permits.h"
 #include "constants/apprentice.h"
 #include "constants/apricorn_tree.h"
 #include "constants/battle.h"

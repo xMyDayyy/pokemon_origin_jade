@@ -323,6 +323,10 @@ DragonsDen_Shrine_EventScript_ClairEnter::
 	setvar VAR_0x8004, 7
 	special SetJohtoBadge
 	setflag FLAG_BADGE08_GET
+	@ Der Orden ist zugleich die Befugnis fuer Kaskade - siehe
+	@ src/johto_permits.c. Die Ordensflags teilt sich Johto mit Kanto.
+	setvar VAR_0x8004, PERM_WATERFALL
+	special SetJohtoPermit
 	addvar VAR_NUM_BADGES, 1
 
 	applymovement2 LOCALID_DRAGONSDEN3_ELDER, DragonsDen_Shrine_Movement_ElderReturnToPlayer

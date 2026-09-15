@@ -38,6 +38,10 @@ VioletCity_Gym_EventScript_Falkner::
 	setvar VAR_0x8004, 0
 	special SetJohtoBadge
 	setflag FLAG_BADGE01_GET
+	@ Der Orden ist zugleich die Befugnis fuer Zertruemmerer - siehe
+	@ src/johto_permits.c. Die Ordensflags teilt sich Johto mit Kanto.
+	setvar VAR_0x8004, PERM_ROCK_SMASH
+	special SetJohtoPermit
 	setflag FLAG_DEFEATED_VIOLET_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 1

@@ -206,6 +206,10 @@
 #define VAR_HOENN_TICKET_STATE 0x415C
 // Schrittzaehler fuer Normans Anruf nach einer Ordenuebergabe.
 #define VAR_HNS_NORMAN_CALL_STEPS 0x415D
+// VM-Befugnisse fuer Johto als Bitmaske (siehe include/johto_permits.h).
+// Noetig, weil Kanto und Johto sich FLAG_BADGE01-08 teilen - nach der
+// Kanto-Liga sind alle acht gesetzt. Nur innerhalb von Johto wirksam.
+#define VAR_JOHTO_PERMITS 0x415E
 
 #define HOENN_VARS_END 0x4176
 

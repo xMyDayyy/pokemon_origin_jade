@@ -92,6 +92,10 @@ MahoganyTown_Gym_EventScript_PryceVictory::
 	setvar VAR_0x8004, 6
 	special SetJohtoBadge
 	setflag FLAG_BADGE07_GET
+	@ Der Orden ist zugleich die Befugnis fuer Taucher - siehe
+	@ src/johto_permits.c. Die Ordensflags teilt sich Johto mit Kanto.
+	setvar VAR_0x8004, PERM_DIVE
+	special SetJohtoPermit
 	setflag FLAG_DEFEATED_MAHOGANY_TOWN_GYM
     addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 7
