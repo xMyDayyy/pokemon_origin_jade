@@ -196,6 +196,9 @@ u16 *GetVarPointer(u16 id)
         return NULL;
     else if (id >= FRLG_VARS_START && id <= FRLG_VARS_END)
         return &gSaveBlock3Ptr->varsFrlg[id - FRLG_VARS_START];
+    // Origin Jade: eigener Reservierungsblock, ebenfalls in SaveBlock3.
+    else if (id >= OJ_VARS_START && id <= OJ_VARS_END)
+        return &gSaveBlock3Ptr->varsOj[id - OJ_VARS_START];
     else if (id < SPECIAL_VARS_START)
         return &gSaveBlock1Ptr->vars[id - VARS_START];
 #if TESTING
@@ -273,6 +276,9 @@ u8 *GetFlagPointer(u16 id)
     // HnS 2.0.1: Rueckkampfstufen Irwin/Derek/Beverly, gleiche Umleitung.
     else if (id >= HNS_REMATCH_TIER_FLAGS_START && id <= HNS_REMATCH_TIER_FLAGS_END)
         return &gSaveBlock3Ptr->flagsHnsRematchTiers[(id - HNS_REMATCH_TIER_FLAGS_START) / 8];
+    // Origin Jade: eigener Reservierungsblock, ebenfalls in SaveBlock3.
+    else if (id >= OJ_FLAGS_START && id <= OJ_FLAGS_END)
+        return &gSaveBlock3Ptr->flagsOj[(id - OJ_FLAGS_START) / 8];
     else if (id < SPECIAL_FLAGS_START)
         return &gSaveBlock1Ptr->flags[id / 8];
 #if TESTING

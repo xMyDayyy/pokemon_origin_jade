@@ -330,6 +330,7 @@
 #if defined(POKEMON_HNS)
 #include "constants/vars_hoenn_de.h"
 #include "constants/vars_frlg_hns.h"
+#include "constants/vars_origin_jade.h"
 #endif
 
 #if TESTING

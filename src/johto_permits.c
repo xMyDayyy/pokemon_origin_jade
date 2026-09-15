@@ -5,6 +5,7 @@
 #include "johto_permits.h"
 #include "hoenn_licenses.h"
 #include "constants/region_map_sections.h"
+#include "constants/vars_origin_jade.h"
 
 // Eigene Bitmaske in VAR_JOHTO_PERMITS, unabhaengig von FLAG_BADGE01-08.
 // Die teilen sich Kanto und Johto: Rocko setzt FLAG_BADGE01_GET, Falkner

@@ -382,6 +382,12 @@ struct SaveBlock3
     // Beverly (IDs HNS_REMATCH_TIERS_START..END, siehe opponents_hns.h).
     // Ans Struct-Ende angehaengt = save-vertraeglich.
     u8 flagsHnsRematchTiers[HNS_REMATCH_TIER_FLAG_BYTES];
+    // Origin Jade: Reservierungsblock fuer eigene Flags und Vars
+    // (constants/flags_origin_jade.h, constants/vars_origin_jade.h).
+    // Liegt hier und nicht in SaveBlock1 - dort sind weniger als acht
+    // Byte frei. Umgeleitet wird in GetFlagPointer/GetVarPointer.
+    u8 flagsOj[OJ_NUM_FLAG_BYTES];
+    u16 varsOj[OJ_VARS_COUNT];
 #endif
 }; /* max size 1624 bytes */
 

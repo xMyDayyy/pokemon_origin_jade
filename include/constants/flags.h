@@ -2509,6 +2509,7 @@
 #if defined(POKEMON_HNS)
 #include "constants/flags_hoenn_de.h"
 #include "constants/flags_frlg_hns.h"
+#include "constants/flags_origin_jade.h"
 #undef FLAGS_COUNT
 #define FLAGS_COUNT (HOENN_FLAGS_END + 1)
 #endif
