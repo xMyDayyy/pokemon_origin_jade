@@ -637,7 +637,7 @@
 
 // Phone rematch tiers for Irwin, Derek and Beverly, placed after the FRLG block.
 // GetFlagPointer redirects their trainer flags into SaveBlock3 (flagsHnsRematchTiers).
-#define HNS_REMATCH_TIERS_START               2324  // = FRLG_TRAINERS_END + 1
+#define HNS_REMATCH_TIERS_START               (FRLG_TRAINERS_END+1)
 #define TRAINER_IRWIN_2_HNS                   (HNS_REMATCH_TIERS_START + 0)
 #define TRAINER_IRWIN_3_HNS                   (HNS_REMATCH_TIERS_START + 1)
 #define TRAINER_IRWIN_4_HNS                   (HNS_REMATCH_TIERS_START + 2)
