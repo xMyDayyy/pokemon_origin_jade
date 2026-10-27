@@ -10,19 +10,8 @@ LilycoveCity_Harbor_EventScript_FerryAttendant::
 	lock
 	faceplayer
 	goto_if_unset FLAG_IS_HOENN_CHAMPION, LilycoveCity_Harbor_EventScript_FerryUnavailable
-	call LilycoveCity_Harbor_EventScript_GetEonTicketState
-	call LilycoveCity_Harbor_EventScript_GetAuroraTicketState
-	call LilycoveCity_Harbor_EventScript_GetOldSeaMapState
-	call LilycoveCity_Harbor_EventScript_GetMysticTicketState
-	call LilycoveCity_Harbor_EventScript_GetFirstTimeShowingTicket
-	call LilycoveCity_Harbor_EventScript_GetHasTicketsState
-	goto_if_eq VAR_TEMP_C, 2, LilycoveCity_Harbor_EventScript_OldSeaMapFirstTime
-	goto_if_eq VAR_TEMP_B, 1, LilycoveCity_Harbor_EventScript_EonTicketFirstTime
-	goto_if_eq VAR_TEMP_B, 2, LilycoveCity_Harbor_EventScript_AuroraTicketFirstTime
-	goto_if_eq VAR_TEMP_B, 4, LilycoveCity_Harbor_EventScript_OldSeaMapFirstTime
-	goto_if_eq VAR_TEMP_B, 8, LilycoveCity_Harbor_EventScript_MysticTicketFirstTime
-	goto_if_ne VAR_TEMP_B, 0, LilycoveCity_Harbor_EventScript_MultipleEventTicketsFirstTime
-	goto LilycoveCity_Harbor_EventScript_NoFirstTimeEventTickets
+	@ No event-ticket islands from here: each legendary exists once (see docs/origin_jade/DECISIONS.md, D-026).
+	goto LilycoveCity_Harbor_EventScript_NoEventTickets
 	end
 
 @ First goto_if_eq is unnecessary; identical scripts
@@ -42,10 +31,11 @@ LilycoveCity_Harbor_EventScript_FerryRegularLocationSelect::
 	switch VAR_RESULT
 	case 0, LilycoveCity_Harbor_EventScript_GoToSlateport
 	case 1, LilycoveCity_Harbor_EventScript_GoToBattleFrontier
-	case 2, LilycoveCity_Harbor_EventScript_GoToSouthernIsland
-	case 3, LilycoveCity_Harbor_EventScript_GoToNavelRock
-	case 4, LilycoveCity_Harbor_EventScript_GoToBirthIsland
-	case 5, LilycoveCity_Harbor_EventScript_GoToFarawayIsland
+	@ Island trips disabled (see docs/origin_jade/DECISIONS.md, D-026).
+	case 2, LilycoveCity_Harbor_EventScript_ExitSailSelect
+	case 3, LilycoveCity_Harbor_EventScript_ExitSailSelect
+	case 4, LilycoveCity_Harbor_EventScript_ExitSailSelect
+	case 5, LilycoveCity_Harbor_EventScript_ExitSailSelect
 	case 6, LilycoveCity_Harbor_EventScript_ExitSailSelect
 	case MULTI_B_PRESSED, LilycoveCity_Harbor_EventScript_ExitSailSelect
 	end
@@ -92,7 +82,7 @@ LilycoveCity_Harbor_EventScript_GoToBattleFrontier::
 	msgbox LilycoveCity_Harbor_Text_BattleFrontierItIs, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
 	call LilycoveCity_Harbor_EventScript_BoardFerry
-	warp MAP_BATTLE_FRONTIER_OUTSIDE_WEST, 19, 67
+	warp MAP_BATTLE_FRONTIER_OUTSIDE_WEST_HNS, 20, 67
 	waitstate
 	release
 	end
@@ -372,7 +362,7 @@ LilycoveCity_Harbor_EventScript_GoToBattleFrontierUnused::
 	msgbox LilycoveCity_Harbor_Text_BattleFrontierItIs, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
 	call LilycoveCity_Harbor_EventScript_BoardFerry
-	warp MAP_BATTLE_FRONTIER_OUTSIDE_WEST, 19, 67
+	warp MAP_BATTLE_FRONTIER_OUTSIDE_WEST_HNS, 20, 67
 	waitstate
 	release
 	end

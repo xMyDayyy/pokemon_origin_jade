@@ -562,7 +562,9 @@
       "id": "HEAL_LOCATION_BATTLE_FRONTIER_OUTSIDE_EAST_HNS",
       "map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST_HNS",
       "x": 12,
-      "y": 46
+      "y": 46,
+      "respawn_map": "MAP_BATTLE_FRONTIER_POKEMON_CENTER_1F_HNS",
+      "respawn_npc": "LOCALID_FRONTIER_NURSE"
     },
     {
       "id": "HEAL_LOCATION_MELEMELE_ISLE_HNS",

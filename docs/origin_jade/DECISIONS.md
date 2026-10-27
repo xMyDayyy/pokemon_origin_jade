@@ -478,6 +478,18 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-15 (O-003); daily ship, return trips to
   Hoenn and Aurora Ticket 2026-10-20.
 
+### D-030 One Battle Frontier: the HnS Kampfzone
+- **Status:** Active (2026-10-15)
+- **Decision:** The Emerald frontier (47 maps, 36 layouts) is retired
+  (`frontier_em_retired`). The HnS Kampfzone is reached by ship (D-029) and,
+  after the Hoenn title, from Slateport and Lilycove. It is only on the
+  Johto/Kanto region map. The Artisan Cave is bound to the HnS Kampfzone and
+  counts as part of it (`MAPSEC_BATTLE_FRONTIER`); unlike HnS its door in the
+  Kampfzone is open (ledge corner at (29,9), the Engineer beside the path;
+  owner confirmed 2026-10-26).
+  A whiteout there leads to the Kampfzone's nurse.
+- **Evidence:** decision 2026-10-15 (O-006).
+
 ---
 
 ## Planned, not built yet
@@ -506,8 +518,7 @@ dated 2026-10-10 or later were decided directly.
 - **O-005** Resolved 2026-10-12: Kanto never sets Bill's PC flag, the
   Celadon Eevee no longer sets Bill's `FLAG_GOT_EEVEE`, and the radio card
   stays (D-024).
-- **O-006** The two Battle Frontiers (Emerald and HnS) share all progress
-  flags.
+- **O-006** Resolved 2026-10-15 (D-030).
 - **O-007** Mt. Moon B3F: the three item balls all contain an Antidote
   (copied from B2F).
 - **O-008** Shiny Charm / Oval Charm currently have no source.
