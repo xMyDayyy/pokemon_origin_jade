@@ -35,7 +35,15 @@ BlackthornCity_OnFrame::
 BlackthornCity_EventScript_CityEnter::
 	setflag FLAG_VISITED_BLACKTHORN_CITY
 	callnative SetTimeBasedEncounters
+	special GetWeekday
+	call_if_ne VAR_RESULT, WEEKDAY_SAT, BlackthornCity_EventScript_HideSantos
 	end
+
+@ Santos of the weekday siblings is only here on Saturday, see
+@ docs/origin_jade/DECISIONS.md, D-033.
+BlackthornCity_EventScript_HideSantos:
+	setflag FLAG_TEMP_1
+	return
 
 BlackthornCity_EventScript_Call::
 	lock
@@ -171,23 +179,6 @@ BlackthornCity_EventScript_Santos::
 	faceplayer
 	goto_if_set FLAG_GOT_SPELL_TAG, BlackthornCity_EventScript_SantosCompleted
 	msgbox BlackthornCity_MeetSantosText, MSGBOX_DEFAULT
-	closemessage
-	multichoice 20, 0, MULTI_DAYS_OF_WEEK, FALSE
-	switch VAR_RESULT
-	case 0, BlackthornCity_EventScript_SantosNope
-	case 1, BlackthornCity_EventScript_SantosNope
-	case 2, BlackthornCity_EventScript_SantosNope
-	case 3, BlackthornCity_EventScript_SantosNope
-	case 4, BlackthornCity_EventScript_SantosNope
-	case 5, BlackthornCity_EventScript_SantosNope
-	case 6, BlackthornCity_EventScript_SantosYes
-	case 7 BlackthornCity_EventScript_SantosCancel
-	case MULTI_B_PRESSED, BlackthornCity_EventScript_SantosCancel
-	closemessage
-	release
-	end
-BlackthornCity_EventScript_SantosYes::
-	msgbox BlackthornCity_SantosGivesGiftText, MSGBOX_DEFAULT
 	giveitem ITEM_SPELL_TAG
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_GOT_SPELL_TAG
@@ -195,15 +186,7 @@ BlackthornCity_EventScript_SantosYes::
 	closemessage
 	release
 	end
-BlackthornCity_EventScript_SantosNope::
-	msgbox BlackthornCity_SantosNopeText, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-BlackthornCity_EventScript_SantosCancel::
-	closemessage
-	release
-	end
+
 BlackthornCity_EventScript_SantosCompleted::
 	msgbox BlackthornCity_SantosSaturdayText, MSGBOX_DEFAULT
 	closemessage
@@ -302,18 +285,13 @@ BlackthornYoungsterText:
 BlackthornCity_MeetSantosText:
 #if GERMAN
 	.string "Samson: …\p"
-	.string "Ich bin Samson von der Wochentag-\n"
-	.string "Familie. Nun rate mal.$"
-#else
-	.string "SANTOS: …\p"
-	.string "I'm SANTOS of the weekday family.\p"
-	.string "Take a guess.$"
-#endif
-
-BlackthornCity_SantosGivesGiftText:
-#if GERMAN
+	.string "Heute ist Samstag…\p"
+	.string "Ich bin Samson vom Samstag…\p"
 	.string "Du kannst das haben…$"
 #else
+	.string "SANTOS: …\p"
+	.string "It's Saturday…\p"
+	.string "I'm SANTOS of Saturday…\p"
 	.string "You can have this…$"
 #endif
 
@@ -339,13 +317,6 @@ BlackthornCity_SantosSaturdayText:
 	.string "SANTOS: …\p"
 	.string "See you again on another Saturday…\p"
 	.string "I won't have any more gifts…$"
-#endif
-
-BlackthornCity_SantosNopeText:
-#if GERMAN
-	.string "Samson: Ne.$"
-#else
-	.string "SANTOS: No.$"
 #endif
 
 BlackthornCooltrainerF2Text:

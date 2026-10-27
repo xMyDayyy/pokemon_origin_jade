@@ -5,7 +5,15 @@ Route29_hns_MapScripts::
 
 Route29_OnTransition:
 	callnative SetTimeBasedEncounters
+	special GetWeekday
+	call_if_ne VAR_RESULT, WEEKDAY_TUE, Route29_EventScript_HideTuscany
 	end
+
+@ Tuscany of the weekday siblings is only here on Tuesday, see
+@ docs/origin_jade/DECISIONS.md, D-033.
+Route29_EventScript_HideTuscany:
+	setflag FLAG_TEMP_2
+	return
 
 Route29_Trigger_Monview::
 	special SpawnCameraObject
@@ -87,23 +95,6 @@ Route29_EventScript_Tuscany::
 	faceplayer
 	goto_if_set FLAG_GOT_SILK_SCARF, Route29_EventScript_TuscanyCompleted
 	msgbox Route29_Text_MeetTuscany, MSGBOX_DEFAULT
-	closemessage
-	multichoice 20, 0, MULTI_DAYS_OF_WEEK, FALSE
-	switch VAR_RESULT
-	case 0, Route29_EventScript_TuscanyNope
-	case 1, Route29_EventScript_TuscanyNope
-	case 2, Route29_EventScript_TuscanyYes
-	case 3, Route29_EventScript_TuscanyNope
-	case 4, Route29_EventScript_TuscanyNope
-	case 5, Route29_EventScript_TuscanyNope
-	case 6, Route29_EventScript_TuscanyNope
-	case 7 Route29_EventScript_TuscanyCancel
-	case MULTI_B_PRESSED, Route29_EventScript_TuscanyCancel
-	closemessage
-	release
-	end
-Route29_EventScript_TuscanyYes::
-	msgbox Route29_Text_TuscanyGivesGift, MSGBOX_DEFAULT
 	giveitem ITEM_SILK_SCARF
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_GOT_SILK_SCARF
@@ -111,15 +102,7 @@ Route29_EventScript_TuscanyYes::
 	closemessage
 	release
 	end
-Route29_EventScript_TuscanyNope::
-	msgbox Route29_Text_TuscanyNope, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-Route29_EventScript_TuscanyCancel::
-	closemessage
-	release
-	end
+
 Route29_EventScript_TuscanyCompleted::
 	msgbox Route29_Text_TuscanyTuesday, MSGBOX_DEFAULT
 	closemessage
@@ -265,33 +248,15 @@ Route29_Text_MeetTuscany:
 #if GERMAN
 	.string "Dietlinde: Ich glaube, wir treffen\n"
 	.string "uns heute zum ersten Mal?\p"
-	.string "Ich bin Dietlinde aus der\n"
-	.string "Wochentagsfamilie.\p"
-	.string "Wenn du meinen Lieblingstag errätst,\n"
-	.string "gebe ich dir eine Belohnung.$"
+	.string "Ich bin Dietlinde vom Dienstag.\p"
+	.string "Zur Begrüßung schenke ich dir\n"
+	.string "diesen Seidenschal.$"
 #else
 	.string "TUSCANY: I do believe that this\n"
 	.string "is the first time we've met?\p"
-	.string "I'm TUSCANY of the WEEKDAY FAMILY.\p"
-	.string "If you can guess my favorite day,\n"
-	.string "I'll give you a reward.$"
-#endif
-
-Route29_Text_TuscanyNope:
-#if GERMAN
-	.string "Nicht ganz!$"
-#else
-	.string "Not quite!$"
-#endif
-
-Route29_Text_TuscanyGivesGift:
-#if GERMAN
-	.string "Ja! Da wir uns zum ersten Mal sehen,\p"
-	.string "schenke ich dir einen Seidenschal.$"
-#else
-	.string "Yes! By way of introduction,\n"
-	.string "please accept this gift, a SILK\l"
-	.string "SCARF.$"
+	.string "I am TUSCANY of Tuesday.\p"
+	.string "By way of introduction, please\n"
+	.string "accept this gift, a SILK SCARF.$"
 #endif
 
 Route29_Text_TuscanyGaveGift:
@@ -300,8 +265,8 @@ Route29_Text_TuscanyGaveGift:
 	.string "dass er ganz entzückend ist?\p"
 	.string "Er verstärkt Attacken der\n"
 	.string "Elementklasse Normal.\p"
-	.string "Ich bin sicher, er wird dir sehr nützlich\n"
-	.string "sein.$"
+	.string "Ich bin sicher, er wird dir sehr\n"
+	.string "nützlich sein.$"
 #else
 	.string "TUSCANY: Wouldn't you agree\n"
 	.string "that it is most adorable?\p"
@@ -315,12 +280,13 @@ Route29_Text_TuscanyTuesday:
 	.string "Dietlinde: Bist du Monja, meiner\n"
 	.string "älteren Schwester, schon begegnet?\p"
 	.string "Oder meinem kleinen Bruder Mitko?\p"
-	.string "Ich bin das zweite von sieben Kindern.$"
+	.string "Ich bin das zweite von sieben\n"
+	.string "Kindern.$"
 #else
 	.string "TUSCANY: Have you met MONICA,\n"
 	.string "my older sister?\p"
 	.string "Or my younger brother, WESLEY?\p"
-	.string "I am the third of seven\n"
+	.string "I am the second of seven\n"
 	.string "children.$"
 #endif
 

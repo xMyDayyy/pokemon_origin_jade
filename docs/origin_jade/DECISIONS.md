@@ -540,8 +540,18 @@ dated 2026-10-10 or later were decided directly.
   - Bug-Catching Contest: Tuesday, Thursday and Saturday, once per day.
     Only a judged contest uses up the day; retiring without a catch or
     whiting out lets the player enter again the same day.
+  - The weekday siblings appear only on their day and give their item once:
+    Monica (Monday, Route 40), Tuscany (Tuesday, Route 29), Wesley
+    (Wednesday, Lake of Rage), Arthur (Thursday, Route 36), Frieda (Friday,
+    Route 32), Santos (Saturday, Blackthorn City), Sunny (Sunday, Route 37).
+  - Goldenrod Dept. Store 5F: the TM lady is there on Sunday only (TM
+    Rückkehr once, HnS logic; owner kept it 2026-10-21).
+  - Haircut brothers (Goldenrod Underground): the older brother on Tuesday,
+    Thursday and Saturday, the younger on Sunday, Wednesday and Friday,
+    nobody on Monday; one haircut per day.
   - Not weekday-bound: Union Cave's Lapras (D-026), the M.S. Aqua (D-029).
-- **Evidence:** decision 2026-10-15; contest day 2026-10-20.
+- **Evidence:** decision 2026-10-15; TM lady, haircut brothers and contest
+  day 2026-10-20.
 
 ---
 
@@ -624,4 +634,5 @@ dated 2026-10-10 or later were decided directly.
 | Legendaries come back after Johto's second Hall of Fame, caught or not | HnS | D-026 (2026-10-15) |
 | A knocked-out Moltres is gone for good | D-022 (2026-10-11) | D-026 (2026-10-15) |
 | The M.S. Aqua sails on two weekdays per port | D-029 / D-033 (2026-10-15) | D-029 (2026-10-20) |
+| Goldenrod's TM lady and the haircut brothers follow day and night | HnS | D-033 (2026-10-20) |
 | Entering the Bug-Catching Contest uses up the day | D-033 (2026-10-15) | D-033 (2026-10-20) |

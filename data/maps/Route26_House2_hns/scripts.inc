@@ -34,10 +34,10 @@ DayOfWeekSiblingsHouse_Text_Pokedex1:
 DayOfWeekSiblingsHouse_Text_Pokedex2:
 #if GERMAN
 	.string "An meine Brüder und Schwestern:\p"
-	.string "Wir sind stolz darauf, PokémonTrainern\n"
-	.string "zu dienen.\p"
-	.string "Wenn ein Trainer mit dir spricht, gib ihm\n"
-	.string "etwas Nützliches.\p"
+	.string "Wir sind stolz darauf, Pokémon-\n"
+	.string "Trainern zu dienen.\p"
+	.string "Wenn ein Trainer mit dir spricht,\n"
+	.string "gib ihm etwas Nützliches.\p"
 	.string "Eure Monja\p"
 	.string "Weiterlesen?$"
 #else

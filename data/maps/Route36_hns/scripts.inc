@@ -5,7 +5,15 @@ Route36_hns_MapScripts::
 
 Route36_OnTransition:
 	callnative SetTimeBasedEncounters
+	special GetWeekday
+	call_if_ne VAR_RESULT, WEEKDAY_THU, Route36_EventScript_HideArthur
 	end
+
+@ Arthur of the weekday siblings is only here on Thursday, see
+@ docs/origin_jade/DECISIONS.md, D-033.
+Route36_EventScript_HideArthur:
+	setflag FLAG_TEMP_1
+	return
 
 Route36_EventScript_RockSmashGuy::
 	lock
@@ -56,23 +64,6 @@ Route36_EventScript_Arthur::
 	faceplayer
 	goto_if_set FLAG_GOT_HARD_STONE, Route36_EventScript_ArthurCompleted
 	msgbox Route36_Text_MeetArthur, MSGBOX_DEFAULT
-	closemessage
-	multichoice 20, 0, MULTI_DAYS_OF_WEEK, FALSE
-	switch VAR_RESULT
-	case 0, Route36_EventScript_ArthurNope
-	case 1, Route36_EventScript_ArthurNope
-	case 2, Route36_EventScript_ArthurNope
-	case 3, Route36_EventScript_ArthurNope
-	case 4, Route36_EventScript_ArthurYes
-	case 5, Route36_EventScript_ArthurNope
-	case 6, Route36_EventScript_ArthurNope
-	case 7, Route36_EventScript_ArthurCancel
-	case MULTI_B_PRESSED, Route36_EventScript_ArthurCancel
-	closemessage
-	release
-	end
-Route36_EventScript_ArthurYes::
-	msgbox Route36_Text_ArthurGivesGift, MSGBOX_DEFAULT
 	giveitem ITEM_HARD_STONE
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_GOT_HARD_STONE
@@ -80,15 +71,7 @@ Route36_EventScript_ArthurYes::
 	closemessage
 	release
 	end
-Route36_EventScript_ArthurNope::
-	msgbox Route36_Text_ArthurNope, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-Route36_EventScript_ArthurCancel::
-	closemessage
-	release
-	end
+
 Route36_EventScript_ArthurCompleted::
 	msgbox Route36_Text_ArthurThursday, MSGBOX_DEFAULT
 	closemessage
@@ -397,37 +380,20 @@ Route36_Text_SchoolboyAlanAfter:
 
 Route36_Text_MeetArthur:
 #if GERMAN
-	.string "Donatus: Wer bist du?\n"
-	.string "Ich bin Donatus von der\l"
-	.string "Wochentagsfamilie.\p"
-	.string "Wenn du meinen Lieblingstag errätst,\n"
-	.string "gebe ich dir eine Belohnung.$"
+	.string "Donatus: Wer bist du?\p"
+	.string "Ich bin Donatus vom Donnerstag.\p"
+	.string "Hier, das kannst du haben.$"
 #else
-	.string "ARTHUR: Who are you?\n"
-	.string "I'm ARTHUR of the WEEKDAY FAMILY.\p"
-	.string "If you can guess my favorite day,\n"
-	.string "I'll give you a reward.$"
-#endif
-
-Route36_Text_ArthurNope:
-#if GERMAN
-	.string "Nicht ganz!$"
-#else
-	.string "Not quite!$"
-#endif
-
-Route36_Text_ArthurGivesGift:
-#if GERMAN
-	.string "Hier bitte. Das kannst du haben.$"
-#else
+	.string "ARTHUR: Who are you?\p"
+	.string "I'm ARTHUR of Thursday.\p"
 	.string "Here. You can have this.$"
 #endif
 
 Route36_Text_ArthurGaveGift:
 #if GERMAN
-	.string "Donatus: Ich mag Stein, Stein ist schön\n"
-	.string "und stark.\p"
-	.string "Huhuhuheheheh.$"
+	.string "Donatus: Ein Pokémon mit\n"
+	.string "Gestein-Attacken sollte das tragen.\p"
+	.string "Es verstärkt Gestein-Attacken.$"
 #else
 	.string "ARTHUR: A POKéMON that uses ROCK-\n"
 	.string "type moves should hold on to that.\p"
@@ -438,7 +404,8 @@ Route36_Text_ArthurThursday:
 #if GERMAN
 	.string "Donatus: Ich bin Donatus vom\n"
 	.string "Donnerstag.\p"
-	.string "Ich in der fünfte Sohn von sieben.$"
+	.string "Ich bin der fünfte von sieben\n"
+	.string "Geschwistern.$"
 #else
 	.string "ARTHUR: I'm ARTHUR of Thursday.\n"
 	.string "I'm the fifth son out of seven.$"

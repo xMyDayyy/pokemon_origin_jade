@@ -1,6 +1,31 @@
 GoldenrodCity_UndergroundTunnel_hns_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, GoldenrodCity_UndergroundTunnel_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, GoldenrodCity_UndergroundTunnel_OnTransition
 	.byte 0
+
+@ Haircut brothers by weekday: older Tue/Thu/Sat (FLAG_TEMP_1 hides him),
+@ younger Sun/Wed/Fri (FLAG_TEMP_2 hides him), Monday nobody,
+@ see docs/origin_jade/DECISIONS.md, D-033.
+GoldenrodCity_UndergroundTunnel_OnTransition:
+	setflag FLAG_TEMP_1
+	setflag FLAG_TEMP_2
+	special GetWeekday
+	switch VAR_RESULT
+	case WEEKDAY_TUE, GoldenrodCity_UndergroundTunnel_EventScript_ShowOlderBrother
+	case WEEKDAY_THU, GoldenrodCity_UndergroundTunnel_EventScript_ShowOlderBrother
+	case WEEKDAY_SAT, GoldenrodCity_UndergroundTunnel_EventScript_ShowOlderBrother
+	case WEEKDAY_SUN, GoldenrodCity_UndergroundTunnel_EventScript_ShowYoungerBrother
+	case WEEKDAY_WED, GoldenrodCity_UndergroundTunnel_EventScript_ShowYoungerBrother
+	case WEEKDAY_FRI, GoldenrodCity_UndergroundTunnel_EventScript_ShowYoungerBrother
+	end
+
+GoldenrodCity_UndergroundTunnel_EventScript_ShowOlderBrother:
+	clearflag FLAG_TEMP_1
+	end
+
+GoldenrodCity_UndergroundTunnel_EventScript_ShowYoungerBrother:
+	clearflag FLAG_TEMP_2
+	end
 
 GoldenrodCity_UndergroundTunnel_OnLoad::
 	goto GoldenrodCity_UndergroundTunnel_MapScript_TryOpenDoor

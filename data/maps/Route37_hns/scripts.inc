@@ -5,7 +5,15 @@ Route37_hns_MapScripts::
 
 Route37_OnTransition:
 	callnative SetTimeBasedEncounters
+	special GetWeekday
+	call_if_ne VAR_RESULT, WEEKDAY_SUN, Route37_EventScript_HideSunny
 	end
+
+@ Sunny of the weekday siblings is only here on Sunday, see
+@ docs/origin_jade/DECISIONS.md, D-033.
+Route37_EventScript_HideSunny:
+	setflag FLAG_TEMP_1
+	return
 
 
 
@@ -34,23 +42,6 @@ Route37_EventScript_Sunny::
 	faceplayer
 	goto_if_set FLAG_GOT_MAGNET, Route37_EventScript_SunnyCompleted
 	msgbox Route37_Text_Sunny_Meet, MSGBOX_DEFAULT
-	closemessage
-	multichoice 20, 0, MULTI_DAYS_OF_WEEK, FALSE
-	switch VAR_RESULT
-	case 0, Route37_EventScript_SunnyYes
-	case 1, Route37_EventScript_SunnyNope
-	case 2, Route37_EventScript_SunnyNope
-	case 3, Route37_EventScript_SunnyNope
-	case 4, Route37_EventScript_SunnyNope
-	case 5, Route37_EventScript_SunnyNope
-	case 6, Route37_EventScript_SunnyNope
-	case 7 Route37_EventScript_SunnyCancel
-	case MULTI_B_PRESSED, Route37_EventScript_SunnyCancel
-	closemessage
-	release
-	end
-Route37_EventScript_SunnyYes::
-	msgbox Route37_Text_Sunny_GiveGift2, MSGBOX_DEFAULT
 	giveitem ITEM_MAGNET
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_GOT_MAGNET
@@ -58,15 +49,7 @@ Route37_EventScript_SunnyYes::
 	closemessage
 	release
 	end
-Route37_EventScript_SunnyNope::
-	msgbox Route29_Text_TuscanyNope, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-Route37_EventScript_SunnyCancel::
-	closemessage
-	release
-	end
+
 Route37_EventScript_SunnyCompleted::
 	msgbox Route37_Text_Sunny_Sunday, MSGBOX_DEFAULT
 	closemessage
@@ -159,34 +142,16 @@ Route37_Text_PsychicGreg_After:
 
 Route37_Text_Sunny_Meet:
 #if GERMAN
-	.string "Sonnfried: Hi!\p"
-	.string "Ich bin Sonnfried aus der\n"
-	.string "Wochentags-Familie!\p"
-	.string "Errätst du meinen Lieblingstag,\n"
-	.string "bekommst du ein Geschenk.$"
+	.string "Sonnfried: Hi! Ich bin Sonnfried\n"
+	.string "vom Sonntag. Heute ist Sonntag!\p"
+	.string "Man sagte mir, ich soll dir das\n"
+	.string "geben, wenn ich dich sehe!$"
 #else
 	.string "SUNNY: Hi!\p"
-	.string "I'm SUNNY of the WEEKDAY family!\p"
-	.string "If you can guess my favorite day,\n"
-	.string "I'll give you a reward.$"
-#endif
-
-Route37_Text_Sunny_GiveGift1:
-#if GERMAN
-	.string "Man sagte mir, ich soll dir das\n"
-	.string "geben, wenn ich dich sehe!$"
-#else
-	.string "I was told to give you this if I saw\n"
-	.string "you!$"
-#endif
-
-Route37_Text_Sunny_GiveGift2:
-#if GERMAN
-	.string "Man sagte mir, ich soll dir das\n"
-	.string "geben, wenn ich dich sehe!$"
-#else
-	.string "I was told to give you this if I saw\n"
-	.string "you!$"
+	.string "I'm SUNNY of Sunday, meaning it's\n"
+	.string "Sunday today!\p"
+	.string "I was told to give you this if I\n"
+	.string "saw you!$"
 #endif
 
 Route37_Text_Sunny_GaveGift:
@@ -215,24 +180,14 @@ Route37_Text_Sunny_GaveGift:
 Route37_Text_Sunny_Sunday:
 #if GERMAN
 	.string "Sonnfried: Meine Geschwister heißen\n"
-	.string "Monja, Dietlinde, Mitko, Donatus, Frieda\l"
-	.string "und Samson.\p"
+	.string "Monja, Dietlinde, Mitko, Donatus,\l"
+	.string "Frieda und Samson.\p"
 	.string "Sie sind alle älter als ich!$"
 #else
 	.string "SUNNY: My sisters and brothers are\n"
 	.string "MONICA, TUSCANY, WESLEY, ARTHUR,\l"
 	.string "FRIEDA and SANTOS.\p"
 	.string "They're all older than me!$"
-#endif
-
-Route37_Text_Sunny_NotSunday:
-#if GERMAN
-	.string "Sonnfried: Ist heute nicht Sonntag?\n"
-	.string "Äh…\l"
-	.string "Das hatte ich vergessen!$"
-#else
-	.string "SUNNY: Isn't today Sunday?\n"
-	.string "Um… I forgot!$"
 #endif
 
 Route37_Text_Sign:
