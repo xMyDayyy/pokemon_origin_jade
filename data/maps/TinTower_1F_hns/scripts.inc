@@ -7,14 +7,14 @@ TinTower_OnTransition::
 	end
 
 @ 1F only; TinTower_OnTransition is shared with 2F-9F.
-@ Suicune waits here once both Johto sightings are done (VAR_SUICUNE_ENCOUNTERS >= 3)
+@ Suicune waits here once the Route 36 sighting is done (VAR_SUICUNE_ENCOUNTERS >= 4)
 @ and the legendary rules allow it. FLAG_TEMP_1 hides Suicune, FLAG_TEMP_2 hides Eusine.
-@ See docs/origin_jade/DECISIONS.md, D-026 and D-027.
+@ See docs/origin_jade/DECISIONS.md, D-026 and D-038.
 TinTower_1F_OnTransition::
 	setescapewarp MAP_BELLCHIME_TRAIL_HNS, 35, 42
 	setflag FLAG_TEMP_2
 	setflag FLAG_TEMP_1
-	goto_if_lt VAR_SUICUNE_ENCOUNTERS, 3, TinTower_1F_OnTransition_End
+	goto_if_lt VAR_SUICUNE_ENCOUNTERS, 4, TinTower_1F_OnTransition_End
 	setvar VAR_0x8004, LEGENDARY_SUICUNE
 	specialvar VAR_RESULT, IsLegendaryAvailable
 	call_if_eq VAR_RESULT, TRUE, TinTower_1F_EventScript_ShowSuicune
@@ -49,9 +49,9 @@ TinTower_1F_EventScript_Suicune::
 	release
 	end
 
-@ First knockout or catch only: Eusine comes in once (VAR_SUICUNE_ENCOUNTERS 3 -> 8).
+@ First knockout or catch only: Eusine comes in once (VAR_SUICUNE_ENCOUNTERS 4 -> 8).
 TinTower_1F_EventScript_SuicuneDone::
-	goto_if_ne VAR_SUICUNE_ENCOUNTERS, 3, TinTower_1F_EventScript_SuicuneRelease
+	goto_if_ne VAR_SUICUNE_ENCOUNTERS, 4, TinTower_1F_EventScript_SuicuneRelease
 	hidefollower
 	playse SE_EXIT
 	playbgm MUS_HG_EUSINE, FALSE

@@ -7,12 +7,21 @@ Route36_OnTransition:
 	callnative SetTimeBasedEncounters
 	special GetWeekday
 	call_if_ne VAR_RESULT, WEEKDAY_THU, Route36_EventScript_HideArthur
+	call_if_ne VAR_SUICUNE_ENCOUNTERS, 3, Route36_EventScript_HideSuicune
+	setflag FLAG_TEMP_3
 	end
 
 @ Arthur of the weekday siblings is only here on Thursday, see
 @ docs/origin_jade/DECISIONS.md, D-033.
 Route36_EventScript_HideArthur:
 	setflag FLAG_TEMP_1
+	return
+
+@ Suicune stands here only at VAR_SUICUNE_ENCOUNTERS 3 (both other Johto sightings
+@ done); FLAG_TEMP_2 hides Suicune, FLAG_TEMP_3 hides Eusine.
+@ See docs/origin_jade/DECISIONS.md, D-038.
+Route36_EventScript_HideSuicune:
+	setflag FLAG_TEMP_2
 	return
 
 Route36_EventScript_RockSmashGuy::
@@ -535,3 +544,107 @@ Route36_Text_RockSmashGuyHasHM:
 	.string "Take this instead. It holds up.$"
 #endif
 
+@ Third Johto sighting: Suicune runs off north, Eusine walks in from the south
+@ and points to the Glockenturm (VAR_SUICUNE_ENCOUNTERS 3 -> 4).
+Route36_EventScript_SuicuneTrigger::
+	lockall
+	hidefollower
+	playse SE_PIN
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
+	waitmovement 0
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
+	playmoncry SPECIES_SUICUNE, CRY_MODE_NORMAL
+	waitmoncry
+	applymovement LOCALID_ROUTE36_SUICUNE, Route36_Movement_SuicuneRunOff
+	playse SE_LEDGE
+	delay 30
+	playse SE_LEDGE
+	delay 30
+	playse SE_LEDGE
+	delay 30
+	playse SE_LEDGE
+	delay 30
+	playse SE_LEDGE
+	waitmovement 0
+	removeobject LOCALID_ROUTE36_SUICUNE
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
+	delay 30
+	playbgm MUS_HG_EUSINE, FALSE
+	clearflag FLAG_TEMP_3
+	addobject LOCALID_ROUTE36_EUSINE
+	goto_if_unset FLAG_HIDE_SUDOWOODO, Route36_EventScript_EusineBehindSudowoodo
+	applymovement LOCALID_ROUTE36_EUSINE, Route36_Movement_EusineEnter
+Route36_EventScript_EusineArrived:
+	waitmovement 0
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
+	msgbox Route36_Text_EusineTinTower, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_ROUTE36_EUSINE, Route36_Movement_EusineLeave
+	waitmovement 0
+	removeobject LOCALID_ROUTE36_EUSINE
+	fadedefaultbgm
+	setvar VAR_SUICUNE_ENCOUNTERS, 4
+	releaseall
+	end
+
+@ Sudowoodo still stands on (39,19): Eusine stops one tile south of it.
+Route36_EventScript_EusineBehindSudowoodo:
+	applymovement LOCALID_ROUTE36_EUSINE, Route36_Movement_EusineEnterShort
+	goto Route36_EventScript_EusineArrived
+
+Route36_Movement_SuicuneRunOff:
+	jump_in_place_right
+	jump_right
+	jump_2_up
+	jump_2_up
+	jump_2_up
+	step_end
+
+Route36_Movement_EusineEnter:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+Route36_Movement_EusineEnterShort:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+Route36_Movement_EusineLeave:
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	step_end
+
+Route36_Text_EusineTinTower:
+#if GERMAN
+	.string "Eusin: {PLAYER}! Hast du es auch\n"
+	.string "gesehen? Das war Suicune!\p"
+	.string "Es ist nach Norden gelaufen, in\n"
+	.string "Richtung Teak City…\p"
+	.string "Ich glaube, es will zum\n"
+	.string "Glockenturm.\p"
+	.string "Der Legende nach prüft dort ein\n"
+	.string "Pokémon jeden Trainer, der die\l"
+	.string "Seelen der Pokémon berühren kann.\p"
+	.string "Doch den Turm dürfen nur\n"
+	.string "Auserwählte betreten…$"
+#else
+	.string "EUSINE: {PLAYER}! Did you see that?\n"
+	.string "That was SUICUNE!\p"
+	.string "It ran north, toward ECRUTEAK…\p"
+	.string "I think it's heading for the\n"
+	.string "TIN TOWER.\p"
+	.string "Legend has it that a POKéMON there\n"
+	.string "tests every trainer who can touch\l"
+	.string "the souls of POKéMON.\p"
+	.string "But only the chosen may enter\n"
+	.string "the tower…$"
+#endif

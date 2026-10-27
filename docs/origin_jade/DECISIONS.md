@@ -449,7 +449,9 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-15 (O-004).
 
 ### D-027 Suicune waits in Johto's Glockenturm
-- **Status:** Active (2026-10-15)
+- **Status:** Active (2026-10-15). Changed 2026-10-27 by D-038: Suicune
+  waits only after the Route 36 scene (`VAR_SUICUNE_ENCOUNTERS` 4), Eusine's
+  hint moved to Route 36. The tower access (either bell) stays.
 - **Decision:** Suicune's story stays in Johto. After both Johto sightings
   (Cianwood and Route 42, `VAR_SUICUNE_ENCOUNTERS` 3) Suicune waits on the
   Glockenturm's ground floor (`TinTower_1F_hns`, level 50, talk to it) and
@@ -666,6 +668,43 @@ dated 2026-10-10 or later were decided directly.
     `src/pokedex_area_screen.c`).
 - **Evidence:** decision 2026-10-26 (O-019).
 
+### D-038 Suicune: HnS's sightings, Crystal's Route 36, the Glockenturm
+- **Status:** Active (2026-10-27). Supersedes D-027 in the waiting condition
+  and Eusine's hint; D-027's tower access stays.
+- **Decision:** Suicune's story follows HnS up to Route 42 and Crystal after
+  that. It stays in Johto; HnS's Kanto chain stays retired.
+  - Burned Tower release and Eusine: HnS, unchanged. Olivine's first visit
+    arms Cianwood: sighting and Eusine battle (HnS team), unchanged.
+    Route 42: sighting with HnS's Eusine dialogue, no Glockenturm hint
+    (Cianwood neither).
+  - Route 36 (Crystal): once both sightings are done Suicune stands in the
+    path from Route 37 (35,16). The coord event on (39,18), the one tile
+    between that path and the rest of Route 36, starts the scene: Suicune
+    runs off north, Eusine walks in from the south and says it seems to head
+    for the Glockenturm. Every walk between Route 37 and the National Park
+    gate, Route 35 or Violet City passes that tile.
+  - Glockenturm 1F: Suicune waits there after the Route 36 scene, talk to it
+    (level 50, legendary rules D-026). Eusine walks in after the first
+    knockout or catch. Access as in D-027 (either theater bell). No Wise
+    Trio, no Clear Bell change, no Raikou/Entei cameo.
+  - Afterwards Eusine stays in the Kampfzone (D-030); nothing in Kanto.
+  - `VAR_SUICUNE_ENCOUNTERS` (HnS var; no new flags or vars):
+    - 0: before Olivine's first visit;
+    - 1: Cianwood armed (Olivine's first visit);
+    - 2: Cianwood done, Route 42 not yet;
+    - 3: both Johto sightings done, Route 36 armed (set by whichever of
+      Cianwood and Route 42 comes second);
+    - 4: Route 36 done, Suicune waits on Glockenturm 1F;
+    - 5-7: unused (HnS's retired Kanto steps);
+    - 8: first knockout or catch at the Glockenturm, Eusine's scene played.
+    Route 42's own sighting is `FLAG_HIDE_ROUTE42_SUICUNE`. Saves at 3 from
+    before this change get the Route 36 scene; the tower shows Suicune
+    from 4.
+  - Code: `Route36_hns` (`LOCALID_ROUTE36_SUICUNE`/`_EUSINE` with
+    `FLAG_TEMP_2`/`FLAG_TEMP_3`, coord event at value 3), `TinTower_1F_hns`,
+    `Route42_hns`, `CianwoodCity_hns`.
+- **Evidence:** decision 2026-10-27.
+
 ---
 
 ## Planned, not built yet
@@ -749,3 +788,4 @@ dated 2026-10-10 or later were decided directly.
 | The M.S. Aqua sails on two weekdays per port | D-029 / D-033 (2026-10-15) | D-029 (2026-10-20) |
 | Goldenrod's TM lady and the haircut brothers follow day and night | HnS | D-033 (2026-10-20) |
 | Entering the Bug-Catching Contest uses up the day | D-033 (2026-10-15) | D-033 (2026-10-20) |
+| Suicune waits on Glockenturm 1F after both Johto sightings (var 3); Eusine's hint at the second sighting | D-027 (2026-10-15) | D-038 (2026-10-27) |

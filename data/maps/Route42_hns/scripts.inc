@@ -77,10 +77,8 @@ Route42_EventScript_Suicune_Trigger::
 	release
 	end
 
-@ Second Johto sighting: Eusine points to the Tin Tower, where Suicune waits from now on.
+@ Both Johto sightings done: Suicune appears on Route 36 next (VAR_SUICUNE_ENCOUNTERS 2 -> 3).
 Route42_EventScript_DoneJohtoSuicune::
-	turnobject LOCALID_ROUTE42_EUSINE, DIR_WEST
-	msgbox Route42_Text_EusineTinTowerHint, MSGBOX_DEFAULT
 	setvar VAR_SUICUNE_ENCOUNTERS, 3
 	return
 
@@ -187,24 +185,6 @@ Route42_Text_EusineWontGiveUp:
 	.string "until I've found out what\l"
 	.string "you're after...\p"
 	.string "You hear me!$"
-#endif
-
-@ Shared with CianwoodCity_hns (whichever Johto sighting comes second).
-Route42_Text_EusineTinTowerHint::
-#if GERMAN
-	.string "Eusin: Ach, übrigens…\p"
-	.string "Die Weisen in Teak City erzählen,\n"
-	.string "Suicune prüfe würdige Trainer\l"
-	.string "im Glockenturm.\p"
-	.string "Doch den Turm dürfen nur\n"
-	.string "Auserwählte betreten…$"
-#else
-	.string "EUSINE: Oh, by the way…\p"
-	.string "The sages of ECRUTEAK say SUICUNE\n"
-	.string "tests worthy trainers in the\l"
-	.string "TIN TOWER.\p"
-	.string "But only the chosen may enter\n"
-	.string "the tower…$"
 #endif
 
 

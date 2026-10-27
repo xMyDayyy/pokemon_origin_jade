@@ -286,9 +286,8 @@ CianwoodCity_EventScript_SuicuneTrigger::
 	release
 	end
 
-@ Second Johto sighting (Route 42 came first): Eusine points to the Tin Tower.
+@ Both Johto sightings done (Route 42 came first): Suicune appears on Route 36 next.
 CianwoodCity_EventScript_DoneJohtoSuicune::
-	msgbox Route42_Text_EusineTinTowerHint, MSGBOX_DEFAULT
 	setvar VAR_SUICUNE_ENCOUNTERS, 3
 	return
 
