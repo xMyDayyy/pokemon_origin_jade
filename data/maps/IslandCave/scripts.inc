@@ -30,7 +30,11 @@ IslandCave_EventScript_HideRegiEntrance::
 IslandCave_OnTransition:
 	setflag FLAG_LANDMARK_ISLAND_CAVE
 	call IslandCave_EventScript_ClearSteps
-	call_if_unset FLAG_DEFEATED_REGICE, IslandCave_EventScript_ShowRegice
+	@ Regice: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+	setflag FLAG_HIDE_REGICE
+	setvar VAR_0x8004, LEGENDARY_REGICE
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	call_if_eq VAR_RESULT, TRUE, IslandCave_EventScript_ShowRegice
 	end
 
 IslandCave_EventScript_ShowRegice::
@@ -99,17 +103,12 @@ IslandCave_EventScript_Regice::
 	special StartRegiBattle
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	setvar VAR_0x8004, LEGENDARY_REGICE
+	special RecordLegendaryBattleOutcome
 	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, IslandCave_EventScript_DefeatedRegice
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, IslandCave_EventScript_RanFromRegice
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, IslandCave_EventScript_RanFromRegice
-	setflag FLAG_DEFEATED_REGICE
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Common_EventScript_RemoveStaticPokemon
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, IslandCave_EventScript_RanFromRegice
 	release
-	end
-
-IslandCave_EventScript_DefeatedRegice::
-	setflag FLAG_DEFEATED_REGICE
-	goto Common_EventScript_RemoveStaticPokemon
 	end
 
 IslandCave_EventScript_RanFromRegice::

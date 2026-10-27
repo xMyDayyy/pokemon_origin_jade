@@ -250,6 +250,8 @@ Common_EventScript_HoennHideStoryNpcs::
 	return
 
 Common_EventScript_HoennSkipIntroStates::
+	@ Littleroot TV shows the movie, the Lati news only after the Hoenn title.
+	setflag FLAG_SYS_TV_HOME
 	setvar VAR_LITTLEROOT_INTRO_STATE, 7
 	setvar VAR_LITTLEROOT_TOWN_STATE, 4
 	setvar VAR_LITTLEROOT_RIVAL_STATE, 4

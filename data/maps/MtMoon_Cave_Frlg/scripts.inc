@@ -1,5 +1,18 @@
 MtMoon_Cave_Frlg_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, MtMoonCave_OnTransition
 	.byte 0
+
+@ Mew: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+MtMoonCave_OnTransition::
+	setflag FLAG_HIDE_MEW_KANTO
+	setvar VAR_0x8004, LEGENDARY_MEW
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	call_if_eq VAR_RESULT, TRUE, MtMoonCave_EventScript_ShowMew
+	end
+
+MtMoonCave_EventScript_ShowMew::
+	clearflag FLAG_HIDE_MEW_KANTO
+	return
 
 MtMoonCave_EventScript_Mew::
 	lock
@@ -17,23 +30,13 @@ MtMoonCave_EventScript_Mew::
 	special BattleSetup_StartLegendaryBattle
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	setvar VAR_0x8004, LEGENDARY_MEW
+	special RecordLegendaryBattleOutcome
 	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, MtMoonCave_EventScript_DefeatedMew
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, MtMoonCave_EventScript_RanFromMew
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, MtMoonCave_EventScript_RanFromMew
-	setflag FLAG_HIDE_MEW_KANTO
-	release
-	end
-
-MtMoonCave_EventScript_DefeatedMew::
-	setflag FLAG_HIDE_MEW_KANTO
-	goto EventScript_RemoveStaticMon
-	end
-
-MtMoonCave_EventScript_RanFromMew::
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, EventScript_RemoveStaticMon
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_RemoveStaticMon
 	setvar VAR_0x8004, SPECIES_MEW
-	goto EventScript_RemoveStaticMon
-	end
+	goto EventScript_MonFlewAway
 
 MtMoonCave_Text_Mew::
 	.string "Mew!$"

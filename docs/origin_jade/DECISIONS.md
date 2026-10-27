@@ -337,7 +337,7 @@ dated 2026-10-10 or later were decided directly.
   Its object stays in map.json (so old saves made in the room find their
   template) but never spawns and never battles. Kanto's Victory Road stays
   reachable after the league change (D-010), so Moltres cannot be missed by
-  the change; knocking it out removes it for good, as with FRLG's birds.
+  the change; catching, knocking out and fleeing follow D-026.
 - **Evidence:** decision 2026-10-11.
 
 ### D-023 Randomizer without a GEN SCOPE row
@@ -389,6 +389,36 @@ dated 2026-10-10 or later were decided directly.
   - Code: `IsStationAvailable`, `IsOPTReportAvailable` and `PickPnPTrainer`
     in `src/pokenav_radio.c`.
 - **Evidence:** decision 2026-10-13 (O-016).
+
+### D-026 Legendary rules: caught means gone for good
+- **Status:** Active (2026-10-15)
+- **Decision:** All one-time encounters share one table
+  (`src/legendaries_oj.c`, ids in `include/constants/legendaries_oj.h`):
+  Articuno, Zapdos, Moltres, Mewtwo, Mew (Mt. Moon only), Lugia, Ho-Oh,
+  Celebi, Suicune, Deoxys (HnS Birth Island only), Union Cave Lapras, the red
+  Gyarados, Entei, Raikou, Regirock, Regice, Registeel, Groudon, Kyogre,
+  Rayquaza, Latias and Latios.
+  - Caught: never again. The battle outcome sets the caught flag, not the
+    Pokedex (the randomizer changes species).
+  - Knocked out: back after every league victory - Kanto titles while the
+    Kanto league exists, every Johto and Hoenn title
+    (`Common_EventScript_ReviveDefeatedLegendaries` in all three halls of
+    fame).
+  - Fled: back after three RTC day changes (2-bit counters in
+    `VAR_LEGENDARY_FLEE_KANTO/JOHTO/HOENN`, `UpdatePerDay`). Roamers keep
+    roaming.
+  - Each map decides on entry (`IsLegendaryAvailable`). Story battles
+    (Lugia, Ho-Oh, Celebi, red Gyarados) move the story on whatever the
+    outcome.
+  - The Lugia or Ho-Oh not chosen on Route 39 appears after the first Johto
+    title once the chosen one is caught (level 70; the chosen one keeps 50).
+    Route 41's Tentacruel then step aside for Ho-Oh choosers.
+  - Latias and Latios both roam Hoenn after the first Hoenn title (level 40,
+    Emerald routes). No Latias roams Kanto or Johto. Faraway Island,
+    Southern Island and Navel Rock are not offered anywhere.
+  - Levels stay fixed. Sudowoodo and Snorlax never return. The GS Ball is
+    used up at the shrine; there is no second Celebi.
+- **Evidence:** decision 2026-10-15 (O-004).
 
 ---
 
@@ -479,3 +509,4 @@ dated 2026-10-10 or later were decided directly.
 | Johto starts in Mom's house in New Bark Town | HnS | D-004 |
 | A second Moltres on Mt. Silver | HnS | D-022 (2026-10-11) |
 | North exit leads to HnS's Victory Road after the league change | D-010 (2026-10-10) | D-010 (2026-10-12) |
+| A knocked-out Moltres is gone for good | D-022 (2026-10-11) | D-026 (2026-10-15) |

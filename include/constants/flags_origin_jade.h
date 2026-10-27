@@ -37,6 +37,11 @@
 #define FLAG_HIDE_MT_MOON_B3F_ITEM_BALL_1                    (OJ_FLAGS_KANTO + 0)
 #define FLAG_HIDE_MT_MOON_B3F_ITEM_BALL_2                    (OJ_FLAGS_KANTO + 1)
 #define FLAG_HIDE_MT_MOON_B3F_ITEM_BALL_3                    (OJ_FLAGS_KANTO + 2)
+// Legendaries caught, see constants/legendaries_oj.h.
+#define FLAG_CAUGHT_ARTICUNO                                 (OJ_FLAGS_KANTO + 3)
+#define FLAG_CAUGHT_ZAPDOS                                   (OJ_FLAGS_KANTO + 4)
+#define FLAG_CAUGHT_MOLTRES                                  (OJ_FLAGS_KANTO + 5)
+#define FLAG_CAUGHT_MEWTWO                                   (OJ_FLAGS_KANTO + 6)
 
 // ---------------------------------------------------------------------
 // Johto (OJ_FLAGS_JOHTO + 0 to + 159)
@@ -56,6 +61,15 @@
 #define FLAG_MIGRATED_GOLDENROD_FLAG_HEAP            (OJ_FLAGS_JOHTO + 5)
 // Johto berry slot save migration done (see LoadGameSave in src/save.c).
 #define FLAG_MIGRATED_JOHTO_BERRY_SLOTS              (OJ_FLAGS_JOHTO + 6)
+// One-time encounters, see constants/legendaries_oj.h. CAUGHT: never back;
+// DEFEATED: caught or knocked out, cleared after a league victory unless caught.
+#define FLAG_DEFEATED_CELEBI                         (OJ_FLAGS_JOHTO + 7)
+#define FLAG_CAUGHT_SUICUNE                          (OJ_FLAGS_JOHTO + 8)
+#define FLAG_DEFEATED_SUICUNE                        (OJ_FLAGS_JOHTO + 9)
+#define FLAG_CAUGHT_UNION_CAVE_LAPRAS                (OJ_FLAGS_JOHTO + 10)
+#define FLAG_DEFEATED_UNION_CAVE_LAPRAS              (OJ_FLAGS_JOHTO + 11)
+#define FLAG_CAUGHT_RED_GYARADOS                     (OJ_FLAGS_JOHTO + 12)
+#define FLAG_DEFEATED_RED_GYARADOS                   (OJ_FLAGS_JOHTO + 13)
 
 // ---------------------------------------------------------------------
 // Hoenn (OJ_FLAGS_HOENN + 0 to + 95)
@@ -103,6 +117,15 @@
 #define OJ_TRAINER_FLAGS_HOENN_END                           (OJ_TRAINER_FLAGS_ENGINE + NUM_ENGINE_FLAGS - 1)
 // Rydel's Mach/Acro Bike in Mauville (FLAG_RECEIVED_BIKE is the Johto bike).
 #define FLAG_RECEIVED_HOENN_BIKE                             (OJ_TRAINER_FLAGS_HOENN_END + 1)
+// Legendaries caught, see constants/legendaries_oj.h.
+#define FLAG_CAUGHT_REGIROCK                                 (OJ_TRAINER_FLAGS_HOENN_END + 2)
+#define FLAG_CAUGHT_REGICE                                   (OJ_TRAINER_FLAGS_HOENN_END + 3)
+#define FLAG_CAUGHT_REGISTEEL                                (OJ_TRAINER_FLAGS_HOENN_END + 4)
+#define FLAG_CAUGHT_GROUDON                                  (OJ_TRAINER_FLAGS_HOENN_END + 5)
+#define FLAG_CAUGHT_KYOGRE                                   (OJ_TRAINER_FLAGS_HOENN_END + 6)
+#define FLAG_CAUGHT_RAYQUAZA                                 (OJ_TRAINER_FLAGS_HOENN_END + 7)
+#define FLAG_CAUGHT_LATIAS                                   (OJ_TRAINER_FLAGS_HOENN_END + 8)
+#define FLAG_CAUGHT_LATIOS                                   (OJ_TRAINER_FLAGS_HOENN_END + 9)
 
 // ---------------------------------------------------------------------
 // Cross-region (OJ_FLAGS_GLOBAL + 0 to + 63)

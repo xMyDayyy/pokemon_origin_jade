@@ -2,25 +2,28 @@ WhirlIslands_LugiaChamber_hns_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, WhirlIslands_LugiaChamber_OnTransition
 	.byte 0
 
+@ Lugia: story battle at VAR_COMPLETED_LUGIA 2; afterwards the legendary rules decide
+@ (see docs/origin_jade/DECISIONS.md, D-026). The Lugia not chosen on Route 39 waits
+@ after the first Johto title once Ho-Oh is caught.
 WhirlIslands_LugiaChamber_OnTransition:
 	goto_if_eq VAR_COMPLETED_LUGIA, 2, WhirlIslands_LugiaChamber_MapScript_LugiaStory
-	goto_if_eq VAR_COMPLETED_LUGIA, 3, WhirlIslands_LugiaChamber_MapScript_LugiaPostStoryGone
-	goto_if_eq VAR_COMPLETED_LUGIA, 4, WhirlIslands_LugiaChamber_MapScript_LugiaPostStoryEncounter
+	setflag FLAG_HIDE_WHIRL_ISLANDS_KIMONO_GIRLS
+	setflag FLAG_HIDE_LUGIA
+	setobjectxyperm LOCALID_LUGIA, 29, 12
+	goto_if_lt VAR_COMPLETED_LUGIA, 3, WhirlIslands_LugiaChamber_MapScript_End
+	goto_if_eq VAR_LUGIA_OR_HOOH, 1, WhirlIslands_LugiaChamber_MapScript_CheckLugia
+	goto_if_unset FLAG_IS_JOHTO_CHAMPION, WhirlIslands_LugiaChamber_MapScript_End
+	goto_if_unset FLAG_CAUGHT_HO_OH, WhirlIslands_LugiaChamber_MapScript_End
+WhirlIslands_LugiaChamber_MapScript_CheckLugia:
+	setvar VAR_0x8004, LEGENDARY_LUGIA
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	goto_if_ne VAR_RESULT, TRUE, WhirlIslands_LugiaChamber_MapScript_End
+	clearflag FLAG_HIDE_LUGIA
+WhirlIslands_LugiaChamber_MapScript_End:
 	end
 
 WhirlIslands_LugiaChamber_MapScript_LugiaStory::
 	clearflag FLAG_HIDE_LUGIA
-	end
-
-WhirlIslands_LugiaChamber_MapScript_LugiaPostStoryGone::
-	setflag FLAG_HIDE_WHIRL_ISLANDS_KIMONO_GIRLS
-	setflag FLAG_HIDE_LUGIA
-	end
-
-WhirlIslands_LugiaChamber_MapScript_LugiaPostStoryEncounter::
-	setflag FLAG_HIDE_WHIRL_ISLANDS_KIMONO_GIRLS
-	clearflag FLAG_HIDE_LUGIA
-	setobjectxyperm LOCALID_LUGIA, 29, 12
 	end
 
 WhirlIslands_LugiaChamber_EventScript_TalkToKimono::
@@ -169,25 +172,17 @@ WhirlIslands_LugiaChamber_EventScript_TalkToKimono::
 	releaseall
 	end
 
+@ The story battle moves the story on whatever the outcome.
 WhirlIslands_LugiaChamber_EventScript_Lugia::
 	lockall
-	goto_if_eq VAR_COMPLETED_LUGIA, 4, WhirlIslands_LugiaChamber_EventScript_LugiaPostgame
+	goto_if_ne VAR_COMPLETED_LUGIA, 2, WhirlIslands_LugiaChamber_EventScript_LugiaPostgame
 	waitse
 	playmoncry SPECIES_LUGIA, CRY_MODE_ENCOUNTER
 	delay 30
 	waitmoncry
 	playbgm MUS_HG_VS_LUGIA, 0
 	seteventmon SPECIES_LUGIA, 50
-	setflag FLAG_SYS_CTRL_OBJ_DELETE
-	special BattleSetup_StartLegendaryBattle
-	waitstate
-	clearflag FLAG_SYS_CTRL_OBJ_DELETE
-	setvar VAR_LAST_TALKED, LOCALID_LUGIA
-	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, WhirlIslands_LugiaChamber_EventScript_RanFromLugia
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, WhirlIslands_LugiaChamber_EventScript_RanFromLugia
-	call_if_eq VAR_RESULT, B_OUTCOME_WON, WhirlIslands_LugiaChamber_EventScript_LugiaFlewAway
-	call_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, WhirlIslands_LugiaChamber_EventScript_CaughtLugia
+	call WhirlIslands_LugiaChamber_EventScript_LugiaBattle
 	setflag FLAG_HIDE_WHIRL_ISLANDS_KIMONO_GIRLS
 	applymovement LOCALID_KIMONO_MID, WhirlIslands_LugiaChamber_Movement_Kimono_Dance_Shift_Right2
 	waitmovement 0
@@ -199,25 +194,35 @@ WhirlIslands_LugiaChamber_EventScript_Lugia::
 	releaseall
 	end
 
+@ After the story: the chosen Lugia at Lv 50, the Lugia not chosen at Lv 70.
 WhirlIslands_LugiaChamber_EventScript_LugiaPostgame::
 	playmoncry SPECIES_LUGIA, CRY_MODE_ENCOUNTER
 	delay 30
 	waitmoncry
 	playbgm MUS_HG_VS_LUGIA, 0
+	goto_if_eq VAR_LUGIA_OR_HOOH, 1, WhirlIslands_LugiaChamber_EventScript_LugiaPostgameChosen
 	seteventmon SPECIES_LUGIA, 70
+	goto WhirlIslands_LugiaChamber_EventScript_LugiaPostgameBattle
+
+WhirlIslands_LugiaChamber_EventScript_LugiaPostgameChosen:
+	seteventmon SPECIES_LUGIA, 50
+WhirlIslands_LugiaChamber_EventScript_LugiaPostgameBattle:
+	call WhirlIslands_LugiaChamber_EventScript_LugiaBattle
+	releaseall
+	end
+
+@ Battle, record the outcome, Lugia leaves the chamber.
+WhirlIslands_LugiaChamber_EventScript_LugiaBattle::
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special BattleSetup_StartLegendaryBattle
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	setvar VAR_0x8004, LEGENDARY_LUGIA
+	special RecordLegendaryBattleOutcome
 	setvar VAR_LAST_TALKED, LOCALID_LUGIA
 	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, WhirlIslands_LugiaChamber_EventScript_RanFromLugia
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, WhirlIslands_LugiaChamber_EventScript_RanFromLugia
-	call_if_eq VAR_RESULT, B_OUTCOME_WON, WhirlIslands_LugiaChamber_EventScript_LugiaFlewAway
-	call_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, WhirlIslands_LugiaChamber_EventScript_CaughtLugia
-	setvar VAR_COMPLETED_LUGIA, 3
-	releaseall
-	end
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, WhirlIslands_LugiaChamber_EventScript_CaughtLugia
+	goto WhirlIslands_LugiaChamber_EventScript_LugiaFlewAway
 
 WhirlIslands_LugiaChamber_EventScript_LugiaFlewAway::
 	fadescreenswapbuffers FADE_TO_BLACK
@@ -231,7 +236,6 @@ WhirlIslands_LugiaChamber_EventScript_LugiaFlewAway::
 	return
 
 WhirlIslands_LugiaChamber_EventScript_CaughtLugia::
-	setflag FLAG_CAUGHT_LUGIA
 	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject LOCALID_LUGIA
 	setweather WEATHER_NONE
@@ -239,10 +243,6 @@ WhirlIslands_LugiaChamber_EventScript_CaughtLugia::
 	setflag FLAG_HIDE_LUGIA
 	fadescreenswapbuffers FADE_FROM_BLACK
 	return
-
-WhirlIslands_LugiaChamber_EventScript_RanFromLugia::
-	releaseall
-	end
 
 WhirlIslands_LugiaChamber_EventScript_Zuki::
 	goto_if_eq VAR_COMPLETED_LUGIA, 3, WhirlIslands_LugiaChamber_EventScript_ZukiAfter

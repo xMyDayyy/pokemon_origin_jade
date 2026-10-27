@@ -7,7 +7,12 @@ EventScript_SetDefeatedEliteFourFlagsVars::
 	special Script_UpdateTrainerFanClubGameClear
 	specialvar VAR_RESULT, IsNationalPokedexEnabled
 	call_if_eq VAR_RESULT, FALSE, EventScript_SetReadyTryGiveNationalDexScene
+#if IS_HNS
+	@ Knocked-out legendaries return after every title, see docs/origin_jade/DECISIONS.md, D-026.
+	call Common_EventScript_ReviveDefeatedLegendaries
+#else
 	call EventScript_ResetLegendaries
+#endif
 	return
 
 EventScript_SetReadyTryGiveNationalDexScene::

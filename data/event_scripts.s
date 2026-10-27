@@ -5,6 +5,7 @@
 #include "constants/global.h"
 #include "constants/hoenn_licenses.h"
 #include "constants/johto_permits.h"
+#include "constants/legendaries_oj.h"
 #include "constants/apprentice.h"
 #include "constants/apricorn_tree.h"
 #include "constants/battle.h"
@@ -1062,6 +1063,7 @@ gStdScripts_End::
 	.include "data/scripts/new_game.inc"
 	.include "data/scripts/hall_of_fame.inc"
 	.include "data/scripts/hall_of_fame_frlg.inc"
+	.include "data/scripts/legendaries_oj.inc"
 
 	.include "data/scripts/config.inc"
 	.include "data/scripts/debug.inc"

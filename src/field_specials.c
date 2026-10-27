@@ -20,6 +20,7 @@
 #include "field_screen_effect.h"
 #include "field_specials.h"
 #include "level_scaling.h"
+#include "legendaries_oj.h"
 #include "field_weather.h"
 #include "graphics.h"
 #include "international_string_util.h"
@@ -69,6 +70,7 @@
 #include "constants/field_effects.h"
 #include "constants/field_specials.h"
 #include "constants/items.h"
+#include "constants/legendaries_oj.h"
 #include "constants/heal_locations.h"
 #include "constants/mystery_gift.h"
 #include "constants/slot_machine.h"
@@ -3694,11 +3696,20 @@ void CreateAbnormalWeatherEvent(void)
     u16 randomValue = Random();
     VarSet(VAR_ABNORMAL_WEATHER_STEP_COUNTER, 0);
 
+#if IS_HNS
+    // Only for Kyogre or Groudon that can be met now (see docs/origin_jade/DECISIONS.md, D-026).
+    if (!IsLegendaryIdAvailable(LEGENDARY_KYOGRE))
+#else
     if (FlagGet(FLAG_DEFEATED_KYOGRE) == TRUE)
+#endif
     {
         VarSet(VAR_ABNORMAL_WEATHER_LOCATION, (randomValue % TERRA_CAVE_LOCATIONS) + TERRA_CAVE_LOCATIONS_START);
     }
+#if IS_HNS
+    else if (!IsLegendaryIdAvailable(LEGENDARY_GROUDON))
+#else
     else if (FlagGet(FLAG_DEFEATED_GROUDON) == TRUE)
+#endif
     {
         VarSet(VAR_ABNORMAL_WEATHER_LOCATION, (randomValue % MARINE_CAVE_LOCATIONS) + MARINE_CAVE_LOCATIONS_START);
     }

@@ -4,6 +4,7 @@ LakeOfRage_hns_MapScripts::
 
 LakeOfRage_OnTransition::
 	setflag FLAG_VISITED_LAKE_OF_RAGE
+	call LakeOfRage_EventScript_SetGyaradosVisibility
 	call_if_lt VAR_MAHOGANY_TOWN_STATE, 2, LakeOfRage_EventScript_HideLois
 	goto_if_lt VAR_MAHOGANY_TOWN_STATE, 14, LakeOfRage_EventScript_SetHighTide
 	special UpdateShoalTideFlag
@@ -24,6 +25,17 @@ LakeOfRage_EventScript_SetHighTide::
 
 LakeOfRage_EventScript_HideLois::
 	setflag FLAG_TEMP_1
+	return
+
+@ Red Gyarados: story battle until VAR_MAHOGANY_TOWN_STATE 2, then the legendary rules
+@ (see docs/origin_jade/DECISIONS.md, D-026).
+LakeOfRage_EventScript_SetGyaradosVisibility::
+	goto_if_lt VAR_MAHOGANY_TOWN_STATE, 2, Common_EventScript_NopReturn
+	setflag FLAG_HIDE_LAKE_OF_RAGE_GYARADOS
+	setvar VAR_0x8004, LEGENDARY_RED_GYARADOS
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	goto_if_ne VAR_RESULT, TRUE, Common_EventScript_NopReturn
+	clearflag FLAG_HIDE_LAKE_OF_RAGE_GYARADOS
 	return
 
 LakeOfRage_EventScript_ThunderStorm::
@@ -103,23 +115,26 @@ LakeOfRage_EventScript_Gyarados::
 	waitmoncry
 	setwildbattleshiny SPECIES_GYARADOS, 30
 	dowildbattle
+	setvar VAR_0x8004, LEGENDARY_RED_GYARADOS
+	special RecordLegendaryBattleOutcome
 	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, LakeOfRage_EventScript_Defeated_Gyarados
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, LakeOfRage_EventScript_Ran_Gyarados
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, LakeOfRage_EventScript_Ran_Gyarados
-LakeOfRage_EventScript_Defeated_Gyarados::
-	setflag FLAG_HIDE_LAKE_OF_RAGE_GYARADOS
-	clearflag FLAG_TEMP_1
+	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject LOCALID_LAKEOFRAGE_GYARADOS
+	fadescreenswapbuffers FADE_FROM_BLACK
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, LakeOfRage_EventScript_GyaradosGone
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, LakeOfRage_EventScript_GyaradosGone
+	bufferspeciesname STR_VAR_1, SPECIES_GYARADOS
+	msgbox Text_MonSwamAway, MSGBOX_DEFAULT
+LakeOfRage_EventScript_GyaradosGone:
+	goto_if_ge VAR_MAHOGANY_TOWN_STATE, 2, LakeOfRage_EventScript_GyaradosEnd
+	@ First battle: the story goes on whatever the outcome.
+	clearflag FLAG_TEMP_1
 	clearflag FLAG_HIDE_LAKE_OF_RAGE_LANCE
 	addobject LOCALID_LAKEOFRAGE_LANCE
 	giveitem ITEM_RED_SCALE
 	setobjectxyperm LOCALID_LAKEOFRAGE_OLDMAN, 32, 38
 	setvar VAR_MAHOGANY_TOWN_STATE, 2
-	release
-	end
-
-LakeOfRage_EventScript_Ran_Gyarados::
+LakeOfRage_EventScript_GyaradosEnd:
 	release
 	end
 

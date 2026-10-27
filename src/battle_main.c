@@ -11,6 +11,7 @@
 #include "battle_interface.h"
 #include "battle_main.h"
 #include "level_scaling.h"
+#include "legendaries_oj.h"
 #include "battle_message.h"
 #include "battle_pyramid.h"
 #include "battle_scripts.h"
@@ -6107,6 +6108,9 @@ static void ReturnFromBattleToOverworld(void)
         if ((gBattleOutcome == B_OUTCOME_WON) || gBattleOutcome == B_OUTCOME_CAUGHT) // Bug: When Roar is used by roamer, gBattleOutcome is B_OUTCOME_PLAYER_TELEPORTED (5).
 #endif                                                                               // & with B_OUTCOME_WON (1) will return TRUE and deactivates the roamer.
             SetRoamerInactive(gEncounteredRoamerIndex);
+        // A caught roamer never comes back, see docs/origin_jade/DECISIONS.md, D-026.
+        if (gBattleOutcome == B_OUTCOME_CAUGHT)
+            RecordRoamerCaught(gSaveBlock1Ptr->roamer[gEncounteredRoamerIndex].species);
     }
 
     m4aSongNumStop(SE_LOW_HEALTH, FlagGet(FLAG_SYS_GBS_ENABLED));

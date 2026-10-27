@@ -725,3 +725,6 @@ gSpecials::
 	def_special IsPlayerInHoenn
 	def_special IsPartyLimitChallengeActive
 	def_special GetPlayerBadgeCount
+	def_special IsLegendaryAvailable
+	def_special RecordLegendaryBattleOutcome
+	def_special ReviveDefeatedLegendaries

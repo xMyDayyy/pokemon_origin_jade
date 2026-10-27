@@ -552,8 +552,9 @@ void BattleSetup_StartRoamerBattle(void)
         song = MUS_HG_VS_ENTEI;
     else if (species == SPECIES_RAIKOU)
         song = MUS_HG_VS_RAIKOU;
-    else
-        song = MUS_HG_VS_SUICUNE; 
+    else if (species == SPECIES_SUICUNE)
+        song = MUS_HG_VS_SUICUNE;
+    // Latias and Latios keep the normal wild battle music (song 0), as in Emerald.
 #endif
     CreateBattleStartTask(GetWildBattleTransition(), song);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);

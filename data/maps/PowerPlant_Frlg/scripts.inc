@@ -15,7 +15,11 @@ PowerPlant_EventScript_TryRemoveStaticMon::
 
 PowerPlant_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_POWER_PLANT
-	call_if_unset FLAG_FOUGHT_ZAPDOS, PowerPlant_EventScript_ShowZapdos
+	@ Zapdos: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+	setflag FLAG_HIDE_ZAPDOS
+	setvar VAR_0x8004, LEGENDARY_ZAPDOS
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	call_if_eq VAR_RESULT, TRUE, PowerPlant_EventScript_ShowZapdos
 	call_if_unset FLAG_FOUGHT_POWER_PLANT_ELECTRODE_1, PowerPlant_EventScript_ShowElectrode1
 	call_if_unset FLAG_FOUGHT_POWER_PLANT_ELECTRODE_2, PowerPlant_EventScript_ShowElectrode2
 	end
@@ -48,17 +52,12 @@ PowerPlant_EventScript_Zapdos::
 	special BattleSetup_StartLegendaryBattle
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	setvar VAR_0x8004, LEGENDARY_ZAPDOS
+	special RecordLegendaryBattleOutcome
 	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, PowerPlant_EventScript_DefeatedZapdos
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, PowerPlant_EventScript_RanFromZapdos
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, PowerPlant_EventScript_RanFromZapdos
-	setflag FLAG_FOUGHT_ZAPDOS
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, EventScript_RemoveStaticMon
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, PowerPlant_EventScript_RanFromZapdos
 	release
-	end
-
-PowerPlant_EventScript_DefeatedZapdos::
-	setflag FLAG_FOUGHT_ZAPDOS
-	goto EventScript_RemoveStaticMon
 	end
 
 PowerPlant_EventScript_RanFromZapdos::

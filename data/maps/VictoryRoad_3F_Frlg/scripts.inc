@@ -301,20 +301,11 @@ VictoryRoad_3F_EventScript_Moltres::
 	special BattleSetup_StartLegendaryBattle
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	@ Legendary rules, see docs/origin_jade/DECISIONS.md, D-026. Visibility: VictoryRoad_4F_Frlg.
+	setvar VAR_0x8004, LEGENDARY_MOLTRES
+	special RecordLegendaryBattleOutcome
 	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, VictoryRoad_3F_EventScript_DefeatedMoltres
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, VictoryRoad_3F_EventScript_RanFromMoltres
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, VictoryRoad_3F_EventScript_RanFromMoltres
-	setflag FLAG_HIDE_MOLTRES_KANTO
-	release
-	end
-
-VictoryRoad_3F_EventScript_DefeatedMoltres::
-	setflag FLAG_HIDE_MOLTRES_KANTO
-	goto EventScript_RemoveStaticMon
-	end
-
-VictoryRoad_3F_EventScript_RanFromMoltres::
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, EventScript_RemoveStaticMon
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_RemoveStaticMon
 	setvar VAR_0x8004, SPECIES_MOLTRES
-	goto EventScript_RemoveStaticMon
-	end
+	goto EventScript_MonFlewAway

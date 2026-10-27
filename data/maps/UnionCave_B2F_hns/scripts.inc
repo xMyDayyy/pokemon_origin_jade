@@ -1,5 +1,18 @@
 UnionCave_B2F_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, UnionCave_B2F_OnTransition
 	.byte 0
+
+@ Lapras follows the legendary rules (see docs/origin_jade/DECISIONS.md, D-026).
+UnionCave_B2F_OnTransition::
+	setflag FLAG_HIDE_UNION_CAVE_LAPRAS
+	setvar VAR_0x8004, LEGENDARY_LAPRAS
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	call_if_eq VAR_RESULT, TRUE, UnionCave_B2F_EventScript_ShowLapras
+	end
+
+UnionCave_B2F_EventScript_ShowLapras::
+	clearflag FLAG_HIDE_UNION_CAVE_LAPRAS
+	return
 
 UnionCave_B2F_EventScript_CooltrainerNick::
 	trainerbattle_single TRAINER_NICK_HNS, UnionCave_B2F_Text_CooltrainermNickSeen, UnionCave_B2F_Text_CooltrainermNickBeaten
@@ -23,16 +36,17 @@ UnionCave_B2F_EventScript_Lapras::
 	waitmoncry
 	setwildbattle SPECIES_LAPRAS, 20
 	dowildbattle
+	setvar VAR_0x8004, LEGENDARY_LAPRAS
+	special RecordLegendaryBattleOutcome
 	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, UnionCave_B2F_EventScript_LaprasRan
 	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject LOCALID_UNION_CAVE_LAPRAS
-	setflag FLAG_HIDE_UNION_CAVE_LAPRAS
 	fadescreenswapbuffers FADE_FROM_BLACK
-	release
-	end
-
-UnionCave_B2F_EventScript_LaprasRan::
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, UnionCave_B2F_EventScript_LaprasEnd
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, UnionCave_B2F_EventScript_LaprasEnd
+	bufferspeciesname STR_VAR_1, SPECIES_LAPRAS
+	msgbox Text_MonSwamAway, MSGBOX_DEFAULT
+UnionCave_B2F_EventScript_LaprasEnd:
 	release
 	end
 

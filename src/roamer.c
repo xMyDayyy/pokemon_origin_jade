@@ -16,10 +16,6 @@
 #include "pokedex.h"
 #endif
 
-// Despite having a variable to track it, the roamer is
-// hard-coded to only ever be in map group 0
-#define ROAMER_MAP_GROUP 0
-
 enum
 {
     MAP_GRP, // map group
@@ -46,13 +42,6 @@ EWRAM_DATA u8 gEncounteredRoamerIndex = 0;
 //         that map then the roamer will be significantly less likely to move away
 //         from that map when it lands there.
 #if IS_HNS
-
-enum
-{
-    ROAMER_LOC_TABLE_JOHTO,
-    ROAMER_LOC_TABLE_KANTO,
-    ROAMER_LOC_TABLE_COUNT,
-};
 
 static const u8 sRoamerLocationsJohto[][6] =
 {
@@ -105,20 +94,9 @@ static const u8 sRoamerLocationsKanto[][6] =
     { ___, ___, ___, ___, ___, ___ },
 };
 
-struct RoamerLocationTable
-{
-    const u8 (*locations)[6];
-    u8 numSets;
-};
+#endif
 
-static const struct RoamerLocationTable sRoamerLocationTables[ROAMER_LOC_TABLE_COUNT] =
-{
-    [ROAMER_LOC_TABLE_JOHTO] = { sRoamerLocationsJohto, ARRAY_COUNT(sRoamerLocationsJohto) - 1 },
-    [ROAMER_LOC_TABLE_KANTO] = { sRoamerLocationsKanto, ARRAY_COUNT(sRoamerLocationsKanto) - 1 },
-};
-
-#else
-
+// Hoenn routes. In the HnS build Latias and Latios roam here after the Hoenn title.
 static const u8 sRoamerLocationsHoenn[][6] =
 {
     { MAP_NUM(MAP_ROUTE110), MAP_NUM(MAP_ROUTE111), MAP_NUM(MAP_ROUTE117), MAP_NUM(MAP_ROUTE118), MAP_NUM(MAP_ROUTE134), ___ },
@@ -144,24 +122,21 @@ static const u8 sRoamerLocationsHoenn[][6] =
     { ___, ___, ___, ___, ___, ___ },
 };
 
-enum
-{
-    ROAMER_LOC_TABLE_HOENN,
-    ROAMER_LOC_TABLE_COUNT,
-};
-
 struct RoamerLocationTable
 {
     const u8 (*locations)[6];
     u8 numSets;
+    u8 mapGroup; // map group of every map in the table
 };
 
 static const struct RoamerLocationTable sRoamerLocationTables[ROAMER_LOC_TABLE_COUNT] =
 {
-    [ROAMER_LOC_TABLE_HOENN] = { sRoamerLocationsHoenn, ARRAY_COUNT(sRoamerLocationsHoenn) - 1 },
-};
-
+#if IS_HNS
+    [ROAMER_LOC_TABLE_JOHTO] = { sRoamerLocationsJohto, ARRAY_COUNT(sRoamerLocationsJohto) - 1, MAP_GROUP(MAP_ROUTE29_HNS) },
+    [ROAMER_LOC_TABLE_KANTO] = { sRoamerLocationsKanto, ARRAY_COUNT(sRoamerLocationsKanto) - 1, MAP_GROUP(MAP_ROUTE1_HNS) },
 #endif
+    [ROAMER_LOC_TABLE_HOENN] = { sRoamerLocationsHoenn, ARRAY_COUNT(sRoamerLocationsHoenn) - 1, MAP_GROUP(MAP_ROUTE110) },
+};
 
 #undef ___
 #define NUM_LOCATIONS_PER_SET 6
@@ -174,6 +149,11 @@ static inline const u8 (*GetRoamerLocations(u32 roamerIndex))[6]
 static inline u8 GetRoamerNumLocationSets(u32 roamerIndex)
 {
     return sRoamerLocationTables[ROAMER(roamerIndex)->locationTableId].numSets;
+}
+
+static inline u8 GetRoamerMapGroup(u32 roamerIndex)
+{
+    return sRoamerLocationTables[ROAMER(roamerIndex)->locationTableId].mapGroup;
 }
 
 static bool8 IsMapInRoamerTable(u32 roamerIndex, u8 mapNum)
@@ -213,6 +193,9 @@ static void TryAttractRoamer(u32 roamerIndex)
     u8 legendCount = CountLegendariesInParty();
 
     if (legendCount == 0)
+        return;
+
+    if (gSaveBlock1Ptr->location.mapGroup != GetRoamerMapGroup(roamerIndex))
         return;
 
     if (!IsMapInRoamerTable(roamerIndex, playerMapNum))
@@ -297,7 +280,7 @@ static void CreateInitialRoamerMon(u8 index, u16 species, u8 level, u8 locationT
     ROAMER(index)->tough = GetMonData(&gEnemyParty[0], MON_DATA_TOUGH);
     ROAMER(index)->shiny = GetMonData(&gEnemyParty[0], MON_DATA_IS_SHINY);
     ROAMER(index)->active = TRUE;
-    sRoamerLocation[index][MAP_GRP] = ROAMER_MAP_GROUP;
+    sRoamerLocation[index][MAP_GRP] = GetRoamerMapGroup(index);
     const u8 (*locs)[6] = GetRoamerLocations(index);
     u8 numSets = GetRoamerNumLocationSets(index);
     sRoamerLocation[index][MAP_NUM] = locs[Random() % numSets][0];
@@ -329,8 +312,13 @@ bool8 TryAddRoamer(u16 species, u8 level, u8 locationTableId)
 }
 
 #if IS_HNS
+// Releases Entei and Raikou (Burned Tower, before FLAG_RELEASED_BEASTS is set).
+// Later calls, e.g. Emerald's Lati news flash on the Littleroot TV, change nothing;
+// returns after that follow the legendary rules (see docs/origin_jade/DECISIONS.md, D-026).
 void InitRoamer(void)
 {
+    if (FlagGet(FLAG_RELEASED_BEASTS))
+        return;
     DeactivateRoamersByLocationTable(ROAMER_LOC_TABLE_JOHTO);
     GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_ENTEI), FLAG_SET_SEEN);
     GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_RAIKOU), FLAG_SET_SEEN);
@@ -395,7 +383,7 @@ void RoamerMoveToOtherLocationSet(u32 roamerIndex)
     const u8 (*locs)[6] = GetRoamerLocations(roamerIndex);
     u8 numSets = GetRoamerNumLocationSets(roamerIndex);
 
-    sRoamerLocation[roamerIndex][MAP_GRP] = ROAMER_MAP_GROUP;
+    sRoamerLocation[roamerIndex][MAP_GRP] = GetRoamerMapGroup(roamerIndex);
 
     do
     {
@@ -496,6 +484,19 @@ void UpdateRoamerHPStatus(struct Pokemon *mon)
 void SetRoamerInactive(u32 roamerIndex)
 {
     ROAMER(roamerIndex)->active = FALSE;
+}
+
+// TRUE if a roamer of this species is roaming now.
+bool8 IsRoamerSpeciesActive(u16 species)
+{
+    u32 i;
+
+    for (i = 0; i < ROAMER_COUNT; i++)
+    {
+        if (ROAMER(i)->active && ROAMER(i)->species == species)
+            return TRUE;
+    }
+    return FALSE;
 }
 
 void GetRoamerLocation(u32 roamerIndex, u8 *mapGroup, u8 *mapNum)

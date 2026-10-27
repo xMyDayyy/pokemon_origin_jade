@@ -2,12 +2,26 @@ TinTower_RoofDay_hns_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, TinTower_RoofDay_OnTransition
 	.byte 0
 
+@ Ho-Oh: story battle at VAR_COMPLETED_HO_OH 2; afterwards the legendary rules decide
+@ (see docs/origin_jade/DECISIONS.md, D-026). The Ho-Oh not chosen on Route 39 waits
+@ after the first Johto title once Lugia is caught.
 TinTower_RoofDay_OnTransition:
 	call_if_set FLAG_DAY_POKEMON, TinTower_RoofDay_EventScript_SetNight
 	call_if_unset FLAG_DAY_POKEMON, TinTower_RoofDay_EventScript_SetDay
 	goto_if_eq VAR_COMPLETED_HO_OH, 2, TinTower_RoofDay_MapScript_HoohStory
-	goto_if_eq VAR_COMPLETED_HO_OH, 3, TinTower_RoofDay_MapScript_HoohPostStoryGone
-	goto_if_eq VAR_COMPLETED_HO_OH, 4, TinTower_RoofDay_MapScript_HoohPostStoryEncounter
+	setflag FLAG_HIDE_TIN_TOWER_KIMONO_GIRLS
+	setflag FLAG_HIDE_HO_OH
+	setobjectxyperm LOCALID_HO_OH, 10, 6
+	goto_if_lt VAR_COMPLETED_HO_OH, 3, TinTower_RoofDay_MapScript_End
+	goto_if_eq VAR_LUGIA_OR_HOOH, 2, TinTower_RoofDay_MapScript_CheckHoOh
+	goto_if_unset FLAG_IS_JOHTO_CHAMPION, TinTower_RoofDay_MapScript_End
+	goto_if_unset FLAG_CAUGHT_LUGIA, TinTower_RoofDay_MapScript_End
+TinTower_RoofDay_MapScript_CheckHoOh:
+	setvar VAR_0x8004, LEGENDARY_HO_OH
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	goto_if_ne VAR_RESULT, TRUE, TinTower_RoofDay_MapScript_End
+	clearflag FLAG_HIDE_HO_OH
+TinTower_RoofDay_MapScript_End:
 	end
 
 TinTower_RoofDay_EventScript_SetNight::
@@ -20,17 +34,6 @@ TinTower_RoofDay_EventScript_SetDay::
 
 TinTower_RoofDay_MapScript_HoohStory::
 	clearflag FLAG_HIDE_HO_OH
-	end
-
-TinTower_RoofDay_MapScript_HoohPostStoryGone::
-	setflag FLAG_HIDE_TIN_TOWER_KIMONO_GIRLS
-	setflag FLAG_HIDE_HO_OH
-	end
-
-TinTower_RoofDay_MapScript_HoohPostStoryEncounter::
-	setflag FLAG_HIDE_TIN_TOWER_KIMONO_GIRLS
-	clearflag FLAG_HIDE_HO_OH
-	setobjectxyperm LOCALID_HO_OH, 10, 6
 	end
 
 TinTower_RoofDay_EventScript_TalkToKimono::
@@ -166,25 +169,17 @@ TinTower_RoofDay_EventScript_TalkToKimono::
 	releaseall
 	end
 
+@ The story battle moves the story on whatever the outcome.
 TinTower_RoofDay_EventScript_HoOh::
 	lockall
-	goto_if_eq VAR_COMPLETED_HO_OH, 4, TinTower_RoofDay_EventScript_HoOhPostgame
+	goto_if_ne VAR_COMPLETED_HO_OH, 2, TinTower_RoofDay_EventScript_HoOhPostgame
 	waitse
 	playmoncry SPECIES_HO_OH, CRY_MODE_ENCOUNTER
 	delay 30
 	waitmoncry
 	playbgm MUS_HG_VS_HO_OH, 0
 	seteventmon SPECIES_HO_OH, 50
-	setflag FLAG_SYS_CTRL_OBJ_DELETE
-	special BattleSetup_StartLegendaryBattle
-	waitstate
-	clearflag FLAG_SYS_CTRL_OBJ_DELETE
-	setvar VAR_LAST_TALKED, LOCALID_HO_OH
-	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, TinTower_RoofDay_EventScript_RanFromHoOh
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, TinTower_RoofDay_EventScript_RanFromHoOh
-	call_if_eq VAR_RESULT, B_OUTCOME_WON, TinTower_RoofDay_EventScript_HoohFlewAway
-	call_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, TinTower_RoofDay_EventScript_CaughtHooh
+	call TinTower_RoofDay_EventScript_HoOhBattle
 	setflag FLAG_HIDE_TIN_TOWER_KIMONO_GIRLS
 	applymovement LOCALID_KIMONO_MID, TinTower_RoofDay_Movement_Kimono_Dance_Shift_Right2
 	waitmovement 0
@@ -196,25 +191,35 @@ TinTower_RoofDay_EventScript_HoOh::
 	releaseall
 	end
 
+@ After the story: the chosen Ho-Oh at Lv 50, the Ho-Oh not chosen at Lv 70.
 TinTower_RoofDay_EventScript_HoOhPostgame::
 	playmoncry SPECIES_HO_OH, CRY_MODE_ENCOUNTER
 	delay 30
 	waitmoncry
 	playbgm MUS_HG_VS_HO_OH, 0
+	goto_if_eq VAR_LUGIA_OR_HOOH, 2, TinTower_RoofDay_EventScript_HoOhPostgameChosen
 	seteventmon SPECIES_HO_OH, 70
+	goto TinTower_RoofDay_EventScript_HoOhPostgameBattle
+
+TinTower_RoofDay_EventScript_HoOhPostgameChosen:
+	seteventmon SPECIES_HO_OH, 50
+TinTower_RoofDay_EventScript_HoOhPostgameBattle:
+	call TinTower_RoofDay_EventScript_HoOhBattle
+	releaseall
+	end
+
+@ Battle, record the outcome, Ho-Oh leaves the roof.
+TinTower_RoofDay_EventScript_HoOhBattle::
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special BattleSetup_StartLegendaryBattle
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	setvar VAR_0x8004, LEGENDARY_HO_OH
+	special RecordLegendaryBattleOutcome
 	setvar VAR_LAST_TALKED, LOCALID_HO_OH
 	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, TinTower_RoofDay_EventScript_RanFromHoOh
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, TinTower_RoofDay_EventScript_RanFromHoOh
-	call_if_eq VAR_RESULT, B_OUTCOME_WON, TinTower_RoofDay_EventScript_HoohFlewAway
-	call_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, TinTower_RoofDay_EventScript_CaughtHooh
-	setvar VAR_COMPLETED_HO_OH, 3
-	releaseall
-	end
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, TinTower_RoofDay_EventScript_CaughtHooh
+	goto TinTower_RoofDay_EventScript_HoohFlewAway
 
 TinTower_RoofDay_EventScript_HoohFlewAway::
 	fadescreenswapbuffers FADE_TO_BLACK
@@ -228,7 +233,6 @@ TinTower_RoofDay_EventScript_HoohFlewAway::
 	return
 
 TinTower_RoofDay_EventScript_CaughtHooh::
-	setflag FLAG_CAUGHT_HO_OH
 	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject LOCALID_HO_OH
 	setweather WEATHER_NONE
@@ -236,10 +240,6 @@ TinTower_RoofDay_EventScript_CaughtHooh::
 	setflag FLAG_HIDE_HO_OH
 	fadescreenswapbuffers FADE_FROM_BLACK
 	return
-
-TinTower_RoofDay_EventScript_RanFromHoOh::
-	releaseall
-	end
 
 TinTower_RoofDay_EventScript_Zuki::
 	goto_if_eq VAR_COMPLETED_HO_OH, 3, TinTower_RoofDay_EventScript_ZukiAfter

@@ -24,7 +24,8 @@
 // ---------------------------------------------------------------------
 // Kanto (OJ_VARS_KANTO + 0 to + 23)
 // ---------------------------------------------------------------------
-// no entries yet
+// Legendary flee cooldowns, 2 bits per encounter (src/legendaries_oj.c).
+#define VAR_LEGENDARY_FLEE_KANTO    (OJ_VARS_KANTO + 0)
 
 // ---------------------------------------------------------------------
 // Johto (OJ_VARS_JOHTO + 0 to + 39)
@@ -37,6 +38,8 @@
 // Johto starter from Elm's lab: 0 = Chikorita, 1 = Cyndaquil, 2 = Totodile.
 // VAR_STARTER_MON keeps the Kanto starter (0 = Bulbasaur, 1 = Squirtle, 2 = Charmander).
 #define VAR_JOHTO_STARTER_MON       (OJ_VARS_JOHTO + 2)
+// Legendary flee cooldowns, 2 bits per encounter (src/legendaries_oj.c).
+#define VAR_LEGENDARY_FLEE_JOHTO    (OJ_VARS_JOHTO + 3)
 
 // ---------------------------------------------------------------------
 // Hoenn (OJ_VARS_HOENN + 0 to + 23)
@@ -76,6 +79,8 @@
 // VAR_WHICH_FOSSIL_REVIVED belong to the Ruins of Alph lab.
 #define VAR_HOENN_FOSSIL_RESURRECTION_STATE     (OJ_VARS_HOENN + 15)
 #define VAR_HOENN_WHICH_FOSSIL_REVIVED          (OJ_VARS_HOENN + 16)
+// Legendary flee cooldowns, 2 bits per encounter (src/legendaries_oj.c).
+#define VAR_LEGENDARY_FLEE_HOENN                (OJ_VARS_HOENN + 17)
 
 // ---------------------------------------------------------------------
 // Cross-region (OJ_VARS_GLOBAL + 0 to + 15)

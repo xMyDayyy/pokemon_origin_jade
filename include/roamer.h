@@ -1,6 +1,13 @@
 #ifndef GUARD_ROAMER_H
 #define GUARD_ROAMER_H
 
+// Location tables for TryAddRoamer. The id is saved in struct Roamer: only append.
+#if IS_HNS
+enum { ROAMER_LOC_TABLE_JOHTO, ROAMER_LOC_TABLE_KANTO, ROAMER_LOC_TABLE_HOENN, ROAMER_LOC_TABLE_COUNT };
+#else
+enum { ROAMER_LOC_TABLE_HOENN, ROAMER_LOC_TABLE_COUNT };
+#endif
+
 void DeactivateAllRoamers(void);
 void InitRoamer(void);
 void InitKantoRoamers(void);
@@ -14,6 +21,7 @@ void UpdateRoamerHPStatus(struct Pokemon *mon);
 void SetRoamerInactive(u32 roamerIndex);
 void GetRoamerLocation(u32 roamerIndex, u8 *mapGroup, u8 *mapNum);
 bool8 TryAddRoamer(u16 species, u8 level, u8 locationTableId);
+bool8 IsRoamerSpeciesActive(u16 species);
 void MoveAllRoamersToOtherLocationSets(void);
 void MoveAllRoamers(void);
 void TryShowRoamerFlash(void);

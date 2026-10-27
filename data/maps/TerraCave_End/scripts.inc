@@ -14,7 +14,11 @@ TerraCave_End_EventScript_TryRemoveGroudon::
 	return
 
 TerraCave_End_OnTransition:
-	call_if_unset FLAG_DEFEATED_GROUDON, TerraCave_End_EventScript_ShowGroudon
+	@ Groudon: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+	setflag FLAG_HIDE_TERRA_CAVE_GROUDON
+	setvar VAR_0x8004, LEGENDARY_GROUDON
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	call_if_eq VAR_RESULT, TRUE, TerraCave_End_EventScript_ShowGroudon
 	end
 
 TerraCave_End_EventScript_ShowGroudon::
@@ -39,19 +43,14 @@ TerraCave_End_EventScript_Groudon::
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	setvar VAR_TEMP_1, 0
+	setvar VAR_0x8004, LEGENDARY_GROUDON
+	special RecordLegendaryBattleOutcome
+	@ The encounter is over whatever the outcome, so the abnormal weather ends.
+	setvar VAR_SHOULD_END_ABNORMAL_WEATHER, 1
 	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, TerraCave_End_EventScript_DefeatedGroudon
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, TerraCave_End_EventScript_RanFromGroudon
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, TerraCave_End_EventScript_RanFromGroudon
-	setvar VAR_SHOULD_END_ABNORMAL_WEATHER, 1
-	setflag FLAG_DEFEATED_GROUDON
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Common_EventScript_RemoveStaticPokemon
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, TerraCave_End_EventScript_RanFromGroudon
 	releaseall
-	end
-
-TerraCave_End_EventScript_DefeatedGroudon::
-	setvar VAR_SHOULD_END_ABNORMAL_WEATHER, 1
-	setflag FLAG_DEFEATED_GROUDON
-	goto Common_EventScript_RemoveStaticPokemon
 	end
 
 TerraCave_End_EventScript_RanFromGroudon::
