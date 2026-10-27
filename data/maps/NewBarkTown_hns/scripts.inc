@@ -11,7 +11,7 @@ NewBarkTown_OnFrame::
 NewBarkTown_EventScript_ElmCallAfterLeague::
 	lock
 	setspeaker NewBarkTown_Text_ElmName
-	pokenavcall BlackthornCity_Text_ElmCall
+	pokenavcall NewBarkTown_Lab_Text_ElmCallAfterLeague
 	waitmessage
 	delay 30
 	setvar VAR_NEWBARK_TOWN_STATE, 7

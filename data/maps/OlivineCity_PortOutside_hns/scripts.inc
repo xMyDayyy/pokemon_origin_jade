@@ -27,10 +27,18 @@ OlivineCity_PortOutside_Text_Sabrina:
 	.string "DOJO.$"
 #endif
 
+@ The M.S. Aqua sails every day after her maiden voyage, see docs/origin_jade/DECISIONS.md, D-029.
 OlivineCity_PortOutside_EventScript_Fisherman1::
 	lock
 	faceplayer
+	goto_if_ge VAR_SSAQUA_STATE, 7, OlivineCity_PortOutside_EventScript_Fisherman1Sailing
 	msgbox OlivineCity_PortOutside_Text_PortFisherman1, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+OlivineCity_PortOutside_EventScript_Fisherman1Sailing::
+	msgbox OlivineCity_PortOutside_Text_PortFisherman1Sailing, MSGBOX_DEFAULT
 	closemessage
 	release
 	end
@@ -45,13 +53,23 @@ OlivineCity_PortOutside_EventScript_Fisherman2::
 
 OlivineCity_PortOutside_Text_PortFisherman1:
 #if GERMAN
-	.string "Die M.S.Aqua ist früher nur Montags und\n"
-	.string "Freitags nach Kanto gefahren,\l"
-	.string "heutzutage fast täglich!$"
+	.string "Die M.S. Aqua läuft bald zu ihrer\n"
+	.string "Jungfernfahrt aus.\p"
+	.string "Danach soll sie jeden Tag fahren!$"
 #else
-	.string "FAST SHIP S.S.AQUA used to sail to\n"
-	.string "KANTO on Mondays and Fridays. But\l"
-	.string "now, it sails almost constantly!$"
+	.string "The S.S.AQUA will soon set out on\n"
+	.string "her maiden voyage.\p"
+	.string "After that, she'll sail every day!$"
+#endif
+
+OlivineCity_PortOutside_Text_PortFisherman1Sailing:
+#if GERMAN
+	.string "Seit die M.S. Aqua jeden Tag fährt,\n"
+	.string "beißen hier kaum noch Fische an!$"
+#else
+	.string "Since the S.S.AQUA started sailing\n"
+	.string "every day, the fish hardly bite\l"
+	.string "here anymore!$"
 #endif
 
 OlivineCity_PortOutside_Text_Fisherman2:

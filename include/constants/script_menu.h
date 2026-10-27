@@ -186,8 +186,23 @@
 #define MULTI_BATTLE_MODE_HNS              175
 #define MULTI_FOSSIL_HNS                   176
 #define MULTI_GAME_CORNER_DOLLS2           177
+#define MULTI_SSAQUA_RETURN                178
+#define MULTI_SSAQUA_RETURN_PORTS          179
 
 #define MULTI_NONE 255
+
+// Choices of MULTI_OLIVINE_HARBOR and MULTI_VERMILION_HARBOR
+#define SS_AQUA_SELECTION_OTHER_PORT       0
+#define SS_AQUA_SELECTION_BATTLE_FRONTIER  1
+#define SS_AQUA_SELECTION_BIRTH_ISLAND     2
+#define SS_AQUA_SELECTION_HOENN            3
+#define SS_AQUA_SELECTION_EXIT             4
+
+// Choices of MULTI_SSAQUA_RETURN; MULTI_SSAQUA_RETURN_PORTS has only the two ports, then Exit
+#define SS_AQUA_RETURN_OLIVINE             0
+#define SS_AQUA_RETURN_VERMILION           1
+#define SS_AQUA_RETURN_HOENN               2
+#define SS_AQUA_RETURN_EXIT                3
 
 // Lilycove SS Tidal Multichoice Selections
 #define SSTIDAL_SELECTION_SLATEPORT        0

@@ -454,13 +454,29 @@ dated 2026-10-10 or later were decided directly.
     `HallOfFame_SetRollCredits` (`src/hall_of_fame.c`).
 - **Evidence:** decision 2026-10-15 (O-013).
 
-### D-029 Magnet Train and radio quiz
-- **Status:** Active (2026-10-15)
+### D-029 Magnet Train, radio quiz and ships
+- **Status:** Active (2026-10-15, ships changed 2026-10-20)
 - **Decision:**
+  - Kanto has one way into Johto: the gatehouse (D-009). Flying between the
+    regions opens with the first Johto visit.
   - The Magnet Train runs once the player has the Pass, the prize of
     Goldenrod's radio quiz (D-024). Both stations only check the Pass; there
     is no power plant quest.
-- **Evidence:** decision 2026-10-15.
+  - The M.S. Anne lies in Vermilion until the player has HM Cut. Afterwards
+    no ship calls at Vermilion until the first Johto title; the dock ferry
+    is gone.
+  - After the first Johto title the M.S. Aqua sails. Its first trip is the
+    maiden voyage from Olivine to Vermilion; afterwards both ports offer the
+    other port, the Kampfzone, Entstehungsinsel (with the Aurora Ticket) and
+    Hoenn (unchanged, O-002). The M.S. Aqua sails every day from both ports.
+  - The sailors at the Kampfzone and on Birth Island sail to Olivine,
+    Vermilion or Hoenn. The Hoenn entry has the ports' condition (Johto
+    title, maiden voyage done) and uses `Common_EventScript_SailToHoenn`.
+  - The woman in Olivine City gives the Aurora Ticket only after the Johto
+    title (`FLAG_IS_JOHTO_CHAMPION`).
+  - Faraway Island and Southern Island are not offered.
+- **Evidence:** decision 2026-10-15 (O-003); daily ship, return trips to
+  Hoenn and Aurora Ticket 2026-10-20.
 
 ---
 
@@ -485,9 +501,7 @@ dated 2026-10-10 or later were decided directly.
 - **O-002** Hoenn Ticket: no source in the game except the debug menu. The
   story after the ticket exists but does not fit the earlier system; it
   will be redesigned (2026-10-10). Do not implement in the meantime.
-- **O-003** Magnet Train and the S.S. Aqua phase at Vermilion: the Machine
-  Part / Pass only exist on retired maps, and `FLAG_HIDE_VERMILION_SS_AQUA`
-  is never cleared.
+- **O-003** Resolved 2026-10-15 (D-029).
 - **O-004** Resolved 2026-10-15 (D-026).
 - **O-005** Resolved 2026-10-12: Kanto never sets Bill's PC flag, the
   Celadon Eevee no longer sets Bill's `FLAG_GOT_EEVEE`, and the radio card
@@ -550,3 +564,4 @@ dated 2026-10-10 or later were decided directly.
 | Goldenrod's radio quiz gives a Master Ball | D-024 (2026-10-12) | D-024 / D-029 (2026-10-15) |
 | Legendaries come back after Johto's second Hall of Fame, caught or not | HnS | D-026 (2026-10-15) |
 | A knocked-out Moltres is gone for good | D-022 (2026-10-11) | D-026 (2026-10-15) |
+| The M.S. Aqua sails on two weekdays per port | D-029 / D-033 (2026-10-15) | D-029 (2026-10-20) |

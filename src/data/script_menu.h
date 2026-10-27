@@ -1251,24 +1251,43 @@ static const struct MenuAction MultichoiceList_KurtsBalls[] =
     {gText_Exit},
 };
 
+// M.S. Aqua destinations, see docs/origin_jade/DECISIONS.md, D-029.
+// Order must match SS_AQUA_SELECTION_* and SS_AQUA_RETURN_* in include/constants/script_menu.h.
+#if GERMAN
+static const u8 sText_HarborOlivine[] = _("Oliviana City");
+static const u8 sText_HarborVermilion[] = _("Orania City");
+#else
+static const u8 sText_HarborOlivine[] = _("OLIVINE");
+static const u8 sText_HarborVermilion[] = _("VERMILION");
+#endif
+
 static const struct MenuAction MultichoiceList_OlivineHarbor[] =
 {
-    {gText_Vermilion},   
-    {gText_SouthernIsland},
-    {gText_BirthIsland},
-    {gText_FarawayIsland},
+    {sText_HarborVermilion},
     {gText_BattleFrontier},
+    {gText_BirthIsland},
     {gText_HoennRegion},
     {gText_Exit},
 };
 static const struct MenuAction MultichoiceList_VermilionHarbor[] =
 {
-    {gText_Olivine},   
-    {gText_SouthernIsland},
-    {gText_BirthIsland},
-    {gText_FarawayIsland},
+    {sText_HarborOlivine},
     {gText_BattleFrontier},
+    {gText_BirthIsland},
     {gText_HoennRegion},
+    {gText_Exit},
+};
+static const struct MenuAction MultichoiceList_SSAquaReturn[] =
+{
+    {sText_HarborOlivine},
+    {sText_HarborVermilion},
+    {gText_HoennRegion},
+    {gText_Exit},
+};
+static const struct MenuAction MultichoiceList_SSAquaReturnPorts[] =
+{
+    {sText_HarborOlivine},
+    {sText_HarborVermilion},
     {gText_Exit},
 };
 
@@ -1553,6 +1572,8 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_BATTLE_MODE_HNS]            = MULTICHOICE(MultichoiceList_BattleModeHns),
     [MULTI_FOSSIL_HNS]                = MULTICHOICE(MultichoiceList_FossilHns),
     [MULTI_GAME_CORNER_DOLLS2]         = MULTICHOICE(MultichoiceList_GameCornerDolls2),
+    [MULTI_SSAQUA_RETURN]              = MULTICHOICE(MultichoiceList_SSAquaReturn),
+    [MULTI_SSAQUA_RETURN_PORTS]        = MULTICHOICE(MultichoiceList_SSAquaReturnPorts),
 };
 
 const u8 *const gStdStrings[] =

@@ -156,8 +156,8 @@ SSAqua_1F_EventScript_LeaveBoat::
 	@end flagheap
 SSAqua_1F_EventScript_LeaveBoatAfterKanto::
 	setvar VAR_SSAQUA_STATE, 7
-	@ Origin Jade: lands at FRLG's Vermilion pier.
-	warp MAP_VERMILION_CITY, 23, 33
+	@ Origin Jade: lands in Vermilion's port building, in front of the sailor.
+	warp MAP_VERMILION_CITY_PORT_INSIDE_FRLG, 8, 9
 	waitstate
 	release
 	end
@@ -343,3 +343,54 @@ SSAqua_1F_Text_SailorDoorArrived:
     .string "We have arrived in VERMILION CITY.\n"
     .string "Would you like to disembark?$"
 #endif
+
+@ M.S. Aqua return trips from the Kampfzone and Birth Island, see docs/origin_jade/DECISIONS.md, D-029.
+@ Jump here after lock/faceplayer and the sailor's question; VAR_0x8004 holds the local id of the ship.
+@ Hoenn is offered when the port menus offer it (Johto title, maiden voyage done) and uses their script.
+SSAqua_EventScript_ChooseReturnPort::
+	goto_if_unset FLAG_IS_JOHTO_CHAMPION, SSAqua_EventScript_ChooseReturnPortNoHoenn
+	goto_if_lt VAR_SSAQUA_STATE, 7, SSAqua_EventScript_ChooseReturnPortNoHoenn
+	multichoice 28, 4, MULTI_SSAQUA_RETURN, FALSE
+	switch VAR_RESULT
+	case SS_AQUA_RETURN_OLIVINE, SSAqua_EventScript_ReturnToOlivine
+	case SS_AQUA_RETURN_VERMILION, SSAqua_EventScript_ReturnToVermilion
+	case SS_AQUA_RETURN_HOENN, Common_EventScript_SailToHoenn
+	goto SSAqua_EventScript_ReturnRefused
+
+SSAqua_EventScript_ChooseReturnPortNoHoenn::
+	multichoice 28, 6, MULTI_SSAQUA_RETURN_PORTS, FALSE
+	switch VAR_RESULT
+	case SS_AQUA_RETURN_OLIVINE, SSAqua_EventScript_ReturnToOlivine
+	case SS_AQUA_RETURN_VERMILION, SSAqua_EventScript_ReturnToVermilion
+	goto SSAqua_EventScript_ReturnRefused
+
+SSAqua_EventScript_ReturnRefused::
+	msgbox EventTicket_Text_AsYouLike, MSGBOX_DEFAULT
+	release
+	end
+
+SSAqua_EventScript_ReturnToOlivine::
+	call SSAqua_EventScript_ReturnDepart
+	@ 8,15: Oak may still stand at 8,16 in front of the sailor.
+	warpsilent MAP_OLIVINE_CITY_PORT_INSIDE_HNS, 8, 15
+	waitstate
+	release
+	end
+
+SSAqua_EventScript_ReturnToVermilion::
+	call SSAqua_EventScript_ReturnDepart
+	warpsilent MAP_VERMILION_CITY_PORT_INSIDE_FRLG, 8, 9
+	waitstate
+	release
+	end
+
+SSAqua_EventScript_ReturnDepart::
+	msgbox EventTicket_Text_SailHome, MSGBOX_DEFAULT
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	delay 30
+	clearflag FLAG_SAFE_FOLLOWER_MOVEMENT
+	removeobject VAR_LAST_TALKED
+	call Common_EventScript_FerryDepartIsland
+	return

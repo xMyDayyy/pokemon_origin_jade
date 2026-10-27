@@ -278,12 +278,13 @@ OlivineCity_EventScript_Item_ChargeBeam::
 	finditem ITEM_TM_CHARGE_BEAM
 	end
 
+@ Aurora Ticket (Birth Island) after the Johto title, see docs/origin_jade/DECISIONS.md, D-029.
 OlivineCity_EventScript_EonTicketWoman::
 	lock
 	faceplayer
 	checkitem ITEM_AURORA_TICKET
 	goto_if_eq VAR_RESULT, TRUE, OlivineCity_EventScript_EonTicketWomanAfter
-	goto_if_set FLAG_IS_KANTO_CHAMPION, OlivineCity_EventScript_EonTicketWomanChamp
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, OlivineCity_EventScript_EonTicketWomanChamp
 	msgbox OlivineCity_Text_EonTicketWoman1, MSGBOX_DEFAULT
 	closemessage
 	release

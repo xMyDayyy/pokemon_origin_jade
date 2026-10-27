@@ -491,9 +491,10 @@ NewBarkTown_Lab_EventScript_ElmLeague::
 	release
 	end
 
+@ Origin Jade: after the first Johto title Elm tells about the M.S. Aqua; the player already has
+@ Bill's Bootsticket from Kanto. See docs/origin_jade/DECISIONS.md, D-029.
 NewBarkTown_Lab_EventScript_ElmSSTicket::
 	msgbox NewBarkTown_Lab_Text_ElmGiveTicket1, MSGBOX_DEFAULT
-	giveitem ITEM_SS_TICKET
 	msgbox NewBarkTown_Lab_Text_ElmGiveTicket2, MSGBOX_DEFAULT
 	closemessage
 	clearflag FLAG_HIDE_SSAQUA_1F_GRANDPA
@@ -1346,44 +1347,52 @@ NewBarkTown_Lab_Text_League:
 #endif
 
 
+@ Elm's call after the first Johto title (NewBarkTown_EventScript_ElmCallAfterLeague).
+NewBarkTown_Lab_Text_ElmCallAfterLeague::
+#if GERMAN
+	.string "Hallo, {PLAYER}?\p"
+	.string "Ich habe Neuigkeiten für dich.\n"
+	.string "Komm doch mal im Labor vorbei!$"
+#else
+	.string "PROF.ELM: Hello, {PLAYER}?\p"
+	.string "I have some news for you.\n"
+	.string "Could you swing by my LAB?\p"
+	.string "See you later!$"
+#endif
+
 NewBarkTown_Lab_Text_ElmGiveTicket1:
 #if GERMAN
 	.string "Lind: Oh, hallo {PLAYER}!\n"
 	.string "Ich habe dich schon erwartet!\p"
-	.string "Ich habe dich heute zu mir gerufen, weil\n"
-	.string "ich dir etwas geben möchte.\p"
-	.string "Hier! Das ist ein Bootsticket.\p"
-	.string "Damit kannst du auch in Kanto auf\n"
-	.string "Pokémon-Jagd gehen!$"
+	.string "Hast du schon gehört? Die M.S. Aqua\n"
+	.string "sticht endlich in See!\p"
+	.string "Sie legt in Oliviana City ab. Dein\n"
+	.string "Bootsticket aus Kanto gilt auch\l"
+	.string "für dieses Schiff!$"
 #else
 	.string "ELM: {PLAYER}! There you are!\p"
-	.string "I called because I have\n"
-	.string "something for you.\p"
-	.string "See? It's an S.S.TICKET.\p"
-	.string "Now you can catch POKéMON in\n"
-	.string "KANTO.$"
+	.string "Have you heard? The FAST SHIP\n"
+	.string "S.S.AQUA is finally setting sail!\p"
+	.string "It leaves from OLIVINE CITY, and\n"
+	.string "your S.S.TICKET from KANTO is\l"
+	.string "valid on it, too!$"
 #endif
 
 NewBarkTown_Lab_Text_ElmGiveTicket2:
 #if GERMAN
-	.string "Lind: Das Schnellboot, für das dieses\n"
-	.string "Ticket gültig ist, legt im Hafen von\l"
-	.string "Oliviana City ab.\p"
-	.string "Aber das weißt du ja wahrscheinlich\n"
-	.string "besser als ich, {PLAYER}…\p"
-	.string "Du und dein Pokémon-Team, ihr seid\n"
-	.string "schließlich schon viel zusammen gereist.\p"
-	.string "Also dann! Wenn du nach Kanto gehst,\n"
-	.string "grüße bitte Professor Eich von mir!$"
+	.string "Lind: Die M.S. Aqua fährt nach\n"
+	.string "Orania City und in die Kampfzone,\l"
+	.string "wo starke Trainer auf dich warten.\p"
+	.string "Professor Eich wartet übrigens im\n"
+	.string "Hafen von Oliviana City auf dich.\p"
+	.string "Grüße ihn bitte von mir!$"
 #else
-	.string "The ship departs from OLIVINE\n"
-	.string "CITY.\p"
-	.string "But you knew that already,\n"
-	.string "{PLAYER}.\p"
-	.string "After all, you've traveled all\n"
-	.string "over with your POKéMON.\p"
-	.string "Give my regards to PROF.OAK in\n"
-	.string "KANTO!$"
+	.string "It sails to VERMILION CITY and to\n"
+	.string "the BATTLE FRONTIER, where tough\l"
+	.string "trainers await you.\p"
+	.string "By the way, PROF.OAK is waiting for\n"
+	.string "you at the OLIVINE port.\p"
+	.string "Give him my regards!$"
 #endif
 
 NewBarkTown_Lab_Text_LabMonEgg:

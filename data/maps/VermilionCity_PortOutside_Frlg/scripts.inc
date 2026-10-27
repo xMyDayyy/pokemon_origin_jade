@@ -7,13 +7,11 @@ VermilionCity_PortOutsideFrlg_EventScript_Fisher::
 
 VermilionCity_PortOutsideFrlg_Text_Fisher::
 #if GERMAN
-	.string "Bist du gerade aus Johto gekommen?\n"
-	.string "Wie fischt es sich da so?\l"
-	.string "…\p"
-	.string "Johto hat rote Garados?!$"
+	.string "Ein Seemann hat mir erzählt, dass\n"
+	.string "es in Johto rote Garados gibt!\p"
+	.string "Ob das wohl stimmt?$"
 #else
-	.string "You just came from JOHTO?\n"
-	.string "How's the fishin' over there\l"
-	.string "...\p"
-	.string "JOHTO has RED GYARADOS?!$"
+	.string "A sailor told me there are RED\n"
+	.string "GYARADOS in JOHTO!\p"
+	.string "Could that be true?$"
 #endif

@@ -1,6 +1,17 @@
 VermilionCity_PortInside_Frlg_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, VermilionPortFrlg_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, VermilionPortFrlg_OnFrame
 	.byte 0
+
+@ The M.S. Aqua lies here once her maiden voyage from Olivine is done, see docs/origin_jade/DECISIONS.md, D-029.
+VermilionPortFrlg_OnTransition::
+	setflag FLAG_HIDE_VERMILION_SS_AQUA
+	call_if_ge VAR_SSAQUA_STATE, 7, VermilionPortFrlg_EventScript_ShowSSAqua
+	end
+
+VermilionPortFrlg_EventScript_ShowSSAqua::
+	clearflag FLAG_HIDE_VERMILION_SS_AQUA
+	return
 
 VermilionPortFrlg_OnFrame::
 	map_script_2 VAR_MAP_SCENE_VERMILION_CITY, 1, VermilionPortFrlg_EventScript_SSAnneDeparts
@@ -22,6 +33,7 @@ VermilionPortFrlg_EventScript_SSAnneDeparts::
 
 @ Phase 1: the S.S. Anne is in port.
 VermilionPortFrlg_EventScript_BoardSSAnne::
+	msgbox VermilionPortFrlg_Text_FlashTicket, MSGBOX_DEFAULT
 	msgbox VermilionPortFrlg_Text_AllAboardSSAnne, MSGBOX_DEFAULT
 	call VermilionPortFrlg_EventScript_EnterShip
 	warpsilent MAP_SSANNE_1F_CORRIDOR, 19, 2
@@ -29,16 +41,23 @@ VermilionPortFrlg_EventScript_BoardSSAnne::
 	release
 	end
 
-@ Phase 3: no ship in port.
+@ Phase 3: no ship in port until the first Johto title.
 VermilionPortFrlg_EventScript_NoShipInPort::
 	msgbox VermilionPortFrlg_Text_NoShipInPort, MSGBOX_DEFAULT
 	closemessage
 	release
 	end
 
+@ After the first Johto title the M.S. Aqua starts in Olivine; Vermilion follows after the maiden voyage.
+VermilionPortFrlg_EventScript_FirstTripFromOlivine::
+	msgbox VermilionPortFrlg_Text_FirstTripFromOlivine, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
 VermilionPortFrlg_Text_SSAnneDeparted:
 #if GERMAN
-	.string "Die S.S. Anne hat abgelegt.\p"
+	.string "Die M.S. Anne hat abgelegt.\p"
 	.string "Sie kehrt so bald nicht zurück.$"
 #else
 	.string "The S.S. ANNE has set sail.\p"
@@ -47,7 +66,7 @@ VermilionPortFrlg_Text_SSAnneDeparted:
 
 VermilionPortFrlg_Text_AllAboardSSAnne:
 #if GERMAN
-	.string "Willkommen an Bord der S.S. Anne!\n"
+	.string "Willkommen an Bord der M.S. Anne!\n"
 	.string "Hier entlang, bitte.$"
 #else
 	.string "Welcome aboard the S.S. ANNE!\n"
@@ -64,31 +83,56 @@ VermilionPortFrlg_Text_NoShipInPort:
 	.string "Come back another time.$"
 #endif
 
+@ Talks about the M.S. Aqua once she calls here.
 VermilionPortIndoorFrlg_EventScript_Teacher::
-	msgbox VermilionPortPassageFrlg_Text_Teacher, MSGBOX_NPC
+	lock
+	faceplayer
+	goto_if_lt VAR_SSAQUA_STATE, 7, VermilionPortIndoorFrlg_EventScript_TeacherNoShip
+	msgbox VermilionPortPassageFrlg_Text_Teacher, MSGBOX_DEFAULT
+	release
 	end
+
+VermilionPortIndoorFrlg_EventScript_TeacherNoShip::
+	msgbox VermilionPortPassageFrlg_Text_TeacherNoShip, MSGBOX_DEFAULT
+	release
+	end
+
 VermilionPortIndoorFrlg_EventScript_Nerd::
 	msgbox VermilionPortFrlg_Text_SuperNerd, MSGBOX_NPC
 	end
 
 VermilionPortPassageFrlg_Text_Teacher:
 #if GERMAN
-	.string "Das Schnellboot fährt immer mittwochs\n"
-	.string "und sonntags.$"
+	.string "Das Schnellboot M.S. Aqua legt hier\n"
+	.string "jeden Tag ab!$"
 #else
-	.string "The FAST SHIP sails every day!$"
+	.string "The FAST SHIP S.S.AQUA leaves here\n"
+	.string "every day!$"
+#endif
+
+VermilionPortPassageFrlg_Text_TeacherNoShip:
+#if GERMAN
+	.string "Ich warte auf das Schnellboot\n"
+	.string "M.S. Aqua.\p"
+	.string "Es soll eines Tages auch hier\n"
+	.string "anlegen!$"
+#else
+	.string "I'm waiting for the FAST SHIP\n"
+	.string "S.S.AQUA.\p"
+	.string "They say it'll dock here\n"
+	.string "someday!$"
 #endif
 
 VermilionPortFrlg_Text_SuperNerd:
 #if GERMAN
-	.string "Du kommst aus Johto?\p"
-	.string "Oh, toll!\n"
-	.string "Dort sollen viele seltene Pokémon\l"
-	.string "leben!$"
+	.string "In Johto sollen viele seltene\n"
+	.string "Pokémon leben.\p"
+	.string "Eines Tages fahre ich mit dem\n"
+	.string "Schiff dorthin!$"
 #else
-	.string "You came from JOHTO?\p"
 	.string "I hear many rare POKéMON live\n"
-	.string "over there.$"
+	.string "in JOHTO.\p"
+	.string "Someday I'll take a ship there!$"
 #endif
 
 VermilionPortFrlg_EventScript_Sailor::
@@ -96,22 +140,15 @@ VermilionPortFrlg_EventScript_Sailor::
 	faceplayer
 	@ Phase 1: S.S. Anne
 	goto_if_unset FLAG_HIDE_SS_ANNE, VermilionPortFrlg_EventScript_SSAnnePresent
-	@ Phase 3: no ship
-	goto_if_set FLAG_HIDE_VERMILION_SS_AQUA, VermilionPortFrlg_EventScript_NoShipInPort
-	@ Phase 4: S.S. Aqua
-	goto_if_unset FLAG_RETURNED_MACHINE_PART, VermilionPortFrlg_EventScript_SailorCantSail
-	goto_if_ge VAR_SSAQUA_STATE, 7, VermilionPortFrlg_EventScript_Sailor_AfterKanto
-	msgbox VermilionPortFrlg_Text_AskBoard, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, FALSE, VermilionPortFrlg_EventScript_Sailor_Refused
-	checkitem ITEM_SS_TICKET
-	goto_if_eq VAR_RESULT, TRUE, VermilionPortFrlg_EventScript_Sailor_MaidenVoyage
-	msgbox VermilionPortFrlg_Text_NoTicket, MSGBOX_DEFAULT
-	closemessage
-	release
+	@ Phase 3: no ship until the first Johto title
+	goto_if_unset FLAG_IS_JOHTO_CHAMPION, VermilionPortFrlg_EventScript_NoShipInPort
+	goto_if_lt VAR_SSAQUA_STATE, 7, VermilionPortFrlg_EventScript_FirstTripFromOlivine
+	@ Phase 4: M.S. Aqua, every day (see docs/origin_jade/DECISIONS.md, D-029)
+	goto VermilionPortFrlg_EventScript_Sailor_AfterKanto
 	end
 
 VermilionPortFrlg_EventScript_SSAnnePresent::
-	msgbox VermilionPortFrlg_Text_AskBoard, MSGBOX_YESNO
+	msgbox VermilionPortFrlg_Text_AskBoardSSAnne, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, FALSE, VermilionPortFrlg_EventScript_Sailor_Refused
 	checkitem ITEM_SS_TICKET
 	goto_if_eq VAR_RESULT, TRUE, VermilionPortFrlg_EventScript_BoardSSAnne
@@ -120,26 +157,16 @@ VermilionPortFrlg_EventScript_SSAnnePresent::
 	release
 	end
 
-VermilionPortFrlg_EventScript_SailorCantSail::
-	msgbox VermilionPortFrlg_Text_SailorCantSail, MSGBOX_NPC
-	closemessage
-	release
-	end
-
 VermilionPortFrlg_EventScript_Sailor_AfterKanto::
 	message VermilionPortFrlg_Text_WhereSail
-	multichoicegrid 1, 0, MULTI_VERMILION_HARBOR, 2, FALSE
+	waitmessage
+	multichoice 28, 2, MULTI_VERMILION_HARBOR, FALSE
 	switch VAR_RESULT
-	case 0, VermilionPortFrlg_EventScript_ChoseOlivine
-	case 1, VermilionPortFrlg_EventScript_ChoseSouthernIsland
-	case 2, VermilionPortFrlg_EventScript_ChoseBirthIsland
-	case 3, VermilionPortFrlg_EventScript_ChoseFarawayIsland
-	case 4, VermilionPortFrlg_EventScript_ChoseBattleFrontier
-	case 5, Common_EventScript_SailToHoenn
-	case 6, VermilionPortFrlg_EventScript_Sailor_Refused
-	case MULTI_B_PRESSED, VermilionPortFrlg_EventScript_Sailor_Refused
-	release
-	end
+	case SS_AQUA_SELECTION_OTHER_PORT, VermilionPortFrlg_EventScript_ChoseOlivine
+	case SS_AQUA_SELECTION_BATTLE_FRONTIER, VermilionPortFrlg_EventScript_ChoseBattleFrontier
+	case SS_AQUA_SELECTION_BIRTH_ISLAND, VermilionPortFrlg_EventScript_ChoseBirthIsland
+	case SS_AQUA_SELECTION_HOENN, Common_EventScript_SailToHoenn
+	goto VermilionPortFrlg_EventScript_Sailor_Refused
 
 VermilionPortFrlg_EventScript_ChoseOlivine::
 	closemessage
@@ -148,19 +175,8 @@ VermilionPortFrlg_EventScript_ChoseOlivine::
 	bufferitemname STR_VAR_1, ITEM_SS_TICKET
 	goto_if_eq VAR_RESULT, FALSE, VermilionPortFrlg_EventScript_Sailor_NoCredentials
 	call VermilionPortFrlg_EventScript_EnterShip
-	warpsilent MAP_OLIVINE_CITY_PORT_INSIDE_HNS, 8, 16
-	waitstate
-	release
-	end
-
-VermilionPortFrlg_EventScript_ChoseSouthernIsland::
-	closemessage
-	delay 20
-	checkitem ITEM_EON_TICKET
-	bufferitemname STR_VAR_1, ITEM_EON_TICKET
-	goto_if_eq VAR_RESULT, FALSE, VermilionPortFrlg_EventScript_Sailor_NoCredentials
-	call VermilionPortFrlg_EventScript_EnterShip
-	warpsilent MAP_SOUTHERN_ISLAND_EXTERIOR_HNS, 13, 22
+	@ 8,15: Oak may still stand at 8,16 in front of the sailor.
+	warpsilent MAP_OLIVINE_CITY_PORT_INSIDE_HNS, 8, 15
 	waitstate
 	release
 	end
@@ -177,32 +193,11 @@ VermilionPortFrlg_EventScript_ChoseBirthIsland::
 	release
 	end
 
-VermilionPortFrlg_EventScript_ChoseFarawayIsland::
-	closemessage
-	delay 20
-	checkitem ITEM_OLD_SEA_MAP
-	bufferitemname STR_VAR_1, ITEM_OLD_SEA_MAP
-	goto_if_eq VAR_RESULT, FALSE, VermilionPortFrlg_EventScript_Sailor_NoCredentials
-	call VermilionPortFrlg_EventScript_EnterShip
-	warpsilent MAP_FARAWAY_ISLAND_ENTRANCE_HNS, 13, 38
-	waitstate
-	release
-	end
-
 VermilionPortFrlg_EventScript_ChoseBattleFrontier::
 	closemessage
 	delay 20
 	call VermilionPortFrlg_EventScript_EnterShip
 	warpsilent MAP_BATTLE_FRONTIER_OUTSIDE_WEST_HNS, 20, 67
-	waitstate
-	release
-	end
-
-VermilionPortFrlg_EventScript_Sailor_MaidenVoyage::
-	msgbox VermilionPortFrlg_Text_FlashTicket, MSGBOX_DEFAULT
-	call VermilionPortFrlg_EventScript_EnterShip
-	setvar VAR_SSAQUA_STATE, 1
-	warpsilent MAP_SSAQUA_1F_HNS, 29, 3
 	waitstate
 	release
 	end
@@ -258,24 +253,13 @@ VermilionPortFrlg_Movement_BoatLeave:
 	walk_left
 	step_end
 
-VermilionPortFrlg_Text_SailorCantSail:
-#if GERMAN
-	.string "Im Kraftwerk gab es einen Einbruch,\n"
-	.string "deshalb können wir nicht auslaufen, bis\l"
-	.string "der Dieb gefunden ist.$"
-#else
-	.string "There's been a break-in at the\n"
-	.string "POWER PLANT, so we cannot set sail\l"
-	.string "until the THIEF is found.$"
-#endif
-
 VermilionPortFrlg_Text_NoPass:
 #if GERMAN
-	.string "{PLAYER} wollte {STR_VAR_1} zeigen…\p"
-	.string "…Aber kein {STR_VAR_1}!\p"
-	.string "Entschuldigung!\n"
-	.string "Du darfst nur an Bord, wenn du ein\l"
-	.string "{STR_VAR_1} hast.$"
+	.string "{PLAYER} versucht, das {STR_VAR_1}\n"
+	.string "zu zeigen…\p"
+	.string "…Du hast kein {STR_VAR_1}!\p"
+	.string "Tut mir leid! Du darfst nur mit\n"
+	.string "{STR_VAR_1} an Bord.$"
 #else
     .string "{PLAYER} tried to show the\n"
     .string "{STR_VAR_1}…\p"
@@ -293,35 +277,31 @@ VermilionPortFrlg_Text_SailorGetOnBoard:
     .string "Please get on board.$"
 #endif
 
-VermilionPortFrlg_Text_CantBoard:
-#if GERMAN
-	.string "Du darfst jetzt nicht an Bord.$"
-#else
-    .string "Sorry. You can't board now.$"
-#endif
-
 VermilionPortFrlg_Text_WhereSail:
 #if GERMAN
-	.string "Wohin möchtest du Segeln?$"
+	.string "Wohin möchtest du segeln?$"
 #else
     .string "Where would you like to sail?$"
 #endif
 
-VermilionPortFrlg_Text_AskBoard:
+VermilionPortFrlg_Text_AskBoardSSAnne:
 #if GERMAN
-	.string "Willkommen auf dem Schnellboot M.S.\n"
-	.string "Aqua.\p"
-	.string "Trittst du heute deine Reise an?$"
+	.string "Die M.S. Anne liegt im Hafen.\p"
+	.string "Möchtest du an Bord gehen?$"
 #else
-    .string "Welcome to FAST SHIP S.S.AQUA.\p"
-    .string "Will you be boarding today?$"
+	.string "The S.S. ANNE is in port.\p"
+	.string "Would you like to go aboard?$"
 #endif
 
-VermilionPortFrlg_Text_AskTicket:
+VermilionPortFrlg_Text_FirstTripFromOlivine:
 #if GERMAN
-	.string "Zeige mir bitte dein Bootsticket!$"
+	.string "Die M.S. Aqua startet ihre\n"
+	.string "Jungfernfahrt in Oliviana City.\p"
+	.string "Erst danach legt sie auch hier an.$"
 #else
-    .string "May I see your S.S.TICKET?$"
+	.string "The S.S.AQUA starts her maiden\n"
+	.string "voyage in OLIVINE CITY.\p"
+	.string "She'll only call here after that.$"
 #endif
 
 VermilionPortFrlg_Text_ComeAgain:
@@ -333,7 +313,8 @@ VermilionPortFrlg_Text_ComeAgain:
 
 VermilionPortFrlg_Text_FlashTicket:
 #if GERMAN
-	.string "Zeige mir bitte dein Bootsticket!$"
+	.string "{PLAYER} zeigt das Bootsticket.\p"
+	.string "In Ordnung. Danke schön!$"
 #else
     .string "{PLAYER} flashed the S.S.TICKET.\p"
     .string "That's it. Thank you!$"
@@ -343,7 +324,7 @@ VermilionPortFrlg_Text_NoTicket:
 #if GERMAN
 	.string "{PLAYER} sucht das Bootsticket…\p"
 	.string "…Kein Ticket!\p"
-	.string "Tut mir Leid! Du darfst nur\p"
+	.string "Tut mir leid! Du darfst nur\n"
 	.string "mit Ticket an Bord.$"
 #else
     .string "{PLAYER} tried to show the\n"
