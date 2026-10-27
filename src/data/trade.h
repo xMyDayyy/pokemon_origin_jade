@@ -1222,7 +1222,11 @@ static const struct InGameTrade sIngameTrades[] =
     },
     [INGAME_TRADE_STEELIX] =
     {
+#if GERMAN
         .nickname = _("Beißer"),
+#else
+        .nickname = _("Rusty"),
+#endif
         .species = SPECIES_STEELIX,
         .ivs = {4, 4, 4, 5, 5, 4},
         .abilityNum = 0,
@@ -1232,7 +1236,7 @@ static const struct InGameTrade sIngameTrades[] =
         .heldItem = ITEM_SOOTHE_BELL,
         .mailNum = 0,
         .otName = _("Jasmin"),
-        .otGender = MALE,
+        .otGender = FEMALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_NONE
     },

@@ -78,6 +78,7 @@ MahoganyTown_Gym_EventScript_Clarissa::
 MahoganyTown_Gym_EventScript_Pryce::
 	lock
 	faceplayer
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, MahoganyTown_Gym_EventScript_Pryce_Rematch
 	goto_if_set FLAG_DEFEATED_MAHOGANY_TOWN_GYM, MahoganyTown_Gym_EventScript_Pryce_Defeated
 	msgbox MahoganyTown_Gym_Text_PryceIntro, MSGBOX_DEFAULT
 	goto_if_set FLAG_DEFEATED_OLIVINE_CITY_GYM, MahoganyTown_Gym_EventScript_OlivineCheckCianwood
@@ -135,6 +136,15 @@ MahoganyTown_Gym_EventScript_Pryce_Battle3::
 MahoganyTown_Gym_EventScript_Pryce_Defeated::
 	msgbox MahoganyTown_Gym_Text_CherishPokemon, MSGBOX_DEFAULT
 	closemessage
+	release
+	end
+
+@ Rematch after the Johto title, see docs/origin_jade/DECISIONS.md, D-032.
+MahoganyTown_Gym_EventScript_Pryce_Rematch::
+	msgbox MahoganyTown_Gym_Text_PryceRematch, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
+	closemessage
+	trainerbattle_no_intro TRAINER_PRYCE_2_HNS, MahoganyTown_Gym_Text_PryceRematchDefeat
 	release
 	end
 
@@ -234,7 +244,7 @@ MahoganyTown_Gym_Text_CherishPokemon:
 
 MahoganyTown_Gym_Text_PryceRematch:
 #if GERMAN
-	.string "Ah, Johto Champion!\p"
+	.string "Ah, Johto-Champion!\p"
 	.string "Deine Fähigkeiten sind wirklich\n"
 	.string "bemerkenswert.\p"
 	.string "Ich bin beeindruckt.\p"
@@ -242,7 +252,7 @@ MahoganyTown_Gym_Text_PryceRematch:
 	.string "lernen.\p"
 	.string "Ich, Norbert, der Wintertrainer,\n"
 	.string "habe noch einige Tricks.\p"
-	.string "Willst du ein Rückmatch mit mir?$"
+	.string "Möchtest du einen Rückkampf?$"
 #else
     .string "Ah, JOHTO CHAMPION!\p"
     .string "Your skills are indeed\n"

@@ -141,7 +141,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MtMoon_B2F_EventScript_ItemAntidote",
+      "script": "MtMoon_B3F_EventScript_ItemFullRestore",
       "flag": "FLAG_HIDE_MT_MOON_B3F_ITEM_BALL_1"
     },
     {
@@ -154,7 +154,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MtMoon_B2F_EventScript_ItemAntidote",
+      "script": "MtMoon_B3F_EventScript_ItemMaxPotion",
       "flag": "FLAG_HIDE_MT_MOON_B3F_ITEM_BALL_2"
     },
     {
@@ -167,7 +167,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MtMoon_B2F_EventScript_ItemAntidote",
+      "script": "MtMoon_B3F_EventScript_ItemMaxRevive",
       "flag": "FLAG_HIDE_MT_MOON_B3F_ITEM_BALL_3"
     },
     {

@@ -200,7 +200,7 @@ BlackthornGym_EventScript_Lola::
 BlackthornGym_EventScript_Clair::
 	lock
 	faceplayer
-	goto_if_set FLAG_IS_JOHTO_CHAMPION, BlackthornGym_EventScript_ClairAfterLeague
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, BlackthornGym_EventScript_ClairRematch
 	goto_if_ge VAR_BLACKTHORN_CITY_STATE, 4, BlackthornGym_EventScript_Clair_Defeated
 	goto_if_eq VAR_BLACKTHORN_CITY_STATE, 2, BlackthornGym_EventScript_ClairDuringChallenge
 	msgbox BlackthornGym_Text_ClairIntroText, MSGBOX_DEFAULT
@@ -229,6 +229,15 @@ BlackthornGym_EventScript_Clair_Defeated::
 BlackthornGym_EventScript_ClairAfterLeague::
 	msgbox BlackthornGym_Text_ClairAfterLeague, MSGBOX_DEFAULT
 	closemessage
+	release
+	end
+
+@ Rematch after the Johto title, see docs/origin_jade/DECISIONS.md, D-032.
+BlackthornGym_EventScript_ClairRematch::
+	msgbox BlackthornGym_Text_ClairRematchText, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
+	closemessage
+	trainerbattle_no_intro TRAINER_CLAIR_2_HNS, BlackthornGym_Text_ClairRematchDefeatText
 	release
 	end
 
@@ -363,14 +372,14 @@ BlackthornGym_Text_ClairAfterLeague:
 
 BlackthornGym_Text_ClairRematchText:
 #if GERMAN
-	.string "Du hast es geschafft, huh?\p"
-	.string "Du bist jetzt der Johto-Champ.\p"
+	.string "Du hast es also geschafft.\p"
+	.string "Du bist jetzt Johto-Champion.\p"
 	.string "Du hast deine Stärke bewiesen.\n"
-	.string "Glaubst du, du besiegst mich erneut?\p"
+	.string "Kannst du mich erneut besiegen?\p"
 	.string "Als Drachenmeisterin werde ich mich\n"
 	.string "nicht zurückhalten.\p"
 	.string "Dieses Mal nicht.\p"
-	.string "Willst du erneut kämpfen?$"
+	.string "Möchtest du einen Rückkampf?$"
 #else
     .string "You did it, huh?\p"
     .string "You are now the JOHTO CHAMP.\p"
@@ -386,8 +395,8 @@ BlackthornGym_Text_ClairRematchDefeatText:
 #if GERMAN
 	.string "Ich habe verloren?\p"
 	.string "Wieder?\p"
-	.string "Ich glaube es nicht, das muss ein Fehler\n"
-	.string "sein…$"
+	.string "Ich glaube es nicht. Das muss\n"
+	.string "ein Fehler sein…$"
 #else
     .string "I lost?\p"
     .string "Again?\p"

@@ -511,6 +511,22 @@ dated 2026-10-10 or later were decided directly.
     limits: P-003).
 - **Evidence:** decision 2026-10-15; Steven: 876c3d4c19.
 
+### D-032 Johto content after the title, Janina in Fuchsia
+- **Status:** Active (2026-10-15)
+- **Decision:**
+  - The eight Johto gym leaders accept rematches in their gyms after the
+    Johto title, without limit, with their `_2` teams (money only).
+  - Jasmine offers her Steelix ("Beißer") in a trade after the title, until
+    the trade is done.
+  - After the league change (D-010) Koga is only in Johto's Elite Four:
+    Janina leads the FRLG Fuchsia gym (`TRAINER_JANINE_HNS`, TM Gifthieb
+    once, rematches, no badge).
+  - HnS's signposts (Clair, Janine and the other leaders) and the Fighting
+    Dojo's VIP room stay off: they would need return trips into Kanto.
+  - Mt. Moon B3F's three item balls hold Top-Genesung, Top-Trank and
+    Top-Beleber (O-007).
+- **Evidence:** decision 2026-10-15 (O-014).
+
 ---
 
 ## Planned, not built yet
@@ -540,8 +556,7 @@ dated 2026-10-10 or later were decided directly.
   Celadon Eevee no longer sets Bill's `FLAG_GOT_EEVEE`, and the radio card
   stays (D-024).
 - **O-006** Resolved 2026-10-15 (D-030).
-- **O-007** Mt. Moon B3F: the three item balls all contain an Antidote
-  (copied from B2F).
+- **O-007** Resolved 2026-10-15 (D-032).
 - **O-008** Shiny Charm / Oval Charm currently have no source.
 - **O-009** Enabling Sinjoh also needs the Gen 4+ and regional forms in
   `species_enabled.h`.
@@ -555,14 +570,8 @@ dated 2026-10-10 or later were decided directly.
 - **O-012** Text debt: 172 Johto texts without a German branch (346072a202);
   4951 German HnS lines wider than 216 px (652123e252).
 - **O-013** Resolved 2026-10-15 (D-028).
-- **O-014** HnS content that never appears: Silver's daily battle in Johto's
-  league center (`FLAG_HIDE_INDIGO_PLATEAU_SILVER`), Clair's rematch in the
-  Dragon's Den (`FLAG_HIDE_DEN_CLAIR`) and Janine in the gatehouse
-  (`FLAG_HIDE_ROUTE22_JANINE`) - their flags are only cleared on retired
-  maps, in the debug menu or in the S.S. Aqua branch for players without
-  the Kanto title (unreachable). Canon options after the league change: Blue as
-  Viridian gym leader (the FRLG gym stays empty after Giovanni), Janine in
-  Fuchsia.
+- **O-014** Resolved 2026-10-15: Silver's daily battle (D-028), gym rematches
+  and Janina in Fuchsia (D-032). The signposts and the Dojo VIP room stay off.
 - **O-015** Text slips found 2026-10-11: the gatehouse's
   `ReceptionGate_Text_LeagueDenied` writes "duerfen"/"Siegesstrasse"; Kanto's
   Lance says "Es ist... {PLAYER}! Auch er hat die Top Vier besiegt!" where

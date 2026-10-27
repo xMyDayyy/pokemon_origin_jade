@@ -28,6 +28,7 @@ VioletCity_Gym_EventScript_Abe::
 VioletCity_Gym_EventScript_Falkner::
 	lock
 	faceplayer
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, VioletCity_Gym_EventScript_Falkner_Rematch
 	goto_if_set FLAG_DEFEATED_VIOLET_GYM, VioletCity_Gym_EventScript_Falkner_Defeated
 	msgbox VioletGym_Text_Falkner_Intro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_FALKNER_1_HNS, VioletGym_Text_Falkner_WinLoss
@@ -55,6 +56,22 @@ VioletCity_Gym_EventScript_Falkner::
 
 VioletCity_Gym_EventScript_Falkner_Defeated::
 	msgbox VioletGym_Text_Falkner_AfterFight, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+@ Johto gym leader rematch after the Johto title: unlimited, money only.
+@ See docs/origin_jade/DECISIONS.md, D-032.
+VioletCity_Gym_EventScript_Falkner_Rematch::
+	msgbox VioletGym_Text_Falkner_Rematch, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
+	closemessage
+	trainerbattle_no_intro TRAINER_FALKNER_2_HNS, VioletGym_Text_Falkner_RematchLoss
+	release
+	end
+
+@ Shared by the rematch scripts of all eight Johto gyms.
+JohtoGym_EventScript_RematchDeclined::
 	closemessage
 	release
 	end
@@ -161,18 +178,20 @@ VioletGym_Text_Falkner_AfterFight:
 VioletGym_Text_Falkner_Rematch:
 #if GERMAN
 	.string "Glückwunsch zum Sieg über die\n"
-	.string "Top-vier!\p"
+	.string "Top Vier!\p"
 	.string "Ich habe meine Vogel-Pokémon\n"
 	.string "noch härter trainiert.\p"
-	.string "Denkst du, du kannst erneut die Kraft\n"
-	.string "der Lüfte meistern?$"
+	.string "Kannst du die Kraft der Lüfte\n"
+	.string "erneut meistern?\p"
+	.string "Möchtest du einen Rückkampf?$"
 #else
 	.string "Congratulations on defeating\n"
 	.string "the ELITE 4!\p"
 	.string "I've been training my\n"
 	.string "FLYING-type POKéMON even harder.\p"
 	.string "Think you can take on the power\n"
-	.string "of the skies again?$"
+	.string "of the skies again?\p"
+	.string "Want to have a rematch?$"
 #endif
 
 VioletGym_Text_Falkner_RematchLoss:

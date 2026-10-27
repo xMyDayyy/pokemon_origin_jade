@@ -42,6 +42,8 @@
 #define FLAG_CAUGHT_ZAPDOS                                   (OJ_FLAGS_KANTO + 4)
 #define FLAG_CAUGHT_MOLTRES                                  (OJ_FLAGS_KANTO + 5)
 #define FLAG_CAUGHT_MEWTWO                                   (OJ_FLAGS_KANTO + 6)
+// Janina (Fuchsia gym leader after the league change) gave TM Poison Jab.
+#define FLAG_GOT_TM_POISON_JAB_FROM_JANINE                   (OJ_FLAGS_KANTO + 7)
 
 // ---------------------------------------------------------------------
 // Johto (OJ_FLAGS_JOHTO + 0 to + 159)
