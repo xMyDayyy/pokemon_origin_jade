@@ -11,8 +11,9 @@
 //  1. Append new flags to the end of their section, never into the spare slots.
 //  2. Never reuse numbers: rename a dropped flag to FLAG_OJ_UNUSED_* and keep it.
 //  3. Run tools/check_flags.py after every HnS merge.
-//  4. When a section is full, raise OJ_FLAGS_COUNT and move the next
-//     section back. The block may grow up to 0x33FF.
+//  4. Never move a section: saves store the numbers. When a section is
+//     full, add a new section at the end and raise OJ_FLAGS_COUNT. The
+//     block may grow up to 0x33FF.
 // =====================================================================
 
 #define OJ_FLAGS_START              0x2000
