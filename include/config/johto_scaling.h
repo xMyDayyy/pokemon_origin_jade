@@ -28,6 +28,10 @@
 #define JOHTO_SCALING_MIN_LEVEL      5     // absolute lower bound
 #define JOHTO_SCALING_MAX_LEVEL      100   // absolute upper bound
 
+// Ceiling of every corridor once FLAG_IS_JOHTO_CHAMPION is set (floors stay),
+// see docs/origin_jade/DECISIONS.md, D-031.
+#define JOHTO_SCALING_TITLE_CEILING  100
+
 // No effect: Johto only scales areas listed in JOHTO_SCALING_CORRIDORS.
 #define JOHTO_SCALING_DEFAULT_FLOOR    45
 #define JOHTO_SCALING_DEFAULT_CEILING  80
@@ -91,7 +95,8 @@
     { MAPSEC_DRAGONS_DEN,       60,  73 }, \
     { MAPSEC_ROUTE_45,          60,  73 }, \
     /* Tier 5: Victory Road and League (65-80). \
-       MAPSEC_INDIGO_PLATEAU also covers Kanto's Indigo Plateau exterior. */ \
+       MAPSEC_INDIGO_PLATEAU here means Johto's league maps only; \
+       Kanto's plateau maps use config/kanto_scaling.h. */ \
     { MAPSEC_VICTORY_ROAD_HNS,  65,  80 }, \
     { MAPSEC_INDIGO_PLATEAU,    65,  80 }, \
     /* Mt. Silver (70-90) */ \

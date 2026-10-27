@@ -5728,6 +5728,11 @@ enum Obedience GetAttackerObedienceForAction(void)
         return OBEYS;
     if (B_OBEDIENCE_MECHANICS < GEN_8 && !IsOtherTrainer(gBattleMons[gBattlerAttacker].otId, gBattleMons[gBattlerAttacker].otName))
         return OBEYS;
+#if IS_HNS
+    // After the Johto title every Pokémon obeys (Johto badge limits: docs/origin_jade/DECISIONS.md, P-003).
+    if (FlagGet(FLAG_IS_JOHTO_CHAMPION))
+        return OBEYS;
+#endif
     // Origin Jade: obedience level by number of Kanto badges (Johto badges in
     // VAR_JOHTO_BADGES do not count). Gym leader texts name 25, 40 and 50:
     // keep them in sync.

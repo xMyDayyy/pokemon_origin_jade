@@ -189,8 +189,10 @@ dated 2026-10-10 or later were decided directly.
   below the ace; route trainers sit 3-5 levels below the next boss. The
   Exp. Share is on from the start and the level band is tuned for it
   (`B_SPLIT_EXP` Gen 5). Obedience for traded Pokemon follows the number of
-  Kanto badges (10, then +5 per badge, 50 with eight). Kanto's Elite Four
-  rematch teams are also capped at 52.
+  Kanto badges (10, then +5 per badge, 50 with eight); after the Johto
+  title every Pokemon obeys (D-031). Kanto's Elite Four rematch teams are
+  also capped at 52. After the Kanto title Kanto scales to the player and
+  these hand-set levels are the floor (D-031).
 - **Evidence:** b20f555d4d, 20fa75b584, 1662b679fc, 2f349b5ce2, af10c86033.
 
 ### D-012 Johto and Hoenn: dynamic level scaling
@@ -204,7 +206,8 @@ dated 2026-10-10 or later were decided directly.
   duplicate a Pokemon rather than break the class). Rematch teams scale
   as well (every stage is below level 77); HnS's badge gate for rematch
   stages (`GetMaxRematchStageForBadges`) is off because the Kanto title is
-  set before Johto.
+  set before Johto. After a region's title its corridor ceilings become
+  100 (D-031).
 - **Evidence:** e900a95bad, 8f0e70b65c, 1685acfbc7, e1fde77aa4,
   cf857f4e0e, f549506494, e936f02c84, c239d59e43, 20a176b3af, c16d35c5aa.
 
@@ -490,6 +493,24 @@ dated 2026-10-10 or later were decided directly.
   A whiteout there leads to the Kampfzone's nurse.
 - **Evidence:** decision 2026-10-15 (O-006).
 
+### D-031 Level scaling after a region's title
+- **Status:** Active (2026-10-15)
+- **Decision:** After a region's title its trainers (rematches included) and
+  wild Pokemon scale to the player's anchor without a ceiling (level 100).
+  - Kanto: FRLG maps, off before `FLAG_IS_KANTO_CHAMPION`; no corridors, the
+    hand-set level (D-011) is the floor, the band is Johto's, trainer
+    Pokemon evolve (`include/config/kanto_scaling.h`).
+  - Johto and Hoenn: corridor ceilings become 100 with
+    `FLAG_IS_JOHTO_CHAMPION` / `FLAG_IS_HOENN_CHAMPION`; floors stay.
+  - Fixed: static and scripted encounters and roamers (D-026), Red, the
+    facilities. Steven at Meteor Falls (level 75-78) stays fixed as the
+    owner set it before (876c3d4c19, Hoenn's counterpart to Red,
+    `HOENN_SCALING_FIXED_MIN_LEVEL` 70); setting it to 79 lets only him
+    scale.
+  - After the Johto title every Pokemon obeys, traded ones too (Johto badge
+    limits: P-003).
+- **Evidence:** decision 2026-10-15; Steven: 876c3d4c19.
+
 ---
 
 ## Planned, not built yet
@@ -501,7 +522,7 @@ dated 2026-10-10 or later were decided directly.
   (848361320c, 9e22901516).
 - **P-003** Obedience limits of their own for Johto ("in Johto eigene
   Grenzen", af10c86033). Until then the table ends at level 50 after the
-  eighth Kanto badge.
+  eighth Kanto badge; after the Johto title every Pokemon obeys (D-031).
 - **P-004** Baoba's Safari Zone call should come back through his own quest
   line (5f794c19fd, 0bee0d524b).
 - **P-005** Mom's three call texts still describe Hoenn milestones and should

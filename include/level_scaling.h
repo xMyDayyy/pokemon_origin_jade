@@ -5,8 +5,9 @@
 
 struct Trainer;
 
-// Level scaling for Hoenn and Johto, rules in include/config/hoenn_scaling.h
-// and include/config/johto_scaling.h. Pass-throughs everywhere else.
+// Level scaling for Hoenn, Johto and (after the Kanto title) Kanto, rules in
+// include/config/hoenn_scaling.h, johto_scaling.h and kanto_scaling.h.
+// Pass-throughs everywhere else.
 bool32 LevelScalingActive(void);
 u8 ScaleWildMonLevel(u8 level);
 u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel);

@@ -5,15 +5,21 @@
 #include "pokemon.h"
 #include "random.h"
 #include "event_data.h"
+#include "constants/maps.h"
 #include "constants/region_map_sections.h"
 #include "constants/trainers.h"
 #include "config/hoenn_scaling.h"
 #include "config/johto_scaling.h"
+#include "config/kanto_scaling.h"
 
 // =====================================================================
-// Level scaling, rules in config/hoenn_scaling.h and config/johto_scaling.h.
+// Level scaling, rules in config/hoenn_scaling.h, config/johto_scaling.h
+// and config/kanto_scaling.h.
 // Hoenn: every mapsec where IsHoennMapsec is TRUE, unlisted ones use the
 // default corridor. Johto: only the mapsecs in its corridor table.
+// Kanto: FRLG maps (IsFrlgKantoMap), only after the Kanto title.
+// After a region's title its corridors lose their ceiling, see
+// docs/origin_jade/DECISIONS.md, D-031.
 // =====================================================================
 
 #if defined(POKEMON_HNS)
@@ -40,7 +46,7 @@ bool32 IsHoennMapsec(u32 mapSecId)
 
 #endif
 
-#if defined(POKEMON_HNS) && (HOENN_LEVEL_SCALING == TRUE || JOHTO_LEVEL_SCALING == TRUE)
+#if defined(POKEMON_HNS) && (HOENN_LEVEL_SCALING == TRUE || JOHTO_LEVEL_SCALING == TRUE || KANTO_LEVEL_SCALING == TRUE)
 
 struct ScalingCorridor
 {
@@ -66,8 +72,13 @@ struct ScalingRules
     u8 defaultCeiling;
     bool8 trainerEvolve;
     // TRUE: only mapsecs in the corridor table scale (Johto).
-    // FALSE: IsHoennMapsec decides, unlisted mapsecs use the defaults (Hoenn).
+    // FALSE: IsHoennMapsec / IsFrlgKantoMap decide, unlisted mapsecs use the defaults.
     bool8 corridorListIsRegion;
+    // TRUE: never below the level from the party/encounter data (Kanto).
+    bool8 originalLevelIsFloor;
+    // Once this title flag is set, titleCeiling replaces every ceiling.
+    u16 titleFlag;
+    u8 titleCeiling;
 };
 
 #if HOENN_LEVEL_SCALING == TRUE
@@ -93,6 +104,9 @@ static const struct ScalingRules sHoennRules =
     .defaultCeiling      = HOENN_SCALING_DEFAULT_CEILING,
     .trainerEvolve       = HOENN_SCALING_TRAINER_EVOLVE,
     .corridorListIsRegion = FALSE,
+    .originalLevelIsFloor = FALSE,
+    .titleFlag           = FLAG_IS_HOENN_CHAMPION,
+    .titleCeiling        = HOENN_SCALING_TITLE_CEILING,
 };
 #endif
 
@@ -119,8 +133,48 @@ static const struct ScalingRules sJohtoRules =
     .defaultCeiling      = JOHTO_SCALING_DEFAULT_CEILING,
     .trainerEvolve       = JOHTO_SCALING_TRAINER_EVOLVE,
     .corridorListIsRegion = TRUE,
+    .originalLevelIsFloor = FALSE,
+    .titleFlag           = FLAG_IS_JOHTO_CHAMPION,
+    .titleCeiling        = JOHTO_SCALING_TITLE_CEILING,
 };
 #endif
+
+#if KANTO_LEVEL_SCALING == TRUE
+// No corridors: from the hand-set level up to the absolute maximum.
+static const struct ScalingRules sKantoRules =
+{
+    .corridors           = NULL,
+    .corridorCount       = 0,
+    .trainerBelow        = KANTO_SCALING_TRAINER_BELOW,
+    .trainerAbove        = KANTO_SCALING_TRAINER_ABOVE,
+    .wildBelow           = KANTO_SCALING_WILD_BELOW,
+    .wildAbove           = KANTO_SCALING_WILD_ABOVE,
+    .bossExtra           = KANTO_SCALING_BOSS_EXTRA,
+    .fixedMinLevel       = KANTO_SCALING_FIXED_MIN_LEVEL,
+    .evoOtherLevel       = KANTO_SCALING_EVO_OTHER_LEVEL,
+    .minLevel            = KANTO_SCALING_MIN_LEVEL,
+    .maxLevel            = KANTO_SCALING_MAX_LEVEL,
+    .defaultFloor        = KANTO_SCALING_MIN_LEVEL,
+    .defaultCeiling      = KANTO_SCALING_MAX_LEVEL,
+    .trainerEvolve       = KANTO_SCALING_TRAINER_EVOLVE,
+    .corridorListIsRegion = FALSE,
+    .originalLevelIsFloor = TRUE,
+    .titleFlag           = FLAG_IS_KANTO_CHAMPION,
+    .titleCeiling        = KANTO_SCALING_MAX_LEVEL,
+};
+#endif
+
+// FRLG Kanto map: a Kanto mapsec outside HnS's map groups, which come first in
+// data/maps/map_groups.json (before Emerald's, MAP_LITTLEROOT_TOWN). Johto's league
+// maps (Kanto mapsec) keep the Johto rules; Route22_hns has no corridor and is not scaled.
+static bool32 IsFrlgKantoMap(void)
+{
+    u32 mapsec = gMapHeader.regionMapSectionId;
+
+    if (mapsec < KANTO_MAPSEC_START || mapsec > KANTO_MAPSEC_END)
+        return FALSE;
+    return gSaveBlock1Ptr->location.mapGroup >= MAP_GROUP(MAP_LITTLEROOT_TOWN);
+}
 
 // Leaves floor/ceiling untouched if the mapsec has no corridor.
 static bool32 FindCorridor(const struct ScalingRules *rules, u16 mapsec, u8 *floor, u8 *ceiling)
@@ -146,6 +200,16 @@ static const struct ScalingRules *GetScalingRules(void)
 {
     u16 mapsec = gMapHeader.regionMapSectionId;
 
+    // Kanto's first run keeps the hand-set levels (D-011); scaling starts with
+    // the Kanto title (D-031).
+    if (IsFrlgKantoMap())
+    {
+#if KANTO_LEVEL_SCALING == TRUE
+        if (FlagGet(sKantoRules.titleFlag))
+            return &sKantoRules;
+#endif
+        return NULL;
+    }
 #if JOHTO_LEVEL_SCALING == TRUE
     if (FindCorridor(&sJohtoRules, mapsec, NULL, NULL))
         return &sJohtoRules;
@@ -185,6 +249,9 @@ static void GetCorridor(const struct ScalingRules *rules, u8 *floor, u8 *ceiling
     *floor = rules->defaultFloor;
     *ceiling = rules->defaultCeiling;
     FindCorridor(rules, gMapHeader.regionMapSectionId, floor, ceiling);
+    // After the region's title only the floor stays (D-031).
+    if (FlagGet(rules->titleFlag) && *ceiling < rules->titleCeiling)
+        *ceiling = rules->titleCeiling;
 }
 
 static u8 ClampScaledLevel(const struct ScalingRules *rules, s32 level, u8 floor, u8 ceiling)
@@ -217,7 +284,10 @@ u8 ScaleWildMonLevel(u8 level)
     scaled = anchor - rules->wildBelow + (s32)(Random() % width);
 
     GetCorridor(rules, &floor, &ceiling);
-    return ClampScaledLevel(rules, scaled, floor, ceiling);
+    scaled = ClampScaledLevel(rules, scaled, floor, ceiling);
+    if (rules->originalLevelIsFloor && scaled < level)
+        scaled = level;
+    return scaled;
 }
 
 
@@ -284,6 +354,12 @@ static bool32 IsBossTrainer(const struct Trainer *trainer)
     case TRAINER_CLASS_CHAMPION_HNS:
     case TRAINER_CLASS_ROCKET_ADMIN_HNS:
     case TRAINER_CLASS_RIVAL_HNS:
+    // Kanto
+    case TRAINER_CLASS_LEADER_FRLG:
+    case TRAINER_CLASS_ELITE_FOUR_FRLG:
+    case TRAINER_CLASS_CHAMPION_FRLG:
+    case TRAINER_CLASS_BOSS_FRLG:
+    case TRAINER_CLASS_RIVAL_LATE_FRLG:
         return TRUE;
     default:
         return FALSE;
@@ -315,7 +391,10 @@ u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLeve
         scaled = anchor - rules->trainerBelow;
 
     GetCorridor(rules, &floor, &ceiling);
-    return ClampScaledLevel(rules, scaled, floor, ceiling);
+    scaled = ClampScaledLevel(rules, scaled, floor, ceiling);
+    if (rules->originalLevelIsFloor && scaled < level)
+        scaled = level;
+    return scaled;
 }
 
 #else // Pass-through without scaling (Emerald/FRLG build or switched off)

@@ -5,7 +5,8 @@
 // Hoenn level scaling: trainers and wild Pokémon scale with the highest
 // level in the player's party (the anchor), clamped to a corridor per
 // area. Bosses (leaders, Elite Four, champion, Magma/Aqua bosses and
-// admins) get HOENN_SCALING_BOSS_EXTRA on top. Johto: config/johto_scaling.h.
+// admins) get HOENN_SCALING_BOSS_EXTRA on top. Johto: config/johto_scaling.h,
+// Kanto: config/kanto_scaling.h.
 // =====================================================================
 
 #define HOENN_LEVEL_SCALING          TRUE  // master switch
@@ -27,6 +28,10 @@
 
 #define HOENN_SCALING_MIN_LEVEL      5     // absolute lower bound
 #define HOENN_SCALING_MAX_LEVEL      100   // absolute upper bound
+
+// Ceiling of every corridor once FLAG_IS_HOENN_CHAMPION is set (floors stay),
+// see docs/origin_jade/DECISIONS.md, D-031.
+#define HOENN_SCALING_TITLE_CEILING  100
 
 // Corridor per area: {map section, floor, ceiling}. Areas without an entry
 // use HOENN_SCALING_DEFAULT_FLOOR/CEILING.
