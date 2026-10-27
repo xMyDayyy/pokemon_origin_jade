@@ -289,6 +289,8 @@ NewBarkTown_Lab_EventScript_StarterToBox::
 	release
 	end
 
+@ The starter keeps the shininess of its preview (showmonpic rolls FLAG_SHINY_STARTER_1-3
+@ per ball from VAR_JOHTO_STARTER_MON). See docs/origin_jade/DECISIONS.md, D-035.
 NewBarkTown_Lab_EventScript_GiveStarter_Chikorita::
 	call_if_unset FLAG_SHINY_STARTER_1, NewBarkTown_Lab_EventScript_GiveStarter_NotShiny
 	call_if_set FLAG_SHINY_STARTER_1, NewBarkTown_Lab_EventScript_GiveStarter_Shiny

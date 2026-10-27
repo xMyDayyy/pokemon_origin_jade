@@ -334,7 +334,8 @@ LittlerootTown_ProfessorBirchsLab_EventScript_TakeYourTime::
 LittlerootTown_ProfessorBirchsLab_EventScript_GiveCyndaquil::
 	bufferspeciesname STR_VAR_1, SPECIES_CYNDAQUIL
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CYNDAQUIL
-	givemon SPECIES_CYNDAQUIL, 5
+	call_if_unset FLAG_SHINY_STARTER_2, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterNotShiny
+	call_if_set FLAG_SHINY_STARTER_2, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterShiny
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, LittlerootTown_ProfessorBirchsLab_EventScript_SendCyndaquilToParty
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, LittlerootTown_ProfessorBirchsLab_EventScript_SendCyndaquilToPC
 	hidemonpic
@@ -375,7 +376,8 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedCyndaquil::
 LittlerootTown_ProfessorBirchsLab_EventScript_GiveTotodile::
 	bufferspeciesname STR_VAR_1, SPECIES_TOTODILE
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TOTODILE
-	givemon SPECIES_TOTODILE, 5
+	call_if_unset FLAG_SHINY_STARTER_3, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterNotShiny
+	call_if_set FLAG_SHINY_STARTER_3, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterShiny
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, LittlerootTown_ProfessorBirchsLab_EventScript_SendTotodileToParty
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, LittlerootTown_ProfessorBirchsLab_EventScript_SendTotodileToPC
 	hidemonpic
@@ -416,7 +418,8 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedTotodile::
 LittlerootTown_ProfessorBirchsLab_EventScript_GiveChikorita::
 	bufferspeciesname STR_VAR_1, SPECIES_CHIKORITA
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CHIKORITA
-	givemon SPECIES_CHIKORITA, 5
+	call_if_unset FLAG_SHINY_STARTER_1, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterNotShiny
+	call_if_set FLAG_SHINY_STARTER_1, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterShiny
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, LittlerootTown_ProfessorBirchsLab_EventScript_SendChikoritaToParty
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, LittlerootTown_ProfessorBirchsLab_EventScript_SendChikoritaToPC
 	hidemonpic
@@ -453,6 +456,17 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedChikorita::
 	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6
 	releaseall
 	end
+
+@ Gives the Johto starter in VAR_TEMP_TRANSFERRED_SPECIES with the shininess of its preview
+@ (FLAG_SHINY_STARTER_1-3 = Chikorita, Cyndaquil, Totodile, rolled by showmonpic).
+@ See docs/origin_jade/DECISIONS.md, D-035.
+LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterNotShiny::
+	givemon VAR_TEMP_TRANSFERRED_SPECIES, 5, ITEM_NONE, BALL_POKE, NATURE_RANDOM, NUM_ABILITY_PERSONALITY, MON_GENDER_RANDOM, 0, 0, 0, 0, 0, 0, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT, SHINY_MODE_NEVER
+	return
+
+LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterShiny::
+	givemon VAR_TEMP_TRANSFERRED_SPECIES, 5, ITEM_NONE, BALL_POKE, NATURE_RANDOM, NUM_ABILITY_PERSONALITY, MON_GENDER_RANDOM, 0, 0, 0, 0, 0, 0, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT, SHINY_MODE_ALWAYS
+	return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter::
 	playfanfare MUS_OBTAIN_ITEM

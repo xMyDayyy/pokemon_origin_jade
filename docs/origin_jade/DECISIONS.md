@@ -605,6 +605,19 @@ dated 2026-10-10 or later were decided directly.
     hooks in `src/battle_setup.c`, the level floor in `src/level_scaling.c`.
 - **Evidence:** decision 2026-10-20.
 
+### D-035 Starter previews roll shinies everywhere
+- **Status:** Active (2026-10-20)
+- **Decision:** Every starter choice rolls a shiny for its preview, once
+  per ball and map visit, and hands out the starter with exactly that
+  shininess: Oak's lab (Kanto), Elm's lab (Johto) and Birch's lab (Johto
+  starter after the completed Hoenn dex). The chance is the normal shiny
+  chance incl. Shiny Charm rerolls, not "always shiny" (owner confirmed
+  2026-10-21).
+  - Code: `GetStarterPreviewBall` / `ScrCmd_showmonpic` (`src/scrcmd.c`),
+    `FLAG_STARTER_PREVIEW_CHECKED_1-3` / `FLAG_SHINY_STARTER_1-3`, givemon
+    with `SHINY_MODE_ALWAYS` / `SHINY_MODE_NEVER` in the three labs.
+- **Evidence:** decision 2026-10-20 (O-011).
+
 ---
 
 ## Planned, not built yet
@@ -642,9 +655,8 @@ dated 2026-10-10 or later were decided directly.
   reserve slots `BERRY_TREE_ROUTE_30_ORAN` and `BERRY_TREE_ROUTE_26_SITRUS`;
   slot 33 is only shared with retired maps. Older saves are migrated in
   `LoadGameSave` (`FLAG_MIGRATED_JOHTO_BERRY_SLOTS`).
-- **O-011** Kanto starter preview: the preview can roll a shiny, but Oak's lab
-  hands out a regular Pokemon (the preview rolls for `VAR_STARTER_MON` 0,
-  which Oak's lab only sets after the handover).
+- **O-011** Resolved 2026-10-15: Oak's lab copies the ball number before the
+  preview and hands out the starter with the preview's shininess.
 - **O-012** Text debt: 172 Johto texts without a German branch (346072a202);
   4951 German HnS lines wider than 216 px (652123e252).
 - **O-013** Resolved 2026-10-15 (D-028).

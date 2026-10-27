@@ -2637,6 +2637,47 @@ bool8 ScrCmd_drawboxtext(struct ScriptContext *ctx)
     return FALSE;
 }
 
+static bool32 IsCurrentMap(u16 mapId)
+{
+    return gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(mapId)
+        && gSaveBlock1Ptr->location.mapNum == MAP_NUM(mapId);
+}
+
+// Ball (0-2) of a starter preview, or -1 if this showmonpic is no starter choice:
+// Oak's lab (no Pokemon yet), Elm's lab (Johto starter) and Birch's lab (Johto
+// starter after the Hoenn dex). See docs/origin_jade/DECISIONS.md, D-035.
+static s32 GetStarterPreviewBall(u16 species)
+{
+    u32 ball;
+
+    if (!FlagGet(FLAG_SYS_POKEMON_GET))
+        ball = VarGet(VAR_STARTER_MON);
+    else if (IsCurrentMap(MAP_NEW_BARK_TOWN_LAB_HNS)
+          && !FlagGet(FLAG_RECEIVED_JOHTO_STARTER)
+          && VarGet(VAR_NEWBARKTOWN_LABSTATE) == 1)
+        ball = VarGet(VAR_JOHTO_STARTER_MON);
+    else if (IsCurrentMap(MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB)
+          && VarGet(VAR_DEX_UPGRADE_JOHTO_STARTER_STATE) >= 4
+          && VarGet(VAR_DEX_UPGRADE_JOHTO_STARTER_STATE) < 6)
+    {
+        // Birch's scripts pass the species itself.
+        if (species == SPECIES_CHIKORITA)
+            ball = 0;
+        else if (species == SPECIES_CYNDAQUIL)
+            ball = 1;
+        else if (species == SPECIES_TOTODILE)
+            ball = 2;
+        else
+            return -1;
+    }
+    else
+    {
+        return -1;
+    }
+
+    return (ball <= 2) ? (s32)ball : -1;
+}
+
 bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
 {
     u16 varId = ScriptReadHalfword(ctx);
@@ -2644,14 +2685,15 @@ bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
     u8 x = ScriptReadByte(ctx);
     u8 y = ScriptReadByte(ctx);
     bool8 shinyStarter = FALSE;
+    s32 starter = GetStarterPreviewBall(species);
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
-    // If we have not gotten a pokemon yet, assume this is the starter preview
-    if (!FlagGet(FLAG_SYS_POKEMON_GET))
+    // Starter preview: one shiny roll per ball and map visit (temp flags); the lab
+    // script gives the starter with the same FLAG_SHINY_STARTER_x, so preview and
+    // starter match. See docs/origin_jade/DECISIONS.md, D-035.
+    if (starter >= 0)
     {
-        u8 starter = VarGet(VAR_STARTER_MON);
-
         u32 flagPreviewChecked = 0;
         u32 flagShinyPreview = 0;
 
@@ -2712,7 +2754,11 @@ bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
             DebugPrintfLevel(MGBA_LOG_DEBUG, "******** Flag Values: %d, %d ********", FlagGet(flagPreviewChecked), FlagGet(flagShinyPreview));
             DebugPrintfLevel(MGBA_LOG_DEBUG, "******** Preview Should be Shiny: %d ********", shinyStarter);
         #endif
+    }
 
+    // Oak's preview only: randomizer and one-type challenge change the species.
+    if (!FlagGet(FLAG_SYS_POKEMON_GET))
+    {
         #if RANDOMIZER_AVAILABLE
         if (RandomizerFeatureEnabled(RANDOMIZE_STARTER_AND_GIFT_MON))
         {
