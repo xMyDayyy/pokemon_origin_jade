@@ -146,7 +146,7 @@ PokemonLeague_WillsRoom_Text_Defeat:
 	.string "Ich werde weiter kämpfen, bis ich über\n"
 	.string "allen Trainern stehe!\p"
 	.string "Nun, {PLAYER}, greif an und erlebe\n"
-	.string "die wahre Kraft der Elite Vier.$"
+	.string "die wahre Kraft der Top Vier.$"
 #else
     .string "Even though I was defeated, I\n"
     .string "won't change my course.\p"

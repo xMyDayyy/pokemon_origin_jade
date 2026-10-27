@@ -708,20 +708,16 @@ dated 2026-10-10 or later were decided directly.
 - **O-011** Resolved 2026-10-15: Oak's lab copies the ball number before the
   preview and hands out the starter with the preview's shininess.
 - **O-012** Text debt: 172 Johto texts without a German branch (346072a202);
-  4951 German HnS lines wider than 216 px (652123e252).
+  4951 German HnS lines wider than 216 px (652123e252). Later, as its own
+  round (owner 2026-10-21).
 - **O-013** Resolved 2026-10-15 (D-028).
 - **O-014** Resolved 2026-10-15: Silver's daily battle (D-028), gym rematches
   and Janina in Fuchsia (D-032). The signposts and the Dojo VIP room stay off.
-- **O-015** Text slips found 2026-10-11: the gatehouse's
-  `ReceptionGate_Text_LeagueDenied` writes "duerfen"/"Siegesstrasse"; Kanto's
-  Lance says "Es ist... {PLAYER}! Auch er hat die Top Vier besiegt!" where
-  the rival is meant; Will says "Elite Vier"; typos in Johto's
-  `IndigoPlateau_EventScript_ShigyNinja` text; Route 28 has English text
-  only; Johto's Oak says "Es ist lange her" after the Johto title although he
-  handed over the GS Ball shortly before; the ship is "M.S. Anne" in FRLG's
-  German texts but "S.S. Anne" in Vermilion's port texts
-  (`VermilionCity_PortInside_*`) and on the region map; Camper Todd's call
-  (`data/text/match_call_hns.inc`) says "Rosalia-Arena" for Goldenrod's gym.
+- **O-015** Resolved 2026-10-21: the text slips found 2026-10-11 are fixed
+  (2026-10-15: gatehouse, Johto's Oak, Vermilion's port; 2026-10-21: Kanto's
+  Lance names the rival, Will says "Top Vier", `IndigoPlateau_Text_ShigyNinja`,
+  Route 28 in German, "M.S. Anne" on the region map, Camper Todd's
+  "Dukatia-Arena"). Over-wide lines left in these texts belong to O-012.
 - **O-016** Resolved 2026-10-13: the radio works in Kanto (D-025).
 - **O-017** Resolved 2026-10-13: Hoenn Sound stays off (D-025); the
   PokeCom's "Zustand" from the radio card on and Buena's hint before the

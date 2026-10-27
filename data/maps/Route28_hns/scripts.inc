@@ -16,7 +16,11 @@ Route28_EventScript_Item_Flamethrower::
     end
 
 Route28_Text_Sign:
+#if GERMAN
+	.string "Route 28$"
+#else
 	.string "ROUTE 28$"
+#endif
 
 Route28_EventScript_Trigger_Scientist::
 	lock
@@ -72,6 +76,21 @@ Route28_Movement_ScientistLeave:
 	step_end
 
 Route28_Text_Scientist:
+#if GERMAN
+	.string "Hallo, Boss.\p"
+	.string "Ja, ich habe einige Artefakte\n"
+	.string "gefunden, aber keine Spur von der\l"
+	.string "Azurflöte.\p"
+	.string "Vielleicht ist sie im Berg, aber\n"
+	.string "die wilden Pokémon hier sind stark\l"
+	.string "und mein Team braucht etwas Ruhe…\p"
+	.string "………………\p"
+	.string "Ich verstehe dich kaum…\l"
+	.string "Boss…?\p"
+	.string "Ich gehe ins Pokémon-Center.\p"
+	.string "Ich melde mich, wenn ich die Flöte\n"
+	.string "finde.$"
+#else
 	.string "Hiya, Boss.\p"
 	.string "Yes, I've found several artifacts,\n"
 	.string "but no sign of the AZURE FLUTE.\p"
@@ -83,8 +102,14 @@ Route28_Text_Scientist:
 	.string "Boss....?\p"
 	.string "I'm going to the POKéMON CENTER.\p"
 	.string "I'll call back if I find the FLUTE.$"
+#endif
 
 Route28_Text_Scientist2:
+#if GERMAN
+	.string "……Klick\p"
+	.string "Der Empfang in Sinjoh ist mies…$"
+#else
 	.string ".......CLICK\p"
 	.string "The signal in SINJOH sucks...$"
+#endif
 

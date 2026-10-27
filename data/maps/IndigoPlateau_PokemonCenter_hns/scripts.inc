@@ -57,13 +57,14 @@ IndigoPlateau_EventScript_ShigyNinja::
 
 IndigoPlateau_Text_ShigyNinja:
 #if GERMAN
-	.string "Glückwunsch das du es hierher\n"
+	.string "Glückwunsch, dass du es hierher\n"
 	.string "geschafft hast!\p"
-	.string "Über die Jahre habe ich viele Trainer\n"
-	.string "hier ankommen sehen, jeder Einzigartig.\p"
+	.string "Über die Jahre habe ich viele\n"
+	.string "Trainer hier ankommen sehen,\l"
+	.string "jeder einzigartig.\p"
 	.string "Du kannst stolz auf dich sein,\n"
 	.string "so weit gekommen zu sein.\p"
-	.string "Nun Los, weiter!$"
+	.string "Nun los, weiter!$"
 #else
 	.string "Congrats on making it here!\p"
 	.string "I've seen tons of trainers come\n"

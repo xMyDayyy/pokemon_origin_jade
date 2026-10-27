@@ -1300,8 +1300,8 @@ NewBarkTown_Lab_Text_KimonoGirls:
 
 NewBarkTown_Lab_Text_KimonoWaiting:
 #if GERMAN
-	.string "Prof. Lind: Die Kimono-Girls warten im\n"
-	.string "Teak-City Tanztheater.$"
+	.string "Prof. Lind: Die Kimono-Girls warten\n"
+	.string "im Tanztheater von Teak City.$"
 #else
 	.string "PROF.ELM: The KIMONO\n"
 	.string "GIRLS are waiting for you at\l"

@@ -24,6 +24,7 @@
 #include "item.h"
 #include "item_menu.h"
 #include "item_use.h"
+#include "level_scaling.h"
 #include "mail.h"
 #include "main.h"
 #include "menu.h"
@@ -35,6 +36,7 @@
 #include "party_menu.h"
 #include "pokeblock.h"
 #include "pokemon.h"
+#include "regions.h"
 #include "script.h"
 #include "sound.h"
 #include "strings.h"
@@ -46,6 +48,7 @@
 #include "constants/event_objects.h"
 #include "constants/item_effects.h"
 #include "constants/items.h"
+#include "constants/maps.h"
 #include "constants/songs.h"
 #include "nuzlocke.h"
 
@@ -242,6 +245,30 @@ static void Task_PartyMenuItemUseFromField(u8 taskId)
     }
 }
 
+// Cannot-use text of the current map: Oak on FRLG Kanto maps, Dad in Hoenn, Elm in
+// Johto (HnS maps and the Kampfzone with its Artisan Cave, see
+// docs/origin_jade/DECISIONS.md, D-030).
+static const u8 *GetCannotUseItemText(void)
+{
+#if IS_HNS
+    u32 mapsec = gMapHeader.regionMapSectionId;
+
+    if (IsHoennMapsec(mapsec))
+        return gText_DadsAdvice;
+    // Emerald and FRLG maps come after HnS's in data/maps/map_groups.json.
+    if (gSaveBlock1Ptr->location.mapGroup >= MAP_GROUP(MAP_LITTLEROOT_TOWN)
+     && mapsec != MAPSEC_BATTLE_FRONTIER)
+    {
+        if (GetCurrentRegion() == REGION_KANTO)
+            return gText_OaksAdvice;
+        return gText_DadsAdvice;
+    }
+    return gText_ElmsAdvice;
+#else
+    return gText_DadsAdvice;
+#endif
+}
+
 static void DisplayCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField, const u8 *str)
 {
     StringExpandPlaceholders(gStringVar4, str);
@@ -250,7 +277,7 @@ static void DisplayCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyIte
         if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
             DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
         else
-            DisplayItemMessageInBattlePyramid(taskId, gText_DadsAdvice, Task_CloseBattlePyramidBagMessage);
+            DisplayItemMessageInBattlePyramid(taskId, GetCannotUseItemText(), Task_CloseBattlePyramidBagMessage);
     }
     else
     {
@@ -260,7 +287,7 @@ static void DisplayCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyIte
 
 void DisplayDadsAdviceCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField)
 {
-    DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, gText_DadsAdvice);
+    DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, GetCannotUseItemText());
 }
 
 static void DisplayCannotDismountBikeMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField)
@@ -432,7 +459,7 @@ static void ItemUseOnFieldCB_Itemfinder(u8 taskId)
         if (!TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING) && !TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_UNDERWATER))
             gTasks[taskId].func = Task_UseORASDowsingMachine;
         else
-            DisplayItemMessageOnField(taskId, gText_DadsAdvice, Task_CloseItemfinderMessage);
+            DisplayItemMessageOnField(taskId, GetCannotUseItemText(), Task_CloseItemfinderMessage);
     }
     else
     {

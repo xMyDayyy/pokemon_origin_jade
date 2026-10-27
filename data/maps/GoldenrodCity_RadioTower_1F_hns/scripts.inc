@@ -69,11 +69,12 @@ RadioTower1F_Text_Whitney1::
 
 RadioTower1F_Text_Whitney2::
 #if GERMAN
-	.string "Bianka: Wahnsinn! Du bist echt klasse!\n"
-	.string "Bei Frage 3 war ich mir so sicher, dass\l"
-	.string "die Antwort Aprikorken lautet!\p"
-	.string "Ho-hoppla!\n"
-	.string "Ich muss langsam zurück in die Arena!$"
+	.string "Bianka: Wahnsinn!\n"
+	.string "Du bist echt klasse!\p"
+	.string "Bei Frage 3 war ich mir so sicher,\n"
+	.string "dass die Antwort Aprikoko lautet!\p"
+	.string "Ho-hoppla! Ich muss langsam\n"
+	.string "zurück in die Arena!$"
 #else
 	.string "WHITNEY: Wow, you did it!\p"
 	.string "I thought the answer to the third\n"
@@ -186,7 +187,7 @@ GoldenrodCity_RadioTower_1F_EventScript_Sign::
 
 RadioTower1F_Text_ReceptionistWelcome:
 #if GERMAN
-	.string "Komm Rein$"
+	.string "Willkommen!$"
 #else
     .string "Welcome!$"
 #endif
@@ -202,8 +203,8 @@ RadioTower1F_Text_ReceptionistNoTours:
 
 RadioTower1F_Text_RadioCardWomanOfferQuiz:
 #if GERMAN
-	.string "Bei uns läuft momentan ein besonderes\n"
-	.string "Quiz.\p"
+	.string "Bei uns läuft momentan ein\n"
+	.string "besonderes Quiz.\p"
 	.string "Beantworte die fünf Fragen richtig,\n"
 	.string "um einen Fahrschein zu gewinnen.\p"
 	.string "Damit fährst du mit dem Magnetzug\n"
@@ -245,7 +246,7 @@ RadioTower1F_Text_QuizQuestion2:
 RadioTower1F_Text_QuizQuestion3:
 #if GERMAN
 	.string "Volltreffer! Frage 3:\p"
-	.string "Benutzt Kurt, der Pokéball-Erbauer,\n"
+	.string "Benutzt der Pokéball-Erbauer Kurt\n"
 	.string "Aprikoko als Zutaten?$"
 #else
     .string "Bull's-eye!\n"
@@ -258,8 +259,8 @@ RadioTower1F_Text_QuizQuestion4:
 #if GERMAN
 	.string "Bis hierher gut!\n"
 	.string "Frage 4:\p"
-	.string "Ist Falk der Leiter von Viola City, der\n"
-	.string "Vogel-Pokémon nutzt?$"
+	.string "Ist Falk der Arenaleiter von Viola\n"
+	.string "City, der Vogel-Pokémon nutzt?$"
 #else
     .string "So far so good!\n"
     .string "Question 4:\p"
@@ -293,15 +294,17 @@ RadioTower1F_Text_QuizWin:
 
 RadioTower1F_Text_TuneIn:
 #if GERMAN
-	.string "Wir hoffen, dir gefällt unser Programm!$"
+	.string "Wir hoffen, dir gefällt unser\n"
+	.string "Programm!$"
 #else
     .string "Please tune in to our RADIO shows.$"
 #endif
 
 RadioTower1F_Text_WrongAnswer:
 #if GERMAN
-	.string "Oh, das ist aber schade. Das war leider\n"
-	.string "falsch. Versuch’s einfach noch einmal!$"
+	.string "Oh, das ist aber schade. Das war\n"
+	.string "leider falsch. Versuch’s einfach\l"
+	.string "noch einmal!$"
 #else
     .string "Oh, dear.\n"
     .string "Sorry, but you got it wrong.\p"

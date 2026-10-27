@@ -409,7 +409,8 @@ MatchCall_HNS_Todd_General3::
 	.string "Was geht?\p"
 	.string "Und, pass auf!\p"
 	.string "Jetzt besiegen wir {STR_VAR_3} mühelos.\p"
-	.string "Ich sollte die Rosalia-Arena fordern.$"
+	.string "Ich sollte die Dukatia-Arena\n"
+	.string "fordern.$"
 #else
 	.string "Hey, {PLAYER}!\n"
 	.string "What's up?\p"

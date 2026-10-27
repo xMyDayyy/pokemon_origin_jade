@@ -251,7 +251,7 @@ PokemonLeague_LancesRoom_Text_PostBattle::
 	.string "bestehen!\p"
 	.string "Ein weiterer Trainer erwartet dich!\n"
 	.string "Es ist...\p"
-	.string "{PLAYER}!\p"
+	.string "{RIVAL}!\p"
 	.string "Auch er hat die Top Vier besiegt!\p"
 	.string "Er ist der amtierende Champion der\n"
 	.string "Pokémon Liga!$"

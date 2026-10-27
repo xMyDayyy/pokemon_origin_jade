@@ -644,10 +644,15 @@ const u8 gText_ConfirmTossItems[] = _("Willst du wirklich\n{STR_VAR_2} × {STR_V
 #else
 const u8 gText_ConfirmTossItems[] = _("Is it okay to\nthrow away {STR_VAR_2}\n{STR_VAR_1}?");
 #endif
-#if IS_HNS
-    const u8 gText_DadsAdvice[] = _("Lind sagt immer…\n{PLAYER}, dies ist weder der rechte\lOrt noch der rechte Zeitpunkt dafür!{PAUSE_UNTIL_PRESS}");
+// Cannot-use texts per region (Hoenn, Johto, Kanto), picked by GetCannotUseItemText in src/item_use.c.
+#if GERMAN
+const u8 gText_DadsAdvice[] = _("Vati sagt immer……\n{PLAYER}, dies ist weder der rechte\lOrt noch der rechte Zeitpunkt dafür!{PAUSE_UNTIL_PRESS}");
+const u8 gText_ElmsAdvice[] = _("Lind sagt immer…\n{PLAYER}, dies ist weder der rechte\lOrt noch der rechte Zeitpunkt dafür!{PAUSE_UNTIL_PRESS}");
+const u8 gText_OaksAdvice[] = _("Eich sagt immer…\n{PLAYER}, dies ist weder der rechte\lOrt noch der rechte Zeitpunkt dafür!{PAUSE_UNTIL_PRESS}");
 #else
-    const u8 gText_DadsAdvice[] = _("Vati sagt immer……\n{PLAYER}, dies ist weder der rechte\lOrt noch der rechte Zeitpunkt dafür!{PAUSE_UNTIL_PRESS}");
+const u8 gText_DadsAdvice[] = _("DAD's advice…\n{PLAYER}, there's a time and place\lfor everything!{PAUSE_UNTIL_PRESS}");
+const u8 gText_ElmsAdvice[] = _("ELM's advice…\n{PLAYER}, there's a time and place\lfor everything!{PAUSE_UNTIL_PRESS}");
+const u8 gText_OaksAdvice[] = _("OAK's advice…\n{PLAYER}, there's a time and place\lfor everything!{PAUSE_UNTIL_PRESS}");
 #endif
 #if GERMAN
 const u8 gText_PlayerUsedVar2[] = _("{PLAYER} setzt\n{STR_VAR_2} ein.{PAUSE_UNTIL_PRESS}");

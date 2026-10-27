@@ -276,7 +276,7 @@ Route24_Text_AliPostBattle::
 
 Route24_Text_CaleIntro::
 #if GERMAN
-	.string "Das hier ist die Nugget-brücke!\n"
+	.string "Das hier ist die Nuggetbrücke!\n"
 	.string "Wenn du uns fünf Trainer besiegst,\l"
 	.string "erhältst du einen wertvollen Preis!\p"
 	.string "Willst du dein Glück versuchen?$"
