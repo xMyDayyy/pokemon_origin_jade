@@ -26,6 +26,7 @@
 #include "frontier_util.h"
 #include "graphics.h"
 #include "item.h"
+#include "level_scaling.h"
 #include "link.h"
 #include "m4a.h"
 #include "main.h"
@@ -4905,7 +4906,8 @@ enum TrainerClassID GetUnionRoomTrainerClass(void)
 void CreateEnemyEventMon(void)
 {
     s32 species = gSpecialVar_0x8004;
-    s32 level = gSpecialVar_0x8005;
+    // Johto floor, see docs/origin_jade/DECISIONS.md, D-039.
+    s32 level = ScaleStaticMonLevel(gSpecialVar_0x8005);
     s32 itemId = gSpecialVar_0x8006;
 
     #if RANDOMIZER_AVAILABLE

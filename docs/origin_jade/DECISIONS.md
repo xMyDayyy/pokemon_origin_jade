@@ -419,7 +419,7 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-13 (O-016).
 
 ### D-026 Legendary rules: caught means gone for good
-- **Status:** Active (2026-10-15)
+- **Status:** Active (2026-10-15, Johto levels changed 2026-10-27, D-039)
 - **Decision:** All one-time encounters share one table
   (`src/legendaries_oj.c`, ids in `include/constants/legendaries_oj.h`):
   Articuno, Zapdos, Moltres, Mewtwo, Mew (Mt. Moon only), Lugia, Ho-Oh,
@@ -439,19 +439,23 @@ dated 2026-10-10 or later were decided directly.
     (Lugia, Ho-Oh, Celebi, red Gyarados) move the story on whatever the
     outcome.
   - The Lugia or Ho-Oh not chosen on Route 39 appears after the first Johto
-    title once the chosen one is caught (level 70; the chosen one keeps 50).
-    Route 41's Tentacruel then step aside for Ho-Oh choosers.
+    title once the chosen one is caught (level 80; the chosen one keeps its
+    story level 78, D-039). Route 41's Tentacruel then step aside for Ho-Oh
+    choosers.
   - Latias and Latios both roam Hoenn after the first Hoenn title (level 40,
     Emerald routes). No Latias roams Kanto or Johto. Faraway Island,
     Southern Island and Navel Rock are not offered anywhere.
-  - Levels stay fixed. Sudowoodo and Snorlax never return. The GS Ball is
-    used up at the shrine; there is no second Celebi.
+  - Levels: Johto's follow D-039 (set by story point, never below the top of
+    the map's wild band); Kanto's and Hoenn's stay fixed. Sudowoodo and
+    Snorlax never return. The GS Ball is used up at the shrine; there is no
+    second Celebi.
 - **Evidence:** decision 2026-10-15 (O-004).
 
 ### D-027 Suicune waits in Johto's Glockenturm
-- **Status:** Active (2026-10-15). Changed 2026-10-27 by D-038: Suicune
-  waits only after the Route 36 scene (`VAR_SUICUNE_ENCOUNTERS` 4), Eusine's
-  hint moved to Route 36. The tower access (either bell) stays.
+- **Status:** Active (2026-10-15). Changed 2026-10-27 by D-038 and D-039:
+  Suicune waits only after the Route 36 scene (`VAR_SUICUNE_ENCOUNTERS` 4),
+  Eusine's hint moved to Route 36, the level is 78. The tower access (either
+  bell) stays.
 - **Decision:** Suicune's story stays in Johto. After both Johto sightings
   (Cianwood and Route 42, `VAR_SUICUNE_ENCOUNTERS` 3) Suicune waits on the
   Glockenturm's ground floor (`TinTower_1F_hns`, level 50, talk to it) and
@@ -519,7 +523,7 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-15 (O-006).
 
 ### D-031 Level scaling after a region's title
-- **Status:** Active (2026-10-15)
+- **Status:** Active (2026-10-15, Johto statics changed 2026-10-27, D-039)
 - **Decision:** After a region's title its trainers (rematches included) and
   wild Pokemon scale to the player's anchor without a ceiling (level 100).
   - Kanto: FRLG maps, off before `FLAG_IS_KANTO_CHAMPION`; no corridors, the
@@ -527,10 +531,11 @@ dated 2026-10-10 or later were decided directly.
     Pokemon evolve (`include/config/kanto_scaling.h`).
   - Johto and Hoenn: corridor ceilings become 100 with
     `FLAG_IS_JOHTO_CHAMPION` / `FLAG_IS_HOENN_CHAMPION`; floors stay.
-  - Fixed: static and scripted encounters and roamers (D-026), Red, the
-    facilities. Steven at Meteor Falls (level 75-78) stays fixed as the
-    owner set it before (876c3d4c19, Hoenn's counterpart to Red,
-    `HOENN_SCALING_FIXED_MIN_LEVEL` 70); setting it to 79 lets only him
+  - Fixed: Red, the facilities, and Kanto's and Hoenn's static and scripted
+    encounters and roamers (D-026). Johto's never fall below the top of the
+    map's wild band (D-039). Steven at Meteor Falls (level 75-78) stays
+    fixed as the owner set it before (876c3d4c19, Hoenn's counterpart to
+    Red, `HOENN_SCALING_FIXED_MIN_LEVEL` 70); setting it to 79 lets only him
     scale.
   - After the Johto title every Pokemon obeys, traded ones too (Johto badge
     limits: P-003).
@@ -684,7 +689,7 @@ dated 2026-10-10 or later were decided directly.
     for the Glockenturm. Every walk between Route 37 and the National Park
     gate, Route 35 or Violet City passes that tile.
   - Glockenturm 1F: Suicune waits there after the Route 36 scene, talk to it
-    (level 50, legendary rules D-026). Eusine walks in after the first
+    (level D-039, legendary rules D-026). Eusine walks in after the first
     knockout or catch. Access as in D-027 (either theater bell). No Wise
     Trio, no Clear Bell change, no Raikou/Entei cameo.
   - Afterwards Eusine stays in the Kampfzone (D-030); nothing in Kanto.
@@ -703,6 +708,50 @@ dated 2026-10-10 or later were decided directly.
   - Code: `Route36_hns` (`LOCALID_ROUTE36_SUICUNE`/`_EUSINE` with
     `FLAG_TEMP_2`/`FLAG_TEMP_3`, coord event at value 3), `TinTower_1F_hns`,
     `Route42_hns`, `CianwoodCity_hns`.
+- **Evidence:** decision 2026-10-27.
+
+### D-039 Johto's static and legendary levels fit the scaling
+- **Status:** Active (2026-10-27). Replaces the fixed levels of D-026 and
+  D-031 for Johto.
+- **Decision:** Johto's legendaries sit at 75-80 by story point; the other
+  strong statics fit the corridor (D-012) where they can first be met. None
+  of them falls below the top of the map's wild band afterwards.
+  - Levels (old in brackets):
+    - Raikou and Entei, roaming from the Burned Tower (3-4 badges): 75 (40);
+    - Celebi, Ilex Forest (GS Ball, from Surf on): 75 (40);
+    - Suicune, Glockenturm 1F (8 badges): 78 (50);
+    - Lugia and Ho-Oh, story battle and the chosen one's returns (8 badges,
+      theater): 78 (50);
+    - the Lugia or Ho-Oh not chosen (after the first Johto title): 80 (70);
+    - Deoxys, Birth Island (after the Johto title): 80 (70);
+    - Sudowoodo, Route 36 (after Whitney, corridor 50-61): 60 (20);
+    - Union Cave's Lapras (Surf, after Morty): 60 (20);
+    - the red Gyarados, Lake of Rage (about 6 badges, corridor 60-73):
+      70 (30);
+    - the Rocket Hideout's three Electrode (corridor 60-76): 65 (30);
+    - the Kampfzone's Sudowoodo (after the Johto title): 75 (40).
+    Route 41's four Tentacruel stay at 100: they guard the Whirl Islands
+    (unwinnable, healed after the battle), they are not an encounter: not
+    catchable, never shiny (`FLAG_NO_WILD_CATCHING` with
+    `P_ONLY_OBTAINABLE_SHINIES`).
+  - Player levels behind the numbers (highest party level): arrival from
+    Kanto about 50-55, after Whitney 57-61, after Morty 59-62, six badges
+    65-69, eight badges 70-75, first Johto title 75-80; afterwards it keeps
+    rising (ceilings 100, D-031).
+  - Floor: on maps with Johto's scaling, static and scripted encounters
+    (`seteventmon`, `setwildbattle`, `setwildbattleshiny`) and roamers are at
+    least the top of the map's wild band (anchor - 4, clamped to the
+    corridor; `ScaleStaticMonLevel`, `src/level_scaling.c`). Before the
+    title the corridor ceilings cap it, so it lifts a Pokemon only for
+    players above that corridor (e.g. Sudowoodo to 61, a roamer on Route 26
+    up to 80). After the title it lifts the returns of D-026 with the player.
+    Kanto, Hoenn and unscaled maps (Birth Island, the Kampfzone) keep fixed
+    levels.
+  - Roamers keep the level they started with. Raikou and Entei start at
+    their level in `src/legendaries_oj.c`; a roamer below it, or below the
+    floor, moves up at its next encounter and keeps its share of HP
+    (`TryRaiseRoamerLevel`, `src/roamer.c`).
+  - Kanto (D-011) and Hoenn statics are unchanged; the owner decides later.
 - **Evidence:** decision 2026-10-27.
 
 ---
@@ -789,3 +838,4 @@ dated 2026-10-10 or later were decided directly.
 | Goldenrod's TM lady and the haircut brothers follow day and night | HnS | D-033 (2026-10-20) |
 | Entering the Bug-Catching Contest uses up the day | D-033 (2026-10-15) | D-033 (2026-10-20) |
 | Suicune waits on Glockenturm 1F after both Johto sightings (var 3); Eusine's hint at the second sighting | D-027 (2026-10-15) | D-038 (2026-10-27) |
+| Johto's static and legendary levels fixed (Lugia/Ho-Oh 50 and 70, Suicune 50, Raikou/Entei 40, Sudowoodo 20) | D-026 / D-031 (2026-10-15) | D-039 (2026-10-27) |

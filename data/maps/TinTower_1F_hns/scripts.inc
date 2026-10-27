@@ -25,7 +25,7 @@ TinTower_1F_EventScript_ShowSuicune::
 	clearflag FLAG_TEMP_1
 	return
 
-@ Suicune, fixed Lv 50 like the story Lugia and Ho-Oh.
+@ Suicune at Lv 78, see docs/origin_jade/DECISIONS.md, D-039.
 @ The LEGEND API records caught / knocked out / fled; this script only hides it for the visit.
 TinTower_1F_EventScript_Suicune::
 	lock
@@ -33,7 +33,7 @@ TinTower_1F_EventScript_Suicune::
 	playmoncry SPECIES_SUICUNE, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	seteventmon SPECIES_SUICUNE, 50
+	seteventmon SPECIES_SUICUNE, 78
 	special BattleSetup_StartLegendaryBattle
 	waitstate
 	setvar VAR_0x8004, LEGENDARY_SUICUNE

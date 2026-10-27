@@ -8,5 +8,6 @@ void RecordLegendaryBattleOutcome(void);    // Special: id in VAR_0x8004, right 
 void ReviveDefeatedLegendaries(void);       // Special: after every league victory
 void UpdateLegendaryFleeCooldowns(u16 days);
 void RecordRoamerCaught(u16 species);
+u8 GetLegendaryRoamerLevel(u16 species);
 
 #endif // GUARD_LEGENDARIES_OJ_H

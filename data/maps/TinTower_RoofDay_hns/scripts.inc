@@ -178,7 +178,7 @@ TinTower_RoofDay_EventScript_HoOh::
 	delay 30
 	waitmoncry
 	playbgm MUS_HG_VS_HO_OH, 0
-	seteventmon SPECIES_HO_OH, 50
+	seteventmon SPECIES_HO_OH, 78
 	call TinTower_RoofDay_EventScript_HoOhBattle
 	setflag FLAG_HIDE_TIN_TOWER_KIMONO_GIRLS
 	applymovement LOCALID_KIMONO_MID, TinTower_RoofDay_Movement_Kimono_Dance_Shift_Right2
@@ -191,18 +191,18 @@ TinTower_RoofDay_EventScript_HoOh::
 	releaseall
 	end
 
-@ After the story: the chosen Ho-Oh at Lv 50, the Ho-Oh not chosen at Lv 70.
+@ After the story: the chosen Ho-Oh at Lv 78, the Ho-Oh not chosen at Lv 80.
 TinTower_RoofDay_EventScript_HoOhPostgame::
 	playmoncry SPECIES_HO_OH, CRY_MODE_ENCOUNTER
 	delay 30
 	waitmoncry
 	playbgm MUS_HG_VS_HO_OH, 0
 	goto_if_eq VAR_LUGIA_OR_HOOH, 2, TinTower_RoofDay_EventScript_HoOhPostgameChosen
-	seteventmon SPECIES_HO_OH, 70
+	seteventmon SPECIES_HO_OH, 80
 	goto TinTower_RoofDay_EventScript_HoOhPostgameBattle
 
 TinTower_RoofDay_EventScript_HoOhPostgameChosen:
-	seteventmon SPECIES_HO_OH, 50
+	seteventmon SPECIES_HO_OH, 78
 TinTower_RoofDay_EventScript_HoOhPostgameBattle:
 	call TinTower_RoofDay_EventScript_HoOhBattle
 	releaseall

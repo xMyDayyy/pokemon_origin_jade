@@ -121,7 +121,7 @@ LakeOfRage_EventScript_Gyarados::
 	playmoncry SPECIES_GYARADOS, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	setwildbattleshiny SPECIES_GYARADOS, 30
+	setwildbattleshiny SPECIES_GYARADOS, 70
 	dowildbattle
 	setvar VAR_0x8004, LEGENDARY_RED_GYARADOS
 	special RecordLegendaryBattleOutcome

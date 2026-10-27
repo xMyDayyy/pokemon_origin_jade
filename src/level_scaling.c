@@ -303,6 +303,28 @@ u8 ScaleWildMonLevel(u8 level)
     return scaled;
 }
 
+// Static and scripted encounters and roamers on Johto maps: at least the top of the
+// map's wild band, see docs/origin_jade/DECISIONS.md, D-039. Pass-through elsewhere.
+u8 ScaleStaticMonLevel(u8 level)
+{
+#if JOHTO_LEVEL_SCALING == TRUE
+    const struct ScalingRules *rules = GetScalingRules();
+    s32 anchor;
+    u8 floor, ceiling, top;
+
+    if (rules != &sJohtoRules)
+        return level;
+    anchor = GetScalingAnchor();
+    if (anchor == 0)
+        return level;
+    GetCorridor(rules, &floor, &ceiling);
+    top = ClampScaledLevel(rules, anchor - rules->wildAbove, floor, ceiling);
+    if (top > level)
+        return top;
+#endif
+    return level;
+}
+
 // One row of sTrainerEvoLevels.
 struct TrainerEvoLevel
 {
@@ -518,6 +540,11 @@ bool32 LevelScalingActive(void)
 }
 
 u8 ScaleWildMonLevel(u8 level)
+{
+    return level;
+}
+
+u8 ScaleStaticMonLevel(u8 level)
 {
     return level;
 }

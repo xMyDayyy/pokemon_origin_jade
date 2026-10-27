@@ -516,7 +516,7 @@ RocketHideout_B2F_EventScript_Electrode::
 	playmoncry SPECIES_ELECTRODE, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	setwildbattle SPECIES_ELECTRODE, 30
+	setwildbattle SPECIES_ELECTRODE, 65
 	dowildbattle
 	specialvar VAR_RESULT, GetBattleOutcome
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, RocketHideout_B2F_EventScript_Ran_Electrode

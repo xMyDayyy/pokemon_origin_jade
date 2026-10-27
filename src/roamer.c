@@ -4,6 +4,8 @@
 #include "field_effect.h"
 #include "field_player_avatar.h"
 #include "fieldmap.h"
+#include "legendaries_oj.h"
+#include "level_scaling.h"
 #include "ow_synchronize.h"
 #include "pokemon.h"
 #include "random.h"
@@ -323,8 +325,8 @@ void InitRoamer(void)
     GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_ENTEI), FLAG_SET_SEEN);
     GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_RAIKOU), FLAG_SET_SEEN);
     GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_SUICUNE), FLAG_SET_SEEN);
-    TryAddRoamer(SPECIES_RAIKOU, 40, ROAMER_LOC_TABLE_JOHTO);
-    TryAddRoamer(SPECIES_ENTEI, 40, ROAMER_LOC_TABLE_JOHTO);
+    TryAddRoamer(SPECIES_RAIKOU, GetLegendaryRoamerLevel(SPECIES_RAIKOU), ROAMER_LOC_TABLE_JOHTO);
+    TryAddRoamer(SPECIES_ENTEI, GetLegendaryRoamerLevel(SPECIES_ENTEI), ROAMER_LOC_TABLE_JOHTO);
 }
 
 void InitKantoRoamers(void)
@@ -438,10 +440,35 @@ bool8 IsRoamerAt(u32 roamerIndex, u8 mapGroup, u8 mapNum)
         return FALSE;
 }
 
+#if IS_HNS
+// Raises a roamer to its level in the legendary table and to the map's floor
+// (ScaleStaticMonLevel), keeping its share of HP. See docs/origin_jade/DECISIONS.md, D-039.
+static void TryRaiseRoamerLevel(u32 roamerIndex)
+{
+    struct Pokemon *mon = &gEnemyParty[0];
+    u8 level = ROAMER(roamerIndex)->level;
+    u32 oldMaxHp;
+
+    if (level < GetLegendaryRoamerLevel(ROAMER(roamerIndex)->species))
+        level = GetLegendaryRoamerLevel(ROAMER(roamerIndex)->species);
+    level = ScaleStaticMonLevel(level);
+    if (level <= ROAMER(roamerIndex)->level)
+        return;
+    CreateMonWithIVsPersonality(mon, ROAMER(roamerIndex)->species, ROAMER(roamerIndex)->level, ROAMER(roamerIndex)->ivs, ROAMER(roamerIndex)->personality);
+    oldMaxHp = GetMonData(mon, MON_DATA_MAX_HP);
+    CreateMonWithIVsPersonality(mon, ROAMER(roamerIndex)->species, level, ROAMER(roamerIndex)->ivs, ROAMER(roamerIndex)->personality);
+    ROAMER(roamerIndex)->hp = ROAMER(roamerIndex)->hp * GetMonData(mon, MON_DATA_MAX_HP) / oldMaxHp;
+    ROAMER(roamerIndex)->level = level;
+}
+#endif
+
 void CreateRoamerMonInstance(u32 roamerIndex)
 {
     u32 status = ROAMER(roamerIndex)->statusA + (ROAMER(roamerIndex)->statusB << 8);
     struct Pokemon *mon = &gEnemyParty[0];
+#if IS_HNS
+    TryRaiseRoamerLevel(roamerIndex);
+#endif
     ZeroEnemyPartyMons();
     CreateMonWithIVsPersonality(mon, ROAMER(roamerIndex)->species, ROAMER(roamerIndex)->level, ROAMER(roamerIndex)->ivs, ROAMER(roamerIndex)->personality);
     SetMonData(mon, MON_DATA_STATUS, &status);

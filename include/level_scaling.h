@@ -11,6 +11,8 @@ struct Trainer;
 // to their tier's floor (src/vs_seeker.c). Pass-throughs everywhere else.
 bool32 LevelScalingActive(void);
 u8 ScaleWildMonLevel(u8 level);
+// Static and scripted encounters and roamers: never below the top of the map's wild band (Johto).
+u8 ScaleStaticMonLevel(u8 level);
 u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel);
 // Call right after ScaleTrainerMonLevel for the same Pokemon. partyIndex: its index
 // in the trainer's party data.

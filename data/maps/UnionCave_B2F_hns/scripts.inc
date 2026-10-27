@@ -34,7 +34,7 @@ UnionCave_B2F_EventScript_Lapras::
 	faceplayer
 	playmoncry SPECIES_LAPRAS, CRY_MODE_ENCOUNTER
 	waitmoncry
-	setwildbattle SPECIES_LAPRAS, 20
+	setwildbattle SPECIES_LAPRAS, 60
 	dowildbattle
 	setvar VAR_0x8004, LEGENDARY_LAPRAS
 	special RecordLegendaryBattleOutcome

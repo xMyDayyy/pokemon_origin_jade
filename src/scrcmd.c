@@ -30,6 +30,7 @@
 #include "follower_npc.h"
 #include "gpu_regs.h"
 #include "item.h"
+#include "level_scaling.h"
 #include "lilycove_lady.h"
 #include "main.h"
 #include "map_preview_screen.h"
@@ -1696,7 +1697,8 @@ bool8 ScrCmd_setwildbattleshiny(struct ScriptContext *ctx)
     u8 level = ScriptReadByte(ctx);
     u16 item = ScriptReadHalfword(ctx);
 
-    CreateShinyScriptedMon(species, level, item);
+    // Johto floor, see docs/origin_jade/DECISIONS.md, D-039.
+    CreateShinyScriptedMon(species, ScaleStaticMonLevel(level), item);
     return FALSE;
 }
 
@@ -3403,6 +3405,8 @@ bool8 ScrCmd_setwildbattle(struct ScriptContext *ctx)
 
     Script_RequestEffects(SCREFF_V1);
 
+    // Johto floor, see docs/origin_jade/DECISIONS.md, D-039.
+    level = ScaleStaticMonLevel(level);
     if (species2 == SPECIES_NONE)
     {
         CreateScriptedWildMon(species, level, item);
@@ -3410,6 +3414,7 @@ bool8 ScrCmd_setwildbattle(struct ScriptContext *ctx)
     }
     else
     {
+        level2 = ScaleStaticMonLevel(level2);
         CreateScriptedDoubleWildMon(species, level, item, species2, level2, item2);
         sIsScriptedWildDouble = TRUE;
     }

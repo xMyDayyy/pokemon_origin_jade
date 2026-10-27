@@ -181,7 +181,7 @@ WhirlIslands_LugiaChamber_EventScript_Lugia::
 	delay 30
 	waitmoncry
 	playbgm MUS_HG_VS_LUGIA, 0
-	seteventmon SPECIES_LUGIA, 50
+	seteventmon SPECIES_LUGIA, 78
 	call WhirlIslands_LugiaChamber_EventScript_LugiaBattle
 	setflag FLAG_HIDE_WHIRL_ISLANDS_KIMONO_GIRLS
 	applymovement LOCALID_KIMONO_MID, WhirlIslands_LugiaChamber_Movement_Kimono_Dance_Shift_Right2
@@ -194,18 +194,18 @@ WhirlIslands_LugiaChamber_EventScript_Lugia::
 	releaseall
 	end
 
-@ After the story: the chosen Lugia at Lv 50, the Lugia not chosen at Lv 70.
+@ After the story: the chosen Lugia at Lv 78, the Lugia not chosen at Lv 80.
 WhirlIslands_LugiaChamber_EventScript_LugiaPostgame::
 	playmoncry SPECIES_LUGIA, CRY_MODE_ENCOUNTER
 	delay 30
 	waitmoncry
 	playbgm MUS_HG_VS_LUGIA, 0
 	goto_if_eq VAR_LUGIA_OR_HOOH, 1, WhirlIslands_LugiaChamber_EventScript_LugiaPostgameChosen
-	seteventmon SPECIES_LUGIA, 70
+	seteventmon SPECIES_LUGIA, 80
 	goto WhirlIslands_LugiaChamber_EventScript_LugiaPostgameBattle
 
 WhirlIslands_LugiaChamber_EventScript_LugiaPostgameChosen:
-	seteventmon SPECIES_LUGIA, 50
+	seteventmon SPECIES_LUGIA, 78
 WhirlIslands_LugiaChamber_EventScript_LugiaPostgameBattle:
 	call WhirlIslands_LugiaChamber_EventScript_LugiaBattle
 	releaseall

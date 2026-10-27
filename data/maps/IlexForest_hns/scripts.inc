@@ -267,7 +267,7 @@ IlexForest_EventScript_Celebi_Event::
 	playmoncry SPECIES_CELEBI, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	seteventmon SPECIES_CELEBI, 40
+	seteventmon SPECIES_CELEBI, 75
 	special BattleSetup_StartLegendaryBattle
 	waitstate
 	@ Taken only after the battle: a whiteout keeps the ball for the next try.
@@ -308,7 +308,7 @@ IlexForest_EventScript_SecondCelebi::
 	playmoncry SPECIES_CELEBI, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	seteventmon SPECIES_CELEBI, 40
+	seteventmon SPECIES_CELEBI, 75
 	special BattleSetup_StartLegendaryBattle
 	waitstate
 	setvar VAR_0x8004, LEGENDARY_CELEBI

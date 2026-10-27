@@ -77,7 +77,7 @@ BirthIsland_Exterior_hns_EventScript_Deoxys::
 	delay 40
 	waitmoncry
 	setvar VAR_LAST_TALKED, LOCALID_BIRTH_ISLAND_EXTERIOR_HNS_DEOXYS
-	seteventmon SPECIES_DEOXYS, 70
+	seteventmon SPECIES_DEOXYS, 80
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special BattleSetup_StartLegendaryBattle
 	waitstate
