@@ -618,6 +618,28 @@ dated 2026-10-10 or later were decided directly.
     with `SHINY_MODE_ALWAYS` / `SHINY_MODE_NEVER` in the three labs.
 - **Evidence:** decision 2026-10-20 (O-011).
 
+### D-037 Hoenn is complete without trading
+- **Status:** Active (2026-10-26)
+- **Decision:** All 415 species of the National Pokedex and the whole Hoenn
+  dex are obtainable without link trades. As in Kanto (D-013), day and night
+  replace the Ruby/Sapphire version split on Emerald's wild tables.
+  - Route 102: Surskit (10 %); Route 117: Roselia (20 %) and Surskit (10 %),
+    day and night. Masquerain at level 22, Budew by breeding Roselia without
+    incense (`P_INCENSE_BREEDING` Gen 9), Roserade with the Shiny Stone
+    (Celadon Department Store 4F, Mahogany's granny shop).
+  - Route 114: Zangoose by day in Seviper's slots (9 %), Seviper at night.
+  - Meteor Falls, all five maps: Solrock by day, Lunatone at night in
+    Solrock's slots, on land and surfing.
+  - `src/data/wild_encounters.json`: the plain table is the day table
+    (morning, day and evening), the entry with the suffix `_Night` the night
+    table (19:00-6:00), right after it. A map without a night table uses its
+    day table around the clock.
+  - The Pokedex area screen shows the table the encounter code uses: per area
+    the day table when the night has none; retired maps and maps of the other
+    region map (Hoenn vs. Kanto and Johto) are skipped (`FindMapsWithMon`,
+    `src/pokedex_area_screen.c`).
+- **Evidence:** decision 2026-10-26 (O-019).
+
 ---
 
 ## Planned, not built yet
@@ -678,6 +700,9 @@ dated 2026-10-10 or later were decided directly.
   quiz stay as they are.
 - **O-018** Resolved 2026-10-20: Blue leads the Viridian gym after the
   league change (D-032).
+- **O-019** Resolved 2026-10-26: Surskit, Roselia, Zangoose and Lunatone are
+  wild in Hoenn; Masquerain, Budew and Roserade follow by level, breeding and
+  the Shiny Stone (D-037).
 
 ## Superseded decisions (kept for the record)
 

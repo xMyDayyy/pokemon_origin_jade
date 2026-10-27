@@ -349,9 +349,18 @@ static void FindMapsWithMon(u16 species)
     // Add regular species to the area map
     for (i = 0; gWildMonHeaders[i].mapGroup != MAP_GROUP(MAP_UNDEFINED); i++)
     {
-        u32 headerSectionId = Overworld_GetMapHeaderByGroupAndId(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum)->regionMapSectionId;
+        const struct MapHeader *mapHeader = Overworld_GetMapHeaderByGroupAndId(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum);
+        u32 headerSectionId;
+
+        // Retired maps have no header.
+        if (mapHeader == NULL)
+            continue;
+        headerSectionId = mapHeader->regionMapSectionId;
 
 #if IS_HNS
+        // Only maps of the shown region map: Hoenn, or Kanto and Johto.
+        if ((GetRegionMapType(headerSectionId) == REGION_MAP_HOENN) != (currentRegionMapType == REGION_MAP_HOENN))
+            continue;
         if (currentRegionMapType == REGION_MAP_JOHTO
             && headerSectionId >= KANTO_MAPSEC_START && headerSectionId <= KANTO_MAPSEC_END)
             continue;
@@ -360,7 +369,7 @@ static void FindMapsWithMon(u16 species)
             continue;
 #endif
 
-        if (MapHasSpecies(&gWildMonHeaders[i].encounterTypes[gAreaTimeOfDay], headerSectionId, species))
+        if (MapHasSpecies(gWildMonHeaders[i].encounterTypes, headerSectionId, species))
         {
             switch (gWildMonHeaders[i].mapGroup)
             {
@@ -452,8 +461,19 @@ static mapsec_u16_t GetRegionMapSectionId(u8 mapGroup, u8 mapNum)
     return Overworld_GetMapHeaderByGroupAndId(mapGroup, mapNum)->regionMapSectionId;
 }
 
-static bool8 MapHasSpecies(const struct WildEncounterTypes *info, u32 headerSectionId, u16 species)
+// Same per-area fallback as GetTimeOfDayForEncounters: no table at this time -> fallback time's table.
+static const struct WildPokemonInfo *GetAreaMonsInfo(const struct WildPokemonInfo *timeInfo, const struct WildPokemonInfo *fallbackInfo)
 {
+    if (timeInfo == NULL && !OW_TIME_OF_DAY_DISABLE_FALLBACK)
+        return fallbackInfo;
+    return timeInfo;
+}
+
+static bool8 MapHasSpecies(const struct WildEncounterTypes *types, u32 headerSectionId, u16 species)
+{
+    const struct WildEncounterTypes *info = &types[gAreaTimeOfDay];
+    const struct WildEncounterTypes *fallback = &types[OW_TIME_OF_DAY_FALLBACK];
+
     // If this is a header for Altering Cave, skip it if it's not the current Altering Cave encounter set
     if (headerSectionId == MAPSEC_ALTERING_CAVE)
     {
@@ -462,19 +482,19 @@ static bool8 MapHasSpecies(const struct WildEncounterTypes *info, u32 headerSect
             return FALSE;
     }
 
-    if (MonListHasSpecies(info->landMonsInfo, species, LAND_WILD_COUNT))
+    if (MonListHasSpecies(GetAreaMonsInfo(info->landMonsInfo, fallback->landMonsInfo), species, LAND_WILD_COUNT))
         return TRUE;
-    if (MonListHasSpecies(info->waterMonsInfo, species, WATER_WILD_COUNT))
+    if (MonListHasSpecies(GetAreaMonsInfo(info->waterMonsInfo, fallback->waterMonsInfo), species, WATER_WILD_COUNT))
         return TRUE;
 // When searching the fishing encounters, this incorrectly uses the size of the land encounters.
 // As a result it's reading out of bounds of the fishing encounters tables.
 #ifdef BUGFIX
-    if (MonListHasSpecies(info->fishingMonsInfo, species, FISH_WILD_COUNT))
+    if (MonListHasSpecies(GetAreaMonsInfo(info->fishingMonsInfo, fallback->fishingMonsInfo), species, FISH_WILD_COUNT))
 #else
-    if (MonListHasSpecies(info->fishingMonsInfo, species, LAND_WILD_COUNT))
+    if (MonListHasSpecies(GetAreaMonsInfo(info->fishingMonsInfo, fallback->fishingMonsInfo), species, LAND_WILD_COUNT))
 #endif
         return TRUE;
-    if (MonListHasSpecies(info->rockSmashMonsInfo, species, ROCK_WILD_COUNT))
+    if (MonListHasSpecies(GetAreaMonsInfo(info->rockSmashMonsInfo, fallback->rockSmashMonsInfo), species, ROCK_WILD_COUNT))
         return TRUE;
     return FALSE;
 }
