@@ -511,8 +511,8 @@ dated 2026-10-10 or later were decided directly.
     limits: P-003).
 - **Evidence:** decision 2026-10-15; Steven: 876c3d4c19.
 
-### D-032 Johto content after the title, Janina in Fuchsia
-- **Status:** Active (2026-10-15)
+### D-032 Johto content after the title, Janina in Fuchsia, Blue in Viridian
+- **Status:** Active (2026-10-15, Blue added 2026-10-20)
 - **Decision:**
   - The eight Johto gym leaders accept rematches in their gyms after the
     Johto title, without limit, with their `_2` teams (money only).
@@ -521,11 +521,17 @@ dated 2026-10-10 or later were decided directly.
   - After the league change (D-010) Koga is only in Johto's Elite Four:
     Janina leads the FRLG Fuchsia gym (`TRAINER_JANINE_HNS`, TM Gifthieb
     once, rematches, no badge).
+  - After the league change Blue leads the FRLG Viridian gym
+    (`TRAINER_BLUE_HNS`, HnS's Viridian team, TM Bizarroraum once via
+    `FLAG_GOT_TM_TRICK_ROOM_FROM_BLUE`, rematches without limit, money only,
+    no badge). He carries the player-chosen Kanto rival name (D-003).
+    Giovanni is hidden after the change once he has handed over HM06; before
+    the change the gym is unchanged.
   - HnS's signposts (Clair, Janine and the other leaders) and the Fighting
     Dojo's VIP room stay off: they would need return trips into Kanto.
   - Mt. Moon B3F's three item balls hold Top-Genesung, Top-Trank and
     Top-Beleber (O-007).
-- **Evidence:** decision 2026-10-15 (O-014).
+- **Evidence:** decision 2026-10-15 (O-014); Blue 2026-10-20 (O-018).
 
 ---
 
@@ -586,6 +592,8 @@ dated 2026-10-10 or later were decided directly.
 - **O-017** Resolved 2026-10-13: Hoenn Sound stays off (D-025); the
   PokeCom's "Zustand" from the radio card on and Buena's hint before the
   quiz stay as they are.
+- **O-018** Resolved 2026-10-20: Blue leads the Viridian gym after the
+  league change (D-032).
 
 ## Superseded decisions (kept for the record)
 

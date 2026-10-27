@@ -44,6 +44,8 @@
 #define FLAG_CAUGHT_MEWTWO                                   (OJ_FLAGS_KANTO + 6)
 // Janina (Fuchsia gym leader after the league change) gave TM Poison Jab.
 #define FLAG_GOT_TM_POISON_JAB_FROM_JANINE                   (OJ_FLAGS_KANTO + 7)
+// Blue (Viridian gym leader after the league change) gave TM Trick Room.
+#define FLAG_GOT_TM_TRICK_ROOM_FROM_BLUE                     (OJ_FLAGS_KANTO + 8)
 
 // ---------------------------------------------------------------------
 // Johto (OJ_FLAGS_JOHTO + 0 to + 159)

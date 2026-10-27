@@ -67,7 +67,14 @@ ViridianCity_EventScript_TrainerTips2::
 	end
 
 ViridianCity_EventScript_GymSign::
+	call PokemonLeague_EventScript_CheckLeagueChanged
+	goto_if_eq VAR_RESULT, TRUE, ViridianCity_EventScript_GymSignBlue
 	msgbox ViridianCity_Text_GymSign, MSGBOX_SIGN
+	end
+
+@ Blue leads the gym after the league change, see docs/origin_jade/DECISIONS.md, D-032.
+ViridianCity_EventScript_GymSignBlue::
+	msgbox ViridianCity_Text_GymSignBlue, MSGBOX_SIGN
 	end
 
 ViridianCity_EventScript_GymDoor::
@@ -554,6 +561,15 @@ ViridianCity_Text_GymSign::
 	.string "Vertania City Pokémon-Arena$"
 #else
 	.string "VIRIDIAN CITY POKéMON GYM$"
+#endif
+
+ViridianCity_Text_GymSignBlue:
+#if GERMAN
+	.string "Vertania City Pokémon-Arena\n"
+	.string "Arenaleiter: {RIVAL}$"
+#else
+	.string "VIRIDIAN CITY POKéMON GYM\n"
+	.string "LEADER: {RIVAL}$"
 #endif
 
 ViridianCity_Text_GymDoorsAreLocked::

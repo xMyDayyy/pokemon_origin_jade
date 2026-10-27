@@ -9775,7 +9775,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Amnesia
 
 === TRAINER_BLUE_HNS ===
-Name: BLUE
+Name: {B_RIVAL_NAME}
 Class: Leader Kanto Hns
 Pic: Leader Blue Hns
 Gender: Male
