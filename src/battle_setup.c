@@ -1631,13 +1631,22 @@ bool32 GetTrainerFlagFromScriptPointer(const u8 *data)
     return FlagGet(TrainerIdToFlagId(temp->params.opponentA));
 }
 
-bool32 GetRematchFromScriptPointer(const u8 *data)
+bool32 GetRematchFromScriptPointer(const u8 *data, u32 objectEventId)
 {
 #if FREE_MATCH_CALL
     return FALSE;
 #else
     TrainerBattleParameter *temp = (TrainerBattleParameter*)(data + OPCODE_OFFSET);
-    return ShouldTryRematchBattleForTrainerId(temp->params.opponentA);
+    // A double battle trainer only walks up when the player has two usable Pokemon.
+    if ((temp->params.mode == TRAINER_BATTLE_DOUBLE
+      || temp->params.mode == TRAINER_BATTLE_REMATCH_DOUBLE
+      || temp->params.mode == TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE
+      || temp->params.mode == TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC)
+     && GetMonsStateToDoubles_2() != PLAYER_HAS_TWO_USABLE_MONS)
+        return FALSE;
+    // Only a Kanto trainer whose object answered the VS Seeker walks up to the
+    // player; Match Call and phone rematches wait to be talked to (D-034).
+    return DoesKantoObjectWantRematch(temp->params.opponentA, objectEventId);
 #endif
 }
 
@@ -2224,9 +2233,8 @@ static bool32 UpdateRandomTrainerRematches(const struct RematchTrainer *table, u
 {
     s32 i;
 
-    if (CheckBagHasItem(ITEM_VS_SEEKER, 1) && I_VS_SEEKER_CHARGING != 0)
-        return FALSE;
-
+    // The VS Seeker has its own Kanto table and state: Match Call rematches go on
+    // with it in the bag, see docs/origin_jade/DECISIONS.md, D-034.
     for (i = 0; i < REMATCH_SPECIAL_TRAINER_START; i++)
     {
         if (!DoesCurrentMapMatchRematchTrainerMap(i,table,mapGroup,mapNum) || IsRematchForbidden(i))
@@ -2456,18 +2464,12 @@ static void ClearTrainerWantRematchState(const struct RematchTrainer *table, u16
 #endif //FREE_MATCH_CALL
 }
 
+// Only Kanto's VS Seeker state; the Match Call state is cleared by
+// HandleRematchVarsOnBattleEnd (D-034).
 void ClearCurrentTrainerWantRematchVsSeeker(void)
 {
-#if FREE_MATCH_CALL == FALSE
-    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && FlagGet(I_VS_SEEKER_CHARGING) && (I_VS_SEEKER_CHARGING != 0))
-    {
-        for (u32 i = 0; i < REMATCH_TABLE_ENTRIES; i++)
-        {
-            if (gSaveBlock1Ptr->trainerRematches[i] == TRAINER_BATTLE_PARAM.opponentA)
-                gSaveBlock1Ptr->trainerRematches[i] = 0;
-        }
-    }
-#endif //FREE_MATCH_CALL
+    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && IsKantoRematchTrainer(TRAINER_BATTLE_PARAM.opponentA))
+        ClearKantoRematchOfLastTalked();
 }
 
 static u32 GetTrainerMatchCallFlag(u32 trainerId)
@@ -2504,13 +2506,6 @@ static bool8 WasSecondRematchWon(const struct RematchTrainer *table, u16 firstBa
         return FALSE;
     if (!HasTrainerBeenFought(table[tableId].trainerIds[1]))
         return FALSE;
-#if FREE_MATCH_CALL == FALSE
-    if (I_VS_SEEKER_CHARGING)
-    {
-        if (gSaveBlock1Ptr->trainerRematches[tableId] == 0)
-            return FALSE;
-    }
-#endif
     return TRUE;
 }
 
@@ -2540,9 +2535,7 @@ void IncrementRematchStepCounter(void)
     if (!HasEnoughBadgesForRematch())
         return;
 
-    if (IsVsSeekerEnabled())
-        return;
-
+    // The VS Seeker counts its steps in VAR_VS_SEEKER_STEPS (D-034).
     if (gSaveBlock1Ptr->trainerRematchStepCounter >= STEP_COUNTER_MAX)
         gSaveBlock1Ptr->trainerRematchStepCounter = STEP_COUNTER_MAX;
     else
@@ -2577,10 +2570,11 @@ bool32 IsRematchTrainerIn(u16 mapGroup, u16 mapNum)
 }
 
 #if FREE_MATCH_CALL == FALSE
+// Kanto trainers use the VS Seeker table, all others gRematchTable (D-034).
 static u16 GetRematchTrainerId(u16 trainerId)
 {
-    if (FlagGet(I_VS_SEEKER_CHARGING) && (I_VS_SEEKER_CHARGING != 0))
-        return GetRematchTrainerIdVSSeeker(trainerId);
+    if (IsKantoRematchTrainer(trainerId))
+        return GetKantoRematchTrainerId(trainerId);
     else
         return GetRematchTrainerIdFromTable(gRematchTable, trainerId);
 }
@@ -2598,6 +2592,10 @@ bool8 ShouldTryRematchBattle(void)
 
 bool8 ShouldTryRematchBattleForTrainerId(u16 trainerId)
 {
+    // Kanto: the VS Seeker decides (D-034).
+    if (IsKantoRematchTrainer(trainerId))
+        return ShouldTryKantoRematch(trainerId);
+
     if (IsFirstTrainerIdReadyForRematch(gRematchTable, trainerId))
         return TRUE;
 
@@ -2606,6 +2604,9 @@ bool8 ShouldTryRematchBattleForTrainerId(u16 trainerId)
 
 bool8 IsTrainerReadyForRematch(void)
 {
+    if (IsKantoRematchTrainer(TRAINER_BATTLE_PARAM.opponentA))
+        return DoesLastTalkedWantKantoRematch();
+
     return IsTrainerReadyForRematch_(gRematchTable, TRAINER_BATTLE_PARAM.opponentA);
 }
 

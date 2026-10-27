@@ -5,6 +5,7 @@
 #include "pokemon.h"
 #include "random.h"
 #include "event_data.h"
+#include "vs_seeker.h"
 #include "constants/maps.h"
 #include "constants/region_map_sections.h"
 #include "constants/trainers.h"
@@ -17,7 +18,8 @@
 // and config/kanto_scaling.h.
 // Hoenn: every mapsec where IsHoennMapsec is TRUE, unlisted ones use the
 // default corridor. Johto: only the mapsecs in its corridor table.
-// Kanto: FRLG maps (IsFrlgKantoMap), only after the Kanto title.
+// Kanto: FRLG maps (IsFrlgKantoMap), only after the Kanto title; before it
+// only VS Seeker rematch teams move up to a floor (D-034).
 // After a region's title its corridors lose their ceiling, see
 // docs/origin_jade/DECISIONS.md, D-031.
 // =====================================================================
@@ -166,7 +168,14 @@ static const struct ScalingRules sKantoRules =
     .titleFlag           = FLAG_IS_KANTO_CHAMPION,
     .titleCeiling        = KANTO_SCALING_MAX_LEVEL,
 };
+#define KANTO_REMATCH_FLOOR_RULES (&sKantoRules)
+#else
+#define KANTO_REMATCH_FLOOR_RULES NULL
 #endif
+
+// Evolution rules for the Pokemon that ScaleTrainerMonLevel just raised to a Kanto
+// VS Seeker rematch floor (Kanto's rules), NULL otherwise. Read by ScaleTrainerMonSpecies.
+static EWRAM_DATA const struct ScalingRules *sRematchFloorRules = NULL;
 
 // FRLG Kanto map: a Kanto mapsec outside HnS's map groups, which come first in
 // data/maps/map_groups.json (before Emerald's, MAP_LITTLEROOT_TOWN). Johto's league
@@ -362,6 +371,9 @@ u16 ScaleTrainerMonSpecies(u16 species, u8 scaledLevel, u16 trainerId, u8 partyI
     const struct ScalingRules *rules = GetScalingRules();
     u32 step, i, j;
 
+    if (rules == NULL)
+        rules = sRematchFloorRules;
+    sRematchFloorRules = NULL;
     if (rules == NULL || rules->trainerEvolve != TRUE)
         return species;
 
@@ -448,6 +460,24 @@ static bool32 IsBossTrainer(const struct Trainer *trainer)
     }
 }
 
+// Kanto VS Seeker rematch before the Kanto title: if the team's highest level is
+// below the tier's floor (GetKantoRematchLevelFloor), the ace goes to the floor and
+// the others keep their distance to it. Never lowers, at most MAX_LEVEL, see
+// docs/origin_jade/DECISIONS.md, D-034.
+static u8 RaiseToKantoRematchFloor(const struct Trainer *trainer, u8 level, u8 partyMaxLevel)
+{
+    s32 top = GetKantoRematchLevelFloor(trainer);
+    s32 raised;
+
+    if (partyMaxLevel == 0 || partyMaxLevel >= top)
+        return level;
+    raised = top - (s32)(partyMaxLevel - level);
+    if (raised > MAX_LEVEL)
+        raised = MAX_LEVEL;
+    sRematchFloorRules = KANTO_REMATCH_FLOOR_RULES;
+    return raised;
+}
+
 // partyMaxLevel: highest original level in the trainer's party.
 u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel)
 {
@@ -455,8 +485,9 @@ u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLeve
     s32 anchor, top, scaled;
     u8 floor, ceiling;
 
+    sRematchFloorRules = NULL;
     if (rules == NULL)
-        return level;
+        return RaiseToKantoRematchFloor(trainer, level, partyMaxLevel);
     if (partyMaxLevel >= rules->fixedMinLevel)
         return level;
 

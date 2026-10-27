@@ -227,7 +227,8 @@ dated 2026-10-10 or later were decided directly.
   team in every battle at the same level. Rare forms are never picked
   (`sTrainerEvoExcluded` in `src/level_scaling.c`: Dudunsparce
   Three-Segment, Bloodmoon Ursaluna, Maushold Family of Three). The same
-  rules hold in Hoenn, Johto and Kanto after the title.
+  rules hold in Hoenn, Johto, Kanto after the title and for the Kanto VS
+  Seeker floor (D-034).
 - **Evidence:** e900a95bad, 8f0e70b65c, 1685acfbc7, e1fde77aa4,
   cf857f4e0e, f549506494, e936f02c84, c239d59e43, 20a176b3af, c16d35c5aa;
   trainer evolution levels: decision 2026-10-21; majority rule, 10 %
@@ -574,6 +575,35 @@ dated 2026-10-10 or later were decided directly.
   - Not weekday-bound: Union Cave's Lapras (D-026), the M.S. Aqua (D-029).
 - **Evidence:** decision 2026-10-15; TM lady, haircut brothers and contest
   day 2026-10-20.
+
+### D-034 Kanto rematches through the VS Seeker
+- **Status:** Active (2026-10-20)
+- **Decision:** On FRLG maps every trainer with a FireRed/LeafGreen rematch
+  can be fought again through the VS Seeker (Kampffahnder, Vermilion
+  Pokemon Center): 157 trainers, without the Sevii rows (D-019). FRLG
+  behaviour: the device charges in 100 steps, trainers in view answer
+  (70 %), the wish ends after 100 steps or when the player leaves the map,
+  and a trainer who wants a rematch challenges the player on sight.
+  - Teams by tier: VS Seeker received, 4 Kanto badges, 6 Kanto badges,
+    Kanto title, Johto title. The newest team up to the current tier
+    fights; a trainer without one fights his first team again.
+  - The first three tiers sit on the D-011 ladder (16-19, 30-31, 33-35);
+    from the Kanto title on the teams scale (D-031).
+  - Before the Kanto title a rematch team whose highest level is below its
+    tier's floor (16, 29, 33) moves up as a whole until it reaches it and
+    evolves like Kanto's scaling (D-012: levels from
+    `src/data/trainer_evo_levels.h`, 10 % of the steps skipped, skips and
+    branches fixed per rematch team and party slot, rare forms never)
+    (`sKantoRematchLevelFloors` in `src/vs_seeker.c`, applied in
+    `src/level_scaling.c`).
+  - Outside Kanto the VS Seeker only says that it works in Kanto. Match
+    Call, Johto's phone rematches and the gym rematches (D-032) are
+    untouched: the VS Seeker has its own table and state
+    (`FLAG_VS_SEEKER_CHARGING`, `VAR_VS_SEEKER_STEPS`,
+    `VAR_VS_SEEKER_REMATCH_LO/HI`).
+  - Code: `src/vs_seeker.c`, `src/data/vs_seeker_kanto.h`, the rematch
+    hooks in `src/battle_setup.c`, the level floor in `src/level_scaling.c`.
+- **Evidence:** decision 2026-10-20.
 
 ---
 

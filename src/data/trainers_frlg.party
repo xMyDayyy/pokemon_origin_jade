@@ -212,11 +212,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Rattata
-Level: 13
+Level: 16
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 Ekans
-Level: 13
+Level: 16
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 === TRAINER_BUG_CATCHER_RICK ===
@@ -8715,11 +8715,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Raticate
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Ekans
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_YOUNGSTER_BEN_4 ===
@@ -8749,11 +8749,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Ekans
-Level: 15
+Level: 17
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 Sandshrew
-Level: 15
+Level: 17
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 === TRAINER_LASS_RELI_2 ===
@@ -8766,11 +8766,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Pidgey
-Level: 15
+Level: 17
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 Nidoran F
-Level: 15
+Level: 17
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 === TRAINER_LASS_RELI_3 ===
@@ -8783,11 +8783,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Pidgeotto
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Nidorina
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_YOUNGSTER_TIMMY_2 ===
@@ -8800,15 +8800,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Raticate
-Level: 14
+Level: 17
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 Ekans
-Level: 14
+Level: 17
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 Zubat
-Level: 14
+Level: 17
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 === TRAINER_YOUNGSTER_TIMMY_3 ===
@@ -8821,15 +8821,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Raticate
-Level: 21
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Ekans
-Level: 21
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Golbat
-Level: 21
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_YOUNGSTER_TIMMY_4 ===
@@ -8863,11 +8863,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Arbok
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Sandshrew
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_LASS_JANICE_2 ===
@@ -8880,11 +8880,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Pidgeotto
-Level: 15
+Level: 17
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 Pidgeotto
-Level: 15
+Level: 17
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 === TRAINER_LASS_JANICE_3 ===
@@ -8897,11 +8897,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Pidgeotto
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Pidgeotto
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_YOUNGSTER_CHAD_4 ===
@@ -8931,11 +8931,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Machoke
-Level: 19
+Level: 30
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 Graveler
-Level: 19
+Level: 30
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_PKMN_PROF_PROF_OAK ===
@@ -9288,11 +9288,11 @@ Double Battle: Yes
 AI: Check Bad Move
 
 Clefairy
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Jigglypuff
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_YOUNGSTER_JOHNSON ===
@@ -10528,11 +10528,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Rhyhorn
-Level: 26
+Level: 35
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 Lickitung
-Level: 26
+Level: 35
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_PKMN_RANGER_LOGAN ===
@@ -11143,11 +11143,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Nidoran M
-Level: 16
+Level: 18
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 Nidoran F
-Level: 16
+Level: 18
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 === TRAINER_PICNICKER_KELSEY_3 ===
@@ -11160,11 +11160,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Nidorino
-Level: 23
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Nidorina
-Level: 23
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_PICNICKER_KELSEY_4 ===
@@ -11194,7 +11194,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Squirtle
-Level: 17
+Level: 19
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 === TRAINER_CAMPER_RICKY_3 ===
@@ -11207,7 +11207,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Wartortle
-Level: 24
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_CAMPER_RICKY_4 ===
@@ -11233,11 +11233,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Spearow
-Level: 16
+Level: 18
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 Raticate
-Level: 16
+Level: 18
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 === TRAINER_CAMPER_JEFF_3 ===
@@ -11250,11 +11250,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Fearow
-Level: 23
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Raticate
-Level: 23
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_CAMPER_JEFF_4 ===
@@ -11284,15 +11284,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Pidgeotto
-Level: 16
+Level: 18
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 Pidgeotto
-Level: 16
+Level: 18
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 Pidgey
-Level: 13
+Level: 15
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 === TRAINER_PICNICKER_ISABELLE_3 ===
@@ -11305,15 +11305,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Pidgeotto
-Level: 23
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Pidgeotto
-Level: 23
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Pidgeotto
-Level: 20
+Level: 31
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_PICNICKER_ISABELLE_4 ===
@@ -11347,15 +11347,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Rattata
-Level: 17
+Level: 31
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 Raticate
-Level: 17
+Level: 31
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 Raticate
-Level: 17
+Level: 31
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_YOUNGSTER_YASU_3 ===
@@ -11389,15 +11389,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Magneton
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Magneton
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Magneton
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_GAMER_DARIAN_2 ===
@@ -11410,11 +11410,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Growlithe
-Level: 23
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Vulpix
-Level: 23
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_CAMPER_CHRIS_2 ===
@@ -11427,11 +11427,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Growlithe
-Level: 19
+Level: 30
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 Charmander
-Level: 19
+Level: 30
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_CAMPER_CHRIS_3 ===
@@ -11444,11 +11444,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Growlithe
-Level: 23
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Charmeleon
-Level: 23
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_CAMPER_CHRIS_4 ===
@@ -11478,7 +11478,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Meowth
-Level: 19
+Level: 30
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_PICNICKER_ALICIA_3 ===
@@ -11491,7 +11491,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Persian
-Level: 24
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_PICNICKER_ALICIA_4 ===
@@ -11517,11 +11517,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Machoke
-Level: 24
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Onix
-Level: 22
+Level: 32
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_POKEMANIAC_MARK_3 ===
@@ -11551,11 +11551,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Marowak
-Level: 23
+Level: 34
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 Slowbro
-Level: 23
+Level: 34
 IVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 
 === TRAINER_POKEMANIAC_HERMAN_3 ===
@@ -11585,11 +11585,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Onix
-Level: 25
+Level: 35
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Graveler
-Level: 25
+Level: 35
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_LASS_MEGAN_2 ===
@@ -11602,23 +11602,23 @@ Double Battle: No
 AI: Check Bad Move
 
 Pidgeotto
-Level: 17
+Level: 29
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 Raticate
-Level: 17
+Level: 29
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 Nidoran M
-Level: 18
+Level: 30
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 Meowth
-Level: 16
+Level: 28
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 Pikachu
-Level: 17
+Level: 29
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_LASS_MEGAN_3 ===
@@ -11660,15 +11660,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Muk
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Muk
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Muk
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_GAMER_RICH_2 ===
@@ -11681,11 +11681,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Growlithe
-Level: 24
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Vulpix
-Level: 24
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_BIKER_JAREN_2 ===
@@ -11698,11 +11698,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Muk
-Level: 22
+Level: 32
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Muk
-Level: 24
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_FISHERMAN_ELLIOT_2 ===
@@ -11715,19 +11715,19 @@ Double Battle: No
 AI: Check Bad Move
 
 Poliwhirl
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Cloyster
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Seaking
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Seadra
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_ROCKER_LUCA_2 ===
@@ -11740,11 +11740,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Electrode
-Level: 26
+Level: 35
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Electrode
-Level: 26
+Level: 35
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_BEAUTY_SHEILA_2 ===
@@ -11774,19 +11774,19 @@ Double Battle: No
 AI: Check Bad Move
 
 Pidgeotto
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Pidgeotto
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Fearow
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Fearow
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_BIRD_KEEPER_ROBERT_3 ===
@@ -11824,23 +11824,23 @@ Double Battle: No
 AI: Check Bad Move
 
 Pidgeotto
-Level: 21
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Meowth
-Level: 21
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Raticate
-Level: 21
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Pikachu
-Level: 21
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Meowth
-Level: 21
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_PICNICKER_SUSIE_3 ===
@@ -11936,11 +11936,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Fearow
-Level: 25
+Level: 35
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Fearow
-Level: 25
+Level: 35
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_BIRD_KEEPER_BENNY_3 ===
@@ -11970,15 +11970,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Fearow
-Level: 24
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Doduo
-Level: 24
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Fearow
-Level: 24
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_BIRD_KEEPER_MARLON_3 ===
@@ -12029,15 +12029,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Dodrio
-Level: 24
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Dodrio
-Level: 24
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Doduo
-Level: 24
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_BIRD_KEEPER_CHESTER_3 ===
@@ -12071,11 +12071,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Pikachu
-Level: 25
+Level: 35
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Raichu
-Level: 25
+Level: 35
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_PICNICKER_BECKY_3 ===
@@ -12122,11 +12122,11 @@ Double Battle: Yes
 AI: Check Bad Move
 
 Hitmonchan @ Black Belt
-Level: 26
+Level: 35
 IVs: 13 HP / 13 Atk / 13 Def / 13 SpA / 13 SpD / 13 Spe
 
 Hitmonlee @ Black Belt
-Level: 26
+Level: 35
 IVs: 13 HP / 13 Atk / 13 Def / 13 SpA / 13 SpD / 13 Spe
 
 === TRAINER_CRUSH_KIN_RON_MYA_3 ===
@@ -12262,19 +12262,19 @@ Double Battle: No
 AI: Check Bad Move
 
 Fearow
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Spearow
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Fearow
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Spearow
-Level: 22
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_BIRD_KEEPER_JACOB_3 ===
@@ -12744,11 +12744,11 @@ Double Battle: Yes
 AI: Check Bad Move
 
 Nidorina
-Level: 24
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Nidorino
-Level: 24
+Level: 34
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_YOUNG_COUPLE_GIA_JES_3 ===
@@ -13286,15 +13286,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Metapod
-Level: 14
+Level: 17
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 Weedle
-Level: 14
+Level: 17
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 Metapod
-Level: 14
+Level: 17
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 === TRAINER_BUG_CATCHER_COLTON_3 ===
@@ -13307,15 +13307,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Butterfree
-Level: 21
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Kakuna
-Level: 21
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 Butterfree
-Level: 21
+Level: 33
 IVs: 7 HP / 7 Atk / 7 Def / 7 SpA / 7 SpD / 7 Spe
 
 === TRAINER_BUG_CATCHER_COLTON_4 ===

@@ -54,7 +54,7 @@ Route3_Text_CalvinRematchIntro::
 
 Route3_Text_JamesRematchIntro::
 #if GERMAN
-	.string "Ich setzte beim Kampf gegen dich die\n"
+	.string "Ich setze im Kampf gegen dich die\n"
 	.string "Pokémon ein, die ich von Grund auf\l"
 	.string "trainiert habe.$"
 #else
@@ -92,10 +92,10 @@ Route6_Text_RickyRematchIntro::
 Route6_Text_NancyRematchIntro::
 #if GERMAN
 	.string "Entschuldigung! Hatte ich dir nicht\n"
-	.string "gesagt, dass dies ein Privatgespräch\l"
-	.string "ist?\l"
-	.string "Du solltest uns nicht belauschen, das\l"
-	.string "gehört sich nicht!$"
+	.string "gesagt, dass dies ein\l"
+	.string "Privatgespräch ist?\p"
+	.string "Du solltest uns nicht belauschen,\n"
+	.string "das gehört sich nicht!$"
 #else
 	.string "Excuse me! Didn't I tell you that\n"
 	.string "this is a private conversation?\p"
@@ -198,9 +198,9 @@ Route8_Text_AndreaRematchIntro::
 
 Route8_Text_MeganRematchIntro::
 #if GERMAN
-	.string "Es mag dämlich aussehen, wie wir hier\n"
-	.string "herumstehen, aber ich kann dennoch\l"
-	.string "kämpfen!$"
+	.string "Es mag dämlich aussehen, wie wir\n"
+	.string "hier herumstehen, aber ich kann\l"
+	.string "dennoch kämpfen!$"
 #else
 	.string "We may look silly standing here\n"
 	.string "like this, but I can still battle.$"
@@ -227,7 +227,8 @@ Route8_Text_JuliaRematchIntro::
 
 Route8_Text_RicardoRematchIntro::
 #if GERMAN
-	.string "Mein Motorrad macht immer noch Mucken!$"
+	.string "Mein Motorrad macht immer noch\n"
+	.string "Mucken!$"
 #else
 	.string "My bike's still acting up, man.$"
 #endif
@@ -268,8 +269,8 @@ Route9_Text_AliciaRematchIntro::
 
 Route9_Text_ChrisRematchIntro::
 #if GERMAN
-	.string "Ich habe nicht vergessen, dass du mit\n"
-	.string "diesen bezaubernden Pokémon\l"
+	.string "Ich habe nicht vergessen, dass du\n"
+	.string "mit diesen bezaubernden Pokémon\l"
 	.string "unterwegs bist.$"
 #else
 	.string "I haven't forgotten you were with\n"
@@ -279,9 +280,9 @@ Route9_Text_ChrisRematchIntro::
 Route9_Text_DrewRematchIntro::
 #if GERMAN
 	.string "Ich gehe über den Felstunnel nach\n"
-	.string "Lavandia…\l"
-	.string "Aber auf meinem Weg dorthin halten mich\l"
-	.string "alle, denen ich begegne, auf…$"
+	.string "Lavandia…\p"
+	.string "Aber auf meinem Weg dorthin halten\n"
+	.string "mich alle, denen ich begegne, auf…$"
 #else
 	.string "I'm taking ROCK TUNNEL to go to\n"
 	.string "LAVENDER…\p"
@@ -318,7 +319,8 @@ Route9_Text_BriceRematchIntro::
 Route9_Text_BrentRematchIntro::
 #if GERMAN
 	.string "Jeden Tag stehe ich auf, um meine\n"
-	.string "Pokémon von klein auf zu trainieren!$"
+	.string "Pokémon von klein auf zu\l"
+	.string "trainieren!$"
 #else
 	.string "I got up early every day to train\n"
 	.string "my POKéMON from cocoons!$"
@@ -343,8 +345,8 @@ Route9_Text_ConnerRematchIntro::
 
 Route10_Text_MarkRematchIntro::
 #if GERMAN
-	.string "Wow, du bist zurück? Vielleicht bist du\n"
-	.string "auch ein Pokémaniac?\l"
+	.string "Wow, du bist zurück? Vielleicht\n"
+	.string "bist du auch ein Pokémaniac?\p"
 	.string "Möchtest du meine Sammlung sehen?$"
 #else
 	.string "Wow, you came here again?\n"
@@ -533,8 +535,8 @@ Route12_Text_LucaRematchIntro::
 #if GERMAN
 	.string "Elektrizität war schon immer meine\n"
 	.string "Stärke!\p"
-	.string "Ich habe allerdings von Wasser-Pokémon\n"
-	.string "keine Ahnung!$"
+	.string "Ich habe allerdings von\n"
+	.string "Wasser-Pokémon keine Ahnung!$"
 #else
 	.string "Electricity has always been my\n"
 	.string "specialty.\p"
@@ -554,9 +556,10 @@ Route12_Text_HankRematchIntro::
 Route12_Text_ElliotRematchIntro::
 #if GERMAN
 	.string "Versteh mich nicht falsch…\n"
-	.string "Ich liebe das Angeln, dennoch würde ich\l"
-	.string "lieber arbeiten…\l"
-	.string "… das Angeln aufzugeben ist schwer!$"
+	.string "Ich liebe das Angeln, dennoch würde\l"
+	.string "ich lieber arbeiten…\p"
+	.string "… das Angeln aufzugeben ist\n"
+	.string "schwer!$"
 #else
 	.string "I love fishing, don't get me wrong.\n"
 	.string "But, I wish I had more work…\l"
@@ -587,9 +590,9 @@ Route12_Text_GiaRematchIntro::
 #if GERMAN
 	.string "Sira: Heh, Deniz…\n"
 	.string "Ich habe jetzt schon so lange\l"
-	.string "gewartet.\l"
-	.string "Falls wir heute gewinnen, werden wir\l"
-	.string "heiraten!$"
+	.string "gewartet.\p"
+	.string "Falls wir heute gewinnen, werden\n"
+	.string "wir heiraten!$"
 #else
 	.string "GIA: Hey, JES…\n"
 	.string "I've been waiting a long time now.\p"
@@ -643,8 +646,10 @@ Route13_Text_AlmaRematchIntro::
 
 Route13_Text_PerryRematchIntro::
 #if GERMAN
-	.string "Dieses Mal werde ich nicht verlieren!\n"
-	.string "Ich bin unterwegs und habe Rückenwind…$"
+	.string "Dieses Mal werde ich nicht\n"
+	.string "verlieren!\p"
+	.string "Ich bin unterwegs und habe\n"
+	.string "Rückenwind…$"
 #else
 	.string "I'm not going to lose this time.\n"
 	.string "The wind's blowing my way!$"
@@ -716,8 +721,8 @@ Route14_Text_BeckRematchIntro::
 
 Route14_Text_MarlonRematchIntro::
 #if GERMAN
-	.string "Hast du einem Vogel-Pokémon schon das\n"
-	.string "Fliegen beigebracht?$"
+	.string "Hast du einem Vogel-Pokémon schon\n"
+	.string "das Fliegen beigebracht?$"
 #else
 	.string "Have you taught your bird POKéMON\n"
 	.string "how to FLY?\p"
@@ -727,7 +732,8 @@ Route14_Text_MarlonRematchIntro::
 
 Route14_Text_DonaldRematchIntro::
 #if GERMAN
-	.string "Die Legende der Illusionen mit Flügeln…\n"
+	.string "Die Legende der Illusionen mit\n"
+	.string "Flügeln…\p"
 	.string "Du hast davon gehört, oder?$"
 #else
 	.string "The legend of the winged mirages…\n"
@@ -783,7 +789,8 @@ Route14_Text_MalikRematchIntro::
 
 Route14_Text_KiriRematchIntro::
 #if GERMAN
-	.string "Berta: Enke, ich hoffe, wir gewinnen!$"
+	.string "Berta: Enke, ich hoffe, wir\n"
+	.string "gewinnen!$"
 #else
 	.string "KIRI: JAN, I hope we win today.$"
 #endif
@@ -831,8 +838,9 @@ Route15_Text_EdwinRematchIntro::
 
 Route15_Text_ChesterRematchIntro::
 #if GERMAN
-	.string "Hmm? Meine Vögel erschaudern?\n"
-	.string "Moment, du bist doch dieser Trainer…$"
+	.string "Hmm? Meine Vögel erschaudern?\p"
+	.string "Moment, du bist doch dieser\n"
+	.string "Trainer…$"
 #else
 	.string "Hmm? My birds are shivering!\n"
 	.string "Wait, aren't you that TRAINER…$"
@@ -900,8 +908,8 @@ Route15_Text_MyaRematchIntro::
 #if GERMAN
 	.string "Eva: Hallo, wir treffen uns öfter,\n"
 	.string "nicht wahr?\p"
-	.string "Hilfst du mir erneut, meinen kleinen\n"
-	.string "Bruder zu trainieren?$"
+	.string "Hilfst du mir erneut, meinen\n"
+	.string "kleinen Bruder zu trainieren?$"
 #else
 	.string "MYA: Hi, we keep meeting,\n"
 	.string "don't we?\p"
@@ -936,8 +944,8 @@ Route16_Text_KojiRematchIntro::
 
 Route16_Text_LukeRematchIntro::
 #if GERMAN
-	.string "Komm lass uns spielen, Hasenfuß! Ich\n"
-	.string "weiß jetzt mit dir umzugehen!$"
+	.string "Komm, lass uns spielen, Hasenfuß!\n"
+	.string "Ich weiß jetzt mit dir umzugehen!$"
 #else
 	.string "Come out and play, little mouse.\n"
 	.string "I'll treat you right!$"
@@ -954,8 +962,9 @@ Route16_Text_HideoRematchIntro::
 
 Route16_Text_CamronRematchIntro::
 #if GERMAN
-	.string "Ich habe Hunger und bin fies! Ich\n"
-	.string "brauche jetzt wirklich einen Sandsack!$"
+	.string "Ich habe Hunger und bin fies!\n"
+	.string "Ich brauche jetzt wirklich einen\l"
+	.string "Sandsack!$"
 #else
 	.string "I'm feeling hungry and mean!\n"
 	.string "I really need a punching bag!$"
@@ -972,8 +981,8 @@ Route16_Text_RubenRematchIntro::
 
 Route16_Text_JedRematchIntro::
 #if GERMAN
-	.string "Uwe: Bist du hier, um unsere grenzenlose\n"
-	.string "Liebe zu sehen?$"
+	.string "Uwe: Bist du hier, um unsere\n"
+	.string "grenzenlose Liebe zu sehen?$"
 #else
 	.string "JED: Are you here to see our\n"
 	.string "love, which knows no bounds?$"
@@ -981,8 +990,8 @@ Route16_Text_JedRematchIntro::
 
 Route16_Text_LeaRematchIntro::
 #if GERMAN
-	.string "Lena: Manchmal macht mir die Intensität\n"
-	.string "unserer Liebe Angst!$"
+	.string "Lena: Manchmal macht mir die\n"
+	.string "Intensität unserer Liebe Angst!$"
 #else
 	.string "LEA: Sometimes, the intensity of\n"
 	.string "our love scares me.$"
@@ -1033,9 +1042,9 @@ Route17_Text_NikolasRematchIntro::
 
 Route17_Text_ZeekRematchIntro::
 #if GERMAN
-	.string "Ich habe mein Pokémon trainiert, aber\n"
-	.string "es entwickelt sich einfach nicht!\l"
-	.string "Warum?$"
+	.string "Ich habe mein Pokémon trainiert,\n"
+	.string "aber es entwickelt sich einfach\l"
+	.string "nicht! Warum?$"
 #else
 	.string "I leveled up my POKéMON, but it\n"
 	.string "absolutely won't evolve. Why?$"
@@ -1097,8 +1106,9 @@ Route18_Text_RamiroRematchIntro::
 
 Route18_Text_JacobRematchIntro::
 #if GERMAN
-	.string "Ich sagte dir bereits, das hier ist mein\n"
-	.string "Gebiet! Sieh zu, dass du Land gewinnst!$"
+	.string "Ich sagte dir bereits, das hier ist\n"
+	.string "mein Gebiet!\p"
+	.string "Sieh zu, dass du Land gewinnst!$"
 #else
 	.string "I warned you before, this is my\n"
 	.string "turf!\p"
@@ -1146,8 +1156,8 @@ Route19_Text_DouglasRematchIntro::
 Route19_Text_DavidRematchIntro::
 #if GERMAN
 	.string "Ich wollte schon wieder nach Pokémon\n"
-	.string "tauchen und wieder war es keine gute\l"
-	.string "Idee!$"
+	.string "tauchen und wieder war es keine\l"
+	.string "gute Idee!$"
 #else
 	.string "I tried diving for POKéMON again,\n"
 	.string "but it was a no-go like before.$"
@@ -1166,7 +1176,8 @@ Route19_Text_TonyRematchIntro::
 
 Route19_Text_AnyaRematchIntro::
 #if GERMAN
-	.string "Du reitest immer auf deinem Pokémon…\p"
+	.string "Du reitest immer auf deinem\n"
+	.string "Pokémon…\p"
 	.string "Das sieht so entspannend aus! Kann\n"
 	.string "ich es haben, wenn ich gewinne?$"
 #else
@@ -1240,8 +1251,9 @@ Route20_Text_BarryRematchIntro::
 
 Route20_Text_ShirleyRematchIntro::
 #if GERMAN
-	.string "Bist du neidisch, dass ich meinen Urlaub\n"
-	.string "auf den Seeschaum-Inseln verbringe?$"
+	.string "Bist du neidisch, dass ich meinen\n"
+	.string "Urlaub auf den Seeschaum-Inseln\l"
+	.string "verbringe?$"
 #else
 	.string "Are you jealous that I'm\n"
 	.string "vacationing on SEAFOAM?$"
@@ -1358,8 +1370,8 @@ Route21_North_Text_CueBallRematchIntro::
 Route21_South_Text_JackRematchIntro::
 #if GERMAN
 	.string "Ich habe meine Pokémon im Wasser\n"
-	.string "gefangen und dort trainiere ich auch\l"
-	.string "mit ihnen.$"
+	.string "gefangen und dort trainiere ich\l"
+	.string "auch mit ihnen.$"
 #else
 	.string "I caught my POKéMON at sea.\n"
 	.string "And that's where I train them.$"
@@ -1420,16 +1432,17 @@ Route21_North_Text_IanRematchIntro::
 
 Route25_Text_JoeyRematchIntro::
 #if GERMAN
-	.string "Ich werde nicht verlieren, während ich\n"
-	.string "hier bin!$"
+	.string "Ich werde nicht verlieren, während\n"
+	.string "ich hier bin!$"
 #else
 	.string "I won't lose while I'm here!$"
 #endif
 
 Route25_Text_DanRematchIntro::
 #if GERMAN
-	.string "Ich habe in Orania City mit meinem Papa\n"
-	.string "auf der M.S. Anne eine Party besucht!$"
+	.string "Ich habe in Orania City mit meinem\n"
+	.string "Papa auf der M.S. Anne eine Party\l"
+	.string "besucht!$"
 #else
 	.string "Dad took me to a great party on\n"
 	.string "the S.S. ANNE at VERMILION CITY.$"
@@ -1439,8 +1452,8 @@ Route25_Text_FlintRematchIntro::
 #if GERMAN
 	.string "Ich bin richtig cool!\n"
 	.string "Ich habe eine Freundin!\p"
-	.string "Ich beweise ihr dieses Mal, wie cool ich\n"
-	.string "wirklich bin!$"
+	.string "Ich beweise ihr dieses Mal, wie\n"
+	.string "cool ich wirklich bin!$"
 #else
 	.string "I'm a cool guy.\n"
 	.string "I've got a girlfriend!\p"
@@ -1462,8 +1475,8 @@ Route25_Text_KelseyRematchIntro::
 Route25_Text_ChadRematchIntro::
 #if GERMAN
 	.string "Ich hatte dieses Gefühl…\n"
-	.string "Ich wusste, dass wir erneut miteinander\l"
-	.string "kämpfen würden!$"
+	.string "Ich wusste, dass wir erneut\l"
+	.string "miteinander kämpfen würden!$"
 #else
 	.string "I had this feeling…\n"
 	.string "I knew I had to battle you again!$"
@@ -1489,8 +1502,8 @@ Route25_Text_FranklinRematchIntro::
 
 Route25_Text_NobRematchIntro::
 #if GERMAN
-	.string "Ich bin auf dem Weg zu einem Pokémaniac\n"
-	.string "am Kap!\l"
+	.string "Ich bin auf dem Weg zu einem\n"
+	.string "Pokémaniac am Kap!\p"
 	.string "Kennst du seine Sammlung?$"
 #else
 	.string "A POKéMANIAC lives on the cape.\n"
@@ -1535,7 +1548,7 @@ Route24_Text_ReliRematchIntro::
 Route24_Text_TimmyRematchIntro::
 #if GERMAN
 	.string "Du musst es wirklich lieben, zur\n"
-	.string "Nugget-brücke zu kommen.$"
+	.string "Nuggetbrücke zu kommen.$"
 #else
 	.string "You really must love coming to\n"
 	.string "NUGGET BRIDGE.$"
@@ -1555,12 +1568,12 @@ Route24_Text_AliRematchIntro::
 Route24_Text_CaleRematchIntro::
 #if GERMAN
 	.string "Die Leute nennen das hier die\n"
-	.string "Nugget-brücke!\p"
+	.string "Nuggetbrücke!\p"
 	.string "Du hast uns bereits besiegt, also\n"
-	.string "darfst du an der Herausforderung nicht\l"
-	.string "mehr teilnehmen…\l"
-	.string "… aber du darfst gerne wieder mit uns\l"
-	.string "kämpfen!$"
+	.string "darfst du an der Herausforderung\l"
+	.string "nicht mehr teilnehmen…\p"
+	.string "… aber du darfst gerne wieder mit\n"
+	.string "uns kämpfen!$"
 #else
 	.string "People call this the NUGGET\n"
 	.string "BRIDGE!\p"

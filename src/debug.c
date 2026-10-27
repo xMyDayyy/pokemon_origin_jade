@@ -1112,7 +1112,7 @@ static u8 Debug_GenerateListTrainerMenu(void)
             }
             break;
         case 6:
-            if (FREE_MATCH_CALL || I_VS_SEEKER_CHARGING || !isRealFight || rematchTableId == -1)
+            if (FREE_MATCH_CALL || !isRealFight || rematchTableId == -1)
             {
                 noDraw = TRUE;
                 break;
@@ -2586,8 +2586,7 @@ static void DebugAction_Trainers_TryBattle(u8 taskId)
 
 static void DebugAction_Trainers_RechargeVsSeeker(u8 taskId)
 {
-    SetTrainerRematchStepCounter(VSSEEKER_RECHARGE_STEPS);
-    MapResetTrainerRematches(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
+    VsSeekerSetFullyCharged();
     ScriptContext_SetupScript(EventScript_VsSeekerChargingDone);
     Debug_DestroyMenu_Full(taskId);
 }

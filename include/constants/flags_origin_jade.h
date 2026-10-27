@@ -46,6 +46,9 @@
 #define FLAG_GOT_TM_POISON_JAB_FROM_JANINE                   (OJ_FLAGS_KANTO + 7)
 // Blue (Viridian gym leader after the league change) gave TM Trick Room.
 #define FLAG_GOT_TM_TRICK_ROOM_FROM_BLUE                     (OJ_FLAGS_KANTO + 8)
+// VS Seeker used: trainers in view want a rematch until it has recharged
+// (I_VS_SEEKER_CHARGING, src/vs_seeker.c).
+#define FLAG_VS_SEEKER_CHARGING                              (OJ_FLAGS_KANTO + 9)
 
 // ---------------------------------------------------------------------
 // Johto (OJ_FLAGS_JOHTO + 0 to + 159)

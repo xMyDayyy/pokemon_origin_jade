@@ -7,7 +7,8 @@ struct Trainer;
 
 // Level scaling for Hoenn, Johto and (after the Kanto title) Kanto, rules in
 // include/config/hoenn_scaling.h, johto_scaling.h and kanto_scaling.h.
-// Pass-throughs everywhere else.
+// Before the Kanto title ScaleTrainerMonLevel raises Kanto VS Seeker rematch teams
+// to their tier's floor (src/vs_seeker.c). Pass-throughs everywhere else.
 bool32 LevelScalingActive(void);
 u8 ScaleWildMonLevel(u8 level);
 u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel);
