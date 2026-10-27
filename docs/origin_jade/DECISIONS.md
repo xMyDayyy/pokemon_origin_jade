@@ -385,7 +385,7 @@ dated 2026-10-10 or later were decided directly.
   - Unown and the Mahogany signal stay tied to their places; the Rocket
     broadcast replaces the Johto programmes during the takeover, only in
     Johto. Kanto stations are silent in Johto and Hoenn, Johto stations in
-    Kanto and Hoenn. Hoenn Sound stays off: Hoenn is a region of its own.
+    Kanto and Hoenn. Hoenn Sound is removed: Hoenn is a region of its own.
   - Code: `IsStationAvailable`, `IsOPTReportAvailable` and `PickPnPTrainer`
     in `src/pokenav_radio.c`.
 - **Evidence:** decision 2026-10-13 (O-016).

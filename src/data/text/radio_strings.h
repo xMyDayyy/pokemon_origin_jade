@@ -50,33 +50,6 @@ static const u8 sRadioStationName_PokeFlute[]       = _("PokéFlöte");
 static const u8 sRadioStationName_PokeFlute[]       = _("POKé FLUTE");
 #endif
 
-static const u8 sRadioStationName_HoennSound[]  = _("Hoenn Sound");
-
-// ==========================================================
-// Hoenn Sound
-// ==========================================================
-
-#if GERMAN
-static const u8 sRadioText_Hoenn1[] = _("Eine Pokémon-Melodie aus");
-#else
-static const u8 sRadioText_Hoenn1[] = _("A Pokemon melody from a");
-#endif
-#if GERMAN
-static const u8 sRadioText_Hoenn2[] = _("einer fernen Region: Hoenn!");
-#else
-static const u8 sRadioText_Hoenn2[] = _("faraway region called HOENN!");
-#endif
-#if GERMAN
-static const u8 sRadioText_Hoenn3[] = _("Wilde Pokémon aus dieser");
-#else
-static const u8 sRadioText_Hoenn3[] = _("Wild POKéMON from that region");
-#endif
-#if GERMAN
-static const u8 sRadioText_Hoenn4[] = _("Region könnten auftauchen!");
-#else
-static const u8 sRadioText_Hoenn4[] = _("may appear nearby!");
-#endif
-
 // ==========================================================
 // POKéDEX Show
 // ==========================================================

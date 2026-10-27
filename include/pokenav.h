@@ -557,7 +557,6 @@ void CreateRadioLoopedTask(s32 index);
 bool32 IsRadioLoopedTaskActive(void);
 void FreeRadioSubstruct1(void);
 void FreeRadioSubstruct2(void);
-bool8 IsHoennSoundPlaying(void);
 #endif
 
 #endif // GUARD_POKENAV_H

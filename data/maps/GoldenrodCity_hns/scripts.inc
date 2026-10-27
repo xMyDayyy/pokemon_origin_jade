@@ -28,7 +28,6 @@ GoldenrodCity_EventScript_Trigger:: @flagheap
 	clearflag FLAG_GOLDENROD_MACHOKE_3
 	clearflag FLAG_COMPLETED_SWITCHES
 	@ Origin Jade: FLAG_ENABLE_RADIO stays set (radio card from Viridian).
-	clearflag FLAG_KANTO_RADIO_GOT
 	clearflag FLAG_GOLDENROD_NPC_TRADE_COMPLETED
 	clearflag FLAG_GOT_SUNNY_DAY
 	clearflag FLAG_HIDE_RADIOTOWER_GATE

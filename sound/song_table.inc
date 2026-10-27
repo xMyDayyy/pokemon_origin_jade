@@ -1020,8 +1020,6 @@ gGBSSongTable:: @ "gbs_hg_" tracks are new tracks that were transcribed from HGS
 	song_gbs MUS_HG_RADIO_LULLABY, gbs_pokemonlullaby_Header, 0, 0	@ Used by the Radio (Let's All Sing station, odd days)
 	song_gbs MUS_HG_RADIO_MARCH, gbs_pokemonmarch_Header, 0, 0	@ Used by the Radio (Pokémon Music station; also Let's All Sing on even days)
 	@song_gbs MUS_HG_RADIO_ROUTE101, gbs_TODO:_Header, 0, 0	@ Used by the Radio (Hoenn Sound station) TODO: GBS CONVERSION
-	@ Tuning to Hoenn Sound then plays one of these seven Emerald route tracks at random
-	@ (sHoennSoundSongs in src/pokenav_radio.c), so the whole station falls back without them.
 	@song_gbs MUS_ROUTE101, gbs_TODO:_Header, 0, 0	@ Used by the Radio (Hoenn Sound station) TODO: GBS CONVERSION
 	@song_gbs MUS_ROUTE104, gbs_TODO:_Header, 0, 0	@ Used by the Radio (Hoenn Sound station) TODO: GBS CONVERSION
 	@song_gbs MUS_ROUTE110, gbs_TODO:_Header, 0, 0	@ Used by the Radio (Hoenn Sound station) TODO: GBS CONVERSION

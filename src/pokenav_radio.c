@@ -71,7 +71,6 @@ enum RadioStation
     RADIO_STATION_POKE_FLUTE,
     RADIO_STATION_EVOLUTION,
     RADIO_STATION_ROCKET,
-    RADIO_STATION_HOENN_SOUND,
     NUM_RADIO_STATIONS,
 };
 
@@ -159,7 +158,6 @@ static const struct RadioChannelEntry sRadioChannels[] =
     { .tuningPos = 22, .station = RADIO_STATION_POKEMON_MUSIC,    .name = sRadioStationName_PokemonMusic },
     { .tuningPos = 25, .station = RADIO_STATION_LUCKY_CHANNEL,    .name = sRadioStationName_LuckyChannel },
     { .tuningPos = 32, .station = RADIO_STATION_BUENAS_PASSWORD,  .name = sRadioStationName_BuenasPassword },
-    { .tuningPos =  5, .station = RADIO_STATION_HOENN_SOUND,     .name = sRadioStationName_HoennSound },
     { .tuningPos = 41, .station = RADIO_STATION_UNOWN,            .name = sRadioStationName_Unown },
     { .tuningPos = 50, .station = RADIO_STATION_PLACES_AND_PEOPLE,.name = sRadioStationName_PlacesAndPeople },
     { .tuningPos = 57, .station = RADIO_STATION_LETS_ALL_SING,    .name = sRadioStationName_LetsAllSing },
@@ -183,21 +181,7 @@ static const u16 sRadioStationMusic[NUM_RADIO_STATIONS] =
     [RADIO_STATION_POKE_FLUTE]       = MUS_HG_RADIO_POKE_FLUTE,
     [RADIO_STATION_EVOLUTION]        = MUS_HG_RADIO_ROCKET,
     [RADIO_STATION_ROCKET]           = MUS_HG_ROCKET_TAKEOVER,
-    [RADIO_STATION_HOENN_SOUND]      = MUS_HG_RADIO_ROUTE101,
 };
-
-static const u16 sHoennSoundSongs[] =
-{
-    MUS_ROUTE101,
-    MUS_ROUTE104,
-    MUS_ROUTE110,
-    MUS_ROUTE113,
-    MUS_ROUTE119,
-    MUS_ROUTE120,
-    MUS_ROUTE122,
-};
-
-#define NUM_HOENN_SOUND_SONGS ARRAY_COUNT(sHoennSoundSongs)
 
 struct OPTRouteEntry
 {
@@ -977,13 +961,6 @@ static void GenerateStationContent(struct Pokenav_Radio *radio, u8 station)
         radio->lines[n++] = sRadioText_Rocket10;
         break;
 
-    case RADIO_STATION_HOENN_SOUND:
-        radio->lines[n++] = sRadioText_Hoenn1;
-        radio->lines[n++] = sRadioText_Hoenn2;
-        radio->lines[n++] = sRadioText_Hoenn3;
-        radio->lines[n++] = sRadioText_Hoenn4;
-        break;
-
     case RADIO_STATION_UNOWN:
     case RADIO_STATION_POKE_FLUTE:
     case RADIO_STATION_EVOLUTION:
@@ -1048,22 +1025,6 @@ void FreeRadioSubstruct1(void)
     FreePokenavSubstruct(POKENAV_SUBSTRUCT_RADIO);
 }
 
-bool8 IsHoennSoundPlaying(void)
-{
-    u16 music = GetCurrentMapMusic();
-    u8 i;
-
-    if (GetCurrentRegion() == REGION_HOENN)
-        return FALSE;
-
-    for (i = 0; i < NUM_HOENN_SOUND_SONGS; i++)
-    {
-        if (music == sHoennSoundSongs[i])
-            return TRUE;
-    }
-    return FALSE;
-}
-
 static bool8 IsPlayerInJohto(void)
 {
     u16 mapsec = gMapHeader.regionMapSectionId;
@@ -1112,9 +1073,6 @@ static bool8 IsStationAvailable(u8 station)
     case RADIO_STATION_POKE_FLUTE:
         return IsPlayerInKanto();
 
-    case RADIO_STATION_HOENN_SOUND:
-        return !IsPlayerInJohto() && FlagGet(FLAG_KANTO_RADIO_GOT);
-
     default:
         return TRUE;
     }
@@ -1150,8 +1108,7 @@ static u8 FindStation(s32 tuningPos)
                 && station != RADIO_STATION_POKE_FLUTE
                 && station != RADIO_STATION_EVOLUTION
                 && station != RADIO_STATION_PLACES_AND_PEOPLE
-                && station != RADIO_STATION_LETS_ALL_SING
-                && station != RADIO_STATION_HOENN_SOUND)
+                && station != RADIO_STATION_LETS_ALL_SING)
             {
                 return RADIO_STATION_ROCKET;
             }
@@ -1386,10 +1343,6 @@ static u32 LoopedTask_TuneRadio(s32 state)
             {
                 music = (GetDayOfWeek() % 2 == 0) ? MUS_HG_RADIO_MARCH : MUS_HG_RADIO_LULLABY;
             }
-            else if (radio->currentStation == RADIO_STATION_HOENN_SOUND)
-            {
-                music = sHoennSoundSongs[Random() % NUM_HOENN_SOUND_SONGS];
-            }
         }
         else
         {
@@ -1470,8 +1423,6 @@ void CheckRadioStation(void)
 
     if (music == MUS_HG_RADIO_POKE_FLUTE)
         gSpecialVar_Result = 1;
-    else if (IsHoennSoundPlaying())
-        gSpecialVar_Result = 2;
     else
         gSpecialVar_Result = 0;
 }
