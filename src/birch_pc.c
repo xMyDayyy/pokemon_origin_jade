@@ -143,6 +143,12 @@ const u8 *GetNationalPokedexRatingText(u32 count)
     {
         j = ObtainableToNationalOrder(i + 1);
         k = NationalPokedexNumToSpecies(j);
+        // Origin Jade: disabled species do not count (GetNationalPokedexCount skips them too).
+        if (!IsSpeciesEnabled(k))
+        {
+            maxDex--;
+            continue;
+        }
         if (gSpeciesInfo[k].dexNotRequired || (gSpeciesInfo[k].isMythical && !gSpeciesInfo[k].dexForceRequired))
         {
             if (GetSetPokedexFlag(j, FLAG_GET_CAUGHT))

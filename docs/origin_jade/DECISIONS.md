@@ -618,6 +618,32 @@ dated 2026-10-10 or later were decided directly.
     with `SHINY_MODE_ALWAYS` / `SHINY_MODE_NEVER` in the three labs.
 - **Evidence:** decision 2026-10-20 (O-011).
 
+### D-036 Charm sources
+- **Status:** Active (2026-10-21)
+- **Decision:**
+  - Ovalpin (Oval Charm): the Day Care man hands it over once, right after
+    the player's first egg, at every active Day Care (Kanto Route 5, Johto
+    Route 34, Hoenn Route 117; Four Island is retired, D-019). It makes eggs
+    turn up more often at the Day Care, not hatch faster. With a full bag
+    the usual message shows and the next egg offers it again
+    (`FLAG_RECEIVED_OVAL_CHARM`).
+  - Schillerpin (Shiny Charm): the game designer in Lilycove's Cove Lily
+    Motel hands it over once with the Pokedex diploma, once the player holds
+    the first Hoenn title (`FLAG_IS_HOENN_CHAMPION`) and `HasAllMons` reports
+    the National Pokedex complete (`FLAG_RECEIVED_SHINY_CHARM`). He only
+    appears after the first Hoenn title; his diploma logic (Johto dex) is
+    unchanged. The charm adds `I_SHINY_CHARM_ADDITIONAL_ROLLS` shiny rolls.
+  - The National Pokedex counts the enabled species of HnS's obtainable dex
+    (415); species disabled in this build do not count, in `HasAllMons` as
+    in the count and the rating. All 415 are obtainable without trading
+    (D-037). Not required: the mythicals and Regirock, Regice, Registeel
+    (HnS's `dexNotRequired`; owner kept it 2026-10-26).
+  - Code: `DayCare_EventScript_GiveOvalCharm` (`data/scripts/day_care.inc`,
+    called by the egg scripts of Route 5, Route 34 and Route 117);
+    `LilycoveCity_CoveLilyMotel_2F_EventScript_TryGiveShinyCharm` (runs
+    before `Special_ShowDiploma`).
+- **Evidence:** decision 2026-10-21 (O-008).
+
 ### D-037 Hoenn is complete without trading
 - **Status:** Active (2026-10-26)
 - **Decision:** All 415 species of the National Pokedex and the whole Hoenn
@@ -670,7 +696,9 @@ dated 2026-10-10 or later were decided directly.
   stays (D-024).
 - **O-006** Resolved 2026-10-15 (D-030).
 - **O-007** Resolved 2026-10-15 (D-032).
-- **O-008** Shiny Charm / Oval Charm currently have no source.
+- **O-008** Resolved 2026-10-21: the Day Care hands out the Ovalpin with the
+  first egg, Lilycove's game designer the Schillerpin for the completed
+  National Pokedex after the first Hoenn title (D-036).
 - **O-009** Enabling Sinjoh also needs the Gen 4+ and regional forms in
   `species_enabled.h`.
 - **O-010** Resolved 2026-10-12: the Route 30 and Route 26 trees use the

@@ -55,6 +55,7 @@ Route5_EventScript_DaycareReceivedEgg::
 	msgbox DayCare_Text_TakeGoodCareOfIt
 	special GiveEggFromDaycare
 	clearflag FLAG_PENDING_DAYCARE_EGG
+	call_if_unset FLAG_RECEIVED_OVAL_CHARM, DayCare_EventScript_GiveOvalCharm
 	release
 	end
 

@@ -36,8 +36,23 @@ Route117_EventScript_DaycareReceiveEgg::
 	msgbox Route117_Text_TakeGoodCareOfIt, MSGBOX_DEFAULT
 	special GiveEggFromDaycare
 	clearflag FLAG_PENDING_DAYCARE_EGG
+#if IS_HNS
+	call_if_unset FLAG_RECEIVED_OVAL_CHARM, DayCare_EventScript_GiveOvalCharm
+#endif
 	release
 	end
+
+#if IS_HNS
+@ Oval Charm with the first Day Care egg (Route 5, Route 34, Route 117).
+@ See docs/origin_jade/DECISIONS.md, D-036.
+DayCare_EventScript_GiveOvalCharm::
+	msgbox DayCare_Text_OvalCharmFirstEgg, MSGBOX_DEFAULT
+	giveitem ITEM_OVAL_CHARM
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+	setflag FLAG_RECEIVED_OVAL_CHARM
+	msgbox DayCare_Text_ExplainOvalCharm, MSGBOX_DEFAULT
+	return
+#endif
 
 Route117_EventScript_CheckMonReceivedMail::
 	specialvar VAR_RESULT, CheckDaycareMonReceivedMail
@@ -387,6 +402,26 @@ Route117_Text_IWillKeepDoYouWantIt:
 #else
 	.string "I really will keep it.\n"
 	.string "You do want this, yes?$"
+#endif
+
+#if IS_HNS
+DayCare_Text_OvalCharmFirstEgg:
+#if GERMAN
+	.string "Für deine erste erfolgreiche Zucht\n"
+	.string "geben wir dir das hier noch dazu!$"
+#else
+	.string "This was your first successful\n"
+	.string "breeding with us, so take this too!$"
+#endif
+
+DayCare_Text_ExplainOvalCharm:
+#if GERMAN
+	.string "Mit dem Ovalpin findet sich in der\n"
+	.string "Pension öfter ein Ei.$"
+#else
+	.string "With the OVAL CHARM, EGGS turn up\n"
+	.string "at the DAY CARE more often.$"
+#endif
 #endif
 
 Route117_PokemonDayCare_Text_WouldYouLikeUsToRaiseAMon:

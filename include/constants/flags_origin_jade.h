@@ -77,6 +77,8 @@
 #define FLAG_DEFEATED_UNION_CAVE_LAPRAS              (OJ_FLAGS_JOHTO + 11)
 #define FLAG_CAUGHT_RED_GYARADOS                     (OJ_FLAGS_JOHTO + 12)
 #define FLAG_DEFEATED_RED_GYARADOS                   (OJ_FLAGS_JOHTO + 13)
+// A Day Care man gave the Oval Charm with the first egg.
+#define FLAG_RECEIVED_OVAL_CHARM                     (OJ_FLAGS_JOHTO + 14)
 
 // ---------------------------------------------------------------------
 // Hoenn (OJ_FLAGS_HOENN + 0 to + 95)
@@ -135,6 +137,8 @@
 #define FLAG_CAUGHT_LATIOS                                   (OJ_TRAINER_FLAGS_HOENN_END + 9)
 // First Hoenn title done: the end credits rolled. Later Hoenn titles skip them.
 #define FLAG_ROLLED_ENDING_CREDITS                           (OJ_TRAINER_FLAGS_HOENN_END + 10)
+// The game designer in Lilycove's Cove Lily Motel gave the Shiny Charm.
+#define FLAG_RECEIVED_SHINY_CHARM                            (OJ_TRAINER_FLAGS_HOENN_END + 11)
 
 // ---------------------------------------------------------------------
 // Cross-region (OJ_FLAGS_GLOBAL + 0 to + 63)

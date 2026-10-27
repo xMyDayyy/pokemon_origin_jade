@@ -4707,6 +4707,9 @@ bool16 HasAllMons(void)
     {
         j = ObtainableToNationalOrder(i + 1);
         k = NationalPokedexNumToSpecies(j);
+        // Origin Jade: disabled species do not count.
+        if (!IsSpeciesEnabled(k))
+            continue;
         if (!(gSpeciesInfo[k].dexNotRequired || (gSpeciesInfo[k].isMythical && !gSpeciesInfo[k].dexForceRequired)) && !GetSetPokedexFlag(j, FLAG_GET_CAUGHT))
             return FALSE;
     }
