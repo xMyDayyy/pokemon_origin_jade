@@ -729,3 +729,4 @@ gSpecials::
 	def_special RecordLegendaryBattleOutcome
 	def_special ReviveDefeatedLegendaries
 	def_special GameClearNoCredits
+	def_special GetWeekday

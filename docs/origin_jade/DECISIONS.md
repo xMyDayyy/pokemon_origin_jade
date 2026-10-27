@@ -533,6 +533,16 @@ dated 2026-10-10 or later were decided directly.
     Top-Beleber (O-007).
 - **Evidence:** decision 2026-10-15 (O-014); Blue 2026-10-20 (O-018).
 
+### D-033 Weekdays
+- **Status:** Active (2026-10-15, changed 2026-10-20)
+- **Decision:** Weekday content follows the RTC (`special GetWeekday`,
+  `src/weekday_oj.c`).
+  - Bug-Catching Contest: Tuesday, Thursday and Saturday, once per day.
+    Only a judged contest uses up the day; retiring without a catch or
+    whiting out lets the player enter again the same day.
+  - Not weekday-bound: Union Cave's Lapras (D-026), the M.S. Aqua (D-029).
+- **Evidence:** decision 2026-10-15; contest day 2026-10-20.
+
 ---
 
 ## Planned, not built yet
@@ -614,3 +624,4 @@ dated 2026-10-10 or later were decided directly.
 | Legendaries come back after Johto's second Hall of Fame, caught or not | HnS | D-026 (2026-10-15) |
 | A knocked-out Moltres is gone for good | D-022 (2026-10-11) | D-026 (2026-10-15) |
 | The M.S. Aqua sails on two weekdays per port | D-029 / D-033 (2026-10-15) | D-029 (2026-10-20) |
+| Entering the Bug-Catching Contest uses up the day | D-033 (2026-10-15) | D-033 (2026-10-20) |
