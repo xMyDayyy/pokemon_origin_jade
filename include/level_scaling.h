@@ -11,7 +11,9 @@ struct Trainer;
 bool32 LevelScalingActive(void);
 u8 ScaleWildMonLevel(u8 level);
 u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel);
-u16 ScaleTrainerMonSpecies(u16 species, u8 scaledLevel);
+// Call right after ScaleTrainerMonLevel for the same Pokemon. partyIndex: its index
+// in the trainer's party data.
+u16 ScaleTrainerMonSpecies(u16 species, u8 scaledLevel, u16 trainerId, u8 partyIndex);
 
 // Not tied to scaling: also used by the region map, location names and HM licenses.
 bool32 IsHoennMapsec(u32 mapSecId);

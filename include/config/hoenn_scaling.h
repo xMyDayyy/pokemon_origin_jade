@@ -22,9 +22,12 @@
 
 
 // Trainer Pokémon (not wild ones) evolve once the scaled level reaches
-// their evolution level. Branches are picked at random.
+// their evolution level. Stone, trade and condition-only evolutions use the
+// level in src/data/trainer_evo_levels.h. Branches and skipped steps are fixed
+// per trainer and party slot.
 #define HOENN_SCALING_TRAINER_EVOLVE TRUE
-#define HOENN_SCALING_EVO_OTHER_LEVEL 36   // threshold for stone/trade evolutions
+#define HOENN_SCALING_EVO_OTHER_LEVEL 36   // their level if the target species is not in that table
+#define HOENN_SCALING_EVO_SKIP_PERCENT 10  // chance per evolution step to stay at the current stage
 
 #define HOENN_SCALING_MIN_LEVEL      5     // absolute lower bound
 #define HOENN_SCALING_MAX_LEVEL      100   // absolute upper bound

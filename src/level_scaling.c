@@ -66,6 +66,7 @@ struct ScalingRules
     u8 bossExtra;
     u8 fixedMinLevel;
     u8 evoOtherLevel;
+    u8 evoSkipPercent;
     u8 minLevel;
     u8 maxLevel;
     u8 defaultFloor;
@@ -98,6 +99,7 @@ static const struct ScalingRules sHoennRules =
     .bossExtra           = HOENN_SCALING_BOSS_EXTRA,
     .fixedMinLevel       = HOENN_SCALING_FIXED_MIN_LEVEL,
     .evoOtherLevel       = HOENN_SCALING_EVO_OTHER_LEVEL,
+    .evoSkipPercent      = HOENN_SCALING_EVO_SKIP_PERCENT,
     .minLevel            = HOENN_SCALING_MIN_LEVEL,
     .maxLevel            = HOENN_SCALING_MAX_LEVEL,
     .defaultFloor        = HOENN_SCALING_DEFAULT_FLOOR,
@@ -127,6 +129,7 @@ static const struct ScalingRules sJohtoRules =
     .bossExtra           = JOHTO_SCALING_BOSS_EXTRA,
     .fixedMinLevel       = JOHTO_SCALING_FIXED_MIN_LEVEL,
     .evoOtherLevel       = JOHTO_SCALING_EVO_OTHER_LEVEL,
+    .evoSkipPercent      = JOHTO_SCALING_EVO_SKIP_PERCENT,
     .minLevel            = JOHTO_SCALING_MIN_LEVEL,
     .maxLevel            = JOHTO_SCALING_MAX_LEVEL,
     .defaultFloor        = JOHTO_SCALING_DEFAULT_FLOOR,
@@ -152,6 +155,7 @@ static const struct ScalingRules sKantoRules =
     .bossExtra           = KANTO_SCALING_BOSS_EXTRA,
     .fixedMinLevel       = KANTO_SCALING_FIXED_MIN_LEVEL,
     .evoOtherLevel       = KANTO_SCALING_EVO_OTHER_LEVEL,
+    .evoSkipPercent      = KANTO_SCALING_EVO_SKIP_PERCENT,
     .minLevel            = KANTO_SCALING_MIN_LEVEL,
     .maxLevel            = KANTO_SCALING_MAX_LEVEL,
     .defaultFloor        = KANTO_SCALING_MIN_LEVEL,
@@ -290,12 +294,73 @@ u8 ScaleWildMonLevel(u8 level)
     return scaled;
 }
 
+// One row of sTrainerEvoLevels.
+struct TrainerEvoLevel
+{
+    u16 species;
+    u8 level;
+};
+
+#include "data/trainer_evo_levels.h"
+
+// Level from which a scaled trainer Pokemon takes a stone, trade or condition-only
+// evolution into targetSpecies; fallback for species missing in the table.
+static u8 GetTrainerEvoLevel(u16 targetSpecies, u8 fallback)
+{
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sTrainerEvoLevels); i++)
+    {
+        if (sTrainerEvoLevels[i].species == targetSpecies)
+            return sTrainerEvoLevels[i].level;
+    }
+    return fallback;
+}
+
+// Rare forms and special evolutions ScaleTrainerMonSpecies never picks.
+static const u16 sTrainerEvoExcluded[] =
+{
+    SPECIES_DUDUNSPARCE_THREE_SEGMENT,
+    SPECIES_URSALUNA_BLOODMOON,
+    SPECIES_MAUSHOLD_THREE,
+};
+
+static bool32 IsTrainerEvoExcluded(u16 species)
+{
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sTrainerEvoExcluded); i++)
+    {
+        if (sTrainerEvoExcluded[i] == species)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+// Fixed pseudo-random value per trainer, party slot and evolution step (lowbias32 mix).
+static u32 TrainerEvoHash(u16 trainerId, u8 partyIndex, u8 step)
+{
+    u32 hash = trainerId | ((u32)partyIndex << 16) | ((u32)step << 24);
+
+    hash ^= hash >> 16;
+    hash *= 0x7FEB352D;
+    hash ^= hash >> 15;
+    hash *= 0x846CA68B;
+    hash ^= hash >> 16;
+    return hash;
+}
 
 // Trainer Pokemon only: evolves up to two steps if the scaled level allows it.
-u16 ScaleTrainerMonSpecies(u16 species, u8 scaledLevel)
+// Level evolutions at their level; stone, trade and level-0 (condition-only) ones
+// at GetTrainerEvoLevel, see docs/origin_jade/DECISIONS.md, D-012.
+// Each step is skipped with evoSkipPercent, which also ends the evolution.
+// Skips and branches come from TrainerEvoHash.
+// Call right after ScaleTrainerMonLevel for the same Pokemon. partyIndex: its index
+// in the trainer's party data.
+u16 ScaleTrainerMonSpecies(u16 species, u8 scaledLevel, u16 trainerId, u8 partyIndex)
 {
     const struct ScalingRules *rules = GetScalingRules();
-    u32 step, i;
+    u32 step, i, j;
 
     if (rules == NULL || rules->trainerEvolve != TRUE)
         return species;
@@ -304,32 +369,49 @@ u16 ScaleTrainerMonSpecies(u16 species, u8 scaledLevel)
     {
         const struct Evolution *evos = GetSpeciesEvolutions(species);
         u16 candidates[8];
-        u32 count = 0;
+        u32 count = 0, hash;
 
         if (evos == NULL)
             break;
         for (i = 0; evos[i].method != EVOLUTIONS_END && count < ARRAY_COUNT(candidates); i++)
         {
             u16 threshold;
+            if (IsTrainerEvoExcluded(evos[i].targetSpecies))
+                continue;
             switch (evos[i].method)
             {
             case EVO_LEVEL:
             case EVO_LEVEL_BATTLE_ONLY:
-                threshold = evos[i].param;
+                // Level 0: condition-only (friendship, move, place), like stone/trade.
+                if (evos[i].param != 0)
+                    threshold = evos[i].param;
+                else
+                    threshold = GetTrainerEvoLevel(evos[i].targetSpecies, rules->evoOtherLevel);
                 break;
             case EVO_ITEM:
             case EVO_TRADE:
-                threshold = rules->evoOtherLevel;
+                threshold = GetTrainerEvoLevel(evos[i].targetSpecies, rules->evoOtherLevel);
                 break;
             default:
                 continue;
             }
-            if (scaledLevel >= threshold)
+            if (scaledLevel < threshold)
+                continue;
+            // Each target once (Eevee: 12 evolutions into 8 species).
+            for (j = 0; j < count; j++)
+            {
+                if (candidates[j] == evos[i].targetSpecies)
+                    break;
+            }
+            if (j == count)
                 candidates[count++] = evos[i].targetSpecies;
         }
         if (count == 0)
             break;
-        species = candidates[Random() % count];
+        hash = TrainerEvoHash(trainerId, partyIndex, step);
+        if ((hash & 0xFFFF) % 100 < rules->evoSkipPercent)
+            break;
+        species = candidates[(hash >> 16) % count];
     }
     return species;
 }
@@ -414,7 +496,7 @@ u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLeve
     return level;
 }
 
-u16 ScaleTrainerMonSpecies(u16 species, u8 scaledLevel)
+u16 ScaleTrainerMonSpecies(u16 species, u8 scaledLevel, u16 trainerId, u8 partyIndex)
 {
     return species;
 }

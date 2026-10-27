@@ -2003,7 +2003,8 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
     }
 }
 
-u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags)
+// trainerId goes to ScaleTrainerMonSpecies (level scaling).
+static u8 CreateNPCTrainerPartyWithId(struct Pokemon *party, const struct Trainer *trainer, u16 trainerId, bool32 firstTrainer, u32 battleTypeFlags)
 {
     u32 personalityValue;
     s32 i;
@@ -2071,7 +2072,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             }
             {
                 u8 scaledLvl = ScaleTrainerMonLevel(trainer, partyData[monIndex].lvl, scalingPartyMaxLvl);
-                u16 species = ScaleTrainerMonSpecies(partyData[monIndex].species, scaledLvl);
+                u16 species = ScaleTrainerMonSpecies(partyData[monIndex].species, scaledLvl, trainerId, monIndex);
                 #if RANDOMIZER_AVAILABLE == TRUE
                 species = RandomizeTrainerMon(trainer->trainerClass, i, monsCount, species);
                 #endif
@@ -2187,6 +2188,12 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
     return trainer->partySize;
 }
 
+// Parties without a trainer id (debug menu, tests).
+u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags)
+{
+    return CreateNPCTrainerPartyWithId(party, trainer, TRAINER_NONE, firstTrainer, battleTypeFlags);
+}
+
 static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 firstTrainer)
 {
     u8 retVal;
@@ -2204,11 +2211,11 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
         if (tempTrainer.partySize == 0)
             tempTrainer.partySize = origTrainer->partySize;
 
-        retVal = CreateNPCTrainerPartyFromTrainer(party, (const struct Trainer *)(&tempTrainer), firstTrainer, gBattleTypeFlags);
+        retVal = CreateNPCTrainerPartyWithId(party, (const struct Trainer *)(&tempTrainer), trainerNum, firstTrainer, gBattleTypeFlags);
     }
     else
     {
-        retVal = CreateNPCTrainerPartyFromTrainer(party, GetTrainerStructFromId(trainerNum), firstTrainer, gBattleTypeFlags);
+        retVal = CreateNPCTrainerPartyWithId(party, GetTrainerStructFromId(trainerNum), trainerNum, firstTrainer, gBattleTypeFlags);
     }
     return retVal;
 }
@@ -2219,7 +2226,7 @@ void CreateTrainerPartyForPlayer(void)
 
     ZeroPlayerPartyMons();
     gPartnerTrainerId = gSpecialVar_0x8004;
-    CreateNPCTrainerPartyFromTrainer(gPlayerParty, GetTrainerStructFromId(gSpecialVar_0x8004), TRUE, BATTLE_TYPE_TRAINER);
+    CreateNPCTrainerPartyWithId(gPlayerParty, GetTrainerStructFromId(gSpecialVar_0x8004), gSpecialVar_0x8004, TRUE, BATTLE_TYPE_TRAINER);
 }
 
 void VBlankCB_Battle(void)
