@@ -350,20 +350,22 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** b0a460c224, 6a6a4fcaec, c3c361d4b4. The row came in with
   6a6a4fcaec, the default TRUE with cc58e0c648; both reverted 2026-10-12.
 
-### D-024 Goldenrod's radio quiz gives a Master Ball
-- **Status:** Active (2026-10-12)
+### D-024 Goldenrod's radio quiz gives the Magnet Train pass
+- **Status:** Active (2026-10-12, prize changed 2026-10-15)
 - **Decision:** The radio card comes from the Viridian tutorial and stays:
   Goldenrod's first-visit flag heap no longer clears `FLAG_ENABLE_RADIO`.
-  The radio tower quiz stays and gives a Master Ball. Whitney in the radio
+  The radio tower quiz stays; its prize is the Pass (Fahrschein) for the
+  Magnet Train (D-029). Whitney in the radio
   tower and the receptionist's offer depend on
   `FLAG_WON_GOLDENROD_RADIO_QUIZ`; the Beauty at the gym door stays on
   `FLAG_HIDE_GOLDENROD_BEAUTY`. Johto radio stations only play the Rocket
   broadcast during the takeover (Goldenrod state 6 until
   `FLAG_HIDE_GOLDENROD_ROCKETS` is set again). Older saves are migrated in
   `LoadGameSave` (`FLAG_MIGRATED_GOLDENROD_FLAG_HEAP`); saves that already
-  won the quiz keep the radio card as their prize. With the item randomizer
-  on, the prize is randomized like Elm's and Silph's Master Balls.
-- **Evidence:** decision 2026-10-12 (O-005).
+  won the quiz keep the radio card as their prize. The Pass is a key item;
+  the item randomizer leaves it alone. The quiz answers stay as in HnS:
+  question 3 (does Kurt use Aprikoko?) is answered No, Kurt uses berries.
+- **Evidence:** decision 2026-10-12 (O-005); quiz answers 2026-10-20.
 
 ### D-025 Radio stations by region and progress
 - **Status:** Active (2026-10-13)
@@ -452,6 +454,14 @@ dated 2026-10-10 or later were decided directly.
     `HallOfFame_SetRollCredits` (`src/hall_of_fame.c`).
 - **Evidence:** decision 2026-10-15 (O-013).
 
+### D-029 Magnet Train and radio quiz
+- **Status:** Active (2026-10-15)
+- **Decision:**
+  - The Magnet Train runs once the player has the Pass, the prize of
+    Goldenrod's radio quiz (D-024). Both stations only check the Pass; there
+    is no power plant quest.
+- **Evidence:** decision 2026-10-15.
+
 ---
 
 ## Planned, not built yet
@@ -537,5 +547,6 @@ dated 2026-10-10 or later were decided directly.
 | North exit leads to HnS's Victory Road after the league change | D-010 (2026-10-10) | D-010 (2026-10-12) |
 | After every league (Johto, Hoenn, Red too) the player wakes up in Pallet Town | D-002 (2026-10-10) | D-028 (2026-10-15) |
 | Credits after the Johto title and after Red | HnS | D-028 (2026-10-15) |
+| Goldenrod's radio quiz gives a Master Ball | D-024 (2026-10-12) | D-024 / D-029 (2026-10-15) |
 | Legendaries come back after Johto's second Hall of Fame, caught or not | HnS | D-026 (2026-10-15) |
 | A knocked-out Moltres is gone for good | D-022 (2026-10-11) | D-026 (2026-10-15) |

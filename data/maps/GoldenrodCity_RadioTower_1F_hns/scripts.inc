@@ -49,17 +49,21 @@ RadioTower1F_Text_Whitney1::
 #if GERMAN
 	.string "Bianka: Hallooo!\n"
 	.string "Ich heiße Bianka!\p"
-	.string "Hier läuft gerade ein Quiz, bei dem man\n"
-	.string "einen Meisterball abstauben kann!\l"
-	.string "Ich bin auch genau deswegen hier…\p"
-	.string "Aber dieses Quiz ist echt unglaublich\n"
-	.string "schwierig!$"
+	.string "Hier läuft ein Quiz, bei dem man\n"
+	.string "einen Fahrschein für den Magnetzug\l"
+	.string "gewinnen kann!\p"
+	.string "Damit könnte ich in Saffronia City\n"
+	.string "shoppen gehen!\p"
+	.string "Aber dieses Quiz ist echt\n"
+	.string "unglaublich schwierig!$"
 #else
 	.string "WHITNEY: Hi!\p"
 	.string "My name is WHITNEY!\p"
 	.string "I heard about the QUIZ to win a\n"
-	.string "MASTER BALL, so I came here to get\l"
-	.string "one...\p"
+	.string "MAGNET TRAIN PASS, so I came\l"
+	.string "here to get one...\p"
+	.string "Then I could go shopping in\n"
+	.string "SAFFRON CITY!\p"
 	.string "But this QUIZ is so hard!$"
 #endif
 
@@ -136,10 +140,10 @@ RadioTower1F_EventScript_ReceptionQuiz5::
 	release
 	end
 
-@ Origin Jade: the quiz prize is a Master Ball.
+@ Origin Jade: the quiz prize is the Magnet Train pass, see docs/origin_jade/DECISIONS.md, D-029.
 RadioTower1F_EventScript_ReceptionGivePrize::
 	msgbox RadioTower1F_Text_QuizWin, MSGBOX_DEFAULT
-	giveitem ITEM_MASTER_BALL
+	giveitem ITEM_PASS
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	msgbox RadioTower1F_Text_TuneIn, MSGBOX_DEFAULT
 	closemessage
@@ -201,17 +205,17 @@ RadioTower1F_Text_RadioCardWomanOfferQuiz:
 	.string "Bei uns läuft momentan ein besonderes\n"
 	.string "Quiz.\p"
 	.string "Beantworte die fünf Fragen richtig,\n"
-	.string "um einen Meisterball zu gewinnen.\p"
-	.string "Mit ihm fängst du garantiert jedes\n"
-	.string "wilde Pokémon!\p"
+	.string "um einen Fahrschein zu gewinnen.\p"
+	.string "Damit fährst du mit dem Magnetzug\n"
+	.string "nach Saffronia City in Kanto!\p"
 	.string "Möchtest du am Quiz teilnehmen?$"
 #else
     .string "We have a special QUIZ campaign on\n"
     .string "right now.\p"
     .string "Answer five questions correctly to\n"
-    .string "win a MASTER BALL.\p"
-    .string "It catches any wild POKéMON without\n"
-    .string "fail.\p"
+    .string "win a rail PASS.\p"
+    .string "It lets you ride the MAGNET TRAIN\n"
+    .string "to SAFFRON CITY in KANTO.\p"
     .string "Would you like to take the QUIZ?$"
 #endif
 

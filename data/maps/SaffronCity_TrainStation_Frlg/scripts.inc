@@ -7,11 +7,7 @@ SaffronStationFrlg_OnFrame::
 	.2byte 0
 
 SaffronStationFrlg_EventScript_Nerd::
-	goto_if_set FLAG_RETURNED_MACHINE_PART, SaffronStationFrlg_EventScript_Nerd2
 	msgbox SaffronMagnetTrainStationFrlg_Text_GymGuide, MSGBOX_NPC
-	end
-SaffronStationFrlg_EventScript_Nerd2::
-	msgbox SaffronMagnetTrainStationFrlg_Text_GymGuide_ReturnedPart, MSGBOX_NPC
 	end
 SaffronStationFrlg_EventScript_Lass::
 	msgbox SaffronMagnetTrainStationFrlg_Text_Lass, MSGBOX_NPC
@@ -20,25 +16,12 @@ SaffronStationFrlg_EventScript_Teacher::
 	msgbox SaffronMagnetTrainStationFrlg_Text_Teacher, MSGBOX_NPC
 	end
 
+@ The train only needs the pass (radio quiz prize), see docs/origin_jade/DECISIONS.md, D-029.
 SaffronStationFrlg_EventScript_Attendant::
 	lock
 	faceplayer
-	goto_if_unset FLAG_RETURNED_MACHINE_PART, SaffronStationFrlg_EventScript_AttendantTrainNotRunning
 	checkitem ITEM_PASS
 	goto_if_eq VAR_RESULT, TRUE, SaffronStationFrlg_EventScript_BoardTrain
-	goto_if_set FLAG_RETURNED_MACHINE_PART, SaffronStationFrlg_EventScript_Attendant2
-	msgbox SaffronMagnetTrainStationFrlg_Text_OfficerNoRailPass, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-
-SaffronStationFrlg_EventScript_AttendantTrainNotRunning::
-	msgbox SaffronMagnetTrainStationFrlg_Text_Officer_TrainNotOperating, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-
-SaffronStationFrlg_EventScript_Attendant2::
 	msgbox SaffronMagnetTrainStationFrlg_Text_OfficerNoRailPass, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -94,7 +77,6 @@ SaffronStationFrlg_EventScript_ExitTrain::
 	waitmovement 0
 	release
 	end
-
 
 SaffronStationFrlg_Movement_ExitTrain:
 	walk_down
@@ -289,30 +271,6 @@ SaffronStationFrlg_Movement_SlideLeft:
 	slide_left
 	step_end
 
-SaffronMagnetTrainStationFrlg_Text_OfficerTrainHasntComeIn:
-#if GERMAN
-	.string "Es fahren keine Züge mehr!\p"
-	.string "Ich könnte alle Fahrgäste Huckepack\n"
-	.string "nehmen und sie auf meinem Rücken…\p"
-	.string "Aber wenn ich’s mir genau überlege…\n"
-	.string "Nein, besser doch nicht.$"
-#else
-    .string "The train hasn't come in…\p"
-    .string "I know! I'll carry the passengers\n"
-    .string "on my back!\p"
-    .string "That won't work.$"
-#endif
-
-SaffronMagnetTrainStationFrlg_Text_OfficerComingAboard:
-#if GERMAN
-	.string "Abfahrt nach Dukatia City in wenigen\n"
-	.string "Minuten.\p"
-	.string "Steigst du auch ein?$"
-#else
-    .string "We'll soon depart for GOLDENROD.\p"
-    .string "Are you coming aboard?$"
-#endif
-
 SaffronMagnetTrainStationFrlg_Text_OfficerRightThisWay:
 #if GERMAN
 	.string "Darf ich bitte deinen Fahrschein\n"
@@ -325,72 +283,33 @@ SaffronMagnetTrainStationFrlg_Text_OfficerRightThisWay:
 
 SaffronMagnetTrainStationFrlg_Text_OfficerNoRailPass:
 #if GERMAN
-	.string "Es tut mir Leid, aber du hast keinen\n"
+	.string "Verzeihung, aber du hast keinen\n"
 	.string "Fahrschein.$"
 #else
     .string "Sorry. You don't have a rail PASS.$"
 #endif
 
-SaffronMagnetTrainStationFrlg_Text_OfficerHopeToSeeYouAgain:
-#if GERMAN
-	.string "Komm bald wieder!$"
-#else
-    .string "We hope to see you again!$"
-#endif
-
-SaffronMagnetTrainStationFrlg_Text_OfficerArrivedInSaffron:
-#if GERMAN
-	.string "Ankunft in Saffronia City.\p"
-	.string "Beehre uns bald wieder.$"
-#else
-    .string "We have arrived in SAFFRON.\p"
-    .string "We hope to see you again.$"
-#endif
-
-@=============================================================================================================================
-
-SaffronMagnetTrainStationFrlg_Text_Officer_TrainNotOperating:
-#if GERMAN
-	.string "Es tut mir Leid, aber der Magnetzug ist\n"
-	.string "im Moment nicht in Betrieb.$"
-#else
-	.string "I'm sorry, but the MAGNET TRAIN\n"
-	.string "isn't operating now.$"
-#endif
-
 SaffronMagnetTrainStationFrlg_Text_GymGuide:
 #if GERMAN
-	.string "Der Magnetzug ist das Zeug, aus dem\n"
-	.string "Träume gemacht sind! Als Treibstoff\l"
-	.string "braucht er nur Strom und Magnetkraft!\p"
-	.string "Ohne Strom ist er allerdings nicht viel\n"
-	.string "mehr als eine langweilige Metallkiste.$"
+	.string "Der Magnetzug ist ein Wunderwerk!\n"
+	.string "Er fährt mit Strom und Magnetkraft.\p"
+	.string "In Windeseile bringt er dich bis\n"
+	.string "nach Dukatia City in Johto!$"
 #else
 	.string "The MAGNET TRAIN is a super-modern\n"
 	.string "rail liner that uses electricity\p"
 	.string "and magnets to attain incredible\n"
 	.string "speed.\p"
-	.string "However, if there isn't any\n"
-	.string "electricity…$"
-#endif
-
-SaffronMagnetTrainStationFrlg_Text_GymGuide_ReturnedPart:
-#if GERMAN
-	.string "Puh…\p"
-	.string "Wie oft bin ich jetzt wohl schon zwischen\n"
-	.string "Kanto und Johto hin- und hergefahren?$"
-#else
-	.string "Whew…\p"
-	.string "How many times have I gone back\n"
-	.string "and forth between KANTO and JOHTO?$"
+	.string "It gets you to GOLDENROD CITY in\n"
+	.string "JOHTO in no time!$"
 #endif
 
 SaffronMagnetTrainStationFrlg_Text_Teacher:
 #if GERMAN
 	.string "Bevor der Bahnhof des Magnetzugs\n"
-	.string "gebaut wurde, stand hier ein Haus.\l"
-	.string "Darin lebte ein kleines Mädchen, das\l"
-	.string "alle Leute die Nachahmerin nannten.$"
+	.string "gebaut wurde, stand hier ein Haus.\p"
+	.string "Darin lebte ein kleines Mädchen,\n"
+	.string "das alle Leute Nachahmerin nannten.$"
 #else
 	.string "Before the MAGNET TRAIN STATION\n"
 	.string "was built, there was a house there.\p"
@@ -402,9 +321,8 @@ SaffronMagnetTrainStationFrlg_Text_Lass:
 #if GERMAN
 	.string "Hi! Hast du einen Fahrschein?\p"
 	.string "Ich habe einen!\p"
-	.string "Jeder in Saffronia City hat einen, um\n"
-	.string "damit den Magnetzug benutzen zu\l"
-	.string "können!$"
+	.string "Wer in Saffronia City mit dem\n"
+	.string "Magnetzug fährt, hat einen!$"
 #else
 	.string "Hi. Do you have a rail PASS?\n"
 	.string "I have one.\p"

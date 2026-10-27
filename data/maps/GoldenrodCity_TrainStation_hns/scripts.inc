@@ -6,23 +6,16 @@ GoldenrodCity_TrainStation_OnFrame::
 	map_script_2 VAR_TRAIN, 1, GoldenrodCity_TrainStation_EventScript_ExitTrain
 	.2byte 0
 
+@ The train only needs the pass (radio quiz prize), see docs/origin_jade/DECISIONS.md, D-029.
 GoldenrodCity_TrainStation_EventScript_Attendant::
 	lock
 	faceplayer
 	checkitem ITEM_PASS
 	goto_if_eq VAR_RESULT, TRUE, GoldenrodCity_TrainStation_EventScript_BoardTrain
-	goto_if_set FLAG_RETURNED_MACHINE_PART, GoldenrodCity_TrainStation_EventScript_Attendant2
-	msgbox GoldenrodMagnetTrainStation_Text_OfficerTrainHasntComeIn, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-
-GoldenrodCity_TrainStation_EventScript_Attendant2::
 	msgbox GoldenrodMagnetTrainStation_Text_OfficerNoRailPass, MSGBOX_DEFAULT
 	closemessage
 	release
 	end
-
 
 GoldenrodCity_TrainStation_EventScript_BoardTrain::
 	msgbox GoldenrodMagnetTrainStation_Text_OfficerRightThisWay, MSGBOX_DEFAULT
@@ -295,20 +288,6 @@ GoldenrodCity_TrainStation_Movement_SlideRight:
 	slide_right
 	step_end
 
-GoldenrodMagnetTrainStation_Text_OfficerTrainHasntComeIn:
-#if GERMAN
-	.string "Es fahren keine Züge mehr!\p"
-	.string "Ich könnte alle Fahrgäste Huckepack\n"
-	.string "nehmen und sie auf meinem Rücken…\p"
-	.string "Aber wenn ich’s mir genau überlege…\n"
-	.string "Nein, besser doch nicht.$"
-#else
-    .string "The train hasn't come in…\p"
-    .string "I know! I'll carry the passengers\n"
-    .string "on my back!\p"
-    .string "That won't work.$"
-#endif
-
 GoldenrodMagnetTrainStation_Text_OfficerRightThisWay:
 #if GERMAN
 	.string "Darf ich deinen Fahrschein sehen?\p"
@@ -329,10 +308,11 @@ GoldenrodMagnetTrainStation_Text_OfficerNoRailPass:
 GoldenrodMagnetTrainStation_Text_GentlemanPresident:
 #if GERMAN
 	.string "Ich bin der Präsident.\p"
-	.string "Mein Traum war es, einen Zug zu bauen,\n"
-	.string "der schneller ist als jedes Pokémon.\p"
-	.string "Ich wollte, dass Johto und Kanto enger\n"
-	.string "zusammenwachsen!$"
+	.string "Mein Traum war es, einen Zug zu\n"
+	.string "bauen, der schneller ist als jedes\l"
+	.string "Pokémon.\p"
+	.string "Ich wollte, dass Johto und Kanto\n"
+	.string "enger zusammenwachsen!$"
 #else
     .string "I'm the PRESIDENT.\p"
     .string "My dream was to build a train that\n"
@@ -352,7 +332,7 @@ GoldenrodCity_TrainStation_Text_Boy:
 
 GoldenrodCity_TrainStation_Text_Psychic:
 #if GERMAN
-	.string "Ich dachte du hast ihn!$"
+	.string "Ich dachte, du hast ihn!$"
 #else
 	.string "I thought you had it!$"
 #endif
