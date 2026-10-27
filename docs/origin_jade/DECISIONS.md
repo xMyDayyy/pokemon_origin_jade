@@ -41,23 +41,23 @@ dated 2026-10-10 or later were decided directly.
   0.8 Johto finished, 0.9 special features (Nuzlocke, randomizer), 1.0
   release after the beta (e2e9ebff45).
 
-### D-002 Home is Pallet Town - after every league
+### D-002 Home is Pallet Town
 - **Status:** Active (2026-10-10). Supersedes the rule
-  "New Bark Town once Johto was visited" from a740935891.
+  "New Bark Town once Johto was visited" from a740935891. Changed
+  2026-10-15 for Johto, Hoenn and Red (D-028).
 - **Decision:** Mom lives in Pallet Town only. The house in New Bark Town
   belongs to a stranger, and Littleroot Town has no player family (Brendan's
-  house is Norman's family, May's house is Professor Birch's). After every
-  league - Kanto, Johto, Hoenn, and after Red - the player wakes up at home
-  in Pallet Town.
+  house is Norman's family, May's house is Professor Birch's). After the
+  Kanto league the player wakes up at home in Pallet Town. After Johto
+  titles and Red the game continues in New Bark Town, after Hoenn titles in
+  Littleroot Town, each in front of the professor's lab (D-028).
 - **Why:** The player grew up in Pallet Town (intro text), Mom gives the
   PokeCom and the Running Shoes there, her savings menu moved there, the
   wall clock is set there. Waking up in New Bark Town or Littleroot Town
   contradicts all of that.
-- **Code:** `GameClear` and `EnterHallOfFame` in
-  `src/post_battle_event_funcs.c`; `setrespawn` in
-  `PokemonLeague_HallOfFame_hns`, `EverGrandeCity_HallOfFame` (HnS branch),
-  `MtSilver_SummitDay_hns`, `data/scripts/new_game.inc`; the respawn fallback
-  in `src/overworld.c`; the Abra teleport "home" in
+- **Code:** `EnterHallOfFame` in `src/post_battle_event_funcs.c` (Kanto);
+  `setrespawn` in `data/scripts/new_game.inc`; Johto, Hoenn and Red:
+  D-028; the respawn fallback in `src/overworld.c`; the Abra teleport "home" in
   `IndigoPlateau_PokemonCenter_hns`. Fly to Littleroot lands in front of the
   lab, not in a bedroom (c41aa5ed17).
 - **Evidence:** 91a23faa50 (intro: the player lives in Pallet Town),
@@ -431,6 +431,27 @@ dated 2026-10-10 or later were decided directly.
   reach it after the theater. HnS's Kanto part stays retired.
 - **Evidence:** decision 2026-10-15.
 
+### D-028 Leagues: farmable, continue in the region, credits at the end
+- **Status:** Active (2026-10-15). Replaces D-002 for Johto, Hoenn and Red.
+- **Decision:**
+  - Johto's league can be repeated: the Black Belt in front of the Elite
+    Four door never shows. Title defences use the `_2` teams, a short Lance
+    scene (no Mary, no Oak) and a Hall of Fame text without Kanto; HnS's
+    `SetGameClearFlags` is gone.
+  - Kanto's league can be repeated until the league change (D-010, D-015).
+    Hoenn's league can be repeated; later Hoenn titles skip May and Birch.
+  - After every Johto title and after Red: Hall of Fame (saves), no credits,
+    the game continues in New Bark Town in front of Elm's lab
+    (`HEAL_LOCATION_NEW_BARK_TOWN_LAB_HNS`). After every Hoenn title it
+    continues in Littleroot Town in front of Birch's lab.
+  - The credits roll once, at the first Hoenn title, the end of the game
+    (`FLAG_ROLLED_ENDING_CREDITS`).
+  - Silver waits in Johto's league center for a daily battle after the Johto
+    title. `{RIVAL}` shows Silver's name on Johto's league maps.
+  - Code: `special GameClearNoCredits` (`src/post_battle_event_funcs.c`),
+    `HallOfFame_SetRollCredits` (`src/hall_of_fame.c`).
+- **Evidence:** decision 2026-10-15 (O-013).
+
 ---
 
 ## Planned, not built yet
@@ -457,8 +478,7 @@ dated 2026-10-10 or later were decided directly.
 - **O-003** Magnet Train and the S.S. Aqua phase at Vermilion: the Machine
   Part / Pass only exist on retired maps, and `FLAG_HIDE_VERMILION_SS_AQUA`
   is never cleared.
-- **O-004** Legendaries return after Johto's second Hall of Fame
-  (`SetGameClearFlags` clears the hide flags that the Kanto maps use too).
+- **O-004** Resolved 2026-10-15 (D-026).
 - **O-005** Resolved 2026-10-12: Kanto never sets Bill's PC flag, the
   Celadon Eevee no longer sets Bill's `FLAG_GOT_EEVEE`, and the radio card
   stays (D-024).
@@ -478,12 +498,7 @@ dated 2026-10-10 or later were decided directly.
   which Oak's lab only sets after the handover).
 - **O-012** Text debt: 172 Johto texts without a German branch (346072a202);
   4951 German HnS lines wider than 216 px (652123e252).
-- **O-013** Johto's league is single-run: after the first Johto title a Black
-  Belt (`FLAG_HIDE_LEAGUE_BLACKBELT`) stands on the only tile in front of the
-  Elite Four door of `IndigoPlateau_PokemonCenter_hns`; only the retired HnS
-  Viridian gym hid him again. Reopening would also bring HnS's second-run
-  texts ("Der Kanto-liga!", "Kanto-champion") and `SetGameClearFlags`
-  (O-004) into play.
+- **O-013** Resolved 2026-10-15 (D-028).
 - **O-014** HnS content that never appears: Silver's daily battle in Johto's
   league center (`FLAG_HIDE_INDIGO_PLATEAU_SILVER`), Clair's rematch in the
   Dragon's Den (`FLAG_HIDE_DEN_CLAIR`) and Janine in the gatehouse
@@ -520,4 +535,7 @@ dated 2026-10-10 or later were decided directly.
 | Johto starts in Mom's house in New Bark Town | HnS | D-004 |
 | A second Moltres on Mt. Silver | HnS | D-022 (2026-10-11) |
 | North exit leads to HnS's Victory Road after the league change | D-010 (2026-10-10) | D-010 (2026-10-12) |
+| After every league (Johto, Hoenn, Red too) the player wakes up in Pallet Town | D-002 (2026-10-10) | D-028 (2026-10-15) |
+| Credits after the Johto title and after Red | HnS | D-028 (2026-10-15) |
+| Legendaries come back after Johto's second Hall of Fame, caught or not | HnS | D-026 (2026-10-15) |
 | A knocked-out Moltres is gone for good | D-022 (2026-10-11) | D-026 (2026-10-15) |

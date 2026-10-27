@@ -59,6 +59,9 @@ EverGrandeCity_ChampionsRoom_EventScript_Defeated::
 	special DrawWholeMapView
 	msgbox EverGrandeCity_ChampionsRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
 	closemessage
+#if IS_HNS
+	goto_if_set FLAG_IS_HOENN_CHAMPION, EverGrandeCity_ChampionsRoom_EventScript_TitleDefenceExitForHoF
+#endif
 	playse SE_DOOR
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic
@@ -157,6 +160,30 @@ EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF::
 	waitstate
 	releaseall
 	end
+
+#if IS_HNS
+@ Repeat Hoenn titles: Wallace leads the player straight to the Hall of Fame, without the rival
+@ and Prof. Birch. The first title sets the flags above. See docs/origin_jade/DECISIONS.md, D-028.
+EverGrandeCity_ChampionsRoom_EventScript_TitleDefenceExitForHoF:
+	applymovement LOCALID_CHAMPIONS_ROOM_WALLACE, Common_Movement_WalkInPlaceFasterUp
+	waitmovement 0
+	delay 20
+	applymovement LOCALID_CHAMPIONS_ROOM_WALLACE, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	msgbox EverGrandeCity_ChampionsRoom_Text_WallaceComeWithMe, MSGBOX_DEFAULT
+	closemessage
+	delay 30
+	applymovement LOCALID_CHAMPIONS_ROOM_WALLACE, EverGrandeCity_ChampionsRoom_Movement_WallaceExitStart
+	applymovement LOCALID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_PlayerExitStart
+	waitmovement 0
+	applymovement LOCALID_CHAMPIONS_ROOM_WALLACE, EverGrandeCity_ChampionsRoom_Movement_WallaceExit
+	applymovement LOCALID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_PlayerExit
+	waitmovement 0
+	warp MAP_EVER_GRANDE_CITY_HALL_OF_FAME, 7, 16
+	waitstate
+	releaseall
+	end
+#endif
 
 EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations::
 	msgbox EverGrandeCity_ChampionsRoom_Text_MayCongratulations, MSGBOX_DEFAULT
@@ -311,8 +338,9 @@ EverGrandeCity_ChampionsRoom_Text_PostBattleSpeech:
 	.string "schlugen sie ein wie ein Blitz.\p"
 	.string "Du hast deine Pokémon mit leichter,\n"
 	.string "aber sicherer Eleganz geführt.\p"
-	.string "Du hast mich mit deiner meisterhaften\n"
-	.string "Vorstellung bezaubert!\p"
+	.string "Du hast mich mit deiner\n"
+	.string "meisterhaften Vorstellung\l"
+	.string "bezaubert!\p"
 	.string "Du hast den ruhmreichen Gipfel der\n"
 	.string "Pokémon Liga erreicht.\p"
 	.string "Für die ganze Hoenn-Region rufe ich\n"
@@ -428,8 +456,8 @@ EverGrandeCity_ChampionsRoom_Text_BirchCongratulations:
 EverGrandeCity_ChampionsRoom_Text_WallaceComeWithMe:
 #if GERMAN
 	.string "Wassili: {PLAYER}{KUN}…\p"
-	.string "Nein! Lass es mich richtig ausdrücken!\n"
-	.string "\p"
+	.string "Nein! Lass es mich richtig\n"
+	.string "ausdrücken!\p"
 	.string "Neuer Champ!\p"
 	.string "Komm mit mir.$"
 #else

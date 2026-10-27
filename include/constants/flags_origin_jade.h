@@ -126,6 +126,8 @@
 #define FLAG_CAUGHT_RAYQUAZA                                 (OJ_TRAINER_FLAGS_HOENN_END + 7)
 #define FLAG_CAUGHT_LATIAS                                   (OJ_TRAINER_FLAGS_HOENN_END + 8)
 #define FLAG_CAUGHT_LATIOS                                   (OJ_TRAINER_FLAGS_HOENN_END + 9)
+// First Hoenn title done: the end credits rolled. Later Hoenn titles skip them.
+#define FLAG_ROLLED_ENDING_CREDITS                           (OJ_TRAINER_FLAGS_HOENN_END + 10)
 
 // ---------------------------------------------------------------------
 // Cross-region (OJ_FLAGS_GLOBAL + 0 to + 63)

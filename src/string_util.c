@@ -482,6 +482,18 @@ static const u8 *ExpandPlaceholder_KunChan(void)
         return gText_ExpandedPlaceholder_Chan;
 }
 
+#if IS_HNS
+// Johto maps that use a Kanto mapsec: Route22_hns and Johto's league (center, Elite Four, Hall of Fame).
+static bool32 IsJohtoMapWithKantoMapsec(void)
+{
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_ROUTE22_HNS)
+     && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ROUTE22_HNS))
+        return TRUE;
+    // gMapGroup_IndoorIndigo_Hns holds only Johto's league maps.
+    return gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_INDIGO_PLATEAU_POKEMON_CENTER_HNS);
+}
+#endif
+
 static const u8 *ExpandPlaceholder_RivalName(void)
 {
 #if IS_FRLG
@@ -494,11 +506,10 @@ static const u8 *ExpandPlaceholder_RivalName(void)
     if (IsHoennMapsec(gMapHeader.regionMapSectionId))
         return gText_ExpandedPlaceholder_May;
 
-    // Route22_hns uses MAPSEC_ROUTE_22 but belongs to Johto.
+    // Johto maps with a Kanto mapsec use the Johto rival, see IsJohtoMapWithKantoMapsec.
     if (gMapHeader.regionMapSectionId >= KANTO_MAPSEC_START
      && gMapHeader.regionMapSectionId <= KANTO_MAPSEC_END
-     && !(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_ROUTE22_HNS)
-       && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ROUTE22_HNS)))
+     && !IsJohtoMapWithKantoMapsec())
     {
         // Older saves may hold garbage here: only use a terminated name.
         {

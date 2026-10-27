@@ -44,8 +44,9 @@ MtSilver_SummitDay_EventScript_RedPostOBC::
 
 MtSilver_SummitDay_EventScript_RedOnDefeat::
 	playse SE_M_BLIZZARD
-	@ Origin Jade: after the credits the player wakes up at home in Pallet Town.
-	setrespawn HEAL_LOCATION_PALLET_TOWN
+	@ Origin Jade: after Red the player continues in New Bark Town in front of Elm's lab, without
+	@ credits, as after every Johto title. See docs/origin_jade/DECISIONS.md, D-028.
+	setrespawn HEAL_LOCATION_NEW_BARK_TOWN_LAB_HNS
 	msgbox MtSilver_SummitDay_Text_Red, MSGBOX_DEFAULT
 	special GivePartyMonLandRibbon
 	closemessage
@@ -58,7 +59,7 @@ MtSilver_SummitDay_EventScript_RedOnDefeat::
 	setflag FLAG_DEFEATED_RED
 	setflag FLAG_END_NUZLOCKE
 	clearflag FLAG_HIDE_MTSILVER_RED
-	special GameClear
+	special GameClearNoCredits
 	waitstate
 	releaseall
 	end

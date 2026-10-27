@@ -81,6 +81,9 @@ u32 GetHealNpcLocalId(u32 healLocationId)
 {
     if (healLocationId == HEAL_LOCATION_NONE || healLocationId >= NUM_HEAL_LOCATIONS)
         return LOCALID_NONE;
+    // Origin Jade: the generated table ends at the last heal location with a respawn_npc.
+    if (healLocationId > ARRAY_COUNT(sWhiteoutRespawnHealerNpcIds))
+        return LOCALID_NONE;
 
     return sWhiteoutRespawnHealerNpcIds[healLocationId - 1];
 }

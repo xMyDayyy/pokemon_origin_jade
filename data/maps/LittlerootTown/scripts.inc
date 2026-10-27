@@ -226,6 +226,12 @@ LittlerootTown_OnWarp:
 LittlerootTown_EventScript_SetRivalBirchPosForDexUpgrade::
 	addobject LOCALID_LITTLEROOT_BIRCH
 	addobject LOCALID_LITTLEROOT_RIVAL
+#if IS_HNS
+	@ Origin Jade: the player arrives in front of the lab (7,17), Birch and May wait next to it.
+	setobjectxy LOCALID_LITTLEROOT_BIRCH, 8, 17
+	setobjectxy LOCALID_LITTLEROOT_RIVAL, 9, 17
+	end
+#endif
 	checkplayergender
 	goto_if_eq VAR_RESULT, MALE, LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeMale
 	goto LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeFemale

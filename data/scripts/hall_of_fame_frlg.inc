@@ -10,6 +10,8 @@ EventScript_SetDefeatedEliteFourFlagsVars::
 #if IS_HNS
 	@ Knocked-out legendaries return after every title, see docs/origin_jade/DECISIONS.md, D-026.
 	call Common_EventScript_ReviveDefeatedLegendaries
+	@ Armed before the Hall of Fame save, so a reset there keeps Oak's GS Ball handover.
+	call_if_eq VAR_JOHTO_HANDOVER, 0, EventScript_ArmJohtoHandover
 #else
 	call EventScript_ResetLegendaries
 #endif
@@ -18,6 +20,12 @@ EventScript_SetDefeatedEliteFourFlagsVars::
 EventScript_SetReadyTryGiveNationalDexScene::
 	setvar VAR_MAP_SCENE_PALLET_TOWN_OAK, 2
 	return
+
+#if IS_HNS
+EventScript_ArmJohtoHandover::
+	setvar VAR_JOHTO_HANDOVER, 1
+	return
+#endif
 
 EventScript_ResetLegendaries::
 	clearflag FLAG_LUGIA_FLEW_AWAY

@@ -728,3 +728,4 @@ gSpecials::
 	def_special IsLegendaryAvailable
 	def_special RecordLegendaryBattleOutcome
 	def_special ReviveDefeatedLegendaries
+	def_special GameClearNoCredits

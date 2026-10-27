@@ -70,12 +70,12 @@ IndigoPlateau_Exterior_EventScript_Credits::
 	waitdooranim
 	delay 160
 
-	@ Origin Jade: after the first Kanto title Oak asks the player to his lab.
-	goto_if_ne VAR_JOHTO_HANDOVER, 0, IndigoPlateau_Exterior_EventScript_OakLeaves
+	@ Origin Jade: until he hands over the GS Ball, Oak asks the player to his lab
+	@ (the Hall of Fame script arms VAR_JOHTO_HANDOVER).
+	goto_if_ne VAR_JOHTO_HANDOVER, 1, IndigoPlateau_Exterior_EventScript_OakLeaves
 	applymovement LOCALID_CREDITS_PROF_OAK, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox IndigoPlateau_Exterior_Text_OakComeToMyLab
-	setvar VAR_JOHTO_HANDOVER, 1
 	closemessage
 	delay 20
 

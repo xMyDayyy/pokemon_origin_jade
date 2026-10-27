@@ -19,8 +19,18 @@ IndigoPlateau_PokemonCenter_Enter::
 
 IndigoPlateau_Pokecenter_OnTransition::
 	setrespawn HEAL_LOCATION_INDIGO_PLATEAU_HNS
+	@ The Black Belt never blocks the Elite Four door; Johto's league can be repeated.
+	@ See docs/origin_jade/DECISIONS.md, D-028.
+	setflag FLAG_HIDE_LEAGUE_BLACKBELT
 	call IndigoPlateau_EventScript_SetupSilverFinal
+	call_if_set FLAG_IS_JOHTO_CHAMPION, IndigoPlateau_EventScript_ShowSilverDaily
 	end
+
+@ After the Johto title Silver waits here for a daily battle (IndigoPlateau_EventScript_Silver).
+@ See docs/origin_jade/DECISIONS.md, D-032.
+IndigoPlateau_EventScript_ShowSilverDaily::
+	clearflag FLAG_HIDE_INDIGO_PLATEAU_SILVER
+	return
 
 @ Origin Jade: Silver blocks the Elite Four door until his last battle is won.
 IndigoPlateau_EventScript_SetupSilverFinal::
@@ -93,6 +103,7 @@ IndigoPlateau_EventScript_Silver::
 	lock
 	faceplayer
 	goto_if_set FLAG_DAILY_BEAT_SILVER, IndigoPlateau_EventScript_SilverBeat
+	playbgm MUS_HG_ENCOUNTER_RIVAL, FALSE
 	msgbox IndigoPlateau_Text_RivalEntrance1, MSGBOX_DEFAULT
 	call_if_eq VAR_JOHTO_STARTER_MON, 0, IndigoPlateau_Silver_Battle_Cyndaquil
 	call_if_eq VAR_JOHTO_STARTER_MON, 1, IndigoPlateau_Silver_Battle_Totodile
@@ -154,19 +165,16 @@ IndigoPlateau_EventScript_SilverFinalChikorita:
 
 IndigoPlateau_Text_RivalEntrance1:
 #if GERMAN
-	.string "Halt.\p"
-	.string "Du willst zur Pokémon Liga?\p"
-	.string "Das wird nicht passieren.\p"
-	.string "Meine Pokémon sind super trainiert\n"
-	.string "ich zerklatsch dich.\p"
+	.string "…{PLAYER}.\p"
+	.string "Ich warte hier jeden Tag auf dich.\p"
+	.string "Meine Pokémon und ich sind stärker\n"
+	.string "geworden. Diesmal gewinne ich!\p"
 	.string "{PLAYER}! Ich fordere dich heraus!$"
 #else
-    .string "Hold it.\p"
-    .string "You're going to take the POKéMON\n"
-    .string "LEAGUE challenge now?\p"
-    .string "That's not going to happen.\p"
-    .string "My super-well-trained POKéMON\n"
-    .string "are going to pound you.\p"
+    .string "…{PLAYER}.\p"
+    .string "I wait for you here every day.\p"
+    .string "My POKéMON and I have grown\n"
+    .string "stronger. This time, I'll win!\p"
     .string "{PLAYER}!\n"
     .string "I challenge you!$"
 #endif
@@ -182,15 +190,18 @@ IndigoPlateau_Text_RivalWin:
 
 IndigoPlateau_Text_RivalAfter:
 #if GERMAN
-	.string "…Mann… Ich kann noch nicht gewinnen…\p"
-	.string "I… Ich muss über meine Pokémon\n"
-	.string "nachdenken…\p"
-	.string "Humph! Versuch nicht zu verlieren!$"
+	.string "…Mist… Ich kann immer noch nicht\n"
+	.string "gewinnen…\p"
+	.string "Ich… ich muss mehr über meine\n"
+	.string "Pokémon nachdenken…\p"
+	.string "Pah! Morgen bin ich wieder hier.\n"
+	.string "Dann gewinne ich!$"
 #else
     .string "…Darn… I still can't win…\p"
     .string "I… I have to think more about my\n"
     .string "POKéMON…\p"
-    .string "Humph! Try not to lose!$"
+    .string "Humph! I'll be back here tomorrow.\n"
+    .string "Then I'll win!$"
 #endif
 
 IndigoPlateau_EventScript_Psychic::

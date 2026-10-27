@@ -43,18 +43,37 @@ EverGrandeCity_HallOfFame_EventScript_EnterHallOfFame::
 	delay 40
 	setvar VAR_TEMP_1, 1
 	call EverGrandeCity_HallOfFame_EventScript_SetGameClearFlags
+#if IS_HNS
+	goto EverGrandeCity_HallOfFame_EventScript_GameClearOriginJade
+#else
 	checkplayergender
 	goto_if_eq VAR_RESULT, MALE, EverGrandeCity_HallOfFame_EventScript_GameClearMale
 	goto_if_eq VAR_RESULT, FEMALE, EverGrandeCity_HallOfFame_EventScript_GameClearFemale
+#endif
 	end
 
-EverGrandeCity_HallOfFame_EventScript_GameClearMale::
 #if IS_HNS
-	@ Origin Jade: after the Hoenn league the player wakes up at home in Pallet Town.
-	setrespawn HEAL_LOCATION_PALLET_TOWN
-#else
-	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F
+@ Origin Jade: every Hoenn title ends in Littleroot Town in front of Birch's lab. Only the first
+@ one rolls the credits, the end of the game. See docs/origin_jade/DECISIONS.md, D-028.
+EverGrandeCity_HallOfFame_EventScript_GameClearOriginJade:
+	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_LAB
+	fadescreenspeed FADE_TO_BLACK, 24
+	goto_if_set FLAG_ROLLED_ENDING_CREDITS, EverGrandeCity_HallOfFame_EventScript_GameClearNoCredits
+	setflag FLAG_ROLLED_ENDING_CREDITS
+	special GameClear
+	waitstate
+	releaseall
+	end
+
+EverGrandeCity_HallOfFame_EventScript_GameClearNoCredits:
+	special GameClearNoCredits
+	waitstate
+	releaseall
+	end
 #endif
+
+EverGrandeCity_HallOfFame_EventScript_GameClearMale::
+	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F
 	fadescreenspeed FADE_TO_BLACK, 24
 	special GameClear
 	waitstate
@@ -62,11 +81,7 @@ EverGrandeCity_HallOfFame_EventScript_GameClearMale::
 	end
 
 EverGrandeCity_HallOfFame_EventScript_GameClearFemale::
-#if IS_HNS
-	setrespawn HEAL_LOCATION_PALLET_TOWN
-#else
 	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F
-#endif
 	fadescreenspeed FADE_TO_BLACK, 24
 	special GameClear
 	waitstate
