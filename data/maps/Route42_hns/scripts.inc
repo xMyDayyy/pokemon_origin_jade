@@ -67,17 +67,20 @@ Route42_EventScript_Suicune_Trigger::
 	msgbox Route42_Text_EusineJealous, MSGBOX_DEFAULT
 	turnobject LOCALID_ROUTE42_EUSINE, DIR_EAST
 	msgbox Route42_Text_EusineWontGiveUp, MSGBOX_DEFAULT
+	call_if_eq VAR_SUICUNE_ENCOUNTERS, 2, Route42_EventScript_DoneJohtoSuicune
 	closemessage
 	applymovement LOCALID_ROUTE42_EUSINE, Route42_Movement_Eusine2
 	waitmovement 0
 	setflag FLAG_HIDE_ROUTE42_EUSINE
 	removeobject LOCALID_ROUTE42_EUSINE
 	setvar VAR_TEMP_0, 1
-	call_if_eq VAR_SUICUNE_ENCOUNTERS, 2, Route42_EventScript_DoneJohtoSuicune
 	release
 	end
 
+@ Second Johto sighting: Eusine points to the Tin Tower, where Suicune waits from now on.
 Route42_EventScript_DoneJohtoSuicune::
+	turnobject LOCALID_ROUTE42_EUSINE, DIR_WEST
+	msgbox Route42_Text_EusineTinTowerHint, MSGBOX_DEFAULT
 	setvar VAR_SUICUNE_ENCOUNTERS, 3
 	return
 
@@ -133,10 +136,10 @@ Route42_Movement_Eusine2:
 
 Route42_Text_EusineAdmireSuicune:
 #if GERMAN
-	.string "Eusin: Suicune… Du bist so tapfer… Du\n"
-	.string "bist so jung und schön… Du bist so\l"
-	.string "anmutig… Und du bist immer so schnell\l"
-	.string "wieder weg!$"
+	.string "Eusin: Suicune… Du bist so tapfer…\n"
+	.string "Du bist so jung und schön… Du bist\l"
+	.string "so anmutig… Und du bist immer so\l"
+	.string "schnell wieder weg!$"
 #else
 	.string "EUSINE: SUICUNE...\n"
 	.string "How brave it is!\p"
@@ -147,16 +150,16 @@ Route42_Text_EusineAdmireSuicune:
 
 Route42_Text_EusineJealous:
 #if GERMAN
-    .string "{PLAYER}!\p"
-    .string "Du scheinst immer dort zu sein,\n"
-    .string "wo Suicune auftaucht.\p"
-    .string "Nun gut. Mein Verlangen, Suicune zu\n"
-    .string "finden, übertrifft deines bei\p"
-    .string "Weitem…\p"
-    .string "Mein Großvater war…\n"
-    .string "sehr von Legenden begeistert.\p"
-    .string "Ich habe von ihm unzählige Geschichten\n"
-    .string "über Suicune gehört.$"
+	.string "{PLAYER}!\p"
+	.string "Du scheinst immer dort zu sein,\n"
+	.string "wo Suicune auftaucht.\p"
+	.string "Nun gut. Mein Verlangen, Suicune\n"
+	.string "zu finden, übertrifft deines bei\l"
+	.string "Weitem…\p"
+	.string "Mein Großvater war…\n"
+	.string "sehr von Legenden begeistert.\p"
+	.string "Ich habe von ihm unzählige\n"
+	.string "Geschichten über Suicune gehört.$"
 #else
 	.string "{PLAYER}!\p"
 	.string "You seem to be around where\n"
@@ -174,15 +177,34 @@ Route42_Text_EusineWontGiveUp:
 #if GERMAN
 	.string "Suicune…\p"
 	.string "Ich werde nicht eher ruhen, bis ich\n"
-	.string "herausgefunden habe, wohin dich deine\l"
-	.string "Reise führt…\p"
-	.string "Ach ja, hab ich das nicht schön gesagt?$"
+	.string "herausgefunden habe, wohin dich\l"
+	.string "deine Reise führt…\p"
+	.string "Ach ja, hab ich das nicht schön\n"
+	.string "gesagt?$"
 #else
 	.string "SUICUNE...\n"
 	.string "I won't stop following you\l"
 	.string "until I've found out what\l"
 	.string "you're after...\p"
 	.string "You hear me!$"
+#endif
+
+@ Shared with CianwoodCity_hns (whichever Johto sighting comes second).
+Route42_Text_EusineTinTowerHint::
+#if GERMAN
+	.string "Eusin: Ach, übrigens…\p"
+	.string "Die Weisen in Teak City erzählen,\n"
+	.string "Suicune prüfe würdige Trainer\l"
+	.string "im Glockenturm.\p"
+	.string "Doch den Turm dürfen nur\n"
+	.string "Auserwählte betreten…$"
+#else
+	.string "EUSINE: Oh, by the way…\p"
+	.string "The sages of ECRUTEAK say SUICUNE\n"
+	.string "tests worthy trainers in the\l"
+	.string "TIN TOWER.\p"
+	.string "But only the chosen may enter\n"
+	.string "the tower…$"
 #endif
 
 

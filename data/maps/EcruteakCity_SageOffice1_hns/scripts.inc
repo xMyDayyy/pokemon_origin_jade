@@ -16,8 +16,10 @@ EcruteakCity_SageOffice1_EventScript_Sign::
 
 EcruteakCity_SageOffice1_Text_Sign:
 #if GERMAN
-	.string "Die Glocke aus Zinn klingt hell und rein\n"
-	.string "für alle, die im Schutz des Turmes sein.$"
+	.string "Die Glocke aus Zinn klingt\n"
+	.string "hell und rein\p"
+	.string "für alle, die im Schutz\n"
+	.string "des Turmes sein.$"
 #else
 	.string "The bell of tin rings clearly for\n"
 	.string "those under the tower's wing.$"
@@ -29,6 +31,9 @@ EcruteakCity_SageOffice2_EventScript_SageA::
 	goto_if_set FLAG_HIDE_TINTOWER_GUARD, EcruteakCity_SageOffice2_EventScript_SageA4
 	checkitem ITEM_CLEAR_BELL
 	goto_if_eq VAR_RESULT, TRUE, EcruteakCity_SageOffice2_EventScript_SageA2
+	@ The Tidal Bell (Lugia path) opens the tower too, for Suicune on 1F. See docs/origin_jade/DECISIONS.md, D-027.
+	checkitem ITEM_TIDAL_BELL
+	goto_if_eq VAR_RESULT, TRUE, EcruteakCity_SageOffice2_EventScript_SageTidalBell
 	msgbox EcruteakTinTowerEntrance_Text_SageNoBadge, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -52,6 +57,24 @@ EcruteakCity_SageOffice2_EventScript_SageA2::
 	release
 	end
 
+EcruteakCity_SageOffice2_EventScript_SageTidalBell::
+	msgbox EcruteakTinTowerEntrance_Text_SageHearsClearBell1, MSGBOX_DEFAULT
+	waitmessage
+	playse SE_M_PETAL_DANCE
+	waitse
+	playse SE_PIN
+	applymovement LOCALID_SAGEOFFICE_SAGE, Common_Movement_ExclamationMark
+	delay 55
+	waitmovement LOCALID_SAGEOFFICE_SAGE
+	msgbox EcruteakTinTowerEntrance_Text_SageHearsTidalBell2, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_SAGEOFFICE_SAGE, EcruteakCity_SageOffice2_Movement_StandAside
+	waitmovement 0
+	setobjectxyperm LOCALID_SAGEOFFICE_SAGE, 15, 2
+	setflag FLAG_HIDE_TINTOWER_GUARD
+	release
+	end
+
 EcruteakCity_SageOffice2_EventScript_SageA3::
 	msgbox EcruteakTinTowerEntrance_Text_SagePleaseDoGoOn, MSGBOX_DEFAULT
 	closemessage
@@ -67,8 +90,8 @@ EcruteakCity_SageOffice2_EventScript_SageA4::
 EcruteakCity_SageOffice2_EventScript_SageB::
 	lock
 	faceplayer
-	goto_if_eq VAR_ECRUTEAK_CITY_STATE, 10, EcruteakCity_SageOffice2_EventScript_B2
-	goto_if_eq VAR_ECRUTEAK_CITY_STATE, 11, EcruteakCity_SageOffice2_EventScript_B2
+	@ Ho-Oh waits on the roof (Ho-Oh path, after the theater).
+	goto_if_eq VAR_COMPLETED_HO_OH, 2, EcruteakCity_SageOffice2_EventScript_B2
 	msgbox EcruteakTinTowerEntrance_Text_WanderingSage, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -95,9 +118,10 @@ EcruteakCity_SageOffice2_Movement_StandAside:
 
 EcruteakTinTowerEntrance_Text_SageNoBadge:
 #if GERMAN
-	.string "Wenn du nicht im Besitz des Ordens\p"
-	.string "von Teak City bist, darfst du\p"
-	.string "den Zinnturm nicht betreten.$"
+	.string "Der Glockenturm ist nur Würdigen\n"
+	.string "zugänglich.\p"
+	.string "Es tut mir leid, aber du musst\n"
+	.string "wieder gehen.$"
 #else
 	.string "TIN TOWER is off limits to the\n"
 	.string "unworthy. Sorry but you'll have\l"
@@ -150,6 +174,7 @@ EcruteakTinTowerEntrance_Text_SageHearsClearBell1:
 	.string "..............................$"
 #endif
 EcruteakTinTowerEntrance_Text_SageHearsClearBell2:
+#if GERMAN
 	.string "Ah!\p"
 	.string "Das Läuten der Klarglocke!\p"
 	.string "Es… ist erhaben!\p"
@@ -159,8 +184,48 @@ EcruteakTinTowerEntrance_Text_SageHearsClearBell2:
 	.string "die Seele des Trägers aus.\p"
 	.string "Du…\p"
 	.string "Du könntest es durch den\n"
-	.string "Zinnturm schaffen.\p"
+	.string "Glockenturm schaffen.\p"
 	.string "Schreite voran.$"
+#else
+	.string "Ah!\p"
+	.string "The CLEAR BELL's chime!\p"
+	.string "It… It's sublime!\p"
+	.string "I've never heard so beautiful\n"
+	.string "a sound before!\p"
+	.string "That bell's chime is indicative\n"
+	.string "of the bearer's soul.\p"
+	.string "You…\p"
+	.string "You may be able to make it\n"
+	.string "through the TIN TOWER.\p"
+	.string "Please, do go on.$"
+#endif
+
+EcruteakTinTowerEntrance_Text_SageHearsTidalBell2:
+#if GERMAN
+	.string "Ah!\p"
+	.string "Das Läuten der Gischtglocke!\p"
+	.string "Es… ist erhaben!\p"
+	.string "Das schönste Läuten,\n"
+	.string "das ich je hörte!\p"
+	.string "Dieser Ton sagt alles über\n"
+	.string "die Seele des Trägers aus.\p"
+	.string "Du…\p"
+	.string "Du könntest es durch den\n"
+	.string "Glockenturm schaffen.\p"
+	.string "Schreite voran.$"
+#else
+	.string "Ah!\p"
+	.string "The TIDAL BELL's chime!\p"
+	.string "It… It's sublime!\p"
+	.string "I've never heard so beautiful\n"
+	.string "a sound before!\p"
+	.string "That bell's chime is indicative\n"
+	.string "of the bearer's soul.\p"
+	.string "You…\p"
+	.string "You may be able to make it\n"
+	.string "through the TIN TOWER.\p"
+	.string "Please, do go on.$"
+#endif
 
 EcruteakTinTowerEntrance_Text_SagePleaseDoGoOn:
 #if GERMAN
@@ -171,9 +236,9 @@ EcruteakTinTowerEntrance_Text_SagePleaseDoGoOn:
 
 EcruteakTinTowerEntrance_Text_SageDone:
 #if GERMAN
-	.string "Der Klang dieser Glocke zeigt\n"
-	.string "die Reinheit der Seele ihres Trägers.\p"
-	.string "Du… Bist wahrlich würdig.$"
+	.string "Der Klang dieser Glocke zeigt die\n"
+	.string "Reinheit der Seele ihres Trägers.\p"
+	.string "Du… bist wahrlich würdig.$"
 #else
 	.string "That bell's chime is indicative of\n"
 	.string "the bearer's soul.\p"
@@ -183,11 +248,11 @@ EcruteakTinTowerEntrance_Text_SageDone:
 
 EcruteakTinTowerEntrance_Text_WanderingSage:
 #if GERMAN
-	.string "Der Zinnturm da vorne ist ein\n"
-	.string "8-stöckiger Turm von göttlicher\l"
+	.string "Der Glockenturm da vorne ist ein\n"
+	.string "neunstöckiger Turm von göttlicher\l"
 	.string "Schönheit.\p"
-	.string "Er beruhigt die Seelen derer, die ihn\n"
-	.string "betrachten.$"
+	.string "Er beruhigt die Seelen derer, die\n"
+	.string "ihn betrachten.$"
 #else
 	.string "The TIN TOWER ahead is a nine-\n"
 	.string "tier tower of divine beauty.\p"
@@ -197,8 +262,8 @@ EcruteakTinTowerEntrance_Text_WanderingSage:
 
 EcruteakTinTowerEntrance_Text_WanderingSageClearBell:
 #if GERMAN
-	.string "Der Zinnturm bebt! Ein Pokémon muss\n"
-	.string "auf der Spitze gelandet sein!$"
+	.string "Der Glockenturm bebt! Ein Pokémon\n"
+	.string "muss auf der Spitze gelandet sein!$"
 #else
 	.string "The TIN TOWER shook! A POKéMON must\n"
 	.string "have returned to the top!$"

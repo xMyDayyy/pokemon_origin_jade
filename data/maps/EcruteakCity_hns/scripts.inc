@@ -491,7 +491,7 @@ EcruteakCity_Text_Sign:
 
 EcruteakCity_Text_TinTowerSign:
 #if GERMAN
-	.string "Zinnturm\p"
+	.string "Glockenturm\p"
 	.string "Hier soll ein legendäres Pokémon\n"
 	.string "ruhen.$"
 #else

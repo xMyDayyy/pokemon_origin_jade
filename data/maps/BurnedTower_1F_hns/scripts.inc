@@ -55,8 +55,9 @@ BurnedTower_1FEusineIntroText:
 	.string "namens Suicune.\p"
 	.string "Und du bist…?\p"
 	.string "{PLAYER}? Schön dich kennenzulernen!\p"
-	.string "Ich habe gehört, Suicune könnte in\n"
-	.string "dieser Turmruine sein, also kam ich her.\p"
+	.string "Ich habe gehört, Suicune könnte\n"
+	.string "in dieser Turmruine sein, also\l"
+	.string "bin ich hergekommen.\p"
 	.string "Aber wo genau könnte es sein?$"
 #else
 	.string "EUSINE: My name's EUSINE.\p"
@@ -96,9 +97,9 @@ BurnedTower_1F_EventScript_Morty::
 
 BurnedTower_1FEusineText:
 #if GERMAN
-	.string "Eusin: Ich habe gehört, Suicune könnte\n"
-	.string "in dieser Turmruine sein, also kam ich\l"
-	.string "her.\p"
+	.string "Eusin: Ich habe gehört, Suicune\n"
+	.string "könnte in dieser Turmruine sein,\l"
+	.string "also bin ich hergekommen.\p"
 	.string "Aber wo genau könnte es sein?$"
 #else
 	.string "EUSINE: I heard SUICUNE might\n"

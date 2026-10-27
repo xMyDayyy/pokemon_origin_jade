@@ -1,15 +1,91 @@
 TinTower_1F_hns_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, TinTower_OnTransition
+	map_script MAP_SCRIPT_ON_TRANSITION, TinTower_1F_OnTransition
 	.byte 0
 
 TinTower_OnTransition::
 	setescapewarp MAP_BELLCHIME_TRAIL_HNS, 35, 42
 	end
 
+@ 1F only; TinTower_OnTransition is shared with 2F-9F.
+@ Suicune waits here once both Johto sightings are done (VAR_SUICUNE_ENCOUNTERS >= 3)
+@ and the legendary rules allow it. FLAG_TEMP_1 hides Suicune, FLAG_TEMP_2 hides Eusine.
+@ See docs/origin_jade/DECISIONS.md, D-026 and D-027.
+TinTower_1F_OnTransition::
+	setescapewarp MAP_BELLCHIME_TRAIL_HNS, 35, 42
+	setflag FLAG_TEMP_2
+	setflag FLAG_TEMP_1
+	goto_if_lt VAR_SUICUNE_ENCOUNTERS, 3, TinTower_1F_OnTransition_End
+	setvar VAR_0x8004, LEGENDARY_SUICUNE
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	call_if_eq VAR_RESULT, TRUE, TinTower_1F_EventScript_ShowSuicune
+TinTower_1F_OnTransition_End:
+	end
+
+TinTower_1F_EventScript_ShowSuicune::
+	clearflag FLAG_TEMP_1
+	return
+
+@ Suicune, fixed Lv 50 like the story Lugia and Ho-Oh.
+@ The LEGEND API records caught / knocked out / fled; this script only hides it for the visit.
+TinTower_1F_EventScript_Suicune::
+	lock
+	faceplayer
+	playmoncry SPECIES_SUICUNE, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	seteventmon SPECIES_SUICUNE, 50
+	special BattleSetup_StartLegendaryBattle
+	waitstate
+	setvar VAR_0x8004, LEGENDARY_SUICUNE
+	special RecordLegendaryBattleOutcome
+	specialvar VAR_RESULT, GetBattleOutcome
+	fadescreenswapbuffers FADE_TO_BLACK
+	removeobject LOCALID_TINTOWER1F_SUICUNE
+	fadescreenswapbuffers FADE_FROM_BLACK
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, TinTower_1F_EventScript_SuicuneDone
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, TinTower_1F_EventScript_SuicuneDone
+	msgbox TinTower_1F_Text_SuicuneRanAway, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+@ First knockout or catch only: Eusine comes in once (VAR_SUICUNE_ENCOUNTERS 3 -> 8).
+TinTower_1F_EventScript_SuicuneDone::
+	goto_if_ne VAR_SUICUNE_ENCOUNTERS, 3, TinTower_1F_EventScript_SuicuneRelease
+	hidefollower
+	playse SE_EXIT
+	playbgm MUS_HG_EUSINE, FALSE
+	clearflag FLAG_TEMP_2
+	addobject LOCALID_TINTOWER1F_EUSINE
+	applymovement LOCALID_TINTOWER1F_EUSINE, TinTower_1F_Movement_EusineEnter
+	waitmovement 0
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
+	msgbox TinTower_1F_EusineSuicune_Text, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_TINTOWER1F_EUSINE, TinTower_1F_Movement_EusineLeave
+	waitmovement 0
+	playse SE_EXIT
+	removeobject LOCALID_TINTOWER1F_EUSINE
+	fadedefaultbgm
+	setvar VAR_SUICUNE_ENCOUNTERS, 8
+TinTower_1F_EventScript_SuicuneRelease:
+	release
+	end
+
+TinTower_1F_Movement_EusineEnter:
+	walk_up
+	step_end
+
+TinTower_1F_Movement_EusineLeave:
+	walk_down
+	walk_down
+	step_end
+
 TinTower_1F_EventScript_SageA::
 	lock
 	faceplayer
-	goto_if_eq VAR_ECRUTEAK_CITY_STATE, 11, TinTower_1F_EventScript_SageA_Hooh
+	@ VAR_COMPLETED_HO_OH 2: Ho-Oh waits on the roof (Ho-Oh path, after the theater).
+	goto_if_eq VAR_COMPLETED_HO_OH, 2, TinTower_1F_EventScript_SageA_Hooh
 	msgbox TinTower_1F_Sage4_Text2, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -24,7 +100,7 @@ TinTower_1F_EventScript_SageA_Hooh::
 TinTower_1F_EventScript_SageB::
 	lock
 	faceplayer
-	goto_if_eq VAR_ECRUTEAK_CITY_STATE, 11, TinTower_1F_EventScript_SageB_Hooh
+	goto_if_eq VAR_COMPLETED_HO_OH, 2, TinTower_1F_EventScript_SageB_Hooh
 	msgbox TinTower_1F_Sage2_Text, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -39,7 +115,7 @@ TinTower_1F_EventScript_SageB_Hooh::
 TinTower_1F_EventScript_SageC::
 	lock
 	faceplayer
-	goto_if_eq VAR_ECRUTEAK_CITY_STATE, 11, TinTower_1F_EventScript_SageC_Hooh
+	goto_if_eq VAR_COMPLETED_HO_OH, 2, TinTower_1F_EventScript_SageC_Hooh
 	msgbox TinTower_1F_Sage6_Text2, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -54,14 +130,14 @@ TinTower_1F_EventScript_SageC_Hooh::
 
 TinTower_1F_Sage1_Text:
 #if GERMAN
-	.string "Der Legende nach…\n"
-	.string "Wenn die Seelen von Pokémon und\p"
-	.string "Menschen sich berühren, steigt ein\n"
+	.string "Der Legende nach…\p"
+	.string "Wenn die Seelen von Pokémon und\n"
+	.string "Menschen sich berühren, steigt ein\l"
 	.string "Pokémon in Regenbogenfarben vom\l"
 	.string "Himmel herab…\p"
-	.string "Könnte es sein, dass die legendären\n"
-	.string "Pokémon uns Menschen auf die Probe\l"
-	.string "stellen?$"
+	.string "Könnte es sein, dass die\n"
+	.string "legendären Pokémon uns Menschen\l"
+	.string "auf die Probe stellen?$"
 #else
 	.string "According to legend…\n"
 	.string "When the souls of POKéMON and humans\p"
@@ -73,14 +149,15 @@ TinTower_1F_Sage1_Text:
 
 TinTower_1F_Sage2_Text:
 #if GERMAN
-	.string "Als der Zinnturm niederbrannte, sollen\n"
-	.string "drei namenlose Pokémon umgekommen\l"
-	.string "sein. Es war tragisch.\p"
+	.string "Beim Brand der heutigen Turmruine\n"
+	.string "sollen drei namenlose Pokémon\l"
+	.string "umgekommen sein. Es war tragisch.\p"
 	.string "Jedoch…\p"
 	.string "Ein Pokémon in Regenbogenfarben…\n"
 	.string "Mit anderen Worten…\p"
 	.string "Ho-Oh stieg vom Himmel herab und\n"
-	.string "schenkte den drei Pokémon neues Leben.\p"
+	.string "schenkte den drei Pokémon neues\l"
+	.string "Leben.\p"
 	.string "Es sind…\n"
 	.string "Suicune, Entei und Raikou.\p"
 	.string "So sagt man es zumindest.$"
@@ -101,10 +178,10 @@ TinTower_1F_Sage2_Text:
 TinTower_1F_Sage3_Text:
 #if GERMAN
 	.string "Die zwei Türme sollen erbaut worden\n"
-	.string "sein, um Freundschaft und Hoffnung\p"
-	.string "zwischen Pokémon und Menschen zu\n"
-	.string "fördern.\l"
-	.string "Das war vor 700 Jahren, aber das\p"
+	.string "sein, um Freundschaft und Hoffnung\l"
+	.string "zwischen Pokémon und Menschen zu\l"
+	.string "fördern.\p"
+	.string "Das war vor 700 Jahren, aber das\n"
 	.string "Ideal ist noch heute wichtig.$"
 #else
 	.string "The two TOWERS are said to have been\n"
@@ -116,8 +193,9 @@ TinTower_1F_Sage3_Text:
 
 TinTower_1F_Sage4_Text1:
 #if GERMAN
-	.string "Ho-Oh scheint auf diesem hier,\n"
-	.string "dem Zinnturm, herabgestiegen zu sein!$"
+	.string "Ho-Oh scheint sich auf dem\n"
+	.string "Glockenturm niedergelassen\l"
+	.string "zu haben!$"
 #else
 	.string "HO-OH appears to have descended\n"
 	.string "upon this, the TIN TOWER!$"
@@ -127,9 +205,11 @@ TinTower_1F_Sage4_Text2:
 #if GERMAN
 	.string "Die legendären Pokémon sollen\n"
 	.string "drei Kräfte verkörpern…\p"
-	.string "Den Blitz, der den Turm traf.\n"
-	.string "Das Feuer, das den Turm verbrannte.\p"
-	.string "Und den Regen, der das Feuer löschte…$"
+	.string "Den Blitz, der den Turm traf.\p"
+	.string "Das Feuer, das den Turm\n"
+	.string "verbrannte.\p"
+	.string "Und den Regen, der das Feuer\n"
+	.string "löschte…$"
 #else
 	.string "The legendary POKéMON are said\n"
 	.string "to embody three powers…\p"
@@ -142,8 +222,9 @@ TinTower_1F_Sage6_Text2:
 #if GERMAN
 	.string "Von den legendären Pokémon soll\n"
 	.string "Suicune Ho-Oh am nächsten stehen.\p"
-	.string "Ich höre, dass es auch eine Verbindung\n"
-	.string "zu Pokémon namens Icognito geben soll.\p"
+	.string "Ich höre, dass es auch eine\n"
+	.string "Verbindung zu Pokémon namens\l"
+	.string "Icognito geben soll.\p"
 	.string "Icognito muss eine enge Verbindung\n"
 	.string "zu Suicune haben.$"
 #else
@@ -183,31 +264,41 @@ TinTower_1F_EusineSuicune_Text:
 	.string "unglaublich! So einen Kampf hab ich\l"
 	.string "noch nie gesehen.\p"
 	.string "Das war wirklich inspirierend.\n"
-	.string "Suicune war stark, aber du warst\p"
-	.string "noch beeindruckender, {PLAYER}.\n"
-	.string "Ich habe gehört, Suicunes mystische\p"
-	.string "Kraft ruft ein Pokémon in\n"
-	.string "Regenbogenfarben herbei.\l"
-	.string "Vielleicht, nur vielleicht, wird das,\p"
-	.string "was heute geschah, dieses Pokémon\n"
-	.string "erscheinen lassen.\l"
-	.string "Ich werde die Legenden weiter\l"
+	.string "Suicune war stark, aber du warst\l"
+	.string "noch beeindruckender, {PLAYER}.\p"
+	.string "Ich habe gehört, Suicunes mystische\n"
+	.string "Kraft ruft ein Pokémon in\l"
+	.string "Regenbogenfarben herbei.\p"
+	.string "Vielleicht, nur vielleicht, wird\n"
+	.string "das, was heute geschah, dieses\l"
+	.string "Pokémon erscheinen lassen.\p"
+	.string "Ich werde die Legenden weiter\n"
 	.string "erforschen.\p"
-	.string "Danke, dass du mir diesen fantasti-\n"
-	.string "schen Kampf gezeigt hast.\p"
+	.string "Danke, dass du mir diesen\n"
+	.string "fantastischen Kampf gezeigt hast.\p"
 	.string "Bis dann, {PLAYER}!$"
 #else
-	.string "EUSINE: Awesome! Too awesome, even!\n"
-	.string "I've never seen a battle that great.\p"
+	.string "EUSINE: Awesome! Too awesome,\n"
+	.string "even! I've never seen a battle\l"
+	.string "that great.\p"
 	.string "That was truly inspiring to see.\n"
-	.string "SUICUNE was tough, but you were even\p"
-	.string "more incredible, <PLAYER>.\n"
-	.string "I heard SUICUNE's mystic power\p"
-	.string "summons a rainbow-colored POKéMON.\n"
-	.string "Maybe, just maybe, what went on today\p"
-	.string "will cause that POKéMON to appear.\n"
-	.string "I'm going to study the legends more.\p"
-	.string "Thanks for showing me that fantastic\n"
-	.string "battle.\p"
-	.string "Later, <PLAYER>!$"
+	.string "SUICUNE was tough, but you were\l"
+	.string "even more incredible, {PLAYER}.\p"
+	.string "I heard SUICUNE's mystic power\n"
+	.string "summons a rainbow-colored POKéMON.\p"
+	.string "Maybe, just maybe, what went on\n"
+	.string "today will cause that POKéMON to\l"
+	.string "appear.\p"
+	.string "I'm going to study the legends\n"
+	.string "more.\p"
+	.string "Thanks for showing me that\n"
+	.string "fantastic battle.\p"
+	.string "Later, {PLAYER}!$"
+#endif
+
+TinTower_1F_Text_SuicuneRanAway:
+#if GERMAN
+	.string "Suicune lief davon!$"
+#else
+	.string "SUICUNE ran away!$"
 #endif

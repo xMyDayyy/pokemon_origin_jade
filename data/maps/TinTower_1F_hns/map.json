@@ -65,6 +65,34 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "TinTower_1F_EventScript_SageC",
       "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_TINTOWER1F_SUICUNE",
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_SUICUNE",
+      "x": 9,
+      "y": 13,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "TinTower_1F_EventScript_Suicune",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "local_id": "LOCALID_TINTOWER1F_EUSINE",
+      "graphics_id": "OBJ_EVENT_GFX_EUSINE_HNS",
+      "x": 9,
+      "y": 16,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_TEMP_2"
     }
   ],
   "warp_events": [

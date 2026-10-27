@@ -420,6 +420,17 @@ dated 2026-10-10 or later were decided directly.
     used up at the shrine; there is no second Celebi.
 - **Evidence:** decision 2026-10-15 (O-004).
 
+### D-027 Suicune waits in Johto's Glockenturm
+- **Status:** Active (2026-10-15)
+- **Decision:** Suicune's story stays in Johto. After both Johto sightings
+  (Cianwood and Route 42, `VAR_SUICUNE_ENCOUNTERS` 3) Suicune waits on the
+  Glockenturm's ground floor (`TinTower_1F_hns`, level 50, talk to it) and
+  follows D-026. Eusine points there at the second sighting and appears after
+  the first knockout or catch (var 8). The Ecruteak sages let holders of
+  either bell in (Klarglocke or Gischtglocke), so Lugia and Ho-Oh choosers
+  reach it after the theater. HnS's Kanto part stays retired.
+- **Evidence:** decision 2026-10-15.
+
 ---
 
 ## Planned, not built yet

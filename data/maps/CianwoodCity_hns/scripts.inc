@@ -272,6 +272,8 @@ CianwoodCity_EventScript_SuicuneTrigger::
 	trainerbattle_no_intro TRAINER_EUSINE_HNS, CianwoodCity_Text_EusineBeaten
 	playbgm MUS_HG_EUSINE, FALSE
 	msgbox CianwoodCity_Text_EusineAfter, MSGBOX_DEFAULT
+	setvar VAR_SUICUNE_ENCOUNTERS, 2
+	call_if_set FLAG_HIDE_ROUTE42_SUICUNE, CianwoodCity_EventScript_DoneJohtoSuicune
 	closemessage
 	applymovement LOCALID_CIANWOOD_EUSINE, CianwoodCity_Movement_Eusine3
 	waitmovement 0
@@ -279,14 +281,14 @@ CianwoodCity_EventScript_SuicuneTrigger::
 	setflag FLAG_HIDE_CIANWOOD_SUICUNE
 	removeobject LOCALID_CIANWOOD_SUICUNE
 	removeobject LOCALID_CIANWOOD_EUSINE
-	setvar VAR_SUICUNE_ENCOUNTERS, 2
 	setvar VAR_CIANWOOD_CITY_STATE, 2
 	fadedefaultbgm
-	call_if_set FLAG_HIDE_ROUTE42_SUICUNE, CianwoodCity_EventScript_DoneJohtoSuicune
 	release
 	end
 
+@ Second Johto sighting (Route 42 came first): Eusine points to the Tin Tower.
 CianwoodCity_EventScript_DoneJohtoSuicune::
+	msgbox Route42_Text_EusineTinTowerHint, MSGBOX_DEFAULT
 	setvar VAR_SUICUNE_ENCOUNTERS, 3
 	return
 
@@ -340,19 +342,23 @@ CianwoodCity_Movement_Eusine3:
 CianwoodCity_Text_EusineSuicune:
 #if GERMAN
 	.string "Eusin: Hallo, {PLAYER}!\p"
-	.string "Sag mal… war das eben nicht Suicune?\p"
-	.string "Ich konnte es nicht richtig erkennen,\n"
-	.string "aber für den Hauch einer Sekunde meinte\l"
-	.string "ich wirklich, gesehen zu haben, wie da\l"
-	.string "Suicune über das Meer gebrettert ist.\p"
+	.string "Sag mal… war das eben nicht\n"
+	.string "Suicune?\p"
+	.string "Ich konnte es nicht richtig\n"
+	.string "erkennen, aber für den Hauch einer\l"
+	.string "Sekunde meinte ich wirklich, gesehen\l"
+	.string "zu haben, wie da Suicune über das\l"
+	.string "Meer gebrettert ist.\p"
 	.string "Suicune ist so schön und so stolz…\p"
-	.string "Außerdem läuft es mit atemberaubender\n"
-	.string "Geschwindigkeit Städte und Straßen ab!\p"
-	.string "Es ist einfach ein wundervolles Pokémon.\p"
+	.string "Außerdem läuft es mit\n"
+	.string "atemberaubender Geschwindigkeit\l"
+	.string "Städte und Straßen ab!\p"
+	.string "Es ist einfach ein wundervolles\n"
+	.string "Pokémon.\p"
 	.string "Ich würde es nur zu gerne mal aus\n"
 	.string "nächster Nähe sehen…\p"
-	.string "Los, lass uns kämpfen! Wenn ich dich\n"
-	.string "besiege, erkennt mich Suicune\l"
+	.string "Los, lass uns kämpfen! Wenn ich\n"
+	.string "dich besiege, erkennt mich Suicune\l"
 	.string "vielleicht als würdigen Trainer an!\p"
 	.string "Komm schon, {PLAYER}!$"
 #else
@@ -382,10 +388,11 @@ CianwoodCity_Text_EusineBeaten:
 CianwoodCity_Text_EusineAfter:
 #if GERMAN
 	.string "Du bist unglaublich, {PLAYER}!\p"
-	.string "Kein Wunder, dass Pokémon sich zu dir\n"
-	.string "hingezogen fühlen.\p"
+	.string "Kein Wunder, dass Pokémon sich zu\n"
+	.string "dir hingezogen fühlen.\p"
 	.string "Jetzt verstehe ich es.\p"
-	.string "Ich werde weiter nach Suicune suchen.\p"
+	.string "Ich werde weiter nach Suicune\n"
+	.string "suchen.\p"
 	.string "Wir werden uns sicher wiedersehen.\p"
 	.string "Bis dann!$"
 #else
