@@ -27,23 +27,23 @@ ReceptionGate_EventScript_Janine::
 
 ReceptionGate_Text_Janine:
 #if GERMAN
-	.string "Janina: Ich bin auf dem Weg zu meinem\n"
-	.string "Vater, um ihm das Mittagessen zu\l"
-	.string "bringen.\p"
+	.string "Janina: Ich bin auf dem Weg zu\n"
+	.string "meinem Vater, um ihm das\l"
+	.string "Mittagessen zu bringen.\p"
 	.string "Die Top Vier hat keine Zeit für\n"
 	.string "Erholung, Tag oder Nacht.\p"
-	.string "Es ist wirklich harte Arbeit, weißt\n"
-	.string "du? \p"
+	.string "Es ist wirklich harte Arbeit,\n"
+	.string "weißt du?\p"
 	.string "Wenn du bereit für einen weiteren\n"
 	.string "Kampf bist, ich bin später im Dojo.$"
 #else
-    .string "JANINE: I'm on the way to my dad's\n"
-    .string "house to give him his lunch.\p"
-    .string "The ELITE FOUR has no time to rest\n"
-    .string "day or night. It's such hard work,\l"
-    .string "you know?\p"
-    .string "If you're ready for another battle,\n"
-    .string "I'll be at the DOJO later.$"
+	.string "JANINE: I'm on the way to my dad's\n"
+	.string "house to give him his lunch.\p"
+	.string "The ELITE FOUR has no time to rest\n"
+	.string "day or night. It's such hard work,\l"
+	.string "you know?\p"
+	.string "If you're ready for another\n"
+	.string "battle, I'll be at the DOJO later.$"
 #endif
 
 
@@ -67,75 +67,28 @@ ReceptionGate_EventScript_OfficerLegendary::
 	release
 	end
 
-@ HnS's south entrance checkpoint, unused.
-ReceptionGate_Trigger::
-    lock
-    playse SE_PIN
-    applymovement LOCALID_INDIGOJUNCTION_POLICEMAN, Common_Movement_ExclamationMark
-    delay 55
-    waitmovement LOCALID_INDIGOJUNCTION_POLICEMAN
-    goto_if_lt VAR_ECRUTEAK_CITY_THEATER, 8, ReceptionGate_EventScript_Kimono
-    msgbox VictoryRoadGate_Text_Officer, MSGBOX_DEFAULT
-    goto_if_unset FLAG_BADGE08_GET, ReceptionGate_EventScript_NotEnough
-    msgbox VictoryRoadGate_Text_EightBadges, MSGBOX_DEFAULT
-    closemessage
-    setvar VAR_ROUTE27_STATE, 2
-    release
-    end
-
-ReceptionGate_EventScript_Kimono::
-    msgbox VictoryRoadGate_Text_Kimono, MSGBOX_DEFAULT
-    closemessage
-    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown1
-    waitmovement 0
-    release
-    end
-
-ReceptionGate_EventScript_NotEnough::
-    msgbox VictoryRoadGate_Text_NotEnoughBadges, MSGBOX_DEFAULT
-    closemessage
-    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown1
-    waitmovement 0
-    release
-    end
-
 ReceptionGate_EventScript_SilverGuard::
     msgbox VictoryRoadGate_Text_LeftBlackBelt, MSGBOX_NPC
-    end
-ReceptionGate_EventScript_KantoGuard::
-    msgbox VictoryRoadGate_Text_RightBlackBelt, MSGBOX_NPC
     end
 
 VictoryRoadGate_Text_Officer:
 #if GERMAN
-	.string "Nur Trainer, die sich als würdig erwiesen\n"
-	.string "haben, dürfen eintreten.$"
+	.string "Nur Trainer, die sich als würdig\n"
+	.string "erwiesen haben, dürfen eintreten.$"
 #else
-    .string "Only trainers who have proven\n"
-    .string "themselves may pass.$"
+	.string "Only trainers who have proven\n"
+	.string "themselves may pass.$"
 #endif
 
 VictoryRoadGate_Text_Kimono:
 #if GERMAN
-	.string "Entschuldige, Kleiner, dieser Weg ist\n"
-	.string "geschlossen, bis jemand sich des\p"
-	.string "legendären Pokémon annimmt…$"
+	.string "Tut mir leid, dieser Weg bleibt\n"
+	.string "gesperrt, bis sich jemand um das\l"
+	.string "legendäre Pokémon kümmert…$"
 #else
-    .string "Sorry kid, this way is closed until\n"
-    .string "someone deals with that LEGENDARY\l"
-    .string "POKéMON...$"
-#endif
-
-VictoryRoadGate_Text_NotEnoughBadges:
-#if GERMAN
-	.string "Du besitzt nicht alle Orden von Johto.\p"
-	.string "Tut mir leid. Ich darf dich nicht\n"
-	.string "passieren lassen.$"
-#else
-    .string "You don't have all the GYM BADGES\n"
-    .string "of JOHTO.\p"
-    .string "I'm sorry, but I can't let you go\n"
-    .string "through.$"
+	.string "Sorry kid, this way is closed until\n"
+	.string "someone deals with that LEGENDARY\l"
+	.string "POKéMON...$"
 #endif
 
 VictoryRoadGate_Text_EightBadges:
@@ -156,20 +109,6 @@ VictoryRoadGate_Text_LeftBlackBelt:
     .string "This way leads to MT.SILVER.\p"
     .string "You'll see scary-strong POKéMON out\n"
     .string "there.$"
-#endif
-
-VictoryRoadGate_Text_RightBlackBelt:
-#if GERMAN
-	.string "Du kommst von drüben, oder?\p"
-	.string "Man sieht es an der Art, wie jemand\n"
-	.string "durch die Tür kommt.\p"
-	.string "Hier fängt Johto an. Viel Glück.$"
-#else
-	.string "You have come from over there,\n"
-	.string "have you not?\p"
-	.string "You can tell by the way a person\n"
-	.string "walks through that door.\p"
-	.string "JOHTO starts here. Good luck.$"
 #endif
 
 @ ============================================================================
@@ -212,12 +151,14 @@ ReceptionGate_EventScript_PassMtSilver::
 
 ReceptionGate_Text_JohtoClosed:
 #if GERMAN
-	.string "Halt! Hinter diesem Tor beginnt Johto.\p"
+	.string "Halt! Hinter diesem Tor beginnt\n"
+	.string "Johto.\p"
 	.string "Der Weg ist gesperrt, solange die\n"
 	.string "Top Vier nicht besiegt sind.\p"
 	.string "Erst musst du dich hier beweisen.$"
 #else
-	.string "Hold it! Beyond this gate lies JOHTO.\p"
+	.string "Hold it! Beyond this gate lies\n"
+	.string "JOHTO.\p"
 	.string "The road stays closed until the\n"
 	.string "ELITE FOUR have been defeated.\p"
 	.string "Prove yourself here first.$"
@@ -225,12 +166,14 @@ ReceptionGate_Text_JohtoClosed:
 
 ReceptionGate_Text_MtSilverClosed:
 #if GERMAN
-	.string "Der Weg zum Silberberg ist gesperrt.\p"
+	.string "Der Weg zum Silberberg ist\n"
+	.string "gesperrt.\p"
 	.string "Dort draußen hausen Pokémon, gegen\n"
-	.string "die selbst die Top Vier alt aussehen.\p"
-	.string "Kantos Orden zählen hier nicht. Komm\n"
-	.string "wieder, wenn du auch Johtos Liga\l"
-	.string "geschlagen hast.$"
+	.string "die selbst die Top Vier alt\l"
+	.string "aussehen.\p"
+	.string "Kantos Orden zählen hier nicht.\n"
+	.string "Komm wieder, wenn du auch Johtos\l"
+	.string "Liga geschlagen hast.$"
 #else
 	.string "The road to MT.SILVER is closed.\p"
 	.string "The POKéMON out there would make\n"
@@ -264,8 +207,8 @@ ReceptionGate_EventScript_LeagueDenied::
 
 ReceptionGate_Text_LeagueDenied:
 #if GERMAN
-	.string "Nur Trainer mit allen acht Orden von\n"
-	.string "Kanto duerfen zur Siegesstrasse.\p"
+	.string "Nur Trainer mit allen acht Orden\n"
+	.string "von Kanto dürfen zur Siegesstraße.\p"
 	.string "Komm wieder, wenn du so weit bist.$"
 #else
 	.string "Only trainers with all eight BADGES\n"

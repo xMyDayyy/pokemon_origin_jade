@@ -174,8 +174,8 @@ dated 2026-10-10 or later were decided directly.
   (`data/scripts/pokemon_league.inc`) is the one condition; the plateau door
   warp is `MAP_DYNAMIC` (`IndigoPlateau_Exterior_EventScript_SetDoorWarp`).
   Silver: `IndigoPlateau_EventScript_SetupSilverFinal`. HnS's checkpoint at
-  the south entrance (`ReceptionGate_Trigger`) stays unused: that entrance is
-  the way home from Johto to Kanto.
+  the south entrance is removed: that entrance is the way home from Johto
+  to Kanto.
 - **Evidence:** decisions 2026-10-10, 2026-10-11 and 2026-10-12 (HnS's
   Victory Road only if needed, Moltres stays in Kanto's; flying must not skip
   Silver); e900a95bad; 9be851b978.
