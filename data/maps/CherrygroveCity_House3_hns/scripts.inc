@@ -19,11 +19,15 @@ CherrygroveCity_House3_EventScript_Girl::
 
 CherrygroveCity_EvolutionHouse_Text_Youngster:
 #if GERMAN
-	.string "Pokémon sammeln über Kämpfe Erfahrung\n"
-	.string "und verändern schließlich ihre Gestalt.$"
+	.string "Bei uns im Ort erzählt man sich, ein\n"
+	.string "Pokémon habe sich mitten auf dem\l"
+	.string "Marktplatz entwickelt.\p"
+	.string "Alle sind erschrocken.$"
 #else
-	.string "POKéMON gain experience in\n"
-	.string "battle and change their form.$"
+	.string "They say around here that a POKéMON\n"
+	.string "once evolved right in the middle of\l"
+	.string "the market square.\p"
+	.string "Everyone was startled.$"
 #endif
 
 CherrygroveCity_EvolutionHouse_Text_Lass:

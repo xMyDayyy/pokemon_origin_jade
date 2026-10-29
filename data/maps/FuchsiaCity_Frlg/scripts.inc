@@ -63,8 +63,16 @@ FuchsiaCity_EventScript_SafariZoneOfficeSign::
 
 FuchsiaCity_EventScript_GymSign::
 	lockall
+	call PokemonLeague_EventScript_CheckLeagueChanged
+	goto_if_eq VAR_RESULT, TRUE, FuchsiaCity_EventScript_GymSignJanine
 	famechecker FAMECHECKER_KOGA, 0
 	msgbox FuchsiaCity_Text_GymSign
+	releaseall
+	end
+
+@ Janina leads the gym after the league change, see docs/origin_jade/DECISIONS.md, D-032.
+FuchsiaCity_EventScript_GymSignJanine::
+	msgbox FuchsiaCity_Text_GymSignJanine
 	releaseall
 	end
 
@@ -227,6 +235,15 @@ FuchsiaCity_Text_SafariZoneOfficeSign::
 	.string "POKéMON PARADISE!\n"
 	.string "Welcome to the SAFARI ZONE!\l"
 	.string "SAFARI ZONE OFFICE$"
+#endif
+
+FuchsiaCity_Text_GymSignJanine::
+#if GERMAN
+	.string "Fuchsania City Pokémon-Arena\n"
+	.string "Arenaleiterin: Janina$"
+#else
+	.string "FUCHSIA CITY POKéMON GYM\n"
+	.string "LEADER: JANINE$"
 #endif
 
 FuchsiaCity_Text_GymSign::

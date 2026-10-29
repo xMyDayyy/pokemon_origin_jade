@@ -1,7 +1,7 @@
 {
   "id": "MAP_TWO_ISLAND_HOUSE",
   "name": "TwoIsland_House_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_HOUSE3_FRLG",
   "music": "MUS_RG_SEVII_123",
   "region": "REGION_KANTO",

@@ -201,24 +201,24 @@
     {
       "id": "HEAL_LOCATION_VIRIDIAN_CITY",
       "map": "MAP_VIRIDIAN_CITY",
-      "x": 26,
-      "y": 27,
+      "x": 30,
+      "y": 37,
       "respawn_map": "MAP_VIRIDIAN_CITY_POKEMON_CENTER_1F",
       "respawn_npc": "LOCALID_VIRIDIAN_NURSE"
     },
     {
       "id": "HEAL_LOCATION_PEWTER_CITY",
       "map": "MAP_PEWTER_CITY",
-      "x": 17,
-      "y": 26,
+      "x": 19,
+      "y": 30,
       "respawn_map": "MAP_PEWTER_CITY_POKEMON_CENTER_1F",
       "respawn_npc": "LOCALID_PEWTER_NURSE"
     },
     {
       "id": "HEAL_LOCATION_CERULEAN_CITY",
       "map": "MAP_CERULEAN_CITY",
-      "x": 22,
-      "y": 20,
+      "x": 25,
+      "y": 30,
       "respawn_map": "MAP_CERULEAN_CITY_POKEMON_CENTER_1F",
       "respawn_npc": "LOCALID_CERULEAN_NURSE"
     },
@@ -233,8 +233,8 @@
     {
       "id": "HEAL_LOCATION_VERMILION_CITY",
       "map": "MAP_VERMILION_CITY",
-      "x": 15,
-      "y": 7,
+      "x": 22,
+      "y": 5,
       "respawn_map": "MAP_VERMILION_CITY_POKEMON_CENTER_1F",
       "respawn_npc": "LOCALID_VERMILION_NURSE"
     },
@@ -268,12 +268,14 @@
       "x": 11,
       "y": 7,
       "respawn_map": "MAP_INDIGO_PLATEAU_POKEMON_CENTER_1F",
-      "respawn_npc": "LOCALID_LEAGUE_NURSE"
+      "respawn_npc": "LOCALID_INDIGO_LEAGUE_NURSE",
+      "respawn_x": 13,
+      "respawn_y": 12
     },
     {
       "id": "HEAL_LOCATION_SAFFRON_CITY",
       "map": "MAP_SAFFRON_CITY",
-      "x": 24,
+      "x": 18,
       "y": 39,
       "respawn_map": "MAP_SAFFRON_CITY_POKEMON_CENTER_1F",
       "respawn_npc": "LOCALID_SAFFRON_NURSE"
@@ -560,7 +562,9 @@
       "id": "HEAL_LOCATION_BATTLE_FRONTIER_OUTSIDE_EAST_HNS",
       "map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST_HNS",
       "x": 12,
-      "y": 46
+      "y": 46,
+      "respawn_map": "MAP_BATTLE_FRONTIER_POKEMON_CENTER_1F_HNS",
+      "respawn_npc": "LOCALID_FRONTIER_NURSE"
     },
     {
       "id": "HEAL_LOCATION_MELEMELE_ISLE_HNS",
@@ -591,6 +595,12 @@
       "map": "MAP_ROUTE4_HNS",
       "x": 12,
       "y": 6
+    },
+    {
+      "id": "HEAL_LOCATION_NEW_BARK_TOWN_LAB_HNS",
+      "map": "MAP_NEW_BARK_TOWN_HNS",
+      "x": 10,
+      "y": 10
     }
   ]
 }

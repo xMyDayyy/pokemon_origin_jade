@@ -10,8 +10,7 @@ EverGrandeCity_PokemonCenter_1F_OnTransition:
 
 EverGrandeCity_PokemonCenter_1F_EventScript_TryShowScott::
 #if IS_HNS
-	@ HnS: FLAG_BADGE06_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
+	@ Hoenn badge 6 (Winona)
 	setvar VAR_0x8004, 5
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn

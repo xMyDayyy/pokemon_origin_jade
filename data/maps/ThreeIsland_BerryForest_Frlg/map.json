@@ -1,7 +1,7 @@
 {
   "id": "MAP_THREE_ISLAND_BERRY_FOREST",
   "name": "ThreeIsland_BerryForest_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_THREE_ISLAND_BERRY_FOREST",
   "music": "MUS_RG_VIRIDIAN_FOREST",
   "region": "REGION_KANTO",

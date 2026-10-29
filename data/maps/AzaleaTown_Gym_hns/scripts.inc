@@ -481,7 +481,10 @@ AzaleaTown_Gym_EventScript_Trigger_11::
 AzaleaTown_Gym_EventScript_GymGuy::
 	lock
 	faceplayer
-	goto_if_set FLAG_BADGE02_GET, AzaleaTown_Gym_EventScript_GymGuy2
+	@ Johto badge 2 (Bugsy)
+	setvar VAR_0x8004, 1
+	special CheckJohtoBadge
+	goto_if_eq VAR_RESULT, TRUE, AzaleaTown_Gym_EventScript_GymGuy2
 	msgbox AzaleaTown_Gym_Text_GymGuide, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -525,6 +528,7 @@ AzaleaTown_Gym_EventScript_May::
 AzaleaTown_Gym_EventScript_Bugsy::
 	lock
 	faceplayer
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, AzaleaTown_Gym_EventScript_Bugsy_Rematch
 	goto_if_set FLAG_DEFEATED_AZALEA_TOWN_GYM, AzaleaTown_Gym_EventScript_Bugsy_Defeated
 	msgbox AzaleaTown_Gym_Text_BugsyIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_BUGSY_1_HNS, AzaleaTown_Gym_Text_BugsyBeaten
@@ -533,6 +537,11 @@ AzaleaTown_Gym_EventScript_Bugsy::
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox AzaleaTown_Gym_Text_HiveBadgeSpeech, MSGBOX_DEFAULT
 	setflag FLAG_BADGE02_GET
+	@ Johto badge 2 (Bugsy)
+	setvar VAR_0x8004, 1
+	special SetJohtoBadge
+	setvar VAR_0x8004, PERM_CUT
+	special SetJohtoPermit
 	setflag FLAG_DEFEATED_AZALEA_TOWN_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 2
@@ -551,6 +560,15 @@ AzaleaTown_Gym_EventScript_Bugsy::
 AzaleaTown_Gym_EventScript_Bugsy_Defeated::
 	msgbox AzaleaTown_Gym_Text_BugsyAdvice, MSGBOX_DEFAULT
 	closemessage
+	release
+	end
+
+@ Rematch after the Johto title, see docs/origin_jade/DECISIONS.md, D-032.
+AzaleaTown_Gym_EventScript_Bugsy_Rematch::
+	msgbox AzaleaTown_Gym_Text_BugsyRematch, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
+	closemessage
+	trainerbattle_no_intro TRAINER_BUGSY_2_HNS, AzaleaTown_Gym_Text_BugsyRematchDefeat
 	release
 	end
 
@@ -778,13 +796,16 @@ AzaleaTown_Gym_Text_BugsyAdvice:
 AzaleaTown_Gym_Text_BugsyRematch:
 #if GERMAN
 	.string "Wow, du bist Johto-Champion!\p"
-	.string "Du hast außerordentliche Fähigkeiten!\p"
-	.string "Ich war beschäftigt mit Studien.\p"
+	.string "Deine Fähigkeiten sind\n"
+	.string "außerordentlich!\p"
+	.string "Ich war mit meinen Studien\n"
+	.string "beschäftigt.\p"
 	.string "Lass mich dir meine Entdeckungen\n"
 	.string "zeigen.\p"
-	.string "Bist du bereit zu kämpfen?$"
+	.string "Möchtest du einen Rückkampf?$"
 #else
-	.string "Wow, you're the JOHTO CHAMPION now!\p"
+	.string "Wow, you're the JOHTO CHAMPION\n"
+	.string "now!\p"
 	.string "Your skills are truly impressive!\p"
 	.string "I've been busy with my research.\p"
 	.string "I'm ready to show you my new\n"
@@ -797,7 +818,7 @@ AzaleaTown_Gym_Text_BugsyRematchDefeat:
 	.string "Wow, du bist ein Experte.\n"
 	.string "Meine Studien gehen wohl weiter…$"
 #else
-	.string "Wow, you must be an expert trainer.\n"
+	.string "Wow, you're an expert trainer.\n"
 	.string "My research must not be complete...$"
 #endif
 
@@ -976,8 +997,6 @@ AzaleaTown_Gym_Text_GymGuide:
 	.string "Let's see… BUGSY's bagworm POKéMON\n"
 	.string "knows a move that covers its\l"
 	.string "ROCK-type weakness.\p"
-	.string "He's also developed a new verison\n"
-	.string "of CUT that is BUG-type.\p"
 	.string "Oh, and don't forget about those\n"
 	.string "nasty critical hits! Good luck!$"
 #endif

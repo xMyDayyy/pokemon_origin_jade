@@ -1,25 +1,30 @@
 BirthIsland_Harbor_hns_MapScripts::
 	.byte 0
 
+@ M.S. Aqua to Olivine, Vermilion or Hoenn (see docs/origin_jade/DECISIONS.md, D-029).
 BirthIsland_Harbor_hns_EventScript_Sailor::
 	lock
 	faceplayer
-	msgbox BirthIsland_Harbor_Text_SailorReturn, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, BirthIsland_Harbor_hns_EventScript_AsYouLike
-	msgbox EventTicket_Text_SailHome, MSGBOX_DEFAULT
-	closemessage
-	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown
-	waitmovement 0
-	delay 30
-	hideobjectat LOCALID_BIRTH_ISLAND_HARBOR_HNS_SAILOR, MAP_BIRTH_ISLAND_HARBOR_HNS
 	setvar VAR_0x8004, LOCALID_BIRTH_ISLAND_HARBOR_HNS_SS_TIDAL
-	call Common_EventScript_FerryDepartIsland
-	warp MAP_LILYCOVE_CITY_HARBOR, 8, 11
-	waitstate
-	release
-	end
+	message BirthIsland_Harbor_hns_Text_SailorReturn
+	waitmessage
+	goto SSAqua_EventScript_ChooseReturnPort
 
-BirthIsland_Harbor_hns_EventScript_AsYouLike::
-	msgbox EventTicket_Text_AsYouLike, MSGBOX_DEFAULT
-	release
-	end
+@ Sailor at the landing place outside (object LOCALID_BIRTH_ISLAND_EXTERIOR_HNS_SAILOR of BirthIsland_Exterior_hns).
+BirthIsland_Harbor_hns_EventScript_ExteriorSailor::
+	lock
+	faceplayer
+	setvar VAR_0x8004, LOCALID_BIRTH_ISLAND_EXTERIOR_HNS_SS_TIDAL
+	message BirthIsland_Harbor_hns_Text_SailorReturn
+	waitmessage
+	goto SSAqua_EventScript_ChooseReturnPort
+
+BirthIsland_Harbor_hns_Text_SailorReturn:
+#if GERMAN
+	.string "Was für eine seltsam geformte\n"
+	.string "Insel, nicht?\p"
+	.string "Wohin möchtest du segeln?$"
+#else
+	.string "What an oddly shaped island, eh?\p"
+	.string "Where would you like to sail?$"
+#endif

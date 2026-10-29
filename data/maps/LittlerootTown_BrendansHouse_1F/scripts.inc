@@ -648,14 +648,8 @@ BrendansHouse_1F_Text_ChampionVisit:
 	.string "a hurry.$"
 #endif
 
-@ HnS: Wurzelheim ohne Spielerfamilie - dieses Haus gehoert Normans
-@ Familie (siehe Normans Dialog in der Bluetenburg-Arena). Das
-@ Nachbarhaus (MaysHouse) bleibt die Familie von Prof. Birk.
+@ HnS: this house belongs to Norman's family.
 LittlerootTown_BrendansHouse_1F_EventScript_NormansFrau::
-	@ HnS: Sie kennt den Spieler nicht und meldet sich nie von sich aus.
-	@ Ihr Text wechselt genau einmal - wenn der Umbau der Arena fertig ist
-	@ (VAR_PETALBURG_GYM_STATE erreicht 6). Danach bleibt er, egal ob Norman
-	@ besiegt wurde oder nicht. Diese Familie hat mit dem Spieler nichts zu tun.
 	goto_if_ge VAR_PETALBURG_GYM_STATE, 6, LittlerootTown_BrendansHouse_1F_EventScript_NormansFrauGymOpen
 	msgbox LittlerootTown_BrendansHouse_1F_Text_NormansFrau, MSGBOX_NPC
 	end
@@ -685,7 +679,6 @@ LittlerootTown_BrendansHouse_1F_Text_NormansFrau:
 	.string "with his POKéMON, too.$"
 #endif
 
-@ HnS: Zweiter und letzter Zustand - ab der Wiedereroeffnung der Arena.
 LittlerootTown_BrendansHouse_1F_Text_NormansFrauGymOpen:
 #if GERMAN
 	.string "Ah, ein Besucher! Mein Mann Norman\n"

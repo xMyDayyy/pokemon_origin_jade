@@ -49,27 +49,32 @@ RadioTower1F_Text_Whitney1::
 #if GERMAN
 	.string "Bianka: Hallooo!\n"
 	.string "Ich heiße Bianka!\p"
-	.string "Hier läuft gerade ein Quiz, bei dem man\n"
-	.string "ein Radio-Modul abstauben kann! Ich\l"
-	.string "selbst bin auch genau deswegen hier…\p"
-	.string "Aber dieses Quiz ist echt unglaublich\n"
-	.string "schwierig!$"
+	.string "Hier läuft ein Quiz, bei dem man\n"
+	.string "einen Fahrschein für den Magnetzug\l"
+	.string "gewinnen kann!\p"
+	.string "Damit könnte ich in Saffronia City\n"
+	.string "shoppen gehen!\p"
+	.string "Aber dieses Quiz ist echt\n"
+	.string "unglaublich schwierig!$"
 #else
 	.string "WHITNEY: Hi!\p"
 	.string "My name is WHITNEY!\p"
 	.string "I heard about the QUIZ to win a\n"
-	.string "RADIO, so I came here to get\l"
-	.string "one...\p"
+	.string "MAGNET TRAIN PASS, so I came\l"
+	.string "here to get one...\p"
+	.string "Then I could go shopping in\n"
+	.string "SAFFRON CITY!\p"
 	.string "But this QUIZ is so hard!$"
 #endif
 
 RadioTower1F_Text_Whitney2::
 #if GERMAN
-	.string "Bianka: Wahnsinn! Du bist echt klasse!\n"
-	.string "Bei Frage 3 war ich mir so sicher, dass\l"
-	.string "die Antwort Aprikorken lautet!\p"
-	.string "Ho-hoppla!\n"
-	.string "Ich muss langsam zurück in die Arena!$"
+	.string "Bianka: Wahnsinn!\n"
+	.string "Du bist echt klasse!\p"
+	.string "Bei Frage 3 war ich mir so sicher,\n"
+	.string "dass die Antwort Aprikoko lautet!\p"
+	.string "Ho-hoppla! Ich muss langsam\n"
+	.string "zurück in die Arena!$"
 #else
 	.string "WHITNEY: Wow, you did it!\p"
 	.string "I thought the answer to the third\n"
@@ -82,7 +87,7 @@ RadioTower1F_EventScript_Reception::
 	lock
 	faceplayer
 	msgbox RadioTower1F_Text_ReceptionistWelcome, MSGBOX_DEFAULT
-	goto_if_unset FLAG_ENABLE_RADIO, RadioTower1F_EventScript_ReceptionOfferQuiz
+	goto_if_unset FLAG_WON_GOLDENROD_RADIO_QUIZ, RadioTower1F_EventScript_ReceptionOfferQuiz
 	msgbox RadioTower1F_Text_ReceptionistNoTours, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -130,18 +135,17 @@ RadioTower1F_EventScript_ReceptionQuiz4::
 
 RadioTower1F_EventScript_ReceptionQuiz5::
 	msgbox RadioTower1F_Text_QuizQuestion5, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, FALSE, RadioTower1F_EventScript_ReceptionGiveRadio
+	goto_if_eq VAR_RESULT, FALSE, RadioTower1F_EventScript_ReceptionGivePrize
 	msgbox RadioTower1F_Text_WrongAnswer, MSGBOX_DEFAULT
 	closemessage
 	release
 	end
 
-RadioTower1F_EventScript_ReceptionGiveRadio::
+@ Origin Jade: the quiz prize is the Magnet Train pass, see docs/origin_jade/DECISIONS.md, D-029.
+RadioTower1F_EventScript_ReceptionGivePrize::
 	msgbox RadioTower1F_Text_QuizWin, MSGBOX_DEFAULT
-	closemessage
-	playfanfare MUS_OBTAIN_ITEM
-	msgbox RadioTower1F_Text_PokegearRadio, MSGBOX_AUTOCLOSE
-	waitfanfare
+	giveitem ITEM_PASS
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	msgbox RadioTower1F_Text_TuneIn, MSGBOX_DEFAULT
 	closemessage
 	playse SE_PIN
@@ -157,7 +161,7 @@ RadioTower1F_EventScript_ReceptionGiveRadio::
 	waitmovement 0
 	playse SE_EXIT
 	removeobject LOCALID_GOLDENROD_RADIOTOWER_WHITNEY
-	setflag FLAG_ENABLE_RADIO
+	setflag FLAG_WON_GOLDENROD_RADIO_QUIZ
 	setflag FLAG_HIDE_GOLDENROD_BEAUTY
 	setvar VAR_GOLDENROD_CITY_STATE, 2
 	release
@@ -183,7 +187,7 @@ GoldenrodCity_RadioTower_1F_EventScript_Sign::
 
 RadioTower1F_Text_ReceptionistWelcome:
 #if GERMAN
-	.string "Komm Rein$"
+	.string "Willkommen!$"
 #else
     .string "Welcome!$"
 #endif
@@ -199,20 +203,20 @@ RadioTower1F_Text_ReceptionistNoTours:
 
 RadioTower1F_Text_RadioCardWomanOfferQuiz:
 #if GERMAN
-	.string "Bei uns läuft momentan ein besonderes\n"
-	.string "Quiz.\p"
-	.string "Beantworte die fünf Fragen richtig, um\n"
-	.string "ein Radio-Modul zu gewinnen.\p"
-	.string "Stecke es in den Com, um überall und zu\n"
-	.string "jeder Zeit Radio hören zu können.\p"
+	.string "Bei uns läuft momentan ein\n"
+	.string "besonderes Quiz.\p"
+	.string "Beantworte die fünf Fragen richtig,\n"
+	.string "um einen Fahrschein zu gewinnen.\p"
+	.string "Damit fährst du mit dem Magnetzug\n"
+	.string "nach Saffronia City in Kanto!\p"
 	.string "Möchtest du am Quiz teilnehmen?$"
 #else
     .string "We have a special QUIZ campaign on\n"
     .string "right now.\p"
     .string "Answer five questions correctly to\n"
-    .string "win a RADIO.\p"
-    .string "You and your POKéMON can use it to\n"
-    .string "play music anytime, anywhere.\p"
+    .string "win a rail PASS.\p"
+    .string "It lets you ride the MAGNET TRAIN\n"
+    .string "to SAFFRON CITY in KANTO.\p"
     .string "Would you like to take the QUIZ?$"
 #endif
 
@@ -242,7 +246,7 @@ RadioTower1F_Text_QuizQuestion2:
 RadioTower1F_Text_QuizQuestion3:
 #if GERMAN
 	.string "Volltreffer! Frage 3:\p"
-	.string "Benutzt Kurt, der Pokéball-Erbauer,\n"
+	.string "Benutzt der Pokéball-Erbauer Kurt\n"
 	.string "Aprikoko als Zutaten?$"
 #else
     .string "Bull's-eye!\n"
@@ -255,8 +259,8 @@ RadioTower1F_Text_QuizQuestion4:
 #if GERMAN
 	.string "Bis hierher gut!\n"
 	.string "Frage 4:\p"
-	.string "Ist Falk der Leiter von Viola City, der\n"
-	.string "Vogel-Pokémon nutzt?$"
+	.string "Ist Falk der Arenaleiter von Viola\n"
+	.string "City, der Vogel-Pokémon nutzt?$"
 #else
     .string "So far so good!\n"
     .string "Question 4:\p"
@@ -281,33 +285,26 @@ RadioTower1F_Text_QuizWin:
 #if GERMAN
 	.string "Bingo! Volltreffer!\n"
 	.string "Glückwunsch!\p"
-	.string "Hier dein Preis: ein Radio-Modul!$"
+	.string "Hier ist dein Preis!$"
 #else
     .string "Bingo! You got it!\n"
     .string "Congratulations!\p"
-    .string "Here's your prize, a RADIO CARD!$"
-#endif
-
-RadioTower1F_Text_PokegearRadio:
-#if GERMAN
-	.string "{PLAYER}s PokéCom kann jetzt Radio\n"
-	.string "empfangen!$"
-#else
-    .string "{PLAYER}'s POKéGEAR can now double as\n"
-    .string "a RADIO!$"
+    .string "Here's your prize!$"
 #endif
 
 RadioTower1F_Text_TuneIn:
 #if GERMAN
-	.string "Wir hoffen, dir gefällt unser Programm!$"
+	.string "Wir hoffen, dir gefällt unser\n"
+	.string "Programm!$"
 #else
     .string "Please tune in to our RADIO shows.$"
 #endif
 
 RadioTower1F_Text_WrongAnswer:
 #if GERMAN
-	.string "Oh, das ist aber schade. Das war leider\n"
-	.string "falsch. Versuch’s einfach noch einmal!$"
+	.string "Oh, das ist aber schade. Das war\n"
+	.string "leider falsch. Versuch’s einfach\l"
+	.string "noch einmal!$"
 #else
     .string "Oh, dear.\n"
     .string "Sorry, but you got it wrong.\p"

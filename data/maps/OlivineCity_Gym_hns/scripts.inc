@@ -283,6 +283,7 @@ OlivineCity_Gym_Text_GymGuidePreText:
 OlivineCity_Gym_EventScript_Jasmine::
 	lock
 	faceplayer
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, OlivineCity_Gym_EventScript_Jasmine_PostTitle
 	goto_if_set FLAG_DEFEATED_OLIVINE_CITY_GYM, OlivineCity_Gym_EventScript_Jasmine_Defeated
 	msgbox OlivineCity_Gym_Text_JasmineSteelTypeIntro, MSGBOX_DEFAULT
 	goto_if_set FLAG_DEFEATED_CIANWOOD_GYM, OlivineCity_Gym_EventScript_CianwoodCheckMahog
@@ -295,6 +296,9 @@ OlivineCity_Gym_EventScript_JasmineVictory::
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox OlivineCity_Gym_Text_JasmineBadgeSpeech, MSGBOX_DEFAULT
 	setflag FLAG_BADGE06_GET
+	@ Johto badge 6 (Jasmine)
+	setvar VAR_0x8004, 5
+	special SetJohtoBadge
 	setflag FLAG_DEFEATED_OLIVINE_CITY_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 6
@@ -332,6 +336,20 @@ OlivineCity_Gym_EventScript_Jasmine_Defeated::
 	goto_if_unset FLAG_HIDE_DOJO_JASMINE, OlivineCity_Gym_EventScript_Jasmine_Trade
 	msgbox OlivineCity_Gym_Text_JasmineGoodLuck, MSGBOX_DEFAULT
 	closemessage
+	release
+	end
+
+@ After the Johto title: Jasmine offers her Steelix once per visit until the
+@ trade is done (FLAG_TEMP_1 = offered this visit), otherwise the rematch.
+@ See docs/origin_jade/DECISIONS.md, D-032.
+OlivineCity_Gym_EventScript_Jasmine_PostTitle::
+	goto_if_set FLAG_OLIVINE_GYM_NPC_TRADE_COMPLETED, OlivineCity_Gym_EventScript_Jasmine_Rematch
+	goto_if_unset FLAG_TEMP_1, OlivineCity_Gym_EventScript_Jasmine_Trade
+OlivineCity_Gym_EventScript_Jasmine_Rematch::
+	msgbox OlivineCity_Gym_Text_JasmineRematchText, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
+	closemessage
+	trainerbattle_no_intro TRAINER_JASMINE_2_HNS, OlivineCity_Gym_Text_JasmineRematchDefeatText
 	release
 	end
 
@@ -413,12 +431,12 @@ OlivineCity_Gym_Text_JasmineGoodLuck:
 
 OlivineCity_Gym_Text_JasmineRematchText:
 #if GERMAN
-	.string "…Glückwunsch, Johto Champion.\p"
+	.string "…Glückwunsch, Johto-Champion.\p"
 	.string "Du bist so stark geworden…\p"
-	.string "Ich frage mich, ob ich mich verbessert\n"
-	.string "habe.\p"
+	.string "Ich frage mich, ob ich mich\n"
+	.string "verbessert habe.\p"
 	.string "Willst du es testen?\p"
-	.string "Willst du ein Rematch mit mir?$"
+	.string "Möchtest du einen Rückkampf?$"
 #else
 	.string "…Congratulations, JOHTO CHAMPION.\p"
 	.string "You have become so strong…\p"
@@ -471,6 +489,7 @@ OlivineCity_Gym_Text_GymStatueCertified:
 
 OlivineCity_Gym_EventScript_Jasmine_Trade::
 	goto_if_set FLAG_OLIVINE_GYM_NPC_TRADE_COMPLETED, OlivineCity_Gym_EventScript_JasmineTradeCompleted
+	setflag FLAG_TEMP_1
 	setvar VAR_0x8005, INGAME_TRADE_STEELIX
 	specialvar VAR_0x8009, GetInGameTradeSpeciesInfo
 	msgbox OlivineCity_Gym_Text_JasmineWantToTrade, MSGBOX_YESNO
@@ -478,6 +497,9 @@ OlivineCity_Gym_EventScript_Jasmine_Trade::
 	chooseboxmon SELECT_PC_MON_TRADE
 	waitstate
 	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, OlivineCity_Gym_EventScript_JasmineDeclineTrade
+	@ Eggs cannot be traded.
+	specialvar VAR_RESULT, GetTradeSpecies
+	goto_if_eq VAR_RESULT, SPECIES_NONE, OlivineCity_Gym_EventScript_JasmineDeclineTrade
 	special CreateInGameTradePokemon
 	special DoInGameTradeScene
 	waitstate
@@ -498,14 +520,14 @@ OlivineCity_Gym_EventScript_JasmineTradeCompleted::
 
 OlivineCity_Gym_Text_JasmineWantToTrade:
 #if GERMAN
-	.string "…Um, {PLAYER}…\n"
-	.string "Ich wollte dich was fragen.\p"
-	.string "Ich habe dieses Stahlos aufgezogen\n"
+	.string "…Ähm, {PLAYER}…\n"
+	.string "Ich wollte dich etwas fragen.\p"
+	.string "Ich habe dieses Stahlos aufgezogen,\n"
 	.string "seit es ein kleines Onix war.\p"
-	.string "Aber ich glaube Rusty wäre glücklicher\n"
-	.string "bei einem Trainer Wie dir. Möchtest du\l"
-	.string "ein\p"
-	.string "Pokémon für mein Rusty tauschen?$"
+	.string "Aber ich glaube, Beißer wäre bei\n"
+	.string "jemandem wie dir glücklicher.\p"
+	.string "Möchtest du eines deiner Pokémon\n"
+	.string "gegen Beißer tauschen?$"
 #else
 	.string "…Um, {PLAYER}…\n"
 	.string "I have something to ask you.\p"
@@ -520,7 +542,7 @@ OlivineCity_Gym_Text_JasmineWantToTrade:
 OlivineCity_Gym_Text_JasmineTakeCare:
 #if GERMAN
 	.string "…Ich danke dir.\n"
-	.string "Sei bitte nett zu Rusty…$"
+	.string "Sei bitte nett zu Beißer…$"
 #else
 	.string "…Thank you.\n"
 	.string "Please be kind to RUSTY…$"
@@ -537,8 +559,8 @@ OlivineCity_Gym_Text_JasmineDeclineTrade:
 
 OlivineCity_Gym_Text_JasmineTradeCompleted:
 #if GERMAN
-	.string "…Wie geht es Rusty?\n"
-	.string "Ich hoffe du kümmerst dich…$"
+	.string "…Wie geht es Beißer?\n"
+	.string "Ich hoffe, es geht ihm gut…$"
 #else
 	.string "…How is RUSTY doing?\n"
 	.string "I hope you're taking good care…$"

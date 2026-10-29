@@ -1,7 +1,7 @@
 {
   "id": "MAP_SIX_ISLAND_ALTERING_CAVE",
   "name": "SixIsland_AlteringCave_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_SIX_ISLAND_ALTERING_CAVE",
   "music": "MUS_RG_SEVII_CAVE",
   "region": "REGION_KANTO",

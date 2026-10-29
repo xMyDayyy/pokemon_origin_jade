@@ -24,9 +24,9 @@ VictoryRoadKanto_1F_Trigger::
 	call_if_eq VAR_TEMP_0, 28, VictoryRoadKanto_1F_EventScript_SilverEnterMid
 	call_if_eq VAR_TEMP_0, 29, VictoryRoadKanto_1F_EventScript_SilverEnterRight
 	msgbox VictoryRoad_Text_RivalBefore, MSGBOX_DEFAULT
-	call_if_eq VAR_STARTER_MON, 0, VictoryRoadKanto_1F_Silver_Battle_Cyndaquil
-	call_if_eq VAR_STARTER_MON, 1, VictoryRoadKanto_1F_Silver_Battle_Totodile
-	call_if_eq VAR_STARTER_MON, 2, VictoryRoadKanto_1F_Silver_Battle_Chikorita
+	call_if_eq VAR_JOHTO_STARTER_MON, 0, VictoryRoadKanto_1F_Silver_Battle_Cyndaquil
+	call_if_eq VAR_JOHTO_STARTER_MON, 1, VictoryRoadKanto_1F_Silver_Battle_Totodile
+	call_if_eq VAR_JOHTO_STARTER_MON, 2, VictoryRoadKanto_1F_Silver_Battle_Chikorita
 	playbgm MUS_HG_RIVAL_EXIT, FALSE
 	msgbox VictoryRoad_Text_RivalAfter, MSGBOX_DEFAULT
 	closemessage

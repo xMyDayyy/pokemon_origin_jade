@@ -6,8 +6,7 @@ MauvilleCity_House1_EventScript_RockSmashDude::
 	faceplayer
 	goto_if_set FLAG_RECEIVED_HM_ROCK_SMASH, MauvilleCity_House1_EventScript_ReceivedRockSmash
 #if IS_HNS
-	@ HnS: Die Erlaubnis fuer Zertruemmerer erteilt allein Walter mit dem
-	@ Dynamo-Orden (siehe MauvilleCity_Gym). Dieser NPC uebergibt nichts mehr.
+	@ HnS: no handover, the Rock Smash license comes with the Dynamo Badge.
 	msgbox Text_HnsRockSmashDudeNoHandover, MSGBOX_DEFAULT
 #else
 	msgbox MauvilleCity_House1_Text_ImRockSmashDudeTakeThis, MSGBOX_DEFAULT
@@ -84,8 +83,7 @@ MauvilleCity_House1_Text_MonCanFlyOutOfSmashedRock:
 #endif
 
 #if IS_HNS
-@ Nicht mehr angesprungen, seit die Erlaubnis am Dynamo-Orden haengt.
-@ Bleibt stehen, damit nichts geloescht wird.
+@ Unused.
 Text_HnsRockSmashLicense:
 #if GERMAN
 	.string "{PLAYER} erhält die Lizenz für\n"

@@ -70,3 +70,15 @@ Text_VoiceRangOutDontRunAway::
 	.string "Someone's voice rang out,\n"
 	.string "“Don't run away!”$"
 #endif
+
+@ VAR_RESULT = TRUE once Johto's league replaces Kanto's on Indigo Plateau.
+PokemonLeague_EventScript_CheckLeagueChanged::
+	specialvar VAR_RESULT, CountJohtoBadges
+	goto_if_lt VAR_RESULT, 8, PokemonLeague_EventScript_LeagueNotChanged
+	goto_if_lt VAR_ECRUTEAK_CITY_THEATER, 8, PokemonLeague_EventScript_LeagueNotChanged
+	setvar VAR_RESULT, TRUE
+	return
+
+PokemonLeague_EventScript_LeagueNotChanged:
+	setvar VAR_RESULT, FALSE
+	return

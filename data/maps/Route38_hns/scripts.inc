@@ -335,21 +335,15 @@ Route38_Text_Sign:
 
 Route38_Text_TrainerTips:
 #if GERMAN
-	.string "Tipps für Trainer\p"
-	.string "Wenn du die Entwicklung eines Pokémon\n"
-	.string "stoppen willst, musst du den B-Knopf\l"
-	.string "drücken, während es sich entwickeln\l"
-	.string "will.\p"
-	.string "Das Pokémon entwickelt sich dann nicht.\n"
-	.string "Das nennt man Entwicklungsstopp.$"
+	.string "Route 38\p"
+	.string "Weidegebiet der Farm Bauer.\n"
+	.string "Tore bitte schließen.\p"
+	.string "Milchverkauf im Stall nebenan.$"
 #else
-	.string "TRAINER TIPS\p"
-	.string "If a POKéMON is trying to\n"
-	.string "evolve, you can stop it.\p"
-	.string "Press the B Button during\n"
-	.string "evolution to cancel it.\p"
-	.string "That startles the POKéMON\n"
-	.string "and stops its evolution.$"
+	.string "ROUTE 38\p"
+	.string "MOOMOO FARM pastureland.\n"
+	.string "Please close the gates.\p"
+	.string "Milk is sold at the barn.$"
 #endif
 
 

@@ -84,9 +84,7 @@ int Intl_GetListMenuWidth(const struct ListMenuTemplate *listMenu)
 
 void CopyMonCategoryText(u16 species, u8 *dest)
 {
-    // Im offiziellen deutschen Spiel wird "POKéMON" nicht an die Kategorie
-    // angehaengt (im dt. Smaragd-Decomp ist dieser Anhang ENGLISH-exklusiv).
-    // Angezeigt wird also nur "Samen" statt "Samen Pokémon".
+    // Origin Jade: category without the "Pokémon" suffix.
     StringCopy(dest, GetSpeciesCategory(species));
 }
 

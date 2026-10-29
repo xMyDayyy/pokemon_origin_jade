@@ -19,7 +19,8 @@ SinjohRuins_Lab_EventScript_TriggerIntroTop::
 	applymovement2 LOCALID_SINJOHRUINS_LAB_STEVEN, Common_Movement_ExclamationMark
 	delay 55
 	waitmovement LOCALID_SINJOHRUINS_LAB_STEVEN
-	msgbox SinjohRuins_Lab_Text_StevenIntroCutscene1, MSGBOX_AUTOCLOSE
+	msgbox SinjohRuins_Lab_Text_StevenIntroCutscene1, MSGBOX_DEFAULT
+	closemessage
 	applymovement2 LOCALID_PLAYER, Common_Movement_WalkDown1
 	applymovement2 LOCALID_SINJOHRUINS_LAB_STEVEN, SinjohRuins_Lab_Movement_StevenMeetPlayer
 	waitmovement 0
@@ -32,7 +33,8 @@ SinjohRuins_Lab_EventScript_TriggerIntroMid::
 	applymovement2 LOCALID_SINJOHRUINS_LAB_STEVEN, Common_Movement_ExclamationMark
 	delay 55
 	waitmovement LOCALID_SINJOHRUINS_LAB_STEVEN
-	msgbox SinjohRuins_Lab_Text_StevenIntroCutscene1, MSGBOX_AUTOCLOSE
+	msgbox SinjohRuins_Lab_Text_StevenIntroCutscene1, MSGBOX_DEFAULT
+	closemessage
 	applymovement2 LOCALID_SINJOHRUINS_LAB_STEVEN, SinjohRuins_Lab_Movement_StevenMeetPlayer
 	waitmovement LOCALID_SINJOHRUINS_LAB_STEVEN
 	goto SinjohRuins_Lab_EventScript_TriggerIntro
@@ -43,7 +45,8 @@ SinjohRuins_Lab_EventScript_TriggerIntroBot::
 	applymovement2 LOCALID_SINJOHRUINS_LAB_STEVEN, Common_Movement_ExclamationMark
 	delay 55
 	waitmovement LOCALID_SINJOHRUINS_LAB_STEVEN
-	msgbox SinjohRuins_Lab_Text_StevenIntroCutscene1, MSGBOX_AUTOCLOSE
+	msgbox SinjohRuins_Lab_Text_StevenIntroCutscene1, MSGBOX_DEFAULT
+	closemessage
 	applymovement2 LOCALID_PLAYER, Common_Movement_WalkUp1
 	applymovement2 LOCALID_SINJOHRUINS_LAB_STEVEN, SinjohRuins_Lab_Movement_StevenMeetPlayer
 	waitmovement 0
@@ -52,7 +55,8 @@ SinjohRuins_Lab_EventScript_TriggerIntroBot::
 
 SinjohRuins_Lab_EventScript_TriggerIntro::
 	turnobject LOCALID_PLAYER, DIR_EAST
-	msgbox SinjohRuins_Lab_Text_StevenIntroCutscene2, MSGBOX_AUTOCLOSE
+	msgbox SinjohRuins_Lab_Text_StevenIntroCutscene2, MSGBOX_DEFAULT
+	closemessage
 	applymovement2 LOCALID_SINJOHRUINS_LAB_STEVEN, SinjohRuins_Lab_Movement_StevenSitsDown
 	delay 10
 	applymovement LOCALID_PLAYER, SinjohRuins_Lab_Movement_PlayerGoesToTable
@@ -63,12 +67,13 @@ SinjohRuins_Lab_EventScript_TriggerIntro::
 	waitmovement LOCALID_NEWSINJOH_LAB_LINGUIST
 	applymovement2 LOCALID_SINJOHRUINS_LAB_STEVEN, Common_Movement_WalkInPlaceRight
 	waitmovement 0
-	msgbox SinjohRuins_Lab_Text_StevenIntroCutscene3, MSGBOX_AUTOCLOSE
+	msgbox SinjohRuins_Lab_Text_StevenIntroCutscene3, MSGBOX_DEFAULT
+	closemessage
 	delay 10
-	waitmovement 0
 	applymovement2 LOCALID_NEWSINJOH_LAB_LINGUIST, Common_Movement_WalkInPlaceDown
 	waitmovement 0
-	msgbox SinjohRuins_Lab_Text_StevenIntroCutscene4, MSGBOX_AUTOCLOSE
+	msgbox SinjohRuins_Lab_Text_StevenIntroCutscene4, MSGBOX_DEFAULT
+	closemessage
 	delay 10
 	applymovement LOCALID_NEWSINJOH_LAB_LINGUIST, SinjohRuins_Lab_Movement_LinguistWalkUp
 	applymovement2 LOCALID_SINJOHRUINS_LAB_STEVEN, Common_Movement_WalkInPlaceRight
@@ -81,7 +86,8 @@ SinjohRuins_Lab_EventScript_IntroChoice::
 	goto SinjohRuins_Lab_EventScript_IntroChoice
 
 SinjohRuins_Lab_EventScript_IntroChoseYes::
-	msgbox SinjohRuins_Lab_Text_StevenIntroCutscene6, MSGBOX_AUTOCLOSE
+	msgbox SinjohRuins_Lab_Text_StevenIntroCutscene6, MSGBOX_DEFAULT
+	closemessage
 	setvar VAR_SINJOH_STORYLINE, 6
 	setvar VAR_NOBLE_SNEASLER, 1
 	setvar VAR_NOBLE_OVERQWIL, 1
@@ -301,7 +307,8 @@ SinjohRuins_Lab_FinalPlateScene::
 	applymovement LOCALID_SINJOHRUINS_LAB_STEVEN, Common_Movement_WalkDown1
 	turnobject LOCALID_NEWSINJOH_LAB_LINGUIST, DIR_SOUTH
 	delay 30
-	msgbox SinjohRuins_Lab_Text_FinalPlateScene1, MSGBOX_AUTOCLOSE
+	msgbox SinjohRuins_Lab_Text_FinalPlateScene1, MSGBOX_DEFAULT
+	closemessage
 	dofieldeffectsparkle 3, 8, 0
 	waitfieldeffect FLDEFF_SPARKLE
 	setvar VAR_RESULT, 3
@@ -317,7 +324,8 @@ SinjohRuins_Lab_FinalPlateScene::
 	setvar VAR_0x8007, 3  @ shake delay
 	special ShakeCamera
 	waitstate
-	msgbox SinjohRuins_Lab_Text_FinalPlateScene2, MSGBOX_AUTOCLOSE
+	msgbox SinjohRuins_Lab_Text_FinalPlateScene2, MSGBOX_DEFAULT
+	closemessage
 	applymovement LOCALID_PLAYER, SinjohRuins_Lab_Movement_PlayerLeaveLab
 	applymovement LOCALID_SINJOHRUINS_LAB_STEVEN, SinjohRuins_Lab_Movement_StevenLeaveLab
 	waitmovement 0
@@ -719,7 +727,7 @@ SinjohRuins_Lab_Text_Biologist:
 	.string "world.\p"
 	.string "DNA analysis reveals that it shares\n"
 	.string "a common ancestor with GROWLITHE\l"
-	.string "that can be found in other regions.\p"
+	.string "found in other regions.\p"
 	.string "Yet, its temperament and typing\n"
 	.string "differ significantly.\p"
 	.string "Descriptions of GROWLITHE found in\n"
@@ -1213,14 +1221,15 @@ SinjohRuins_Lab_EventScript_16Plates::
 SinjohRuins_Lab_Text_StevenCall3Plates:
 #if GERMAN
 	.string "Troy: {PLAYER}.\p"
-	.string "Wir haben gerade eine Erschütterung\n"
-	.string "an den Ruinen gespürt.\p"
+	.string "Wir haben gerade eine\n"
+	.string "Erschütterung an den Ruinen\l"
+	.string "gespürt.\p"
 	.string "Keine Sorge, es geht allen gut.\p"
-	.string "Es ist höchst faszinierend: Eine der\n"
-	.string "unterirdischen Kammern unter den\l"
-	.string "Ruinen ist aufgebrochen.\p"
-	.string "Die Zeichen darin erinnern mich an\n"
-	.string "etwas aus Hoenn.\p"
+	.string "Es ist höchst faszinierend: Eine\n"
+	.string "der unterirdischen Kammern unter\l"
+	.string "den Ruinen ist aufgebrochen.\p"
+	.string "Die Zeichen darin erinnern mich\n"
+	.string "an etwas aus Hoenn.\p"
 	.string "Komm vorbei und sieh es dir an,\n"
 	.string "wenn du kannst.$"
 #else
@@ -1231,30 +1240,31 @@ SinjohRuins_Lab_Text_StevenCall3Plates:
 	.string "It's quite intriguing, one of the\n"
 	.string "subterranean chambers beneath the\l"
 	.string "ruins has sprung open.\p"
-	.string "The markings inside remind\n"
-	.string "me of something from HOENN.\p"
-	.string "You should come take a look\n"
-	.string "when you can.$"
+	.string "The markings inside remind me of\n"
+	.string "something from HOENN.\p"
+	.string "You should come take a look when\n"
+	.string "you can.$"
 #endif
 
 SinjohRuins_Lab_Text_StevenCall6Plates:
 #if GERMAN
 	.string "Troy: {PLAYER}.\p"
 	.string "Wie läuft die Suche?\p"
-	.string "Wir hatten wieder eine Erschütterung.\n"
-	.string "Diesmal hat sich eine zweite Kammer\l"
-	.string "geöffnet.\p"
-	.string "Ich habe unseren Geologen gebeten,\n"
-	.string "seine Instrumente bereitzuhalten,\l"
-	.string "falls es erneut passiert.\p"
+	.string "Wir hatten wieder eine\n"
+	.string "Erschütterung. Diesmal hat sich\l"
+	.string "eine zweite Kammer geöffnet.\p"
+	.string "Ich habe unseren Geologen\n"
+	.string "gebeten, seine Instrumente\l"
+	.string "bereitzuhalten, falls es erneut\l"
+	.string "passiert.\p"
 	.string "Je tiefer wir graben… desto mehr\n"
 	.string "Fragen tun sich auf.$"
 #else
 	.string "STEVEN: {PLAYER}.\p"
 	.string "How's the search going?\p"
-	.string "We had another tremor here.\n"
-	.string "A second chamber opened up\l"
-	.string "this time.\p"
+	.string "We had another tremor here. A\n"
+	.string "second chamber opened up this\l"
+	.string "time.\p"
 	.string "I've asked our geologist to keep\n"
 	.string "his instruments ready in case it\l"
 	.string "happens again.\p"
@@ -1267,14 +1277,14 @@ SinjohRuins_Lab_Text_StevenCall9Plates:
 	.string "Troy: {PLAYER}.\p"
 	.string "Wieder eine Erschütterung hier an\n"
 	.string "den Ruinen.\p"
-	.string "Die Daten zeichnen ein faszinierendes\n"
-	.string "Bild.\p"
+	.string "Die Daten zeichnen ein\n"
+	.string "faszinierendes Bild.\p"
 	.string "Es war gar kein Erdbeben.\p"
-	.string "Eine Art Energie hat sich im Untergrund\n"
-	.string "aufgestaut und den Fels von innen\l"
-	.string "aufgesprengt.\p"
-	.string "Was das verursachen könnte…\n"
-	.string "Ich weiß es ehrlich nicht.$"
+	.string "Eine Art Energie hat sich im\n"
+	.string "Untergrund aufgestaut und den\l"
+	.string "Fels von innen aufgesprengt.\p"
+	.string "Was das verursachen könnte… Ich\n"
+	.string "weiß es ehrlich nicht.$"
 #else
 	.string "STEVEN: {PLAYER}.\p"
 	.string "Another tremor here at the ruins.\p"
@@ -1282,10 +1292,10 @@ SinjohRuins_Lab_Text_StevenCall9Plates:
 	.string "picture.\p"
 	.string "It wasn't an earthquake at all.\p"
 	.string "Some kind of energy built up\n"
-	.string "underground and cracked the\l"
-	.string "rock open from the inside.\p"
-	.string "What could cause that...\n"
-	.string "I honestly don't know.$"
+	.string "underground and cracked the rock\l"
+	.string "open from the inside.\p"
+	.string "What could cause that... I\n"
+	.string "honestly don't know.$"
 #endif
 
 SinjohRuins_Lab_Text_StevenCall12Plates:
@@ -1304,38 +1314,38 @@ SinjohRuins_Lab_Text_StevenCall12Plates:
 	.string "opening up.\p"
 	.string "We still can't figure out the\n"
 	.string "pattern behind the timing.\p"
-	.string "Say, {PLAYER}... you're not\n"
-	.string "doing something to cause all\l"
-	.string "this, are you?\p"
+	.string "Say, {PLAYER}... you're not doing\n"
+	.string "something to cause all this, are\l"
+	.string "you?\p"
 	.string "No, that can't be right.$"
 #endif
 
 SinjohRuins_Lab_Text_StevenCall15Plates:
 #if GERMAN
 	.string "Troy: {PLAYER}.\p"
-	.string "Hast du gerade eine weitere Tafel\n"
-	.string "gefunden?\p"
+	.string "Hast du gerade eine weitere\n"
+	.string "Tafel gefunden?\p"
 	.string "………………\p"
 	.string "Natürlich.\p"
-	.string "Die legendären Pokémon, die in diesen\n"
-	.string "Ruinen ruhen… sie reagieren auf dich,\l"
-	.string "nicht wahr?\p"
+	.string "Die legendären Pokémon, die in\n"
+	.string "diesen Ruinen ruhen… sie\l"
+	.string "reagieren auf dich, nicht wahr?\p"
 	.string "Als wollten sie gefunden werden.\p"
-	.string "Meine Vorahnungen bewahrheiten sich\n"
-	.string "meistens. Ich hätte nicht an dir\l"
-	.string "zweifeln sollen.$"
+	.string "Meine Vorahnungen bewahrheiten\n"
+	.string "sich meistens. Ich hätte nicht an\l"
+	.string "dir zweifeln sollen.$"
 #else
 	.string "STEVEN: {PLAYER}.\p"
 	.string "Did you just find another PLATE?\p"
 	.string ".................\p"
 	.string "Of course.\p"
-	.string "The legendary POKéMON lying\n"
-	.string "in these ruins... they're responding\l"
+	.string "The legendary POKéMON lying in\n"
+	.string "these ruins... they're responding\l"
 	.string "to you, aren't they?\p"
 	.string "As if they want to be found.\p"
-	.string "My predictions usually come true.\n"
-	.string "I should have known better than\l"
-	.string "to doubt you.$"
+	.string "My predictions usually come\n"
+	.string "true. I should have known better\l"
+	.string "than to doubt you.$"
 #endif
 
 SinjohRuins_Lab_Text_StevenCall16Plates:
@@ -1348,7 +1358,8 @@ SinjohRuins_Lab_Text_StevenCall16Plates:
 	.string "Augen ansehen.$"
 #else
 	.string "STEVEN: {PLAYER}.\p"
-	.string "We're very close now. I can feel it.\p"
+	.string "We're very close now. I can feel\n"
+	.string "it.\p"
 	.string "..................\p"
 	.string "You should come see this for\n"
 	.string "yourself.$"

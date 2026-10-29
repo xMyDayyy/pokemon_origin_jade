@@ -1,6 +1,17 @@
 GoldenrodCity_DepartmentStore_5F_hns_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, GoldenrodDeptElevator_OnFrame
+	map_script MAP_SCRIPT_ON_TRANSITION, GoldenrodDeptStore5_OnTransition
 	.byte 0
+
+GoldenrodDeptStore5_OnTransition:
+	special GetWeekday
+	call_if_ne VAR_RESULT, WEEKDAY_SUN, GoldenrodDeptStore5_EventScript_HideReceptionist
+	end
+
+@ The TM lady is only here on Sunday, see docs/origin_jade/DECISIONS.md, D-033.
+GoldenrodDeptStore5_EventScript_HideReceptionist:
+	setflag FLAG_TEMP_1
+	return
 
 
 GoldenrodDeptStore5_EventScript_Lass::
@@ -71,10 +82,10 @@ GoldenrodDeptStore_Text_5FReceptionistOhYourMon:
 
 GoldenrodDeptStore_Text_5FReceptionistWait:
 #if GERMAN
-	.string "Willkommen im Kaufhaus von Dukatia\n"
-	.string "City.$"
+	.string "Moment, diese TM habe ich dir doch\n"
+	.string "schon gegeben!$"
 #else
-    .string "Wait, I already gave you that TM!$"
+	.string "Wait, I already gave you that TM!$"
 #endif
 
 GoldenrodDeptStore_Text_5FReceptionistPutInSomeMoreEffort:
@@ -105,13 +116,13 @@ GoldenrodDeptStore_Text_5FReceptionistThisMoveShouldBePerfect:
 
 GoldenrodDeptStore_Text_5FLass:
 #if GERMAN
-	.string "Sonntags kommt eine Dame, um nach den\n"
-	.string "Pokémon zu sehen.\p"
-	.string "Sie verteilt manchmal sogar TM!$"
+	.string "Sonntags kommt eine Dame, um nach\n"
+	.string "den Pokémon zu sehen.\p"
+	.string "Sie verteilt sogar TM!$"
 #else
-    .string "During the day, a lady comes to check\n"
-    .string "out POKéMON.\p"
-    .string "She even gives away TMs!$"
+	.string "On Sundays, a lady comes to\n"
+	.string "check out POKéMON.\p"
+	.string "She even gives away TMs!$"
 #endif
 
 GoldenrodDeptStore_Text_5FPokefanM:

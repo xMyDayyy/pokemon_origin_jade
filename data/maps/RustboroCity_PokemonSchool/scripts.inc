@@ -166,8 +166,7 @@ RustboroCity_PokemonSchool_EventScript_Scott::
 	goto_if_set FLAG_MET_SCOTT_AFTER_OBTAINING_STONE_BADGE, RustboroCity_PokemonSchool_EventScript_ScottWatchStudents
 	goto_if_set FLAG_MET_SCOTT_RUSTBORO, RustboroCity_PokemonSchool_EventScript_ScottSpokeAlready
 #if IS_HNS
-	@ HnS: FLAG_BADGE01_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
+	@ Hoenn badge 1 (Roxanne)
 	setvar VAR_0x8004, 0
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, TRUE, RustboroCity_PokemonSchool_EventScript_ScottGreetHasBadge
@@ -182,8 +181,7 @@ RustboroCity_PokemonSchool_EventScript_Scott::
 
 RustboroCity_PokemonSchool_EventScript_ScottSpokeAlready::
 #if IS_HNS
-	@ HnS: FLAG_BADGE01_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
+	@ Hoenn badge 1 (Roxanne)
 	setvar VAR_0x8004, 0
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, TRUE, RustboroCity_PokemonSchool_EventScript_ScottNoticeBadge

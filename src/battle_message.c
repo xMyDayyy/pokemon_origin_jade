@@ -795,6 +795,7 @@ const u8 *const gBattleStringsTable[STRINGID_COUNT] =
     [STRINGID_BUTNOPPLEFT]                          = COMPOUND_STRING("Aber es waren keine AP mehr\nfür diese Attacke übrig!"),
     [STRINGID_PLAYERUSEDITEM]                       = COMPOUND_STRING("{B_PLAYER_NAME} setzt\n{B_LAST_ITEM} ein!"),
     [STRINGID_WALLYUSEDITEM]                        = COMPOUND_STRING("Heiko setzt\n{B_LAST_ITEM} ein!"), //no decapitalize until it is everywhere
+    [STRINGID_OLDMANUSEDITEM]                       = COMPOUND_STRING("Der alte Mann setzt\n{B_LAST_ITEM} ein!"),
     [STRINGID_TRAINERBLOCKEDBALL]                   = COMPOUND_STRING("Der Trainer hat den ball\nabgeblockt!"),
     [STRINGID_DONTBEATHIEF]                         = COMPOUND_STRING("Sei kein Dieb!"),
     [STRINGID_ITDODGEDBALL]                         = COMPOUND_STRING("Es ist dem Ball ausgewichen! Dieses\nPokémon kann nicht gefangen werden!"),
@@ -3260,7 +3261,14 @@ void BufferStringBattle(enum StringID stringID, enum BattlerId battler)
             else if (BattlerIsLink(gBattleScripting.battler) || TRAINER_BATTLE_PARAM.opponentA == TRAINER_LINK_OPPONENT
             || gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK) // Link Opponent 1 and test opponent
             {
-                stringPtr = sText_LinkTrainerSentOutPkmn;
+                // Must use the {B_BUFF1} variant, like the battler 2/3 case below does.
+                // {B_OPPONENT_MON1_NAME} is resolved from this console's own
+                // gBattlerPartyIndexes at print time, but over a link the authoritative
+                // index does not arrive until switchinanim, which runs after this
+                // printstring -- so it named the opponent's previous mon. gBattleTextBuff1
+                // was just filled with the right nickname by Cmd_switchindataupdate and
+                // travels with the message.
+                stringPtr = sText_LinkTrainerSentOutPkmn2;
             }
             else // Opponent A
             {

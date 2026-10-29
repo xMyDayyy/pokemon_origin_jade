@@ -830,10 +830,7 @@ enum __attribute__((packed)) Item
     #define TO_TMHM_NUMS(a, ...) (__VA_ARGS__)
     RECURSIVELY(R_ZIP(ENUM_TM, TO_TMHM_NUMS NUMBERS_256, (FOREACH_TM(APPEND_COMMA))))
     #undef ENUM_TM
-    // ENUM_HM und TO_TMHM_NUMS werden erst am Ende der Liste aufgeloest.
-    // Grund: ITEM_HM09 (Taucher) haengt unter HnS am Listenende, damit sich
-    // keine bestehende Item-ID verschiebt - der Alias ITEM_HM_DIVE kann sie
-    // also erst dort referenzieren.
+    // ENUM_HM and TO_TMHM_NUMS stay defined for the HM aliases at the end of the list.
 
     // Charms
     ITEM_OVAL_CHARM = 690,
@@ -1080,26 +1077,18 @@ enum __attribute__((packed)) Item
     ITEM_UNUSED_BERRY_3,
     ITEM_AZURE_FLUTE,
 
-    // HnS: Eigener Schluessel fuer Neu-Malvenfroh. ITEM_BASEMENT_KEY wird
-    // unter HnS bereits im Funkturm Dukatia vergeben und nie eingezogen -
-    // ohne eigene ID stuende Neu-Malvenfroh von Anfang an offen.
+    // HnS: New Mauville's own key.
     ITEM_NEW_MAUVILLE_KEY,
 
-    // HnS: Fahrkarte fuer die Ueberfahrt nach Hoenn. Troy uebergibt sie in
-    // der Silph Co., nachdem der Spieler auch die Liga von Kanto gewonnen hat.
+    // HnS: ticket for the ship to Hoenn.
     ITEM_HOENN_TICKET,
 
 #if IS_HNS
-    // HnS: Der Strudel belegt die VM08 (Johto), Taucher bekommt die VM09.
-    // Die ID haengt bewusst am Listenende statt hinter ITEM_HM08 - so
-    // verschiebt sich keine bestehende Item-ID und Speicherstaende mit
-    // gefuelltem Beutel bleiben gueltig.
+    // HnS: HM09 (Dive), appended at the end: item IDs are stored in saves.
     ITEM_HM09,
 #endif
 
-    // Muss vor dem Alias-Block stehen: dessen letzte Zeile ist eine explizite
-    // Zuweisung (ITEM_HM_DIVE = ITEM_HMxx). Stuende ITEMS_COUNT danach, wuerde
-    // es von dort weiterzaehlen statt von der letzten echten Item-ID.
+    // Must stay before the HM alias block.
     ITEMS_COUNT,
 
     /* Expands to:

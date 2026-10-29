@@ -5,7 +5,24 @@ Route36_hns_MapScripts::
 
 Route36_OnTransition:
 	callnative SetTimeBasedEncounters
+	special GetWeekday
+	call_if_ne VAR_RESULT, WEEKDAY_THU, Route36_EventScript_HideArthur
+	call_if_ne VAR_SUICUNE_ENCOUNTERS, 3, Route36_EventScript_HideSuicune
+	setflag FLAG_TEMP_3
 	end
+
+@ Arthur of the weekday siblings is only here on Thursday, see
+@ docs/origin_jade/DECISIONS.md, D-033.
+Route36_EventScript_HideArthur:
+	setflag FLAG_TEMP_1
+	return
+
+@ Suicune stands here only at VAR_SUICUNE_ENCOUNTERS 3 (both other Johto sightings
+@ done); FLAG_TEMP_2 hides Suicune, FLAG_TEMP_3 hides Eusine.
+@ See docs/origin_jade/DECISIONS.md, D-038.
+Route36_EventScript_HideSuicune:
+	setflag FLAG_TEMP_2
+	return
 
 Route36_EventScript_RockSmashGuy::
 	lock
@@ -17,11 +34,22 @@ Route36_EventScript_RockSmashGuy::
 	end
 Route36_EventScript_RockSmashGuy2::
 	goto_if_set FLAG_RECEIVED_HM_ROCK_SMASH, Route36_EventScript_RockSmashGuy3
+	@ Origin Jade: Hard Stone instead if the player already owns HM Rock Smash.
+	checkitem ITEM_HM_ROCK_SMASH
+	goto_if_eq VAR_RESULT, TRUE, Route36_EventScript_RockSmashGuyHasHM
 	msgbox Route36_Text_RockSmashGuy2, MSGBOX_DEFAULT
 	giveitem ITEM_HM_ROCK_SMASH
 	setflag FLAG_RECEIVED_HM_ROCK_SMASH
 Route36_EventScript_RockSmashGuy3::
 	msgbox Route36_Text_RockSmashGuy3
+	closemessage
+	release
+	end
+
+Route36_EventScript_RockSmashGuyHasHM::
+	msgbox Route36_Text_RockSmashGuyHasHM, MSGBOX_DEFAULT
+	giveitem ITEM_HARD_STONE
+	setflag FLAG_RECEIVED_HM_ROCK_SMASH
 	closemessage
 	release
 	end
@@ -45,23 +73,6 @@ Route36_EventScript_Arthur::
 	faceplayer
 	goto_if_set FLAG_GOT_HARD_STONE, Route36_EventScript_ArthurCompleted
 	msgbox Route36_Text_MeetArthur, MSGBOX_DEFAULT
-	closemessage
-	multichoice 20, 0, MULTI_DAYS_OF_WEEK, FALSE
-	switch VAR_RESULT
-	case 0, Route36_EventScript_ArthurNope
-	case 1, Route36_EventScript_ArthurNope
-	case 2, Route36_EventScript_ArthurNope
-	case 3, Route36_EventScript_ArthurNope
-	case 4, Route36_EventScript_ArthurYes
-	case 5, Route36_EventScript_ArthurNope
-	case 6, Route36_EventScript_ArthurNope
-	case 7, Route36_EventScript_ArthurCancel
-	case MULTI_B_PRESSED, Route36_EventScript_ArthurCancel
-	closemessage
-	release
-	end
-Route36_EventScript_ArthurYes::
-	msgbox Route36_Text_ArthurGivesGift, MSGBOX_DEFAULT
 	giveitem ITEM_HARD_STONE
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_GOT_HARD_STONE
@@ -69,15 +80,7 @@ Route36_EventScript_ArthurYes::
 	closemessage
 	release
 	end
-Route36_EventScript_ArthurNope::
-	msgbox Route36_Text_ArthurNope, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-Route36_EventScript_ArthurCancel::
-	closemessage
-	release
-	end
+
 Route36_EventScript_ArthurCompleted::
 	msgbox Route36_Text_ArthurThursday, MSGBOX_DEFAULT
 	closemessage
@@ -115,7 +118,7 @@ Route36_EventScript_SudoWoodoWater::
 	delay 40
 	waitmoncry
 	setvar VAR_LAST_TALKED, LOCALID_ROUTE36_SUDOWOODO
-	setwildbattle SPECIES_SUDOWOODO, 20
+	setwildbattle SPECIES_SUDOWOODO, 60
 	@setflag FLAG_SYS_CTRL_OBJ_DELETE
 	dowildbattle
 	@clearflag FLAG_SYS_CTRL_OBJ_DELETE
@@ -386,37 +389,20 @@ Route36_Text_SchoolboyAlanAfter:
 
 Route36_Text_MeetArthur:
 #if GERMAN
-	.string "Donatus: Wer bist du?\n"
-	.string "Ich bin Donatus von der\l"
-	.string "Wochentagsfamilie.\p"
-	.string "Wenn du meinen Lieblingstag errätst,\n"
-	.string "gebe ich dir eine Belohnung.$"
+	.string "Donatus: Wer bist du?\p"
+	.string "Ich bin Donatus vom Donnerstag.\p"
+	.string "Hier, das kannst du haben.$"
 #else
-	.string "ARTHUR: Who are you?\n"
-	.string "I'm ARTHUR of the WEEKDAY FAMILY.\p"
-	.string "If you can guess my favorite day,\n"
-	.string "I'll give you a reward.$"
-#endif
-
-Route36_Text_ArthurNope:
-#if GERMAN
-	.string "Nicht ganz!$"
-#else
-	.string "Not quite!$"
-#endif
-
-Route36_Text_ArthurGivesGift:
-#if GERMAN
-	.string "Hier bitte. Das kannst du haben.$"
-#else
+	.string "ARTHUR: Who are you?\p"
+	.string "I'm ARTHUR of Thursday.\p"
 	.string "Here. You can have this.$"
 #endif
 
 Route36_Text_ArthurGaveGift:
 #if GERMAN
-	.string "Donatus: Ich mag Stein, Stein ist schön\n"
-	.string "und stark.\p"
-	.string "Huhuhuheheheh.$"
+	.string "Donatus: Ein Pokémon mit\n"
+	.string "Gestein-Attacken sollte das tragen.\p"
+	.string "Es verstärkt Gestein-Attacken.$"
 #else
 	.string "ARTHUR: A POKéMON that uses ROCK-\n"
 	.string "type moves should hold on to that.\p"
@@ -427,7 +413,8 @@ Route36_Text_ArthurThursday:
 #if GERMAN
 	.string "Donatus: Ich bin Donatus vom\n"
 	.string "Donnerstag.\p"
-	.string "Ich in der fünfte Sohn von sieben.$"
+	.string "Ich bin der fünfte von sieben\n"
+	.string "Geschwistern.$"
 #else
 	.string "ARTHUR: I'm ARTHUR of Thursday.\n"
 	.string "I'm the fifth son out of seven.$"
@@ -451,34 +438,24 @@ Route36_Text_Sign_RuinsNorth:
 
 Route36_Text_Tips1:
 #if GERMAN
-	.string "Tipps für Trainer Pokémon-Werte\n"
-	.string "unterscheiden sich, selbst bei gleicher\l"
-	.string "Art.\p"
-	.string "Anfangs wirken sie ähnlich.\p"
-	.string "Doch mit dem Wachstum werden\n"
-	.string "die Unterschiede deutlich.$"
+	.string "Route 36\p"
+	.string "Westlich liegt Teak City,\n"
+	.string "östlich die Ruinen von Alph.$"
 #else
-	.string "TRAINER TIPS\n"
-	.string "POKéMON stats vary--even within\l"
-	.string "the same species.\p"
-	.string "Their stats may be similar at first.\p"
-	.string "However, differences will become\n"
-	.string "pronounced as the POKéMON grow.$"
+	.string "ROUTE 36\p"
+	.string "ECRUTEAK CITY lies to the west,\n"
+	.string "the RUINS OF ALPH to the east.$"
 #endif
 
 Route36_Text_Tips2:
 #if GERMAN
-	.string "Tipps für Trainer Nutze Schaufler, um\n"
-	.string "zum Eingang eines Ortes\l"
-	.string "zurückzukehren.\p"
-	.string "Sehr praktisch zum Erkunden von\n"
-	.string "Höhlen und besonderen Orten.$"
+	.string "Route 36\p"
+	.string "Achtung, Wurzeln und loses Geröll.\n"
+	.string "Wanderer bitte vorsichtig gehen.$"
 #else
-	.string "TRAINER TIPS\n"
-	.string "Use DIG to return to the entrance of\n"
-	.string "any place.\p"
-	.string "It is convenient for exploring\n"
-	.string "caves and other landmarks.$"
+	.string "ROUTE 36\p"
+	.string "Watch for roots and loose stones.\n"
+	.string "Travellers, tread carefully.$"
 #endif
 
 Route36_Text_AlanRegister:
@@ -548,4 +525,126 @@ Route36_Text_AlanNoRoom:
 #else
 	.string "Hmm, your BAG is full.\p"
 	.string "Come back when you have room.$"
+#endif
+
+Route36_Text_RockSmashGuyHasHM:
+#if GERMAN
+	.string "Der Brocken lag hier, seit ich denken\n"
+	.string "kann. Und du räumst ihn weg, als wäre\l"
+	.string "er Kies.\p"
+	.string "Den Zertrümmerer wollte ich dir geben.\n"
+	.string "Brauchst du offenbar nicht.\p"
+	.string "Nimm den hier. Der hält, was er\n"
+	.string "verspricht.$"
+#else
+	.string "That rock sat here as long as I can\n"
+	.string "remember. You clear it like gravel.\p"
+	.string "I meant to give you ROCK SMASH. You\n"
+	.string "clearly don't need it.\p"
+	.string "Take this instead. It holds up.$"
+#endif
+
+@ Third Johto sighting: Suicune runs off north, Eusine walks in from the south
+@ and points to the Glockenturm (VAR_SUICUNE_ENCOUNTERS 3 -> 4).
+Route36_EventScript_SuicuneTrigger::
+	lockall
+	hidefollower
+	playse SE_PIN
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
+	waitmovement 0
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
+	playmoncry SPECIES_SUICUNE, CRY_MODE_NORMAL
+	waitmoncry
+	applymovement LOCALID_ROUTE36_SUICUNE, Route36_Movement_SuicuneRunOff
+	playse SE_LEDGE
+	delay 30
+	playse SE_LEDGE
+	delay 30
+	playse SE_LEDGE
+	delay 30
+	playse SE_LEDGE
+	delay 30
+	playse SE_LEDGE
+	waitmovement 0
+	removeobject LOCALID_ROUTE36_SUICUNE
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
+	delay 30
+	playbgm MUS_HG_EUSINE, FALSE
+	clearflag FLAG_TEMP_3
+	addobject LOCALID_ROUTE36_EUSINE
+	goto_if_unset FLAG_HIDE_SUDOWOODO, Route36_EventScript_EusineBehindSudowoodo
+	applymovement LOCALID_ROUTE36_EUSINE, Route36_Movement_EusineEnter
+Route36_EventScript_EusineArrived:
+	waitmovement 0
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
+	msgbox Route36_Text_EusineTinTower, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_ROUTE36_EUSINE, Route36_Movement_EusineLeave
+	waitmovement 0
+	removeobject LOCALID_ROUTE36_EUSINE
+	fadedefaultbgm
+	setvar VAR_SUICUNE_ENCOUNTERS, 4
+	releaseall
+	end
+
+@ Sudowoodo still stands on (39,19): Eusine stops one tile south of it.
+Route36_EventScript_EusineBehindSudowoodo:
+	applymovement LOCALID_ROUTE36_EUSINE, Route36_Movement_EusineEnterShort
+	goto Route36_EventScript_EusineArrived
+
+Route36_Movement_SuicuneRunOff:
+	jump_in_place_right
+	jump_right
+	jump_2_up
+	jump_2_up
+	jump_2_up
+	step_end
+
+Route36_Movement_EusineEnter:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+Route36_Movement_EusineEnterShort:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+Route36_Movement_EusineLeave:
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	step_end
+
+Route36_Text_EusineTinTower:
+#if GERMAN
+	.string "Eusin: {PLAYER}! Hast du es auch\n"
+	.string "gesehen? Das war Suicune!\p"
+	.string "Es ist nach Norden gelaufen, in\n"
+	.string "Richtung Teak City…\p"
+	.string "Ich glaube, es will zum\n"
+	.string "Glockenturm.\p"
+	.string "Der Legende nach prüft dort ein\n"
+	.string "Pokémon jeden Trainer, der die\l"
+	.string "Seelen der Pokémon berühren kann.\p"
+	.string "Doch den Turm dürfen nur\n"
+	.string "Auserwählte betreten…$"
+#else
+	.string "EUSINE: {PLAYER}! Did you see that?\n"
+	.string "That was SUICUNE!\p"
+	.string "It ran north, toward ECRUTEAK…\p"
+	.string "I think it's heading for the\n"
+	.string "TIN TOWER.\p"
+	.string "Legend has it that a POKéMON there\n"
+	.string "tests every trainer who can touch\l"
+	.string "the souls of POKéMON.\p"
+	.string "But only the chosen may enter\n"
+	.string "the tower…$"
 #endif

@@ -5,6 +5,16 @@ Route27_hns_MapScripts::
 
 Route27_OnTransition:
 	callnative SetTimeBasedEncounters
+	@ Origin Jade: flag setup from HnS's Route27_EventScript_FirstSteps, runs once.
+	goto_if_ne VAR_ROUTE27_STATE, 0, Route27_OnTransitionDone
+	setflag FLAG_HIDE_VICTORY_ROAD_SILVER
+	setflag FLAG_HIDE_INDIGO_PLATEAU_SILVER
+	setflag FLAG_HIDE_INDIGO_PLATEAU_MARY_OAK
+	clearflag FLAG_GOT_TM_SANDSTORM
+	clearflag FLAG_INDIGOJUNCTION_HIDE_SILVER_GUARD
+	clearflag FLAG_INDIGOJUNCTION_HIDE_KANTO_GUARD
+	setvar VAR_ROUTE27_STATE, 1
+Route27_OnTransitionDone:
 	end
 
 Route27_EventScript_BaobaCall::
@@ -23,54 +33,6 @@ Route27_Text_BaobaName:
 	.string "BAOBA$"
 #endif
 
-Route27_EventScript_FirstSteps::
-    lock
-    playse SE_PIN
-    setflag FLAG_VISITED_KANTO
-    applymovement2 LOCALID_ROUTE27_FATMAN, Common_Movement_ExclamationMark
-    turnobject LOCALID_ROUTE27_FATMAN, DIR_WEST
-    delay 30
-    getplayerxy VAR_TEMP_0, VAR_TEMP_1
-    call_if_eq VAR_TEMP_1, 24, Route27_EventScript_FirstStepsWalkTop
-    call_if_eq VAR_TEMP_1, 25, Route27_EventScript_FirstStepsWalkBot
-
-    msgbox Route27_Text_FisherHey, MSGBOX_DEFAULT
-    msgbox Route27_Text_FisherMessage, MSGBOX_DEFAULT
-    closemessage
-    turnobject LOCALID_ROUTE27_FATMAN, DIR_SOUTH
-
-    @integrated flagheap
-    setflag FLAG_HIDE_VICTORY_ROAD_SILVER
-    setflag FLAG_HIDE_INDIGO_PLATEAU_SILVER
-    setflag FLAG_HIDE_INDIGO_PLATEAU_MARY_OAK
-
-    clearflag FLAG_GOT_TM_SANDSTORM
-    clearflag FLAG_INDIGOJUNCTION_HIDE_SILVER_GUARD
-    clearflag FLAG_INDIGOJUNCTION_HIDE_KANTO_GUARD
-
-    setvar VAR_ROUTE27_STATE, 1
-    release
-    end
-
-Route27_EventScript_FirstStepsWalkTop::
-    applymovement2 LOCALID_ROUTE27_FATMAN, Route27_Movement_WalkTop
-    waitmovement 0
-    return
-Route27_EventScript_FirstStepsWalkBot::
-    applymovement2 LOCALID_ROUTE27_FATMAN, Route27_Movement_WalkBot
-    waitmovement 0
-    return
-
-Route27_Movement_WalkTop:
-    face_left
-    walk_left
-    step_end
-
-Route27_Movement_WalkBot:
-    walk_down
-    walk_left
-    step_end
-
 Route27_EventScript_Item_Moonstone::
     finditem ITEM_MOON_STONE
     end
@@ -85,10 +47,6 @@ Route27_EventScript_Item_DragonClaw::
 
 Route27_EventScript_Item_Destiny_Knot::
     finditem ITEM_DESTINY_KNOT
-    end
-
-Route27_EventScript_Fatman::
-    msgbox Route27_Text_FisherMessage, MSGBOX_NPC
     end
 
 Route27_EventScript_Blake::
@@ -173,26 +131,6 @@ Route27_EventScript_TohjoFallsSign::
     msgbox TohjoFalls_Text_Sign, MSGBOX_SIGN
     end
 
-Route27_Text_FisherHey:
-#if GERMAN
-	.string "Hey$"
-#else
-    .string "Hey!$"
-#endif
-
-Route27_Text_FisherMessage:
-#if GERMAN
-	.string "Soll ich dir was sagen?\p"
-	.string "Du hast eben den ersten Schritt in\n"
-	.string "Richtung Kanto getan!\p"
-	.string "Wirf mal einen Blick auf deine Karte!$"
-#else
-    .string "Do you know what you just did?\p"
-    .string "You've taken your first step into\n"
-    .string "KANTO.\p"
-    .string "Check your POKéGEAR MAP and see.$"
-#endif
-
 Route27_Text_CooltrainermBlakeSeen:
 #if GERMAN
 	.string "Du siehst sehr stark aus.\n"
@@ -263,11 +201,13 @@ Route27_Text_CooltrainerfReenaBeaten:
 
 Route27_Text_CooltrainerfReenaAfter:
 #if GERMAN
-	.string "Du bist nur ein Kind, aber ich\n"
-	.string "unterschätze dich nicht.$"
+	.string "Ich habe dich unterschätzt.\p"
+	.string "Das passiert mir hier draußen selten\n"
+	.string "zweimal.$"
 #else
-    .string "You're just a kid, but you're not\n"
-    .string "to be underestimated either.$"
+	.string "I underestimated you.\p"
+	.string "Out here that rarely happens to me\n"
+	.string "twice.$"
 #endif
 
 Route27_Text_ReenaRegister:
@@ -323,32 +263,32 @@ Route27_Text_CooltrainerfMeganBeaten:
 
 Route27_Text_CooltrainerfMeganAfter:
 #if GERMAN
-	.string "Ich vergleiche entwickelte und nicht\n"
-	.string "entwickelte Pokémon miteinander und\l"
-	.string "erforsche so ihre Eigenschaften.\p"
-	.string "Entwickelte Pokémon sind zwar stärker,\n"
-	.string "aber sie erlernen erst spät Attacken.$"
+	.string "Hier an der Grenze treffe ich Pokémon\n"
+	.string "aus beiden Regionen.\p"
+	.string "Manche sehen gleich aus und\n"
+	.string "verhalten sich völlig verschieden.\p"
+	.string "Das schreibe ich alles auf.$"
 #else
-    .string "I'm checking out pre- and post-\n"
-    .string "evolution POKéMON.\p"
-    .string "Evolution really does make\n"
-    .string "POKéMON stronger.\p"
-    .string "But evolved forms also learn\n"
-    .string "moves later on.$"
+	.string "Here at the border I meet POKéMON\n"
+	.string "from both regions.\p"
+	.string "Some look alike and behave nothing\n"
+	.string "like each other.\p"
+	.string "I write it all down.$"
 #endif
 
 Route27_Text_PsychicGilbertSeen:
 #if GERMAN
-	.string "Lass mich raten, woran du jetzt denkst.\p"
+	.string "Lass mich raten, woran du jetzt\n"
+	.string "denkst.\p"
 	.string "Mmmmmmm…\p"
-	.string "Ich weiß! Du denkst darüber nach, zur\n"
-	.string "Pokémon Liga zu gehen!$"
+	.string "Ich weiß! Du bist der Champ aus\n"
+	.string "Kanto und hast hier etwas vor!$"
 #else
-    .string "Don't say a thing!\p"
-    .string "Let me guess what you're thinking.\p"
-    .string "Mmmmmmm…\p"
-    .string "I got it! You're on the POKéMON\n"
-    .string "LEAGUE challenge!$"
+	.string "Let me guess what is on your mind.\p"
+	.string "Mmmmmmm…\p"
+	.string "I have it! You are the CHAMPION\n"
+	.string "from KANTO, and you are here for\l"
+	.string "a reason!$"
 #endif
 
 Route27_Text_PsychicGilbertBeaten:
@@ -360,13 +300,15 @@ Route27_Text_PsychicGilbertBeaten:
 
 Route27_Text_PsychicGilbertAfter:
 #if GERMAN
-	.string "Mit deinen Fähigkeiten wirst du in der\n"
-	.string "Liga bestehen.\p"
-	.string "Das sagt meine Vorahnung.$"
+	.string "Meine Vorahnung sagt mir, dass du\n"
+	.string "in Johto noch viel vorhast.\p"
+	.string "Und dass es dort nicht leichter\n"
+	.string "wird als in Kanto.$"
 #else
-    .string "With your skills, you'll do well at\n"
-    .string "the LEAGUE.\p"
-    .string "That's what my premonition says.$"
+	.string "My premonition tells me you have\n"
+	.string "much left to do in JOHTO.\p"
+	.string "And that it will be no easier there\n"
+	.string "than it was in KANTO.$"
 #endif
 
 Route27_Text_BirdKeeperJoseSeen:
@@ -475,9 +417,9 @@ Route27_Text_FisherScottSeen:
 	.string "Ich fühle mich so stark, dass ich den\n"
 	.string "Liga-Champ besiegen könnte!$"
 #else
-    .string "I'm feeling great today!\p"
-    .string "I feel like I could boot even the\n"
-    .string "LEAGUE CHAMP!$"
+	.string "I feel great today!\p"
+	.string "I feel strong enough to beat the\n"
+	.string "LEAGUE CHAMPION!$"
 #endif
 
 Route27_Text_FisherScottBeaten:
@@ -490,9 +432,14 @@ Route27_Text_FisherScottBeaten:
 
 Route27_Text_FisherScottAfter:
 #if GERMAN
-	.string "Angeln und Pokémon sind sehr ähnlich.\n"
-	.string "Wenn du einmal aufgibst, ist es vorbei.$"
+	.string "Moment mal. Du kommst aus Kanto…\p"
+	.string "Du bist der Liga-Champ, oder?\p"
+	.string "Dann nehme ich die Niederlage\n"
+	.string "zurück. Das war eine Ehre.$"
 #else
-    .string "Just like in fishing, it's all over\n"
-    .string "in POKéMON if you give up.$"
+	.string "Hold on. You came from KANTO…\p"
+	.string "You are the LEAGUE CHAMPION, are\n"
+	.string "you not?\p"
+	.string "Then I take back my defeat.\n"
+	.string "That was an honour.$"
 #endif

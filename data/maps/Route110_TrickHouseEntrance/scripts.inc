@@ -58,8 +58,6 @@ Route110_TrickHouseEntrance_EventScript_CheckReadyForNextPuzzle::
 
 Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle2::
 #if IS_HNS
-	@ HnS: FLAG_BADGE03_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
 	setvar VAR_0x8004, 2
 	special CheckHoennBadge
 	call_if_eq VAR_RESULT, FALSE, Route110_TrickHouseEntrance_EventScript_NotReadyForPuzzle
@@ -70,8 +68,6 @@ Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle2::
 
 Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle3::
 #if IS_HNS
-	@ HnS: FLAG_BADGE04_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
 	setvar VAR_0x8004, 3
 	special CheckHoennBadge
 	call_if_eq VAR_RESULT, FALSE, Route110_TrickHouseEntrance_EventScript_NotReadyForPuzzle
@@ -82,8 +78,6 @@ Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle3::
 
 Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle4::
 #if IS_HNS
-	@ HnS: FLAG_BADGE05_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
 	setvar VAR_0x8004, 4
 	special CheckHoennBadge
 	call_if_eq VAR_RESULT, FALSE, Route110_TrickHouseEntrance_EventScript_NotReadyForPuzzle
@@ -94,8 +88,6 @@ Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle4::
 
 Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle5::
 #if IS_HNS
-	@ HnS: FLAG_BADGE06_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
 	setvar VAR_0x8004, 5
 	special CheckHoennBadge
 	call_if_eq VAR_RESULT, FALSE, Route110_TrickHouseEntrance_EventScript_NotReadyForPuzzle
@@ -106,8 +98,6 @@ Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle5::
 
 Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle6::
 #if IS_HNS
-	@ HnS: FLAG_BADGE07_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
 	setvar VAR_0x8004, 6
 	special CheckHoennBadge
 	call_if_eq VAR_RESULT, FALSE, Route110_TrickHouseEntrance_EventScript_NotReadyForPuzzle
@@ -118,8 +108,6 @@ Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle6::
 
 Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle7::
 #if IS_HNS
-	@ HnS: FLAG_BADGE08_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
 	setvar VAR_0x8004, 7
 	special CheckHoennBadge
 	call_if_eq VAR_RESULT, FALSE, Route110_TrickHouseEntrance_EventScript_NotReadyForPuzzle

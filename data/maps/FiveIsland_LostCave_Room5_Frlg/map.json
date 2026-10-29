@@ -1,7 +1,7 @@
 {
   "id": "MAP_FIVE_ISLAND_LOST_CAVE_ROOM5",
   "name": "FiveIsland_LostCave_Room5_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_FIVE_ISLAND_LOST_CAVE_ROOM5",
   "music": "MUS_RG_SEVII_CAVE",
   "region": "REGION_KANTO",

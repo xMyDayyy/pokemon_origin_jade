@@ -207,7 +207,7 @@ SlateportCity_Harbor_EventScript_BattleFrontier::
 	msgbox SlateportCity_Harbor_Text_BattleFrontierItIs, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, SlateportCity_Harbor_EventScript_ChooseNewDestination
 	call SlateportCity_Harbor_EventScript_BoardFerry
-	warp MAP_BATTLE_FRONTIER_OUTSIDE_WEST, 19, 67
+	warp MAP_BATTLE_FRONTIER_OUTSIDE_WEST_HNS, 20, 67
 	waitstate
 	release
 	end
@@ -286,8 +286,7 @@ SlateportCity_Harbor_EventScript_CaptStern::
 	lock
 	faceplayer
 #if IS_HNS
-	@ HnS: FLAG_BADGE07_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
+	@ Hoenn badge 7 (Tate & Liza)
 	setvar VAR_0x8004, 6
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, TRUE, SlateportCity_Harbor_EventScript_CaptSternFerryOrScannerComment

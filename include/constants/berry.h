@@ -184,6 +184,10 @@ enum __attribute__((__packed__)) Flavor
 #define BERRY_TREE_TAMATO_2     126
 #define BERRY_TREE_TAMATO_3     127
 
+// Origin Jade: reserve slots used by the Route 30 Oran and Route 26 Sitrus trees.
+#define BERRY_TREE_ROUTE_30_ORAN    BERRY_TREE_POMEG_3
+#define BERRY_TREE_ROUTE_26_SITRUS  BERRY_TREE_KELPSY_3
+
 #define BERRY_TREES_COUNT 128
 
 #endif // GUARD_CONSTANTS_BERRY_H

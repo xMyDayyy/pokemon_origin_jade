@@ -10,7 +10,7 @@
 #include "decompress.h"
 #include "event_data.h"
 #include "event_object_movement.h"
-#include "hoenn_level_scaling.h"
+#include "level_scaling.h"
 #include "event_scripts.h"
 #include "faraway_island.h"
 #include "field_camera.h"
@@ -525,7 +525,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Lugia,                 OBJ_EVENT_PAL_TAG_LUGIA},
     {gObjectEventPal_RubySapphireBrendan,   OBJ_EVENT_PAL_TAG_RS_BRENDAN},
     {gObjectEventPal_RubySapphireMay,       OBJ_EVENT_PAL_TAG_RS_MAY},
-#if IS_FRLG
+#if IS_FRLG || IS_HNS
     {gObjectEventPal_PlayerFrlg,            OBJ_EVENT_PAL_TAG_PLAYER_RED},
     {gObjectEventPal_PlayerReflectionFrlg,  OBJ_EVENT_PAL_TAG_PLAYER_RED_REFLECTION},
     {gObjectEventPal_PlayerFrlg,            OBJ_EVENT_PAL_TAG_PLAYER_GREEN},
@@ -2785,7 +2785,7 @@ void GetFollowerAction(struct ScriptContext *ctx) // Essentially a big switch fo
         condEmotes[condCount++] = (struct SpecialEmote) {.emotion = FOLLOWER_EMOTION_SAD, .index = 6};
     }
     // Gym type advantage/disadvantage
-    if (GetCurrentMapMusic() == MUS_GYM || GetCurrentMapMusic() == MUS_RG_GYM)
+    if (GetCurrentMapMusic() == MUS_GYM || GetCurrentMapMusic() == MUS_RG_GYM || GetCurrentMapMusic() == MUS_HG_GYM)
     {
         switch (gMapHeader.regionMapSectionId)
         {
@@ -2806,6 +2806,8 @@ void GetFollowerAction(struct ScriptContext *ctx) // Essentially a big switch fo
             break;
 #if !IS_HNS
         case MAPSEC_LAVARIDGE_TOWN:
+#else
+        case MAPSEC_SEAFOAM_ISLANDS: // Blaine's gym was relocated here in HG/SS
 #endif
         case MAPSEC_CINNABAR_ISLAND:
             multi = TYPE_FIRE;
@@ -2837,9 +2839,42 @@ void GetFollowerAction(struct ScriptContext *ctx) // Essentially a big switch fo
         case MAPSEC_VIRIDIAN_CITY:
             multi = TYPE_GROUND;
             break;
+#if IS_HNS
+        case MAPSEC_VIOLET_CITY:
+            multi = TYPE_FLYING;
+            break;
+        case MAPSEC_AZALEA_TOWN:
+            multi = TYPE_BUG;
+            break;
+        case MAPSEC_GOLDENROD_CITY:
+            multi = TYPE_NORMAL;
+            break;
+        case MAPSEC_ECRUTEAK_CITY:
+            multi = TYPE_GHOST;
+            break;
+        case MAPSEC_CIANWOOD_CITY:
+            multi = TYPE_FIGHTING;
+            break;
+        case MAPSEC_OLIVINE_CITY:
+            multi = TYPE_STEEL;
+            break;
+        case MAPSEC_MAHOGANY_TOWN:
+            multi = TYPE_ICE;
+            break;
+        case MAPSEC_BLACKTHORN_CITY:
+            multi = TYPE_DRAGON;
+            break;
+#endif
         default:
             multi = NUMBER_OF_MON_TYPES;
         }
+#if IS_HNS
+        // The Fighting Dojo shares Saffron City's map section with Sabrina's gym, but holds
+        // EV-training NPCs rather than trainer battles, so there's no type to hint at.
+        if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_SAFFRON_CITY_FIGHTING_DOJO_HNS)
+         && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_SAFFRON_CITY_FIGHTING_DOJO_HNS))
+            multi = NUMBER_OF_MON_TYPES;
+#endif
         if (multi < NUMBER_OF_MON_TYPES)
         {
             multi = GetOverworldTypeEffectiveness(mon, multi);
@@ -3401,9 +3436,7 @@ static void SetBerryTreeGraphicsById(struct ObjectEvent *objectEvent, u8 berryId
     const struct ObjectEventGraphicsInfo *graphicsInfo = GetObjectEventGraphicsInfo(graphicsId);
     struct Sprite *sprite = &gSprites[objectEvent->spriteId];
 #if IS_HNS
-    // In Hoenn stehen die vollstaendig gezeichneten Beerenbaeume samt ihrer
-    // Originalpaletten; in Johto/Kanto die HGSS-Fruchtsprites, deren Busch
-    // Teil des Tilesets ist.
+    // Hoenn: full berry trees with their own palettes. Johto/Kanto: HGSS fruit sprites.
     if (IsHoennMapsec(gMapHeader.regionMapSectionId))
     {
         UpdateSpritePalette(&sObjectEventSpritePalettes[gBerryTreePaletteSlotTablePointers_Hoenn[berryId][berryStage]-2], sprite);
@@ -10607,6 +10640,18 @@ static void DoTracksGroundEffect_FootprintsC(struct ObjectEvent *objEvent, struc
     FieldEffectStart(otherFootprintsB_FieldEffectData[isDeepSand]);
 }
 
+// The tracks transition tables are indexed as [prevDir - 1][faceDir - 1], so both
+// directions must be cardinal. Diagonal directions (sideways stairs) and DIR_NONE
+// (e.g. a follower that has just been released) would otherwise index out of bounds.
+static u8 NormalizeTrackDirection(u8 direction)
+{
+    if (direction > DIR_EAST)
+        direction -= DIR_EAST;
+    if (direction == DIR_NONE)
+        direction = DIR_SOUTH;
+    return direction;
+}
+
 static void DoTracksGroundEffect_BikeTireTracks(struct ObjectEvent *objEvent, struct Sprite *sprite, bool8 isDeepSand)
 {
     //  Specifies which bike track shape to show next.
@@ -10624,13 +10669,14 @@ static void DoTracksGroundEffect_BikeTireTracks(struct ObjectEvent *objEvent, st
 
     if (objEvent->currentCoords.x != objEvent->previousCoords.x || objEvent->currentCoords.y != objEvent->previousCoords.y)
     {
-        u8 movementDir = (objEvent->previousMovementDirection > DIR_EAST) ? (objEvent->previousMovementDirection - DIR_EAST) : objEvent->previousMovementDirection;
+        u8 movementDir = NormalizeTrackDirection(objEvent->previousMovementDirection);
+        u8 facingDir = NormalizeTrackDirection(objEvent->facingDirection);
         gFieldEffectArguments[0] = objEvent->previousCoords.x;
         gFieldEffectArguments[1] = objEvent->previousCoords.y;
         gFieldEffectArguments[2] = 149;
         gFieldEffectArguments[3] = 2;
         gFieldEffectArguments[4] =
-        bikeTireTracks_Transitions[movementDir][objEvent->facingDirection - 5];
+        bikeTireTracks_Transitions[movementDir - 1][facingDir - 1];
         FieldEffectStart(FLDEFF_BIKE_TIRE_TRACKS);
     }
 }
@@ -10652,12 +10698,14 @@ static void DoTracksGroundEffect_SlitherTracks(struct ObjectEvent *objEvent, str
 
     if (objEvent->currentCoords.x != objEvent->previousCoords.x || objEvent->currentCoords.y != objEvent->previousCoords.y)
     {
+        u8 movementDir = NormalizeTrackDirection(objEvent->previousMovementDirection);
+        u8 facingDir = NormalizeTrackDirection(objEvent->facingDirection);
         gFieldEffectArguments[0] = objEvent->previousCoords.x;
         gFieldEffectArguments[1] = objEvent->previousCoords.y;
         gFieldEffectArguments[2] = 149;
         gFieldEffectArguments[3] = 2;
         gFieldEffectArguments[4] =
-        slitherTracks_Transitions[objEvent->previousMovementDirection][objEvent->facingDirection - 5];
+        slitherTracks_Transitions[movementDir - 1][facingDir - 1];
         gFieldEffectArguments[5] = objEvent->previousMetatileBehavior;
         FieldEffectStart(FLDEFF_TRACKS_SLITHER);
     }

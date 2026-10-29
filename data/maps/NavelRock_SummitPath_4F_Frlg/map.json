@@ -1,7 +1,7 @@
 {
   "id": "MAP_NAVEL_ROCK_SUMMIT_PATH_4F",
   "name": "NavelRock_SummitPath_4F_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_NAVEL_ROCK_SUMMIT_PATH_4F",
   "music": "MUS_RG_SEVII_CAVE",
   "region": "REGION_KANTO",

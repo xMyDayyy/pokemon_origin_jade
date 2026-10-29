@@ -10,14 +10,14 @@ Route22_EventScript_EarlyRivalTriggerTop::
 Route22_EventScript_EarlyRivalTriggerMid::
 	lockall
 	setvar VAR_TEMP_1, 1
-	setobjectxyperm LOCALID_ROUTE22_RIVAL, 25, 5
+	setobjectxyperm LOCALID_ROUTE22_RIVAL, 29, 9
 	goto Route22_EventScript_EarlyRival
 	end
 
 Route22_EventScript_EarlyRivalTriggerBottom::
 	lockall
 	setvar VAR_TEMP_1, 2
-	setobjectxyperm LOCALID_ROUTE22_RIVAL, 25, 5
+	setobjectxyperm LOCALID_ROUTE22_RIVAL, 29, 9
 	goto Route22_EventScript_EarlyRival
 	end
 
@@ -25,7 +25,7 @@ Route22_EventScript_EarlyRival::
 	textcolor NPC_TEXT_COLOR_MALE
 	playbgm MUS_RG_ENCOUNTER_RIVAL, 0
 	addobject LOCALID_ROUTE22_RIVAL
-	call_if_eq VAR_TEMP_1, 0, Route22_EventScript_EarlyRivalApproach
+	call_if_eq VAR_TEMP_1, 0, Route22_EventScript_EarlyRivalApproachTop
 	call_if_eq VAR_TEMP_1, 1, Route22_EventScript_EarlyRivalApproach
 	call_if_eq VAR_TEMP_1, 2, Route22_EventScript_EarlyRivalApproachBottom
 	delay 6
@@ -37,7 +37,7 @@ Route22_EventScript_EarlyRival::
 	closemessage
 	delay 10
 	playbgm MUS_RG_RIVAL_EXIT, 0
-	call_if_eq VAR_TEMP_1, 0, Route22_EventScript_EarlyRivalExit
+	call_if_eq VAR_TEMP_1, 0, Route22_EventScript_EarlyRivalExitTop
 	call_if_eq VAR_TEMP_1, 1, Route22_EventScript_EarlyRivalExit
 	call_if_eq VAR_TEMP_1, 2, Route22_EventScript_EarlyRivalExitBottom
 	fadedefaultbgm
@@ -89,13 +89,15 @@ Route22_Movement_UnusedRivalExit:: @ 8
 	walk_right
 	step_end
 
+@ Origin Jade: ends once the rival is off-screen.
 Route22_Movement_EarlyRivalExit::
 	walk_down
 	walk_right
 	walk_right
+	walk_down
 	walk_right
 	walk_right
-	walk_right
+	walk_down
 	walk_down
 	walk_down
 	walk_down
@@ -104,9 +106,13 @@ Route22_Movement_EarlyRivalExit::
 	walk_down
 	step_end
 
+@ Origin Jade: ends once the rival is off-screen.
 Route22_Movement_EarlyRivalExitBottom::
+	walk_up
 	walk_right
 	walk_right
+	walk_down
+	walk_down
 	walk_right
 	walk_right
 	walk_down
@@ -116,6 +122,7 @@ Route22_Movement_EarlyRivalExitBottom::
 	walk_down
 	walk_down
 	walk_down
+	walk_right
 	step_end
 
 Route22_Movement_RivalApproach::
@@ -129,6 +136,7 @@ Route22_Movement_RivalApproach::
 	step_end
 
 Route22_Movement_RivalApproachBottom::
+	walk_down
 	walk_right
 	walk_right
 	walk_right
@@ -136,8 +144,6 @@ Route22_Movement_RivalApproachBottom::
 	walk_right
 	walk_right
 	walk_right
-	walk_right
-	walk_in_place_faster_down
 	step_end
 
 Route22_Movement_PlayerFaceRival::
@@ -149,7 +155,6 @@ Route22_Movement_PlayerFaceRival::
 	delay_16
 	delay_16
 	delay_8
-	walk_in_place_faster_up
 	step_end
 
 Route22_EventScript_LateRivalTriggerTop::
@@ -161,14 +166,14 @@ Route22_EventScript_LateRivalTriggerTop::
 Route22_EventScript_LateRivalTriggerMid::
 	lockall
 	setvar VAR_TEMP_1, 1
-	setobjectxyperm LOCALID_ROUTE22_RIVAL, 25, 5
+	setobjectxyperm LOCALID_ROUTE22_RIVAL, 29, 9
 	goto Route22_EventScript_LateRival
 	end
 
 Route22_EventScript_LateRivalTriggerBottom::
 	lockall
 	setvar VAR_TEMP_1, 2
-	setobjectxyperm LOCALID_ROUTE22_RIVAL, 25, 5
+	setobjectxyperm LOCALID_ROUTE22_RIVAL, 29, 9
 	goto Route22_EventScript_LateRival
 	end
 
@@ -176,7 +181,7 @@ Route22_EventScript_LateRival::
 	textcolor NPC_TEXT_COLOR_MALE
 	playbgm MUS_RG_ENCOUNTER_RIVAL, 0
 	addobject LOCALID_ROUTE22_RIVAL
-	call_if_eq VAR_TEMP_1, 0, Route22_EventScript_LateRivalApproach
+	call_if_eq VAR_TEMP_1, 0, Route22_EventScript_LateRivalApproachTop
 	call_if_eq VAR_TEMP_1, 1, Route22_EventScript_LateRivalApproach
 	call_if_eq VAR_TEMP_1, 2, Route22_EventScript_LateRivalApproachBottom
 	msgbox Route22_Text_LateRivalIntro
@@ -188,8 +193,9 @@ Route22_EventScript_LateRival::
 	closemessage
 	delay 10
 	playbgm MUS_RG_RIVAL_EXIT, 0
-	applymovement LOCALID_ROUTE22_RIVAL, Route22_Movement_LateRivalExit
-	waitmovement 0
+	call_if_eq VAR_TEMP_1, 0, Route22_EventScript_EarlyRivalExitTop
+	call_if_eq VAR_TEMP_1, 1, Route22_EventScript_EarlyRivalExit
+	call_if_eq VAR_TEMP_1, 2, Route22_EventScript_EarlyRivalExitBottom
 	fadedefaultbgm
 	removeobject LOCALID_ROUTE22_RIVAL
 	setvar VAR_MAP_SCENE_ROUTE22, 4
@@ -358,3 +364,45 @@ Route22_Text_LeagueGateSign::
 	.string "Front Gate$"
 #endif
 
+Route22_EventScript_EarlyRivalApproachTop::
+	applymovement LOCALID_ROUTE22_RIVAL, Route22_Movement_RivalApproachTop
+	waitmovement 0
+	return
+
+Route22_EventScript_LateRivalApproachTop::
+	applymovement LOCALID_ROUTE22_RIVAL, Route22_Movement_RivalApproachTop
+	waitmovement 0
+	return
+
+Route22_EventScript_EarlyRivalExitTop::
+	applymovement LOCALID_ROUTE22_RIVAL, Route22_Movement_RivalExitTop
+	waitmovement 0
+	return
+
+Route22_Movement_RivalApproachTop::
+	walk_up
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+@ Origin Jade: ends once the rival is off-screen.
+Route22_Movement_RivalExitTop::
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_down
+	walk_right
+	walk_right
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end

@@ -61,6 +61,7 @@
 #include "constants/expansion.h"
 #include "constants/flags.h"
 #include "constants/items.h"
+#include "constants/johto_permits.h"
 #include "constants/map_groups.h"
 #include "constants/rgb.h"
 #include "constants/script_commands.h"
@@ -90,6 +91,8 @@ enum FlagsVarsDebugMenu
 {
     DEBUG_FLAGVAR_MENU_ITEM_FLAGS,
     DEBUG_FLAGVAR_MENU_ITEM_VARS,
+    DEBUG_FLAGVAR_MENU_ITEM_DEXFLAGS_KANTO,
+    DEBUG_FLAGVAR_MENU_ITEM_DEXFLAGS_JOHTO,
     DEBUG_FLAGVAR_MENU_ITEM_DEXFLAGS_ALL,
     DEBUG_FLAGVAR_MENU_ITEM_DEXFLAGS_RESET,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_POKEDEX,
@@ -261,6 +264,9 @@ static void DebugTask_HandleMenuInput_General(u8 taskId);
 
 static void DebugAction_Util_Fly(u8 taskId);
 static void DebugAction_Util_Warp_Warp(u8 taskId);
+static void DebugAction_Util_Warp_Kanto(u8 taskId);
+static void DebugAction_Util_Warp_Johto(u8 taskId);
+static void DebugAction_Util_Warp_Hoenn(u8 taskId);
 static void DebugAction_Util_Warp_SelectMapGroup(u8 taskId);
 static void DebugAction_Util_Warp_SelectMap(u8 taskId);
 static void DebugAction_Util_Warp_SelectWarp(u8 taskId);
@@ -269,6 +275,9 @@ static void DebugAction_Util_Weather_SelectId(u8 taskId);
 static void DebugAction_Util_WatchCredits(u8 taskId);
 static void DebugAction_Util_CheatStart(u8 taskId);
 static void DebugAction_Util_HnsFinishJohtoKanto(u8 taskId);
+static void DebugAction_Util_KantoTest(u8 taskId);
+static void DebugAction_Util_JohtoTest(u8 taskId);
+static void DebugAction_Util_KantoRepair(u8 taskId);
 
 static void DebugAction_TimeMenu_ChangeTimeOfDay(u8 taskId);
 static void DebugAction_TimeMenu_ChangeWeekdays(u8 taskId);
@@ -306,6 +315,8 @@ static void DebugAction_FlagsVars_FlagsSelect(u8 taskId);
 static void DebugAction_FlagsVars_Vars(u8 taskId);
 static void DebugAction_FlagsVars_Select(u8 taskId);
 static void DebugAction_FlagsVars_SetValue(u8 taskId);
+static void DebugAction_FlagsVars_PokedexFlags_Kanto(u8 taskId);
+static void DebugAction_FlagsVars_PokedexFlags_Johto(u8 taskId);
 static void DebugAction_FlagsVars_PokedexFlags_All(u8 taskId);
 static void DebugAction_FlagsVars_PokedexFlags_Reset(u8 taskId);
 static void DebugAction_FlagsVars_SwitchDex(u8 taskId);
@@ -369,6 +380,7 @@ extern const u8 Debug_VarsNotSetBattleConfigMessage[];
 extern const u8 Debug_FlagsAndVarNotSetBattleConfigMessage[];
 extern const u8 Debug_EventScript_FontTest[];
 extern const u8 Debug_EventScript_HnsWarpOlivinePort[];
+extern const u8 Debug_EventScript_JohtoTestWarpHome[];
 extern const u8 Debug_EventScript_CheckEVs[];
 extern const u8 Debug_EventScript_CheckIVs[];
 extern const u8 Debug_EventScript_GivePokerus[];
@@ -473,8 +485,10 @@ static const u8 sDebugText_PokemonShiny[] =             _("Shiny:{CLEAR_TO 90}\n
 static const u8 sDebugText_IVs[] =                      _("IV {STR_VAR_1}:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
 static const u8 sDebugText_EVs[] =                      _("EV {STR_VAR_1}:{CLEAR_TO 90}\n    {STR_VAR_3}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}");
 // Sound Menu
-static const u8 sDebugText_Sound_SFX_ID[] =             _("SFX ID: {STR_VAR_3}   {START_BUTTON} Stop\n{STR_VAR_1}    \n{STR_VAR_2}");
-static const u8 sDebugText_Sound_Music_ID[] =           _("Music ID: {STR_VAR_3}   {START_BUTTON} Stop\n{STR_VAR_1}    \n{STR_VAR_2}");
+static const u8 sDebugText_Sound_SFX_ID[] =             _("SFX ID: {STR_VAR_3}   {START_BUTTON} Stop\n{STR_VAR_1}    \n{STR_VAR_2}  {SELECT_BUTTON} GBS Off");
+static const u8 sDebugText_Sound_SFX_ID_Gbs[] =         _("SFX ID: {STR_VAR_3}   {START_BUTTON} Stop\n{STR_VAR_1}    \n{STR_VAR_2}  {SELECT_BUTTON} GBS On");
+static const u8 sDebugText_Sound_Music_ID[] =           _("Music ID: {STR_VAR_3}   {START_BUTTON} Stop\n{STR_VAR_1}    \n{STR_VAR_2}  {SELECT_BUTTON} GBS Off");
+static const u8 sDebugText_Sound_Music_ID_Gbs[] =       _("Music ID: {STR_VAR_3}   {START_BUTTON} Stop\n{STR_VAR_1}    \n{STR_VAR_2}  {SELECT_BUTTON} GBS On");
 
 const u8 *const gText_DigitIndicator[] =
 {
@@ -567,13 +581,18 @@ static const struct DebugMenuOption sDebugMenu_Actions_FollowerNPCMenu[] =
 static const struct DebugMenuOption sDebugMenu_Actions_Utilities[] =
 {
     { COMPOUND_STRING("Fly to map…"),       DebugAction_Util_Fly },
-    { COMPOUND_STRING("Warp to map warp…"), DebugAction_Util_Warp_Warp },
+    { COMPOUND_STRING("Warp Kanto…"), DebugAction_Util_Warp_Kanto },
+    { COMPOUND_STRING("Warp Johto…"), DebugAction_Util_Warp_Johto },
+    { COMPOUND_STRING("Warp Hoenn…"), DebugAction_Util_Warp_Hoenn },
     { COMPOUND_STRING("Set weather…"),      DebugAction_Util_Weather },
     { COMPOUND_STRING("Font Test…"),        DebugAction_ExecuteScript, Debug_EventScript_FontTest },
     { COMPOUND_STRING("Time Functions…"),   DebugAction_OpenSubMenu, sDebugMenu_Actions_TimeMenu, },
     { COMPOUND_STRING("Watch credits…"),    DebugAction_Util_WatchCredits },
     { COMPOUND_STRING("Cheat start"),       DebugAction_Util_CheatStart },
     { COMPOUND_STRING("Hoenn Test"), DebugAction_Util_HnsFinishJohtoKanto },
+    { COMPOUND_STRING("Kanto Test"), DebugAction_Util_KantoTest },
+    { COMPOUND_STRING("Johto Test"), DebugAction_Util_JohtoTest },
+    { COMPOUND_STRING("Kanto Flag-Reparatur"), DebugAction_Util_KantoRepair },
     { COMPOUND_STRING("Berry Functions…"),  DebugAction_OpenSubMenu, sDebugMenu_Actions_BerryFunctions },
     { COMPOUND_STRING("EWRAM Counters…"),   DebugAction_ExecuteScript, Debug_EventScript_EWRAMCounters },
     { COMPOUND_STRING("Follower NPC…"),     DebugAction_OpenSubMenu, sDebugMenu_Actions_FollowerNPCMenu },
@@ -700,7 +719,9 @@ static const struct DebugMenuOption sDebugMenu_Actions_Flags[] =
 {
     [DEBUG_FLAGVAR_MENU_ITEM_FLAGS]                = { COMPOUND_STRING("Set Flag XYZ…"),                     DebugAction_FlagsVars_Flags },
     [DEBUG_FLAGVAR_MENU_ITEM_VARS]                 = { COMPOUND_STRING("Set Var XYZ…"),                      DebugAction_FlagsVars_Vars },
-    [DEBUG_FLAGVAR_MENU_ITEM_DEXFLAGS_ALL]         = { COMPOUND_STRING("Pokédex Flags All"),                 DebugAction_FlagsVars_PokedexFlags_All },
+    [DEBUG_FLAGVAR_MENU_ITEM_DEXFLAGS_KANTO]       = { COMPOUND_STRING("Pokédex Flags Kanto"),               DebugAction_FlagsVars_PokedexFlags_Kanto },
+    [DEBUG_FLAGVAR_MENU_ITEM_DEXFLAGS_JOHTO]       = { COMPOUND_STRING("Pokédex Flags Johto"),               DebugAction_FlagsVars_PokedexFlags_Johto },
+    [DEBUG_FLAGVAR_MENU_ITEM_DEXFLAGS_ALL]         = { COMPOUND_STRING("Pokédex Flags Alles"),               DebugAction_FlagsVars_PokedexFlags_All },
     [DEBUG_FLAGVAR_MENU_ITEM_DEXFLAGS_RESET]       = { COMPOUND_STRING("Pokédex Flags Reset"),               DebugAction_FlagsVars_PokedexFlags_Reset },
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_POKEDEX]       = { COMPOUND_STRING("Toggle {STR_VAR_1}Pokédex"),         DebugAction_ToggleFlag, DebugAction_FlagsVars_SwitchDex },
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_NATDEX]        = { COMPOUND_STRING("Toggle {STR_VAR_1}National Dex"),    DebugAction_ToggleFlag, DebugAction_FlagsVars_SwitchNatDex },
@@ -1091,7 +1112,7 @@ static u8 Debug_GenerateListTrainerMenu(void)
             }
             break;
         case 6:
-            if (FREE_MATCH_CALL || I_VS_SEEKER_CHARGING || !isRealFight || rematchTableId == -1)
+            if (FREE_MATCH_CALL || !isRealFight || rematchTableId == -1)
             {
                 noDraw = TRUE;
                 break;
@@ -1179,7 +1200,6 @@ static const u16 sLocationFlags[] =
     FLAG_VISITED_MT_SILVER,
     FLAG_VISITED_RECEPTION_GATE,
     FLAG_VISITED_SAFARI_ZONE_GATE,
-    FLAG_VISITED_KANTO,
     FLAG_VISITED_PALLET_TOWN,
     FLAG_VISITED_VIRIDIAN_CITY,
     FLAG_VISITED_PEWTER_CITY,
@@ -1474,6 +1494,18 @@ static void DebugAction_Util_Fly(u8 taskId)
     SetMainCallback2(CB2_OpenFlyMap);
 }
 
+// Origin Jade: warp dialog per region. tRegionBase/tRegionLast = first/last
+// map group of the region; the input counts from 0 within the region.
+#define REGION_JOHTO_FIRST_GROUP  0
+#define REGION_JOHTO_LAST_GROUP   30
+#define REGION_HOENN_FIRST_GROUP  31
+#define REGION_HOENN_LAST_GROUP   64
+#define REGION_KANTO_FIRST_GROUP  65
+#define REGION_KANTO_LAST_GROUP   93
+
+#define tRegionBase data[8]
+#define tRegionLast data[9]
+
 #define tMapGroup  data[5]
 #define tMapNum    data[6]
 #define tWarp      data[7]
@@ -1510,15 +1542,37 @@ static void DebugAction_Util_Warp_Warp(u8 taskId)
     gTasks[taskId].tWarp = 0;
 }
 
+static void DebugAction_Util_Warp_Region(u8 taskId, u32 first, u32 last)
+{
+    DebugAction_Util_Warp_Warp(taskId);
+    gTasks[taskId].tRegionBase = first;
+    gTasks[taskId].tRegionLast = last;
+}
+
+static void DebugAction_Util_Warp_Kanto(u8 taskId)
+{
+    DebugAction_Util_Warp_Region(taskId, REGION_KANTO_FIRST_GROUP, REGION_KANTO_LAST_GROUP);
+}
+
+static void DebugAction_Util_Warp_Johto(u8 taskId)
+{
+    DebugAction_Util_Warp_Region(taskId, REGION_JOHTO_FIRST_GROUP, REGION_JOHTO_LAST_GROUP);
+}
+
+static void DebugAction_Util_Warp_Hoenn(u8 taskId)
+{
+    DebugAction_Util_Warp_Region(taskId, REGION_HOENN_FIRST_GROUP, REGION_HOENN_LAST_GROUP);
+}
+
 static void DebugAction_Util_Warp_SelectMapGroup(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-        Debug_HandleInput_Numeric(taskId, 0, LAST_MAP_GROUP, 3);
+        Debug_HandleInput_Numeric(taskId, 0, gTasks[taskId].tRegionLast - gTasks[taskId].tRegionBase, 3);
 
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 3);
-        ConvertIntToDecimalStringN(gStringVar2, LAST_MAP_GROUP, STR_CONV_MODE_LEADING_ZEROS, 3);
+        ConvertIntToDecimalStringN(gStringVar2, gTasks[taskId].tRegionLast - gTasks[taskId].tRegionBase, STR_CONV_MODE_LEADING_ZEROS, 3);
         StringExpandPlaceholders(gStringVar1, sDebugText_Util_WarpToMap_SelMax);
         StringCopy(gStringVar3, gText_DigitIndicator[gTasks[taskId].tDigit]);
         StringExpandPlaceholders(gStringVar4, sDebugText_Util_WarpToMap_SelectMapGroup);
@@ -1527,7 +1581,7 @@ static void DebugAction_Util_Warp_SelectMapGroup(u8 taskId)
 
     if (JOY_NEW(A_BUTTON))
     {
-        gTasks[taskId].tMapGroup = gTasks[taskId].tInput;
+        gTasks[taskId].tMapGroup = gTasks[taskId].tRegionBase + gTasks[taskId].tInput;
         gTasks[taskId].tInput = 0;
         gTasks[taskId].tDigit = 0;
 
@@ -1815,10 +1869,7 @@ static void DebugAction_Util_CheatStart(u8 taskId)
 }
 
 #if IS_HNS
-// Testwerkzeug: markiert Johto+Kanto als abgeschlossen (16 Orden,
-// Champion, alle Flugpunkte, S.S.-Aqua-Hoenn-Route frei) und stellt
-// ein levelgerechtes Champion-Team samt VM-Attacken - damit jeder
-// frische Spielstand direkt in Hoenn getestet werden kann.
+// Test tool: finishes Johto and Kanto and warps to the Olivine port.
 static void DebugAction_Util_HnsFinishJohtoKanto(u8 taskId)
 {
     static const u16 sJkVisitedFlags[] =
@@ -1838,7 +1889,6 @@ static void DebugAction_Util_HnsFinishJohtoKanto(u8 taskId)
         FLAG_VISITED_SAFFRON_CITY,   FLAG_VISITED_FUCHSIA_CITY,
         FLAG_VISITED_CINNABAR_ISLAND,
     };
-    // Testteam: nur zum Durchspielen gedacht, nicht auf Kampfbalance ausgelegt.
     static const u16 sTeamSpecies[] =
     {
         SPECIES_RAYQUAZA, SPECIES_KYOGRE, SPECIES_CHARIZARD,
@@ -1847,24 +1897,18 @@ static void DebugAction_Util_HnsFinishJohtoKanto(u8 taskId)
     u32 i;
     u16 f;
 
-    // 16 Orden (Johto 1-8, Kanto 9-16)
+    // All 16 badge flags.
     for (f = FLAG_BADGE01_GET; f <= FLAG_BADGE08_GET; f++)
         FlagSet(f);
     for (f = FLAG_BADGE09_GET; f <= FLAG_BADGE16_GET; f++)
         FlagSet(f);
-    // Champion + Systeme
+    // Champion + systems
     FlagSet(FLAG_SYS_GAME_CLEAR);
     FlagSet(FLAG_SYS_POKEDEX_GET);
-    // Ohne diese Flags fehlen die Startmenue-Eintraege: FLAG_SYS_POKEMON_GET
-    // setzt sonst erst die Starter-Uebergabe bei Prof. Lind, FLAG_SYS_POKENAV_GET
-    // der PokeCom zu Hause. FLAG_ADVENTURE_STARTED gibt die Ortsausgaenge frei,
-    // die Laufschuhe erspart das Schleichen.
+    // Start menu entries.
     FlagSet(FLAG_SYS_POKEMON_GET);
     FlagSet(FLAG_SYS_POKENAV_GET);
-    // PokeCom-Menue vollstaendig: ohne diese vier Flags fehlen im Geraet der
-    // Trainerruf (beide noetig), das Radio und der Zustands-Eintrag.
-    // Regulaer setzt sie das Spielerhaus in Neuborkia, der Funkturm Dukatia
-    // und Prof. Linds Labor - alles Stationen, die der Testsprung ueberspringt.
+    // PokeGear: trainer call, radio and condition entries.
     FlagSet(FLAG_HAS_MATCH_CALL);
     FlagSet(FLAG_ADDED_MATCH_CALL_TO_POKENAV);
     FlagSet(FLAG_ENABLE_RADIO);
@@ -1872,41 +1916,36 @@ static void DebugAction_Util_HnsFinishJohtoKanto(u8 taskId)
     FlagSet(FLAG_ADVENTURE_STARTED);
     FlagSet(FLAG_RECEIVED_RUNNING_SHOES);
     FlagSet(FLAG_SYS_B_DASH);
-    FlagSet(FLAG_VISITED_KANTO);
+    FlagSet(FLAG_VISITED_JOHTO);
     FlagSet(FLAG_IS_CHAMPION);
     FlagSet(FLAG_IS_KANTO_CHAMPION);
+    // Origin Jade: Johto's badges, permits and title.
+    VarSet(VAR_JOHTO_BADGES, 0xFF);
+    VarSet(VAR_JOHTO_PERMITS, (1 << PERM_COUNT) - 1);
+    FlagSet(FLAG_IS_JOHTO_CHAMPION);
     FlagSet(FLAG_RECEIVED_PASS_BINDER);
-    // Flugpunkte Johto+Kanto (Hoenn bleibt bewusst unbesucht)
+    // Fly points Johto and Kanto.
     for (i = 0; i < ARRAY_COUNT(sJkVisitedFlags); i++)
         FlagSet(sJkVisitedFlags[i]);
-    // S.S. Aqua: Kanto-Route abgeschlossen -> Hoenn-Option im Hafen
+    // S.S. Aqua: 7 = Hoenn route open.
     VarSet(VAR_SSAQUA_STATE, 7);
-    // Troys Ticketkette gilt als erledigt, das Hoennticket liegt im Beutel -
-    // sonst laesst der Matrose die Ueberfahrt nicht zu.
+    // Hoenn Ticket chain done, ticket in the bag.
     VarSet(VAR_HOENN_TICKET_STATE, 3);
     FlagSet(FLAG_HIDE_SILPHCO_TROY);
     AddBagItem(ITEM_HOENN_TICKET, 1);
-    // Sonderbonbons in Beutelmenge - damit sich frisch gefangene Hoenn-Arten
-    // sofort auf Korridorniveau bringen lassen, ohne dafuer zu trainieren.
     AddBagItem(ITEM_RARE_CANDY, MAX_BAG_ITEM_CAPACITY);
-    // Testteam auf Level 100
     ZeroPlayerPartyMons();
     for (i = 0; i < ARRAY_COUNT(sTeamSpecies); i++)
         ScriptGiveMon(sTeamSpecies[i], MAX_LEVEL, ITEM_NONE);
     CalculatePlayerPartyCount();
     SetMoney(&gSaveBlock1Ptr->money, 200000);
-    // Alle belegten TMs und alle VMs je einmal in den Beutel.
-    // Achtung: Der Bereich ITEM_TM01..ITEM_TM100 ist unter HnS nur bis TM92
-    // belegt - die acht Nummern danach haben keinen Namen und landeten
-    // frueher als "-" im Beutel.
+    // All TMs up to the last assigned one (TM92), then all HMs.
     for (i = ITEM_TM01; i <= ITEM_TM_TRICK_ROOM; i++)
         AddBagItem(i, 1);
-    // Ueber den VM-Index statt ueber den ID-Bereich: ITEM_HM09 (Taucher)
-    // haengt am Ende der Item-Liste und liegt nicht hinter ITEM_HM08.
+    // By HM index: ITEM_HM09 does not follow ITEM_HM08.
     for (i = NUM_TECHNICAL_MACHINES + 1; i <= NUM_ALL_MACHINES; i++)
         AddBagItem(GetTMHMItemId(i), 1);
-    // Pokedex Kanto + Johto vollstaendig (1-251). Hoenn bleibt bewusst offen,
-    // damit sich die Freischaltung bei der Ankunft pruefen laesst.
+    // Pokedex 1-251 seen and caught.
     for (i = 1; i <= NATIONAL_DEX_CELEBI; i++)
     {
         GetSetPokedexFlag(i, FLAG_SET_SEEN);
@@ -1914,7 +1953,6 @@ static void DebugAction_Util_HnsFinishJohtoKanto(u8 taskId)
     }
 
     PlaySE(SE_EXP_MAX);
-    // Direkt in den Hafen von Oliviana - von dort geht das Schiff nach Hoenn.
     Debug_DestroyMenu_Full_Script(taskId, Debug_EventScript_HnsWarpOlivinePort);
 }
 
@@ -1925,6 +1963,150 @@ static void DebugAction_Util_HnsFinishJohtoKanto(u8 taskId)
     ScriptContext_Enable();
 }
 #endif
+
+#if IS_HNS
+// Test tool: level 100 team and all TMs/HMs, the story stays untouched.
+static void DebugAction_Util_KantoTest(u8 taskId)
+{
+    static const u16 sTeamSpecies[] =
+    {
+        SPECIES_CHARIZARD, SPECIES_GENGAR,   SPECIES_LAPRAS,
+        SPECIES_ALAKAZAM,  SPECIES_SANDSLASH, SPECIES_ZAPDOS,
+    };
+    u32 i;
+
+    ZeroPlayerPartyMons();
+    for (i = 0; i < ARRAY_COUNT(sTeamSpecies); i++)
+        ScriptGiveMon(sTeamSpecies[i], MAX_LEVEL, ITEM_NONE);
+    CalculatePlayerPartyCount();
+
+    PlaySE(SE_EXP_MAX);
+    Debug_DestroyMenu_Full(taskId);
+    ScriptContext_Enable();
+}
+#else
+static void DebugAction_Util_KantoTest(u8 taskId)
+{
+    Debug_DestroyMenu_Full(taskId);
+    ScriptContext_Enable();
+}
+#endif
+
+#if IS_HNS
+#include "data/debug_kanto_complete.h"
+
+static void GiveKantoCompleteMon(u16 species, u8 level)
+{
+    struct Pokemon mon;
+
+    CreateRandomMon(&mon, species, level);
+    GiveScriptedMonToPlayer(&mon, PARTY_SIZE);
+}
+
+// Test tool: on a new game, sets the state right after the first Kanto Hall of
+// Fame (tools/make_kanto_complete.py) and warps home to Pallet Town.
+static void DebugAction_Util_JohtoTest(u8 taskId)
+{
+    u32 i;
+    u32 starter = KANTO_COMPLETE_STARTER;
+    u16 starterFinal = sKantoCompletePartyStarter[starter].species;
+    bool8 ribbon = TRUE;
+
+    if (FlagGet(FLAG_SYS_POKEMON_GET))
+    {
+        StringCopy(gStringVar4, COMPOUND_STRING("Johto Test needs a new game\nbefore the first Pokémon."));
+        Debug_DestroyMenu_Full_Script(taskId, Debug_ShowFieldMessageStringVar4);
+        return;
+    }
+
+    if (!FlagGet(FLAG_SYS_CLOCK_SET))
+        RtcInitLocalTimeOffset(0, 0);
+    InitTimeBasedEvents();
+
+    ClearBag();
+    ZeroPlayerPartyMons();
+    ResetPokemonStorageSystem();
+    ResetPokedex();
+
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteFlagsSet); i++)
+        FlagSet(sKantoCompleteFlagsSet[i]);
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteFlagsClear); i++)
+        FlagClear(sKantoCompleteFlagsClear[i]);
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteVars); i++)
+        VarSet(sKantoCompleteVars[i].var, sKantoCompleteVars[i].value);
+    VarSet(VAR_STARTER_MON, starter);
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteTrainers); i++)
+        SetTrainerFlag(sKantoCompleteTrainers[i]);
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteRivalTrainers[starter]); i++)
+        SetTrainerFlag(sKantoCompleteRivalTrainers[starter][i]);
+    EnableNationalPokedex();
+
+    // Party first, then the box; the starter's final stage only in the party.
+    GiveKantoCompleteMon(starterFinal, sKantoCompletePartyStarter[starter].level);
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteParty); i++)
+        GiveKantoCompleteMon(sKantoCompleteParty[i].species, sKantoCompleteParty[i].level);
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteMons); i++)
+    {
+        if (sKantoCompleteMons[i].species != starterFinal)
+            GiveKantoCompleteMon(sKantoCompleteMons[i].species, sKantoCompleteMons[i].level);
+    }
+    CalculatePlayerPartyCount();
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteSeenOnly); i++)
+        GetSetPokedexFlag(SpeciesToNationalPokedexNum(sKantoCompleteSeenOnly[i]), FLAG_SET_SEEN);
+
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteBag); i++)
+        AddBagItem(sKantoCompleteBag[i].item, sKantoCompleteBag[i].quantity);
+    SetMoney(&gSaveBlock1Ptr->money, KANTO_COMPLETE_MONEY);
+
+    // EnterHallOfFame and the Hall of Fame save's entry count, without the screens.
+    FlagSet(FLAG_SYS_GAME_CLEAR);
+    IncrementGameStat(GAME_STAT_ENTERED_HOF);
+    if (GetGameStat(GAME_STAT_FIRST_HOF_PLAY_TIME) == 0)
+        SetGameStat(GAME_STAT_FIRST_HOF_PLAY_TIME, (gSaveBlock2Ptr->playTimeHours << 16) | (gSaveBlock2Ptr->playTimeMinutes << 8) | gSaveBlock2Ptr->playTimeSeconds);
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SANITY_HAS_SPECIES) && !GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG))
+            SetMonData(&gPlayerParty[i], MON_DATA_CHAMPION_RIBBON, &ribbon);
+    }
+    IncrementGameStat(GAME_STAT_RECEIVED_RIBBONS);
+    FlagSet(FLAG_SYS_RIBBON_GET);
+    HealPlayerParty();
+
+    PlaySE(SE_EXP_MAX);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_EventScript_JohtoTestWarpHome);
+}
+#else
+static void DebugAction_Util_JohtoTest(u8 taskId)
+{
+    Debug_DestroyMenu_Full(taskId);
+    ScriptContext_Enable();
+}
+#endif
+
+#if IS_HNS
+// Repair for old saves: clears the badge flags 09-16, which nothing sets.
+static void DebugAction_Util_KantoRepair(u8 taskId)
+{
+    u32 flag;
+
+    for (flag = FLAG_BADGE09_GET; flag <= FLAG_BADGE16_GET; flag++)
+        FlagClear(flag);
+
+    PlaySE(SE_SAVE);
+    Debug_DestroyMenu_Full(taskId);
+    ScriptContext_Enable();
+}
+#else
+static void DebugAction_Util_KantoRepair(u8 taskId)
+{
+    Debug_DestroyMenu_Full(taskId);
+    ScriptContext_Enable();
+}
+#endif
+
+
+
+
 
 void BufferExpansionVersion(struct ScriptContext *ctx)
 {
@@ -2269,7 +2451,7 @@ static void DebugAction_Trainers_SetRematch(u8 taskId)
 
     if (rematchId == -1)
     {
-        FlagToggle(TRAINER_FLAGS_START + sDebugMenuListData->data[0]);
+        FlagToggle(TrainerIdToFlagId(sDebugMenuListData->data[0]));
         return;
     }
 
@@ -2280,7 +2462,7 @@ static void DebugAction_Trainers_SetRematch(u8 taskId)
 
         if (!HasTrainerBeenFought(gRematchTable[rematchId].trainerIds[i]))
         {
-            FlagToggle(TRAINER_FLAGS_START + gRematchTable[rematchId].trainerIds[i]);
+            FlagToggle(TrainerIdToFlagId(gRematchTable[rematchId].trainerIds[i]));
             return;
         }
     }
@@ -2290,7 +2472,7 @@ static void DebugAction_Trainers_SetRematch(u8 taskId)
         if (gRematchTable[rematchId].trainerIds[i] == 0)
             break;
 
-        FlagToggle(TRAINER_FLAGS_START + gRematchTable[rematchId].trainerIds[i]);
+        FlagToggle(TrainerIdToFlagId(gRematchTable[rematchId].trainerIds[i]));
     }
 }
 
@@ -2348,8 +2530,7 @@ static void DebugAction_Trainers_TryBattle(u8 taskId)
 
 static void DebugAction_Trainers_RechargeVsSeeker(u8 taskId)
 {
-    SetTrainerRematchStepCounter(VSSEEKER_RECHARGE_STEPS);
-    MapResetTrainerRematches(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
+    VsSeekerSetFullyCharged();
     ScriptContext_SetupScript(EventScript_VsSeekerChargingDone);
     Debug_DestroyMenu_Full(taskId);
 }
@@ -2561,6 +2742,35 @@ static void DebugAction_FlagsVars_SetValue(u8 taskId)
 }
 
 #undef tVarValue
+
+static void DebugAction_FlagsVars_PokedexFlags_Range(u8 taskId, u32 lastObtainable)
+{
+    u32 i;
+
+    for (i = 1; i <= lastObtainable && i < OBTAINABLE_DEX_COUNT; i++)
+    {
+        u32 nationalNum = ObtainableToNationalOrder(i);
+
+        if (!IsSpeciesEnabled(NationalPokedexNumToSpecies(nationalNum)))
+            continue;
+
+        GetSetPokedexFlag(nationalNum, FLAG_SET_CAUGHT);
+        GetSetPokedexFlag(nationalNum, FLAG_SET_SEEN);
+    }
+
+    Debug_DestroyMenu_Full(taskId);
+    ScriptContext_Enable();
+}
+
+static void DebugAction_FlagsVars_PokedexFlags_Kanto(u8 taskId)
+{
+    DebugAction_FlagsVars_PokedexFlags_Range(taskId, NationalToObtainableOrder(NATIONAL_DEX_MEW));
+}
+
+static void DebugAction_FlagsVars_PokedexFlags_Johto(u8 taskId)
+{
+    DebugAction_FlagsVars_PokedexFlags_Range(taskId, NationalToObtainableOrder(NATIONAL_DEX_CELEBI));
+}
 
 static void DebugAction_FlagsVars_PokedexFlags_All(u8 taskId)
 {
@@ -3914,6 +4124,23 @@ static void DebugAction_TimeMenu_ChangeWeekdays(u8 taskId)
 // *******************************
 // Actions PCBag
 
+
+// Next species with a name, wrapping around at the end.
+static u16 Debug_NextUsableSpecies(u16 species)
+{
+    u32 tries;
+
+    for (tries = 0; tries < NUM_SPECIES; tries++)
+    {
+        if (species >= NUM_SPECIES)
+            species = SPECIES_BULBASAUR;
+        if (gSpeciesInfo[species].speciesName[0] != 0)
+            return species;
+        species++;
+    }
+    return SPECIES_BULBASAUR;
+}
+
 static void DebugAction_PCBag_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffinity
 {
     int boxId, boxPosition;
@@ -3930,6 +4157,7 @@ static void DebugAction_PCBag_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffini
         {
             if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
             {
+                species = Debug_NextUsableSpecies(species);
                 StringCopy(speciesName, GetSpeciesName(species));
                 SetBoxMonData(&boxMon, MON_DATA_NICKNAME, &speciesName);
                 SetBoxMonData(&boxMon, MON_DATA_SPECIES, &species);
@@ -3960,6 +4188,7 @@ static void DebugAction_PCBag_Fill_PCBoxes_Slow(u8 taskId)
             {
                 if (!spaceAvailable)
                     PlayBGM(MUS_RG_MYSTERY_GIFT);
+                species = Debug_NextUsableSpecies(species);
                 CreateBoxMon(&boxMon, species, 100, Random32(), OTID_STRUCT_PLAYER_ID);
                 SetBoxMonIVs(&boxMon, USE_RANDOM_IVS);
                 GiveBoxMonInitialMoveset(&boxMon);
@@ -4063,6 +4292,59 @@ static const u8 *const sSENames[END_SE + 1];
 
 #define tCurrentSong  data[5]
 
+static void Debug_Sound_Redraw_SE(u8 taskId, u8 windowId)
+{
+    const u8 *seName = sSENames[gTasks[taskId].tInput - 1];
+
+    if (seName == NULL)
+        seName = sDebugText_Dashes;
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
+    StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
+    StringCopyPadded(gStringVar1, seName, CHAR_SPACE, 35);
+    ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
+    StringExpandPlaceholders(gStringVar4, FlagGet(FLAG_SYS_GBS_ENABLED) ? sDebugText_Sound_SFX_ID_Gbs : sDebugText_Sound_SFX_ID);
+    AddTextPrinterParameterized(windowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+}
+
+static void Debug_Sound_Redraw_MUS(u8 taskId, u8 windowId)
+{
+    const u8 *bgmName = sBGMNames[gTasks[taskId].tInput - START_MUS];
+
+    if (bgmName == NULL)
+        bgmName = sDebugText_Dashes;
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
+    StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
+    StringCopyPadded(gStringVar1, bgmName, CHAR_SPACE, 35);
+    ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
+    StringExpandPlaceholders(gStringVar4, FlagGet(FLAG_SYS_GBS_ENABLED) ? sDebugText_Sound_Music_ID_Gbs : sDebugText_Sound_Music_ID);
+    AddTextPrinterParameterized(windowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+}
+
+// SELECT toggles the GB Player from inside the sound test so tracks can be A/B'd.
+// Mirrors Task_UseGBPlayer in src/item_use.c: wait for any SE to finish, flip the
+// flag, then reset the BGM player through the map-music state machine. The item
+// follows that with Overworld_PlaySpecialMapMusic() to restore the map's track;
+// here we stop instead, since the sound test deliberately silences map music so
+// the selected song can be heard on its own.
+static void Debug_Sound_ToggleGBS(void)
+{
+    if (IsSEPlaying())
+        return;
+
+    if (FlagGet(FLAG_SYS_GBS_ENABLED))
+    {
+        FlagClear(FLAG_SYS_GBS_ENABLED);
+        RestorePSGMasterVolume();
+    }
+    else
+    {
+        FlagSet(FLAG_SYS_GBS_ENABLED);
+    }
+
+    PlayNewMapMusic(MUS_DUMMY);
+    StopMapMusic();
+}
+
 static void DebugAction_Sound_SE(u8 taskId)
 {
     u8 windowId;
@@ -4081,13 +4363,15 @@ static void DebugAction_Sound_SE(u8 taskId)
     StringCopy(gStringVar2, gText_DigitIndicator[0]);
     ConvertIntToDecimalStringN(gStringVar3, 1, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
     StringCopyPadded(gStringVar1, sSENames[0], CHAR_SPACE, 35);
-    StringExpandPlaceholders(gStringVar4, sDebugText_Sound_SFX_ID);
+    StringExpandPlaceholders(gStringVar4, FlagGet(FLAG_SYS_GBS_ENABLED) ? sDebugText_Sound_SFX_ID_Gbs : sDebugText_Sound_SFX_ID);
     AddTextPrinterParameterized(windowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
 
     StopMapMusic(); //Stop map music to better hear sounds
 
     gTasks[taskId].func = DebugAction_Sound_SE_SelectId;
     gTasks[taskId].tSubWindowId = windowId;
+    // Clear first: the GBS indicator shrinks from "Off" to "On", so a plain
+    // reprint would leave the old trailing glyph on screen.
     gTasks[taskId].tInput = 1;
     gTasks[taskId].tDigit = 0;
     gTasks[taskId].tCurrentSong = gTasks[taskId].tInput;
@@ -4097,20 +4381,13 @@ static void DebugAction_Sound_SE_SelectId(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        const u8 *seName;
         Debug_HandleInput_Numeric(taskId, 1, END_SE, DEBUG_NUMBER_DIGITS_ITEMS);
-
-        StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
-        seName = sSENames[gTasks[taskId].tInput - 1];
-        if (seName == NULL)
-            seName = sDebugText_Dashes;
-        StringCopyPadded(gStringVar1, seName, CHAR_SPACE, 35);
-        ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
-        StringExpandPlaceholders(gStringVar4, sDebugText_Sound_SFX_ID);
-        AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+        Debug_Sound_Redraw_SE(taskId, gTasks[taskId].tSubWindowId);
     }
 
     if (JOY_NEW(A_BUTTON))
+    // Clear first: the GBS indicator shrinks from "Off" to "On", so a plain
+    // reprint would leave the old trailing glyph on screen.
     {
         m4aSongNumStop(gTasks[taskId].tCurrentSong, FlagGet(FLAG_SYS_GBS_ENABLED));
         gTasks[taskId].tCurrentSong = gTasks[taskId].tInput;
@@ -4125,6 +4402,12 @@ static void DebugAction_Sound_SE_SelectId(u8 taskId)
     else if (JOY_NEW(START_BUTTON))
     {
         m4aSongNumStop(gTasks[taskId].tCurrentSong, FlagGet(FLAG_SYS_GBS_ENABLED));
+    }
+    else if (JOY_NEW(SELECT_BUTTON))
+    {
+        // Same as the GB Player item: GBS leaves NR50 turned down behind it.
+        Debug_Sound_ToggleGBS();
+        Debug_Sound_Redraw_SE(taskId, gTasks[taskId].tSubWindowId);
     }
 }
 
@@ -4146,7 +4429,7 @@ static void DebugAction_Sound_MUS(u8 taskId)
     StringCopy(gStringVar2, gText_DigitIndicator[0]);
     ConvertIntToDecimalStringN(gStringVar3, START_MUS, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
     StringCopyPadded(gStringVar1, sBGMNames[0], CHAR_SPACE, 35);
-    StringExpandPlaceholders(gStringVar4, sDebugText_Sound_Music_ID);
+    StringExpandPlaceholders(gStringVar4, FlagGet(FLAG_SYS_GBS_ENABLED) ? sDebugText_Sound_Music_ID_Gbs : sDebugText_Sound_Music_ID);
     AddTextPrinterParameterized(windowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
 
     StopMapMusic(); //Stop map music to better hear new music
@@ -4162,17 +4445,8 @@ static void DebugAction_Sound_MUS_SelectId(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        const u8 *bgmName;
         Debug_HandleInput_Numeric(taskId, START_MUS, END_MUS, DEBUG_NUMBER_DIGITS_ITEMS);
-
-        StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
-        bgmName = sBGMNames[gTasks[taskId].tInput - START_MUS];
-        if (bgmName == NULL)
-            bgmName = sDebugText_Dashes;
-        StringCopyPadded(gStringVar1, bgmName, CHAR_SPACE, 35);
-        ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
-        StringExpandPlaceholders(gStringVar4, sDebugText_Sound_Music_ID);
-        AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
+        Debug_Sound_Redraw_MUS(taskId, gTasks[taskId].tSubWindowId);
     }
 
     if (JOY_NEW(A_BUTTON))
@@ -4190,6 +4464,11 @@ static void DebugAction_Sound_MUS_SelectId(u8 taskId)
     else if (JOY_NEW(START_BUTTON))
     {
         m4aSongNumStop(gTasks[taskId].tCurrentSong, FlagGet(FLAG_SYS_GBS_ENABLED));
+    }
+    else if (JOY_NEW(SELECT_BUTTON))
+    {
+        Debug_Sound_ToggleGBS();
+        Debug_Sound_Redraw_MUS(taskId, gTasks[taskId].tSubWindowId);
     }
 }
 

@@ -3,24 +3,29 @@ SaffronCity_Dojo_Frlg_MapScripts::
 
 SaffronCity_Dojo_EventScript_TriggerMasterBattleLeft::
 	lockall
-	setvar VAR_MAP_SCENE_SAFFRON_CITY_DOJO, 1
 	applymovement LOCALID_KARATE_MASTER, Common_Movement_WalkInPlaceFasterLeft
 	waitmovement 0
-	releaseall
-	end
+	goto SaffronCity_Dojo_EventScript_MasterBattleFromTrigger
 
 SaffronCity_Dojo_EventScript_TriggerMasterBattleRight::
 	lockall
-	setvar VAR_MAP_SCENE_SAFFRON_CITY_DOJO, 1
 	applymovement LOCALID_KARATE_MASTER, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
-	releaseall
+	goto SaffronCity_Dojo_EventScript_MasterBattleFromTrigger
+
+@ Origin Jade: the triggers in columns 5 and 7 start the Karate Master battle.
+SaffronCity_Dojo_EventScript_MasterBattleFromTrigger::
+	msgbox SaffronCity_Dojo_Text_MasterKoichiIntro, MSGBOX_DEFAULT
+	closemessage
+	trainerbattle_no_intro TRAINER_BLACK_BELT_KOICHI, SaffronCity_Dojo_Text_MasterKoichiDefeat
+	setvar VAR_MAP_SCENE_SAFFRON_CITY_DOJO, 1
+	msgbox SaffronCity_Dojo_Text_ChoosePrizedFightingMon, MSGBOX_AUTOCLOSE
 	end
 
 SaffronCity_Dojo_EventScript_HitmonleeBall::
 	lock
 	faceplayer
-	goto_if_set FLAG_GOT_HITMON_FROM_DOJO, SaffronCity_Dojo_EventScript_AlreadyGotHitmon
+	goto_if_set FLAG_HIDE_DOJO_HITMONLEE_BALL, SaffronCity_Dojo_EventScript_AlreadyGotHitmon
 	showmonpic SPECIES_HITMONLEE, 10, 3
 	setvar VAR_TEMP_1, SPECIES_HITMONLEE
 	applymovement LOCALID_KARATE_MASTER, Common_Movement_WalkInPlaceFasterUp
@@ -41,7 +46,7 @@ SaffronCity_Dojo_EventScript_AlreadyGotHitmon::
 SaffronCity_Dojo_EventScript_HitmonchanBall::
 	lock
 	faceplayer
-	goto_if_set FLAG_GOT_HITMON_FROM_DOJO, SaffronCity_Dojo_EventScript_AlreadyGotHitmon
+	goto_if_set FLAG_HIDE_DOJO_HITMONCHAN_BALL, SaffronCity_Dojo_EventScript_AlreadyGotHitmon
 	showmonpic SPECIES_HITMONCHAN, 10, 3
 	setvar VAR_TEMP_1, SPECIES_HITMONCHAN
 	applymovement LOCALID_KARATE_MASTER, Common_Movement_WalkInPlaceFasterUp
@@ -70,7 +75,7 @@ SaffronCity_Dojo_EventScript_ReceivedHitmonParty::
 	message SaffronCity_Dojo_Text_ReceivedMonFromKarateMaster
 	waitmessage
 	waitfanfare
-	setflag FLAG_GOT_HITMON_FROM_DOJO
+	call SaffronCity_Dojo_EventScript_MarkBallTaken
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, SaffronCity_Dojo_EventScript_EndGiveMon
 	call Common_EventScript_GetGiftMonPartySlot
@@ -85,7 +90,7 @@ SaffronCity_Dojo_EventScript_ReceivedHitmonPC::
 	message SaffronCity_Dojo_Text_ReceivedMonFromKarateMaster
 	waitmessage
 	waitfanfare
-	setflag FLAG_GOT_HITMON_FROM_DOJO
+	call SaffronCity_Dojo_EventScript_MarkBallTaken
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, SaffronCity_Dojo_EventScript_TransferredHitmonToPC
 	call Common_EventScript_NameReceivedBoxMon
@@ -135,7 +140,10 @@ SaffronCity_Dojo_EventScript_Mike::
 
 SaffronCity_Dojo_EventScript_MasterKoichi::
 	trainerbattle_single TRAINER_BLACK_BELT_KOICHI, SaffronCity_Dojo_Text_MasterKoichiIntro, SaffronCity_Dojo_Text_MasterKoichiDefeat, SaffronCity_Dojo_EventScript_DefeatedMasterKoichi
-	goto_if_set FLAG_GOT_HITMON_FROM_DOJO, SaffronCity_Dojo_EventScript_MasterKoichiAlreadyGotHitmon
+	@ Origin Jade: only once both balls have been taken.
+	goto_if_unset FLAG_HIDE_DOJO_HITMONLEE_BALL, SaffronCity_Dojo_EventScript_MasterKoichiChoose
+	goto_if_set FLAG_HIDE_DOJO_HITMONCHAN_BALL, SaffronCity_Dojo_EventScript_MasterKoichiAlreadyGotHitmon
+SaffronCity_Dojo_EventScript_MasterKoichiChoose::
 	msgbox SaffronCity_Dojo_Text_ChoosePrizedFightingMon, MSGBOX_AUTOCLOSE
 	end
 
@@ -180,16 +188,16 @@ SaffronCity_Dojo_Text_ChoosePrizedFightingMon::
 	.string "Ich bin deiner Gnade unwürdig!\p"
 	.string "Trotzdem flehe ich dich an, unser\n"
 	.string "Emblem nicht als Trophäe mitzunehmen!\p"
-	.string "Zum Ersatz gebe ich dir ein\n"
-	.string "preisgekröntes Kampf-Pokémon!\p"
-	.string "Wähle eines von beiden aus!$"
+	.string "Zum Ersatz gebe ich dir unsere\n"
+	.string "preisgekrönten Kampf-Pokémon!\p"
+	.string "Nimm sie beide mit!$"
 #else
 	.string "Indeed, I have lost!\p"
 	.string "But, I beseech you, do not take\n"
 	.string "our emblem as your trophy!\p"
-	.string "In return, I will give you a prized\n"
-	.string "FIGHTING POKéMON!\p"
-	.string "Choose whichever one you like!$"
+	.string "In return, I will give you both of\n"
+	.string "our prized FIGHTING POKéMON!\p"
+	.string "Take them both with you!$"
 #endif
 
 SaffronCity_Dojo_Text_StayAndTrainWithUs::
@@ -347,9 +355,9 @@ SaffronCity_Dojo_Text_ReceivedMonFromKarateMaster2::
 
 SaffronCity_Dojo_Text_BetterNotGetGreedy::
 #if GERMAN
-	.string "Er sagte ein Pokémon...$"
+	.string "Dieser Ball ist schon leer.$"
 #else
-	.string "Better not get greedy…$"
+	.string "This BALL is already empty.$"
 #endif
 
 SaffronCity_Dojo_Text_EnemiesOnEverySide::
@@ -373,3 +381,12 @@ SaffronCity_Dojo_Text_FightingDojo::
 	.string "FIGHTING DOJO$"
 #endif
 
+@ VAR_TEMP_1 = species of the ball that was taken.
+SaffronCity_Dojo_EventScript_MarkBallTaken::
+	goto_if_eq VAR_TEMP_1, SPECIES_HITMONLEE, SaffronCity_Dojo_EventScript_MarkHitmonlee
+	setflag FLAG_HIDE_DOJO_HITMONCHAN_BALL
+	return
+
+SaffronCity_Dojo_EventScript_MarkHitmonlee::
+	setflag FLAG_HIDE_DOJO_HITMONLEE_BALL
+	return

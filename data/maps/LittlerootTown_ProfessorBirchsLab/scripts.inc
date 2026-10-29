@@ -334,7 +334,8 @@ LittlerootTown_ProfessorBirchsLab_EventScript_TakeYourTime::
 LittlerootTown_ProfessorBirchsLab_EventScript_GiveCyndaquil::
 	bufferspeciesname STR_VAR_1, SPECIES_CYNDAQUIL
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CYNDAQUIL
-	givemon SPECIES_CYNDAQUIL, 5
+	call_if_unset FLAG_SHINY_STARTER_2, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterNotShiny
+	call_if_set FLAG_SHINY_STARTER_2, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterShiny
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, LittlerootTown_ProfessorBirchsLab_EventScript_SendCyndaquilToParty
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, LittlerootTown_ProfessorBirchsLab_EventScript_SendCyndaquilToPC
 	hidemonpic
@@ -375,7 +376,8 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedCyndaquil::
 LittlerootTown_ProfessorBirchsLab_EventScript_GiveTotodile::
 	bufferspeciesname STR_VAR_1, SPECIES_TOTODILE
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TOTODILE
-	givemon SPECIES_TOTODILE, 5
+	call_if_unset FLAG_SHINY_STARTER_3, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterNotShiny
+	call_if_set FLAG_SHINY_STARTER_3, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterShiny
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, LittlerootTown_ProfessorBirchsLab_EventScript_SendTotodileToParty
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, LittlerootTown_ProfessorBirchsLab_EventScript_SendTotodileToPC
 	hidemonpic
@@ -416,7 +418,8 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedTotodile::
 LittlerootTown_ProfessorBirchsLab_EventScript_GiveChikorita::
 	bufferspeciesname STR_VAR_1, SPECIES_CHIKORITA
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CHIKORITA
-	givemon SPECIES_CHIKORITA, 5
+	call_if_unset FLAG_SHINY_STARTER_1, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterNotShiny
+	call_if_set FLAG_SHINY_STARTER_1, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterShiny
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, LittlerootTown_ProfessorBirchsLab_EventScript_SendChikoritaToParty
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, LittlerootTown_ProfessorBirchsLab_EventScript_SendChikoritaToPC
 	hidemonpic
@@ -454,6 +457,17 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedChikorita::
 	releaseall
 	end
 
+@ Gives the Johto starter in VAR_TEMP_TRANSFERRED_SPECIES with the shininess of its preview
+@ (FLAG_SHINY_STARTER_1-3 = Chikorita, Cyndaquil, Totodile, rolled by showmonpic).
+@ See docs/origin_jade/DECISIONS.md, D-035.
+LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterNotShiny::
+	givemon VAR_TEMP_TRANSFERRED_SPECIES, 5, ITEM_NONE, BALL_POKE, NATURE_RANDOM, NUM_ABILITY_PERSONALITY, MON_GENDER_RANDOM, 0, 0, 0, 0, 0, 0, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT, SHINY_MODE_NEVER
+	return
+
+LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterShiny::
+	givemon VAR_TEMP_TRANSFERRED_SPECIES, 5, ITEM_NONE, BALL_POKE, NATURE_RANDOM, NUM_ABILITY_PERSONALITY, MON_GENDER_RANDOM, 0, 0, 0, 0, 0, 0, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT, SHINY_MODE_ALWAYS
+	return
+
 LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter::
 	playfanfare MUS_OBTAIN_ITEM
 	message LittlerootTown_ProfessorBirchsLab_Text_ReceivedJohtoStarter
@@ -464,7 +478,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter::
 LittlerootTown_ProfessorBirchsLab_EventScript_Birch::
 	lock
 	faceplayer
-	@ Ordensmappe nachreichen, falls die Ankunftsszene vor diesem Patch lief.
+	@ Hand over the badge case if the player does not have it yet.
 	call LittlerootTown_ProfessorBirchsLab_EventScript_TryHandBinder
 	goto_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 5, LittlerootTown_ProfessorBirchsLab_EventScript_CanHaveAnyOneOfRarePokemon
 	goto_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, LittlerootTown_ProfessorBirchsLab_EventScript_GrassyPatchWaiting
@@ -1373,31 +1387,31 @@ LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall:
 	.string "… … … … … … … … … … …Piep!\p"
 	.string "Scott: Hallo {PLAYER}! Ich bin’s,\n"
 	.string "Scott.\p"
-	.string "Ich bin auf der MS Tide. Auf See zu\n"
-	.string "sein ist einfach großartig!\p"
+	.string "Ich bin auf der MS Tide. Auf See\n"
+	.string "zu sein ist einfach großartig!\p"
 	.string "Übrigens…\p"
 	.string "Ich würde dich gerne an einen\n"
 	.string "bestimmten Ort einladen.\p"
 	.string "Wenn du interessiert bist, dann\n"
 	.string "nimm entweder in Graphitport City\l"
 	.string "oder Seegrasulb City die Fähre.\p"
-	.string "Alles Weitere besprechen wir, wenn\n"
-	.string "wir uns an Bord treffen. Bis dann!\p"
+	.string "Alles Weitere besprechen wir,\n"
+	.string "wenn wir uns an Bord treffen.\l"
+	.string "Bis dann!\p"
 	.string "… … … … … … … … … … …Klick!$"
 #else
-	.string "… … … … … …\n"
-	.string "… … … … … Beep!\p"
-	.string "SCOTT: Hi, hi, {PLAYER}!\n"
-	.string "It's me, SCOTT.\p"
+	.string "… … … … … … … … … … … Beep!\p"
+	.string "SCOTT: Hi, hi, {PLAYER}! It's me,\n"
+	.string "SCOTT.\p"
 	.string "I'm aboard the S.S. TIDAL now.\n"
 	.string "It feels great to be on the sea!\p"
 	.string "By the way…\p"
-	.string "There's this place that I'd like to\n"
-	.string "invite you to for a visit.\p"
-	.string "If you're interested, board a ferry\n"
-	.string "at either SLATEPORT or LILYCOVE.\p"
-	.string "I'll fill you in on the details when\n"
-	.string "we meet. I'll be waiting!\p"
-	.string "… … … … … …\n"
-	.string "… … … … … Click!$"
+	.string "There's this place that I'd like\n"
+	.string "to invite you to for a visit.\p"
+	.string "If you're interested, board a\n"
+	.string "ferry at either SLATEPORT or\l"
+	.string "LILYCOVE.\p"
+	.string "I'll fill you in on the details\n"
+	.string "when we meet. I'll be waiting!\p"
+	.string "… … … … … … … … … … … Click!$"
 #endif

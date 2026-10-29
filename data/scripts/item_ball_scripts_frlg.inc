@@ -366,6 +366,42 @@ VictoryRoad_3F_EventScript_ItemTM50::
 	finditem ITEM_TM50
 	end
 
+VictoryRoad_1F_EventScript_ItemRareCandy2::
+	finditem ITEM_RARE_CANDY
+	end
+
+VictoryRoad_1F_EventScript_ItemMaxEther::
+	finditem ITEM_MAX_ETHER
+	end
+
+VictoryRoad_1F_EventScript_ItemHPUp::
+	finditem ITEM_HP_UP
+	end
+
+VictoryRoad_2F_EventScript_ItemFullRestore::
+	finditem ITEM_FULL_RESTORE
+	end
+
+VictoryRoad_2F_EventScript_ItemTMEarthquake::
+	finditem ITEM_TM_EARTHQUAKE
+	end
+
+VictoryRoad_2F_EventScript_ItemPotion::
+	finditem ITEM_POTION
+	end
+
+VictoryRoad_2F_EventScript_ItemTMDarkPulse::
+	finditem ITEM_TM_DARK_PULSE
+	end
+
+VictoryRoad_3F_EventScript_ItemMaxRevive2::
+	finditem ITEM_MAX_REVIVE
+	end
+
+VictoryRoad_3F_EventScript_ItemMaxRevive3::
+	finditem ITEM_MAX_REVIVE
+	end
+
 CeruleanCave_1F_EventScript_ItemMaxElixir::
 	finditem ITEM_MAX_ELIXIR
 	end
@@ -668,4 +704,22 @@ SevenIsland_SevaultCanyon_House_EventScript_ItemLuckyPunch::
 
 SilphCo_4F_EventScript_ItemTM41::
 	finditem ITEM_TM41
+	end
+
+@ Origin Jade: extra evolution items.
+
+SilphCo_9F_EventScript_ItemUpGrade::
+	finditem ITEM_UP_GRADE
+	end
+
+SilphCo_10F_EventScript_ItemDubiousDisc::
+	finditem ITEM_DUBIOUS_DISC
+	end
+
+MtMoon_1F_EventScript_ItemProtector::
+	finditem ITEM_PROTECTOR
+	end
+
+PokemonMansion_2F_EventScript_ItemMagmarizer::
+	finditem ITEM_MAGMARIZER
 	end

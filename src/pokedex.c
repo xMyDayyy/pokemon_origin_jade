@@ -2197,7 +2197,7 @@ static void CreatePokedexList(u8 dexMode, u8 order)
     case DEX_MODE_NATIONAL:
         if (IsNationalPokedexEnabled())
         {
-            temp_dexCount = NATIONAL_DEX_COUNT;
+                temp_dexCount = OBTAINABLE_DEX_COUNT - 1;
             temp_isHoennDex = FALSE;
         }
         else
@@ -2226,9 +2226,12 @@ static void CreatePokedexList(u8 dexMode, u8 order)
         else
         {
             s16 r5, r10;
+            // Origin Jade: list in obtainable order, without disabled species.
             for (i = 0, r5 = 0, r10 = 0; i < temp_dexCount; i++)
             {
-                temp_dexNum = i + 1;
+                temp_dexNum = ObtainableToNationalOrder(i + 1);
+                if (!IsSpeciesEnabled(NationalPokedexNumToSpecies(temp_dexNum)))
+                    continue;
                 if (GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN))
                     r10 = 1;
                 if (r10)
@@ -2434,6 +2437,8 @@ static void CreateMonDexNum(u16 entryNum, u8 left, u8 top, u16 unused)
     dexNum = sPokedexView->pokedexList[entryNum].dexNum;
     if (sPokedexView->dexMode == DEX_MODE_HOENN)
         dexNum = NationalToRegionalOrder(dexNum);
+    else
+        dexNum = NationalToObtainableOrder(dexNum);
     memcpy(text, sText_No0000, ARRAY_COUNT(sText_No0000));
     if (NATIONAL_DEX_COUNT > 999 && sPokedexView->dexMode != DEX_MODE_HOENN)
     {
@@ -4546,14 +4551,20 @@ u16 GetNationalPokedexCount(u8 caseID)
 
     for (i = 0; i < OBTAINABLE_DEX_COUNT - 1; i++)
     {
+        enum NationalDexOrder nationalNum = ObtainableToNationalOrder(i + 1);
+
+        // Origin Jade: disabled species do not count.
+        if (!IsSpeciesEnabled(NationalPokedexNumToSpecies(nationalNum)))
+            continue;
+
         switch (caseID)
         {
         case FLAG_GET_SEEN:
-            if (GetSetPokedexFlag(ObtainableToNationalOrder(i + 1), FLAG_GET_SEEN))
+            if (GetSetPokedexFlag(nationalNum, FLAG_GET_SEEN))
                 count++;
             break;
         case FLAG_GET_CAUGHT:
-            if (GetSetPokedexFlag(ObtainableToNationalOrder(i + 1), FLAG_GET_CAUGHT))
+            if (GetSetPokedexFlag(nationalNum, FLAG_GET_CAUGHT))
                 count++;
             break;
         }
@@ -4696,6 +4707,9 @@ bool16 HasAllMons(void)
     {
         j = ObtainableToNationalOrder(i + 1);
         k = NationalPokedexNumToSpecies(j);
+        // Origin Jade: disabled species do not count.
+        if (!IsSpeciesEnabled(k))
+            continue;
         if (!(gSpeciesInfo[k].dexNotRequired || (gSpeciesInfo[k].isMythical && !gSpeciesInfo[k].dexForceRequired)) && !GetSetPokedexFlag(j, FLAG_GET_CAUGHT))
             return FALSE;
     }

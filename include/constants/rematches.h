@@ -92,10 +92,7 @@ enum {
     REMATCH_GLACIA,
     REMATCH_DRAKE,
     REMATCH_WALLACE,
-    // HnS: Die Namen ROSE..KAREN sind oben bereits von den Johto-Telefon-
-    // trainern belegt. Die gleichnamigen Hoenn-Trainer bekommen deshalb
-    // eigene Plaetze am Tabellenende. JERRY..KIRA_AND_DAN stehen dagegen
-    // an ihren Originalindizes 28-63, die unter HnS leer waren.
+    // HnS: Hoenn trainers whose names are taken by Johto phone trainers above.
     REMATCH_ROSE_HOENN,
     REMATCH_ANDRES_HOENN,
     REMATCH_DUSTY_HOENN,

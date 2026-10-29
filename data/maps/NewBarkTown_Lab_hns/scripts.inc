@@ -73,15 +73,17 @@ NewBarkTown_Lab_EventScript_Elm::
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 9, NewBarkTown_Lab_EventScript_ElmLeague
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 10, NewBarkTown_Lab_EventScript_ElmSSTicket
 
+	goto_if_unset FLAG_RECEIVED_TOGEPI_EGG, NewBarkTown_Lab_EventScript_Elm_AfterEggCheck
 	goto_if_set FLAG_SHOWN_ELM_TOGEPI, NewBarkTown_Lab_EventScript_Elm_CallMe
 	call_if_unset FLAG_SHOWN_ELM_TOGEPI, NewBarkTown_Lab_EventScript_Elm_Check_Togepi
+NewBarkTown_Lab_EventScript_Elm_AfterEggCheck:
 	goto_if_ge VAR_GOLDENROD_CITY_STATE, 1, NewBarkTown_Lab_EventScript_Elm_Check_WhereIsEgg
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 5, NewBarkTown_Lab_EventScript_ElmState5
 
 	goto_if_ge VAR_NEWBARKTOWN_LABSTATE, 6, NewBarkTown_Lab_EventScript_ElmState5
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 2, CopNewBarkTown_Lab_EventScript_ElmState2
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 3, CopNewBarkTown_Lab_EventScript_ElmState2
-	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_Lab_EventScript_MrPokemon
+	goto_if_set FLAG_RECEIVED_JOHTO_STARTER, NewBarkTown_Lab_EventScript_MrPokemon
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_ElmChoosePokemon
 	end
 
@@ -104,16 +106,20 @@ NewBarkTown_Lab_Text_ElmAideIsWaiting:
 	.string "In VIOLET CITY!$"
 #endif
 
+@ Elm takes the GS Ball; without it he sends the player back.
 NewBarkTown_Lab_EventScript_ElmIntro::
-	msgbox NewBarkTown_Lab_Text_ElmIntro, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, NewBarkTown_Lab_EventScript_ElmAccepted
-	goto_if_eq VAR_RESULT, NO, NewBarkTown_Lab_EventScript_ElmRefused
+	checkitem ITEM_GS_BALL
+	goto_if_eq VAR_RESULT, FALSE, NewBarkTown_Lab_EventScript_ElmNoGsBall
+	msgbox NewBarkTown_Lab_Text_ElmGsBallHandover, MSGBOX_DEFAULT
+	removeitem ITEM_GS_BALL
+	setvar VAR_JOHTO_HANDOVER, 3
+	goto NewBarkTown_Lab_EventScript_ElmAccepted
 	end
 
-NewBarkTown_Lab_EventScript_ElmRefused::
-	msgbox NewBarkTown_Lab_Text_ElmRefused, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, NewBarkTown_Lab_EventScript_ElmAccepted
-	goto_if_eq VAR_RESULT, NO, NewBarkTown_Lab_EventScript_ElmRefused
+NewBarkTown_Lab_EventScript_ElmNoGsBall::
+	msgbox NewBarkTown_Lab_Text_ElmNoGsBall, MSGBOX_DEFAULT
+	closemessage
+	release
 	end
 
 NewBarkTown_Lab_EventScript_ElmAccepted::
@@ -160,12 +166,13 @@ NewBarkTown_Lab_EventScript_TriggerReturnPlayer::
 NewBarkTown_Lab_EventScript_ShouldntTouch::
 	msgbox NewBarkTown_Lab_Text_ShouldntTouch, MSGBOX_DEFAULT
 	closemessage
+	release
 	end
 
 
 NewBarkTown_Lab_EventScript_ChikoritaBall::
 	lock
-	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_Lab_EventScript_ShouldntTouch
+	goto_if_set FLAG_RECEIVED_JOHTO_STARTER, NewBarkTown_Lab_EventScript_ShouldntTouch
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_ChikoritaBall_Choice
 	msgbox NewBarkTown_Lab_Text_ShouldntTouch, MSGBOX_DEFAULT
 	release
@@ -174,7 +181,7 @@ NewBarkTown_Lab_EventScript_ChikoritaBall::
 
 NewBarkTown_Lab_EventScript_ChikoritaBall_Choice::
 	@callnative DisableStaticRandomizer
-	setvar VAR_STARTER_MON, 0
+	setvar VAR_JOHTO_STARTER_MON, 0
 	setvar PLAYER_STARTER_SPECIES, SPECIES_CHIKORITA
 	showmonpic PLAYER_STARTER_SPECIES, 10, 3
 	playmoncry PLAYER_STARTER_SPECIES, CRY_MODE_NORMAL
@@ -187,7 +194,7 @@ NewBarkTown_Lab_EventScript_ChikoritaBall_Choice::
 
 NewBarkTown_Lab_EventScript_CyndaquilBall::
 	lock
-	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_Lab_EventScript_ShouldntTouch
+	goto_if_set FLAG_RECEIVED_JOHTO_STARTER, NewBarkTown_Lab_EventScript_ShouldntTouch
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_CyndaquilBall_Choice
 	msgbox NewBarkTown_Lab_Text_ShouldntTouch, MSGBOX_DEFAULT
 	closemessage
@@ -196,7 +203,7 @@ NewBarkTown_Lab_EventScript_CyndaquilBall::
 
 NewBarkTown_Lab_EventScript_CyndaquilBall_Choice::
 	@callnative DisableStaticRandomizer
-	setvar VAR_STARTER_MON, 1
+	setvar VAR_JOHTO_STARTER_MON, 1
 	setvar PLAYER_STARTER_SPECIES, SPECIES_CYNDAQUIL
 	showmonpic PLAYER_STARTER_SPECIES, 10, 3
 	playmoncry PLAYER_STARTER_SPECIES, CRY_MODE_NORMAL
@@ -209,7 +216,7 @@ NewBarkTown_Lab_EventScript_CyndaquilBall_Choice::
 
 NewBarkTown_Lab_EventScript_TotodileBall::
 	lock
-	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_Lab_EventScript_ShouldntTouch
+	goto_if_set FLAG_RECEIVED_JOHTO_STARTER, NewBarkTown_Lab_EventScript_ShouldntTouch
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_TotodileBall_Choice
 	msgbox NewBarkTown_Lab_Text_ShouldntTouch, MSGBOX_DEFAULT
 	release
@@ -218,7 +225,7 @@ NewBarkTown_Lab_EventScript_TotodileBall::
 
 NewBarkTown_Lab_EventScript_TotodileBall_Choice::
 	@callnative DisableStaticRandomizer
-	setvar VAR_STARTER_MON, 2
+	setvar VAR_JOHTO_STARTER_MON, 2
 	setvar PLAYER_STARTER_SPECIES, SPECIES_TOTODILE
 	showmonpic PLAYER_STARTER_SPECIES, 10, 3
 	playmoncry PLAYER_STARTER_SPECIES, CRY_MODE_NORMAL
@@ -240,16 +247,34 @@ NewBarkTown_Lab_EventScript_DeclinedStarter::
 NewBarkTown_Lab_EventScript_ChoseStarter::
 	@callnative EnableStaticRandomizer
 	hidemonpic
+	@ Origin Jade: room check, keep it before the choice is locked in.
+	getpartysize
+	goto_if_lt VAR_RESULT, PARTY_SIZE, NewBarkTown_Lab_EventScript_RoomForStarter
+	specialvar VAR_RESULT, ScriptCheckFreePokemonStorageSpace
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NoMoreRoomForPokemon
+NewBarkTown_Lab_EventScript_RoomForStarter:
+	@ Lock the balls first, then give the starter.
+	setflag FLAG_RECEIVED_JOHTO_STARTER
+	call_if_eq VAR_JOHTO_STARTER_MON, 0, NewBarkTown_Lab_EventScript_HideChikorita
+	call_if_eq VAR_JOHTO_STARTER_MON, 1, NewBarkTown_Lab_EventScript_HideCyndaquil
+	call_if_eq VAR_JOHTO_STARTER_MON, 2, NewBarkTown_Lab_EventScript_HideTotodile
 	removeobject VAR_LAST_TALKED
 	msgbox NewBarkTown_Lab_Text_ChoseStarter, MSGBOX_DEFAULT
-	call_if_eq VAR_STARTER_MON, 0, NewBarkTown_Lab_EventScript_GiveStarter_Chikorita
-	call_if_eq VAR_STARTER_MON, 1, NewBarkTown_Lab_EventScript_GiveStarter_Cyndaquil
-	call_if_eq VAR_STARTER_MON, 2, NewBarkTown_Lab_EventScript_GiveStarter_Totodile
-	setflag FLAG_SYS_POKEMON_GET
+	call_if_eq VAR_JOHTO_STARTER_MON, 0, NewBarkTown_Lab_EventScript_GiveStarter_Chikorita
+	call_if_eq VAR_JOHTO_STARTER_MON, 1, NewBarkTown_Lab_EventScript_GiveStarter_Cyndaquil
+	call_if_eq VAR_JOHTO_STARTER_MON, 2, NewBarkTown_Lab_EventScript_GiveStarter_Totodile
+	@ givemon result: 0 = party, 1 = PC box, 2 = nowhere.
+	copyvar VAR_TEMP_3, VAR_RESULT
 	playfanfare MUS_OBTAIN_ITEM
 	bufferspeciesname STR_VAR_1, PLAYER_STARTER_SPECIES
 	message NewBarkTown_Lab_Text_ReceivedStarter
 	waitfanfare
+	waitmessage
+	goto_if_ne VAR_TEMP_3, 0, NewBarkTown_Lab_EventScript_StarterToBox
+	@ VAR_0x8004 = the starter's party slot (the last one) for the nickname dialog.
+	specialvar VAR_RESULT, CalculatePlayerPartyCount
+	subvar VAR_RESULT, 1
+	copyvar VAR_0x8004, VAR_RESULT
 	specialvar VAR_RESULT, IsNuzlockeNicknamingActive
 	goto_if_eq VAR_RESULT, TRUE, NewBarkTown_Lab_EventScript_ChoseStarter_NicknameStarter_Nuzlocke
 	msgbox NewBarkTown_Lab_Text_Nickname, MSGBOX_YESNO
@@ -258,6 +283,14 @@ NewBarkTown_Lab_EventScript_ChoseStarter::
 	release
 	end
 
+NewBarkTown_Lab_EventScript_StarterToBox::
+	msgbox NewBarkTown_Lab_Text_StarterToBox, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+@ The starter keeps the shininess of its preview (showmonpic rolls FLAG_SHINY_STARTER_1-3
+@ per ball from VAR_JOHTO_STARTER_MON). See docs/origin_jade/DECISIONS.md, D-035.
 NewBarkTown_Lab_EventScript_GiveStarter_Chikorita::
 	call_if_unset FLAG_SHINY_STARTER_1, NewBarkTown_Lab_EventScript_GiveStarter_NotShiny
 	call_if_set FLAG_SHINY_STARTER_1, NewBarkTown_Lab_EventScript_GiveStarter_Shiny
@@ -282,24 +315,28 @@ NewBarkTown_Lab_EventScript_GiveStarter_Shiny::
 	return
 
 NewBarkTown_Lab_EventScript_NicknameStarter::
-	setvar VAR_0x8004, 0
 	call Common_EventScript_NameReceivedPartyMon
+	release
 	end
 
 NewBarkTown_Lab_EventScript_ChoseStarter_NicknameStarter_Nuzlocke::
 	message NewBarkTown_Lab_Text_Nickname
 	waitmessage
-	setvar VAR_0x8004, 0
 	call Common_EventScript_NameReceivedPartyMon
 	release
 	end
 
 NewBarkTown_Lab_EventScript_MrPokemon::
-	setvar VAR_NEWBARKTOWN_LABSTATE, 2
+	setvar VAR_NEWBARKTOWN_LABSTATE, 3
 	setvar VAR_NEWBARK_TOWN_STATE, 3
-	msgbox NewBarkTown_Lab_Text_ElmDirections1, MSGBOX_DEFAULT
+	msgbox NewBarkTown_Lab_Text_ElmDirections1_Register, MSGBOX_DEFAULT
+	playfanfare MUS_REGISTER_MATCH_CALL
+	msgbox NewBarkTown_Lab_Text_RegisteredElm, MSGBOX_DEFAULT
+	waitfanfare
 	setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
 	msgbox NewBarkTown_Lab_Text_ElmDirections2, MSGBOX_DEFAULT
+	msgbox NewBarkTown_Lab_Text_ElmPermits, MSGBOX_DEFAULT
+	setvar VAR_JOHTO_ARRIVAL_STATE, 1
 	closemessage
 	goto_if_eq VAR_FACING, DIR_EAST, NewBarkTown_Lab_EventScript_MrPokemonMovementSafe
 	applymovement LOCALID_ELM, NewBarkTown_Lab_Movement_CheckEmailSlow
@@ -344,23 +381,6 @@ NewBarkTown_Lab_EventScript_HealingMachine2::
 
 
 
-NewBarkTown_Lab_EventScript_TriggerAideGivePotion::
-	lock
-	applymovement LOCALID_AIDE1, NewBarkTown_Lab_Movement_Aide1WalkToPlayer
-	waitmovement 0
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
-	msgbox NewBarkTown_Lab_Text_AideGivePotion, MSGBOX_DEFAULT
-	closemessage
-	giveitem ITEM_POTION
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_FIRST_POTION
-	setvar VAR_NEWBARKTOWN_LABSTATE, 3
-	applymovement LOCALID_AIDE1, NewBarkTown_Lab_Movement_Aide1LeavePlayer
-	waitmovement 0
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
-	release
-	end
-
 NewBarkTown_Lab_EventScript_HideCyndaquil::
 	setflag FLAG_HIDE_CYNDAQUILBALL
 	return
@@ -374,9 +394,9 @@ NewBarkTown_Lab_EventScript_HideChikorita::
 NewBarkTown_Lab_EventScript_PoliceEpisode::
 	lock
 	setmetatile 7, 1, METATILE_R26_21_Broken_Window, TRUE
-	call_if_eq VAR_STARTER_MON, 0 NewBarkTown_Lab_EventScript_HideCyndaquil
-	call_if_eq VAR_STARTER_MON, 1 NewBarkTown_Lab_EventScript_HideTotodile
-	call_if_eq VAR_STARTER_MON, 2 NewBarkTown_Lab_EventScript_HideChikorita
+	call_if_eq VAR_JOHTO_STARTER_MON, 0 NewBarkTown_Lab_EventScript_HideCyndaquil
+	call_if_eq VAR_JOHTO_STARTER_MON, 1 NewBarkTown_Lab_EventScript_HideTotodile
+	call_if_eq VAR_JOHTO_STARTER_MON, 2 NewBarkTown_Lab_EventScript_HideChikorita
 	applymovement OBJ_EVENT_ID_PLAYER, NeBarkTownLab_Movement_PlayerWalkToCop
 	waitmovement 0
 	setflag FLAG_HIDE_LAB_POLICEMAN
@@ -422,13 +442,8 @@ NewBarkTown_Lab_EventScript_PoliceYes::
 	msgbox NewBarkTown_Lab_Text_ElmAfterTheft4, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_NEWBARKTOWN_LABSTATE, 5
-	setvar VAR_NEWBARK_TOWN_STATE, 4
-	setflag FLAG_HIDE_MOMS_FRIEND
-	clearflag FLAG_HIDE_MOMS_FRIEND2
-	setflag FLAG_ADVENTURE_STARTED
-	setflag FLAG_START_NUZLOCKE
-	setflag FLAG_EXP_SHARE_ENABLED
 	removeitem ITEM_MYSTERY_EGG
+	release
 	end
 
 NewBarkTown_Lab_EventScript_ElmState5::
@@ -478,9 +493,10 @@ NewBarkTown_Lab_EventScript_ElmLeague::
 	release
 	end
 
+@ Origin Jade: after the first Johto title Elm tells about the M.S. Aqua; the player already has
+@ Bill's Bootsticket from Kanto. See docs/origin_jade/DECISIONS.md, D-029.
 NewBarkTown_Lab_EventScript_ElmSSTicket::
 	msgbox NewBarkTown_Lab_Text_ElmGiveTicket1, MSGBOX_DEFAULT
-	giveitem ITEM_SS_TICKET
 	msgbox NewBarkTown_Lab_Text_ElmGiveTicket2, MSGBOX_DEFAULT
 	closemessage
 	clearflag FLAG_HIDE_SSAQUA_1F_GRANDPA
@@ -490,20 +506,9 @@ NewBarkTown_Lab_EventScript_ElmSSTicket::
 	end
 
 NewBarkTown_Lab_EventScript_TriggerAideGiveBalls::
-	lock
-	applymovement LOCALID_AIDE1, NewBarkTown_Lab_Movement_Aide1WalkToPlayer
-	waitmovement 0
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
-	msgbox NewBarkTown_Lab_Text_AideGiveBalls, MSGBOX_DEFAULT
-	closemessage
-	giveitem ITEM_POKE_BALL, 5
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	@ Origin Jade: the aide's Poke Ball scene is skipped.
 	setflag FLAG_RECEIVED_FIRST_BALLS
 	setvar VAR_NEWBARKTOWN_LABSTATE, 6
-	applymovement LOCALID_AIDE1, NewBarkTown_Lab_Movement_Aide1LeavePlayer
-	waitmovement 0
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
-	release
 	end
 
 NewBarkTown_Lab_EventScript_Elm_Check_WhereIsEgg::
@@ -691,11 +696,56 @@ NewBarkTown_Lab_Text_ElmIntro:
 
 NewBarkTown_Lab_Text_ElmAccepted:
 #if GERMAN
-	.string "Danke, {PLAYER}!\n"
-	.string "Du bist eine große Hilfe!$"
+	.string "Lind: Unglaublich…\p"
+	.string "Ich habe von diesem Ball gelesen,\n"
+	.string "aber nie einen in der Hand gehabt.\p"
+	.string "Vielen Dank, {PLAYER}. Und Eich\n"
+	.string "richte bitte aus, dass er der Erste\l"
+	.string "ist, der davon hört.$"
 #else
-	.string "Thanks, {PLAYER}!\n"
-	.string "You're a great help!$"
+	.string "ELM: Incredible…\p"
+	.string "I have read about this BALL, but I\n"
+	.string "have never held one.\p"
+	.string "Thank you, {PLAYER}. And please tell\n"
+	.string "OAK he will be the first to hear\l"
+	.string "what I find.$"
+#endif
+
+NewBarkTown_Lab_Text_ElmNoGsBall:
+#if GERMAN
+	.string "Lind: Du musst {PLAYER} sein.\p"
+	.string "Prof. Eich hat mir geschrieben, dass\n"
+	.string "du mir etwas bringst.\p"
+	.string "Hast du es dabei? Ich sehe nichts.\p"
+	.string "Frag ihn noch einmal, bevor du\n"
+	.string "weiterreist.$"
+#else
+	.string "ELM: You must be {PLAYER}.\p"
+	.string "PROF. OAK wrote to say you would\n"
+	.string "bring me something.\p"
+	.string "Do you have it? I see nothing.\p"
+	.string "Ask him again before you travel on.$"
+#endif
+
+NewBarkTown_Lab_Text_ElmGsBallHandover:
+#if GERMAN
+	.string "Lind: Du musst {PLAYER} sein.\p"
+	.string "Prof. Eich hat mir geschrieben, dass\n"
+	.string "du kommst. Der Champion von Kanto,\l"
+	.string "als Bote.\p"
+	.string "Er hätte niemanden schicken müssen.\n"
+	.string "Aber offenbar wollte er, dass ihn\l"
+	.string "jemand bringt, dem er vertraut.\p"
+	.string "Zeig ihn mir.$"
+#else
+	.string "ELM: You must be {PLAYER}.\p"
+	.string "PROF. OAK wrote to say you were\n"
+	.string "coming. The CHAMPION of KANTO, as\l"
+	.string "a courier.\p"
+	.string "He need not have sent anyone.\p"
+	.string "But it seems he wanted it carried\n"
+	.string "by someone he trusts.\p"
+	.string "Let me see it.$"
 #endif
 
 NewBarkTown_Lab_Text_ElmRefused:
@@ -753,9 +803,7 @@ NewBarkTown_Lab_Text_ElmMissionFromMrPokemon:
 	.string "Hm, was mache ich jetzt nur…\p"
 	.string "Ich hab’s!\p"
 	.string "Du könntest der Sache doch für mich\n"
-	.string "nachgehen, oder? Was sagst du?\p"
-	.string "Los, du darfst dir dafür auch eins\n"
-	.string "dieser Pokémon hier aussuchen!$"
+	.string "nachgehen, oder? Was sagst du?$"
 #else
 	.string "Hey, listen.\p"
 	.string "I have an acquaintance called\n"
@@ -775,17 +823,23 @@ NewBarkTown_Lab_Text_ElmMissionFromMrPokemon:
 
 NewBarkTown_Lab_Text_ElmChooseAPokemon:
 #if GERMAN
-	.string "Nimm eines der Pokémon aus diesen\n"
-	.string "Pokébällen.\p"
-	.string "Du wirst der erste Partner dieses\n"
-	.string "Pokémon sein, {PLAYER}!\p"
-	.string "Wähle jetzt!$"
+	.string "Und damit du nicht mit leeren Händen\n"
+	.string "gehst: nimm eines der Pokémon aus\l"
+	.string "diesen Pokébällen.\p"
+	.string "Ich weiß, du hast längst ein Team.\p"
+	.string "Aber diese drei warten seit Wochen\n"
+	.string "auf jemanden, und ich wüsste keinen\l"
+	.string "besseren.\p"
+	.string "Wähle!$"
 #else
-	.string "I want you to raise one of\n"
-	.string "the POKéMON contained in these BALLS.\p"
-	.string "You'll be that POKéMON's\n"
-	.string "first partner, {PLAYER}!\p"
-	.string "Go on. Pick one!$"
+	.string "And so you do not leave empty-\n"
+	.string "handed: take one of the POKéMON\l"
+	.string "from these BALLS.\p"
+	.string "I know you have a team already.\p"
+	.string "But these three have been waiting\n"
+	.string "for weeks, and I can think of no one\l"
+	.string "better.\p"
+	.string "Choose!$"
 #endif
 
 NewBarkTown_Lab_Text_ElmWhereGoing:
@@ -840,6 +894,17 @@ NewBarkTown_Lab_Text_ChoseStarter:
 	.string "POKéMON too!$"
 #endif
 
+NewBarkTown_Lab_Text_StarterToBox:
+#if GERMAN
+	.string "Lind: Dein Team ist voll - ich habe es\n"
+	.string "dir auf die PC-Box geschickt.\p"
+	.string "Schau es dir an, wenn du Platz hast.$"
+#else
+	.string "ELM: Your party is full, so I sent it\n"
+	.string "to your PC BOX.\p"
+	.string "Take a look when you have room.$"
+#endif
+
 NewBarkTown_Lab_Text_ReceivedStarter:
 #if GERMAN
 	.string "{PLAYER} erhielt {STR_VAR_1}!$"
@@ -873,6 +938,61 @@ NewBarkTown_Lab_Text_ElmDirections1:
 	.string "But just in case, you have my\n"
 	.string "phone number. Call me if\l"
 	.string "anything comes up!$"
+#endif
+
+NewBarkTown_Lab_Text_ElmPermits:
+#if GERMAN
+	.string "Lind: Eines noch, bevor du losgehst.\p"
+	.string "In Johto entscheidet die Liga, wo VM-\n"
+	.string "Attacken eingesetzt werden dürfen.\l"
+	.string "Dafür braucht es eine Befugnis.\p"
+	.string "Jeder Arenaleiter gibt dir eine davon\n"
+	.string "zusammen mit seinem Orden.\p"
+	.string "Dein Können nimmt dir niemand. Du\n"
+	.string "darfst es hier nur noch nicht überall\l"
+	.string "einsetzen.\p"
+	.string "Ruf mich an, wenn du nicht mehr weißt,\n"
+	.string "was dir noch fehlt.$"
+#else
+	.string "ELM: One more thing before you go.\p"
+	.string "In JOHTO, the LEAGUE decides where\n"
+	.string "HM moves may be used. That takes a\l"
+	.string "permit.\p"
+	.string "Every GYM LEADER hands you one along\n"
+	.string "with their BADGE.\p"
+	.string "Nobody can take your skill away. You\n"
+	.string "just can't use it everywhere yet.\p"
+	.string "Call me if you lose track of what\n"
+	.string "you're still missing.$"
+#endif
+
+NewBarkTown_Lab_Text_ElmDirections1_Register:
+#if GERMAN
+	.string "Mr. Pokémon wohnt ein Stück hinter\n"
+	.string "Rosalia City, der nächsten Stadt.\p"
+	.string "Es geht fast geradeaus dorthin, du\n"
+	.string "kannst ihn gar nicht verfehlen.\p"
+	.string "Aber für alle Fälle: hier ist meine\n"
+	.string "Nummer. Ruf mich an, wenn etwas\l"
+	.string "dazwischenkommt!$"
+#else
+	.string "MR. POKéMON lives a little bit\n"
+	.string "beyond CHERRYGROVE, the next\l"
+	.string "city over.\p"
+	.string "It's almost a direct route\n"
+	.string "there, so you can't miss it.\p"
+	.string "But just in case, here's my\n"
+	.string "phone number. Call me if\l"
+	.string "anything comes up!$"
+#endif
+
+NewBarkTown_Lab_Text_RegisteredElm:
+#if GERMAN
+	.string "Prof. Lind wurde im Pokégear\n"
+	.string "gespeichert.$"
+#else
+	.string "Registered PROF.ELM\n"
+	.string "in the POKéGEAR.$"
 #endif
 
 
@@ -966,44 +1086,28 @@ NewBarkTown_Lab_Text_ElmAfterTheft4:
 #if GERMAN
 	.string "Aber… Ist es ein Pokémon-Ei?\p"
 	.string "Wenn ja, ist es eine große Entdeckung!\p"
-	.string "Lind: Was?!?\p"
-	.string "Prof. Eich gab dir einen Pokédex?\p"
-	.string "{PLAYER}, stimmt das?\n"
-	.string "Unglaublich!\p"
-	.string "Er erkennt das Potential von\n"
-	.string "Menschen als Trainer.\p"
-	.string "Wow, {PLAYER}. Du könntest Champion\n"
-	.string "werden.\p"
-	.string "Du kommst gut mit Pokémon klar.\p"
-	.string "Versuche die Arenaleiter\n"
-	.string "herauszufordern.\p"
-	.string "Die nächste Arena ist in Viola City.\p"
-	.string "…{PLAYER}. Der Weg zum Sieg wird lang\n"
-	.string "sein.\p"
-	.string "Bevor du gehst, sprich besser mit\n"
-	.string "deiner Mutter.$"
+	.string "Lind: Und du hast mir beides gebracht,\n"
+	.string "den GS-Ball und das Ei.\p"
+	.string "Prof. Eich hat nicht zu viel\n"
+	.string "versprochen.\p"
+	.string "Wenn du hier schon unterwegs bist:\n"
+	.string "die Arenen in Johto sind eine andere\l"
+	.string "Nummer als die in Kanto.\p"
+	.string "Die nächste ist in Viola City.\p"
+	.string "Ich melde mich, sobald ich etwas\n"
+	.string "über den Ball herausfinde.$"
 #else
-	.string "But… Is it a POKéMON EGG?\p"
-	.string "If it is, it is a great\n"
-	.string "discovery!\p"
-	.string "ELM: What?!?\p"
-	.string "PROF.OAK gave you a POKéDEX?\p"
-	.string "{PLAYER}, is that true?\n"
-	.string "Th-that's incredible!\p"
-	.string "He is superb at seeing the\n"
-	.string "potential of people as trainers.\p"
-	.string "Wow, {PLAYER}. You may have what\n"
-	.string "it takes to become the CHAMPION.\p"
-	.string "You seem to be getting on\n"
-	.string "great with POKéMON too.\p"
-	.string "You should take the POKéMON\n"
-	.string "GYM challenge.\p"
-	.string "The closest GYM would be the\n"
-	.string "one in VIOLET CITY.\p"
-	.string "…{PLAYER}. The road to the\n"
-	.string "championship will be a long one.\p"
-	.string "Before you leave, make sure\n"
-	.string "that you talk to your mom.$"
+	.string "But… is it a POKéMON EGG?\p"
+	.string "If so, it is a great discovery!\p"
+	.string "ELM: And you brought me both, the\n"
+	.string "GS BALL and the EGG.\p"
+	.string "PROF. OAK did not overstate it.\p"
+	.string "While you are here: the GYMS in\n"
+	.string "JOHTO are a different matter from\l"
+	.string "the ones in KANTO.\p"
+	.string "The next one is in VIOLET CITY.\p"
+	.string "I will be in touch as soon as I learn\n"
+	.string "anything about the BALL.$"
 #endif
 
 NewBarkTown_Lab_Text_ElmStudyingEgg:
@@ -1196,8 +1300,8 @@ NewBarkTown_Lab_Text_KimonoGirls:
 
 NewBarkTown_Lab_Text_KimonoWaiting:
 #if GERMAN
-	.string "Prof. Lind: Die Kimono-Girls warten im\n"
-	.string "Teak-City Tanztheater.$"
+	.string "Prof. Lind: Die Kimono-Girls warten\n"
+	.string "im Tanztheater von Teak City.$"
 #else
 	.string "PROF.ELM: The KIMONO\n"
 	.string "GIRLS are waiting for you at\l"
@@ -1245,44 +1349,52 @@ NewBarkTown_Lab_Text_League:
 #endif
 
 
+@ Elm's call after the first Johto title (NewBarkTown_EventScript_ElmCallAfterLeague).
+NewBarkTown_Lab_Text_ElmCallAfterLeague::
+#if GERMAN
+	.string "Hallo, {PLAYER}?\p"
+	.string "Ich habe Neuigkeiten für dich.\n"
+	.string "Komm doch mal im Labor vorbei!$"
+#else
+	.string "PROF.ELM: Hello, {PLAYER}?\p"
+	.string "I have some news for you.\n"
+	.string "Could you swing by my LAB?\p"
+	.string "See you later!$"
+#endif
+
 NewBarkTown_Lab_Text_ElmGiveTicket1:
 #if GERMAN
 	.string "Lind: Oh, hallo {PLAYER}!\n"
 	.string "Ich habe dich schon erwartet!\p"
-	.string "Ich habe dich heute zu mir gerufen, weil\n"
-	.string "ich dir etwas geben möchte.\p"
-	.string "Hier! Das ist ein Bootsticket.\p"
-	.string "Damit kannst du auch in Kanto auf\n"
-	.string "Pokémon-Jagd gehen!$"
+	.string "Hast du schon gehört? Die M.S. Aqua\n"
+	.string "sticht endlich in See!\p"
+	.string "Sie legt in Oliviana City ab. Dein\n"
+	.string "Bootsticket aus Kanto gilt auch\l"
+	.string "für dieses Schiff!$"
 #else
 	.string "ELM: {PLAYER}! There you are!\p"
-	.string "I called because I have\n"
-	.string "something for you.\p"
-	.string "See? It's an S.S.TICKET.\p"
-	.string "Now you can catch POKéMON in\n"
-	.string "KANTO.$"
+	.string "Have you heard? The FAST SHIP\n"
+	.string "S.S.AQUA is finally setting sail!\p"
+	.string "It leaves from OLIVINE CITY, and\n"
+	.string "your S.S.TICKET from KANTO is\l"
+	.string "valid on it, too!$"
 #endif
 
 NewBarkTown_Lab_Text_ElmGiveTicket2:
 #if GERMAN
-	.string "Lind: Das Schnellboot, für das dieses\n"
-	.string "Ticket gültig ist, legt im Hafen von\l"
-	.string "Oliviana City ab.\p"
-	.string "Aber das weißt du ja wahrscheinlich\n"
-	.string "besser als ich, {PLAYER}…\p"
-	.string "Du und dein Pokémon-Team, ihr seid\n"
-	.string "schließlich schon viel zusammen gereist.\p"
-	.string "Also dann! Wenn du nach Kanto gehst,\n"
-	.string "grüße bitte Professor Eich von mir!$"
+	.string "Lind: Die M.S. Aqua fährt nach\n"
+	.string "Orania City und in die Kampfzone,\l"
+	.string "wo starke Trainer auf dich warten.\p"
+	.string "Professor Eich wartet übrigens im\n"
+	.string "Hafen von Oliviana City auf dich.\p"
+	.string "Grüße ihn bitte von mir!$"
 #else
-	.string "The ship departs from OLIVINE\n"
-	.string "CITY.\p"
-	.string "But you knew that already,\n"
-	.string "{PLAYER}.\p"
-	.string "After all, you've traveled all\n"
-	.string "over with your POKéMON.\p"
-	.string "Give my regards to PROF.OAK in\n"
-	.string "KANTO!$"
+	.string "It sails to VERMILION CITY and to\n"
+	.string "the BATTLE FRONTIER, where tough\l"
+	.string "trainers await you.\p"
+	.string "By the way, PROF.OAK is waiting for\n"
+	.string "you at the OLIVINE port.\p"
+	.string "Give him my regards!$"
 #endif
 
 NewBarkTown_Lab_Text_LabMonEgg:
@@ -1314,13 +1426,15 @@ NewBarkTown_Lab_Text_AideAlwaysBusy:
 
 NewBarkTown_Lab_Text_AideSave:
 #if GERMAN
-	.string "Vergiss nicht, regelmäßig zu speichern!\p"
-	.string "Drücke Start und dann Sichern!$"
+	.string "Der Professor arbeitet oft bis in die\n"
+	.string "Nacht.\p"
+	.string "Seit deine Lieferung da ist, geht er\n"
+	.string "gar nicht mehr heim.$"
 #else
-	.string "Don't forget to save your game\n"
-	.string "regularly!\p"
-	.string "Press the START button, then\n"
-	.string "SAVE the game!$"
+	.string "The PROFESSOR often works late\n"
+	.string "into the night.\p"
+	.string "Since your delivery arrived, he has\n"
+	.string "not gone home at all.$"
 #endif
 
 NewBarkTown_Lab_Text_AideTheftTestimony:

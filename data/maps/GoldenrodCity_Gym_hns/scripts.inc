@@ -26,7 +26,10 @@ GoldenrodCity_Gym_EventScript_Samantha::
 GoldenrodCity_Gym_EventScript_Gym_Guy::
 	lock
 	faceplayer
-	goto_if_set FLAG_BADGE03_GET, GoldenrodCity_Gym_EventScript_Gym_Guy_After
+	@ Johto badge 3 (Whitney)
+	setvar VAR_0x8004, 2
+	special CheckJohtoBadge
+	goto_if_eq VAR_RESULT, TRUE, GoldenrodCity_Gym_EventScript_Gym_Guy_After
 	msgbox GoldenrodCity_Gym_Text_GymGuide, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -43,6 +46,7 @@ GoldenrodCity_Gym_EventScript_Whitney::
 	faceplayer
 	goto_if_eq VAR_GOLDENROD_CITY_STATE, 3, GoldenrodCity_Gym_EventScript_WhitneyCrying
 	goto_if_eq VAR_GOLDENROD_CITY_STATE, 4, GoldenrodCity_Gym_EventScript_WhitneyBadge
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, GoldenrodCity_Gym_EventScript_WhitneyRematch
 	goto_if_set FLAG_DEFEATED_GOLDENROD_CITY_GYM, GoldenrodCity_Gym_EventScript_WhitneyDefeated
 	msgbox GoldenrodCity_Gym_Text_WhitneyBefore, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_WHITNEY_1_HNS, GoldenrodCity_Gym_Text_WhitneyShouldntBeSoSerious
@@ -70,6 +74,11 @@ GoldenrodCity_Gym_EventScript_WhitneyBadge::
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox GoldenrodCity_Gym_Text_WhitneyPlainBadge, MSGBOX_DEFAULT
 	setflag FLAG_BADGE03_GET
+	@ Johto badge 3 (Whitney)
+	setvar VAR_0x8004, 2
+	special SetJohtoBadge
+	setvar VAR_0x8004, PERM_STRENGTH
+	special SetJohtoPermit
 	setflag FLAG_DEFEATED_GOLDENROD_CITY_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 3
@@ -86,6 +95,15 @@ GoldenrodCity_Gym_EventScript_WhitneyDefeated::
 	faceplayer
 	msgbox GoldenrodCity_Gym_Text_WhitneyGoodCry, MSGBOX_DEFAULT
 	closemessage
+	release
+	end
+
+@ Rematch after the Johto title, see docs/origin_jade/DECISIONS.md, D-032.
+GoldenrodCity_Gym_EventScript_WhitneyRematch::
+	msgbox GoldenrodCity_Gym_Text_WhitneyRematch, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
+	closemessage
+	trainerbattle_no_intro TRAINER_WHITNEY_2_HNS, GoldenrodCity_Gym_Text_WhitneyRematchDefeat
 	release
 	end
 
@@ -231,10 +249,10 @@ GoldenrodCity_Gym_Text_WhitneyGoodCry:
 GoldenrodCity_Gym_Text_WhitneyRematch:
 #if GERMAN
 	.string "Hi! Du bist es!\p"
-	.string "Wow, Johto Champion jetzt?\p"
+	.string "Wow, jetzt sogar Johto-Champion?\p"
 	.string "Du bist echt stark!\p"
 	.string "Ich will sehen, wie stark du bist.\p"
-	.string "Willst du ein Rematch mit mir?$"
+	.string "Möchtest du einen Rückkampf?$"
 #else
     .string "Hi! It's you!\p"
     .string "Wow, JOHTO CHAMPION now?\p"
@@ -247,7 +265,7 @@ GoldenrodCity_Gym_Text_WhitneyRematchDefeat:
 #if GERMAN
 	.string "Waaaaah!\p"
 	.string "Waaaaah!\p"
-	.string "…Schnief, hic… …Du Gemeiner!$"
+	.string "…Schnief, hic… …Du bist so gemein!$"
 #else
     .string "Waaaaah!\p"
     .string "Waaaaah!\p"

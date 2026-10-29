@@ -474,7 +474,7 @@
 #define TRAINER_RIVAL_TOTODILE_5_HNS                  461
 #define TRAINER_RIVAL_TOTODILE_6_HNS                  462
 #define TRAINER_RIVAL_TOTODILE_7_HNS                  463
-#define TRAINER_RED_2_HNS                             464
+#define TRAINER_RED_HNS                             464
 #define TRAINER_EUSINE_HNS                            465
 #define TRAINER_GIOVANNI_HNS                          466
 #define TRAINER_PROTON_1_HNS                          467
@@ -630,12 +630,63 @@
 #define TRAINER_WESSEL_HNS                            615
 #define TRAINER_SKYLAR_HNS                            616
 
+
 // 618 is TRAINER_TANYA_HNS, relocated out of the TRAINER_FRONTIER_BRAIN slot (330).
 
-// Top-Vier-Rueckkaempfe (Origin Jade). Nur EINE Steigerungsstufe je Mitglied:
-// MAX_TRAINERS_COUNT_HNS laesst vor dem Trainerflag-Ueberlauf nur 7 freie
-// Slots - vier Stufen je Mitglied (20 IDs) braeuchten eine save-brechende
-// Flag-Verschiebung. Die Levelskalierung traegt die Schwierigkeit ohnehin.
+
+
+// Phone rematch tiers for Irwin, Derek and Beverly, placed after the FRLG block.
+// GetFlagPointer redirects their trainer flags into SaveBlock3 (flagsHnsRematchTiers).
+#define HNS_REMATCH_TIERS_START               (FRLG_TRAINERS_END+1)
+#define TRAINER_IRWIN_2_HNS                   (HNS_REMATCH_TIERS_START + 0)
+#define TRAINER_IRWIN_3_HNS                   (HNS_REMATCH_TIERS_START + 1)
+#define TRAINER_IRWIN_4_HNS                   (HNS_REMATCH_TIERS_START + 2)
+#define TRAINER_IRWIN_5_HNS                   (HNS_REMATCH_TIERS_START + 3)
+#define TRAINER_DEREK_2_HNS                   (HNS_REMATCH_TIERS_START + 4)
+#define TRAINER_DEREK_3_HNS                   (HNS_REMATCH_TIERS_START + 5)
+#define TRAINER_DEREK_4_HNS                   (HNS_REMATCH_TIERS_START + 6)
+#define TRAINER_DEREK_5_HNS                   (HNS_REMATCH_TIERS_START + 7)
+#define TRAINER_BEVERLY_2_HNS                 (HNS_REMATCH_TIERS_START + 8)
+#define TRAINER_BEVERLY_3_HNS                 (HNS_REMATCH_TIERS_START + 9)
+#define TRAINER_BEVERLY_4_HNS                 (HNS_REMATCH_TIERS_START + 10)
+#define TRAINER_BEVERLY_5_HNS                 (HNS_REMATCH_TIERS_START + 11)
+// Post-OBC rematch teams of the gym leaders, Elite Four, Lance, Blue and Red.
+#define TRAINER_FALKNER_POSTOBC_HNS           (HNS_REMATCH_TIERS_START + 12)
+#define TRAINER_BUGSY_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 13)
+#define TRAINER_WHITNEY_POSTOBC_HNS           (HNS_REMATCH_TIERS_START + 14)
+#define TRAINER_MORTY_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 15)
+#define TRAINER_CHUCK_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 16)
+#define TRAINER_JASMINE_POSTOBC_HNS           (HNS_REMATCH_TIERS_START + 17)
+#define TRAINER_PRYCE_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 18)
+#define TRAINER_CLAIR_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 19)
+#define TRAINER_BROCK_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 20)
+#define TRAINER_LTSURGE_POSTOBC_HNS           (HNS_REMATCH_TIERS_START + 21)
+#define TRAINER_JANINE_POSTOBC_HNS            (HNS_REMATCH_TIERS_START + 22)
+#define TRAINER_SABRINA_POSTOBC_HNS           (HNS_REMATCH_TIERS_START + 23)
+#define TRAINER_BLAINE_POSTOBC_HNS            (HNS_REMATCH_TIERS_START + 24)
+#define TRAINER_BLUE_POSTOBC_HNS              (HNS_REMATCH_TIERS_START + 25)
+#define TRAINER_WILL_POSTOBC_HNS              (HNS_REMATCH_TIERS_START + 26)
+#define TRAINER_KOGA_POSTOBC_HNS              (HNS_REMATCH_TIERS_START + 27)
+#define TRAINER_BRUNO_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 28)
+#define TRAINER_KAREN_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 29)
+#define TRAINER_LANCE_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 30)
+#define TRAINER_RED_POSTOBC_HNS               (HNS_REMATCH_TIERS_START + 31)
+#define TRAINER_MISTY_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 32)
+#define TRAINER_ERIKA_POSTOBC_HNS             (HNS_REMATCH_TIERS_START + 33)
+#define HNS_REMATCH_TIERS_END                 (HNS_REMATCH_TIERS_START + 33)
+#define HNS_REMATCH_TIERS_COUNT               (HNS_REMATCH_TIERS_END - HNS_REMATCH_TIERS_START + 1)
+
+// Trainer flag window of these IDs, behind the FRLG trainer window (see GetFlagPointer).
+// Keep the mod-8 offset: saves store these bits.
+#define HNS_REMATCH_TIER_FLAGS_BASE           0x3680
+#define HNS_REMATCH_TIER_FLAGS_START          (HNS_REMATCH_TIER_FLAGS_BASE + ((0x500 + HNS_REMATCH_TIERS_START) & 7))
+#define HNS_REMATCH_TIER_FLAGS_END            (HNS_REMATCH_TIER_FLAGS_START + HNS_REMATCH_TIERS_COUNT - 1)
+#define HNS_REMATCH_TIER_FLAG_BYTES           ((HNS_REMATCH_TIERS_COUNT + 7) / 8)
+
+// 618 is TRAINER_TANYA_HNS, relocated out of the TRAINER_FRONTIER_BRAIN slot (330).
+
+// Origin Jade: Elite Four rematches, one tier per member.
+// More IDs here would overflow the trainer flags and break saves.
 #define TRAINER_SIDNEY_2                         1473
 #define TRAINER_PHOEBE_2                         1474
 #define TRAINER_GLACIA_2                         1475

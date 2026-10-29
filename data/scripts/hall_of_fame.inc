@@ -1,7 +1,12 @@
 EverGrandeCity_HallOfFame_EventScript_SetGameClearFlags::
 	special SetChampionSaveWarp
 	setflag FLAG_IS_CHAMPION
+#if IS_HNS
+	@ Knocked-out legendaries return after every title, see docs/origin_jade/DECISIONS.md, D-026.
+	call Common_EventScript_ReviveDefeatedLegendaries
+#else
 	call EverGrandeCity_HallOfFame_EventScript_ResetDefeatedEventLegendaries
+#endif
 	call_if_eq VAR_FOSSIL_MANIAC_STATE, 0, EverGrandeCity_HallOfFame_EventScript_SetDesertUnderpassCommentReady
 	clearflag FLAG_HIDE_LILYCOVE_MOTEL_GAME_DESIGNERS
 	call EverGrandeCity_HallOfFame_EventScript_ResetEliteFour

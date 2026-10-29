@@ -1,8 +1,6 @@
 Std_RegisteredInMatchCall::
 #if IS_HNS
-	@ SetMatchCallRegisteredFlag meldet ueber VAR_RESULT, ob die Eintragung
-	@ ueberhaupt moeglich war. Sonst behauptete die Fanfare eine Eintragung,
-	@ die nie stattfand.
+	@ VAR_RESULT is FALSE if SetMatchCallRegisteredFlag could not register the trainer.
 	goto_if_eq VAR_RESULT, FALSE, Std_RegisteredInMatchCall_Skip
 #endif
 	buffertrainerclassname STR_VAR_1, VAR_0x8000

@@ -55,10 +55,9 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident::
 	waitfanfare
 #endif
 	setflag FLAG_SYS_POKENAV_GET
-	setflag FLAG_RECEIVED_POKENAV
+	setflag FLAG_HOENN_RECEIVED_POKENAV
 #if IS_HNS
-	@ HnS: Ab hier kennt der Spieler Mr. Trumm - erst jetzt taucht er in der
-	@ PokeCom-Kontaktliste auf (frueher hing er an Normans Flag).
+	@ Origin Jade: adds Mr. Stone to the PokeNav contacts.
 	setflag FLAG_MET_MR_STONE
 #endif
 	setflag FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT
@@ -167,8 +166,14 @@ RustboroCity_DevonCorp_3F_EventScript_MrStone::
 
 RustboroCity_DevonCorp_3F_EventScript_GiveExpShare::
 	msgbox RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter, MSGBOX_DEFAULT
+#if IS_HNS
+	@ Origin Jade: the held Exp. Share if the key item is already in the bag.
+	checkitem ITEM_EXP_SHARE
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_3F_EventScript_GiveSmallExpShare
+#endif
 	giveitem ITEM_EXP_SHARE
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+RustboroCity_DevonCorp_3F_EventScript_ReceivedExpShare::
 	setflag FLAG_RECEIVED_EXP_SHARE
 	msgbox RustboroCity_DevonCorp_3F_Text_ExplainExpShare, MSGBOX_DEFAULT
 	closemessage
@@ -176,6 +181,13 @@ RustboroCity_DevonCorp_3F_EventScript_GiveExpShare::
 	waitmovement 0
 	release
 	end
+
+#if IS_HNS
+RustboroCity_DevonCorp_3F_EventScript_GiveSmallExpShare::
+	giveitem ITEM_EXP_SHARE_SMALL
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	goto RustboroCity_DevonCorp_3F_EventScript_ReceivedExpShare
+#endif
 
 RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor::
 	msgbox RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends, MSGBOX_DEFAULT
@@ -306,6 +318,17 @@ RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter:
 
 RustboroCity_DevonCorp_3F_Text_ExplainExpShare:
 #if GERMAN
+#if IS_HNS
+	@ Origin Jade: names the Kleiner EP-Teiler he gives (the EP-Teiler is a key item).
+	.string "Mr. Trumm: Trägt ein Pokémon den\n"
+	.string "Kleinen EP-Teiler, so erhält es in\l"
+	.string "jedem Kampf Erfahrungspunkte.\p"
+	.string "Auch wenn es gar nicht am Kampf\n"
+	.string "teilnimmt.\p"
+	.string "Ich würde sagen, der Kleine\n"
+	.string "EP-Teiler ist sehr nützlich, um\l"
+	.string "schwache Pokémon aufzuziehen.$"
+#else
 	.string "Mr. Trumm: Trägt ein Pokémon den\n"
 	.string "EP-Teiler, so erhält es in jedem Kampf\l"
 	.string "Erfahrungspunkte.\p"
@@ -314,6 +337,7 @@ RustboroCity_DevonCorp_3F_Text_ExplainExpShare:
 	.string "Ich würde sagen, der EP-Teiler ist sehr\n"
 	.string "nützlich, um schwache Pokémon\l"
 	.string "aufzuziehen.$"
+#endif
 #else
 	.string "MR. STONE: A POKéMON holding that\n"
 	.string "EXP. SHARE will be given some of the\l"

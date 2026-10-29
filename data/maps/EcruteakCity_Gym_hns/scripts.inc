@@ -37,6 +37,7 @@ EcruteakCity_Gym_EventScript_Grace::
 EcruteakCity_Gym_EventScript_Morty::
 	lock
 	faceplayer
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, EcruteakCity_Gym_EventScript_Morty_Rematch
 	goto_if_set FLAG_DEFEATED_ECRUTEAK_CITY_GYM, EcruteakCity_Gym_EventScript_Morty_Defeated
 	msgbox MortyIntroText, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_MORTY_1_HNS, MortyWinLossText
@@ -45,6 +46,11 @@ EcruteakCity_Gym_EventScript_Morty::
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox MortyText_FogBadgeSpeech, MSGBOX_DEFAULT
 	setflag FLAG_BADGE04_GET
+	@ Johto badge 4 (index 3 in VAR_JOHTO_BADGES).
+	setvar VAR_0x8004, 3
+	special SetJohtoBadge
+	setvar VAR_0x8004, PERM_SURF
+	special SetJohtoPermit
 	setflag FLAG_DEFEATED_ECRUTEAK_CITY_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 4
@@ -53,6 +59,15 @@ EcruteakCity_Gym_EventScript_Morty::
 	msgbox MortyText_ShadowBallSpeech, MSGBOX_DEFAULT
 	setvar VAR_ECRUTEAK_CITY_STATE, 4
 	closemessage
+	release
+	end
+
+@ Rematch after the Johto title, see docs/origin_jade/DECISIONS.md, D-032.
+EcruteakCity_Gym_EventScript_Morty_Rematch::
+	msgbox MortyRematchText, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
+	closemessage
+	trainerbattle_no_intro TRAINER_MORTY_2_HNS, Morty_RematchDefeatText
 	release
 	end
 
@@ -198,13 +213,14 @@ MortyRematchText:
 #if GERMAN
 	.string "Ah, der Champion von Johto!\n"
 	.string "Schön, dass du gekommen bist.\p"
-	.string "Du hast Stärke bewiesen, doch bist du\n"
-	.string "seit unserem letzten Kampf gewachsen?\p"
+	.string "Du hast Stärke bewiesen.\p"
+	.string "Doch bist du seit unserem letzten\n"
+	.string "Kampf gewachsen?\p"
 	.string "Ich habe seitdem mit meinen\n"
 	.string "Geist-Pokémon trainiert.\p"
 	.string "Mal sehen, ob du die Schatten\n"
 	.string "erneut überwinden kannst.\p"
-	.string "Willst du eine Revanche?$"
+	.string "Möchtest du einen Rückkampf?$"
 #else
 	.string "Ah, the JOHTO CHAMPION!\n"
 	.string "Good of you to come.\p"
@@ -221,8 +237,8 @@ MortyRematchText:
 Morty_RematchDefeatText:
 #if GERMAN
 	.string "Ich bin noch nicht gut genug…\p"
-	.string "Du hast mehr gesehen, als ich je erleben\n"
-	.string "werde.\p"
+	.string "Du hast mehr gesehen, als ich\n"
+	.string "je erleben werde.\p"
 	.string "Darum beneide ich dich…$"
 #else
 	.string "I'm not good enough yet...\p"

@@ -17,28 +17,13 @@ SaffronCity_House1_EventScript_MrPsychicAfter::
 	end
 
 MrPsychic_Text_1:
-#if GERMAN
-	.string "… … …\p"
-	.string "… … …\p"
-	.string "… … …\p"
-	.string "… …Ist ja schon gut!\p"
-	.string "Das hier ist es, was du willst, stimmt’s?$"
-#else
 	.string "…\p"
 	.string "…\p"
 	.string "…\p"
 	.string "…I got it!\p"
 	.string "You wanted this!$"
-#endif
 
 MrPsychic_Text_2:
-#if GERMAN
-	.string "…Du weißt doch, was das ist, oder?\n"
-	.string "Die TM29 enthält Psychokinese.\p"
-	.string "…Mit ein bisschen Glück lässt sich damit\n"
-	.string "die Spezialattacke des Gegners senken!$"
-#else
 	.string "TM29 is PSYCHIC.\p"
 	.string "It may lower the target's\n"
-	.string "SPCL.DEF.$"
-#endif
+	.string "SP.DEF.$"

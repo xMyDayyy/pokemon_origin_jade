@@ -120,9 +120,9 @@ Route39_EventScript_LegendaryTriggerSilver::
 
 Route39_EventScript_BaobaIntro::
 	msgbox Route39_Text_BaobaIntro, MSGBOX_DEFAULT
-	playse MUS_HG_POKEGEAR_REGISTERED
+	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox Route39_Text_Registered, MSGBOX_DEFAULT
-	waitse
+	waitfanfare
 	msgbox Route39_Text_WillCall, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_R39_BAOBA, Route39_Movement_BaobaLeave
@@ -310,6 +310,13 @@ Route39_Text_SailorEugeneAfter:
 Route39_EventScript_Derek::
 	trainerbattle_single TRAINER_DEREK_HNS, Route39_Text_PokefanMDerekSeen, Route39_Text_PokefanMDerekBeaten, Route39_EventScript_RegisterDerek
 	goto_if_set FLAG_DEREK_HAS_ITEM_HNS, Route39_EventScript_DerekGiveItem
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	goto_if_eq VAR_RESULT, TRUE, Route39_EventScript_RematchDerek
+	msgbox Route39_Text_PokefanMDerekAfter, MSGBOX_AUTOCLOSE
+	end
+
+Route39_EventScript_RematchDerek::
+	trainerbattle_rematch TRAINER_DEREK_HNS, Route39_Text_PokefanMDerekSeen, Route39_Text_PokefanMDerekBeaten
 	msgbox Route39_Text_PokefanMDerekAfter, MSGBOX_AUTOCLOSE
 	end
 
@@ -505,20 +512,15 @@ Route39_EventScript_Sign3::
 
 Route39_Text_TrainerTips:
 #if GERMAN
-	.string "Tipps für Trainer\p"
-	.string "Benutze Kopfnuss, um Pokémon aus\n"
-	.string "Bäumen zu schütteln. Von jedem Baum\l"
-	.string "könnte ein anderes Pokémon purzeln!\p"
-	.string "Probiere Kopfnuss also an möglichst\n"
-	.string "vielen verschiedenen Bäumen aus!$"
+	.string "Route 39\p"
+	.string "Nach Norden: Olivia City und der\n"
+	.string "Leuchtturm.\p"
+	.string "Nach Süden: die Farm Bauer.$"
 #else
-	.string "TRAINER TIPS\p"
-	.string "Use HEADBUTT on trees to shake\n"
-	.string "POKéMON out.\p"
-	.string "Different kinds of POKéMON\n"
-	.string "drop out of trees.\p"
-	.string "Use HEADBUTT on any tree\n"
-	.string "you see!$"
+	.string "ROUTE 39\p"
+	.string "North: OLIVINE CITY and the\n"
+	.string "LIGHTHOUSE.\p"
+	.string "South: MOOMOO FARM.$"
 #endif
 
 Route39_Text_DerekRegister:

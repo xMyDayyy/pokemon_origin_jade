@@ -181,7 +181,13 @@ BattleScript_BallThrow::
 	handleballthrow
 
 BattleScript_BallThrowByWally::
+	@ Origin Jade: old man's catching tutorial in Viridian City.
+	jumpifbyte CMP_NOT_EQUAL, gIsOldManTutorialBattle, 0, BattleScript_BallThrowByOldMan
 	printstring STRINGID_WALLYUSEDITEM
+	handleballthrow
+
+BattleScript_BallThrowByOldMan::
+	printstring STRINGID_OLDMANUSEDITEM
 	handleballthrow
 
 BattleScript_SafariBallThrow::

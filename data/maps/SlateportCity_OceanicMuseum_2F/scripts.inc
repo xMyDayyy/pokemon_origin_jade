@@ -88,9 +88,7 @@ SlateportCity_OceanicMuseum_2F_EventScript_CaptStern::
 
 SlateportCity_OceanicMuseum_2F_EventScript_ReadyRegisterBirch::
 #if IS_HNS
-	@ Origin Jade: Birk hat sich bereits in der Ankunftsszene im Labor ins
-	@ PokéCom eingetragen - die Route-110-Registrierungsszene entfaellt.
-	@ Direkt auf "erledigt" (2), damit die Koordinaten-Trigger nie feuern.
+	@ Origin Jade: 2 = done, skips Birch's registration scene on Route 110.
 	setvar VAR_REGISTER_BIRCH_STATE, 2
 #else
 	setvar VAR_REGISTER_BIRCH_STATE, 1

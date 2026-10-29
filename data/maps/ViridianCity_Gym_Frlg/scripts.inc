@@ -1,10 +1,60 @@
 ViridianCity_Gym_Frlg_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, ViridianCity_Gym_OnTransition
 	.byte 0
+
+@ After the league change (D-010) Blue leads this gym. FLAG_TEMP_1 hides Blue
+@ before it; afterwards Giovanni is hidden once he has handed over HM06.
+@ See docs/origin_jade/DECISIONS.md, D-032.
+ViridianCity_Gym_OnTransition::
+	call PokemonLeague_EventScript_CheckLeagueChanged
+	goto_if_eq VAR_RESULT, TRUE, ViridianCity_Gym_EventScript_SetBlueLeader
+	setflag FLAG_TEMP_1
+	end
+
+ViridianCity_Gym_EventScript_SetBlueLeader::
+	call_if_set FLAG_GOT_TM26_FROM_GIOVANNI, ViridianCity_Gym_EventScript_HideGiovanni
+	end
+
+ViridianCity_Gym_EventScript_HideGiovanni::
+	setflag FLAG_HIDE_VIRIDIAN_GIOVANNI
+	return
+
+@ Blue: battle as often as the player likes, TM Trick Room once, no badge (D-007).
+ViridianCity_Gym_EventScript_BlueLeader::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_TM_TRICK_ROOM_FROM_BLUE, ViridianCity_Gym_EventScript_BlueRematch
+	goto_if_defeated TRAINER_BLUE_HNS, ViridianCity_Gym_EventScript_BlueGiveTM
+	msgbox ViridianCity_Gym_Text_BlueIntro, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_BLUE_HNS, ViridianCity_Gym_Text_BlueDefeat
+	msgbox ViridianCity_Gym_Text_BluePostBattle, MSGBOX_DEFAULT
+ViridianCity_Gym_EventScript_BlueGiveTM::
+	msgbox ViridianCity_Gym_Text_BlueGiveTM, MSGBOX_DEFAULT
+	checkitemspace ITEM_TM_TRICK_ROOM
+	goto_if_eq VAR_RESULT, FALSE, ViridianCity_Gym_EventScript_BlueNoRoomForTM
+	giveitem ITEM_TM_TRICK_ROOM
+	setflag FLAG_GOT_TM_TRICK_ROOM_FROM_BLUE
+	msgbox ViridianCity_Gym_Text_BlueExplainTM, MSGBOX_DEFAULT
+	release
+	end
+
+ViridianCity_Gym_EventScript_BlueNoRoomForTM::
+	msgbox ViridianCity_Gym_Text_YouDoNotHaveSpace, MSGBOX_DEFAULT
+	release
+	end
+
+ViridianCity_Gym_EventScript_BlueRematch::
+	msgbox ViridianCity_Gym_Text_BlueRematch, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
+	closemessage
+	trainerbattle_no_intro TRAINER_BLUE_HNS, ViridianCity_Gym_Text_BlueRematchDefeat
+	release
+	end
 
 ViridianCity_Gym_EventScript_Giovanni::
 	famechecker FAMECHECKER_GIOVANNI, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
 	trainerbattle_single TRAINER_LEADER_GIOVANNI, ViridianCity_Gym_Text_GiovanniIntro, ViridianCity_Gym_Text_GiovanniDefeat, ViridianCity_Gym_EventScript_DefeatedGiovanni, NO_MUSIC
-	goto_if_unset FLAG_GOT_TM26_FROM_GIOVANNI, ViridianCity_Gym_EventScript_GiveTM26
+	goto_if_unset FLAG_GOT_TM26_FROM_GIOVANNI, ViridianCity_Gym_EventScript_GiveRockSmash
 	msgbox ViridianCity_Gym_Text_GiovanniPostBattle
 	closemessage
 	fadescreen FADE_TO_BLACK
@@ -20,20 +70,22 @@ ViridianCity_Gym_EventScript_DefeatedGiovanni::
 	setflag FLAG_BADGE08_GET
 	setvar VAR_MAP_SCENE_ROUTE22, 3
 	set_gym_trainers_frlg 8
-	goto ViridianCity_Gym_EventScript_GiveTM26
+	goto ViridianCity_Gym_EventScript_GiveRockSmash
 	end
 
-ViridianCity_Gym_EventScript_GiveTM26::
+@ Origin Jade: HM Rock Smash instead of TM26. FLAG_GOT_TM26_FROM_GIOVANNI
+@ marks it as received.
+ViridianCity_Gym_EventScript_GiveRockSmash::
 	msgbox ViridianCity_Gym_Text_ExplainEarthBadgeTakeThis
-	checkitemspace ITEM_TM26
-	goto_if_eq VAR_RESULT, FALSE, ViridianCity_Gym_EventScript_NoRoomForTM26
-	giveitem_msg ViridianCity_Gym_Text_ReceivedTM26FromGiovanni, ITEM_TM26
+	checkitemspace ITEM_HM_ROCK_SMASH
+	goto_if_eq VAR_RESULT, FALSE, ViridianCity_Gym_EventScript_NoRoomForRockSmash
+	giveitem_msg ViridianCity_Gym_Text_ReceivedRockSmashFromGiovanni, ITEM_HM_ROCK_SMASH
 	setflag FLAG_GOT_TM26_FROM_GIOVANNI
-	msgbox ViridianCity_Gym_Text_ExplainTM26
+	msgbox ViridianCity_Gym_Text_ExplainRockSmash
 	release
 	end
 
-ViridianCity_Gym_EventScript_NoRoomForTM26::
+ViridianCity_Gym_EventScript_NoRoomForRockSmash::
 	msgbox ViridianCity_Gym_Text_YouDoNotHaveSpace
 	release
 	end
@@ -81,8 +133,22 @@ ViridianCity_Gym_EventScript_Warren::
 ViridianCity_Gym_EventScript_GymGuy::
 	lock
 	faceplayer
+	call PokemonLeague_EventScript_CheckLeagueChanged
+	goto_if_eq VAR_RESULT, TRUE, ViridianCity_Gym_EventScript_GymGuyBlue
 	goto_if_set FLAG_DEFEATED_LEADER_GIOVANNI, ViridianCity_Gym_EventScript_GymGuyPostVictory
 	msgbox ViridianCity_Gym_Text_GymGuyAdvice
+	release
+	end
+
+@ Blue leads the gym after the league change, see docs/origin_jade/DECISIONS.md, D-032.
+ViridianCity_Gym_EventScript_GymGuyBlue::
+	goto_if_defeated TRAINER_BLUE_HNS, ViridianCity_Gym_EventScript_GymGuyBlueDefeated
+	msgbox ViridianCity_Gym_Text_GymGuyBlue
+	release
+	end
+
+ViridianCity_Gym_EventScript_GymGuyBlueDefeated::
+	msgbox ViridianCity_Gym_Text_GymGuyBlueDefeated
 	release
 	end
 
@@ -94,6 +160,8 @@ ViridianCity_Gym_EventScript_GymGuyPostVictory::
 
 ViridianCity_Gym_EventScript_GymStatue::
 	lockall
+	call PokemonLeague_EventScript_CheckLeagueChanged
+	goto_if_eq VAR_RESULT, TRUE, ViridianCity_Gym_EventScript_GymStatueBlue
 	goto_if_set FLAG_BADGE08_GET, ViridianCity_Gym_EventScript_GymStatuePostVictory
 	msgbox ViridianCity_Gym_Text_GymStatue
 	releaseall
@@ -101,6 +169,11 @@ ViridianCity_Gym_EventScript_GymStatue::
 
 ViridianCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox ViridianCity_Gym_Text_GymStatuePlayerWon
+	releaseall
+	end
+
+ViridianCity_Gym_EventScript_GymStatueBlue::
+	msgbox ViridianCity_Gym_Text_GymStatueBlue
 	releaseall
 	end
 
@@ -114,7 +187,7 @@ ViridianCity_Gym_Text_GiovanniIntro::
 	.string "aufgespürt! Also gut! Dieses Mal kenne\l"
 	.string "ich keine Gnade!\p"
 	.string "Ich, Giovanni, der größte aller\n"
-	.string "Trainer, fordere Revanche!{PLAY_BGM}éÀ$"
+	.string "Trainer, fordere Revanche!$"
 #else
 	.string "Fwahahaha!\n"
 	.string "Welcome to my hideout!\p"
@@ -166,48 +239,51 @@ ViridianCity_Gym_Text_GiovanniPostBattle::
 
 ViridianCity_Gym_Text_ExplainEarthBadgeTakeThis::
 #if GERMAN
-	.string "Als Träger des Erdordens werden dir alle\n"
-	.string "Pokémon jeglichen Levels gehorchen!\p"
+	.string "Mit dem Erdorden gehorchen dir\n"
+	.string "getauschte Pokémon bis Level 50!\p"
 	.string "Er stellt den Beweis deines Könnens\n"
 	.string "als Pokémon Trainer dar!\p"
 	.string "Außerdem gewährt er dir den Zugang\n"
 	.string "zur Pokémon Liga!\p"
-	.string "Nimm dieses Geschenk mit in dein\n"
-	.string "Pokémon Liga-Abenteuer!$"
+	.string "Du hast meinen Traum vom Wiederaufbau\n"
+	.string "von Team Rocket zertrümmert.\p"
+	.string "Nimm also das hier. Es ist keine TM.\n"
+	.string "Es passt einfach besser zu dir.$"
 #else
-	.string "The EARTHBADGE makes POKéMON of\n"
-	.string "any level obey without question.\p"
+	.string "The EARTHBADGE makes traded\n"
+	.string "POKéMON up to Lv. 50 obey.\p"
 	.string "It is evidence of your mastery as\n"
 	.string "a POKéMON TRAINER.\p"
 	.string "With it, you can challenge the\n"
 	.string "POKéMON LEAGUE.\p"
-	.string "Also, take this TM.\p"
-	.string "Consider it a gift for your POKéMON\n"
-	.string "LEAGUE challenge.$"
+	.string "You have smashed my dream of\n"
+	.string "rebuilding TEAM ROCKET.\p"
+	.string "So take this. It is not a TM.\n"
+	.string "It simply suits you better.$"
 #endif
 
-ViridianCity_Gym_Text_ReceivedTM26FromGiovanni::
+ViridianCity_Gym_Text_ReceivedRockSmashFromGiovanni::
 #if GERMAN
-	.string "{PLAYER} erhält TM26!$"
+	.string "{PLAYER} erhält VM06!$"
 #else
-	.string "{PLAYER} received TM26\n"
+	.string "{PLAYER} received HM06\n"
 	.string "from GIOVANNI.$"
 #endif
 
-ViridianCity_Gym_Text_ExplainTM26::
+ViridianCity_Gym_Text_ExplainRockSmash::
 #if GERMAN
-	.string "TM26 ist Erdbeben!\p"
-	.string "Eine sehr starke Attacke, die ein\n"
-	.string "starkes Beben verursacht.\p"
-	.string "Ich habe sie vor langer Zeit\n"
-	.string "geschaffen, als ich hier noch\l"
-	.string "Arenaleiter war.$"
+	.string "VM06 ist Zertrümmerer.\p"
+	.string "Sie zerschlägt Felsen, die anderen\n"
+	.string "im Weg stehen.\p"
+	.string "Ich habe sie hier gebraucht, als ich\n"
+	.string "noch Arenaleiter war. Jetzt brauche\l"
+	.string "ich sie nicht mehr.$"
 #else
-	.string "TM26 contains EARTHQUAKE.\p"
-	.string "It is a powerful attack that causes\n"
-	.string "a massive tremor.\p"
-	.string "I made it when I ran the GYM here,\n"
-	.string "far too long ago… $"
+	.string "HM06 contains ROCK SMASH.\p"
+	.string "It shatters the rocks that stand in\n"
+	.string "other people's way.\p"
+	.string "I needed it when I ran the GYM here.\n"
+	.string "I have no use for it anymore.$"
 #endif
 
 ViridianCity_Gym_Text_YouDoNotHaveSpace::
@@ -477,3 +553,140 @@ ViridianCity_Gym_Text_GymStatuePlayerWon::
 	.string "{RIVAL}, {PLAYER}$"
 #endif
 
+ViridianCity_Gym_Text_BlueIntro:
+#if GERMAN
+	.string "{RIVAL}: Hey! Da bist du ja!\p"
+	.string "Seit Giovanni verschwunden ist,\n"
+	.string "bin ich hier der Arenaleiter.\p"
+	.string "Du hast also alle Johto-Arenaleiter\n"
+	.string "zu Kleinholz verarbeitet, was?\p"
+	.string "Hahaha! Dann müssen das ja alles\n"
+	.string "ziemliche Jammerlappen sein!\p"
+	.string "Seit unserem letzten Kampf habe ich\n"
+	.string "hart trainiert.\p"
+	.string "Diesmal gewinne ich!$"
+#else
+	.string "{RIVAL}: Yo! Finally got here, huh?\p"
+	.string "Since GIOVANNI disappeared, I've\n"
+	.string "been running VIRIDIAN GYM.\p"
+	.string "You're telling me you conquered all\n"
+	.string "the GYMS in JOHTO?\p"
+	.string "Heh! JOHTO's GYMS must be pretty\n"
+	.string "pathetic then.\p"
+	.string "I've been training hard since our\n"
+	.string "last battle.\p"
+	.string "This time, I'm going to win!$"
+#endif
+
+ViridianCity_Gym_Text_BlueDefeat:
+#if GERMAN
+	.string "{RIVAL}: Was?\p"
+	.string "Wie konnte ich schon wieder gegen\n"
+	.string "dich verlieren?$"
+#else
+	.string "{RIVAL}: What?\p"
+	.string "How the heck did I lose to you\n"
+	.string "again?$"
+#endif
+
+ViridianCity_Gym_Text_BluePostBattle:
+#if GERMAN
+	.string "{RIVAL}: … … …\p"
+	.string "Na gut, ich gebe es offen zu.\n"
+	.string "Du bist ein fähiger Trainer.\p"
+	.string "Aber vergiss nicht…\p"
+	.string "Irgendwann wird der Tag kommen,\n"
+	.string "an dem ich dich besiege!$"
+#else
+	.string "{RIVAL}: …\p"
+	.string "All right, I was wrong. You're the\n"
+	.string "real deal. You are a good trainer.\p"
+	.string "But I'm going to beat you someday.\n"
+	.string "Don't you forget it!$"
+#endif
+
+ViridianCity_Gym_Text_BlueGiveTM:
+#if GERMAN
+	.string "{RIVAL}: Hier, nimm das mit.$"
+#else
+	.string "{RIVAL}: Take this with you.$"
+#endif
+
+ViridianCity_Gym_Text_BlueExplainTM:
+#if GERMAN
+	.string "{RIVAL}: Das ist Bizarroraum.\p"
+	.string "Damit greifen langsame Pokémon\n"
+	.string "zuerst an und schnelle zuletzt.\p"
+	.string "So stellst du einen Kampf völlig\n"
+	.string "auf den Kopf!$"
+#else
+	.string "{RIVAL}: That's TRICK ROOM.\p"
+	.string "Slower POKéMON move first and\n"
+	.string "faster ones move last.\p"
+	.string "Use it to turn a battle around!$"
+#endif
+
+ViridianCity_Gym_Text_BlueRematch:
+#if GERMAN
+	.string "{RIVAL}: Hör zu.\p"
+	.string "Du verlierst besser nicht, bis\n"
+	.string "ich dich besiegt habe. Verstanden?\p"
+	.string "Möchtest du einen Rückkampf?$"
+#else
+	.string "{RIVAL}: Listen, you.\p"
+	.string "You'd better not lose until I beat\n"
+	.string "you. Got it?\p"
+	.string "Want to have a rematch?$"
+#endif
+
+ViridianCity_Gym_Text_BlueRematchDefeat:
+#if GERMAN
+	.string "{RIVAL}: Tch… Wieder verloren!\n"
+	.string "Aber irgendwann besiege ich dich!$"
+#else
+	.string "{RIVAL}: Tch… Lost again!\n"
+	.string "But I'm going to beat you someday!$"
+#endif
+
+ViridianCity_Gym_Text_GymGuyBlue:
+#if GERMAN
+	.string "Hey, Champ! Wie läuft es so?\p"
+	.string "Der neue Arenaleiter ist {RIVAL}.\n"
+	.string "Den kennst du ja schon!\p"
+	.string "Er setzt Pokémon aller möglichen\n"
+	.string "Typen ein. Gib alles, was du hast!$"
+#else
+	.string "Yo, CHAMP!\n"
+	.string "How's it going?\p"
+	.string "The new GYM LEADER is {RIVAL}.\n"
+	.string "You know him already!\p"
+	.string "He uses POKéMON of all kinds of\n"
+	.string "types.\p"
+	.string "Give it everything you've got!$"
+#endif
+
+ViridianCity_Gym_Text_GymGuyBlueDefeated:
+#if GERMAN
+	.string "Es ist wahr, du bist wirklich stark!\p"
+	.string "Dieser Kampf hat mich emotional\n"
+	.string "so mitgenommen, dass mir doch\l"
+	.string "glatt die Tränen gekommen sind.$"
+#else
+	.string "Man, you are truly tough…\p"
+	.string "That was a heck of an inspirational\n"
+	.string "battle.\p"
+	.string "It brought tears to my eyes.$"
+#endif
+
+ViridianCity_Gym_Text_GymStatueBlue:
+#if GERMAN
+	.string "Vertania Pokémon-Arena\n"
+	.string "Leitung: {RIVAL}\p"
+	.string "Bisherige Sieger:\n"
+	.string "{RIVAL}, {PLAYER}$"
+#else
+	.string "VIRIDIAN POKéMON GYM\n"
+	.string "LEADER: {RIVAL}\p"
+	.string "WINNING TRAINERS:\n"
+	.string "{RIVAL}, {PLAYER}$"
+#endif

@@ -654,7 +654,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Levelball"),
         .pluralName = ITEM_PLURAL_NAME("Levelbälle"),
         //.price = (I_PRICE >= GEN_7) ? 0 : 300,
-        .price = 300,
+        .price = 1000,
         .description = COMPOUND_STRING(
             "Gut für Normal,\n"
             "Fug, Eis, und\n"
@@ -673,7 +673,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Köderball"),
         .pluralName = ITEM_PLURAL_NAME("Köderbälle"),
         //.price = (I_PRICE >= GEN_7) ? 0 : 300,
-        .price = 300,
+        .price = 1000,
         .description = COMPOUND_STRING(
             "Gut für Wasser,\n"
             "Drache und\n"
@@ -692,7 +692,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Mondball"),
         .pluralName = ITEM_PLURAL_NAME("Mondbälle"),
         //.price = (I_PRICE >= GEN_7) ? 0 : 300,
-        .price = 300,
+        .price = 1000,
         .description = COMPOUND_STRING(
             "Gut für Unlicht,\n"
             "Geist, Gift und\n"
@@ -711,7 +711,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Freundesball"),
         .pluralName = ITEM_PLURAL_NAME("Freundesbälle"),
         //.price = (I_PRICE >= GEN_7) ? 0 : 300,
-        .price = 300,
+        .price = 1000,
         .description = COMPOUND_STRING(
             "Gut für Käfer,\n"
             "Pflanze. Macht\n"
@@ -730,7 +730,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Sympaball"),
         .pluralName = ITEM_PLURAL_NAME("Sympabälle"),
         //.price = (I_PRICE >= GEN_7) ? 0 : 300,
-        .price = 300,
+        .price = 1000,
         .description = COMPOUND_STRING(
             "Gut für Psycho,\n"
             "Fee und das ande-\n"
@@ -749,7 +749,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Turboball"),
         .pluralName = ITEM_PLURAL_NAME("Turbobälle"),
         //.price = (I_PRICE >= GEN_7) ? 0 : 300,
-        .price = 300,
+        .price = 1000,
         .description = COMPOUND_STRING(
             "Gut für schnelle,\n"
             "Feuer, Elektro und\n"
@@ -768,7 +768,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Schwerball"),
         .pluralName = ITEM_PLURAL_NAME("Schwerbälle"),
         //.price = (I_PRICE >= GEN_7) ? 0 : 300,
-        .price = 300,
+        .price = 1000,
         .description = COMPOUND_STRING(
             "Gut für Boden,\n"
             "Stein, Stahl und\n"
@@ -9625,13 +9625,15 @@ const struct ItemInfo gItemsInfo[] =
     {
         .name = ITEM_NAME("Metallmantel"),
         .pluralName = ITEM_PLURAL_NAME("Metallmäntel"),
-    #if I_PRICE >= GEN_9
-        .price = 3000,
-    #elif I_PRICE >= GEN_7
-        .price = 2000,
-    #else
-        .price = 100,
-    #endif
+        // HnS price (2.0.2).
+        //#if I_PRICE >= GEN_9
+        //    .price = 3000,
+        //#elif I_PRICE >= GEN_7
+        //    .price = 2000,
+        //#else
+        //    .price = 100,
+        //#endif
+        .price = 20000,
         .holdEffect = HOLD_EFFECT_TYPE_POWER,
         .holdEffectParam = TYPE_BOOST_PARAM,
         .description = COMPOUND_STRING(
@@ -14165,7 +14167,6 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    // Der Strudel belegt unter HnS die VM08, Taucher rueckt auf die VM09.
     [ITEM_HM_DIVE] =
     {
         .name = ITEM_NAME("VM09"),
@@ -14954,9 +14955,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Kelleröffner"),
         .price = 0,
 #if IS_HNS
-        // HnS: Dieses Item wird nur noch im Funkturm Dukatia vergeben und
-        // oeffnet die Tuer in der Dukatia-Passage. Neu-Malvenfroh haengt an
-        // ITEM_NEW_MAUVILLE_KEY. Beschreibung nach HGSS, gekuerzt (Stil A).
+        // HnS: opens the door in the Goldenrod Underground.
         .description = COMPOUND_STRING(
             "Schlüssel für eine\n"
             "Tür in der Dukatia-\n"
@@ -15212,7 +15211,7 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Türöffner"),
         .price = 0,
 #if IS_HNS
-        // HnS: Der Tueroeffner gehoert hier zum Funkturm Dukatia.
+        // HnS: Card Key of the Goldenrod Radio Tower.
         .description = COMPOUND_STRING(
             "Schlüsselkarte für\n"
             "eine Tür im\n"

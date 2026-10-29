@@ -371,7 +371,7 @@ Route110_EventScript_RivalTrigger3::
 Route110_EventScript_RivalScene::
 	lockall
 #if IS_HNS
-	@ HnS: Die Rivalin ist immer Maike - immer ihr Begegnungsthema.
+	@ Origin Jade: the Hoenn rival is always May.
 	call Route110_EventScript_PlayMayMusic
 #else
 	checkplayergender
@@ -389,8 +389,6 @@ Route110_EventScript_RivalScene::
 	call_if_eq VAR_0x8008, 2, Route110_EventScript_RivalApproachPlayer2
 	call_if_eq VAR_0x8008, 3, Route110_EventScript_RivalApproachPlayer3
 #if IS_HNS
-	@ HnS-Kanon: Die Rivalin ist immer Maike, unabhaengig vom Geschlecht
-	@ der Spielfigur. Brix bleibt als eigenstaendige Figur frei.
 	goto Route110_EventScript_MayBattle
 #else
 	checkplayergender
@@ -411,8 +409,7 @@ Route110_EventScript_PlayBrendanMusic::
 Route110_EventScript_MayBattle::
 	msgbox Route110_Text_MayLetsBattle, MSGBOX_DEFAULT
 #if IS_HNS
-	@ HnS: VAR_STARTER_MON traegt hier den Johto-Starter. Maikes Starterlinie
-	@ steht seit Route 103 fest (Flemmli), deshalb immer das Treecko-Set.
+	@ Origin Jade: May always has the Torchic line (Treecko set).
 	goto Route110_EventScript_MayBattleTreecko
 #else
 	switch VAR_STARTER_MON
@@ -476,8 +473,7 @@ Route110_EventScript_BrendanDefeated::
 
 Route110_EventScript_GiveItemfinder::
 #if IS_HNS
-	@ Origin Jade: Der Champion traegt den Itemradar seit Johto bei sich -
-	@ keine Uebergabe, die Texte nehmen stattdessen darauf Bezug.
+	@ Origin Jade: no Itemfinder handover.
 	return
 #endif
 	giveitem_unless_owned ITEM_DOWSING_MACHINE
@@ -595,8 +591,7 @@ Route110_Movement_RivalExit3:
 Route110_EventScript_BirchScene1::
 	lockall
 #if IS_HNS
-	@ Origin Jade: Szene stillgelegt (Birk seit der Ankunft registriert).
-	@ Fallback fuer Spielstaende, deren VAR bereits auf 1 stand.
+	@ Origin Jade: Birch registration scene disabled.
 	setvar VAR_REGISTER_BIRCH_STATE, 2
 	releaseall
 	end

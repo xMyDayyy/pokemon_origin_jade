@@ -10869,36 +10869,3 @@ Route134_Text_HudsonPostBattle:
 	.string "My buddy's a timid fellow, so I'm\n"
 	.string "worried about him.$"
 #endif
-
-VSSeeker_Text_BatteryNotChargedNeedXSteps::
-#if GERMAN
-	.string "Batterie ist nicht geladen.\p"
-	.string "Benötigte Schritte zum\n"
-	.string "aufladen: {STR_VAR_1}{PAUSE_UNTIL_PRESS}$"
-#else
-	.string "The battery isn't charged enough.\p"
-	.string "No. of steps required to fully\n"
-	.string "charge the battery: {STR_VAR_1}{PAUSE_UNTIL_PRESS}$"
-#endif
-
-VSSeeker_Text_NoTrainersWithinRange::
-#if GERMAN
-	.string "Keine Trainer in Reichweite die kämpfen\n"
-	.string "könnten…\p"
-	.string "Kampffahnder ausgeschaltet.{PAUSE_UNTIL_PRESS}$"
-#else
-	.string "There are no Trainers within range\n"
-	.string "who can battle…\p"
-	.string "The VS Seeker was turned off.{PAUSE_UNTIL_PRESS}$"
-#endif
-
-VSSeeker_Text_TrainersNotReady::
-#if GERMAN
-	.string "Die anderen Trainer sind nicht bereit zu\n"
-	.string "kämpfen.\p"
-	.string "Ich muss eine Weile warten.{PAUSE_UNTIL_PRESS}$"
-#else
-	.string "The other Trainers don't appear\n"
-	.string "to be ready for battle.\p"
-	.string "Let's wait till later.{PAUSE_UNTIL_PRESS}$"
-#endif

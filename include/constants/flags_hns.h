@@ -860,14 +860,7 @@
 // Extended content flags (0x36A – 0x495)
 // 300 slots for new content.
 //
-// Die Registrierungsflags des Match Call lagen frueher direkt unter diesem Block
-// (ab 0x310) und kollidierten dort mit 90 Hoenn-Inhaltsflags derselben Adressen.
-// Sie stehen jetzt im vorher freien Fenster ab 0x496 (siehe
-// TRAINER_REGISTERED_FLAGS_START weiter unten); zwischen 0x36A und 0x495 bleibt
-// dieser Block unveraendert.
-//
-// Note MAX_REMATCH_ENTRIES is 100, so the saveblock reserves 10 more entries than
-// there is flag room for -- the reservation is NOT the safe limit here.
+// Match call registration flags: see TRAINER_REGISTERED_FLAGS_START below.
 #define HNS_EXTENDED_CONTENT_START                  0x36A
 #define FLAG_DECORATION_1                           (HNS_EXTENDED_CONTENT_START + 0)
 #define FLAG_DECORATION_2                           (HNS_EXTENDED_CONTENT_START + 1)
@@ -914,7 +907,7 @@
 #define FLAG_NEWSINJOH_HOTSPRINGS_ITEM_LAVACOOKIE                     (HNS_EXTENDED_CONTENT_START + 36)
 #define FLAG_NEWSINJOH_HOTSPRINGS_HIDDEN_ITEM1                     (HNS_EXTENDED_CONTENT_START + 37)
 
-#define FLAG_UNUSED_EXTENDED_38                     (HNS_EXTENDED_CONTENT_START + 38)
+#define FLAG_HIDE_MEW                     (HNS_EXTENDED_CONTENT_START + 38)
 #define FLAG_UNUSED_EXTENDED_39                     (HNS_EXTENDED_CONTENT_START + 39)
 
 #define FLAG_ROUTE50_HIDDENITEM_1                     (HNS_EXTENDED_CONTENT_START + 40)
@@ -957,11 +950,12 @@
 #define FLAG_HIDE_ROUTE49_TM_ROCK_CLIMB                     (HNS_EXTENDED_CONTENT_START + 74)
 #define FLAG_COMPLETED_TAUROS_TRADE                     (HNS_EXTENDED_CONTENT_START + 75)
 #define FLAG_HIDE_SLOWPOKE_WELL_TAILLESS_SLOWPOKES                    (HNS_EXTENDED_CONTENT_START + 76)
-#define FLAG_UNUSED_EXTENDED_77                    (HNS_EXTENDED_CONTENT_START + 77)
-#define FLAG_UNUSED_EXTENDED_78                    (HNS_EXTENDED_CONTENT_START + 78)
+#define FLAG_ULAULA_MOVE_TUTOR_PAID                 (HNS_EXTENDED_CONTENT_START + 77) // paid the Ula'ula move tutor his 5 HEART SCALES
+#define FLAG_USED_TELEPORTER                    (HNS_EXTENDED_CONTENT_START + 78)
+// 80-81: Sinjoh flags, see SINJOH_CONTENT_AVAILABLE in include/config/general.h.
 #define FLAG_UNUSED_EXTENDED_79                   (HNS_EXTENDED_CONTENT_START + 79)
-#define FLAG_UNUSED_EXTENDED_80                    (HNS_EXTENDED_CONTENT_START + 80)
-#define FLAG_UNUSED_EXTENDED_81                    (HNS_EXTENDED_CONTENT_START + 81)
+#define FLAG_HIDE_MT_SILVER_PC_MEARA               (HNS_EXTENDED_CONTENT_START + 80)
+#define FLAG_SINJOH_UNLOCK_MIGRATED                (HNS_EXTENDED_CONTENT_START + 81)
 #define FLAG_UNUSED_EXTENDED_82                    (HNS_EXTENDED_CONTENT_START + 82)
 #define FLAG_UNUSED_EXTENDED_83                     (HNS_EXTENDED_CONTENT_START + 83)
 #define FLAG_UNUSED_EXTENDED_84                     (HNS_EXTENDED_CONTENT_START + 84)
@@ -982,8 +976,8 @@
 #define FLAG_UNUSED_EXTENDED_99                    (HNS_EXTENDED_CONTENT_START + 99)
 
 #define FLAG_HIDE_AZALEA_TOWN_TAILED_SLOWPOKES                   (HNS_EXTENDED_CONTENT_START + 100)
-#define FLAG_EXTENDED_CONTENT_SET_101                   (HNS_EXTENDED_CONTENT_START + 101)
-#define FLAG_EXTENDED_CONTENT_SET_102                   (HNS_EXTENDED_CONTENT_START + 102)
+#define FLAG_HIDE_VERMILION_CITY_SAMSON                   (HNS_EXTENDED_CONTENT_START + 101)
+#define FLAG_HIDE_ROUTE28_SCIENTIST                   (HNS_EXTENDED_CONTENT_START + 102)
 #define FLAG_EXTENDED_CONTENT_SET_103                   (HNS_EXTENDED_CONTENT_START + 103)
 #define FLAG_EXTENDED_CONTENT_SET_104                   (HNS_EXTENDED_CONTENT_START + 104)
 #define FLAG_EXTENDED_CONTENT_SET_105                   (HNS_EXTENDED_CONTENT_START + 105)
@@ -1183,25 +1177,18 @@
 #define FLAG_MELEMELE_HIDDEN_ITEM                   (HNS_EXTENDED_CONTENT_START + 299)
 #define HNS_EXTENDED_CONTENT_COUNT                  300
 #define HNS_EXTENDED_CONTENT_END                    (HNS_EXTENDED_CONTENT_START + HNS_EXTENDED_CONTENT_COUNT - 1)
-// 0x496 folgt der Match-Call-Registrierungsblock (siehe unten), 0x4F0–0x4FF frei
+// 0x496 is followed by the match call registration block (see below), 0x4F0-0x4FF free
 
-// Freie Einzelflags im Fenster 0x4F0-0x4FF (siehe Registrierungsblock unten)
+// Single flags in the free window 0x4F0-0x4FF
 #define FLAG_HIDE_OLDALE_TOWN_MART_EMPLOYEE          0x4F0
 #define FLAG_ENABLE_PROF_BIRK_MATCH_CALL             0x4F1
 
 // Trainer registered (match call) flags — one per rematchable trainer
 //
-// ACHTUNG: Dieser Block darf NICHT auf 0x310 zurueckgesetzt werden. Die Adressen
-// 0x310-0x369 sind in diesem Header bereits vollstaendig durch 90 Hoenn-Inhalts-
-// flags belegt (FLAG_RECEIVED_*, FLAG_REGISTERED_STEVEN_POKENAV, die Trickhaus-
-// Schalter, die Regi-Raetsel und saemtliche FLAG_VISITED_*-Flugpunkte). Jede dort
-// gesetzte Hoenn-Fahne haette sonst zugleich einen PokeCom-Kontakt registriert --
-// bei den in der HnS-Rematch-Tabelle leeren Plaetzen fuehrte das zu Anrufen ohne
-// Namen und ohne Text.
+// Keep this block out of 0x310-0x369, which holds Hoenn content flags.
 //
-// Fenster: 0x496 + REMATCH_TABLE_ENTRIES (90) - 1 = 0x4EF.
-// Frei bleiben 0x4F0-0x4FF (16 Flags) bis TRAINER_FLAGS_START (0x500). Waechst die
-// Rematch-Tabelle ueber 106 Eintraege, muss der Block erneut umziehen.
+// Origin Jade: flags_hoenn_de.h redefines TRAINER_REGISTERED_FLAGS_START
+// as HNS_REMATCH_FLAGS_START (118 entries).
 #define TRAINER_REGISTERED_FLAGS_START               0x496
 #define FLAG_REGISTERED_JOEY_HNS            (TRAINER_REGISTERED_FLAGS_START + REMATCH_ROSE)
 #define FLAG_REGISTERED_WADE_HNS            (TRAINER_REGISTERED_FLAGS_START + REMATCH_ANDRES)
@@ -1351,6 +1338,7 @@
 #define FLAG_DAILY_PICKED_LOTO_TICKET               (DAILY_FLAGS_START + 5)
 #define FLAG_DAILY_APPRENTICE_LEAVES                (DAILY_FLAGS_START + 6)
 #define FLAG_DAILY_BUENAS_PASSWORD                  (DAILY_FLAGS_START + 7)
+// Unused in Origin Jade, see VAR_RADIO_LUCKY_ID.
 #define FLAG_DAILY_LUCKY_NUMBER_SET                 (DAILY_FLAGS_START + 8)
 #define FLAG_DAILY_BUENAS_PASSWORD_GUESSED          (DAILY_FLAGS_START + 9)
 #define FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY_HNS   (DAILY_FLAGS_START +10)
@@ -1828,12 +1816,11 @@
 // Emerald event / hide flags
 #define FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG      0x199
 #define FLAG_HIDE_SAFARI_ZONE_SOUTH_CONSTRUCTION_WORKERS 0
-#define FLAG_HIDE_MEW                               0x177
-#define FLAG_HIDE_ROUTE_104_RIVAL                   0x19E
-#define FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE  0x19A
-#define FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH  0x163
-#define FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM 0x16F
-#define FLAG_HIDE_ROUTE_103_RIVAL                   0x38D
+#define FLAG_HIDE_ROUTE_104_RIVAL                   0
+#define FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE  0
+#define FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH  0
+#define FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM 0
+#define FLAG_HIDE_ROUTE_103_RIVAL                   0
 #define FLAG_HIDE_PETALBURG_WOODS_DEVON_EMPLOYEE    0
 #define FLAG_HIDE_PETALBURG_WOODS_AQUA_GRUNT        0
 #define FLAG_HIDE_PETALBURG_CITY_WALLY              0x191

@@ -7,29 +7,14 @@ BattleFrontier_OutsideWest_OnTransition_hns:
 	setflag FLAG_HIDE_BATTLE_TOWER_REPORTER
 	end
 
+@ M.S. Aqua to Olivine, Vermilion or Hoenn (see docs/origin_jade/DECISIONS.md, D-029).
 BattleFrontier_OutsideWest_EventScript_EventScript_Sailor_hns::
 	lock
 	faceplayer
-	msgbox BattleFrontier_OutsideWest_Text_SailorReturn_hns, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, BattleFrontier_OutsideWest_EventScript_AsYouLike_hns
-	msgbox EventTicket_Text_SailHome, MSGBOX_DEFAULT
-	closemessage
-	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown
-	waitmovement 0
-	delay 30
-	clearflag FLAG_SAFE_FOLLOWER_MOVEMENT
-	hideobjectat LOCALID_BATTLE_FRONTIER_SAILOR_HNS, MAP_BATTLE_FRONTIER_OUTSIDE_WEST_HNS
 	setvar VAR_0x8004, LOCALID_FARAWAY_BATTLE_FRONTIER_HNS_SS_TIDAL
-	call Common_EventScript_FerryDepartIsland
-	warpsilent MAP_OLIVINE_CITY_PORT_INSIDE_HNS, 8, 16
-	waitstate
-	release
-	end
-
-BattleFrontier_OutsideWest_EventScript_AsYouLike_hns::
-	msgbox EventTicket_Text_AsYouLike, MSGBOX_DEFAULT
-	release
-	end
+	message BattleFrontier_OutsideWest_Text_SailorReturn_hns
+	waitmessage
+	goto SSAqua_EventScript_ChooseReturnPort
 
 BattleFrontier_OutsideWest_EventScript_BattleDomeSign_hns::
 	msgbox BattleFrontier_OutsideWest_Text_BattleDomeSign_hns, MSGBOX_SIGN
@@ -743,15 +728,11 @@ BattleFrontier_OutsideWest_Text_MonWithLongTailInFrontier_hns:
 	.string "to find the delightful creature!$"
 #endif
 
-@ Eigener Text: der Faraway-Island-Matrose sprach von Kapitaen Brack und
-@ von Seegrasulb City, das Schiff faehrt hier aber nach Oliviana City.
 BattleFrontier_OutsideWest_Text_SailorReturn_hns:
 #if GERMAN
 	.string "Die See ist ruhig heute.\p"
-	.string "Möchtest du zurück nach\n"
-	.string "Oliviana City?$"
+	.string "Wohin möchtest du segeln?$"
 #else
 	.string "The sea is calm today.\p"
-	.string "Do you want to head back to\n"
-	.string "OLIVINE CITY?$"
+	.string "Where would you like to sail?$"
 #endif

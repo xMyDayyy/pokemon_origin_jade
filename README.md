@@ -1,320 +1,80 @@
-<p align="center">
-  <img src="logo.png?v=2" alt="Pokémon Origin Jade" width="480">
-</p>
+![HnS Logo](HnS_Logo.png)
 
-<!-- Title screen goes here -->
+# About `pokemonHnS-expansion`
 
-**Pokémon Origin Jade** is a ROM hack built on
-[Pokémon HnS](https://github.com/PokemonHnS-Development/pokehns-expansion),
-which itself builds on
-[`pokeemerald-expansion`](https://github.com/rh-hideout/pokeemerald-expansion).
+<!-- If you want to re-record or change these gifs, here are some notes that I used: https://files.catbox.moe/05001g.md -->
+<!-- TODO: Actually change these gifs, and generally update contents to convey HnS-specific information -->
+![HnS Collage](HnS_Collage_YourAdventure.png)
 
-The idea: **one continuous journey across three regions.** After Johto and
-Kanto, the road leads on to **Hoenn** — not as a separate game, but as the same
-story continued, with the same team and the same save file.
+**`pokemonHnS-expansion`**, aka Pokémon Heart and Soul 2.0, is a GBA ROM hack that is both a remake of GSC and demake of HGSS, with added quality-of-life, customization, and more.  
+Originally built on top of [resetes12's **`Modern Emerald`**](https://github.com/resetes12/pokeemerald).  
+Now additionally built on top of [RHH's **`pokeemerald-expansion`**](https://github.com/rh-hideout/pokeemerald-expansion) GBA ROM hack base.  
+Finally, all of these projects are built on top of [pret's **`pokeemerald`**](https://github.com/pret/pokeemerald) decompilation project.
 
----
+> Pokémon Heart & Soul brings the classic Johto Region and its iconic story to the world of modern GBA decomp hacking. Built on Modern Emerald and pokeemerald-expansion, this project offers a fresh take on the GSC/HGSS experience, blending key aspects of the Gen 2 and Gen 4 games, while incorporating many modern QoL features, as well as some familiar mechanics from Gen 3 to Gen 9. Not only is Heart & Soul (HnS) a first-of-its-kind, fully completed, playtested, and largely faithful GSC remake / HGSS demake, it's also completely open source, and is intended to be a base for a new generation of Johto rom hacks.
 
-## The premise
+Unfortunately, saves from before 2.0 will not be compatible moving forward.
 
-You arrive in Hoenn as the **Champion of the mainland**, invited by Steven
-Stone. That single fact changes everything about the Emerald opening. Nobody
-explains how to catch a Pokémon. Nobody treats you as a beginner. People who
-know you know exactly who you are — and those who don't have only heard
-rumours.
+2.0.1 will be the last "official" release of Pokémon Heart and Soul, after which any bug fixes, content updates, or any propogated updates from **`pokeemerald`** or **`pokeemerald-expansion`** will only be available via community forks of the project.
 
-The entire early game was rebuilt around this: no moving van, no starter
-choice, no tutorials.
+# [Features](FEATURES.md)
 
----
+**`pokemonHnS-expansion`** includes a mix of vanilla Emerald/FRLG features, re/de-made implementations of GSC/HGSS features, custom **`Modern Emerald`** features, and both features from [core series Pokémon games](https://bulbapedia.bulbagarden.net/wiki/Core_series) and popular QOL enhancements made available by **`pokeemerald-expansion`**.  
+A full list of the features present in Pokémon Heart & Soul 2.0 can be found in [`FEATURES.md`](FEATURES.md)
+A full list of the features made available by **`pokeemerald-expansion`** can be found in [`AVAILABLE_FEATURES.md`](AVAILABLE_FEATURES.md).
 
-## What's different
+# [Credits](CREDITS.md)
 
-### HMs are tied to Gym Badges
+<!-- TODO: update .all-contributorsrc and CREDITS.md to match https://pokemonhns-development.github.io/pokehns-expansion-documentation/credits.html -->
+<!-- [![](https://img.shields.io/github/all-contributors/pokemonHnS-Development/pokemonHnS-expansion/upcoming)](CREDITS.md) -->
 
-You bring your HMs with you from Johto and Kanto — but in Hoenn you may only
-use them once you hold the matching Badge.
+<!-- TODO: confirm our actual crediting policy and how best to respect our upstreams -->
+If you use **`pokemonHnS-expansion`**, please credit **Pokemon Heart and Soul**, and retain the full chain of credits as best possible.  
+If you additionally use a more updated version of **`pokeemerald-expansion`**, please *specifically* credit **RHH (Rom Hacking Hideout)** and include the version number for clarity.
+For example:
 
-| Badge | Gym | Unlocks |
-|---|---|---|
-| Stone Badge | Rustboro City | Cut |
-| Dynamo Badge | Mauville City | Rock Smash |
-| Heat Badge | Lavaridge Town | Strength |
-| Balance Badge | Petalburg City | Surf |
-| Mind Badge | Mossdeep City | Dive |
-| Rain Badge | Sootopolis City | Waterfall |
-
-**Flash and Fly need no permission** — you already have them, and Hoenn does
-not hand them out again.
-
-### Difficulty that matches the point in the story
-
-Hoenn is endgame content and plays like it. All eight Gym Leaders field **six
-Pokémon** — in every rematch tier as well — carry six held items and bring Full
-Restores. Every Gym is mono-type. Wild Pokémon and Trainers scale with your
-progress, and Trainer Pokémon evolve along with the scaling.
-
-### Characters with a history
-
-**Steven** brought you to Hoenn. What he's actually doing there, he won't say.
-**May** takes you as her benchmark and grows measurably stronger across five
-encounters — from three Pokémon to a full team. **Norman** is a Gym Leader, not
-your father, and only contacts you once his Gym reopens.
-
-### Quality of life
-
-- No duplicate item handouts — anything you already earned on the mainland is
-  skipped, with a runtime check that respects the reusable-TM setting
-- Field items unified: every Poké Ball and Great Ball is an **Ultra Ball**,
-  every Potion and Super Potion a **Hyper Potion**
-- The PokéCom (PokéNav) fully reworked: correct locations, correct call timing,
-  Elite Four contacts, renamed throughout
-- Trainer tip signs replaced with location flavour text
-
-### Language
-
-German is complete and is the language the project is developed in. **English
-is planned as a full second language**, so the final release will ship with at
-least German and English.
-
----
-
-## Building
-
-```bash
-make jade
+<!-- TODO: confirm the closest applicable expansion version number -->
+```
+pokemonHnS-expansion 2.0 is Based off RHH's pokeemerald-expansion version 1.15.1 https://github.com/rh-hideout/pokemonHnS-expansion/
 ```
 
-The result is `Pokemon_Origin_Jade.gba`.
+Finally, please consider [crediting all contributors](CREDITS.md) involved in the project!
 
-Setup and prerequisites are described in [`INSTALL.md`](INSTALL.md). To build
-without the Hoenn content, use `make hns`.
+# **`pokemonHnS-expansion`** multiplayer compatibility
 
-> ❗ Please do **not** use GitHub's "Download ZIP" button — it omits the commit
-> history, which you need in order to pull updates later.
+- **`pokemonHnS-expansion`** supports trade and link battle multiplayer functionality, which *should* extend to forks built on **`pokemonHnS-expansion`** but cannot be guaranteed.
+- **`pokemonHnS-expansion`** is not compatible with official Pokémon games, **`pokemonHnS 1.X`**, **`Modern Emerald`**, or other **`pokeemerald-expansion`** projects.
 
----
+# [Getting Started](INSTALL.md)
 
-## Roadmap
+❗❗ **Important**: Do not use GitHub's "Download Zip" option as it will not include commit history. This is necessary if you want to update or merge other feature branches from **`pokeemerald-expansion`**.
 
-### Recently done
+If you're new to git and GitHub, [Team Aqua's Asset Repo](https://github.com/Pawkkie/Team-Aquas-Asset-Repo/) has a [guide to forking and cloning the repository](https://github.com/Pawkkie/Team-Aquas-Asset-Repo/wiki/The-Basics-of-GitHub). Then you can follow one of the following guides:
 
-- [x] New title screen — the key art (Ho-Oh, Lugia, Mewtwo and Rayquaza
-      around the storm vortex) stands in full glory behind the logo as a
-      static backdrop — rebuilt cleanly from the original sources in one
-      pass (logo quantized once from the untouched original, artwork
-      fitted fresh at 120 colors), and the subtitle plaque got a new
-      look: a sweeping jade-green "Origin" over "JADE" in white with a
-      black outline, hand-drawn by Marc. The Pokémon logo itself now sits
-      as sprites at 70% scale, centered above the plaque, which freed the
-      entire background palette for the artwork — 225 colors, effectively
-      preview quality; the palette-animation groundwork stays built in
-      but switched off
+<!-- TODO: update INSTALL.md to refer to HnS-specific things -->
+## 📥 [Installing **`pokemonHnS-expansion`**](INSTALL.md)
+## 🏗️ [Building **`pokemonHnS-expansion`**](INSTALL.md#Building-pokemonHnS-expansion)
 
-- [x] Engine update merged from the active HnS main repo (41 upstream
-      commits): no more dex softlocks (every species is catchable wild or
-      via repeatable statics), new fly locations with map icons, IVs from
-      1.2, the GS Ball / Celebi event, fixed evolution methods, Amulet
-      Coin and nurse-facing fixes, a rebalanced Arceus finale, party-limit
-      protections and a stack of crash fixes — while Origin Jade's own
-      badge-permission system for HMs remains fully in charge (the
-      upstream HM overhaul now routes Surf and Waterfall through it too)
+# [Documentation](https://pokemonhns-development.github.io/pokehns-expansion-documentation/)
 
-- [x] Secret base battles no longer crash — the special secret-base trainer
-      ID hit two unguarded lookups ("invalid trainer: 65280", then a level-0
-      glitch opponent); both now handle it the vanilla way
-- [x] HGSS berry trees yield a random 1-5 berries per harvest instead of a
-      constant maximum
-- [x] The Secret Power man on Route 111 no longer hands out a duplicate
-      TM43 — he recognises the Champion already carries it and just points
-      out where to use it
-- [x] The PC belongs to Bill — once you've met him at the Sea Cottage,
-      the storage box is labeled "Bill's PC" everywhere (menu, transfer
-      messages, catch screen); before that it stays "Someone's PC", just
-      like the classic logic. Lanette stays in Fallarbor with a new role:
-      she helped develop Bill's system and contributed the pretty box
-      wallpapers
+For our player-facing documentation, visit the [**`pokemonHnS-expansion`** documentation page](https://pokemonhns-development.github.io/pokehns-expansion-documentation/).
 
-- [x] Twins Irm & Ida field four Pokémon in every rematch tier (a double
-      battle with an odd-numbered team looked off), and the TV interviewers
-      Gabby & Ty now bring Plusle and Minun along — four Pokémon per tier
-      instead of two
-- [x] Wally's dialogue keeps up with his team — battle lines no longer name
-      Ralts as his current partner (level scaling evolves it), while the
-      story of catching it together stays untouched
+# [Contributions and Community](https://discord.gg/ksNTFNSBj)
 
-- [x] Nuzlocke works in Hoenn — the encounter-tracking table only covered
-      Johto/Kanto in this build (every Hoenn route silently shared one bit
-      with Johto's Route 1); all 102 Hoenn areas now have their own bits in
-      a new save field, fully save-compatible
-- [x] Pre-emptive progression audit tool — a repeatable scan that flags
-      every Hoenn script checking a flag or variable the Champion already
-      carries from Johto/Kanto, and understands the build's #if branches;
-      first full run done, remaining findings triaged
-- [x] Rival scene polish — Route 103's first battle always uses May's fixed
-      team line, and the rival encounter theme on Routes 110/119 is always
-      May's (female players heard Brendan's)
+[![](https://dcbadge.limes.pink/api/server/ksNTFNSBj)](https://discord.gg/ksNTFNSBj)
 
-- [x] The Rock Smash Dude in Mauville speaks Champion — no more HM tutorial;
-      he notes you already carry HM Rock Smash and reminds you that in
-      Hoenn it takes Wattson's Dynamo Badge to use it
+If - in the window between 2.0 release and 2.0.1 release - you are looking to report a bug, make a suggestion, or give feedback, please join the [Pokémon Heart and Soul Discord server](https://discord.gg/ksNTFNSBj). You are also welcome to join just to participate in the community, including pinging our @guides (and only our guides) for help answering questions not sufficiently covered by our documentation or in-game resources.
 
-- [x] Rival consistency on Route 110 — May's bike sprite is now forced for
-      the rival's departure too (female players saw Brendan's bike), and the
-      Itemfinder handover is retired: the Champion has carried one since
-      Johto, and May's dialogue acknowledges exactly that
+# AI Disclosure
+Since this is a controversial topic at the moment, we'd like to be transparent about use of AI for this project.
 
-- [x] Trainer payouts now scale with the endgame — prize money is calculated
-      from the level you actually fought (the scaled team), not the low
-      ROM-level from the party file; a routine trainer battle pays like the
-      endgame fight it is
-- [x] Save-screen badge counter fixed for real (Johto 8 + Kanto 8 + Hoenn,
-      no more double-counted Kanto badges)
+Every line of code written for the game is either hand-written or manually reviewed by a member of the team. However, it is still important to point out that LLMs like Claude Code and GitHub Copilot have been used for some tasks.
 
-- [x] Call-window text width fixed for real — the field call popup draws the
-      wait arrow after the last character, so every call line (match calls
-      AND scripted pokenavcalls in map scripts) is now wrapped to 182 px;
-      no more clipped letters or missing arrows
-- [x] Scott stays a mystery — he is "???" at the Trainers' School and on the
-      Slateport docks, and only gives his name the moment he registers
-      himself in your PokéCom (no more introducing himself twice)
-- [x] Flying to Littleroot now lands in front of Prof. Birch's lab instead
-      of inside the player's old bedroom
-- [x] The obsolete Route 110 PokéCom registration scene with Prof. Birch is
-      retired — he has been registered since the arrival scene
+Here is what AI has been used for:
+- Code Reviews of hand-written code
+- Debugging more complex scenarios
+- Auto Completion (stuff like repeating lists, DebugPrints, etc.)
+- Creating Python Scripts for I/O procedures (like downloading/writing list data, I/O data with Excel, etc. namely for documentation)
 
-- [x] Hoenn berry system — Emerald's full berry cultivation is back in Hoenn
-      (soft loamy soil, planting your own berries, watering with the Wailmer
-      Pail from the Route 104 flower shop, per-berry growth times), while
-      Johto keeps its HGSS self-replanting trees; the two systems now
-      coexist through runtime region branches
-
-- [x] Prof. Birch handover scene — the Badge Case unlocks the Hoenn badge row
-      on the Trainer Card, with a catch-up fallback for existing saves
-- [x] Elite Four rematches — after the Hoenn League win, every member fields a
-      rematch team with evolved rosters (Weavile, Dusknoir, Mismagius,
-      Froslass, Dragonite …); the engine locks were removed
-- [x] Hoenn Elite Four as a standalone Elite Four — first-battle intros now
-      recognise the two-region Champion instead of greeting a rookie
-- [x] PokéCom call texts (Steven, May, Wally, Scott, Mr. Stone) — canon pass
-      (no more "Norman's child", no move tutorials for a Champion) and a full
-      reflow of every call to the app window's real 192 px text width
-- [x] Gen 3 starters placed in the wild — Mudkip (Route 102), Treecko
-      (Petalburg Woods), Torchic (Route 113), each as a 1 % encounter
-- [x] Post-game gating rebuilt — "story complete" checks now use a dedicated
-      Hoenn Champion flag instead of the game-clear flag the player already
-      carries from Johto/Kanto (fixes the Devon Goods dead end, the S.S. Tidal
-      running from day one, Trainer Hill, Altering Cave, Trick House finale
-      and 30+ more spots)
-- [x] All Hoenn city marts stock the endgame lineup (Ultra Balls, Hyper/Max
-      Potions, Full Restores …) — you arrive as a Champion, shops act like it
-- [x] Pokémon Center heal animation restored in Hoenn (a sprite priority bug
-      hid the balls behind the map — Johto was unaffected)
-- [x] Badge count on the save screen now sums the whole career: Johto + Kanto
-      + Hoenn
-- [x] The bedroom wall map (and every {REGION} text) is location-aware — it
-      says Hoenn in Hoenn
-- [x] English branches repaired: STEVEN instead of TROY, MAY instead of
-      BRENDAN, ready for the English build
-- [x] Held-item parity: all Gym Leader rematch tiers and the Elite Four carry
-      six held items
-
-### In progress
-
-
-- [ ] Playtest pass through Hoenn — Dewford onward
-- [ ] Origin Jade credits — the official German Emerald left its credits in
-      English, so only the Origin Jade-specific credits remain to be decided
-
-### Planned: the full journey
-
-The long-term goal is to start the game in **Kanto**, in its first-generation
-form, and travel Kanto → Johto → Hoenn in that order — the route the anime
-takes.
-
-- [ ] Replace HnS's Kanto with the FRLG map (186 maps out, 260 in)
-- [ ] Restore FRLG wild encounter tables — currently almost entirely absent
-- [ ] Make all 151 Gen 1 species obtainable, no version exclusives
-- [ ] Join the maps at Route 22, the seam both regions already share
-- [ ] Indigo Plateau as one location with two states — Kanto league, then Johto
-- [ ] Extend flag storage into SaveBlock3 (around 12,500 spare flags available)
-- [ ] Prof. Elm's starter scene, rewritten for an arriving Kanto Champion
-- [ ] Raise Johto's level curve and team sizes to match
-- [ ] Steven's ticket chain, relocated onto the FRLG maps
-
-### Under consideration
-
-- [ ] Bigger trainer teams from Route 110/111 onward (more than three
-      Pokémon per trainer) so the mid-game doesn't rush by — deliberately
-      parked until the HnS full release, because the final level curve
-      decides whether longer fights at equal level feel right
-
-- [ ] Randomizer fine-tuning — the hook inventory is done and came back
-      clean (wild, trainer, gift, static and egg randomization all run
-      through central hooks, so Hoenn is covered); remaining checks are
-      whitelist coverage for species 252+ and the interaction order with
-      level scaling
-- [ ] Open sea routes between regions — custom surf routes with their own
-      maps, trainers and encounters connecting Cinnabar↔Lilycove and
-      Johto↔Hoenn, so the regions link up in the overworld instead of only
-      by ferry (prototype planned after the HnS full release)
-- [ ] More Gen 4 Pokémon — the engine already carries all Gen 4+ species
-      data; step one is enabling the remaining Gen 4 evolutions of older
-      lines (items + dex visibility), step two grows the Neu-Sinjoh area
-      with Sinnoh species; a full Platinum integration is out of scope
-- [ ] Trainer-defeat flags moved to spare save space — would lift the
-      7-free-trainer-ID limit and unlock full four-tier Elite Four ladders
-      without breaking saves by relayout
-
-- [ ] Four-tier Elite Four rematch ladders — currently one tier per member,
-      because only seven free trainer IDs remain before the trainer-flag
-      space overflows; a full ladder (20 IDs) needs a save-breaking flag
-      relayout, so it waits for a deliberate save-break window
-- [ ] Fifth badge-rematch tier colour on the Trainer Card (diamond palette)
-- [ ] Region name as a watermark in the map graphics
-- [ ] Default setting for the "Faster Joy" quick-heal option
-
-### Release tasks (done once the three-region rework is final)
-
-- [ ] Player documentation (HnS-style) — generated straight from the final
-      game code so it can't go stale: gameplay mechanics first (everything
-      pokeemerald-expansion changes versus classic Emerald — battle
-      mechanics, evolutions, items, abilities), then complete encounter,
-      gift, TM and trainer references for all regions
-
-### Held back until the HnS full release
-
-These are finished but not merged, to avoid conflicts with HnS's ongoing beta.
-
-- [ ] Steven's ticket chain in Vermilion, New Bark and Silph Co.
-- [ ] Remove Gen 3 species from Johto and Kanto (93 slots across 32 maps)
-- [ ] Fuchsia Safari Zone — switch to Gen 4, Cynthia in place of Steven
-
----
-
-## Credits
-
-This project stands on other people's work:
-
-- **[Pokémon HnS](https://github.com/PokemonHnS-Development/pokehns-expansion)**
-  — the Johto and Kanto foundation everything is built on
-- **[`hns_de`](https://github.com/helikoptermann843/hns_de)** — the German
-  localisation of HnS, and the source for the German text of Johto and Kanto
-- **[RHH's `pokeemerald-expansion`](https://github.com/rh-hideout/pokeemerald-expansion)**
-  — the engine and its hundreds of features
-- **[pret's `pokeemerald`](https://github.com/pret/pokeemerald)** — the
-  decompilation project that started it all
-
-```
-Based off RHH's pokeemerald-expansion https://github.com/rh-hideout/pokeemerald-expansion/
-```
-
-Everyone who contributed to the engine is listed in [`CREDITS.md`](CREDITS.md).
-
----
-
-## Legal
-
-Pokémon is a registered trademark of Nintendo, Game Freak and The Pokémon
-Company. This is a non-commercial fan project with no affiliation to the
-rights holders. **No ROM image is distributed** — the source is built locally.
+AI has not been used for:
+- Generating assets of any kind; Art or Music

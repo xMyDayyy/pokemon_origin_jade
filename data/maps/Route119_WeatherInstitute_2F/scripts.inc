@@ -131,10 +131,15 @@ Route119_WeatherInstitute_2F_EventScript_ScientistMentionWeather::
 	end
 
 Route119_WeatherInstitute_2F_EventScript_TryStartAbnormalWeather::
-	setvar VAR_0x8004, 0
-	call_if_set FLAG_DEFEATED_KYOGRE, Route119_WeatherInstitute_2F_EventScript_LegendaryDefeated
-	call_if_set FLAG_DEFEATED_GROUDON, Route119_WeatherInstitute_2F_EventScript_LegendaryDefeated
-	goto_if_eq VAR_0x8004, 2, Route119_WeatherInstitute_2F_EventScript_NoAbnormalWeather  @ Both defeated
+	@ Counts Kyogre and Groudon that cannot be met now (see docs/origin_jade/DECISIONS.md, D-026).
+	setvar VAR_0x8005, 0
+	setvar VAR_0x8004, LEGENDARY_KYOGRE
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	call_if_ne VAR_RESULT, TRUE, Route119_WeatherInstitute_2F_EventScript_LegendaryDefeated
+	setvar VAR_0x8004, LEGENDARY_GROUDON
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	call_if_ne VAR_RESULT, TRUE, Route119_WeatherInstitute_2F_EventScript_LegendaryDefeated
+	goto_if_eq VAR_0x8005, 2, Route119_WeatherInstitute_2F_EventScript_NoAbnormalWeather  @ Neither can be met
 	call_if_unset FLAG_TEMP_2, Route119_WeatherInstitute_2F_EventScript_CreateAbnormalWeather
 	specialvar VAR_RESULT, GetAbnormalWeatherMapNameAndType
 	goto_if_eq VAR_RESULT, 1, Route119_WeatherInstitute_2F_EventScript_KyogreWeather
@@ -153,7 +158,7 @@ Route119_WeatherInstitute_2F_EventScript_CreateAbnormalWeather::
 	return
 
 Route119_WeatherInstitute_2F_EventScript_LegendaryDefeated::
-	addvar VAR_0x8004, 1
+	addvar VAR_0x8005, 1
 	return
 
 Route119_WeatherInstitute_2F_EventScript_NoAbnormalWeather::

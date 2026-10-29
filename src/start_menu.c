@@ -52,6 +52,7 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "rtc.h"
+#include "constants/layouts.h"
 
 // Menu actions
 enum
@@ -185,7 +186,7 @@ static const u8 *const sPyramidFloorNames[FRONTIER_STAGES_PER_CHALLENGE + 1] =
 static const struct WindowTemplate sWindowTemplate_PyramidFloor = {
     .bg = 0,
     .tilemapLeft = 1,
-    .tilemapTop = 5,
+    .tilemapTop = 1,
     .width = 10,
     .height = 4,
     .paletteNum = 15,
@@ -195,7 +196,7 @@ static const struct WindowTemplate sWindowTemplate_PyramidFloor = {
 static const struct WindowTemplate sWindowTemplate_PyramidPeak = {
     .bg = 0,
     .tilemapLeft = 1,
-    .tilemapTop = 5,
+    .tilemapTop = 1,
     .width = 12,
     .height = 4,
     .paletteNum = 15,
@@ -392,7 +393,9 @@ static void BuildSafariZoneStartMenu(void)
 {
     AddStartMenuAction(MENU_ACTION_RETIRE_SAFARI);
     AddStartMenuAction(MENU_ACTION_POKEDEX);
+#if !IS_HNS
     AddStartMenuAction(MENU_ACTION_POKEMON);
+#endif
     AddStartMenuAction(MENU_ACTION_BAG);
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_OPTION);
@@ -465,7 +468,7 @@ static void ShowSafariBallsWindow(void)
     if (IS_FRLG)
     {
         ConvertIntToDecimalStringN(gStringVar1, gSafariZoneStepCounter, STR_CONV_MODE_RIGHT_ALIGN, 3);
-        ConvertIntToDecimalStringN(gStringVar2, 600, STR_CONV_MODE_RIGHT_ALIGN, 3);
+        ConvertIntToDecimalStringN(gStringVar2, SAFARI_ZONE_STEPS_FRLG, STR_CONV_MODE_RIGHT_ALIGN, 3);
         ConvertIntToDecimalStringN(gStringVar3, gNumSafariBalls, STR_CONV_MODE_RIGHT_ALIGN, 2);
         StringExpandPlaceholders(gStringVar4, gText_MenuSafariStats);
         AddTextPrinterParameterized(sSafariBallsWindowId, FONT_NORMAL, gStringVar4, 4, 3, 0xFF, NULL);
@@ -553,8 +556,11 @@ static void RemoveExtraStartMenuWindows(void)
         RemoveWindow(sBattlePyramidFloorWindowId);
     }
 
-    ClearStdWindowAndFrameToTransparent(sStartClockWindowId, FALSE);
-    RemoveWindow(sStartClockWindowId);
+    if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
+    {
+        ClearStdWindowAndFrameToTransparent(sStartClockWindowId, FALSE);
+        RemoveWindow(sStartClockWindowId);
+    }
 }
 
 static bool32 PrintStartMenuActions(s8 *pIndex, u32 count)
@@ -615,7 +621,8 @@ static bool32 InitStartMenuStep(void)
         sInitStartMenuData[0]++;
         break;
     case 4:
-        ShowTimeWindow();
+        if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
+            ShowTimeWindow();
         sInitStartMenuData[0]++;
         break;
     case 5:
@@ -753,8 +760,12 @@ static bool8 HandleStartMenuInput(void)
         return TRUE;
     }
 
-    RemoveExtraStartMenuWindows();
-    ShowTimeWindow();
+    if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
+    {
+        RemoveExtraStartMenuWindows();
+        ShowTimeWindow();
+    }
+
     return FALSE;
 }
 
@@ -1610,6 +1621,15 @@ static void HideStartMenuWindow(void)
 void HideStartMenu(void)
 {
     PlaySE(SE_SELECT);
+    // Sets VAR_TEMP_MTSILVER_RESUME_BLIZZARD_SE to 0 if the player is in Mt. Silver,
+    // which is used to restart the SE_Blizzard which is stopped after opening the menu.
+    // Ideal fix would be to create a new Background Music file of the Blizzard
+    // music or similar sound effect that doesn't stop when the menu is opened.
+    // WARNING: VAR_TEMP_MTSILVER_RESUME_BLIZZARD_SE should not be used for anything else
+    // in MAPSEC_MT_SILVER, as it will be set to 0 when the start menu is opened and closed.
+    // Check variable aliases in vars_hns.h to ensire temporary variable is not used for anything else.
+    if (gMapHeader.regionMapSectionId == MAPSEC_MT_SILVER && (gMapHeader.mapLayoutId == LAYOUT_MT_SILVER_SUMMIT_DAY_HNS || gMapHeader.mapLayoutId == LAYOUT_MT_SILVER_SUMMIT_NIGHT_HNS))
+        VarSet(VAR_TEMP_MTSILVER_RESUME_BLIZZARD_SE, 0);
     HideStartMenuWindow();
 }
 

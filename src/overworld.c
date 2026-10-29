@@ -1,6 +1,6 @@
 #include "global.h"
 #include "overworld.h"
-#include "hoenn_level_scaling.h"
+#include "level_scaling.h"
 #include "constants/heal_locations.h"
 #include "battle_pyramid.h"
 #include "battle_setup.h"
@@ -422,7 +422,7 @@ void Overworld_ResetStateAfterFly(void)
     FlagClear(FLAG_SYS_CYCLING_ROAD);
     FlagClear(FLAG_SYS_CRUISE_MODE);
     FlagClear(FLAG_SYS_SAFARI_MODE);
-#if IS_FRLG
+#if IS_FRLG || IS_HNS
     VarSet(VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 0);
 #endif
     FlagClear(FLAG_SYS_USE_STRENGTH);
@@ -435,7 +435,7 @@ void Overworld_ResetStateAfterTeleport(void)
     FlagClear(FLAG_SYS_CYCLING_ROAD);
     FlagClear(FLAG_SYS_CRUISE_MODE);
     FlagClear(FLAG_SYS_SAFARI_MODE);
-#if IS_FRLG
+#if IS_FRLG || IS_HNS
     VarSet(VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 0);
 #endif
     FlagClear(FLAG_SYS_USE_STRENGTH);
@@ -449,7 +449,7 @@ void Overworld_ResetStateAfterDigEscRope(void)
     FlagClear(FLAG_SYS_CYCLING_ROAD);
     FlagClear(FLAG_SYS_CRUISE_MODE);
     FlagClear(FLAG_SYS_SAFARI_MODE);
-#if IS_FRLG
+#if IS_FRLG || IS_HNS
     VarSet(VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 0);
 #endif
     FlagClear(FLAG_SYS_USE_STRENGTH);
@@ -486,7 +486,7 @@ static void Overworld_ResetStateAfterWhiteOut(void)
     FlagClear(FLAG_SYS_CYCLING_ROAD);
     FlagClear(FLAG_SYS_CRUISE_MODE);
     FlagClear(FLAG_SYS_SAFARI_MODE);
-#if IS_FRLG
+#if IS_FRLG || IS_HNS
     VarSet(VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 0);
 #endif
     FlagClear(FLAG_SYS_USE_STRENGTH);
@@ -506,7 +506,7 @@ static void Overworld_ResetStateAfterWhiteOut(void)
 static void UpdateMiscOverworldStates(void)
 {
     FlagClear(FLAG_SYS_SAFARI_MODE);
-#if IS_FRLG
+#if IS_FRLG || IS_HNS
     VarSet(VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 0);
 #endif
     ChooseAmbientCrySpecies();
@@ -783,9 +783,10 @@ void SetWarpDestinationToLastHealLocation(void)
         sWarpDestination = gSaveBlock1Ptr->lastHealLocation;
 
 #if IS_HNS
+    // Origin Jade: an empty respawn falls back to Pallet Town.
     if (sWarpDestination.mapGroup == 0 && sWarpDestination.mapNum == 0)
     {
-        const struct HealLocation *fallback = GetHealLocation(HEAL_LOCATION_NEW_BARK_TOWN_HNS);
+        const struct HealLocation *fallback = GetHealLocation(HEAL_LOCATION_PALLET_TOWN);
         if (fallback)
             SetWarpDestination(fallback->mapGroup, fallback->mapNum, WARP_ID_NONE, fallback->x, fallback->y);
     }
@@ -1350,9 +1351,10 @@ void Overworld_PlaySpecialMapMusic(void)
     if (gDisableMapMusicChangeOnMapLoad == MUSIC_DISABLE_KEEP)
         return;
 
-    if (IS_HNS && VarGet(VAR_TEMP_RADIO_MUSIC) != 0)
+    // Origin Jade: radio song, see gRadioMapMusic in src/event_data.c.
+    if (IS_HNS && gRadioMapMusic != 0)
     {
-        music = VarGet(VAR_TEMP_RADIO_MUSIC);
+        music = gRadioMapMusic;
     }
     else if (music != MUS_ABNORMAL_WEATHER && music != MUS_NONE)
     {
@@ -1787,7 +1789,10 @@ void UpdateTimeOfDay(void)
 
     if (IS_HNS)
     {
-        if (gTimeOfDay == TIME_NIGHT || gTimeOfDay == TIME_EVENING)
+        // HnS wild encounter tables only define Day and Night variants, so TIME_MORNING
+        // and TIME_EVENING both fall back to the Day table (OW_TIME_OF_DAY_FALLBACK).
+        // The overworld mons must swap on the same boundary, i.e. only at TIME_NIGHT.
+        if (gTimeOfDay == TIME_NIGHT)
         {
             FlagClear(FLAG_NIGHT_POKEMON);
             FlagSet(FLAG_DAY_POKEMON);
@@ -1803,6 +1808,13 @@ void UpdateTimeOfDay(void)
 #undef MORNING_HOUR_MIDDLE
 #undef TIME_BLEND_WEIGHT
 #undef DEFAULT_WEIGHT
+
+// The apparent hour of day, honouring the debug time-of-day override.
+u32 GetTimeOfDayHours(void)
+{
+    RtcCalcLocalTime();
+    return sHoursOverride ? sHoursOverride : gLocalTime.hours;
+}
 
 // Whether a map type is naturally lit/outside
 bool32 MapHasNaturalLight(enum MapType mapType)

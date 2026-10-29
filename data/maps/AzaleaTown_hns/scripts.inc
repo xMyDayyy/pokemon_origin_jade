@@ -159,9 +159,9 @@ AzaleaTown_EventScript_SilverTriggerTop::
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
 	msgbox AzaleaTown_Text_RivalBefore, MSGBOX_DEFAULT
 	closemessage
-	call_if_eq VAR_STARTER_MON, 0, AzaleaTown_Silver_Battle_Cyndaquil
-	call_if_eq VAR_STARTER_MON, 1, AzaleaTown_Silver_Battle_Totodile
-	call_if_eq VAR_STARTER_MON, 2, AzaleaTown_Silver_Battle_Chikorita
+	call_if_eq VAR_JOHTO_STARTER_MON, 0, AzaleaTown_Silver_Battle_Cyndaquil
+	call_if_eq VAR_JOHTO_STARTER_MON, 1, AzaleaTown_Silver_Battle_Totodile
+	call_if_eq VAR_JOHTO_STARTER_MON, 2, AzaleaTown_Silver_Battle_Chikorita
 	msgbox AzaleaTown_Text_RivalAfter, MSGBOX_DEFAULT
 	closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, AzaleaTown_Movement_Player_LeaveTop
@@ -186,9 +186,9 @@ AzaleaTown_EventScript_SilverTriggerBot::
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
 	msgbox AzaleaTown_Text_RivalBefore, MSGBOX_DEFAULT
 	closemessage
-	call_if_eq VAR_STARTER_MON, 0, AzaleaTown_Silver_Battle_Cyndaquil
-	call_if_eq VAR_STARTER_MON, 1, AzaleaTown_Silver_Battle_Totodile
-	call_if_eq VAR_STARTER_MON, 2, AzaleaTown_Silver_Battle_Chikorita
+	call_if_eq VAR_JOHTO_STARTER_MON, 0, AzaleaTown_Silver_Battle_Cyndaquil
+	call_if_eq VAR_JOHTO_STARTER_MON, 1, AzaleaTown_Silver_Battle_Totodile
+	call_if_eq VAR_JOHTO_STARTER_MON, 2, AzaleaTown_Silver_Battle_Chikorita
 	playbgm MUS_HG_RIVAL_EXIT, FALSE
 	msgbox AzaleaTown_Text_RivalAfter, MSGBOX_DEFAULT
 	closemessage

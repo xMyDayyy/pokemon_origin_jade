@@ -204,32 +204,26 @@ Route101_Movement_Unused2:
 	step_end
 
 #if IS_HNS
-@ Kurz vor dem Nordausgang nach Rosaltstadt meldet sich Troy und erklaert
-@ die Hoenner Lizenzpflicht - der Spieler soll wissen, warum er trotz
-@ 16 Orden nicht einfach lossurfen kann. Vier Triggerfelder decken den
-@ gesamten Korridor ab, der Ausgang ist damit nicht zu umgehen.
+@ Steven's call about Hoenn's HM licenses, from four trigger tiles at the north exit.
 Route101_EventScript_TroyLicenseCall::
 	lockall
 	setvar VAR_HOENN_ARRIVAL_STATE, 5
 	pokenavcall Route101_Text_TroyLicenseCall
-	@ waitmessage wartet bereits, bis der Anruf komplett abgebaut ist
-	@ (Task_HidePokenavMessageWhenDone). Ein zusaetzliches delay sperrt
-	@ die Steuerung danach nur unnoetig weiter.
 	waitmessage
 	releaseall
 	end
 
 Route101_Text_TroyLicenseCall:
 #if GERMAN
-	.string "Troy: Hallo, {PLAYER}! Prof. Birk hat\n"
-	.string "mir gesagt, dass du in Hoenn\l"
+	.string "Troy: Hallo, {PLAYER}! Prof. Birk\n"
+	.string "hat mir gesagt, dass du in Hoenn\l"
 	.string "angekommen bist.\p"
 	.string "Eine Sache, die für deine Reise\n"
 	.string "wichtig ist: Um VMs draußen\l"
 	.string "einsetzen zu können, brauchst du\l"
 	.string "die jeweilige Erlaubnis dazu.\p"
-	.string "Du wirst schon herausfinden, wo du\n"
-	.string "sie herbekommst.\p"
+	.string "Du wirst schon herausfinden, wo\n"
+	.string "du sie herbekommst.\p"
 	.string "Bis bald!$"
 #else
 	.string "STEVEN: Hello, {PLAYER}! PROF.\n"
@@ -246,8 +240,6 @@ Route101_Text_TroyLicenseCall:
 
 Route101_EventScript_Youngster::
 #if IS_HNS
-	@ HnS: Der Spieler kommt als Fremder aus Johto/Kanto - der Hinweis auf das
-	@ naechstgelegene Pokémon-Center passt nicht mehr zu einem Champion.
 	msgbox Route101_Text_HoennStrangerWarning, MSGBOX_NPC
 	end
 #endif

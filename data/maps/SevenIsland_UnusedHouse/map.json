@@ -1,7 +1,7 @@
 {
   "id": "MAP_SEVEN_ISLAND_UNUSED_HOUSE",
   "name": "SevenIsland_UnusedHouse",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_HOUSE4_FRLG",
   "music": "MUS_RG_SEVII_67",
   "region": "REGION_KANTO",

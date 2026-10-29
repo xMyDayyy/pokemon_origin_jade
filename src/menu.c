@@ -6,6 +6,7 @@
 #include "event_data.h"
 #include "field_name_box.h"
 #include "hoenn_badges.h"
+#include "johto_badges.h"
 #include "field_weather.h"
 #include "gpu_regs.h"
 #include "graphics.h"
@@ -1919,11 +1920,7 @@ void BufferSaveMenuText(u8 textId, u8 *dest, u8 color)
     case SAVE_MENU_BADGES:
 #if IS_HNS
     {
-        // Origin Jade: Gesamtkarriere zaehlen - Johto (01-08), Kanto (09-16)
-        // und die Hoenn-Orden aus VAR_HOENN_BADGES. Achtung: NUM_BADGES ist
-        // unter HnS bereits 16 (flags_hns.h) - der erste Wurf zaehlte damit
-        // die Kanto-Flags doppelt (Discord-Report "26 statt 18"). Daher eine
-        // Schleife mit expliziten Grenzen.
+        // Origin Jade: badge flags 01-16 plus the Johto and Hoenn badge counts.
         u8 badgeCount = 0;
 
         for (curFlag = FLAG_BADGE01_GET; curFlag <= FLAG_BADGE16_GET; curFlag++)
@@ -1931,6 +1928,7 @@ void BufferSaveMenuText(u8 textId, u8 *dest, u8 color)
             if (FlagGet(curFlag))
                 badgeCount++;
         }
+        badgeCount += GetJohtoBadgeCount();
         badgeCount += GetHoennBadgeCount();
 
         string = ConvertIntToDecimalStringN(string, badgeCount, STR_CONV_MODE_LEADING_ZEROS, 2);

@@ -15,7 +15,8 @@ PewterCity_Gym_EventScript_DefeatedBrock::
 	setflag FLAG_BADGE01_GET
 	setvar VAR_MAP_SCENE_PEWTER_CITY, 1
 	setflag FLAG_HIDE_PEWTER_CITY_GYM_GUIDE
-	clearflag FLAG_HIDE_PEWTER_CITY_RUNNING_SHOES_GUY
+	@ Origin Jade: the Running Shoes aide stays hidden.
+	@ clearflag FLAG_HIDE_PEWTER_CITY_RUNNING_SHOES_GUY
 	set_gym_trainers_frlg 1
 	goto PewterCity_Gym_EventScript_GiveTM39
 	end
@@ -26,6 +27,8 @@ PewterCity_Gym_EventScript_GiveTM39::
 	goto_if_eq VAR_RESULT, FALSE, PewterCity_Gym_EventScript_NoRoomForTM39
 	giveitem_msg PewterCity_Gym_Text_ReceivedTM39FromBrock, ITEM_TM39
 	setflag FLAG_GOT_TM39_FROM_BROCK
+	special CheckTMsReusable
+	goto_if_eq VAR_RESULT, TRUE, PewterCity_Gym_EventScript_ExplainTM39Reusable
 	msgbox PewterCity_Gym_Text_ExplainTM39
 	release
 	end
@@ -91,7 +94,7 @@ PewterCity_Gym_Text_BrockIntro::
 	.string "Deshalb trainiere ich Stein-Pokémon!\p"
 	.string "Willst du es noch immer mit mir\n"
 	.string "aufnehmen?\p"
-	.string "O.k.! Zeige mir, wie gut du bist!{PLAY_BGM}?À$"
+	.string "O.k.! Zeige mir, wie gut du bist!$"
 #else
 	.string "So, you're here. I'm BROCK.\n"
 	.string "I'm PEWTER's GYM LEADER.\p"
@@ -330,5 +333,31 @@ PewterCity_Gym_Text_GymStatuePlayerWon::
 	.string "LEADER: BROCK\p"
 	.string "WINNING TRAINERS:\n"
 	.string "{RIVAL}, {PLAYER}$"
+#endif
+
+PewterCity_Gym_EventScript_ExplainTM39Reusable::
+	msgbox PewterCity_Gym_Text_ExplainTM39NoLimit
+	release
+	end
+
+@ PewterCity_Gym_Text_ExplainTM39 without the single-use paragraph; keep in sync.
+PewterCity_Gym_Text_ExplainTM39NoLimit::
+#if GERMAN
+	.string "Eine TM enthält Attacken, die\n"
+	.string "Pokémon erlernen können!\p"
+	.string "TM39 ist Felsgrab!\p"
+	.string "Der Gegner wird mit Felsen beworfen und\n"
+	.string "unter ihnen begraben.\l"
+	.string "Der INIT.-Wert des Gegners wird\l"
+	.string "zugleich gesenkt!$"
+#else
+	.string "A TM, Technical Machine, contains a\n"
+	.string "technique for POKéMON.\p"
+	.string "Using a TM teaches the move it\n"
+	.string "contains to a POKéMON.\p"
+	.string "Anyways…\n"
+	.string "TM39 contains ROCK TOMB.\p"
+	.string "It hurls boulders at the foe and\n"
+	.string "lowers their SPEED!$"
 #endif
 

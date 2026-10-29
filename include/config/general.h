@@ -87,4 +87,10 @@
 // Naming Screen
 #define AUTO_LOWERCASE_KEYBOARD      GEN_3  // Starting in GEN_6, after entering the first uppercase character, the keyboard switches to lowercase letters.
 
+// Origin Jade
+// TRUE enables the Sinjoh bonus content: Meara in the Mt. Silver Pokémon Center
+// and the Azure Flute on Mt. Silver 2F, which open the way to Snowswept Cavern,
+// New Sinjoh and the Sinjoh Ruins. Also works in existing saves.
+#define SINJOH_CONTENT_AVAILABLE     FALSE
+
 #endif // GUARD_CONFIG_GENERAL_H

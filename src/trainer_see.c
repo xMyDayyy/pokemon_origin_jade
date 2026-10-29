@@ -594,7 +594,7 @@ static u8 CheckTrainer(u8 objectEventId)
         if (GetTrainerFlagFromScriptPointer(trainerBattlePtr))
         {
             //If there is a rematch, we want to trigger the approach sequence
-            if (I_VS_SEEKER_CHARGING && GetRematchFromScriptPointer(trainerBattlePtr))
+            if (I_VS_SEEKER_CHARGING && GetRematchFromScriptPointer(trainerBattlePtr, objectEventId))
             {
                 trainerBattlePtr = NULL;
                 numTrainers = 0xFF;

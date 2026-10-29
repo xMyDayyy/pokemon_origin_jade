@@ -29,8 +29,6 @@ PetalburgCity_PokemonCenter_1F_EventScript_Woman::
 	faceplayer
 	msgbox PetalburgCity_PokemonCenter_1F_Text_ManyTypesOfPokemon, MSGBOX_DEFAULT
 #if IS_HNS
-	@ Der angehaengte Typen-Vortrag ueber das Starterpokemon ist ein
-	@ Anfaengertext und entfaellt - die Frau erzaehlt nur ihr Geruecht.
 	release
 	end
 #endif

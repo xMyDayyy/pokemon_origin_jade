@@ -1,7 +1,7 @@
 {
   "id": "MAP_MT_EMBER_RUBY_PATH_B2F_STAIRS",
   "name": "MtEmber_RubyPath_B2F_Stairs_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_MT_EMBER_RUBY_PATH_B2F_STAIRS",
   "music": "MUS_RG_SEVII_CAVE",
   "region": "REGION_KANTO",

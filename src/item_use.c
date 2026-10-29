@@ -24,6 +24,7 @@
 #include "item.h"
 #include "item_menu.h"
 #include "item_use.h"
+#include "level_scaling.h"
 #include "mail.h"
 #include "main.h"
 #include "menu.h"
@@ -35,6 +36,7 @@
 #include "party_menu.h"
 #include "pokeblock.h"
 #include "pokemon.h"
+#include "regions.h"
 #include "script.h"
 #include "sound.h"
 #include "strings.h"
@@ -46,6 +48,7 @@
 #include "constants/event_objects.h"
 #include "constants/item_effects.h"
 #include "constants/items.h"
+#include "constants/maps.h"
 #include "constants/songs.h"
 #include "nuzlocke.h"
 
@@ -242,6 +245,30 @@ static void Task_PartyMenuItemUseFromField(u8 taskId)
     }
 }
 
+// Cannot-use text of the current map: Oak on FRLG Kanto maps, Dad in Hoenn, Elm in
+// Johto (HnS maps and the Kampfzone with its Artisan Cave, see
+// docs/origin_jade/DECISIONS.md, D-030).
+static const u8 *GetCannotUseItemText(void)
+{
+#if IS_HNS
+    u32 mapsec = gMapHeader.regionMapSectionId;
+
+    if (IsHoennMapsec(mapsec))
+        return gText_DadsAdvice;
+    // Emerald and FRLG maps come after HnS's in data/maps/map_groups.json.
+    if (gSaveBlock1Ptr->location.mapGroup >= MAP_GROUP(MAP_LITTLEROOT_TOWN)
+     && mapsec != MAPSEC_BATTLE_FRONTIER)
+    {
+        if (GetCurrentRegion() == REGION_KANTO)
+            return gText_OaksAdvice;
+        return gText_DadsAdvice;
+    }
+    return gText_ElmsAdvice;
+#else
+    return gText_DadsAdvice;
+#endif
+}
+
 static void DisplayCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField, const u8 *str)
 {
     StringExpandPlaceholders(gStringVar4, str);
@@ -250,7 +277,7 @@ static void DisplayCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyIte
         if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
             DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
         else
-            DisplayItemMessageInBattlePyramid(taskId, gText_DadsAdvice, Task_CloseBattlePyramidBagMessage);
+            DisplayItemMessageInBattlePyramid(taskId, GetCannotUseItemText(), Task_CloseBattlePyramidBagMessage);
     }
     else
     {
@@ -260,7 +287,7 @@ static void DisplayCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyIte
 
 void DisplayDadsAdviceCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField)
 {
-    DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, gText_DadsAdvice);
+    DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, GetCannotUseItemText());
 }
 
 static void DisplayCannotDismountBikeMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField)
@@ -432,7 +459,7 @@ static void ItemUseOnFieldCB_Itemfinder(u8 taskId)
         if (!TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING) && !TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_UNDERWATER))
             gTasks[taskId].func = Task_UseORASDowsingMachine;
         else
-            DisplayItemMessageOnField(taskId, gText_DadsAdvice, Task_CloseItemfinderMessage);
+            DisplayItemMessageOnField(taskId, GetCannotUseItemText(), Task_CloseItemfinderMessage);
     }
     else
     {
@@ -1380,15 +1407,17 @@ bool32 CannotUseItemsInBattle(enum Item itemId, struct Pokemon *mon)
     u32 i, battlerTarget;
     u16 hp = GetMonData(mon, MON_DATA_HP);
 
+    // The in-battle party menu reorders the party into battle order, so slots 0
+    // and 1 are the mons currently on the field. Any other slot isn't battling.
     if (gPartyMenu.slotId == 0)
-        battlerTarget = B_POSITION_PLAYER_LEFT;
-    else if (gPartyMenu.slotId == 1)
-        battlerTarget = B_POSITION_PLAYER_RIGHT;
+        battlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+    else if (gPartyMenu.slotId == 1 && IsDoubleBattle())
+        battlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
     else
-        battlerTarget = MAX_POSITION_COUNT;
+        battlerTarget = MAX_BATTLERS_COUNT;
 
     // Embargo Check
-    if (battlerTarget < MAX_POSITION_COUNT && GetItemType(itemId) != ITEM_USE_BAG_MENU)
+    if (battlerTarget < MAX_BATTLERS_COUNT && GetItemType(itemId) != ITEM_USE_BAG_MENU)
     {
         if (gBattleMons[battlerTarget].volatiles.embargo)
             return TRUE;
@@ -1398,13 +1427,13 @@ bool32 CannotUseItemsInBattle(enum Item itemId, struct Pokemon *mon)
     switch (battleUsage)
     {
     case EFFECT_ITEM_INCREASE_STAT:
-        if (hp == 0 || gPartyMenu.slotId > 1)
+        if (hp == 0 || battlerTarget >= MAX_BATTLERS_COUNT)
             cannotUse = TRUE;
         else if (CompareStat(battlerTarget, GetItemEffect(itemId)[1], MAX_STAT_STAGE, CMP_EQUAL, GetBattlerAbility(battlerTarget)))
             cannotUse = TRUE;
         break;
     case EFFECT_ITEM_SET_FOCUS_ENERGY:
-        if (hp == 0 ||gPartyMenu.slotId > 1)
+        if (hp == 0 || battlerTarget >= MAX_BATTLERS_COUNT)
             cannotUse = TRUE;
         else if (gBattleMons[battlerTarget].volatiles.dragonCheer || gBattleMons[battlerTarget].volatiles.focusEnergy)
             cannotUse = TRUE;
@@ -1456,7 +1485,7 @@ bool32 CannotUseItemsInBattle(enum Item itemId, struct Pokemon *mon)
         break;
     case EFFECT_ITEM_INCREASE_ALL_STATS:
     {
-        if (hp == 0 || gPartyMenu.slotId > 1)
+        if (hp == 0 || battlerTarget >= MAX_BATTLERS_COUNT)
         {
             cannotUse = TRUE;
             break;
@@ -1521,8 +1550,13 @@ bool32 CannotUseItemsInBattle(enum Item itemId, struct Pokemon *mon)
 
 void ItemUseInBattle_BagMenu(u8 taskId)
 {
-    gPartyMenu.slotId = gBattleStruct->itemPartyIndex[gBattlerInMenuId] = gBattlerPartyIndexes[gBattlerInMenuId];
-    if (CannotUseItemsInBattle(gSpecialVar_ItemId, NULL))
+    u32 partyIndex = gBattlerPartyIndexes[gBattlerInMenuId];
+
+    gBattleStruct->itemPartyIndex[gBattlerInMenuId] = partyIndex;
+    // slotId is a battle-order slot, not a party index: the mon in the menu is
+    // only in party slot 0 until the player switches something else in.
+    gPartyMenu.slotId = GetPartyIdFromBattlePartyId(partyIndex);
+    if (CannotUseItemsInBattle(gSpecialVar_ItemId, &gPlayerParty[partyIndex]))
     {
         if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
             DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
@@ -1624,7 +1658,6 @@ void Task_UseHoneyOnField(u8 taskId)
 
 static void ItemUseOnFieldCB_Honey(u8 taskId)
 {
-    Overworld_ResetStateAfterDigEscRope();
     RemoveBagItem(gSpecialVar_ItemId, 1);
     CopyItemName(gSpecialVar_ItemId, gStringVar2);
     StringExpandPlaceholders(gStringVar4, gText_PlayerUsedVar2);
@@ -1634,9 +1667,7 @@ static void ItemUseOnFieldCB_Honey(u8 taskId)
 void ItemUseOutOfBattle_Honey(u8 taskId)
 {
     sItemUseOnFieldCB = ItemUseOnFieldCB_Honey;
-    gFieldCallback = FieldCB_UseItemOnField;
-    gBagMenu->newScreenCallback = CB2_ReturnToField;
-    Task_FadeAndCloseBagMenu(taskId);
+    SetUpItemUseOnFieldCallback(taskId);
 }
 
 void ItemUseOutOfBattle_InfiniteRareCandies(u8 taskId)
@@ -1674,6 +1705,8 @@ static void Task_UseGBPlayer(u8 taskId)
         if (FlagGet(FLAG_SYS_GBS_ENABLED))
         {
             FlagClear(FLAG_SYS_GBS_ENABLED);
+            // GBS leaves NR50 turned down; nothing else ever puts it back.
+            RestorePSGMasterVolume();
             text = gText_GBPlayerOff;
         }
         else

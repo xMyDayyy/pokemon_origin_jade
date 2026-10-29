@@ -477,6 +477,8 @@ PalletTown_ProfessorOaksLab_EventScript_EndRivalBattle::
 	fadedefaultbgm
 	setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 4
 	setflag FLAG_BEAT_RIVAL_IN_OAKS_LAB
+	@ Origin Jade: enable Daisy's scene in her house.
+	setvar VAR_MAP_SCENE_PALLET_TOWN_RIVALS_HOUSE, 1
 	releaseall
 	end
 
@@ -567,6 +569,9 @@ PalletTown_ProfessorOaksLab_EventScript_RivalChoseStarter::
 PalletTown_ProfessorOaksLab_EventScript_ProfOak::
 	lock
 	faceplayer
+	@ Keep the GS Ball checks before the Dex rating.
+	goto_if_eq VAR_JOHTO_HANDOVER, 1, PalletTown_ProfessorOaksLab_EventScript_GiveGsBall
+	goto_if_eq VAR_JOHTO_HANDOVER, 2, PalletTown_ProfessorOaksLab_EventScript_GsBallReminder
 	goto_if_set SHOWED_OAK_COMPLETE_DEX, PalletTown_ProfessorOaksLab_EventScript_OakJustShownCompleteDex
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 9, PalletTown_ProfessorOaksLab_EventScript_RatePokedex
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 8, PalletTown_ProfessorOaksLab_EventScript_MonsAroundWorldWait
@@ -577,6 +582,31 @@ PalletTown_ProfessorOaksLab_EventScript_ProfOak::
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 4, PalletTown_ProfessorOaksLab_EventScript_OakBattleMonForItToGrow
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 3, PalletTown_ProfessorOaksLab_EventScript_OakCanReachNextTownWithMon
 	msgbox PalletTown_ProfessorOaksLab_Text_OakWhichOneWillYouChoose
+	release
+	end
+
+PalletTown_ProfessorOaksLab_EventScript_GiveGsBall::
+	msgbox PalletTown_ProfessorOaksLab_Text_OakGsBallIntro
+	checkitemspace ITEM_GS_BALL
+	goto_if_eq VAR_RESULT, FALSE, PalletTown_ProfessorOaksLab_EventScript_GsBallNoRoom
+	giveitem_msg PalletTown_ProfessorOaksLab_Text_ReceivedGsBall, ITEM_GS_BALL
+	msgbox PalletTown_ProfessorOaksLab_Text_OakGsBallMission
+	msgbox PalletTown_ProfessorOaksLab_Text_OakJohtoDex
+	playfanfare MUS_OBTAIN_ITEM
+	message PalletTown_ProfessorOaksLab_Text_JohtoDexUpgrade
+	waitfanfare
+	closemessage
+	setvar VAR_JOHTO_HANDOVER, 2
+	release
+	end
+
+PalletTown_ProfessorOaksLab_EventScript_GsBallNoRoom::
+	msgbox PalletTown_ProfessorOaksLab_Text_OakGsBallNoRoom
+	release
+	end
+
+PalletTown_ProfessorOaksLab_EventScript_GsBallReminder::
+	msgbox PalletTown_ProfessorOaksLab_Text_OakGsBallReminder
 	release
 	end
 
@@ -654,6 +684,11 @@ PalletTown_ProfessorOaksLab_EventScript_ReceiveDexScene::
 	waitfanfare
 	call EventScript_RestorePrevTextColor
 	setflag FLAG_SYS_POKEDEX_GET
+	@ Origin Jade: the journey starts here.
+	setflag FLAG_ADVENTURE_STARTED
+	setflag FLAG_START_NUZLOCKE
+	@ Origin Jade: the Dex runs in national mode from the start.
+	special EnableNationalPokedex
 	special SetUnlockedPokedexFlags
 	setvar VAR_MAP_SCENE_POKEMON_CENTER_TEALA, 1
 	msgbox PalletTown_ProfessorOaksLab_Text_OakCatchMonsForDataTakeThese
@@ -1080,6 +1115,9 @@ PalletTown_ProfessorOaksLab_EventScript_BulbasaurBall::
 PalletTown_ProfessorOaksLab_EventScript_ConfirmStarterChoice::
 	applymovement LOCALID_OAKS_LAB_PROF_OAK, Common_Movement_FaceRight
 	waitmovement 0
+	@ The preview rolls its shiny state per VAR_STARTER_MON (ScrCmd_showmonpic);
+	@ GiveStarter hands out the same state.
+	copyvar VAR_STARTER_MON, PLAYER_STARTER_NUM
 	showmonpic PLAYER_STARTER_SPECIES, 10, 3
 	textcolor NPC_TEXT_COLOR_MALE
 	goto_if_eq PLAYER_STARTER_NUM, 0, PalletTown_ProfessorOaksLab_EventScript_ConfirmBulbasaur
@@ -1117,7 +1155,7 @@ PalletTown_ProfessorOaksLab_EventScript_ChoseStarter::
 	call EventScript_RestorePrevTextColor
 	setflag FLAG_SYS_POKEMON_GET
 	setflag FLAG_PALLET_LADY_NOT_BLOCKING_SIGN
-	givemon PLAYER_STARTER_SPECIES, 5
+	call PalletTown_ProfessorOaksLab_EventScript_GiveStarter
 	copyvar VAR_STARTER_MON, PLAYER_STARTER_NUM
 	bufferspeciesname STR_VAR_1, PLAYER_STARTER_SPECIES
 	message PalletTown_ProfessorOaksLab_Text_ReceivedMonFromOak
@@ -1128,6 +1166,29 @@ PalletTown_ProfessorOaksLab_EventScript_ChoseStarter::
 	goto_if_eq VAR_RESULT, YES, EventScript_GiveNicknameToStarter
 	goto_if_eq VAR_RESULT, NO, PalletTown_ProfessorOaksLab_EventScript_RivalPicksStarter
 	end
+
+@ Shiny exactly when the preview was (FLAG_SHINY_STARTER_1-3 for ball 0-2).
+PalletTown_ProfessorOaksLab_EventScript_GiveStarter::
+	goto_if_eq PLAYER_STARTER_NUM, 1, PalletTown_ProfessorOaksLab_EventScript_GiveStarter2
+	goto_if_eq PLAYER_STARTER_NUM, 2, PalletTown_ProfessorOaksLab_EventScript_GiveStarter3
+	goto_if_set FLAG_SHINY_STARTER_1, PalletTown_ProfessorOaksLab_EventScript_GiveStarterShiny
+	goto PalletTown_ProfessorOaksLab_EventScript_GiveStarterNotShiny
+
+PalletTown_ProfessorOaksLab_EventScript_GiveStarter2::
+	goto_if_set FLAG_SHINY_STARTER_2, PalletTown_ProfessorOaksLab_EventScript_GiveStarterShiny
+	goto PalletTown_ProfessorOaksLab_EventScript_GiveStarterNotShiny
+
+PalletTown_ProfessorOaksLab_EventScript_GiveStarter3::
+	goto_if_set FLAG_SHINY_STARTER_3, PalletTown_ProfessorOaksLab_EventScript_GiveStarterShiny
+	goto PalletTown_ProfessorOaksLab_EventScript_GiveStarterNotShiny
+
+PalletTown_ProfessorOaksLab_EventScript_GiveStarterShiny::
+	givemon PLAYER_STARTER_SPECIES, 5, ITEM_NONE, BALL_POKE, NATURE_RANDOM, NUM_ABILITY_PERSONALITY, MON_GENDER_RANDOM, 0, 0, 0, 0, 0, 0, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT, SHINY_MODE_ALWAYS
+	return
+
+PalletTown_ProfessorOaksLab_EventScript_GiveStarterNotShiny::
+	givemon PLAYER_STARTER_SPECIES, 5, ITEM_NONE, BALL_POKE, NATURE_RANDOM, NUM_ABILITY_PERSONALITY, MON_GENDER_RANDOM, 0, 0, 0, 0, 0, 0, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT, SHINY_MODE_NEVER
+	return
 
 EventScript_GiveNicknameToStarter::
 	setvar VAR_0x8004, 0
@@ -1170,6 +1231,9 @@ PalletTown_ProfessorOaksLab_EventScript_RivalTakesStarter::
 	waitmessage
 	playfanfare MUS_RG_OBTAIN_KEY_ITEM
 	waitfanfare
+	@ Origin Jade: Daisy goes home after the starter handover.
+	setflag FLAG_HIDE_PALLET_HOUSE_DAISY
+	clearflag FLAG_HIDE_RIVALS_HOUSE_DAISY
 	setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 3
 	call_if_set FLAG_OPENED_START_MENU, PalletTown_ProfessorOaksLab_EventScript_ReadyEndSignLadyScene
 	release
@@ -1435,19 +1499,13 @@ PalletTown_ProfessorOaksLab_Text_RivalTellSisNotToGiveYouMap::
 #if GERMAN
 	.string "{PLAYER}, es tut mir Leid, aber ich\n"
 	.string "brauche deine Hilfe nicht!\p"
-	.string "Genau! Ich leihe mir von meiner\n"
-	.string "Schwester eine Karte!\p"
-	.string "Und dir soll sie keine geben, {PLAYER}!\n"
+	.string "Ich schaffe das schon allein!\n"
 	.string "Hahaha!$"
 #else
 	.string "{PLAYER}, I hate to say it, but you\n"
 	.string "won't be necessary for this.\p"
-	.string "I know! I'll borrow a TOWN MAP\n"
-	.string "from my sis!\p"
-	.string "I'll tell her not to lend you one,\n"
-	.string "{PLAYER}! Hahaha!\p"
-	.string "Don't bother coming around to\n"
-	.string "my place after this!$"
+	.string "I'll manage on my own!\n"
+	.string "Hahaha!$"
 #endif
 
 PalletTown_ProfessorOaksLab_Text_OakThreeMonsChooseOne::
@@ -1491,6 +1549,108 @@ PalletTown_ProfessorOaksLab_Text_OakBePatientRival::
 #else
 	.string "OAK: Be patient, {RIVAL}.\n"
 	.string "You can have one, too!$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakGsBallIntro::
+#if GERMAN
+	.string "Eich: Da bist du ja, {PLAYER}!\p"
+	.string "Ich habe hier etwas, das mir seit\n"
+	.string "Wochen keine Ruhe lässt.\p"
+	.string "Ein Kollege aus Johto hat ihn mir\n"
+	.string "geschickt. Sieh ihn dir an.$"
+#else
+	.string "OAK: There you are, {PLAYER}!\p"
+	.string "I have something here that has kept\n"
+	.string "me awake for weeks.\p"
+	.string "A colleague in JOHTO sent it to me.\n"
+	.string "See for yourself.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_ReceivedGsBall::
+#if GERMAN
+	.string "{PLAYER} erhält den GS-Ball!$"
+#else
+	.string "{PLAYER} received the GS BALL!$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakGsBallMission::
+#if GERMAN
+	.string "Er lässt sich nicht öffnen, und\n"
+	.string "kein Gerät von mir erkennt, was\l"
+	.string "darin steckt.\p"
+	.string "In Neuborkia in Johto forscht\n"
+	.string "Professor Lind. Er kennt sich mit\l"
+	.string "solchen Bällen besser aus als ich.\p"
+	.string "Bring ihn zu ihm, {PLAYER}.\p"
+	.string "Im Süden von Route 23 kommst du\n"
+	.string "nach Johto.\p"
+	.string "Ich weiß, dass ich viel verlange.\n"
+	.string "Aber es gibt niemanden, dem ich\l"
+	.string "das lieber anvertrauen würde.$"
+#else
+	.string "It will not open, and none of my\n"
+	.string "instruments can tell what is inside.\p"
+	.string "PROF. ELM does his research in\n"
+	.string "NEW BARK TOWN, in JOHTO. He knows\l"
+	.string "far more about such BALLS than I do.\p"
+	.string "Take it to him, {PLAYER}.\p"
+	.string "Head south from ROUTE 23 and you\n"
+	.string "will reach JOHTO.\p"
+	.string "I know this is a great deal to ask.\n"
+	.string "But there is no one I would rather\l"
+	.string "entrust it to.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakJohtoDex:
+#if GERMAN
+	.string "Eines noch. Gib mir deinen Pokédex.\p"
+	.string "Johto hat Arten, die es hier nicht\n"
+	.string "gibt. Dein Gerät kennt sie nicht.\p"
+	.string "So… fertig.\p"
+	.string "Jetzt zählt er auch, was dir drüben\n"
+	.string "begegnet.\p"
+	.string "Wäre ja gelacht, wenn ich das nicht\n"
+	.string "hinbekäme.$"
+#else
+	.string "One more thing. Give me your POKéDEX.\p"
+	.string "JOHTO has species we do not have\n"
+	.string "here. Your device does not know them.\p"
+	.string "There… done.\p"
+	.string "Now it counts what you meet over\n"
+	.string "there as well.\p"
+	.string "It would be a poor show if I could\n"
+	.string "not manage that.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_JohtoDexUpgrade:
+#if GERMAN
+	.string "Der Pokédex von {PLAYER} wurde für\n"
+	.string "Johto erweitert!$"
+#else
+	.string "{PLAYER}'s POKéDEX was upgraded\n"
+	.string "for JOHTO!$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakGsBallNoRoom::
+#if GERMAN
+	.string "Eich: In deinem Beutel ist kein\n"
+	.string "Platz mehr. Räum erst auf.$"
+#else
+	.string "OAK: There is no room left in your\n"
+	.string "BAG. Make some space first.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakGsBallReminder::
+#if GERMAN
+	.string "Eich: Professor Lind wartet in\n"
+	.string "Neuborkia auf den GS-Ball.\p"
+	.string "Im Süden von Route 23 geht es\n"
+	.string "hinüber.$"
+#else
+	.string "OAK: PROF. ELM is waiting for the\n"
+	.string "GS BALL in NEW BARK TOWN.\p"
+	.string "Head south from ROUTE 23 and you\n"
+	.string "will get there.$"
 #endif
 
 PalletTown_ProfessorOaksLab_Text_OakWhichOneWillYouChoose::

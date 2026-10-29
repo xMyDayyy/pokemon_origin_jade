@@ -1,7 +1,7 @@
 {
   "id": "MAP_CINNABAR_ISLAND_POKEMON_LAB_ENTRANCE",
   "name": "CinnabarIsland_PokemonLab_Entrance_Frlg",
-  "game_version": "frlg",
+  "game_version": "hns",
   "layout": "LAYOUT_CINNABAR_ISLAND_POKEMON_LAB_ENTRANCE",
   "music": "MUS_RG_CINNABAR",
   "region": "REGION_KANTO",

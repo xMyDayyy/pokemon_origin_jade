@@ -1,7 +1,7 @@
 {
   "id": "MAP_ONE_ISLAND_HARBOR",
   "name": "OneIsland_Harbor_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_ISLAND_HARBOR_FRLG",
   "music": "MUS_RG_SEVII_123",
   "region": "REGION_KANTO",

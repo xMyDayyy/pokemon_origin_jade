@@ -1,7 +1,7 @@
 {
   "id": "MAP_SEVEN_ISLAND_HARBOR",
   "name": "SevenIsland_Harbor_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_ISLAND_HARBOR_FRLG",
   "music": "MUS_RG_SEVII_67",
   "region": "REGION_KANTO",

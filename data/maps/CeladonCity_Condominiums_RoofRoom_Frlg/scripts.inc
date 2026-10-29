@@ -48,8 +48,8 @@ CeladonCity_Condominiums_RoofRoom_EventScript_TransferEeveeToPC::
 	goto CeladonCity_Condominiums_RoofRoom_EventScript_SetGotEevee
 	end
 
+@ Origin Jade: FLAG_GOT_EEVEE is Bill's Eevee in Goldenrod, not set here.
 CeladonCity_Condominiums_RoofRoom_EventScript_SetGotEevee::
-	setflag FLAG_GOT_EEVEE
 	release
 	end
 

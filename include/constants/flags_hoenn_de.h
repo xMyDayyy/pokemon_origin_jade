@@ -2,14 +2,9 @@
 #define GUARD_CONSTANTS_FLAGS_HOENN_DE_H
 
 // =====================================================================
-// Smaragd-/Hoenn-Bereich (hns_de / modern_hns_engde)
-// flags_hns.h ueberlagert bzw. aliasiert viele Hoenn-Flags mit der
-// Kanto-/Johto-Welt. Alle betroffenen Hoenn-Flags liegen hier per
-// #undef/#define in einem eigenen Block oberhalb aller HnS-Flags.
-// flags_hns.h bleibt unangetastet (Upstream-Mergefaehigkeit).
-// Regel: Neue Smaragd-Flags NUR aus diesem Bereich vergeben.
-// Hidden Items: Offset zu FLAG_HIDDEN_ITEMS_START ist 13 Bit breit
-// (global.fieldmap.h) - dieser Block liegt sicher im Fenster.
+// Hoenn flags that flags_hns.h overlays with Kanto/Johto get their own
+// block here; flags_hns.h stays untouched. Allocate new Emerald flags only
+// here. Hidden item flags must stay within 13 bits of FLAG_HIDDEN_ITEMS_START.
 // =====================================================================
 
 #define HOENN_FLAGS_START 0x0B72
@@ -1071,14 +1066,9 @@
 
 
 // ---------------------------------------------------------------------
-// Reaktivierte Null-Flags: flags_hns.h definiert diese Smaragd-Flags als 0
-// (tote Stubs). removeobject/addobject persistieren aber ueber genau diese
-// Flags - bei 0 ist das ein No-op, NPCs spawnen beim Wiederbetreten erneut
-// (Playtest-Befund Bluetenburgwald). Hier erhalten alle Null-Flags mit
-// echtem Bedarf (Objekt-Flag, Script-Lesen, aktive Engine) reale Slots;
-// reine setflag/clearflag-No-ops und tote FRLG-Systeme bleiben bei 0.
-// Hinweis: FLAG_DAILY_* liegen ausserhalb des taeglichen Reset-Bereichs
-// (wirken einmalig statt taeglich - dokumentiert).
+// Emerald flags that flags_hns.h defines as 0 but that are still needed
+// (object flags, flags read by scripts). The FLAG_DAILY_* flags here are
+// not reset daily.
 // ---------------------------------------------------------------------
 
 #undef  FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY
@@ -1766,45 +1756,30 @@
 #undef  FLAG_WORLD_MAP_VIRIDIAN_FOREST
 #define FLAG_WORLD_MAP_VIRIDIAN_FOREST (HOENN_FLAGS_START + 0x366)
 
-// Hoenn-Trainerkarte erhalten (Birk uebergibt sie mit dem Dex-Upgrade);
-// schaltet das Umschalten der Kartenvariante per SELECT frei.
+// Hoenn trainer card received; SELECT switches the card variant.
 #define FLAG_RECEIVED_PASS_BINDER (HOENN_FLAGS_START + 0x367)
 
-// Hoenn-Champion (setzt die kuenftige Hoenn-Liga); dritter Stern der
-// Trainerpass-Staffel Bronze/Kupfer/Silber/Gold.
+// Hoenn champion; third star on the trainer card.
 #define FLAG_IS_HOENN_CHAMPION (HOENN_FLAGS_START + 0x368)
 
 #define HOENN_FLAGS_END (HOENN_FLAGS_START + 0x368)
 
 // =====================================================================
-// Registrierungsflags des Match Call - ein Flag je Eintrag der
-// gRematchTable. Der alte Platz (0x496) bot nur bis 0x4FF Raum, also
-// 106 Flags; mit den Hoenn-Rueckkampftrainern braucht die Tabelle 118.
-// Der Block liegt deshalb jetzt oberhalb aller Hoenn-Flags und ist auf
-// 128 ausgelegt. FLAGS_COUNT waechst entsprechend mit - der Speicher-
-// block wird dadurch groesser, alte Spielstaende sind ungueltig.
+// Match Call registration flags, one per gRematchTable entry. Raising
+// HNS_REMATCH_FLAGS_COUNT moves the flags after this block (breaks saves).
 // =====================================================================
-// Absolut gerechnet, nicht ueber HOENN_FLAGS_END - das wird unten neu
-// definiert und ergaebe sonst eine Selbstreferenz.
+// Not based on HOENN_FLAGS_END, which is redefined below.
 #define HNS_REMATCH_FLAGS_START (HOENN_FLAGS_START + 0x369)
 #define HNS_REMATCH_FLAGS_COUNT 118
 
 #undef  TRAINER_REGISTERED_FLAGS_START
 #define TRAINER_REGISTERED_FLAGS_START HNS_REMATCH_FLAGS_START
 
-// HnS: Der Spieler hat Mr. Trumm in Metarost getroffen. Vorher hing sein
-// PokeCom-Kontakt an FLAG_ENABLE_NORMAN_MATCH_CALL - zwei Eintraege an einer
-// Flag. Das Flag liegt hinter dem Rueckkampfblock; FLAGS_COUNT waechst von
-// 3921 auf 3922, die Byte-Zahl (DIV_ROUND_UP(.., 8) = 491) bleibt gleich,
-// alte Spielstaende bleiben damit gueltig.
+// HnS: the player has met Mr. Stone in Rustboro (his PokeNav contact).
 #define FLAG_MET_MR_STONE (HNS_REMATCH_FLAGS_START + HNS_REMATCH_FLAGS_COUNT)
-// Versteckt Troy in der Silph Co. Er erscheint erst nach seinem Anruf und
-// verschwindet nach der Uebergabe des Hoennticket wieder.
+// Hides Steven (Troy) in Silph Co.
 #define FLAG_HIDE_SILPHCO_TROY (HNS_REMATCH_FLAGS_START + HNS_REMATCH_FLAGS_COUNT + 1)
-// HnS: Normans Anruf steht aus. Er kommt nicht mehr direkt nach der
-// Ordenuebergabe (dort lief er der Arenaleiterin ins Wort), sondern nach
-// VAR_HNS_NORMAN_CALL_STEPS Schritten unter freiem Himmel - wie Felizias
-// Erstanruf. Wer die Arena vorher erreicht, verliert die Flag wieder.
+// HnS: Norman's call comes after VAR_HNS_NORMAN_CALL_STEPS steps outdoors.
 #define FLAG_HNS_NORMAN_CALL_PENDING (HNS_REMATCH_FLAGS_START + HNS_REMATCH_FLAGS_COUNT + 2)
 
 #undef  HOENN_FLAGS_END

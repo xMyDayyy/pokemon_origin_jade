@@ -45,18 +45,20 @@ Route27_Movement_FollowerJump:
 
 SandstormHouse_Text_Woman1:
 #if GERMAN
-	.string "Wohin möchtest du mit den Pokémon?\p"
-	.string "Zur Pokémon Liga?\p"
-	.string "Sind deine Pokémon loyal genug, um zu\n"
-	.string "gewinnen?\p"
-	.string "Ich werde das überprüfen…$"
+	.string "Oh! Ein Gast.\p"
+	.string "Hier hinten verirrt sich sonst\n"
+	.string "niemand her.\p"
+	.string "Lass mich raten: du bist mit deinen\n"
+	.string "Pokémon unterwegs.\p"
+	.string "Dann zeig mir doch, wie ihr\n"
+	.string "miteinander steht.$"
 #else
-    .string "Where are you off to with\n"
-    .string "POKéMON?\p"
-    .string "POKéMON LEAGUE?\p"
-    .string "Are your POKéMON loyal enough for\n"
-    .string "you to win?\p"
-    .string "Let me see…$"
+	.string "Oh! A visitor.\p"
+	.string "Nobody wanders out this far.\p"
+	.string "Let me guess: you are travelling\n"
+	.string "with your POKéMON.\p"
+	.string "Then show me how the two of you\n"
+	.string "get along.$"
 #endif
 
 SandstormHouse_Text_LoyalMon:

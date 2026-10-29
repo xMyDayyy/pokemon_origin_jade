@@ -1,10 +1,8 @@
 {
   "id": "MAP_ROUTE24",
   "name": "Route24_Frlg",
-  "game_version": "frlg",
-  "layout": "LAYOUT_ROUTE24",
+  "layout": "LAYOUT_ROUTE24_HNS",
   "music": "MUS_RG_ROUTE24",
-  "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_ROUTE_24",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -13,12 +11,11 @@
   "allow_escaping": false,
   "allow_running": true,
   "show_map_name": true,
-  "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
       "map": "MAP_CERULEAN_CITY",
-      "offset": -12,
+      "offset": -25,
       "direction": "down"
     },
     {
@@ -29,39 +26,9 @@
   ],
   "object_events": [
     {
-      "local_id": "LOCALID_ROUTE24_ROCKET",
-      "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_MAN",
-      "x": 12,
-      "y": 15,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route24_EventScript_Rocket",
-      "flag": "FLAG_HIDE_NUGGET_BRIDGE_ROCKET"
-    },
-    {
-      "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_CAMPER_FRLG",
-      "x": 12,
-      "y": 19,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "2",
-      "script": "Route24_EventScript_Ethan",
-      "flag": "0"
-    },
-    {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LASS_FRLG",
-      "x": 10,
-      "y": 22,
+      "x": 16,
+      "y": 44,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
@@ -72,10 +39,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER_FRLG",
-      "x": 12,
-      "y": 25,
+      "x": 19,
+      "y": 40,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
@@ -86,10 +52,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LASS_FRLG",
-      "x": 10,
-      "y": 28,
+      "x": 16,
+      "y": 37,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
@@ -100,10 +65,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER_FRLG",
-      "x": 12,
-      "y": 31,
+      "x": 19,
+      "y": 47,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
@@ -114,10 +78,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CAMPER_FRLG",
-      "x": 5,
-      "y": 21,
+      "x": 8,
+      "y": 39,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 1,
@@ -128,10 +91,9 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 11,
-      "y": 4,
+      "x": 27,
+      "y": 53,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -140,39 +102,169 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route24_EventScript_ItemTM45",
       "flag": "FLAG_HIDE_ROUTE24_TM45"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_ABRA",
+      "x": 3,
+      "y": 35,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_SQUIRTLE",
+      "x": 6,
+      "y": 49,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_DOWN_AND_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_ODDISH",
+      "x": 26,
+      "y": 41,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_UP_AND_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 8,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
+      "x": 8,
+      "y": 47,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "BERRY_TREE_KELPSY_2",
+      "script": "BerryTreeScript",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_WEEDLE",
+      "x": 21,
+      "y": 12,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_CAMPER_FRLG",
+      "x": 19,
+      "y": 34,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "Route24_EventScript_Ethan",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_ROUTE24_ROCKET",
+      "graphics_id": "OBJ_EVENT_GFX_MAN",
+      "x": 19,
+      "y": 27,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route24_EventScript_Rocket",
+      "flag": "FLAG_HIDE_NUGGET_BRIDGE_ROCKET"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_PIDGEY",
+      "x": 21,
+      "y": 24,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_ODDISH",
+      "x": 10,
+      "y": 14,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 5,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
     }
   ],
   "warp_events": [],
   "coord_events": [
     {
       "type": "trigger",
-      "x": 10,
-      "y": 15,
-      "elevation": 3,
-      "var": "VAR_MAP_SCENE_ROUTE24",
-      "var_value": "0",
-      "script": "Route24_EventScript_RocketTriggerLeft"
-    },
-    {
-      "type": "trigger",
-      "x": 11,
-      "y": 15,
-      "elevation": 3,
+      "x": 18,
+      "y": 27,
+      "elevation": 0,
       "var": "VAR_MAP_SCENE_ROUTE24",
       "var_value": "0",
       "script": "Route24_EventScript_RocketTriggerRight"
+    },
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 27,
+      "elevation": 0,
+      "var": "VAR_MAP_SCENE_ROUTE24",
+      "var_value": "0",
+      "script": "Route24_EventScript_RocketTriggerMid"
+    },
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 27,
+      "elevation": 0,
+      "var": "VAR_MAP_SCENE_ROUTE24",
+      "var_value": "0",
+      "script": "Route24_EventScript_RocketTriggerLeft"
     }
   ],
   "bg_events": [
     {
       "type": "hidden_item",
-      "x": 19,
-      "y": 4,
+      "x": 10,
+      "y": 48,
       "elevation": 3,
       "item": "ITEM_PECHA_BERRY",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE24_PECHA_BERRY",
       "quantity": 1,
       "underfoot": false
     }
-  ]
+  ],
+  "floor_number": 0,
+  "game_version": "hns",
+  "region": "REGION_KANTO"
 }

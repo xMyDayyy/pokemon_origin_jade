@@ -1,9 +1,6 @@
-// Origin Jade: Farbtabelle der (derzeit deaktivierten) Blitz-Animation.
-// ACHTUNG: Nach dem Qualitaetsausbau (0209) gibt es KEINE exklusiven
-// Strahlfarben mehr - eine Reaktivierung (JADE_TITEL_ANIMATION TRUE)
-// erfordert erst einen Exklusiv-Refit der Assets mit dem
-// Fitting-Werkzeug, sonst flackern Streupixel im ganzen Bild.
-// Platzhalter-Eintrag, damit die stillgelegte Funktion uebersetzt.
+// Origin Jade: color table of the disabled lightning animation.
+// Before setting JADE_TITEL_ANIMATION to TRUE, refit the assets with
+// colors used only by the beams. The entry below is a placeholder.
 
 struct JadeAnimColor
 {

@@ -40,7 +40,7 @@ EverGrandeCity_PhoebesRoom_EventScript_Phoebe::
 	lock
 	faceplayer
 	goto_if_set FLAG_DEFEATED_ELITE_4_PHOEBE, EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech
-	@ Origin Jade: Ab dem Ligasieg treten die Top Vier mit Rueckkampfteams an.
+	@ Origin Jade: rematch team once Hoenn's league is won.
 	goto_if_set FLAG_IS_HOENN_CHAMPION, EverGrandeCity_PhoebesRoom_EventScript_Rematch
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
 	msgbox EverGrandeCity_PhoebesRoom_Text_IntroSpeech, MSGBOX_DEFAULT

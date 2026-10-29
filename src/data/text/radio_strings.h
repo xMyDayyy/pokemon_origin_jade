@@ -35,7 +35,7 @@ static const u8 sRadioStationName_BuenasPassword[]  = _("BUENA'S PASSWORD");
 #endif
 static const u8 sRadioStationName_Unown[]           = _("?????");
 #if GERMAN
-static const u8 sRadioStationName_PlacesAndPeople[] = _("Plätze & Leute");
+static const u8 sRadioStationName_PlacesAndPeople[] = _("Orte und Personen");
 #else
 static const u8 sRadioStationName_PlacesAndPeople[] = _("Places & People");
 #endif
@@ -48,33 +48,6 @@ static const u8 sRadioStationName_LetsAllSing[]     = _("Let's All Sing!");
 static const u8 sRadioStationName_PokeFlute[]       = _("PokéFlöte");
 #else
 static const u8 sRadioStationName_PokeFlute[]       = _("POKé FLUTE");
-#endif
-
-static const u8 sRadioStationName_HoennSound[]  = _("Hoenn Sound");
-
-// ==========================================================
-// Hoenn Sound
-// ==========================================================
-
-#if GERMAN
-static const u8 sRadioText_Hoenn1[] = _("Eine Pokémon-Melodie aus");
-#else
-static const u8 sRadioText_Hoenn1[] = _("A Pokemon melody from a");
-#endif
-#if GERMAN
-static const u8 sRadioText_Hoenn2[] = _("einer fernen Region: Hoenn!");
-#else
-static const u8 sRadioText_Hoenn2[] = _("faraway region called HOENN!");
-#endif
-#if GERMAN
-static const u8 sRadioText_Hoenn3[] = _("Wilde Pokémon aus dieser");
-#else
-static const u8 sRadioText_Hoenn3[] = _("Wild POKéMON from that region");
-#endif
-#if GERMAN
-static const u8 sRadioText_Hoenn4[] = _("Region könnten auftauchen!");
-#else
-static const u8 sRadioText_Hoenn4[] = _("may appear nearby!");
 #endif
 
 // ==========================================================
@@ -348,17 +321,17 @@ static const u8 sRadioText_BenIntro[] = _("Ben: Pokémon Musik-Kanal!");
 static const u8 sRadioText_BenIntro[] = _("BEN: POKéMON MUSIC CHANNEL!");
 #endif
 #if GERMAN
-static const u8 sRadioText_BenIntro2[] = _("Hier ist Dj Ben!");
+static const u8 sRadioText_BenIntro2[] = _("Hier ist DJ Ben!");
 #else
 static const u8 sRadioText_BenIntro2[] = _("It's me, DJ BEN!");
 #endif
 #if GERMAN
-static const u8 sRadioText_FernIntro[] = _("Fern: PokéMusik!");
+static const u8 sRadioText_FernIntro[] = _("Fabian: PokéMusik!");
 #else
 static const u8 sRadioText_FernIntro[] = _("FERN: POKéMUSIC!");
 #endif
 #if GERMAN
-static const u8 sRadioText_FernIntro2[] = _("Mit Dj Fern!");
+static const u8 sRadioText_FernIntro2[] = _("Mit DJ Fabian!");
 #else
 static const u8 sRadioText_FernIntro2[] = _("With DJ FERN!");
 #endif
@@ -394,7 +367,7 @@ static const u8 sRadioText_BenFern_Lullaby[] = _("POKéMON Lullaby!");
 // ==========================================================
 
 #if GERMAN
-static const u8 sRadioText_LC1[] = _("Reed: Yeehaw! Wie geht’s euch");
+static const u8 sRadioText_LC1[] = _("Bastian: Yeehaw! Wie geht’s euch");
 #else
 static const u8 sRadioText_LC1[] = _("REED: Yeehaw! How y'all doin'");
 #endif
@@ -414,9 +387,9 @@ static const u8 sRadioText_LC4[] = _("Glückszahlen-Show!");
 static const u8 sRadioText_LC4[] = _("LUCKY NUMBER SHOW!");
 #endif
 #if GERMAN
-static const u8 sRadioText_LC5[] = _("Die Glückszahl dieser Woche ist");
+static const u8 sRadioText_LC5[] = _("Die heutige Glückszahl ist");
 #else
-static const u8 sRadioText_LC5[] = _("This week's Lucky Number is");
+static const u8 sRadioText_LC5[] = _("Today's Lucky Number is");
 #endif
 // "{number}!" built dynamically
 #if GERMAN
@@ -430,7 +403,7 @@ static const u8 sRadioText_LC_Match[] = _("Trefft sie und geht zum");
 static const u8 sRadioText_LC_Match[] = _("Match it and go to");
 #endif
 #if GERMAN
-static const u8 sRadioText_LC_Tower[] = _("Rundfunkturm!");
+static const u8 sRadioText_LC_Tower[] = _("Radioturm!");
 #else
 static const u8 sRadioText_LC_Tower[] = _("the RADIO TOWER!");
 #endif
@@ -450,12 +423,12 @@ static const u8 sRadioText_LC_Drag2[] = _("gets to be a drag…");
 // ==========================================================
 
 #if GERMAN
-static const u8 sRadioText_PnP_Intro[] = _("Plätze & Leute! Präsentiert");
+static const u8 sRadioText_PnP_Intro[] = _("Orte und Personen! Präsentiert");
 #else
 static const u8 sRadioText_PnP_Intro[] = _("PLACES AND PEOPLE! Brought");
 #endif
 #if GERMAN
-static const u8 sRadioText_PnP_Intro2[] = _("von mir, Dj Lily!");
+static const u8 sRadioText_PnP_Intro2[] = _("von mir, DJ Lilly!");
 #else
 static const u8 sRadioText_PnP_Intro2[] = _("to you by me, DJ LILY!");
 #endif
@@ -533,7 +506,7 @@ static const u8 sRadioText_PnP_Weird[]       = _("ist irgendwie seltsam.");
 static const u8 sRadioText_PnP_Weird[]       = _("is kind of weird.");
 #endif
 #if GERMAN
-static const u8 sRadioText_PnP_RightForMe[]  = _("ist der Richtige für mich?");
+static const u8 sRadioText_PnP_RightForMe[]  = _("ist genau richtig für mich?");
 #else
 static const u8 sRadioText_PnP_RightForMe[]  = _("is right for me?");
 #endif
@@ -642,7 +615,7 @@ static const u8 sRadioText_Buena5[] = _("Vergiss es nicht! Ich bin im");
 static const u8 sRadioText_Buena5[] = _("Don't forget it! I'm in");
 #endif
 #if GERMAN
-static const u8 sRadioText_Buena6[] = _("Rosalias Rundfunkturm!");
+static const u8 sRadioText_Buena6[] = _("Radioturm von Dukatia!");
 #else
 static const u8 sRadioText_Buena6[] = _("GOLDENROD's RADIO TOWER!");
 #endif
@@ -718,7 +691,7 @@ static const u8 sOPT_Report_Clefairy_2[]  = _("Eich: Wir rücken ins Licht:");
 static const u8 sOPT_Report_Clefairy_2[]  = _("OAK: We're spotlighting the");
 #endif
 #if GERMAN
-static const u8 sOPT_Report_Clefairy_3[]  = _("das mystische Pixi!");
+static const u8 sOPT_Report_Clefairy_3[]  = _("das mystische Piepi!");
 #else
 static const u8 sOPT_Report_Clefairy_3[]  = _("mystical CLEFAIRY!");
 #endif
@@ -733,7 +706,7 @@ static const u8 sOPT_Report_Clefairy_5[]  = _("Mondberg bei Vollmond.");
 static const u8 sOPT_Report_Clefairy_5[]  = _("under full moons.");
 #endif
 #if GERMAN
-static const u8 sOPT_Report_Clefairy_6[]  = _("Margit: Sie Tanzen im Kreis!");
+static const u8 sOPT_Report_Clefairy_6[]  = _("Margit: Sie tanzen im Kreis!");
 #else
 static const u8 sOPT_Report_Clefairy_6[]  = _("MARY: They DANCE in circles!");
 #endif
@@ -774,7 +747,7 @@ static const u8 sOPT_Report_Lapras_3[]  = _("unser geliebtes Lapras!");
 static const u8 sOPT_Report_Lapras_3[]  = _("our beloved LAPRAS!");
 #endif
 #if GERMAN
-static const u8 sOPT_Report_Lapras_4[]  = _("Gesehen in der Bergeshöhle,");
+static const u8 sOPT_Report_Lapras_4[]  = _("Gesehen im Einheitstunnel,");
 #else
 static const u8 sOPT_Report_Lapras_4[]  = _("Seen in UNION CAVE, but only");
 #endif
@@ -866,7 +839,7 @@ static const u8 sOPT_Report_Sudowoodo_1[]  = _("Sonderling auf Route 36...");
 static const u8 sOPT_Report_Sudowoodo_1[]  = _("on ROUTE 36...");
 #endif
 #if GERMAN
-static const u8 sOPT_Report_Sudowoodo_2[]  = _("Eich: Sodamon! Sieht aus wie");
+static const u8 sOPT_Report_Sudowoodo_2[]  = _("Eich: Mogelbaum! Sieht aus wie");
 #else
 static const u8 sOPT_Report_Sudowoodo_2[]  = _("OAK: SUDOWOODO! Looks like a");
 #endif
@@ -891,7 +864,7 @@ static const u8 sOPT_Report_Sudowoodo_6[]  = _("Margit: Es reagiert nur auf");
 static const u8 sOPT_Report_Sudowoodo_6[]  = _("MARY: It only reacts to a");
 #endif
 #if GERMAN
-static const u8 sOPT_Report_Sudowoodo_7[]  = _("Spritzflasche!");
+static const u8 sOPT_Report_Sudowoodo_7[]  = _("die Schiggykanne!");
 #else
 static const u8 sOPT_Report_Sudowoodo_7[]  = _("SQUIRTBOTTLE!");
 #endif
@@ -922,7 +895,7 @@ static const u8 sOPT_Report_RedGyarados_2[]  = _("Eich: Trainer sahen einen");
 static const u8 sOPT_Report_RedGyarados_2[]  = _("OAK: Trainers spotted a RED");
 #endif
 #if GERMAN
-static const u8 sOPT_Report_RedGyarados_3[]  = _("Roten Garados am Zornsee!");
+static const u8 sOPT_Report_RedGyarados_3[]  = _("Roten Garados am See des Zorns!");
 #else
 static const u8 sOPT_Report_RedGyarados_3[]  = _("GYARADOS at LAKE OF RAGE!");
 #endif
@@ -1009,7 +982,7 @@ static const u8 sOPT_Report_Unown_9[]  = _("still unsolved to this day.");
 #endif
 
 #if GERMAN
-static const u8 sOPT_Report_Snubbull_0[]  = _("Margit: Bewohner von Rosalia City");
+static const u8 sOPT_Report_Snubbull_0[]  = _("Margit: Bewohner von Dukatia City");
 #else
 static const u8 sOPT_Report_Snubbull_0[]  = _("MARY: GOLDENROD residents are");
 #endif
@@ -1213,20 +1186,35 @@ static const u8 sOPT_Report_Tentacruel_9[]  = _("deep beneath the waves.");
 #endif
 
 #define OPT_REPORT_LINES 10
-#define NUM_OPT_REPORTS 10
+
+// Origin Jade: report ids for the region and story gates in IsOPTReportAvailable.
+enum
+{
+    OPT_REPORT_CLEFAIRY,
+    OPT_REPORT_LAPRAS,
+    OPT_REPORT_AMPHAROS,
+    OPT_REPORT_SUDOWOODO,
+    OPT_REPORT_RED_GYARADOS,
+    OPT_REPORT_UNOWN,
+    OPT_REPORT_SNUBBULL,
+    OPT_REPORT_SLOWPOKE,
+    OPT_REPORT_LAVENDER_TOWER,
+    OPT_REPORT_TENTACRUEL,
+    NUM_OPT_REPORTS,
+};
 
 static const u8 *const sOPT_Reports[NUM_OPT_REPORTS][OPT_REPORT_LINES] =
 {
-    { sOPT_Report_Clefairy_0, sOPT_Report_Clefairy_1, sOPT_Report_Clefairy_2, sOPT_Report_Clefairy_3, sOPT_Report_Clefairy_4, sOPT_Report_Clefairy_5, sOPT_Report_Clefairy_6, sOPT_Report_Clefairy_7, sOPT_Report_Clefairy_8, sOPT_Report_Clefairy_9 },
-    { sOPT_Report_Lapras_0, sOPT_Report_Lapras_1, sOPT_Report_Lapras_2, sOPT_Report_Lapras_3, sOPT_Report_Lapras_4, sOPT_Report_Lapras_5, sOPT_Report_Lapras_6, sOPT_Report_Lapras_7, sOPT_Report_Lapras_8, sOPT_Report_Lapras_9 },
-    { sOPT_Report_Ampharos_0, sOPT_Report_Ampharos_1, sOPT_Report_Ampharos_2, sOPT_Report_Ampharos_3, sOPT_Report_Ampharos_4, sOPT_Report_Ampharos_5, sOPT_Report_Ampharos_6, sOPT_Report_Ampharos_7, sOPT_Report_Ampharos_8, sOPT_Report_Ampharos_9 },
-    { sOPT_Report_Sudowoodo_0, sOPT_Report_Sudowoodo_1, sOPT_Report_Sudowoodo_2, sOPT_Report_Sudowoodo_3, sOPT_Report_Sudowoodo_4, sOPT_Report_Sudowoodo_5, sOPT_Report_Sudowoodo_6, sOPT_Report_Sudowoodo_7, sOPT_Report_Sudowoodo_8, sOPT_Report_Sudowoodo_9 },
-    { sOPT_Report_RedGyarados_0, sOPT_Report_RedGyarados_1, sOPT_Report_RedGyarados_2, sOPT_Report_RedGyarados_3, sOPT_Report_RedGyarados_4, sOPT_Report_RedGyarados_5, sOPT_Report_RedGyarados_6, sOPT_Report_RedGyarados_7, sOPT_Report_RedGyarados_8, sOPT_Report_RedGyarados_9 },
-    { sOPT_Report_Unown_0, sOPT_Report_Unown_1, sOPT_Report_Unown_2, sOPT_Report_Unown_3, sOPT_Report_Unown_4, sOPT_Report_Unown_5, sOPT_Report_Unown_6, sOPT_Report_Unown_7, sOPT_Report_Unown_8, sOPT_Report_Unown_9 },
-    { sOPT_Report_Snubbull_0, sOPT_Report_Snubbull_1, sOPT_Report_Snubbull_2, sOPT_Report_Snubbull_3, sOPT_Report_Snubbull_4, sOPT_Report_Snubbull_5, sOPT_Report_Snubbull_6, sOPT_Report_Snubbull_7, sOPT_Report_Snubbull_8, sOPT_Report_Snubbull_9 },
-    { sOPT_Report_Slowpoke_0, sOPT_Report_Slowpoke_1, sOPT_Report_Slowpoke_2, sOPT_Report_Slowpoke_3, sOPT_Report_Slowpoke_4, sOPT_Report_Slowpoke_5, sOPT_Report_Slowpoke_6, sOPT_Report_Slowpoke_7, sOPT_Report_Slowpoke_8, sOPT_Report_Slowpoke_9 },
-    { sOPT_Report_LavenderTower_0, sOPT_Report_LavenderTower_1, sOPT_Report_LavenderTower_2, sOPT_Report_LavenderTower_3, sOPT_Report_LavenderTower_4, sOPT_Report_LavenderTower_5, sOPT_Report_LavenderTower_6, sOPT_Report_LavenderTower_7, sOPT_Report_LavenderTower_8, sOPT_Report_LavenderTower_9 },
-    { sOPT_Report_Tentacruel_0, sOPT_Report_Tentacruel_1, sOPT_Report_Tentacruel_2, sOPT_Report_Tentacruel_3, sOPT_Report_Tentacruel_4, sOPT_Report_Tentacruel_5, sOPT_Report_Tentacruel_6, sOPT_Report_Tentacruel_7, sOPT_Report_Tentacruel_8, sOPT_Report_Tentacruel_9 },
+    [OPT_REPORT_CLEFAIRY] = { sOPT_Report_Clefairy_0, sOPT_Report_Clefairy_1, sOPT_Report_Clefairy_2, sOPT_Report_Clefairy_3, sOPT_Report_Clefairy_4, sOPT_Report_Clefairy_5, sOPT_Report_Clefairy_6, sOPT_Report_Clefairy_7, sOPT_Report_Clefairy_8, sOPT_Report_Clefairy_9 },
+    [OPT_REPORT_LAPRAS] = { sOPT_Report_Lapras_0, sOPT_Report_Lapras_1, sOPT_Report_Lapras_2, sOPT_Report_Lapras_3, sOPT_Report_Lapras_4, sOPT_Report_Lapras_5, sOPT_Report_Lapras_6, sOPT_Report_Lapras_7, sOPT_Report_Lapras_8, sOPT_Report_Lapras_9 },
+    [OPT_REPORT_AMPHAROS] = { sOPT_Report_Ampharos_0, sOPT_Report_Ampharos_1, sOPT_Report_Ampharos_2, sOPT_Report_Ampharos_3, sOPT_Report_Ampharos_4, sOPT_Report_Ampharos_5, sOPT_Report_Ampharos_6, sOPT_Report_Ampharos_7, sOPT_Report_Ampharos_8, sOPT_Report_Ampharos_9 },
+    [OPT_REPORT_SUDOWOODO] = { sOPT_Report_Sudowoodo_0, sOPT_Report_Sudowoodo_1, sOPT_Report_Sudowoodo_2, sOPT_Report_Sudowoodo_3, sOPT_Report_Sudowoodo_4, sOPT_Report_Sudowoodo_5, sOPT_Report_Sudowoodo_6, sOPT_Report_Sudowoodo_7, sOPT_Report_Sudowoodo_8, sOPT_Report_Sudowoodo_9 },
+    [OPT_REPORT_RED_GYARADOS] = { sOPT_Report_RedGyarados_0, sOPT_Report_RedGyarados_1, sOPT_Report_RedGyarados_2, sOPT_Report_RedGyarados_3, sOPT_Report_RedGyarados_4, sOPT_Report_RedGyarados_5, sOPT_Report_RedGyarados_6, sOPT_Report_RedGyarados_7, sOPT_Report_RedGyarados_8, sOPT_Report_RedGyarados_9 },
+    [OPT_REPORT_UNOWN] = { sOPT_Report_Unown_0, sOPT_Report_Unown_1, sOPT_Report_Unown_2, sOPT_Report_Unown_3, sOPT_Report_Unown_4, sOPT_Report_Unown_5, sOPT_Report_Unown_6, sOPT_Report_Unown_7, sOPT_Report_Unown_8, sOPT_Report_Unown_9 },
+    [OPT_REPORT_SNUBBULL] = { sOPT_Report_Snubbull_0, sOPT_Report_Snubbull_1, sOPT_Report_Snubbull_2, sOPT_Report_Snubbull_3, sOPT_Report_Snubbull_4, sOPT_Report_Snubbull_5, sOPT_Report_Snubbull_6, sOPT_Report_Snubbull_7, sOPT_Report_Snubbull_8, sOPT_Report_Snubbull_9 },
+    [OPT_REPORT_SLOWPOKE] = { sOPT_Report_Slowpoke_0, sOPT_Report_Slowpoke_1, sOPT_Report_Slowpoke_2, sOPT_Report_Slowpoke_3, sOPT_Report_Slowpoke_4, sOPT_Report_Slowpoke_5, sOPT_Report_Slowpoke_6, sOPT_Report_Slowpoke_7, sOPT_Report_Slowpoke_8, sOPT_Report_Slowpoke_9 },
+    [OPT_REPORT_LAVENDER_TOWER] = { sOPT_Report_LavenderTower_0, sOPT_Report_LavenderTower_1, sOPT_Report_LavenderTower_2, sOPT_Report_LavenderTower_3, sOPT_Report_LavenderTower_4, sOPT_Report_LavenderTower_5, sOPT_Report_LavenderTower_6, sOPT_Report_LavenderTower_7, sOPT_Report_LavenderTower_8, sOPT_Report_LavenderTower_9 },
+    [OPT_REPORT_TENTACRUEL] = { sOPT_Report_Tentacruel_0, sOPT_Report_Tentacruel_1, sOPT_Report_Tentacruel_2, sOPT_Report_Tentacruel_3, sOPT_Report_Tentacruel_4, sOPT_Report_Tentacruel_5, sOPT_Report_Tentacruel_6, sOPT_Report_Tentacruel_7, sOPT_Report_Tentacruel_8, sOPT_Report_Tentacruel_9 },
 };
 
 #endif // GUARD_DATA_TEXT_RADIO_STRINGS_H

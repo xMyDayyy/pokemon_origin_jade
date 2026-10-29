@@ -1,7 +1,7 @@
 {
   "id": "MAP_SIX_ISLAND",
   "name": "SixIsland_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_SIX_ISLAND",
   "music": "MUS_RG_SEVII_67",
   "region": "REGION_KANTO",

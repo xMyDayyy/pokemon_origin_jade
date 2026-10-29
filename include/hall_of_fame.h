@@ -21,6 +21,9 @@ extern struct HallofFameTeam *gHoFSaveBuffer;
 void CB2_DoHallOfFameScreen(void);
 void CB2_DoHallOfFameScreenDontSaveData(void);
 void CB2_DoHallOfFamePC(void);
+// Origin Jade: TRUE ends the next Hall of Fame screen with the credits, FALSE with a warp to the
+// continue point (see GameClear and GameClearNoCredits).
+void HallOfFame_SetRollCredits(bool8 rollCredits);
 
 // hof_pc.c
 void ReturnFromHallOfFamePC(void);

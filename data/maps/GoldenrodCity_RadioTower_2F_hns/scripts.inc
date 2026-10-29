@@ -335,7 +335,8 @@ GoldenrodCity_RadioTower_2F_Text_GruntF2After:
 
 GoldenrodCity_RadioTower_2F_Text_BuenaShowPromo:
 #if GERMAN
-	.string "Buena: Hör in meine Passwort-Show rein!$"
+	.string "Buena: Hör in meine\n"
+	.string "Passwort-Show rein!\p"
 	.string "Höre das heutige Passwort!$"
 #else
 	.string "BUENA: Tune in to my PASSWORD\n"

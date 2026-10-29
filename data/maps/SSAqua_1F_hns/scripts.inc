@@ -37,122 +37,10 @@ SSAqua_1F_EventScript_DoorSailorArrived::
 
 SSAqua_1F_EventScript_LeaveBoat::
 	fadescreenswapbuffers FADE_TO_BLACK
-
-	@Kanto FLAGHEAP
-	setflag FLAG_HIDE_COPYCAT_CLEFAIRY_DOLL
-	setflag FLAG_HIDE_CERULEAN_GYM_TRAINERS
-	setflag FLAG_HIDE_CERULEAN_CAPE_ROCKET
-	setflag FLAG_HIDE_CERULEAN_GYM_ROCKET
-	setflag FLAG_HIDDEN_ITEM_MACHINE_PART
-	setflag FLAG_HIDE_ROUTE25_MISTY
-	setflag FLAG_HIDE_ROUTE25_EUSINE
-	setflag FLAG_HIDE_ROUTE25_SUICUNE
-	setflag FLAG_HIDE_CELADON_EUSINE
-	setflag FLAG_HIDE_SEAFOAM_GYMGUY
-	setflag FLAG_HIDE_VIRIDIAN_BLUE
-	setflag FLAG_HIDE_ROUTE14_EUSINE
-	setflag FLAG_HIDE_ROUTE14_SUICUNE
-	setflag FLAG_HIDE_VIRIDIAN_FOREST_SPIKY_EARED_PICHU
-	setflag FLAG_HIDE_VIRIDIAN_FOREST_SPIKY_EARED_PICHU1
-	setflag FLAG_HIDE_VIRIDIAN_FOREST_SPIKY_EARED_PICHU2
-	setflag FLAG_HIDE_VIRIDIAN_FOREST_SPIKY_EARED_PICHU3
-	setflag FLAG_HIDE_VIRIDIAN_FOREST_SPIKY_EARED_PICHU4
-	setflag FLAG_HIDE_ROUTE13_BOAT
-	setflag FLAG_MT_SILVER_1F_HIDE_SCIENTIST
-	
-	clearflag FLAG_BADGE09_GET
-	clearflag FLAG_BADGE10_GET
-	clearflag FLAG_BADGE11_GET
-	clearflag FLAG_BADGE12_GET
-	clearflag FLAG_BADGE13_GET
-	clearflag FLAG_BADGE14_GET
-	clearflag FLAG_BADGE15_GET
-	clearflag FLAG_BADGE16_GET
-	clearflag FLAG_GOT_VERMILION_HP_UP
-	clearflag FLAG_KANTO_RADIO_GOT
-	clearflag FLAG_HIDE_VERMILION_SNORLAX
-	clearflag FLAG_HIDE_FAN_CLUB_CLEFAIRY_DOLL
-	clearflag FLAG_FOUND_BOTH_VERMILION_GYM_SWITCHES
-	clearflag FLAG_RETURNED_MACHINE_PART
-	clearflag FLAG_GOT_TM_PSYCHIC
-	clearflag FLAG_GOT_HOENN_STARTER
-	clearflag FLAG_GOT_UP_GRADE
-	clearflag FLAG_GOT_CLEANSE_TAG
-	clearflag FLAG_ROUTE25_GOT_NUGGET
-	clearflag FLAG_HIDE_POWER_PLANT_ENGINEER
-	clearflag FLAG_HIDE_ZAPDOS
-	clearflag FLAG_HIDE_ARTICUNO
-	clearflag FLAG_HIDE_MOLTRES
-	clearflag FLAG_GOT_TM_SLEEP_TALK
-	clearflag FLAG_GOT_SUPER_ROD
-	clearflag FLAG_HIDE_CINNABAR_BLUE
-	clearflag FLAG_GOT_ROUTE2_NUGGET
-	clearflag FLAG_GOT_VIRIDIAN_TM_DREAM_EATER
-	clearflag FLAG_GOT_ROUTE_14_AERIAL_ACE
-	clearflag FLAG_HIDE_PEWTER_ROOT_FOSSIL
-	clearflag FLAG_HIDE_PEWTER_CLAW_FOSSIL
-	clearflag FLAG_HIDE_MTMOON_SILVER
-	clearflag FLAG_GOT_TM_STEEL_WING
-	clearflag FLAG_HIDE_CERULEANCAVE_GUARD
-	clearflag FLAG_HIDE_MTSILVER_RED
-	clearflag FLAG_HIDE_MEWTWO
-	clearflag FLAG_HIDE_LATIAS
-	clearflag FLAG_HIDE_LATIOS
-	clearflag FLAG_HIDE_GROUDON
-	clearflag FLAG_HIDE_KYOGRE
-	clearflag FLAG_HIDE_RAYQUAZA
-	clearflag FLAG_HIDE_SEAFOAM_BLAINE
-
-	clearflag FLAG_HIDE_CELADON_FALKNER
-	clearflag FLAG_HIDE_VIRIDIAN_BUGSY
-	clearflag FLAG_HIDE_DEPTSTORE_WHITNEY
-	clearflag FLAG_HIDE_BELLCHIME_MORTY
-	clearflag FLAG_HIDE_CAFE_JASMINE
-	clearflag FLAG_HIDE_LAKE_PRYCE
-	clearflag FLAG_HIDE_DEN_CLAIR
-
-
-	setvar VAR_KANTO_ROCKET_STORY_STATE, 0
-	setvar VAR_BILLS_GRANDPA, 0
-	setvar VAR_VERMILION_CITY_STEVEN, 0
-	setvar VAR_OAK_MT_SILVER_CALL, 0
-	setvar VAR_VIRIDIAN_FOREST_PICHU, 0
-
-
-	setvar VAR_FAN_CLUB_CLEFAIRY, 0
-	setvar VAR_FAN_CLUB_GUY, 0
-	setvar VAR_CLEFAIRY_DOLL_STATE, 0
-	setvar VAR_NUM_BADGES, 8
-	setvar VAR_VERMILION_CITY_STATE, 1
-
-	setvar VAR_KANTO_SAFARI_ZONE_PROGRESS, 0
-	clearflag FLAG_IN_KANTO_SAFARI_ZONE
-	clearflag FLAG_IS_KANTO_CHAMPION
-	setvar VAR_BAOBA_QUEST_STATE, 0
-	setvar VAR_CINNABAR_ISLAND_STATE, 0
-	setvar VAR_MT_SILVER_STATE, 0,
-	setvar VAR_PALLETTOWN_LABSTATE, 0
-	clearflag FLAG_HIDE_LEAGUE_BLACKBELT
-
-	setflag FLAG_HIDE_DOJO_FALKNER
-	setflag FLAG_HIDE_DOJO_BUGSY
-	setflag FLAG_HIDE_DOJO_WHITNEY
-	setflag FLAG_HIDE_DOJO_MORTY
-	setflag FLAG_HIDE_DOJO_CHUCK
-	setflag FLAG_HIDE_DOJO_JASMINE
-	setflag FLAG_HIDE_DOJO_PRYCE
-	setflag FLAG_HIDE_DOJO_CLAIR
-	setflag FLAG_HIDE_DOJO_BROCK
-	setflag FLAG_HIDE_DOJO_MISTY
-	setflag FLAG_HIDE_DOJO_SURGE
-	setflag FLAG_HIDE_DOJO_ERIKA
-	setflag FLAG_HIDE_DOJO_JANINE
-	setflag FLAG_HIDE_DOJO_SABRINA
-	setflag FLAG_HIDE_DOJO_BLAINE
-	setflag FLAG_HIDE_DOJO_BLUE
-	@end flagheap
+	@ Origin Jade: without HnS's Kanto reset (flag heap); Kanto is played first.
 	setvar VAR_SSAQUA_STATE, 7
-	warp MAP_VERMILION_CITY_PORT_INSIDE_HNS, 8, 9
+	@ Origin Jade: lands in Vermilion's port building, in front of the sailor.
+	warp MAP_VERMILION_CITY_PORT_INSIDE_FRLG, 8, 9
 	waitstate
 	release
 	end
@@ -338,3 +226,54 @@ SSAqua_1F_Text_SailorDoorArrived:
     .string "We have arrived in VERMILION CITY.\n"
     .string "Would you like to disembark?$"
 #endif
+
+@ M.S. Aqua return trips from the Kampfzone and Birth Island, see docs/origin_jade/DECISIONS.md, D-029.
+@ Jump here after lock/faceplayer and the sailor's question; VAR_0x8004 holds the local id of the ship.
+@ Hoenn is offered when the port menus offer it (Johto title, maiden voyage done) and uses their script.
+SSAqua_EventScript_ChooseReturnPort::
+	goto_if_unset FLAG_IS_JOHTO_CHAMPION, SSAqua_EventScript_ChooseReturnPortNoHoenn
+	goto_if_lt VAR_SSAQUA_STATE, 7, SSAqua_EventScript_ChooseReturnPortNoHoenn
+	multichoice 28, 4, MULTI_SSAQUA_RETURN, FALSE
+	switch VAR_RESULT
+	case SS_AQUA_RETURN_OLIVINE, SSAqua_EventScript_ReturnToOlivine
+	case SS_AQUA_RETURN_VERMILION, SSAqua_EventScript_ReturnToVermilion
+	case SS_AQUA_RETURN_HOENN, Common_EventScript_SailToHoenn
+	goto SSAqua_EventScript_ReturnRefused
+
+SSAqua_EventScript_ChooseReturnPortNoHoenn::
+	multichoice 28, 6, MULTI_SSAQUA_RETURN_PORTS, FALSE
+	switch VAR_RESULT
+	case SS_AQUA_RETURN_OLIVINE, SSAqua_EventScript_ReturnToOlivine
+	case SS_AQUA_RETURN_VERMILION, SSAqua_EventScript_ReturnToVermilion
+	goto SSAqua_EventScript_ReturnRefused
+
+SSAqua_EventScript_ReturnRefused::
+	msgbox EventTicket_Text_AsYouLike, MSGBOX_DEFAULT
+	release
+	end
+
+SSAqua_EventScript_ReturnToOlivine::
+	call SSAqua_EventScript_ReturnDepart
+	@ 8,15: Oak may still stand at 8,16 in front of the sailor.
+	warpsilent MAP_OLIVINE_CITY_PORT_INSIDE_HNS, 8, 15
+	waitstate
+	release
+	end
+
+SSAqua_EventScript_ReturnToVermilion::
+	call SSAqua_EventScript_ReturnDepart
+	warpsilent MAP_VERMILION_CITY_PORT_INSIDE_FRLG, 8, 9
+	waitstate
+	release
+	end
+
+SSAqua_EventScript_ReturnDepart::
+	msgbox EventTicket_Text_SailHome, MSGBOX_DEFAULT
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	delay 30
+	clearflag FLAG_SAFE_FOLLOWER_MOVEMENT
+	removeobject VAR_LAST_TALKED
+	call Common_EventScript_FerryDepartIsland
+	return

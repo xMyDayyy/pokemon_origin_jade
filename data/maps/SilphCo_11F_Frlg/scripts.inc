@@ -76,8 +76,21 @@ SilphCo_11F_EventScript_BattleGiovanni::
 	setvar VAR_MAP_SCENE_SILPH_CO_11F, 1
 	setflag FLAG_HIDE_SAFFRON_ROCKETS
 	clearflag FLAG_HIDE_SAFFRON_CIVILIANS
+	@ Origin Jade: the president takes the Card Key back. Johto's Radio Tower
+	@ checks the bag for the director's Card Key.
+	checkitem ITEM_CARD_KEY
+	call_if_eq VAR_RESULT, TRUE, SilphCo_11F_EventScript_ReturnCardKey
 	releaseall
 	end
+
+SilphCo_11F_EventScript_ReturnCardKey::
+	msgbox SilphCo_11F_Text_PresidentWantsCardKey
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	removeitem ITEM_CARD_KEY
+	msgbox SilphCo_11F_Text_ReturnedCardKey
+	closemessage
+	call EventScript_RestorePrevTextColor
+	return
 
 SilphCo_11F_EventScript_GiovanniApproachLeft::
 	applymovement LOCALID_SILPH_CO_GIOVANNI, SilphCo_11F_Movement_GiovanniApproachLeft
@@ -207,6 +220,24 @@ SilphCo_11F_Text_ThatsOurSecretPrototype::
 	.string "fail!\p"
 	.string "You should be quiet about using it,\n"
 	.string "though.$"
+#endif
+
+SilphCo_11F_Text_PresidentWantsCardKey::
+#if GERMAN
+	.string "Präsident: Den Türöffner brauchst\n"
+	.string "du jetzt nicht mehr.\l"
+	.string "Gibst du ihn mir bitte zurück?$"
+#else
+	.string "PRESIDENT: You won't need the\n"
+	.string "CARD KEY any more.\l"
+	.string "Could you give it back, please?$"
+#endif
+
+SilphCo_11F_Text_ReturnedCardKey::
+#if GERMAN
+	.string "{PLAYER} gibt den Türöffner zurück.$"
+#else
+	.string "{PLAYER} returned the CARD KEY.$"
 #endif
 
 SilphCo_11F_Text_YouHaveNoRoomForThis::

@@ -1,7 +1,7 @@
 {
   "id": "MAP_FOUR_ISLAND_ICEFALL_CAVE_B1F",
   "name": "FourIsland_IcefallCave_B1F_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_FOUR_ISLAND_ICEFALL_CAVE_B1F",
   "music": "MUS_RG_SEVII_CAVE",
   "region": "REGION_KANTO",

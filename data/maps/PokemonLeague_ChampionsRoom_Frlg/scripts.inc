@@ -55,8 +55,9 @@ PokemonLeague_ChampionsRoom_EventScript_EnterRoom::
 	setflag FLAG_TEMP_3
 	setflag FLAG_TEMP_5
 	savebgm MUS_VICTORY_GYM_LEADER
-	call_if_unset FLAG_IS_CHAMPION, PokemonLeague_ChampionsRoom_EventScript_Battle
-	call_if_set FLAG_IS_CHAMPION, PokemonLeague_ChampionsRoom_EventScript_Rematch
+	@ Origin Jade: rematch team once Kanto's league is won.
+	call_if_unset FLAG_IS_KANTO_CHAMPION, PokemonLeague_ChampionsRoom_EventScript_Battle
+	call_if_set FLAG_IS_KANTO_CHAMPION, PokemonLeague_ChampionsRoom_EventScript_Rematch
 	setflag FLAG_TEMP_4
 	clearflag FLAG_TEMP_5
 	setflag FLAG_DEFEATED_CHAMP
@@ -71,8 +72,10 @@ PokemonLeague_ChampionsRoom_EventScript_EnterRoom::
 	applymovement LOCALID_CHAMPIONS_ROOM_PROF_OAK, PokemonLeague_ChampionsRoom_Movement_OakEnter
 	waitmovement 0
 	delay 25
-	specialvar VAR_RESULT, GetStarterPokemon
-	bufferspeciesname STR_VAR_1, VAR_RESULT
+	@ Origin Jade: use VAR_STARTER_MON, GetStarterPokemon returns Hoenn starters in this build.
+	call_if_eq VAR_STARTER_MON, 0, PokemonLeague_ChampionsRoom_EventScript_NameBulbasaur
+	call_if_eq VAR_STARTER_MON, 1, PokemonLeague_ChampionsRoom_EventScript_NameSquirtle
+	call_if_eq VAR_STARTER_MON, 2, PokemonLeague_ChampionsRoom_EventScript_NameCharmander
 	msgbox PokemonLeague_ChampionsRoom_Text_OakCongratulations
 	applymovement LOCALID_CHAMPIONS_ROOM_PROF_OAK, Common_Movement_WalkInPlaceFasterRight
 	applymovement LOCALID_KANTO_CHAMPIONS_ROOM_RIVAL, Common_Movement_WalkInPlaceFasterLeft
@@ -428,3 +431,14 @@ PokemonLeague_ChampionsRoom_Text_OakPlayerComeWithMe::
 	.string "Come with me!$"
 #endif
 
+PokemonLeague_ChampionsRoom_EventScript_NameBulbasaur::
+	bufferspeciesname STR_VAR_1, SPECIES_BULBASAUR
+	return
+
+PokemonLeague_ChampionsRoom_EventScript_NameSquirtle::
+	bufferspeciesname STR_VAR_1, SPECIES_SQUIRTLE
+	return
+
+PokemonLeague_ChampionsRoom_EventScript_NameCharmander::
+	bufferspeciesname STR_VAR_1, SPECIES_CHARMANDER
+	return

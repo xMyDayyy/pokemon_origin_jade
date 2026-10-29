@@ -1,7 +1,7 @@
 {
   "id": "MAP_SIX_ISLAND_WATER_PATH",
   "name": "SixIsland_WaterPath_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_SIX_ISLAND_WATER_PATH",
   "music": "MUS_RG_SEVII_ROUTE",
   "region": "REGION_KANTO",

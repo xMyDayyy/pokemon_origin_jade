@@ -1,146 +1,190 @@
-@ Handled by data/scripts/day_care.inc
-
 Route5_PokemonDayCare_Frlg_MapScripts::
 	.byte 0
 
-Route5_PokemonDayCare_Text_WantMeToRaiseMon::
-#if GERMAN
-	.string "Ich leite diese Pension.\p"
-	.string "Soll ich eines deiner Pokémon\n"
-	.string "großziehen?$"
-#else
-	.string "I run the DAY-CARE service.\p"
-	.string "Would you like me to raise one of\n"
-	.string "your POKéMON?$"
-#endif
+Route5_PokemonDayCare_EventScript_DaycareWoman::
+	lock
+	faceplayer
+	specialvar VAR_RESULT, GetDaycareState
+	goto_if_eq VAR_RESULT, DAYCARE_EGG_WAITING, Route5_PokemonDayCare_EggWaiting
+	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, Route5_PokemonDayCare_OneMonInDaycare
+	goto_if_eq VAR_RESULT, DAYCARE_TWO_MONS, Route5_PokemonDayCare_TwoMonsInDaycare
+	msgbox DayCare_Text_WouldYouLikeUsToRaiseMon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, Route5_PokemonDayCare_GiveMonToRaise
+	msgbox DayCare_Text_FineThenComeAgain
+	release
+	end
 
-Route5_PokemonDayCare_Text_ComeAgain::
-#if GERMAN
-	.string "Dann bis später.$"
-#else
-	.string "Come again.$"
-#endif
+Route5_PokemonDayCare_GiveMonToRaise::
+	specialvar VAR_RESULT, CountPartyNonEggMons
+	goto_if_eq VAR_RESULT, 1, Route5_PokemonDayCare_OnlyOneMonInParty
+	msgbox DayCare_Text_WhichMonShouldWeRaise
+	fadescreen FADE_TO_BLACK
+	special ChooseSendDaycareMon
+	waitstate
+	goto_if_ge VAR_0x8004, PARTY_SIZE, Route5_PokemonDayCare_ComeAgain
+	specialvar VAR_RESULT, CountPartyAliveNonEggMons_IgnoreVar0x8004Slot
+	goto_if_eq VAR_RESULT, 0, Route5_PokemonDayCare_OnlyOneAliveMonInParty
+	specialvar VAR_0x8005, GetSelectedMonNicknameAndSpecies
+	waitse
+	playmoncry VAR_0x8005, CRY_MODE_NORMAL
+	msgbox DayCare_Text_WellRaiseYourMon
+	waitmoncry
+	special StoreSelectedPokemonInDaycare
+	callnative UpdateFollowingPokemon
+	incrementgamestat GAME_STAT_USED_DAYCARE
+	specialvar VAR_RESULT, GetDaycareState
+	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, Route5_PokemonDayCare_CanRaiseOneMore
+	release
+	end
 
-Route5_PokemonDayCare_Text_WhichMonShouldIRaise::
-#if GERMAN
-	.string "Welches Pokémon soll hier bleiben?$"
-#else
-	.string "Which POKéMON should I raise?$"
-#endif
+Route5_PokemonDayCare_ComeAgain::
+	msgbox DayCare_Text_ComeAgain
+	release
+	end
 
-Route5_PokemonDayCare_Text_ComeAnytimeYouLike::
-#if GERMAN
-	.string "Ich verstehe.\n"
-	.string "Komm mich wieder besuchen.$"
-#else
-	.string "Fine.\n"
-	.string "Come anytime you like.$"
-#endif
+Route5_PokemonDayCare_CanRaiseOneMore::
+	msgbox DayCare_Text_WeCanRaiseOneMore, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, Route5_PokemonDayCare_GiveMonToRaise
+	goto Route5_PokemonDayCare_ComeAgain
+	end
 
-Route5_PokemonDayCare_Text_LookAfterMonForAWhile::
-#if GERMAN
-	.string "O.K., ich kümmere mich eine Weile\n"
-	.string "um {STR_VAR_1}.$"
-#else
-	.string "Fine, I'll look after your\n"
-	.string "{STR_VAR_1} for a while.$"
-#endif
+Route5_PokemonDayCare_OnlyOneMonInParty::
+	msgbox DayCare_Text_YouHaveJustOneMon
+	release
+	end
 
-Route5_PokemonDayCare_Text_ComeSeeMeInAWhile::
-#if GERMAN
-	.string "Komm später wieder vorbei, um es\n"
-	.string "abzuholen.$"
-#else
-	.string "Come see me in a while.$"
-#endif
+Route5_PokemonDayCare_OnlyOneAliveMonInParty::
+	msgbox DayCare_Text_WhatWillYouBattleWith
+	release
+	end
 
-Route5_PokemonDayCare_Text_MonNeedsToSpendMoreTime::
-#if GERMAN
-	.string "Du bist schon wieder zurück?\p"
-	.string "{STR_VAR_1} sollte noch ein bisschen bei\n"
-	.string "mir bleiben.$"
-#else
-	.string "You're back already?\p"
-	.string "Your {STR_VAR_1} needs to spend\n"
-	.string "some more time with me.$"
-#endif
+Route5_PokemonDayCare_EggWaiting::
+	msgbox DayCare_Text_HusbandWasLookingForYou
+	release
+	end
 
-Route5_PokemonDayCare_Text_OweMeXForMonsReturn::
-#if GERMAN
-	.string "Bevor du dein Pokémon wieder mitnimmst,\n"
-	.string "bekomme ich noch {STR_VAR_2}¥ von dir!$"
-#else
-	.string "You owe me ¥{STR_VAR_2} for the return\n"
-	.string "of this POKéMON.$"
-#endif
+Route5_PokemonDayCare_MonHasGrownXLevels::
+	msgbox DayCare_Text_YourMonHasGrownXLevels
+	return
 
-Route5_PokemonDayCare_Text_ThankYouHeresMon::
-#if GERMAN
-	.string "Vielen Dank!\n"
-	.string "Hier ist dein Pokémon!$"
-#else
-	.string "Thank you!\n"
-	.string "Here's your POKéMON.$"
-#endif
+Route5_PokemonDayCare_DisplayLevelsGained::
+	specialvar VAR_RESULT, GetNumLevelsGainedFromDaycare
+	call_if_ne VAR_RESULT, 0, Route5_PokemonDayCare_MonHasGrownXLevels
+	return
 
-Route5_PokemonDayCare_Text_PlayerGotMonBack::
-#if GERMAN
-	.string "{PLAYER} erhält {STR_VAR_1} zurück!$"
-#else
-	.string "{PLAYER} got {STR_VAR_1} back\n"
-	.string "from the DAY-CARE MAN.$"
-#endif
+Route5_PokemonDayCare_OneMonInDaycare::
+	msgbox DayCare_Text_GoodToSeeYou
+	setvar VAR_0x8004, 0
+	call Route5_PokemonDayCare_DisplayLevelsGained
+	msgbox DayCare_Text_WeCanRaiseOneMore, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, Route5_PokemonDayCare_GiveMonToRaise
+	msgbox DayCare_Text_TakeYourMonBack, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, Route5_PokemonDayCare_TryRetrieveMon
+	goto Route5_PokemonDayCare_ComeAgain
+	end
 
-Route5_PokemonDayCare_Text_OnlyHaveOneMonWithYou::
-#if GERMAN
-	.string "Du hast nur ein Pokémon dabei!$"
-#else
-	.string "Oh? You only have one POKéMON\n"
-	.string "with you.$"
-#endif
+Route5_PokemonDayCare_TryRetrieveMon::
+	specialvar VAR_RESULT, CalculatePlayerPartyCount
+	goto_if_eq VAR_RESULT, PARTY_SIZE, Route5_PokemonDayCare_NoRoomInParty
+	specialvar VAR_RESULT, GetDaycareState
+	setvar VAR_0x8004, 0
+	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, Route5_PokemonDayCare_CostPrompt
+	special ShowDaycareLevelMenu
+	waitstate
+	copyvar VAR_0x8004, VAR_RESULT
+	goto_if_eq VAR_RESULT, DAYCARE_EXITED_LEVEL_MENU, Route5_PokemonDayCare_ComeAgain
+	goto Route5_PokemonDayCare_CostPrompt
+	end
 
-Route5_PokemonDayCare_Text_WhatWillYouBattleWith::
-#if GERMAN
-	.string "Wenn du mir dieses Pokémon überlässt,\n"
-	.string "womit willst du kämpfen?$"
-#else
-	.string "If you leave me that POKéMON,\n"
-	.string "what will you battle with?$"
-#endif
+Route5_PokemonDayCare_CostPrompt::
+	special GetDaycareCost
+	msgbox DayCare_Text_ItWillCostX, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, Route5_PokemonDayCare_CheckEnoughMoney
+	goto Route5_PokemonDayCare_ComeAgain
+	end
 
-Route5_PokemonDayCare_Text_MonHasGrownByXLevels::
-#if GERMAN
-	.string "{STR_VAR_1} hat sich toll entwickelt!\p"
-	.string "Es ist um {STR_VAR_2} Level gestiegen!\p"
-	.string "Das habe ich gut gemacht, oder?$"
-#else
-	.string "Your {STR_VAR_1} has grown a lot.\n"
-	.string "Yes, quite a lot, I'd say.\p"
-	.string "Let me see…\n"
-	.string "By level, it's grown by {STR_VAR_2}.\p"
-	.string "Aren't I great?$"
-#endif
+Route5_PokemonDayCare_CheckEnoughMoney::
+	specialvar VAR_RESULT, IsEnoughForCostInVar0x8005
+	goto_if_eq VAR_RESULT, TRUE, Route5_PokemonDayCare_RetrieveMon
+	msgbox DayCare_Text_NotEnoughMoney
+	release
+	end
 
-Route5_PokemonDayCare_Text_YouveGotNoRoomForIt::
-#if GERMAN
-	.string "Du kannst kein weiteres Pokémon\n"
-	.string "mehr tragen!$"
-#else
-	.string "You can't take this POKéMON back\n"
-	.string "if you've got no room for it.$"
-#endif
+Route5_PokemonDayCare_RetrieveMon::
+	applymovement LOCALID_ROUTE5_DAYCARE_WOMAN, Route5_PokemonDayCare_Movement_RetrieveMon
+	waitmovement 0
+	specialvar VAR_RESULT, TakePokemonFromDaycare
+	special SubtractMoneyFromVar0x8005
+	playse SE_SHOP
+	msgbox DayCare_Text_HeresYourMon
+	waitse
+	playmoncry VAR_RESULT, CRY_MODE_NORMAL
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	msgbox DayCare_Text_TookBackMon
+	call EventScript_RestorePrevTextColor
+	waitmoncry
+	specialvar VAR_RESULT, GetDaycareState
+	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, Route5_PokemonDayCare_AskRetrieveOtherMon
+	goto Route5_PokemonDayCare_ComeAgain
+	end
 
-Route5_PokemonDayCare_Text_DontHaveEnoughMoney::
-#if GERMAN
-	.string "Du hast nicht genug Geld…$"
-#else
-	.string "You don't have enough money.$"
-#endif
+Route5_PokemonDayCare_AskRetrieveOtherMon::
+	msgbox DayCare_Text_TakeOtherOneBackToo, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, Route5_PokemonDayCare_TryRetrieveMon
+	goto Route5_PokemonDayCare_ComeAgain
+	end
 
-Route5_PokemonDayCare_Text_WantMeToTakeALookAtYours::
-	.string "きみの\n"
-	.string "みてみるかね？$"
+Route5_PokemonDayCare_NoRoomInParty::
+	msgbox DayCare_Text_YourPartyIsFull
+	release
+	end
 
-Route5_PokemonDayCare_Text_CantAcceptMonWithHM::
-	.string "わるいけど　ひでんのわざを　もった\n"
-	.string "ポケモンは　あずかれないなぁ$"
+Route5_PokemonDayCare_Movement_RetrieveMon::
+	delay_16
+	delay_16
+	face_right
+	delay_16
+	delay_16
+	face_left
+	delay_16
+	delay_16
+	face_up
+	walk_slow_up
+	set_invisible
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	delay_16
+	face_down
+	set_visible
+	walk_slow_down
+	step_end
+
+@ Unused. Possibly a commented script, or a typo end added to the above Movement script
+Route5_PokemonDayCare_EventScript_UnusedEnd::
+	end
+
+Route5_PokemonDayCare_TwoMonsInDaycare::
+	msgbox DayCare_Text_GoodToSeeYou
+	setvar VAR_0x8004, 0
+	call Route5_PokemonDayCare_DisplayLevelsGained
+	setvar VAR_0x8004, 1
+	call Route5_PokemonDayCare_DisplayLevelsGained
+	msgbox DayCare_Text_TakeYourMonBack, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, Route5_PokemonDayCare_TryRetrieveMon
+	msgbox DayCare_Text_ComeAgain
+	release
+	end
+
+@ Unused
+Route5_PokemonDayCare_EventScript_UnusedRetrieveMon::
+	special ShowDaycareLevelMenu
+	waitstate
+	goto_if_eq VAR_RESULT, 2, Route5_PokemonDayCare_ComeAgain
+	copyvar VAR_0x8004, VAR_RESULT
+	specialvar VAR_RESULT, TakePokemonFromDaycare
+	msgbox DayCare_Text_HeresYourMon
+	msgbox DayCare_Text_ComeAgain
+	release
+	end

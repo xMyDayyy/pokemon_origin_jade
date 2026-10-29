@@ -22,14 +22,8 @@ static u8 GetNumStagesWateredByBerryTreeId(u8 id);
 #if IS_HNS
 static u8 sLastPickedBerryType = BERRY_NONE;
 
-// Origin Jade: In Hoenn gilt das Smaragd-Anbausystem (pflanzen, giessen,
-// artspezifische Reifezeiten), in Johto/Kanto das HGSS-Selbstversorger-
-// System (feste Reifezeiten, automatische Neupflanzung beim Pfluecken).
-// Interaktionen entscheiden ueber den Baum-Slot; Hintergrundwachstum
-// ebenso: Hoenn belegt die Save-Slots 0-89, Johto/Kanto ab 90.
-// Bekannter Kartendatenfehler: drei Johto-Baeume teilen sich die Slots
-// 2, 31 und 33 mit Hoenn (Fix erst nach dem HnS-Full-Release moeglich,
-// Planungsnote) - dort gilt uebergangsweise Hoenn-Wachstum.
+// Origin Jade: trees in save slots below HNS_BERRY_TREE_FIRST_ID (Hoenn) use the
+// Emerald farming system, all others (Johto/Kanto) the HGSS self-sustaining one.
 #define HNS_BERRY_TREE_FIRST_ID 90
 static bool32 BerryTreeIdIsHoenn(u8 id)
 {
@@ -39,7 +33,7 @@ static bool32 BerryTreeIsHoenn(struct BerryTree *tree)
 {
     return BerryTreeIdIsHoenn((u8)(tree - gSaveBlock1Ptr->berryTrees));
 }
-// HGSS-Reifezeit (frueher der IS_HNS-Zweig von GetStageDurationByBerryType)
+// HGSS growth time per stage
 static u16 GetStageDurationHns(u8 berry)
 {
     if (berry == ITEM_TO_BERRY(ITEM_LUM_BERRY) || berry == ITEM_TO_BERRY(ITEM_SITRUS_BERRY))
@@ -1857,7 +1851,7 @@ bool32 BerryTreeGrow(struct BerryTree *tree)
         return FALSE;
 
 #if IS_HNS
-    // HGSS-Baum (Johto/Kanto): jede Stufe springt direkt zu reifen Beeren.
+    // HGSS tree (Johto/Kanto): every stage jumps straight to ripe berries.
     if (!BerryTreeIsHoenn(tree))
     {
         switch (tree->stage)
@@ -1869,8 +1863,7 @@ bool32 BerryTreeGrow(struct BerryTree *tree)
         case BERRY_STAGE_TALLER:
         case BERRY_STAGE_FLOWERING:
         {
-            // Origin Jade: HGSS-Selbstversorger tragen zufaellig 1-5 Beeren
-            // (artgedeckelt) statt konstant Maximum (Spieltest-Report).
+            // Origin Jade: HGSS trees bear 1-5 berries, at most the species' maxYield.
             u8 cap = GetBerryInfo(tree->berry)->maxYield;
             if (cap > 5)
                 cap = 5;
@@ -1942,7 +1935,7 @@ void BerryTreeTimeUpdate(s32 minutes)
         tree = &gSaveBlock1Ptr->berryTrees[i];
 
 #if IS_HNS
-        // HGSS-Baum (Johto/Kanto): einfacher Minutenzaehler, feste Reifezeit.
+        // HGSS tree (Johto/Kanto): minute counter, fixed growth time.
         if (!BerryTreeIsHoenn(tree))
         {
             if (tree->berry && tree->stage && !tree->stopGrowth && tree->stage != BERRY_STAGE_BERRIES)
@@ -2054,7 +2047,7 @@ void PlantBerryTree(u8 id, u8 berry, u8 stage, bool8 allowGrowth)
 #if IS_HNS
     if (!BerryTreeIdIsHoenn(id))
     {
-        // HGSS-Baum: feste Reifezeit, kein Mulch/Feuchtigkeitssystem.
+        // HGSS tree: fixed growth time, no mulch/moisture system.
         tree->minutesUntilNextStage = GetStageDurationHns(berry);
         if (stage == BERRY_STAGE_BERRIES)
         {
@@ -2223,7 +2216,7 @@ static u8 GetBerryCountByBerryTreeId(u8 id)
 
 static u16 GetStageDurationByBerryType(u8 berry)
 {
-    // Smaragd-Reifezeit; der HGSS-Zweig lebt in GetStageDurationHns().
+    // Emerald growth time; HGSS trees use GetStageDurationHns().
     return GetBerryInfo(berry)->growthDuration * 60 / (OW_BERRY_SIX_STAGES ? 6 : 4);
 }
 
@@ -2327,7 +2320,7 @@ void ObjectEventInteractionPlantBerryTree(void)
 #if IS_HNS
     if (!BerryTreeIdIsHoenn(treeId))
     {
-        // HGSS: automatische Neupflanzung der zuletzt gepflueckten Art.
+        // HGSS: automatically replant the type that was picked last.
         berry = sLastPickedBerryType;
         if (berry == BERRY_NONE)
             berry = ITEM_TO_BERRY(FIRST_BERRY_INDEX);
@@ -2336,7 +2329,7 @@ void ObjectEventInteractionPlantBerryTree(void)
         return;
     }
 #endif
-    // Smaragd: die im Beutel gewaehlte Beere wird gepflanzt.
+    // Emerald: plant the berry chosen in the bag.
     berry = ItemIdToBerryType(gSpecialVar_ItemId);
     PlantBerryTree(treeId, berry, BERRY_STAGE_PLANTED, TRUE);
     ObjectEventInteractionGetBerryTreeData();
@@ -2359,7 +2352,7 @@ void ObjectEventInteractionPickBerryTree(void)
 #if IS_HNS
     if (!BerryTreeIdIsHoenn(id))
     {
-        // HGSS: einsammeln und Art fuer die Neupflanzung merken.
+        // HGSS: pick the berries and remember the type for replanting.
         gSpecialVar_0x8004 = AddBagItem(BerryTypeToItemId(berry), GetBerryCountByBerryTreeId(id));
         sLastPickedBerryType = berry;
         return;

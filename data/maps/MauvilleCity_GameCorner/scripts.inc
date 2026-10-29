@@ -23,9 +23,9 @@ MauvilleCity_GameCorner_EventScript_CoinsClerk::
 	checkitem ITEM_COIN_CASE
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NeedCoinCase
 	checkcoins VAR_TEMP_1
-	goto_if_ge VAR_TEMP_1, (MAX_COINS + 1 - 50), MauvilleCity_GameCorner_EventScript_NoRoomFor50Coins
+	goto_if_ge VAR_TEMP_1, (MAX_COINS + 1 - 50), MauvilleCity_GameCorner_EventScript_NoRoomFor50Coins_NoBoxes
 	checkmoney COINS_PRICE_50
-	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NotEnoughMoneyFor50
+	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NotEnoughMoneyFor50_NoBoxes
 	message MauvilleCity_GameCorner_Text_WereYouLookingForCoins
 	waitmessage
 	showmoneybox 0, 0
@@ -175,6 +175,12 @@ MauvilleCity_GameCorner_EventScript_NotEnoughMoneyFor50::
 	release
 	end
 
+MauvilleCity_GameCorner_EventScript_NotEnoughMoneyFor50_NoBoxes::
+	msgbox MauvilleCity_GameCorner_Text_DontHaveEnoughMoneyFor50, MSGBOX_DEFAULT
+	clearflag FLAG_TEMP_2
+	release
+	end
+
 MauvilleCity_GameCorner_EventScript_NotEnoughMoney::
 	checkmoney COINS_PRICE_50
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NotEnoughMoneyFor50
@@ -204,6 +210,12 @@ MauvilleCity_GameCorner_EventScript_NoRoomFor50Coins::
 	clearflag FLAG_TEMP_2
 	hidemoneybox
 	hidecoinsbox 0, 5
+	release
+	end
+
+MauvilleCity_GameCorner_EventScript_NoRoomFor50Coins_NoBoxes::
+	msgbox MauvilleCity_GameCorner_Text_NoRoomFor50Coins, MSGBOX_DEFAULT
+	clearflag FLAG_TEMP_2
 	release
 	end
 
@@ -687,7 +699,12 @@ MauvilleCity_GameCorner_EventScript_Girl::
 	goto_if_set FLAG_RECEIVED_STARTER_DOLL, MauvilleCity_GameCorner_EventScript_ReceivedStarterDoll
 	msgbox MauvilleCity_GameCorner_Text_GotTwoOfSameDollWantOne, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, MauvilleCity_GameCorner_EventScript_DeclineStarterDoll
+#if IS_HNS
+	@ Origin Jade: Johto starter index (0 = grass, 1 = fire, 2 = water).
+	switch VAR_JOHTO_STARTER_MON
+#else
 	switch VAR_STARTER_MON
+#endif
 	case 0, MauvilleCity_GameCorner_EventScript_GiveTreeckoDoll
 	case 1, MauvilleCity_GameCorner_EventScript_GiveTorchicDoll
 	case 2, MauvilleCity_GameCorner_EventScript_GiveMudkipDoll
@@ -978,7 +995,7 @@ MauvilleCity_GameCorner_Text_DontHaveEnoughMoneyFor50:
 	.string "Komm doch wieder, wenn du mindestens\n"
 	.string "¥500 dabeihast!$"
 #else
-	@ Upstream text said ¥1000, but COINS_PRICE_50 is 500 - aligned.
+	@ Keep the amount equal to COINS_PRICE_50.
 	.string "Um… You don't appear to have\n"
 	.string "enough money to buy COINS…\p"
 	.string "Please come back when you have\n"
@@ -1002,7 +1019,6 @@ MauvilleCity_GameCorner_Text_NoRoomFor50Coins:
 	.string "Malvenfroh! Oder tausche deine Münzen\l"
 	.string "erst gegen Preise ein!$"
 #else
-	@ Upstream said GOLDENROD here - copy-paste slip, this is Mauville.
 	.string "Oh! Your COIN CASE is too full to buy\n"
 	.string "any more COINS!\p"
 	.string "Enjoy the MAUVILLE GAME CORNER or\n"
@@ -1020,7 +1036,7 @@ MauvilleCity_GameCorner_Text_NoRoomForCoins:
 	.string "Your COIN CASE can't fit those COINS...$"
 #endif
 
-@ Seit dem Sammelkauf-Umbau (Upstream) ohne Aufrufer - bleibt als toter Text stehen.
+@ Unused, has no text of its own.
 MauvilleCity_GameCorner_Text_CoinCaseIsFull:
 
 MauvilleCity_GameCorner_Text_DontNeedCoinsThen:

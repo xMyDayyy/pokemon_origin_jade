@@ -1,7 +1,7 @@
 {
   "id": "MAP_THREE_ISLAND_DUNSPARCE_TUNNEL",
   "name": "ThreeIsland_DunsparceTunnel_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_THREE_ISLAND_DUNSPARCE_TUNNEL",
   "music": "MUS_RG_VIRIDIAN_FOREST",
   "region": "REGION_KANTO",

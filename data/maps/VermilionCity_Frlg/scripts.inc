@@ -23,6 +23,9 @@ VermilionCity_Movement_ExitSSAnne::
 VermilionCity_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_VERMILION_CITY
 	call_if_set FLAG_TALKED_TO_OAKS_AIDE_IN_VERMILION, VermilionCity_EventScript_HideOaksAide
+	@ Origin Jade: no dock ferry, ships leave from the port building (see docs/origin_jade/DECISIONS.md, D-029).
+	@ FLAG_TEMP_1 hides LOCALID_VERMILION_FERRY_SAILOR.
+	setflag FLAG_TEMP_1
 	end
 
 VermilionCity_EventScript_HideOaksAide::

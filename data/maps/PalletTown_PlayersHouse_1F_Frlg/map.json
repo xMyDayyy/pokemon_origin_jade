@@ -1,8 +1,8 @@
 {
   "id": "MAP_PALLET_TOWN_PLAYERS_HOUSE_1F",
   "name": "PalletTown_PlayersHouse_1F_Frlg",
-  "game_version": "frlg",
-  "layout": "LAYOUT_PALLET_TOWN_PLAYERS_HOUSE_1F_FRLG",
+  "game_version": "hns",
+  "layout": "LAYOUT_NEW_BARK_TOWN_PLAYERS_HOUSE_1F_HNS",
   "music": "MUS_RG_PALLET",
   "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_PALLET_TOWN",
@@ -31,35 +31,42 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PalletTown_PlayersHouse_1F_EventScript_Mom",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_DAISY",
+      "x": 5,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PalletTown_PlayersHouse_1F_EventScript_Daisy",
+      "flag": "FLAG_HIDE_PALLET_HOUSE_DAISY",
+      "local_id": "LOCALID_PLAYERS_HOUSE_1F_DAISY"
     }
   ],
   "warp_events": [
     {
-      "x": 5,
+      "x": 10,
       "y": 8,
-      "elevation": 3,
+      "elevation": 0,
       "dest_map": "MAP_PALLET_TOWN",
       "dest_warp_id": "0"
     },
     {
-      "x": 4,
+      "x": 9,
       "y": 8,
-      "elevation": 3,
+      "elevation": 0,
       "dest_map": "MAP_PALLET_TOWN",
       "dest_warp_id": "0"
     },
     {
       "x": 10,
       "y": 2,
-      "elevation": 3,
-      "dest_map": "MAP_PALLET_TOWN_PLAYERS_HOUSE_2F",
-      "dest_warp_id": "0"
-    },
-    {
-      "x": 3,
-      "y": 9,
       "elevation": 0,
-      "dest_map": "MAP_PALLET_TOWN",
+      "dest_map": "MAP_PALLET_TOWN_PLAYERS_HOUSE_2F",
       "dest_warp_id": "0"
     }
   ],

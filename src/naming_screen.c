@@ -13,6 +13,7 @@
 #include "field_player_avatar.h"
 #include "event_object_movement.h"
 #include "event_data.h"
+#include "constants/region_map_sections.h"
 #include "constants/songs.h"
 #include "pokemon_storage_system.h"
 #include "graphics.h"
@@ -195,13 +196,11 @@ static const u8 sPCIconOn_Gfx[] = INCBIN_U8("graphics/naming_screen/pc_icon_on.4
 static const u16 sKeyboard_Pal[] = INCBIN_U16("graphics/naming_screen/keyboard.gbapal");
 static const u32 sShinyStarTiles[] = INCBIN_U32("graphics/summary_screen/shiny_icon.4bpp.lz");
 static const u16 sShinyStarPal[] = INCBIN_U16("graphics/summary_screen/heart.gbapal");
-#if IS_HNS
-static const u16 sRival_Gfx[] = INCBIN_U16("graphics/naming_screen/silver.4bpp");
-static const u16 sRival_Pal[] = INCBIN_U16("graphics/naming_screen/silver.gbapal");
-#else
-static const u16 sRival_Gfx[] = INCBIN_U16("graphics/naming_screen/rival.4bpp");
-static const u16 sRival_Pal[] = INCBIN_U16("graphics/naming_screen/rival.gbapal");
-#endif
+// Origin Jade: rival icons, Blue in Kanto and Silver in Johto.
+static const u16 sRivalKanto_Gfx[] = INCBIN_U16("graphics/naming_screen/rival.4bpp");
+static const u16 sRivalKanto_Pal[] = INCBIN_U16("graphics/naming_screen/rival.gbapal");
+static const u16 sRivalJohto_Gfx[] = INCBIN_U16("graphics/naming_screen/silver.4bpp");
+static const u16 sRivalJohto_Pal[] = INCBIN_U16("graphics/naming_screen/silver.gbapal");
 
 static const u8 *const sTransferredToPCMessages[] =
 {
@@ -1494,18 +1493,25 @@ static const union AnimCmd *const sAnims_Rival[] =
 
 static void NamingScreen_CreateRivalIcon(void)
 {
+#if IS_HNS
+    u32 mapSec = gMapHeader.regionMapSectionId;
+    bool32 inKanto = (mapSec >= KANTO_MAPSEC_START && mapSec <= KANTO_MAPSEC_END);
+#else
+    bool32 inKanto = TRUE;
+#endif
     const struct SpriteSheet sheet = {
-        sRival_Gfx, 0x900, GFXTAG_RIVAL
+        inKanto ? sRivalKanto_Gfx : sRivalJohto_Gfx, 0x900, GFXTAG_RIVAL
     };
     const struct SpritePalette palette = {
-        sRival_Pal, PALTAG_RIVAL
+        inKanto ? sRivalKanto_Pal : sRivalJohto_Pal, PALTAG_RIVAL
     };
     struct SpriteTemplate template;
     const struct SubspriteTable * tables_p;
     u8 spriteId;
 
 #if IS_HNS
-    CopyObjectGraphicsInfoToSpriteTemplate(OBJ_EVENT_GFX_GOLD_NORMAL_HNS, SpriteCallbackDummy, &template, &tables_p);
+    CopyObjectGraphicsInfoToSpriteTemplate(inKanto ? OBJ_EVENT_GFX_RED_NORMAL : OBJ_EVENT_GFX_GOLD_NORMAL_HNS,
+                                           SpriteCallbackDummy, &template, &tables_p);
 #else
     CopyObjectGraphicsInfoToSpriteTemplate(OBJ_EVENT_GFX_RED_NORMAL, SpriteCallbackDummy, &template, &tables_p);
 #endif
@@ -2273,6 +2279,17 @@ static void UNUSED Debug_NamingScreenNickname(void)
 
 void NameRival(void)
 {
+#if IS_HNS
+    u32 mapSec = gMapHeader.regionMapSectionId;
+
+    // Origin Jade: Blue is named in Kanto, Silver in Johto.
+    if (mapSec >= KANTO_MAPSEC_START && mapSec <= KANTO_MAPSEC_END)
+    {
+        StringCopy(gSaveBlock3Ptr->rivalNameKanto, gText_ExpandedPlaceholder_Green);
+        DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock3Ptr->rivalNameKanto, 0, 0, 0, 0, CB2_ReturnToFieldContinueScript);
+        return;
+    }
+#endif
     StringCopy(gSaveBlock2Ptr->rivalName, gText_ExpandedPlaceholder_Silver);
     DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, 0, 0, 0, 0, CB2_ReturnToFieldContinueScript);
 }
@@ -2312,7 +2329,8 @@ static const struct NamingScreenTemplate sMonNamingScreenTemplate =
     .addGenderIcon = TRUE,
     .initialPage = KBPAGE_LETTERS_UPPER,
     .unused = 35,
-    .title = COMPOUND_STRING("Kosename f. {STR_VAR_1}"),
+    // Appended to the species name, at most 15 characters.
+    .title = COMPOUND_STRING(" benennen?"),
 };
 
 static const struct NamingScreenTemplate sWaldaWordsScreenTemplate =

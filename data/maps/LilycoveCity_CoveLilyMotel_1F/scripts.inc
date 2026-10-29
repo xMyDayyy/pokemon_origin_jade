@@ -5,8 +5,6 @@ LilycoveCity_CoveLilyMotel_1F_EventScript_MotelOwner::
 	lockall
 	goto_if_set FLAG_IS_HOENN_CHAMPION, LilycoveCity_CoveLilyMotel_1F_EventScript_GameClear
 #if IS_HNS
-	@ HnS: FLAG_BADGE07_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
 	setvar VAR_0x8004, 6
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, TRUE, LilycoveCity_CoveLilyMotel_1F_EventScript_AquaHideoutBusted

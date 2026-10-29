@@ -38,6 +38,7 @@ CianwoodGym_Text_GymStatueCertified:
 CianwoodGym_EventScript_Chuck::
 	lock
 	faceplayer
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, CianwoodGym_EventScript_Chuck_Rematch
 	goto_if_unset FLAG_HIDE_DOJO_CHUCK, CianwoodGym_EventScript_ChuckAtDojo
 	goto_if_set FLAG_VISITED_VERMILION_CITY, CianwoodGym_EventScript_ChuckGotoDojo
 	goto_if_set FLAG_DEFEATED_CIANWOOD_GYM, CianwoodGym_EventScript_Chuck_Defeated
@@ -69,6 +70,9 @@ CianwoodGym_EventScript_ChuckVictory::
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox CianwoodGym_Text_ChuckBadgeSpeech, MSGBOX_DEFAULT
 	setflag FLAG_BADGE05_GET
+	@ Johto badge 5 (index 4 in VAR_JOHTO_BADGES).
+	setvar VAR_0x8004, 4
+	special SetJohtoBadge
 	setflag FLAG_DEFEATED_CIANWOOD_GYM
 	addvar VAR_NUM_BADGES, 1
 	setvar VAR_0x8008, 5
@@ -99,7 +103,17 @@ CianwoodGym_Text_ChuckGotoDojo:
 	.string "WAHAHAHA {PLAYER}!\n"
 	.string "I'm in the middle of my training!\p"
 	.string "If you want another match, come to\n"
+	.string "the FIGHTING DOJO in SAFFRON CITY!$"
 #endif
+
+@ Rematch after the Johto title, see docs/origin_jade/DECISIONS.md, D-032.
+CianwoodGym_EventScript_Chuck_Rematch::
+	msgbox CianwoodGym_Text_ChuckRematch, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
+	closemessage
+	trainerbattle_no_intro TRAINER_CHUCK_2_HNS, CianwoodGym_Text_ChuckRematchDefeat
+	release
+	end
 
 CianwoodGym_EventScript_ChuckAtDojo::
 	msgbox CianwoodGym_Text_ChuckAtDojo, MSGBOX_DEFAULT
@@ -259,12 +273,12 @@ CianwoodGym_Text_ChuckRematch:
 	.string "Du willst noch eine Runde!\p"
 	.string "Ich sehe, deine Fähigkeiten sind\n"
 	.string "besser geworden!\p"
-	.string "Bereit für ein Kräftemessen?$"
+	.string "Möchtest du einen Rückkampf?$"
 #else
 	.string "WAHAHAH! JOHTO CHAMPION!\p"
 	.string "You've come back for more!\p"
 	.string "I see your skills have improved!\p"
-	.string "Ready to see who's stronger?$"
+	.string "Want to have a rematch?$"
 #endif
 
 CianwoodGym_Text_ChuckRematchDefeat:

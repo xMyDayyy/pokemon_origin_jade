@@ -182,6 +182,6 @@
       "script": "CeruleanCity_Gym_EventScript_MachinePartItem"
     }
   ],
-  "game_version": "hns",
+  "game_version": "hns_kanto_retired",
   "region": "REGION_KANTO"
 }

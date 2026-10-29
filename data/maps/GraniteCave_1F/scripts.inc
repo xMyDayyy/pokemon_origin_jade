@@ -5,9 +5,7 @@ GraniteCave_1F_EventScript_Hiker::
 	lock
 	faceplayer
 #if IS_HNS
-	@ HnS: Blitz stammt aus Johto und ist dort ohne Ordenbindung nutzbar.
-	@ In Hoenn gibt es die VM deshalb gar nicht mehr - weder Uebergabe
-	@ noch Erlaubnis. Der Wanderer redet nur noch.
+	@ HnS: no HM Flash in Hoenn, the hiker only talks.
 	setflag FLAG_RECEIVED_HM_FLASH
 	msgbox GraniteCave_1F_Text_HnsHikerDark, MSGBOX_DEFAULT
 	release

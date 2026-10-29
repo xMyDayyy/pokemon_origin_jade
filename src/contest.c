@@ -2883,10 +2883,24 @@ static void Task_EndCommunicateFinalStandings(u8 taskId)
 
 static void Task_ContestReturnToField(u8 taskId)
 {
+    s32 i;
+
     if (!gPaletteFade.active)
     {
         DestroyTask(taskId);
         gFieldCallback = FieldCB_ContestReturnToField;
+
+        // Stop pointing the hardware at the contest's buffers before freeing them.
+        // CB2_ReturnToField doesn't clear the VBlank callback until its own first
+        // frame, and CB2_ContestMain still runs its BG copy loop after RunTasks, so
+        // without this both spend a frame reading memory that has just been freed.
+        // Screen is already faded to black here, so nothing is lost by stopping early.
+        SetVBlankCallback(NULL);
+        sContestBgCopyFlags = 0;
+        // Mirrors the SetBgTilemapBuffer loop in InitContestInfoBgs.
+        for (i = 0; i < CONTESTANT_COUNT; i++)
+            UnsetBgTilemapBuffer(i);
+
         FreeAllWindowBuffers();
         FreeContestResources();
         FreeMonSpritesGfx();
@@ -2998,7 +3012,7 @@ void SetContestants(enum ContestCategories contestType, u8 rank)
 
     TryPutPlayerLast();
 
-    if (FlagGet(FLAG_SYS_GAME_CLEAR) && !(gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK))
+    if (FlagGet(FLAG_IS_HOENN_CHAMPION) && !(gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK))
         allowPostgameContestants = TRUE;
 
     // Find all suitable opponents

@@ -43,7 +43,8 @@ CinnabarIsland_PokemonLab_Lounge_EventScript_Norma::
 	lock
 	faceplayer
 	setvar VAR_0x8008, INGAME_TRADE_TANGELA
-	copyvar VAR_0x8004, VAR_0x8008
+	@ GetInGameTradeSpeciesInfo reads VAR_0x8005.
+	copyvar VAR_0x8005, VAR_0x8008
 	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
 	copyvar VAR_0x8009, VAR_RESULT
 	goto_if_set FLAG_DID_TANGENY_TRADE, CinnabarIsland_PokemonLab_Lounge_EventScript_NormaAlreadyTraded

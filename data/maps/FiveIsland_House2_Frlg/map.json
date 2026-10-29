@@ -1,7 +1,7 @@
 {
   "id": "MAP_FIVE_ISLAND_HOUSE2",
   "name": "FiveIsland_House2_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_HOUSE3_FRLG",
   "music": "MUS_RG_SEVII_45",
   "region": "REGION_KANTO",

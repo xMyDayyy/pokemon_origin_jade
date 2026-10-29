@@ -35,6 +35,7 @@
 #include "pokemon_icon.h"
 #include "pokemon_summary_screen.h"
 #include "random.h"
+#include "safari_zone.h"
 #include "region_map.h"
 #include "rtc.h"
 #include "scanline_effect.h"
@@ -1215,8 +1216,10 @@ static void CreateDexNavWildMon(u16 species, u8 potential, u8 level, u8 abilityN
     if (potential > 0 && iv[0] != NUM_STATS)
         SetMonData(mon, MON_DATA_HP_IV + iv[0], &perfectIv);
 
-    //Set ability
-    SetMonData(mon, MON_DATA_ABILITY_NUM, &abilityNum);
+    //Set ability. A Pokeblock feeder has already guaranteed this encounter its
+    //Hidden Ability, so don't roll that back over the top of it.
+    if (!(GetSafariZoneFlag() == TRUE && SafariZoneGetActivePokeblock() != NULL))
+        SetMonData(mon, MON_DATA_ABILITY_NUM, &abilityNum);
 
     // Set Held Item
     if (item)
@@ -2156,7 +2159,7 @@ static void PrintCurrentSpeciesInfo(void)
     else if (GetSetPokedexFlag(dexNum, FLAG_GET_CAUGHT))
     {
         if (GetSpeciesAbility(species, 2) != ABILITY_NONE)
-            AddTextPrinterParameterized3(WINDOW_INFO, FONT_SMALL, 0, HA_INFO_Y, sFontColor_Black, 0, gAbilitiesInfo[GetSpeciesAbility(species, 2)].name);
+            AddTextPrinterParameterized3(WINDOW_INFO, FONT_SMALL, 0, HA_INFO_Y, sFontColor_Black, 0, gAbilitiesInfo[GetAbilityBySpecies(species, 2)].name);
         else
             AddTextPrinterParameterized3(WINDOW_INFO, FONT_SMALL, 0, HA_INFO_Y, sFontColor_Black, 0, gText_None);
     }

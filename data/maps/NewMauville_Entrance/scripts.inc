@@ -26,7 +26,6 @@ NewMauville_Entrance_EventScript_Door::
 	waitmovement 0
 	msgbox NewMauville_Entrance_Text_DoorIsLocked, MSGBOX_DEFAULT
 #if IS_HNS
-	@ HnS: eigener Schluessel, siehe include/constants/items.h
 	checkitem ITEM_NEW_MAUVILLE_KEY
 #else
 	checkitem ITEM_BASEMENT_KEY

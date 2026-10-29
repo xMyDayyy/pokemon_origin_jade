@@ -123,6 +123,21 @@ SaffronCity_EventScript_TrainerFanClubSign::
 	msgbox SaffronCity_Text_TrainerFanClubSign, MSGBOX_SIGN
 	end
 
+SaffronCity_EventScript_MagnetTrainSign::
+	msgbox SaffronCity_Text_MagnetTrainSign, MSGBOX_SIGN
+	end
+
+SaffronCity_Text_MagnetTrainSign::
+#if GERMAN
+	.string "MAGNETZUG-BAHNHOF SAFFRONIA CITY\p"
+	.string "Die schnellste Verbindung\n"
+	.string "zwischen Kanto und Johto.$"
+#else
+	.string "SAFFRON CITY MAGNET TRAIN STATION\p"
+	.string "The fastest connection between\n"
+	.string "KANTO and JOHTO.$"
+#endif
+
 SaffronCity_Text_WhatDoYouWantGetLost::
 #if GERMAN
 	.string "Was willst du noch? Hau ab!$"

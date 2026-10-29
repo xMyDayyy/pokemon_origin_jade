@@ -153,31 +153,25 @@ NationalPark_BugContest_EventScript_RetireChoice::
 	release
 	end
 
-NationalPark_BugContest_Movement_AttendantSide:
-	walk_in_place_left
-	step_end
-
 NationalPark_BugContest_Text_Trash:
 #if GERMAN
-	.string "Tipps für Trainer\p"
-	.string "Möchtest du deine Briefe drucken,\n"
-	.string "öffne sie und drücke Start.$"
+	.string "Hier ist nichts.$"
 #else
 	.string "Nothing here.$"
 #endif
 
 NationlParkBugContest_Text_EnjoyTheContest:
 #if GERMAN
-	.string "Attendant: Viel Spaß!$"
+	.string "Turnierhelfer: Viel Spaß beim\n"
+	.string "Turnier!$"
 #else
 	.string "ATTENDANT: Enjoy the Contest!$"
 #endif
 
 NationalParkBugContest_Text_Attendant:
 #if GERMAN
-	.string "Was steht denn hier?\p"
-	.string "Kämpfe sind nur im Gras gestattet.\p"
-	.string "Nationalpark Büro des Wächters$"
+	.string "Turnierhelfer: Möchtest du das\n"
+	.string "Turnier beenden?$"
 #else
 	.string "ATTENDANT: Would you like to end\n"
 	.string "the contest?$"
@@ -185,8 +179,8 @@ NationalParkBugContest_Text_Attendant:
 
 NationalParkBugContest_Text_ContestantBelinda:
 #if GERMAN
-	.string "Uli: Ich werde hier der Gewinner sein!\n"
-	.string "Wehe, du kommst mir in die Quere!$"
+	.string "Uli: Ich werde gewinnen!\n"
+	.string "Komm mir nicht in die Quere!$"
 #else
 	.string "BELINDA: I'm going to win!\n"
 	.string "Don't bother me.$"
@@ -204,7 +198,8 @@ NationalParkBugContest_Text_Contestant2A:
 
 NationalParkBugContest_Text_ContestantShaun:
 #if GERMAN
-	.string "Wilhelm: Gewinnen ist mir nicht wichtig.\n"
+	.string "Wilhelm: Gewinnen ist mir nicht\n"
+	.string "wichtig.\p"
 	.string "Ich suche nur nach seltenen Pokémon!$"
 #else
 	.string "SHAUN: I'm not concerned about\n"
@@ -214,54 +209,13 @@ NationalParkBugContest_Text_ContestantShaun:
 
 NationalParkBugContest_Text_Contestant6A:
 #if GERMAN
-	.string "Till: Es ist wichtig, dass du darauf\n"
-	.string "achtest, Käfer-Pokémon zu schwächen,\l"
-	.string "bevor du einen Pokéball wirfst!$"
+	.string "Till: Schwäche Käfer-Pokémon\n"
+	.string "zuerst.\p"
+	.string "Wirf erst dann einen Ball!$"
 #else
 	.string "BARRY: You should weaken bug\n"
 	.string "POKéMON first,\p"
 	.string "then throw a BALL.$"
-#endif
-
-NationalParkBugContest_Text_Contestant7A:
-#if GERMAN
-	.string "Cindy: Ich liebe Käfer-Pokémon.\n"
-	.string "Du magst sie wohl auch.$"
-#else
-	.string "CINDY: I love bug POKéMON.\p"
-	.string "I guess you must like them too.$"
-#endif
-
-NationalParkBugContest_Text_Contestant8A:
-#if GERMAN
-	.string "Enno: Seit meiner Kindheit sammele\n"
-	.string "ich Käfer-Pokémon.\p"
-	.string "Du kannst mich nicht besiegen!$"
-#else
-	.string "JOSH: I've been collecting bug\n"
-	.string "POKéMON since I was just a baby.\p"
-	.string "There's no way I'm going to lose!$"
-#endif
-
-NationalParkBugContest_Text_Contestant9A:
-#if GERMAN
-	.string "Guido: Wenn du Zeit für Gespräche hast,\n"
-	.string "solltest du sie lieber dafür nutzen,\l"
-	.string "Pokémon zu suchen!$"
-#else
-	.string "SAMUEL: If you've got the time to\n"
-	.string "chat, go find some bug POKéMON.$"
-#endif
-
-NationalParkBugContest_Text_Contestant10A:
-#if GERMAN
-	.string "Michel: Ich habe so viele Bücher\n"
-	.string "gelesen, dass ich eigentlich nur noch\l"
-	.string "gewinnen kann!$"
-#else
-	.string "KIPP: I've studied about bug\n"
-	.string "POKéMON a lot.\p"
-	.string "I'm going to win for sure.$"
 #endif
 
 NationalParkBugContest_Text_Sign_RelaxationSquare:
@@ -288,8 +242,8 @@ NationalParkBugContest_Text_Sign_BattleNotice:
 NationalParkBugContest_Text_TrainerTips:
 #if GERMAN
 	.string "Tipps für Trainer\p"
-	.string "Möchtest du deine Briefe drucken,\n"
-	.string "öffne sie und drücke Start.$"
+	.string "Während des Käferturniers leben im\n"
+	.string "Nationalpark andere Pokémon.$"
 #else
 	.string "The NATIONAL PARK has different\n"
 	.string "POKéMON during the BUG-CATCHING\l"

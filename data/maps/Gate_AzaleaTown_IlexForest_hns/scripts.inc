@@ -23,7 +23,7 @@ Gate_AzaleaTown_IlexForest_Text_Officer:
 	.string "Der Steineichenwald ist sehr groß!$"
 #else
 	.string "ILEX FOREST is big.\n"
-	.string "Be careful!\n"
+	.string "Be careful!\l"
 	.string "Don't get lost.$"
 #endif
 

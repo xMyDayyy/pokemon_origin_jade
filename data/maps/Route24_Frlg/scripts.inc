@@ -22,31 +22,6 @@ Route24_EventScript_RocketPostBattle::
 	release
 	end
 
-Route24_EventScript_RocketTriggerLeft::
-	lockall
-	setvar VAR_TEMP_1, 0
-	goto Route24_EventScript_RocketTrigger
-	end
-
-Route24_EventScript_RocketTriggerRight::
-	lockall
-	setvar VAR_TEMP_1, 1
-	goto Route24_EventScript_RocketTrigger
-	end
-
-Route24_EventScript_RocketTrigger::
-	textcolor NPC_TEXT_COLOR_MALE
-	call_if_eq VAR_TEMP_1, 0, Route24_EventScript_RocketApproachPlayer
-	call_if_eq VAR_TEMP_1, 1, Route24_EventScript_RocketMotionToPlayer
-	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
-	waitmovement 0
-	msgbox Route24_Text_JustEarnedFabulousPrize
-	checkitemspace ITEM_NUGGET
-	goto_if_eq VAR_RESULT, FALSE, Route24_EventScript_NoRoomForNuggetTrigger
-	call Route24_EventScript_BattleRocket
-	releaseall
-	end
-
 Route24_EventScript_BattleRocket::
 	giveitem_msg Route24_Text_ReceivedNuggetFromMysteryTrainer, ITEM_NUGGET
 	message Route24_Text_JoinTeamRocket
@@ -59,22 +34,14 @@ Route24_EventScript_BattleRocket::
 	setvar VAR_MAP_SCENE_ROUTE24, 1
 	return
 
-Route24_EventScript_RocketApproachPlayer::
-	applymovement LOCALID_ROUTE24_ROCKET, Route24_Movement_RocketApproachPlayer
-	waitmovement 0
-	return
-
-Route24_EventScript_RocketMotionToPlayer::
-	applymovement LOCALID_ROUTE24_ROCKET, Common_Movement_WalkInPlaceFasterLeft
-	waitmovement 0
-	return
-
 Route24_EventScript_NoRoomForNuggetTrigger::
 	msgbox Route24_Text_YouDontHaveAnyRoom
 	closemessage
 	applymovement LOCALID_PLAYER, Route24_Movement_WalkDown
 	waitmovement 0
-	call_if_eq VAR_TEMP_1, 0, Route24_EventScript_RocketWalkBackToPos
+	@ VAR_TEMP_1 = steps the Rocket walked towards the player (0 = he only turned).
+	call_if_eq VAR_TEMP_1, 2, Route24_EventScript_RocketWalkBackToPos2
+	call_if_eq VAR_TEMP_1, 1, Route24_EventScript_RocketWalkBackToPos
 	release
 	end
 
@@ -83,11 +50,19 @@ Route24_EventScript_RocketWalkBackToPos::
 	waitmovement 0
 	return
 
-Route24_Movement_RocketApproachPlayer::
-	walk_left
-	step_end
+Route24_EventScript_RocketWalkBackToPos2::
+	applymovement LOCALID_ROUTE24_ROCKET, Route24_Movement_RocketWalkBackToPos2
+	waitmovement 0
+	return
+
 
 Route24_Movement_RocketWalkBackToPos::
+	walk_right
+	walk_in_place_faster_left
+	step_end
+
+Route24_Movement_RocketWalkBackToPos2::
+	walk_right
 	walk_right
 	walk_in_place_faster_left
 	step_end
@@ -301,7 +276,7 @@ Route24_Text_AliPostBattle::
 
 Route24_Text_CaleIntro::
 #if GERMAN
-	.string "Das hier ist die Nugget-brücke!\n"
+	.string "Das hier ist die Nuggetbrücke!\n"
 	.string "Wenn du uns fünf Trainer besiegst,\l"
 	.string "erhältst du einen wertvollen Preis!\p"
 	.string "Willst du dein Glück versuchen?$"
@@ -329,3 +304,61 @@ Route24_Text_CalePostBattle::
 #else
 	.string "I did my best. I have no regrets!$"
 #endif
+
+@ Nugget Bridge Rocket at (19,27), triggers on row 27 to his left.
+@ They run while VAR_MAP_SCENE_ROUTE24 is 0; the battle sets it to 1.
+Route24_EventScript_RocketTriggerLeft::
+	lockall
+	setvar VAR_TEMP_1, 2
+	goto Route24_EventScript_RocketTrigger
+	end
+
+Route24_EventScript_RocketTriggerMid::
+	lockall
+	setvar VAR_TEMP_1, 1
+	goto Route24_EventScript_RocketTrigger
+	end
+
+Route24_EventScript_RocketTriggerRight::
+	lockall
+	setvar VAR_TEMP_1, 0
+	goto Route24_EventScript_RocketTrigger
+	end
+
+Route24_EventScript_RocketTrigger::
+	textcolor NPC_TEXT_COLOR_MALE
+	call_if_eq VAR_TEMP_1, 2, Route24_EventScript_RocketApproach2
+	call_if_eq VAR_TEMP_1, 1, Route24_EventScript_RocketApproach1
+	call_if_eq VAR_TEMP_1, 0, Route24_EventScript_RocketTurn
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+	waitmovement 0
+	msgbox Route24_Text_JustEarnedFabulousPrize
+	checkitemspace ITEM_NUGGET
+	goto_if_eq VAR_RESULT, FALSE, Route24_EventScript_NoRoomForNuggetTrigger
+	call Route24_EventScript_BattleRocket
+	releaseall
+	end
+
+Route24_EventScript_RocketApproach2::
+	applymovement LOCALID_ROUTE24_ROCKET, Route24_Movement_RocketApproach2
+	waitmovement 0
+	return
+
+Route24_EventScript_RocketApproach1::
+	applymovement LOCALID_ROUTE24_ROCKET, Route24_Movement_RocketApproach1
+	waitmovement 0
+	return
+
+Route24_EventScript_RocketTurn::
+	applymovement LOCALID_ROUTE24_ROCKET, Common_Movement_WalkInPlaceFasterLeft
+	waitmovement 0
+	return
+
+Route24_Movement_RocketApproach2:
+	walk_left
+	walk_left
+	step_end
+
+Route24_Movement_RocketApproach1:
+	walk_left
+	step_end

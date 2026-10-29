@@ -5,6 +5,7 @@
 #include "event_data.h"
 #include "field_specials.h"
 #include "field_weather.h"
+#include "legendaries_oj.h"
 #include "lottery_corner.h"
 #include "main.h"
 #include "overworld.h"
@@ -58,6 +59,7 @@ static void UpdatePerDay(struct Time *localTime)
         SetRandomLotteryNumber(daysSince);
         UpdateDaysPassedSinceFormChange(daysSince);
         DailyResetApricornTrees();
+        UpdateLegendaryFleeCooldowns(daysSince);
         *days = localTime->days;
     }
     else

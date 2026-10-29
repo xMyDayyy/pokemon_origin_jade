@@ -26,6 +26,7 @@
 #include "frontier_util.h"
 #include "graphics.h"
 #include "item.h"
+#include "level_scaling.h"
 #include "link.h"
 #include "m4a.h"
 #include "main.h"
@@ -1512,7 +1513,15 @@ static const enum NationalDexOrder sObtainableToNationalOrder[OBTAINABLE_DEX_COU
     OBTAINABLE_TO_NATIONAL(WOOPER_PALDEA),
 #endif // P_PALDEAN_FORMS
     OBTAINABLE_TO_NATIONAL(CLODSIRE),
+    // Other
+    // Origin Jade: the Regis are listed after Metagross, do not add them here again.
     OBTAINABLE_TO_NATIONAL(ARCEUS),
+    OBTAINABLE_TO_NATIONAL(TAPU_KOKO),
+    OBTAINABLE_TO_NATIONAL(TAPU_LELE),
+    OBTAINABLE_TO_NATIONAL(TAPU_BULU),
+    OBTAINABLE_TO_NATIONAL(TAPU_FINI),
+    OBTAINABLE_TO_NATIONAL(NOIBAT),
+    OBTAINABLE_TO_NATIONAL(NOIVERN),
 };
 
 #endif
@@ -4857,7 +4866,9 @@ static void CreateEventMon(struct Pokemon *mon, u16 species, u8 level, u32 perso
 {
     bool32 isModernFatefulEncounter = TRUE;
 
-    CreateMon(mon, species, level, personality, otId);
+    // Upstream fix (expansion #10191).
+    CreateMonWithIVs(mon, species, level, personality, otId, USE_RANDOM_IVS);
+    GiveMonInitialMoveset(mon);
     SetMonData(mon, MON_DATA_MODERN_FATEFUL_ENCOUNTER, &isModernFatefulEncounter);
     CalculateMonStats(mon);
 }
@@ -4895,14 +4906,18 @@ enum TrainerClassID GetUnionRoomTrainerClass(void)
 void CreateEnemyEventMon(void)
 {
     s32 species = gSpecialVar_0x8004;
-    s32 level = gSpecialVar_0x8005;
+    // Johto floor, see docs/origin_jade/DECISIONS.md, D-039.
+    s32 level = ScaleStaticMonLevel(gSpecialVar_0x8005);
     s32 itemId = gSpecialVar_0x8006;
+
+    #if RANDOMIZER_AVAILABLE
+    if (RandomizerFeatureEnabled(RANDOMIZE_FIXED_MON))
+        species = RandomizeMon(RANDOMIZER_REASON_FIXED_ENCOUNTER, GetRandomizerOption(RANDOMIZER_OPTION_SPECIES_MODE), Random32(), species);
+    #endif
 
     ZeroEnemyPartyMons();
 
     CreateEventMon(&gEnemyParty[0], species, level, Random32(), OTID_STRUCT_PLAYER_ID);
-    SetBoxMonIVs(&gEnemyParty[0].box, USE_RANDOM_IVS);
-    GiveMonInitialMoveset(&gEnemyParty[0]);
     if (itemId)
     {
         u8 heldItem[2];
@@ -6608,14 +6623,8 @@ u8 GiveCapturedMonToPlayer(struct Pokemon *mon)
     if (i >= GetMaxPartySize())
         return CopyMonToPC(mon);
 
-    if (IsOneTypeChallengeActive())
-    {
-        u8 typeChallenge = gSaveBlock3Ptr->challengeSettings.tx_Challenges_OneTypeChallenge;
-        u16 species = GetMonData(mon, MON_DATA_SPECIES);
-        if (GetSpeciesType(species, 0) != typeChallenge
-         && GetSpeciesType(species, 1) != typeChallenge)
-            return CopyMonToPC(mon);
-    }
+    if (!DoesSpeciesPassOneTypeChallenge(GetMonData(mon, MON_DATA_SPECIES)))
+        return CopyMonToPC(mon);
 
     CopyMon(&gPlayerParty[i], mon, sizeof(*mon));
     gPlayerPartyCount = i + 1;
@@ -6772,7 +6781,11 @@ enum Ability GetAbilityBySpecies(u16 species, u8 abilityNum)
 {
     int i;
 
+#if RANDOMIZER_AVAILABLE == TRUE
+    if (abilityNum == 0 && gSaveBlock3Ptr->challengeSettings.tx_Mode_Legendary_Abilities == 1 && !RandomizerFeatureEnabled(RANDOMIZE_ABILITIES))
+#else
     if (abilityNum == 0 && gSaveBlock3Ptr->challengeSettings.tx_Mode_Legendary_Abilities == 1)
+#endif
     {
         for (i = 0; i < (int)ARRAY_COUNT(sLegendaryCustomAbilities); i++)
         {
@@ -7872,8 +7885,7 @@ static void BufferStatRoseMessage(enum Stat statIdx)
 {
     gBattlerTarget = gBattlerInMenuId;
     StringCopy(gBattleTextBuff1, gStatNamesTable[sStatsToRaise[statIdx]]);
-    // Deutsch: gText_StatSharply enthaelt bereits die vollstaendige Verbphrase
-    // ("steigt stark!"), darf also nicht mit gText_StatRose kombiniert werden.
+    // German: gText_StatSharply is the full phrase, do not append gText_StatRose.
     if (B_X_ITEMS_BUFF >= GEN_7)
         StringCopy(gBattleTextBuff2, gText_StatSharply);
     else
@@ -8893,9 +8905,7 @@ u8 GetTrainerEncounterMusicId(u16 trainerOpponentId)
 {
     u32 sanitizedTrainerId;
 
-    // Origin Jade: Geheimbasis-Sonder-ID vor SanitizeTrainerId abfangen
-    // (Assert "invalid trainer: 65280", Spieltest-Report). Vanilla nutzt
-    // fuer Geheimbasen die maennliche Standard-Begegnungsmusik.
+    // Origin Jade: keep before SanitizeTrainerId, which asserts on secret base IDs.
     if (trainerOpponentId == TRAINER_SECRET_BASE)
         return TRAINER_ENCOUNTER_MUSIC_MALE;
 
@@ -9309,6 +9319,9 @@ u16 GetBattleBGM(void)
             return MUS_HG_VS_ROCKET;
         case TRAINER_CLASS_ELITE_FOUR:
             return MUS_VS_ELITE_FOUR;
+        case TRAINER_CLASS_ELITE_FOUR_HNS:
+            // GSC/HGSS reuse the Johto Gym Leader theme for the Elite Four.
+            return MUS_HG_VS_GYM_LEADER;
         case TRAINER_CLASS_CHAMPION_FRLG:
         case TRAINER_CLASS_DEVELOPER_HNS:
             return MUS_RG_VS_CHAMPION;
@@ -9323,15 +9336,31 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_FACTORY_HEAD:
         case TRAINER_CLASS_PIKE_QUEEN:
         case TRAINER_CLASS_PYRAMID_KING:
+        case TRAINER_CLASS_SALON_MAIDEN_HNS:
+        case TRAINER_CLASS_DOME_ACE_HNS:
+        case TRAINER_CLASS_PALACE_MAVEN_HNS:
+        case TRAINER_CLASS_ARENA_TYCOON_HNS:
+        case TRAINER_CLASS_FACTORY_HEAD_HNS:
+        case TRAINER_CLASS_PIKE_QUEEN_HNS:
+        case TRAINER_CLASS_PYRAMID_KING_HNS:
             return MUS_VS_FRONTIER_BRAIN;
         default:
         #if IS_HNS
+            // Trainer Hill and the three Battle Tents in its courtyard all use
+            // MAPSEC_TRAINER_HILL, which sits outside every range in GetRegionForSectionId
+            // and so falls through to REGION_HOENN and the Emerald theme. The facility is
+            // in Johto. Corrected here rather than in GetRegionForSectionId, which feeds
+            // far more than music, and inside default so class cases still take priority.
+            if (gMapHeader.regionMapSectionId == MAPSEC_TRAINER_HILL)
+                return MUS_HG_VS_TRAINER;
             if (GetCurrentRegion() == REGION_JOHTO)
                 return MUS_HG_VS_TRAINER;
             else if (GetCurrentRegion() == REGION_KANTO)
                 return MUS_HG_VS_TRAINER_KANTO;
             else if (GetCurrentRegion() == REGION_ALOLA)
                 return MUS_HG_VS_TRAINER_KANTO;  // Alola trainer battles
+            else if (GetCurrentRegion() == REGION_HISUI)
+                return MUS_HG_VS_TRAINER;        // Sinjoh keeps the Johto theme
             else
                 return MUS_VS_TRAINER;
         #else
@@ -9351,6 +9380,8 @@ u16 GetBattleBGM(void)
             return MUS_HG_VS_WILD_KANTO;
         else if (GetCurrentRegion() == REGION_ALOLA)
             return MUS_HG_VS_WILD_KANTO;  // Alola wild battles
+        else if (GetCurrentRegion() == REGION_HISUI)
+            return MUS_HG_VS_WILD;        // Sinjoh keeps the Johto theme
         else
             return MUS_VS_WILD;
     #else
@@ -10939,11 +10970,7 @@ u32 GiveScriptedMonToPlayer(struct Pokemon *mon, u8 slot)
         }
         else
         {
-            u8 typeChallenge = gSaveBlock3Ptr->challengeSettings.tx_Challenges_OneTypeChallenge;
-            u16 species = GetMonData(mon, MON_DATA_SPECIES);
-            if (IsOneTypeChallengeActive()
-             && GetSpeciesType(species, 0) != typeChallenge
-             && GetSpeciesType(species, 1) != typeChallenge)
+            if (!DoesSpeciesPassOneTypeChallenge(GetMonData(mon, MON_DATA_SPECIES)))
             {
                 sentToPc = CopyMonToPC(mon);
             }

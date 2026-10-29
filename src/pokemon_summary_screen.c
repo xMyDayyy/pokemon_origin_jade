@@ -1255,7 +1255,7 @@ static const struct OamData sOamData_FriendshipIcon =
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(8x8),
     .size = SPRITE_SIZE(8x8),
-    .priority = 1,
+    .priority = 0, // in front of the mon sprite (mon uses subpriority 5, heart 0)
 };
 
 static const union AnimCmd sAnim_Friendship_0[] = { ANIMCMD_FRAME(0, 0), ANIMCMD_END };
@@ -1973,7 +1973,7 @@ static void Task_HandleInput(u8 taskId)
                 SwitchToMoveSelection(taskId);
             }
             else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO
-                  || sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+                  || (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_L_EQUALS_A))
             {
                 Task_ShowPokedexEntryFromSummary(taskId);
             }
@@ -5010,7 +5010,7 @@ static inline void ShowUtilityPrompt(s16 mode)
             promptText = gText_Info;
     }
     else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO
-          || sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+          || (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_L_EQUALS_A))
     {
         if (CanShowPokedexForCurrentMon())
             promptText = gText_MenuPokedex;

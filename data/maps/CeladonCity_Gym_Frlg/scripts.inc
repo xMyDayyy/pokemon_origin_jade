@@ -85,7 +85,7 @@ CeladonCity_Gym_EventScript_GymStatuePostVictory::
 
 CeladonCity_Gym_Text_ErikaIntro::
 #if GERMAN
-	.string "Ist das Wetter nicht wundervoll?\n"
+	.string "{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}Ist das Wetter nicht wundervoll?\n"
 	.string "Einfach herrlich!\p"
 	.string "Du meine Güte... ich muss kurz\n"
 	.string "eingenickt sein! Willkommen!\p"
@@ -111,7 +111,7 @@ CeladonCity_Gym_Text_ErikaIntro::
 	.string "GRASS type.\p"
 	.string "…Oh, I'm sorry, I had no idea that\n"
 	.string "you wished to challenge me.\p"
-	.string "Very well, but I shall not lose.{PLAY_BGM MUS_RG_ENCOUNTER_GYM_LEADER}$"
+	.string "Very well, but I shall not lose.{PLAY_BGM}{MUS_RG_ENCOUNTER_GYM_LEADER}$"
 #endif
 
 CeladonCity_Gym_Text_ErikaDefeat::
@@ -142,15 +142,15 @@ CeladonCity_Gym_Text_ErikaPostBattle::
 
 CeladonCity_Gym_Text_ExplainRainbowBadgeTakeThis::
 #if GERMAN
-	.string "Der Farborden lässt Pokémon bis\n"
-	.string "Level 50 deinen Befehlen folgen!\p"
+	.string "Der Farborden ist dein verdienter\n"
+	.string "Lohn.\p"
 	.string "Außerdem können deine Pokémon nun\n"
 	.string "Stärke außerhalb von Kämpfen\l"
 	.string "anwenden.\p"
 	.string "Nimm bitte noch dieses Geschenk:$"
 #else
-	.string "The RAINBOWBADGE will make\n"
-	.string "POKéMON up to Lv. 50 obey.\p"
+	.string "The RAINBOWBADGE is your\n"
+	.string "well-earned reward.\p"
 	.string "It also allows POKéMON to use\n"
 	.string "STRENGTH in and out of battle.\p"
 	.string "Please also take this with you.$"

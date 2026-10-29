@@ -5,7 +5,15 @@ Route32_hns_MapScripts::
 
 Route32_OnTransition:
 	callnative SetTimeBasedEncounters
+	special GetWeekday
+	call_if_ne VAR_RESULT, WEEKDAY_FRI, Route32_EventScript_HideFrieda
 	end
+
+@ Frieda of the weekday siblings is only here on Friday, see
+@ docs/origin_jade/DECISIONS.md, D-033.
+Route32_EventScript_HideFrieda:
+	setflag FLAG_TEMP_4
+	return
 
 Route32_EventScript_FisherJustin::
 	trainerbattle_single TRAINER_JUSTIN_HNS, Route32_Text_FisherJustin_Seen, Route32_Text_FisherJustin_Beaten
@@ -183,23 +191,6 @@ Route32_EventScript_Frieda::
 	faceplayer
 	goto_if_set FLAG_GOT_POISON_BARB, Route32_EventScript_FriedaCompleted
 	msgbox Route32_Text_MeetFrieda, MSGBOX_DEFAULT
-	closemessage
-	multichoice 20, 0, MULTI_DAYS_OF_WEEK, FALSE
-	switch VAR_RESULT
-	case 0, Route32_EventScript_FriedaNope
-	case 1, Route32_EventScript_FriedaNope
-	case 2, Route32_EventScript_FriedaNope
-	case 3, Route32_EventScript_FriedaNope
-	case 4, Route32_EventScript_FriedaNope
-	case 5, Route32_EventScript_FriedaYes
-	case 6, Route32_EventScript_FriedaNope
-	case 7, Route32_EventScript_FriedaCancel
-	case MULTI_B_PRESSED, Route32_EventScript_FriedaCancel
-	closemessage
-	release
-	end
-Route32_EventScript_FriedaYes::
-	msgbox Route32_Text_FriedaGivesGift, MSGBOX_DEFAULT
 	giveitem ITEM_POISON_BARB
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_GOT_POISON_BARB
@@ -207,15 +198,7 @@ Route32_EventScript_FriedaYes::
 	closemessage
 	release
 	end
-Route32_EventScript_FriedaNope::
-	msgbox Route32_Text_FriedaNope, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-Route32_EventScript_FriedaCancel::
-	closemessage
-	release
-	end
+
 Route32_EventScript_FriedaCompleted::
 	msgbox Route32_Text_FriedaFriday, MSGBOX_DEFAULT
 	closemessage
@@ -788,24 +771,14 @@ Route32_Text_RoarOutro:
 
 Route32_Text_MeetFrieda:
 #if GERMAN
-	.string "Frieda: Juchhu!\p"
-	.string "Ich bin Frieda von der\n"
-	.string "Wochentags-Familie!\p"
+	.string "Frieda: Juchhu! Heute ist Freitag!\p"
+	.string "Ich bin Frieda vom Freitag!\n"
 	.string "Schön, dich zu treffen!\p"
-	.string "Errätst du meinen Lieblingstag,\n"
-	.string "bekommst du eine Belohnung.$"
+	.string "Hier, ein Giftstich für dich!$"
 #else
-	.string "FRIEDA: Yahoo!\p"
-	.string "I'm FRIEDA of the WEEKDAY FAMILY!\n"
+	.string "FRIEDA: Yahoo! It's Friday!\p"
+	.string "I'm FRIEDA of Friday!\n"
 	.string "Nice to meet you!\p"
-	.string "If you can guess my favorite day,\n"
-	.string "I'll give you a reward.$"
-#endif
-
-Route32_Text_FriedaGivesGift:
-#if GERMAN
-	.string "Hier, Giftstich ist für dich!$"
-#else
 	.string "Here's a POISON BARB for you!$"
 #endif
 
@@ -840,13 +813,6 @@ Route32_Text_FriedaFriday:
 	.string "I love Friday. No doubt about\n"
 	.string "it!\p"
 	.string "Don't you think it's great too?$"
-#endif
-
-Route32_Text_FriedaNope:
-#if GERMAN
-	.string "Frieda: Nicht der richtige!$"
-#else
-	.string "FRIEDA: Not that one!$"
 #endif
 
 Route32_Text_Sign1:

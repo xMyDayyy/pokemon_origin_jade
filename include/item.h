@@ -236,6 +236,7 @@ u32 GetItemHoldEffectParam(enum Item itemId);
 const u8 *GetItemDescription(enum Item itemId);
 u8 GetItemImportance(enum Item itemId);
 void CheckItemHandoverPointless(void);
+void CheckTMsReusable(void);
 u8 GetItemConsumability(enum Item itemId);
 enum Pocket GetItemPocket(enum Item itemId);
 enum ItemType GetItemType(enum Item itemId);

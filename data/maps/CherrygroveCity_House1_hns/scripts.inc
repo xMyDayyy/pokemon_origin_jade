@@ -19,17 +19,15 @@ CherrygroveCity_House1_EventScript_Kid::
 
 CherrygroveCity_GymSpeechHouse_Text_PokefanM:
 #if GERMAN
-	.string "Möchtest du herausfinden, wie gut\n"
-	.string "du als Trainer wirklich bist?\p"
-	.string "Dann solltest du alle Pokémon-Arenen in\n"
-	.string "Johto aufsuchen und dir dort die\l"
-	.string "zugehörigen Orden erkämpfen!$"
+	.string "Acht Arenen hat Johto, und keine\n"
+	.string "davon verschenkt einen Orden.\p"
+	.string "Wer aus anderen Regionen kommt,\n"
+	.string "unterschätzt sie gern.$"
 #else
-	.string "You're trying to see how good\n"
-	.string "you are as a POKéMON trainer?\p"
-	.string "You better visit the POKéMON\n"
-	.string "GYMS all over JOHTO and collect\l"
-	.string "BADGES.$"
+	.string "JOHTO has eight GYMS, and not one\n"
+	.string "of them gives a BADGE away.\p"
+	.string "People from other regions tend to\n"
+	.string "underestimate them.$"
 #endif
 
 CherrygroveCity_GymSpeechHouse_Text_BugCatcher:

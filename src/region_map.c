@@ -21,7 +21,7 @@
 #include "fldeff.h"
 #include "regions.h"
 #include "region_map.h"
-#include "hoenn_level_scaling.h"
+#include "level_scaling.h"
 #include "decompress.h"
 #include "constants/region_map_sections.h"
 #include "heal_location.h"
@@ -87,9 +87,7 @@ static bool32 sDrawFlyDestTextWindow;
 
 static u8 ProcessRegionMapInput_Full(void);
 #if IS_HNS
-// HnS: Kartenwechsel JK <-> Hoenn per D-Pad am Kartenrand. Fliegen ist
-// in beide Richtungen erlaubt - die natuerliche Grenze sind die
-// Besucht-Flags (nur bereits besuchte Orte sind waehlbar).
+// Origin Jade: switching to and from the Hoenn map.
 static bool8 sViewedOverridden = FALSE;
 static enum RegionMapType sViewedMapType;
 static enum RegionMapType sViewSwitchTarget;
@@ -170,11 +168,7 @@ static const u8 sRegionMapPlayerIcon_KrisGfx[] = INCBIN_U8("graphics/pokenav/reg
 #include "data/region_map/region_map_entries.h"
 
 #if IS_HNS
-// JK combined map coordinates, used once FLAG_VISITED_KANTO is set
-// (despite the name - see the JK layout: Viola City sits at 7/5 there).
-// The auto-generated gRegionMapEntries carries the Johto-only coordinates
-// for Johto/Kanto mapsecs plus the Emerald coordinates for Hoenn mapsecs,
-// so it serves both the Johto view and the Hoenn view.
+// Coordinates on the combined JK map (despite the name).
 static const struct RegionMapLocation sRegionMapEntries_Johto[] = {
     [MAPSEC_VIOLET_CITY]       = { 7,  5,  1, 1, COMPOUND_STRING("Viola City") },
     [MAPSEC_AZALEA_TOWN]       = { 6,  12, 1, 1, COMPOUND_STRING("Azalea City") },
@@ -237,7 +231,7 @@ static const struct RegionMapLocation sRegionMapEntries_Johto[] = {
     [MAPSEC_ROUTE_8]           = { 25, 5,  2, 1, COMPOUND_STRING("Route 8") },
     [MAPSEC_ROUTE_9]           = { 25, 2,  3, 1, COMPOUND_STRING("Route 9") },
     [MAPSEC_ROUTE_10]          = { 27, 3,  1, 1, COMPOUND_STRING("Route 10") },
-    [MAPSEC_ROUTE_11]          = { 25, 5,  2, 1, COMPOUND_STRING("Route 11") },
+    [MAPSEC_ROUTE_11]          = { 25, 7,  2, 1, COMPOUND_STRING("Route 11") },
     [MAPSEC_ROUTE_12]          = { 27, 6,  1, 4, COMPOUND_STRING("Route 12") },
     [MAPSEC_ROUTE_13]          = { 26, 10, 2, 1, COMPOUND_STRING("Route 13") },
     [MAPSEC_ROUTE_14]          = { 26, 11, 1, 1, COMPOUND_STRING("Route 14") },
@@ -249,6 +243,7 @@ static const struct RegionMapLocation sRegionMapEntries_Johto[] = {
     [MAPSEC_ROUTE_20]          = { 20, 13, 2, 1, COMPOUND_STRING("Route 20") },
     [MAPSEC_ROUTE_21]          = { 19, 12, 1, 1, COMPOUND_STRING("Route 21") },
     [MAPSEC_ROUTE_22]          = { 17, 7,  2, 1, COMPOUND_STRING("Route 22") },
+    [MAPSEC_ROUTE_23]          = { 16, 4,  1, 4, COMPOUND_STRING("Route 23") },
     [MAPSEC_ROUTE_24]          = { 24, 0,  1, 2, COMPOUND_STRING("Route 24") },
     [MAPSEC_ROUTE_25]          = { 25, 0,  1, 1, COMPOUND_STRING("Route 25") },
     [MAPSEC_VIRIDIAN_FOREST]   = { 19, 4,  1, 2, COMPOUND_STRING("Vertania-Wald") },
@@ -259,6 +254,18 @@ static const struct RegionMapLocation sRegionMapEntries_Johto[] = {
     [MAPSEC_SEAFOAM_ISLANDS]   = { 22, 13, 1, 1, COMPOUND_STRING("Seeschauminseln") },
     [MAPSEC_CERULEAN_CAVE]     = { 23, 1,  1, 1, COMPOUND_STRING("Azuria-Höhle") },
     [MAPSEC_POWER_PLANT]       = { 27, 3,  1, 1, COMPOUND_STRING("Kraftwerk") },
+    // Origin Jade: FRLG Kanto mapsecs. Every mapsec used outside Hoenn needs an entry here.
+    [MAPSEC_ROCKET_HIDEOUT]    = { 22, 5,  1, 1, COMPOUND_STRING("Rocket-Versteck") },
+    [MAPSEC_KANTO_VICTORY_ROAD] = { 16, 4, 1, 4, COMPOUND_STRING("Siegesstraße") },
+    [MAPSEC_POKEMON_LEAGUE]    = { 16, 2,  1, 2, COMPOUND_STRING("Pokémon-Liga") },
+    [MAPSEC_POKEMON_TOWER]     = { 27, 5,  1, 1, COMPOUND_STRING("Pokémon-Turm") },
+    [MAPSEC_POKEMON_MANSION]   = { 19, 13, 1, 1, COMPOUND_STRING("Pokémon-Villa") },
+    [MAPSEC_SILPH_CO]          = { 24, 5,  1, 1, COMPOUND_STRING("Silph Co.") },
+    [MAPSEC_S_S_ANNE]          = { 24, 7,  1, 1, COMPOUND_STRING("M.S. Anne") },
+    [MAPSEC_KANTO_SAFARI_ZONE] = { 24, 11, 1, 1, COMPOUND_STRING("Safari-Zone") },
+    [MAPSEC_UNDERGROUND_PATH]  = { 24, 5,  1, 1, COMPOUND_STRING("Untergrundpfad") },
+    [MAPSEC_UNDERGROUND_PATH_2] = { 24, 5, 1, 1, COMPOUND_STRING("Untergrundpfad") },
+    [MAPSEC_SPECIAL_AREA]      = { 0,  0,  1, 1, COMPOUND_STRING("Sonderbereich") },
     [MAPSEC_DARK_CAVE]         = { 10, 5,  1, 1, COMPOUND_STRING("Dunkelhöhle") },
     [MAPSEC_UNION_CAVE]        = { 7,  11, 1, 2, COMPOUND_STRING("Einheitstunnel") },
     [MAPSEC_ILEX_FOREST]       = { 5,  11, 1, 2, COMPOUND_STRING("Steineichenwald") },
@@ -300,15 +307,7 @@ static const struct RegionMapLocation sRegionMapEntries_Johto[] = {
 const struct RegionMapLocation *GetActiveRegionMapEntries(void)
 {
 #if IS_HNS
-    // Die Tabellenwahl folgt der angezeigten Karte, nicht nur dem
-    // Kanto-Flag: In der Hoenn-Ansicht traegt gRegionMapEntries die
-    // Smaragd-Koordinaten der Hoenn-Mapsecs (sRegionMapEntries_Johto
-    // hat dort nur Null-Eintraege - Ursache des Befunds "Hoennkarte
-    // ohne Spieler-Icon/Namen/Cursorziel"). Ausserhalb des
-    // Kartenscreens entspricht die Ansicht der Region des Spielers
-    // (GetViewedRegionMapType faellt auf gMapHeader zurueck), womit
-    // auch Ortsnamen-Popups und der Dex-Arealscreen in Hoenn die
-    // richtige Tabelle bekommen.
+    // Table of the map shown; outside the map screen, of the player's region.
     switch (GetViewedRegionMapType())
     {
     case REGION_MAP_HOENN:
@@ -647,7 +646,7 @@ const struct RegionMapInfo gRegionMapInfos[] =
 
 static const u8 sMapHealLocations[][3] =
 {
-    [MAPSEC_LITTLEROOT_TOWN] = {MAP_GROUP(MAP_LITTLEROOT_TOWN), MAP_NUM(MAP_LITTLEROOT_TOWN), HEAL_LOCATION_LITTLEROOT_TOWN_LAB}, // Origin Jade: Fly landet vor dem Labor, nicht im Kinderzimmer
+    [MAPSEC_LITTLEROOT_TOWN] = {MAP_GROUP(MAP_LITTLEROOT_TOWN), MAP_NUM(MAP_LITTLEROOT_TOWN), HEAL_LOCATION_LITTLEROOT_TOWN_LAB}, // Origin Jade: Fly lands in front of the lab
     [MAPSEC_OLDALE_TOWN] = {MAP_GROUP(MAP_OLDALE_TOWN), MAP_NUM(MAP_OLDALE_TOWN), HEAL_LOCATION_OLDALE_TOWN},
     [MAPSEC_DEWFORD_TOWN] = {MAP_GROUP(MAP_DEWFORD_TOWN), MAP_NUM(MAP_DEWFORD_TOWN), HEAL_LOCATION_DEWFORD_TOWN},
     [MAPSEC_LAVARIDGE_TOWN] = {MAP_GROUP(MAP_LAVARIDGE_TOWN), MAP_NUM(MAP_LAVARIDGE_TOWN), HEAL_LOCATION_LAVARIDGE_TOWN},
@@ -856,6 +855,21 @@ static const u8 sMapHealLocations[][3] =
     [MAPSEC_MELEMELE_ISLAND] = {MAP_GROUP(MAP_MELEMELE_ISLE_HNS), MAP_NUM(MAP_MELEMELE_ISLE_HNS), HEAL_LOCATION_MELEMELE_ISLE_HNS},
 
 #endif
+
+    // Origin Jade: FRLG Kanto destinations. Keep them last, they override the HnS entries above.
+    [MAPSEC_PALLET_TOWN] = {MAP_GROUP(MAP_PALLET_TOWN), MAP_NUM(MAP_PALLET_TOWN), HEAL_LOCATION_PALLET_TOWN},
+    [MAPSEC_VIRIDIAN_CITY] = {MAP_GROUP(MAP_VIRIDIAN_CITY), MAP_NUM(MAP_VIRIDIAN_CITY), HEAL_LOCATION_VIRIDIAN_CITY},
+    [MAPSEC_PEWTER_CITY] = {MAP_GROUP(MAP_PEWTER_CITY), MAP_NUM(MAP_PEWTER_CITY), HEAL_LOCATION_PEWTER_CITY},
+    [MAPSEC_CERULEAN_CITY] = {MAP_GROUP(MAP_CERULEAN_CITY), MAP_NUM(MAP_CERULEAN_CITY), HEAL_LOCATION_CERULEAN_CITY},
+    [MAPSEC_LAVENDER_TOWN] = {MAP_GROUP(MAP_LAVENDER_TOWN), MAP_NUM(MAP_LAVENDER_TOWN), HEAL_LOCATION_LAVENDER_TOWN},
+    [MAPSEC_VERMILION_CITY] = {MAP_GROUP(MAP_VERMILION_CITY), MAP_NUM(MAP_VERMILION_CITY), HEAL_LOCATION_VERMILION_CITY},
+    [MAPSEC_CELADON_CITY] = {MAP_GROUP(MAP_CELADON_CITY), MAP_NUM(MAP_CELADON_CITY), HEAL_LOCATION_CELADON_CITY},
+    [MAPSEC_FUCHSIA_CITY] = {MAP_GROUP(MAP_FUCHSIA_CITY), MAP_NUM(MAP_FUCHSIA_CITY), HEAL_LOCATION_FUCHSIA_CITY},
+    [MAPSEC_CINNABAR_ISLAND] = {MAP_GROUP(MAP_CINNABAR_ISLAND), MAP_NUM(MAP_CINNABAR_ISLAND), HEAL_LOCATION_CINNABAR_ISLAND},
+    [MAPSEC_SAFFRON_CITY] = {MAP_GROUP(MAP_SAFFRON_CITY), MAP_NUM(MAP_SAFFRON_CITY), HEAL_LOCATION_SAFFRON_CITY},
+    [MAPSEC_INDIGO_PLATEAU] = {MAP_GROUP(MAP_INDIGO_PLATEAU_EXTERIOR), MAP_NUM(MAP_INDIGO_PLATEAU_EXTERIOR), HEAL_LOCATION_INDIGO_PLATEAU},
+    [MAPSEC_ROUTE_4] = {MAP_GROUP(MAP_ROUTE4), MAP_NUM(MAP_ROUTE4), HEAL_LOCATION_ROUTE4},
+    [MAPSEC_ROUTE_10] = {MAP_GROUP(MAP_ROUTE10), MAP_NUM(MAP_ROUTE10), HEAL_LOCATION_ROUTE10},
 };
 
 static const u8 *const sEverGrandeCityNames[] =
@@ -1187,10 +1201,7 @@ void BlendRegionMap(u16 color, u32 coeff)
 void FreeRegionMapIconResources(void)
 {
 #if IS_HNS
-    // Wechsel-Zustand nicht ueber das Screen-Ende hinaus halten:
-    // GetActiveRegionMapEntries/GetMapName laufen auch im Overworld
-    // (Ortsnamen-Popup, Dex-Arealscreen) und sollen dort wieder der
-    // Region des Spielers folgen.
+    // Outside this screen the player's own region applies again.
     sViewedOverridden = FALSE;
 #endif
     if (sRegionMap->cursorSprite != NULL)
@@ -1215,10 +1226,8 @@ u8 DoRegionMapInputCallback(void)
 static u8 ProcessRegionMapInput_Full(void)
 {
 #if IS_HNS
-    // Kartenwechsel JK <-> Hoenn: am unteren JK-Rand weiter runter bzw.
-    // am oberen Hoenn-Rand weiter hoch - oder jederzeit mit SELECT.
-    // Hoenn-Ansicht gibt es ab der Ankunft; wer in Hoenn steht, darf
-    // immer zu seiner eigenen Karte zurueck.
+    // Map switch: SELECT, DOWN at the bottom edge, or UP at the top edge of the Hoenn map.
+    // The Hoenn map is available once the player has sailed to Hoenn.
     {
         bool32 hoennKnown = (VarGet(VAR_HOENN_ARRIVAL_STATE) != 0
                           || IsHoennMapsec(gMapHeader.regionMapSectionId));
@@ -1226,14 +1235,14 @@ static u8 ProcessRegionMapInput_Full(void)
 
         if (hoennKnown && JOY_NEW(SELECT_BUTTON))
             return StartRegionMapViewSwitch(viewingHoenn
-                ? (FlagGet(FLAG_VISITED_KANTO) ? REGION_MAP_JK : REGION_MAP_JOHTO)
+                ? (FlagGet(FLAG_VISITED_JOHTO) ? REGION_MAP_JK : REGION_MAP_KANTO)
                 : REGION_MAP_HOENN);
         if (hoennKnown && !viewingHoenn
          && JOY_HELD(DPAD_DOWN) && sRegionMap->cursorPosY >= MAPCURSOR_Y_MAX)
             return StartRegionMapViewSwitch(REGION_MAP_HOENN);
         if (viewingHoenn
          && JOY_HELD(DPAD_UP) && sRegionMap->cursorPosY <= MAPCURSOR_Y_MIN)
-            return StartRegionMapViewSwitch(FlagGet(FLAG_VISITED_KANTO) ? REGION_MAP_JK : REGION_MAP_JOHTO);
+            return StartRegionMapViewSwitch(FlagGet(FLAG_VISITED_JOHTO) ? REGION_MAP_JK : REGION_MAP_KANTO);
     }
 #endif
     u8 input;
@@ -1554,13 +1563,12 @@ void PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(s16 x, s16 y)
 enum RegionMapType GetRegionMapType(u32 mapSecId)
 {
 #if IS_HNS
-    // HnS: In der Hoenn-Welt oeffnet sich die Smaragd-Karte (Grafik,
-    // Cursor-Koordinaten und Fly-Ziele sind bereits verdrahtet).
     if (IsHoennMapsec(mapSecId))
         return REGION_MAP_HOENN;
-    if (FlagGet(FLAG_VISITED_KANTO))
+    // Origin Jade: Kanto map until Johto is visited.
+    if (FlagGet(FLAG_VISITED_JOHTO))
         return REGION_MAP_JK;
-    return REGION_MAP_JOHTO;
+    return REGION_MAP_KANTO;
 #else
     switch (GetRegionForSectionId(mapSecId))
     {
@@ -1630,7 +1638,7 @@ static u8 SwitchViewInputCallback(void)
         }
         break;
     default:
-        // Cursor auf die Eintrittskante, Zustand/Namen aktualisieren
+        // Cursor onto the entry edge, update state/names
         if (sViewSwitchTarget == REGION_MAP_HOENN)
             sRegionMap->cursorPosY = MAPCURSOR_Y_MIN;
         else
@@ -1640,11 +1648,10 @@ static u8 SwitchViewInputCallback(void)
             sRegionMap->cursorSprite->x = 8 * sRegionMap->cursorPosX + 4;
             sRegionMap->cursorSprite->y = 8 * sRegionMap->cursorPosY + 4;
         }
-        // Spieler-Icon nur auf der Heimatkarte anzeigen
+        // Only show the player icon on the home map
         if (sRegionMap->playerIconSprite != NULL)
             sRegionMap->playerIconSprite->invisible = RegionMapIsViewingForeignRegion();
-        // Im Fly-Screen die Zielpunkte der neuen Karte aufbauen
-        // (Grafiksheet/Paletten bleiben geladen, nur Sprites tauschen).
+        // Fly screen: rebuild the destination icons
         if (sFlyMap != NULL)
         {
             DestroyFlyDestIcons();
@@ -1662,12 +1669,13 @@ static u8 SwitchViewInputCallback(void)
 }
 #endif
 
-// Oeffentlich, damit die PokeNav-Karte ihr Infofenster mitwandern lassen kann.
+// Used by the PokeNav map.
 enum RegionMapType GetCurrentViewedRegionMapType(void)
 {
     return GetViewedRegionMapType();
 }
 
+// Switched map while the map screen is open, otherwise the player's region.
 static enum RegionMapType GetViewedRegionMapType(void)
 {
 #if IS_HNS
@@ -1699,9 +1707,9 @@ static mapsec_u16_t GetMapSecIdAt(u16 x, u16 y)
 #if IS_HNS
     if (GetViewedRegionMapType() == REGION_MAP_HOENN)
         return sRegionMap_MapSectionLayout[y][x];
-    if (FlagGet(FLAG_VISITED_KANTO))
+    if (FlagGet(FLAG_VISITED_JOHTO))
         return sRegionMapSections_JK[y][x];
-    return sRegionMapSections_Johto[y][x];
+    return sRegionMapSections_Kanto[y][x];
 #else
     switch (GetCurrentRegion())
     {
@@ -1843,6 +1851,24 @@ static void InitMapBasedOnPlayerLocation(void)
         y = GetActiveRegionMapEntries()[sRegionMap->mapSecId].height - 1;
     }
 
+#if IS_HNS
+    // Origin Jade: Route 26 is two maps in one mapsec; place the player over their combined height.
+    if (sRegionMap->mapSecId == MAPSEC_ROUTE_26)
+    {
+        const struct MapHeader *north = Overworld_GetMapHeaderByGroupAndId(MAP_GROUP(MAP_ROUTE26NORTH_HNS), MAP_NUM(MAP_ROUTE26NORTH_HNS));
+        const struct MapHeader *south = Overworld_GetMapHeaderByGroupAndId(MAP_GROUP(MAP_ROUTE26_HNS), MAP_NUM(MAP_ROUTE26_HNS));
+        u32 combined = north->mapLayout->height + south->mapLayout->height;
+        u32 rows = GetActiveRegionMapEntries()[MAPSEC_ROUTE_26].height;
+        u32 offset = (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_ROUTE26NORTH_HNS)
+                   && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ROUTE26NORTH_HNS))
+                   ? 0 : north->mapLayout->height;
+
+        y = (offset + gSaveBlock1Ptr->pos.y) * rows / combined;
+        if (y >= rows)
+            y = rows - 1;
+    }
+#endif
+
 #if !IS_HNS
     switch (sRegionMap->mapSecId)
     {
@@ -1940,8 +1966,6 @@ static u8 GetMapsecType(mapsec_u16_t mapSecId)
     {
     case MAPSEC_NONE:
         return MAPSECTYPE_NONE;
-    // HnS: Hoenn-Staedte sind auch hier Fly-Ziele (Besucht-Flags
-    // setzen die Vanilla-Stadtscripts beim Betreten).
     case MAPSEC_LITTLEROOT_TOWN:
         return FlagGet(FLAG_VISITED_LITTLEROOT_TOWN) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_OLDALE_TOWN:
@@ -1966,6 +1990,8 @@ static u8 GetMapsecType(mapsec_u16_t mapSecId)
         return FlagGet(FLAG_VISITED_RUSTBORO_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_FORTREE_CITY:
         return FlagGet(FLAG_VISITED_FORTREE_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    case MAPSEC_LILYCOVE_CITY:
+        return FlagGet(FLAG_VISITED_LILYCOVE_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_MOSSDEEP_CITY:
         return FlagGet(FLAG_VISITED_MOSSDEEP_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_SOOTOPOLIS_CITY:
@@ -1999,27 +2025,31 @@ static u8 GetMapsecType(mapsec_u16_t mapSecId)
         return FlagGet(FLAG_LANDMARK_SOUTHERN_ISLAND) ? MAPSECTYPE_ROUTE : MAPSECTYPE_NONE;
 #if IS_HNS
     case MAPSEC_PALLET_TOWN:
-        return FlagGet(FLAG_VISITED_PALLET_TOWN) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+        return FlagGet(FLAG_WORLD_MAP_PALLET_TOWN) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_VIRIDIAN_CITY:
-        return FlagGet(FLAG_VISITED_VIRIDIAN_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+        return FlagGet(FLAG_WORLD_MAP_VIRIDIAN_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_PEWTER_CITY:
-        return FlagGet(FLAG_VISITED_PEWTER_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+        return FlagGet(FLAG_WORLD_MAP_PEWTER_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_CERULEAN_CITY:
-        return FlagGet(FLAG_VISITED_CERULEAN_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+        return FlagGet(FLAG_WORLD_MAP_CERULEAN_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_LAVENDER_TOWN:
-        return FlagGet(FLAG_VISITED_LAVENDER_TOWN) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+        return FlagGet(FLAG_WORLD_MAP_LAVENDER_TOWN) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_VERMILION_CITY:
-        return FlagGet(FLAG_VISITED_VERMILION_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+        return FlagGet(FLAG_WORLD_MAP_VERMILION_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_CELADON_CITY:
-        return FlagGet(FLAG_VISITED_CELADON_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+        return FlagGet(FLAG_WORLD_MAP_CELADON_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_FUCHSIA_CITY:
-        return FlagGet(FLAG_VISITED_FUCHSIA_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+        return FlagGet(FLAG_WORLD_MAP_FUCHSIA_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_CINNABAR_ISLAND:
-        return FlagGet(FLAG_VISITED_CINNABAR_ISLAND) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+        return FlagGet(FLAG_WORLD_MAP_CINNABAR_ISLAND) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_INDIGO_PLATEAU:
-        return FlagGet(FLAG_VISITED_INDIGO_PLATEAU) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+        return FlagGet(FLAG_WORLD_MAP_INDIGO_PLATEAU_EXTERIOR) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_SAFFRON_CITY:
-        return FlagGet(FLAG_VISITED_SAFFRON_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+        return FlagGet(FLAG_WORLD_MAP_SAFFRON_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    case MAPSEC_ROUTE_4_POKECENTER:
+        return FlagGet(FLAG_WORLD_MAP_ROUTE4_POKEMON_CENTER_1F) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    case MAPSEC_ROUTE_10_POKECENTER:
+        return FlagGet(FLAG_WORLD_MAP_ROUTE10_POKEMON_CENTER_1F) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
 #else
     case MAPSEC_PALLET_TOWN:
         return FlagGet(FLAG_WORLD_MAP_PALLET_TOWN) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
@@ -2074,29 +2104,18 @@ static u8 GetMapsecType(mapsec_u16_t mapSecId)
     case MAPSEC_ROUTE_26:
         return FlagGet(FLAG_VISITED_RECEPTION_GATE) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_ROUTE_10:
-        return FlagGet(FLAG_VISITED_ROUTE10) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+        return FlagGet(FLAG_WORLD_MAP_ROUTE10_POKEMON_CENTER_1F) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_ROUTE_4:
-        return FlagGet(FLAG_VISITED_ROUTE4) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+        return FlagGet(FLAG_WORLD_MAP_ROUTE4_POKEMON_CENTER_1F) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
 #endif
 #if !IS_HNS
-    case MAPSEC_ONE_ISLAND:
         return FlagGet(FLAG_WORLD_MAP_ONE_ISLAND) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
-    case MAPSEC_TWO_ISLAND:
         return FlagGet(FLAG_WORLD_MAP_TWO_ISLAND) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
-    case MAPSEC_THREE_ISLAND:
         return FlagGet(FLAG_WORLD_MAP_THREE_ISLAND) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
-    case MAPSEC_FOUR_ISLAND:
         return FlagGet(FLAG_WORLD_MAP_FOUR_ISLAND) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
-    case MAPSEC_FIVE_ISLAND:
         return FlagGet(FLAG_WORLD_MAP_FIVE_ISLAND) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
-    case MAPSEC_SEVEN_ISLAND:
         return FlagGet(FLAG_WORLD_MAP_SEVEN_ISLAND) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
-    case MAPSEC_SIX_ISLAND:
         return FlagGet(FLAG_WORLD_MAP_SIX_ISLAND) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
-    case MAPSEC_ROUTE_4_POKECENTER:
-        return FlagGet(FLAG_WORLD_MAP_ROUTE4_POKEMON_CENTER_1F) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
-    case MAPSEC_ROUTE_10_POKECENTER:
-        return FlagGet(FLAG_WORLD_MAP_ROUTE10_POKEMON_CENTER_1F) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
 #endif
     default:
         return MAPSECTYPE_ROUTE;
@@ -2449,10 +2468,7 @@ static void SpriteCB_PlayerIconMapFull(struct Sprite *sprite)
 static void SpriteCB_PlayerIcon(struct Sprite *sprite)
 {
 #if IS_HNS
-    // Fremde Karte: Icon dauerhaft aus. Muss hier stehen und nicht nur
-    // beim Umschalten - dieser Callback laeuft jeden Frame und setzte
-    // invisible sonst sofort wieder auf FALSE zurueck (Ursache: Icon
-    // blieb nach dem Kartenwechsel in beiden Regionen sichtbar).
+    // Foreign map: no player icon. Must stay in this per-frame callback.
     if (RegionMapIsViewingForeignRegion())
     {
         sprite->invisible = TRUE;
@@ -2497,9 +2513,7 @@ u8 *GetMapName(u8 *dest, mapsec_u16_t regionMapId, u16 padLength)
     {
         const u8 *name;
 
-        // Die HnS-Tabelle endet vor den Hoenn-Kennungen. Ein Zugriff darueber
-        // hinaus laege ausserhalb des Feldes, deshalb dort die vollstaendige
-        // Tabelle verwenden.
+        // sRegionMapEntries_Johto ends before the Hoenn IDs.
 #if IS_HNS
         if (GetActiveRegionMapEntries() == sRegionMapEntries_Johto
          && regionMapId >= ARRAY_COUNT(sRegionMapEntries_Johto))
@@ -2693,16 +2707,10 @@ static void SetFlyMapCallback(void callback(void))
 }
 
 #if IS_HNS
-// Bewusst neutral ohne Kartennamen: bleibt gueltig, falls spaeter eine
-// weitere Karte dazukommt. Die Region selbst soll perspektivisch als
-// Wasserzeichen in der Kartengrafik stehen.
 static const u8 sText_SwitchMap[] = _("{SELECT_BUTTON} Wechsel");
 #endif
 
-// Zeile "Wohin?" (links) und - falls Hoenn schon bekannt ist -
-// rechtsbuendig der Umschalt-Hinweis "SELECT Wechsel".
-// Fensterbreite unveraendert 14 Kacheln = 112 px; Frage 34 px,
-// Hinweis 53 px (beide FONT_NORMAL) -> 25 px Luft dazwischen.
+// "Wohin?" and, once Hoenn is known, the right-aligned switch hint. Both must fit in 112 px.
 static void PrintFlyToWhereWindow(void)
 {
     FillWindowPixelBuffer(WIN_FLY_TO_WHERE, PIXEL_FILL(0));
@@ -3013,22 +3021,23 @@ static const struct FlyLocation sFlyLocations[] =
     { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_MAHOGANY_TOWN, .flag = FLAG_VISITED_MAHOGANY_TOWN },
     { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_LAKE_OF_RAGE, .flag = FLAG_VISITED_LAKE_OF_RAGE },
     { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_BLACKTHORN_CITY, .flag = FLAG_VISITED_BLACKTHORN_CITY },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_INDIGO_PLATEAU, .flag = FLAG_VISITED_INDIGO_PLATEAU },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_INDIGO_PLATEAU, .flag = FLAG_WORLD_MAP_INDIGO_PLATEAU_EXTERIOR },
     { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_MT_SILVER, .flag = FLAG_VISITED_MT_SILVER },
     { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_ROUTE_26, .flag = FLAG_VISITED_RECEPTION_GATE },
     // Combined JK map fly destinations (Kanto)
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_PALLET_TOWN, .flag = FLAG_VISITED_PALLET_TOWN },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_VIRIDIAN_CITY, .flag = FLAG_VISITED_VIRIDIAN_CITY },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_PEWTER_CITY, .flag = FLAG_VISITED_PEWTER_CITY },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_CERULEAN_CITY, .flag = FLAG_VISITED_CERULEAN_CITY },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_VERMILION_CITY, .flag = FLAG_VISITED_VERMILION_CITY },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_LAVENDER_TOWN, .flag = FLAG_VISITED_LAVENDER_TOWN },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_CELADON_CITY, .flag = FLAG_VISITED_CELADON_CITY },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_SAFFRON_CITY, .flag = FLAG_VISITED_SAFFRON_CITY },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_FUCHSIA_CITY, .flag = FLAG_VISITED_FUCHSIA_CITY },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_CINNABAR_ISLAND, .flag = FLAG_VISITED_CINNABAR_ISLAND },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_ROUTE_4, .flag = FLAG_VISITED_ROUTE4 },
-    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_ROUTE_10, .flag = FLAG_VISITED_ROUTE10 },
+    // Origin Jade: FLAG_WORLD_MAP_* (set by the FRLG maps), not FLAG_VISITED_*.
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_PALLET_TOWN, .flag = FLAG_WORLD_MAP_PALLET_TOWN },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_VIRIDIAN_CITY, .flag = FLAG_WORLD_MAP_VIRIDIAN_CITY },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_PEWTER_CITY, .flag = FLAG_WORLD_MAP_PEWTER_CITY },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_CERULEAN_CITY, .flag = FLAG_WORLD_MAP_CERULEAN_CITY },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_VERMILION_CITY, .flag = FLAG_WORLD_MAP_VERMILION_CITY },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_LAVENDER_TOWN, .flag = FLAG_WORLD_MAP_LAVENDER_TOWN },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_CELADON_CITY, .flag = FLAG_WORLD_MAP_CELADON_CITY },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_SAFFRON_CITY, .flag = FLAG_WORLD_MAP_SAFFRON_CITY },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_FUCHSIA_CITY, .flag = FLAG_WORLD_MAP_FUCHSIA_CITY },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_CINNABAR_ISLAND, .flag = FLAG_WORLD_MAP_CINNABAR_ISLAND },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_ROUTE_4, .flag = FLAG_WORLD_MAP_ROUTE4_POKEMON_CENTER_1F },
+    { .regionMapType = REGION_MAP_JK, .mapsec = MAPSEC_ROUTE_10, .flag = FLAG_WORLD_MAP_ROUTE10_POKEMON_CENTER_1F },
 #endif
 };
 
@@ -3042,22 +3051,19 @@ static const struct FlyLocation sFlyLocations[] =
 static bool32 UseBlueFlyDestIcon(u32 mapSecId)
 {
 #if IS_HNS
+    // Origin Jade: every fly destination without a gym. Indigo Plateau counts as a gym.
     switch (mapSecId)
     {
-    // Johto
-    case MAPSEC_NEW_BARK_TOWN:
-    case MAPSEC_AZALEA_TOWN:
-    case MAPSEC_MAHOGANY_TOWN:
-    case MAPSEC_SAFARI_ZONE_GATE:
+    case MAPSEC_CHERRYGROVE_CITY:
     case MAPSEC_LAKE_OF_RAGE:
-    case MAPSEC_MT_SILVER:
-    case MAPSEC_ROUTE_26:
-    // Kanto
-    case MAPSEC_PALLET_TOWN:
     case MAPSEC_LAVENDER_TOWN:
-    case MAPSEC_CINNABAR_ISLAND:
-    case MAPSEC_ROUTE_4:
+    case MAPSEC_MT_SILVER:
+    case MAPSEC_NEW_BARK_TOWN:
+    case MAPSEC_PALLET_TOWN:
     case MAPSEC_ROUTE_10:
+    case MAPSEC_ROUTE_26:
+    case MAPSEC_ROUTE_4:
+    case MAPSEC_SAFARI_ZONE_GATE:
         return TRUE;
     default:
         return FALSE;
@@ -3070,10 +3076,7 @@ static bool32 UseBlueFlyDestIcon(u32 mapSecId)
 
 static void CreateFlyDestIcons(void)
 {
-    // Nach der angezeigten Karte filtern, nicht nach der Heimatregion:
-    // Beim Kartenwechsel im Fly-Screen muessen die Icons der jeweils
-    // sichtbaren Region erscheinen (Koordinaten kommen ansichtsbasiert
-    // aus GetMapSecDimensions/GetActiveRegionMapEntries).
+    // Icons of the map shown, not of the player's region.
     enum RegionMapType regionMapType = GetViewedRegionMapType();
     u32 i;
     u16 x;
@@ -3117,18 +3120,14 @@ static void CreateFlyDestIcons(void)
 }
 
 #if IS_HNS
-// Entfernt alle Zielpunkt-Sprites (normale wie Red-Outline-Icons) vor
-// dem Neuaufbau beim Kartenwechsel. Grafiksheet und Paletten bleiben
-// geladen, deshalb kein FreeSpriteTilesByTag/FreeSpritePaletteByTag.
+// Sprites only: tiles and palettes stay loaded for the rebuild.
 static void DestroyFlyDestIcons(void)
 {
     u32 i;
 
     for (i = 0; i < MAX_SPRITES; i++)
     {
-        // Zeigervergleich auf die statischen Templates - nicht ueber
-        // template->tileTag gehen, weil Cursor/Spieler-Icon aus
-        // Stack-Templates entstehen und deren Zeiger dangeln koennen.
+        // Compare template pointers, not template->tileTag: some templates live on the stack.
         if (gSprites[i].inUse
          && (gSprites[i].template == &sFlyDestIconSpriteTemplate
           || gSprites[i].template == &sFlyDestIconBlueSpriteTemplate
@@ -3151,8 +3150,7 @@ static void TryCreateRedOutlineFlyDestIcons(void)
     u8 spriteId;
 
 #if IS_HNS
-    // Kampfzone, Neu-Sinjoh und Mele-Mele liegen nur im JK-Layout;
-    // auf der Hoenn-Ansicht saessen die Icons an fremden Koordinaten.
+    // Battle Zone, New Sinjoh and Melemele only exist on the JK map.
     if (GetViewedRegionMapType() == REGION_MAP_HOENN)
         return;
 #endif
@@ -3288,9 +3286,7 @@ u32 FilterFlyDestination(struct RegionMap* regionMap)
         return HEAL_LOCATION_BATTLE_FRONTIER_OUTSIDE_EAST;
 #endif
 #if !IS_HNS
-    case MAPSEC_LITTLEROOT_TOWN:
         return (gSaveBlock2Ptr->playerGender == MALE ? HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE : HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE);
-    case MAPSEC_EVER_GRANDE_CITY:
         return (FlagGet(FLAG_LANDMARK_POKEMON_LEAGUE) && regionMap->posWithinMapSec == 0 ? HEAL_LOCATION_EVER_GRANDE_CITY_POKEMON_LEAGUE : HEAL_LOCATION_EVER_GRANDE_CITY);
 #endif
     default:

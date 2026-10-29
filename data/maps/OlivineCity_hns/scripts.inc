@@ -37,32 +37,35 @@ OlivineCity_Text_BaobaName:
 
 OlivineCity_Text_Baoba:
 #if GERMAN
-	.string "Hallo, {PLAYER}!\n"
-	.string "Ich bin’s, Baoba!\p"
+	.string "Hallo, {PLAYER}! Ich bin’s,\n"
+	.string "Baoba!\p"
 	.string "Entschuldige, dass ich dich habe\n"
 	.string "warten lassen!\p"
 	.string "Sie ist endlich eröffnet, die\n"
 	.string "Safari-Zone! Du weißt, wo?\p"
 	.string "Du kennst doch das in den Fels\n"
-	.string "gehauene Tor in Anemonia City, oder?\p"
-	.string "Wenn du dort durchgehst, erreichst\n"
-	.string "du sie nach einer Weile, die Safari-Zone!\p"
-	.string "Nun, es liegt nicht gerade auf dem Weg,\n"
-	.string "aber schau unbedingt einmal vorbei!$"
+	.string "gehauene Tor in Anemonia City,\l"
+	.string "oder?\p"
+	.string "Wenn du dort durchgehst,\n"
+	.string "erreichst du sie nach einer\l"
+	.string "Weile, die Safari-Zone!\p"
+	.string "Nun, es liegt nicht gerade auf\n"
+	.string "dem Weg, aber schau unbedingt\l"
+	.string "einmal vorbei!$"
 #else
 	.string "{PLAYER}!\p"
 	.string "This is WARDEN BAOBA.\p"
 	.string "Sorry to have kept you waiting.\n"
-	.string "We've finally opened the\l"
-	.string "SAFARI ZONE!\p"
+	.string "We've finally opened the SAFARI\l"
+	.string "ZONE!\p"
 	.string "Do you know where it is?\p"
-	.string "You know the GATE inside the cavern\n"
-	.string "in CIANWOOD CITY?\p"
-	.string "If you go through there and walk for\n"
-	.string "a short while, you should soon see\l"
-	.string "the SAFARI ZONE!\p"
-	.string "We're a little out of the way, but\n"
-	.string "please come visit!$"
+	.string "You know the GATE inside the\n"
+	.string "cavern in CIANWOOD CITY?\p"
+	.string "If you go through there and walk\n"
+	.string "for a short while, you should\l"
+	.string "soon see the SAFARI ZONE!\p"
+	.string "We're a little out of the way,\n"
+	.string "but please come visit!$"
 #endif
 
 OlivineCity_EventScript_CityTrigger:: @FLAGHEAP
@@ -275,12 +278,13 @@ OlivineCity_EventScript_Item_ChargeBeam::
 	finditem ITEM_TM_CHARGE_BEAM
 	end
 
+@ Aurora Ticket (Birth Island) after the Johto title, see docs/origin_jade/DECISIONS.md, D-029.
 OlivineCity_EventScript_EonTicketWoman::
 	lock
 	faceplayer
 	checkitem ITEM_AURORA_TICKET
 	goto_if_eq VAR_RESULT, TRUE, OlivineCity_EventScript_EonTicketWomanAfter
-	goto_if_set FLAG_IS_KANTO_CHAMPION, OlivineCity_EventScript_EonTicketWomanChamp
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, OlivineCity_EventScript_EonTicketWomanChamp
 	msgbox OlivineCity_Text_EonTicketWoman1, MSGBOX_DEFAULT
 	closemessage
 	release

@@ -165,8 +165,6 @@ DewfordTown_Gym_EventScript_BrawlyDefeated::
 	setflag FLAG_ENABLE_BRAWLY_MATCH_CALL
 	setvar VAR_ROXANNE_CALL_STEP_COUNTER, 0
 	setflag FLAG_ENABLE_ROXANNE_FIRST_CALL
-	@ HnS: Normans Anruf kommt ganz zum Schluss - vorher lief er mitten
-	@ in die Szene der Arenaleiterin hinein und die Textbox war noch offen.
 	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
 	release
 	end
@@ -267,8 +265,6 @@ DewfordTown_Gym_EventScript_GymGuidePostVictory::
 DewfordTown_Gym_EventScript_LeftGymStatue::
 	lockall
 #if IS_HNS
-	@ HnS: FLAG_BADGE02_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
 	setvar VAR_0x8004, 1
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, TRUE, DewfordTown_Gym_EventScript_GymStatueCertified
@@ -281,8 +277,6 @@ DewfordTown_Gym_EventScript_LeftGymStatue::
 DewfordTown_Gym_EventScript_RightGymStatue::
 	lockall
 #if IS_HNS
-	@ HnS: FLAG_BADGE02_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
 	setvar VAR_0x8004, 1
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, TRUE, DewfordTown_Gym_EventScript_GymStatueCertified

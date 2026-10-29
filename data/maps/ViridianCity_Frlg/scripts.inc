@@ -16,13 +16,14 @@ ViridianCity_EventScript_SetOldManNormal::
 
 ViridianCity_EventScript_SetOldManStandingByRoad::
 	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_OLD_MAN_1
-	setobjectxyperm LOCALID_TUTORIAL_MAN, 21, 8
+	setobjectxyperm LOCALID_TUTORIAL_MAN, 24, 9
 	setobjectmovementtype LOCALID_TUTORIAL_MAN, MOVEMENT_TYPE_LOOK_AROUND
 	return
 
 ViridianCity_EventScript_SetOldManBlockingRoad::
 	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_OLD_MAN_LYING_DOWN
-	setobjectxyperm LOCALID_TUTORIAL_MAN, 21, 11
+	setobjectxyperm LOCALID_TUTORIAL_MAN, 24, 11
+	setobjectxyperm LOCALID_VIRIDIAN_WOMAN, 23, 12
 	setobjectmovementtype LOCALID_TUTORIAL_MAN, MOVEMENT_TYPE_FACE_DOWN
 	return
 
@@ -50,7 +51,7 @@ ViridianCity_EventScript_GymDoorLocked::
 	end
 
 ViridianCity_Movement_JumpDownLedge::
-	jump_2_down
+	walk_down
 	step_end
 
 ViridianCity_EventScript_CitySign::
@@ -66,7 +67,14 @@ ViridianCity_EventScript_TrainerTips2::
 	end
 
 ViridianCity_EventScript_GymSign::
+	call PokemonLeague_EventScript_CheckLeagueChanged
+	goto_if_eq VAR_RESULT, TRUE, ViridianCity_EventScript_GymSignBlue
 	msgbox ViridianCity_Text_GymSign, MSGBOX_SIGN
+	end
+
+@ Blue leads the gym after the league change, see docs/origin_jade/DECISIONS.md, D-032.
+ViridianCity_EventScript_GymSignBlue::
+	msgbox ViridianCity_Text_GymSignBlue, MSGBOX_SIGN
 	end
 
 ViridianCity_EventScript_GymDoor::
@@ -124,6 +132,68 @@ ViridianCity_EventScript_TutorialStart::
 	call ViridianCity_EventScript_DoTutorialBattle
 	release
 	end
+
+@ Origin Jade: the tutorial can be declined; the way still opens.
+ViridianCity_EventScript_TutorialDeclined::
+	msgbox ViridianCity_Text_TutorialDeclined
+	setvar VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 2
+	goto ViridianCity_EventScript_GiveRadio
+
+@ Origin Jade: gives the PokeGear radio card.
+ViridianCity_EventScript_GiveRadio::
+	goto_if_set FLAG_ENABLE_RADIO, ViridianCity_EventScript_RadioDone
+	playfanfare MUS_OBTAIN_ITEM
+	message ViridianCity_Text_ReceivedRadio
+	waitfanfare
+	setflag FLAG_ENABLE_RADIO
+	msgbox ViridianCity_Text_ExplainRadio
+ViridianCity_EventScript_RadioDone::
+	return
+
+ViridianCity_Text_ReceivedRadio:
+#if GERMAN
+	.string "{PLAYER} erhielt das Radiomodul\n"
+	.string "für das PokéCom!$"
+#else
+	.string "{PLAYER} received the RADIO CARD\n"
+	.string "for the POKéGEAR!$"
+#endif
+
+ViridianCity_Text_ExplainRadio:
+#if GERMAN
+	.string "Steck das in dein PokéCom, dann\n"
+	.string "hast du unterwegs Radio.\p"
+	.string "Bei Professor Eichs Pokémon-Talk\n"
+	.string "gibt es jede Menge Tipps.\p"
+	.string "Hör da ruhig mal rein!$"
+#else
+	.string "Put that in your POKéGEAR and\n"
+	.string "you'll have radio on the road.\p"
+	.string "PROF. OAK's POKéMON TALK is full\n"
+	.string "of useful tips.\p"
+	.string "Give it a listen!$"
+#endif
+
+ViridianCity_Text_AskShowCatching:
+#if GERMAN
+	.string "Dann sollte ich es dir wohl besser\n"
+	.string "zeigen!\p"
+	.string "Soll ich?$"
+#else
+	.string "You look like you could use a\n"
+	.string "demonstration.\p"
+	.string "Shall I show you how to catch\n"
+	.string "POKéMON?$"
+#endif
+
+ViridianCity_Text_TutorialDeclined:
+#if GERMAN
+	.string "Oh, du kennst dich also schon aus.\p"
+	.string "Dann geh nur, der Weg ist frei.$"
+#else
+	.string "Oh, you know your way around already.\p"
+	.string "Go right ahead then, the road is clear.$"
+#endif
 
 @ Unused
 ViridianCity_EventScript_WatchToLearnBasics::
@@ -221,6 +291,8 @@ ViridianCity_EventScript_TutorialTriggerRight::
 
 ViridianCity_EventScript_DoTutorialBattle::
 	msgbox ViridianCity_Text_ShowYouHowToCatchMons
+	msgbox ViridianCity_Text_AskShowCatching, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, ViridianCity_EventScript_TutorialDeclined
 	closemessage
 	special StartOldManTutorialBattle
 	waitstate
@@ -228,9 +300,7 @@ ViridianCity_EventScript_DoTutorialBattle::
 	faceplayer
 	msgbox ViridianCity_Text_ThatWasEducationalTakeThis
 	setvar VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 2
-	giveitem ITEM_TEACHY_TV
-	msgbox ViridianCity_Text_WatchThatToLearnBasics
-	return
+	goto ViridianCity_EventScript_GiveRadio
 
 ViridianCity_Text_CanCarryMonsAnywhere::
 #if GERMAN
@@ -339,8 +409,7 @@ ViridianCity_Text_ShowYouHowToCatchMons::
 	.string "Der Pokédex wird mit jedem neu\n"
 	.string "gefangenen Pokémon aktualisiert.\p"
 	.string "… du weißt nicht, wie man Pokémon\n"
-	.string "fängt?\p"
-	.string "Ich sollte es dir wohl besser zeigen!$"
+	.string "fängt?$"
 #else
 	.string "Well, now, I've had my coffee, and\n"
 	.string "that's what I need to get going!\p"
@@ -492,6 +561,15 @@ ViridianCity_Text_GymSign::
 	.string "Vertania City Pokémon-Arena$"
 #else
 	.string "VIRIDIAN CITY POKéMON GYM$"
+#endif
+
+ViridianCity_Text_GymSignBlue:
+#if GERMAN
+	.string "Vertania City Pokémon-Arena\n"
+	.string "Arenaleiter: {RIVAL}$"
+#else
+	.string "VIRIDIAN CITY POKéMON GYM\n"
+	.string "LEADER: {RIVAL}$"
 #endif
 
 ViridianCity_Text_GymDoorsAreLocked::

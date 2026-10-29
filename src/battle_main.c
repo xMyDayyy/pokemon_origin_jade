@@ -10,7 +10,8 @@
 #include "battle_hold_effects.h"
 #include "battle_interface.h"
 #include "battle_main.h"
-#include "hoenn_level_scaling.h"
+#include "level_scaling.h"
+#include "legendaries_oj.h"
 #include "battle_message.h"
 #include "battle_pyramid.h"
 #include "battle_scripts.h"
@@ -106,7 +107,7 @@ static void SpriteCB_MoveWildMonToRight(struct Sprite *sprite);
 static void SpriteCB_WildMonShowHealthbox(struct Sprite *sprite);
 static void SpriteCB_WildMonAnimate(struct Sprite *sprite);
 static void SpriteCB_AnimFaintOpponent(struct Sprite *sprite);
-static void SpriteCB_BlinkVisible(struct Sprite *sprite);
+void SpriteCB_BlinkVisible(struct Sprite *sprite);
 static void SpriteCB_Idle(struct Sprite *sprite);
 static void SpriteCB_BattleSpriteSlideLeft(struct Sprite *sprite);
 static void TurnValuesCleanUp(bool8 var0);
@@ -481,6 +482,7 @@ const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
     [TRAINER_CLASS_YOUNGSTER_HNS] =        { _("Teenager"), 4 },
     [TRAINER_CLASS_PROFESSOR_HNS] =         { _("{PKMN}-Prof."), 25, BALL_FRIEND},
     [TRAINER_CLASS_DEVELOPER_HNS] =           { _("Entwickler"), 50, BALL_MASTER},
+    [TRAINER_CLASS_PYRAMID_KING_HNS] =     { _("Pyr.-König") },
 };
 
 static void (*const sTurnActionsFuncsTable[])(void) =
@@ -1982,7 +1984,11 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
         if (partyEntry->moves[j] != MOVE_NONE)
             noMoveSet = FALSE;
     }
+#if RANDOMIZER_AVAILABLE
+    if (noMoveSet || RandomizerFeatureEnabled(RANDOMIZE_TRAINER_MON) || RandomizerFeatureEnabled(RANDOMIZE_LEARNSET))
+#else
     if (noMoveSet)
+#endif
     {
         GiveMonInitialMoveset(mon);
         // TODO: Figure out a default strategy when moves are not set, to generate a good moveset
@@ -1997,7 +2003,8 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
     }
 }
 
-u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags)
+// trainerId goes to ScaleTrainerMonSpecies (level scaling).
+static u8 CreateNPCTrainerPartyWithId(struct Pokemon *party, const struct Trainer *trainer, u16 trainerId, bool32 firstTrainer, u32 battleTypeFlags)
 {
     u32 personalityValue;
     s32 i;
@@ -2024,13 +2031,12 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
         u32 monIndices[monsCount];
         DoTrainerPartyPool(trainer, monIndices, monsCount, battleTypeFlags);
 
-        // Hoenn-Levelscaling: hoechstes Originallevel des Teams als
-        // Referenz, damit die Teamstruktur beim Skalieren erhalten bleibt.
-        u8 hoennPartyMaxLvl = 0;
+        // Level scaling (Hoenn, Johto, Kanto after its title): scale relative to the team's highest level.
+        u8 scalingPartyMaxLvl = 0;
         for (i = 0; i < monsCount; i++)
         {
-            if (trainer->party[monIndices[i]].lvl > hoennPartyMaxLvl)
-                hoennPartyMaxLvl = trainer->party[monIndices[i]].lvl;
+            if (trainer->party[monIndices[i]].lvl > scalingPartyMaxLvl)
+                scalingPartyMaxLvl = trainer->party[monIndices[i]].lvl;
         }
 
         for (i = 0; i < monsCount; i++)
@@ -2065,12 +2071,12 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 otId.value = HIHALF(personalityValue) ^ LOHALF(personalityValue);
             }
             {
-                u8 hoennScaledLvl = HoennScaleTrainerMonLevel(trainer, partyData[monIndex].lvl, hoennPartyMaxLvl);
-                u16 species = HoennScaleTrainerMonSpecies(partyData[monIndex].species, hoennScaledLvl);
+                u8 scaledLvl = ScaleTrainerMonLevel(trainer, partyData[monIndex].lvl, scalingPartyMaxLvl);
+                u16 species = ScaleTrainerMonSpecies(partyData[monIndex].species, scaledLvl, trainerId, monIndex);
                 #if RANDOMIZER_AVAILABLE == TRUE
                 species = RandomizeTrainerMon(trainer->trainerClass, i, monsCount, species);
                 #endif
-                CreateMon(&party[i], species, hoennScaledLvl, personalityValue, otId);
+                CreateMon(&party[i], species, scaledLvl, personalityValue, otId);
             }
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);
 
@@ -2182,6 +2188,12 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
     return trainer->partySize;
 }
 
+// Parties without a trainer id (debug menu, tests).
+u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags)
+{
+    return CreateNPCTrainerPartyWithId(party, trainer, TRAINER_NONE, firstTrainer, battleTypeFlags);
+}
+
 static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 firstTrainer)
 {
     u8 retVal;
@@ -2199,11 +2211,11 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
         if (tempTrainer.partySize == 0)
             tempTrainer.partySize = origTrainer->partySize;
 
-        retVal = CreateNPCTrainerPartyFromTrainer(party, (const struct Trainer *)(&tempTrainer), firstTrainer, gBattleTypeFlags);
+        retVal = CreateNPCTrainerPartyWithId(party, (const struct Trainer *)(&tempTrainer), trainerNum, firstTrainer, gBattleTypeFlags);
     }
     else
     {
-        retVal = CreateNPCTrainerPartyFromTrainer(party, GetTrainerStructFromId(trainerNum), firstTrainer, gBattleTypeFlags);
+        retVal = CreateNPCTrainerPartyWithId(party, GetTrainerStructFromId(trainerNum), trainerNum, firstTrainer, gBattleTypeFlags);
     }
     return retVal;
 }
@@ -2214,7 +2226,7 @@ void CreateTrainerPartyForPlayer(void)
 
     ZeroPlayerPartyMons();
     gPartnerTrainerId = gSpecialVar_0x8004;
-    CreateNPCTrainerPartyFromTrainer(gPlayerParty, GetTrainerStructFromId(gSpecialVar_0x8004), TRUE, BATTLE_TYPE_TRAINER);
+    CreateNPCTrainerPartyWithId(gPlayerParty, GetTrainerStructFromId(gSpecialVar_0x8004), gSpecialVar_0x8004, TRUE, BATTLE_TYPE_TRAINER);
 }
 
 void VBlankCB_Battle(void)
@@ -2915,13 +2927,27 @@ void SpriteCB_ShowAsMoveTarget(struct Sprite *sprite)
     sprite->callback = SpriteCB_BlinkVisible;
 }
 
-static void SpriteCB_BlinkVisible(struct Sprite *sprite)
+void SpriteCB_BlinkVisible(struct Sprite *sprite)
 {
     if (--sprite->data[3] == 0)
     {
         sprite->invisible ^= 1;
         sprite->data[3] = 8;
     }
+}
+
+// Only battlers that were actually made to blink as a move target may have their
+// visibility restored from data[4], otherwise e.g. the attacker of a spread move
+// that doesn't target itself would get its visibility set from stale sprite data.
+bool32 ShouldHideBattler(enum BattlerId battler)
+{
+    SpriteCallback callback;
+
+    if (!IsBattlerAlive(battler) || !gBattleSpritesDataPtr->healthBoxesData[battler].healthboxIsBouncing)
+        return FALSE;
+
+    callback = gSprites[gBattlerSpriteIds[battler]].callback;
+    return callback == SpriteCB_ShowAsMoveTarget || callback == SpriteCB_BlinkVisible;
 }
 
 void SpriteCB_HideAsMoveTarget(struct Sprite *sprite)
@@ -3260,7 +3286,11 @@ static void BattleStartClearSetData(void)
     gBattleStruct->runTries = 0;
     gBattleStruct->safariGoNearCounter = 0;
     gBattleStruct->safariPkblThrowCounter = 0;
+    // Species with a catch rate under 13 would truncate to a factor of 0, which
+    // zeroes the capture odds and leaves bait/rock unable to move it off 0.
     gBattleStruct->safariCatchFactor = gSpeciesInfo[GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)].catchRate * 100 / 1275;
+    if (gBattleStruct->safariCatchFactor == 0)
+        gBattleStruct->safariCatchFactor = 1;
     gBattleStruct->safariEscapeFactor = 3;
     gBattleStruct->wildVictorySong = 0;
     // Amulet Coin applies as long as any party mon holds it, even if that mon never enters the battle.
@@ -3820,6 +3850,18 @@ static void DoBattleIntro(void)
             if (runPressed)
             {
                 battler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+                if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
+                {
+                    // The player has no battler in a Safari battle (its gBattleMons entry is
+                    // zeroed above), so the speed-based escape check can never succeed. Running
+                    // from the Safari Zone always works, exactly as HandleAction_SafariZoneRun does.
+                    gBattlerAttacker = battler;
+                    PlaySE(SE_FLEE);
+                    gCurrentTurnActionNumber = gBattlersCount;
+                    gBattleOutcome = B_OUTCOME_RAN;
+                    gBattleMainFunc = HandleEndTurn_RanFromBattle;
+                    return;
+                }
                 if (IsRunningFromBattleImpossible(battler) == BATTLE_RUN_SUCCESS && TryRunFromBattle(battler))
                 {
                     gBattleMainFunc = HandleEndTurn_RanFromBattle;
@@ -5584,18 +5626,28 @@ static void HandleEndTurn_BattleWon(void)
         BattleStopLowHpSound();
         gBattlescriptCurrInstr = BattleScript_FrontierTrainerBattleWon;
 
+        // This branch covers three things at once: the Battle Frontier, Trainer Hill, and
+        // the Battle Tents in Trainer Hill's courtyard (which set BATTLE_TYPE_PALACE/ARENA/
+        // FACTORY, all inside the BATTLE_TYPE_FRONTIER mask). The Frontier is a Hoenn
+        // institution and stays on the Emerald themes throughout; Trainer Hill and the Tents
+        // are Johto and take the HG ones, matching what GetBattleBGM gives them. They are
+        // told apart by map section, since the battle type flags do not separate the Tents
+        // from the Frontier proper.
         if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_FRONTIER_BRAIN)
-        #if IS_HNS
-            PlayBGM(MUS_HG_VICTORY_FRONTIER_BRAIN);
-        #else
+        {
+            // Brains only ever appear in the Battle Frontier, so this is always Emerald.
             PlayBGM(MUS_VICTORY_GYM_LEADER);
-        #endif
-        else
-        #if IS_HNS
+        }
+    #if IS_HNS
+        else if (gMapHeader.regionMapSectionId == MAPSEC_TRAINER_HILL)
+        {
             PlayBGM(MUS_HG_VICTORY_TRAINER);
-        #else
+        }
+    #endif
+        else
+        {
             PlayBGM(MUS_VICTORY_TRAINER);
-        #endif
+        }
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && !(gBattleTypeFlags & BATTLE_TYPE_LINK))
     {
@@ -5606,8 +5658,26 @@ static void HandleEndTurn_BattleWon(void)
         {
         case TRAINER_CLASS_ELITE_FOUR:
         case TRAINER_CLASS_CHAMPION:
+        // HnS uses its own class constants for these, so without them the Johto/Kanto
+        // Elite Four and Champions fell through to the ordinary trainer victory theme.
+        case TRAINER_CLASS_ELITE_FOUR_HNS:
+        case TRAINER_CLASS_CHAMPION_HNS:
+        case TRAINER_CLASS_PKMN_TRAINER_1_HNS:
+        // Same for FR/LG, which has no separate league victory theme at all - its
+        // Elite Four and Champion share the Gym Leader one.
+        case TRAINER_CLASS_ELITE_FOUR_FRLG:
+        case TRAINER_CLASS_CHAMPION_FRLG:
         #if IS_HNS
-            PlayBGM(MUS_HG_VICTORY_GYM_LEADER);
+            // Steven is an Emerald guest, so he keeps the Emerald league victory theme
+            // to match the Emerald champion battle theme GetBattleBGM gives him. No
+            // facility check needed here, the Frontier and Trainer Hill are handled by
+            // the branch above, so opponentA is always a real gTrainers id at this point.
+            if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_STEVEN_HNS)
+                PlayBGM(MUS_VICTORY_LEAGUE);
+            else
+                PlayBGM(MUS_HG_VICTORY_GYM_LEADER);
+        #elif IS_FRLG
+            PlayBGM(MUS_RG_VICTORY_GYM_LEADER);
         #else
             PlayBGM(MUS_VICTORY_LEAGUE);
         #endif
@@ -5621,8 +5691,13 @@ static void HandleEndTurn_BattleWon(void)
             PlayBGM(MUS_VICTORY_AQUA_MAGMA);
             break;
         case TRAINER_CLASS_LEADER:
+        case TRAINER_CLASS_LEADER_HNS:
+        case TRAINER_CLASS_LEADER_KANTO_HNS:
+        case TRAINER_CLASS_LEADER_FRLG:
         #if IS_HNS
             PlayBGM(MUS_HG_VICTORY_GYM_LEADER);
+        #elif IS_FRLG
+            PlayBGM(MUS_RG_VICTORY_GYM_LEADER);
         #else
             PlayBGM(MUS_VICTORY_GYM_LEADER);
         #endif
@@ -5870,12 +5945,17 @@ static void HandleEndTurn_FinishBattle(void)
                                         | BATTLE_TYPE_BATTLE_TOWER
                                         | BATTLE_TYPE_CATCH_TUTORIAL
                                         | BATTLE_TYPE_LEGENDARY
+                                        | BATTLE_TYPE_ROAMER
                                         | BATTLE_TYPE_TWO_OPPONENTS
                                         | BATTLE_TYPE_INGAME_PARTNER
                                         | BATTLE_TYPE_TOWER_LINK_MULTI
                                         | BATTLE_TYPE_RECORDED_LINK)))
             {
-                if (!NuzlockeIsSpeciesClauseActive)
+                // An off-type mon under the One Type Challenge could never have been
+                // caught, so it must not burn the route's Nuzlocke encounter.
+                // Safari Zone and Bug Contest catches do not use it up either.
+                if (!NuzlockeIsSpeciesClauseActive && !OneTypeChallengeCaptureBlocked
+                 && !IsNuzlockeCaptureSuspended())
                     NuzlockeFlagSet(NuzlockeGetCurrentRegionMapSectionId());
             }
             NuzlockeIsCaptureBlocked = FALSE;
@@ -6035,6 +6115,9 @@ static void ReturnFromBattleToOverworld(void)
         if ((gBattleOutcome == B_OUTCOME_WON) || gBattleOutcome == B_OUTCOME_CAUGHT) // Bug: When Roar is used by roamer, gBattleOutcome is B_OUTCOME_PLAYER_TELEPORTED (5).
 #endif                                                                               // & with B_OUTCOME_WON (1) will return TRUE and deactivates the roamer.
             SetRoamerInactive(gEncounteredRoamerIndex);
+        // A caught roamer never comes back, see docs/origin_jade/DECISIONS.md, D-026.
+        if (gBattleOutcome == B_OUTCOME_CAUGHT)
+            RecordRoamerCaught(gSaveBlock1Ptr->roamer[gEncounteredRoamerIndex].species);
     }
 
     m4aSongNumStop(SE_LOW_HEALTH, FlagGet(FLAG_SYS_GBS_ENABLED));

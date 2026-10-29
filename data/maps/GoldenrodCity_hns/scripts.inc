@@ -21,14 +21,12 @@ GoldenrodCity_EventScript_Trigger:: @flagheap
 	clearflag FLAG_RECEIVED_SQUIRTBOTTLE
 	clearflag FLAG_GOT_EEVEE
 	clearflag FLAG_SYS_PC_BILL
-	clearflag FLAG_RETURNED_MACHINE_PART
 	clearflag FLAG_UNLOCKED_GOLDENROD_UNDERGROUND_DOOR
 	clearflag FLAG_GOLDENROD_MACHOKE_1
 	clearflag FLAG_GOLDENROD_MACHOKE_2
 	clearflag FLAG_GOLDENROD_MACHOKE_3
 	clearflag FLAG_COMPLETED_SWITCHES
-	clearflag FLAG_ENABLE_RADIO
-	clearflag FLAG_KANTO_RADIO_GOT
+	@ Origin Jade: FLAG_ENABLE_RADIO stays set (radio card from Viridian).
 	clearflag FLAG_GOLDENROD_NPC_TRADE_COMPLETED
 	clearflag FLAG_GOT_SUNNY_DAY
 	clearflag FLAG_HIDE_RADIOTOWER_GATE
@@ -350,14 +348,14 @@ GoldenrodCity_Text_ElmName:
 
 GoldenrodCity_Text_ElmCall:
 #if GERMAN
-	.string "Lind: Hallo, {PLAYER}?\n"
-	.string "Ist das Ei schon geschlüpft?\p"
-	.string "Falls das passiert, vergiss nicht,\n"
-	.string "es zum Labor zu bringen.\p"
+	.string "Lind: Hallo, {PLAYER}? Ist das Ei\n"
+	.string "schon geschlüpft?\p"
+	.string "Falls das passiert, vergiss\n"
+	.string "nicht, es zum Labor zu bringen.\p"
 	.string "Ich muss es untersuchen!$"
 #else
-	.string "PROF.ELM: Hello, {PLAYER}?\n"
-	.string "Has that EGG hatched yet?\p"
+	.string "PROF.ELM: Hello, {PLAYER}? Has\n"
+	.string "that EGG hatched yet?\p"
 	.string "Once it hatches, don't forget to\n"
 	.string "bring it by the lab! I need to\l"
 	.string "see it!$"

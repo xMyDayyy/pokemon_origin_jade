@@ -85,6 +85,7 @@ PewterCity_EventScript_WalkToGymNorth::
 	walk_up
 	walk_up
 	walk_up
+	walk_up
 	walk_left
 	walk_left
 	walk_left
@@ -101,6 +102,9 @@ PewterCity_EventScript_WalkToGymNorth::
 	walk_left
 	walk_left
 	walk_left
+	walk_left
+	walk_left
+	walk_down
 	walk_down
 	walk_down
 	walk_down
@@ -142,6 +146,7 @@ PewterCity_EventScript_WalkToGymNorth::
 	walk_up
 	walk_up
 	walk_up
+	walk_up
 	walk_left
 	walk_left
 	walk_left
@@ -152,6 +157,9 @@ PewterCity_EventScript_WalkToGymNorth::
 	walk_left
 	walk_left
 	walk_left
+	walk_left
+	walk_left
+	walk_down
 	walk_down
 	walk_down
 	walk_down
@@ -482,20 +490,24 @@ PewterCity_EventScript_CheckedOutMuseum::
 	end
 
 .macro walk_to_museum
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
 	walk_up
 	walk_up
 	walk_up
 	walk_up
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
+	walk_up
+	walk_up
+	walk_up
 	walk_up
 	walk_up
 	walk_up
@@ -509,18 +521,23 @@ PewterCity_EventScript_CheckedOutMuseum::
 .endm
 
 .macro walk_to_museum_south
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
 	walk_up
 	walk_up
 	walk_up
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
+	walk_up
+	walk_up
+	walk_up
+	walk_up
 	walk_up
 	walk_up
 	walk_up
@@ -681,6 +698,7 @@ PewterCity_EventScript_RunningShoesAideTriggerBottom::
 	end
 
 PewterCity_EventScript_AideGiveRunningShoes::
+	goto_if_set FLAG_SYS_B_DASH, PewterCity_EventScript_AideAlreadyHasShoes
 	textcolor NPC_TEXT_COLOR_MALE
 	call_if_eq VAR_TEMP_1, 1, PewterCity_EventScript_AideNoticePlayer
 	call_if_eq VAR_TEMP_1, 2, PewterCity_EventScript_AideNoticePlayer
@@ -1131,3 +1149,7 @@ PewterCity_Text_RunningShoesLetterFromMom::
 	.string "From Mom$"
 #endif
 
+PewterCity_EventScript_AideAlreadyHasShoes::
+	setflag FLAG_HIDE_PEWTER_CITY_RUNNING_SHOES_GUY
+	removeobject LOCALID_PEWTER_AIDE
+	return

@@ -6,6 +6,7 @@ IlexForest_hns_MapScripts::
 IlexForest_OnTransition:
 	call_if_eq VAR_ILEX_FOREST_FARFETCHD, 1, IlexForest_EventScript_ReenterWhenFarfetchdLeaving
 	call_if_eq VAR_ILEX_FOREST_FARFETCHD, 2, IlexForest_EventScript_ReenterDuringCutScene
+	call IlexForest_EventScript_SetCelebiVisibility
 	callnative SetTimeBasedEncounters
 	end
 
@@ -17,6 +18,17 @@ IlexForest_EventScript_ReenterDuringCutScene::
 	clearflag FLAG_HIDE_ILEX_FOREST_MASTER
 	clearflag FLAG_HIDE_ILEX_FOREST_APPRENTICE
 	setobjectxyperm LOCALID_ILEX_FOREST_FARFETCHD_1, 28, 42
+	return
+
+@ After the shrine event Celebi waits at the shrine again unless the legendary rules hide it
+@ (see docs/origin_jade/DECISIONS.md, D-026). Uses the second Celebi object: FLAG_HIDE_CELEBI is also Kurt's flag.
+IlexForest_EventScript_SetCelebiVisibility::
+	setflag FLAG_HIDE_ILEX_FOREST_SECOND_CELEBI
+	goto_if_lt VAR_AZALEA_TOWN_STATE, 10, Common_EventScript_NopReturn
+	setvar VAR_0x8004, LEGENDARY_CELEBI
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	goto_if_ne VAR_RESULT, TRUE, Common_EventScript_NopReturn
+	clearflag FLAG_HIDE_ILEX_FOREST_SECOND_CELEBI
 	return
 
 IlexForest_EventScript_Apprentice::
@@ -189,8 +201,18 @@ IlexForest_EventScript_Trigger::
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
 	msgbox IlexForest_Text_CharcoalMasterIntro, MSGBOX_DEFAULT
 	closemessage
+	@ Origin Jade: Miracle Seed instead if the player already owns HM Cut.
+	checkitem ITEM_HM_CUT
+	goto_if_eq VAR_RESULT, TRUE, IlexForest_EventScript_HasCut
 	giveitem ITEM_HM_CUT
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+	goto IlexForest_EventScript_CutDone
+
+IlexForest_EventScript_HasCut::
+	msgbox IlexForest_Text_CharcoalMasterHasCut, MSGBOX_DEFAULT
+	giveitem ITEM_MIRACLE_SEED
+
+IlexForest_EventScript_CutDone::
 	msgbox IlexForest_Text_CharcoalMasterOutro, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_HM_CUT
 	setflag FLAG_HIDE_ILEX_FOREST_MASTER
@@ -245,11 +267,13 @@ IlexForest_EventScript_Celebi_Event::
 	playmoncry SPECIES_CELEBI, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	seteventmon SPECIES_CELEBI, 40
+	seteventmon SPECIES_CELEBI, 75
 	special BattleSetup_StartLegendaryBattle
-waitstate
-	specialvar VAR_RESULT, GetBattleOutcome
-	call_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, IlexForest_EventScript_Shrine_Caught
+	waitstate
+	@ Taken only after the battle: a whiteout keeps the ball for the next try.
+	removeitem ITEM_GS_BALL
+	setvar VAR_0x8004, LEGENDARY_CELEBI
+	special RecordLegendaryBattleOutcome
 	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject LOCALID_ILEX_FOREST_CELEBI
 	setflag FLAG_HIDE_CELEBI
@@ -271,36 +295,28 @@ IlexForest_EventScript_Kurt::
 	release
 	end
 
-IlexForest_EventScript_Shrine_Caught::
-	setflag FLAG_CAUGHT_CELEBI
-	return
-
 IlexForest_EventScript_Shrine_Cancel::
 	closemessage
 	release
 	end
 
 
+@ Celebi back at the shrine after a knockout or a flight (legendary rules, D-026).
 IlexForest_EventScript_SecondCelebi::
 	lock
 	faceplayer
 	playmoncry SPECIES_CELEBI, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	seteventmon SPECIES_CELEBI, 40
+	seteventmon SPECIES_CELEBI, 75
 	special BattleSetup_StartLegendaryBattle
-waitstate
-	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, IlexForest_EventScript_SecondCelebiRan
+	waitstate
+	setvar VAR_0x8004, LEGENDARY_CELEBI
+	special RecordLegendaryBattleOutcome
 	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject LOCALID_ILEX_FOREST_SECOND_CELEBI
-	setflag FLAG_HIDE_ILEX_FOREST_SECOND_CELEBI
 	fadescreenswapbuffers FADE_FROM_BLACK
 	special GivePartyMonNationalRibbon
-	release
-	end
-
-IlexForest_EventScript_SecondCelebiRan::
 	release
 	end
 
@@ -758,18 +774,21 @@ IlexForest_Text_Lass:
 
 IlexForest_Text_Signpost:
 #if GERMAN
-	.string "Tipps für Trainer\p"
-	.string "Der Steineichenwald ist so dicht mit\n"
-	.string "Bäumen bewachsen, dass sich der Himmel\l"
-	.string "hinter dem Dickicht nur noch dunkel\l"
-	.string "erahnen lässt.\p"
-	.string "Pass auf, wo du hintrittst! Viele Leute\n"
-	.string "lassen hier ihre Sachen liegen!$"
+	.string "Steineichenwald\p"
+	.string "So dicht bewachsen, dass sich der\n"
+	.string "Himmel hinter dem Dickicht nur noch\l"
+	.string "dunkel erahnen lässt.\p"
+	.string "Pass auf, wo du hintrittst. Hier ist\n"
+	.string "schon manchem etwas aus der Tasche\l"
+	.string "gefallen.$"
 #else
-	.string "ILEX FOREST is so overgrown with\n"
-	.string "trees that you can't see the sky.\p"
-	.string "Please watch out for items that may\n"
-	.string "have been dropped.$"
+	.string "ILEX FOREST\p"
+	.string "So overgrown with trees that the sky\n"
+	.string "is barely a glimmer through the\l"
+	.string "canopy.\p"
+	.string "Watch where you tread. More than one\n"
+	.string "traveller has dropped something\l"
+	.string "here.$"
 #endif
 
 IlexForest_Text_Shrine:
@@ -784,12 +803,11 @@ IlexForest_Text_Shrine:
 
 IlexForest_Text_ShrineCelebiEvent:
 #if GERMAN
-	.string "Steineichenwald Schrein…\p"
+	.string "Steineichenwald-Schrein…\p"
 	.string "Zu Ehren des Patrons…\p"
 	.string "Oh? Was ist das?\p"
 	.string "Ein Loch.\n"
-	.string "Es scheint, der GS-Ball passt hinein.\l"
-	.string "\p"
+	.string "Der GS-Ball scheint hineinzupassen.\p"
 	.string "Willst du den GS-Ball einsetzen?$"
 #else
 	.string "ILEX FOREST SHRINE…\p"
@@ -812,20 +830,22 @@ IlexForest_Text_InsertGSBall:
 IlexForest_Text_KurtCaughtCelebi:
 #if GERMAN
 	.string "Puh, war das spannend!\p"
-	.string "{PLAYER}, das war fantastisch. Danke!\n"
-	.string "\p"
-	.string "Die Legenden über den Shrine\n"
+	.string "{PLAYER}, das war fantastisch.\n"
+	.string "Danke!\p"
+	.string "Die Legenden über den Schrein\n"
 	.string "waren also wahr.\p"
-	.string "Ich bin inspiriert, bessere Bälle zu\n"
-	.string "machen!\p"
+	.string "Ich bin inspiriert, bessere Bälle\n"
+	.string "zu machen!\p"
 	.string "Ich gehe jetzt!$"
 #else
 	.string "Whew, wasn't that something!\p"
-	.string "{PLAYER}, that was fantastic. Thanks!\p"
+	.string "{PLAYER}, that was fantastic.\n"
+	.string "Thanks!\p"
 	.string "The legends about that SHRINE were\n"
 	.string "real after all.\p"
 	.string "I feel inspired by what I just saw.\p"
-	.string "It motivates me to make better BALLS!\p"
+	.string "It motivates me to make better\n"
+	.string "BALLS!\p"
 	.string "I'm going!$"
 #endif
 
@@ -911,4 +931,21 @@ IlexForest_Text_Kimono_Girl5:
 	.string "Ich gehe schon mal vor!$"
 #else
 	.string "See you.$"
+#endif
+
+IlexForest_Text_CharcoalMasterHasCut:
+#if GERMAN
+	.string "Den Zerschneider trägst du schon bei\n"
+	.string "dir. Natürlich.\p"
+	.string "Mein Lehrling hat ein halbes Jahr\n"
+	.string "gebraucht, bis der Baum fiel.\p"
+	.string "Dann nimm das hier. Der Wald gibt\n"
+	.string "gern, wenn man ihn nicht abholzt.$"
+#else
+	.string "You already carry CUT. Of course you\n"
+	.string "do.\p"
+	.string "My apprentice needed half a year\n"
+	.string "before that tree came down.\p"
+	.string "Then take this. The forest gives\n"
+	.string "freely, if you don't clear it.$"
 #endif

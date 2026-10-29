@@ -205,7 +205,7 @@ u8 *CopyItemNameHandlePlural(enum Item itemId, u8 *dst, u32 quantity)
     }
     else
     {
-        // Deutsch: ohne hinterlegten Plural den Singular verwenden (kein engl. "s")
+        // German: without a stored plural use the singular (no English "s")
         return StringCopy(dst, GetItemName(itemId));
     }
 }
@@ -880,15 +880,14 @@ u8 GetItemImportance(enum Item itemId)
     return gItemsInfo[SanitizeItemId(itemId)].importance;
 }
 
-// HnS-Special: TRUE, wenn eine Uebergabe verpuffen wuerde -- der Gegenstand
-// liegt schon im Beutel UND laesst sich nicht stapeln. Gegenstand in
-// VAR_0x8000 (den giveitem ohnehin belegt), Ergebnis in VAR_RESULT.
-//
-// Wichtig: GetItemImportance() liest die Spielerwahl "TMs wiederverw." aus dem
-// Herausforderungsmenue mit (challengeSettings.tx_Mode_InfiniteTMs). Steht sie
-// auf AN, sind TMs unverbrauchbar und eine zweite Kopie nutzlos; steht sie auf
-// AUS, sind TMs Verbrauchsgueter und die zweite Kopie ist erwuenscht. Die
-// Entscheidung faellt deshalb hier zur Laufzeit und nicht im Skript.
+// Special: TRUE if TMs are not consumed (challenge setting "TMs wiederverw.").
+void CheckTMsReusable(void)
+{
+    gSpecialVar_Result = (gSaveBlock3Ptr->challengeSettings.tx_Mode_InfiniteTMs == 1);
+}
+
+// Special: TRUE if the item in VAR_0x8000 is already in the bag and cannot
+// stack, so a handover would be wasted. Result in VAR_RESULT.
 void CheckItemHandoverPointless(void)
 {
     enum Item itemId = gSpecialVar_0x8000;

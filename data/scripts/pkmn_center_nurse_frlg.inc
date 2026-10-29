@@ -12,6 +12,9 @@ EventScript_AfterWhiteOutHeal_Frlg::
 	end
 
 EventScript_PkmnCenterNurse_Frlg::
+	@ Origin Jade: Pokemon Center challenge, same as in pkmn_center_nurse.inc.
+	specialvar VAR_RESULT, IsPokecenterChallengeActivated
+	goto_if_eq VAR_RESULT, TRUE, EventScript_PkmnCenterNurse_PkmnCenterChallenge_NoVisits
 	goto_if_set FLAG_EVEN_FASTER_JOY, EventScript_PkmnCenterNurse_HealPkmnFast_Frlg
 	message Text_WelcomeWantToHealPkmn_Frlg
 	waitmessage

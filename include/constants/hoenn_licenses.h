@@ -1,9 +1,8 @@
 #ifndef GUARD_CONSTANTS_HOENN_LICENSES_H
 #define GUARD_CONSTANTS_HOENN_LICENSES_H
 
-// VM-Lizenzen fuer Hoenn (Bitpositionen in VAR_HOENN_LICENSES).
-// Als #define statt enum, damit die Skript-Assemblerdateien sie ebenfalls
-// verwenden koennen. Fliegen und Blitz sind bewusst nicht gesperrt.
+// HM licenses for Hoenn (bit positions in VAR_HOENN_LICENSES).
+// Keep these as #defines: the script assembly files use them.
 #define LIC_CUT         0
 #define LIC_ROCK_SMASH  1
 #define LIC_STRENGTH    2

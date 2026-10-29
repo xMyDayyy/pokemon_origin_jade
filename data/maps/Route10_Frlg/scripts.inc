@@ -1,5 +1,11 @@
 Route10_Frlg_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, Route10_OnTransition
 	.byte 0
+
+@ Origin Jade: unlocks the fly point when entering the route.
+Route10_OnTransition::
+	setworldmapflag FLAG_WORLD_MAP_ROUTE10_POKEMON_CENTER_1F
+	end
 
 Route10_EventScript_Unused::
 	end

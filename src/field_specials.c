@@ -10,6 +10,7 @@
 #include "diploma.h"
 #include "voltorb_flip.h"
 #include "event_data.h"
+#include "caps.h"
 #include "event_object_movement.h"
 #include "fieldmap.h"
 #include "field_camera.h"
@@ -18,7 +19,8 @@
 #include "field_player_avatar.h"
 #include "field_screen_effect.h"
 #include "field_specials.h"
-#include "hoenn_level_scaling.h"
+#include "level_scaling.h"
+#include "legendaries_oj.h"
 #include "field_weather.h"
 #include "graphics.h"
 #include "international_string_util.h"
@@ -68,6 +70,7 @@
 #include "constants/field_effects.h"
 #include "constants/field_specials.h"
 #include "constants/items.h"
+#include "constants/legendaries_oj.h"
 #include "constants/heal_locations.h"
 #include "constants/mystery_gift.h"
 #include "constants/slot_machine.h"
@@ -551,10 +554,7 @@ bool32 ShouldDoRoxanneCall(void)
     return TRUE;
 }
 
-// HnS: Normans Anruf nach einer Ordenuebergabe. Er kommt nicht sofort
-// (dort unterbrach er die Szene der Arenaleiterin), sondern nach
-// HNS_NORMAN_CALL_STEPS Schritten unter freiem Himmel - der Spieler ist
-// dann unterwegs und der Hinweis kommt zum passenden Zeitpunkt.
+// Outdoor steps until Norman's queued call.
 #define HNS_NORMAN_CALL_STEPS 50
 
 bool32 ShouldDoNormanCall(void)
@@ -569,6 +569,30 @@ bool32 ShouldDoNormanCall(void)
     case MAP_TYPE_ROUTE:
     case MAP_TYPE_OCEAN_ROUTE:
         if (++(*GetVarPointer(VAR_HNS_NORMAN_CALL_STEPS)) < HNS_NORMAN_CALL_STEPS)
+            return FALSE;
+        break;
+    default:
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+// Outdoor steps from getting the PokeGear to Mom's test call.
+#define HNS_MOM_CALL_STEPS 100
+
+bool32 ShouldDoMomCall(void)
+{
+    if (!FlagGet(FLAG_HNS_MOM_CALL_PENDING))
+        return FALSE;
+
+    switch (gMapHeader.mapType)
+    {
+    case MAP_TYPE_TOWN:
+    case MAP_TYPE_CITY:
+    case MAP_TYPE_ROUTE:
+    case MAP_TYPE_OCEAN_ROUTE:
+        if (++(*GetVarPointer(VAR_HNS_MOM_CALL_STEPS)) < HNS_MOM_CALL_STEPS)
             return FALSE;
         break;
     default:
@@ -1621,10 +1645,9 @@ void LoadWallyZigzagoon(void)
 {
     u16 monData;
 #if IS_HNS
-    // Der Fangkurs steht in Hoenn spaet im Spiel. Heiko tritt deshalb mit
-    // der Entwicklungsstufe an (Geradaks statt Zigzachs) und auf dem
-    // Niveau des Routenkorridors - so wie die uebrigen Trainer auch.
-    CreateRandomMon(&gPlayerParty[0], SPECIES_LINOONE, HoennScaleWildMonLevel(7));
+    // Origin Jade: Linoone at the scaled level.
+    // Keep in sync with MultichoiceList_Mechadoll2_Q1 (script_menu.h).
+    CreateRandomMon(&gPlayerParty[0], SPECIES_LINOONE, ScaleWildMonLevel(7));
 #else
     CreateRandomMon(&gPlayerParty[0], SPECIES_ZIGZAGOON, 7);
 #endif
@@ -3673,11 +3696,20 @@ void CreateAbnormalWeatherEvent(void)
     u16 randomValue = Random();
     VarSet(VAR_ABNORMAL_WEATHER_STEP_COUNTER, 0);
 
+#if IS_HNS
+    // Only for Kyogre or Groudon that can be met now (see docs/origin_jade/DECISIONS.md, D-026).
+    if (!IsLegendaryIdAvailable(LEGENDARY_KYOGRE))
+#else
     if (FlagGet(FLAG_DEFEATED_KYOGRE) == TRUE)
+#endif
     {
         VarSet(VAR_ABNORMAL_WEATHER_LOCATION, (randomValue % TERRA_CAVE_LOCATIONS) + TERRA_CAVE_LOCATIONS_START);
     }
+#if IS_HNS
+    else if (!IsLegendaryIdAvailable(LEGENDARY_GROUDON))
+#else
     else if (FlagGet(FLAG_DEFEATED_GROUDON) == TRUE)
+#endif
     {
         VarSet(VAR_ABNORMAL_WEATHER_LOCATION, (randomValue % MARINE_CAVE_LOCATIONS) + MARINE_CAVE_LOCATIONS_START);
     }
@@ -3853,10 +3885,7 @@ bool32 IsTrainerRegistered(void)
             return TRUE;
     }
 #if IS_HNS
-    // Trainer ohne Platz in der Rematch-Tabelle lassen sich gar nicht
-    // eintragen. Wuerde hier FALSE stehen, boeten ihre Skripte die
-    // Eintragung bei jedem Ansprechen erneut an - und sie schluege
-    // jedes Mal still fehl.
+    // No rematch slot: counts as registered, so no registration is offered.
     else
     {
         return TRUE;
@@ -4628,9 +4657,11 @@ bool32 CheckObjectAtXY(u32 x, u32 y)
 bool32 CheckPartyHasSpecies(u32 givenSpecies)
 {
     u32 partyIndex;
+    u32 partyCount = CalculatePlayerPartyCount();
 
-    for (partyIndex = 0; partyIndex < CalculatePlayerPartyCount(); partyIndex++)
-        if (GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES) == givenSpecies)
+    // Eggs don't count - MON_DATA_SPECIES returns the species inside the Egg.
+    for (partyIndex = 0; partyIndex < partyCount; partyIndex++)
+        if (GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES_OR_EGG) == givenSpecies)
             return TRUE;
 
     return FALSE;
@@ -6245,10 +6276,16 @@ void GivePartyMonNationalRibbon(void)
     }
 }
 
-// Origin Jade: Regionsweiche fuer Skripte (u. a. Beerenbaeume) -
-// TRUE, wenn der Spieler in Hoenn steht.
+// Origin Jade: special for scripts, e.g. berry trees.
 u16 IsPlayerInHoenn(void)
 {
     gSpecialVar_Result = (GetCurrentRegion() == REGION_HOENN);
+    return gSpecialVar_Result;
+}
+
+// Origin Jade: lets Koga and Sabrina announce the obedience limit at the sixth badge.
+u16 GetPlayerBadgeCount(void)
+{
+    gSpecialVar_Result = GetCurrentBadgeCount();
     return gSpecialVar_Result;
 }

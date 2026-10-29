@@ -10,8 +10,13 @@ Trade_Text_LookingForMonWannaTradeForMon::
 #endif
 
 Trade_Text_AwwOhWell::
+#if GERMAN
+	.string "Ach…\n"
+	.string "Na gut.$"
+#else
 	.string "Awww!\n"
 	.string "Oh, well…$"
+#endif
 
 Trade_Text_WhatThatsNoMon::
 #if GERMAN
@@ -23,7 +28,11 @@ Trade_Text_WhatThatsNoMon::
 #endif
 
 Trade_Text_HeyThanks::
+#if GERMAN
+	.string "Hey, danke!$"
+#else
 	.string "Hey, thanks!$"
+#endif
 
 Trade_Text_IsntMyOldMonGreat::
 #if GERMAN
@@ -65,7 +74,11 @@ Trade_Text_ThisIsntMon::
 #endif
 
 Trade_Text_Thanks::
+#if GERMAN
+	.string "Danke!$"
+#else
 	.string "Thanks!$"
+#endif
 
 Trade_Text_HasTradedMonGrownStronger::
 #if GERMAN

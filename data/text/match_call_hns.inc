@@ -1,7 +1,7 @@
 @ Crystal-accurate phone dialogue for HnS rematch trainers
 @ Greetings from Crystal callee/caller files prepended to each text
 
-@ Joey - Knirps, Route 30
+@ Joey - Youngster, Route 30
 MatchCall_HNS_Joey_General1::
 #if GERMAN
 	.string "Yo, {PLAYER}! Wie geht es dir?\p"
@@ -69,7 +69,7 @@ MatchCall_HNS_Joey_Battle::
 	.string "different!$"
 #endif
 
-@ Wade - Käfersammler, Route 31
+@ Wade - Bug Catcher, Route 31
 MatchCall_HNS_Wade_General1::
 #if GERMAN
 	.string "{PLAYER}, alles senkrecht?\p"
@@ -160,7 +160,7 @@ MatchCall_HNS_Wade_Battle::
 	.string "time!$"
 #endif
 
-@ Ralph - Angler, Route 32
+@ Ralph - Fisher, Route 32
 MatchCall_HNS_Ralph_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"
@@ -224,7 +224,7 @@ MatchCall_HNS_Ralph_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Liz - Picknicker, Route 32
+@ Liz - Picnicker, Route 32
 MatchCall_HNS_Liz_General1::
 #if GERMAN
 	.string "Hi, {PLAYER}!\n"
@@ -300,7 +300,7 @@ MatchCall_HNS_Liz_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Anthony - Wanderer, Route 33
+@ Anthony - Hiker, Route 33
 MatchCall_HNS_Anthony_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\p"
@@ -409,7 +409,8 @@ MatchCall_HNS_Todd_General3::
 	.string "Was geht?\p"
 	.string "Und, pass auf!\p"
 	.string "Jetzt besiegen wir {STR_VAR_3} mühelos.\p"
-	.string "Ich sollte die Rosalia-Arena fordern.$"
+	.string "Ich sollte die Dukatia-Arena\n"
+	.string "fordern.$"
 #else
 	.string "Hey, {PLAYER}!\n"
 	.string "What's up?\p"
@@ -431,7 +432,7 @@ MatchCall_HNS_Todd_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Gina - Picknicker, Route 34
+@ Gina - Picnicker, Route 34
 MatchCall_HNS_Gina_General1::
 #if GERMAN
 	.string "Hi, {PLAYER}!\n"
@@ -491,7 +492,7 @@ MatchCall_HNS_Gina_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Irwin - Jongleur, Route 35
+@ Irwin - Juggler, Route 35
 MatchCall_HNS_Irwin_General1::
 #if GERMAN
 	.string "Äh, hallo, {PLAYER}?\n"
@@ -555,7 +556,7 @@ MatchCall_HNS_Irwin_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Arnie - Käfersammler, Route 35
+@ Arnie - Bug Catcher, Route 35
 MatchCall_HNS_Arnie_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"
@@ -614,7 +615,7 @@ MatchCall_HNS_Arnie_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Alan - Schulkind, Route 36
+@ Alan - Schoolboy, Route 36
 MatchCall_HNS_Alan_General1::
 #if GERMAN
 	.string "Hi, {PLAYER}!\n"
@@ -697,7 +698,7 @@ MatchCall_HNS_Alan_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Dana - Göre, Route 38
+@ Dana - Lass, Route 38
 MatchCall_HNS_Dana_General1::
 #if GERMAN
 	.string "Hi, {PLAYER}!\n"
@@ -782,7 +783,7 @@ MatchCall_HNS_Dana_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Chad - Schulkind, Route 38
+@ Chad - Schoolboy, Route 38
 MatchCall_HNS_Chad_General1::
 #if GERMAN
 	.string "Hallo, {PLAYER}!\n"
@@ -858,7 +859,7 @@ MatchCall_HNS_Chad_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Derek - Pokéfan M, Route 39
+@ Derek - Pokefan M, Route 39
 MatchCall_HNS_Derek_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"
@@ -946,7 +947,7 @@ MatchCall_HNS_Derek_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Tully - Angler, Route 42
+@ Tully - Fisher, Route 42
 MatchCall_HNS_Tully_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"
@@ -1031,7 +1032,7 @@ MatchCall_HNS_Tully_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Brent - Pokémaniac, Route 43
+@ Brent - Pokemaniac, Route 43
 MatchCall_HNS_Brent_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"
@@ -1112,7 +1113,7 @@ MatchCall_HNS_Brent_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Tiffany - Picknicker, Route 43
+@ Tiffany - Picnicker, Route 43
 MatchCall_HNS_Tiffany_General1::
 #if GERMAN
 	.string "Hi, {PLAYER}!\n"
@@ -1190,7 +1191,7 @@ MatchCall_HNS_Tiffany_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Vance - Vogelfänger, Route 44
+@ Vance - Bird Keeper, Route 44
 MatchCall_HNS_Vance_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"
@@ -1254,7 +1255,7 @@ MatchCall_HNS_Vance_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Wilton - Angler, Route 44
+@ Wilton - Fisher, Route 44
 MatchCall_HNS_Wilton_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"
@@ -1333,7 +1334,7 @@ MatchCall_HNS_Wilton_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Kenji - Schwarzgurt, Route 45
+@ Kenji - Blackbelt, Route 45
 MatchCall_HNS_Kenji_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"
@@ -1410,7 +1411,7 @@ MatchCall_HNS_Kenji_FoundItem::
 	.string "Come get it if you want!$"
 #endif
 
-@ Parry - Wanderer, Route 45
+@ Parry - Hiker, Route 45
 MatchCall_HNS_Parry_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"
@@ -1471,7 +1472,7 @@ MatchCall_HNS_Parry_Battle::
 	.string "again, right?$"
 #endif
 
-@ Erin - Picknicker, Route 46
+@ Erin - Picnicker, Route 46
 MatchCall_HNS_Erin_General1::
 #if GERMAN
 	.string "Hi, {PLAYER}!\n"
@@ -1531,7 +1532,7 @@ MatchCall_HNS_Erin_Battle::
 	.string "battle!$"
 #endif
 
-@ Jack - Schulkind, National Park
+@ Jack - Schoolboy, National Park
 MatchCall_HNS_Jack_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"
@@ -1602,7 +1603,7 @@ MatchCall_HNS_Jack_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Beverly - Pokéfan F, National Park
+@ Beverly - Pokefan F, National Park
 MatchCall_HNS_Beverly_General1::
 #if GERMAN
 	.string "Hallo, {PLAYER}!\n"
@@ -1684,7 +1685,7 @@ MatchCall_HNS_Beverly_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Huey - Matrose, Olivine Lighthouse
+@ Huey - Sailor, Olivine Lighthouse
 MatchCall_HNS_Huey_General1::
 #if GERMAN
 	.string "Yo, {PLAYER}!\n"
@@ -1727,7 +1728,7 @@ MatchCall_HNS_Huey_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Gaven - Ass-Trainer M, Route 26
+@ Gaven - Cooltrainer M, Route 26
 MatchCall_HNS_Gaven_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"
@@ -1792,7 +1793,7 @@ MatchCall_HNS_Gaven_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Beth - Ass-Trainer F, Route 26
+@ Beth - Cooltrainer F, Route 26
 MatchCall_HNS_Beth_General1::
 #if GERMAN
 	.string "Hi, {PLAYER}!\n"
@@ -1861,7 +1862,7 @@ MatchCall_HNS_Beth_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Jose - Vogelfänger, Route 27
+@ Jose - Bird Keeper, Route 27
 MatchCall_HNS_Jose_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"
@@ -1956,7 +1957,7 @@ MatchCall_HNS_Jose_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Reena - Ass-Trainer F, Route 27
+@ Reena - Cooltrainer F, Route 27
 MatchCall_HNS_Reena_General1::
 #if GERMAN
 	.string "Hallo, {PLAYER}.\n"
@@ -2028,7 +2029,7 @@ MatchCall_HNS_Reena_Battle::
 	.string "Let's battle!$"
 #endif
 
-@ Alex - Kämpferin, Route 13
+@ Alex - Battle Girl, Route 13
 MatchCall_HNS_Alex_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"
@@ -2072,7 +2073,7 @@ MatchCall_HNS_Alex_Battle::
 	.string "for a rematch! Come to ROUTE 13!$"
 #endif
 
-@ Riley - Rowdy, Route 17
+@ Riley - Biker, Route 17
 MatchCall_HNS_Riley_General1::
 #if GERMAN
 	.string "Yo, {PLAYER}!\n"
@@ -2117,7 +2118,7 @@ MatchCall_HNS_Riley_Battle::
 	.string "I want a rematch!$"
 #endif
 
-@ Trevor - Jongleur, Route 14
+@ Trevor - Juggler, Route 14
 MatchCall_HNS_Trevor_General1::
 #if GERMAN
 	.string "Hi, {PLAYER}!\n"
@@ -2163,7 +2164,7 @@ MatchCall_HNS_Trevor_Battle::
 	.string "Come see on ROUTE 14!$"
 #endif
 
-@ Kyle - Angler, Route 12
+@ Kyle - Fisherman, Route 12
 MatchCall_HNS_Kyle_General1::
 #if GERMAN
 	.string "Wer ist da dran?!\n"
@@ -2202,7 +2203,7 @@ MatchCall_HNS_Kyle_Battle::
 	.string "a battle!$"
 #endif
 
-@ Carter - Pokéfan, Route 14
+@ Carter - Pokefan, Route 14
 MatchCall_HNS_Carter_General1::
 #if GERMAN
 	.string "Hallo, {PLAYER}!\n"
@@ -2248,7 +2249,7 @@ MatchCall_HNS_Carter_Battle::
 	.string "ROUTE 14!$"
 #endif
 
-@ Hillary - Expertin, Route 15
+@ Hillary - Expert, Route 15
 MatchCall_HNS_Hillary_General1::
 #if GERMAN
 	.string "Hallo, {PLAYER}.\n"
@@ -2286,7 +2287,7 @@ MatchCall_HNS_Hillary_Battle::
 	.string "Come test us on ROUTE 15!$"
 #endif
 
-@ Rob - Käfersammler, Route 2
+@ Rob - Bug Catcher, Route 2
 MatchCall_HNS_Rob_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"
@@ -2326,7 +2327,7 @@ MatchCall_HNS_Rob_Battle::
 	.string "rematch!$"
 #endif
 
-@ Nicole - Schwimmerin, Route 20
+@ Nicole - Swimmer, Route 20
 MatchCall_HNS_Nicole_General1::
 #if GERMAN
 	.string "Hi, {PLAYER}!\n"
@@ -2371,7 +2372,7 @@ MatchCall_HNS_Nicole_Battle::
 	.string "Come to ROUTE 20!$"
 #endif
 
-@ Billy - Schulkind, Route 15
+@ Billy - School Kid, Route 15
 MatchCall_HNS_Billy_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"
@@ -2415,7 +2416,7 @@ MatchCall_HNS_Billy_Battle::
 	.string "Come to ROUTE 15!$"
 #endif
 
-@ Kenny - Wanderer, Route 13
+@ Kenny - Hiker, Route 13
 MatchCall_HNS_Kenny_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"
@@ -2459,7 +2460,7 @@ MatchCall_HNS_Kenny_Battle::
 	.string "a battle!$"
 #endif
 
-@ Joel - Rowdy, Route 17
+@ Joel - Biker, Route 17
 MatchCall_HNS_Joel_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"
@@ -2506,7 +2507,7 @@ MatchCall_HNS_Joel_Battle::
 	.string "Come to CYCLING ROAD!$"
 #endif
 
-@ Charles - Rowdy, Route 17
+@ Charles - Biker, Route 17
 MatchCall_HNS_Charles_General1::
 #if GERMAN
 	.string "Hey, {PLAYER}!\n"

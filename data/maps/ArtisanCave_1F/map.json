@@ -4,7 +4,7 @@
   "game_version": "hns",
   "layout": "LAYOUT_ARTISAN_CAVE_1F",
   "music": "MUS_PETALBURG_WOODS",
-  "region_map_section": "MAPSEC_ARTISAN_CAVE",
+  "region_map_section": "MAPSEC_BATTLE_FRONTIER",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_UNDERGROUND",
@@ -34,8 +34,8 @@
       "x": 10,
       "y": 17,
       "elevation": 0,
-      "dest_map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
-      "dest_warp_id": "13"
+      "dest_map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST_HNS",
+      "dest_warp_id": "12"
     },
     {
       "x": 6,

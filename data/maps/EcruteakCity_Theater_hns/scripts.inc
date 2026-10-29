@@ -329,15 +329,26 @@ EcruteakCity_Theater_EventScript_SurfGuy::
 	end
 
 EcruteakCity_Theater_EventScript_SurfGuy_GiveSurf::
-	msgbox EcruteakCity_Theater_Text_SurfGuyGiveSurf, MSGBOX_DEFAULT
-	giveitem ITEM_HM_SURF
+	checkitem ITEM_HM_SURF
+	call_if_eq VAR_RESULT, TRUE, EcruteakCity_Theater_EventScript_SurfGuyHasSurf
+	call_if_eq VAR_RESULT, FALSE, EcruteakCity_Theater_EventScript_SurfGuyGivesSurf
 	setflag FLAG_RECEIVED_HM_SURF
-	msgbox EcruteakCity_Theater_Text_SurfGuyGaveSurf
 	closemessage
 	setflag FLAG_RECEIVED_HM_SURF
 	setvar VAR_ECRUTEAK_CITY_THEATER, 3
 	release
 	end
+
+EcruteakCity_Theater_EventScript_SurfGuyGivesSurf::
+	msgbox EcruteakCity_Theater_Text_SurfGuyGiveSurf, MSGBOX_DEFAULT
+	giveitem ITEM_HM_SURF
+	msgbox EcruteakCity_Theater_Text_SurfGuyGaveSurf
+	return
+
+EcruteakCity_Theater_EventScript_SurfGuyHasSurf::
+	msgbox EcruteakCity_Theater_Text_SurfGuyHasSurf, MSGBOX_DEFAULT
+	giveitem ITEM_MYSTIC_WATER
+	return
 
 EcruteakCity_Theater_EventScript_SurfGuyDuringRocket::
 	msgbox EcruteakCity_Theater_Text_SurfGuyRocket, MSGBOX_DEFAULT
@@ -350,10 +361,10 @@ EcruteakCity_Theater_EventScript_TriggerSurfGuy::
 	applymovement LOCALID_SURF_GUY, EcruteakCity_Theater_Movement_SurfGuy1
 	waitmovement 0
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
-	msgbox EcruteakCity_Theater_Text_SurfGuyGiveSurf, MSGBOX_DEFAULT
-	giveitem ITEM_HM_SURF
+	checkitem ITEM_HM_SURF
+	call_if_eq VAR_RESULT, TRUE, EcruteakCity_Theater_EventScript_SurfGuyHasSurf
+	call_if_eq VAR_RESULT, FALSE, EcruteakCity_Theater_EventScript_SurfGuyGivesSurf
 	setflag FLAG_RECEIVED_HM_SURF
-	msgbox EcruteakCity_Theater_Text_SurfGuyGaveSurf
 	closemessage
 	setflag FLAG_RECEIVED_HM_SURF
 	setvar VAR_ECRUTEAK_CITY_THEATER, 3
@@ -858,8 +869,8 @@ EcruteakCity_Theater_EventScript_ZukiBattle::
 	call_if_eq VAR_FACING, DIR_SOUTH, EcruteakCity_Theater_Movement_SouthCorrection
 	call_if_eq VAR_FACING, DIR_WEST, EcruteakCity_Theater_Movement_WestCorrection
 	call_if_eq VAR_FACING, DIR_EAST, EcruteakCity_Theater_Movement_EastCorrection
-	trainerbattle_no_intro TRAINER_ZUKI_HNS, EcruteakCity_Theater_Text_KimonoGirlBeaten
 	settotemboost B_POSITION_OPPONENT_LEFT, 0, 0, 1, 2, 0, 0
+	trainerbattle_no_intro TRAINER_ZUKI_HNS, EcruteakCity_Theater_Text_KimonoGirlBeaten
 	applymovement2 LOCALID_ECRUTEAK_ZUKI, EcruteakCity_Theater_Movement_ZukiWalkUp
 	waitmovement 0
 EcruteakCity_Theater_EventScript_NaokoBattle::
@@ -869,8 +880,8 @@ EcruteakCity_Theater_EventScript_NaokoBattle::
 	applymovement2 LOCALID_ECRUTEAK_NAOKO, EcruteakCity_Theater_Movement_NaokoWalkToPlayer
 	waitmovement 0
 	msgbox EcruteakCity_Theater_Text_NaokoSeen, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_NAOKO_HNS, EcruteakCity_Theater_Text_KimonoGirlBeaten
 	settotemboost B_POSITION_OPPONENT_LEFT, 0, 1, 0, 1, 1, 0
+	trainerbattle_no_intro TRAINER_NAOKO_HNS, EcruteakCity_Theater_Text_KimonoGirlBeaten
 	applymovement2 LOCALID_ECRUTEAK_NAOKO, EcruteakCity_Theater_Movement_NaokoWalkBack
 	waitmovement 0
 EcruteakCity_Theater_EventScript_MikiBattle::
@@ -880,8 +891,8 @@ EcruteakCity_Theater_EventScript_MikiBattle::
 	applymovement2 LOCALID_ECRUTEAK_MIKI, EcruteakCity_Theater_Movement_MikiWalkToPlayer
 	waitmovement 0
 	msgbox EcruteakCity_Theater_Text_MikiSeen, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_MIKI_HNS, EcruteakCity_Theater_Text_KimonoGirlBeaten
 	settotemboost B_POSITION_OPPONENT_LEFT, 0, 0, 0, 1, 2, 0
+	trainerbattle_no_intro TRAINER_MIKI_HNS, EcruteakCity_Theater_Text_KimonoGirlBeaten
 	applymovement2 LOCALID_ECRUTEAK_MIKI, EcruteakCity_Theater_Movement_MikiWalkBack
 	waitmovement 0
 EcruteakCity_Theater_EventScript_SayoBattle::
@@ -891,8 +902,8 @@ EcruteakCity_Theater_EventScript_SayoBattle::
 	applymovement2 LOCALID_ECRUTEAK_SAYO, EcruteakCity_Theater_Movement_SayoWalkToPlayer
 	waitmovement 0
 	msgbox EcruteakCity_Theater_Text_SayoSeen, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_SAYO_HNS, EcruteakCity_Theater_Text_KimonoGirlBeaten
 	settotemboost B_POSITION_OPPONENT_LEFT, 0, 0, 2, 1, 0, 0
+	trainerbattle_no_intro TRAINER_SAYO_HNS, EcruteakCity_Theater_Text_KimonoGirlBeaten
 	applymovement2 LOCALID_ECRUTEAK_SAYO, EcruteakCity_Theater_Movement_SayoWalkBack
 	waitmovement 0
 EcruteakCity_Theater_EventScript_KuniBattle::
@@ -902,8 +913,8 @@ EcruteakCity_Theater_EventScript_KuniBattle::
 	applymovement2 LOCALID_ECRUTEAK_KUNI, EcruteakCity_Theater_Movement_KuniWalkToPlayer
 	waitmovement 0
 	msgbox EcruteakCity_Theater_Text_KuniSeen, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_KUNI_HNS, EcruteakCity_Theater_Text_KimonoGirlBeaten
 	settotemboost B_POSITION_OPPONENT_LEFT, 0, 2, 0, 0, 1, 0
+	trainerbattle_no_intro TRAINER_KUNI_HNS, EcruteakCity_Theater_Text_KimonoGirlBeaten
 	applymovement2 LOCALID_ECRUTEAK_KUNI, EcruteakCity_Theater_Movement_KuniWalkBack
 	waitmovement 0
 EcruteakCity_Theater_EventScript_BeatGauntlet::
@@ -1385,3 +1396,22 @@ EcruteakCity_Theater_Text_KimonoGirlsBeforeBattle:
 	.string "when you are ready.$"
 #endif
 
+
+EcruteakCity_Theater_Text_SurfGuyHasSurf:
+#if GERMAN
+	.string "Den Surfer wolltest du sicher haben.\p"
+	.string "Du hast ihn. Schon lange, dem Blick\n"
+	.string "nach zu urteilen.\p"
+	.string "Dann etwas anderes: Das hier stammt\n"
+	.string "aus dem Brunnen unter dem Theater.\p"
+	.string "Es macht Wasser nicht nass. Es macht\n"
+	.string "es ernst.$"
+#else
+	.string "I suppose you came for SURF.\p"
+	.string "You have it. For a long while, by the\n"
+	.string "look of you.\p"
+	.string "Something else, then. This comes from\n"
+	.string "the well beneath the theater.\p"
+	.string "It doesn't make water wet. It makes it\n"
+	.string "mean business.$"
+#endif

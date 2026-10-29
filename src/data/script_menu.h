@@ -128,8 +128,7 @@ static const struct MenuAction MultichoiceList_Mechadoll2_Q1[] =
 {
     {COMPOUND_STRING("Trasla")},
 #if IS_HNS
-    // HnS: Der Fangkurs steht spaet im Spiel, Heiko tritt deshalb mit der
-    // Entwicklungsstufe an (LoadWallyZigzagoon in src/field_specials.c).
+    // Origin Jade: keep in sync with LoadWallyZigzagoon (field_specials.c).
     {COMPOUND_STRING("Geradaks")},
 #else
     {COMPOUND_STRING("Zigzachs")},
@@ -978,11 +977,14 @@ static const struct MenuAction sMultichoiceList_GameCornerPokemonPrizes[] = {
     { COMPOUND_STRING("Porygon{CLEAR_TO 0x4B}{FONT_SMALL}9.999 Münzen") },
 #else
 #if GERMAN
-    { COMPOUND_STRING("Abra{CLEAR_TO 0x55}{FONT_SMALL} 120") },
-    { COMPOUND_STRING("Piepi{CLEAR_TO 0x55}{FONT_SMALL} 750") },
-    { COMPOUND_STRING("Pinsir{CLEAR_TO 0x4B}{FONT_SMALL} 2.500") },
-    { COMPOUND_STRING("Dratini{CLEAR_TO 0x4B}{FONT_SMALL} 4.600") },
-    { COMPOUND_STRING("Porygon{CLEAR_TO 0x4B}{FONT_SMALL} 6.500") },
+    { COMPOUND_STRING("Abra{CLEAR_TO 0x4B}{FONT_SMALL} 180") },
+    { COMPOUND_STRING("Piepi{CLEAR_TO 0x4B}{FONT_SMALL} 500") },
+    { COMPOUND_STRING("Dratini{CLEAR_TO 0x4B}{FONT_SMALL} 2.800") },
+    { COMPOUND_STRING("Sichlor{CLEAR_TO 0x4B}{FONT_SMALL} 5.500") },
+    { COMPOUND_STRING("Porygon{CLEAR_TO 0x4B}{FONT_SMALL} 9.999") },
+    { COMPOUND_STRING("Porenta{CLEAR_TO 0x4B}{FONT_SMALL} 1.500") },
+    { COMPOUND_STRING("Schlurp{CLEAR_TO 0x4B}{FONT_SMALL} 1.800") },
+    { COMPOUND_STRING("Pantimos{CLEAR_TO 0x4B}{FONT_SMALL} 2.000") },
 #else
     { COMPOUND_STRING("ABRA{CLEAR_TO 0x55}{FONT_SMALL} 120") },
     { COMPOUND_STRING("CLEFAIRY{CLEAR_TO 0x55}{FONT_SMALL} 750") },
@@ -1249,24 +1251,43 @@ static const struct MenuAction MultichoiceList_KurtsBalls[] =
     {gText_Exit},
 };
 
+// M.S. Aqua destinations, see docs/origin_jade/DECISIONS.md, D-029.
+// Order must match SS_AQUA_SELECTION_* and SS_AQUA_RETURN_* in include/constants/script_menu.h.
+#if GERMAN
+static const u8 sText_HarborOlivine[] = _("Oliviana City");
+static const u8 sText_HarborVermilion[] = _("Orania City");
+#else
+static const u8 sText_HarborOlivine[] = _("OLIVINE");
+static const u8 sText_HarborVermilion[] = _("VERMILION");
+#endif
+
 static const struct MenuAction MultichoiceList_OlivineHarbor[] =
 {
-    {gText_Vermilion},   
-    {gText_SouthernIsland},
-    {gText_BirthIsland},
-    {gText_FarawayIsland},
+    {sText_HarborVermilion},
     {gText_BattleFrontier},
+    {gText_BirthIsland},
     {gText_HoennRegion},
     {gText_Exit},
 };
 static const struct MenuAction MultichoiceList_VermilionHarbor[] =
 {
-    {gText_Olivine},   
-    {gText_SouthernIsland},
-    {gText_BirthIsland},
-    {gText_FarawayIsland},
+    {sText_HarborOlivine},
     {gText_BattleFrontier},
+    {gText_BirthIsland},
     {gText_HoennRegion},
+    {gText_Exit},
+};
+static const struct MenuAction MultichoiceList_SSAquaReturn[] =
+{
+    {sText_HarborOlivine},
+    {sText_HarborVermilion},
+    {gText_HoennRegion},
+    {gText_Exit},
+};
+static const struct MenuAction MultichoiceList_SSAquaReturnPorts[] =
+{
+    {sText_HarborOlivine},
+    {sText_HarborVermilion},
     {gText_Exit},
 };
 
@@ -1551,6 +1572,8 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_BATTLE_MODE_HNS]            = MULTICHOICE(MultichoiceList_BattleModeHns),
     [MULTI_FOSSIL_HNS]                = MULTICHOICE(MultichoiceList_FossilHns),
     [MULTI_GAME_CORNER_DOLLS2]         = MULTICHOICE(MultichoiceList_GameCornerDolls2),
+    [MULTI_SSAQUA_RETURN]              = MULTICHOICE(MultichoiceList_SSAquaReturn),
+    [MULTI_SSAQUA_RETURN_PORTS]        = MULTICHOICE(MultichoiceList_SSAquaReturnPorts),
 };
 
 const u8 *const gStdStrings[] =

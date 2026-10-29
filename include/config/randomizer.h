@@ -4,6 +4,11 @@
 #define RANDOMIZER_AVAILABLE                   1
 #define RANDOMIZER_SEED_IS_TRAINER_ID          1
 
+// Randomizer pool: TRUE = Gen 1-3 families and their cross-gen evolutions only,
+// FALSE = every enabled species. No menu row; stored in the save on a new game
+// and on every challenge menu confirm.
+#define RANDOMIZER_DEFAULT_GEN_SCOPE_1_3       FALSE
+
 // The rest of these defines are only usable from C code
 #ifndef __ASSEMBLER__
 
@@ -18,7 +23,10 @@
 #endif // RANDOMIZER_DYNAMIC_SPECIES
 
 #include "item.h"
-#define RANDOMIZER_MAX_TM           ITEM_TM50
+// Highest TM the randomizer can roll for field items. Derived from the active
+// FOREACH_TM list so each build target (Emerald/FRLG: TM50, HnS: TM92) covers
+// its full TM range instead of a hardcoded bound.
+#define RANDOMIZER_MAX_TM           (ITEM_TM01 + NUM_TECHNICAL_MACHINES - 1)
 
 // Force-enable/disable overrides (uncomment to force)
 //#define FORCE_RANDOMIZE_WILD_MON                  1

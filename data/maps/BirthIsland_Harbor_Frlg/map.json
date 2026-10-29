@@ -1,7 +1,7 @@
 {
   "id": "MAP_BIRTH_ISLAND_HARBOR_FRLG",
   "name": "BirthIsland_Harbor_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_ISLAND_HARBOR_FRLG",
   "music": "MUS_NONE",
   "region": "REGION_KANTO",

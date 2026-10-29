@@ -1,7 +1,7 @@
 {
   "id": "MAP_TWO_ISLAND",
   "name": "TwoIsland_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_TWO_ISLAND",
   "music": "MUS_RG_SEVII_123",
   "region": "REGION_KANTO",

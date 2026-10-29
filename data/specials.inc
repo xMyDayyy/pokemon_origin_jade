@@ -711,9 +711,23 @@ gSpecials::
 	def_special SetHoennBadge
 	def_special CountHoennBadges
 	def_special CheckHoennBadge
+	def_special SetJohtoBadge
+	def_special CountJohtoBadges
+	def_special CheckJohtoBadge
 	def_special SetHoennLicense
 	def_special CheckHoennLicense
+	def_special SetJohtoPermit
+	def_special CheckFieldPermission
+	def_special BufferFieldPermissionTerm
 	def_special CheckItemHandoverPointless
+	def_special CheckTMsReusable
 	def_special UpdateEliteFourRematch
 	def_special IsPlayerInHoenn
 	def_special IsPartyLimitChallengeActive
+	def_special GetPlayerBadgeCount
+	def_special IsLegendaryAvailable
+	def_special RecordLegendaryBattleOutcome
+	def_special ReviveDefeatedLegendaries
+	def_special GameClearNoCredits
+	def_special GetWeekday
+	def_special ClearCreditsSceneState

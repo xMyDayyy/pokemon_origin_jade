@@ -7,7 +7,7 @@
 #include "battle_ai_main.h"
 #include "battle_ai_util.h"
 #include "battle_scripts.h"
-#include "hoenn_level_scaling.h"
+#include "level_scaling.h"
 #include "config/hoenn_scaling.h"
 #include "battle_switch_in.h"
 #include "battle_environment.h"
@@ -936,7 +936,7 @@ static const struct PickupItem sPickupTable[] =
     { ITEM_MAX_REVIVE,      {   _,   _,   _,   4,   4,   4,   4,   7,   9,   9, } },
     { ITEM_ELIXIR,          {   _,   _,   _,   _,   1,   1,   4,   5,   4,   5, } },
     { ITEM_MAX_ELIXIR,      {   _,   _,   _,   _,   _,   _,   1,   1,   4,   5, } },
-    { ITEM_BOTTLE_CAP,      {   _,   _,   _,   _,   _,   _,   _,   1,   1,   1, } },
+    { ITEM_PP_MAX,          {   _,   _,   _,   _,   _,   _,   _,   1,   1,   1, } },
 };
 
 #undef _
@@ -2150,7 +2150,7 @@ static void Cmd_printselectionstring(void)
 {
     CMD_ARGS(u16 id);
 
-    MgbaPrintf(MGBA_LOG_ERROR, "%d", cmd->id);
+    DebugPrintfLevel(MGBA_LOG_ERROR, "%d", cmd->id);
     assertf(gSelectionBattleScripts[gBattlerAttacker] != NULL || gBattleTypeFlags & BATTLE_TYPE_PALACE, "wrong use of printselectionstring");
 
     BtlController_EmitPrintSelectionString(gBattlerAttacker, B_COMM_TO_CONTROLLER, cmd->id);
@@ -4117,6 +4117,14 @@ static u32 GetMonHoldEffect(struct Pokemon *mon)
     return holdEffect;
 }
 
+// The Gen6+ "everyone shares" exp split carries a participant penalty
+// (B_EXPALL_PARTICIPANT_NUM/DEN). That penalty is the cost of the Exp Share
+// being switched on, so when it is off we fall back to the classic even split.
+static bool32 UseClassicExpSplit(void)
+{
+    return B_SPLIT_EXP < GEN_6 || !IsGen6ExpShareEnabled();
+}
+
 static void Cmd_getexp(void)
 {
     CMD_ARGS(u8 battler);
@@ -4183,7 +4191,7 @@ static void Cmd_getexp(void)
                 gBattleStruct->expGettersOrder[orderId] = PARTY_SIZE;
 
             calculatedExp = gSpeciesInfo[gBattleMons[gBattlerFainted].species].expYield * gBattleMons[gBattlerFainted].level;
-            if ((B_SCALED_EXP >= GEN_5 && B_SCALED_EXP != GEN_6) || HoennLevelScalingActive())
+            if ((B_SCALED_EXP >= GEN_5 && B_SCALED_EXP != GEN_6) || LevelScalingActive())
                 calculatedExp /= 5;
             else
                 calculatedExp /= 7;
@@ -4191,7 +4199,7 @@ static void Cmd_getexp(void)
             if (B_TRAINER_EXP_MULTIPLIER <= GEN_7 && gBattleTypeFlags & BATTLE_TYPE_TRAINER)
                 calculatedExp = (calculatedExp * 150) / 100;
 
-            if (B_SPLIT_EXP < GEN_6)
+            if (UseClassicExpSplit())
             {
                 if (viaExpShare) // at least one mon is getting exp via exp share
                 {
@@ -4284,7 +4292,7 @@ static void Cmd_getexp(void)
                         gBattleStruct->battlerExpReward = 0;
 
                     if ((holdEffect == HOLD_EFFECT_EXP_SHARE || IsGen6ExpShareEnabled())
-                        && (B_SPLIT_EXP < GEN_6 || gBattleStruct->battlerExpReward == 0)) // only give exp share bonus in later gens if the mon wasn't sent out
+                        && (UseClassicExpSplit() || gBattleStruct->battlerExpReward == 0)) // only give exp share bonus in later gens if the mon wasn't sent out
                     {
                         gBattleStruct->battlerExpReward += GetSoftLevelCapExpValue(gPlayerParty[*expMonId].level, gBattleStruct->expShareExpValue);
                     }
@@ -5944,6 +5952,9 @@ static void Cmd_handlelearnnewmove(void)
 
     if (B_LEVEL_UP_NOTIFICATION >= GEN_9 && gBattleResources->beforeLvlUp->learnMultipleMoves)
     {
+        // Origin Jade: start at the level after beforeLvlUp->level.
+        if (cmd->isFirstMove)
+            gBattleResources->beforeLvlUp->level++;
         while (gBattleResources->beforeLvlUp->level <= currLvl)
         {
             learnMove = MonTryLearningNewMoveAtLevel(&gPlayerParty[monId], cmd->isFirstMove, gBattleResources->beforeLvlUp->level);
@@ -6199,11 +6210,8 @@ static void Cmd_hitanimation(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-// Origin Jade: Preisgeld nach dem tatsaechlich bekaempften Level. Die
-// Party-Datei liefert nur das ROM-Level (Hoenn-Korridore 13-58), gekaempft
-// wird aber gegen das skalierte Team (~70). Zum Auszahlungszeitpunkt steht
-// das skalierte Team in gEnemyParty - dort lesen wir das Level des letzten
-// Mons des jeweiligen Gegners. Johto/Superbosse: RAM == ROM, unveraendert.
+// Origin Jade: level of the opponent's last mon after level scaling,
+// used for the prize money.
 static u32 GetLastMonLevelFromEnemyParty(u16 trainerId)
 {
     s32 i, first = 0, last = PARTY_SIZE - 1;
@@ -7944,7 +7952,7 @@ static u32 ChangeStatBuffs(enum BattlerId battler, s8 statValue, enum Stat statI
             }
             else
             {
-                // Deutsch: Verbphrase gehoert komplett in B_BUFF2 (Smaragd-Struktur)
+                // German: the whole verb phrase goes into B_BUFF2.
                 PREPARE_STRING_BUFFER(gBattleTextBuff2, STRINGID_STATFELL);
             }
 
@@ -7981,7 +7989,7 @@ static u32 ChangeStatBuffs(enum BattlerId battler, s8 statValue, enum Stat statI
         }
         else
         {
-            // Deutsch: Verbphrase gehoert komplett in B_BUFF2 (Smaragd-Struktur)
+            // German: the whole verb phrase goes into B_BUFF2.
             PREPARE_STRING_BUFFER(gBattleTextBuff2, STRINGID_STATROSE);
         }
 
@@ -10249,9 +10257,10 @@ static void Cmd_switchoutabilities(void)
         if (gBattleMons[battler].status1 & STATUS1_SLEEP)
             TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
 
+        // Upstream fix (expansion #10543).
         gBattleMons[battler].status1 = 0;
         BtlController_EmitSetMonData(battler, B_COMM_TO_CONTROLLER, REQUEST_STATUS_BATTLE,
-                                        1u << gBattleStruct->battlerPartyIndexes[battler],
+                                        1u << gBattlerPartyIndexes[battler],
                                         sizeof(gBattleMons[battler].status1),
                                         &gBattleMons[battler].status1);
         MarkBattlerForControllerExec(battler);
@@ -10263,7 +10272,7 @@ static void Cmd_switchoutabilities(void)
         if (regenerate > gBattleMons[battler].maxHP)
             regenerate = gBattleMons[battler].maxHP;
         BtlController_EmitSetMonData(battler, B_COMM_TO_CONTROLLER, REQUEST_HP_BATTLE,
-                                        1u << gBattleStruct->battlerPartyIndexes[battler],
+                                        1u << gBattlerPartyIndexes[battler],
                                         sizeof(regenerate),
                                         &regenerate);
         MarkBattlerForControllerExec(battler);
@@ -10906,14 +10915,17 @@ static u32 ComputeCaptureOdds(u32 wildMonBattler, u32 playerBattler)
     u32 odds = (battleMon->maxHP * 3 -  battleMon->hp * 2);
     s32 catchRate;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
+    // HnS lets the player throw any ball in the Safari Zone, so the flattened
+    // safari catch factor only applies to Safari Balls themselves. Every other
+    // ball uses the species' real catch rate, as it did in HnS 1.0.
+    if ((gBattleTypeFlags & BATTLE_TYPE_SAFARI) && (!IS_HNS || gLastUsedItem == ITEM_SAFARI_BALL))
         catchRate = gBattleStruct->safariCatchFactor * 1275 / 100;
     else
         catchRate = gSpeciesInfo[battleMon->species].catchRate;
 
     catchRate += ball.flatBonus;
     if (catchRate <= 0)
-        catchRate = catchRate + ball.flatBonus;
+        catchRate = 1;
 
     odds = odds * catchRate / (battleMon->maxHP * 3);
     odds = odds * ball.multiplier / ball.divider;
@@ -10996,6 +11008,8 @@ static bool32 CriticalCapture(u32 odds)
 
 static u32 ComputeBallShakeOdds(u32 odds)
 {
+    if (odds == 0) // no shakes, and no division by zero below
+        return 0;
     odds = Sqrt(Sqrt(16711680 / odds));
     odds = 1048560 / odds;
     return odds;
@@ -12007,8 +12021,7 @@ void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBat
     if (CheckBagHasItem(ITEM_EXP_CHARM, 1)) //is also for other exp boosting Powers if/when implemented
         *expAmount = (*expAmount * 150) / 100;
 
-    // Globale Erfahrungs-Daempfung (siehe config/hoenn_scaling.h):
-    // 1-30 zuegig, 31-60 mittel, ab 61 zaeher - pro Empfaenger-Level.
+    // Experience damping by the receiving mon's level, set in config/hoenn_scaling.h.
 #if EXP_DAMP_ENABLED == TRUE
     {
         u8 expGetterLvl = GetMonData(&gPlayerParty[expGetterMonId], MON_DATA_LEVEL);
@@ -12021,7 +12034,7 @@ void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBat
     }
 #endif
 
-    if ((B_SCALED_EXP >= GEN_5 && B_SCALED_EXP != GEN_6) || HoennLevelScalingActive())
+    if ((B_SCALED_EXP >= GEN_5 && B_SCALED_EXP != GEN_6) || LevelScalingActive())
     {
         // Note: There is an edge case where if a pokemon receives a large amount of exp, it wouldn't be properly calculated
         //       because of multiplying by scaling factor(the value would simply be larger than an u32 can hold). Hence u64 is needed.
@@ -12036,11 +12049,11 @@ void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBat
     }
 
     u8 expMult = gSaveBlock3Ptr->challengeSettings.tx_Challenges_ExpMultiplier;
-    if (expMult == 3)
+    if (expMult == OPTIONS_EXP_MULTIPLIER_0X)
         *expAmount = 0;
-    else if (expMult == 2)
+    else if (expMult == OPTIONS_EXP_MULTIPLIER_2X)
         *expAmount = *expAmount * 2;
-    else if (expMult == 1)
+    else if (expMult == OPTIONS_EXP_MULTIPLIER_1_5X)
         *expAmount = (*expAmount * 3) / 2;
 }
 

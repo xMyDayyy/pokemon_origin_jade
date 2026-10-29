@@ -64,11 +64,13 @@ Route26_EventScript_Richard::
 
 Route26_Text_CooltrainermJakeSeen:
 #if GERMAN
-	.string "Ich treffe die letzten Vorbereitungen\n"
-	.string "für die Pokémon Liga.$"
+	.string "Ich stehe hier, weil hier die Starken\n"
+	.string "vorbeikommen.\p"
+	.string "Heute kommst du.$"
 #else
-    .string "I'm making my final preparations\n"
-    .string "for the POKéMON LEAGUE.$"
+	.string "I stand here because the strong ones\n"
+	.string "pass through.\p"
+	.string "Today that is you.$"
 #endif
 
 Route26_Text_CooltrainermJakeBeaten:
@@ -80,17 +82,13 @@ Route26_Text_CooltrainermJakeBeaten:
 
 Route26_Text_CooltrainermJakeAfter:
 #if GERMAN
-	.string "Ich muss mehr trainieren, sonst gewinne\n"
-	.string "ich niemals einen Ligakampf.\p"
-	.string "Ich habe gehört, dass die Top Vier der\n"
-	.string "Liga noch stärker sind als die\l"
-	.string "Arenaleiter!$"
+	.string "Wer von drüben kommt, kämpft\n"
+	.string "anders. Härter.\p"
+	.string "Ich habe noch viel vor mir.$"
 #else
-    .string "It's going to be tough to win at\n"
-    .string "the LEAGUE.\p"
-    .string "I need to do some more training.\p"
-    .string "I hear that the LEAGUE's ELITE\n"
-    .string "FOUR are tougher than GYM LEADERS.$"
+	.string "People from over there fight\n"
+	.string "differently. Harder.\p"
+	.string "I still have a long way to go.$"
 #endif
 
 Route26_Text_CooltrainermGavenSeen:
@@ -111,29 +109,31 @@ Route26_Text_CooltrainermGavenBeaten:
 
 Route26_Text_CooltrainermGavenAfter:
 #if GERMAN
-	.string "Um zur Pokémon Liga zu gelangen,\n"
-	.string "musst du die Siegesstraße passieren.\p"
-	.string "Die Siegesstraße ist schwierig.\p"
-	.string "Eigentlich geht niemand dorthin!$"
+	.string "Du kommst also von drüben, aus\n"
+	.string "Kanto.\p"
+	.string "Dann hast du die Siegesstraße hinter\n"
+	.string "dir. Ich habe es nie so weit\l"
+	.string "geschafft.\p"
+	.string "Umso mehr freut mich der Kampf.$"
 #else
-    .string "To get to POKéMON LEAGUE, you have\n"
-    .string "to get through VICTORY ROAD.\p"
-    .string "But VICTORY ROAD is tough.\p"
-    .string "Practically nobody goes there!$"
+	.string "So you have come over from KANTO.\p"
+	.string "Then VICTORY ROAD is behind you.\n"
+	.string "I never made it that far myself.\p"
+	.string "All the more reason I enjoyed our\n"
+	.string "battle.$"
 #endif
 
 Route26_Text_GavenRegister:
 #if GERMAN
-	.string "Um zur Pokémon Liga zu kommen,\n"
-	.string "musst du durch die Siegesstraße.\p"
-	.string "Aber die Siegesstraße hat es in\n"
-	.string "sich.\p"
-	.string "Fast niemand wagt sich dorthin!$"
+	.string "Ich habe es nie bis zur Liga\n"
+	.string "geschafft.\p"
+	.string "Aber gegen jemanden wie dich zu\n"
+	.string "kämpfen, ist auch etwas wert.$"
 #else
-    .string "To get to POKéMON LEAGUE, you have\n"
-    .string "to get through VICTORY ROAD.\p"
-    .string "But VICTORY ROAD is tough.\p"
-    .string "Practically nobody goes there!$"
+	.string "I never made it to the LEAGUE\n"
+	.string "myself.\p"
+	.string "But battling someone like you is\n"
+	.string "worth something too.$"
 #endif
 
 Route26_Text_GavenRematchIntro:
@@ -154,16 +154,13 @@ Route26_Text_GavenRematchDefeat:
 
 Route26_Text_GavenPostRematch:
 #if GERMAN
-	.string "Um zur Pokémon Liga zu kommen,\n"
-	.string "musst du durch die Siegesstraße.\p"
-	.string "Aber die Siegesstraße hat es in\n"
-	.string "sich.\p"
-	.string "Fast niemand wagt sich dorthin!$"
+	.string "Die Siegesstraße hat es in sich.\p"
+	.string "Du bist da durch und stehst trotzdem\n"
+	.string "noch. Das sagt genug.$"
 #else
-    .string "To get to POKéMON LEAGUE, you have\n"
-    .string "to get through VICTORY ROAD.\p"
-    .string "But VICTORY ROAD is tough.\p"
-    .string "Practically nobody goes there!$"
+	.string "VICTORY ROAD is no small thing.\p"
+	.string "You went through it and you are\n"
+	.string "still standing. That says enough.$"
 #endif
 
 Route26_Text_CooltrainerfJoyceSeen:
@@ -188,29 +185,29 @@ Route26_Text_CooltrainerfJoyceBeaten:
 
 Route26_Text_CooltrainerfJoyceAfter:
 #if GERMAN
-	.string "Ich habe alle acht Arenaleiter besiegt\n"
-	.string "und war mir meiner Sache so sicher…\p"
+	.string "Ich war mir meiner Sache so sicher…\p"
 	.string "Ich muss mich mehr ins Zeug legen!$"
 #else
-    .string "I've defeated eight GYM LEADERS,\n"
-    .string "so I was feeling confident.\p"
-    .string "I'll have to try harder next time.$"
+	.string "I was so sure of myself…\p"
+	.string "I have to try harder!$"
 #endif
 
 Route26_Text_CooltrainerfBethSeen:
 #if GERMAN
-	.string "Ich habe gegen einen Trainer\n"
-	.string "namens {RIVAL} verloren.\p"
-	.string "Er war sehr stark, aber…\n"
-	.string "Es schien, als sei er um jeden Preis auf\l"
-	.string "den Sieg aus.\p"
-	.string "Seine Pokémon taten mir leid.$"
+	.string "Hier kommt kaum jemand durch.\p"
+	.string "Und wenn, dann Leute, die etwas\n"
+	.string "beweisen wollen.\p"
+	.string "Mir reicht es, meine Pokémon zu\n"
+	.string "verstehen.\p"
+	.string "Mal sehen, ob du deine verstehst.$"
 #else
-    .string "I lost to a trainer named {RIVAL}.\p"
-    .string "He was really strong, but…\p"
-    .string "It was as if he absolutely had to\n"
-    .string "win at any cost.\p"
-    .string "I felt sorry for his POKéMON.$"
+	.string "Hardly anyone comes through here.\p"
+	.string "And when they do, they are out to\n"
+	.string "prove something.\p"
+	.string "I am content to understand my\n"
+	.string "POKéMON.\p"
+	.string "Let us see whether you understand\n"
+	.string "yours.$"
 #endif
 
 Route26_Text_CooltrainerfBethBeaten:

@@ -118,6 +118,8 @@
 #define METATILE_Building_TV_On   0x003
 
 // gTileset_BuildingFrlg
+#define METATILE_BuildingFrlg_TV_Off 0x035
+#define METATILE_BuildingFrlg_TV_On  0x061
 #define METATILE_BuildingFrlg_PCOff  0x062
 #define METATILE_BuildingFrlg_PCOn   0x063
 
@@ -1086,6 +1088,7 @@
 #define METATILE_Alola_Door_Hns                      0x046
 #define METATILE_Alola_Pokecenter_Door_Hns           0x062
 #define METATILE_AzaleaTown_Door_Hns                 0x2A2
+#define METATILE_BellchimeTrail_Door_Hns             0x333
 #define METATILE_Blackthorn_Door_Hns                 0x291
 #define METATILE_CherrygroveCity_Door_Red_Hns        0x2EB
 #define METATILE_CianwoodCity_Door_Hns               0x29A

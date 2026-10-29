@@ -45,13 +45,9 @@ SaffronCity_FightingDojo_EventScript_BattleLickilicky_EV_HP::
 	setflag FLAG_TEMP_1
 	release
 	end
-
+	
 SaffronCity_FightingDojo_Text_Lickilicky:
-#if GERMAN
-	.string "Schlurplek: Liiiiick!$"
-#else
 	.string "LICKILICKY: LIIIIICK!$"
-#endif
 
 SaffronCity_FightingDojo_EventScript_Machamp_EV_Attack::
 	lock
@@ -79,11 +75,7 @@ SaffronCity_FightingDojo_EventScript_BattleMachamp_EV_Attack::
 	end
 
 SaffronCity_FightingDojo_Text_Machamp:
-#if GERMAN
-	.string "Machomei: Champ!$"
-#else
 	.string "MACHAMP: CHAMP!$"
-#endif
 
 SaffronCity_FightingDojo_EventScript_Steelix_EV_Defense::
 	lock
@@ -111,11 +103,7 @@ SaffronCity_FightingDojo_EventScript_BattleSteelix_EV_Defense::
 	end
 
 SaffronCity_FightingDojo_Text_Steelix:
-#if GERMAN
-	.string "Stahlos: Grrrind!$"
-#else
 	.string "STEELIX: GRRRIND!$"
-#endif
 
 SaffronCity_FightingDojo_EventScript_Alakazam_EV_SpecialAttack::
 	lock
@@ -143,11 +131,7 @@ SaffronCity_FightingDojo_EventScript_BattleAlakazam_EV_SpecialAttack::
 	end
 
 SaffronCity_FightingDojo_Text_Alakazam:
-#if GERMAN
-	.string "Simsala: Zam!$"
-#else
 	.string "ALAKAZAM: ZAM!$"
-#endif
 
 SaffronCity_FightingDojo_EventScript_Slowking_EV_SpecialDefense::
 	lock
@@ -175,11 +159,7 @@ SaffronCity_FightingDojo_EventScript_BattleSlowking_EV_SpecialDefense::
 	end
 
 SaffronCity_FightingDojo_Text_Slowking:
-#if GERMAN
-	.string "Laschoking: Hmmm…$"
-#else
 	.string "SLOWKING: HMMM...$"
-#endif
 
 SaffronCity_FightingDojo_EventScript_Pidgeot_EV_Speed::
 	lock
@@ -207,65 +187,38 @@ SaffronCity_FightingDojo_EventScript_BattlePidgeot_EV_Speed::
 	end
 
 SaffronCity_FightingDojo_Text_Pidgeot:
-#if GERMAN
-	.string "Tauboss: Zwitscher!$"
-#else
 	.string "PIDGEOT: GEEEE!$"
-#endif
+
 SaffronCity_FightingDojo_Text_HP:
-	.string "KP$"
+	.string "HP$"
 SaffronCity_FightingDojo_Text_Attack:
 	.string "ATK$"
 SaffronCity_FightingDojo_Text_Defense:
 	.string "DEF$"
 SaffronCity_FightingDojo_Text_SpecialAttack:
-	.string "Sp. Ang.$"
+	.string "SP.ATK$"
 SaffronCity_FightingDojo_Text_SpecialDefense:
-	.string "Sp. Ver.$"
+	.string "SP.DEF$"
 SaffronCity_FightingDojo_Text_Speed:
 	.string "SPD$"
 
 SaffronCity_FightingDojo_Text_WouldYouLikeToBattle:
-#if GERMAN
-	.string "Bekämpfe {STR_VAR_1} für 3 {STR_VAR_2}\n"
-	.string "Evs?$"
-#else
 	.string "Battle {STR_VAR_1} for 3 {STR_VAR_2} EVs?$"
-#endif
 
 SaffronCity_FightingDojo_Text_BlackBelt:
-#if GERMAN
-	.string "Du betrittst das Kampf-Dojo!\p"
-	.string "Hier kannst du die Werte deiner\n"
-	.string "Pokémon im Kampf stählen!$"
-#else
 	.string "You enter the FIGHTING DOJO!\p"
 	.string "Here, you may hone the stats of\n"
 	.string "of your POKéMON by battle!$"
-#endif
 
 SaffronCity_FightingDojo_Text_Sign1:
-#if GERMAN
-	.string "Links: KP, DEF, SDEF$"
-#else
-	.string "Left: HP, DEF, SDEF$"
-#endif
+	.string "Left: HP, DEFENSE, SPECIAL DEFENSE$"
 
 SaffronCity_FightingDojo_Text_Sign2:
-#if GERMAN
-	.string "Rechts: ATK, SPATK, SPD$"
-#else
-	.string "RIGHT: ATK, SPATK, SPD$"
-#endif
+	.string "RIGHT: ATTACK, SPECIAL ATTACK, SPEED$"
 
 SaffronCity_FightingDojo_Text_Cooltrainer::
-#if GERMAN
-	.string "Nur Trainer mit allen Kanto-Orden\n"
-	.string "dürfen in die VIP-Lounge.$"
-#else
 	.string "Only trainers with all KANTO badges\n"
 	.string "may enter the VIP lounge.$"
-#endif
 
 @Ability swapper
 
@@ -331,69 +284,31 @@ SaffronCity_FightingDojo_Ability_Finish:
 	end
 
 SaffronCity_FightingDojo_Ability_Finish_Text:
-#if GERMAN
-	.string "Wunderbar!$"
-#else
 	.string "That's it! You're welcome!$"
-#endif
 
 SaffronCity_FightingDojo_Ability_Text1:
-#if GERMAN
-	.string "Willkommen! Ich bin der\n"
-	.string "Fähigkeiten-Experte!\l"
-	.string "Ich tausche Fähigkeiten\p"
-	.string "für nur 25.000¥!\p"
-	.string "Möchtest du eine Fähigkeit eines\n"
-	.string "Pokémon tauschen?$"
-#else
 	.string "Welcome! I'm the ABILITY EXPERT!\p"
 	.string "I can swap POKéMON's abilities in\n"
 	.string "a heartbeat, only for 25.000¥!\p"
 	.string "Would you like me to swap any\n"
 	.string "POKéMON's ability?$"
-#endif
 
 SaffronCity_FightingDojo_Ability_Text_No:
-#if GERMAN
-	.string "Kein Problem. Ich bin hier, wenn du mich\n"
-	.string "brauchst.$"
-#else
 	.string "Sure. I'll be here if you need me.$"
-#endif
 
 SaffronCity_FightingDojo_Ability_Text_Cant:
-#if GERMAN
-	.string "Das geht leider nicht. Dieses\n"
-	.string "Pokémon hat keine zweite Fähigkeit!$"
-#else
 	.string "I cannot do that. This POKéMON\n"
 	.string "does not have a second ABILITY!$"
-#endif
 
 SaffronCity_FightingDojo_Ability_Text_NoChampion:
-#if GERMAN
-	.string "Willkommen! Ich bin der\n"
-	.string "Fähigkeits-Experte!\p"
-	.string "Ich kann Pokémon-Fähigkeiten\n"
-	.string "im Nu tauschen.\p"
-	.string "Leider tut mir der Rücken weh und ich\n"
-	.string "kann heute nicht arbeiten.\p"
-	.string "Komm später wieder!$"
-#else
 	.string "Welcome! I'm the ABILITY EXPERT!\p"
 	.string "I can swap POKéMON's abilities\n"
 	.string "in a heartbeat.\p"
 	.string "Unfortunately, my back hurts and\n"
 	.string "I can't work today.\p"
 	.string "Come again later!$"
-#endif
 
 SaffronCity_FightingDojo_SetZeroTextNoMoney:
-#if GERMAN
-	.string "Nana: Du hast nicht genug Pokémon.\n"
-	.string "Geh und stocke dein Team auf.$"
-#else
 	.string "You don't have enough money.\p"
 	.string "Come back when you have.$"
-#endif
 

@@ -1100,7 +1100,8 @@
       "x": 2,
       "y": 4,
       "width": 1,
-      "height": 4
+      "height": 4,
+      "in_hns": true
     },
     {
       "id": "MAPSEC_ROUTE_24",
@@ -1144,7 +1145,8 @@
       "x": 14,
       "y": 9,
       "width": 1,
-      "height": 1
+      "height": 1,
+      "in_hns": true
     },
     {
       "id": "MAPSEC_UNDERGROUND_PATH",
@@ -1152,7 +1154,8 @@
       "x": 14,
       "y": 7,
       "width": 1,
-      "height": 1
+      "height": 1,
+      "in_hns": true
     },
     {
       "id": "MAPSEC_UNDERGROUND_PATH_2",
@@ -1160,7 +1163,8 @@
       "x": 12,
       "y": 6,
       "width": 1,
-      "height": 1
+      "height": 1,
+      "in_hns": true
     },
     {
       "id": "MAPSEC_DIGLETTS_CAVE",
@@ -1177,7 +1181,8 @@
       "x": 2,
       "y": 4,
       "width": 1,
-      "height": 1
+      "height": 1,
+      "in_hns": true
     },
     {
       "id": "MAPSEC_ROCKET_HIDEOUT",
@@ -1194,7 +1199,8 @@
       "x": 14,
       "y": 6,
       "width": 1,
-      "height": 1
+      "height": 1,
+      "in_hns": true
     },
     {
       "id": "MAPSEC_POKEMON_MANSION",
@@ -1202,7 +1208,8 @@
       "x": 4,
       "y": 14,
       "width": 1,
-      "height": 1
+      "height": 1,
+      "in_hns": true
     },
     {
       "id": "MAPSEC_KANTO_SAFARI_ZONE",
@@ -1210,7 +1217,8 @@
       "x": 12,
       "y": 12,
       "width": 1,
-      "height": 1
+      "height": 1,
+      "in_hns": true
     },
     {
       "id": "MAPSEC_POKEMON_LEAGUE",
@@ -1218,7 +1226,8 @@
       "x": 2,
       "y": 3,
       "width": 1,
-      "height": 1
+      "height": 1,
+      "in_hns": true
     },
     {
       "id": "MAPSEC_ROCK_TUNNEL",
@@ -1244,7 +1253,8 @@
       "x": 18,
       "y": 6,
       "width": 1,
-      "height": 1
+      "height": 1,
+      "in_hns": true
     },
     {
       "id": "MAPSEC_CERULEAN_CAVE",
@@ -1658,7 +1668,8 @@
     },
     {
       "id": "MAPSEC_SPECIAL_AREA",
-      "name": "SPECIAL AREA"
+      "name": "SPECIAL AREA",
+      "in_hns": true
     },
     {
       "id": "MAPSEC_AQUA_HIDEOUT",
@@ -2019,11 +2030,11 @@
       "y": 14
     },
     {
-      "height": 2,
+      "height": 1,
       "id": "MAPSEC_INDIGO_PLATEAU",
       "name": "Indigo Plateau",
       "width": 1,
-      "x": 24,
+      "x": 2,
       "y": 3
     },
     {
@@ -2255,8 +2266,8 @@
       "id": "MAPSEC_ROCKET_HIDEOUT",
       "name": "Rocket-Versteck",
       "width": 1,
-      "x": 15,
-      "y": 2
+      "x": 11,
+      "y": 6
     },
     {
       "height": 1,
@@ -2289,6 +2300,94 @@
       "width": 1,
       "x": 18,
       "y": 4
+    },
+    {
+      "height": 4,
+      "id": "MAPSEC_ROUTE_23",
+      "name": "Route 23",
+      "width": 1,
+      "x": 2,
+      "y": 4
+    },
+    {
+      "height": 1,
+      "id": "MAPSEC_KANTO_VICTORY_ROAD",
+      "name": "Siegesstraße",
+      "width": 1,
+      "x": 2,
+      "y": 4
+    },
+    {
+      "height": 1,
+      "id": "MAPSEC_POKEMON_LEAGUE",
+      "name": "Pokémon-Liga",
+      "width": 1,
+      "x": 2,
+      "y": 3
+    },
+    {
+      "height": 1,
+      "id": "MAPSEC_POKEMON_TOWER",
+      "name": "Pokémon-Turm",
+      "width": 1,
+      "x": 18,
+      "y": 6
+    },
+    {
+      "height": 1,
+      "id": "MAPSEC_POKEMON_MANSION",
+      "name": "Pokémon-Villa",
+      "width": 1,
+      "x": 4,
+      "y": 14
+    },
+    {
+      "height": 1,
+      "id": "MAPSEC_SILPH_CO",
+      "name": "Silph Co.",
+      "width": 1,
+      "x": 14,
+      "y": 6
+    },
+    {
+      "height": 1,
+      "id": "MAPSEC_S_S_ANNE",
+      "name": "M.S. Anne",
+      "width": 1,
+      "x": 14,
+      "y": 9
+    },
+    {
+      "height": 1,
+      "id": "MAPSEC_KANTO_SAFARI_ZONE",
+      "name": "Safari-Zone",
+      "width": 1,
+      "x": 12,
+      "y": 12
+    },
+    {
+      "height": 1,
+      "id": "MAPSEC_UNDERGROUND_PATH",
+      "name": "Untergrundpfad",
+      "width": 1,
+      "x": 14,
+      "y": 6
+    },
+    {
+      "height": 1,
+      "id": "MAPSEC_UNDERGROUND_PATH_2",
+      "name": "Untergrundpfad",
+      "width": 1,
+      "x": 14,
+      "y": 6
+    },
+    {
+      "height": 1,
+      "id": "MAPSEC_SPECIAL_AREA",
+      "name": "Sonderbereich",
+      "width": 1,
+      "x": 0,
+      "y": 0
     },
     {
       "height": 1,

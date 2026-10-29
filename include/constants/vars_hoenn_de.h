@@ -2,12 +2,8 @@
 #define GUARD_CONSTANTS_VARS_HOENN_DE_H
 
 // =====================================================================
-// Smaragd-/Hoenn-Bereich (hns_de / modern_hns_engde)
-// Trennung der Nummernraeume: Vars der Hoenn-Welt (und Engine-Doppel-
-// belegungen), deren Nummer im HnS-Build anderweitig belegt ist, liegen
-// hier in einem eigenen Bereich ab 0x4100. vars_hns.h bleibt unan-
-// getastet (Upstream-Mergefaehigkeit).
-// Regel: Neue Smaragd-Vars NUR aus diesem Bereich vergeben.
+// Emerald/Hoenn vars whose HnS number is taken, in their own range from
+// 0x4100. Allocate new Emerald vars only here; leave vars_hns.h untouched.
 // =====================================================================
 
 #define HOENN_VARS_START 0x4100
@@ -191,26 +187,22 @@
 #undef  VAR_TRICK_HOUSE_PUZZLE_2_STATE
 #define VAR_TRICK_HOUSE_PUZZLE_2_STATE 0x4158
 
-// Neue Vars der Hoenn-Anbindung
+// New vars for the Hoenn connection
 #define VAR_HOENN_ARRIVAL_STATE 0x4159
-// Hoenn-Orden als Bitmaske (Bit 0 = Steinorden ... Bit 7 = Regenorden).
-// Die Vanilla-Arenascripts setzen weiterhin FLAG_BADGE0X_GET (beim
-// Champion bereits gesetzt = wirkungslos); das Hoenn-System zaehlt hier.
+// Hoenn badges as a bitmask (bit 0 = Stone Badge ... bit 7 = Rain Badge).
 #define VAR_HOENN_BADGES 0x415A
-// VM-Lizenzen als Bitmaske (siehe include/hoenn_licenses.h). Nur innerhalb
-// von Hoenn wirksam; Fliegen und Blitz sind bewusst nicht enthalten.
+// HM licenses as a bitmask (LIC_* in include/constants/hoenn_licenses.h), Hoenn only.
 #define VAR_HOENN_LICENSES 0x415B
-// Stand der Troy-Ticketkette: 0 = nichts, 1 = Versprechen in Orania gegeben,
-// 2 = Anruf nach der Kanto-Liga erfolgt (Troy wartet in der Silph Co.),
-// 3 = Hoennticket uebergeben.
+// Progress of Steven's (Troy's) ticket chain: 0 = nothing, 1 = promise
+// given in Vermilion, 2 = called after the Kanto league (Steven waits in
+// Silph Co.), 3 = Hoenn Ticket handed over.
 #define VAR_HOENN_TICKET_STATE 0x415C
-// Schrittzaehler fuer Normans Anruf nach einer Ordenuebergabe.
+// Step counter for Norman's call after a badge handover.
 #define VAR_HNS_NORMAN_CALL_STEPS 0x415D
 
 #define HOENN_VARS_END 0x4176
 
-// Var-Speicher erweitern: bleibt in SaveBlock1 (STATIC_ASSERT in save.c),
-// Flashgroesse unveraendert 128 KiB (FLASH_1M) -> emulator-nativ.
+// Extends the var storage in SaveBlock1 (size checked by STATIC_ASSERT in save.c).
 #undef  VARS_END
 #undef  VARS_COUNT
 #define VARS_END HOENN_VARS_END

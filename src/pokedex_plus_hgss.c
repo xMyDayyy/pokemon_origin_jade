@@ -768,6 +768,7 @@ static void Task_LoadInfoScreen(u8);
 static void Task_HandleInfoScreenInput(u8);
 static void Task_SwitchScreensFromInfoScreen(u8);
 static void Task_LoadInfoScreenWaitForFade(u8);
+static void Task_WaitForFadeFromEvoFormsScreen(u8);
 static void Task_ExitInfoScreen(u8);
 static void Task_LoadAreaScreen(u8 taskId);
 static void Task_ReloadAreaScreen(u8 taskId);
@@ -846,7 +847,7 @@ static void Task_LoadEvolutionScreen(u8 taskId);
 static void Task_HandleEvolutionScreenInput(u8 taskId);
 static void Task_SwitchScreensFromEvolutionScreen(u8 taskId);
 static void Task_ExitEvolutionScreen(u8 taskId);
-static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth, u32 *depth_i, u32 alreadyPrintedIcons[], u32 *icon_depth_i, u32 numLines);
+static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth, u32 *depth_i, u32 alreadyPrintedIcons[], u32 *icon_depth_i, u32 numLines, u32 *totalLines, u16 baseSpecies);
 static u8 PrintPreEvolutions(u8 taskId, u16 species);
 //Stat bars on scrolling screens
 static void TryDestroyStatBars(void);
@@ -1633,7 +1634,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .tilemapLeft = 0,
         .tilemapTop = 6,
         .width = 12,
-        .height = 12,   // war 8; nutzt jetzt die zuvor freien Kachelzeilen 14-17
+        .height = 12,   // Origin Jade: 12 instead of 8 (tile rows 14-17)
         .paletteNum = 0,
         .baseBlock = 1 + 60 + 40 + 48,
     },
@@ -3363,6 +3364,18 @@ static u32 CreatePokedexMonSprite(u16 num, s16 x, s16 y)
 #define LIST_RIGHT_SIDE_TEXT_X 204
 #define LIST_RIGHT_SIDE_TEXT_X_OFFSET 15
 #define LIST_RIGHT_SIDE_TEXT_Y_OFFSET 13
+
+// Origin Jade: positions of the stacked dex counts on the main page.
+// DEX_COUNT_LABEL_X is the center of the 64x32 label sprites.
+#define DEX_COUNT_LABEL_X       (LIST_RIGHT_SIDE_TEXT_X + 12)
+#define DEX_COUNT_TITLE_Y       21
+#define DEX_COUNT_OWN_LABEL_Y   36
+#define DEX_COUNT_OWN_VALUE_Y   47
+#define DEX_COUNT_SEEN_LABEL_Y  64
+#define DEX_COUNT_SEEN_VALUE_Y  75
+
+// Center of the first digit relative to LIST_RIGHT_SIDE_TEXT_X, left-aligned with the labels.
+#define DEX_COUNT_VALUE_X_OFFSET (-14)
 static void CreateInterfaceSprites(u8 page)
 {
     u8 spriteId;
@@ -3378,7 +3391,7 @@ static void CreateInterfaceSprites(u8 page)
 
     CreateSprite(&sScrollBarSpriteTemplate, 6, 20, 0);
 
-    if (!IsNationalPokedexEnabled() && page == PAGE_MAIN)
+    if ((!IsNationalPokedexEnabled() || sPokedexView->dexMode == DEX_MODE_HOENN) && (page == PAGE_MAIN || page == PAGE_SEARCH_RESULTS))
     {
         // Hoenn text
         CreateSprite(&sHoennNationalTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, 40 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET - 6, 1);
@@ -3411,7 +3424,6 @@ static void CreateInterfaceSprites(u8 page)
         digitNum = (sPokedexView->seenCount % 100) % 10;
         StartSpriteAnim(&gSprites[spriteId], digitNum);
 
-
         // Hoenn owned value - 100s
         drawNextDigit = FALSE;
         spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X + LIST_RIGHT_SIDE_TEXT_X_OFFSET, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 1);
@@ -3438,33 +3450,25 @@ static void CreateInterfaceSprites(u8 page)
     else if (page == PAGE_MAIN)
     {
         u16 seenOwnedCount;
+        // Origin Jade: numbers left-aligned below their labels.
         u8 counterXDist  = sPokedexView->seenCount > 999 ? 6 : 7;
-        u8 counterX1s    = LIST_RIGHT_SIDE_TEXT_X + LIST_RIGHT_SIDE_TEXT_X_OFFSET + 14;
-        u8 counterX10s   = counterX1s - counterXDist;
-        u8 counterX100s  = counterX10s - counterXDist;
-        u8 counterX1000s = counterX100s - counterXDist;
+        s16 counterX100s = LIST_RIGHT_SIDE_TEXT_X + DEX_COUNT_VALUE_X_OFFSET;
+        s16 counterX10s  = counterX100s + counterXDist;
+        s16 counterX1s   = counterX10s + counterXDist;
 
-        // Hoenn text
-        CreateSprite(&sHoennNationalTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, 40 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET - 6, 1);
-        // Hoenn seen
-        CreateSprite(&sSeenOwnTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET + 6, 1);
-        // Hoenn own
-        spriteId = CreateSprite(&sSeenOwnTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET + 7, 1);
+        // Origin Jade: heading (tile 160 in tileset_interface_hns.png), then
+        // caught and seen, each with its number below.
+        CreateSprite(&sHoennNationalTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, DEX_COUNT_TITLE_Y, 1);
+        // Gefangen (caught)
+        spriteId = CreateSprite(&sSeenOwnTextSpriteTemplate, DEX_COUNT_LABEL_X, DEX_COUNT_OWN_LABEL_Y, 1);
         StartSpriteAnim(&gSprites[spriteId], 1);
-
-        // National text
-        spriteId = CreateSprite(&sHoennNationalTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, 73 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET - 6, 1);
-        StartSpriteAnim(&gSprites[spriteId], 1);
-        // National seen
-        CreateSprite(&sSeenOwnTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, 78 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET + 6, 1);
-        // National own
-        spriteId = CreateSprite(&sSeenOwnTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, 88 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET + 6, 1);
-        StartSpriteAnim(&gSprites[spriteId], 1);
+        // Gesehen (seen)
+        CreateSprite(&sSeenOwnTextSpriteTemplate, DEX_COUNT_LABEL_X, DEX_COUNT_SEEN_LABEL_Y, 1);
 
         // Hoenn seen value - 100s
-        seenOwnedCount = GetRegionalPokedexCount(FLAG_GET_SEEN);
+        seenOwnedCount = GetNationalPokedexCount(FLAG_GET_SEEN);
         drawNextDigit = FALSE;
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX100s, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 3);
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX100s, DEX_COUNT_SEEN_VALUE_Y, 3);
         digitNum = seenOwnedCount / 100;
         StartSpriteAnim(&gSprites[spriteId], digitNum);
         if (digitNum != 0)
@@ -3473,7 +3477,7 @@ static void CreateInterfaceSprites(u8 page)
             gSprites[spriteId].invisible = TRUE;
 
         // Hoenn seen value - 10s
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX10s, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 2);
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX10s, DEX_COUNT_SEEN_VALUE_Y, 2);
         digitNum = (seenOwnedCount % 100) / 10;
         if (digitNum != 0 || drawNextDigit)
             StartSpriteAnim(&gSprites[spriteId], digitNum);
@@ -3481,14 +3485,14 @@ static void CreateInterfaceSprites(u8 page)
             gSprites[spriteId].invisible = TRUE;
 
         // Hoenn seen value - 1s
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1s, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 1);
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1s, DEX_COUNT_SEEN_VALUE_Y, 1);
         digitNum = (seenOwnedCount % 100) % 10;
         StartSpriteAnim(&gSprites[spriteId], digitNum);
 
-        seenOwnedCount = GetRegionalPokedexCount(FLAG_GET_CAUGHT);
+        seenOwnedCount = GetNationalPokedexCount(FLAG_GET_CAUGHT);
         // Hoenn owned value - 100s
         drawNextDigit = FALSE;
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX100s, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 3);
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX100s, DEX_COUNT_OWN_VALUE_Y, 3);
         digitNum = seenOwnedCount / 100;
         StartSpriteAnim(&gSprites[spriteId], digitNum);
         if (digitNum != 0)
@@ -3497,7 +3501,7 @@ static void CreateInterfaceSprites(u8 page)
             gSprites[spriteId].invisible = TRUE;
 
         // Hoenn owned value - 10s
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX10s, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 2);
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX10s, DEX_COUNT_OWN_VALUE_Y, 2);
         digitNum = (seenOwnedCount % 100) / 10;
         if (digitNum != 0 || drawNextDigit)
             StartSpriteAnim(&gSprites[spriteId], digitNum);
@@ -3505,15 +3509,34 @@ static void CreateInterfaceSprites(u8 page)
             gSprites[spriteId].invisible = TRUE;
 
         // Hoenn owned value - 1s
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1s, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 1);
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1s, DEX_COUNT_OWN_VALUE_Y, 1);
         digitNum = (seenOwnedCount % 100) % 10;
         StartSpriteAnim(&gSprites[spriteId], digitNum);
+    }
+    else if (page == PAGE_SEARCH_RESULTS && sPokedexView->dexMode == DEX_MODE_NATIONAL)
+    {
+        u16 seenOwnedCount;
+        u8 counterXDist  = sPokedexView->seenCount > 999 ? 6 : 7;
+        u8 counterX1s    = LIST_RIGHT_SIDE_TEXT_X + LIST_RIGHT_SIDE_TEXT_X_OFFSET + 14;
+        u8 counterX10s   = counterX1s - counterXDist;
+        u8 counterX100s  = counterX10s - counterXDist;
+        u8 counterX1000s = counterX100s - counterXDist;
 
-        //****************************
+        // National only text
+        spriteId = CreateSprite(&sHoennNationalTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, 40 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET - 6, 1);
+        StartSpriteAnim(&gSprites[spriteId], 1);
+
+        // National seen
+        CreateSprite(&sSeenOwnTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET + 6, 1);
+        // National owned
+        spriteId = CreateSprite(&sSeenOwnTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET + 7, 1);
+        StartSpriteAnim(&gSprites[spriteId], 1);
+
         // National seen value - 1000s
+        seenOwnedCount = sPokedexView->seenCount;
         drawNextDigit = FALSE;
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1000s, 78 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 4);
-        digitNum = sPokedexView->seenCount / 1000;
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1000s, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 4);
+        digitNum = seenOwnedCount / 1000;
         StartSpriteAnim(&gSprites[spriteId], digitNum);
         if (digitNum != 0)
             drawNextDigit = TRUE;
@@ -3521,8 +3544,8 @@ static void CreateInterfaceSprites(u8 page)
             gSprites[spriteId].invisible = TRUE;
 
         // National seen value - 100s
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX100s, 78 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 3);
-        digitNum = (sPokedexView->seenCount % 1000) / 100;
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX100s, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 3);
+        digitNum = (seenOwnedCount % 1000) / 100;
         if (digitNum != 0 || drawNextDigit)
         {
             drawNextDigit = TRUE;
@@ -3532,22 +3555,23 @@ static void CreateInterfaceSprites(u8 page)
             gSprites[spriteId].invisible = TRUE;
 
         // National seen value - 10s
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX10s, 78 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 2);
-        digitNum = ((sPokedexView->seenCount % 1000) % 100) / 10;
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX10s, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 2);
+        digitNum = ((seenOwnedCount % 1000) % 100) / 10;
         if (digitNum != 0 || drawNextDigit)
             StartSpriteAnim(&gSprites[spriteId], digitNum);
         else
             gSprites[spriteId].invisible = TRUE;
 
         // National seen value - 1s
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1s, 78 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 1);
-        digitNum = ((sPokedexView->seenCount % 1000) % 100) % 10;
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1s, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 1);
+        digitNum = ((seenOwnedCount % 1000) % 100) % 10;
         StartSpriteAnim(&gSprites[spriteId], digitNum);
 
         // National owned value - 1000s
+        seenOwnedCount = sPokedexView->ownCount;
         drawNextDigit = FALSE;
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1000s, 88 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 4);
-        digitNum = sPokedexView->ownCount / 1000;
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1000s, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 4);
+        digitNum = seenOwnedCount / 1000;
         StartSpriteAnim(&gSprites[spriteId], digitNum);
         if (digitNum != 0)
             drawNextDigit = TRUE;
@@ -3555,8 +3579,8 @@ static void CreateInterfaceSprites(u8 page)
             gSprites[spriteId].invisible = TRUE;
 
         // National owned value - 100s
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX100s, 88 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 3);
-        digitNum = (sPokedexView->ownCount % 1000) / 100;
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX100s, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 3);
+        digitNum = (seenOwnedCount % 1000) / 100;
         if (digitNum != 0 || drawNextDigit)
         {
             drawNextDigit = TRUE;
@@ -3566,19 +3590,109 @@ static void CreateInterfaceSprites(u8 page)
             gSprites[spriteId].invisible = TRUE;
 
         // National owned value - 10s
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX10s, 88 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 2);
-        digitNum = ((sPokedexView->ownCount % 1000) % 100) / 10;
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX10s, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 2);
+        digitNum = ((seenOwnedCount % 1000) % 100) / 10;
         if (digitNum != 0 || drawNextDigit)
             StartSpriteAnim(&gSprites[spriteId], digitNum);
         else
             gSprites[spriteId].invisible = TRUE;
 
         // National owned value - 1s
-        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1s, 88 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 1);
-        digitNum = ((sPokedexView->ownCount % 1000) % 100) % 10;
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1s, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 1);
+        digitNum = ((seenOwnedCount % 1000) % 100) % 10;
+        StartSpriteAnim(&gSprites[spriteId], digitNum);
+    }
+    else if (page == PAGE_SEARCH_RESULTS && sPokedexView->dexMode == DEX_MODE_NATIONAL)
+    {
+        u16 seenOwnedCount;
+        u8 counterXDist  = sPokedexView->seenCount > 999 ? 6 : 7;
+        u8 counterX1s    = LIST_RIGHT_SIDE_TEXT_X + LIST_RIGHT_SIDE_TEXT_X_OFFSET + 14;
+        u8 counterX10s   = counterX1s - counterXDist;
+        u8 counterX100s  = counterX10s - counterXDist;
+        u8 counterX1000s = counterX100s - counterXDist;
+
+        // National only text
+        spriteId = CreateSprite(&sHoennNationalTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, 40 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET - 6, 1);
+        StartSpriteAnim(&gSprites[spriteId], 1);
+
+        // National seen
+        CreateSprite(&sSeenOwnTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET + 6, 1);
+        // National owned
+        spriteId = CreateSprite(&sSeenOwnTextSpriteTemplate, LIST_RIGHT_SIDE_TEXT_X, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET + 7, 1);
+        StartSpriteAnim(&gSprites[spriteId], 1);
+
+        // National seen value - 1000s
+        seenOwnedCount = sPokedexView->seenCount;
+        drawNextDigit = FALSE;
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1000s, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 4);
+        digitNum = seenOwnedCount / 1000;
+        StartSpriteAnim(&gSprites[spriteId], digitNum);
+        if (digitNum != 0)
+            drawNextDigit = TRUE;
+        else
+            gSprites[spriteId].invisible = TRUE;
+
+        // National seen value - 100s
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX100s, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 3);
+        digitNum = (seenOwnedCount % 1000) / 100;
+        if (digitNum != 0 || drawNextDigit)
+        {
+            drawNextDigit = TRUE;
+            StartSpriteAnim(&gSprites[spriteId], digitNum);
+        }
+        else
+            gSprites[spriteId].invisible = TRUE;
+
+        // National seen value - 10s
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX10s, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 2);
+        digitNum = ((seenOwnedCount % 1000) % 100) / 10;
+        if (digitNum != 0 || drawNextDigit)
+            StartSpriteAnim(&gSprites[spriteId], digitNum);
+        else
+            gSprites[spriteId].invisible = TRUE;
+
+        // National seen value - 1s
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1s, 45 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 1);
+        digitNum = ((seenOwnedCount % 1000) % 100) % 10;
+        StartSpriteAnim(&gSprites[spriteId], digitNum);
+
+        // National owned value - 1000s
+        seenOwnedCount = sPokedexView->ownCount;
+        drawNextDigit = FALSE;
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1000s, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 4);
+        digitNum = seenOwnedCount / 1000;
+        StartSpriteAnim(&gSprites[spriteId], digitNum);
+        if (digitNum != 0)
+            drawNextDigit = TRUE;
+        else
+            gSprites[spriteId].invisible = TRUE;
+
+        // National owned value - 100s
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX100s, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 3);
+        digitNum = (seenOwnedCount % 1000) / 100;
+        if (digitNum != 0 || drawNextDigit)
+        {
+            drawNextDigit = TRUE;
+            StartSpriteAnim(&gSprites[spriteId], digitNum);
+        }
+        else
+            gSprites[spriteId].invisible = TRUE;
+
+        // National owned value - 10s
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX10s, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 2);
+        digitNum = ((seenOwnedCount % 1000) % 100) / 10;
+        if (digitNum != 0 || drawNextDigit)
+            StartSpriteAnim(&gSprites[spriteId], digitNum);
+        else
+            gSprites[spriteId].invisible = TRUE;
+
+        // National owned value - 1s
+        spriteId = CreateSprite(&sNationalDexSeenOwnNumberSpriteTemplate, counterX1s, 55 - LIST_RIGHT_SIDE_TEXT_Y_OFFSET, 1);
+        digitNum = ((seenOwnedCount % 1000) % 100) % 10;
         StartSpriteAnim(&gSprites[spriteId], digitNum);
     }
 
+    //****************************
     if (page == PAGE_MAIN)
     {
         spriteId = CreateSprite(&sDexListStartMenuCursorSpriteTemplate, 136, 96, 1);
@@ -4201,6 +4315,24 @@ static void Task_LoadInfoScreenWaitForFade(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
+        FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
+        gTasks[taskId].func = Task_LoadInfoScreen;
+    }
+}
+
+// Like Task_LoadInfoScreenWaitForFade, but the source screen was the evo/forms
+// screen, where data[4]/data[5..] hold mon icon sprites
+static void Task_WaitForFadeFromEvoFormsScreen(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        u8 i;
+        FreeMonIconPalettes();
+        FreeAndDestroyMonIconSprite(&gSprites[gTasks[taskId].data[4]]);
+        for (i = 1; i <= gTasks[taskId].data[3]; i++)
+        {
+            FreeAndDestroyMonIconSprite(&gSprites[gTasks[taskId].data[4+i]]);
+        }
         FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
         gTasks[taskId].func = Task_LoadInfoScreen;
     }
@@ -5292,6 +5424,10 @@ static void Task_HandleStatsScreenInput(u8 taskId)
         else
             gTasks[taskId].data[5] = 0;
 
+        FillWindowPixelBuffer(WIN_STATS_MOVES_TOP, PIXEL_FILL(0));
+        PrintStatsScreen_DestroyMoveItemIcon(taskId);
+        PrintStatsScreen_Moves_Top(taskId);
+
         FillWindowPixelBuffer(WIN_STATS_LEFT, PIXEL_FILL(0));
         PrintStatsScreen_Left(taskId);
 
@@ -6121,7 +6257,7 @@ static void PrintStatsScreen_Left(u8 taskId)
                 StringCopy(gStringVar2, sText_Stats_eggGroup_UNKNOWN);
                 break;
             }
-            //Zwei Gruppen: untereinander, damit nichts an den Rahmen stoesst
+            //Two groups: one per row
             PrintStatsScreenTextSmall(WIN_STATS_LEFT, gStringVar1, base_x, base_y + base_y_offset*base_i);
             base_i++;
             PrintStatsScreenTextSmall(WIN_STATS_LEFT, gStringVar2, base_x, base_y + base_y_offset*base_i);
@@ -6352,9 +6488,11 @@ static void Task_LoadEvolutionScreen(u8 taskId)
         u32 alreadyPrintedIcons[MAX_EVOLUTION_ICONS] = {0};
         u32 depth = sPokedexView->numPreEvolutions;
         u32 iconDepth = depth;
+        u32 totalLines = sPokedexView->numPreEvolutions;
+        u16 baseSpecies = NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum);
         //Print evo info and icons
-        gTasks[taskId].data[3] = 0;
-        PrintEvolutionTargetSpeciesAndMethod(taskId, NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum), 0, &depth, alreadyPrintedIcons, &iconDepth, 0);
+        gTasks[taskId].data[3] = sPokedexView->numPreEvolutions;
+        PrintEvolutionTargetSpeciesAndMethod(taskId, baseSpecies, 0, &depth, alreadyPrintedIcons, &iconDepth, 0, &totalLines, baseSpecies);
         LoadSpritePalette(&gSpritePalette_Arrow);
         TryLoadDarkModeArrowPalette();
         GetSeenFlagTargetSpecies();
@@ -6475,7 +6613,7 @@ static void Task_HandleEvolutionScreenInput(u8 taskId)
             sPokedexView->sEvoScreenData.fromEvoPage = TRUE;
             PlaySE(SE_PIN);
             BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
-            gTasks[taskId].func = Task_LoadInfoScreenWaitForFade;
+            gTasks[taskId].func = Task_WaitForFadeFromEvoFormsScreen;
         }
     }
 
@@ -6529,11 +6667,15 @@ static void HandleTargetSpeciesPrintIcon(u8 taskId, u16 targetSpecies, u8 base_i
 {
     u32 personality = GetPokedexMonPersonality(targetSpecies);
     LoadMonIconPalettePersonality(targetSpecies, personality); //Loads pallete for current mon
+#if RANDOMIZER_AVAILABLE
+    if (iterations > 6 || RandomizerFeatureEnabled(RANDOMIZE_EVO_METHODS) || RandomizerFeatureEnabled(RANDOMIZE_EVOLUTIONS)) // Print icons closer to each other if there are many evolutions
+#else
     if (iterations > 6) // Print icons closer to each other if there are many evolutions
-        gTasks[taskId].data[4+base_i] = CreateMonIcon(targetSpecies, SpriteCB_MonIcon, 45 + 26*base_i, 31, 4, personality);
+#endif
+        gTasks[taskId].data[5+base_i] = CreateMonIcon(targetSpecies, SpriteCB_MonIcon, 45 + 26*base_i, 31, 4, personality);
     else
-        gTasks[taskId].data[4+base_i] = CreateMonIcon(targetSpecies, SpriteCB_MonIcon, 50 + 32*base_i, 31, 4, personality);
-    gSprites[gTasks[taskId].data[4+base_i]].oam.priority = 0;
+        gTasks[taskId].data[5+base_i] = CreateMonIcon(targetSpecies, SpriteCB_MonIcon, 50 + 32*base_i, 31, 4, personality);
+    gSprites[gTasks[taskId].data[5+base_i]].oam.priority = 0;
 }
 
 static void CreateCaughtBallEvolutionScreen(u16 targetSpecies, u8 x, u8 y, u16 unused)
@@ -6574,8 +6716,8 @@ static void HandlePreEvolutionSpeciesPrint(u8 taskId, u16 preSpecies, u16 specie
     {
         u32 personality = GetPokedexMonPersonality(preSpecies);
         LoadMonIconPalettePersonality(preSpecies, personality); //Loads pallete for current mon
-        gTasks[taskId].data[4+base_i] = CreateMonIcon(preSpecies, SpriteCB_MonIcon, 18 + 32*base_i, 31, 4, personality); //Create pokemon sprite
-        gSprites[gTasks[taskId].data[4+base_i]].oam.priority = 0;
+        gTasks[taskId].data[5+base_i] = CreateMonIcon(preSpecies, SpriteCB_MonIcon, 18 + 32*base_i, 31, 4, personality); //Create pokemon sprite
+        gSprites[gTasks[taskId].data[5+base_i]].oam.priority = 0;
     }
 }
 
@@ -6767,7 +6909,7 @@ bool32 IsItemSweet(enum Item item)
     return item >= ITEM_STRAWBERRY_SWEET && item <= ITEM_RIBBON_SWEET;
 }
 
-static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth, u32 *depth_i, u32 alreadyPrintedIcons[], u32 *icon_depth_i, u32 numLines)
+static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth, u32 *depth_i, u32 alreadyPrintedIcons[], u32 *icon_depth_i, u32 numLines, u32 *totalLines, u16 baseSpecies)
 {
     int i;
     u32 depth_x = 4;
@@ -6781,6 +6923,7 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
     u32 times = 0;
     u32 arg; // shorthand for some of the more mathy evolutions
     const struct Evolution *evolutions;
+    u32 lineBreaks = 0;
 
     if (sPokedexView->sEvoScreenData.isMega)
         return;
@@ -6794,7 +6937,8 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
 
     evolutions = GetSpeciesEvolutions(species);
 
-    sPokedexView->sEvoScreenData.arrowSpriteDist[*depth_i] = numLines;
+    if (*depth_i < 10)
+        sPokedexView->sEvoScreenData.arrowSpriteDist[*depth_i] = numLines;
 
     //If there are no evolutions print text and return
     if (evolutions == NULL)
@@ -6813,11 +6957,6 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
 
     if (times > 9 && species == SPECIES_MILCERY)
         times = 9;
-    else if (times > 10)
-        times = 10;
-
-    gTasks[taskId].data[3] = times;
-    sPokedexView->sEvoScreenData.numAllEvolutions += times;
 
     //If there are evolutions find out which and print them 1 by 1
     for (i = 0; i < times; i++)
@@ -6831,6 +6970,9 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             targetSpecies = RandomizeEvolution(targetSpecies, species);
 #endif
 
+        if (targetSpecies == baseSpecies)
+            continue;
+
         left = !left;
 
         bool32 isAlcremie = IsSpeciesAlcremie(targetSpecies);
@@ -6842,10 +6984,6 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
         u32 base_x_offset = speciesNameWidth + base_x + depth_offset; // for evo method info
         u32 maxScreenWidth = 230 - base_x_offset;
 
-        sPokedexView->sEvoScreenData.targetSpecies[*depth_i] = targetSpecies;
-        CreateCaughtBallEvolutionScreen(targetSpecies, base_x + depth_x*depth-9, base_y + base_y_offset*(*depth_i) + numLines, 0);
-        HandleTargetSpeciesPrintText(targetSpecies, base_x + depth_x*depth, base_y, base_y_offset, *depth_i, numLines); //evolution mon name
-
         for (u32 j = 0; j < MAX_EVOLUTION_ICONS; j++)
         {
             if (alreadyPrintedIcons[j] == targetSpecies)
@@ -6855,9 +6993,19 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
                 HandleTargetSpeciesPrintIcon(taskId, targetSpecies, *icon_depth_i, times);
                 alreadyPrintedIcons[j] = targetSpecies;
                 (*icon_depth_i)++;
+                gTasks[taskId].data[3] += 1;
                 break;
             }
         }
+
+        if (*totalLines >= MAX_EVO_METHOD_LINES || sPokedexView->sEvoScreenData.numAllEvolutions >= 10)
+            continue;
+
+        sPokedexView->sEvoScreenData.targetSpecies[*depth_i] = targetSpecies;
+        sPokedexView->sEvoScreenData.numAllEvolutions += 1;
+
+        CreateCaughtBallEvolutionScreen(targetSpecies, base_x + depth_x*depth-9, base_y + base_y_offset*(*depth_i) + numLines, 0);
+        HandleTargetSpeciesPrintText(targetSpecies, base_x + depth_x*depth, base_y, base_y_offset, *depth_i, numLines); //evolution mon name
 
         bool32 caught = GetSetPokedexFlag(SpeciesToNationalPokedexNum(targetSpecies), FLAG_GET_CAUGHT);
         if (HGSS_HIDE_UNOWNED_EVOLUTION_METHODS == TRUE && !caught)
@@ -7060,9 +7208,9 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
                     case REGION_SINNOH: StringAppend(gStringVar4, COMPOUND_STRING("Sinnoh")); break;
                     case REGION_UNOVA: StringAppend(gStringVar4, COMPOUND_STRING("Einall")); break;
                     case REGION_KALOS: StringAppend(gStringVar4, COMPOUND_STRING("Kalos")); break;
-                    case REGION_ALOLA: StringAppend(gStringVar4, COMPOUND_STRING("Alola")); break;
+                    case REGION_ALOLA: StringAppend(gStringVar4, COMPOUND_STRING("Alola Isles")); break;
                     case REGION_GALAR: StringAppend(gStringVar4, COMPOUND_STRING("Galar")); break;
-                    case REGION_HISUI: StringAppend(gStringVar4, COMPOUND_STRING("Hisui")); break;
+                    case REGION_HISUI: StringAppend(gStringVar4, COMPOUND_STRING("Sinjoh")); break;
                     case REGION_PALDEA: StringAppend(gStringVar4, COMPOUND_STRING("Paldea")); break;
                     }
                     break;
@@ -7166,11 +7314,16 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
         PrintInfoScreenTextSmall(gStringVar4, fontId, base_x_offset, base_y + base_y_offset*(*depth_i) + numLines); //Print actual instructions
         (*depth_i)++;
 
-        numLines = CountLineBreaks(gStringVar4) * fontHeight;
+        lineBreaks = CountLineBreaks(gStringVar4);
+        numLines = lineBreaks * fontHeight;
 
-        sPokedexView->sEvoScreenData.arrowSpriteDist[*depth_i + 1] = numLines;
+        if (*depth_i + 1 < 10)
+            sPokedexView->sEvoScreenData.arrowSpriteDist[*depth_i + 1] = numLines;
 
-        PrintEvolutionTargetSpeciesAndMethod(taskId, targetSpecies, depth+1, depth_i, alreadyPrintedIcons, icon_depth_i, numLines);
+        *totalLines += lineBreaks + 1;
+
+        if (depth < 3)
+            PrintEvolutionTargetSpeciesAndMethod(taskId, targetSpecies, depth+1, depth_i, alreadyPrintedIcons, icon_depth_i, numLines, totalLines, baseSpecies);
     }//For loop end
 }
 
@@ -7418,7 +7571,7 @@ static void Task_HandleFormsScreenInput(u8 taskId)
             sPokedexView->sFormScreenData.inSubmenu = FALSE;
             PlaySE(SE_PIN);
             BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
-            gTasks[taskId].func = Task_LoadInfoScreenWaitForFade;
+            gTasks[taskId].func = Task_WaitForFadeFromEvoFormsScreen;
         }
 
         if (JOY_NEW(B_BUTTON))

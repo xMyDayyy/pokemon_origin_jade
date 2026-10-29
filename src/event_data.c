@@ -26,6 +26,9 @@ EWRAM_DATA u16 gSpecialVar_MonBoxId = 0;
 EWRAM_DATA u16 gSpecialVar_MonBoxPos = 0;
 EWRAM_DATA u16 gSpecialVar_Unused_0x8014 = 0;
 EWRAM_DATA static u8 sSpecialFlags[SPECIAL_FLAGS_SIZE] = {0};
+// Origin Jade: song the PokeGear radio keeps playing on the current map
+// (0 = none). Reset on every map change, not saved.
+EWRAM_DATA u16 gRadioMapMusic = 0;
 
 #if TESTING
 #define TEST_FLAGS_SIZE     1
@@ -53,6 +56,9 @@ void InitEventData(void)
 {
     memset(gSaveBlock1Ptr->flags, 0, sizeof(gSaveBlock1Ptr->flags));
     memset(gSaveBlock1Ptr->vars, 0, sizeof(gSaveBlock1Ptr->vars));
+    memset(gSaveBlock3Ptr->varsFrlg, 0, sizeof(gSaveBlock3Ptr->varsFrlg));
+    memset(gSaveBlock3Ptr->flagsFrlg, 0, sizeof(gSaveBlock3Ptr->flagsFrlg));
+    memset(gSaveBlock3Ptr->flagsFrlgTrainers, 0, sizeof(gSaveBlock3Ptr->flagsFrlgTrainers));
     memset(sSpecialFlags, 0, sizeof(sSpecialFlags));
 }
 
@@ -65,6 +71,7 @@ void ClearTempFieldEventData(void)
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_CTRL_OBJ_DELETE);
     FlagClear(FLAG_NURSE_UNION_ROOM_REMINDER);
+    gRadioMapMusic = 0;
 }
 
 void ClearDailyFlags(void)
@@ -191,6 +198,11 @@ u16 *GetVarPointer(u16 id)
 {
     if (id < VARS_START)
         return NULL;
+    else if (id >= FRLG_VARS_START && id <= FRLG_VARS_END)
+        return &gSaveBlock3Ptr->varsFrlg[id - FRLG_VARS_START];
+    // Origin Jade block, in SaveBlock3.
+    else if (id >= OJ_VARS_START && id <= OJ_VARS_END)
+        return &gSaveBlock3Ptr->varsOj[id - OJ_VARS_START];
     else if (id < SPECIAL_VARS_START)
         return &gSaveBlock1Ptr->vars[id - VARS_START];
 #if TESTING
@@ -231,10 +243,40 @@ u16 VarGetObjectEventGraphicsId(u8 id)
     return VarGet(VAR_OBJ_GFX_ID_0 + id);
 }
 
+#if IS_HNS
+STATIC_ASSERT(FRLG_FLAGS_START > HOENN_FLAGS_END, sFrlgFlagsAboveHoenn);
+STATIC_ASSERT((FRLG_FLAGS_END - FLAG_HIDDEN_ITEMS_START) < (1 << 13), sFrlgFlagsFitHiddenItemField);
+STATIC_ASSERT((FRLG_FLAGS_START & 7) == 0, sFrlgFlagsBitAligned);
+
+STATIC_ASSERT(FRLG_TRAINER_FLAGS_START > HOENN_FLAGS_END, sFrlgTrainerFlagsAboveHoenn);
+STATIC_ASSERT(FRLG_TRAINER_FLAGS_START > FRLG_FLAGS_END, sFrlgTrainerFlagsAboveFrlgFlags);
+STATIC_ASSERT(FRLG_TRAINER_FLAGS_END < SPECIAL_FLAGS_START, sFrlgTrainerFlagsBelowSpecial);
+STATIC_ASSERT(HNS_REMATCH_TIER_FLAGS_START > FRLG_TRAINER_FLAGS_END, sRematchTierFlagsAboveFrlgTrainers);
+STATIC_ASSERT(HNS_REMATCH_TIER_FLAGS_END < SPECIAL_FLAGS_START, sRematchTierFlagsBelowSpecial);
+
+// Keep each window's base mod 8, or flags in existing saves shift.
+STATIC_ASSERT((FRLG_TRAINER_FLAGS_START & 7) == ((0x500 + FRLG_TRAINER_OFFSET + 1) & 7), sFrlgTrainerFlagsBitAligned);
+STATIC_ASSERT((HNS_REMATCH_TIER_FLAGS_START & 7) == ((0x500 + HNS_REMATCH_TIERS_START) & 7), sRematchTierFlagsBitAligned);
+
+STATIC_ASSERT(OJ_TRAINER_FLAGS_HOENN_END < OJ_FLAGS_HOENN + OJ_FLAGS_HOENN_SIZE, sOjTrainerFlagsFitHoennSection);
+STATIC_ASSERT(FLAG_HOENN_REGISTER_RIVAL_POKENAV < OJ_FLAGS_HOENN + OJ_FLAGS_HOENN_SIZE, sOjHoennFlagsFitHoennSection);
+#endif
+
 u8 *GetFlagPointer(u16 id)
 {
     if (id == 0)
         return NULL;
+    else if (id >= FRLG_FLAGS_START && id <= FRLG_FLAGS_END)
+        return &gSaveBlock3Ptr->flagsFrlg[(id - FRLG_FLAGS_START) / 8];
+    // FRLG trainer flags, in SaveBlock3.
+    else if (id >= FRLG_TRAINER_FLAGS_START && id <= FRLG_TRAINER_FLAGS_END)
+        return &gSaveBlock3Ptr->flagsFrlgTrainers[(id - FRLG_TRAINER_FLAGS_START) / 8];
+    // Rematch tier flags of Irwin/Derek/Beverly, in SaveBlock3.
+    else if (id >= HNS_REMATCH_TIER_FLAGS_START && id <= HNS_REMATCH_TIER_FLAGS_END)
+        return &gSaveBlock3Ptr->flagsHnsRematchTiers[(id - HNS_REMATCH_TIER_FLAGS_START) / 8];
+    // Origin Jade block, in SaveBlock3.
+    else if (id >= OJ_FLAGS_START && id <= OJ_FLAGS_END)
+        return &gSaveBlock3Ptr->flagsOj[(id - OJ_FLAGS_START) / 8];
     else if (id < SPECIAL_FLAGS_START)
         return &gSaveBlock1Ptr->flags[id / 8];
 #if TESTING

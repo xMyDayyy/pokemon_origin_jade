@@ -19,11 +19,17 @@ CinnabarIsland_PokemonLab_ResearchRoom_EventScript_AmberPipe::
 
 CinnabarIsland_PokemonLab_ResearchRoom_Text_EeveeCanEvolveIntroThreeMons::
 #if GERMAN
-	.string "Evoli kann sich zu einem von drei\n"
-	.string "verschiedenen Pokémon entwickeln.$"
+	.string "Evoli ist ein Rätsel.\p"
+	.string "Je nachdem, womit man es in Berührung\n"
+	.string "bringt oder wie eng die Freundschaft\l"
+	.string "ist, wird ein anderes Pokémon daraus.\p"
+	.string "Acht Formen kennen wir bisher.$"
 #else
-	.string "EEVEE can evolve into one of three\n"
-	.string "kinds of POKéMON.$"
+	.string "EEVEE is a mystery.\p"
+	.string "What it becomes depends on what it\n"
+	.string "touches, or how close its bond with\l"
+	.string "its TRAINER has grown.\p"
+	.string "We know of eight forms so far.$"
 #endif
 
 CinnabarIsland_PokemonLab_ResearchRoom_Text_LegendaryBirdEmail::

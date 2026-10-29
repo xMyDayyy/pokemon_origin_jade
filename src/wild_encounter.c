@@ -20,7 +20,7 @@
 #include "script.h"
 #include "tv.h"
 #include "wild_encounter.h"
-#include "hoenn_level_scaling.h"
+#include "level_scaling.h"
 #include "randomizer.h"
 #include "battle_debug.h"
 #include "battle_pike.h"
@@ -63,9 +63,6 @@ static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildM
 static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildMon, enum Type type, enum Ability ability, u8 *monIndex);
 #endif
 static bool8 IsAbilityAllowingEncounter(u8 level);
-#if IS_HNS
-static bool8 TryGetHoennSoundWildMonIndex(const struct WildPokemon *wildMon, u8 numMon, u8 *monIndex);
-#endif
 
 EWRAM_DATA static u8 sWildEncountersDisabled = 0;
 EWRAM_DATA static u32 sFeebasRngValue = 0;
@@ -477,11 +474,118 @@ static u8 PickWildMonNature(u32 species)
     return GetSynchronizedNature(WILDMON_ORIGIN, species);
 }
 
+// Feeding a Pokeblock to a Safari Zone feeder decides which IVs the Pokemon it
+// lures out is born with. The Pokeblock's COLOR picks the set: an ordinary block
+// perfects three stats, a Gold block perfects five. Every set below is fixed, so
+// a given Pokeblock always produces the same result.
+//
+// Only the color is read. A block's level and its individual flavor values are
+// both scaled by how fast the blender was spun, and how well the player played
+// the blending minigame should not decide what they catch.
+#define POKEBLOCK_PERFECT_IVS      3
+#define POKEBLOCK_GOLD_PERFECT_IVS 5
+
+static const u8 sPokeblockColorIvs[][POKEBLOCK_PERFECT_IVS] =
+{
+    // PBLOCK_CLR_NONE should never reach here; it shares Black's set as a fallback.
+    [PBLOCK_CLR_NONE]      = { MON_DATA_HP_IV,    MON_DATA_DEF_IV,   MON_DATA_SPATK_IV },
+    [PBLOCK_CLR_RED]       = { MON_DATA_HP_IV,    MON_DATA_ATK_IV,   MON_DATA_SPEED_IV },
+    [PBLOCK_CLR_BLUE]      = { MON_DATA_HP_IV,    MON_DATA_SPATK_IV, MON_DATA_SPEED_IV },
+    [PBLOCK_CLR_PINK]      = { MON_DATA_ATK_IV,   MON_DATA_SPATK_IV, MON_DATA_SPEED_IV },
+    [PBLOCK_CLR_GREEN]     = { MON_DATA_HP_IV,    MON_DATA_DEF_IV,   MON_DATA_SPDEF_IV },
+    [PBLOCK_CLR_YELLOW]    = { MON_DATA_HP_IV,    MON_DATA_ATK_IV,   MON_DATA_DEF_IV   },
+    [PBLOCK_CLR_PURPLE]    = { MON_DATA_ATK_IV,   MON_DATA_DEF_IV,   MON_DATA_SPDEF_IV },
+    [PBLOCK_CLR_INDIGO]    = { MON_DATA_HP_IV,    MON_DATA_SPATK_IV, MON_DATA_SPDEF_IV },
+    [PBLOCK_CLR_BROWN]     = { MON_DATA_DEF_IV,   MON_DATA_SPEED_IV, MON_DATA_SPDEF_IV },
+    [PBLOCK_CLR_LITE_BLUE] = { MON_DATA_SPATK_IV, MON_DATA_SPEED_IV, MON_DATA_SPDEF_IV },
+    [PBLOCK_CLR_OLIVE]     = { MON_DATA_ATK_IV,   MON_DATA_DEF_IV,   MON_DATA_SPEED_IV },
+    [PBLOCK_CLR_GRAY]      = { MON_DATA_HP_IV,    MON_DATA_ATK_IV,   MON_DATA_SPATK_IV },
+    [PBLOCK_CLR_BLACK]     = { MON_DATA_HP_IV,    MON_DATA_DEF_IV,   MON_DATA_SPATK_IV },
+    // Only reachable by blending with another player over a link.
+    [PBLOCK_CLR_WHITE]     = { MON_DATA_HP_IV,    MON_DATA_SPEED_IV, MON_DATA_SPDEF_IV },
+};
+
+// A Gold Pokeblock perfects five stats, leaving out the one its strongest flavor
+// cares least about: a spicy Gold drops Sp. Atk, a dry Gold drops Attack, and a
+// sour Gold drops HP for the classic five-perfect spread.
+static const u8 sGoldPokeblockIvs[FLAVOR_COUNT][POKEBLOCK_GOLD_PERFECT_IVS] =
+{
+    [FLAVOR_SPICY]  = { MON_DATA_HP_IV,  MON_DATA_ATK_IV, MON_DATA_DEF_IV,   MON_DATA_SPEED_IV, MON_DATA_SPDEF_IV },
+    [FLAVOR_DRY]    = { MON_DATA_HP_IV,  MON_DATA_DEF_IV, MON_DATA_SPEED_IV, MON_DATA_SPATK_IV, MON_DATA_SPDEF_IV },
+    [FLAVOR_SWEET]  = { MON_DATA_HP_IV,  MON_DATA_ATK_IV, MON_DATA_DEF_IV,   MON_DATA_SPEED_IV, MON_DATA_SPATK_IV },
+    [FLAVOR_BITTER] = { MON_DATA_HP_IV,  MON_DATA_ATK_IV, MON_DATA_DEF_IV,   MON_DATA_SPATK_IV, MON_DATA_SPDEF_IV },
+    [FLAVOR_SOUR]   = { MON_DATA_ATK_IV, MON_DATA_DEF_IV, MON_DATA_SPEED_IV, MON_DATA_SPATK_IV, MON_DATA_SPDEF_IV },
+};
+
+// Ties resolve to the earliest flavor, so the answer is always the same block.
+static u32 GetDominantPokeblockFlavor(struct Pokeblock *pokeblock)
+{
+    u32 i, dominant = FLAVOR_SPICY;
+    s16 best = GetPokeblockData(pokeblock, PBLOCK_SPICY);
+
+    for (i = FLAVOR_DRY; i < FLAVOR_COUNT; i++)
+    {
+        s16 flavor = GetPokeblockData(pokeblock, PBLOCK_SPICY + i);
+        if (flavor > best)
+        {
+            best = flavor;
+            dominant = i;
+        }
+    }
+
+    return dominant;
+}
+
+// A Pokeblock feeder in range lures out Pokemon with their Hidden Ability, and
+// perfects the IVs its Pokeblock's color calls for. The block's nature influence
+// is handled separately, in PickWildMonNature.
+static void TryApplyPokeblockBonus(struct Pokemon *mon, u16 species)
+{
+    u32 i, color, numIvs;
+    u8 perfectIv = MAX_PER_STAT_IVS;
+    u8 abilityNum = 2;
+    const u8 *ivs;
+    struct Pokeblock *pokeblock;
+
+    if (GetSafariZoneFlag() != TRUE)
+        return;
+
+    pokeblock = SafariZoneGetActivePokeblock();
+    if (pokeblock == NULL)
+        return;
+
+    // The Hidden Ability is guaranteed no matter which Pokeblock was fed.
+    if (GetSpeciesAbility(species, abilityNum) != ABILITY_NONE)
+        SetMonData(mon, MON_DATA_ABILITY_NUM, &abilityNum);
+
+    color = GetPokeblockData(pokeblock, PBLOCK_COLOR);
+    if (color == PBLOCK_CLR_GOLD)
+    {
+        ivs = sGoldPokeblockIvs[GetDominantPokeblockFlavor(pokeblock)];
+        numIvs = POKEBLOCK_GOLD_PERFECT_IVS;
+    }
+    else
+    {
+        if (color >= ARRAY_COUNT(sPokeblockColorIvs))
+            color = PBLOCK_CLR_BLACK;
+        ivs = sPokeblockColorIvs[color];
+        numIvs = POKEBLOCK_PERFECT_IVS;
+    }
+
+    for (i = 0; i < numIvs; i++)
+        SetMonData(mon, ivs[i], &perfectIv);
+
+    // Max HP depends on the HP IV, and the other stats on theirs, so the mon has
+    // to be recalculated after its IVs change.
+    CalculateMonStats(mon);
+}
+
 void CreateWildMon(u16 species, u8 level)
 {
     ZeroEnemyPartyMons();
     u32 personality = GetMonPersonality(species, GetSynchronizedGender(WILDMON_ORIGIN, species), PickWildMonNature(species), RANDOM_UNOWN_LETTER);
     CreateMonWithIVs(&gEnemyParty[0], species, level, personality, OTID_STRUCT_PLAYER_ID, USE_RANDOM_IVS);
+    TryApplyPokeblockBonus(&gEnemyParty[0], species);
     GiveMonInitialMoveset(&gEnemyParty[0]);
 }
 
@@ -511,10 +615,6 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum 
             break;
         if (OW_STORM_DRAIN >= GEN_8 && TRY_GET_ABILITY_INFLUENCED_WILD_MON_INDEX(wildMonInfo->wildPokemon, TYPE_WATER, ABILITY_STORM_DRAIN, &wildMonIndex, LAND_WILD_COUNT))
             break;
-    #if IS_HNS
-        if (TryGetHoennSoundWildMonIndex(wildMonInfo->wildPokemon, LAND_WILD_COUNT, &wildMonIndex))
-            break;
-    #endif
 
         wildMonIndex = ChooseWildMonIndex_Land();
         break;
@@ -531,10 +631,6 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum 
             break;
         if (OW_STORM_DRAIN >= GEN_8 && TRY_GET_ABILITY_INFLUENCED_WILD_MON_INDEX(wildMonInfo->wildPokemon, TYPE_WATER, ABILITY_STORM_DRAIN, &wildMonIndex, WATER_WILD_COUNT))
             break;
-    #if IS_HNS
-        if (TryGetHoennSoundWildMonIndex(wildMonInfo->wildPokemon, WATER_WILD_COUNT, &wildMonIndex))
-            break;
-    #endif
 
         wildMonIndex = ChooseWildMonIndex_Water();
         break;
@@ -547,7 +643,7 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum 
         break;
     }
 
-    level = HoennScaleWildMonLevel(ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, area));
+    level = ScaleWildMonLevel(ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, area));
     if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(level))
         return FALSE;
     if ((gMapHeader.mapLayoutId != LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS && gMapHeader.mapLayoutId != LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS_HNS) && flags & WILD_CHECK_KEEN_EYE && !IsAbilityAllowingEncounter(level))
@@ -567,7 +663,7 @@ static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 
 {
     u8 wildMonIndex = ChooseWildMonIndex_Fishing(rod);
     u16 wildMonSpecies = wildMonInfo->wildPokemon[wildMonIndex].species;
-    u8 level = HoennScaleWildMonLevel(ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, WILD_AREA_FISHING));
+    u8 level = ScaleWildMonLevel(ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, WILD_AREA_FISHING));
 
     #if RANDOMIZER_AVAILABLE == TRUE
     wildMonSpecies = RandomizeWildEncounter(wildMonSpecies, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, WILD_AREA_FISHING, wildMonIndex);
@@ -581,7 +677,7 @@ static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 
 static bool8 SetUpMassOutbreakEncounter(u8 flags)
 {
     u16 i;
-    u8 outbreakLevel = HoennScaleWildMonLevel(gSaveBlock1Ptr->outbreakPokemonLevel);
+    u8 outbreakLevel = ScaleWildMonLevel(gSaveBlock1Ptr->outbreakPokemonLevel);
 
     if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(outbreakLevel))
         return FALSE;
@@ -964,7 +1060,7 @@ void FishingWildEncounter(u8 rod)
     gIsFishingEncounter = TRUE;
     if (CheckFeebas() == TRUE)
     {
-        u8 level = HoennScaleWildMonLevel(ChooseWildMonLevel(&sWildFeebas, 0, WILD_AREA_FISHING));
+        u8 level = ScaleWildMonLevel(ChooseWildMonLevel(&sWildFeebas, 0, WILD_AREA_FISHING));
 
         species = sWildFeebas.species;
         CreateWildMon(species, level);
@@ -1134,35 +1230,6 @@ static bool8 TryGetRandomWildMonIndexByType(const struct WildPokemon *wildMon, e
     *monIndex = validIndexes[Random() % validMonCount];
     return TRUE;
 }
-
-#if IS_HNS
-#define HOENN_DEX_START SPECIES_TREECKO
-#define HOENN_DEX_END   386
-
-static bool8 TryGetHoennSoundWildMonIndex(const struct WildPokemon *wildMon, u8 numMon, u8 *monIndex)
-{
-    u8 validIndexes[12];
-    u8 i, validMonCount;
-
-    if (!IsHoennSoundPlaying())
-        return FALSE;
-    if (Random() % 10 != 0)
-        return FALSE;
-
-    for (validMonCount = 0, i = 0; i < numMon; i++)
-    {
-        u16 species = wildMon[i].species;
-        if (species >= HOENN_DEX_START && species <= HOENN_DEX_END)
-            validIndexes[validMonCount++] = i;
-    }
-
-    if (validMonCount == 0 || validMonCount == numMon)
-        return FALSE;
-
-    *monIndex = validIndexes[Random() % validMonCount];
-    return TRUE;
-}
-#endif
 
 #include "data.h"
 

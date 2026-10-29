@@ -11,7 +11,7 @@ NewBarkTown_OnFrame::
 NewBarkTown_EventScript_ElmCallAfterLeague::
 	lock
 	setspeaker NewBarkTown_Text_ElmName
-	pokenavcall BlackthornCity_Text_ElmCall
+	pokenavcall NewBarkTown_Lab_Text_ElmCallAfterLeague
 	waitmessage
 	delay 30
 	setvar VAR_NEWBARK_TOWN_STATE, 7
@@ -27,18 +27,71 @@ NewBarkTown_Text_ElmName:
 #endif
 
 NewBarkTown_OnTransition::
+	call_if_unset FLAG_JOHTO_ARRIVAL_DONE, NewBarkTown_EventScript_JohtoArrivalSetup
+	call_if_eq VAR_JOHTO_ARRIVAL_STATE, 0, NewBarkTown_EventScript_CheckElmAlreadySeen
+	call_if_eq VAR_JOHTO_ARRIVAL_STATE, 0, NewBarkTown_EventScript_LassBlocksExit
+	call_if_ne VAR_JOHTO_ARRIVAL_STATE, 0, NewBarkTown_EventScript_LassInTown
 	goto_if_eq VAR_NEWBARK_TOWN_STATE, 2, NewBarkTown_Set_TalkToElm
 	goto_if_eq VAR_NEWBARK_TOWN_STATE, 4, NewBarkTown_Set_TalkToMom
 	end
 
+@ Origin Jade: Johto start values that HnS sets in Mom's house.
+NewBarkTown_EventScript_JohtoArrivalSetup::
+	setflag FLAG_JOHTO_ARRIVAL_DONE
+	call_if_eq VAR_NEWBARK_TOWN_STATE, 0, NewBarkTown_EventScript_SetArrivalState
+	setflag FLAG_HIDE_LAB_POLICEMAN
+	setflag FLAG_VISITED_NEWBARK_TOWN
+	setflag FLAG_SYS_POKENAV_GET
+	setflag FLAG_HAS_MATCH_CALL
+	setflag FLAG_RECEIVED_POKENAV
+	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
+	setflag FLAG_REGISTER_RIVAL_POKENAV
+	return
+
+NewBarkTown_EventScript_CheckElmAlreadySeen::
+	goto_if_ge VAR_NEWBARKTOWN_LABSTATE, 3, NewBarkTown_EventScript_ReleaseExit
+	return
+
+NewBarkTown_EventScript_ReleaseExit::
+	setvar VAR_JOHTO_ARRIVAL_STATE, 1
+	return
+
+NewBarkTown_EventScript_LassBlocksExit::
+	setobjectxyperm LOCALID_LASS, 0, 11
+	return
+
+NewBarkTown_EventScript_LassInTown::
+	@ Starting position from the map.
+	setobjectxyperm LOCALID_LASS, 9, 16
+	return
+
+@ Lass blocks the exit to Route 29 (triggers 0,12-0,14) while
+@ VAR_JOHTO_ARRIVAL_STATE is 0. Elm sets it to 1.
+NewBarkTown_EventScript_JohtoLeaveBlock::
+	lock
+	playse SE_PIN
+	applymovement LOCALID_LASS, Common_Movement_ExclamationMark
+	delay 55
+	waitmovement LOCALID_LASS
+	applymovement LOCALID_LASS, NewBarkTown_Movement_FaceDown
+	waitmovement 0
+	msgbox NewBarkTown_Text_LassState2, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, OldaleTown_Movement_PlayerStepBack
+	waitmovement 0
+	release
+	end
+
+NewBarkTown_EventScript_SetArrivalState::
+	setvar VAR_NEWBARK_TOWN_STATE, 2
+	return
+
 NewBarkTown_Set_TalkToElm::
 	clearflag FLAG_HIDE_SILVER_NEWBARKTOWN
-	setobjectxyperm LOCALID_LASS, 0, 11
 	callnative SetTimeBasedEncounters
 	end
 
 NewBarkTown_Set_TalkToMom::
-	setobjectxyperm LOCALID_LASS, 0, 11
 	callnative SetTimeBasedEncounters
 	end
 
@@ -182,9 +235,6 @@ NewBarkTown_EventScript_TestMan1::
 
 NewBarkTown_EventScript_TestMan2::
 	setvar VAR_NEWBARK_TOWN_STATE, 4
-	setflag FLAG_HIDE_MOMS_FRIEND
-	setflag FLAG_ADVENTURE_STARTED
-	setflag FLAG_START_NUZLOCKE
 	setflag FLAG_HIDE_SILVER_NEWBARKTOWN
 	end
 
@@ -252,36 +302,32 @@ NewBarkTown_Text_Wooper:
 
 NewBarkTown_Text_FatManState2:
 #if GERMAN
-	.string "Wow, dein PokéCom ist beeindruckend!$"
+	.string "Ein PokéCom! So eins hätte ich auch\n"
+	.string "gern.$"
 #else
-	.string "Wow, your POKéGEAR is impressive!\n"
-	.string "Did your mom get it for you?$"
+	.string "A POKéGEAR! I would like one of\n"
+	.string "those myself.$"
 #endif
 
 NewBarkTown_Text_FatManState3:
 #if GERMAN
-	.string "Tag, {PLAYER}!\p"
-	.string "Es heißt, Professor Lind habe\n"
-	.string "neue Pokémon gefunden!$"
+	.string "Tag!\p"
+	.string "Es heißt, Professor Lind habe neue\n"
+	.string "Pokémon gefunden!$"
 #else
-	.string "Yo, {PLAYER}!\p"
-	.string "I hear PROF.ELM discovered\n"
-	.string "some new POKéMON.$"
+	.string "Hello there!\p"
+	.string "They say PROF. ELM has found new\n"
+	.string "POKéMON!$"
 #endif
 
 NewBarkTown_Text_LassState2:
 #if GERMAN
-	.string "Du weißt doch, wie gefährlich es ist,\n"
-	.string "ohne Pokémon das Haus zu verlassen!\p"
-	.string "Der Weg bis in die Nachbarstadt ist\n"
-	.string "schließlich von hohem Gras umgeben, wo\l"
-	.string "dir lauter wilde Pokémon auflauern!$"
+	.string "Hey, warte! Du kannst hier nicht durch,\n"
+	.string "bevor du mit Prof. Lind gesprochen\l"
+	.string "hast.$"
 #else
-	.string "Wait, {PLAYER}!\p"
-	.string "It's dangerous to go out\n"
-	.string "without a POKéMON!\p"
-	.string "Wild POKéMON jump out of the grass\n"
-	.string "on the way to the next town.$"
+	.string "Hey, wait! You can't go through here\n"
+	.string "before you've talked to PROF. ELM.$"
 #endif
 
 NewBarkTown_Text_LassState3:
@@ -295,24 +341,24 @@ NewBarkTown_Text_LassState3:
 
 NewBarkTown_Text_LassState4:
 #if GERMAN
-	.string "Oh, heißt das etwa, du verlässt\n"
-	.string "uns schon wieder, {PLAYER}?\p"
-	.string "Gib auf jeden Fall deiner Mutter\n"
-	.string "Bescheid, bevor du aufbrichst!$"
+	.string "Oh, du ziehst schon weiter?\p"
+	.string "Dabei war es gerade erst spannend\n"
+	.string "hier.$"
 #else
-	.string "Hi, {PLAYER}! Leaving again?\p"
-	.string "You should tell your mom if\n"
-	.string "you are leaving.$"
+	.string "Oh, moving on already?\p"
+	.string "And things were just getting\n"
+	.string "interesting around here.$"
 #endif
 
 NewBarkTown_Text_LassState5:
 #if GERMAN
-	.string "Mit dem PokéCom kannst du jederzeit\n"
-	.string "deine Mutter anrufen und ihr erzählen,\l"
-	.string "wie es dir so geht!$"
+	.string "Mit einem PokéCom kann man von\n"
+	.string "überall aus telefonieren.\p"
+	.string "Sogar bis nach Kanto, heißt es.$"
 #else
-	.string "Call your mom on your POKéGEAR\n"
-	.string "to let her know how you're doing.$\p"
+	.string "With a POKéGEAR you can call from\n"
+	.string "anywhere.\p"
+	.string "Even as far as KANTO, they say.$"
 #endif
 
 NewBarkTown_Text_Silver1:
@@ -338,9 +384,9 @@ NewBarkTown_Text_Sign:
 	.string "Neuborkia\n"
 	.string "Die Stadt der ersten Schritte$"
 #else
-	.string "NEW BARK TOWN\p"
-	.string "The Town Where the Winds of\n"
-	.string "a New Beginning Blow$"
+	.string "NEW BARK TOWN\n"
+	.string "The town where the winds of a new\l"
+	.string "beginning blow$"
 #endif
 
 NewBarkTown_EventScript_PlayersHouseMailbox::
@@ -353,9 +399,9 @@ NewBarkTown_EventScript_ElmsHouseMailbox::
 
 NewBarkTown_Text_PlayersHouse:
 #if GERMAN
-	.string "Haus von {PLAYER}$"
+	.string "Ein Wohnhaus$"
 #else
-	.string "{PLAYER}'S HOUSE$"
+	.string "A house$"
 #endif
 
 NewBarkTown_Text_ElmsHouse:

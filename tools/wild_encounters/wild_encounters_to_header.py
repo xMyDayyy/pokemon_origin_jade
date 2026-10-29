@@ -171,10 +171,11 @@ class WildEncounterAssembler:
             elif "_Hns" in shared_label or "_hns" in shared_label:
                 version = "POKEMON_HNS"
 
-            # Hoenn-Tabellen sollen auch im HnS-Build vorhanden sein,
-            # da dessen Karten die Emerald-Begegnungen weiterverwenden.
+            # The HnS build also gets the Emerald and FRLG tables.
             if version == "EMERALD":
                 self.WriteLine("#if defined(EMERALD) || defined(POKEMON_HNS)")
+            elif version == "FIRERED":
+                self.WriteLine("#if defined(FIRERED) || defined(POKEMON_HNS)")
             else:
                 self.WriteLine(f"#ifdef {version}")
 
@@ -250,10 +251,11 @@ class WildEncounterAssembler:
                     version = "LEAFGREEN"
                 elif "_Hns" in shared_label or "_hns" in shared_label:
                     version = "POKEMON_HNS"
-                # Hoenn-Tabellen sollen auch im HnS-Build vorhanden sein,
-                # da dessen Karten die Emerald-Begegnungen weiterverwenden.
+                # The HnS build also gets the Emerald and FRLG tables.
                 if version == "EMERALD":
                     self.WriteLine("#if defined(EMERALD) || defined(POKEMON_HNS)")
+                elif version == "FIRERED":
+                    self.WriteLine("#if defined(FIRERED) || defined(POKEMON_HNS)")
                 else:
                     self.WriteLine(f"#ifdef {version}")
                 for mon_type in self.config.mon_types:

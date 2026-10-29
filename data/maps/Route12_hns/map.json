@@ -209,7 +209,7 @@
       "movement_range_y": 9,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route12_EventScript_Tentacruel",
+      "script": "Route12_EventScript_Magikarp",
       "flag": "0"
     }
   ],
@@ -257,6 +257,6 @@
       "script": "Route12_EventScript_FishingSign"
     }
   ],
-  "game_version": "hns",
+  "game_version": "hns_kanto_retired",
   "region": "REGION_KANTO"
 }

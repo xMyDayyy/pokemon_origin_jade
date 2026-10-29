@@ -1,7 +1,7 @@
 {
   "id": "MAP_NAVEL_ROCK_EXTERIOR_FRLG",
   "name": "NavelRock_Exterior_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_NAVEL_ROCK_EXTERIOR_FRLG",
   "music": "MUS_RG_SEVII_ROUTE",
   "region": "REGION_KANTO",

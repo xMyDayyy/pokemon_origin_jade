@@ -14,3 +14,64 @@ Route5_Text_UndergroundPathSign::
 	.string "CERULEAN CITY - VERMILION CITY$"
 #endif
 
+@ The Day Care Man hands over eggs; the Day Care Lady inside takes and returns Pokemon.
+Route5_EventScript_DaycareMan::
+	lock
+	faceplayer
+	special GetDaycareMonNicknames
+	specialvar VAR_RESULT, GetDaycareState
+	goto_if_eq VAR_RESULT, DAYCARE_EGG_WAITING, Route5_EventScript_DaycareEggWaiting
+	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, Route5_EventScript_CheckOnOneMon
+	goto_if_eq VAR_RESULT, DAYCARE_TWO_MONS, Route5_EventScript_CheckOnTwoMons
+	msgbox DayCare_Text_ImDaycareManSpeakToMyWife
+	release
+	end
+
+Route5_EventScript_DaycareEggWaiting::
+	msgbox DayCare_Text_DoYouWantEgg, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, Route5_EventScript_DaycareAcceptEgg
+	msgbox DayCare_Text_IWillKeepDoYouWantIt, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, Route5_EventScript_DaycareAcceptEgg
+	msgbox DayCare_Text_IllKeepIt
+	clearflag FLAG_PENDING_DAYCARE_EGG
+	special RejectEggFromDayCare
+	release
+	end
+
+Route5_EventScript_DaycareAcceptEgg::
+	specialvar VAR_RESULT, CalculatePlayerPartyCount
+	goto_if_ne VAR_RESULT, PARTY_SIZE, Route5_EventScript_DaycareReceivedEgg
+	msgbox DayCare_Text_YouHaveNoRoomForIt
+	release
+	end
+
+Route5_EventScript_DaycareReceivedEgg::
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	message DayCare_Text_ReceivedEgg
+	call EventScript_RestorePrevTextColor
+	playfanfare MUS_LEVEL_UP
+	waitfanfare
+	waitbuttonpress
+	msgbox DayCare_Text_TakeGoodCareOfIt
+	special GiveEggFromDaycare
+	clearflag FLAG_PENDING_DAYCARE_EGG
+	call_if_unset FLAG_RECEIVED_OVAL_CHARM, DayCare_EventScript_GiveOvalCharm
+	release
+	end
+
+Route5_EventScript_CheckOnOneMon::
+	special GetDaycareMonNicknames
+	msgbox DayCare_Text_YourMonIsDoingFine
+	release
+	end
+
+Route5_EventScript_CheckOnTwoMons::
+	special GetDaycareMonNicknames
+	msgbox DayCare_Text_YourMonsAreDoingFine
+	special SetDaycareCompatibilityString
+	special ShowFieldMessageStringVar4
+	waitmessage
+	waitbuttonpress
+	release
+	end
+

@@ -4,6 +4,9 @@ LakeOfRage_hns_MapScripts::
 
 LakeOfRage_OnTransition::
 	setflag FLAG_VISITED_LAKE_OF_RAGE
+	call LakeOfRage_EventScript_SetGyaradosVisibility
+	special GetWeekday
+	call_if_ne VAR_RESULT, WEEKDAY_WED, LakeOfRage_EventScript_HideWesley
 	call_if_lt VAR_MAHOGANY_TOWN_STATE, 2, LakeOfRage_EventScript_HideLois
 	goto_if_lt VAR_MAHOGANY_TOWN_STATE, 14, LakeOfRage_EventScript_SetHighTide
 	special UpdateShoalTideFlag
@@ -24,6 +27,23 @@ LakeOfRage_EventScript_SetHighTide::
 
 LakeOfRage_EventScript_HideLois::
 	setflag FLAG_TEMP_1
+	return
+
+@ Wesley of the weekday siblings is only here on Wednesday, see
+@ docs/origin_jade/DECISIONS.md, D-033.
+LakeOfRage_EventScript_HideWesley:
+	setflag FLAG_TEMP_2
+	return
+
+@ Red Gyarados: story battle until VAR_MAHOGANY_TOWN_STATE 2, then the legendary rules
+@ (see docs/origin_jade/DECISIONS.md, D-026).
+LakeOfRage_EventScript_SetGyaradosVisibility::
+	goto_if_lt VAR_MAHOGANY_TOWN_STATE, 2, Common_EventScript_NopReturn
+	setflag FLAG_HIDE_LAKE_OF_RAGE_GYARADOS
+	setvar VAR_0x8004, LEGENDARY_RED_GYARADOS
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	goto_if_ne VAR_RESULT, TRUE, Common_EventScript_NopReturn
+	clearflag FLAG_HIDE_LAKE_OF_RAGE_GYARADOS
 	return
 
 LakeOfRage_EventScript_ThunderStorm::
@@ -101,25 +121,28 @@ LakeOfRage_EventScript_Gyarados::
 	playmoncry SPECIES_GYARADOS, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	setwildbattleshiny SPECIES_GYARADOS, 30
+	setwildbattleshiny SPECIES_GYARADOS, 70
 	dowildbattle
+	setvar VAR_0x8004, LEGENDARY_RED_GYARADOS
+	special RecordLegendaryBattleOutcome
 	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, LakeOfRage_EventScript_Defeated_Gyarados
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, LakeOfRage_EventScript_Ran_Gyarados
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, LakeOfRage_EventScript_Ran_Gyarados
-LakeOfRage_EventScript_Defeated_Gyarados::
-	setflag FLAG_HIDE_LAKE_OF_RAGE_GYARADOS
-	clearflag FLAG_TEMP_1
+	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject LOCALID_LAKEOFRAGE_GYARADOS
+	fadescreenswapbuffers FADE_FROM_BLACK
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, LakeOfRage_EventScript_GyaradosGone
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, LakeOfRage_EventScript_GyaradosGone
+	bufferspeciesname STR_VAR_1, SPECIES_GYARADOS
+	msgbox Text_MonSwamAway, MSGBOX_DEFAULT
+LakeOfRage_EventScript_GyaradosGone:
+	goto_if_ge VAR_MAHOGANY_TOWN_STATE, 2, LakeOfRage_EventScript_GyaradosEnd
+	@ First battle: the story goes on whatever the outcome.
+	clearflag FLAG_TEMP_1
 	clearflag FLAG_HIDE_LAKE_OF_RAGE_LANCE
 	addobject LOCALID_LAKEOFRAGE_LANCE
 	giveitem ITEM_RED_SCALE
 	setobjectxyperm LOCALID_LAKEOFRAGE_OLDMAN, 32, 38
 	setvar VAR_MAHOGANY_TOWN_STATE, 2
-	release
-	end
-
-LakeOfRage_EventScript_Ran_Gyarados::
+LakeOfRage_EventScript_GyaradosEnd:
 	release
 	end
 
@@ -517,23 +540,6 @@ LakeOfRage_EventScript_Wesley::
 	faceplayer
 	goto_if_set FLAG_GOT_BLACK_BELT, LakeOfRage_EventScript_WesleyCompleted
 	msgbox LakeOfRage_Text_MeetWesley, MSGBOX_DEFAULT
-	closemessage
-	multichoice 20, 0, MULTI_DAYS_OF_WEEK, FALSE
-	switch VAR_RESULT
-	case 0, LakeOfRage_EventScript_WesleyNope
-	case 1, LakeOfRage_EventScript_WesleyNope
-	case 2, LakeOfRage_EventScript_WesleyNope
-	case 3, LakeOfRage_EventScript_WesleyYes
-	case 4, LakeOfRage_EventScript_WesleyNope
-	case 5, LakeOfRage_EventScript_WesleyNope
-	case 6, LakeOfRage_EventScript_WesleyNope
-	case 7 LakeOfRage_EventScript_WesleyCancel
-	case MULTI_B_PRESSED, LakeOfRage_EventScript_WesleyCancel
-	closemessage
-	release
-	end
-LakeOfRage_EventScript_WesleyYes::
-	msgbox LakeOfRage_Text_WesleyGivesGift, MSGBOX_DEFAULT
 	giveitem ITEM_BLACK_BELT
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_GOT_BLACK_BELT
@@ -541,15 +547,7 @@ LakeOfRage_EventScript_WesleyYes::
 	closemessage
 	release
 	end
-LakeOfRage_EventScript_WesleyNope::
-	msgbox LakeOfRage_Text_WesleyNotWednesday, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-LakeOfRage_EventScript_WesleyCancel::
-	closemessage
-	release
-	end
+
 LakeOfRage_EventScript_WesleyCompleted::
 	msgbox LakeOfRage_Text_WesleyWednesday, MSGBOX_DEFAULT
 	closemessage
@@ -559,21 +557,16 @@ LakeOfRage_EventScript_WesleyCompleted::
 LakeOfRage_Text_MeetWesley:
 #if GERMAN
 	.string "Mitko: Na, wie geht’s dir?\p"
-	.string "Ich gehöre zur Wochentags-Familie!\n"
-	.string "Kannst du meinen Lieblingstag erraten?$"
-#else
-    .string "WESLEY: Well, how do you do?\p"
-    .string "I'm a member of the WEEKDAY family!\n"
-	.string "Can you guess my favorite day?$"
-#endif
-
-LakeOfRage_Text_WesleyGivesGift:
-#if GERMAN
+	.string "Heute ist Mittwoch, also bin ich\n"
+	.string "hier: Mitko vom Mittwoch!\p"
 	.string "Freut mich! Bitte nimm dieses\n"
 	.string "Souvenir.$"
 #else
-    .string "Pleased to meet you. Please take a\n"
-    .string "souvenir.$"
+	.string "WESLEY: Well, how do you do?\p"
+	.string "Seeing as how it's Wednesday,\n"
+	.string "I'm WESLEY of Wednesday!\p"
+	.string "Pleased to meet you. Please take a\n"
+	.string "souvenir.$"
 #endif
 
 LakeOfRage_Text_WesleyGaveGift:
@@ -587,22 +580,15 @@ LakeOfRage_Text_WesleyGaveGift:
 
 LakeOfRage_Text_WesleyWednesday:
 #if GERMAN
-	.string "Mitko: Da du mich gefunden hast, musst\n"
-	.string "du meine Brüder und Schwestern\l"
-	.string "getroffen haben.\p"
+	.string "Mitko: Da du mich gefunden hast,\n"
+	.string "musst du meine Brüder und\l"
+	.string "Schwestern getroffen haben.\p"
 	.string "Oder hattest du einfach nur Glück?$"
 #else
     .string "WESLEY: Since you found me, you\n"
     .string "must have met my brothers and\l"
     .string "sisters.\p"
     .string "Or did you just get lucky?$"
-#endif
-
-LakeOfRage_Text_WesleyNotWednesday:
-#if GERMAN
-	.string "Mitko: Nicht ganz…$"
-#else
-    .string "WESLEY: Not exactly...$"
 #endif
 
 LakeOfRage_EventScript_Sign1::

@@ -32,9 +32,6 @@ RustboroCity_EventScript_ScientistAddMatchCall::
 	lockall
 	setvar VAR_ROUTE104_STATE, 1
 #if IS_HNS
-@ Der Spieler bringt den PokéCom samt Ruf-Funktion aus Johto mit. Die Szene, in der
-@ der Devon-Wissenschaftler die Funktion erst freischaltet, entfaellt deshalb --
-@ die Folgezustaende werden aber unveraendert gesetzt.
 	goto RustboroCity_EventScript_SkipScientistAddMatchCall
 #endif
 	applymovement LOCALID_PLAYER, RustboroCity_Movement_PlayerWalkDown
@@ -74,8 +71,7 @@ RustboroCity_EventScript_ScientistAddMatchCall::
 	goto RustboroCity_EventScript_MatchCallTutorial
 
 #if IS_HNS
-@ Ersetzt die Ruf-Funktions-Szene: setzt genau die Zustaende, die ihr Ende auch
-@ gesetzt haette, ohne den Wissenschaftler auftreten zu lassen.
+@ Origin Jade: sets the end states of the Match Call scene without playing it.
 RustboroCity_EventScript_SkipScientistAddMatchCall::
 	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
 	setflag FLAG_HIDE_RUSTBORO_CITY_SCIENTIST
@@ -175,8 +171,7 @@ RustboroCity_EventScript_Man1::
 	lock
 	faceplayer
 #if IS_HNS
-	@ HnS: FLAG_BADGE01_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
+	@ Hoenn badge 1 (Roxanne)
 	setvar VAR_0x8004, 0
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, TRUE, RustboroCity_EventScript_Man1HaveBadge
@@ -195,7 +190,7 @@ RustboroCity_EventScript_Man1HaveBadge::
 RustboroCity_EventScript_Boy2::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_POKENAV, RustboroCity_EventScript_Boy2BrineyLeftTunnel
+	goto_if_set FLAG_HOENN_RECEIVED_POKENAV, RustboroCity_EventScript_Boy2BrineyLeftTunnel
 	msgbox RustboroCity_Text_MrBrineyWalksInTheTunnel, MSGBOX_DEFAULT
 	release
 	end
@@ -705,8 +700,7 @@ RustboroCity_EventScript_Rival::
 
 RustboroCity_EventScript_PlayRivalMusic::
 #if IS_HNS
-	@ HnS-Kanon: Die Rivalin ist immer Maike, unabhaengig vom Geschlecht
-	@ der Spielfigur. Brix bleibt als eigenstaendige Figur frei.
+	@ Origin Jade: the Hoenn rival is always May.
 	goto RustboroCity_EventScript_PlayMayMusic
 #else
 	checkplayergender
@@ -853,8 +847,6 @@ RustboroCity_EventScript_RivalTrigger7::
 
 RustboroCity_EventScript_RivalEncounter::
 #if IS_HNS
-	@ HnS-Kanon: Die Rivalin ist immer Maike, unabhaengig vom Geschlecht
-	@ der Spielfigur. Brix bleibt als eigenstaendige Figur frei.
 	goto RustboroCity_EventScript_MayEncounter
 #else
 	checkplayergender
@@ -868,8 +860,7 @@ RustboroCity_EventScript_MayEncounter::
 	goto_if_set FLAG_MET_RIVAL_RUSTBORO, RustboroCity_EventScript_MayAskToBattle
 	setflag FLAG_MET_RIVAL_RUSTBORO
 #if IS_HNS
-	@ HnS: Maike traegt sich schon auf Route 103 selbst ein - hier laeuft
-	@ kein Eintragungsereignis mehr, das Gespraech geht direkt weiter.
+	@ Origin Jade: May registers on Route 103 instead.
 	msgbox RustboroCity_Text_MayHiLetsRegister, MSGBOX_DEFAULT
 #else
 	msgbox RustboroCity_Text_MayHiLetsRegister, MSGBOX_DEFAULT
@@ -903,8 +894,7 @@ RustboroCity_EventScript_MayAskToBattle::
 RustboroCity_EventScript_BattleMay::
 	msgbox RustboroCity_Text_MayImNotGoingToLose, MSGBOX_DEFAULT
 #if IS_HNS
-	@ HnS: VAR_STARTER_MON traegt hier den Johto-Starter. Maikes Starterlinie
-	@ steht seit Route 103 fest (Flemmli), deshalb immer das Treecko-Set.
+	@ Origin Jade: May always has the Torchic line (Treecko set).
 	goto RustboroCity_EventScript_BattleMayTreecko
 #else
 	switch VAR_STARTER_MON

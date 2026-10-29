@@ -1,7 +1,7 @@
 {
   "id": "MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_1F_HNS",
   "name": "NewBarkTown_PlayersHouse_1F_hns",
-  "layout": "LAYOUT_NEW_BARK_TOWN_PLAYERS_HOUSE_1F_HNS",
+  "layout": "LAYOUT_PALLET_TOWN_PLAYERS_HOUSE_1F_FRLG",
   "music": "MUS_HG_NEW_BARK",
   "region_map_section": "MAPSEC_NEW_BARK_TOWN",
   "requires_flash": false,
@@ -45,7 +45,7 @@
   ],
   "warp_events": [
     {
-      "x": 9,
+      "x": 4,
       "y": 8,
       "elevation": 0,
       "dest_map": "MAP_NEW_BARK_TOWN_HNS",
@@ -59,26 +59,7 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [
-    {
-      "type": "trigger",
-      "x": 10,
-      "y": 3,
-      "elevation": 0,
-      "var": "VAR_NEWBARK_TOWN_STATE",
-      "var_value": "1",
-      "script": "NewBarkTown_PlayersHouse_1F_EventScript_MomsIntroTrigger2"
-    },
-    {
-      "type": "trigger",
-      "x": 9,
-      "y": 2,
-      "elevation": 0,
-      "var": "VAR_NEWBARK_TOWN_STATE",
-      "var_value": "1",
-      "script": "NewBarkTown_PlayersHouse_1F_EventScript_MomsIntroTrigger1"
-    }
-  ],
+  "coord_events": [],
   "bg_events": [],
   "game_version": "hns",
   "region": "REGION_JOHTO"

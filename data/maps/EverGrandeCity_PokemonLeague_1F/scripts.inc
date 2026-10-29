@@ -4,8 +4,6 @@ EverGrandeCity_PokemonLeague_1F_MapScripts::
 	.byte 0
 
 EverGrandeCity_PokemonLeague_1F_OnTransition:
-	@ Origin Jade: Absicherung fuer Spielstaende, deren Ruhmeshalle vor
-	@ diesem Patch lief - setzt die Rueckkampfstufen vor dem Anlauf.
 	special UpdateEliteFourRematch
 	setrespawn HEAL_LOCATION_EVER_GRANDE_CITY_POKEMON_LEAGUE
 	setflag FLAG_LANDMARK_POKEMON_LEAGUE
@@ -58,8 +56,7 @@ EverGrandeCity_PokemonLeague_1F_EventScript_DoorGuard::
 	waitmessage
 	delay 120
 #if IS_HNS
-	@ HnS: FLAG_BADGE06_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
+	@ Hoenn badge 6 (Winona)
 	setvar VAR_0x8004, 5
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, FALSE, EverGrandeCity_PokemonLeague_1F_EventScript_NotAllBadges

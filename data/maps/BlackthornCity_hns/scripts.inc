@@ -6,10 +6,23 @@ BlackthornCity_hns_MapScripts::
 	.byte 0
 
 BlackthornCity_OnLoad::
-	goto_if_unset FLAG_BADGE05_GET, BlackThornCity_EventScript_MoveGymBoy
-	goto_if_unset FLAG_BADGE06_GET, BlackThornCity_EventScript_MoveGymBoy
-	goto_if_unset FLAG_BADGE07_GET, BlackThornCity_EventScript_MoveGymBoy
+	@ The boy blocks the gym until the player has Johto badges 5-7.
+	call BlackthornCity_EventScript_CheckJohtoBadges5To7
+	goto_if_eq VAR_RESULT, FALSE, BlackThornCity_EventScript_MoveGymBoy
 	end
+
+@ VAR_RESULT = TRUE if the player holds Johto badges 5, 6 and 7.
+BlackthornCity_EventScript_CheckJohtoBadges5To7::
+	setvar VAR_0x8004, 4
+	special CheckJohtoBadge
+	goto_if_eq VAR_RESULT, FALSE, BlackthornCity_EventScript_CheckJohtoBadges5To7End
+	setvar VAR_0x8004, 5
+	special CheckJohtoBadge
+	goto_if_eq VAR_RESULT, FALSE, BlackthornCity_EventScript_CheckJohtoBadges5To7End
+	setvar VAR_0x8004, 6
+	special CheckJohtoBadge
+BlackthornCity_EventScript_CheckJohtoBadges5To7End::
+	return
 
 BlackThornCity_EventScript_MoveGymBoy::
 	setobjectxyperm LOCALID_BLACKTHORN_BOY, 24, 27
@@ -22,7 +35,15 @@ BlackthornCity_OnFrame::
 BlackthornCity_EventScript_CityEnter::
 	setflag FLAG_VISITED_BLACKTHORN_CITY
 	callnative SetTimeBasedEncounters
+	special GetWeekday
+	call_if_ne VAR_RESULT, WEEKDAY_SAT, BlackthornCity_EventScript_HideSantos
 	end
+
+@ Santos of the weekday siblings is only here on Saturday, see
+@ docs/origin_jade/DECISIONS.md, D-033.
+BlackthornCity_EventScript_HideSantos:
+	setflag FLAG_TEMP_1
+	return
 
 BlackthornCity_EventScript_Call::
 	lock
@@ -46,22 +67,23 @@ BlackthornCity_Text_BaobaCall:
 #if GERMAN
 	.string "Aufseher Baoba: {PLAYER}!\p"
 	.string "Hier ist Aufseher Baoba.\p"
-	.string "Ich rufe dich an, um dir mitzuteilen,\n"
-	.string "dass die Safari-Zone vergrößert wurde!\p"
+	.string "Ich rufe dich an, um dir\n"
+	.string "mitzuteilen, dass die\l"
+	.string "Safari-Zone vergrößert wurde!\p"
 	.string "Bitte komm vorbei!$"
 #else
 	.string "WARDEN BAOBA: {PLAYER}!\p"
 	.string "This is WARDEN BAOBA.\p"
-	.string "I'm calling to tell you that\n"
-	.string "the SAFARI ZONE has expanded!\p"
+	.string "I'm calling to tell you that the\n"
+	.string "SAFARI ZONE has expanded!\p"
 	.string "Please come visit!$"
 #endif
 
 BlackthornCity_Text_ElmCall:
 #if GERMAN
 	.string "Hallo, {PLAYER}?\p"
-	.string "Professor Eich hat mir etwas für dich\n"
-	.string "mitgegeben.\p"
+	.string "Professor Eich hat mir etwas für\n"
+	.string "dich mitgegeben.\p"
 	.string "Komm doch mal im Labor vorbei.\n"
 	.string "Ich zähle auf dich!$"
 #else
@@ -100,9 +122,8 @@ BlackThornCity_Trigger_Sage::
 BlackthornCity_EventScript_GymBoy::
 	lock
 	faceplayer
-	goto_if_unset FLAG_BADGE05_GET, BlackThornCity_EventScript_GymBoyNotReady
-	goto_if_unset FLAG_BADGE06_GET, BlackThornCity_EventScript_GymBoyNotReady
-	goto_if_unset FLAG_BADGE07_GET, BlackThornCity_EventScript_GymBoyNotReady
+	call BlackthornCity_EventScript_CheckJohtoBadges5To7
+	goto_if_eq VAR_RESULT, FALSE, BlackThornCity_EventScript_GymBoyNotReady
 	goto_if_eq VAR_BLACKTHORN_CITY_STATE, 1, BlackThornCity_EventScript_GymBoyBefore
 	msgbox BlackthornCity_Text_ClairIsBeaten, MSGBOX_DEFAULT
 	closemessage
@@ -158,23 +179,6 @@ BlackthornCity_EventScript_Santos::
 	faceplayer
 	goto_if_set FLAG_GOT_SPELL_TAG, BlackthornCity_EventScript_SantosCompleted
 	msgbox BlackthornCity_MeetSantosText, MSGBOX_DEFAULT
-	closemessage
-	multichoice 20, 0, MULTI_DAYS_OF_WEEK, FALSE
-	switch VAR_RESULT
-	case 0, BlackthornCity_EventScript_SantosNope
-	case 1, BlackthornCity_EventScript_SantosNope
-	case 2, BlackthornCity_EventScript_SantosNope
-	case 3, BlackthornCity_EventScript_SantosNope
-	case 4, BlackthornCity_EventScript_SantosNope
-	case 5, BlackthornCity_EventScript_SantosNope
-	case 6, BlackthornCity_EventScript_SantosYes
-	case 7 BlackthornCity_EventScript_SantosCancel
-	case MULTI_B_PRESSED, BlackthornCity_EventScript_SantosCancel
-	closemessage
-	release
-	end
-BlackthornCity_EventScript_SantosYes::
-	msgbox BlackthornCity_SantosGivesGiftText, MSGBOX_DEFAULT
 	giveitem ITEM_SPELL_TAG
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_GOT_SPELL_TAG
@@ -182,15 +186,7 @@ BlackthornCity_EventScript_SantosYes::
 	closemessage
 	release
 	end
-BlackthornCity_EventScript_SantosNope::
-	msgbox BlackthornCity_SantosNopeText, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-BlackthornCity_EventScript_SantosCancel::
-	closemessage
-	release
-	end
+
 BlackthornCity_EventScript_SantosCompleted::
 	msgbox BlackthornCity_SantosSaturdayText, MSGBOX_DEFAULT
 	closemessage
@@ -289,18 +285,13 @@ BlackthornYoungsterText:
 BlackthornCity_MeetSantosText:
 #if GERMAN
 	.string "Samson: …\p"
-	.string "Ich bin Samson von der Wochentag-\n"
-	.string "Familie. Nun rate mal.$"
-#else
-	.string "SANTOS: …\p"
-	.string "I'm SANTOS of the weekday family.\p"
-	.string "Take a guess.$"
-#endif
-
-BlackthornCity_SantosGivesGiftText:
-#if GERMAN
+	.string "Heute ist Samstag…\p"
+	.string "Ich bin Samson vom Samstag…\p"
 	.string "Du kannst das haben…$"
 #else
+	.string "SANTOS: …\p"
+	.string "It's Saturday…\p"
+	.string "I'm SANTOS of Saturday…\p"
 	.string "You can have this…$"
 #endif
 
@@ -326,13 +317,6 @@ BlackthornCity_SantosSaturdayText:
 	.string "SANTOS: …\p"
 	.string "See you again on another Saturday…\p"
 	.string "I won't have any more gifts…$"
-#endif
-
-BlackthornCity_SantosNopeText:
-#if GERMAN
-	.string "Samson: Ne.$"
-#else
-	.string "SANTOS: No.$"
 #endif
 
 BlackthornCooltrainerF2Text:

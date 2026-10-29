@@ -2244,15 +2244,18 @@ const u16 gMonIconPalettes[][16] =
 };
 
 #if IS_HNS
-// Origin Jade: Logo auf 15 Farben verdichtet (nur Palette 0);
-// die Bildpaletten 1-15 laedt title_screen.c separat (titelbild_pal.bin).
+// Origin Jade: the logo uses only palette 0 (15 colors); title_screen.c loads
+// the image palettes 1-15 separately (titelbild_pal.bin).
 const u16 gTitleScreenBgPalettes[]         = INCBIN_U16("graphics/title_screen/hns/pokemon_logo.gbapal");
 const u16 gTitleScreenEmeraldVersionPal[]  = INCBIN_U16("graphics/title_screen/origin_jade/emerald_version.gbapal");
 const u32 gTitleScreenCloudsTilemap[]      = INCBIN_U32("graphics/title_screen/clouds.bin.smolTM");
 const u32 gTitleScreenPokemonLogoGfx[]     = INCBIN_U32("graphics/title_screen/hns/pokemon_logo.8bpp.smol");
 const u32 gTitleScreenEmeraldVersionGfx[]  = INCBIN_U32("graphics/title_screen/origin_jade/emerald_version.8bpp.smol");
-const u16 gTitleScreenPressStartPal[]      = INCBIN_U16("graphics/title_screen/hns/press_start.gbapal");
-const u32 gTitleScreenPressStartGfx[]      = INCBIN_U32("graphics/title_screen/hns/press_start.4bpp.smol");
+// Origin Jade: "PRESS START" graphic with the Origin Jade version. New version:
+// replace the digits in graphics/title_screen/origin_jade/press_start.png
+// (9x7 per digit, right-aligned at x=124).
+const u16 gTitleScreenPressStartPal[]      = INCBIN_U16("graphics/title_screen/origin_jade/press_start.gbapal");
+const u32 gTitleScreenPressStartGfx[]      = INCBIN_U32("graphics/title_screen/origin_jade/press_start.4bpp.smol");
 const u32 gTitleScreenPokemonLogoTilemap[] = INCBIN_U32("graphics/title_screen/hns/pokemon_logo.bin.smolTM");
 #else
 const u16 gTitleScreenBgPalettes[]         = INCBIN_U16("graphics/title_screen/pokemon_logo.gbapal",

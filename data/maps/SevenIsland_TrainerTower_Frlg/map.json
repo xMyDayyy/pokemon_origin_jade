@@ -1,7 +1,7 @@
 {
   "id": "MAP_SEVEN_ISLAND_TRAINER_TOWER",
   "name": "SevenIsland_TrainerTower_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_SEVEN_ISLAND_TRAINER_TOWER",
   "music": "MUS_RG_SEVII_ROUTE",
   "region": "REGION_KANTO",

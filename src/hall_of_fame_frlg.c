@@ -10,6 +10,7 @@
 #include "graphics.h"
 #include "hall_of_fame.h"
 #include "hall_of_fame_frlg.h"
+#include "load_save.h"
 #include "m4a.h"
 #include "main.h"
 #include "malloc.h"
@@ -699,12 +700,23 @@ static void Task_Hof_HandleExit(u8 taskId)
 
 static void SetWarpsToRollCredits(void)
 {
+    // Origin Jade: plateau scene without credits, see IndigoPlateau_Exterior_EventScript_Credits.
+    // The Hall of Fame save already holds the continue warp; later saves must not.
+    ClearContinueGameWarpStatus();
     VarSet(VAR_MAP_SCENE_INDIGO_PLATEAU_EXTERIOR, 1);
     FlagSet(FLAG_HIDE_MAP_NAME_POPUP);
     gDisableMapMusicChangeOnMapLoad = MUSIC_DISABLE_KEEP;
     SetWarpDestination(MAP_GROUP(MAP_INDIGO_PLATEAU_EXTERIOR), MAP_NUM(MAP_INDIGO_PLATEAU_EXTERIOR), -1, 11, 6);
     DoWarp();
     ResetInitialPlayerAvatarState();
+}
+
+// Origin Jade: special at the end of the plateau scene. Undoes the popup and
+// music lock of SetWarpsToRollCredits, which FRLG's credits cleared.
+void ClearCreditsSceneState(void)
+{
+    FlagClear(FLAG_HIDE_MAP_NAME_POPUP);
+    gDisableMapMusicChangeOnMapLoad = MUSIC_DISABLE_OFF;
 }
 
 void CB2_InitHofPC(void)

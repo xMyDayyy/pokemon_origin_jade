@@ -58,8 +58,9 @@ CinnabarIsland_Gym_EventScript_DefeatedBlaine::
 	setflag FLAG_DEFEATED_BLAINE
 	setflag FLAG_BADGE07_GET
 	setrespawn HEAL_LOCATION_CINNABAR_ISLAND
-	setvar VAR_MAP_SCENE_CINNABAR_ISLAND, 1
-	clearflag FLAG_HIDE_CINNABAR_BILL
+	@ Origin Jade: Bill's trip to the Sevii Islands is disabled.
+	@ setvar VAR_MAP_SCENE_CINNABAR_ISLAND, 1
+	@ clearflag FLAG_HIDE_CINNABAR_BILL
 	set_gym_trainers_frlg 7
 	goto CinnabarIsland_Gym_EventScript_GiveTM38
 	end
@@ -718,7 +719,7 @@ CinnabarIsland_Gym_Text_BlaineIntro::
 	.string "Siegesträume meiner Gegner in Flammen\l"
 	.string "aufgehen!\p"
 	.string "Du solltest Feuerheiler\n"
-	.string "parat halten!{PLAY_BGM}?À$"
+	.string "parat halten!$"
 #else
 	.string "Hah!\p"
 	.string "I am BLAINE, the red-hot LEADER\n"

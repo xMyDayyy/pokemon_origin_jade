@@ -272,10 +272,7 @@ const u32 gObjectEventPic_DurinBerryTree[] = INCBIN_U32("graphics/object_events/
 const u32 gObjectEventPic_LiechiBerryTree[] = INCBIN_U32("graphics/object_events/pics/berry_trees/liechi_hns.4bpp");
 const u32 gObjectEventPic_LansatBerryTree[] = INCBIN_U32("graphics/object_events/pics/berry_trees/lansat_hns.4bpp");
 
-// Hoenn behaelt seine gewohnten Beerenbaeume: dieselben Bilder wie im
-// Nicht-HnS-Build, nur unter eigenen Symbolnamen. Die HnS-Sprites zeigen
-// nur die Frucht (der Busch ist dort Teil des Tilesets) und waeren in
-// Hoenn unsichtbar.
+// Hoenn berry trees: the non-HnS pictures under their own symbol names.
 const u32 gObjectEventPic_BerryTreeDirtPile_Hoenn[] = INCBIN_U32("graphics/object_events/pics/berry_trees/dirt_pile.4bpp");
 const u32 gObjectEventPic_BerryTreeSprout_Hoenn[] = INCBIN_U32("graphics/object_events/pics/berry_trees/sprout.4bpp");
 const u32 gObjectEventPic_CheriBerryTree_Hoenn[] = INCBIN_U32("graphics/object_events/pics/berry_trees/cheri.4bpp");
@@ -550,7 +547,7 @@ const u16 gFieldEffectObjectPalette_CaveDust[] = INCBIN_U16("graphics/field_effe
 
 const u32 gObjectEventPic_ApricornTree[] = INCBIN_U32("graphics/object_events/pics/misc/apricorn_tree.4bpp");
 
-#if IS_FRLG
+#if IS_FRLG || IS_HNS
 
 const u16 gObjectEventPic_RedNormal[] = INCBIN_U16("graphics/object_events/pics/people/red/red_normal.4bpp");
 const u16 gObjectEventPic_RedBike[] = INCBIN_U16("graphics/object_events/pics/people/red/red_bike.4bpp");

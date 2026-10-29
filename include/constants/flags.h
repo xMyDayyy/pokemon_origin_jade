@@ -2508,8 +2508,15 @@
 
 #if defined(POKEMON_HNS)
 #include "constants/flags_hoenn_de.h"
+#include "constants/flags_frlg_hns.h"
+#include "constants/flags_origin_jade.h"
 #undef FLAGS_COUNT
 #define FLAGS_COUNT (HOENN_FLAGS_END + 1)
+#else
+// Other builds: Origin Jade's Hoenn flags (D-040) are the vanilla ones.
+#define FLAG_IS_HOENN_CHAMPION              FLAG_SYS_GAME_CLEAR
+#define FLAG_HOENN_RECEIVED_POKENAV         FLAG_RECEIVED_POKENAV
+#define FLAG_HOENN_REGISTER_RIVAL_POKENAV   FLAG_REGISTER_RIVAL_POKENAV
 #endif
 
 #if TESTING

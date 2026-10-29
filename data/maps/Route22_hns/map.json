@@ -14,11 +14,6 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_VIRIDIAN_CITY_HNS",
-      "offset": -18,
-      "direction": "right"
-    },
-    {
       "map": "MAP_ROUTE26NORTH_HNS",
       "offset": 28,
       "direction": "left"
@@ -171,15 +166,7 @@
       "flag": "0"
     }
   ],
-  "warp_events": [
-    {
-      "x": 12,
-      "y": 9,
-      "elevation": 0,
-      "dest_map": "MAP_RECEPTION_GATE_HNS",
-      "dest_warp_id": "4"
-    }
-  ],
+  "warp_events": [],
   "coord_events": [
     {
       "type": "trigger",

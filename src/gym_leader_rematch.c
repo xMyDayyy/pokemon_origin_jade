@@ -31,12 +31,8 @@ static const u16 GymLeaderRematches_BeforeNewMauville[] = {
     REMATCH_JUAN
 };
 
-// Origin Jade: Vor jedem neuen Liga-Anlauf (Ruhmeshalle / Liga-Lobby) werden
-// alle fuenf Top-Vier-Eintraege auf ihre Rueckkampfstufe gesetzt, sobald der
-// HOENN-Ligasieg (FLAG_IS_HOENN_CHAMPION) vorliegt. Anders als bei den Arenaleitern
-// gibt es keine Zufallsfreischaltung: Die Liga wird immer als Ganzes
-// wiederholt. Nach jedem Kampf setzt HandleRematchVarsOnBattleEnd den
-// Eintrag zurueck, daher muss vor jedem Anlauf neu gesetzt werden.
+// Origin Jade: once the Hoenn league is won, sets all Elite Four entries to
+// their rematch tier. Call it before every league run, each battle resets them.
 void UpdateEliteFourRematch(void)
 {
 #if FREE_MATCH_CALL == FALSE
@@ -58,7 +54,7 @@ void UpdateEliteFourRematch(void)
                 break;
         }
         if (j >= REMATCHES_COUNT)
-            j = REMATCHES_COUNT - 1; // alle Stufen bekannt -> hoechste wiederholen
+            j = REMATCHES_COUNT - 1; // all tiers known -> repeat the highest
 
         gSaveBlock1Ptr->trainerRematches[idx] = j;
     }
@@ -67,7 +63,7 @@ void UpdateEliteFourRematch(void)
 
 void UpdateGymLeaderRematch(void)
 {
-    // Origin Jade: erst nach dem Hoenn-Ligasieg (siehe IsRematchForbidden).
+    // Origin Jade: only after winning the Hoenn league (see IsRematchForbidden).
     if (FlagGet(FLAG_IS_HOENN_CHAMPION) && (Random() % 100) <= 30)
     {
         if (FlagGet(FLAG_WATTSON_REMATCH_AVAILABLE))

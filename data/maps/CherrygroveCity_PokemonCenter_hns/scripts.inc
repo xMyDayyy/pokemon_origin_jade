@@ -42,20 +42,24 @@ CherryGrove_Pokecenter_Chansey::
 
 CherryGrove_Pokecenter_Text_Fisher:
 #if GERMAN
-	.string "Toll! Hier kann man völlig umsonst so\n"
-	.string "viele Pokémon lagern, wie man nur will!$"
+	.string "Ich lagere hier meine Angel-Beute.\p"
+	.string "Irgendwann sind es zu viele für einen\n"
+	.string "Beutel.$"
 #else
-	.string "It's great. I can store any number\n"
-	.string "of POKéMON, and it's all free.$"
+	.string "I keep my catch in storage here.\p"
+	.string "Sooner or later there are too many\n"
+	.string "for one BAG.$"
 #endif
 
 CherryGrove_Pokecenter_Text_Gentleman:
 #if GERMAN
-	.string "Dieser PC steht jedem Trainer\n"
-	.string "kostenfrei zur Verfügung.$"
+	.string "Ruhig hier, nicht wahr?\p"
+	.string "In Dukatia City muss man Schlange\n"
+	.string "stehen, hat man mir erzählt.$"
 #else
-	.string "That PC is free for any\n"
-	.string "trainer to use.$"
+	.string "Quiet in here, is it not?\p"
+	.string "In GOLDENROD you have to queue, or\n"
+	.string "so I am told.$"
 #endif
 
 CherryGrove_Pokecenter_Text_Lass:

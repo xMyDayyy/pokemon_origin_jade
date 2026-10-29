@@ -8,9 +8,9 @@ CeruleanCity_OnTransition::
 	end
 
 CeruleanCity_EventScript_BlockExits::
-	setobjectxyperm LOCALID_CERULEAN_POLICEMAN, 30, 12
-	setobjectxyperm LOCALID_CERULEAN_SLOWBRO, 26, 31
-	setobjectxyperm LOCALID_CERULEAN_LASS, 27, 31
+	setobjectxyperm LOCALID_CERULEAN_POLICEMAN, 44, 20
+	setobjectxyperm LOCALID_CERULEAN_SLOWBRO, 32, 45
+	setobjectxyperm LOCALID_CERULEAN_LASS, 32, 44
 	return
 
 CeruleanCity_EventScript_RivalTriggerLeft::
@@ -19,17 +19,24 @@ CeruleanCity_EventScript_RivalTriggerLeft::
 	goto CeruleanCity_EventScript_Rival
 	end
 
-CeruleanCity_EventScript_RivalTriggerMid::
+CeruleanCity_EventScript_RivalTriggerMidL::
 	lockall
 	setvar VAR_TEMP_1, 1
-	setobjectxyperm LOCALID_CERULEAN_RIVAL, 23, 0
+	setobjectxyperm LOCALID_CERULEAN_RIVAL, 42, 1
+	goto CeruleanCity_EventScript_Rival
+	end
+
+CeruleanCity_EventScript_RivalTriggerMidR::
+	lockall
+	setvar VAR_TEMP_1, 1
+	setobjectxyperm LOCALID_CERULEAN_RIVAL, 43, 1
 	goto CeruleanCity_EventScript_Rival
 	end
 
 CeruleanCity_EventScript_RivalTriggerRight::
 	lockall
 	setvar VAR_TEMP_1, 2
-	setobjectxyperm LOCALID_CERULEAN_RIVAL, 24, 0
+	setobjectxyperm LOCALID_CERULEAN_RIVAL, 44, 1
 	goto CeruleanCity_EventScript_Rival
 	end
 
@@ -52,15 +59,13 @@ CeruleanCity_EventScript_Rival::
 	call_if_eq VAR_TEMP_1, 0, CeruleanCity_EventScript_RivalStartExit
 	call_if_eq VAR_TEMP_1, 1, CeruleanCity_EventScript_RivalStartExit
 	call_if_eq VAR_TEMP_1, 2, CeruleanCity_EventScript_RivalStartExitRight
-	msgbox CeruleanCity_Text_OhRightLittlePresentAsFavor
+	@ Origin Jade: the rival leaves without handing over the Fame Checker.
 	setvar VAR_MAP_SCENE_CERULEAN_CITY_RIVAL, 1
 	setflag FLAG_GOT_FAME_CHECKER
-	giveitem ITEM_FAME_CHECKER
-	msgbox CeruleanCity_Text_ExplainFameCheckerSmellYa
-	closemessage
 	applymovement LOCALID_CERULEAN_RIVAL, CeruleanCity_Movement_RivalExit
 	waitmovement 0
 	fadedefaultbgm
+	setflag FLAG_HIDE_CERULEAN_RIVAL
 	removeobject LOCALID_CERULEAN_RIVAL
 	releaseall
 	end
@@ -122,14 +127,6 @@ CeruleanCity_Movement_RivalStartExit::
 	walk_down
 	walk_down
 	walk_down
-	delay_16
-	delay_16
-	walk_left
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
 	step_end
 
 CeruleanCity_Movement_RivalStartExitRight::
@@ -141,14 +138,6 @@ CeruleanCity_Movement_RivalStartExitRight::
 	walk_down
 	walk_down
 	walk_down
-	delay_16
-	delay_16
-	walk_right
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
 	step_end
 
 CeruleanCity_Movement_RivalExit::
@@ -232,6 +221,29 @@ CeruleanCity_EventScript_Policeman::
 	waitmovement 0
 	release
 	end
+
+@ Trigger on tiles 40-43,20: the policeman blocks them until the player has the S.S. Ticket.
+CeruleanCity_EventScript_PolicemanBlock::
+	lockall
+	goto_if_set FLAG_GOT_SS_TICKET, CeruleanCity_EventScript_PolicemanBlockOver
+	applymovement LOCALID_CERULEAN_POLICEMAN, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox CeruleanCity_Text_PeopleHereWereRobbed
+	closemessage
+	applymovement LOCALID_CERULEAN_POLICEMAN, Common_Movement_FaceOriginalDirection
+	applymovement OBJ_EVENT_ID_PLAYER, CeruleanCity_Movement_PushPlayerUp
+	waitmovement 0
+	releaseall
+	end
+
+CeruleanCity_EventScript_PolicemanBlockOver::
+	setvar VAR_TEMP_0, 1
+	releaseall
+	end
+
+CeruleanCity_Movement_PushPlayerUp:
+	walk_up
+	step_end
 
 CeruleanCity_EventScript_LittleBoy::
 	lock
@@ -481,7 +493,8 @@ CeruleanCity_Text_OkayIllReturnStolenTM::
 
 CeruleanCity_Text_RecoveredTM28FromGrunt::
 #if GERMAN
-	.string "{PLAYER} erhält TM28!$"
+	.string "{PLAYER} nimmt dem Rüpel von\n"
+	.string "Team Rocket TM28 wieder ab!$"
 #else
 	.string "{PLAYER} recovered TM28 from\n"
 	.string "the TEAM ROCKET GRUNT.$"
@@ -498,9 +511,9 @@ CeruleanCity_Text_BetterGetMovingBye::
 
 CeruleanCity_Text_MakeRoomForThisCantRun::
 #if GERMAN
-	.string "Mach Platz für dieses coole Item!\p"
-	.string "Ich kann erst gehen, wenn ich es\n"
-	.string "dir gegeben habe!$"
+	.string "Mach Platz in deinem Beutel!\p"
+	.string "Ich kann erst gehen, wenn du es\n"
+	.string "genommen hast!$"
 #else
 	.string "Make room for this!\n"
 	.string "I can't run until I give it to you!$"

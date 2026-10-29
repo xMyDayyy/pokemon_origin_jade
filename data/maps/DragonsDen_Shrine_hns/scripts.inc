@@ -285,6 +285,7 @@ DragonsDen_Shrine_Text_PassedTest:
 DragonsDen_Shrine_EventScript_ClairEnter::
 	clearflag FLAG_HIDE_DRAGONS_DEN_SHRINE_CLAIR
 	addobject LOCALID_DRAGONSDEN3_CLAIR
+	playbgm MUS_HG_CLAIR, FALSE
 	playse SE_DOOR
 	delay 40
 	playse SE_PIN
@@ -320,6 +321,11 @@ DragonsDen_Shrine_EventScript_ClairEnter::
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox DragonsDen_Shrine_Text_RisingBadgeExplanation, MSGBOX_DEFAULT
 	setflag FLAG_BADGE08_GET
+	@ Johto badge 8 (Clair)
+	setvar VAR_0x8004, 7
+	special SetJohtoBadge
+	setvar VAR_0x8004, PERM_WATERFALL
+	special SetJohtoPermit
 	addvar VAR_NUM_BADGES, 1
 
 	applymovement2 LOCALID_DRAGONSDEN3_ELDER, DragonsDen_Shrine_Movement_ElderReturnToPlayer
@@ -334,6 +340,7 @@ DragonsDen_Shrine_EventScript_ClairEnter::
 	applymovement2 LOCALID_DRAGONSDEN3_CLAIR, DragonsDen_Shrine_Movement_ClairLeave
 	waitmovement 0
 	playse SE_EXIT
+	fadedefaultbgm
 	setflag FLAG_HIDE_DRAGONS_DEN_SHRINE_CLAIR
 	removeobject LOCALID_DRAGONSDEN3_CLAIR
 	clearflag FLAG_HIDE_DRAGONS_DEN_CAVERN_CLAIR

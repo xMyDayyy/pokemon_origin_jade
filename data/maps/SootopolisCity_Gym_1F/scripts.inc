@@ -85,8 +85,6 @@ SootopolisCity_Gym_1F_EventScript_Juan::
 	goto_if_eq VAR_RESULT, TRUE, SootopolisCity_Gym_1F_EventScript_JuanRematch
 	goto_if_unset FLAG_RECEIVED_TM_WATER_PULSE, SootopolisCity_Gym_1F_EventScript_GiveWaterPulse2
 #if IS_HNS
-	@ HnS: FLAG_BADGE06_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
 	setvar VAR_0x8004, 5
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, FALSE, SootopolisCity_Gym_1F_EventScript_GoGetFortreeBadge
@@ -103,8 +101,6 @@ SootopolisCity_Gym_1F_EventScript_JuanDefeated::
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox SootopolisCity_Gym_1F_Text_ExplainRainBadgeTakeThis, MSGBOX_DEFAULT
 #if IS_HNS
-	@ HnS: Der Schauerorden ist zugleich die Erlaubnis fuer Kaskade -
-	@ das steht im Ordentext, eine eigene Uebergabe braucht es nicht.
 	setvar VAR_0x8004, LIC_WATERFALL
 	special SetHoennLicense
 #endif
@@ -172,8 +168,6 @@ SootopolisCity_Gym_1F_EventScript_GymGuidePostVictory::
 SootopolisCity_Gym_1F_EventScript_LeftGymStatue::
 	lockall
 #if IS_HNS
-	@ HnS: FLAG_BADGE08_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
 	setvar VAR_0x8004, 7
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, TRUE, SootopolisCity_Gym_1F_EventScript_GymStatueCertified
@@ -186,8 +180,6 @@ SootopolisCity_Gym_1F_EventScript_LeftGymStatue::
 SootopolisCity_Gym_1F_EventScript_RightGymStatue::
 	lockall
 #if IS_HNS
-	@ HnS: FLAG_BADGE08_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
 	setvar VAR_0x8004, 7
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, TRUE, SootopolisCity_Gym_1F_EventScript_GymStatueCertified

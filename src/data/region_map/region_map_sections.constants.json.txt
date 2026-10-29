@@ -25,7 +25,7 @@ enum {
 };
 
 #define KANTO_MAPSEC_START  MAPSEC_PALLET_TOWN
-#define KANTO_MAPSEC_END    MAPSEC_POWER_PLANT
+#define KANTO_MAPSEC_END    MAPSEC_SPECIAL_AREA
 #define KANTO_MAPSEC_COUNT  (KANTO_MAPSEC_END - KANTO_MAPSEC_START + 1)
 
 #define JOHTO_MAPSEC_START  MAPSEC_NEW_BARK_TOWN
@@ -35,6 +35,14 @@ enum {
 #define ALOLA_MAPSEC_START  MAPSEC_MELEMELE_ISLAND
 #define ALOLA_MAPSEC_END    MAPSEC_ULAULA_CAVE_2
 #define ALOLA_MAPSEC_COUNT  (ALOLA_MAPSEC_END - ALOLA_MAPSEC_START + 1)
+
+// Sinjoh and its surrounding routes count as Hisui for regional-form purposes.
+// This range sits *inside* the Johto range above, so GetRegionForSectionId must
+// test it first. These five mapsecs must stay contiguous in
+// region_map_sections.json for this range to remain correct.
+#define HISUI_MAPSEC_START  MAPSEC_SNOWSWEPT_CAVERN
+#define HISUI_MAPSEC_END    MAPSEC_SINJOH_RUINS
+#define HISUI_MAPSEC_COUNT  (HISUI_MAPSEC_END - HISUI_MAPSEC_START + 1)
 
 #else
 

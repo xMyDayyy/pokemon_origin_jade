@@ -1,7 +1,7 @@
 {
   "id": "MAP_SSANNE_1F_CORRIDOR",
   "name": "SSAnne_1F_Corridor_Frlg",
-  "game_version": "frlg",
+  "game_version": "hns",
   "layout": "LAYOUT_SSANNE_1F_CORRIDOR",
   "music": "MUS_RG_SS_ANNE",
   "region": "REGION_KANTO",
@@ -65,15 +65,15 @@
       "x": 19,
       "y": 1,
       "elevation": 3,
-      "dest_map": "MAP_SSANNE_EXTERIOR",
-      "dest_warp_id": "2"
+      "dest_map": "MAP_VERMILION_CITY_PORT_INSIDE_FRLG",
+      "dest_warp_id": "0"
     },
     {
       "x": 20,
       "y": 0,
       "elevation": 0,
-      "dest_map": "MAP_SSANNE_EXTERIOR",
-      "dest_warp_id": "3"
+      "dest_map": "MAP_VERMILION_CITY_PORT_INSIDE_FRLG",
+      "dest_warp_id": "0"
     },
     {
       "x": 3,

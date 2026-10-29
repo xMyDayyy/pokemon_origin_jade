@@ -81,7 +81,7 @@ Route22_EventScript_Scene::
 	addobject LOCALID_ROUTE22_GIOVANNI
 	addobject LOCALID_ROUTE22_SILVER
 	waitse
-	playbgm MUS_RG_ROUTE3, FALSE
+	playbgm MUS_HG_ROUTE3, FALSE
 	fadescreenswapbuffers FADE_FROM_WHITE
 	delay 50
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
@@ -393,7 +393,7 @@ Route22_Text_Silver4:
 	.string "Ich werde ganz alleine stark werden!$"
 #else
 	.string "{RIVAL}: I don't want to\n"
-	.string "Understand you!\p"
+	.string "understand you!\p"
 	.string "I will never become someone like\n"
 	.string "you.\p"
 	.string "A coward when you're alone and\n"

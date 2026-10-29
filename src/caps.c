@@ -4,7 +4,7 @@
 #include "caps.h"
 #include "pokemon.h"
 
-static u8 GetCurrentBadgeCount(void)
+u8 GetCurrentBadgeCount(void)
 {
     u16 i;
     u8 badgeCount = 0;
@@ -42,6 +42,10 @@ static const u8 sLevelCapTable_Hard[] =
     [8] = 54,
 };
 
+// Post-league caps as in HnS, in Origin Jade's order: the first title (Kanto)
+// raises the cap to 70 for the second region (Johto), the Johto title removes it.
+#define KANTO_MAX_LEVEL 70
+
 u32 GetCurrentLevelCap(void)
 {
     static const u32 sLevelCapFlagMap[][2] =
@@ -65,8 +69,16 @@ u32 GetCurrentLevelCap(void)
         if (badgeCount > 8)
             badgeCount = 8;
 
+#if IS_HNS
+        if (FlagGet(FLAG_IS_JOHTO_CHAMPION))
+            return MAX_LEVEL;
+
+        if (FlagGet(FLAG_IS_KANTO_CHAMPION))
+            return KANTO_MAX_LEVEL;
+#else
         if (FlagGet(FLAG_IS_CHAMPION))
             return MAX_LEVEL;
+#endif
 
         if (challengeLevelCap == 1)
             return sLevelCapTable_Normal[badgeCount];

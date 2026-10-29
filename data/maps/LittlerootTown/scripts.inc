@@ -226,6 +226,12 @@ LittlerootTown_OnWarp:
 LittlerootTown_EventScript_SetRivalBirchPosForDexUpgrade::
 	addobject LOCALID_LITTLEROOT_BIRCH
 	addobject LOCALID_LITTLEROOT_RIVAL
+#if IS_HNS
+	@ Origin Jade: the player arrives in front of the lab (7,17), Birch and May wait next to it.
+	setobjectxy LOCALID_LITTLEROOT_BIRCH, 8, 17
+	setobjectxy LOCALID_LITTLEROOT_RIVAL, 9, 17
+	end
+#endif
 	checkplayergender
 	goto_if_eq VAR_RESULT, MALE, LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeMale
 	goto LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeFemale
@@ -398,8 +404,7 @@ LittlerootTown_EventScript_BirchsLabSign::
 LittlerootTown_EventScript_BrendansHouseSign::
 	lockall
 #if IS_HNS
-	@ HnS: Die Haeuser sind fest vergeben - links Arenaleiter Norman,
-	@ rechts Prof. Birk. Die Junge/Maedchen-Wahl spielt keine Rolle mehr.
+	@ HnS: always Norman's house.
 	msgbox LittlerootTown_Text_NormansHouse, MSGBOX_DEFAULT
 	releaseall
 	end
@@ -1170,14 +1175,8 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 #endif
 
 
-@ HnS: Einstieg in die Erweiterung. Im Original faengt hier die Mutter
-@ den Spieler ab und uebergibt die Laufschuhe - beides entfaellt
-@ (Mutter in Johto, Laufschuhe vorhanden). Stattdessen kommt Prof.
-@ Birk dem fremden Champion aus Johto und Kanto beim ersten Verlassen
-@ von Wurzelheim kurz nach. Einmalig ueber VAR_HOENN_ARRIVAL_STATE.
-@ Der Ortsausgang ist zwei Kacheln breit. Links (x=10) stellt sich Birk
-@ direkt unter den Spieler. Rechts (x=11) waere er nur schraeg davor, also
-@ geht er eine Kachel weiter bis neben den Spieler und dreht sich zu ihm.
+@ HnS: Prof. Birch sees the player off when they first leave town.
+@ VAR_0x8008: 0 = left exit tile (x=10), 1 = right exit tile (x=11).
 LittlerootTown_EventScript_HoennSendOffRight::
 	lockall
 	setvar VAR_0x8008, 1
@@ -1245,7 +1244,6 @@ LittlerootTown_Movement_HoennSendOffApproach:
 	walk_up
 	step_end
 
-@ Rechte Spur: eine Kachel weiter bis (10,1), also neben den Spieler, Blick nach rechts.
 LittlerootTown_Movement_HoennSendOffApproachRight:
 	walk_up
 	walk_up

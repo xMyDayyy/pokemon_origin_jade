@@ -40,7 +40,7 @@ Route119_EventScript_RivalEncounter::
 	lockall
 	addobject LOCALID_ROUTE119_RIVAL_ON_BIKE
 #if IS_HNS
-	@ HnS: Die Rivalin ist immer Maike - immer ihr Begegnungsthema.
+	@ Origin Jade: the Hoenn rival is always May.
 	call Route119_EventScript_PlayMayMusic
 #else
 	checkplayergender
@@ -59,8 +59,6 @@ Route119_EventScript_RivalEncounter::
 	addobject LOCALID_ROUTE119_RIVAL
 	delay 30
 #if IS_HNS
-	@ HnS-Kanon: Die Rivalin ist immer Maike, unabhaengig vom Geschlecht
-	@ der Spielfigur. Brix bleibt als eigenstaendige Figur frei.
 	goto Route119_EventScript_BattleMay
 #else
 	checkplayergender
@@ -81,8 +79,7 @@ Route119_EventScript_PlayBrendanMusic::
 Route119_EventScript_BattleMay::
 	msgbox Route119_Text_MayIntro, MSGBOX_DEFAULT
 #if IS_HNS
-	@ HnS: VAR_STARTER_MON traegt hier den Johto-Starter. Maikes Starterlinie
-	@ steht seit Route 103 fest (Flemmli), deshalb immer das Treecko-Set.
+	@ Origin Jade: May always has the Torchic line (Treecko set).
 	goto Route119_EventScript_BattleMayTreecko
 #else
 	switch VAR_STARTER_MON
@@ -146,8 +143,7 @@ Route119_EventScript_DefeatedBrendan::
 
 Route119_EventScript_GiveFlyHM::
 #if IS_HNS
-	@ HnS: Fliegen stammt aus Johto und braucht in Hoenn keine Erlaubnis.
-	@ Die VM wird hier deshalb gar nicht mehr uebergeben.
+	@ Origin Jade: no HM Fly handover.
 	setflag FLAG_RECEIVED_HM_FLY
 	return
 #else
@@ -643,23 +639,22 @@ Route119_Text_ScottYouWonAtFortreeGym:
 	.string "wirklich der Trainer, den ich die\l"
 	.string "ganze Zeit\p"
 	.string "suche. Ich bin dein Fan, vergiss\n"
-	.string "das nicht. Ich werde dir zujubeln.\l"
-	.string "Mach weiter so!\p"
+	.string "das nicht. Ich werde dir\l"
+	.string "zujubeln. Mach weiter so!\p"
 	.string "… … … … … … … … … … … Klick!$"
 #else
-	.string "… … … … … …\n"
-	.string "… … … … … Beep!\p"
+	.string "… … … … … … … … … … … Beep!\p"
 	.string "SCOTT: Hiya, {PLAYER}{KUN}, it's me!\p"
 	.string "Just as I thought, you won at\n"
 	.string "the FORTREE GYM.\p"
-	.string "Your strength…\n"
-	.string "Perhaps you really are the TRAINER\l"
-	.string "that I've been searching for.\p"
+	.string "Your strength… Perhaps you\n"
+	.string "really are the TRAINER that I've\l"
+	.string "been searching for.\p"
 	.string "Remember, you have a fan in me.\n"
-	.string "I'll be cheering from the sidelines.\l"
-	.string "Keep up the great work!\p"
-	.string "… … … … … …\n"
-	.string "… … … … … Click!$"
+	.string "I'll be cheering from the\l"
+	.string "sidelines. Keep up the great\l"
+	.string "work!\p"
+	.string "… … … … … … … … … … … Click!$"
 #endif
 
 Route119_Text_StayAwayFromWeatherInstitute:

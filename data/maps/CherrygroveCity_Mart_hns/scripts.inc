@@ -6,7 +6,6 @@ Cherrygrove_Pokemart_EventScript_Clerk::
 	faceplayer
 	message gText_HowMayIServeYou
 	waitmessage
-	goto_if_ge VAR_NEWBARK_TOWN_STATE, 5, Cherrygrove_Pokemart_EventScript_Clerk2
 	pokemart Cherrygrove_Pokemart_Pokemart
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
@@ -23,39 +22,35 @@ Cherrygrove_Pokemart_EventScript_Youngster::
 Cherrygrove_Pokemart_EventScript_Bugcatcher::
 	lock
 	faceplayer
-	goto_if_eq VAR_NEWBARK_TOWN_STATE, 5, Cherrygrove_Pokemart_EventScript_Bugcatcher2
 	msgbox Cherrygrove_Pokemart_Text_CooltrainerM, MSGBOX_DEFAULT
 	closemessage
 	release
 	end
 
-Cherrygrove_Pokemart_EventScript_Bugcatcher2::
-	msgbox Cherrygrove_Pokemart_Text_CooltrainerM_PokeBallsInStock, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-
-Cherrygrove_Pokemart_EventScript_Clerk2::
-	pokemart 0
-	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
-	release
-	end
-
 	.align 3
 Cherrygrove_Pokemart_Pokemart:
-	.2byte ITEM_POTION
-	.2byte ITEM_ANTIDOTE
+	.2byte ITEM_ULTRA_BALL
+	.2byte ITEM_GREAT_BALL
+	.2byte ITEM_POKE_BALL
+	.2byte ITEM_HYPER_POTION
+	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_FULL_HEAL
+	.2byte ITEM_REVIVE
+	.2byte ITEM_SUPER_REPEL
+	.2byte ITEM_ESCAPE_ROPE
 	.2byte ITEM_NONE
 	release
 	end
 
 Cherrygrove_Pokemart_Text_CooltrainerM:
 #if GERMAN
-	.string "Die Pokébälle sind leider ausverkauft.\n"
-	.string "Wann wohl die neue Lieferung kommt?$"
+	.string "Kleiner Laden, aber gut sortiert.\p"
+	.string "Die Lieferung kommt zweimal die Woche\n"
+	.string "aus Dukatia herauf.$"
 #else
-	.string "They're fresh out of POKé BALLS!\p"
-	.string "When will they get more of them?$"
+	.string "Small shop, but well stocked.\p"
+	.string "The delivery comes up from GOLDENROD\n"
+	.string "twice a week.$"
 #endif
 
 Cherrygrove_Pokemart_Text_CooltrainerM_PokeBallsInStock:
@@ -70,18 +65,13 @@ Cherrygrove_Pokemart_Text_CooltrainerM_PokeBallsInStock:
 
 Cherrygrove_Pokemart_Text_Youngster:
 #if GERMAN
-	.string "Als ich durch das hohe Gras spaziert\n"
-	.string "bin, wurde mein Pokémon von einem\l"
-	.string "Käfer-Pokémon vergiftet!\p"
-	.string "Auf dem Weg zurück ist es dann immer\n"
-	.string "schwächer geworden.\p"
-	.string "Du solltest ständig ein Gegengift mit dir\n"
-	.string "führen!$"
+	.string "Von hier führt jeder Weg irgendwann\n"
+	.string "nach Norden.\p"
+	.string "Manche kommen zurück, manche nicht.\n"
+	.string "Die meisten bleiben einfach hängen.$"
 #else
-	.string "When I was walking in the grass, a\n"
-	.string "bug POKéMON poisoned my POKéMON!\p"
-	.string "I just kept going, but then my\n"
-	.string "POKéMON fainted.\p"
-	.string "You should keep an ANTIDOTE\n"
-	.string "with you.$"
+	.string "Every road from here leads north\n"
+	.string "sooner or later.\p"
+	.string "Some come back, some don't. Most just\n"
+	.string "end up staying somewhere.$"
 #endif

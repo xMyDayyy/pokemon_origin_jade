@@ -1,9 +1,9 @@
 PokemonLeague_ChampionsRoom_hns_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, ChampionRoom_OnFrame
-	map_script MAP_SCRIPT_ON_RESUME, PokemonLeague_ChampionsRoom_OnResume
+	map_script MAP_SCRIPT_ON_RESUME, PokemonLeague_ChampionsRoom_OnResume_Hns
 	.byte 0
 
-PokemonLeague_ChampionsRoom_OnResume::
+PokemonLeague_ChampionsRoom_OnResume_Hns::
 	setvar VAR_0x8004, 4
 	special DoPokemonLeagueLightingEffect
 	end
@@ -44,7 +44,8 @@ PokemonLeague_WillsRoom_EventScript_Lance::
 	call_if_eq VAR_FACING, DIR_SOUTH, PokemonLeague_ChampionsRoom_EventScript_AdjustPlayerFacingSouth
 	call_if_eq VAR_FACING, DIR_WEST, PokemonLeague_ChampionsRoom_EventScript_AdjustPlayerFacingWest
 	faceplayer
-	goto_if_set FLAG_IS_CHAMPION, PokemonLeague_WillsRoom_EventScript_LanceRematch
+	@ Origin Jade: rematch once Johto's league is won.
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, PokemonLeague_WillsRoom_EventScript_LanceRematch
 	msgbox PokemonLeague_ChampionsRoom_Text_BattleIntro, MSGBOX_DEFAULT
 	setflag FLAG_TEMP_3
 	setflag FLAG_TEMP_5
@@ -52,10 +53,21 @@ PokemonLeague_WillsRoom_EventScript_Lance::
 	goto PokemonLeague_WillsRoom_EventScript_LanceOnDefeatJohto
 
 PokemonLeague_WillsRoom_EventScript_LanceRematch::
+	goto_if_unset FLAG_IS_KANTO_CHAMPION, PokemonLeague_WillsRoom_EventScript_LanceRematchStandard
+	goto_if_ge VAR_SINJOH_STORYLINE, 13, PokemonLeague_WillsRoom_EventScript_LanceRematchPostOBC
+
+PokemonLeague_WillsRoom_EventScript_LanceRematchStandard::
 	msgbox PokemonLeague_ChampionsRoom_Text_RematchBattleIntro, MSGBOX_DEFAULT
 	setflag FLAG_TEMP_3
 	setflag FLAG_TEMP_5
-	trainerbattle_no_intro TRAINER_LANCE_2_HNS, PokemonLeague_ChampionsRoom_Text_BattleWin
+	trainerbattle_no_intro TRAINER_LANCE_2_HNS, PokemonLeague_ChampionsRoom_Text_RematchBattleWin
+	goto PokemonLeague_WillsRoom_EventScript_LanceOnDefeatKanto
+
+PokemonLeague_WillsRoom_EventScript_LanceRematchPostOBC::
+	msgbox PokemonLeague_ChampionsRoom_Text_RematchBattleIntro, MSGBOX_DEFAULT
+	setflag FLAG_TEMP_3
+	setflag FLAG_TEMP_5
+	trainerbattle_no_intro TRAINER_LANCE_POSTOBC_HNS, PokemonLeague_ChampionsRoom_Text_RematchBattleWin
 	goto PokemonLeague_WillsRoom_EventScript_LanceOnDefeatKanto
 
 PokemonLeague_WillsRoom_EventScript_LanceOnDefeatJohto::
@@ -87,12 +99,12 @@ PokemonLeague_WillsRoom_EventScript_LanceOnDefeatJohto::
 	waitmovement 0
 	msgbox PokemonLeague_ChampionsRoom_Text_MaryOhNoOak, MSGBOX_DEFAULT
 	closemessage
-	applymovement LOCALID_LEAGUE_OAK, PokemonLeague_ChampionsRoom_Movement_OakEnter
+	applymovement LOCALID_LEAGUE_OAK, PokemonLeague_ChampionsRoom_Movement_OakEnter_Hns
 	delay 60
 	applymovement LOCALID_LEAGUE_MARY, PokemonLeague_ChampionsRoom_Movement_MaryMoveOver
 	waitmovement LOCALID_LEAGUE_MARY
 	waitmovement LOCALID_LEAGUE_OAK
-	msgbox PokemonLeague_ChampionsRoom_Text_OakCongratulations, MSGBOX_DEFAULT
+	msgbox PokemonLeague_ChampionsRoom_Text_OakCongratulations_Hns, MSGBOX_DEFAULT
 	applymovement LOCALID_LEAGUE_MARY, PokemonLeague_ChampionsRoom_Movement_MaryInterview
 	waitmovement 0
 	msgbox PokemonLeague_ChampionsRoom_Text_MaryInterview, MSGBOX_DEFAULT
@@ -128,70 +140,24 @@ PokemonLeague_WillsRoom_EventScript_LanceOnDefeatJohto::
 	releaseall
 	end
 
+@ Title defence: short scene without Mary and Oak, then the Hall of Fame.
+@ See docs/origin_jade/DECISIONS.md, D-028.
 PokemonLeague_WillsRoom_EventScript_LanceOnDefeatKanto::
 	clearflag FLAG_TEMP_5
-	msgbox PokemonLeague_ChampionsRoom_Text_BattleAfter, MSGBOX_DEFAULT
+	msgbox PokemonLeague_ChampionsRoom_Text_RematchFollowMe, MSGBOX_DEFAULT
 	closemessage
 	setmetatile 6, 1, 0x3F2, FALSE
 	setmetatile 6, 2, 0x296, FALSE
-	playse SE_BANG
-	setvar VAR_0x8004, 1  @ vertical pan
-	setvar VAR_0x8005, 1  @ horizontal pan
-	setvar VAR_0x8006, 4  @ num shakes
-	setvar VAR_0x8007, 4  @ shake delay
-	special ShakeCamera
-	waitstate
+	playse SE_DOOR
 	special DrawWholeMapView
-	playse SE_PIN
-	applymovement LOCALID_LEAGUE_LANCE, Common_Movement_ExclamationMark
-	delay 55
-	waitmovement LOCALID_LEAGUE_LANCE
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
-	applymovement OBJ_EVENT_ID_PLAYER, PokemonLeague_ChampionsRoom_Movement_PlayerMoveToCenter
-	applymovement LOCALID_LEAGUE_LANCE, PokemonLeague_ChampionsRoom_Movement_LanceMoveOver
-	waitmovement OBJ_EVENT_ID_PLAYER
-	waitmovement LOCALID_LEAGUE_LANCE
-	addobject LOCALID_LEAGUE_MARY
-	addobject LOCALID_LEAGUE_OAK
-	applymovement LOCALID_LEAGUE_MARY, PokemonLeague_ChampionsRoom_Movement_MaryEnter
-	waitmovement 0
-	msgbox PokemonLeague_ChampionsRoom_Text_MaryOhNoOak, MSGBOX_DEFAULT
-	closemessage
-	applymovement LOCALID_LEAGUE_OAK, PokemonLeague_ChampionsRoom_Movement_OakEnter
-	delay 60
-	applymovement LOCALID_LEAGUE_MARY, PokemonLeague_ChampionsRoom_Movement_MaryMoveOver
-	waitmovement LOCALID_LEAGUE_MARY
-	waitmovement LOCALID_LEAGUE_OAK
-	msgbox PokemonLeague_ChampionsRoom_Text_RematchOakCongratulations, MSGBOX_DEFAULT
-	applymovement LOCALID_LEAGUE_MARY, PokemonLeague_ChampionsRoom_Movement_MaryInterview
-	waitmovement 0
-	msgbox PokemonLeague_ChampionsRoom_Text_RematchMaryInterview, MSGBOX_DEFAULT
-	closemessage
-	applymovement LOCALID_LEAGUE_LANCE, PokemonLeague_ChampionsRoom_Movement_LanceAnxious
-	waitmovement 0
-	msgbox PokemonLeague_ChampionsRoom_Text_Noisy, MSGBOX_DEFAULT
-	closemessage
-	applymovement LOCALID_LEAGUE_LANCE, PokemonLeague_ChampionsRoom_Movement_LanceLeave
+	applymovement LOCALID_LEAGUE_LANCE, PokemonLeague_ChampionsRoom_Movement_LanceToHallOfFame
 	delay 30
-	applymovement OBJ_EVENT_ID_PLAYER, PokemonLeague_ChampionsRoom_Movement_PlayerLeave
+	applymovement OBJ_EVENT_ID_PLAYER, PokemonLeague_ChampionsRoom_Movement_PlayerToHallOfFame
 	waitmovement LOCALID_LEAGUE_LANCE
-	@setobjectxyperm LOCALID_LEAGUE_LANCE, 6, 14
 	removeobject LOCALID_LEAGUE_LANCE
 	playse SE_EXIT
 	waitmovement OBJ_EVENT_ID_PLAYER
-	special SpawnCameraObject
-	removeobject OBJ_EVENT_ID_PLAYER
 	playse SE_EXIT
-	waitse
-	delay 50
-	applymovement LOCALID_LEAGUE_MARY, PokemonLeague_ChampionsRoom_Movement_MaryLeft
-	waitmovement 0
-	playse SE_PIN
-	applymovement LOCALID_LEAGUE_MARY, Common_Movement_ExclamationMark
-	delay 55
-	waitmovement LOCALID_LEAGUE_MARY
-	msgbox PokemonLeague_ChampionsRoom_Text_RematchMaryNoInterview, MSGBOX_DEFAULT
-	closemessage
 	setvar VAR_LEAGUE_STATE, 6
 	warpsilent MAP_POKEMON_LEAGUE_HALL_OF_FAME_HNS, 0
 	waitstate
@@ -257,7 +223,7 @@ PokemonLeague_ChampionsRoom_Movement_MaryMoveOver:
 	face_right
 	step_end
 
-PokemonLeague_ChampionsRoom_Movement_OakEnter:
+PokemonLeague_ChampionsRoom_Movement_OakEnter_Hns:
 	walk_up
 	walk_up
 	walk_up
@@ -309,48 +275,45 @@ PokemonLeague_ChampionsRoom_Movement_MaryLeft:
 	walk_fast_up
 	step_end
 
+@ Title defence: Lance walks from (6,8) to the Hall of Fame door (6,2).
+PokemonLeague_ChampionsRoom_Movement_LanceToHallOfFame:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+@ Title defence: the player follows from (6,9).
+PokemonLeague_ChampionsRoom_Movement_PlayerToHallOfFame:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
 PokemonLeague_ChampionsRoom_Text_RematchBattleIntro:
 #if GERMAN
-	.string "Siegfried: Willkommen zurück!\p"
-	.string "Du hast dich in Johto bewährt\p"
-	.string "und alle 8 Orden errungen, sogar mich\n"
-	.string "einst besiegt.\p"
-	.string "Doch jetzt spielst du ganz oben.\p"
-	.string "In der großen Liga.\p"
-	.string "Der Kanto-liga!\p"
-	.string "Eine Region mit eigenen Prüfungen\n"
-	.string "und Champions.\p"
-	.string "Hier bin ich die letzte Hürde, mit einem\n"
-	.string "Team stärker als je zuvor.\p"
-	.string "Dies ist die wahre Prüfung, der Kampf um\n"
-	.string "den Titel des Kanto-champions.\p"
-	.string "Bist du bereit für diese neue\n"
-	.string "Herausforderung?\p"
-	.string "Willst du dich erneut beweisen?\p"
-	.string "Zeig mir die Stärke, die Johto erobert\n"
-	.string "hat,\p"
-	.string "Champion.$"
+	.string "Siegfried: Willkommen zurück,\n"
+	.string "{PLAYER}!\p"
+	.string "Du hast mich schon einmal besiegt\n"
+	.string "und nun auch die Top Vier erneut.\p"
+	.string "Seitdem habe ich mein Team weiter\n"
+	.string "gestärkt.\p"
+	.string "Zeig mir, dass dein Sieg kein\n"
+	.string "Zufall war!$"
 #else
-    .string "LANCE: Welcome back!\p"
-    .string "You've proven yourself in JOHTO,\p"
-    .string "acquiring all 8 badges and even\n"
-    .string "besting me once.\p"
-    .string "But now, you're in the big\n"
-    .string "leagues.\p"
-    .string "The KANTO LEAGUE!\p"
-    .string "A region with its own trials and\n"
-    .string "champions.\p"
-    .string "Here, I am the final challenge,\n"
-    .string "with a team stronger than ever\l"
-    .string "before.\p"
-    .string "This is the true test,\p"
-    .string "a battle to determine the\n"
-    .string "CHAMPION of KANTO.\p"
-    .string "Are you ready to rise to this new\n"
-    .string "challenge?\p"
-    .string "To prove yourself once more?\p"
-    .string "Show me the strength that\n"
-    .string "conquered JOHTO, CHAMPION.$"
+    .string "LANCE: Welcome back, {PLAYER}!\p"
+    .string "You beat me once, and now you have\n"
+    .string "beaten the ELITE FOUR again.\p"
+    .string "Since then, I have made my team\n"
+    .string "even stronger.\p"
+    .string "Show me that your win was no\n"
+    .string "fluke!$"
 #endif
 
 PokemonLeague_ChampionsRoom_Text_BattleIntro:
@@ -397,6 +360,30 @@ PokemonLeague_ChampionsRoom_Text_BattleWin:
     .string "of a great new CHAMPION!$"
 #endif
 
+@ Lance's in-battle defeat text in a title defence.
+PokemonLeague_ChampionsRoom_Text_RematchBattleWin:
+#if GERMAN
+	.string "Es ist vorbei…\p"
+	.string "Du hast mich erneut geschlagen.\n"
+	.string "Du bist ein würdiger Champ!$"
+#else
+    .string "…It's over.\p"
+    .string "You beat me once again.\n"
+    .string "You are a worthy CHAMPION!$"
+#endif
+
+PokemonLeague_ChampionsRoom_Text_RematchFollowMe:
+#if GERMAN
+	.string "Siegfried: Puh… Du bist noch\n"
+	.string "stärker geworden, {PLAYER}.\p"
+	.string "Komm mit. Die Ruhmeshalle wartet.$"
+#else
+    .string "LANCE: Whew… You have grown even\n"
+    .string "stronger, {PLAYER}.\p"
+    .string "Come with me. The HALL OF FAME\n"
+    .string "awaits.$"
+#endif
+
 PokemonLeague_ChampionsRoom_Text_BattleAfter:
 #if GERMAN
 	.string "…Puh.\p"
@@ -425,72 +412,32 @@ PokemonLeague_ChampionsRoom_Text_MaryOhNoOak:
     .string "PROF.OAK, if you weren't so slow…$"
 #endif
 
-PokemonLeague_ChampionsRoom_Text_OakCongratulations:
+PokemonLeague_ChampionsRoom_Text_OakCongratulations_Hns:
 #if GERMAN
 	.string "Prof. Eich: Ah, {PLAYER}!\p"
-	.string "Es ist lange her.\p"
+	.string "Schön, dich wiederzusehen.\p"
 	.string "Du wirkst sehr beeindruckend.\p"
-	.string "Dein Sieg in der Johto-Liga ist wirklich\n"
-	.string "fantastisch!\p"
-	.string "Dein Einsatz, Vertrauen und deine Liebe\n"
-	.string "zu Pokémon haben das möglich gemacht.\p"
+	.string "Dein Sieg in der Johto-Liga ist\n"
+	.string "wirklich fantastisch!\p"
+	.string "Dein Einsatz, dein Vertrauen und\n"
+	.string "deine Liebe zu Pokémon haben das\l"
+	.string "möglich gemacht.\p"
 	.string "Auch deine Pokémon waren großartig.\p"
 	.string "Sie glaubten an dich als Trainer\n"
 	.string "und hielten durch.\p"
-	.string "Herzlichen Glückwunsch,\p"
-	.string "{PLAYER}!$"
+	.string "Herzlichen Glückwunsch, {PLAYER}!$"
 #else
     .string "PROF.OAK: Ah, {PLAYER}!\p"
-    .string "It's been a long while.\p"
+    .string "It's good to see you again.\p"
     .string "You certainly look more impressive.\p"
     .string "Your conquest of the JOHTO LEAGUE\n"
     .string "is just fantastic!\p"
-    .string "Your dedication, trust and love for\n"
-    .string "your POKéMON made this happen.\p"
+    .string "Your dedication, trust and love\n"
+    .string "for your POKéMON made this happen.\p"
     .string "Your POKéMON were outstanding too.\p"
     .string "Because they believed in you as a\n"
     .string "trainer, they persevered.\p"
     .string "Congratulations, {PLAYER}!$"
-#endif
-
-PokemonLeague_ChampionsRoom_Text_RematchOakCongratulations:
-#if GERMAN
-	.string "Prof. Eich: Ah, {PLAYER}!\p"
-	.string "Ich habe deinen Weg verfolgt,\n"
-	.string "seit Prof. Lind dich losschickte.\p"
-	.string "Du bist noch beeindruckender\n"
-	.string "geworden.\p"
-	.string "Johto und nun auch Kanto zu bezwingen\n"
-	.string "ist keine Kleinigkeit.\p"
-	.string "Du hast dich selbst übertroffen!\p"
-	.string "Deine Pokémon vertrauen dir sehr, und\n"
-	.string "dieses Vertrauen ist die Grundlage\l"
-	.string "deines Erfolgs.\p"
-	.string "Doch vergiss nie:\p"
-	.string "Die Reise eines Trainers endet nie.\p"
-	.string "Wenn du Zeit hast, besuche mich\n"
-	.string "in meinem Labor.\p"
-	.string "Ich möchte etwas mit dir besprechen.\p"
-	.string "Glückwunsch zu deinem Sieg,\p"
-	.string "{PLAYER}!$"
-#else
-    .string "PROF.OAK: Ah, {PLAYER}!\p"
-    .string "I've been following your progress\n"
-    .string "since PROF.ELM sent you on your\l"
-    .string "way.\p"
-    .string "You've certainly become more\n"
-    .string "impressive.\p"
-    .string "Conquering both the JOHTO and now\n"
-    .string "the KANTO LEAGUE is no small feat.\p"
-    .string "You've truly outdone yourself!\p"
-    .string "It's clear that your POKéMON trust\n"
-    .string "you immensely,\p"
-    .string "and that trust has been the\n"
-    .string "foundation of your success.\p"
-    .string "But remember, a trainer's journey\n"
-    .string "is never truly over.\p"
-    .string "Congratulations on your victory,\n"
-    .string "{PLAYER}!$"
 #endif
 
 PokemonLeague_ChampionsRoom_Text_MaryInterview:
@@ -500,15 +447,6 @@ PokemonLeague_ChampionsRoom_Text_MaryInterview:
 #else
     .string "MARY: Let's interview the brand new\n"
     .string "JOHTO CHAMPION!$"
-#endif
-
-PokemonLeague_ChampionsRoom_Text_RematchMaryInterview:
-#if GERMAN
-	.string "Margit: Interview mit dem neuen\p"
-	.string "Kanto-champion!$"
-#else
-    .string "MARY: Let's interview the brand new\n"
-    .string "KANTO CHAMPION!$"
 #endif
 
 PokemonLeague_ChampionsRoom_Text_Noisy:
@@ -528,15 +466,5 @@ PokemonLeague_ChampionsRoom_Text_MaryNoInterview:
 #else
     .string "MARY: Oh, wait! We haven't done\n"
     .string "the interview!$"
-#endif
-
-PokemonLeague_ChampionsRoom_Text_RematchMaryNoInterview:
-#if GERMAN
-	.string "Margit: Hey! Du kannst das\p"
-	.string "Interview nicht schon wieder\p"
-	.string "sausen lassen!$"
-#else
-    .string "MARY: Come on! You can't blow off\n"
-    .string "the interview AGAIN!$"
 #endif
 

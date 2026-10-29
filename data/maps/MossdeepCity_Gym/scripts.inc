@@ -68,8 +68,6 @@ MossdeepCity_Gym_EventScript_TateAndLizaDefeated::
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox MossdeepCity_Gym_Text_ExplainMindBadgeTakeThis, MSGBOX_DEFAULT
 #if IS_HNS
-	@ HnS: Der Mentalorden ist zugleich die Erlaubnis fuer Taucher -
-	@ das steht im Ordentext, eine eigene Uebergabe braucht es nicht.
 	setvar VAR_0x8004, LIC_DIVE
 	special SetHoennLicense
 #endif
@@ -298,8 +296,7 @@ MossdeepCity_Gym_Movement_WaitAfterSwitchUse:
 MossdeepCity_Gym_EventScript_LeftGymStatue::
 	lockall
 #if IS_HNS
-	@ HnS: FLAG_BADGE07_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
+	@ HnS: Hoenn badge 7 (Tate and Liza).
 	setvar VAR_0x8004, 6
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, TRUE, MossdeepCity_Gym_EventScript_GymStatueCertified
@@ -312,8 +309,7 @@ MossdeepCity_Gym_EventScript_LeftGymStatue::
 MossdeepCity_Gym_EventScript_RightGymStatue::
 	lockall
 #if IS_HNS
-	@ HnS: FLAG_BADGE07_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
+	@ HnS: Hoenn badge 7 (Tate and Liza).
 	setvar VAR_0x8004, 6
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, TRUE, MossdeepCity_Gym_EventScript_GymStatueCertified

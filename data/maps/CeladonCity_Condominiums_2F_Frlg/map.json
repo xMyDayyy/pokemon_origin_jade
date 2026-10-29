@@ -1,7 +1,7 @@
 {
   "id": "MAP_CELADON_CITY_CONDOMINIUMS_2F",
   "name": "CeladonCity_Condominiums_2F_Frlg",
-  "game_version": "frlg",
+  "game_version": "hns",
   "layout": "LAYOUT_CELADON_CITY_CONDOMINIUMS_2F",
   "music": "MUS_RG_CELADON",
   "region": "REGION_KANTO",

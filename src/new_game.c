@@ -1,6 +1,7 @@
 #include "global.h"
 #include "new_game.h"
 #include "random.h"
+#include "config/randomizer.h"
 #include "pokemon.h"
 #include "roamer.h"
 #include "pokemon_size_record.h"
@@ -54,7 +55,7 @@
 #include "follower_npc.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
-#if IS_FRLG
+#if IS_FRLG || IS_HNS
 extern const u8 EventScript_ResetAllMapFlagsFrlg[];
 #endif
 #if IS_HNS
@@ -151,6 +152,7 @@ void SetDefaultChallengeSettings(void)
     // Randomizer defaults (shown when Randomizer is ON)
     gSaveblock3.challengeSettings.tx_Random_Similar          = 1;
     gSaveblock3.challengeSettings.tx_Random_MapBased         = 1;
+    gSaveblock3.challengeSettings.tx_Random_GenScope         = RANDOMIZER_DEFAULT_GEN_SCOPE_1_3;
 
     // Nuzlocke clause defaults (shown when Nuzlocke is NORMAL/HARD)
     gSaveblock3.challengeSettings.tx_Nuzlocke_SpeciesClause  = 1;
@@ -189,7 +191,7 @@ static void WarpToTruck(void)
     if (IS_FRLG)
         SetWarpDestination(MAP_GROUP(MAP_PALLET_TOWN_PLAYERS_HOUSE_2F), MAP_NUM(MAP_PALLET_TOWN_PLAYERS_HOUSE_2F), WARP_ID_NONE, 6, 6);
     else if (IS_HNS)
-        SetWarpDestination(MAP_GROUP(MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_2F_HNS), MAP_NUM(MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_2F_HNS), 1, 0, 0);
+        SetWarpDestination(MAP_GROUP(MAP_PALLET_TOWN_PLAYERS_HOUSE_2F), MAP_NUM(MAP_PALLET_TOWN_PLAYERS_HOUSE_2F), WARP_ID_NONE, 6, 6);
     else
         SetWarpDestination(MAP_GROUP(MAP_INSIDE_OF_TRUCK), MAP_NUM(MAP_INSIDE_OF_TRUCK), WARP_ID_NONE, -1, -1);
     WarpIntoMap();
@@ -274,6 +276,7 @@ void NewGameInitData(void)
     RunScriptImmediately(EventScript_ResetAllMapFlagsFrlg);
 #elif IS_HNS
     RunScriptImmediately(EventScript_ResetAllMapFlagsHnS);
+    RunScriptImmediately(EventScript_ResetAllMapFlagsFrlg);
 #else
     RunScriptImmediately(EventScript_ResetAllMapFlags);
 #endif
@@ -304,6 +307,7 @@ void NewGameInitData(void)
 
 #if IS_HNS
     StringCopy(gSaveBlock2Ptr->rivalName, gText_ExpandedPlaceholder_Silver);
+    StringCopy(gSaveBlock3Ptr->rivalNameKanto, gText_ExpandedPlaceholder_Green);
     InitMomSavings();
 #endif
 }

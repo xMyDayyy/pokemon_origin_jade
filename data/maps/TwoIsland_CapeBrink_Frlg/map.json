@@ -1,7 +1,7 @@
 {
   "id": "MAP_TWO_ISLAND_CAPE_BRINK",
   "name": "TwoIsland_CapeBrink_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_TWO_ISLAND_CAPE_BRINK",
   "music": "MUS_RG_ROUTE3",
   "region": "REGION_KANTO",

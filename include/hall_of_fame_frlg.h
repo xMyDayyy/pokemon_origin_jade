@@ -7,5 +7,6 @@ void CB2_DoHallOfFameScreenFrlg(void);
 void CB2_DoHallOfFameScreenDontSaveDataFrlg(void);
 void CB2_InitHofPC(void);
 void ReturnFromHallOfFamePC(void);
+void ClearCreditsSceneState(void);
 
 #endif // GUARD_HALL_OF_FAME_FRLG_H

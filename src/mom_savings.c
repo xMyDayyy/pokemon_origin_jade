@@ -152,7 +152,12 @@ bool8 Mom_CheckForGiftPurchase(u32 newBalance, u32 oldBalance, bool8 isAutomatic
     {
         if (purchasedItem == MOM_GIFT_STARTER_DOLL)
         {
+#if IS_HNS
+            // Origin Jade: doll of the Johto starter; before Elm's lab the default doll.
+            u16 starterChoice = FlagGet(FLAG_RECEIVED_JOHTO_STARTER) ? VarGet(VAR_JOHTO_STARTER_MON) : 0xFFFF;
+#else
             u16 starterChoice = VarGet(VAR_STARTER_MON);
+#endif
             switch (starterChoice)
             {
                 case 0:
@@ -271,6 +276,10 @@ bool8 Mom_TryTriggerGiftCall(void)
     if (!FlagGet(FLAG_MOM_HAS_GIFT))
         return FALSE;
 
+    // Mom uses the phone, so respect the Match Call option being turned off.
+    if (gSaveBlock3Ptr->challengeSettings.disableMatchCall)
+        return FALSE;
+
     if (mapType != MAP_TYPE_ROUTE && mapType != MAP_TYPE_OCEAN_ROUTE
      && mapType != MAP_TYPE_CITY && mapType != MAP_TYPE_TOWN)
         return FALSE;
@@ -383,6 +392,9 @@ static void Task_MomInput_HandleInput(u8 taskId)
     else if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
+        // Origin Jade: clamp to the maximum; 0 makes the script treat it as cancelled.
+        if (sMomInputAmount > sMomInputMaxAmount)
+            sMomInputAmount = sMomInputMaxAmount;
         gSpecialVar_0x8000 = sMomInputAmount;
 
         if (tIsDeposit)
@@ -469,6 +481,9 @@ static void MomInput_Open(bool8 isDeposit)
         u32 momsAvailableMoney = Mom_GetBalance();
         sMomInputMaxAmount = min(MOM_MAX_INPUT, min(momsAvailableMoney, playersWalletCapacity));
     }
+    // Origin Jade: start at 0 instead of 1 when nothing can be moved.
+    if (sMomInputAmount > sMomInputMaxAmount)
+        sMomInputAmount = sMomInputMaxAmount;
 
     ScriptContext_Stop();
 }
@@ -496,7 +511,8 @@ void Special_MomGetBalance(void)
     u32 balance = Mom_GetBalance();
     ConvertIntToDecimalStringN(gStringVar1, balance, STR_CONV_MODE_LEFT_ALIGN, 6);
     StringExpandPlaceholders(gStringVar2, gText_PokedollarVar1);
-    gSpecialVar_Result = balance;
+    // TRUE if the account is not empty; the balance does not fit in VAR_RESULT.
+    gSpecialVar_Result = (balance != 0);
 }
 
 void Special_MomDeposit(void)

@@ -1,7 +1,7 @@
 {
   "id": "MAP_FIVE_ISLAND_WATER_LABYRINTH",
   "name": "FiveIsland_WaterLabyrinth_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_FIVE_ISLAND_WATER_LABYRINTH",
   "music": "MUS_RG_SEVII_ROUTE",
   "region": "REGION_KANTO",

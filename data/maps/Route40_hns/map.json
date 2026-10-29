@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE40_HNS",
   "name": "Route40_hns",
   "layout": "LAYOUT_ROUTE40_HNS",
-  "music": "MUS_HG_ROUTE38",
+  "music": "MUS_HG_ROUTE34",
   "region_map_section": "MAPSEC_ROUTE_40",
   "requires_flash": false,
   "weather": "WEATHER_RAIN",
@@ -288,7 +288,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Rotue40_EventScript_Monica",
-      "flag": "0"
+      "flag": "FLAG_TEMP_5"
     }
   ],
   "warp_events": [

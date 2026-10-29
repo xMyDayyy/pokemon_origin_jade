@@ -25,7 +25,10 @@ CianwoodCity_EventScript_KirkDeclined::
 	end
 
 CianwoodCity_EventScript_KirkGivenShuckie::
-	goto_if_set FLAG_BADGE01_GET, CianwoodCity_EventScript_KirkReturnShuckie
+	@ Johto badge 1 (Falkner)
+	setvar VAR_0x8004, 0
+	special CheckJohtoBadge
+	goto_if_eq VAR_RESULT, TRUE, CianwoodCity_EventScript_KirkReturnShuckie
 	msgbox CianwoodCity_Text_ManiacHowsdoing, MSGBOX_DEFAULT
 	closemessage
 	end

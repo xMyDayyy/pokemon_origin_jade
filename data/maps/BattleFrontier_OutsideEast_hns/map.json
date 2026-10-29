@@ -542,7 +542,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ENGINEER_HNS",
-      "x": 28,
+      "x": 29,
       "y": 8,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",

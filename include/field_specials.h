@@ -18,6 +18,7 @@ bool32 ShouldDoScottFortreeCall(void);
 bool32 ShouldDoScottBattleFrontierCall(void);
 bool32 ShouldDoRoxanneCall(void);
 bool32 ShouldDoNormanCall(void);
+bool32 ShouldDoMomCall(void);
 bool32 ShouldDoRivalRayquazaCall(void);
 bool32 CountSSTidalStep(u16 delta);
 enum SSTidalLocation GetSSTidalLocation(s8 *mapGroup, s8 *mapNum, s16 *x, s16 *y);

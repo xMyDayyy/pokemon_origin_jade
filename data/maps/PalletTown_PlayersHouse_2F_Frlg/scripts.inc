@@ -20,12 +20,60 @@ PalletTown_PlayersHouse_2F_FirstWarpIn::
 	setvar VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F, 1
 	end
 
-PalletTown_PlayersHouse_2F_EventScript_NES::
-	msgbox PalletTown_PlayersHouse_2F_Text_PlayedWithNES, MSGBOX_SIGN
+@ Origin Jade: wall clock setup, started by two trigger tiles in front of the clock.
+PalletTown_PlayersHouse_2F_Script_ClockSetupTrigger1::
+	lock
+	playse SE_PIN
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
+	waitmovement OBJ_EVENT_ID_PLAYER
+	delay 60
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_PlayersHouse_2F_Movement_PlayerWalkToClock1
+	waitmovement 0
+	goto PalletTown_PlayersHouse_2F_Script_ClockSetupCommon
 	end
 
-PalletTown_PlayersHouse_2F_EventScript_Sign::
-	msgbox PalletTown_PlayersHouse_2F_Text_PressLRForHelp, MSGBOX_SIGN
+PalletTown_PlayersHouse_2F_Script_ClockSetupTrigger2::
+	lock
+	playse SE_PIN
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
+	waitmovement OBJ_EVENT_ID_PLAYER
+	delay 60
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_PlayersHouse_2F_Movement_PlayerWalkToClock2
+	waitmovement 0
+	goto PalletTown_PlayersHouse_2F_Script_ClockSetupCommon
+	end
+
+PalletTown_PlayersHouse_2F_Script_ClockSetupCommon::
+	msgbox PlayersHouse_2F_Text_ClockIsStopped, MSGBOX_DEFAULT
+	call PlayersHouse_2F_EventScript_SetWallClock
+	delay 30
+	setvar VAR_PALLET_HOUSE_CLOCK, 1
+	setflag FLAG_SET_WALL_CLOCK
+	releaseall
+	end
+
+@ From trigger tile (10,3).
+PalletTown_PlayersHouse_2F_Movement_PlayerWalkToClock1:
+	walk_right
+	walk_up
+	delay_8
+	step_end
+
+@ From trigger tile (11,3).
+PalletTown_PlayersHouse_2F_Movement_PlayerWalkToClock2:
+	walk_up
+	delay_8
+	step_end
+
+PalletTown_PlayersHouse_2F_EventScript_WallClock::
+	lockall
+	msgbox PlayersHouse_2F_Text_ClockChange, MSGBOX_DEFAULT
+	call PlayersHouse_2F_EventScript_SetWallClock
+	releaseall
+	end
+
+PalletTown_PlayersHouse_2F_EventScript_NES::
+	msgbox PalletTown_PlayersHouse_2F_Text_PlayedWithNES, MSGBOX_SIGN
 	end
 
 PalletTown_PlayersHouse_2F_Text_PlayedWithNES::
@@ -37,17 +85,5 @@ PalletTown_PlayersHouse_2F_Text_PlayedWithNES::
 	.string "{PLAYER} played with the NES.\p"
 	.string "…Okay!\n"
 	.string "It's time to go!$"
-#endif
-
-PalletTown_PlayersHouse_2F_Text_PressLRForHelp::
-#if GERMAN
-	.string "Eine Nachricht…\p"
-	.string "Wenn du nicht weiter weißt, rufe das\n"
-	.string "Hilfe-Menü durch Drücken der L- oder\l"
-	.string "R-Taste auf.$"
-#else
-	.string "It's a posted notice…\p"
-	.string "If you're confused, ask for HELP!\n"
-	.string "Press the L or R Button!$"
 #endif
 

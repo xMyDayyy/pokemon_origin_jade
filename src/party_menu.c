@@ -2934,6 +2934,11 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
     u8 i, j;
     bool32 hasFlyAlready = FALSE;
     bool32 hasFlashAlready = FALSE;
+    u8 numFieldMoves = 0;
+    u8 maxFieldMoves = MAX_MON_MOVES;
+
+    if (slotId == GetFirstLiveMonIndex())
+        maxFieldMoves--;
 
     sPartyMenuInternal->numActions = 0;
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUMMARY);
@@ -2951,21 +2956,31 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         {
             for (j = 0; j != FIELD_MOVES_COUNT; j++)
             {
-                if (GetMonData(&mons[slotId], i + MON_DATA_MOVE1) == FieldMove_GetMoveId(j))
+                if (GetMonData(&mons[slotId], i + MON_DATA_MOVE1) == FieldMove_GetMoveId(j) && numFieldMoves < maxFieldMoves)
                 {
                     if (FieldMove_GetMoveId(j) == MOVE_FLY)
                         hasFlyAlready = TRUE;
                     if (FieldMove_GetMoveId(j) == MOVE_FLASH)
                         hasFlashAlready = TRUE;
                     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, j + MENU_FIELD_MOVES);
+                    numFieldMoves++;
                     break;
                 }
             }
         }
-        if (CheckBagHasItem(ITEM_HM02, 1) && sPartyMenuInternal->numActions < 5 && !hasFlyAlready)
+        // Origin Jade: Fly only with the badge and while the menu has room.
+        if (CheckBagHasItem(ITEM_HM02, 1) && IsFieldMoveUnlocked(FIELD_MOVE_FLY)
+         && numFieldMoves < maxFieldMoves && !hasFlyAlready)
+        {
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, FIELD_MOVE_FLY + MENU_FIELD_MOVES);
-        if (CheckBagHasItem(ITEM_HM05, 1) && sPartyMenuInternal->numActions < 5 && !hasFlashAlready)
+            numFieldMoves++;
+        }
+        if (CheckBagHasItem(ITEM_HM05, 1) && IsFieldMoveUnlocked(FIELD_MOVE_FLASH)
+         && numFieldMoves < maxFieldMoves && !hasFlashAlready)
+        {
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, FIELD_MOVE_FLASH + MENU_FIELD_MOVES);
+            numFieldMoves++;
+        }
     }
     else
     {
@@ -2975,17 +2990,30 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
             {
                 if (GetMonData(&mons[slotId], i + MON_DATA_MOVE1) == FieldMove_GetMoveId(j))
                 {
-                    if (FieldMove_GetMoveId(j) != MOVE_FLY && FieldMove_GetMoveId(j) != MOVE_FLASH)
+                    if (FieldMove_GetMoveId(j) != MOVE_FLY && FieldMove_GetMoveId(j) != MOVE_FLASH && numFieldMoves < maxFieldMoves)
+                    {
                         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, j + MENU_FIELD_MOVES);
+                        numFieldMoves++;
+                    }
                     break;
                 }
             }
         }
-        if (sPartyMenuInternal->numActions < 5 && CanLearnTeachableMove(GetMonData(&mons[slotId], MON_DATA_SPECIES), MOVE_FLY))
+        // Origin Jade: same conditions as in the branch above.
+        if (numFieldMoves < maxFieldMoves && CheckBagHasItem(ITEM_HM02, 1)
+         && IsFieldMoveUnlocked(FIELD_MOVE_FLY)
+         && CanLearnTeachableMove(GetMonData(&mons[slotId], MON_DATA_SPECIES), MOVE_FLY))
+        {
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, FIELD_MOVE_FLY + MENU_FIELD_MOVES);
-        if (sPartyMenuInternal->numActions < 5 && CheckBagHasItem(ITEM_HM05, 1)
+            numFieldMoves++;
+        }
+        if (numFieldMoves < maxFieldMoves && CheckBagHasItem(ITEM_HM05, 1)
+         && IsFieldMoveUnlocked(FIELD_MOVE_FLASH)
          && CanLearnTeachableMove(GetMonData(&mons[slotId], MON_DATA_SPECIES), MOVE_FLASH))
+        {
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, FIELD_MOVE_FLASH + MENU_FIELD_MOVES);
+            numFieldMoves++;
+        }
     }
 
     if (!InBattlePike())
@@ -6991,7 +7019,7 @@ void ItemUseCB_PokeBall(u8 taskId, TaskFunc task)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
     u16 currBall = GetMonData(mon, MON_DATA_POKEBALL);
-    u16 newBall = gSpecialVar_ItemId;
+    u16 newBall = ItemIdToBallId(gSpecialVar_ItemId);
     static const u8 sText_MonBallWasChanged[] = _("{STR_VAR_1} wurde in {STR_VAR_2} gelegt.{PAUSE_UNTIL_PRESS}");
 
     if (currBall == newBall)
@@ -7004,7 +7032,7 @@ void ItemUseCB_PokeBall(u8 taskId, TaskFunc task)
     else
     {
         GetMonNickname(mon, gStringVar1);
-        CopyItemName(newBall, gStringVar2);
+        CopyItemName(gSpecialVar_ItemId, gStringVar2);
         PlaySE(SE_SELECT);
         gPartyMenuUseExitCallback = TRUE;
         SetMonData(mon, MON_DATA_POKEBALL, &newBall);

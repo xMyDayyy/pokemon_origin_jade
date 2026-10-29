@@ -73,6 +73,7 @@ static void npc_clear_strange_bits(struct ObjectEvent *);
 static void MovePlayerAvatarUsingKeypadInput(enum Direction, u16, u16);
 static void PlayerAllowForcedMovementIfMovingSameDirection(void);
 static u8 GetForcedMovementByMetatileBehavior(void);
+static void PlayerSetCopyableMovement(enum CopyMovement movement);
 
 static bool8 ForcedMovement_None(void);
 static bool8 ForcedMovement_Slip(void);
@@ -514,6 +515,8 @@ static bool8 ForcedMovement_None(void)
         playerObjEvent->enableAnim = TRUE;
         SetObjectEventDirection(playerObjEvent, playerObjEvent->facingDirection);
         gPlayerAvatar.flags &= ~PLAYER_AVATAR_FLAG_FORCED_MOVE;
+        // Upstream fix (expansion #10551).
+        PlayerSetCopyableMovement(COPY_MOVE_NONE);
     }
     return FALSE;
 }
@@ -1764,11 +1767,19 @@ void SetPlayerAvatarExtraStateTransition(u16 graphicsId, u8 transitionFlag)
 
 void InitPlayerAvatar(s16 x, s16 y, enum Direction direction, enum Gender gender)
 {
-    struct ObjectEventTemplate playerObjEventTemplate;
+    // Must be zero-initialised, and `kind` must be set explicitly.
+    // InitObjectEventStateFromTemplate branches on template->kind, and
+    // OBJ_KIND_CLONE is 255; left as stack garbage a 0xFF byte here sends the
+    // player spawn down the clone path, which reads objectEvents[-1] of an
+    // arbitrary map and overwrites the player object's localId. Lookups for
+    // LOCALID_PLAYER then fail and every scripted player movement on that map
+    // is silently discarded.
+    struct ObjectEventTemplate playerObjEventTemplate = {0};
     u8 objectEventId;
     struct ObjectEvent *objectEvent;
 
     playerObjEventTemplate.localId = LOCALID_PLAYER;
+    playerObjEventTemplate.kind = OBJ_KIND_NORMAL;
     playerObjEventTemplate.graphicsId = GetPlayerAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, gender);
     playerObjEventTemplate.x = x - MAP_OFFSET;
     playerObjEventTemplate.y = y - MAP_OFFSET;

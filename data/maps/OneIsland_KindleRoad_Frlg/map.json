@@ -1,7 +1,7 @@
 {
   "id": "MAP_ONE_ISLAND_KINDLE_ROAD",
   "name": "OneIsland_KindleRoad_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_ONE_ISLAND_KINDLE_ROAD",
   "music": "MUS_RG_ROUTE3",
   "region": "REGION_KANTO",

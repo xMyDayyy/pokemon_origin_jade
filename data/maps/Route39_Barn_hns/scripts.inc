@@ -106,7 +106,7 @@ Route39_Barn_EventScript_Miltank_NeedBerries1::
 	msgbox Route39_Text_BarnGaveBerry, MSGBOX_AUTOCLOSE
 	waitse
 	msgbox Route39_Text_BarnTotallyHealthy, MSGBOX_DEFAULT
-	playfanfare MUS_OBTAIN_BADGE
+	playfanfare MUS_HEAL 
 	waitfanfare
 	closemessage
 	setvar VAR_ROUTE39_BARN, 5
@@ -140,91 +140,43 @@ Route39_Barn_EventScript_TwinsAfter::
 	end
 
 Route39_Text_BarnTwinMoomooIsSick:
-#if GERMAN
-	.string "Muhkuh ist krank… es braucht jetzt\n"
-	.string "sehr viele von den Sinelbeeren, die es\l"
-	.string "so gerne mag…$"
-#else
 	.string "MOOMOO is sick…\p"
 	.string "She needs lots of ORAN BERRIES.$"
-#endif
 
 Route39_Text_BarnTwinFeedingMoomoo:
-#if GERMAN
-	.string "Wir füttern Miltank!$"
-#else
 	.string "MOOMOO is all better!\n"
 	.string "Thank you!$"
-#endif
 
 Route39_Text_MoomooWeakMoo:
-#if GERMAN
-	.string "Miltank: …tank…$"
-#else
 	.string "MILTANK: …Moo…$"
-#endif
 
 Route39_Text_BarnCryIsWeak:
-#if GERMAN
-	.string "Sein Ruf ist schwach…$"
-#else
 	.string "Its cry is weak…\n"
 	.string "Give an ORAN BERRY to MILTANK?$"
-#endif
 
 Route39_Text_MoomooHappyMoo:
-#if GERMAN
-	.string "Miltank: Miiillltank!$"
-#else
 	.string "MILTANK: Mooo!$"
-#endif
 
 Route39_Text_BarnGaveBerry:
-#if GERMAN
-	.string "{PLAYER} gibt Miltank eine Sinelbeere!$"
-#else
 	.string "{PLAYER} gave an ORAN BERRY to\n"
 	.string "MILTANK.$"
-#endif
 
 Route39_Text_BarnLittleHealthier:
-#if GERMAN
-	.string "Miltank geht es wieder etwas besser!$"
-#else
 	.string "MILTANK became a little\n"
 	.string "healthier!$"
-#endif
 
 Route39_Text_BarnQuiteHealthy:
-#if GERMAN
-	.string "Miltank ist viel gesünder geworden!$"
-#else
 	.string "MILTANK became quite\n"
 	.string "healthy!$"
-#endif
 
 Route39_Text_BarnTotallyHealthy:
-#if GERMAN
-	.string "Miltank ist wieder voll bei Kräften!$"
-#else
 	.string "MILTANK became totally\n"
 	.string "healthy!$"
-#endif
 
 Route39_Text_BarnNoBerries:
-#if GERMAN
-	.string "{PLAYER} hat keine Sinelbeeren dabei…$"
-#else
 	.string "{PLAYER} has no ORAN BERRIES…$"
-#endif
 
 Route39_Text_BarnRefusedBerry:
-#if GERMAN
-	.string "{PLAYER} hat Miltank keine Sinelbeeren\n"
-	.string "gegeben.\p"
-	.string "Es sieht dich ganz traurig an…$"
-#else
 	.string "{PLAYER} wouldn't give an\n"
 	.string "ORAN BERRY.\p"
 	.string "MILTANK looks sad.$"
-#endif

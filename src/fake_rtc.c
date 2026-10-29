@@ -111,7 +111,16 @@ void FakeRtc_ManuallySetTime(u32 day, u32 hour, u32 minute, u32 second)
 u32 FakeRtc_GetSecondsRatio(void)
 {
     if (UseFakeRtc() && OW_ALTERED_TIME_RATIO == GEN_LATEST)
-        return 24;
+    {
+        // Origin Jade: clock speed from the challenge menu.
+        // Keep 0 = 24: older saves use it.
+        switch (gSaveBlock3Ptr->challengeSettings.tx_Features_RtcSpeed)
+        {
+        case 0:  return 24; // Fast:   1 real hour  = 1 game day
+        case 1:  return 12; // Normal: 2 real hours = 1 game day
+        default: return 6;  // Slow:   4 real hours = 1 game day
+        }
+    }
 
     return (OW_ALTERED_TIME_RATIO == GEN_8_PLA)   ? 60 :
            (OW_ALTERED_TIME_RATIO == GEN_9)       ? 20 :

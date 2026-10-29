@@ -6,8 +6,7 @@ Route104_PrettyPetalFlowerShop_OnTransition:
 	setflag FLAG_LANDMARK_FLOWER_SHOP
 	goto_if_unset FLAG_MET_PRETTY_PETAL_SHOP_OWNER, Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner
 #if IS_HNS
-	@ HnS: FLAG_BADGE03_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
+	@ Hoenn badge 3 (Wattson)
 	setvar VAR_0x8004, 2
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, FALSE, Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner
@@ -81,8 +80,6 @@ Route104_PrettyPetalFlowerShop_EventScript_GiveWailmerPail::
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	msgbox Route104_PrettyPetalFlowerShop_Text_WailmerPailExplanation, MSGBOX_DEFAULT
 #if IS_HNS
-	@ Erklaert den Unterschied zu Johto/Kanto, wo die Beeren an Baeumen
-	@ hängen und von allein nachtragen.
 	msgbox Route104_PrettyPetalFlowerShop_Text_HnsBerriesDiffer, MSGBOX_DEFAULT
 #endif
 	setflag FLAG_RECEIVED_WAILMER_PAIL

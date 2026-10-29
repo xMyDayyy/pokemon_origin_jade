@@ -31,9 +31,9 @@ VermilionCity_PokemonCenter_1F_EventScript_VSSeekerWoman::
 	faceplayer
 	goto_if_set FLAG_GOT_VS_SEEKER, VermilionCity_PokemonCenter_1F_EventScript_ExplainVSSeeker
 	msgbox VermilionCity_PokemonCenter_1F_Text_UrgeToBattleSomeoneAgain
-	setflag FLAG_GOT_VS_SEEKER
 	giveitem ITEM_VS_SEEKER
 	goto_if_eq VAR_RESULT, FALSE, EventScript_BagIsFull
+	setflag FLAG_GOT_VS_SEEKER
 	msgbox VermilionCity_PokemonCenter_1F_Text_UseDeviceForRematches
 	release
 	end
@@ -88,14 +88,14 @@ VermilionCity_PokemonCenter_1F_Text_AllMonWeakToSpecificTypes::
 
 VermilionCity_PokemonCenter_1F_Text_UrgeToBattleSomeoneAgain::
 #if GERMAN
-	.string "Der Zwang erneut mit jemandem\n"
-	.string "zu kämpfen…\p"
-	.string "Hast du diesen Zwang je verspürt?\n"
-	.string "Ich bin sicher, dass du hast!\p"
-	.string "Gegen gewisse Trainer wollte ich immer\n"
-	.string "wieder antreten!\p"
-	.string "Also hab ich dies weggegeben.\n"
-	.string "Nimm bitte auch eines!$"
+	.string "Der Drang, gegen jemanden noch\n"
+	.string "einmal zu kämpfen…\p"
+	.string "Kennst du diesen Drang auch?\n"
+	.string "Bestimmt kennst du ihn!\p"
+	.string "Ich wollte auch immer wieder gegen\n"
+	.string "bestimmte Trainer antreten.\p"
+	.string "Deshalb verteile ich diese Geräte.\n"
+	.string "Bitte nimm auch eins!$"
 #else
 	.string "The urge to battle with someone\n"
 	.string "you've tangled with before…\p"
@@ -109,10 +109,10 @@ VermilionCity_PokemonCenter_1F_Text_UrgeToBattleSomeoneAgain::
 
 VermilionCity_PokemonCenter_1F_Text_UseDeviceForRematches::
 #if GERMAN
-	.string "Setze dieses Gerät ein und du findest\n"
-	.string "Trainer, die einen Rückkampf möchten.\l"
-	.string "Du musst allerdings die Batterie\l"
-	.string "aufladen, um es zu betreiben!$"
+	.string "Mit diesem Gerät findest du\n"
+	.string "Trainer, die einen Rückkampf wollen.\p"
+	.string "Du musst aber seine Batterie\n"
+	.string "aufladen, um es zu benutzen.$"
 #else
 	.string "Use that device and you'll find\n"
 	.string "TRAINERS looking for a rematch.\p"
@@ -123,13 +123,13 @@ VermilionCity_PokemonCenter_1F_Text_UseDeviceForRematches::
 VermilionCity_PokemonCenter_1F_Text_ExplainVSSeeker::
 #if GERMAN
 	.string "Wie man den Kampffahnder einsetzt?\n"
-	.string "Das ist einfach!\p"
-	.string "Er macht biep, biep, biep und die Trainer\n"
-	.string "um dich herum werden darauf reagieren.\l"
-	.string "Falls ein Trainer einen Rückkampf\l"
-	.string "möchte, wird er dir das zeigen.\l"
-	.string "Lade die Batterie auf und setze ihn auf\l"
-	.string "deinen Reisen ein.$"
+	.string "Das ist ganz einfach!\p"
+	.string "Er macht piep, piep, piep, und die\n"
+	.string "Trainer um dich herum bemerken es.\p"
+	.string "Will ein Trainer einen Rückkampf,\n"
+	.string "zeigt er es dir sofort.\p"
+	.string "Lade die Batterie auf und setze ihn\n"
+	.string "unterwegs auf den Routen ein.$"
 #else
 	.string "How do you use the VS SEEKER?\n"
 	.string "There's nothing to it.\p"

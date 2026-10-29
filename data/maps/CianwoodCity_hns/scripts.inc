@@ -38,14 +38,23 @@ CianwoodCity_EventScript_Flytrigger::
 	waitmovement LOCALID_CIANWOOD_CHUCKSWIFE
 	applymovement LOCALID_CIANWOOD_CHUCKSWIFE, CianwoodCity_Movement_ChucksWife
 	waitmovement 0
+	@ Origin Jade: Sharp Beak instead if the player already has HM Fly.
+	checkitem ITEM_HM_FLY
+	goto_if_eq VAR_RESULT, TRUE, CianwoodCity_EventScript_FlytriggerHasFly
 	msgbox CianwoodCity_Text_ChucksWifeGiveHM, MSGBOX_DEFAULT
 	giveitem ITEM_HM_FLY
 	msgbox CianwoodCity_Text_ChucksWifeFlySpeech, MSGBOX_DEFAULT
+CianwoodCity_EventScript_FlytriggerDone::
 	closemessage
 	setvar VAR_GETFLY, 2
 	goto_if_eq VAR_TRIGGER_ELM_ROCKET_CALL, 1, Mahoganytown_EventScript_RocketTrigger
 	release
 	end
+
+CianwoodCity_EventScript_FlytriggerHasFly::
+	msgbox CianwoodCity_Text_ChucksWifeHasFly, MSGBOX_DEFAULT
+	giveitem ITEM_SHARP_BEAK
+	goto CianwoodCity_EventScript_FlytriggerDone
 
 CianwoodCity_Movement_ChucksWife:
 	walk_left
@@ -68,7 +77,10 @@ CianwoodCity_EventScript_ChucksWife::
 	checkitem ITEM_HM_FLY
 	goto_if_eq VAR_RESULT, TRUE, CianwoodCity_EventScript_ChucksWifeAlreadyHasFly
 	msgbox CianwoodCity_Text_ChucksWifeEasierToFly, MSGBOX_DEFAULT
-	goto_if_set FLAG_BADGE05_GET, CianwoodCity_EventScript_ChucksWifeGiveFly
+	@ Johto badge 5 (Chuck)
+	setvar VAR_0x8004, 4
+	special CheckJohtoBadge
+	goto_if_eq VAR_RESULT, TRUE, CianwoodCity_EventScript_ChucksWifeGiveFly
 	msgbox CianwoodCity_Text_ChucksWifeBeatChuck, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -260,6 +272,8 @@ CianwoodCity_EventScript_SuicuneTrigger::
 	trainerbattle_no_intro TRAINER_EUSINE_HNS, CianwoodCity_Text_EusineBeaten
 	playbgm MUS_HG_EUSINE, FALSE
 	msgbox CianwoodCity_Text_EusineAfter, MSGBOX_DEFAULT
+	setvar VAR_SUICUNE_ENCOUNTERS, 2
+	call_if_set FLAG_HIDE_ROUTE42_SUICUNE, CianwoodCity_EventScript_DoneJohtoSuicune
 	closemessage
 	applymovement LOCALID_CIANWOOD_EUSINE, CianwoodCity_Movement_Eusine3
 	waitmovement 0
@@ -267,13 +281,12 @@ CianwoodCity_EventScript_SuicuneTrigger::
 	setflag FLAG_HIDE_CIANWOOD_SUICUNE
 	removeobject LOCALID_CIANWOOD_SUICUNE
 	removeobject LOCALID_CIANWOOD_EUSINE
-	setvar VAR_SUICUNE_ENCOUNTERS, 2
 	setvar VAR_CIANWOOD_CITY_STATE, 2
 	fadedefaultbgm
-	call_if_set FLAG_HIDE_ROUTE42_SUICUNE, CianwoodCity_EventScript_DoneJohtoSuicune
 	release
 	end
 
+@ Both Johto sightings done (Route 42 came first): Suicune appears on Route 36 next.
 CianwoodCity_EventScript_DoneJohtoSuicune::
 	setvar VAR_SUICUNE_ENCOUNTERS, 3
 	return
@@ -328,19 +341,23 @@ CianwoodCity_Movement_Eusine3:
 CianwoodCity_Text_EusineSuicune:
 #if GERMAN
 	.string "Eusin: Hallo, {PLAYER}!\p"
-	.string "Sag mal… war das eben nicht Suicune?\p"
-	.string "Ich konnte es nicht richtig erkennen,\n"
-	.string "aber für den Hauch einer Sekunde meinte\l"
-	.string "ich wirklich, gesehen zu haben, wie da\l"
-	.string "Suicune über das Meer gebrettert ist.\p"
+	.string "Sag mal… war das eben nicht\n"
+	.string "Suicune?\p"
+	.string "Ich konnte es nicht richtig\n"
+	.string "erkennen, aber für den Hauch einer\l"
+	.string "Sekunde meinte ich wirklich, gesehen\l"
+	.string "zu haben, wie da Suicune über das\l"
+	.string "Meer gebrettert ist.\p"
 	.string "Suicune ist so schön und so stolz…\p"
-	.string "Außerdem läuft es mit atemberaubender\n"
-	.string "Geschwindigkeit Städte und Straßen ab!\p"
-	.string "Es ist einfach ein wundervolles Pokémon.\p"
+	.string "Außerdem läuft es mit\n"
+	.string "atemberaubender Geschwindigkeit\l"
+	.string "Städte und Straßen ab!\p"
+	.string "Es ist einfach ein wundervolles\n"
+	.string "Pokémon.\p"
 	.string "Ich würde es nur zu gerne mal aus\n"
 	.string "nächster Nähe sehen…\p"
-	.string "Los, lass uns kämpfen! Wenn ich dich\n"
-	.string "besiege, erkennt mich Suicune\l"
+	.string "Los, lass uns kämpfen! Wenn ich\n"
+	.string "dich besiege, erkennt mich Suicune\l"
 	.string "vielleicht als würdigen Trainer an!\p"
 	.string "Komm schon, {PLAYER}!$"
 #else
@@ -370,10 +387,11 @@ CianwoodCity_Text_EusineBeaten:
 CianwoodCity_Text_EusineAfter:
 #if GERMAN
 	.string "Du bist unglaublich, {PLAYER}!\p"
-	.string "Kein Wunder, dass Pokémon sich zu dir\n"
-	.string "hingezogen fühlen.\p"
+	.string "Kein Wunder, dass Pokémon sich zu\n"
+	.string "dir hingezogen fühlen.\p"
 	.string "Jetzt verstehe ich es.\p"
-	.string "Ich werde weiter nach Suicune suchen.\p"
+	.string "Ich werde weiter nach Suicune\n"
+	.string "suchen.\p"
 	.string "Wir werden uns sicher wiedersehen.\p"
 	.string "Bis dann!$"
 #else
@@ -471,4 +489,21 @@ CianwoodCity_Text_Engineer:
 	.string "This path is under construction.\n"
 	.string "We're getting the new SAFARI ZONE\l"
 	.string "up and running!$"
+#endif
+
+CianwoodCity_Text_ChucksWifeHasFly:
+#if GERMAN
+	.string "Warte doch! Ich wollte dir Fliegen\n"
+	.string "mitgeben, für den Rückweg übers Meer.\p"
+	.string "Du hast es. Natürlich hast du es.\p"
+	.string "Dann nimm wenigstens das hier. Es lag\n"
+	.string "in Chucks Trainingsschuppen und er\l"
+	.string "merkt es nicht.$"
+#else
+	.string "Wait! I meant to give you FLY, for the\n"
+	.string "way back across the sea.\p"
+	.string "You have it. Of course you have it.\p"
+	.string "Then take this at least. It was in\n"
+	.string "CHUCK's training shed and he won't\l"
+	.string "notice.$"
 #endif

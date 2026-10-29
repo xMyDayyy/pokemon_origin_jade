@@ -237,8 +237,7 @@ RivalsHouse_2F_EventScript_Rival::
 	lockall
 	goto_if_set FLAG_MET_RIVAL_LILYCOVE, RivalsHouse_2F_EventScript_RivalPostLilycove
 #if IS_HNS
-	@ HnS-Kanon: Die Rivalin ist immer Maike, unabhaengig vom Geschlecht
-	@ der Spielfigur. Brix bleibt als eigenstaendige Figur frei.
+	@ HnS: the rival is always May.
 	goto RivalsHouse_2F_EventScript_May
 #else
 	checkplayergender
@@ -288,8 +287,7 @@ RivalsHouse_2F_EventScript_BrendanWhereShouldIGoNext::
 LittlerootTown_MaysHouse_2F_EventScript_PC::
 	lockall
 #if IS_HNS
-	@ Origin Jade: Maike ist immer die Rivalin - dieses Haus gehoert ihr,
-	@ unabhaengig vom Spielergeschlecht. Der PC zeigt ihre E-Mail.
+	@ Origin Jade: the PC always shows May's e-mail.
 	goto LittlerootTown_MaysHouse_2F_EventScript_CheckRivalsPC
 #endif
 	checkplayergender

@@ -1,7 +1,7 @@
 {
   "id": "MAP_PEWTER_CITY_MUSEUM_2F",
   "name": "PewterCity_Museum_2F_Frlg",
-  "game_version": "frlg",
+  "game_version": "hns",
   "layout": "LAYOUT_PEWTER_CITY_MUSEUM_2F",
   "music": "MUS_RG_PEWTER",
   "region": "REGION_KANTO",

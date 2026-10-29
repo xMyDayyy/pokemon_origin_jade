@@ -113,7 +113,7 @@ enum Language
 #define DECOR_MAX_PLAYERS_HOUSE 12
 #define APPRENTICE_COUNT 4
 #define APPRENTICE_MAX_QUESTIONS 9
-#define MAX_REMATCH_ENTRIES 118 // HnS: exakt REMATCH_TABLE_ENTRIES (inkl. Hoenn-Rueckkaempfe)
+#define MAX_REMATCH_ENTRIES 118 // HnS: keep equal to REMATCH_TABLE_ENTRIES
 #define NUM_CONTEST_WINNERS 13
 #define UNION_ROOM_KB_ROW_COUNT 10
 #define GIFT_RIBBONS_COUNT 11
@@ -228,6 +228,11 @@ enum Gender
 
 #define OPTIONS_BATTLE_STYLE_SHIFT 0
 #define OPTIONS_BATTLE_STYLE_SET 1
+
+#define OPTIONS_EXP_MULTIPLIER_1X   0   // 1x EXP multiplier    Normal Difficulty
+#define OPTIONS_EXP_MULTIPLIER_1_5X 1   // 1.5x EXP multiplier  Easier Difficulty
+#define OPTIONS_EXP_MULTIPLIER_2X   2   // 2x EXP multiplier    Easiest Difficulty
+#define OPTIONS_EXP_MULTIPLIER_0X   3   // 0x EXP multiplier    Hardest Difficulty
 
 enum __attribute__((packed)) Direction
 {

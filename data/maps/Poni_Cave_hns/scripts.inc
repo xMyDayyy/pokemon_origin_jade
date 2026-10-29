@@ -5,10 +5,10 @@ Alola_Poni_BattleGolem::
 	lock
 	faceplayer
 	setflag FLAG_BATTLED_GOLEM
-	playmoncry SPECIES_GOLEM, 0
+	playmoncry SPECIES_GOLEM_ALOLA, 0
 	msgbox Alola_Poni_BattleGolem_Text_0, MSGBOX_AUTOCLOSE
 	waitmoncry
-	setwildbattle SPECIES_GOLEM, 45
+	setwildbossbattle species=SPECIES_GOLEM_ALOLA, level=60, move1_1=MOVE_DISCHARGE, move1_2=MOVE_ROCK_BLAST, move1_3=MOVE_THUNDER_PUNCH, move1_4=MOVE_STEALTH_ROCK
 	dowildbattle
 	specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, B_OUTCOME_CAUGHT
@@ -45,8 +45,4 @@ Alola_Poni_Cave_FindItem2::
 
 
 Alola_Poni_BattleGolem_Text_0:
-#if GERMAN
-	.string "Urgs!$"
-#else
 	.string "Gaaah!$"
-#endif

@@ -1,7 +1,7 @@
 {
   "id": "MAP_SIX_ISLAND_DOTTED_HOLE_SAPPHIRE_ROOM",
   "name": "SixIsland_DottedHole_SapphireRoom_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_SIX_ISLAND_DOTTED_HOLE_SAPPHIRE_ROOM",
   "music": "MUS_RG_SEVII_DUNGEON",
   "region": "REGION_KANTO",

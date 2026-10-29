@@ -39,8 +39,7 @@ LilycoveCity_PokemonCenter_1F_EventScript_Maniac::
 	lock
 	faceplayer
 #if IS_HNS
-	@ HnS: FLAG_BADGE07_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
+	@ Hoenn badge 7 (Tate & Liza)
 	setvar VAR_0x8004, 6
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, TRUE, LilycoveCity_PokemonCenter_1F_EventScript_ManiacBadTeamGone

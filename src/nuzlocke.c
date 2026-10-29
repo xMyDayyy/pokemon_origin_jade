@@ -14,6 +14,7 @@
 #include "pokedex.h"
 #include "constants/pokedex.h"
 #include "battle.h"
+#include "bug_contest.h"
 
 EWRAM_DATA u8 NuzlockeIsCaptureBlocked = FALSE;
 EWRAM_DATA u8 NuzlockeIsSpeciesClauseActive = FALSE;
@@ -26,32 +27,7 @@ EWRAM_DATA u8 OneTypeChallengeCaptureBlocked = FALSE;
 static const u8 sNuzlockeLUT[] =
 {
 #if IS_HNS
-    // Kanto Routes
-    [MAPSEC_ROUTE_1]          = 0x00,
-    [MAPSEC_ROUTE_2]          = 0x01,
-    [MAPSEC_ROUTE_3]          = 0x02,
-    [MAPSEC_ROUTE_4]          = 0x03,
-    [MAPSEC_ROUTE_5]          = 0x04,
-    [MAPSEC_ROUTE_6]          = 0x05,
-    [MAPSEC_ROUTE_7]          = 0x06,
-    [MAPSEC_ROUTE_8]          = 0x07,
-    [MAPSEC_ROUTE_9]          = 0x08,
-    [MAPSEC_ROUTE_10]         = 0x09,
-    [MAPSEC_ROUTE_11]         = 0x0A,
-    [MAPSEC_ROUTE_12]         = 0x0B,
-    [MAPSEC_ROUTE_13]         = 0x0C,
-    [MAPSEC_ROUTE_14]         = 0x0D,
-    [MAPSEC_ROUTE_15]         = 0x0E,
-    [MAPSEC_ROUTE_16]         = 0x0F,
-    [MAPSEC_ROUTE_17]         = 0x10,
-    [MAPSEC_ROUTE_18]         = 0x11,
-    [MAPSEC_ROUTE_19]         = 0x12,
-    [MAPSEC_ROUTE_20]         = 0x13,
-    [MAPSEC_ROUTE_21]         = 0x14,
-    [MAPSEC_ROUTE_22]         = 0x15,
-    [MAPSEC_ROUTE_23]         = 0x16,
-    [MAPSEC_ROUTE_24]         = 0x17,
-    [MAPSEC_ROUTE_25]         = 0x18,
+    // FRLG Kanto is further down, at 0xBC-0xDF.
     // Johto-Kanto Routes
     [MAPSEC_ROUTE_26]         = 0x19,
     [MAPSEC_ROUTE_27]         = 0x1A,
@@ -97,15 +73,8 @@ static const u8 sNuzlockeLUT[] =
     [MAPSEC_MT_MORTAR]        = 0x40,
     [MAPSEC_WHIRL_ISLANDS]    = 0x41,
     [MAPSEC_BURNED_TOWER]     = 0x42,
-    [MAPSEC_SAFARI_ZONE]      = 0x43,
-    // Dungeons: Kanto
-    [MAPSEC_ROCK_TUNNEL]      = 0x44,
-    [MAPSEC_SEAFOAM_ISLANDS]  = 0x45,
-    [MAPSEC_VIRIDIAN_FOREST]  = 0x46,
-    [MAPSEC_MT_MOON]          = 0x47,
-    [MAPSEC_DIGLETTS_CAVE]    = 0x48,
+    // Dungeons: Kanto (only the HnS Victory Road; FRLG dungeons below from 0xD5)
     [MAPSEC_VICTORY_ROAD_HNS] = 0x49,
-    [MAPSEC_CERULEAN_CAVE]    = 0x4A,
     // Cities/Towns: Johto
     [MAPSEC_OLIVINE_CITY]     = 0x4B,
     [MAPSEC_BLACKTHORN_CITY]  = 0x4C,
@@ -129,7 +98,6 @@ static const u8 sNuzlockeLUT[] =
     [MAPSEC_PEWTER_CITY]      = 0x5D,
     [MAPSEC_LAVENDER_TOWN]    = 0x5E,
     // Special
-    [MAPSEC_BATTLE_FRONTIER]  = 0x5F,
     [MAPSEC_FARAWAY_ISLAND]   = 0x60,
     // Alola
     [MAPSEC_MELEMELE_ISLAND] = 0x61,
@@ -151,8 +119,8 @@ static const u8 sNuzlockeLUT[] =
     // Max bit index: 0x6F (112 bits). nuzlockeEncounterFlags[16] supports up to 0x7F (128 bits).
     // If you exceed 0x7F, grow nuzlockeEncounterFlags in include/global.h.
 
-    // Origin Jade: Hoenn-Abschnitte (IDs 0x80+ -> zweites Bitfeld in
-    // SaveBlock3.nuzlockeEncounterFlagsHoenn). Werte = Vanilla-IDs + 0x80.
+    // Origin Jade: IDs from 0x80 on are stored in SaveBlock3.nuzlockeEncounterFlagsHoenn.
+    // Hoenn uses the Emerald IDs + 0x80, FRLG Kanto 0xBC-0xDF.
     [MAPSEC_ROUTE_101] = 0x80,
     [MAPSEC_ROUTE_102] = 0x81,
     [MAPSEC_ROUTE_103] = 0x82,
@@ -202,7 +170,7 @@ static const u8 sNuzlockeLUT[] =
     [MAPSEC_FIERY_PATH] = 0xAE,
     [MAPSEC_JAGGED_PASS] = 0xAF,
     [MAPSEC_SKY_PILLAR] = 0xB0,
-    [MAPSEC_SAFARI_ZONE] = 0xB1,
+    [MAPSEC_SAFARI_ZONE] = 0xB1, // the Johto and Hoenn Safari Zones share this MAPSEC
     [MAPSEC_SCORCHED_SLAB] = 0xB2,
     [MAPSEC_ISLAND_CAVE] = 0xB3,
     [MAPSEC_DESERT_RUINS] = 0xB4,
@@ -249,12 +217,24 @@ static const u8 sNuzlockeLUT[] =
     [MAPSEC_POKEMON_TOWER] = 0xDD,
     [MAPSEC_POKEMON_MANSION] = 0xDE,
     [MAPSEC_KANTO_SAFARI_ZONE] = 0xDF,
-    [MAPSEC_MT_EMBER] = 0xE0,
-    [MAPSEC_BERRY_FOREST] = 0xE1,
-    [MAPSEC_ICEFALL_CAVE] = 0xE2,
-    [MAPSEC_LOST_CAVE] = 0xE3,
-    [MAPSEC_PATTERN_BUSH] = 0xE4,
+    // 0xE0-0xE4: reserved for the Sevii dungeons, whose MAPSECs are 0 in this build.
     [MAPSEC_BATTLE_FRONTIER] = 0xE5,
+    // Origin Jade: sections with water or dungeon encounters.
+    [MAPSEC_DEWFORD_TOWN] = 0xE6,
+    [MAPSEC_EVER_GRANDE_CITY] = 0xE7,
+    [MAPSEC_LILYCOVE_CITY] = 0xE8,
+    [MAPSEC_MOSSDEEP_CITY] = 0xE9,
+    [MAPSEC_PACIFIDLOG_TOWN] = 0xEA,
+    [MAPSEC_PETALBURG_CITY] = 0xEB,
+    [MAPSEC_SLATEPORT_CITY] = 0xEC,
+    [MAPSEC_SOOTOPOLIS_CITY] = 0xED,
+    [MAPSEC_MAGMA_HIDEOUT] = 0xEE,
+    [MAPSEC_MIRAGE_TOWER] = 0xEF,
+    [MAPSEC_UNDERWATER_124] = 0xF0,
+    [MAPSEC_UNDERWATER_126] = 0xF1,
+    [MAPSEC_S_S_ANNE] = 0xF2,
+    [MAPSEC_SOUTHERN_ISLAND] = 0xF3,
+    // Next free ID: 0xF4 (upper limit 0xFF = nuzlockeEncounterFlagsHoenn[16]).
 
 #else
     // Hoenn Routes
@@ -367,6 +347,16 @@ static const u8 sNuzlockeLUT[] =
 #endif
 };
 
+// The Bug Catching Contest and the Safari Zone hand out balls and expect the
+// player to throw them freely, so the one-encounter-per-zone rule is suspended
+// for their duration. Everything else about the Nuzlocke (deaths, revive
+// blocking, PC rules) stays live -- clearing FLAG_START_NUZLOCKE would switch
+// all of it off and let a Pokemon Center heal the dead mons in the PC.
+bool8 IsNuzlockeCaptureSuspended(void)
+{
+    return FlagGet(FLAG_SYS_SAFARI_MODE) || GetBugContestFlag();
+}
+
 bool8 IsNuzlockeActive(void)
 {
     struct ChallengeSettings *cs = &gSaveBlock3Ptr->challengeSettings;
@@ -407,11 +397,18 @@ bool8 IsNuzlockeNicknamingActive(void)
     return cs->tx_Nuzlocke_Nicknaming;
 }
 
-// Origin Jade: LUT-IDs < 0x80 liegen im alten Bitfeld (Johto/Kanto),
-// IDs ab 0x80 im neuen Hoenn-Bitfeld am SaveBlock3-Ende.
+// Origin Jade: unlisted MAPSECs, including those past the end of the LUT, use ID 0.
+static u16 NuzlockeLutId(u16 mapsec)
+{
+    if (mapsec >= ARRAY_COUNT(sNuzlockeLUT))
+        return 0;
+    return sNuzlockeLUT[mapsec];
+}
+
+// Byte holding the encounter bit of a map section (IDs from 0x80 on: Hoenn bit field).
 static u8 *NuzlockeFlagPtr(u16 mapsec)
 {
-    u16 id = sNuzlockeLUT[mapsec];
+    u16 id = NuzlockeLutId(mapsec);
 #if IS_HNS
     if (id >= 0x80)
         return &gSaveBlock3Ptr->nuzlockeEncounterFlagsHoenn[(id - 0x80) / 8];
@@ -421,7 +418,7 @@ static u8 *NuzlockeFlagPtr(u16 mapsec)
 
 u8 NuzlockeFlagSet(u16 mapsec)
 {
-    u16 id = sNuzlockeLUT[mapsec];
+    u16 id = NuzlockeLutId(mapsec);
     u8 *ptr = NuzlockeFlagPtr(mapsec);
 
     *ptr |= 1 << (id & 7);
@@ -430,7 +427,7 @@ u8 NuzlockeFlagSet(u16 mapsec)
 
 u8 NuzlockeFlagClear(u16 mapsec)
 {
-    u16 id = sNuzlockeLUT[mapsec];
+    u16 id = NuzlockeLutId(mapsec);
     u8 *ptr = NuzlockeFlagPtr(mapsec);
 
     *ptr &= ~(1 << (id & 7));
@@ -439,7 +436,7 @@ u8 NuzlockeFlagClear(u16 mapsec)
 
 u8 NuzlockeFlagGet(u16 mapsec)
 {
-    u16 id = sNuzlockeLUT[mapsec];
+    u16 id = NuzlockeLutId(mapsec);
     u8 *ptr = NuzlockeFlagPtr(mapsec);
 
     if (!((*ptr >> (id & 7)) & 1))
@@ -470,6 +467,13 @@ void NuzlockeDeleteFaintedPartyPokemon(void)
     struct Pokemon *pokemon;
     u16 item = ITEM_NONE;
     struct ChallengeSettings *cs = &gSaveBlock3Ptr->challengeSettings;
+
+    // The Bug Contest lends the player a one-mon party (SavePlayerParty on entry,
+    // LoadPlayerParty on exit), so a faint there is not a real death -- the mon
+    // comes back with the restored party. Deleting it here would only leave a
+    // duplicate corpse in the PC under the cemetery option.
+    if (GetBugContestFlag())
+        return;
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -543,19 +547,10 @@ u8 NuzlockeIsCaptureBlockedBySpeciesClause(u16 species)
 
 void SetNuzlockeChecks(void)
 {
-    if (IsOneTypeChallengeActive())
-    {
-        u8 typeChallenge = gSaveBlock3Ptr->challengeSettings.tx_Challenges_OneTypeChallenge;
-        u16 species = GetMonData(&gEnemyParty[0], MON_DATA_SPECIES);
-        OneTypeChallengeCaptureBlocked = (GetSpeciesType(species, 0) != typeChallenge
-                                       && GetSpeciesType(species, 1) != typeChallenge);
-    }
-    else
-    {
-        OneTypeChallengeCaptureBlocked = FALSE;
-    }
+    OneTypeChallengeCaptureBlocked = !DoesSpeciesPassOneTypeChallenge(
+        GetMonData(&gEnemyParty[0], MON_DATA_SPECIES));
 
-    if (IsNuzlockeActive())
+    if (IsNuzlockeActive() && !IsNuzlockeCaptureSuspended())
     {
         NuzlockeIsSpeciesClauseActive = NuzlockeIsCaptureBlockedBySpeciesClause(
             GetMonData(&gEnemyParty[0], MON_DATA_SPECIES));
@@ -567,17 +562,6 @@ void SetNuzlockeChecks(void)
         {
             NuzlockeIsCaptureBlocked = FALSE;
             NuzlockeIsSpeciesClauseActive = FALSE;
-        }
-
-        {
-            u16 species = GetMonData(&gEnemyParty[0], MON_DATA_SPECIES);
-            if (gSpeciesInfo[species].isRestrictedLegendary
-                || gSpeciesInfo[species].isSubLegendary
-                || gSpeciesInfo[species].isMythical)
-            {
-                NuzlockeIsCaptureBlocked = FALSE;
-                NuzlockeIsSpeciesClauseActive = FALSE;
-            }
         }
     }
     else

@@ -419,7 +419,6 @@ MauvilleCity_EventScript_Wattson::
 	goto_if_set FLAG_GOT_BASEMENT_KEY_FROM_WATTSON, MauvilleCity_EventScript_BegunNewMauville
 	msgbox MauvilleCity_Text_WattsonNeedFavorTakeKey, MSGBOX_DEFAULT
 #if IS_HNS
-	@ HnS: eigener Schluessel, siehe include/constants/items.h
 	giveitem ITEM_NEW_MAUVILLE_KEY
 #else
 	giveitem ITEM_BASEMENT_KEY
@@ -664,15 +663,13 @@ MauvilleCity_Text_WallyPokenavCall:
 	.string "immer ich möchte, {PLAYER}!\p"
 	.string "… … … … … … … … … … … Klick!$"
 #else
-	.string "… … … … … …\n"
-	.string "… … … … … Beep!\p"
+	.string "… … … … … … … … … … … Beep!\p"
 	.string "WALLY: Oh, hello, {PLAYER}!\p"
 	.string "I just wanted to tell you that\n"
 	.string "my uncle bought me a POKéGEAR!\p"
 	.string "Now I can get in touch with you\n"
 	.string "anytime, {PLAYER}!\p"
-	.string "… … … … … …\n"
-	.string "… … … … … Click!$"
+	.string "… … … … … … … … … … … Click!$"
 #endif
 
 MauvilleCity_Text_RegisteredWally:

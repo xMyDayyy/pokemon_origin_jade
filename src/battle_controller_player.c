@@ -581,7 +581,7 @@ static void HideAllTargets(void)
 {
     for (enum BattlerId i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
-        if (IsBattlerAlive(i) && gBattleSpritesDataPtr->healthBoxesData[i].healthboxIsBouncing)
+        if (ShouldHideBattler(i))
         {
             gSprites[gBattlerSpriteIds[i]].callback = SpriteCB_HideAsMoveTarget;
             EndBounceEffect(i, BOUNCE_HEALTHBOX);
@@ -1089,7 +1089,8 @@ void HandleMoveSwitching(enum BattlerId battler)
             }
         }
 
-        if (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)
+        // Upstream fix (expansion #10015).
+        if (IS_FRLG && gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)
             gBattlerControllerFuncs[battler] = OakOldManHandleInputChooseMove;
         else
             gBattlerControllerFuncs[battler] = HandleInputChooseMove;
@@ -1109,7 +1110,8 @@ void HandleMoveSwitching(enum BattlerId battler)
         MoveSelectionDestroyCursorAt(gMultiUsePlayerCursor);
         MoveSelectionCreateCursorAt(gMoveSelectionCursor[battler], 0);
 
-        if (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)
+        // Origin Jade: the same when the reordering is cancelled.
+        if (IS_FRLG && gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)
             gBattlerControllerFuncs[battler] = OakOldManHandleInputChooseMove;
         else
             gBattlerControllerFuncs[battler] = HandleInputChooseMove;

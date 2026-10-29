@@ -1,11 +1,9 @@
 @ ============================================================
-@ Ueberfahrt nach Hoenn und Ankunft bei Professor Birk
+@ Crossing to Hoenn and arrival at Professor Birch's
 @ ============================================================
 
-@ Wird von beiden Haefen aufgerufen, sobald der Spieler Hoenn waehlt.
+@ Called from both ports as soon as the player picks Hoenn.
 Common_EventScript_SailToHoenn::
-	@ HnS: Die Ueberfahrt haengt am Hoennticket, das Troy in der Silph Co.
-	@ uebergibt - nicht mehr allein am Championtitel.
 	checkitem ITEM_HOENN_TICKET
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_HoennNoTicket
 	closemessage
@@ -42,9 +40,7 @@ Common_Text_HoennNeedTicket:
 	.string "along. Sorry!$"
 #endif
 
-@ Hoenn wird per Schiff betreten, nicht ueber die Umzugsszene aus Smaragd.
-@ Deren Endzustand wird hier einmalig hergestellt: Kulissenfiguren der
-@ Anfangssequenz verschwinden, die Zustandsvariablen springen ans Ende.
+@ Sets the end state of Emerald's intro.
 Common_EventScript_HoennSkipIntro::
 	call Common_EventScript_HoennHideStoryNpcs
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1
@@ -59,9 +55,7 @@ Common_EventScript_HoennSkipIntro::
 	setflag FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG
 	setflag FLAG_HIDE_ROUTE_101_ZIGZAGOON
 	setflag FLAG_HIDE_ROUTE_103_BIRCH
-	@ HnS: Maike (Birks Tochter) steht auf Route 103 - die Erstbegegnung
-	@ mit dem Champion samt erstem Kampf findet dort statt (siehe
-	@ Route103/scripts.inc). Ihr Hide-Flag setzt erst der Nachkampf.
+	@ May stays on Route 103 until her battle there.
 	setflag FLAG_HIDE_OLDALE_TOWN_RIVAL
 	setflag FLAG_SET_WALL_CLOCK
 	setflag FLAG_ADVENTURE_STARTED
@@ -73,14 +67,10 @@ Common_EventScript_HoennSkipIntro::
 	setflag FLAG_BIRCH_AIDE_MET
 	setflag FLAG_RIVAL_LEFT_FOR_ROUTE103
 	setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
-	@ Troy kennt den Spieler aus Johto - er steht von Anfang an im PokéCom.
 	setflag FLAG_REGISTERED_STEVEN_POKENAV
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK
-	@ Der Spieler wohnt in keinem der beiden Haeuser. Beide gehoeren
-	@ ortsansaessigen Familien: die eigene Mutter entfaellt, die
-	@ Nachbarsmutter und das Geschwisterkind bleiben.
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_MOM
@@ -93,9 +83,7 @@ Common_EventScript_HoennSkipIntro::
 	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 2
 	goto Common_EventScript_HoennSkipIntroStates
 
-@ Smaragds eigene Anfangsinitialisierung: versteckt 159 NPCs, die erst
-@ im Verlauf der Handlung erscheinen. HnS ruft stattdessen seine eigene
-@ Fassung auf, daher wird das hier nachgeholt.
+@ Copy of EventScript_ResetAllMapFlags (new_game.inc) with Origin Jade changes.
 Common_EventScript_HoennHideStoryNpcs::
 	setflag FLAG_HIDE_CONTEST_POKE_BALL
 	setflag FLAG_HIDE_ROUTE_111_VICTORIA_WINSTRATE
@@ -106,10 +94,7 @@ Common_EventScript_HoennHideStoryNpcs::
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_CYNDAQUIL
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_TOTODILE
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_POKEBALL_CHIKORITA
-	@ HnS: Heiko bleibt sichtbar - er steht vor der Arenatuer von
-	@ Bluetenburg City und traegt dort das Fang-Ereignis (statt des
-	@ Vanilla-Tutorials in der Arena). Arena-Zustand 2 = Tuer zu,
-	@ Indoor-Wally-Intro und Papa-Dialog sind damit unerreichbar.
+	@ Origin Jade: Wally stays visible, 2 = gym door closed.
 	setvar VAR_PETALBURG_GYM_STATE, 2
 	setflag FLAG_UNKNOWN_0x363
 	setflag FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT
@@ -117,7 +102,7 @@ Common_EventScript_HoennHideStoryNpcs::
 	setflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
 	setflag FLAG_HIDE_RUSTBORO_CITY_SCIENTIST
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN
-	@ HnS: Die Supermarkt-Fuehrung in Rosaltstadt entfaellt komplett.
+	@ Origin Jade: no Poke Mart tour in Oldale Town.
 	setflag FLAG_HIDE_OLDALE_TOWN_MART_EMPLOYEE
 	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
@@ -265,6 +250,8 @@ Common_EventScript_HoennHideStoryNpcs::
 	return
 
 Common_EventScript_HoennSkipIntroStates::
+	@ Littleroot TV shows the movie, the Lati news only after the Hoenn title.
+	setflag FLAG_SYS_TV_HOME
 	setvar VAR_LITTLEROOT_INTRO_STATE, 7
 	setvar VAR_LITTLEROOT_TOWN_STATE, 4
 	setvar VAR_LITTLEROOT_RIVAL_STATE, 4
@@ -279,20 +266,10 @@ Common_EventScript_HoennSkipIntroStates::
 	return
 
 @ ------------------------------------------------------------
-@ Ankunft am Strand von Route 104
+@ Arrival at the Route 104 beach
 @ ------------------------------------------------------------
-@ Wird als ON_FRAME-Skript beim Betreten der Karte ausgeloest (siehe
-@ Route104_OnFrame). Der Spieler landet per warpsilent auf (12,52) und wird
-@ von hier aus den Strand hinauf auf (17,52) gefuehrt - direkt unter die Tuer,
-@ aus der Birk tritt. Birk bleibt auf (17,51) stehen und schaut nach unten,
-@ der Spieler schaut nach oben.
-@ Der Steg ist zwei Kacheln breit (Zeile 51 = oben, Zeile 52 = unten) und
-@ liegt auf Hoehe 4. Die Trigger stehen deshalb auf der Uebergangskachel
-@ x=15 (Hoehe 0) direkt hinter dem Steg - auf dem Steg selbst haette ein
-@ Trigger mit fester Hoehe nie ausgeloest.
-@ Der Spieler bleibt stehen, Birk laeuft zu ihm. Auf der unteren Spur stellt
-@ er sich direkt ueber den Spieler und schaut nach unten; auf der oberen Spur
-@ ist dieses Feld belegt, also geht er eine Kachel weiter und schaut hoch.
+@ Coord triggers at x=15, not on the pier (elevation 4).
+@ VAR_0x8008: 0 = lower lane (row 52), 1 = upper lane (row 51).
 Route104_EventScript_HoennArrivalUpper::
 	lockall
 	setvar VAR_0x8008, 1
@@ -340,7 +317,7 @@ Route104_EventScript_HoennArrivalTalk::
 	end
 
 @ ------------------------------------------------------------
-@ Im Labor: Pokedex-Erweiterung
+@ In the lab: Pokedex upgrade
 @ ------------------------------------------------------------
 LittlerootTown_ProfessorBirchsLab_EventScript_HoennWelcome::
 	lockall
@@ -359,11 +336,10 @@ LittlerootTown_ProfessorBirchsLab_EventScript_HoennWelcome::
 	closemessage
 	msgbox BirchsLab_Text_HoennDexExplain, MSGBOX_DEFAULT
 	closemessage
-	@ Ordensmappe: schaltet die Hoenn-Ordenreihe auf der Trainerkarte frei.
 	call Common_EventScript_HoennGiveBadgeBinder
 	setvar VAR_HOENN_ARRIVAL_STATE, 3
 	setflag FLAG_SYS_HOENN_DEX_GET
-	@ Prof. Birk steht ab jetzt im PokéCom - eigener Kontakt neben Prof. Lind.
+	@ Birch's PokeGear contact (FLAG_ENABLE_PROF_BIRCH_MATCH_CALL is Elm's).
 	setflag FLAG_ENABLE_PROF_BIRK_MATCH_CALL
 	setflag FLAG_HIDE_ROUTE104_HOENN_BIRCH
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
@@ -373,7 +349,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_HoennWelcome::
 	end
 
 @ ------------------------------------------------------------
-@ Bewegungen
+@ Movements
 @ ------------------------------------------------------------
 Common_Movement_HoennStopAndLook:
 	walk_in_place_faster_up
@@ -397,22 +373,18 @@ Common_Movement_HoennBirchWalkToPlayer:
 	face_left
 	step_end
 
-@ Birk bleibt eine Kachel ueber dem Spieler stehen und sieht ihn an.
 Common_Movement_HoennBirchFacePlayer:
 	face_down
 	step_end
 
-@ Birk laeuft vom Hauseingang (17,50) zum Spieler.
-@ Untere Spur: ueber (17,51) nach (15,51), Blick nach unten.
+@ Lower lane: Birch runs from (17,51) to (15,51), above the player.
 Common_Movement_HoennBirchRunLower:
 	walk_fast_left
 	walk_fast_left
 	face_down
 	step_end
 
-@ Obere Spur: der Spieler steht selbst auf (15,51). Birk bleibt deshalb
-@ auf (16,51) vor ihm stehen statt sich unter ihn zu stellen - ein NPC
-@ unterhalb der Spielfigur erzeugt Ueberlappungsfehler.
+@ Upper lane: Birch stops at (16,51), next to the player.
 Common_Movement_HoennBirchRunUpper:
 	walk_fast_left
 	face_left
@@ -431,7 +403,7 @@ Common_Movement_HoennFaceRight:
 	step_end
 
 @ ------------------------------------------------------------
-@ Texte
+@ Texts
 @ ------------------------------------------------------------
 Common_Text_HoennSetSail:
 #if GERMAN
@@ -502,10 +474,7 @@ BirchsLab_Text_HoennDexExplain:
 #endif
 
 @ ------------------------------------------------------------
-@ Ordensmappe (FLAG_RECEIVED_PASS_BINDER)
-@ Schaltet die Hoenn-Ordenreihe auf der Trainerkarte frei
-@ (src/trainer_card.c). Wird in der Ankunftsszene uebergeben;
-@ Birks NPC-Skript im Labor reicht sie bei Bedarf nach.
+@ Badge case (FLAG_RECEIVED_PASS_BINDER): Hoenn badges on the trainer card
 @ ------------------------------------------------------------
 Common_EventScript_HoennGiveBadgeBinder::
 	goto_if_set FLAG_RECEIVED_PASS_BINDER, Common_EventScript_HoennBinderDone

@@ -13,7 +13,8 @@ PokemonLeague_KarensRoom_EventScript_Karen::
 	lock
 	faceplayer
 	goto_if_ge VAR_LEAGUE_STATE, 5, PokemonLeague_KarensRoom_EventScript_KarenDefeated
-	goto_if_set FLAG_IS_CHAMPION, PokemonLeague_KarensRoom_EventScript_KarenRematch
+	@ Origin Jade: rematch team once the player is Johto champion.
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, PokemonLeague_KarensRoom_EventScript_KarenRematch
 	msgbox PokemonLeague_KarensRoom_Text_Before, MSGBOX_DEFAULT
 	setflag FLAG_TEMP_3
 	setflag FLAG_TEMP_5
@@ -21,10 +22,21 @@ PokemonLeague_KarensRoom_EventScript_Karen::
 	goto PokemonLeague_KarensRoom_EventScript_KarenOnDefeat
 
 PokemonLeague_KarensRoom_EventScript_KarenRematch::
+	goto_if_unset FLAG_IS_KANTO_CHAMPION, PokemonLeague_KarensRoom_EventScript_KarenRematchStandard
+	goto_if_ge VAR_SINJOH_STORYLINE, 13, PokemonLeague_KarensRoom_EventScript_KarenRematchPostOBC
+
+PokemonLeague_KarensRoom_EventScript_KarenRematchStandard::
 	msgbox PokemonLeague_KarensRoom_Text_RematchBefore, MSGBOX_DEFAULT
 	setflag FLAG_TEMP_3
 	setflag FLAG_TEMP_5
 	trainerbattle_no_intro TRAINER_KAREN_2_HNS, PokemonLeague_KarensRoom_Text_Beaten
+	goto PokemonLeague_KarensRoom_EventScript_KarenOnDefeat
+
+PokemonLeague_KarensRoom_EventScript_KarenRematchPostOBC::
+	msgbox PokemonLeague_KarensRoom_Text_RematchBefore, MSGBOX_DEFAULT
+	setflag FLAG_TEMP_3
+	setflag FLAG_TEMP_5
+	trainerbattle_no_intro TRAINER_KAREN_POSTOBC_HNS, PokemonLeague_KarensRoom_Text_Beaten
 	goto PokemonLeague_KarensRoom_EventScript_KarenOnDefeat
 
 PokemonLeague_KarensRoom_EventScript_KarenOnDefeat::

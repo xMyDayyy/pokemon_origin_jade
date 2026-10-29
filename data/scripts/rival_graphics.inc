@@ -1,12 +1,8 @@
 Common_EventScript_SetupRivalGfxId::
 #if defined(POKEMON_HNS)
-	@ HnS-Kanon: Birks Kind ist immer Maike (Brix ist Normans Sohn).
-	@ Die Rivalengrafik haengt daher nicht mehr am Spielergeschlecht.
+	@ HnS: the rival is always May.
 	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_MAY_NORMAL
-	@ WICHTIG: return, nicht end! Das Skript wird per call eingebunden;
-	@ ein end beendet den ganzen Aufrufer. Dadurch liefen in Bad Lavastadt
-	@ die Folgezeilen (Rad-Grafik, Rivalenposition) nie - und beim Abgang
-	@ erschien ein falscher Sprite.
+	@ Must be return, not end: this script is called.
 	return
 #endif
 	checkplayergender
@@ -24,9 +20,7 @@ EventScript_SetupRivalGfxIdMale::
 
 Common_EventScript_SetupRivalOnBikeGfxId::
 #if IS_HNS
-	@ HnS-Kanon: Auch auf dem Rad ist die Rivalin immer Maike. Ohne diese
-	@ Weiche bekam die weibliche Spielfigur nach dem Route-110-Kampf
-	@ Brix' Bike-Sprite zu sehen (Spieltest-Report).
+	@ HnS: the rival is always May.
 	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_RIVAL_MAY_MACH_BIKE
 	return
 #endif

@@ -273,4 +273,3 @@ Route25_Text_AreYouHereAlone::
 	.string "If you're out at CERULEAN's cape…\n"
 	.string "Well, it should be as a couple.$"
 #endif
-

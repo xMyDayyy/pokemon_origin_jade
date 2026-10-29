@@ -9,6 +9,7 @@
 #include "gpu_regs.h"
 #include "bg.h"
 #include "battle_controllers.h"
+#include "battle_setup.h"
 #include "link.h"
 #include "sprite.h"
 #include "constants/trainers.h"
@@ -24,7 +25,8 @@ static void CreateHealthboxSprite(enum BattlerId battler);
 static void ClearBattleBgCntBaseBlocks(void);
 static void CreateCaughtMonSprite(void);
 
-#define CATCH_TUTORIAL_TRAINER_PIC_BACK (IS_FRLG ? TRAINER_PIC_BACK_OLD_MAN : TRAINER_PIC_BACK_WALLY)
+// Origin Jade: the old man in the Viridian catch tutorial, otherwise Wally.
+#define CATCH_TUTORIAL_TRAINER_PIC_BACK ((IS_FRLG || gIsOldManTutorialBattle) ? TRAINER_PIC_BACK_OLD_MAN : TRAINER_PIC_BACK_WALLY)
 
 void ReshowBattleScreenDummy(void)
 {

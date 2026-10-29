@@ -1,6 +1,5 @@
-@ HnS: In Hoenn braucht jede Feldattacke eine Erlaubnis (siehe
-@ src/hoenn_licenses.c). Vor dem Index in VAR_0x8004 aufrufen; Ergebnis
-@ FALSE heisst "hier nicht erlaubt". Ausserhalb von Hoenn immer TRUE.
+@ HnS: field moves need a license in Hoenn and a permit in Johto.
+@ CheckFieldPermission: index in VAR_0x8004; VAR_RESULT FALSE = not allowed.
 EventScript_NoDiveLicense::
 	lockall
 	playse SE_SELECT
@@ -9,16 +8,18 @@ EventScript_NoDiveLicense::
 	end
 
 EventScript_NeedHoennLicense::
+	@ STR_VAR_2: "Erlaubnis" in Hoenn, "Befugnis" in Johto.
+	special BufferFieldPermissionTerm
 	msgbox Text_NeedHoennLicense, MSGBOX_DEFAULT
 	releaseall
 	end
 
 Text_NeedHoennLicense:
 #if GERMAN
-	.string "Mit einer Erlaubnis könnte man hier\n"
+	.string "Mit einer {STR_VAR_2} könnte man hier\n"
 	.string "{STR_VAR_1} einsetzen.$"
 #else
-	.string "With a licence, {STR_VAR_1} could be\n"
+	.string "With a {STR_VAR_2}, {STR_VAR_1} could be\n"
 	.string "used here.$"
 #endif
 
@@ -27,9 +28,9 @@ EventScript_CutTree::
 	lockall
 	buffermovename STR_VAR_1, MOVE_CUT
 	setvar VAR_0x8004, LIC_CUT
-	special CheckHoennLicense
+	special CheckFieldPermission
 	goto_if_eq VAR_RESULT, FALSE, EventScript_NeedHoennLicense
-	@ HnS: die VM im Beutel genuegt, das Pokemon muss Zerschneider nicht koennen.
+	@ HnS: the HM in the bag is enough.
 	checkfieldmove FIELD_MOVE_CUT, TRUE
 	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CheckTreeCantCut
 	bufferpartymonnick STR_VAR_1, VAR_RESULT
@@ -111,9 +112,9 @@ EventScript_RockSmash::
 	lockall
 	buffermovename STR_VAR_1, MOVE_ROCK_SMASH
 	setvar VAR_0x8004, LIC_ROCK_SMASH
-	special CheckHoennLicense
+	special CheckFieldPermission
 	goto_if_eq VAR_RESULT, FALSE, EventScript_NeedHoennLicense
-	@ HnS: die VM im Beutel genuegt, das Pokemon muss Zertruemmerer nicht koennen.
+	@ HnS: the HM in the bag is enough.
 	checkfieldmove FIELD_MOVE_ROCK_SMASH, TRUE
 	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CantSmashRock
 	bufferpartymonnick STR_VAR_1, VAR_RESULT
@@ -395,9 +396,8 @@ EventScript_StrengthBoulder::
 	lockall
 	buffermovename STR_VAR_1, MOVE_STRENGTH
 	setvar VAR_0x8004, LIC_STRENGTH
-	special CheckHoennLicense
+	special CheckFieldPermission
 	goto_if_eq VAR_RESULT, FALSE, EventScript_NeedHoennLicense
-	@ HnS: Staerke haengt an der Hoenn-Erlaubnis, nicht am Johto-Orden.
 	checkitem ITEM_HM_STRENGTH
 	goto_if_eq VAR_RESULT, FALSE, EventScript_CantStrength
 	goto_if_set FLAG_SYS_USE_STRENGTH, EventScript_CheckActivatedBoulder
@@ -481,7 +481,7 @@ Text_StrengthActivated:
 
 EventScript_UseWaterfall::
 	lockall
-	@ HnS: Kaskade haengt an der Hoenn-Erlaubnis, nicht am Johto-Orden.
+	@ HnS: license/permit already checked by IsFieldMoveUnlocked.
 	checkfieldmove FIELD_MOVE_WATERFALL
 	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CantWaterfall
 	bufferpartymonnick STR_VAR_1, VAR_RESULT
@@ -496,7 +496,7 @@ EventScript_CannotUseWaterfall::
 	lockall
 	buffermovename STR_VAR_1, MOVE_WATERFALL
 	setvar VAR_0x8004, LIC_WATERFALL
-	special CheckHoennLicense
+	special CheckFieldPermission
 	goto_if_eq VAR_RESULT, FALSE, EventScript_NeedHoennLicense
 
 EventScript_CantWaterfall::
@@ -581,7 +581,10 @@ EventScript_EndSurface::
 @HnS
 EventScript_Whirlpool::
 	lockall
-	goto_if_unset FLAG_BADGE07_GET, EventScript_CantWhirlpool
+	@ Johto badge 7 (Pryce).
+	setvar VAR_0x8004, 6
+	special CheckJohtoBadge
+	goto_if_eq VAR_RESULT, FALSE, EventScript_CantWhirlpool
 	@checkpartymove MOVE_WHIRLPOOL @checkpartymove doesn't work for the 8th hm i guess.
 	@goto_if_eq VAR_RESULT, FALSE, EventScript_CantWhirlpool
 	playse SE_M_WATERFALL

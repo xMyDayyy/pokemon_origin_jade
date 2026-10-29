@@ -14,7 +14,11 @@ CeruleanCave_B1F_EventScript_TryRemoveMewtwo::
 	return
 
 CeruleanCave_B1F_OnTransition::
-	call_if_unset FLAG_FOUGHT_MEWTWO, CeruleanCave_B1F_EventScript_ShowMewtwo
+	@ Mewtwo: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+	setflag FLAG_HIDE_MEWTWO
+	setvar VAR_0x8004, LEGENDARY_MEWTWO
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	call_if_eq VAR_RESULT, TRUE, CeruleanCave_B1F_EventScript_ShowMewtwo
 	end
 
 CeruleanCave_B1F_EventScript_ShowMewtwo::
@@ -32,22 +36,17 @@ CeruleanCave_B1F_EventScript_Mewtwo::
 	delay 20
 	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, 0
 	waitbuttonpress
-	setwildbattle SPECIES_MEWTWO, 70
+	setwildbattle SPECIES_MEWTWO, 40
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special BattleSetup_StartLegendaryBattle
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	setvar VAR_0x8004, LEGENDARY_MEWTWO
+	special RecordLegendaryBattleOutcome
 	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, CeruleanCave_B1F_EventScript_DefeatedMewtwo
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, CeruleanCave_B1F_EventScript_RanFromMewtwo
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, CeruleanCave_B1F_EventScript_RanFromMewtwo
-	setflag FLAG_FOUGHT_MEWTWO
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, EventScript_RemoveStaticMon
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, CeruleanCave_B1F_EventScript_RanFromMewtwo
 	release
-	end
-
-CeruleanCave_B1F_EventScript_DefeatedMewtwo::
-	setflag FLAG_FOUGHT_MEWTWO
-	goto EventScript_RemoveStaticMon
 	end
 
 CeruleanCave_B1F_EventScript_RanFromMewtwo::

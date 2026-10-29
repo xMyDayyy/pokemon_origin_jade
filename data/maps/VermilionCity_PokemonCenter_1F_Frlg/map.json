@@ -1,7 +1,7 @@
 {
   "id": "MAP_VERMILION_CITY_POKEMON_CENTER_1F",
   "name": "VermilionCity_PokemonCenter_1F_Frlg",
-  "game_version": "frlg",
+  "game_version": "hns",
   "layout": "LAYOUT_POKEMON_CENTER_1F_FRLG",
   "music": "MUS_RG_POKE_CENTER",
   "region": "REGION_KANTO",
@@ -123,21 +123,21 @@
       "y": 8,
       "elevation": 3,
       "dest_map": "MAP_VERMILION_CITY",
-      "dest_warp_id": "4"
+      "dest_warp_id": "1"
     },
     {
       "x": 7,
       "y": 8,
       "elevation": 3,
       "dest_map": "MAP_VERMILION_CITY",
-      "dest_warp_id": "4"
+      "dest_warp_id": "1"
     },
     {
       "x": 8,
       "y": 8,
       "elevation": 3,
       "dest_map": "MAP_VERMILION_CITY",
-      "dest_warp_id": "4"
+      "dest_warp_id": "1"
     },
     {
       "x": 1,

@@ -58,8 +58,6 @@ LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated::
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox LavaridgeTown_Gym_1F_Text_ExplainHeatBadgeTakeThis, MSGBOX_DEFAULT
 #if IS_HNS
-	@ HnS: Der Hitzeorden ist zugleich die Erlaubnis fuer Staerke -
-	@ das steht im Ordentext, eine eigene Uebergabe braucht es nicht.
 	setvar VAR_0x8004, LIC_STRENGTH
 	special SetHoennLicense
 #endif
@@ -82,8 +80,6 @@ LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated::
 	closemessage
 	delay 30
 	setflag FLAG_ENABLE_FLANNERY_MATCH_CALL
-	@ HnS: Normans Anruf kommt ganz zum Schluss - vorher lief er mitten
-	@ in die Szene der Arenaleiterin hinein und die Textbox war noch offen.
 	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
 	release
 	end
@@ -171,8 +167,7 @@ LavaridgeTown_Gym_1F_EventScript_GymGuidePostVictory::
 LavaridgeTown_Gym_1F_EventScript_LeftGymStatue::
 	lockall
 #if IS_HNS
-	@ HnS: FLAG_BADGE04_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
+	@ Hoenn badge 4 (Flannery)
 	setvar VAR_0x8004, 3
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, TRUE, LavaridgeTown_Gym_1F_EventScript_GymStatueCertified
@@ -185,8 +180,7 @@ LavaridgeTown_Gym_1F_EventScript_LeftGymStatue::
 LavaridgeTown_Gym_1F_EventScript_RightGymStatue::
 	lockall
 #if IS_HNS
-	@ HnS: FLAG_BADGE04_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
+	@ Hoenn badge 4 (Flannery)
 	setvar VAR_0x8004, 3
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, TRUE, LavaridgeTown_Gym_1F_EventScript_GymStatueCertified

@@ -10,19 +10,10 @@ OlivineCity_PortInside_EventScript_Oak::
 	delay 55
 	waitmovement LOCALID_OLIVINEPORT_OAK
 	turnobject LOCALID_OLIVINEPORT_OAK, DIR_NORTH
+	@ Origin Jade: the Pokedex is national from the start, Oak only sees the champion off.
 	msgbox OlivineCity_PortInside_Text_Nationaldex1, MSGBOX_DEFAULT
 	closemessage
-	applymovement2 LOCALID_OLIVINEPORT_OAK, OlivineCity_PortInside_Movement_OakFixDex
-	waitmovement 0
 	delay 30
-	setflag FLAG_SYS_NATIONAL_DEX
-	special EnableNationalPokedex
-	playfanfare MUS_OBTAIN_ITEM
-	message OlivineCity_PortInside_Text_Nationaldex2
-	waitfanfare
-	delay 50
-	msgbox OlivineCity_PortInside_Text_Nationaldex3, MSGBOX_DEFAULT
-	closemessage
 	playse SE_PIN
 	applymovement2 LOCALID_OLIVINEPORT_OAK, Common_Movement_ExclamationMark
 	delay 55
@@ -40,11 +31,6 @@ OlivineCity_PortInside_EventScript_Oak::
 	waitse
 	release
 	end
-
-OlivineCity_PortInside_Movement_OakFixDex:
-	walk_in_place_up
-	walk_in_place_up
-	step_end
 
 OlivineCity_PortInside_Movement_PlayerMoveOver:
 	walk_up
@@ -65,50 +51,40 @@ OlivineCity_PortInside_Movement_OakLeave:
 OlivineCity_PortInside_Text_Nationaldex1:
 #if GERMAN
 	.string "Eich: Oh, {PLAYER}!\p"
-	.string "Also irgendwie… wirkst du so langsam\n"
-	.string "wirklich wie ein echter Champ!\p"
-	.string "Und als Champ solltest du auch einen\n"
-	.string "angemessenen Pokédex besitzen!\p"
-	.string "Gib ihn mir doch bitte mal eben!\n"
-	.string "Ich rüste ihn für dich mit dem\l"
-	.string "Nationalen Modus aus!$"
+	.string "Jetzt bist du Champion von Kanto\n"
+	.string "und Johto!\p"
+	.string "Ich bin wirklich stolz auf dich!$"
 #else
-	.string "PROF.OAK: Hello!\n"
-	.string "You are starting to have the\l"
-	.string "attitude of a CHAMPION, {PLAYER}!\p"
-	.string "It's time for your POKéDEX to\n"
-	.string "match who you are.\p"
-	.string "Let me see your POKéDEX for a\n"
-	.string "second.\p"
-	.string "I'll upgrade your POKéDEX with the\n"
-	.string "NATIONAL MODE.$"
-#endif
-OlivineCity_PortInside_Text_Nationaldex2:
-	.string "Der Pokédex von {PLAYER} wurde mit\n"
-	.string "dem Nationalen Modus ausgerüstet!$"
-OlivineCity_PortInside_Text_Nationaldex3:
-#if GERMAN
-	.string "Eich: Ich weiß, es ist nicht leicht, den\n"
-	.string "Nationalen Pokédex zu\l"
-	.string "vervollständigen, aber ich hoffe, du\l"
-	.string "versuchst es trotzdem!$"
-#else
-	.string "PROF.OAK: It won't be easy to\n"
-	.string "complete the NATIONAL POKéDEX...\p"
-	.string "However, I'm sure you will make\n"
-	.string "honest attempt on our behalf!$"
+	.string "PROF.OAK: Oh, {PLAYER}!\p"
+	.string "Now you're the CHAMPION of both\n"
+	.string "KANTO and JOHTO!\p"
+	.string "I'm really proud of you!$"
 #endif
 OlivineCity_PortInside_Text_Nationaldex4:
+#if GERMAN
 	.string "Hoppla! Schon so spät!\p"
-	.string "Im Radiosender von Dukatia City wird\n"
-	.string "gleich meine Sendung aufgezeichnet!\p"
-	.string "Und du brichst nun endlich nach Kanto\n"
-	.string "auf, nicht wahr?\p"
-	.string "Ich habe dort in einer Stadt namens\n"
-	.string "Alabastia ein Forschungslabor!\p"
-	.string "Komm doch mal vorbei und lass mich\n"
-	.string "einen Blick auf deinen Pokédex werfen,\l"
-	.string "wenn du in der Nähe bist!$"
+	.string "Im Radiosender von Dukatia City\n"
+	.string "wird gleich meine Sendung\l"
+	.string "aufgezeichnet!\p"
+	.string "Mit der M.S. Aqua kannst du jetzt\n"
+	.string "nach Orania City oder in die\l"
+	.string "Kampfzone fahren.\p"
+	.string "Mit dem richtigen Ticket sogar bis\n"
+	.string "zur Entstehungsinsel!\p"
+	.string "Und vielleicht eines Tages bis nach\n"
+	.string "Hoenn… Gute Reise, {PLAYER}!$"
+#else
+	.string "Oops! Look at the time!\p"
+	.string "I have to record my radio show in\n"
+	.string "GOLDENROD CITY!\p"
+	.string "The S.S.AQUA can take you to\n"
+	.string "VERMILION CITY and the BATTLE\l"
+	.string "FRONTIER now.\p"
+	.string "With the right ticket, even to\n"
+	.string "BIRTH ISLAND!\p"
+	.string "And maybe to HOENN someday…\n"
+	.string "Have a good trip, {PLAYER}!$"
+#endif
 
 OlivinePort_EventScript_CooltrainerF::
 	msgbox OlivinePort_Text_CooltrainerF, MSGBOX_NPC
@@ -126,9 +102,12 @@ OlivinePort_EventScript_Youngster::
 	msgbox OlivinePort_Text_Youngster, MSGBOX_NPC
 	end
 
+@ Origin Jade: the M.S. Aqua sails every day from the first Johto title on; the first trip is the
+@ maiden voyage to Vermilion. See docs/origin_jade/DECISIONS.md, D-029.
 OlivinePort_EventScript_Sailor::
 	lock
 	faceplayer
+	goto_if_unset FLAG_IS_JOHTO_CHAMPION, OlivinePort_EventScript_SailorNotYet
 	goto_if_ge VAR_SSAQUA_STATE, 7, OlivinePort_EventScript_Sailor_AfterKanto
 	msgbox OlivinePort_Text_AskBoard, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, FALSE, OlivinePort_EventScript_Sailor_Refused
@@ -139,20 +118,22 @@ OlivinePort_EventScript_Sailor::
 	release
 	end
 
-OlivinePort_EventScript_Sailor_AfterKanto::
-	message OlivinePort_Text_WhereSail
-	multichoicegrid 1, 0, MULTI_OLIVINE_HARBOR, 2, FALSE
-	switch VAR_RESULT
-	case 0, OlivinePort_EventScript_ChoseVermilion
-	case 1, OlivinePort_EventScript_ChoseSouthernIsland
-	case 2, OlivinePort_EventScript_ChoseBirthIsland
-	case 3, OlivinePort_EventScript_ChoseFarawayIsland
-	case 4, OlivinePort_EventScript_ChoseBattleFrontier
-	case 5, Common_EventScript_SailToHoenn
-	case 6, OlivinePort_EventScript_Sailor_Refused
-	case MULTI_B_PRESSED, OlivinePort_EventScript_Sailor_Refused
+OlivinePort_EventScript_SailorNotYet::
+	msgbox OlivinePort_Text_SailorNotYet, MSGBOX_DEFAULT
+	closemessage
 	release
 	end
+
+OlivinePort_EventScript_Sailor_AfterKanto::
+	message OlivinePort_Text_WhereSail
+	waitmessage
+	multichoice 28, 2, MULTI_OLIVINE_HARBOR, FALSE
+	switch VAR_RESULT
+	case SS_AQUA_SELECTION_OTHER_PORT, OlivinePort_EventScript_ChoseVermilion
+	case SS_AQUA_SELECTION_BATTLE_FRONTIER, OlivinePort_EventScript_ChoseBattleFrontier
+	case SS_AQUA_SELECTION_BIRTH_ISLAND, OlivinePort_EventScript_ChoseBirthIsland
+	case SS_AQUA_SELECTION_HOENN, Common_EventScript_SailToHoenn
+	goto OlivinePort_EventScript_Sailor_Refused
 
 OlivinePort_EventScript_ChoseVermilion::
 	closemessage
@@ -161,19 +142,8 @@ OlivinePort_EventScript_ChoseVermilion::
 	bufferitemname STR_VAR_1, ITEM_SS_TICKET
 	goto_if_eq VAR_RESULT, FALSE, OlivinePort_EventScript_Sailor_NoCredentials
 	call OlivinePort_EventScript_EnterShip
-	warpsilent MAP_VERMILION_CITY_PORT_INSIDE_HNS, 8, 9
-	waitstate
-	release
-	end
-
-OlivinePort_EventScript_ChoseSouthernIsland::
-	closemessage
-	delay 20
-	checkitem ITEM_EON_TICKET
-	bufferitemname STR_VAR_1, ITEM_EON_TICKET
-	goto_if_eq VAR_RESULT, FALSE, OlivinePort_EventScript_Sailor_NoCredentials
-	call OlivinePort_EventScript_EnterShip
-	warpsilent MAP_SOUTHERN_ISLAND_EXTERIOR_HNS, 13, 22
+	@ Origin Jade: lands in Vermilion's port building, in front of the sailor.
+	warpsilent MAP_VERMILION_CITY_PORT_INSIDE_FRLG, 8, 9
 	waitstate
 	release
 	end
@@ -186,18 +156,6 @@ OlivinePort_EventScript_ChoseBirthIsland::
 	goto_if_eq VAR_RESULT, FALSE, OlivinePort_EventScript_Sailor_NoCredentials
 	call OlivinePort_EventScript_EnterShip
 	warpsilent MAP_BIRTH_ISLAND_EXTERIOR_HNS, 13, 23
-	waitstate
-	release
-	end
-
-OlivinePort_EventScript_ChoseFarawayIsland::
-	closemessage
-	delay 20
-	checkitem ITEM_OLD_SEA_MAP
-	bufferitemname STR_VAR_1, ITEM_OLD_SEA_MAP
-	goto_if_eq VAR_RESULT, FALSE, OlivinePort_EventScript_Sailor_NoCredentials
-	call OlivinePort_EventScript_EnterShip
-	warpsilent MAP_FARAWAY_ISLAND_ENTRANCE_HNS, 13, 38
 	waitstate
 	release
 	end
@@ -278,11 +236,11 @@ OlivinePort_Movement_BoatLeave:
 
 OlivinePort_Text_NoPass:
 #if GERMAN
-	.string "{PLAYER} versucht das {STR_VAR_1} zu\n"
-	.string "zeigen…\p"
+	.string "{PLAYER} versucht, das {STR_VAR_1}\n"
+	.string "zu zeigen…\p"
 	.string "…Du hast kein {STR_VAR_1}!\p"
-	.string "Sorry! Du darfst nur mit {STR_VAR_1} an\n"
-	.string "Bord.$"
+	.string "Tut mir leid! Du darfst nur mit\n"
+	.string "{STR_VAR_1} an Bord.$"
 #else
     .string "{PLAYER} tried to show the\n"
     .string "{STR_VAR_1}…\p"
@@ -309,7 +267,7 @@ OlivinePort_Text_CantBoard:
 
 OlivinePort_Text_WhereSail:
 #if GERMAN
-	.string "Wohin möchtest du Segeln?$"
+	.string "Wohin möchtest du segeln?$"
 #else
     .string "Where would you like to sail?$"
 #endif
@@ -322,6 +280,17 @@ OlivinePort_Text_AskBoard:
 #else
     .string "Welcome to FAST SHIP S.S.AQUA.\p"
     .string "Will you be boarding today?$"
+#endif
+
+OlivinePort_Text_SailorNotYet:
+#if GERMAN
+	.string "Die M.S. Aqua wird gerade für ihre\n"
+	.string "Jungfernfahrt vorbereitet.\p"
+	.string "Komm später wieder!$"
+#else
+	.string "The S.S.AQUA is being readied for\n"
+	.string "her maiden voyage.\p"
+	.string "Please come back later!$"
 #endif
 
 OlivinePort_Text_AskTicket:
@@ -352,7 +321,7 @@ OlivinePort_Text_NoTicket:
 #if GERMAN
 	.string "{PLAYER} sucht das Bootsticket…\p"
 	.string "…Kein Ticket!\p"
-	.string "Tut mir Leid! Du darfst nur\p"
+	.string "Tut mir leid! Du darfst nur\n"
 	.string "mit Ticket an Bord.$"
 #else
     .string "{PLAYER} tried to show the\n"

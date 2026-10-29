@@ -1,4 +1,5 @@
 #include "global.h"
+#include "regions.h"
 #include "bike.h"
 #include "event_object_movement.h"
 #include "field_player_avatar.h"
@@ -166,7 +167,8 @@ static bool8 ShouldForceCyclingRoadDownward(void)
 
 void MovePlayerOnBike(enum Direction direction, u16 newKeys, u16 heldKeys)
 {
-    if (IS_HNS || IS_FRLG)
+    // Origin Jade: B is masked outside Hoenn only, as in AcroBike_GetJumpDirection.
+    if ((IS_HNS || IS_FRLG) && GetCurrentRegion() != REGION_HOENN)
     {
         newKeys &= ~B_BUTTON;
         heldKeys &= ~B_BUTTON;
@@ -1136,6 +1138,13 @@ static bool8 HasPlayerInputTakenLongerThanList(const u8 *dirTimerList, const u8 
 static u8 AcroBike_GetJumpDirection(void)
 {
     u32 i;
+
+    // No acro tricks (side jump / turn jump) in these builds.
+    // The trick history is fed unmasked keys from MovePlayerAvatar, so masking
+    // B in MovePlayerOnBike alone isn't enough to suppress the jumps.
+    // Origin Jade: except in Hoenn (same test in MovePlayerOnBike).
+    if ((IS_HNS || IS_FRLG) && GetCurrentRegion() != REGION_HOENN)
+        return DIR_NONE;
 
     for (i = 0; i < ARRAY_COUNT(sAcroBikeTricksList); i++)
     {

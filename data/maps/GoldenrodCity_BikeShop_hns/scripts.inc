@@ -13,8 +13,20 @@ GoldenrodCity_BikeShop_EventScript_Clerk::
 	end
 
 GoldenrodCity_BikeShop_EventScript_Clerk_BikeAgreed::
+	@ Origin Jade: no second Bicycle if the one from Cerulean is in the bag.
+	checkitem ITEM_BICYCLE
+	goto_if_eq VAR_RESULT, TRUE, GoldenrodCity_BikeShop_EventScript_Clerk_HasBike
 	msgbox GoldenrodCity_BikeShop_Text_ClerkAgreed, MSGBOX_DEFAULT
 	giveitem ITEM_BICYCLE
+	setflag FLAG_RECEIVED_BIKE
+	@ Origin Jade: Cerulean's bike shop and the Cycling Road gates check this flag.
+	setflag FLAG_GOT_BICYCLE
+	closemessage
+	release
+	end
+
+GoldenrodCity_BikeShop_EventScript_Clerk_HasBike::
+	msgbox GoldenrodCity_BikeShop_Text_ClerkAgreedHasBike, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_BIKE
 	closemessage
 	release
@@ -90,6 +102,19 @@ GoldenrodCity_BikeShop_Text_ClerkAgreed:
     .string "Really? Great!\p"
     .string "Give me your name and phone number,\n"
     .string "and I'll loan you a BICYCLE.$"
+#endif
+
+GoldenrodCity_BikeShop_Text_ClerkAgreedHasBike:
+#if GERMAN
+	.string "Ja? Großartig!\p"
+	.string "Oh, du hast ja schon ein Fahrrad!\n"
+	.string "Dann fahr damit überall herum und\l"
+	.string "erzähl allen von unserem Laden!$"
+#else
+	.string "Really? Great!\p"
+	.string "Oh, you already have a BICYCLE!\n"
+	.string "Then ride it everywhere and tell\l"
+	.string "everyone about our shop!$"
 #endif
 
 GoldenrodCity_BikeShop_Text_BorrowedBicycle:

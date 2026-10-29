@@ -1,4 +1,5 @@
 #include "global.h"
+#include "battle_setup.h"
 #include "scanline_effect.h"
 #include "palette.h"
 #include "task.h"
@@ -25,6 +26,7 @@
 #include "pokemon_icon.h"
 #include "graphics.h"
 #include "hoenn_badges.h"
+#include "johto_badges.h"
 #include "pokemon_icon.h"
 #include "trainer_pokemon_sprites.h"
 #include "contest_util.h"
@@ -90,7 +92,7 @@ struct TrainerCardData
     u16 frontTilemap[600];
     u16 backTilemap[600];
     u16 bgTilemap[600];
-    u8 badgeTiles[0x80 * (NUM_BADGES + 8)]; // + Hoenn-Reihe (Rueckseite)
+    u8 badgeTiles[0x80 * (NUM_BADGES + 8)]; // + Hoenn row (back side)
     u8 stickerTiles[0x200];
     u8 cardTiles[0x2300];
     u16 cardTilemapBuffer[0x1000];
@@ -215,6 +217,7 @@ static const u16 sHnsTrainerCardBadges_Pal[]     = INCBIN_U16("graphics/trainer_
 static const u16 sHoennTrainerCardBadges_Pal[]   = INCBIN_U16("graphics/trainer_card/badges.gbapal");
 static const u16 sKantoTrainerCardBadges_Pal[]   = INCBIN_U16("graphics/trainer_card/frlg/badges.gbapal");
 static const u8 sText_RegionLabelKanto[] = _("Kanto");
+static const u8 sText_RegionLabelJohto[] = _("Johto");
 static const u8 sText_RegionLabelHoenn[] = _("Hoenn");
 static const u16 sTrainerCardStar_Pal[]          = INCBIN_U16("graphics/trainer_card/star.gbapal");
 static const u16 sTrainerCardSticker1_Pal[]      = INCBIN_U16("graphics/trainer_card/frlg/stickers1.gbapal");
@@ -616,7 +619,7 @@ static bool8 LoadCardGfx(void)
         if (sData->cardType == CARD_TYPE_HNS)
         {
             DecompressDataWithHeaderWram(sHnsTrainerCardBadgesCombined_Gfx, sData->badgeTiles);
-            // Hoenn-Symbole dahinter (Tiles 192+64 ff.) fuer die dritte Reihe
+            // Hoenn symbols after them (tiles 192+64 on) for the third row
             DecompressDataWithHeaderWram(sHoennTrainerCardBadges_Gfx, sData->badgeTiles + 0x80 * 16);
         }
         else
@@ -738,21 +741,19 @@ u32 CountPlayerTrainerStars(void)
 }
 
 #if IS_HNS
-// Marcs Pass-Staffel: Johto-Champion -> Bronze, Kanto-Champion ->
-// Kupfer, Hoenn-Champion -> Silber, Rot besiegt -> Gold.
-// (Ausbaustufe notiert: Pokedex komplett -> Diamant, braucht eine
-// fuenfte Kartenpalette.)
+// One star each for the Johto, Kanto and Hoenn titles and for beating Red.
+// More stars need more entries in sHnsTrainerCardPals and sHoennTrainerCardPals.
 static u8 GetHnSTrainerStars(struct TrainerCard *trainerCard)
 {
     u8 stars = 0;
 
-    if (FlagGet(FLAG_IS_CHAMPION))
+    if (FlagGet(FLAG_IS_JOHTO_CHAMPION))
         stars++;
     if (FlagGet(FLAG_IS_KANTO_CHAMPION))
         stars++;
     if (FlagGet(FLAG_IS_HOENN_CHAMPION))
         stars++;
-    if (FlagGet(TRAINER_FLAGS_START + TRAINER_RED_2_HNS))
+    if (FlagGet(TrainerIdToFlagId(TRAINER_RED_HNS)))
         stars++;
 
     return stars;
@@ -821,6 +822,7 @@ static void SetPlayerCardData(struct TrainerCard *trainerCard, u8 cardType)
     switch (cardType)
     {
     case CARD_TYPE_EMERALD:
+    case CARD_TYPE_HNS:
         trainerCard->battleTowerWins = 0;
         trainerCard->battleTowerStraightWins = 0;
     // Seems like GF got CARD_TYPE_FRLG and CARD_TYPE_RS wrong.
@@ -871,8 +873,11 @@ void TrainerCard_GenerateCardForLinkPlayer(struct TrainerCard *trainerCard)
     SetPlayerCardData(trainerCard, CARD_TYPE_EMERALD);
     trainerCard->linkHasAllFrontierSymbols = HasAllFrontierSymbols();
     *((u16 *)&trainerCard->linkPoints.frontier) = gSaveBlock2Ptr->frontier.cardBattlePoints;
+    // HnS: no Frontier star, GetHnSTrainerStars already gives up to four.
+#if !IS_HNS
     if (trainerCard->linkHasAllFrontierSymbols)
         trainerCard->stars++;
+#endif
 
     if (trainerCard->gender == FEMALE)
         trainerCard->unionRoomClass = gUnionRoomFacilityClasses[(trainerCard->trainerId % NUM_UNION_ROOM_CLASSES) + NUM_UNION_ROOM_CLASSES];
@@ -894,6 +899,7 @@ void CopyTrainerCardData(struct TrainerCard *dst, struct TrainerCard *src, u8 ga
         memcpy(dst, src, 0x38);
         break;
     case CARD_TYPE_EMERALD:
+    case CARD_TYPE_HNS:
         memcpy(dst, src, 0x60);
         dst->linkPoints.frontier = 0;
         dst->hasAllFrontierSymbols = src->linkHasAllFrontierSymbols;
@@ -1051,8 +1057,7 @@ static bool8 PrintAllOnCardBack(void)
         break;
     case 2:
 #if IS_HNS
-        // HnS-Rueckseite (Marcs Layout): Ruhmeshalle, Kanto-Reihe,
-        // Hoenn-Reihe (ab Birk), Team - Link-Statzeilen entfallen.
+        // HnS back side: Hall of Fame, badge rows with region labels, team.
         if (sData->cardType == CARD_TYPE_HNS)
         {
             PrintRegionLabelsOnBack();
@@ -1319,24 +1324,13 @@ static void BufferHofDebutTime(void)
 }
 
 #if IS_HNS
+// Prints the region labels below the badge rows on the HnS card's back side.
 static void PrintRegionLabelsOnBack(void)
 {
-    // Die Kartenlinien liegen auf Bildschirm-y 55, 71, 87, 103, 119; die Baender
-    // dazwischen sind je 16 px = genau zwei Kachelzeilen. Jedes Element bekommt
-    // ein eigenes Band, nichts ueberlappt:
-    // Aus Marcs Markierung ausgemessen. Die Kartenlinien liegen auf
-    // Bildschirm-y 55, 71, 87, 103, 119; jede Ordenreihe fuellt das Band
-    // darueber, das Label sitzt unmittelbar unter der Linie:
-    //   56- 71  Kanto-Ordenreihe   (Kachelzeile  7/8)
-    //   73- 81  Label "Kanto"      (Fenster-y 61)
-    //   88-103  Hoenn-Ordenreihe   (Kachelzeile 11/12)
-    //  105-113  Label "Hoenn"      (Fenster-y 93) - Teamsymbole beginnen bei 117
-    // Umrechnung: Bildschirm-y = Fenster-y + 8 (Fensterursprung), die Glyphen
-    // der Kleinschrift setzen nochmals 4 px tiefer auf -- Glyphenoberkante ist
-    // also Fenster-y + 12.
-    // Waagerecht: Fenster-x 17 = Bildschirm-x 25, sieben Pixel links der
-    // Ordenkante (Kachel 4 = 32).
-    AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_SMALL, 17, 61, sTrainerCardTextColors, TEXT_SKIP_DRAW, sText_RegionLabelKanto);
+    // Labels below the Johto badge row (tile rows 7/8) and the Hoenn row (11/12).
+    // Window coordinates: screen x = x + 8, glyph top on screen = y + 12.
+    if (FlagGet(FLAG_VISITED_JOHTO))
+        AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_SMALL, 17, 61, sTrainerCardTextColors, TEXT_SKIP_DRAW, sText_RegionLabelJohto);
     if (FlagGet(FLAG_RECEIVED_PASS_BINDER))
         AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_SMALL, 17, 93, sTrainerCardTextColors, TEXT_SKIP_DRAW, sText_RegionLabelHoenn);
 }
@@ -1361,7 +1355,8 @@ static const u8 *const sLinkBattleTexts[] =
 {
     [CARD_TYPE_FRLG]    = gText_LinkBattles,
     [CARD_TYPE_RS]      = gText_LinkCableBattles,
-    [CARD_TYPE_EMERALD] = gText_LinkBattles
+    [CARD_TYPE_EMERALD] = gText_LinkBattles,
+    [CARD_TYPE_HNS] = gText_LinkBattles
 };
 
 static void BufferLinkBattleResults(void)
@@ -1461,6 +1456,7 @@ static void BufferBattleFacilityStats(void)
         }
         break;
     case CARD_TYPE_EMERALD:
+    // case CARD_TYPE_HNS: // Enabling this currently conflicts with the mon display
         if (sData->trainerCard.frontierBP)
         {
             ConvertIntToDecimalStringN(gStringVar1, sData->trainerCard.frontierBP, STR_CONV_MODE_RIGHT_ALIGN, 5);
@@ -1468,6 +1464,7 @@ static void BufferBattleFacilityStats(void)
         }
         break;
     case CARD_TYPE_FRLG:
+    case CARD_TYPE_HNS:
         break;
     }
 }
@@ -1481,10 +1478,12 @@ static void PrintBattleFacilityStringOnCard(void)
             PrintStatOnBackOfCard(5, gText_BattleTower, sData->textBattleFacilityStat, sTrainerCardTextColors);
         break;
     case CARD_TYPE_EMERALD:
+    // case CARD_TYPE_HNS: // Enabling this currently conflicts with the mon display
         if (sData->trainerCard.frontierBP)
             PrintStatOnBackOfCard(5, gText_BattlePtsWon, sData->textBattleFacilityStat, sTrainerCardStatColors);
         break;
     case CARD_TYPE_FRLG:
+    case CARD_TYPE_HNS:
         break;
     }
 }
@@ -1539,6 +1538,8 @@ static void LoadMonIconGfx(void)
 static void UpdateTrainerCardMonIcons(void)
 {
     u16 species;
+    u32 personality;
+    bool32 isEgg;
     u8 i;
     u8 x = 40;
 
@@ -1546,10 +1547,11 @@ static void UpdateTrainerCardMonIcons(void)
     for (i = 0; i < gPlayerPartyCount; i++, x += 32)
     {
         species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES);
-        sMonIconSpriteIds[i] = CreateMonIcon(species, SpriteCB_MonIcon, x, 124, 1, GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY));
+        personality = GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY);
+        isEgg = GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG);
+        sMonIconSpriteIds[i] = CreateMonIconIsEgg(species, SpriteCB_MonIcon, x, 124, 1, personality, isEgg); // This will also set the palette, no need to also set it later
         gSprites[sMonIconSpriteIds[i]].oam.priority = 0;
         StartSpriteAnim(&gSprites[sMonIconSpriteIds[i]], 4);
-        gSprites[sMonIconSpriteIds[i]].oam.paletteNum = GetMonIconPaletteIndexFromSpecies(species);
     }
 }
 
@@ -1687,8 +1689,9 @@ static void DrawStarsAndBadgesOnCard(void)
     static const u8 yOffsets[] = {7, 7};
 
     s16 i, x, y;
-    u16 tileNum = 192;
-    u8 palNum = 3;
+    // Origin Jade: Kanto badges on the front (tile 192+32, FRLG palette 6).
+    u16 tileNum = IS_HNS ? 192 + 32 : 192;
+    u8 palNum = IS_HNS ? 6 : 3;
 
     FillBgTilemapBufferRect(3, 143, 15, yOffsets[sData->isHoenn], sData->trainerCard.stars, 1, 4);
     if (!sData->isLink)
@@ -1716,15 +1719,14 @@ static void DrawStarsAndBadgesOnCard(void)
 #if IS_HNS
 static void DrawExtraBadgesOnBack(void)
 {
-    // Kanto-Reihe auf Kachelzeile 7/8, Hoenn-Reihe auf 11/12; beide beginnen
-    // bei Kachel 4 (Bildschirm-x 32). Siehe PrintRegionLabelsOnBack.
+    // Johto badges on tile rows 7/8, Hoenn badges on 11/12, both from tile x 4.
     u8 i, x = 4;
-    u8 palNum = 6;
-    u16 tileNum = 192 + 32;
+    u8 palNum = 3;
+    u16 tileNum = 192;
 
     for (i = 0; i < NUM_BADGES_EXTRA; i++, tileNum += 2, x += 3)
     {
-        if (sData->badgeCount[NUM_BADGES_FRONT + i])
+        if (HasJohtoBadge(i))
         {
             FillBgTilemapBufferRect(3, tileNum,      x,     7, 1, 1, palNum);
             FillBgTilemapBufferRect(3, tileNum + 1,  x + 1, 7, 1, 1, palNum);
@@ -1732,7 +1734,7 @@ static void DrawExtraBadgesOnBack(void)
             FillBgTilemapBufferRect(3, tileNum + 17, x + 1, 8, 1, 1, palNum);
         }
     }
-    // Hoenn-Ordenreihe (erscheint erst nach Birks Uebergabe)
+    // Hoenn badge row (only appears after Birch's handover)
     if (FlagGet(FLAG_RECEIVED_PASS_BINDER))
     {
         x = 4;
@@ -2118,7 +2120,13 @@ static u8 VersionToCardType(enum GameVersion version)
     if (version == VERSION_FIRE_RED || version == VERSION_LEAF_GREEN)
         return CARD_TYPE_FRLG;
     else if (version == VERSION_EMERALD)
+    {
+#if IS_HNS
+        return CARD_TYPE_HNS;
+#else
         return CARD_TYPE_EMERALD;
+#endif
+    }
     else
         return CARD_TYPE_RS;
 }

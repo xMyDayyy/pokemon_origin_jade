@@ -26,10 +26,30 @@ LilycoveCity_CoveLilyMotel_2F_EventScript_ShowDiploma::
 	message LilycoveCity_CoveLilyMotel_2F_Text_FilledPokedexGiveYouThis
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
+#if IS_HNS
+	call_if_unset FLAG_RECEIVED_SHINY_CHARM, LilycoveCity_CoveLilyMotel_2F_EventScript_TryGiveShinyCharm
+#endif
 	special Special_ShowDiploma
 	waitstate
 	release
 	end
+
+#if IS_HNS
+@ Shiny Charm for the completed National Pokedex after the first Hoenn title.
+@ Keep the call before Special_ShowDiploma: commands after it never run.
+@ See docs/origin_jade/DECISIONS.md, D-036.
+LilycoveCity_CoveLilyMotel_2F_EventScript_TryGiveShinyCharm:
+	goto_if_unset FLAG_IS_HOENN_CHAMPION, Common_EventScript_NopReturn
+	specialvar VAR_RESULT, HasAllMons
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn
+	waitbuttonpress
+	msgbox LilycoveCity_CoveLilyMotel_2F_Text_NationalDexTakeThisToo, MSGBOX_DEFAULT
+	giveitem ITEM_SHINY_CHARM
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+	setflag FLAG_RECEIVED_SHINY_CHARM
+	msgbox LilycoveCity_CoveLilyMotel_2F_Text_ExplainShinyCharm, MSGBOX_DEFAULT
+	return
+#endif
 
 LilycoveCity_CoveLilyMotel_2F_EventScript_Programmer::
 	msgbox LilycoveCity_CoveLilyMotel_2F_Text_ImTheProgrammer, MSGBOX_NPC
@@ -103,6 +123,27 @@ LilycoveCity_CoveLilyMotel_2F_Text_FilledPokedexGiveYouThis:
 	.string "I'm so impressed!\p"
 	.string "Let me give you something in\n"
 	.string "recognition of your feat!$"
+#endif
+
+#if IS_HNS
+LilycoveCity_CoveLilyMotel_2F_Text_NationalDexTakeThisToo:
+#if GERMAN
+	.string "Sogar dein Nationaler Pokédex ist\n"
+	.string "vollständig!\p"
+	.string "Dafür bekommst du noch das hier!$"
+#else
+	.string "Your NATIONAL POKéDEX is complete,\n"
+	.string "too! Please take this as well!$"
+#endif
+
+LilycoveCity_CoveLilyMotel_2F_Text_ExplainShinyCharm:
+#if GERMAN
+	.string "Mit dem Schillerpin findest du\n"
+	.string "öfter schillernde Pokémon.$"
+#else
+	.string "With the SHINY CHARM, you will find\n"
+	.string "shiny POKéMON more often.$"
+#endif
 #endif
 
 LilycoveCity_CoveLilyMotel_2F_Text_ImTheProgrammer:

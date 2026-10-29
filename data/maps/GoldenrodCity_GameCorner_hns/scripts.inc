@@ -809,7 +809,6 @@ GoldenrodCity_GameCorner_EventScript_VoltorbFlip::
 	goto_if_eq VAR_RESULT, FALSE, GoldenrodCity_GameCorner_EventScript_VF_NoCoinCase
 	message GoldenrodCity_GameCorner_Text_VF_Welcome
 	waitmessage
-	playbgm MUS_RG_OAK, FALSE
 	setvar VAR_TEMP_4, 0
 
 GoldenrodCity_GameCorner_EventScript_VF_CheckCoinCap::
@@ -819,8 +818,6 @@ GoldenrodCity_GameCorner_EventScript_VF_CheckCoinCap::
 	setvar VAR_TEMP_4, 0
 	setvar VAR_TEMP_7, 0
 	hidecoinsbox 0, 5
-	savebgm MUS_DUMMY
-	fadedefaultbgm
 	releaseall
 	end
 
@@ -839,8 +836,6 @@ GoldenrodCity_GameCorner_EventScript_VF_ShowMenu::
 	setvar VAR_TEMP_7, 0
 	closemessage
 	hidecoinsbox 0, 5
-	savebgm MUS_DUMMY
-	fadedefaultbgm
 	releaseall
 	end
 

@@ -14,7 +14,11 @@ MarineCave_End_EventScript_TryRemoveKyogre::
 	return
 
 MarineCave_End_OnTransition:
-	call_if_unset FLAG_DEFEATED_KYOGRE, MarineCave_End_EventScript_ShowKyogre
+	@ Kyogre: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+	setflag FLAG_HIDE_MARINE_CAVE_KYOGRE
+	setvar VAR_0x8004, LEGENDARY_KYOGRE
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	call_if_eq VAR_RESULT, TRUE, MarineCave_End_EventScript_ShowKyogre
 	end
 
 MarineCave_End_EventScript_ShowKyogre::
@@ -39,19 +43,14 @@ MarineCave_End_EventScript_Kyogre::
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	setvar VAR_TEMP_1, 0
+	setvar VAR_0x8004, LEGENDARY_KYOGRE
+	special RecordLegendaryBattleOutcome
+	@ The encounter is over whatever the outcome, so the abnormal weather ends.
+	setvar VAR_SHOULD_END_ABNORMAL_WEATHER, 1
 	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, MarineCave_End_EventScript_DefeatedKyogre
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, MarineCave_End_EventScript_RanFromKyogre
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, MarineCave_End_EventScript_RanFromKyogre
-	setvar VAR_SHOULD_END_ABNORMAL_WEATHER, 1
-	setflag FLAG_DEFEATED_KYOGRE
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Common_EventScript_RemoveStaticPokemon
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, MarineCave_End_EventScript_RanFromKyogre
 	releaseall
-	end
-
-MarineCave_End_EventScript_DefeatedKyogre::
-	setvar VAR_SHOULD_END_ABNORMAL_WEATHER, 1
-	setflag FLAG_DEFEATED_KYOGRE
-	goto Common_EventScript_RemoveStaticPokemon
 	end
 
 MarineCave_End_EventScript_RanFromKyogre::

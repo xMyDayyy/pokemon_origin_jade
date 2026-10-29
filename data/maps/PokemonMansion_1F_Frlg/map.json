@@ -1,10 +1,8 @@
 {
   "id": "MAP_POKEMON_MANSION_1F",
   "name": "PokemonMansion_1F_Frlg",
-  "game_version": "frlg",
   "layout": "LAYOUT_POKEMON_MANSION_1F",
   "music": "MUS_RG_POKE_MANSION",
-  "region": "REGION_KANTO",
   "region_map_section": "MAPSEC_POKEMON_MANSION",
   "requires_flash": false,
   "weather": "WEATHER_SHADE",
@@ -13,12 +11,10 @@
   "allow_escaping": true,
   "allow_running": true,
   "show_map_name": true,
-  "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_INDOOR_2",
-  "connections": 0,
+  "connections": null,
   "object_events": [
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
       "x": 22,
       "y": 24,
@@ -32,7 +28,6 @@
       "flag": "0"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 29,
       "y": 32,
@@ -46,7 +41,6 @@
       "flag": "FLAG_HIDE_POKEMON_MANSION_1F_CARBOS"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 22,
       "y": 6,
@@ -60,7 +54,6 @@
       "flag": "FLAG_HIDE_POKEMON_MANSION_1F_ESCAPE_ROPE"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 27,
       "y": 15,
@@ -74,7 +67,6 @@
       "flag": "FLAG_HIDE_POKEMON_MANSION_1F_PROTEIN"
     },
     {
-      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER_FRLG",
       "x": 8,
       "y": 8,
@@ -180,5 +172,8 @@
       "quantity": 1,
       "underfoot": false
     }
-  ]
+  ],
+  "floor_number": 0,
+  "game_version": "hns",
+  "region": "REGION_KANTO"
 }

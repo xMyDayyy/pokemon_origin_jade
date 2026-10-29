@@ -1,7 +1,7 @@
 {
   "id": "MAP_POKEMON_LEAGUE_BRUNOS_ROOM",
   "name": "PokemonLeague_BrunosRoom_Frlg",
-  "game_version": "frlg",
+  "game_version": "hns",
   "layout": "LAYOUT_POKEMON_LEAGUE_BRUNOS_ROOM",
   "music": "MUS_RG_ROCKET_HIDEOUT",
   "region": "REGION_KANTO",

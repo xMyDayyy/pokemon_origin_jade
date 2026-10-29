@@ -281,6 +281,18 @@ const struct Tileset gTileset_Lab_Frlg =
     .callback = NULL,
 };
 
+// Origin Jade: gTileset_Lab_Frlg with FRLG metatile attributes, for the FRLG maps.
+const struct Tileset gTileset_Lab_Frlg_V4 =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Lab_Frlg,
+    .palettes = gTilesetPalettes_Lab_Frlg,
+    .metatiles = gMetatiles_Lab_Frlg,
+    .metatileAttributes = gMetatileAttributes_Lab_Frlg_V4,
+    .callback = NULL,
+};
+
 #if !IS_FRLG
 
 const struct Tileset gTileset_Petalburg =
@@ -844,7 +856,8 @@ const struct Tileset gTileset_UnionRoom =
     .callback = NULL,
 };
 
-#elif IS_FRLG
+#endif
+#if IS_FRLG || IS_HNS
 
 // FRLG tilesets
 const struct Tileset gTileset_BuildingFrlg =

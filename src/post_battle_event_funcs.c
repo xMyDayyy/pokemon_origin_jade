@@ -36,8 +36,10 @@ int GameClear(void)
 
     SetContinueGameWarpStatus();
 
+    // Origin Jade: continue at the respawn point the Hall of Fame script set with setrespawn.
+    // See docs/origin_jade/DECISIONS.md, D-028.
     if (IS_HNS)
-        SetContinueGameWarpToHealLocation(HEAL_LOCATION_NEW_BARK_TOWN_HNS);
+        gSaveBlock1Ptr->continueGameWarp = gSaveBlock1Ptr->lastHealLocation;
     else if (gSaveBlock2Ptr->playerGender == MALE)
         SetContinueGameWarpToHealLocation(HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F);
     else
@@ -84,7 +86,17 @@ int GameClear(void)
         }
     }
 
+    HallOfFame_SetRollCredits(TRUE);
     SetMainCallback2(CB2_DoHallOfFameScreen);
+    return 0;
+}
+
+// Origin Jade: GameClear whose Hall of Fame screen ends with a warp to the continue point
+// instead of the credits. See docs/origin_jade/DECISIONS.md, D-028.
+int GameClearNoCredits(void)
+{
+    GameClear();
+    HallOfFame_SetRollCredits(FALSE);
     return 0;
 }
 
@@ -115,10 +127,8 @@ bool8 EnterHallOfFame(void)
         SetGameStat(GAME_STAT_FIRST_HOF_PLAY_TIME, (gSaveBlock2Ptr->playTimeHours << 16) | (gSaveBlock2Ptr->playTimeMinutes << 8) | gSaveBlock2Ptr->playTimeSeconds);
     }
     SetContinueGameWarpStatus();
-    if (IS_HNS)
-        SetContinueGameWarpToHealLocation(HEAL_LOCATION_NEW_BARK_TOWN_HNS);
-    else
-        SetContinueGameWarpToHealLocation(HEAL_LOCATION_PALLET_TOWN);
+    // Origin Jade: after a Kanto title the player continues at home in Pallet Town (D-002).
+    SetContinueGameWarpToHealLocation(HEAL_LOCATION_PALLET_TOWN);
     gaveAtLeastOneRibbon = FALSE;
     for (i = 0, r7 = &ribbonState; i < PARTY_SIZE; i++)
     {

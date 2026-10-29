@@ -8,10 +8,19 @@ Debug_ShowFieldMessageStringVar4::
 	special ShowFieldMessageStringVar4
 	goto Debug_MessageEnd
 
-@ HnS-Testwerkzeug: springt direkt in das Hafengebaeude von Oliviana City.
+@ Debug: warp into Olivine City's port building.
 Debug_EventScript_HnsWarpOlivinePort::
 	setvar VAR_OLIVINE_CITY_STATE, 5
 	warp MAP_OLIVINE_CITY_PORT_INSIDE_HNS, 8, 9
+	waitstate
+	end
+
+@ Debug: the Kanto Hall of Fame's flags and vars, then home to Pallet Town.
+Debug_EventScript_JohtoTestWarpHome::
+	call EventScript_SetDefeatedEliteFourFlagsVars
+	setrespawn HEAL_LOCATION_PALLET_TOWN
+	fadescreen FADE_TO_BLACK
+	warp MAP_PALLET_TOWN_PLAYERS_HOUSE_2F, 6, 6
 	waitstate
 	end
 
@@ -226,13 +235,9 @@ Debug_EventScript_Text_DefensiveIVs:
 #endif
 
 Debug_EventScript_Script_1::
-	clearflag FLAG_DEFEATED_OLIVINE_CITY_GYM
-	clearflag FLAG_DEFEATED_CIANWOOD_GYM
-	clearflag FLAG_DEFEATED_MAHOGANY_TOWN_GYM
-	clearflag FLAG_VISITED_VERMILION_CITY
-	setflag FLAG_HIDE_DOJO_CHUCK
-	setvar VAR_MAHOGANY_TOWN_STATE, 15
-	setvar VAR_NUM_BADGES, 6
+	giveegg SPECIES_TOGEPI
+	givemon SPECIES_NATU, 5
+	givenamedmon 1
 	release
 	end
 
@@ -270,7 +275,6 @@ Debug_EventScript_Script_2::
 	clearflag FLAG_BADGE15_GET
 	clearflag FLAG_BADGE16_GET
 	clearflag FLAG_GOT_VERMILION_HP_UP
-	clearflag FLAG_KANTO_RADIO_GOT
 	clearflag FLAG_HIDE_VERMILION_SNORLAX
 	clearflag FLAG_HIDE_FAN_CLUB_CLEFAIRY_DOLL
 	clearflag FLAG_FOUND_BOTH_VERMILION_GYM_SWITCHES
@@ -462,7 +466,7 @@ Debug_EventScript_Silver_Multi::
 	end
 
 Debug_EventScript_PickSilverPartner::
-	switch VAR_STARTER_MON
+	switch VAR_JOHTO_STARTER_MON
 	case 0, Debug_EventScript_DoSilverMulti_Typhlosion
 	case 1, Debug_EventScript_DoSilverMulti_Feraligatr
 	case 2, Debug_EventScript_DoSilverMulti_Meganium

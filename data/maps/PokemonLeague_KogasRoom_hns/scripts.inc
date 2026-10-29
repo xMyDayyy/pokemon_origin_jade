@@ -13,7 +13,8 @@ PokemonLeague_KogasRoom_EventScript_Koga::
 	lock
 	faceplayer
 	goto_if_ge VAR_LEAGUE_STATE, 3, PokemonLeague_KogasRoom_EventScript_KogaDefeated
-	goto_if_set FLAG_IS_CHAMPION, PokemonLeague_KogasRoom_EventScript_KogaRematch
+	@ Rematch once Johto's league is won.
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, PokemonLeague_KogasRoom_EventScript_KogaRematch
 	msgbox PokemonLeague_KogasRoom_Text_Before, MSGBOX_DEFAULT
 	setflag FLAG_TEMP_3
 	setflag FLAG_TEMP_5
@@ -21,10 +22,21 @@ PokemonLeague_KogasRoom_EventScript_Koga::
 	goto PokemonLeague_KogasRoom_EventScript_KogaOnDefeat
 
 PokemonLeague_KogasRoom_EventScript_KogaRematch::
+	goto_if_unset FLAG_IS_KANTO_CHAMPION, PokemonLeague_KogasRoom_EventScript_KogaRematchStandard
+	goto_if_ge VAR_SINJOH_STORYLINE, 13, PokemonLeague_KogasRoom_EventScript_KogaRematchPostOBC
+
+PokemonLeague_KogasRoom_EventScript_KogaRematchStandard::
 	msgbox PokemonLeague_KogasRoom_Text_RematchBefore, MSGBOX_DEFAULT
 	setflag FLAG_TEMP_3
 	setflag FLAG_TEMP_5
 	trainerbattle_no_intro TRAINER_KOGA_2_HNS, PokemonLeague_KogasRoom_Text_Beaten
+	goto PokemonLeague_KogasRoom_EventScript_KogaOnDefeat
+
+PokemonLeague_KogasRoom_EventScript_KogaRematchPostOBC::
+	msgbox PokemonLeague_KogasRoom_Text_RematchBefore, MSGBOX_DEFAULT
+	setflag FLAG_TEMP_3
+	setflag FLAG_TEMP_5
+	trainerbattle_no_intro TRAINER_KOGA_POSTOBC_HNS, PokemonLeague_KogasRoom_Text_Beaten
 	goto PokemonLeague_KogasRoom_EventScript_KogaOnDefeat
 
 PokemonLeague_KogasRoom_EventScript_KogaOnDefeat::

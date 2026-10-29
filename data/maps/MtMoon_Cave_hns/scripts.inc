@@ -30,9 +30,9 @@ MtMoon_Cave_EventScript_Silver::
 	waitmovement LOCALID_MTMOON_SILVER
 	waitmovement OBJ_EVENT_ID_PLAYER
 	msgbox MtMoon_Cave_Text_Rival_Before, MSGBOX_DEFAULT
-	goto_if_eq VAR_STARTER_MON, 0, MtMoon_Cave_EventScript_Silver_Battle_Cyndaquil
-	goto_if_eq VAR_STARTER_MON, 1, MtMoon_Cave_EventScript_Silver_Battle_Totodile
-	goto_if_eq VAR_STARTER_MON, 2, MtMoon_Cave_EventScript_Silver_Battle_Chikorita
+	goto_if_eq VAR_JOHTO_STARTER_MON, 0, MtMoon_Cave_EventScript_Silver_Battle_Cyndaquil
+	goto_if_eq VAR_JOHTO_STARTER_MON, 1, MtMoon_Cave_EventScript_Silver_Battle_Totodile
+	goto_if_eq VAR_JOHTO_STARTER_MON, 2, MtMoon_Cave_EventScript_Silver_Battle_Chikorita
 	release
 	end
 

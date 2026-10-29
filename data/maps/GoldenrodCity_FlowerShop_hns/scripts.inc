@@ -5,7 +5,10 @@ GoldenrodCity_FlowerShop_hns_MapScripts::
 GoldenrodCity_FlowerShop_EventScript_MintClerk::
 	lock
 	faceplayer
-	goto_if_unset FLAG_BADGE03_GET, GoldenrodCity_FlowerShop_EventScript_MintClerkNotReady
+	@ Johto badge 3 (Whitney).
+	setvar VAR_0x8004, 2
+	special CheckJohtoBadge
+	goto_if_eq VAR_RESULT, FALSE, GoldenrodCity_FlowerShop_EventScript_MintClerkNotReady
 	message gText_HowMayIServeYou
 	waitmessage
 	pokemart GoldenrodCity_FlowerShop_Mints
@@ -46,6 +49,7 @@ GoldenrodCity_FlowerShop_Mints:
 	.2byte ITEM_RELAXED_MINT
 	.2byte ITEM_SASSY_MINT
 	.2byte ITEM_TIMID_MINT
+	.2byte ITEM_MIRROR_HERB
 	pokemartlistend
 
 
@@ -54,7 +58,10 @@ GoldenrodCity_FlowerShop_EventScript_Owner::
 	faceplayer
 	goto_if_set FLAG_HIDE_SUDOWOODO, GoldenrodCity_FlowerShop_EventScript_Normal
 	goto_if_set FLAG_RECEIVED_SQUIRTBOTTLE, GoldenrodCity_FlowerShop_EventScript_GotSquirtBottle
-	goto_if_set FLAG_BADGE03_GET, GoldenrodCity_FlowerShop_EventScript_GiveSquirtBottle
+	@ The Squirtbottle needs Johto badge 3 (Whitney).
+	setvar VAR_0x8004, 2
+	special CheckJohtoBadge
+	goto_if_eq VAR_RESULT, TRUE, GoldenrodCity_FlowerShop_EventScript_GiveSquirtBottle
 	msgbox GoldenrodCity_FlowerShop_Text_Owner1, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -90,7 +97,9 @@ GoldenrodCity_FlowerShop_EventScript_Floria1::
 	lock
 	faceplayer
 	goto_if_set FLAG_HIDE_SUDOWOODO, GoldenrodCity_FlowerShop_EventScript_Floria3
-	goto_if_set FLAG_BADGE03_GET, GoldenrodCity_FlowerShop_EventScript_Floria2
+	setvar VAR_0x8004, 2
+	special CheckJohtoBadge
+	goto_if_eq VAR_RESULT, TRUE, GoldenrodCity_FlowerShop_EventScript_Floria2
 	msgbox GoldenrodCity_FlowerShop_Text_Floria, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -167,7 +176,7 @@ GoldenrodCity_FlowerShop_Text_Owner2:
 .string "They say it dances when you water\n"
 .string "it...\p"
 .string "Oh, that's a PLAINBADGE from\n"
-.string "The GOLDENROD GYM!\p"
+.string "the GOLDENROD GYM!\p"
 .string "Did you defeat WHITNEY?!\p"
 .string "Well, then there's nothing to worry\n"
 .string "about, is there?\p"

@@ -235,8 +235,9 @@ const struct Trainer gTrainers[DIFFICULTY_COUNT][TRAINERS_COUNT] =
 #include "data/trainers_frlg.h"
 #elif IS_HNS
 #include "data/trainers_hns.h"
-// Hoenn-Trainer liegen dahinter: ihre Kennungen sind in opponents.h um
-// TRAINERS_COUNT_HNS verschoben, damit sich beide Saetze nicht ueberlappen.
+// Origin Jade: FRLG trainers, IDs shifted by FRLG_TRAINER_OFFSET.
+#include "data/trainers_frlg.h"
+// Hoenn trainers, IDs shifted by TRAINERS_COUNT_HNS (opponents.h).
 #include "data/trainers.h"
 #else
 #include "data/trainers.h"

@@ -107,7 +107,7 @@ static const struct WindowTemplate sWindowTemplates[] =
         .bg = 1,
         .tilemapLeft = 11,
         .tilemapTop = 4,
-        .width = 13, // DE: breiter für vollen Item-Namen (wie offizielles dt. Smaragd)
+        .width = 13, // DE: wider for the full item name
         .height = 2,
         .paletteNum = 15,
         .baseBlock = 69,
@@ -123,9 +123,9 @@ static const struct WindowTemplate sWindowTemplates[] =
     },
     [WIN_DESC] = {
         .bg = 1,
-        .tilemapLeft = 3,  // DE: 1 Kachel weiter links (wie offizielles dt. Smaragd)
+        .tilemapLeft = 3,  // DE: one tile further left
         .tilemapTop = 14,
-        .width = 27,       // DE: 2 Kacheln breiter (wie offizielles dt. Smaragd)
+        .width = 27,       // DE: two tiles wider
         .height = 4,
         .paletteNum = 15,
         .baseBlock = 167, // 95 + 18*4
@@ -435,7 +435,7 @@ static void PrintAllBerryData(void)
 static void PrintBerryNumberAndName(void)
 {
     ConvertIntToDecimalStringN(gStringVar1, sBerryTag->berryId, STR_CONV_MODE_LEADING_ZEROS, 2);
-    StringCopy(gStringVar2, GetItemName(FIRST_BERRY_INDEX + sBerryTag->berryId - 1)); // DE: voller Beerenname wie im offiziellen dt. Smaragd
+    StringCopy(gStringVar2, GetItemName(FIRST_BERRY_INDEX + sBerryTag->berryId - 1)); // DE: full berry name
     StringExpandPlaceholders(gStringVar4, sText_NumberVar1Var2);
     PrintTextInBerryTagScreen(WIN_BERRY_NAME, gStringVar4, 0, 1, 0, 0);
 }

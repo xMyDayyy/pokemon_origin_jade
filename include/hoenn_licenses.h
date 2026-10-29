@@ -3,14 +3,11 @@
 
 #include "constants/hoenn_licenses.h"
 
-// VM-Lizenzen fuer Hoenn. Der Spieler beherrscht die Feldattacken laengst
-// (Johto-Champion), darf sie in Hoenn aber erst nach behoerdlicher Erlaubnis
-// einsetzen. Gesperrt sind nur die Attacken, die den Fortschritt steuern --
-// Fliegen und Blitz bleiben frei.
+// HM licenses: in Hoenn a field move needs its license.
 
 bool32 HasHoennLicense(u32 index);
-bool32 HoennLicensesApply(void);   // TRUE, wenn der Spieler gerade in Hoenn steht
-void SetHoennLicense(void);        // Special: Index in gSpecialVar_0x8004
-void CheckHoennLicense(void);      // Special: TRUE = hier erlaubt
+bool32 HoennLicensesApply(void);   // TRUE if the player is currently in Hoenn
+void SetHoennLicense(void);        // Special: index in gSpecialVar_0x8004
+void CheckHoennLicense(void);      // Special: TRUE = allowed here
 
 #endif // GUARD_HOENN_LICENSES_H

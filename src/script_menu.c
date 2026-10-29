@@ -867,6 +867,8 @@ static void CreateLilycoveSSTidalMultichoice(void)
         }
     }
 
+#if !IS_HNS
+    // No event-ticket islands from Lilycove: each legendary exists once (see docs/origin_jade/DECISIONS.md, D-026).
     if (CheckBagHasItem(ITEM_EON_TICKET, 1) == TRUE && FlagGet(FLAG_ENABLE_SHIP_SOUTHERN_ISLAND) == TRUE)
     {
         if (gSpecialVar_0x8004 == 0)
@@ -930,6 +932,7 @@ static void CreateLilycoveSSTidalMultichoice(void)
             FlagSet(FLAG_SHOWN_OLD_SEA_MAP);
         }
     }
+#endif
 
     sLilycoveSSTidalSelections[selectionCount] = SSTIDAL_SELECTION_EXIT;
     selectionCount++;

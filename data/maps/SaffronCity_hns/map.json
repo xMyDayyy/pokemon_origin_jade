@@ -525,6 +525,6 @@
       "script": "SaffronCity_EventScript_CitySign"
     }
   ],
-  "game_version": "hns",
+  "game_version": "hns_kanto_retired",
   "region": "REGION_KANTO"
 }

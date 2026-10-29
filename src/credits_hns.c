@@ -670,7 +670,7 @@ static void Task_CreditsTheEnd6(u8 taskId)
             FadeOutBGM(8);
 
         if (gTasks[taskId].tDelay == 6840)
-            m4aSongNumStart(MUS_END, FlagGet(FLAG_SYS_GBS_ENABLED));
+            m4aSongNumStart(MUS_HG_END, FlagGet(FLAG_SYS_GBS_ENABLED));
 
         gTasks[taskId].tDelay--;
     }
@@ -1447,7 +1447,8 @@ static void SpriteCB_CreditsMonBg(struct Sprite *sprite)
 
 static void DeterminePokemonToShow(void)
 {
-    enum NationalDexOrder starter = SpeciesToNationalPokedexNum(GetStarterPokemon(VarGet(VAR_STARTER_MON)));
+    // Origin Jade: GetStarterPokemon takes the Johto index, VAR_STARTER_MON is Kanto's.
+    enum NationalDexOrder starter = SpeciesToNationalPokedexNum(GetStarterPokemon(VarGet(VAR_JOHTO_STARTER_MON)));
     u16 page;
     u16 dexNum;
     u16 j;

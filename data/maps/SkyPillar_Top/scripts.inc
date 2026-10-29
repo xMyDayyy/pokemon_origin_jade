@@ -25,7 +25,11 @@ SkyPillar_Top_EventScript_SetCleanLayout::
 	return
 
 SkyPillar_Top_EventScript_TryShowRayquaza::
-	call_if_unset FLAG_DEFEATED_RAYQUAZA, SkyPillar_Top_EventScript_ShowRayquaza
+	@ Rayquaza: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+	setflag FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL
+	setvar VAR_0x8004, LEGENDARY_RAYQUAZA
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	call_if_eq VAR_RESULT, TRUE, SkyPillar_Top_EventScript_ShowRayquaza
 	return
 
 SkyPillar_Top_EventScript_ShowRayquaza::
@@ -51,17 +55,12 @@ SkyPillar_Top_EventScript_Rayquaza::
 	special BattleSetup_StartLegendaryBattle
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	setvar VAR_0x8004, LEGENDARY_RAYQUAZA
+	special RecordLegendaryBattleOutcome
 	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SkyPillar_Top_EventScript_DefeatedRayquaza
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, SkyPillar_Top_EventScript_RanFromRayquaza
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, SkyPillar_Top_EventScript_RanFromRayquaza
-	setflag FLAG_DEFEATED_RAYQUAZA
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SkyPillar_Top_EventScript_DefeatedRayquaza2
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, SkyPillar_Top_EventScript_RanFromRayquaza
 	releaseall
-	end
-
-SkyPillar_Top_EventScript_DefeatedRayquaza::
-	setflag FLAG_DEFEATED_RAYQUAZA
-	goto SkyPillar_Top_EventScript_DefeatedRayquaza2
 	end
 
 SkyPillar_Top_EventScript_RanFromRayquaza::

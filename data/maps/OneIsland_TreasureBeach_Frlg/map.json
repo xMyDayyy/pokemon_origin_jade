@@ -1,7 +1,7 @@
 {
   "id": "MAP_ONE_ISLAND_TREASURE_BEACH",
   "name": "OneIsland_TreasureBeach_Frlg",
-  "game_version": "frlg",
+  "game_version": "frlg_sevii_retired",
   "layout": "LAYOUT_ONE_ISLAND_TREASURE_BEACH",
   "music": "MUS_RG_ROUTE3",
   "region": "REGION_KANTO",

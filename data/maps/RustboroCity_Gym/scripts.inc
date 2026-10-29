@@ -16,8 +16,7 @@ RustboroCity_Gym_EventScript_RoxanneDefeated::
 	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox RustboroCity_Gym_Text_StoneBadgeInfoTakeThis, MSGBOX_DEFAULT
 #if IS_HNS
-	@ HnS: Der Steinorden ist zugleich die Erlaubnis fuer Zerschneider -
-	@ das steht im Ordentext, eine eigene Uebergabe braucht es nicht.
+	@ HnS: the Stone Badge grants the Cut license.
 	setvar VAR_0x8004, LIC_CUT
 	special SetHoennLicense
 #endif
@@ -37,8 +36,7 @@ RustboroCity_Gym_EventScript_GiveRockTomb::
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_TM_ROCK_TOMB
 	msgbox RustboroCity_Gym_Text_ExplainRockTomb, MSGBOX_DEFAULT
-	@ HnS: Normans Anruf kommt ganz zum Schluss - vorher lief er mitten
-	@ in die Szene der Arenaleiterin hinein und die Textbox war noch offen.
+	@ HnS: Norman's call must come last.
 	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
 	release
 	end
@@ -79,8 +77,7 @@ RustboroCity_Gym_EventScript_GymGuidePostVictory::
 RustboroCity_Gym_EventScript_LeftGymStatue::
 	lockall
 #if IS_HNS
-	@ HnS: FLAG_BADGE01_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
+	@ Hoenn badge 1 (Roxanne)
 	setvar VAR_0x8004, 0
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, TRUE, RustboroCity_Gym_EventScript_GymStatueCertified
@@ -93,8 +90,7 @@ RustboroCity_Gym_EventScript_LeftGymStatue::
 RustboroCity_Gym_EventScript_RightGymStatue::
 	lockall
 #if IS_HNS
-	@ HnS: FLAG_BADGE01_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
+	@ Hoenn badge 1 (Roxanne)
 	setvar VAR_0x8004, 0
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, TRUE, RustboroCity_Gym_EventScript_GymStatueCertified
@@ -405,10 +401,10 @@ RustboroCity_Gym_Text_GymStatueCertified:
 RustboroCity_Gym_Text_RoxanneRegisterCall:
 #if GERMAN
 	.string "… … … … … … … … … … … … Piep!\p"
-	.string "Felizia: Oh, hallo {PLAYER}. Hier ist\n"
-	.string "Felizia aus Metarost City.\p"
-	.string "Kamillo hat mir erzählt, dass du die\n"
-	.string "Trainer in atemberaubender\l"
+	.string "Felizia: Oh, hallo {PLAYER}. Hier\n"
+	.string "ist Felizia aus Metarost City.\p"
+	.string "Kamillo hat mir erzählt, dass du\n"
+	.string "die Trainer in atemberaubender\l"
 	.string "Geschwindigkeit aussuchst und\l"
 	.string "besiegst.\p"
 	.string "Ich denke aber nicht, dass ich\n"
@@ -429,10 +425,11 @@ RustboroCity_Gym_Text_RoxanneRegisterCall:
 	.string "TRAINERS at an incredible clip.\p"
 	.string "Well, I'd rather not think that I\n"
 	.string "can't beat you.\p"
-	.string "I promise, I will shape up my GYM so\n"
-	.string "that you may challenge us again.\p"
-	.string "I hope you'll be looking forward to\n"
-	.string "that occasion as much as me!\p"
+	.string "I promise, I will shape up my\n"
+	.string "GYM so that you may challenge us\l"
+	.string "again.\p"
+	.string "I hope you'll be looking forward\n"
+	.string "to that occasion as much as me!\p"
 	.string "… … … … … … … … … … … Click!$"
 #endif
 

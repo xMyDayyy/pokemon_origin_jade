@@ -314,6 +314,5 @@ ElmPhoneRadioTowerRocketTakeoverText:
 	.string "about it?\p"
 	.string "Maybe TEAM ROCKET has returned.\n"
 	.string "No, that just can't be true.\p"
-	.string "Sorry to bug you.\n"
-	.string "Take care!$"
+	.string "Sorry to bug you. Take care!$"
 

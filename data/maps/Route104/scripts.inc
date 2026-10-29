@@ -21,8 +21,7 @@ Route104_OnTransition:
 Route104_EventScript_ShowOrHideWhiteHerbFlorist::
 	goto_if_unset FLAG_MET_PRETTY_PETAL_SHOP_OWNER, Route104_EventScript_HideWhiteHerbFlorist
 #if IS_HNS
-	@ HnS: FLAG_BADGE03_GET gehoert zu den Johto/Kanto-Orden und ist
-	@ hier laengst gesetzt - stattdessen den Hoenn-Orden pruefen.
+	@ Hoenn badge 3 (Wattson)
 	setvar VAR_0x8004, 2
 	special CheckHoennBadge
 	goto_if_eq VAR_RESULT, FALSE, Route104_EventScript_HideWhiteHerbFlorist
@@ -39,7 +38,7 @@ Route104_EventScript_HideWhiteHerbFlorist::
 Route104_EventScript_TrySetRivalPos::
 	goto_if_ge VAR_BOARD_BRINEY_BOAT_STATE, 1, Route104_EventScript_DontSetRivalPos
 	goto_if_set FLAG_MET_RIVAL_RUSTBORO, Route104_EventScript_DontSetRivalPos
-	goto_if_unset FLAG_REGISTER_RIVAL_POKENAV, Route104_EventScript_DontSetRivalPos
+	goto_if_unset FLAG_HOENN_REGISTER_RIVAL_POKENAV, Route104_EventScript_DontSetRivalPos
 	setobjectxyperm LOCALID_ROUTE104_RIVAL, 17, 52
 	return
 
@@ -80,8 +79,7 @@ Route104_EventScript_RivalTrigger::
 @ Unused, shares script with Rustboro encounter instead
 Route104_EventScript_PlayRivalMusic::
 #if IS_HNS
-	@ HnS-Kanon: Die Rivalin ist immer Maike, unabhaengig vom Geschlecht
-	@ der Spielfigur. Brix bleibt als eigenstaendige Figur frei.
+	@ HnS: the rival is always May.
 	goto Route104_EventScript_PlayMayMusic
 #else
 	checkplayergender
@@ -100,8 +98,7 @@ Route104_EventScript_PlayBrendanMusic::
 
 Route104_EventScript_RivalEncounter::
 #if IS_HNS
-	@ HnS-Kanon: Die Rivalin ist immer Maike, unabhaengig vom Geschlecht
-	@ der Spielfigur. Brix bleibt als eigenstaendige Figur frei.
+	@ HnS: the rival is always May.
 	goto Route104_EventScript_MayEncounter
 #else
 	checkplayergender
@@ -112,8 +109,8 @@ Route104_EventScript_RivalEncounter::
 
 Route104_EventScript_MayEncounter::
 	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE_104, Route104_EventScript_MayDefeated
-	goto_if_set FLAG_REGISTER_RIVAL_POKENAV, Route104_EventScript_MayAskToBattle
-	setflag FLAG_REGISTER_RIVAL_POKENAV
+	goto_if_set FLAG_HOENN_REGISTER_RIVAL_POKENAV, Route104_EventScript_MayAskToBattle
+	setflag FLAG_HOENN_REGISTER_RIVAL_POKENAV
 	msgbox Route104_Text_MayWeShouldRegister, MSGBOX_DEFAULT
 	closemessage
 	delay 30
@@ -162,8 +159,7 @@ Route104_EventScript_MayAskToBattle::
 Route104_EventScript_BattleMay::
 	msgbox Route104_Text_MayIntro, MSGBOX_DEFAULT
 #if IS_HNS
-	@ HnS: VAR_STARTER_MON traegt hier den Johto-Starter. Maikes Starterlinie
-	@ steht seit Route 103 fest (Flemmli), deshalb immer das Treecko-Set.
+	@ HnS: May always has Torchic (her *_TREECKO party).
 	goto Route104_EventScript_BattleMayTreecko
 #else
 	switch VAR_STARTER_MON
@@ -204,8 +200,8 @@ Route104_EventScript_BattleMayMudkip::
 
 Route104_EventScript_BrendanEncounter::
 	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE_104, Route104_EventScript_BrendanDefeated
-	goto_if_set FLAG_REGISTER_RIVAL_POKENAV, Route104_EventScript_BrendanAskToBattle
-	setflag FLAG_REGISTER_RIVAL_POKENAV
+	goto_if_set FLAG_HOENN_REGISTER_RIVAL_POKENAV, Route104_EventScript_BrendanAskToBattle
+	setflag FLAG_HOENN_REGISTER_RIVAL_POKENAV
 	msgbox Route104_Text_BrendanWeShouldRegister, MSGBOX_DEFAULT
 	closemessage
 	delay 30
@@ -379,10 +375,7 @@ Route104_EventScript_SailToDewford::
 	hideobjectat LOCALID_PLAYER, MAP_ROUTE104
 	call Common_EventScript_PlayBrineysBoatMusic
 #if IS_HNS
-	@ HnS: Der Vater-Anruf entfaellt. Norman ist nicht der Vater des Spielers,
-	@ und die Familie wohnt in Neuborkia. Norman traegt sich stattdessen nach
-	@ seiner Arenaniederlage selbst ins PokeCom ein (PetalburgCity_Gym).
-	@ Der Uebergabezweig bleibt fuer den Nicht-HnS-Build erhalten.
+	@ HnS: no call from Dad.
 	goto Route104_EventScript_SailToDewfordNoCall
 #else
 	goto_if_set FLAG_ENABLE_NORMAN_MATCH_CALL, Route104_EventScript_SailToDewfordNoCall

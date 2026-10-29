@@ -5,7 +5,15 @@ Route29_hns_MapScripts::
 
 Route29_OnTransition:
 	callnative SetTimeBasedEncounters
+	special GetWeekday
+	call_if_ne VAR_RESULT, WEEKDAY_TUE, Route29_EventScript_HideTuscany
 	end
+
+@ Tuscany of the weekday siblings is only here on Tuesday, see
+@ docs/origin_jade/DECISIONS.md, D-033.
+Route29_EventScript_HideTuscany:
+	setflag FLAG_TEMP_2
+	return
 
 Route29_Trigger_Monview::
 	special SpawnCameraObject
@@ -87,23 +95,6 @@ Route29_EventScript_Tuscany::
 	faceplayer
 	goto_if_set FLAG_GOT_SILK_SCARF, Route29_EventScript_TuscanyCompleted
 	msgbox Route29_Text_MeetTuscany, MSGBOX_DEFAULT
-	closemessage
-	multichoice 20, 0, MULTI_DAYS_OF_WEEK, FALSE
-	switch VAR_RESULT
-	case 0, Route29_EventScript_TuscanyNope
-	case 1, Route29_EventScript_TuscanyNope
-	case 2, Route29_EventScript_TuscanyYes
-	case 3, Route29_EventScript_TuscanyNope
-	case 4, Route29_EventScript_TuscanyNope
-	case 5, Route29_EventScript_TuscanyNope
-	case 6, Route29_EventScript_TuscanyNope
-	case 7 Route29_EventScript_TuscanyCancel
-	case MULTI_B_PRESSED, Route29_EventScript_TuscanyCancel
-	closemessage
-	release
-	end
-Route29_EventScript_TuscanyYes::
-	msgbox Route29_Text_TuscanyGivesGift, MSGBOX_DEFAULT
 	giveitem ITEM_SILK_SCARF
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_GOT_SILK_SCARF
@@ -111,15 +102,7 @@ Route29_EventScript_TuscanyYes::
 	closemessage
 	release
 	end
-Route29_EventScript_TuscanyNope::
-	msgbox Route29_Text_TuscanyNope, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-Route29_EventScript_TuscanyCancel::
-	closemessage
-	release
-	end
+
 Route29_EventScript_TuscanyCompleted::
 	msgbox Route29_Text_TuscanyTuesday, MSGBOX_DEFAULT
 	closemessage
@@ -173,85 +156,62 @@ Route29_Text_OldMan1:
 
 Route29_Text_OldMan2:
 #if GERMAN
-	.string "Ich habe dich schon ein paar Mal\n"
-	.string "gesehen.\p"
-	.string "Wie viele Pokémon hast du gefangen?\p"
-	.string "Soll ich dir zeigen, wie man Pokémon\n"
-	.string "fängt?$"
+	.string "Dich habe ich hier noch nie gesehen.\p"
+	.string "Du kommst von drüben, stimmt's?\p"
+	.string "Soll ich dir zeigen, wo hier was\n"
+	.string "lebt?$"
 #else
-	.string "I've seen you a couple times.\n"
-	.string "How many POKéMON have you caught?\p"
-	.string "Would you like me to tell you\n"
-	.string "how to catch POKéMON?$"
+	.string "I have never seen you here before.\p"
+	.string "You came from over there, did you\n"
+	.string "not?\p"
+	.string "Shall I tell you what lives around\n"
+	.string "here?$"
 #endif
 
 Route29_Text_OldManExplanation:
 #if GERMAN
-	.string "Wenn du sie zuerst schwächst, lassen\n"
-	.string "sich Pokémon leichter fangen.\p"
-	.string "Wirf dann einen Ball aus deinem\n"
-	.string "Beutel! Jeder Ball reicht.\p"
-	.string "Wenn du mehr lernen willst, geh zur\n"
-	.string "Akademie in Viola City!\p"
-	.string "Die Schüler dort wissen viel über\n"
-	.string "Pokémon.$"
+	.string "Im hohen Gras sind vor allem\n"
+	.string "Rattfratz und Tannza unterwegs.\p"
+	.string "Nachts kommen Hoothoot dazu.\p"
+	.string "Klingt bescheiden, ich weiß.\n"
+	.string "Aber jeder fängt irgendwo an.$"
 #else
-	.string "If you weaken them first,\n"
-	.string "POKéMON are easier to catch.\p"
-	.string "Then, throw a ball at them from\n"
-	.string "your bag! Any ball will do.\p"
-	.string "If you want to learn more,\n"
-	.string "go to the ACADEMY in VIOLET CITY!\p"
-	.string "The students there know a lot\n"
-	.string "about POKéMON.$"
+	.string "The tall grass here is mostly\n"
+	.string "RATTATA and SENTRET.\p"
+	.string "At night the HOOTHOOT come out.\p"
+	.string "Modest, I know. But everyone starts\n"
+	.string "somewhere.$"
 #endif
 
 Route29_Text_OldManDeclined:
 #if GERMAN
 	.string "Oh… Na gut.\p"
-	.string "Untersuche jede Route, um verschiedene\n"
-	.string "Pokémon zu finden.\p"
-	.string "Dein Pokédex zeigt dir auch, wo sie\n"
-	.string "leben!\p"
-	.string "Wenn du mehr lernen willst, geh zur\n"
-	.string "Akademie in Viola City!\p"
-	.string "Die Schüler wissen viel über Pokémon.$"
+	.string "Dann viel Glück auf dem Weg.$"
 #else
-	.string "Oh. Fine, then.\p"
-	.string "Check every route to find\n"
-	.string "different types of POKéMON.\p"
-	.string "Your POKéDEX shows where you can\n"
-	.string "find them too!\p"
-	.string "If you want to learn more,\n"
-	.string "go to the ACADEMY in VIOLET CITY!\p"
-	.string "The students know a lot about\n"
-	.string "POKéMON.$"
+	.string "Oh… Very well.\p"
+	.string "Good luck on the road, then.$"
 #endif
 
 Route29_Text_Youngster:
 #if GERMAN
-	.string "Tag! Wie geht’s deinem Pokémon-Team?\p"
-	.string "Ist es schwach und nicht bereit zu\n"
-	.string "kämpfen, machst du besser einen großen\l"
-	.string "Bogen um hohes Gras.$"
+	.string "Tag! Bist du auf der Durchreise?\p"
+	.string "Hier kommt selten jemand vorbei, der\n"
+	.string "nicht aus Neuborkia ist.$"
 #else
-	.string "Yo. How are your POKéMON?\p"
-	.string "If they're weak and not ready\n"
-	.string "for battle, keep out of the grass.$"
+	.string "Hello! Just passing through?\p"
+	.string "We rarely get anyone here who is not\n"
+	.string "from NEW BARK TOWN.$"
 #endif
 
 Route29_Text_Lass:
 #if GERMAN
 	.string "Siehst du die Stufen hier?\p"
-	.string "Es erfordert zwar etwas Mut, sie\n"
-	.string "herunterzuspringen, aber so kannst du\l"
-	.string "auf dem Weg nach Neuborkia das hohe\l"
-	.string "Gras umgehen.$"
+	.string "Springen geht nur abwärts. Wer\n"
+	.string "zurück will, muss außen herum.$"
 #else
-	.string "See those ledges?\n"
-	.string "It's scary to jump off them.\p"
-	.string "But you can go to NEW BARK\n"
-	.string "without walking through the grass.$"
+	.string "See these ledges?\p"
+	.string "You can only jump down. Going back\n"
+	.string "means walking around.$"
 #endif
 
 Route29_Text_Girl:
@@ -288,33 +248,15 @@ Route29_Text_MeetTuscany:
 #if GERMAN
 	.string "Dietlinde: Ich glaube, wir treffen\n"
 	.string "uns heute zum ersten Mal?\p"
-	.string "Ich bin Dietlinde aus der\n"
-	.string "Wochentagsfamilie.\p"
-	.string "Wenn du meinen Lieblingstag errätst,\n"
-	.string "gebe ich dir eine Belohnung.$"
+	.string "Ich bin Dietlinde vom Dienstag.\p"
+	.string "Zur Begrüßung schenke ich dir\n"
+	.string "diesen Seidenschal.$"
 #else
 	.string "TUSCANY: I do believe that this\n"
 	.string "is the first time we've met?\p"
-	.string "I'm TUSCANY of the WEEKDAY FAMILY.\p"
-	.string "If you can guess my favorite day,\n"
-	.string "I'll give you a reward.$"
-#endif
-
-Route29_Text_TuscanyNope:
-#if GERMAN
-	.string "Nicht ganz!$"
-#else
-	.string "Not quite!$"
-#endif
-
-Route29_Text_TuscanyGivesGift:
-#if GERMAN
-	.string "Ja! Da wir uns zum ersten Mal sehen,\p"
-	.string "schenke ich dir einen Seidenschal.$"
-#else
-	.string "Yes! By way of introduction,\n"
-	.string "please accept this gift, a SILK\l"
-	.string "SCARF.$"
+	.string "I am TUSCANY of Tuesday.\p"
+	.string "By way of introduction, please\n"
+	.string "accept this gift, a SILK SCARF.$"
 #endif
 
 Route29_Text_TuscanyGaveGift:
@@ -323,8 +265,8 @@ Route29_Text_TuscanyGaveGift:
 	.string "dass er ganz entzückend ist?\p"
 	.string "Er verstärkt Attacken der\n"
 	.string "Elementklasse Normal.\p"
-	.string "Ich bin sicher, er wird dir sehr nützlich\n"
-	.string "sein.$"
+	.string "Ich bin sicher, er wird dir sehr\n"
+	.string "nützlich sein.$"
 #else
 	.string "TUSCANY: Wouldn't you agree\n"
 	.string "that it is most adorable?\p"
@@ -338,12 +280,13 @@ Route29_Text_TuscanyTuesday:
 	.string "Dietlinde: Bist du Monja, meiner\n"
 	.string "älteren Schwester, schon begegnet?\p"
 	.string "Oder meinem kleinen Bruder Mitko?\p"
-	.string "Ich bin das zweite von sieben Kindern.$"
+	.string "Ich bin das zweite von sieben\n"
+	.string "Kindern.$"
 #else
 	.string "TUSCANY: Have you met MONICA,\n"
 	.string "my older sister?\p"
 	.string "Or my younger brother, WESLEY?\p"
-	.string "I am the third of seven\n"
+	.string "I am the second of seven\n"
 	.string "children.$"
 #endif
 

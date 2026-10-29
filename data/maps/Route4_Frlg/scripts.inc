@@ -1,5 +1,11 @@
 Route4_Frlg_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, Route4_OnTransition
 	.byte 0
+
+@ Unlock the fly point on entering the route.
+Route4_OnTransition::
+	setworldmapflag FLAG_WORLD_MAP_ROUTE4_POKEMON_CENTER_1F
+	end
 
 Route4_EventScript_Unused::
 	end

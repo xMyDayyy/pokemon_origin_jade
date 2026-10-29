@@ -6,7 +6,18 @@ Route30_hns_MapScripts::
 
 Route30_OnTransition:
 	callnative SetTimeBasedEncounters
+	@ Origin Jade: ends the boys' duel after the theft (lab state 5).
+	call_if_set FLAG_HIDE_ROUTE_30_NPCS, Route30_EventScript_SyncAfterTheft
 	end
+
+Route30_EventScript_SyncAfterTheft::
+	goto_if_ge VAR_NEWBARKTOWN_LABSTATE, 5, Route30_EventScript_EndDuel
+	return
+
+Route30_EventScript_EndDuel::
+	setflag FLAG_MOM_VISITED
+	clearflag FLAG_HIDE_ROUTE_30_NPCS
+	return
 
 Route30_OnFrame::
 	map_script_2 VAR_CHERRYGROVE_CITY_STATE, 2, Route30_EventScript_ElmCall_Trigger
@@ -251,23 +262,24 @@ Route30_Text_YoungsterDirectionsToMrPokemon:
 
 Route30_Text_YoungsterEveryoneIsBattling:
 #if GERMAN
-	.string "Jedem macht das Kämpfen Spaß!$"
+	.string "Hier oben kämpft jeder gegen jeden.\p"
+	.string "Wer durchwill, kommt nicht drumherum.$"
 #else
-	.string "Everyone's having fun\n"
-	.string "battling!\p"
-	.string "You should too!$"
+	.string "Up here everyone battles everyone.\p"
+	.string "There is no way through without it.$"
 #endif
 
 Route30_Text_CooltrainerF:
 #if GERMAN
-	.string "Ich selbst bin keine Trainerin!\p"
-	.string "Aber wenn dir ein Trainer in die Augen\n"
-	.string "sieht, solltest du dich auf einen Kampf\l"
-	.string "vorbereiten!$"
+	.string "Ich selbst bin keine Trainerin.\p"
+	.string "Aber ich sehe genug von ihnen, um zu\n"
+	.string "erkennen, wer etwas kann.\p"
+	.string "Du gehörst dazu.$"
 #else
-	.string "I'm not a trainer.\p"
-	.string "But if you look one in the\n"
-	.string "eyes, prepare to battle.$"
+	.string "I am not a trainer myself.\p"
+	.string "But I see enough of them to tell who\n"
+	.string "knows what they are doing.\p"
+	.string "You are one of them.$"
 #endif
 
 Route30_Text_Sign:
@@ -297,17 +309,13 @@ Route30_Text_MrPokemonsHouseSign:
 
 Route30_Text_TrainerTips:
 #if GERMAN
-	.string "Tipps für Trainer\p"
-	.string "Wer einem anderen Trainer die\n"
-	.string "Pokémon klaut, ist ein Dieb!\p"
-	.string "Deshalb dürfen Pokébälle auch nur bei\n"
-	.string "wilden Pokémon eingesetzt werden!$"
+	.string "Route 30\p"
+	.string "Nach Norden: Route 31 und Viola City.\n"
+	.string "Nach Süden: Neuborkia.$"
 #else
-	.string "TRAINER TIPS\p"
-	.string "No stealing other people's\n"
-	.string "POKéMON!\p"
-	.string "POKé BALLS are to be thrown\n"
-	.string "only at wild POKéMON!$"
+	.string "ROUTE 30\p"
+	.string "North: ROUTE 31 and VIOLET CITY.\n"
+	.string "South: NEW BARK TOWN.$"
 #endif
 
 Route30_Text_JoeyRegister:
@@ -390,18 +398,18 @@ Route30_Text_ElmName:
 
 Route30_Text_Elm_Disaster:
 #if GERMAN
-	.string "H-hallo, {PLAYER}?\n"
-	.string "Es ist schrecklich!\l"
-	.string "Äh… uhm… wie soll ich das erklären?\p"
+	.string "H-hallo, {PLAYER}? Es ist\n"
+	.string "schrecklich! Äh… uhm… wie soll ich\l"
+	.string "das erklären?\p"
 	.string "Ich weiß ja selbst nicht, wie…\n"
-	.string "Jedenfalls ist es ganz schrecklich!\p"
+	.string "Jedenfalls ist es ganz\l"
+	.string "schrecklich!\p"
 	.string "Bitte, komm schnell zurück!$"
 #else
 	.string "PROF.ELM: H-hello? {PLAYER}? It's\n"
 	.string "a disaster!\p"
 	.string "Uh, um, it's just terrible!\p"
-	.string "What should I do? It…\n"
-	.string "Oh, no…\p"
+	.string "What should I do? It… Oh, no…\p"
 	.string "Please get back here now!$"
 #endif
 

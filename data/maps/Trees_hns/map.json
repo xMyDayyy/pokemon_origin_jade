@@ -12,13 +12,7 @@
   "allow_running": false,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [
-    {
-      "map": "MAP_VERMILION_CITY_HNS",
-      "offset": -46,
-      "direction": "down"
-    }
-  ],
+  "connections": [],
   "object_events": [],
   "warp_events": [],
   "coord_events": [],

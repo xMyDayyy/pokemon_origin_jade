@@ -1,15 +1,31 @@
 EventScript_SetDefeatedEliteFourFlagsVars::
+	setflag FLAG_IS_KANTO_CHAMPION
+	@ Origin Jade: opens Cerulean Cave.
+	setflag FLAG_HIDE_CERULEAN_CAVE_GUARD
 	clearflag FLAG_HIDE_POSTGAME_GOSSIPERS
 	call EventScript_ResetEliteFour
 	special Script_UpdateTrainerFanClubGameClear
 	specialvar VAR_RESULT, IsNationalPokedexEnabled
 	call_if_eq VAR_RESULT, FALSE, EventScript_SetReadyTryGiveNationalDexScene
+#if IS_HNS
+	@ Knocked-out legendaries return after every title, see docs/origin_jade/DECISIONS.md, D-026.
+	call Common_EventScript_ReviveDefeatedLegendaries
+	@ Armed before the Hall of Fame save, so a reset there keeps Oak's GS Ball handover.
+	call_if_eq VAR_JOHTO_HANDOVER, 0, EventScript_ArmJohtoHandover
+#else
 	call EventScript_ResetLegendaries
+#endif
 	return
 
 EventScript_SetReadyTryGiveNationalDexScene::
 	setvar VAR_MAP_SCENE_PALLET_TOWN_OAK, 2
 	return
+
+#if IS_HNS
+EventScript_ArmJohtoHandover::
+	setvar VAR_JOHTO_HANDOVER, 1
+	return
+#endif
 
 EventScript_ResetLegendaries::
 	clearflag FLAG_LUGIA_FLEW_AWAY

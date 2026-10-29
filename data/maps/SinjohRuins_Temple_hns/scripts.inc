@@ -12,19 +12,14 @@ SinjohRuins_Temple_OpenDoor::
 	return
 
 SinjohRuins_Temple_Text_Mon:
-#if GERMAN
-	.string "Eine Art uralter Sensor.\n"
-	.string "Wonach sucht er?$"
-#else
 	.string "Some kind of ancient sensor.\n"
 	.string "What is it looking for?$"
-#endif
 
 SinjohRuins_Temple_EventScript_RegiceScanner::
 	lock
 	goto_if_set FLAG_BROUGHT_REGICE, SinjohRuins_Temple_EventScript_ScannerAlreadyDone
 	msgbox SinjohRuins_Temple_Text_Mon, MSGBOX_AUTOCLOSE
-	checkspecies SPECIES_PALKIA
+	checkspecies SPECIES_REGICE
 	goto_if_eq VAR_RESULT, FALSE, SinjohRuins_Lab_EventScript_NoOp
 	setflag FLAG_BROUGHT_REGICE
     goto_if_eq VAR_RESULT, TRUE, SinjohRuins_Temple_EventScript_SeenPokemon
@@ -35,7 +30,7 @@ SinjohRuins_Temple_EventScript_RegirockScanner::
 	lock
 	goto_if_set FLAG_BROUGHT_REGIROCK, SinjohRuins_Temple_EventScript_ScannerAlreadyDone
 	msgbox SinjohRuins_Temple_Text_Mon, MSGBOX_AUTOCLOSE
-	checkspecies SPECIES_DIALGA
+	checkspecies SPECIES_REGIROCK
 	goto_if_eq VAR_RESULT, FALSE, SinjohRuins_Lab_EventScript_NoOp
 	setflag FLAG_BROUGHT_REGIROCK
     goto_if_eq VAR_RESULT, TRUE, SinjohRuins_Temple_EventScript_SeenPokemon
@@ -46,7 +41,7 @@ SinjohRuins_Temple_EventScript_RegisteelScanner::
 	lock
 	goto_if_set FLAG_BROUGHT_REGISTEEL, SinjohRuins_Temple_EventScript_ScannerAlreadyDone
 	msgbox SinjohRuins_Temple_Text_Mon, MSGBOX_AUTOCLOSE
-	checkspecies SPECIES_GIRATINA
+	checkspecies SPECIES_REGISTEEL
 	goto_if_eq VAR_RESULT, FALSE, SinjohRuins_Lab_EventScript_NoOp
 	setflag FLAG_BROUGHT_REGISTEEL
     goto_if_eq VAR_RESULT, TRUE, SinjohRuins_Temple_EventScript_SeenPokemon
@@ -57,7 +52,7 @@ SinjohRuins_Temple_EventScript_RegielekiScanner::
 	lock
 	goto_if_set FLAG_BROUGHT_REGIELEKI, SinjohRuins_Temple_EventScript_ScannerAlreadyDone
 	msgbox SinjohRuins_Temple_Text_Mon, MSGBOX_AUTOCLOSE
-	checkspecies SPECIES_REGIGIGAS
+	checkspecies SPECIES_REGIELEKI
 	goto_if_eq VAR_RESULT, FALSE, SinjohRuins_Lab_EventScript_NoOp
 	setflag FLAG_BROUGHT_REGIELEKI
     goto_if_eq VAR_RESULT, TRUE, SinjohRuins_Temple_EventScript_SeenPokemon
@@ -68,7 +63,7 @@ SinjohRuins_Temple_EventScript_RegidragoScanner::
 	lock
 	goto_if_set FLAG_BROUGHT_REGIDRAGO, SinjohRuins_Temple_EventScript_ScannerAlreadyDone
 	msgbox SinjohRuins_Temple_Text_Mon, MSGBOX_AUTOCLOSE
-	checkspecies SPECIES_REGIGIGAS
+	checkspecies SPECIES_REGIDRAGO
 	goto_if_eq VAR_RESULT, FALSE, SinjohRuins_Lab_EventScript_NoOp
 	setflag FLAG_BROUGHT_REGIDRAGO
     goto_if_eq VAR_RESULT, TRUE, SinjohRuins_Temple_EventScript_SeenPokemon
@@ -108,25 +103,11 @@ SinjohRuins_Temple_EventScript_ScannerAlreadyDone::
 	end
 
 SinjohRuins_Temple_Text_ScannerAlreadyDone:
-#if GERMAN
-	.string "Dieser Sensor wurde bereits\n"
-	.string "aktiviert.$"
-#else
-	.string "This sensor already been activated.$"
-#endif
+	.string "This sensor has already been activated.$"
 
 SinjohRuins_Temple_Text_Responds:
-#if GERMAN
-	.string "Der Tempel reagiert auf deine\n"
-	.string "Handlungen.$"
-#else
 	.string "The temple responds to your actions.$"
-#endif
 
 SinjohRuins_Temple_Text_Door:
-#if GERMAN
-	.string "Der Weg ist offen.$"
-#else
 	.string "The way is open.$"
-#endif
 

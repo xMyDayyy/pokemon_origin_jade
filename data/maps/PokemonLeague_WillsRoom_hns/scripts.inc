@@ -55,7 +55,8 @@ PokemonLeague_WillsRoom_EventScript_Will::
 	lock
 	faceplayer
 	goto_if_ge VAR_LEAGUE_STATE, 2, PokemonLeague_WillsRoom_EventScript_WillDefeated
-	goto_if_set FLAG_IS_CHAMPION, PokemonLeague_WillsRoom_EventScript_WillRematch
+	@ Origin Jade: rematch team once Johto's league is won.
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, PokemonLeague_WillsRoom_EventScript_WillRematch
 	msgbox PokemonLeague_WillsRoom_Text_Before, MSGBOX_DEFAULT
 	setflag FLAG_TEMP_3
 	setflag FLAG_TEMP_5
@@ -63,10 +64,21 @@ PokemonLeague_WillsRoom_EventScript_Will::
 	goto PokemonLeague_WillsRoom_EventScript_WillOnDefeat
 
 PokemonLeague_WillsRoom_EventScript_WillRematch::
+	goto_if_unset FLAG_IS_KANTO_CHAMPION, PokemonLeague_WillsRoom_EventScript_WillRematchStandard
+	goto_if_ge VAR_SINJOH_STORYLINE, 13, PokemonLeague_WillsRoom_EventScript_WillRematchPostOBC
+
+PokemonLeague_WillsRoom_EventScript_WillRematchStandard::
 	msgbox PokemonLeague_WillsRoom_Text_RematchBefore, MSGBOX_DEFAULT
 	setflag FLAG_TEMP_3
 	setflag FLAG_TEMP_5
 	trainerbattle_no_intro TRAINER_WILL_2_HNS, PokemonLeague_WillsRoom_Text_Beaten
+	goto PokemonLeague_WillsRoom_EventScript_WillOnDefeat
+
+PokemonLeague_WillsRoom_EventScript_WillRematchPostOBC::
+	msgbox PokemonLeague_WillsRoom_Text_RematchBefore, MSGBOX_DEFAULT
+	setflag FLAG_TEMP_3
+	setflag FLAG_TEMP_5
+	trainerbattle_no_intro TRAINER_WILL_POSTOBC_HNS, PokemonLeague_WillsRoom_Text_Beaten
 	goto PokemonLeague_WillsRoom_EventScript_WillOnDefeat
 
 PokemonLeague_WillsRoom_EventScript_WillOnDefeat::
@@ -134,7 +146,7 @@ PokemonLeague_WillsRoom_Text_Defeat:
 	.string "Ich werde weiter kämpfen, bis ich über\n"
 	.string "allen Trainern stehe!\p"
 	.string "Nun, {PLAYER}, greif an und erlebe\n"
-	.string "die wahre Kraft der Elite Vier.$"
+	.string "die wahre Kraft der Top Vier.$"
 #else
     .string "Even though I was defeated, I\n"
     .string "won't change my course.\p"

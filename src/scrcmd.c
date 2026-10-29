@@ -30,6 +30,7 @@
 #include "follower_npc.h"
 #include "gpu_regs.h"
 #include "item.h"
+#include "level_scaling.h"
 #include "lilycove_lady.h"
 #include "main.h"
 #include "map_preview_screen.h"
@@ -1696,7 +1697,8 @@ bool8 ScrCmd_setwildbattleshiny(struct ScriptContext *ctx)
     u8 level = ScriptReadByte(ctx);
     u16 item = ScriptReadHalfword(ctx);
 
-    CreateShinyScriptedMon(species, level, item);
+    // Johto floor, see docs/origin_jade/DECISIONS.md, D-039.
+    CreateShinyScriptedMon(species, ScaleStaticMonLevel(level), item);
     return FALSE;
 }
 
@@ -2637,6 +2639,47 @@ bool8 ScrCmd_drawboxtext(struct ScriptContext *ctx)
     return FALSE;
 }
 
+static bool32 IsCurrentMap(u16 mapId)
+{
+    return gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(mapId)
+        && gSaveBlock1Ptr->location.mapNum == MAP_NUM(mapId);
+}
+
+// Ball (0-2) of a starter preview, or -1 if this showmonpic is no starter choice:
+// Oak's lab (no Pokemon yet), Elm's lab (Johto starter) and Birch's lab (Johto
+// starter after the Hoenn dex). See docs/origin_jade/DECISIONS.md, D-035.
+static s32 GetStarterPreviewBall(u16 species)
+{
+    u32 ball;
+
+    if (!FlagGet(FLAG_SYS_POKEMON_GET))
+        ball = VarGet(VAR_STARTER_MON);
+    else if (IsCurrentMap(MAP_NEW_BARK_TOWN_LAB_HNS)
+          && !FlagGet(FLAG_RECEIVED_JOHTO_STARTER)
+          && VarGet(VAR_NEWBARKTOWN_LABSTATE) == 1)
+        ball = VarGet(VAR_JOHTO_STARTER_MON);
+    else if (IsCurrentMap(MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB)
+          && VarGet(VAR_DEX_UPGRADE_JOHTO_STARTER_STATE) >= 4
+          && VarGet(VAR_DEX_UPGRADE_JOHTO_STARTER_STATE) < 6)
+    {
+        // Birch's scripts pass the species itself.
+        if (species == SPECIES_CHIKORITA)
+            ball = 0;
+        else if (species == SPECIES_CYNDAQUIL)
+            ball = 1;
+        else if (species == SPECIES_TOTODILE)
+            ball = 2;
+        else
+            return -1;
+    }
+    else
+    {
+        return -1;
+    }
+
+    return (ball <= 2) ? (s32)ball : -1;
+}
+
 bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
 {
     u16 varId = ScriptReadHalfword(ctx);
@@ -2644,14 +2687,15 @@ bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
     u8 x = ScriptReadByte(ctx);
     u8 y = ScriptReadByte(ctx);
     bool8 shinyStarter = FALSE;
+    s32 starter = GetStarterPreviewBall(species);
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
-    // If we have not gotten a pokemon yet, assume this is the starter preview
-    if (!FlagGet(FLAG_SYS_POKEMON_GET))
+    // Starter preview: one shiny roll per ball and map visit (temp flags); the lab
+    // script gives the starter with the same FLAG_SHINY_STARTER_x, so preview and
+    // starter match. See docs/origin_jade/DECISIONS.md, D-035.
+    if (starter >= 0)
     {
-        u8 starter = VarGet(VAR_STARTER_MON);
-
         u32 flagPreviewChecked = 0;
         u32 flagShinyPreview = 0;
 
@@ -2672,9 +2716,9 @@ bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
         }
 
         #ifndef NDEBUG
-            MgbaPrintf(MGBA_LOG_DEBUG, "******** Possible Temp Flags: %x, %x, %x ********", FLAG_TEMP_1, FLAG_TEMP_2, FLAG_TEMP_3);
-            MgbaPrintf(MGBA_LOG_DEBUG, "******** Possible Shiny Starter Flags: %x, %x, %x ********", FLAG_SHINY_STARTER_1, FLAG_SHINY_STARTER_2, FLAG_SHINY_STARTER_3);
-            MgbaPrintf(MGBA_LOG_DEBUG, "******** Actual Temp and Shiny Flags: %x, %x ********", flagPreviewChecked, flagShinyPreview);
+            DebugPrintfLevel(MGBA_LOG_DEBUG, "******** Possible Temp Flags: %x, %x, %x ********", FLAG_TEMP_1, FLAG_TEMP_2, FLAG_TEMP_3);
+            DebugPrintfLevel(MGBA_LOG_DEBUG, "******** Possible Shiny Starter Flags: %x, %x, %x ********", FLAG_SHINY_STARTER_1, FLAG_SHINY_STARTER_2, FLAG_SHINY_STARTER_3);
+            DebugPrintfLevel(MGBA_LOG_DEBUG, "******** Actual Temp and Shiny Flags: %x, %x ********", flagPreviewChecked, flagShinyPreview);
         #endif
 
         // if FLAG_TEMP_X not set for this starter preview, roll for shininess,
@@ -2682,8 +2726,8 @@ bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
         if (!FlagGet(flagPreviewChecked))
         {
             #ifndef NDEBUG
-                MgbaPrintf(MGBA_LOG_DEBUG, "\n******** Rolling Starter Preview Shininess ********");
-                MgbaPrintf(MGBA_LOG_DEBUG, "******** Flag Values Before: %d, %d ********", FlagGet(flagPreviewChecked), FlagGet(flagShinyPreview));
+                DebugPrintfLevel(MGBA_LOG_DEBUG, "\n******** Rolling Starter Preview Shininess ********");
+                DebugPrintfLevel(MGBA_LOG_DEBUG, "******** Flag Values Before: %d, %d ********", FlagGet(flagPreviewChecked), FlagGet(flagShinyPreview));
             #endif
 
             u32 value = READ_OTID_FROM_SAVE;
@@ -2709,10 +2753,14 @@ bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
         shinyStarter = FlagGet(flagShinyPreview);
 
         #ifndef NDEBUG
-            MgbaPrintf(MGBA_LOG_DEBUG, "******** Flag Values: %d, %d ********", FlagGet(flagPreviewChecked), FlagGet(flagShinyPreview));
-            MgbaPrintf(MGBA_LOG_DEBUG, "******** Preview Should be Shiny: %d ********", shinyStarter);
+            DebugPrintfLevel(MGBA_LOG_DEBUG, "******** Flag Values: %d, %d ********", FlagGet(flagPreviewChecked), FlagGet(flagShinyPreview));
+            DebugPrintfLevel(MGBA_LOG_DEBUG, "******** Preview Should be Shiny: %d ********", shinyStarter);
         #endif
+    }
 
+    // Oak's preview only: randomizer and one-type challenge change the species.
+    if (!FlagGet(FLAG_SYS_POKEMON_GET))
+    {
         #if RANDOMIZER_AVAILABLE
         if (RandomizerFeatureEnabled(RANDOMIZE_STARTER_AND_GIFT_MON))
         {
@@ -3357,6 +3405,8 @@ bool8 ScrCmd_setwildbattle(struct ScriptContext *ctx)
 
     Script_RequestEffects(SCREFF_V1);
 
+    // Johto floor, see docs/origin_jade/DECISIONS.md, D-039.
+    level = ScaleStaticMonLevel(level);
     if (species2 == SPECIES_NONE)
     {
         CreateScriptedWildMon(species, level, item);
@@ -3364,6 +3414,7 @@ bool8 ScrCmd_setwildbattle(struct ScriptContext *ctx)
     }
     else
     {
+        level2 = ScaleStaticMonLevel(level2);
         CreateScriptedDoubleWildMon(species, level, item, species2, level2, item2);
         sIsScriptedWildDouble = TRUE;
     }
@@ -4019,7 +4070,7 @@ bool8 Scrcmd_checkspecies_choose(struct ScriptContext *ctx)
 
     Script_RequestEffects(SCREFF_V1);
 
-    gSpecialVar_Result = (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES) == givenSpecies);
+    gSpecialVar_Result = (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES_OR_EGG) == givenSpecies);
 
     return FALSE;
 }
@@ -4217,5 +4268,22 @@ bool8 ScrCmd_getbraillestringwidth(struct ScriptContext * ctx)
         msg = (u8 *)ctx->data[0];
 
     gSpecialVar_0x8004 = GetStringWidth(FONT_BRAILLE, msg, -1);
+    return FALSE;
+}
+
+// Upstream fix (expansion #10550).
+bool8 ScrCmd_signmsg(struct ScriptContext *ctx)
+{
+    Script_RequestEffects(SCREFF_V1);
+
+    gMsgIsSignPost = TRUE;
+    return FALSE;
+}
+
+bool8 ScrCmd_normalmsg(struct ScriptContext *ctx)
+{
+    Script_RequestEffects(SCREFF_V1);
+
+    gMsgIsSignPost = FALSE;
     return FALSE;
 }

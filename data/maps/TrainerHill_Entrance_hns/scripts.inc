@@ -125,7 +125,9 @@ TrainerHill_Entrance_hns_EventScript_AttendantEnd::
 TrainerHill_Entrance_hns_EventScript_EntryTrigger::
 	lockall
 	applymovement OBJ_EVENT_ID_PLAYER, TrainerHill_Entrance_hns_Movement_PlayerFaceAttendant
-	goto_if_unset FLAG_SYS_GAME_CLEAR, TrainerHill_Entrance_hns_EventScript_Closed
+	@ Origin Jade: Johto post-game, opens with the Johto title (HnS used game clear,
+	@ which the Kanto league sets here); the man and the girl below likewise.
+	goto_if_unset FLAG_IS_JOHTO_CHAMPION, TrainerHill_Entrance_hns_EventScript_Closed
 	msgbox TrainerHill_Entrance_hns_Text_WelcomeToTrainerHill, MSGBOX_DEFAULT
 	trainerhill_getsaved
 	call_if_eq VAR_RESULT, FALSE, TrainerHill_Entrance_hns_EventScript_SaveGame
@@ -221,7 +223,7 @@ TrainerHill_Entrance_hns_EventScript_Records::
 	end
 
 TrainerHill_Entrance_hns_EventScript_Man::
-	goto_if_unset FLAG_SYS_GAME_CLEAR, TrainerHill_Entrance_hns_EventScript_ManTrainerHillClosed
+	goto_if_unset FLAG_IS_JOHTO_CHAMPION, TrainerHill_Entrance_hns_EventScript_ManTrainerHillClosed
 	msgbox TrainerHill_Entrance_hns_Text_WhatSortOfTrainersAreAhead, MSGBOX_NPC
 	end
 
@@ -230,7 +232,7 @@ TrainerHill_Entrance_hns_EventScript_ManTrainerHillClosed::
 	end
 
 TrainerHill_Entrance_hns_EventScript_Man2::
-	goto_if_unset FLAG_SYS_GAME_CLEAR, TrainerHill_Entrance_hns_EventScript_ManTrainerHillClosed2
+	goto_if_unset FLAG_IS_JOHTO_CHAMPION, TrainerHill_Entrance_hns_EventScript_ManTrainerHillClosed2
 	msgbox TrainerHill_Entrance_hns_Text_Money, MSGBOX_NPC
 	end
 
@@ -239,7 +241,7 @@ TrainerHill_Entrance_hns_EventScript_ManTrainerHillClosed2::
 	end
 
 TrainerHill_Entrance_hns_EventScript_Girl::
-	goto_if_unset FLAG_SYS_GAME_CLEAR, TrainerHill_Entrance_hns_EventScript_GirlTrainerHillClosed
+	goto_if_unset FLAG_IS_JOHTO_CHAMPION, TrainerHill_Entrance_hns_EventScript_GirlTrainerHillClosed
 	msgbox TrainerHill_Entrance_hns_Text_FriendsTryingToReachTimeBoardTop, MSGBOX_NPC
 	end
 

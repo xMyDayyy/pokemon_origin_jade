@@ -12,7 +12,11 @@
 #include "trainer_hill.h"
 #include "link.h"
 #include "constants/game_stat.h"
+#include "constants/rematches.h"
 #include "event_data.h"
+#include "berry.h"
+#include "constants/berry.h"
+#include "constants/items.h"
 
 static u16 CalculateChecksum(void *, u16);
 static bool8 ReadFlashSector(u8, struct SaveSector *);
@@ -79,6 +83,18 @@ struct
 // These will produce an error if a save struct is larger than the space
 // alloted for it in the flash.
 STATIC_ASSERT(sizeof(struct SaveBlock3) <= SAVE_BLOCK_3_CHUNK_SIZE * NUM_SECTORS_PER_SLOT, SaveBlock3FreeSpace);
+
+// ChallengeSettings is a packed bitfield block living in SaveBlock3 ahead of
+// registeredItemHold, so growing it shifts that member and silently corrupts
+// existing saves. The size is pinned here to turn that into a build error.
+// Note the ABI: CFLAGS uses -mabi=apcs-gnu, which rounds every struct up to a
+// multiple of 4 bytes, so the 31 bytes of fields occupy 32 and the last byte is
+// trailing padding. Headroom before the size actually moves (to 36, not 33):
+// 12 spare bits scattered through the field bytes, wherever a wide bitfield had
+// to skip the tail of a partly-filled byte, plus the 8 bits of trailing padding.
+// If this fires, that headroom is gone and the new setting needs a save
+// migration rather than another field.
+STATIC_ASSERT(sizeof(struct ChallengeSettings) == 32, ChallengeSettingsLayoutPinned);
 STATIC_ASSERT(sizeof(struct SaveBlock2) <= SECTOR_DATA_SIZE, SaveBlock2FreeSpace);
 STATIC_ASSERT(sizeof(struct SaveBlock1) <= SECTOR_DATA_SIZE * (SECTOR_ID_SAVEBLOCK1_END - SECTOR_ID_SAVEBLOCK1_START + 1), SaveBlock1FreeSpace);
 STATIC_ASSERT(sizeof(struct PokemonStorage) <= SECTOR_DATA_SIZE * (SECTOR_ID_PKMN_STORAGE_END - SECTOR_ID_PKMN_STORAGE_START + 1), PokemonStorageFreeSpace);
@@ -931,6 +947,86 @@ u8 LoadGameSave(u8 saveType)
         FlagClear(FLAG_ITEM_VICTORYROAD1_TM_EARTHQUAKE);
         gSaveBlock1Ptr->saveVersion = 2;
     }
+
+    if (gSaveBlock1Ptr->saveVersion < 4)
+    {
+#if FREE_MATCH_CALL == FALSE
+        // Irwin, Derek and Beverly used to fill all five rematch slots with their
+        // first-battle trainer ID, so SetRematchIdForTrainer counted every slot as
+        // already beaten and stored REMATCHES_COUNT. Now that they have real tiers,
+        // knock any pending rematch back to the first one so it lines up with the
+        // tier the player will actually be handed. Harmless on non-HnS builds, where
+        // these slots are Brooke/Jessica/John & Jay and the value is only ever
+        // tested against zero.
+        static const u8 sRematchIdsToReset[] = {
+            REMATCH_BROOKE,       // Irwin
+            REMATCH_JESSICA,      // Derek
+            REMATCH_JOHN_AND_JAY, // Beverly
+        };
+        u32 i;
+
+        for (i = 0; i < ARRAY_COUNT(sRematchIdsToReset); i++)
+        {
+            if (gSaveBlock1Ptr->trainerRematches[sRematchIdsToReset[i]] != 0)
+                gSaveBlock1Ptr->trainerRematches[sRematchIdsToReset[i]] = 1;
+        }
+#endif //FREE_MATCH_CALL
+        gSaveBlock1Ptr->saveVersion = 4;
+    }
+    if (gSaveBlock1Ptr->saveVersion < 5)
+    {
+        FlagSet(FLAG_HIDE_VERMILION_CITY_SAMSON);
+        FlagSet(FLAG_HIDE_ROUTE28_SCIENTIST);
+        VarSet(VAR_VERMILION_CITY_SAMSON, 0);
+        VarSet(VAR_ROUTE28_SCIENTIST, 0);
+        gSaveBlock1Ptr->saveVersion = 5;
+    }
+
+#if IS_HNS
+    // Origin Jade: one-time migrations, each keyed to a flag from the Origin
+    // Jade block (not SAVE_VERSION). New games set the flag in
+    // data/scripts/new_game.inc.
+    if (!FlagGet(FLAG_MIGRATED_JOHTO_STARTER_VAR))
+    {
+        // From lab state 3 on, VAR_STARTER_MON holds the Johto starter.
+        if (VarGet(VAR_NEWBARKTOWN_LABSTATE) >= 3)
+            VarSet(VAR_JOHTO_STARTER_MON, VarGet(VAR_STARTER_MON));
+        FlagSet(FLAG_MIGRATED_JOHTO_STARTER_VAR);
+    }
+    if (!FlagGet(FLAG_MIGRATED_GOLDENROD_FLAG_HEAP))
+    {
+        // Radio card received: Viridian old man state 2+ or Goldenrod state 1+.
+        if (VarGet(VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN) >= 2 || VarGet(VAR_GOLDENROD_CITY_STATE) >= 1)
+            FlagSet(FLAG_ENABLE_RADIO);
+        // Radio quiz won: Goldenrod state 2+.
+        if (VarGet(VAR_GOLDENROD_CITY_STATE) >= 2)
+            FlagSet(FLAG_WON_GOLDENROD_RADIO_QUIZ);
+        // Older saves: while Bill is hidden, a set FLAG_GOT_EEVEE came from the Celadon Eevee.
+        if (FlagGet(FLAG_HIDE_GOLDENROD_BILL))
+            FlagClear(FLAG_GOT_EEVEE);
+        FlagSet(FLAG_MIGRATED_GOLDENROD_FLAG_HEAP);
+    }
+    if (!FlagGet(FLAG_MIGRATED_JOHTO_BERRY_SLOTS))
+    {
+        // Same berries as a new game: Route 30 and Route 26 always, Hoenn's
+        // Route 102 and Route 118 only before Oldale / Mauville were visited.
+        RemoveBerryTree(BERRY_TREE_ROUTE_30_ORAN);
+        PlantBerryTree(BERRY_TREE_ROUTE_30_ORAN, ITEM_TO_BERRY(ITEM_ORAN_BERRY), BERRY_STAGE_BERRIES, FALSE);
+        RemoveBerryTree(BERRY_TREE_ROUTE_26_SITRUS);
+        PlantBerryTree(BERRY_TREE_ROUTE_26_SITRUS, ITEM_TO_BERRY(ITEM_SITRUS_BERRY), BERRY_STAGE_BERRIES, FALSE);
+        if (!FlagGet(FLAG_VISITED_OLDALE_TOWN))
+        {
+            RemoveBerryTree(BERRY_TREE_ROUTE_102_ORAN);
+            PlantBerryTree(BERRY_TREE_ROUTE_102_ORAN, ITEM_TO_BERRY(ITEM_ORAN_BERRY), BERRY_STAGE_BERRIES, FALSE);
+        }
+        if (!FlagGet(FLAG_VISITED_MAUVILLE_CITY))
+        {
+            RemoveBerryTree(BERRY_TREE_ROUTE_118_SITRUS_1);
+            PlantBerryTree(BERRY_TREE_ROUTE_118_SITRUS_1, ITEM_TO_BERRY(ITEM_SITRUS_BERRY), BERRY_STAGE_BERRIES, FALSE);
+        }
+        FlagSet(FLAG_MIGRATED_JOHTO_BERRY_SLOTS);
+    }
+#endif
 
     // Add version migration steps here:
     // if (gSaveBlock1Ptr->saveVersion < 1)

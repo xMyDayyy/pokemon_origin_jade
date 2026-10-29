@@ -13,6 +13,7 @@
 #include "fieldmap.h"
 #include "field_control_avatar.h"
 #include "hoenn_licenses.h"
+#include "johto_permits.h"
 #include "field_message_box.h"
 #include "field_move.h"
 #include "field_effect.h"
@@ -682,9 +683,9 @@ static const u8 *GetInteractedWaterScript(struct MapPosition *unused1, u8 metati
         return EventScript_UseSurf;
 
 #if IS_HNS
-    // Surfer waere moeglich, nur die Hoenn-Lizenz fehlt: kurz erklaeren,
-    // statt den Spieler wortlos vor dem Wasser stehen zu lassen.
-    if (HoennLicensesApply() && !HasHoennLicense(LIC_SURF)
+    // Surf possible, but the Hoenn license or Johto permit is missing: show a hint.
+    if (((HoennLicensesApply() && !HasHoennLicense(LIC_SURF))
+      || (JohtoPermitsApply() && !HasJohtoPermit(PERM_SURF)))
      && PartyHasMonWithSurf() == TRUE && IsPlayerFacingSurfableFishableWater() == TRUE)
         return EventScript_NoSurfLicense;
 #endif
@@ -713,8 +714,10 @@ static bool32 TrySetupDiveDownScript(void)
     }
 
 #if IS_HNS
-    // Tauchen waere moeglich, nur die Hoenn-Lizenz fehlt.
-    if (HoennLicensesApply() && !HasHoennLicense(LIC_DIVE) && TrySetDiveWarp() == 2)
+    // Dive possible, but the license or permit is missing: show a hint.
+    if (((HoennLicensesApply() && !HasHoennLicense(LIC_DIVE))
+      || (JohtoPermitsApply() && !HasJohtoPermit(PERM_DIVE)))
+     && TrySetDiveWarp() == 2)
     {
         ScriptContext_SetupScript(EventScript_NoDiveLicense);
         return TRUE;
@@ -865,6 +868,11 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
         if (ShouldDoNormanCall() == TRUE)
         {
             ScriptContext_SetupScript(Common_EventScript_HnsNormanCall);
+            return TRUE;
+        }
+        if (ShouldDoMomCall() == TRUE)
+        {
+            ScriptContext_SetupScript(Common_EventScript_HnsMomCall);
             return TRUE;
         }
 #endif
@@ -1342,6 +1350,11 @@ int SetCableClubWarp(void)
 static bool32 TrySetUpWalkIntoSignpostScript(struct MapPosition *position, u32 metatileBehavior, enum Direction playerDirection)
 {
     const u8 *script;
+
+    // Origin Jade: signs only react to A, not to walking into them.
+#if IS_HNS
+    return FALSE;
+#endif
 
     if ((JOY_HELD(DPAD_LEFT | DPAD_RIGHT)) || (playerDirection != DIR_NORTH))
         return FALSE;

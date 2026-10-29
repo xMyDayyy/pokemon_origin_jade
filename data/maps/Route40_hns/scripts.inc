@@ -4,8 +4,16 @@ Route40_hns_MapScripts::
 
 Route40_MapScript_OnTransition::
 	callnative SetTimeBasedEncounters
+	special GetWeekday
+	call_if_ne VAR_RESULT, WEEKDAY_MON, Route40_EventScript_HideMonica
 	goto_if_ge VAR_OLIVINE_CITY_STATE, 5, Route40_MapScript_ClearWeather
 	end
+
+@ Monica of the weekday siblings is only here on Monday, see
+@ docs/origin_jade/DECISIONS.md, D-033.
+Route40_EventScript_HideMonica:
+	setflag FLAG_TEMP_5
+	return
 
 Route40_MapScript_ClearWeather::
 	setweather WEATHER_NONE
@@ -206,26 +214,14 @@ Route40_Text_StandingYoungster:
 
 Route40_Text_Monica:
 #if GERMAN
-    .string "Monika: Freut mich, dich\n"
-    .string "kennenzulernen.\p"
-    .string "Ich bin Monika von der Wochen-\n"
-    .string "tagsfamilie.\p"
-    .string "Ich wette, du errätst nicht, welcher\n"
-    .string "Wochentag mein Lieblingstag ist!$"
+	.string "Monja: Freut mich, dich\n"
+	.string "kennenzulernen.\p"
+	.string "Ich bin Monja vom Montag.\p"
+	.string "Als Zeichen unserer Freundschaft\n"
+	.string "habe ich ein Geschenk für dich!$"
 #else
 	.string "MONICA: Glad to meet you.\n"
-	.string "I'm MONICA of the WEEKDAY FAMILY.\p"
-	.string "I bet you can't guess my favorite\n"
-	.string "day of the week!$"
-#endif
-
-Route40_Text_MonicaGivesGift:
-#if GERMAN
-    .string "Ganz genau!\p"
-    .string "Als Zeichen unserer Freundschaft\n"
-    .string "habe ich ein Geschenk für dich!$"
-#else
-	.string "That's right!\p"
+	.string "I'm MONICA of Monday.\p"
 	.string "As a token of our friendship,\n"
 	.string "I have a gift for you!$"
 #endif
@@ -247,8 +243,8 @@ Route40_Text_MonicaMonday:
 #if GERMAN
 	.string "Monja: Meine Geschwister findest du\n"
 	.string "überall.\p"
-	.string "Versuche mal, ob du sie alle aufspüren\n"
-	.string "kannst!$"
+	.string "Versuche mal, ob du sie alle\n"
+	.string "aufspüren kannst!$"
 #else
 	.string "MONICA: My brothers and\n"
 	.string "sisters are all over the place.\p"
@@ -256,45 +252,11 @@ Route40_Text_MonicaMonday:
 	.string "them all!$"
 #endif
 
-Route40_Text_MonicaNotMonday:
-#if GERMAN
-	.string "Monja: Ich fürchte, heute ist nicht\n"
-	.string "Montag.\l"
-	.string "Wie schade…$"
-#else
-	.string "MONICA: I don't think today\n"
-	.string "is Monday. How sad…$"
-#endif
-
-Route40_Text_MonicaNope:
-#if GERMAN
-	.string "Nicht dieser.$"
-#else
-	.string "Not that one.$"
-#endif
-
 Rotue40_EventScript_Monica::
 	lock
 	faceplayer
 	goto_if_set FLAG_GOT_SHARP_BEAK, Rotue40_EventScript_MonicaCompleted
 	msgbox Route40_Text_Monica, MSGBOX_DEFAULT
-	closemessage
-	multichoice 20, 0, MULTI_DAYS_OF_WEEK, FALSE
-	switch VAR_RESULT
-	case 0, Rotue40_EventScript_MonicaNope
-	case 1, Rotue40_EventScript_MonicaYes
-	case 2, Rotue40_EventScript_MonicaNope
-	case 3, Rotue40_EventScript_MonicaNope
-	case 4, Rotue40_EventScript_MonicaNope
-	case 5, Rotue40_EventScript_MonicaNope
-	case 6, Rotue40_EventScript_MonicaNope
-	case 7 Rotue40_EventScript_MonicaCancel
-	case MULTI_B_PRESSED, Rotue40_EventScript_MonicaCancel
-	closemessage
-	release
-	end
-Rotue40_EventScript_MonicaYes::
-	msgbox Route40_Text_MonicaGivesGift, MSGBOX_DEFAULT
 	giveitem ITEM_SHARP_BEAK
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_GOT_SHARP_BEAK
@@ -302,15 +264,7 @@ Rotue40_EventScript_MonicaYes::
 	closemessage
 	release
 	end
-Rotue40_EventScript_MonicaNope::
-	msgbox Route40_Text_MonicaNope, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-Rotue40_EventScript_MonicaCancel::
-	closemessage
-	release
-	end
+
 Rotue40_EventScript_MonicaCompleted::
 	msgbox Route40_Text_MonicaMonday, MSGBOX_DEFAULT
 	closemessage

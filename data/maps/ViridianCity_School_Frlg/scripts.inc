@@ -55,9 +55,10 @@ ViridianCity_School_EventScript_ChooseBlackboardTopic::
 	waitmessage
 	multichoicegrid 7, 1, MULTI_STATUS_INFO, 3, FALSE
 	switch VAR_RESULT
-	case 0, ViridianCity_School_EventScript_ReadSleep
-	case 1, ViridianCity_School_EventScript_ReadPoison
-	case 2, ViridianCity_School_EventScript_ReadParalysis
+	@ Keep the case order in sync with MULTI_STATUS_INFO.
+	case 0, ViridianCity_School_EventScript_ReadPoison
+	case 1, ViridianCity_School_EventScript_ReadParalysis
+	case 2, ViridianCity_School_EventScript_ReadSleep
 	case 3, ViridianCity_School_EventScript_ReadBurn
 	case 4, ViridianCity_School_EventScript_ReadFreeze
 	case 5, ViridianCity_School_EventScript_ExitBlackboard

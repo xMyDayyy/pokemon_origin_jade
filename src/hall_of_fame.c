@@ -33,6 +33,9 @@
 #include "trainer_pokemon_sprites.h"
 #include "data.h"
 #include "confetti_util.h"
+#include "field_screen_effect.h"
+#include "load_save.h"
+#include "constants/maps.h"
 #include "constants/rgb.h"
 
 #define HALL_OF_FAME_MAX_TEAMS 30
@@ -52,12 +55,15 @@ static EWRAM_DATA u32 sHofFadePalettes = 0;
 static EWRAM_DATA struct HallofFameTeam *sHofMonPtr = NULL;
 static EWRAM_DATA struct HofGfx *sHofGfxPtr = NULL;
 EWRAM_DATA struct HallofFameTeam *gHoFSaveBuffer = NULL;
+// Origin Jade: set by GameClear (TRUE) and GameClearNoCredits (FALSE).
+static EWRAM_DATA bool8 sHofRollCredits = FALSE;
 
 static void ClearVramOamPltt_LoadHofPal(void);
 static void LoadHofGfx(void);
 static void InitHofBgs(void);
 static bool8 CreateHofConfettiSprite(void);
 static void StartCredits(void);
+static void WarpToContinueGameWarp(void);
 static bool8 LoadHofBgs(void);
 static void Task_Hof_InitMonData(u8 taskId);
 static void Task_Hof_InitTeamSaveData(u8 taskId);
@@ -408,6 +414,11 @@ static void AllocateHoFTeams(void)
 {
     sHofMonPtr = AllocZeroed(sizeof(*sHofMonPtr));
     gHoFSaveBuffer = Alloc(SECTOR_SIZE * NUM_HOF_SECTORS);
+}
+
+void HallOfFame_SetRollCredits(bool8 rollCredits)
+{
+    sHofRollCredits = rollCredits;
 }
 
 void CB2_DoHallOfFameScreen(void)
@@ -774,13 +785,29 @@ static void Task_Hof_HandleExit(u8 taskId)
         ResetBgsAndClearDma3BusyFlags(0);
         DestroyTask(taskId);
         FreeAllHoFMem();
-        StartCredits();
+        if (sHofRollCredits)
+            StartCredits();
+        else
+            WarpToContinueGameWarp();
     }
 }
 
+// Only after special GameClear; in Origin Jade that is the first Hoenn title.
 static void StartCredits(void)
 {
     SetMainCallback2(CB2_StartCreditsSequence);
+}
+
+// Origin Jade: leaves the Hall of Fame without credits, at the continue point GameClear set.
+static void WarpToContinueGameWarp(void)
+{
+    const struct WarpData *warp = &gSaveBlock1Ptr->continueGameWarp;
+
+    // The Hall of Fame save already holds the continue warp; later saves must not.
+    ClearContinueGameWarpStatus();
+    SetWarpDestination(warp->mapGroup, warp->mapNum, WARP_ID_NONE, warp->x, warp->y);
+    DoWarp();
+    ResetInitialPlayerAvatarState();
 }
 
 #undef tDontSaveData

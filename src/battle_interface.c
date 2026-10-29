@@ -1867,7 +1867,10 @@ void TryAddPokeballIconToHealthbox(u8 healthboxSpriteId, bool8 noStatus)
 
     if (IsMonShiny(GetBattlerMon(battler)) && noStatus)
     {
-        if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(GetBattlerMon(battler), MON_DATA_SPECIES)), FLAG_GET_CAUGHT) || (IsNuzlockeActive() && !(NuzlockeIsSpeciesClauseActive || OneTypeChallengeCaptureBlocked || NuzlockeIsCaptureBlocked)))
+        // Offset 18 shifts the shiny icon aside to make room for an indicator tile.
+        // No indicator is drawn while the Nuzlocke's capture rule is suspended, so the
+        // star stays in its unshifted position.
+        if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(GetBattlerMon(battler), MON_DATA_SPECIES)), FLAG_GET_CAUGHT) || (IsNuzlockeActive() && !IsNuzlockeCaptureSuspended() && !(NuzlockeIsSpeciesClauseActive || OneTypeChallengeCaptureBlocked || NuzlockeIsCaptureBlocked)))
             shinyIconOffset = 18;
         else
             shinyIconOffset = 17;
@@ -1879,6 +1882,10 @@ void TryAddPokeballIconToHealthbox(u8 healthboxSpriteId, bool8 noStatus)
         if (!IsNuzlockeActive() && !OneTypeChallengeCaptureBlocked)
             return;
         if (NuzlockeIsSpeciesClauseActive || NuzlockeIsCaptureBlocked || OneTypeChallengeCaptureBlocked)
+            return;
+        // The Safari Zone and Bug Contest suspend the one-encounter-per-zone rule, so
+        // the "first encounter" indicator would be misleading there.
+        if (IsNuzlockeCaptureSuspended())
             return;
 
         if (noStatus)
@@ -3055,8 +3062,10 @@ static struct SpriteSheet GetLastUsedBallWindowSpriteSheet(void)
 
 #if B_MOVE_DESCRIPTION_BUTTON == R_BUTTON
 static const u8 sMoveInfoWindowGfx[] = INCBIN_U8("graphics/battle_interface/move_info_window_r.4bpp");
-#else
+#elif B_MOVE_DESCRIPTION_BUTTON == L_BUTTON
 static const u8 sMoveInfoWindowGfx[] = INCBIN_U8("graphics/battle_interface/move_info_window_l.4bpp");
+#else
+static const u8 sMoveInfoWindowGfx[] = INCBIN_U8("graphics/battle_interface/move_info_window_start.4bpp");
 #endif
 
 static const struct SpriteSheet sSpriteSheet_MoveInfoWindow =

@@ -290,6 +290,7 @@ struct ChallengeSettings
     u8 tx_Random_Items:1;
     u8 tx_Random_Static:1;
     u8 tx_Random_Starter:1;
+    u8 tx_Random_GenScope:1; // 0 = all gens, 1 = Gen 1-3 families only
     // Challenges
     u8 tx_Challenges_EvoLimit:2;
     u8 tx_Challenges_Nuzlocke:1;
@@ -337,6 +338,8 @@ struct ChallengeSettings
     u8 tx_Features_FrontierBans:1;
     u8 tx_Difficulty_EscapeRopeDig:1;
     u8 tx_Features_ShinyChance:4;
+    // Origin Jade: fake RTC clock rate. 0 = fast, 1 = normal, 2 = slow.
+    u8 tx_Features_RtcSpeed:2;
 };
 
 struct SaveBlock3
@@ -358,10 +361,23 @@ struct SaveBlock3
     struct ChallengeSettings challengeSettings;
     u16 registeredItemHold;
 #if IS_HNS
-    // Origin Jade: Nuzlocke-Erstbegegnungs-Bits fuer Hoenn (LUT-IDs 0x80+).
-    // Ans Struct-Ende angehaengt = save-vertraeglich; das Budget sichert
-    // der STATIC_ASSERT in src/save.c.
+    // Origin Jade: Nuzlocke first-encounter bits for Hoenn (LUT IDs 0x80+).
     u8 nuzlockeEncounterFlagsHoenn[16];
+    // Origin Jade: FRLG vars and flags.
+    u16 varsFrlg[FRLG_VARS_COUNT];
+    u8 flagsFrlg[FRLG_NUM_FLAG_BYTES];
+    u8 flagsFrlgTrainers[FRLG_TRAINER_FLAG_BYTES];
+#endif
+    // Origin Jade: Blue's name; gSaveBlock2Ptr->rivalName is Silver's.
+    u8 rivalNameKanto[PLAYER_NAME_LENGTH + 1];
+#if IS_HNS
+    // HnS: trainer flags of the rematch tiers (HNS_REMATCH_TIERS_START..END).
+    u8 flagsHnsRematchTiers[HNS_REMATCH_TIER_FLAG_BYTES];
+    // Origin Jade: own flags and vars (constants/flags_origin_jade.h,
+    // constants/vars_origin_jade.h), mapped in GetFlagPointer/GetVarPointer.
+    u8 flagsOj[OJ_NUM_FLAG_BYTES];
+    u16 varsOj[OJ_VARS_COUNT];
+    // Origin Jade: append new fields here, at the end (save layout).
 #endif
 }; /* max size 1624 bytes */
 
@@ -1284,10 +1300,8 @@ struct SaveBlock1
 #endif //FREE_LINK_BATTLE_RECORDS
     /*0x31A8*/ u8 giftRibbons[GIFT_RIBBONS_COUNT];
 #if IS_HNS
-    // GameCube-Anbindung (Colosseum, XD, Pokémon Box) - in einem Rom-Hack
-    // nicht erreichbar, die Felder werden ausser im ROM-Header von nichts
-    // gelesen. Die 41 Bytes schaffen Platz fuer die erweiterte
-    // Rueckkampftabelle (siehe MAX_REMATCH_ENTRIES).
+    // HnS: no GameCube link data; the space goes to the rematch table
+    // (MAX_REMATCH_ENTRIES).
 #else
     /*0x31B3*/ struct ExternalEventData externalEventData;
     /*0x31C7*/ struct ExternalEventFlags externalEventFlags;

@@ -1,11 +1,13 @@
 #include "global.h"
 #include "string_util.h"
+#include "constants/region_map_sections.h"
 #include "text.h"
 #include "strings.h"
 #include "union_room_chat.h"
-#include "hoenn_level_scaling.h"
+#include "level_scaling.h"
 #include "regions.h"
 #include "event_data.h"
+#include "constants/maps.h"
 
 EWRAM_DATA u8 gStringVar1[0x100] = {0};
 EWRAM_DATA u8 gStringVar2[0x100] = {0};
@@ -480,6 +482,18 @@ static const u8 *ExpandPlaceholder_KunChan(void)
         return gText_ExpandedPlaceholder_Chan;
 }
 
+#if IS_HNS
+// Johto maps that use a Kanto mapsec: Route22_hns and Johto's league (center, Elite Four, Hall of Fame).
+static bool32 IsJohtoMapWithKantoMapsec(void)
+{
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_ROUTE22_HNS)
+     && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ROUTE22_HNS))
+        return TRUE;
+    // gMapGroup_IndoorIndigo_Hns holds only Johto's league maps.
+    return gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_INDIGO_PLATEAU_POKEMON_CENTER_HNS);
+}
+#endif
+
 static const u8 *ExpandPlaceholder_RivalName(void)
 {
 #if IS_FRLG
@@ -488,13 +502,28 @@ static const u8 *ExpandPlaceholder_RivalName(void)
 #endif
 
 #if IS_HNS
-    // HnS-Kanon: In Hoenn ist die Rivalin immer Maike (Birks Tochter) -
-    // unabhaengig vom Geschlecht der Spielfigur. In Johto und Kanto meint
-    // derselbe Platzhalter dagegen den dort benannten Rivalen (Silber),
-    // der beim Spielstart im Speicher landet. Ohne diese Weiche gaebe
-    // {RIVAL} auch in Prof. Birks Labor "Silber" aus.
+    // Origin Jade: {RIVAL} is May in Hoenn, Blue in Kanto and Silver in Johto.
     if (IsHoennMapsec(gMapHeader.regionMapSectionId))
         return gText_ExpandedPlaceholder_May;
+
+    // Johto maps with a Kanto mapsec use the Johto rival, see IsJohtoMapWithKantoMapsec.
+    if (gMapHeader.regionMapSectionId >= KANTO_MAPSEC_START
+     && gMapHeader.regionMapSectionId <= KANTO_MAPSEC_END
+     && !IsJohtoMapWithKantoMapsec())
+    {
+        // Older saves may hold garbage here: only use a terminated name.
+        {
+            u32 i;
+
+            for (i = 0; i < PLAYER_NAME_LENGTH + 1; i++)
+            {
+                if (gSaveBlock3Ptr->rivalNameKanto[i] == EOS)
+                    return i != 0 ? gSaveBlock3Ptr->rivalNameKanto
+                                  : gText_ExpandedPlaceholder_Green;
+            }
+        }
+        return gText_ExpandedPlaceholder_Green;
+    }
 
     if (gSaveBlock2Ptr->rivalName[0] != EOS)
         return gSaveBlock2Ptr->rivalName;
@@ -547,12 +576,17 @@ static const u8 *ExpandPlaceholder_Region(void)
 {
     if (IS_HNS)
     {
-        // Origin Jade: {REGION} richtet sich nach dem Standort des Spielers.
-        // Die Wandkarte im Kinderzimmer von Wurzelheim sprach sonst von
-        // "Johto und Kanto" (Discord-Report).
-        if (GetCurrentRegion() == REGION_HOENN)
+        // Origin Jade: the region the player is in.
+        switch (GetCurrentRegion())
+        {
+        case REGION_HOENN:
             return gText_Hoenn;
-        return FlagGet(FLAG_VISITED_KANTO) ? gText_JohtoKanto : gText_Johto;
+        case REGION_JOHTO:
+            return gText_Johto;
+        case REGION_KANTO:
+        default:
+            return gText_Kanto;
+        }
     }
     else if (IS_FRLG)
         return gText_Kanto;

@@ -1,8 +1,8 @@
 RocketHideout_B1F_hns_MapScripts::
-	map_script MAP_SCRIPT_ON_LOAD, RocketHideout_B1F_OnLoad
+	map_script MAP_SCRIPT_ON_LOAD, RocketHideout_B1F_OnLoad_Hns
 	.byte 0
 
-RocketHideout_B1F_OnLoad::
+RocketHideout_B1F_OnLoad_Hns::
 	setflag FLAG_HIDE_ROCKETHIDEOUT_ROCKETS
 	call_if_eq VAR_ROCKET_HIDEOUT_STATUE_1, 2, RocketHideout_B1F_EventScript_SetStatue1
 	call_if_eq VAR_ROCKET_HIDEOUT_STATUE_2, 2, RocketHideout_B1F_EventScript_SetStatue2

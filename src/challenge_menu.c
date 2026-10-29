@@ -22,6 +22,7 @@
 #include "constants/songs.h"
 #include "battle_main.h"
 #include "random.h"
+#include "config/randomizer.h"
 #include "overworld.h"
 #include "script.h"
 #include "challenge_menu.h"
@@ -64,6 +65,7 @@ enum {
 
 enum {
     ITEM_FEATURES_RTC_TYPE,
+    ITEM_FEATURES_RTC_SPEED,
     ITEM_FEATURES_SHINY_CHANCE,
     ITEM_FEATURES_SHINY_COLOR,
     ITEM_FEATURES_ITEM_DROP,
@@ -133,7 +135,7 @@ enum {
 };
 
 // Maximum items in any single tab
-#define MAX_ITEMS_PER_TAB 16
+#define MAX_ITEMS_PER_TAB 20
 #define ITEMS_VISIBLE 5
 #define Y_DIFF 16
 
@@ -173,6 +175,7 @@ static EWRAM_DATA bool8 sIsInitialSetup = FALSE;
 enum {
     LOCK_FREE,
     LOCK_ONEWAY_DOWN,
+    LOCK_ONEWAY_UP,
     LOCK_FULL,
 };
 
@@ -205,10 +208,10 @@ static const u8 sMidGameLockPolicy[TAB_COUNT * MAX_ITEMS_PER_TAB] = {
     // TAB_DIFFICULTY
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_PARTY_LIMIT]    = LOCK_ONEWAY_DOWN,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_LEVEL_CAP]      = LOCK_ONEWAY_DOWN,
-    [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_EXP_MULTIPLIER] = LOCK_ONEWAY_DOWN,
+    [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_EXP_MULTIPLIER] = LOCK_FREE,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_ITEM_PLAYER]    = LOCK_ONEWAY_DOWN,
-    [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_ITEM_TRAINER]   = LOCK_ONEWAY_DOWN,
-    [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_MAX_PARTY_IVS]  = LOCK_ONEWAY_DOWN,
+    [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_ITEM_TRAINER]   = LOCK_FREE,
+    [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_MAX_PARTY_IVS]  = LOCK_FREE,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_SCALING_IVS]    = LOCK_ONEWAY_DOWN,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_NO_EVS]         = LOCK_ONEWAY_DOWN,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_SCALING_EVS]    = LOCK_ONEWAY_DOWN,
@@ -218,7 +221,7 @@ static const u8 sMidGameLockPolicy[TAB_COUNT * MAX_ITEMS_PER_TAB] = {
     [TAB_CHALLENGES * MAX_ITEMS_PER_TAB + ITEM_CHALLENGES_POKECENTER]    = LOCK_ONEWAY_DOWN,
     [TAB_CHALLENGES * MAX_ITEMS_PER_TAB + ITEM_CHALLENGES_EXPENSIVE]     = LOCK_ONEWAY_DOWN,
     [TAB_CHALLENGES * MAX_ITEMS_PER_TAB + ITEM_CHALLENGES_EVO_LIMIT]     = LOCK_ONEWAY_DOWN,
-    [TAB_CHALLENGES * MAX_ITEMS_PER_TAB + ITEM_CHALLENGES_ONE_TYPE]      = LOCK_ONEWAY_DOWN,
+    [TAB_CHALLENGES * MAX_ITEMS_PER_TAB + ITEM_CHALLENGES_ONE_TYPE]      = LOCK_FREE,
     [TAB_CHALLENGES * MAX_ITEMS_PER_TAB + ITEM_CHALLENGES_BST_EQUALIZER] = LOCK_ONEWAY_DOWN,
     [TAB_CHALLENGES * MAX_ITEMS_PER_TAB + ITEM_CHALLENGES_MIRROR]        = LOCK_ONEWAY_DOWN,
     [TAB_CHALLENGES * MAX_ITEMS_PER_TAB + ITEM_CHALLENGES_MIRROR_THIEF]  = LOCK_ONEWAY_DOWN,
@@ -546,6 +549,12 @@ static const u8 *const sChoices_BanUnban[] = {
     COMPOUND_STRING("Erlaubt"),
 };
 
+static const u8 *const sChoices_RtcSpeed[] = {
+    COMPOUND_STRING("Schnell"),
+    COMPOUND_STRING("Normal"),
+    COMPOUND_STRING("Langsam"),
+};
+
 static const u8 *const sChoices_RtcFake[] = {
     COMPOUND_STRING("RTC"),
     COMPOUND_STRING("Fake RTC"),
@@ -641,6 +650,12 @@ static const u8 *const sChoices_BstEqual[] = {
 // FEATURES descriptions + table
 // =============================================================================
 
+static const u8 *const sDesc_RtcSpeed[] = {
+    COMPOUND_STRING("1 Std. echt = 1 Tag im Spiel.\nBeeren wachsen sehr schnell."),
+    COMPOUND_STRING("2 Std. echt = 1 Tag im Spiel.\nBeeren wachsen zügig."),
+    COMPOUND_STRING("4 Std. echt = 1 Tag im Spiel.\nBeeren wachsen gemächlich."),
+};
+
 static const u8 *const sDesc_RtcType[] = {
     COMPOUND_STRING("Normale Echtzeit-Uhr verwenden."),
     COMPOUND_STRING("Gefälschte Echtzeit-Uhr.\n1h echt = 1 Tag im Spiel."),
@@ -674,6 +689,12 @@ static const struct ChallengeMenuItem sTabItems_Features[] = {
         .descriptions = sDesc_RtcType,
         .numChoices   = 2,
         .choiceNames  = sChoices_RtcFake,
+    },
+    [ITEM_FEATURES_RTC_SPEED] = {
+        .name         = COMPOUND_STRING("Uhr-Tempo"),
+        .descriptions = sDesc_RtcSpeed,
+        .numChoices   = 3,
+        .choiceNames  = sChoices_RtcSpeed,
     },
     [ITEM_FEATURES_SHINY_CHANCE] = {
         .name         = COMPOUND_STRING("Shiny-Chance"),
@@ -1123,6 +1144,7 @@ static const u8 *const sDesc_EvoLimit[] = {
 };
 #define NUM_ONE_TYPE_CHOICES 20
 #define ONE_TYPE_OFF 31
+#define EVO_LINE_TYPE_SEARCH_DEPTH 4 // deepest evolution chain worth walking
 
 #if GERMAN
 static const u8 sText_Desc_OneType[] = _("Nur ein {PKMN}-Typ\nkann gefangen werden.");
@@ -1297,6 +1319,15 @@ static bool8 CheckConditions(u8 tab, u8 itemIndex)
                 return FALSE;
         default:
             return *GetSelectionPtr(TAB_MODE, ITEM_MODE_GAMEMODE) == 1; // CUSTOM
+        }
+    case TAB_FEATURES:
+        switch (itemIndex)
+        {
+        case ITEM_FEATURES_RTC_SPEED:
+            // Only with the fake clock.
+            return *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_RTC_TYPE) == 1;
+        default:
+            return TRUE;
         }
     case TAB_RANDOMIZER:
     {
@@ -1815,6 +1846,13 @@ static void ProcessLeftRight(void)
         return;
     }
 
+    if (*sel != prev && GetLockPolicy(sMenu->currentTab, itemIndex) == LOCK_ONEWAY_UP && *sel < prev)
+    {
+        *sel = prev;
+        PlaySE(SE_FAILURE);
+        return;
+    }
+
     if (*sel != prev)
     {
         // When GAMEMODE changes to RECOMMENDED, apply presets
@@ -1975,6 +2013,7 @@ static void Task_ConfirmSaveYes(u8 taskId)
 
     // Features tab
     cs->tx_Features_RTCType        = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_RTC_TYPE);
+    cs->tx_Features_RtcSpeed       = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_RTC_SPEED);
     cs->tx_Features_ShinyChance    = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_SHINY_CHANCE);
     cs->tx_Features_WildMonDropItems = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_ITEM_DROP);
     cs->tx_Features_FrontierBans   = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_FRONTIER_BANS);
@@ -1990,6 +2029,11 @@ static void Task_ConfirmSaveYes(u8 taskId)
         cs->tx_Random_Static           = 0;
         cs->tx_Random_Similar          = 0;
         cs->tx_Random_IncludeLegendaries = 0;
+        // Not cleared to 0 like the rest: 0 means "all generations", so zeroing
+        // it here would quietly drop the default the next time the randomizer is
+        // switched back on. It is inert while the randomizer is off, and it is
+        // not part of the master-toggle derivation on load.
+        cs->tx_Random_GenScope         = RANDOMIZER_DEFAULT_GEN_SCOPE_1_3;
         cs->tx_Random_Type             = 0;
         cs->tx_Random_Moves            = 0;
         cs->tx_Random_Abilities        = 0;
@@ -2008,6 +2052,8 @@ static void Task_ConfirmSaveYes(u8 taskId)
         cs->tx_Random_Static           = *GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_STATIC);
         cs->tx_Random_Similar          = !(*GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_SIMILAR));
         cs->tx_Random_IncludeLegendaries = *GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_LEGENDARIES);
+        // Origin Jade: no menu row, always the default from config/randomizer.h.
+        cs->tx_Random_GenScope         = RANDOMIZER_DEFAULT_GEN_SCOPE_1_3;
         cs->tx_Random_Type             = *GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_TYPE);
         cs->tx_Random_Moves            = *GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_MOVES);
         cs->tx_Random_Abilities        = *GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_ABILITIES);
@@ -2208,6 +2254,7 @@ void CB2_InitChallengeMenu(void)
 
             // Features tab
             *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_RTC_TYPE)     = cs->tx_Features_RTCType;
+            *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_RTC_SPEED)    = cs->tx_Features_RtcSpeed;
             *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_SHINY_CHANCE) = cs->tx_Features_ShinyChance;
             *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_ITEM_DROP)    = cs->tx_Features_WildMonDropItems;
             *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_FRONTIER_BANS)= cs->tx_Features_FrontierBans;
@@ -2335,6 +2382,7 @@ bool32 HMsOverwriteOptionActive(void)
             || cs->tx_Nuzlocke_EasyMode
             || cs->tx_Challenges_Mirror
             || cs->tx_Random_Moves
+            || cs->tx_Challenges_PartyLimit != 0
             || cs->tx_Challenges_OneTypeChallenge != ONE_TYPE_OFF);
 }
 
@@ -2425,4 +2473,45 @@ bool8 IsPokecenterChallengeActivated(void)
 bool8 IsOneTypeChallengeActive(void)
 {
     return gSaveBlock3Ptr->challengeSettings.tx_Challenges_OneTypeChallenge != ONE_TYPE_OFF;
+}
+
+// Returns TRUE if the species has the given type, or if any species it can
+// eventually evolve into has it. Lets pre-evolutions that "grow into" the
+// challenge type (e.g. Trapinch for a Dragon run) be used.
+static bool8 DoesEvoLineHaveType(u16 species, u8 type, u8 depth)
+{
+    const struct Evolution *evolutions;
+    u32 i;
+
+    if (species == SPECIES_NONE || depth > EVO_LINE_TYPE_SEARCH_DEPTH)
+        return FALSE;
+
+    if (GetSpeciesType(species, 0) == type || GetSpeciesType(species, 1) == type)
+        return TRUE;
+
+    evolutions = GetSpeciesEvolutions(species);
+    if (evolutions == NULL)
+        return FALSE;
+
+    for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
+    {
+        u16 target = evolutions[i].targetSpecies;
+
+        // An evolution can point at a species this build has compiled out.
+        if (target == SPECIES_NONE || target > NUM_SPECIES || !IsSpeciesEnabled(target))
+            continue;
+
+        if (DoesEvoLineHaveType(target, type, depth + 1))
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
+bool8 DoesSpeciesPassOneTypeChallenge(u16 species)
+{
+    if (!IsOneTypeChallengeActive())
+        return TRUE;
+
+    return DoesEvoLineHaveType(species, gSaveBlock3Ptr->challengeSettings.tx_Challenges_OneTypeChallenge, 0);
 }

@@ -281,3 +281,31 @@ VictoryRoad_3F_Text_TyraNotEnoughMons::
 	.string "you have only one POKéMON.$"
 #endif
 
+@ ============================================================================
+@ Origin Jade: Moltres encounter.
+@ ============================================================================
+
+VictoryRoad_3F_EventScript_Moltres::
+	lock
+	faceplayer
+	setwildbattle SPECIES_MOLTRES, 40
+	waitse
+	playmoncry SPECIES_MOLTRES, CRY_MODE_ENCOUNTER
+	message Text_Gyaoo
+	waitmessage
+	waitmoncry
+	delay 10
+	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	@ Legendary rules, see docs/origin_jade/DECISIONS.md, D-026. Visibility: VictoryRoad_4F_Frlg.
+	setvar VAR_0x8004, LEGENDARY_MOLTRES
+	special RecordLegendaryBattleOutcome
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, EventScript_RemoveStaticMon
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_RemoveStaticMon
+	setvar VAR_0x8004, SPECIES_MOLTRES
+	goto EventScript_MonFlewAway

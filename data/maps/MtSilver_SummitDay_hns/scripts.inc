@@ -4,12 +4,12 @@ MtSilver_SummitDay_hns_MapScripts::
 	.byte 0
 
 MtSilver_SummitDay_OnFrame::
-	map_script_2 VAR_TEMP_0, 0 MtSilver_SummitDay_Blizzard
+	map_script_2 VAR_TEMP_MTSILVER_RESUME_BLIZZARD_SE, 0, MtSilver_SummitDay_Blizzard
 	.2byte 0
 
 MtSilver_SummitDay_Blizzard::
 	playse SE_M_BLIZZARD
-	setvar VAR_TEMP_0, 1
+	setvar VAR_TEMP_MTSILVER_RESUME_BLIZZARD_SE, 1
 	end
 
 MtSilver_SummitDay_OnTransition:
@@ -31,9 +31,22 @@ MtSilver_SummitDay_EventScript_Red::
 	faceplayer
 	msgbox MtSilver_SummitDay_Text_Red, MSGBOX_DEFAULT
 	closemessage
-	trainerbattle_no_intro TRAINER_RED_2_HNS, MtSilver_SummitDay_Text_RedBeaten
+	goto_if_unset FLAG_IS_KANTO_CHAMPION, MtSilver_SummitDay_EventScript_RedStandard
+	goto_if_ge VAR_SINJOH_STORYLINE, 13, MtSilver_SummitDay_EventScript_RedPostOBC
+
+MtSilver_SummitDay_EventScript_RedStandard::
+	trainerbattle_no_intro TRAINER_RED_HNS, MtSilver_SummitDay_Text_RedBeaten
+	goto MtSilver_SummitDay_EventScript_RedOnDefeat
+
+MtSilver_SummitDay_EventScript_RedPostOBC::
+	trainerbattle_no_intro TRAINER_RED_POSTOBC_HNS, MtSilver_SummitDay_Text_RedBeaten
+	goto MtSilver_SummitDay_EventScript_RedOnDefeat
+
+MtSilver_SummitDay_EventScript_RedOnDefeat::
 	playse SE_M_BLIZZARD
-	setrespawn HEAL_LOCATION_NEW_BARK_TOWN_HNS
+	@ Origin Jade: after Red the player continues in New Bark Town in front of Elm's lab, without
+	@ credits, as after every Johto title. See docs/origin_jade/DECISIONS.md, D-028.
+	setrespawn HEAL_LOCATION_NEW_BARK_TOWN_LAB_HNS
 	msgbox MtSilver_SummitDay_Text_Red, MSGBOX_DEFAULT
 	special GivePartyMonLandRibbon
 	closemessage
@@ -46,14 +59,15 @@ MtSilver_SummitDay_EventScript_Red::
 	setflag FLAG_DEFEATED_RED
 	setflag FLAG_END_NUZLOCKE
 	clearflag FLAG_HIDE_MTSILVER_RED
-	special GameClear
+	special GameClearNoCredits
 	waitstate
 	releaseall
 	end
 
 MtSilver_SummitDay_Text_Red:
 #if GERMAN
-	.string "まえ　えらんだもの$"
+	.string "…………………………\n"
+	.string "…………………………$"
 #else
 	.string ".........................\n"
 	.string ".........................$"

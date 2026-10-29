@@ -35,9 +35,9 @@ ViridianCity_Text_OakCall:
 	.string "Alabastia, wenn du Zeit hast.$"
 #else
 	.string "OAK: Ah, {PLAYER}!\p"
-	.string "Come and see my at my\n"
-	.string "LAB in PALLET TOWN\l"
-	.string "when you get the chance.$"
+	.string "Come and see my at my LAB in\n"
+	.string "PALLET TOWN when you get the\l"
+	.string "chance.$"
 #endif
 
 ViridianCity_EventScript_Gramps::

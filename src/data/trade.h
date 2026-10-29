@@ -1162,7 +1162,10 @@ static const struct InGameTrade sIngameTrades[] =
         .otId = 15616,
         .conditions = {5, 5, 30, 5, 5},
         .personality = 0x0000008F,
-        .heldItem = ITEM_LUM_BERRY,
+        // Everstone: works around the boxed trade-evolution bug documented in
+        // TradeMons in src/trade.c. Paul would evolve into a Gengar that never
+        // makes it into the PC, so he is kept from evolving on the trade at all.
+        .heldItem = ITEM_EVERSTONE,
         .mailNum = 0,
         .otName = _("Mondo"),
         .otGender = MALE,
@@ -1219,7 +1222,11 @@ static const struct InGameTrade sIngameTrades[] =
     },
     [INGAME_TRADE_STEELIX] =
     {
+#if GERMAN
         .nickname = _("Beißer"),
+#else
+        .nickname = _("Rusty"),
+#endif
         .species = SPECIES_STEELIX,
         .ivs = {4, 4, 4, 5, 5, 4},
         .abilityNum = 0,
@@ -1229,7 +1236,7 @@ static const struct InGameTrade sIngameTrades[] =
         .heldItem = ITEM_SOOTHE_BELL,
         .mailNum = 0,
         .otName = _("Jasmin"),
-        .otGender = MALE,
+        .otGender = FEMALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_NONE
     },

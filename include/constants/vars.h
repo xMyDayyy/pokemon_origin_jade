@@ -329,6 +329,15 @@
 
 #if defined(POKEMON_HNS)
 #include "constants/vars_hoenn_de.h"
+#include "constants/vars_frlg_hns.h"
+#include "constants/vars_origin_jade.h"
+#else
+// Other builds: Devon's Hoenn fossil vars are the vanilla ones.
+#define VAR_HOENN_FOSSIL_RESURRECTION_STATE     VAR_FOSSIL_RESURRECTION_STATE
+#define VAR_HOENN_WHICH_FOSSIL_REVIVED          VAR_WHICH_FOSSIL_REVIVED
+// Saffron's Trainer Fan Club shares the vanilla vars.
+#define VAR_SAFFRON_FANCLUB_FAN_COUNTER         VAR_FANCLUB_FAN_COUNTER
+#define VAR_SAFFRON_FANCLUB_LOSE_FAN_TIMER      VAR_FANCLUB_LOSE_FAN_TIMER
 #endif
 
 #if TESTING
