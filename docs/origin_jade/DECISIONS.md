@@ -235,13 +235,21 @@ dated 2026-10-10 or later were decided directly.
   skipped steps, rare forms: decision 2026-10-26.
 
 ### D-013 Kanto is complete without trading
-- **Status:** Active
+- **Status:** Active (amended 2026-10-29)
 - **Decision:** All 185 species of the Gen-1 families are obtainable in
   Kanto without link trades: both fossils at Mt. Moon, both Hitmons at the
   dojo, evolution items placed in Kanto, the unchosen starters in the wild
   (5 %), two-slot day care with breeding, extra Game Corner prizes. Day and
   night replace the FireRed/LeafGreen version split. Overworld Pokemon show
   what can be caught on a map (next to, not on, the encounter tiles).
+  - LeafGreen's water and bug exclusives follow the same rule, at night in
+    the FireRed slot of their counterpart (same rate, LeafGreen's levels):
+    Slowpoke for Psyduck, Slowbro for Golduck, Staryu for Shellder
+    (Cinnabar: Slowbro for Seadra) on every Kanto map where LeafGreen has
+    them, and Pinsir for Scyther in the Safari Zone (Center and East, 1 %
+    each). Maps without a night table got one with only the changed areas
+    (the other areas fall back to day, D-037). Starmie by Water Stone,
+    Slowbro also at level 37 (2026-10-29).
 - **Evidence:** 71a79b3a14, ff6d47ca45, ead606af10, 7aacaa2699,
   d8f26d241e, d0e2cc9ec4, 2d0e6a62af, 00da4d2a7a, 535f47948b, 5578b2caee.
 
