@@ -250,8 +250,23 @@ dated 2026-10-10 or later were decided directly.
     each). Maps without a night table got one with only the changed areas
     (the other areas fall back to day, D-037). Starmie by Water Stone,
     Slowbro also at level 37 (2026-10-29).
+  - Evolution items lie only on active Kanto maps; FRLG's Sevii items do
+    not count (D-019). Celadon Department Store 4F sells, next to the FRLG
+    stones, Ice Stone, Shiny Stone, Sun Stone, Black Augurite, King's Rock,
+    Metal Coat and Dragon Scale (a shop, because King's Rock and Metal Coat
+    each evolve two species). Item balls: Up-Grade (Silph Co. 9F), Dubious
+    Disc (Silph Co. 10F), Protector (Mt. Moon 1F), Magmarizer (Pokemon
+    Mansion 2F). Hidden items: Oval Stone (Rock Tunnel B1F), Electirizer
+    (Cerulean Cave B1F).
+  - No evolution needs a trade: Kadabra, Machoke, Graveler and Haunter also
+    evolve by level; the held-item evolutions take the item from the bag
+    (`I_USE_EVO_HELD_ITEMS_FROM_BAG`).
+  - Everything is obtainable before the first Kanto title except Mewtwo and
+    Electivire, which come from Cerulean Cave right after it.
 - **Evidence:** 71a79b3a14, ff6d47ca45, ead606af10, 7aacaa2699,
-  d8f26d241e, d0e2cc9ec4, 2d0e6a62af, 00da4d2a7a, 535f47948b, 5578b2caee.
+  d8f26d241e, d0e2cc9ec4, 2d0e6a62af, 00da4d2a7a, 535f47948b, 5578b2caee;
+  decision 2026-10-29 (LeafGreen exclusives at night, Sevii items replaced,
+  Kleavor is in the game).
 
 ### D-014 HM handovers in Johto never leave the player empty-handed
 - **Status:** Active
