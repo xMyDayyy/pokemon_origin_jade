@@ -17,7 +17,8 @@ struct Trainer;
 
 bool32 LevelScalingActive(void);
 u8 ScaleWildMonLevel(u8 level);
-// Static and scripted encounters and roamers: never below the top of the map's wild band (Johto).
+// Static and scripted encounters and roamers: never below the top of the map's wild band
+// (maps with Johto's or Hoenn's rules).
 u8 ScaleStaticMonLevel(u8 level);
 u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel);
 // Call right after ScaleTrainerMonLevel for the same Pokemon. partyIndex: its index

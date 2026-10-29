@@ -79,6 +79,9 @@ struct ScalingRules
     bool8 corridorListIsRegion;
     // TRUE: never below the level from the party/encounter data (Kanto).
     bool8 originalLevelIsFloor;
+    // TRUE: static and scripted encounters and roamers are at least the top of
+    // the wild band (ScaleStaticMonLevel; Johto, Hoenn).
+    bool8 staticFloor;
     // Once this title flag is set, titleCeiling replaces every ceiling.
     u16 titleFlag;
     u8 titleCeiling;
@@ -109,6 +112,7 @@ static const struct ScalingRules sHoennRules =
     .trainerEvolve       = HOENN_SCALING_TRAINER_EVOLVE,
     .corridorListIsRegion = FALSE,
     .originalLevelIsFloor = FALSE,
+    .staticFloor         = TRUE,
     .titleFlag           = FLAG_IS_HOENN_CHAMPION,
     .titleCeiling        = HOENN_SCALING_TITLE_CEILING,
 };
@@ -139,6 +143,7 @@ static const struct ScalingRules sJohtoRules =
     .trainerEvolve       = JOHTO_SCALING_TRAINER_EVOLVE,
     .corridorListIsRegion = TRUE,
     .originalLevelIsFloor = FALSE,
+    .staticFloor         = TRUE,
     .titleFlag           = FLAG_IS_JOHTO_CHAMPION,
     .titleCeiling        = JOHTO_SCALING_TITLE_CEILING,
 };
@@ -165,6 +170,7 @@ static const struct ScalingRules sKantoRules =
     .trainerEvolve       = KANTO_SCALING_TRAINER_EVOLVE,
     .corridorListIsRegion = FALSE,
     .originalLevelIsFloor = TRUE,
+    .staticFloor         = FALSE,
     .titleFlag           = FLAG_IS_KANTO_CHAMPION,
     .titleCeiling        = KANTO_SCALING_MAX_LEVEL,
 };
@@ -320,16 +326,16 @@ u8 ScaleWildMonLevel(u8 level)
     return scaled;
 }
 
-// Static and scripted encounters and roamers on Johto maps: at least the top of the
-// map's wild band, see docs/origin_jade/DECISIONS.md, D-039. Pass-through elsewhere.
+// Static and scripted encounters and roamers on maps with Johto's or Hoenn's rules: at
+// least the top of the map's wild band, see docs/origin_jade/DECISIONS.md, D-039.
+// Pass-through elsewhere (Kanto keeps its levels).
 u8 ScaleStaticMonLevel(u8 level)
 {
-#if JOHTO_LEVEL_SCALING == TRUE
     const struct ScalingRules *rules = GetScalingRules();
     s32 anchor;
     u8 floor, ceiling, top;
 
-    if (rules != &sJohtoRules)
+    if (rules == NULL || !rules->staticFloor)
         return level;
     anchor = GetScalingAnchor();
     if (anchor == 0)
@@ -338,7 +344,6 @@ u8 ScaleStaticMonLevel(u8 level)
     top = ClampScaledLevel(rules, anchor - rules->wildAbove, floor, ceiling);
     if (top > level)
         return top;
-#endif
     return level;
 }
 

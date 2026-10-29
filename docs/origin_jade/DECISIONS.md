@@ -482,7 +482,8 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-13 (O-016).
 
 ### D-026 Legendary rules: caught means gone for good
-- **Status:** Active (2026-10-15, Johto levels changed 2026-10-27, D-039)
+- **Status:** Active (2026-10-15, Johto levels changed 2026-10-27, D-039,
+  Hoenn levels 2026-10-29, D-043)
 - **Decision:** All one-time encounters share one table
   (`src/legendaries_oj.c`, ids in `include/constants/legendaries_oj.h`):
   Articuno, Zapdos, Moltres, Mewtwo, Mew (Mt. Moon only), Lugia, Ho-Oh,
@@ -505,12 +506,12 @@ dated 2026-10-10 or later were decided directly.
     title once the chosen one is caught (level 80; the chosen one keeps its
     story level 78, D-039). Route 41's Tentacruel then step aside for Ho-Oh
     choosers.
-  - Latias and Latios both roam Hoenn after the first Hoenn title (level 40,
+  - Latias and Latios both roam Hoenn after the first Hoenn title (level 100,
     Emerald routes). No Latias roams Kanto or Johto. Faraway Island,
     Southern Island and Navel Rock are not offered anywhere.
-  - Levels: Johto's follow D-039 (set by story point, never below the top of
-    the map's wild band); Kanto's and Hoenn's stay fixed (Kanto: birds and
-    Mew 40, Mewtwo 50, D-011). Sudowoodo and
+  - Levels: Johto's follow D-039, Hoenn's D-043 (both never below the top of
+    the map's wild band); Kanto's are fixed (birds and Mew 40, Mewtwo 50,
+    D-011). Sudowoodo and
     Snorlax never return. The GS Ball is used up at the shrine; there is no
     second Celebi.
 - **Evidence:** decision 2026-10-15 (O-004).
@@ -587,7 +588,8 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-15 (O-006).
 
 ### D-031 Level scaling after a region's title
-- **Status:** Active (2026-10-15, Johto statics changed 2026-10-27, D-039)
+- **Status:** Active (2026-10-15, Johto statics changed 2026-10-27, D-039,
+  Hoenn statics 2026-10-29, D-043)
 - **Decision:** After a region's title its trainers (rematches included) and
   wild Pokemon scale to the player's anchor without a ceiling (level 100).
   - Kanto: FRLG maps, off before `FLAG_IS_KANTO_CHAMPION`; no corridors, the
@@ -595,9 +597,9 @@ dated 2026-10-10 or later were decided directly.
     Pokemon evolve (`include/config/kanto_scaling.h`).
   - Johto and Hoenn: corridor ceilings become 100 with
     `FLAG_IS_JOHTO_CHAMPION` / `FLAG_IS_HOENN_CHAMPION`; floors stay.
-  - Fixed: Red, the facilities, and Kanto's and Hoenn's static and scripted
-    encounters and roamers (D-026). Johto's never fall below the top of the
-    map's wild band (D-039). Steven at Meteor Falls (level 75-78) stays
+  - Fixed: Red, the facilities, and Kanto's static and scripted encounters
+    (D-026). Johto's and Hoenn's, roamers included, never fall below the top
+    of the map's wild band (D-039, D-043). Steven at Meteor Falls (level 75-78) stays
     fixed as the owner set it before (876c3d4c19, Hoenn's counterpart to
     Red, `HOENN_SCALING_FIXED_MIN_LEVEL` 70); setting it to 79 lets only him
     scale.
@@ -805,20 +807,21 @@ dated 2026-10-10 or later were decided directly.
     afterwards it keeps rising (ceilings 100, D-031). The legendaries stay
     in the owner's range of 75-80 and so stand well above that player
     (Raikou and Entei +22 at the Burned Tower, the Glockenturm about +14).
-  - Floor: on maps with Johto's scaling, static and scripted encounters
-    (`seteventmon`, `setwildbattle`, `setwildbattleshiny`) and roamers are at
-    least the top of the map's wild band (anchor - 4, clamped to the
+  - Floor: on maps with Johto's or Hoenn's scaling, static and scripted
+    encounters
+    (`seteventmon`, `setwildbattle`, `setwildbattleshiny`) and roamers are
+    at least the top of the map's wild band (anchor - 4, clamped to the
     corridor; `ScaleStaticMonLevel`, `src/level_scaling.c`). Before the
     title the corridor ceilings cap it, so it lifts a Pokemon only for
     players above that corridor (e.g. Sudowoodo to 53, a roamer on Route 26
     up to 80). After the title it lifts the returns of D-026 with the player.
-    Kanto, Hoenn and unscaled maps (Birth Island, the Kampfzone) keep fixed
-    levels.
+    Kanto and unscaled maps (Birth Island, the Kampfzone) keep fixed levels
+    (`staticFloor` in `src/level_scaling.c`).
   - Roamers keep the level they started with. Raikou and Entei start at
     their level in `src/legendaries_oj.c`; a roamer below it, or below the
     floor, moves up at its next encounter and keeps its share of HP
     (`TryRaiseRoamerLevel`, `src/roamer.c`).
-  - Kanto (D-011) and Hoenn statics are unchanged; the owner decides later.
+  - Kanto: D-011, Hoenn: D-043.
 - **Evidence:** decision 2026-10-27.
 
 ### D-040 Hoenn keeps its own state where a finished Kanto would leak into it
@@ -893,6 +896,23 @@ dated 2026-10-10 or later were decided directly.
   - the challenge menu's experience rate.
   The levels of all three regions are tuned for the average player (D-011,
   D-012); rushers have to train.
+- **Evidence:** decision 2026-10-29.
+
+### D-043 Hoenn's static and legendary levels fit the scaling
+- **Status:** Active (2026-10-29). Replaces the fixed Hoenn levels of D-026
+  and D-031.
+- **Decision:** The player reaches level 100 in Hoenn. Its legendaries sit
+  at 100, the other static encounters at the player's level where they are
+  met, rounded (old in brackets):
+  - Regirock, Regice and Registeel: 100 (40);
+  - Groudon, Kyogre and Rayquaza: 100 (70);
+  - Latias and Latios, roaming after the first Hoenn title: 100 (40);
+  - Kecleon on Routes 119 and 120: 80 (30);
+  - New Mauville's Voltorb: 75 (25);
+  - the Aqua Hideout's Electrode: 85 (30).
+  - Floor as in Johto: static and scripted encounters and roamers on Hoenn
+    maps are at least the top of the map's wild band (D-039).
+  - Gifts keep their levels (Castform 25, the fossils 20, Beldum 5).
 - **Evidence:** decision 2026-10-29.
 
 ---

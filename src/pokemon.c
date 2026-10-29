@@ -4906,7 +4906,7 @@ enum TrainerClassID GetUnionRoomTrainerClass(void)
 void CreateEnemyEventMon(void)
 {
     s32 species = gSpecialVar_0x8004;
-    // Johto floor, see docs/origin_jade/DECISIONS.md, D-039.
+    // Johto and Hoenn floor, see docs/origin_jade/DECISIONS.md, D-039.
     s32 level = ScaleStaticMonLevel(gSpecialVar_0x8005);
     s32 itemId = gSpecialVar_0x8006;
 

@@ -1697,7 +1697,7 @@ bool8 ScrCmd_setwildbattleshiny(struct ScriptContext *ctx)
     u8 level = ScriptReadByte(ctx);
     u16 item = ScriptReadHalfword(ctx);
 
-    // Johto floor, see docs/origin_jade/DECISIONS.md, D-039.
+    // Johto and Hoenn floor, see docs/origin_jade/DECISIONS.md, D-039.
     CreateShinyScriptedMon(species, ScaleStaticMonLevel(level), item);
     return FALSE;
 }
@@ -3405,7 +3405,7 @@ bool8 ScrCmd_setwildbattle(struct ScriptContext *ctx)
 
     Script_RequestEffects(SCREFF_V1);
 
-    // Johto floor, see docs/origin_jade/DECISIONS.md, D-039.
+    // Johto and Hoenn floor, see docs/origin_jade/DECISIONS.md, D-039.
     level = ScaleStaticMonLevel(level);
     if (species2 == SPECIES_NONE)
     {
