@@ -197,12 +197,17 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** b20f555d4d, 20fa75b584, 1662b679fc, 2f349b5ce2, af10c86033.
 
 ### D-012 Johto and Hoenn: dynamic level scaling
-- **Status:** Active
+- **Status:** Active (anchor changed 2026-10-29)
 - **Decision:** Johto and Hoenn scale to the player (`src/level_scaling.c`,
-  `include/config/johto_scaling.h`): Johto corridors 45-80 (Mt. Silver
-  70-90, Red unscaled), trainers anchor -3..+2, bosses +3 (Hoenn +5, it is
-  the final region). The arrival corridor has the full band. Johto's gym
-  leaders have six Pokemon; route trainers at least three
+  `include/config/johto_scaling.h`, `include/config/hoenn_scaling.h`).
+  - Anchor, in every region: the mean of the three highest party levels,
+    rounded, but at most `SCALING_ANCHOR_MAX_DROP` (8) below the highest
+    level (`include/level_scaling.h`). Weak fillers do not pull the levels
+    down: a level 100 Pokemon with five level 1 Pokemon gives 92.
+  - Johto corridors 45-80 (Mt. Silver 70-90, Red unscaled), trainers anchor
+    -3..+2, bosses +3 (Hoenn +5, it is the final region). The arrival
+    corridor has the full band.
+  Johto's gym leaders have six Pokemon; route trainers at least three
   (`tools/fill_johto_parties.py`: trainer class beats the local wild pool,
   duplicate a Pokemon rather than break the class). Rematch teams scale
   as well (every stage is below level 77). HnS's badge gate for rematch

@@ -2,11 +2,12 @@
 #define GUARD_CONFIG_HOENN_SCALING_H
 
 // =====================================================================
-// Hoenn level scaling: trainers and wild Pokémon scale with the highest
-// level in the player's party (the anchor), clamped to a corridor per
-// area. Bosses (leaders, Elite Four, champion, Magma/Aqua bosses and
-// admins) get HOENN_SCALING_BOSS_EXTRA on top. Johto: config/johto_scaling.h,
-// Kanto: config/kanto_scaling.h.
+// Hoenn level scaling: trainers and wild Pokémon scale with the player's
+// anchor (mean of the three highest party levels, at most
+// SCALING_ANCHOR_MAX_DROP below the highest, include/level_scaling.h),
+// clamped to a corridor per area. Bosses (leaders, Elite Four, champion,
+// Magma/Aqua bosses and admins) get HOENN_SCALING_BOSS_EXTRA on top.
+// Johto: config/johto_scaling.h, Kanto: config/kanto_scaling.h.
 // =====================================================================
 
 #define HOENN_LEVEL_SCALING          TRUE  // master switch

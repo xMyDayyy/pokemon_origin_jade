@@ -4,8 +4,9 @@
 // =====================================================================
 // Johto level scaling (hns_de / modern_hns_engde)
 //
-// Trainer and wild levels in Johto follow the highest level in the
-// player's party (the anchor), clamped to the area's corridor
+// Trainer and wild levels in Johto follow the player's anchor (mean of
+// the three highest party levels, at most SCALING_ANCHOR_MAX_DROP below
+// the highest, include/level_scaling.h), clamped to the area's corridor
 // {map section, floor, ceiling} below. Areas missing there are not scaled.
 // Levels in trainers_hns.party only set the gaps within a team.
 // =====================================================================

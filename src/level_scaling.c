@@ -239,22 +239,39 @@ bool32 LevelScalingActive(void)
     return GetScalingRules() != NULL;
 }
 
-// Anchor: highest level in the party, eggs excluded (0 = no Pokemon).
+// Anchor: mean of the three highest party levels (fewer Pokemon: their mean), rounded,
+// but at least the highest level - SCALING_ANCHOR_MAX_DROP. Eggs excluded (0 = no Pokemon).
+// See docs/origin_jade/DECISIONS.md, D-012.
 static u8 GetScalingAnchor(void)
 {
-    u32 i;
-    u8 best = 0;
+    u8 top[3] = {0}; // highest first
+    u32 i, j, count = 0, sum = 0, anchor;
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
+        u8 level, temp;
+
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE)
             continue;
         if (GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG, NULL))
             continue;
-        if (GetMonData(&gPlayerParty[i], MON_DATA_LEVEL, NULL) > best)
-            best = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL, NULL);
+        level = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL, NULL);
+        for (j = 0; j < ARRAY_COUNT(top); j++)
+        {
+            if (level > top[j])
+                SWAP(level, top[j], temp);
+        }
+        if (count < ARRAY_COUNT(top))
+            count++;
     }
-    return best;
+    if (count == 0)
+        return 0;
+    for (i = 0; i < count; i++)
+        sum += top[i];
+    anchor = (sum + count / 2) / count;
+    if (anchor + SCALING_ANCHOR_MAX_DROP < top[0])
+        anchor = top[0] - SCALING_ANCHOR_MAX_DROP;
+    return anchor;
 }
 
 static void GetCorridor(const struct ScalingRules *rules, u8 *floor, u8 *ceiling)
