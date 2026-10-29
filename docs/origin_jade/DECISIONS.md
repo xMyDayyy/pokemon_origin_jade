@@ -203,6 +203,9 @@ dated 2026-10-10 or later were decided directly.
     and 35 (Route 16), Marowak 30, the Power Plant's Electrode 35,
     Hitmonlee and Hitmonchan 35, Lapras 35, the fossils 40, Magikarp 10,
     the Game Corner prizes 25.
+  - The average player's team at the title: about 49/44/43/43/42/42 (mean
+    44, anchor 45). The debug menu's Johto test starts with such a team
+    (`tools/make_kanto_complete.py`).
   - Obedience for traded Pokemon follows the number of Kanto badges (10,
     then +5 per badge, 50 with eight); after the Johto title every Pokemon
     obeys (D-031).
