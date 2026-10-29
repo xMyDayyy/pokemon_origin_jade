@@ -215,24 +215,28 @@ dated 2026-10-10 or later were decided directly.
   ladder: decision 2026-10-29.
 
 ### D-012 Johto and Hoenn: dynamic level scaling
-- **Status:** Active (anchor, Johto band and corridors changed 2026-10-29)
+- **Status:** Active (anchor, bands and corridors changed 2026-10-29)
 - **Decision:** Johto and Hoenn scale to the player (`src/level_scaling.c`,
   `include/config/johto_scaling.h`, `include/config/hoenn_scaling.h`).
   - Anchor, in every region: the mean of the three highest party levels,
     rounded, but at most `SCALING_ANCHOR_MAX_DROP` (8) below the highest
     level (`include/level_scaling.h`). Weak fillers do not pull the levels
     down: a level 100 Pokemon with five level 1 Pokemon gives 92.
-  - Trainers: anchor -3..+0 (Hoenn -5..+3), a boss's ace +1 (Hoenn +5).
-    Wild Pokemon: anchor -10..-4. Corridors per map section clamp both.
+  - Trainers: anchor -3..+0 (Hoenn -5..+0), a boss's ace +1. Wild Pokemon:
+    anchor -10..-4. Corridors per map section clamp both.
   - Johto corridors: Routes 26 and 27, Tohjo Falls 40-80; arrival up to
     Bugsy 41-50 (Cherrygrove 41-48); Whitney and Morty 44-53 (Goldenrod and
     Ecruteak 44-61: Radio Tower, theater); Chuck and Jasmine 47-55; Rocket
     Hideout and Pryce 50-58; Clair, Tin Tower and the Whirl Islands 56-64;
     Victory Road and the league 58-65; Mt. Silver 70-90 (Red unscaled).
+  - Hoenn corridors: entry 65-85, early middle 70-90, late middle 75-95,
+    final stretch 80-100, endgame 85-100; side areas reached later sit a
+    tier higher.
   - The average player of D-011 meets the bosses at about +1..+2.5 over the
-    team mean in Johto. Team at the Johto title about 70/63/63/62/60/60
-    (mean 63, anchor 65). Rushers fall behind and have to train; stronger
-    teams meet the corridor ceilings.
+    team mean in Johto and +0..+3 in Hoenn. Team at the Johto title about
+    70/63/63/62/60/60 (mean 63, anchor 65), at the Hoenn league about
+    100/88/88/87/85/85 (mean 89, anchor 92). Rushers fall behind and have
+    to train; stronger teams meet the corridor ceilings.
   - Experience is Gen 5 in every region (D-042).
   Johto's gym leaders have six Pokemon; route trainers at least three
   (`tools/fill_johto_parties.py`: trainer class beats the local wild pool,
