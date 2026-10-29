@@ -1669,7 +1669,7 @@ static void MatchCall_BufferCallMessageTextByRematchTeam(const match_call_text_d
     }
     else
     {
-        if (FlagGet(FLAG_SYS_GAME_CLEAR))
+        if (FlagGet(FLAG_IS_HOENN_CHAMPION))
         {
             do
             {

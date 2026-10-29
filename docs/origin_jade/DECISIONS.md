@@ -119,7 +119,8 @@ dated 2026-10-10 or later were decided directly.
   - Hoenn badges are `VAR_HOENN_BADGES` (`src/hoenn_badges.c`).
   - Titles: `FLAG_IS_KANTO_CHAMPION`, `FLAG_IS_JOHTO_CHAMPION`,
     `FLAG_IS_HOENN_CHAMPION`. `FLAG_SYS_GAME_CLEAR` is first set by the Kanto
-    league. `FLAG_IS_CHAMPION` is a legacy flag (set by the Johto and Hoenn
+    league; Hoenn post-game checks use `FLAG_IS_HOENN_CHAMPION` (D-040).
+    `FLAG_IS_CHAMPION` is a legacy flag (set by the Johto and Hoenn
     halls of fame) - do not use it for Kanto or Johto logic.
 - **Evidence:** f5aa45302b, 20ceec5a1e, 161ede4b96, 9f4cf4bb86.
 
@@ -795,6 +796,14 @@ dated 2026-10-10 or later were decided directly.
     (Emerald's meaning; it places her on Route 104 until Rustboro or
     Dewford). Route 103 registers May through `FLAG_ENABLE_RIVAL_MATCH_CALL`
     only, so Route 104 shows her PokeCom line once.
+  - Hoenn post-game checks use `FLAG_IS_HOENN_CHAMPION`, not
+    `FLAG_SYS_GAME_CLEAR`: the Hoenn gym leaders' rematch calls, Secret Base
+    battles, TV mass outbreaks, PokeNews and the Battle Tower profile show,
+    post-game contest opponents.
+  - `FLAG_SYS_GAME_CLEAR` keeps the meaning "a league was won": the PC's
+    Hall of Fame option, easy chat word groups, link and Colosseum/XD data,
+    Kanto's own scripts, the gatehouse (D-009), the Trainer Hill prize lists
+    and Prof. Birch staying in his lab (he never does Emerald's field work).
   - Other builds map the new names to the vanilla flags and vars
     (`include/constants/flags.h`, `vars.h`).
 - **Evidence:** full Kanto run analysis, decision 2026-10-29.
