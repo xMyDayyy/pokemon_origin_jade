@@ -32,22 +32,39 @@ Route15_WestEntrance_2F_EventScript_Aide::
 	call Route15_WestEntrance_2F_EventScript_GetAideRequestInfo
 	goto_if_lt VAR_0x8006, REQUIRED_CAUGHT_MONS, Aide_EventScript_HaventCaughtEnough
 	msgbox Route15_WestEntrance_2F_Text_GreatHereYouGo
+	@ Origin Jade: the held Exp. Share if the key item is already in the bag.
+	checkitem ITEM_EXP_SHARE
+	goto_if_eq VAR_RESULT, TRUE, Route15_WestEntrance_2F_EventScript_GiveSmallExpShare
 	checkitemspace ITEM_EXP_SHARE
 	goto_if_eq VAR_RESULT, FALSE, Aide_EventScript_NoRoomForItem
 	giveitem_msg Route15_WestEntrance_2F_Text_ReceivedItemFromAide, ITEM_EXP_SHARE
+Route15_WestEntrance_2F_EventScript_ReceivedExpShare::
 	setflag FLAG_GOT_EXP_SHARE_FROM_OAKS_AIDE
 	msgbox Route15_WestEntrance_2F_Text_ExplainExpShare
 	release
 	end
+
+Route15_WestEntrance_2F_EventScript_GiveSmallExpShare::
+	checkitemspace ITEM_EXP_SHARE_SMALL
+	goto_if_eq VAR_RESULT, FALSE, Aide_EventScript_NoRoomForItem
+	giveitem_msg Route15_WestEntrance_2F_Text_ReceivedItemFromAide, ITEM_EXP_SHARE_SMALL
+	goto Route15_WestEntrance_2F_EventScript_ReceivedExpShare
 
 Route15_WestEntrance_2F_EventScript_AlreadyGotExpShare::
 	msgbox Route15_WestEntrance_2F_Text_ExplainExpShare
 	release
 	end
 
+@ Origin Jade: names the item the aide gives (see above).
 Route15_WestEntrance_2F_EventScript_GetAideRequestInfo::
 	buffernumberstring STR_VAR_1, REQUIRED_CAUGHT_MONS
+	checkitem ITEM_EXP_SHARE
+	goto_if_eq VAR_RESULT, TRUE, Route15_WestEntrance_2F_EventScript_BufferSmallExpShare
 	bufferitemname STR_VAR_2, ITEM_EXP_SHARE
+	return
+
+Route15_WestEntrance_2F_EventScript_BufferSmallExpShare::
+	bufferitemname STR_VAR_2, ITEM_EXP_SHARE_SMALL
 	return
 
 Route15_WestEntrance_2F_Text_GiveItemIfCaughtEnough::
@@ -96,14 +113,14 @@ Route15_WestEntrance_2F_Text_ReceivedItemFromAide::
 
 Route15_WestEntrance_2F_Text_ExplainExpShare::
 #if GERMAN
-	.string "Der EP-Teiler kann einem Pokémon zum\n"
-	.string "Tragen gegeben werden.\l"
-	.string "Mit dem EP-Teiler bekommt das Pokémon,\l"
-	.string "das ihn trägt, nach einem Kampf\l"
-	.string "E.-Punkte, ohne gekämpft zu haben.$"
+	.string "Der Kleine EP-Teiler kann einem\n"
+	.string "Pokémon zum Tragen gegeben werden.\l"
+	.string "Das Pokémon, das ihn trägt, bekommt\l"
+	.string "nach einem Kampf E.-Punkte, ohne\l"
+	.string "gekämpft zu haben.$"
 #else
-	.string "EXP. SHARE is an item to be held\n"
-	.string "by a POKéMON.\p"
+	.string "This EXP. SHARE is an item to be\n"
+	.string "held by a POKéMON.\p"
 	.string "The POKéMON will receive a share\n"
 	.string "of the EXP. Points without having\l"
 	.string "to battle.$"

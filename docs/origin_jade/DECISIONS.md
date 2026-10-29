@@ -822,6 +822,13 @@ dated 2026-10-10 or later were decided directly.
     Rematch stages: D-012.
   - The Trainer Hill by Route 40 is Johto post-game and opens with
     `FLAG_IS_JOHTO_CHAMPION` (HnS: `FLAG_SYS_GAME_CLEAR`).
+  - Key items are not handed out twice: Silph's president takes the Card
+    Key (Türöffner) back after Giovanni, so the Radio Tower director's Card
+    Key story runs as in HnS; Goldenrod's bike shop gives no second Bicycle
+    and sets `FLAG_GOT_BICYCLE` when it gives one; the Coin Case ball in
+    Goldenrod's underground holds a Nugget if the Coin Case is in the bag
+    and otherwise sets `FLAG_GOT_COIN_CASE`; the aide on Route 15 gives the
+    Kleiner EP-Teiler (every game starts with the Exp. Share key item).
   - Level-cap challenge (`src/caps.c`): Kanto badges table until the Kanto
     title, then 70 until `FLAG_IS_JOHTO_CHAMPION`, then no cap.
 - **Evidence:** full Kanto run analysis, decision 2026-10-29.

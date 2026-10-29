@@ -346,7 +346,19 @@ GoldenrodCity_UndergroundTunnel_EventScript_DoorAlreadyOpened::
 
 
 GoldenrodCity_UndergroundTunnel_EventScript_Item_CoinCase::
+	@ Origin Jade: a Nugget instead if the Coin Case from Celadon is in the bag.
+	checkitem ITEM_COIN_CASE
+	goto_if_eq VAR_RESULT, TRUE, GoldenrodCity_UndergroundTunnel_EventScript_Item_CoinCaseNugget
 	finditem ITEM_COIN_CASE
+	@ Origin Jade: Celadon's Game Corner and restaurant check FLAG_GOT_COIN_CASE.
+	checkitem ITEM_COIN_CASE
+	goto_if_eq VAR_RESULT, FALSE, GoldenrodCity_UndergroundTunnel_EventScript_Item_CoinCaseEnd
+	setflag FLAG_GOT_COIN_CASE
+GoldenrodCity_UndergroundTunnel_EventScript_Item_CoinCaseEnd::
+	end
+
+GoldenrodCity_UndergroundTunnel_EventScript_Item_CoinCaseNugget::
+	finditem ITEM_NUGGET
 	end
 
 GoldenrodCity_UndergroundTunnel_EventScript_Item_SuperPotion::
