@@ -118,7 +118,7 @@ Route36_EventScript_SudoWoodoWater::
 	delay 40
 	waitmoncry
 	setvar VAR_LAST_TALKED, LOCALID_ROUTE36_SUDOWOODO
-	setwildbattle SPECIES_SUDOWOODO, 60
+	setwildbattle SPECIES_SUDOWOODO, 50
 	@setflag FLAG_SYS_CTRL_OBJ_DELETE
 	dowildbattle
 	@clearflag FLAG_SYS_CTRL_OBJ_DELETE

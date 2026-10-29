@@ -772,8 +772,8 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-27.
 
 ### D-039 Johto's static and legendary levels fit the scaling
-- **Status:** Active (2026-10-27, player levels 2026-10-29). Replaces
-  the fixed levels of D-026 and D-031 for Johto.
+- **Status:** Active (2026-10-27, event and player levels 2026-10-29).
+  Replaces the fixed levels of D-026 and D-031 for Johto.
 - **Decision:** Johto's legendaries sit at 75-80 by story point; the other
   strong statics fit the corridor (D-012) where they can first be met. None
   of them falls below the top of the map's wild band afterwards.
@@ -785,12 +785,12 @@ dated 2026-10-10 or later were decided directly.
       theater): 78 (50);
     - the Lugia or Ho-Oh not chosen (after the first Johto title): 80 (70);
     - Deoxys, Birth Island (after the Johto title): 80 (70);
-    - Sudowoodo, Route 36 (after Whitney, corridor 50-61): 60 (20);
-    - Union Cave's Lapras (Surf, after Morty): 60 (20);
-    - the red Gyarados, Lake of Rage (about 6 badges, corridor 60-73):
-      70 (30);
-    - the Rocket Hideout's three Electrode (corridor 60-76): 65 (30);
-    - the Kampfzone's Sudowoodo (after the Johto title): 75 (40).
+    - Sudowoodo, Route 36 (after Whitney, corridor 44-53): 50 (20);
+    - Union Cave's Lapras (Surf, after Morty): 55 (20);
+    - the red Gyarados, Lake of Rage (about 6 badges, corridor 50-58):
+      55 (30);
+    - the Rocket Hideout's three Electrode (corridor 50-58): 60 (30);
+    - the Kampfzone's Sudowoodo (after the Johto title): 65 (40).
     Route 41's four Tentacruel stay at 100: they guard the Whirl Islands
     (unwinnable, healed after the battle), they are not an encounter: not
     catchable, never shiny (`FLAG_NO_WILD_CATCHING` with
