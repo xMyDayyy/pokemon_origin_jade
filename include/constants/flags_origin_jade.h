@@ -140,6 +140,10 @@
 #define FLAG_ROLLED_ENDING_CREDITS                           (OJ_TRAINER_FLAGS_HOENN_END + 10)
 // The game designer in Lilycove's Cove Lily Motel gave the Shiny Charm.
 #define FLAG_RECEIVED_SHINY_CHARM                            (OJ_TRAINER_FLAGS_HOENN_END + 11)
+// Mr. Stone's PokeNav scene at Devon done (FLAG_RECEIVED_POKENAV is Mom's PokeCom).
+#define FLAG_HOENN_RECEIVED_POKENAV                          (OJ_TRAINER_FLAGS_HOENN_END + 12)
+// May registered on Route 104; she waits there until Rustboro or Dewford.
+#define FLAG_HOENN_REGISTER_RIVAL_POKENAV                    (OJ_TRAINER_FLAGS_HOENN_END + 13)
 
 // ---------------------------------------------------------------------
 // Cross-region (OJ_FLAGS_GLOBAL + 0 to + 63)

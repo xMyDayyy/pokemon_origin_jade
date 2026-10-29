@@ -45,7 +45,6 @@ Route103_EventScript_RivalMayHns::
 	msgbox Route103_Text_MayHnsLetsBattle, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_TREECKO, Route103_Text_MayHnsDefeated
 	msgbox Route103_Text_MayHnsAfterBattle, MSGBOX_DEFAULT
-	setflag FLAG_REGISTER_RIVAL_POKENAV
 	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
 	goto Route103_EventScript_RivalExitHns
 	end

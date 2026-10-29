@@ -788,6 +788,15 @@ dated 2026-10-10 or later were decided directly.
     The Kanto title fills Saffron's club, the first Hoenn title Lilycove's;
     the fans are separate. Link battles, contests, Secret Base battles and
     the HnS Battle Tower count for Lilycove's club, as in Emerald.
+  - `FLAG_HOENN_RECEIVED_POKENAV`: Mr. Stone's PokeNav scene at Devon (Mr.
+    Briney's location, the Devon scientist, the Rustboro boy).
+    `FLAG_RECEIVED_POKENAV` stays Mom's PokeCom and is not read any more.
+  - `FLAG_HOENN_REGISTER_RIVAL_POKENAV`: May registered on Route 104
+    (Emerald's meaning; it places her on Route 104 until Rustboro or
+    Dewford). Route 103 registers May through `FLAG_ENABLE_RIVAL_MATCH_CALL`
+    only, so Route 104 shows her PokeCom line once.
+  - Other builds map the new names to the vanilla flags and vars
+    (`include/constants/flags.h`, `vars.h`).
 - **Evidence:** full Kanto run analysis, decision 2026-10-29.
 
 ---

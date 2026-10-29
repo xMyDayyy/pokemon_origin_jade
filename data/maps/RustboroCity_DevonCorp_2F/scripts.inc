@@ -41,7 +41,7 @@ RustboroCity_DevonCorp_2F_EventScript_PokenavScientist::
 	lock
 	faceplayer
 	call_if_eq VAR_HOENN_FOSSIL_RESURRECTION_STATE, 1, RustboroCity_DevonCorp_2F_EventScript_SetHoennFossilReady
-	goto_if_set FLAG_RECEIVED_POKENAV, RustboroCity_DevonCorp_2F_EventScript_HasPokenav
+	goto_if_set FLAG_HOENN_RECEIVED_POKENAV, RustboroCity_DevonCorp_2F_EventScript_HasPokenav
 	msgbox RustboroCity_DevonCorp_2F_Text_IMadePokenav, MSGBOX_DEFAULT
 	release
 	end

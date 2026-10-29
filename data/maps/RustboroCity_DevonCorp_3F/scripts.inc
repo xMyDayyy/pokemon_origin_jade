@@ -55,7 +55,7 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident::
 	waitfanfare
 #endif
 	setflag FLAG_SYS_POKENAV_GET
-	setflag FLAG_RECEIVED_POKENAV
+	setflag FLAG_HOENN_RECEIVED_POKENAV
 #if IS_HNS
 	@ Origin Jade: adds Mr. Stone to the PokeNav contacts.
 	setflag FLAG_MET_MR_STONE
