@@ -15,7 +15,7 @@ struct TrainerFanClub
     u8 fanFlags;
 };
 
-#define TRAINER_FAN_CLUB ((struct TrainerFanClub *)GetVarPointer(VAR_FANCLUB_FAN_COUNTER))
+#define TRAINER_FAN_CLUB ((struct TrainerFanClub *)GetVarPointer(VAR_SAFFRON_FANCLUB_FAN_COUNTER))
 
 #define GET_TRAINER_FAN_CLUB_FLAG(flag) (fanClub->fanFlags >> (flag) & 1)
 #define SET_TRAINER_FAN_CLUB_FLAG(flag) (fanClub->fanFlags |= 1 << (flag))
@@ -39,8 +39,8 @@ static void SetPlayerGotFirstFans(struct TrainerFanClub *);
 
 void ResetTrainerFanClub(void)
 {
-    VarSet(VAR_FANCLUB_FAN_COUNTER, 0);
-    VarSet(VAR_FANCLUB_LOSE_FAN_TIMER, 0);
+    VarSet(VAR_SAFFRON_FANCLUB_FAN_COUNTER, 0);
+    VarSet(VAR_SAFFRON_FANCLUB_LOSE_FAN_TIMER, 0);
 }
 
 void Script_TryLoseFansFromPlayTimeAfterLinkBattle(void)
@@ -53,7 +53,7 @@ static void TryLoseFansFromPlayTimeAfterLinkBattle(struct TrainerFanClub *fanClu
     if (DidPlayerGetFirstFans(fanClub))
     {
         TryLoseFansFromPlayTime(fanClub);
-        VarSet(VAR_FANCLUB_LOSE_FAN_TIMER, gSaveBlock2Ptr->playTimeHours);
+        VarSet(VAR_SAFFRON_FANCLUB_LOSE_FAN_TIMER, gSaveBlock2Ptr->playTimeHours);
     }
 }
 
@@ -68,7 +68,7 @@ static void UpdateTrainerFanClubGameClear(struct TrainerFanClub *fanClub)
     {
         SetPlayerGotFirstFans(fanClub);
         SetInitialFansOfPlayer(fanClub);
-        VarSet(VAR_FANCLUB_LOSE_FAN_TIMER, gSaveBlock2Ptr->playTimeHours);
+        VarSet(VAR_SAFFRON_FANCLUB_LOSE_FAN_TIMER, gSaveBlock2Ptr->playTimeHours);
         FlagClear(FLAG_HIDE_SAFFRON_FAN_CLUB_BLACKBELT);
         FlagClear(FLAG_HIDE_SAFFRON_FAN_CLUB_ROCKER);
         FlagClear(FLAG_HIDE_SAFFRON_FAN_CLUB_WOMAN);
@@ -208,19 +208,19 @@ static void TryLoseFansFromPlayTime(struct TrainerFanClub *fanClub)
         {
             if (GetNumFansOfPlayerInTrainerFanClub(fanClub) < 5)
             {
-                VarSet(VAR_FANCLUB_LOSE_FAN_TIMER, gSaveBlock2Ptr->playTimeHours);
+                VarSet(VAR_SAFFRON_FANCLUB_LOSE_FAN_TIMER, gSaveBlock2Ptr->playTimeHours);
                 break;
             }
             if (i == NUM_TRAINER_FAN_CLUB_MEMBERS)
                 break;
 
-            timer = VarGet(VAR_FANCLUB_LOSE_FAN_TIMER);
+            timer = VarGet(VAR_SAFFRON_FANCLUB_LOSE_FAN_TIMER);
             if (gSaveBlock2Ptr->playTimeHours - timer < 12)
                 break;
 
             PlayerLoseRandomTrainerFan(fanClub);
-            timer = VarGet(VAR_FANCLUB_LOSE_FAN_TIMER);
-            VarSet(VAR_FANCLUB_LOSE_FAN_TIMER, timer + 12);
+            timer = VarGet(VAR_SAFFRON_FANCLUB_LOSE_FAN_TIMER);
+            VarSet(VAR_SAFFRON_FANCLUB_LOSE_FAN_TIMER, timer + 12);
             i++;
         }
     }

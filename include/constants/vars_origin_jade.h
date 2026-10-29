@@ -33,6 +33,9 @@
 // (LO: local ids 1-16, HI: 17-32). Cleared on every map change.
 #define VAR_VS_SEEKER_REMATCH_LO    (OJ_VARS_KANTO + 2)
 #define VAR_VS_SEEKER_REMATCH_HI    (OJ_VARS_KANTO + 3)
+// Saffron's Trainer Fan Club (src/trainer_fan_club.c); VAR_FANCLUB_* are Lilycove's.
+#define VAR_SAFFRON_FANCLUB_FAN_COUNTER      (OJ_VARS_KANTO + 4)
+#define VAR_SAFFRON_FANCLUB_LOSE_FAN_TIMER   (OJ_VARS_KANTO + 5)
 
 // ---------------------------------------------------------------------
 // Johto (OJ_VARS_JOHTO + 0 to + 39)

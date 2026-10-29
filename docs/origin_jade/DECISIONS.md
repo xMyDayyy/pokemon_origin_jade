@@ -777,6 +777,19 @@ dated 2026-10-10 or later were decided directly.
   - Kanto (D-011) and Hoenn statics are unchanged; the owner decides later.
 - **Evidence:** decision 2026-10-27.
 
+### D-040 Hoenn keeps its own state where a finished Kanto would leak into it
+- **Status:** Active (2026-10-29)
+- **Decision:** A finished Kanto must not unlock or change Hoenn content.
+  Where FRLG and Emerald share a flag or var, Hoenn gets its own state or
+  checks the Hoenn title:
+  - Trainer Fan Clubs: Saffron's club (`src/trainer_fan_club.c`) uses
+    `VAR_SAFFRON_FANCLUB_FAN_COUNTER` / `VAR_SAFFRON_FANCLUB_LOSE_FAN_TIMER`;
+    `VAR_FANCLUB_FAN_COUNTER` / `VAR_FANCLUB_LOSE_FAN_TIMER` are Lilycove's.
+    The Kanto title fills Saffron's club, the first Hoenn title Lilycove's;
+    the fans are separate. Link battles, contests, Secret Base battles and
+    the HnS Battle Tower count for Lilycove's club, as in Emerald.
+- **Evidence:** full Kanto run analysis, decision 2026-10-29.
+
 ---
 
 ## Planned, not built yet
