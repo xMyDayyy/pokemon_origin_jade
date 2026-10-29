@@ -18,10 +18,10 @@
 #define KANTO_LEVEL_SCALING          TRUE  // master switch
 
 #define KANTO_SCALING_TRAINER_BELOW  3     // Trainer band: anchor - 3 ...
-#define KANTO_SCALING_TRAINER_ABOVE  2     // ... up to anchor + 2
+#define KANTO_SCALING_TRAINER_ABOVE  0     // ... up to the anchor
 #define KANTO_SCALING_WILD_BELOW     10    // Wild band: anchor - 10 ...
 #define KANTO_SCALING_WILD_ABOVE     4     // ... up to anchor - 4
-#define KANTO_SCALING_BOSS_EXTRA     1     // Boss ace: anchor + 2 + 1
+#define KANTO_SCALING_BOSS_EXTRA     1     // Boss ace: anchor + 1
 
 // Trainers with an original level of at least this are not scaled (none in Kanto today).
 #define KANTO_SCALING_FIXED_MIN_LEVEL 77
