@@ -42,8 +42,8 @@ static const u8 sLevelCapTable_Hard[] =
     [8] = 54,
 };
 
-// Post-league caps, matching HnS: beating the Johto Elite Four raises the cap to
-// 70 for the Kanto half, and only beating the Kanto league removes it entirely.
+// Post-league caps as in HnS, in Origin Jade's order: the first title (Kanto)
+// raises the cap to 70 for the second region (Johto), the Johto title removes it.
 #define KANTO_MAX_LEVEL 70
 
 u32 GetCurrentLevelCap(void)
@@ -70,8 +70,7 @@ u32 GetCurrentLevelCap(void)
             badgeCount = 8;
 
 #if IS_HNS
-        // Origin Jade: FLAG_IS_CHAMPION is Johto's title.
-        if (FlagGet(FLAG_IS_CHAMPION))
+        if (FlagGet(FLAG_IS_JOHTO_CHAMPION))
             return MAX_LEVEL;
 
         if (FlagGet(FLAG_IS_KANTO_CHAMPION))

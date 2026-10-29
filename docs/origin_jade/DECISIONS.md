@@ -820,6 +820,10 @@ dated 2026-10-10 or later were decided directly.
   - Badge-based marts (`pokemart 0`: Violet City, the Trainer Hill clerk by
     Route 40) count Johto badges (`GetNumberOfBadges`, `src/shop.c`).
     Rematch stages: D-012.
+  - The Trainer Hill by Route 40 is Johto post-game and opens with
+    `FLAG_IS_JOHTO_CHAMPION` (HnS: `FLAG_SYS_GAME_CLEAR`).
+  - Level-cap challenge (`src/caps.c`): Kanto badges table until the Kanto
+    title, then 70 until `FLAG_IS_JOHTO_CHAMPION`, then no cap.
 - **Evidence:** full Kanto run analysis, decision 2026-10-29.
 
 ---
