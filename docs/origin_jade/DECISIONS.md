@@ -183,18 +183,28 @@ dated 2026-10-10 or later were decided directly.
 
 ## Balancing
 
-### D-011 Kanto: hand-set level ladder up to 52
-- **Status:** Active
+### D-011 Kanto: hand-set level ladder up to 47
+- **Status:** Active (ladder changed 2026-10-29)
 - **Decision:** Kanto's levels are set by hand and end with the champion at
-  52; legendaries at most 40. Teams rise monotonically, at most two levels
-  below the ace; route trainers sit 3-5 levels below the next boss. The
-  Exp. Share is on from the start and the level band is tuned for it
-  (`B_SPLIT_EXP` Gen 5). Obedience for traded Pokemon follows the number of
-  Kanto badges (10, then +5 per badge, 50 with eight); after the Johto
-  title every Pokemon obeys (D-031). Kanto's Elite Four rematch teams are
-  also capped at 52. After the Kanto title Kanto scales to the player and
-  these hand-set levels are the floor (D-031).
-- **Evidence:** b20f555d4d, 20fa75b584, 1662b679fc, 2f349b5ce2, af10c86033.
+  45-47. They follow an average player: about three of four trainers, half
+  of the other wild Pokemon fought, new species caught, the Exp. Share on
+  from the start (`B_SPLIT_EXP` Gen 5) and Gen 5 experience (D-042). That
+  player meets every boss within about two levels of the team mean; aces
+  may stand higher. Rushers have to train.
+  - Boss aces: Brock 10, Misty 17, Surge 21, Erika 28, Koga 36, Sabrina 39,
+    Blaine 42, Giovanni 42; the rival 7, 15, 20, 31, 38 and 43 (Route 22);
+    Giovanni at the Game Corner 31 and at Silph 39; Elite Four 43-46;
+    champion 45-47. Teams rise monotonically.
+  - Route and dungeon trainers moved with their section's next boss
+    (`tools/shift_kanto_ladder.py`).
+  - Elite Four and champion rematch teams: 47 (D-015).
+  - Obedience for traded Pokemon follows the number of Kanto badges (10,
+    then +5 per badge, 50 with eight); after the Johto title every Pokemon
+    obeys (D-031).
+  - After the Kanto title Kanto scales to the player and these hand-set
+    levels are the floor (D-031).
+- **Evidence:** b20f555d4d, 20fa75b584, 1662b679fc, 2f349b5ce2, af10c86033;
+  ladder: decision 2026-10-29.
 
 ### D-012 Johto and Hoenn: dynamic level scaling
 - **Status:** Active (anchor changed 2026-10-29)
@@ -290,12 +300,13 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** 09aac39e14, 5b0269166d, f9bd3e5021 (Waterfall, Whirlpool).
 
 ### D-015 Kanto's Elite Four rematch after the Kanto title
-- **Status:** Active (2026-10-10)
+- **Status:** Active (2026-10-10, levels 2026-10-29)
 - **Decision:** After the Kanto title the Kanto Elite Four use their
   rematch teams, matching the rematch texts that already showed. FRLG picked
   the teams by `FLAG_IS_CHAMPION`, which only FRLG's postgame (One Island)
-  sets. The rematches end when the league changes (D-010).
-- **Evidence:** review 2026-10-09, decided 2026-10-10.
+  sets. The rematches end when the league changes (D-010). Their teams are
+  at level 47 (D-011) and scale from there (D-031).
+- **Evidence:** review 2026-10-09, decided 2026-10-10; levels 2026-10-29.
 
 ## Data, saves and maps (technical conventions)
 
@@ -616,7 +627,7 @@ dated 2026-10-10 or later were decided directly.
   day 2026-10-20.
 
 ### D-034 Kanto rematches through the VS Seeker
-- **Status:** Active (2026-10-20)
+- **Status:** Active (2026-10-20, levels 2026-10-29)
 - **Decision:** On FRLG maps every trainer with a FireRed/LeafGreen rematch
   can be fought again through the VS Seeker (Kampffahnder, Vermilion
   Pokemon Center): 157 trainers, without the Sevii rows (D-019). FRLG
@@ -626,10 +637,11 @@ dated 2026-10-10 or later were decided directly.
   - Teams by tier: VS Seeker received, 4 Kanto badges, 6 Kanto badges,
     Kanto title, Johto title. The newest team up to the current tier
     fights; a trainer without one fights his first team again.
-  - The first three tiers sit on the D-011 ladder (16-19, 30-31, 33-35);
-    from the Kanto title on the teams scale (D-031).
+  - The first three tiers sit on the D-011 ladder (18-21, 30-31, 37);
+    from the Kanto title on the teams scale (D-031). Route 6's rematch teams
+    (Ricky, Jeff, Isabelle) moved up with their first teams.
   - Before the Kanto title a rematch team whose highest level is below its
-    tier's floor (16, 29, 33) moves up as a whole until it reaches it and
+    tier's floor (18, 30, 37) moves up as a whole until it reaches it and
     evolves like Kanto's scaling (D-012: levels from
     `src/data/trainer_evo_levels.h`, 10 % of the steps skipped, skips and
     branches fixed per rematch team and party slot, rare forms never)
