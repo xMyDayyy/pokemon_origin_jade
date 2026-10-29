@@ -837,9 +837,12 @@ dated 2026-10-10 or later were decided directly.
   will be redesigned (2026-10-10). Do not implement in the meantime.
 - **O-003** Resolved 2026-10-15 (D-029).
 - **O-004** Resolved 2026-10-15 (D-026).
-- **O-005** Resolved 2026-10-12: Kanto never sets Bill's PC flag, the
-  Celadon Eevee no longer sets Bill's `FLAG_GOT_EEVEE`, and the radio card
-  stays (D-024).
+- **O-005** Resolved 2026-10-12: Kanto never sets HnS's `FLAG_SYS_PC_BILL`
+  (Goldenrod's first visit clears it, Ecruteak's Pokemon Center sets it; it
+  only drives Bill's mother in Goldenrod). Bill's Sea Cottage sets
+  `FLAG_SYS_PC_LANETTE`, which `flags_hoenn_de.h` moves to the Hoenn block,
+  away from HnS's alias of `FLAG_SYS_PC_BILL` (O-021). The Celadon Eevee no
+  longer sets Bill's `FLAG_GOT_EEVEE`, and the radio card stays (D-024).
 - **O-006** Resolved 2026-10-15 (D-030).
 - **O-007** Resolved 2026-10-15 (D-032).
 - **O-008** Resolved 2026-10-21: the Day Care hands out the Ovalpin with the
@@ -873,6 +876,16 @@ dated 2026-10-10 or later were decided directly.
 - **O-019** Resolved 2026-10-26: Surskit, Roselia, Zangoose and Lunatone are
   wild in Hoenn; Masquerain, Budew and Roserade follow by level, breeding and
   the Shiny Stone (D-037).
+- **O-020** The Day Cares of Route 5, Route 34 and Route 117 share one save
+  slot (`gSaveBlock1Ptr->daycare`, `FLAG_PENDING_DAYCARE_EGG`): Pokemon and
+  eggs left in one region can be collected in the others.
+- **O-021** Bill's PC name: `FLAG_SYS_PC_LANETTE` from Bill's Sea Cottage
+  names the storage "Bills PC" in Kanto, Johto and Hoenn alike (Lanette on
+  Route 114 sets the same flag). HnS's "Jemandes PC" until Ecruteak and
+  Emerald's until Lanette do not occur.
+- **O-022** Nuzlocke: Kanto's Route 22 and HnS's `Route22_hns` share
+  `MAPSEC_ROUTE_22` (one first encounter for both); `MAPSEC_INDIGO_PLATEAU`
+  is shared too, with no wild table there yet.
 
 ## Superseded decisions (kept for the record)
 
