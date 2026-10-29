@@ -44,6 +44,7 @@
 #if IS_HNS
 #include "constants/flags.h"
 #include "event_data.h"
+#include "johto_badges.h"
 #endif
 
 #define TAG_SCROLL_ARROW   2100
@@ -969,18 +970,11 @@ static void SetShopMenuCallback(void (*callback)(void))
 }
 
 #if IS_HNS
+// Origin Jade: only Johto marts use the badge list (Violet City, the Trainer
+// Hill by Route 40, whose mapsec counts as Hoenn), so they count Johto badges (D-007).
 static u8 GetNumberOfBadges(void)
 {
-    u16 badgeFlag;
-    u8 count = 0;
-
-    for (badgeFlag = FLAG_BADGE01_GET; badgeFlag < FLAG_BADGE01_GET + NUM_BADGES; badgeFlag++)
-    {
-        if (FlagGet(badgeFlag))
-            count++;
-    }
-
-    return count;
+    return GetJohtoBadgeCount();
 }
 #endif
 

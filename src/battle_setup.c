@@ -59,7 +59,10 @@
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
 #include "fishing.h"
+#include "hoenn_badges.h"
+#include "johto_badges.h"
 #include "nuzlocke.h"
+#include "regions.h"
 
 enum TransitionType
 {
@@ -2351,17 +2354,39 @@ static const u8 sRematchLevelCeilingByBadges[NUM_BADGES + 1] =
     [16] = MAX_LEVEL,
 };
 
+// Origin Jade: badges (0-8) of the region the trainer stands in (D-007).
 static u32 GetRematchBadgeCount(void)
 {
     u32 i, count = 0;
 
-    for (i = FLAG_BADGE01_GET; i < FLAG_BADGE01_GET + NUM_BADGES; i++)
+    switch (GetCurrentRegion())
     {
-        if (FlagGet(i))
-            count++;
+    case REGION_JOHTO:
+        return GetJohtoBadgeCount();
+    case REGION_HOENN:
+        return GetHoennBadgeCount();
+    default:
+        for (i = FLAG_BADGE01_GET; i <= FLAG_BADGE08_GET; i++)
+        {
+            if (FlagGet(i))
+                count++;
+        }
+        return count;
     }
+}
 
-    return count;
+// Origin Jade: title of the region the trainer stands in.
+static bool32 HasRematchRegionTitle(void)
+{
+    switch (GetCurrentRegion())
+    {
+    case REGION_JOHTO:
+        return FlagGet(FLAG_IS_JOHTO_CHAMPION);
+    case REGION_HOENN:
+        return FlagGet(FLAG_IS_HOENN_CHAMPION);
+    default:
+        return FlagGet(FLAG_IS_KANTO_CHAMPION);
+    }
 }
 
 static u32 GetTrainerPartyMaxLevel(u16 trainerId)
@@ -2388,8 +2413,8 @@ static s32 GetMaxRematchStageForBadges(const struct RematchTrainer *trainerEntry
     u32 i, levelCeiling;
     s32 maxStage = 1;
 
-    // Once the Kanto league is cleared there is nothing left to scale against.
-    if (FlagGet(FLAG_IS_KANTO_CHAMPION))
+    // After the region's title every stage is open.
+    if (HasRematchRegionTitle())
         return REMATCHES_COUNT - 1;
 
     levelCeiling = sRematchLevelCeilingByBadges[GetRematchBadgeCount()];

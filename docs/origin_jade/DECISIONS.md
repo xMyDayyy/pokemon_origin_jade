@@ -205,14 +205,16 @@ dated 2026-10-10 or later were decided directly.
   leaders have six Pokemon; route trainers at least three
   (`tools/fill_johto_parties.py`: trainer class beats the local wild pool,
   duplicate a Pokemon rather than break the class). Rematch teams scale
-  as well (every stage is below level 77); HnS's badge gate for rematch
-  stages (`GetMaxRematchStageForBadges`) is off because the Kanto title is
-  set before Johto. After a region's title its corridor ceilings become
-  100 (D-031). Scaled trainer Pokemon evolve at their evolution level,
-  level evolutions with extra conditions (Tyrogue's stats, Wurmple's
-  personality, gender, time) as well. Stone, trade and condition
-  evolutions (friendship, move, place) happen from the level from which
-  HnS 2.0.5's own trainers mostly field the evolved species: the lowest
+  as well (every stage is below level 77). HnS's badge gate for rematch
+  stages (`GetMaxRematchStageForBadges`, `src/battle_setup.c`) counts the
+  badges of the region the trainer stands in (Johto `VAR_JOHTO_BADGES`,
+  Hoenn `VAR_HOENN_BADGES`, D-007); that region's title opens every stage.
+  Kanto's rematches use the VS Seeker (D-034). After a region's title its
+  corridor ceilings become 100 (D-031). Scaled trainer Pokemon evolve at
+  their evolution level, level evolutions with extra conditions (Tyrogue's
+  stats, Wurmple's personality, gender, time) as well. Stone, trade and
+  condition evolutions (friendship, move, place) happen from the level from
+  which HnS 2.0.5's own trainers mostly field the evolved species: the lowest
   level L at which they field it (or a later stage) and, among all their
   Pokemon at L or higher, more often than its pre-evolution (e.g. Gengar
   25, Raichu 28, Politoed 38, Crobat 52, Magnezone 59). One line per
@@ -812,6 +814,14 @@ dated 2026-10-10 or later were decided directly.
     (`include/constants/flags.h`, `vars.h`).
 - **Evidence:** full Kanto run analysis, decision 2026-10-29.
 
+### D-041 Johto keeps its own state where a finished Kanto would leak into it
+- **Status:** Active (2026-10-29)
+- **Decision:** A finished Kanto must not unlock or change Johto content:
+  - Badge-based marts (`pokemart 0`: Violet City, the Trainer Hill clerk by
+    Route 40) count Johto badges (`GetNumberOfBadges`, `src/shop.c`).
+    Rematch stages: D-012.
+- **Evidence:** full Kanto run analysis, decision 2026-10-29.
+
 ---
 
 ## Planned, not built yet
@@ -886,6 +896,10 @@ dated 2026-10-10 or later were decided directly.
 - **O-022** Nuzlocke: Kanto's Route 22 and HnS's `Route22_hns` share
   `MAPSEC_ROUTE_22` (one first encounter for both); `MAPSEC_INDIGO_PLATEAU`
   is shared too, with no wild table there yet.
+- **O-023** Badge readers still on Kanto's count: `HasEnoughBadgesForRematch`
+  (all random Match Calls, "after Whitney" in HnS), the Gen-9 catch malus,
+  the challenge menu's trainer IV/EV tables, the continue window's badge
+  total (the save menu adds Johto and Hoenn).
 
 ## Superseded decisions (kept for the record)
 
