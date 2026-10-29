@@ -804,6 +804,10 @@ dated 2026-10-10 or later were decided directly.
     Hall of Fame option, easy chat word groups, link and Colosseum/XD data,
     Kanto's own scripts, the gatehouse (D-009), the Trainer Hill prize lists
     and Prof. Birch staying in his lab (he never does Emerald's field work).
+  - Mr. Stone's thank-you gift: every game starts with the Exp. Share (key
+    item); if it is in the bag he gives the held Kleiner EP-Teiler instead.
+  - Petalburg's Pokemon Center woman never reads `VAR_STARTER_MON` (Kanto's
+    starter) in Origin Jade (`#if IS_HNS`).
   - Other builds map the new names to the vanilla flags and vars
     (`include/constants/flags.h`, `vars.h`).
 - **Evidence:** full Kanto run analysis, decision 2026-10-29.
