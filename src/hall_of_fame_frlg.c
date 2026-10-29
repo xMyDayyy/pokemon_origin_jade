@@ -711,6 +711,14 @@ static void SetWarpsToRollCredits(void)
     ResetInitialPlayerAvatarState();
 }
 
+// Origin Jade: special at the end of the plateau scene. Undoes the popup and
+// music lock of SetWarpsToRollCredits, which FRLG's credits cleared.
+void ClearCreditsSceneState(void)
+{
+    FlagClear(FLAG_HIDE_MAP_NAME_POPUP);
+    gDisableMapMusicChangeOnMapLoad = MUSIC_DISABLE_OFF;
+}
+
 void CB2_InitHofPC(void)
 {
     switch (gMain.state)

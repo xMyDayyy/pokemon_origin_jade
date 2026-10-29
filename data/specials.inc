@@ -730,3 +730,4 @@ gSpecials::
 	def_special ReviveDefeatedLegendaries
 	def_special GameClearNoCredits
 	def_special GetWeekday
+	def_special ClearCreditsSceneState

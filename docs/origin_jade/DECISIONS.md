@@ -831,6 +831,9 @@ dated 2026-10-10 or later were decided directly.
     Kleiner EP-Teiler (every game starts with the Exp. Share key item).
   - The M.S. Aqua's arrival in Vermilion no longer carries HnS's Kanto
     reset.
+  - After each Kanto title the plateau scene ends with
+    `special ClearCreditsSceneState`, which restores map name popups, map
+    music and sound effects (FRLG's credits did this).
   - Level-cap challenge (`src/caps.c`): Kanto badges table until the Kanto
     title, then 70 until `FLAG_IS_JOHTO_CHAMPION`, then no cap.
 - **Evidence:** full Kanto run analysis, decision 2026-10-29.

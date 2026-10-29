@@ -105,6 +105,8 @@ IndigoPlateau_Exterior_EventScript_OakLeaves:
 	setvar VAR_MAP_SCENE_INDIGO_PLATEAU_EXTERIOR, 0
 	removeobject LOCALID_CREDITS_RIVAL
 	removeobject LOCALID_CREDITS_PROF_OAK
+	@ Origin Jade: no credits, so map name popups and map music come back here.
+	special ClearCreditsSceneState
 	@ Origin Jade: no credits, warp the player home to Pallet Town.
 	setrespawn HEAL_LOCATION_PALLET_TOWN
 	fadescreen FADE_TO_BLACK
