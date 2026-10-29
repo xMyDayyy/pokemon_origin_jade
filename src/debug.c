@@ -380,7 +380,7 @@ extern const u8 Debug_VarsNotSetBattleConfigMessage[];
 extern const u8 Debug_FlagsAndVarNotSetBattleConfigMessage[];
 extern const u8 Debug_EventScript_FontTest[];
 extern const u8 Debug_EventScript_HnsWarpOlivinePort[];
-extern const u8 Debug_EventScript_JohtoTestWarpOaksLab[];
+extern const u8 Debug_EventScript_JohtoTestWarpHome[];
 extern const u8 Debug_EventScript_CheckEVs[];
 extern const u8 Debug_EventScript_CheckIVs[];
 extern const u8 Debug_EventScript_GivePokerus[];
@@ -1993,143 +1993,87 @@ static void DebugAction_Util_KantoTest(u8 taskId)
 #endif
 
 #if IS_HNS
-// Test tool: sets the save to the end of Kanto and warps into Prof. Oak's
-// lab for the GS Ball handover.
+#include "data/debug_kanto_complete.h"
+
+static void GiveKantoCompleteMon(u16 species, u8 level)
+{
+    struct Pokemon mon;
+
+    CreateRandomMon(&mon, species, level);
+    GiveScriptedMonToPlayer(&mon, PARTY_SIZE);
+}
+
+// Test tool: on a new game, sets the state right after the first Kanto Hall of
+// Fame (tools/make_kanto_complete.py) and warps home to Pallet Town.
 static void DebugAction_Util_JohtoTest(u8 taskId)
 {
-    // Fly points: FLAG_VISITED_* = fly list, FLAG_WORLD_MAP_* = region map marker.
-    static const u16 sKantoWorldMapFlags[] =
-    {
-        FLAG_WORLD_MAP_PALLET_TOWN,      FLAG_WORLD_MAP_VIRIDIAN_CITY,
-        FLAG_WORLD_MAP_PEWTER_CITY,      FLAG_WORLD_MAP_CERULEAN_CITY,
-        FLAG_WORLD_MAP_LAVENDER_TOWN,    FLAG_WORLD_MAP_VERMILION_CITY,
-        FLAG_WORLD_MAP_CELADON_CITY,     FLAG_WORLD_MAP_FUCHSIA_CITY,
-        FLAG_WORLD_MAP_SAFFRON_CITY,     FLAG_WORLD_MAP_CINNABAR_ISLAND,
-        FLAG_WORLD_MAP_INDIGO_PLATEAU_EXTERIOR,
-        FLAG_WORLD_MAP_ROUTE4_POKEMON_CENTER_1F,
-        FLAG_WORLD_MAP_ROUTE10_POKEMON_CENTER_1F,
-    };
-    static const u16 sKantoVisitedFlags[] =
-    {
-        FLAG_VISITED_PALLET_TOWN,    FLAG_VISITED_OAKS_LAB,
-        FLAG_VISITED_VIRIDIAN_CITY,  FLAG_VISITED_PEWTER_CITY,
-        FLAG_VISITED_CERULEAN_CITY,  FLAG_VISITED_VERMILION_CITY,
-        FLAG_VISITED_LAVENDER_TOWN,  FLAG_VISITED_CELADON_CITY,
-        FLAG_VISITED_SAFFRON_CITY,   FLAG_VISITED_FUCHSIA_CITY,
-        FLAG_VISITED_CINNABAR_ISLAND, FLAG_VISITED_INDIGO_PLATEAU,
-    };
-    // The same team as in the Kanto test.
-    static const u16 sTeamSpecies[] =
-    {
-        SPECIES_CHARIZARD, SPECIES_GENGAR,    SPECIES_LAPRAS,
-        SPECIES_ALAKAZAM,  SPECIES_SANDSLASH, SPECIES_ZAPDOS,
-    };
-    // Everything the start of the game handles up to the Pokedex handover.
-    static const u16 sEarlyGameFlags[] =
-    {
-        FLAG_ADVENTURE_STARTED,     FLAG_OPENED_START_MENU,
-        FLAG_SYS_POKEMON_GET,       FLAG_SYS_POKEDEX_GET,
-        FLAG_BEAT_RIVAL_IN_OAKS_LAB,
-        FLAG_GOT_POKEBALLS_FROM_OAK_AFTER_22_RIVAL,
-        FLAG_OAK_SKIP_22_RIVAL_CHECK,
-        FLAG_PALLET_LADY_NOT_BLOCKING_SIGN,
-        FLAG_HIDE_PALLET_HOUSE_DAISY,
-        FLAG_HIDE_RIVALS_HOUSE_DAISY,
-        FLAG_RECEIVED_RUNNING_SHOES, FLAG_SYS_B_DASH,
-        FLAG_SET_WALL_CLOCK,        FLAG_EXP_SHARE_ENABLED,
-        FLAG_HAS_MATCH_CALL,        FLAG_ADDED_MATCH_CALL_TO_POKENAV,
-        FLAG_SYS_POKENAV_GET,
-    };
-    // Kanto scene vars, each set past its last trigger value. Taken from the
-    // map_script_2 and coord_event entries of the FRLG maps, without
-    // VAR_TEMP_*, VAR_TRAIN and the Victory Road boulders.
-    static const struct { u16 var; u16 value; } sKantoSceneVars[] =
-    {
-        { VAR_MAP_SCENE_CERULEAN_CITY_RIVAL, 1 },
-        { VAR_MAP_SCENE_CERULEAN_CITY_ROCKET, 1 },
-        { VAR_MAP_SCENE_CINNABAR_ISLAND, 4 },
-        { VAR_MAP_SCENE_CINNABAR_ISLAND_2, 2 },
-        { VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 4 },
-        { VAR_MAP_SCENE_INDIGO_PLATEAU_EXTERIOR, 2 },
-        { VAR_MAP_SCENE_MT_MOON_B2F, 1 },
-        { VAR_MAP_SCENE_PALLET_TOWN_OAK, 3 },
-        { VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F, 1 },
-        { VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 8 },
-        { VAR_MAP_SCENE_PEWTER_CITY, 2 },
-        { VAR_MAP_SCENE_PEWTER_CITY_MUSEUM_1F, 1 },
-        { VAR_MAP_SCENE_POKEMON_LEAGUE, 4 },
-        { VAR_MAP_SCENE_POKEMON_TOWER_2F, 1 },
-        { VAR_MAP_SCENE_POKEMON_TOWER_6F, 1 },
-        { VAR_MAP_SCENE_ROUTE16, 2 },
-        { VAR_MAP_SCENE_ROUTE22, 4 },
-        { VAR_MAP_SCENE_ROUTE23, 1 },
-        { VAR_MAP_SCENE_ROUTE24, 1 },
-        { VAR_MAP_SCENE_ROUTE5_ROUTE6_ROUTE7_ROUTE8_GATES, 1 },
-        { VAR_MAP_SCENE_SAFFRON_CITY_DOJO, 1 },
-        { VAR_MAP_SCENE_SAFFRON_CITY_POKEMON_TRAINER_FAN_CLUB, 2 },
-        { VAR_MAP_SCENE_SEAFOAM_ISLANDS_B4F, 2 },
-        { VAR_MAP_SCENE_SILPH_CO_11F, 1 },
-        { VAR_MAP_SCENE_SILPH_CO_7F, 1 },
-        { VAR_MAP_SCENE_S_S_ANNE_2F_CORRIDOR, 1 },
-        { VAR_MAP_SCENE_VERMILION_CITY, 3 },
-        { VAR_MAP_SCENE_VIRIDIAN_CITY_GYM_DOOR, 1 },
-        { VAR_MAP_SCENE_VIRIDIAN_CITY_MART, 1 },
-        { VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 2 },
-        { VAR_PALLET_HOUSE_INTRO, 1 },
-    };
     u32 i;
-    u16 f;
+    u32 starter = KANTO_COMPLETE_STARTER;
+    u16 starterFinal = sKantoCompletePartyStarter[starter].species;
+    bool8 ribbon = TRUE;
 
-    // Kanto badges.
-    for (f = FLAG_BADGE01_GET; f <= FLAG_BADGE08_GET; f++)
-        FlagSet(f);
-
-    FlagSet(FLAG_SYS_GAME_CLEAR);
-    // Only the Kanto title.
-    FlagSet(FLAG_IS_KANTO_CHAMPION);
-    for (i = 0; i < ARRAY_COUNT(sEarlyGameFlags); i++)
-        FlagSet(sEarlyGameFlags[i]);
-    // No HnS game start in the New Bark Town house.
-    VarSet(VAR_NEWBARK_TOWN_STATE, 5);
-    FlagSet(FLAG_MOM_VISITED);
-    VarSet(VAR_PALLET_HOUSE_CLOCK, 1);
-    // No Baoba call on Route 27.
-    VarSet(VAR_ROUTE27_BAOBA_CALL, 1);
-    // The policeman in Elm's lab shows up later.
-    FlagSet(FLAG_HIDE_LAB_POLICEMAN);
-    EnableNationalPokedex();
-
-    for (i = 0; i < ARRAY_COUNT(sKantoVisitedFlags); i++)
-        FlagSet(sKantoVisitedFlags[i]);
-    for (i = 0; i < ARRAY_COUNT(sKantoWorldMapFlags); i++)
-        FlagSet(sKantoWorldMapFlags[i]);
-    for (i = 0; i < ARRAY_COUNT(sKantoSceneVars); i++)
-        VarSet(sKantoSceneVars[i].var, sKantoSceneVars[i].value);
-
-    // Oak waits in the lab with the GS Ball.
-    VarSet(VAR_JOHTO_HANDOVER, 1);
-    FlagClear(FLAG_HIDE_OAK_IN_HIS_LAB);
-
-    ZeroPlayerPartyMons();
-    for (i = 0; i < ARRAY_COUNT(sTeamSpecies); i++)
-        ScriptGiveMon(sTeamSpecies[i], MAX_LEVEL, ITEM_NONE);
-    CalculatePlayerPartyCount();
-    SetMoney(&gSaveBlock1Ptr->money, 100000);
-
-    // HM01-HM06: Cut, Fly, Surf, Strength, Flash, Rock Smash.
-    for (i = ITEM_HM01; i <= ITEM_HM06; i++)
-        AddBagItem(i, 1);
-    AddBagItem(ITEM_RARE_CANDY, MAX_BAG_ITEM_CAPACITY);
-
-    // 185 Dex entries, about what a thorough Kanto run gives.
-    for (i = 1; i <= 185; i++)
+    if (FlagGet(FLAG_SYS_POKEMON_GET))
     {
-        GetSetPokedexFlag(i, FLAG_SET_SEEN);
-        GetSetPokedexFlag(i, FLAG_SET_CAUGHT);
+        StringCopy(gStringVar4, COMPOUND_STRING("Johto Test needs a new game\nbefore the first Pokémon."));
+        Debug_DestroyMenu_Full_Script(taskId, Debug_ShowFieldMessageStringVar4);
+        return;
     }
 
+    if (!FlagGet(FLAG_SYS_CLOCK_SET))
+        RtcInitLocalTimeOffset(0, 0);
+    InitTimeBasedEvents();
+
+    ClearBag();
+    ZeroPlayerPartyMons();
+    ResetPokemonStorageSystem();
+    ResetPokedex();
+
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteFlagsSet); i++)
+        FlagSet(sKantoCompleteFlagsSet[i]);
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteFlagsClear); i++)
+        FlagClear(sKantoCompleteFlagsClear[i]);
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteVars); i++)
+        VarSet(sKantoCompleteVars[i].var, sKantoCompleteVars[i].value);
+    VarSet(VAR_STARTER_MON, starter);
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteTrainers); i++)
+        SetTrainerFlag(sKantoCompleteTrainers[i]);
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteRivalTrainers[starter]); i++)
+        SetTrainerFlag(sKantoCompleteRivalTrainers[starter][i]);
+    EnableNationalPokedex();
+
+    // Party first, then the box; the starter's final stage only in the party.
+    GiveKantoCompleteMon(starterFinal, sKantoCompletePartyStarter[starter].level);
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteParty); i++)
+        GiveKantoCompleteMon(sKantoCompleteParty[i].species, sKantoCompleteParty[i].level);
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteMons); i++)
+    {
+        if (sKantoCompleteMons[i].species != starterFinal)
+            GiveKantoCompleteMon(sKantoCompleteMons[i].species, sKantoCompleteMons[i].level);
+    }
+    CalculatePlayerPartyCount();
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteSeenOnly); i++)
+        GetSetPokedexFlag(SpeciesToNationalPokedexNum(sKantoCompleteSeenOnly[i]), FLAG_SET_SEEN);
+
+    for (i = 0; i < ARRAY_COUNT(sKantoCompleteBag); i++)
+        AddBagItem(sKantoCompleteBag[i].item, sKantoCompleteBag[i].quantity);
+    SetMoney(&gSaveBlock1Ptr->money, KANTO_COMPLETE_MONEY);
+
+    // EnterHallOfFame and the Hall of Fame save's entry count, without the screens.
+    FlagSet(FLAG_SYS_GAME_CLEAR);
+    IncrementGameStat(GAME_STAT_ENTERED_HOF);
+    if (GetGameStat(GAME_STAT_FIRST_HOF_PLAY_TIME) == 0)
+        SetGameStat(GAME_STAT_FIRST_HOF_PLAY_TIME, (gSaveBlock2Ptr->playTimeHours << 16) | (gSaveBlock2Ptr->playTimeMinutes << 8) | gSaveBlock2Ptr->playTimeSeconds);
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SANITY_HAS_SPECIES) && !GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG))
+            SetMonData(&gPlayerParty[i], MON_DATA_CHAMPION_RIBBON, &ribbon);
+    }
+    IncrementGameStat(GAME_STAT_RECEIVED_RIBBONS);
+    FlagSet(FLAG_SYS_RIBBON_GET);
+    HealPlayerParty();
+
     PlaySE(SE_EXP_MAX);
-    Debug_DestroyMenu_Full_Script(taskId, Debug_EventScript_JohtoTestWarpOaksLab);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_EventScript_JohtoTestWarpHome);
 }
 #else
 static void DebugAction_Util_JohtoTest(u8 taskId)

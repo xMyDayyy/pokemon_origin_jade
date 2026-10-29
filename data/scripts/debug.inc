@@ -15,9 +15,12 @@ Debug_EventScript_HnsWarpOlivinePort::
 	waitstate
 	end
 
-@ Debug: warp into Prof. Oak's lab (GS Ball handover).
-Debug_EventScript_JohtoTestWarpOaksLab::
-	warp MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB, 6, 11
+@ Debug: the Kanto Hall of Fame's flags and vars, then home to Pallet Town.
+Debug_EventScript_JohtoTestWarpHome::
+	call EventScript_SetDefeatedEliteFourFlagsVars
+	setrespawn HEAL_LOCATION_PALLET_TOWN
+	fadescreen FADE_TO_BLACK
+	warp MAP_PALLET_TOWN_PLAYERS_HOUSE_2F, 6, 6
 	waitstate
 	end
 
