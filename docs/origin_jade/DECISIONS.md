@@ -198,6 +198,11 @@ dated 2026-10-10 or later were decided directly.
   - Route and dungeon trainers moved with their section's next boss
     (`tools/shift_kanto_ladder.py`).
   - Elite Four and champion rematch teams: 47 (D-015).
+  - Legendaries: birds and Mew 40, Mewtwo 50. Other statics and gifts at
+    the player's level when they are met, rounded: Snorlax 30 (Route 12)
+    and 35 (Route 16), Marowak 30, the Power Plant's Electrode 35,
+    Hitmonlee and Hitmonchan 35, Lapras 35, the fossils 40, Magikarp 10,
+    the Game Corner prizes 25.
   - Obedience for traded Pokemon follows the number of Kanto badges (10,
     then +5 per badge, 50 with eight); after the Johto title every Pokemon
     obeys (D-031).
@@ -489,7 +494,8 @@ dated 2026-10-10 or later were decided directly.
     Emerald routes). No Latias roams Kanto or Johto. Faraway Island,
     Southern Island and Navel Rock are not offered anywhere.
   - Levels: Johto's follow D-039 (set by story point, never below the top of
-    the map's wild band); Kanto's and Hoenn's stay fixed. Sudowoodo and
+    the map's wild band); Kanto's and Hoenn's stay fixed (Kanto: birds and
+    Mew 40, Mewtwo 50, D-011). Sudowoodo and
     Snorlax never return. The GS Ball is used up at the shrine; there is no
     second Celebi.
 - **Evidence:** decision 2026-10-15 (O-004).
