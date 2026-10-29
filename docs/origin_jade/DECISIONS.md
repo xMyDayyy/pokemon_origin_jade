@@ -207,6 +207,7 @@ dated 2026-10-10 or later were decided directly.
   - Johto corridors 45-80 (Mt. Silver 70-90, Red unscaled), trainers anchor
     -3..+2, bosses +3 (Hoenn +5, it is the final region). The arrival
     corridor has the full band.
+  - Experience is Gen 5 in every region (D-042).
   Johto's gym leaders have six Pokemon; route trainers at least three
   (`tools/fill_johto_parties.py`: trainer class beats the local wild pool,
   duplicate a Pokemon rather than break the class). Rematch teams scale
@@ -842,6 +843,22 @@ dated 2026-10-10 or later were decided directly.
   - Level-cap challenge (`src/caps.c`): Kanto badges table until the Kanto
     title, then 70 until `FLAG_IS_JOHTO_CHAMPION`, then no cap.
 - **Evidence:** full Kanto run analysis, decision 2026-10-29.
+
+### D-042 Gen 5 experience in every region
+- **Status:** Active (2026-10-29)
+- **Decision:** Experience follows Gen 5 everywhere (`B_SCALED_EXP` Gen 5,
+  `include/config/battle.h`): base experience / 5, weighted by the level
+  difference, so Pokemon behind the foe catch up and those far ahead gain
+  little. On top of that:
+  - trainer battles x1.5 (`B_TRAINER_EXP_MULTIPLIER` Gen 3);
+  - the classic split with the Exp. Share key item from the start
+    (`B_SPLIT_EXP` Gen 5, D-011);
+  - damping by the receiving Pokemon's level: 100 % up to 30, 70 % at
+    31-60, 50 % from 61 (`EXP_DAMP_*`, `include/config/hoenn_scaling.h`);
+  - the challenge menu's experience rate.
+  The levels of all three regions are tuned for the average player (D-011,
+  D-012); rushers have to train.
+- **Evidence:** decision 2026-10-29.
 
 ---
 
