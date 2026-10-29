@@ -829,6 +829,8 @@ dated 2026-10-10 or later were decided directly.
     Goldenrod's underground holds a Nugget if the Coin Case is in the bag
     and otherwise sets `FLAG_GOT_COIN_CASE`; the aide on Route 15 gives the
     Kleiner EP-Teiler (every game starts with the Exp. Share key item).
+  - The M.S. Aqua's arrival in Vermilion no longer carries HnS's Kanto
+    reset.
   - Level-cap challenge (`src/caps.c`): Kanto badges table until the Kanto
     title, then 70 until `FLAG_IS_JOHTO_CHAMPION`, then no cap.
 - **Evidence:** full Kanto run analysis, decision 2026-10-29.
