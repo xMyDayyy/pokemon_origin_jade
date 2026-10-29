@@ -215,16 +215,24 @@ dated 2026-10-10 or later were decided directly.
   ladder: decision 2026-10-29.
 
 ### D-012 Johto and Hoenn: dynamic level scaling
-- **Status:** Active (anchor changed 2026-10-29)
+- **Status:** Active (anchor, Johto band and corridors changed 2026-10-29)
 - **Decision:** Johto and Hoenn scale to the player (`src/level_scaling.c`,
   `include/config/johto_scaling.h`, `include/config/hoenn_scaling.h`).
   - Anchor, in every region: the mean of the three highest party levels,
     rounded, but at most `SCALING_ANCHOR_MAX_DROP` (8) below the highest
     level (`include/level_scaling.h`). Weak fillers do not pull the levels
     down: a level 100 Pokemon with five level 1 Pokemon gives 92.
-  - Johto corridors 45-80 (Mt. Silver 70-90, Red unscaled), trainers anchor
-    -3..+2, bosses +3 (Hoenn +5, it is the final region). The arrival
-    corridor has the full band.
+  - Trainers: anchor -3..+0 (Hoenn -5..+3), a boss's ace +1 (Hoenn +5).
+    Wild Pokemon: anchor -10..-4. Corridors per map section clamp both.
+  - Johto corridors: Routes 26 and 27, Tohjo Falls 40-80; arrival up to
+    Bugsy 41-50 (Cherrygrove 41-48); Whitney and Morty 44-53 (Goldenrod and
+    Ecruteak 44-61: Radio Tower, theater); Chuck and Jasmine 47-55; Rocket
+    Hideout and Pryce 50-58; Clair, Tin Tower and the Whirl Islands 56-64;
+    Victory Road and the league 58-65; Mt. Silver 70-90 (Red unscaled).
+  - The average player of D-011 meets the bosses at about +1..+2.5 over the
+    team mean in Johto. Team at the Johto title about 70/63/63/62/60/60
+    (mean 63, anchor 65). Rushers fall behind and have to train; stronger
+    teams meet the corridor ceilings.
   - Experience is Gen 5 in every region (D-042).
   Johto's gym leaders have six Pokemon; route trainers at least three
   (`tools/fill_johto_parties.py`: trainer class beats the local wild pool,
@@ -764,8 +772,8 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-27.
 
 ### D-039 Johto's static and legendary levels fit the scaling
-- **Status:** Active (2026-10-27). Replaces the fixed levels of D-026 and
-  D-031 for Johto.
+- **Status:** Active (2026-10-27, player levels 2026-10-29). Replaces
+  the fixed levels of D-026 and D-031 for Johto.
 - **Decision:** Johto's legendaries sit at 75-80 by story point; the other
   strong statics fit the corridor (D-012) where they can first be met. None
   of them falls below the top of the map's wild band afterwards.
@@ -787,16 +795,18 @@ dated 2026-10-10 or later were decided directly.
     (unwinnable, healed after the battle), they are not an encounter: not
     catchable, never shiny (`FLAG_NO_WILD_CATCHING` with
     `P_ONLY_OBTAINABLE_SHINIES`).
-  - Player levels behind the numbers (highest party level): arrival from
-    Kanto about 50-55, after Whitney 57-61, after Morty 59-62, six badges
-    65-69, eight badges 70-75, first Johto title 75-80; afterwards it keeps
-    rising (ceilings 100, D-031).
+  - The average player's anchor (highest level in brackets): arrival from
+    Kanto 46 (49), after Whitney 52 (57), after Morty 53 (57), Lake of Rage
+    57-58 (62-63), eight badges 63-64 (68), first Johto title 65 (70);
+    afterwards it keeps rising (ceilings 100, D-031). The legendaries stay
+    in the owner's range of 75-80 and so stand well above that player
+    (Raikou and Entei +22 at the Burned Tower, the Glockenturm about +14).
   - Floor: on maps with Johto's scaling, static and scripted encounters
     (`seteventmon`, `setwildbattle`, `setwildbattleshiny`) and roamers are at
     least the top of the map's wild band (anchor - 4, clamped to the
     corridor; `ScaleStaticMonLevel`, `src/level_scaling.c`). Before the
     title the corridor ceilings cap it, so it lifts a Pokemon only for
-    players above that corridor (e.g. Sudowoodo to 61, a roamer on Route 26
+    players above that corridor (e.g. Sudowoodo to 53, a roamer on Route 26
     up to 80). After the title it lifts the returns of D-026 with the player.
     Kanto, Hoenn and unscaled maps (Birth Island, the Kampfzone) keep fixed
     levels.
