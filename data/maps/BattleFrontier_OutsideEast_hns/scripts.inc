@@ -108,19 +108,28 @@ BattleFrontier_OutsideEast_EventScript_Sudowoodo_hns::
 	playse SE_SUDOWOODO_SHAKE
 	applymovement LOCALID_FRONTIER_SUDOWOODO, BattleFrontier_OutsideEast_Movement_SudowoodoShake_hns
 	waitmovement 0
+	checkitem ITEM_SQUIRT_BOTTLE
+	goto_if_eq VAR_RESULT, TRUE, BattleFrontier_OutsideEast_EventScript_SudowoodoChoice_hns
+	release
+	end
+
+@ Woken with the Squirtbottle like the one on Route 36 (D-039).
+BattleFrontier_OutsideEast_EventScript_SudowoodoChoice_hns::
+	msgbox Route36_Text_UseSquirtbottle, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, TRUE, BattleFrontier_OutsideEast_EventScript_WaterSudowoodo_hns
+	closemessage
 	release
 	end
 
 BattleFrontier_OutsideEast_EventScript_WaterSudowoodo_hns::
-	lock
-	faceplayer
-	special DoWateringBerryTreeAnim
-	waitstate
+	msgbox Route36_Text_UsedSquirtbottle, MSGBOX_DEFAULT
+	playse SE_DOWNPOUR
 	waitse
+	closemessage
 	playse SE_SUDOWOODO_SHAKE
 	applymovement LOCALID_FRONTIER_SUDOWOODO, BattleFrontier_OutsideEast_Movement_SudowoodoShake_hns
 	waitmovement 0
-	msgbox gText_Sudowoodo_Attacked, MSGBOX_DEFAULT
+	msgbox Route36_Text_SudowoodoAttacked, MSGBOX_DEFAULT
 	closemessage
 	waitse
 	playmoncry SPECIES_SUDOWOODO, CRY_MODE_ENCOUNTER
