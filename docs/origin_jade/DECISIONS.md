@@ -484,8 +484,12 @@ dated 2026-10-10 or later were decided directly.
   - Items ("Items: Zufall", `src/randomizer.c`): item balls, hidden items
     and NPC gifts are randomized from the first starter on
     (`FLAG_SYS_POKEMON_GET`), so in all three regions. Key items, HMs and
-    the GS Ball keep their place. Oak's five Poke Balls (after the Pokedex
-    and the refill after the Route 22 rival) and the coin prizes of
+    the GS Ball keep their place, and so do fossils and evolution items
+    (sort types evolution stone, evolution item and fossil, plus King's
+    Rock, Metal Coat, Deep Sea Tooth, Deep Sea Scale, Razor Claw and Razor
+    Fang), so D-013 and D-037 hold with the item randomizer too; they can
+    still be rolled for other items. Oak's five Poke Balls (after the
+    Pokedex and the refill after the Route 22 rival) and the coin prizes of
     Celadon's prize room (`giveitem_norandom`) bypass the randomizer. Other
     exchanges that use `giveitem` (Cerulean's Berry Powder man, Route 113's
     Glass Workshop) still go through it. A Kanto gift with its own receive

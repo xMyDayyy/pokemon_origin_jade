@@ -472,6 +472,34 @@ static inline bool32 ShouldRandomizeItem(u16 itemId)
     return !(IsItemHM(itemId) || IsKeyItem(itemId) || itemId == ITEM_GS_BALL || itemId == ITEM_NONE);
 }
 
+// Fossils and evolution items keep their place (see docs/origin_jade/DECISIONS.md, D-023).
+static inline bool32 IsItemKeptInPlace(u16 itemId)
+{
+    switch (gItemsInfo[itemId].sortType)
+    {
+    case ITEM_TYPE_EVOLUTION_STONE:
+    case ITEM_TYPE_EVOLUTION_ITEM:
+    case ITEM_TYPE_FOSSIL:
+        return TRUE;
+    default:
+        break;
+    }
+
+    // Held items that evolve a species but are sorted as plain held items.
+    switch (itemId)
+    {
+    case ITEM_KINGS_ROCK:
+    case ITEM_METAL_COAT:
+    case ITEM_DEEP_SEA_TOOTH:
+    case ITEM_DEEP_SEA_SCALE:
+    case ITEM_RAZOR_CLAW:
+    case ITEM_RAZOR_FANG:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 #include "data/randomizer/item_whitelist.h"
 
 // eventId: local id of the item ball or NPC, or the flag of a hidden item.
@@ -481,7 +509,7 @@ u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u16 eventId)
     u16 result;
     u32 mapSeed;
 
-    if (!ShouldRandomizeItem(itemId))
+    if (!ShouldRandomizeItem(itemId) || IsItemKeptInPlace(itemId))
         return itemId;
 
     mapSeed = ((u32)mapGroup) << 24;
