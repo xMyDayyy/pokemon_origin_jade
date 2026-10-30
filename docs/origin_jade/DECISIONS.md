@@ -569,7 +569,11 @@ dated 2026-10-10 or later were decided directly.
     (`HEAL_LOCATION_NEW_BARK_TOWN_LAB_HNS`). After every Hoenn title it
     continues in Littleroot Town in front of Birch's lab. Emerald's
     S.S. Ticket and Lati TV scene in Norman's and Birch's houses does not
-    run (D-002, D-003); Latias and Latios roam without it (D-026).
+    run (D-002, D-003); Latias and Latios roam without it (D-026). Neither
+    does Birch's National Mode scene (the Pokedex has it since the
+    arrival): the first title sets `VAR_DEX_UPGRADE_JOHTO_STARTER_STATE` 3
+    and Scott's S.S. Tidal call, so the Johto starters for the full Hoenn
+    dex follow as in Emerald.
   - The credits roll once, at the first Hoenn title, the end of the game
     (`FLAG_ROLLED_ENDING_CREDITS`).
   - Silver waits in Johto's league center for a daily battle after the Johto
