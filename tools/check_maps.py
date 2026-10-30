@@ -39,7 +39,12 @@ values.
 Findings carry a provisional status (nachgewiesen/verdacht/vorschlag/
 ungeprueft) and severity (blocker/kritisch/wichtig/klein/optional). Whether a
 finding blocks the story needs a human look; the tool marks a warp whose target
-map has no other access but has content as kritisch.
+map has no other access but has content as kritisch. Content means items,
+trainers, berry trees and NPCs whose map-specific script has an effect (scripts
+shared by 3+ maps, such as cable club attendants, do not count). Findings on
+maps the walk never reaches, and one-way connections without a passage, are
+optional; a broken warp target behind an object that always blocks the access
+tile is only verdacht.
 
 Usage:
     python3 -I tools/check_maps.py                    # report of the work tree
@@ -112,6 +117,8 @@ STEP_RE = re.compile(r"^\s*(walk_slow_stairs|walk_slow|walk_faster|walk_fast|wal
                      r"jump_2|jump_special|jump|acro_wheelie_hop|acro_wheelie_jump|acro_pop_wheelie_move|"
                      r"acro_wheelie_move|acro_end_wheelie_move)_(down|up|left|right)(?:_affine)?\s*$")
 DIAG_RE = re.compile(r"^\s*walk_(?:slow_)?diag_(north|south)(west|east)\s*$")
+STATIONARY_RE = re.compile(r"MOVEMENT_TYPE_(NONE|FACE_|LOOK_AROUND)")
+COMMON_SCRIPT_MAPS = 3  # an object script used on this many maps is a shared feature, not map content
 STEP_DIST = {"jump_2": 2, "jump_special": 2, "acro_wheelie_jump": 2}
 STEP_DIR = {"down": (0, 1), "up": (0, -1), "left": (-1, 0), "right": (1, 0)}
 GAME_CLEAR_RE = re.compile(r"\s*special\s+\w*(GameClear|HallOfFame)\w*")
@@ -1105,9 +1112,32 @@ class Checker:
         self.findings = []
         self.item_of_script = self._item_scripts()
         self._effect_cache = {}
+        # Object scripts used on several maps (attendants, cable club) are no map-specific content.
+        users = collections.defaultdict(set)
+        for m in world.active_maps():
+            for o in m.objects():
+                users[o.get("script", "")].add(m.id)
+        self.common_scripts = {s for s, ids in users.items() if len(ids) >= COMMON_SCRIPT_MAPS}
+        self.map_text = {}
 
     def add(self, *args, **kwargs):
         self.findings.append(Finding(*args, **kwargs))
+
+    def blocking_object(self, m, x, y):
+        """Text for an object that always stands on (x, y) and no script of the map moves, or None."""
+        if m.id not in self.map_text:
+            self.map_text[m.id] = self.world.src.text(m.scripts_path) or ""
+        for i, o in enumerate(m.objects()):
+            if (o.get("x"), o.get("y")) != (x, y) or o.get("flag", "0") not in ("0", 0, ""):
+                continue
+            if not STATIONARY_RE.match(o.get("movement_type", "")):
+                continue
+            local = o.get("local_id")
+            if local and re.search(rf"\b(applymovement|setobjectxy\w*|removeobject|moveobjectoffscreen)\s+{local}\b",
+                                   self.map_text[m.id]):
+                continue
+            return f"Objekt {i} ({o.get('script', '')}) steht ohne Flag fest auf ({x},{y}), kein Skript der Karte bewegt es"
+        return None
 
     def describe_tile(self, m, x, y):
         b = m.behaviour(x, y)
@@ -1176,7 +1206,7 @@ class Checker:
                 trig = self.warp_trigger(m, i, w)
                 source_ok = trig[0] is not None and reach.tile_reached(m.id, *trig[1])
                 if dest != "MAP_DYNAMIC":
-                    self._check_warp_target(m, i, w, where, source_ok)
+                    self._check_warp_target(m, i, w, where, trig, source_ok)
                 if trig[0] is None:
                     self._report_dead_warp(m, i, w, groups, trig[1], trig[2])
                     continue
@@ -1184,25 +1214,33 @@ class Checker:
                 if problem:
                     self._report_dead_warp(m, i, w, groups, "W-HOEHE", problem)
 
-    def _check_warp_target(self, m, i, w, where, source_ok):
+    def _check_warp_target(self, m, i, w, where, trig, source_ok):
         """Target map must be active and have the target warp id."""
         world = self.world
         dest = w["dest_map"]
         dm = world.maps.get(dest)
         wid = parse_int(str(w["dest_warp_id"]))
-        sev = "kritisch" if source_ok else "klein"
+        status = "nachgewiesen"
+        if source_ok:
+            sev, note = "kritisch", "Quelle erreichbar und auslösbar"
+            blocker = self.blocking_object(m, *trig[1])
+            if blocker:
+                status, sev, note = "verdacht", "klein", "Quelle nur ohne Objekte erreichbar: " + blocker
+        elif self.reach.map_reached(m.id):
+            sev, note = "klein", "Quelle nicht nutzbar"
+        else:
+            sev, note = "optional", "Quelle nicht nutzbar, Karte selbst nicht erreichbar"
         if dm is None:
-            self.add(1, "W-ZIEL-FEHLT", m, (w["x"], w["y"]), "nachgewiesen", sev,
-                     f"Warp {i} führt zu {dest}, die Karte gibt es nicht", [where], index=i)
+            self.add(1, "W-ZIEL-FEHLT", m, (w["x"], w["y"]), status, sev,
+                     f"Warp {i} führt zu {dest}, die Karte gibt es nicht", [where, note], index=i)
         elif not dm.active:
-            self.add(1, "W-ZIEL-INAKTIV", m, (w["x"], w["y"]), "nachgewiesen", sev,
+            self.add(1, "W-ZIEL-INAKTIV", m, (w["x"], w["y"]), status, sev,
                      f"Warp {i} führt zu {dm.name} (game_version {dm.data.get('game_version')}), "
-                     f"im Build ein NULL-Header",
-                     [where, "Quelle erreichbar und auslösbar" if source_ok else "Quelle nicht nutzbar"], index=i)
+                     f"im Build ein NULL-Header", [where, note], index=i)
         elif wid is not None and not 0 <= wid < len(dm.warps()):
-            self.add(1, "W-ZIEL-ID", m, (w["x"], w["y"]), "nachgewiesen", sev,
+            self.add(1, "W-ZIEL-ID", m, (w["x"], w["y"]), status, sev,
                      f"Warp {i} führt zu {dm.name} Warp-ID {wid}, die Karte hat nur {len(dm.warps())} Warps",
-                     [where, "Quelle erreichbar und auslösbar" if source_ok else "Quelle nicht nutzbar"], index=i)
+                     [where, note], index=i)
 
     def _report_dead_warp(self, m, i, w, groups, code, reason):
         """Adds a finding for a warp that never fires, rated by what is lost."""
@@ -1380,12 +1418,13 @@ class Checker:
                 tx, ty = t["x"], t["y"]
                 where = f"data/maps/{m.folder}/map.json warp_events[{i}] → data/maps/{dm.folder}/map.json warp_events[{wid}]"
                 if not dm.inside(tx, ty):
-                    self.add(2, "Z-AUSSERHALB", dm, (tx, ty), "nachgewiesen", "kritisch" if used else "klein",
+                    sev = "kritisch" if used else "klein" if reach.map_reached(m.id) else "optional"
+                    self.add(2, "Z-AUSSERHALB", dm, (tx, ty), "nachgewiesen", sev,
                              f"Ankunftsfeld von {m.name} Warp {i} liegt außerhalb der Karte", [where], index=wid)
                     continue
                 if used and not reach.escapes(dm, tx, ty):
                     scripted = bool(world.map_script_warps.get(dm.id)) or dm.id in world.map_game_clear
-                    severity = "optional" if dm.id in world.map_game_clear else "wichtig"
+                    severity = "optional" if dm.id in world.map_game_clear else "klein" if scripted else "wichtig"
                     self.add(2, "Z-SACKGASSE", dm, (tx, ty), "verdacht" if scripted else "nachgewiesen", severity,
                              f"Ankunft von {m.name} Warp {i}: von hier führt kein Weg aus der Karte "
                              f"(nur Fliegen/Teleport/Fluchtseil)",
@@ -1447,6 +1486,8 @@ class Checker:
         if re.search(r"BOULDER|CUTTABLE_TREE|BREAKABLE_ROCK|ROCK_SMASH|WHIRLPOOL", gfx):
             return "Hindernis", ""
         effects = self.script_effects(script)
+        if effects and script in self.common_scripts:
+            return "Allgemein", ""
         if effects:
             return "Figur", "/".join(sorted(effects))
         return "Deko", ""
@@ -1581,8 +1622,14 @@ class Checker:
                     continue
                 back = [c for c in target.connections() if c.get("map") == m.id and c.get("direction") == OPPOSITE.get(d)]
                 if not back:
-                    note = " (Gegenseite hat connections_no_include)" if target.data.get("connections_no_include") else ""
-                    self.add(4, "V-EINSEITIG", m, None, "nachgewiesen", "klein",
+                    note, sev = "", "klein"
+                    if target.data.get("connections_no_include") in (True, "TRUE"):
+                        note, sev = " (Gegenseite hat connections_no_include)", "optional"
+                    elif not reach.map_reached(m.id):
+                        sev = "optional"
+                    elif d not in ("dive", "emerge") and not self._passages(m, target, d, off):
+                        sev = "optional"
+                    self.add(4, "V-EINSEITIG", m, None, "nachgewiesen", sev,
                              f"Verbindung {d} zu {target.name} ohne Gegenrichtung{note}", [where])
                 elif all(int(c.get("offset", 0)) != -off for c in back):
                     self.add(4, "V-OFFSET", m, None, "nachgewiesen", "wichtig",
@@ -1596,8 +1643,9 @@ class Checker:
                     continue
                 self._check_edge(m, target, d, off, where)
 
-    def _check_edge(self, m, target, d, off, where):
-        """Shared edge must overlap and have at least one passage."""
+    @staticmethod
+    def _edge_pairs(m, target, d, off):
+        """Pairs of edge tiles (here, there) that face each other across a connection."""
         if d in ("up", "down"):
             span = [x for x in range(m.width) if 0 <= x - off < target.width]
             my_y = 0 if d == "up" else m.height - 1
@@ -1608,8 +1656,16 @@ class Checker:
             my_x = 0 if d == "left" else m.width - 1
             their_x = target.width - 1 if d == "left" else 0
             pairs = [((my_x, y), (their_x, y - off)) for y in span]
+        return pairs
+
+    def _passages(self, m, target, d, off):
+        return [(a, b) for a, b in self._edge_pairs(m, target, d, off) if m.passable(*a) and target.passable(*b)]
+
+    def _check_edge(self, m, target, d, off, where):
+        """Shared edge must overlap and have at least one passage."""
+        pairs = self._edge_pairs(m, target, d, off)
         if not pairs:
-            self.add(4, "V-KEIN-UEBERLAPP", m, None, "nachgewiesen", "wichtig",
+            self.add(4, "V-KEIN-UEBERLAPP", m, None, "nachgewiesen", "klein",
                      f"Verbindung {d} zu {target.name}: Karten überlappen nicht (Offset {off})", [where])
             return
         passages = [(a, b) for a, b in pairs if m.passable(*a) and target.passable(*b)]
