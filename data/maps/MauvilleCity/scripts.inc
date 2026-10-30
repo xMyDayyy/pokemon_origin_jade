@@ -153,6 +153,10 @@ MauvilleCity_EventScript_WallyAndUncleExitEast::
 MauvilleCity_EventScript_DefeatedWally::
 	removeobject LOCALID_MAUVILLE_WALLY
 	removeobject LOCALID_MAUVILLE_WALLYS_UNCLE
+#if IS_HNS
+	@ Origin Jade: Wally leaves Petalburg City as after the catching tutorial.
+	call_if_lt VAR_PETALBURG_CITY_STATE, 3, MauvilleCity_EventScript_HnsWallyLeavesPetalburg
+#endif
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLYS_UNCLE
 	setflag FLAG_DEFEATED_WALLY_MAUVILLE
@@ -170,6 +174,14 @@ MauvilleCity_EventScript_DefeatedWally::
 	removeobject LOCALID_MAUVILLE_SCOTT
 	releaseall
 	end
+
+#if IS_HNS
+MauvilleCity_EventScript_HnsWallyLeavesPetalburg::
+	setvar VAR_PETALBURG_CITY_STATE, 3
+	setflag FLAG_HIDE_PETALBURG_CITY_WALLY
+	setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM
+	return
+#endif
 
 MauvilleCity_EventScript_ScottApproachPlayerNorth::
 	addobject LOCALID_MAUVILLE_SCOTT
