@@ -114,6 +114,7 @@ u16 RandomizeTrainerMon(u16 trainerId, u8 slot, u8 totalMons, u16 species);
 
 u16 RandomizeFixedEncounterMon(u16 species, u8 mapNum, u8 mapGroup, u8 localId);
 u16 RandomizeScriptedFixedMon(u16 species);
+u16 RandomizeGiftEggMon(u16 species);
 
 u16 RandomizeStarterAndGiftMon(u16 originalSlot, const u16* originalStarterAndGiftMons);
 

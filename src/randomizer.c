@@ -1182,6 +1182,23 @@ u16 RandomizeScriptedFixedMon(u16 species)
         gSpecialVar_LastTalked);
 }
 
+// Gift eggs (giveegg) with "Feste PKMN", seeded like RandomizeScriptedFixedMon.
+// Day Care eggs keep their species.
+u16 RandomizeGiftEggMon(u16 species)
+{
+    if (RandomizerFeatureEnabled(RANDOMIZE_EGG_MON))
+    {
+        u32 seed;
+        seed = (u32)gSaveBlock1Ptr->location.mapNum << 16;
+        seed |= (u32)gSaveBlock1Ptr->location.mapGroup << 8;
+        seed |= (u8)gSpecialVar_LastTalked;
+
+        return RandomizeMon(RANDOMIZER_REASON_EGG, GetRandomizerOption(RANDOMIZER_OPTION_SPECIES_MODE), seed, species);
+    }
+
+    return species;
+}
+
 EWRAM_DATA static u32 sLastMonRandomizerSeed = 0;
 EWRAM_DATA static u16 sRandomizedMons[STARTER_AND_GIFT_MON_COUNT] = {0};
 

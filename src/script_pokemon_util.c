@@ -86,6 +86,9 @@ u8 ScriptGiveEgg(u16 species)
     struct Pokemon mon;
     u8 isEgg;
 
+#if RANDOMIZER_AVAILABLE
+    species = RandomizeGiftEggMon(species);
+#endif
     CreateEgg(&mon, species, TRUE);
     isEgg = TRUE;
     SetMonData(&mon, MON_DATA_IS_EGG, &isEgg);

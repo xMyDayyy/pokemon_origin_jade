@@ -38,7 +38,6 @@
 #include "battle.h" // to get rid of later
 #include "constants/rgb.h"
 #include "party_menu.h"
-#include "randomizer.h"
 #include "nuzlocke.h"
 
 #define GFXTAG_EGG       12345
@@ -318,11 +317,6 @@ static void CreateHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
     u32 ivs[NUM_STATS];
 
     species = GetMonData(egg, MON_DATA_SPECIES);
-
-    #if RANDOMIZER_AVAILABLE == TRUE
-    if (RandomizerFeatureEnabled(RANDOMIZE_EGG_MON))
-        species = RandomizeMon(RANDOMIZER_REASON_EGG, GetRandomizerOption(RANDOMIZER_OPTION_SPECIES_MODE), GetRandomizerSeed() ^ species, species);
-    #endif
 
     for (i = 0; i < MAX_MON_MOVES; i++)
         moves[i] = GetMonData(egg, MON_DATA_MOVE1 + i);
