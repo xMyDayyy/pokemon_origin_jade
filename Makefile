@@ -381,6 +381,7 @@ syms: $(SYM)
 
 clean: tidy clean-tools clean-check-tools clean-generated clean-assets
 	@$(MAKE) clean -C libagbsyscall
+	rm -rf $(BUILD_DIR)
 
 clean-assets:
 	rm -f $(MID_SUBDIR)/*.s
@@ -394,7 +395,7 @@ clean-assets:
 tidy: tidymodern tidycheck tidydebug tidyrelease
 
 tidymodern:
-	rm -f poke*.gba poke*.elf poke*.map
+	rm -f $(ROM_NAME) $(ELF_NAME) $(MAP_NAME) $(SYM)
 	rm -rf $(OBJ_DIR_NAME)
 
 tidycheck:
