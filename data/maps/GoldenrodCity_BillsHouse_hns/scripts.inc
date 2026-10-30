@@ -43,6 +43,7 @@ GoldenrodCity_BillsHouse_EventScript_Bill_Eevee::
 	bufferspeciesname STR_VAR_1, SPECIES_EEVEE
 	givenamedmon 3
 	call Common_EventScript_GiftMonNamed
+	call Common_EventScript_AskNicknameGiftPartyMon
 
 
 

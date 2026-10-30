@@ -590,6 +590,7 @@ DragonsDen_Shrine_EventScript_ElderGiveSpecialDratini::
 	bufferspeciesname STR_VAR_1, SPECIES_DRATINI
 	givenamedmon 4
 	call Common_EventScript_GiftMonNamed
+	call Common_EventScript_AskNicknameGiftPartyMon
 
 	msgbox DragonsDen_Shrine_Text_SymbolicDragon, MSGBOX_DEFAULT
 	setflag FLAG_GOT_DRATINI

@@ -179,6 +179,7 @@ GoldenrodCity_GameCorner_PrizeRoom_EventScript_ReceivedMonPC::
 	message GoldenrodCity_GameCorner_Text_PlayerObtainedTheMon
 	waitmessage
 	waitfanfare
+	call Common_EventScript_AskNicknameGiftBoxMon
 	goto GoldenrodCity_GameCorner_PrizeRoom_EventScript_TransferredToPC
 	end
 
