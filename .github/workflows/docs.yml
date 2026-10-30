@@ -1,8 +1,7 @@
 name: Docs
+# Publishes the upstream expansion docs (mdbook); run by hand only.
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
 
 jobs:
   deploy:

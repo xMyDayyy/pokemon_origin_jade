@@ -1140,6 +1140,14 @@ dated 2026-10-10 or later were decided directly.
   built nor checked.
 - **Rules / code:** top of `Makefile`. Generated sources (trainer parties,
   teachable learnsets) always use the jade defines.
+- **Checks:** the CI workflow (`.github/workflows/build.yml`) builds the
+  ROM and the release ROM on every push and pull request, prints their
+  SHA-1 and runs `tools/check_warnings.py` (no warning beyond
+  `tools/warnings_baseline.txt`), `tools/check_flags.py`,
+  `tools/make_kanto_complete.py --check` and `tools/check_budget.py`;
+  `check_merge.py` runs without blocking. Map errors that are unreachable
+  or intended go into its `KNOWN_ERRORS` with the decision that covers
+  them. The upstream Docs and Labels workflows run only by hand.
 - **Evidence:** owner decision 2026-10-30.
 
 ---
