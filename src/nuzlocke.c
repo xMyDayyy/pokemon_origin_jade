@@ -499,6 +499,17 @@ void NuzlockeDeleteFaintedPartyPokemon(void)
     CompactPartySlots();
 }
 
+// Deaths of a battle with an AI partner, which the end of the battle skips.
+// The multi battle macros call it once the player's party is restored.
+void NuzlockeDeleteFaintedAfterPartnerBattle(void)
+{
+    if (IsNuzlockeActive() || IsNuzlockeEasyActive())
+    {
+        NuzlockeDeleteFaintedPartyPokemon();
+        CalculatePlayerPartyCount();
+    }
+}
+
 u8 NuzlockeGetCurrentRegionMapSectionId(void)
 {
     return GetCurrentRegionMapSectionId();

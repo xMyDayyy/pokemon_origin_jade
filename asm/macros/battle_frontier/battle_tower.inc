@@ -110,6 +110,7 @@
 	setvar VAR_0x8004, FRONTIER_UTIL_FUNC_SAVE_PARTY
 	special CallFrontierUtilFunc
 	special LoadPlayerParty
+	special NuzlockeDeleteFaintedAfterPartnerBattle @ Nuzlocke deaths of the player's own mons
 	.endm
 
 	.macro multi_2_vs_2 trainer1Id:req, trainer1LoseText:req, trainer2Id:req, trainer2LoseText:req, partnerId:req
@@ -139,6 +140,7 @@
 	setvar VAR_0x8004, FRONTIER_UTIL_FUNC_SAVE_PARTY
 	special CallFrontierUtilFunc
 	special LoadPlayerParty
+	special NuzlockeDeleteFaintedAfterPartnerBattle @ Nuzlocke deaths of the player's own mons
 	.endm
 
 	.macro multi_fixed_2_vs_2 trainer1Id:req, trainer1LoseText:req, trainer2Id:req, trainer2LoseText:req, partnerId:req

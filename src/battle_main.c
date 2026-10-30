@@ -5911,6 +5911,7 @@ static void HandleEndTurn_FinishBattle(void)
             TryPutBreakingNewsOnAir();
         }
 
+        // Battles with an AI partner: NuzlockeDeleteFaintedAfterPartnerBattle once the party is restored.
         if (IsNuzlockeEasyActive())
         {
             if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK

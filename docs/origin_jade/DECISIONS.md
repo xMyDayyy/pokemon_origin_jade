@@ -1051,7 +1051,16 @@ dated 2026-10-10 or later were decided directly.
     (`src/battle_main.c`).
   - Shiny clause ("Shiny-Klausel"): a shiny can always be caught, and
     meeting one never uses up the area.
-- **Evidence:** audit 2026-10-30 (A23, A25, A83).
+  - Deaths: a Pokemon that faints dies when the battle ends (or when it
+    faints from poison in the field): released, or moved to the PC as
+    unusable ("Friedhof", always in Leicht). No deaths in Trainer Hill,
+    Battle Frontier, link, first-battle and catch-tutorial battles, nor in
+    the Bug-Catching Contest (its party is restored afterwards). In battles
+    with an AI partner (Lance in the Rocket Hideout, Steven in Mossdeep's
+    Space Center) this happens to the player's own Pokemon once the party
+    is restored after the battle (multi battle macros in
+    `asm/macros/battle_frontier/battle_tower.inc`).
+- **Evidence:** audit 2026-10-30 (A23, A25, A30, A83).
 
 ---
 

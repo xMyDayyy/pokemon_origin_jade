@@ -18,6 +18,7 @@ u8 NuzlockeFlagGet(u16 mapsec);
 void NuzlockeDeletePartyMon(u8 position);
 void NuzlockeDeletePartyMonOption(u8 position);
 void NuzlockeDeleteFaintedPartyPokemon(void);
+void NuzlockeDeleteFaintedAfterPartnerBattle(void);
 
 u8 NuzlockeGetCurrentRegionMapSectionId(void);
 
