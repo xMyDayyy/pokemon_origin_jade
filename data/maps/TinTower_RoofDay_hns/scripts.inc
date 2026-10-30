@@ -36,7 +36,9 @@ TinTower_RoofDay_MapScript_HoohStory::
 	clearflag FLAG_HIDE_HO_OH
 	end
 
+@ The dance runs once per visit; VAR_TEMP_1 is set at its end.
 TinTower_RoofDay_EventScript_TalkToKimono::
+	goto_if_eq VAR_TEMP_1, 1, TinTower_RoofDay_MapScript_End
 	lockall
 	playbgm MUS_HG_KIMONO_GIRL_DANCE, FALSE
 	msgbox TinTower_RoofDay_Text_Kimono_Opening, MSGBOX_DEFAULT

@@ -26,7 +26,9 @@ WhirlIslands_LugiaChamber_MapScript_LugiaStory::
 	clearflag FLAG_HIDE_LUGIA
 	end
 
+@ The dance runs once per visit; VAR_TEMP_1 is set at its end.
 WhirlIslands_LugiaChamber_EventScript_TalkToKimono::
+	goto_if_eq VAR_TEMP_1, 1, WhirlIslands_LugiaChamber_MapScript_End
 	lockall
 	playbgm MUS_HG_KIMONO_GIRL_DANCE, FALSE
 	msgbox WhirlIslands_LugiaChamber_Text_Kimono_Opening, MSGBOX_DEFAULT
