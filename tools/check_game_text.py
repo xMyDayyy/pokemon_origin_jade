@@ -13,6 +13,7 @@ Scope:
           includes
   src     every _("...") and COMPOUND_STRING("...") in src/*.c and the
           headers they include
+  names   trainer names of src/data/*.party (English check only)
 
 Each displayed line (split at \\n, \\l, \\p) is measured like the text printer
 does: FONT_NORMAL unless the text switches fonts, glyph widths from
@@ -35,7 +36,10 @@ text or a text of a locked or retired map that an active map shows counts
 for that map. Scripts reached only through a jump on VAR_SINJOH_STORYLINE
 count as locked (Sinjoh, D-019).
 English text is found with a word list heuristic (English and German
-function words); texts of locked and retired maps are listed apart.
+function words); texts of locked and retired maps are listed apart. A
+trainer name still in upstream capitals counts as English; it is rated by
+the map scripts that fight the trainer (rematch tiers by the first tier of
+their REMATCH row in the compiled C code).
 
 Usage (from the repository root):
     python3 -I tools/check_game_text.py                  # summary
@@ -138,7 +142,15 @@ AUTO_WRAP_FILES = {"src/battle_message.c"}
 # Font of a struct field that is not FONT_NORMAL when no <field>Font is given.
 SRC_FIELD_FONT = {("src/data/help_window.h", "desc"): "FONT_SMALL"}
 DEBUG_FILES = ("data/scripts/debug.inc", "data/scripts/config.inc", "src/debug.c",
-               "src/pokemon_sprite_visualizer.c", "src/battle_debug.c")
+               "src/pokemon_sprite_visualizer.c", "src/battle_debug.c",
+               "src/data/debug_trainers.party")
+# Generated trainer data and the party files it comes from.
+TRAINER_DATA = ("src/data/trainers", "src/data/battle_partners", "src/data/debug_trainers")
+# Region of a party file's trainers when no map script fights them.
+PARTY_REGION = {"trainers_hns.party": "johto", "trainers_frlg.party": "kanto",
+                "trainers.party": "hoenn"}
+# Trainer name left in upstream capitals (German names are mixed case).
+CAPS_NAME_RE = re.compile(r"[A-Z][A-Z0-9 .&'-]*[A-Z]")
 ACTIVE_REGIONS = ("kanto", "johto", "hoenn")
 INACTIVE_REGIONS = ("gesperrt", "stillgelegt")
 # Script conditions on locked content (D-019); a jump on them leads to locked content.
@@ -408,6 +420,9 @@ class Text:
         self.font = None          # font id at the start, None = FONT_NORMAL
         self.shown_in = []        # active maps whose events reach a script that shows it
         self.locked = False       # shown only behind a LOCKED_GATE_RE condition
+        self.home = None          # region when the file does not tell it (trainer names)
+        self.c_refs = []          # C files that use a trainer
+        self.rematch_of = None    # first trainer of a rematch row
 
     def plain(self):
         return " ".join(re.sub(r"\{[^}]*\}|\\[nlp]|\$", " ", b) for _, b in self.literals)
@@ -848,10 +863,50 @@ def c_strings(cpp, rel):
         label = c_label(text, m.start()) or "%s:%d" % (os.path.basename(file), line_no)
         result.append((file, line_no, label, bodies))
     idents = set()
-    for (file, _), raw in zip(origins, flat):
+    live = collections.defaultdict(set)         # src file -> lines that are compiled
+    for (file, line_no), raw in zip(origins, flat):
         if file.startswith("src/"):
             idents.update(re.findall(r"\b[A-Za-z_]\w{3,}\b", STRING_RE.sub("", raw)))
-    return result, idents
+            if raw.strip():
+                live[file].add(line_no)
+    return result, idents, live
+
+
+def c_trainer_refs(repo, live):
+    """TRAINER_ constants on compiled C lines: ({id: {file}}, {rematch tier id: first id})."""
+    refs = collections.defaultdict(set)
+    first_of = {}
+    for file, nums in live.items():
+        if file.startswith(TRAINER_DATA + DEBUG_FILES):
+            continue
+        lines = repo.read(file).split("\n")
+        for n in nums:
+            raw = lines[n - 1] if 0 < n <= len(lines) else ""
+            if "TRAINER_" not in raw:
+                continue
+            for tid in re.findall(r"\bTRAINER_\w+", raw):
+                refs[tid].add(file)
+            m = re.search(r"\bREMATCH\(\s*(TRAINER_\w+)((?:\s*,\s*TRAINER_\w+)*)", raw)
+            if m:
+                for tier in re.findall(r"TRAINER_\w+", m.group(2)):
+                    first_of[tier] = m.group(1)
+    return refs, first_of
+
+
+def party_names(repo):
+    """Trainer names of the party files: [(file, line, trainer id, name)]."""
+    out = []
+    for path in sorted(glob.glob(repo.path("src/data/*.party"))):
+        rel = os.path.relpath(path, repo.root)
+        current = None
+        with open(path, encoding="utf-8", errors="replace") as fh:
+            for no, line in enumerate(fh, 1):
+                m = re.match(r"===\s*((?:TRAINER|PARTNER)_\w+)\s*===", line)
+                if m:
+                    current = None if m.group(1).endswith("_NONE") else m.group(1)
+                elif current and line.startswith("Name:"):
+                    out.append((rel, no, current, line[len("Name:"):].strip()))
+    return out
 
 
 CAST = r"(?:\(\s*const\s+u8\s*\[[^\]]*\]\s*\)\s*)?"
@@ -1053,8 +1108,11 @@ def collect(repo, threads):
             results = list(pool.map(lambda f: c_strings(cpp, f), c_files))
         seen = set()
         c_idents = set()
-        for items, idents in results:
+        c_live = collections.defaultdict(set)
+        for items, idents, live in results:
             c_idents |= idents
+            for file, nums in live.items():
+                c_live[file] |= nums
             for file, line_no, label, bodies in items:
                 key = (file, line_no, tuple(bodies))
                 if key in seen:
@@ -1116,6 +1174,19 @@ def collect(repo, threads):
 
         refs, file_buffers, reach, story_reach, incoming, reach_maps, locked = analyse_blocks(
             texts, blocks, maps, trainer_story, ctexts)
+
+        def rate(t, ref_blocks):
+            """Sets reach, story path, active maps and locked state from the showing scripts."""
+            kinds, story, shown = set(), False, set()
+            for block in ref_blocks:
+                kinds |= reach.get(block.label, set())
+                story = story or block.label in story_reach
+                shown |= reach_maps.get(block.label, set())
+            t.reach = kinds
+            t.story = story or bool(kinds & {"trigger", "mapscript"})
+            t.shown_in = sorted(d for d in shown if maps.by_dir[d]["region"] in ACTIVE_REGIONS)
+            t.locked = bool(ref_blocks) and all(b.label in locked for b in ref_blocks)
+
         names = Names(repo, charmap, font, ctexts)
         est = Estimator(names, ctexts, texts, charmap, font)
 
@@ -1149,21 +1220,33 @@ def collect(repo, threads):
                     if i < len(best) and (ln.width, ln.exact) > (best[i].width, best[i].exact):
                         best[i] = ln
             t.lines = best
-            kinds = set()
-            story = False
-            shown = set()
-            for block, _ in refs.get(label, []):
-                kinds |= reach.get(block.label, set())
-                story = story or block.label in story_reach
-                shown |= reach_maps.get(block.label, set())
-            t.reach = kinds
-            t.story = story or bool(kinds & {"trigger", "mapscript"})
+            rate(t, [b for b, _ in refs.get(label, [])])
             t.referenced = bool(refs.get(label)) or label in c_idents
-            t.shown_in = sorted(d for d in shown if maps.by_dir[d]["region"] in ACTIVE_REGIONS)
-            t.locked = bool(refs.get(label)) and all(b.label in locked for b, _ in refs[label])
         for t in ctexts.values():
             t.reach, t.story, t.referenced = set(), False, True
-        return texts, ctexts, maps, unknown, cpp.stubs
+
+        # trainer names: shown in battle, rated by the scripts that fight them
+        trainer_blocks = collections.defaultdict(list)
+        for block in blocks.values():
+            for _, cmd, args in block.cmds:
+                for a in args:
+                    if a.startswith(("TRAINER_", "PARTNER_")):
+                        trainer_blocks[a].append(block)
+        c_refs, first_of = c_trainer_refs(repo, c_live)
+        party = []
+        for file, line_no, tid, name in party_names(repo):
+            t = Text("party", tid, file, line_no, "party")
+            t.literals = [(line_no, name)]
+            fights = trainer_blocks.get(tid, []) + trainer_blocks.get(first_of.get(tid), [])
+            rate(t, fights)
+            t.referenced = bool(fights) or tid in c_refs
+            t.c_refs = sorted(c_refs.get(tid, ()))
+            t.rematch_of = first_of.get(tid)
+            regions = [maps.region_of(b.file) for b in fights if b.file.startswith("data/maps/")]
+            regions.sort(key=lambda r: r not in ACTIVE_REGIONS)
+            t.home = regions[0] if regions else PARTY_REGION.get(os.path.basename(file), "gemeinsam")
+            party.append(t)
+        return texts, ctexts, party, maps, unknown, cpp.stubs
     finally:
         cpp.close()
 
@@ -1177,6 +1260,12 @@ def visibility(t, borrowed=False):
         return LOCKED_VIS, False
     if t.file.startswith(DEBUG_FILES) and not borrowed:
         return "Debug", False
+    if t.origin == "party" and not borrowed:
+        if t.c_refs:
+            return "Quelltext (%s)" % ", ".join(t.c_refs[:2]), False
+        if t.referenced:
+            return "Skript (Einstieg unbekannt)", False
+        return "nicht referenziert", False
     if t.origin == "c":
         if t.file in SRC_CHECKED_WINDOW:
             return SRC_CHECKED_WINDOW[t.file], t.file == "src/battle_message.c"
@@ -1199,7 +1288,10 @@ def visibility(t, borrowed=False):
         vis, story = "Skript/C (Einstieg unbekannt)", False
     else:
         vis, story = "nicht referenziert", False
-    if borrowed:
+    if borrowed and t.origin == "party":
+        vis += " (Kampf auf %s%s)" % (", ".join(t.shown_in[:3]),
+                                      ", Rückkampf von %s" % t.rematch_of if t.rematch_of else "")
+    elif borrowed:
         vis += " (gezeigt auf %s)" % ", ".join(t.shown_in[:3])
     return vis, story
 
@@ -1210,18 +1302,27 @@ def rows_for(texts, limit, maps):
     english_files = collections.Counter()
     german_files = set()
     for t in texts:
+        if t.origin == "party":
+            continue
         if is_english(t.plain()):
             english_files[t.file] += 1
         elif is_german(t.plain()):
             german_files.add(t.file)
     for t in texts:
-        home = maps.region_of(t.file) if t.origin == "script" else "src"
-        borrowed = bool(t.shown_in) and (t.file.startswith(DEBUG_FILES) or home in INACTIVE_REGIONS)
+        home = t.home or (maps.region_of(t.file) if t.origin == "script" else "src")
+        borrowed = bool(t.shown_in) and (t.origin == "party" or t.file.startswith(DEBUG_FILES)
+                                         or home in INACTIVE_REGIONS)
         region = maps.by_dir[t.shown_in[0]]["region"] if borrowed else home
         t.region = region
         s = stats[region]
-        s["texte"] += 1
         vis, story = visibility(t, borrowed)
+        if t.origin == "party":
+            name = t.plain().strip()
+            if CAPS_NAME_RE.fullmatch(name):
+                s["englisch"] += 1
+                english.append((region, t, ["Name in Großbuchstaben"], vis, story))
+            continue
+        s["texte"] += 1
         own_window = t.origin == "c" and t.file.startswith(SRC_OWN_WINDOW)
         for ln in t.lines:
             s["zeilen"] += 1
@@ -1276,8 +1377,8 @@ def main():
     args = ap.parse_args()
 
     repo = Repo(args.repo)
-    texts, ctexts, maps, unknown, stubs = collect(repo, args.threads)
-    all_texts = list(texts.values()) + list(ctexts.values())
+    texts, ctexts, party, maps, unknown, stubs = collect(repo, args.threads)
+    all_texts = list(texts.values()) + list(ctexts.values()) + party
     over, english, stats = rows_for(all_texts, args.limit, maps)
 
     print("Text widths, limit %d px (window %d px), repo %s" % (args.limit, WINDOW, repo.root))
