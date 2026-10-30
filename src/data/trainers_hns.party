@@ -7687,7 +7687,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Name: Umeko
 Class: Kimono Girl Hns
 Pic: Kimono Girl Hns
-Gender: Male
+Gender: Female
 Music: Hg Kimono Girl
 Double Battle: No
 AI: Basic Trainer
@@ -7713,7 +7713,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Name: Sakura
 Class: Kimono Girl Hns
 Pic: Kimono Girl Hns
-Gender: Male
+Gender: Female
 Music: Hg Kimono Girl
 Double Battle: No
 AI: Basic Trainer
@@ -7739,7 +7739,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Name: Tamao
 Class: Kimono Girl Hns
 Pic: Kimono Girl Hns
-Gender: Male
+Gender: Female
 Music: Hg Kimono Girl
 Double Battle: No
 AI: Basic Trainer
@@ -7757,7 +7757,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Name: Komomo
 Class: Kimono Girl Hns
 Pic: Kimono Girl Hns
-Gender: Male
+Gender: Female
 Music: Hg Kimono Girl
 Double Battle: No
 AI: Basic Trainer
@@ -7783,7 +7783,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Name: Satsuki
 Class: Kimono Girl Hns
 Pic: Kimono Girl Hns
-Gender: Male
+Gender: Female
 Music: Hg Kimono Girl
 Double Battle: No
 AI: Basic Trainer
@@ -8323,7 +8323,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 Name: Bianka
 Class: Leader Hns
 Pic: Leader Whitney Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -8382,7 +8382,7 @@ IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 Name: Bianka
 Class: Leader Hns
 Pic: Leader Whitney Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -8791,7 +8791,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 Name: Jasmin
 Class: Leader Hns
 Pic: Leader Jasmine Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -8850,7 +8850,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 Name: Jasmin
 Class: Leader Hns
 Pic: Leader Jasmine Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -8909,7 +8909,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 Name: Jasmin
 Class: Leader Hns
 Pic: Leader Jasmine Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -8964,7 +8964,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 Name: Jasmin
 Class: Leader Hns
 Pic: Leader Jasmine Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -9247,7 +9247,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 Name: Sandra
 Class: Leader Hns
 Pic: Leader Clair Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -9306,7 +9306,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 Name: Sandra
 Class: Leader Hns
 Pic: Leader Clair Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -9424,7 +9424,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 Name: MISTY
 Class: Leader Kanto Hns
 Pic: Leader Misty Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -9542,7 +9542,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 Name: ERIKA
 Class: Leader Kanto Hns
 Pic: Leader Erika Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -9601,7 +9601,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 Name: SABRINA
 Class: Leader Kanto Hns
 Pic: Leader Sabrina Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -9660,7 +9660,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 Name: Janina
 Class: Leader Kanto Hns
 Pic: Leader Janine Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -10124,7 +10124,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Name: Melanie
 Class: Elite Four Hns
 Pic: Elite Four Karen Hns
-Gender: Male
+Gender: Female
 Music: Hg Elite Four
 Double Battle: No
 AI: Basic Trainer
@@ -10179,7 +10179,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Name: Melanie
 Class: Elite Four Hns
 Pic: Elite Four Karen Hns
-Gender: Male
+Gender: Female
 Music: Hg Elite Four
 Double Battle: No
 AI: Basic Trainer
@@ -10502,7 +10502,7 @@ Level: 75
 Name: Sandra
 Class: Leader Hns
 Pic: Leader Clair Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -12161,7 +12161,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Name: Athena
 Class: Rocket Admin Hns
 Pic: Ariana Hns
-Gender: Male
+Gender: Female
 Music: Rocket
 Double Battle: No
 AI: Basic Trainer
@@ -12208,7 +12208,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Name: Athena
 Class: Rocket Admin Hns
 Pic: Ariana Hns
-Gender: Male
+Gender: Female
 Music: Rocket
 Double Battle: No
 AI: Basic Trainer
@@ -16057,7 +16057,7 @@ Level: 69
 Name: WHITNEY
 Class: Leader Hns
 Pic: Leader Whitney Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Smart Trainer / Prediction
@@ -16241,7 +16241,7 @@ Level: 71
 Name: JASMINE
 Class: Leader Hns
 Pic: Leader Jasmine Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Smart Trainer / Prediction
@@ -16367,7 +16367,7 @@ IVs: 0 Atk
 Name: CLAIR
 Class: Leader Hns
 Pic: Leader Clair Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Smart Trainer / Prediction
@@ -16487,7 +16487,7 @@ Level: 72
 Name: MISTY
 Class: Leader Kanto Hns
 Pic: Leader Misty Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Smart Trainer / Prediction
@@ -16612,7 +16612,7 @@ IVs: 0 Atk
 Name: ERIKA
 Class: Leader Kanto Hns
 Pic: Leader Erika Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Smart Trainer / Prediction
@@ -16676,7 +16676,7 @@ IVs: 0 Atk
 Name: JANINE
 Class: Leader Kanto Hns
 Pic: Leader Janine Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Smart Trainer / Prediction
@@ -16738,7 +16738,7 @@ IVs: 0 Atk
 Name: SABRINA
 Class: Leader Kanto Hns
 Pic: Leader Sabrina Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Smart Trainer / Prediction
@@ -17112,7 +17112,7 @@ Level: 79
 Name: KAREN
 Class: Elite Four Hns
 Pic: Elite Four Karen Hns
-Gender: Male
+Gender: Female
 Music: Hg Elite Four
 Double Battle: No
 AI: Smart Trainer / Prediction
