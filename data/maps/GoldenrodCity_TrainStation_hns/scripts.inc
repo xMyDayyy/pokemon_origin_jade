@@ -90,11 +90,13 @@ GoldenrodCity_TrainStation_EventScript_Psychic::
 	release
 	end
 
+@ Ends one tile below the attendant's spot, which he walks back to.
 GoldenrodCity_TrainStation_Movement_ExitTrain:
 	walk_down
 	walk_left
 	walk_left
 	walk_left
+	walk_down
 	walk_down
 	walk_down
 	walk_down

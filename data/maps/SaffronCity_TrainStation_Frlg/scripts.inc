@@ -78,11 +78,13 @@ SaffronStationFrlg_EventScript_ExitTrain::
 	release
 	end
 
+@ Ends one tile below the attendant's spot, which he walks back to.
 SaffronStationFrlg_Movement_ExitTrain:
 	walk_down
 	walk_left
 	walk_left
 	walk_left
+	walk_down
 	walk_down
 	walk_down
 	walk_down
