@@ -436,7 +436,7 @@ dated 2026-10-10 or later were decided directly.
 ## Language and upstream
 
 ### D-020 Language, comments and game text
-- **Status:** Active
+- **Status:** Active (changed 2026-10-30)
 - **Rules:**
   - Comments are English (since 2026-10-09).
   - The German build never shows English game text. Changes to game text
@@ -445,8 +445,8 @@ dated 2026-10-10 or later were decided directly.
   - German texts follow the official German games (source cascade in
     1767d31fe6). Real umlauts and ß, no "ae/oe/ue/ss" substitutes. Title
     case, no all-caps.
-  - Pixel limits: text box 208 px, PokeNav call box 192 px
-    (`check_pokenav_text.py`).
+  - Pixel limits: text box 208 px (`tools/check_text_width.py` measures
+    the built ROM), PokeNav call box 192 px (`check_pokenav_text.py`).
   - Debug menu texts stay English.
 - **Evidence:** 1767d31fe6, 6736e18718, 61504582b3, 652123e252,
   c7104b184e, d1a2067c84.
@@ -1187,9 +1187,18 @@ dated 2026-10-10 or later were decided directly.
   `LoadGameSave` (`FLAG_MIGRATED_JOHTO_BERRY_SLOTS`).
 - **O-011** Resolved 2026-10-15: Oak's lab copies the ball number before the
   preview and hands out the starter with the preview's shininess.
-- **O-012** Text debt: 172 Johto texts without a German branch (346072a202);
-  4951 German HnS lines wider than 216 px (652123e252). Later, as its own
-  round (owner 2026-10-21).
+- **O-012** Text debt: 172 Johto texts without a German branch
+  (346072a202). Line widths, re-measured 2026-10-30 with
+  `tools/check_text_width.py` (bytes of the built German ROM, FONT_NORMAL
+  widths by glyph id, lines split at `\n`, `\l`, `\p`): no German line is
+  wider than the 216 px text window; 30 are wider than the 208 px limit
+  (29 Johto, 1 Kanto, 209-213 px, `--list` names them). Lines with
+  `{PLAYER}`, `{RIVAL}` or `{STR_VAR_x}` are estimates (7 or 10 characters
+  of 6 px): 199 may exceed 216 px, most of them in `data/text`. The locked
+  Sinjoh and Alola maps (D-019) add 6 English lines over 208 px. The
+  earlier 4951 lines over 216 px (652123e252) match the widths
+  `check_pokenav_text.py` read one glyph off until 2026-10-30. Later, as
+  its own round (owner 2026-10-21).
 - **O-013** Resolved 2026-10-15 (D-028).
 - **O-014** Resolved 2026-10-15: Silver's daily battle (D-028), gym rematches
   and Janina in Fuchsia (D-032). The signposts and the Dojo VIP room stay off.
