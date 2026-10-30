@@ -1697,7 +1697,7 @@ gText_HadQuiteAnExperienceTakeRest::
 gText_MomExplainHPGetPotions::
 	.string "MAMA: Oh, schön! Du und deine\n"
 	.string "POKéMON seht großartig aus.\p"
-	.string "Ich habe gerade von PROF. BIRK\n"
+	.string "Ich habe gerade von Prof. Eich\n"
 	.string "gehört.\p"
 	.string "Er sagte, die Energie der POKéMON\n"
 	.string "wird in KP gemessen.\p"
