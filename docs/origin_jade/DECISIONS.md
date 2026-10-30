@@ -763,7 +763,7 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-21 (O-008).
 
 ### D-037 Hoenn is complete without trading
-- **Status:** Active (2026-10-26)
+- **Status:** Active (2026-10-26, changed 2026-10-30)
 - **Decision:** All 415 species of the National Pokedex and the whole Hoenn
   dex are obtainable without link trades. As in Kanto (D-013), day and night
   replace the Ruby/Sapphire version split on Emerald's wild tables.
@@ -774,6 +774,10 @@ dated 2026-10-10 or later were decided directly.
   - Route 114: Zangoose by day in Seviper's slots (9 %), Seviper at night.
   - Meteor Falls, all five maps: Solrock by day, Lunatone at night in
     Solrock's slots, on land and surfing.
+  - Meditite and Medicham, which Emerald dropped, in Ruby/Sapphire's slots
+    and levels, day and night: Mt. Pyre's exterior Meditite (30 %, in two
+    of Shuppet's slots); Victory Road B1F and B2F Medicham (10 %, in one of
+    Lairon's slots).
   - `src/data/wild_encounters.json`: the plain table is the day table
     (morning, day and evening), the entry with the suffix `_Night` the night
     table (19:00-6:00), right after it. A map without a night table uses its
@@ -782,7 +786,14 @@ dated 2026-10-10 or later were decided directly.
     the day table when the night has none; retired maps and maps of the other
     region map (Hoenn vs. Kanto and Johto) are skipped (`FindMapsWithMon`,
     `src/pokedex_area_screen.c`).
-- **Evidence:** decision 2026-10-26 (O-019).
+  - Not met yet, pending the owner's decision: the third Johto starter line
+    has no source (Elm gives one starter, Birch one more after the completed
+    Hoenn dex; no wild table, in-game trade or egg has the third), so
+    `HasAllMons` and the Schillerpin (D-036) still need a link trade.
+    Jirachi has no source either (only HnS's retired Mt. Moon); it is not
+    required for `HasAllMons`.
+- **Evidence:** decision 2026-10-26 (O-019); audit 2026-10-30 (Meditite and
+  Medicham had no reachable source).
 
 ### D-038 Suicune: HnS's sightings, Crystal's Route 36, the Glockenturm
 - **Status:** Active (2026-10-27). Supersedes D-027 in the waiting condition
