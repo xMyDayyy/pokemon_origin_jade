@@ -376,7 +376,7 @@ dated 2026-10-10 or later were decided directly.
 ## Data, saves and maps (technical conventions)
 
 ### D-016 Flags and vars
-- **Status:** Active
+- **Status:** Active (storage checks changed 2026-10-30)
 - **Rules:**
   - New Origin Jade flags and vars come only from
     `include/constants/flags_origin_jade.h` and `vars_origin_jade.h`
@@ -393,8 +393,16 @@ dated 2026-10-10 or later were decided directly.
     FRLG trainer flags are redirected by `TrainerIdToFlagId`.
   - `FLAG_TEMP_x` on cut trees and boulders is correct (hidden for the
     current visit); hidden items need real flags.
+  - Only numbers inside a storage window are saved: SaveBlock1 flags below
+    `FLAGS_COUNT` and vars up to `VARS_END`, the FRLG, FRLG trainer, HnS
+    rematch tier and Origin Jade windows in SaveBlock3, and the special
+    flags and vars (not saved). Any other number would write into
+    neighbouring save fields. `tools/check_flags.py` reports named flags
+    and vars without storage, `--free` lists only free numbers with
+    storage, and in the test build `GetFlagPointer`/`GetVarPointer` make a
+    test INVALID for such a number.
 - **Evidence:** 9a12676bc2, c2cbd316ad, 5dbd22cc65, 5bda779144,
-  f89324b8d2, 42058c2f69, 2e9792740c.
+  f89324b8d2, 42058c2f69, 2e9792740c; audit 2026-10-30 (A44, A96).
 
 ### D-017 Saves and migrations
 - **Status:** Active (changed 2026-10-30)

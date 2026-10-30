@@ -39,6 +39,13 @@ EWRAM_DATA static u16 sTestVars[TEST_VARS_SIZE] = {0};
 
 extern u16 *const gSpecialVars[];
 
+// Tests: a flag or var id without storage makes the test INVALID.
+#if TESTING
+#define ASSERT_STORAGE(cond, kind, id) assertf(cond, kind " 0x%x has no storage", id)
+#else
+#define ASSERT_STORAGE(cond, kind, id)
+#endif
+
 // Capped at 8: every consumer indexes 8-entry tables with the count this yields.
 const u16 gBadgeFlags[NUM_BADGES_CAPPED] =
 {
@@ -204,13 +211,19 @@ u16 *GetVarPointer(u16 id)
     else if (id >= OJ_VARS_START && id <= OJ_VARS_END)
         return &gSaveBlock3Ptr->varsOj[id - OJ_VARS_START];
     else if (id < SPECIAL_VARS_START)
+    {
+        ASSERT_STORAGE(id <= VARS_END, "var", id);
         return &gSaveBlock1Ptr->vars[id - VARS_START];
+    }
 #if TESTING
     else if (id >= TESTING_VARS_START)
         return &sTestVars[id - TESTING_VARS_START];
 #endif // TESTING
     else
+    {
+        ASSERT_STORAGE(id <= SPECIAL_VARS_END, "var", id);
         return gSpecialVars[id - SPECIAL_VARS_START];
+    }
 }
 
 u16 VarGet(u16 id)
@@ -278,13 +291,19 @@ u8 *GetFlagPointer(u16 id)
     else if (id >= OJ_FLAGS_START && id <= OJ_FLAGS_END)
         return &gSaveBlock3Ptr->flagsOj[(id - OJ_FLAGS_START) / 8];
     else if (id < SPECIAL_FLAGS_START)
+    {
+        ASSERT_STORAGE(id < FLAGS_COUNT, "flag", id);
         return &gSaveBlock1Ptr->flags[id / 8];
+    }
 #if TESTING
     else if (id >= TESTING_FLAGS_START)
         return &sTestFlags[(id - TESTING_FLAGS_START) / 8];
 #endif // TESTING
     else
+    {
+        ASSERT_STORAGE(id <= SPECIAL_FLAGS_END, "flag", id);
         return &sSpecialFlags[(id - SPECIAL_FLAGS_START) / 8];
+    }
 }
 
 u8 FlagSet(u16 id)

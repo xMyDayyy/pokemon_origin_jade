@@ -1393,12 +1393,12 @@
 #define FLAG_HIDDEN_ITEM_MT_MOON_B3F_FULL_HEAL               (FRLG_FLAGS_START+0x277)
 #define FLAG_HIDDEN_ITEM_MT_MOON_B3F_ULTRA_BALL              (FRLG_FLAGS_START+0x29F)
 
-// Reserve for new flags, up to FRLG_FLAGS_END. After release, grow the
-// block only by appending to the end of SaveBlock3.
-#define FRLG_FLAGS_RESERVE_START (FRLG_FLAGS_START+0x2A0)
-
 // S.S. Aqua in Vermilion: set in new_game.inc, cleared once it docks.
 #define FLAG_HIDE_VERMILION_SS_AQUA                          (FRLG_FLAGS_START+0x2A0)
+
+// Reserve for new flags, up to FRLG_FLAGS_END. After release, grow the
+// block only by appending to the end of SaveBlock3.
+#define FRLG_FLAGS_RESERVE_START (FRLG_FLAGS_START+0x2A1)
 
 #define FRLG_FLAGS_END (FRLG_FLAGS_START+0x3FF)
 
