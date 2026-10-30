@@ -80,6 +80,8 @@
 #define FLAG_DEFEATED_RED_GYARADOS                   (OJ_FLAGS_JOHTO + 13)
 // A Day Care man gave the Oval Charm with the first egg.
 #define FLAG_RECEIVED_OVAL_CHARM                     (OJ_FLAGS_JOHTO + 14)
+// The Violet City gift egg hatched, whatever its species (Elm's lab).
+#define FLAG_HATCHED_TOGEPI_EGG                      (OJ_FLAGS_JOHTO + 15)
 
 // ---------------------------------------------------------------------
 // Hoenn (OJ_FLAGS_HOENN + 0 to + 95)

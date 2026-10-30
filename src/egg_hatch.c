@@ -367,6 +367,12 @@ static void AddHatchedMonToParty(u8 id)
     metloc_u8_t metLocation;
     struct Pokemon *mon = &gPlayerParty[id];
 
+#if IS_HNS
+    // A gift egg hatched after the Violet City egg was received counts for Elm's lab.
+    if (FlagGet(FLAG_RECEIVED_TOGEPI_EGG) && GetMonData(mon, MON_DATA_MET_LOCATION) == METLOC_SPECIAL_EGG)
+        FlagSet(FLAG_HATCHED_TOGEPI_EGG);
+#endif
+
     CreateHatchedMon(mon, &gEnemyParty[0]);
     SetMonData(mon, MON_DATA_IS_EGG, &isEgg);
 

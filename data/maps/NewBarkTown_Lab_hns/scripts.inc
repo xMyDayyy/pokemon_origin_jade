@@ -525,6 +525,8 @@ NewBarkTown_Lab_EventScript_Elm_Check_WhereIsEgg::
 	end
 
 NewBarkTown_Lab_EventScript_Elm_Check_Togepi::
+	@ The hatched Violet City egg counts whatever its species and wherever it is.
+	goto_if_set FLAG_HATCHED_TOGEPI_EGG, NewBarkTown_Lab_EventScript_Elm_Togepi_Seen
 	checkspecies SPECIES_TOGEPI
 	goto_if_eq VAR_RESULT, TRUE, NewBarkTown_Lab_EventScript_Elm_Togepi_Seen
 	checkspecies SPECIES_TOGETIC

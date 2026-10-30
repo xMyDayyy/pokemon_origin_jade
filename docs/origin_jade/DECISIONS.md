@@ -567,7 +567,9 @@ dated 2026-10-10 or later were decided directly.
     (`sFixedMonExceptionMaps`, map-wide). Scripted double wild battles are
     not randomized. Gift eggs (`giveegg`: Violet City's Togepi, Lavaridge's
     Wynaut) get their species when given (`RandomizeGiftEggMon`, same
-    seed); Day Care eggs hatch as the parents' species.
+    seed); Day Care eggs hatch as the parents' species. Elm counts the
+    hatched Violet City egg whatever its species (`FLAG_HATCHED_TOGEPI_EGG`,
+    set in `AddHatchedMonToParty`).
   - Starters ("Starter: Zufall"): only Oak's preview applies it (and the
     one-type challenge); the lab hands out exactly the previewed and named
     species with the preview's shininess (D-035). Elm's and Birch's labs
