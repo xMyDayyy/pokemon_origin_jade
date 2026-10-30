@@ -291,8 +291,8 @@ WhirlIslands_LugiaChamber_EventScript_KuniAfter::
 WhirlIslands_LugiaChamber_Text_Kimono_AfterNotCaught:
 #if GERMAN
 	.string "Ihr habt Lugia nicht nur hierher\n"
-	.string "gerufen, sondern Ihr konntet es auch,\l"
-	.string "wie durch ein Wunder, einfangen…\p"
+	.string "gerufen, sondern Euch ihm auch im\l"
+	.string "Kampf gestellt…\p"
 	.string "Das war wahrlich eine große Heldentat.\n"
 	.string "Es gibt nun nichts mehr, was wir Euch\l"
 	.string "noch erzählen könnten.\p"

@@ -288,8 +288,8 @@ TinTower_RoofDay_EventScript_KuniAfter::
 TinTower_RoofDay_Text_Kimono_AfterNotCaught:
 #if GERMAN
 	.string "Ihr habt Ho-Oh nicht nur hierher\n"
-	.string "gerufen, sondern Ihr konntet es auch\l"
-	.string "wie durch ein Wunder einfangen…\p"
+	.string "gerufen, sondern Euch ihm auch im\l"
+	.string "Kampf gestellt…\p"
 	.string "Das war wirklich eine Glanzleistung.\n"
 	.string "Es gibt nun nichts mehr, was wir Euch\l"
 	.string "noch erzählen könnten.\p"
