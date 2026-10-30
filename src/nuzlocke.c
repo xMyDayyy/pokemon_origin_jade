@@ -19,6 +19,8 @@
 EWRAM_DATA u8 NuzlockeIsCaptureBlocked = FALSE;
 EWRAM_DATA u8 NuzlockeIsSpeciesClauseActive = FALSE;
 EWRAM_DATA u8 OneTypeChallengeCaptureBlocked = FALSE;
+// Scripted static encounter (dowildbattle): catchable and does not use up the area.
+EWRAM_DATA u8 NuzlockeIsStaticEncounter = FALSE;
 
 // Zone-to-bit mapping for one-encounter-per-area tracking.
 // Only locations with wild encounters should be listed.

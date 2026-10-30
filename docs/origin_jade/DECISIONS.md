@@ -1115,8 +1115,8 @@ dated 2026-10-10 or later were decided directly.
   retiring it).
 
 ### D-045 Nuzlocke rules
-- **Status:** Active (2026-10-30). The end point waits for the owner's
-  confirmation (O-025).
+- **Status:** Active (2026-10-30; changed 2026-10-30: static encounters).
+  The end point waits for the owner's confirmation (O-025).
 - **Decision:** The challenge menu's Nuzlocke (`src/nuzlocke.c`) works like
   this in Origin Jade:
   - Start and end: it starts at Oak's Pokedex handover in Kanto
@@ -1128,7 +1128,8 @@ dated 2026-10-10 or later were decided directly.
   - First encounter per area (Normal and Hart; map sections, `sNuzlockeLUT`):
     the first single wild battle in an area uses it up, caught or not; a
     hatched egg uses up the area where it hatches. These do not use it up:
-    trainer battles, double wild battles, legendary and roamer battles, the
+    trainer battles, double wild battles, scripted static encounters,
+    legendary and roamer battles, the
     Safari Zone and the Bug-Catching Contest (free catching there), battles
     in which catching is impossible (`FLAG_NO_WILD_CATCHING`, e.g. Route 41's
     Tentacruel; the Pokemon Tower's ghosts without the Silph Scope and the
@@ -1138,6 +1139,14 @@ dated 2026-10-10 or later were decided directly.
     (`src/battle_main.c`).
   - Shiny clause ("Shiny-Klausel"): a shiny can always be caught, and
     meeting one never uses up the area.
+  - Static encounters: scripted battles (`setwildbattle` with
+    `dowildbattle`: Snorlax on Routes 12 and 16, Sudowoodo on Route 36 and
+    at the Battle Frontier, Union Cave's Lapras, the Electrode of the Power
+    Plant, the Rocket Hideout and the Aqua Hideout, New Mauville's Voltorb,
+    Kecleon on Routes 119 and 120) can always be caught, without the area,
+    species or dupes check, and use up nothing (`NuzlockeIsStaticEncounter`,
+    set in `BattleSetup_StartScriptedWildBattle`). Legendaries are free as
+    well (see above).
   - Deaths: a Pokemon that faints dies when the battle ends (or when it
     faints from poison in the field): released, or moved to the PC as
     unusable ("Friedhof", always in Leicht). No deaths in Trainer Hill,
@@ -1157,9 +1166,11 @@ dated 2026-10-10 or later were decided directly.
     Corner prizes, the Magikarp on Route 4) do so through
     `Common_EventScript_AskNicknameGiftPartyMon` / `...BoxMon`
     (`data/event_scripts.s`).
-  - Open: scripted static encounters (O-026), eggs in used-up areas
-    (O-027), deaths in the Trainer Hills (O-028).
-- **Evidence:** audit 2026-10-30 (A23, A25, A30, A79, A83, A87).
+  - Open: eggs in used-up areas (O-027), deaths in the Trainer Hills
+    (O-028).
+- **Evidence:** audit 2026-10-30 (A23, A25, A30, A79, A83, A87); owner
+  decision 2026-10-30 (rules as usual in the Nuzlocke community: static
+  encounters are free).
 
 ### D-046 Only Origin Jade is built
 - **Status:** Active (2026-10-30)
@@ -1299,15 +1310,8 @@ dated 2026-10-10 or later were decided directly.
   for the seven Emerald `TrainerHill_*` maps would end all of these.
 - **O-025** Nuzlocke end point: the Nuzlocke ends at the first Hoenn title
   (D-045); until 2026-10-30 it ended when Red was beaten. Owner to confirm.
-- **O-026** Nuzlocke and scripted static encounters (`setwildbattle` with
-  `dowildbattle`: Snorlax on Routes 12 and 16, Sudowoodo on Route 36, Union
-  Cave's Lapras, the Electrode of the Power Plant, the Rocket Hideout and the
-  Aqua Hideout, New Mauville's Voltorb, Kecleon on Routes 119 and 120): they
-  can always be caught, without the area, species or dupes check, but use up
-  the area's first encounter if it is still open, even after fleeing.
-  Legendary battles use up nothing (D-045). Rule needed: free like the
-  legendaries, or counted like wild Pokemon (`SetNuzlockeChecks` for
-  scripted battles).
+- **O-026** Resolved 2026-10-30: scripted static encounters can always be
+  caught and use up no area (D-045).
 - **O-027** Nuzlocke and eggs: an egg hatches only in an area whose first
   encounter is still open (`src/daycare.c`), and hatching uses the area up
   (`src/egg_hatch.c`); map sections without an entry in `sNuzlockeLUT` share
