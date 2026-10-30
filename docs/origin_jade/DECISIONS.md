@@ -1148,7 +1148,12 @@ dated 2026-10-10 or later were decided directly.
   `check_merge.py` runs without blocking. Map errors that are unreachable
   or intended go into its `KNOWN_ERRORS` with the decision that covers
   them. The upstream Docs and Labels workflows run only by hand.
-- **Evidence:** owner decision 2026-10-30.
+- **Debug menus:** the overworld debug menu (R + Start, with "Johto Test"),
+  the battle debug menu (Select) and the sprite visualizer are on in the
+  normal build (beta testing) and off in `make release`
+  (`DISABLED_ON_RELEASE`, `include/config/debug.h`).
+- **Evidence:** owner decisions 2026-10-30 (only Jade; debug menus on in
+  the beta, off in the release).
 
 ---
 
