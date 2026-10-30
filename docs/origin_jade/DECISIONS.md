@@ -1118,6 +1118,20 @@ dated 2026-10-10 or later were decided directly.
     (O-027), deaths in the Trainer Hills (O-028).
 - **Evidence:** audit 2026-10-30 (A23, A25, A30, A79, A83, A87).
 
+### D-046 Only Origin Jade is built
+- **Status:** Active (2026-10-30)
+- **Decision:** The make process builds only Origin Jade: `GAME_VERSION`
+  `POKEMON_HNS` (so `IS_HNS`), map version `hns`, title "POKEMON JADE",
+  `Pokemon_Origin_Jade.gba`. `make`, `make jade`, `make check`,
+  `make release` and `make debug` all build it; the emerald, firered,
+  leafgreen and hns targets are gone, and a `BUILD=` other than `jade` stops
+  with an error. The other versions' code (`#if FIRERED`, `#if EMERALD`, ...)
+  stays in the sources so HnS and expansion merges stay small; it is neither
+  built nor checked.
+- **Rules / code:** top of `Makefile`. Generated sources (trainer parties,
+  teachable learnsets) always use the jade defines.
+- **Evidence:** owner decision 2026-10-30.
+
 ---
 
 ## Planned, not built yet

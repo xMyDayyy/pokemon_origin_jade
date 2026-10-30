@@ -1,41 +1,13 @@
-GAME_VERSION ?= EMERALD
-TITLE        ?= POKEMON EMER
-GAME_CODE    ?= BPEE
-BUILD_NAME   ?= emerald
-MAP_VERSION  ?= emerald
-
-ifeq (firered, $(or $(BUILD), $(MAKECMDGOALS)))
-  	GAME_VERSION 	:= FIRERED
-	TITLE       	:= POKEMON FIRE
-	GAME_CODE   	:= BPRE
-	BUILD_NAME  	:= firered
-	MAP_VERSION 	:= firered
-else
-ifeq (leafgreen, $(or $(BUILD), $(MAKECMDGOALS)))
-	GAME_VERSION 	:= LEAFGREEN
-	TITLE       	:= POKEMON LEAF
-	GAME_CODE   	:= BPGE
-	BUILD_NAME  	:= leafgreen
-	MAP_VERSION 	:= firered
-else
-ifeq (hns, $(or $(BUILD), $(MAKECMDGOALS)))
-	GAME_VERSION 	:= POKEMON_HNS
-	TITLE       	:= POKEMON HNS
-	GAME_CODE   	:= BPEE
-	BUILD_NAME  	:= hns
-	MAP_VERSION 	:= hns
-else
-# Origin Jade: hns build with its own title and file name.
+# Origin Jade is the only build target: make, make jade, make check, make release and make debug build it.
 # GAME_VERSION must stay POKEMON_HNS for IS_HNS.
-ifeq (jade, $(or $(BUILD), $(MAKECMDGOALS)))
-	GAME_VERSION 	:= POKEMON_HNS
-	TITLE       	:= POKEMON JADE
-	GAME_CODE   	:= BPEE
-	BUILD_NAME  	:= jade
-	MAP_VERSION 	:= hns
-endif
-endif
-endif
+GAME_VERSION := POKEMON_HNS
+TITLE        := POKEMON JADE
+GAME_CODE    := BPEE
+BUILD_NAME   := jade
+MAP_VERSION  := hns
+
+ifneq (,$(filter-out jade,$(BUILD)))
+  $(error Only Origin Jade is built: use make or make jade, not BUILD=$(BUILD))
 endif
 
 # GBA rom header
@@ -44,11 +16,7 @@ REVISION    := 0
 KEEP_TEMPS  ?= 0
 
 # `File name`.gba
-ifeq ($(BUILD_NAME),jade)
 FILE_NAME := Pokemon_Origin_Jade
-else
-FILE_NAME := poke$(BUILD_NAME)
-endif
 BUILD_DIR := build
 
 # Compares the ROM to a checksum of the original - only makes sense using when non-modern
@@ -305,7 +273,7 @@ MAKEFLAGS += --no-print-directory
 .DELETE_ON_ERROR:
 
 RULES_NO_SCAN += libagbsyscall clean clean-assets tidy tidymodern tidycheck tidyrelease generated clean-generated clean-teachables clean-teachables_intermediates
-.PHONY: all rom agbcc modern compare check debug release emerald firered leafgreen hns jade
+.PHONY: all rom agbcc modern compare check debug release jade
 .PHONY: $(RULES_NO_SCAN)
 
 infoshell = $(foreach line, $(shell $1 | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
@@ -637,10 +605,6 @@ $(ROM): $(ELF)
 	$(OBJCOPY) -O binary $< $@
 	$(FIX) $@ -p --silent
 
-emerald: all
-firered: all
-leafgreen: all
-hns: all
 jade: all
 # Symbol file (`make syms`)
 $(SYM): $(ELF)
