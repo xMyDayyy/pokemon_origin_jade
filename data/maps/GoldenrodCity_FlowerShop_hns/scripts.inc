@@ -1,5 +1,13 @@
 GoldenrodCity_FlowerShop_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, GoldenrodCity_FlowerShop_OnTransition
 	.byte 0
+
+@ Mints switched off in the challenge menu: the clerk sells them from the first Hoenn title on.
+GoldenrodCity_FlowerShop_OnTransition:
+	goto_if_unset FLAG_IS_HOENN_CHAMPION, GoldenrodCity_FlowerShop_OnTransition_End
+	clearflag FLAG_MINTS_DISABLED
+GoldenrodCity_FlowerShop_OnTransition_End:
+	end
 
 
 GoldenrodCity_FlowerShop_EventScript_MintClerk::

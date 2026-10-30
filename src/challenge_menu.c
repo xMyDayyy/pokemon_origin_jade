@@ -411,7 +411,7 @@ static const u8 *const sDesc_InfiniteTMs[] = {
 };
 static const u8 *const sDesc_Mints[] = {
     COMPOUND_STRING("Minzen erst nach dem Durchspielen\nverfügbar."),
-    COMPOUND_STRING("Minzen im Blumenladen nach\ndem 3. Orden kaufbar."),
+    COMPOUND_STRING("Minzen im Blumenladen nach\ndem 3. Johto-Orden kaufbar."),
 };
 static const u8 *const sDesc_SurvivePoison[] = {
     COMPOUND_STRING("Deine {PKMN} werden bei\nVergiftung besiegt."),
