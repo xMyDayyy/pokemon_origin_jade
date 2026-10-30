@@ -321,6 +321,9 @@ dated 2026-10-10 or later were decided directly.
   (5 %), two-slot day care with breeding, extra Game Corner prizes. Day and
   night replace the FireRed/LeafGreen version split. Overworld Pokemon show
   what can be caught on a map (next to, not on, the encounter tiles).
+  - Fossils: Mt. Moon B2F gives both; Cinnabar's lab revives each one the
+    player took and still carries
+    (`CinnabarIsland_PokemonLab_ExperimentRoom_Frlg`).
   - Starters: Bulbasaur in Viridian Forest, Charmander in Mt. Moon 1F and
     Squirtle on Route 24, each 5 % by day and at night, whatever the player
     chose (owner 2026-10-30; Johto and Hoenn: D-037). At night the share
