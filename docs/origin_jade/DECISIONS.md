@@ -307,8 +307,8 @@ dated 2026-10-10 or later were decided directly.
   what can be caught on a map (next to, not on, the encounter tiles).
   - Starters: Bulbasaur in Viridian Forest, Charmander in Mt. Moon 1F and
     Squirtle on Route 24, each 5 % by day and at night, whatever the player
-    chose (owner 2026-10-30). At night the share comes from the night
-    table's most common species.
+    chose (owner 2026-10-30; Johto and Hoenn: D-037). At night the share
+    comes from the night table's most common species.
   - LeafGreen's water and bug exclusives follow the same rule, at night in
     the FireRed slot of their counterpart (same rate, LeafGreen's levels):
     Slowpoke for Psyduck, Slowbro for Golduck, Staryu for Shellder
@@ -768,7 +768,7 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-21 (O-008).
 
 ### D-037 Hoenn is complete without trading
-- **Status:** Active (2026-10-26, changed 2026-10-30)
+- **Status:** Active (2026-10-26, changed 2026-10-30, starters: owner decision)
 - **Decision:** All 415 species of the National Pokedex and the whole Hoenn
   dex are obtainable without link trades. As in Kanto (D-013), day and night
   replace the Ruby/Sapphire version split on Emerald's wild tables.
@@ -783,6 +783,12 @@ dated 2026-10-10 or later were decided directly.
     and levels, day and night: Mt. Pyre's exterior Meditite (30 %, in two
     of Shuppet's slots); Victory Road B1F and B2F Medicham (10 %, in one of
     Lairon's slots).
+  - Starters, whatever the player chose (owner 2026-10-30): the Johto
+    starters are wild at 5 %, day and night, all before the second badge
+    - Chikorita in Ilex Forest, Cyndaquil on Route 31, Totodile on Route 32
+    (grass on the coast) - and an overworld Pokemon shows each. The
+    share comes from the table's most common species where the slot rates
+    allow (Ilex Forest at night: Paras). Kanto's starters: D-013.
   - `src/data/wild_encounters.json`: the plain table is the day table
     (morning, day and evening), the entry with the suffix `_Night` the night
     table (19:00-6:00), right after it. A map without a night table uses its
@@ -791,14 +797,11 @@ dated 2026-10-10 or later were decided directly.
     the day table when the night has none; retired maps and maps of the other
     region map (Hoenn vs. Kanto and Johto) are skipped (`FindMapsWithMon`,
     `src/pokedex_area_screen.c`).
-  - Not met yet, pending the owner's decision: the third Johto starter line
-    has no source (Elm gives one starter, Birch one more after the completed
-    Hoenn dex; no wild table, in-game trade or egg has the third), so
-    `HasAllMons` and the Schillerpin (D-036) still need a link trade.
-    Jirachi has no source either (only HnS's retired Mt. Moon); it is not
-    required for `HasAllMons`.
+  - Jirachi has no source (only HnS's retired Mt. Moon); it is not required
+    for `HasAllMons`.
 - **Evidence:** decision 2026-10-26 (O-019); audit 2026-10-30 (Meditite and
-  Medicham had no reachable source).
+  Medicham had no reachable source); decision 2026-10-30 (every starter
+  wild).
 
 ### D-038 Suicune: HnS's sightings, Crystal's Route 36, the Glockenturm
 - **Status:** Active (2026-10-27). Supersedes D-027 in the waiting condition
