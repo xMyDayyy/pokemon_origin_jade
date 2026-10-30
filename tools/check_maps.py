@@ -1747,6 +1747,12 @@ class Checker:
                 details.append("Referenzen (Skript/C): " + ", ".join(sorted(set(refs))[:5]))
             status = "ungeprueft" if refs and not dead_in else "verdacht"
             sev = ("wichtig" if dead_in else "klein") if content else "optional"
+            swappers = sorted(u.name for u in world.alt_layout_users.get(m.data["layout"], ())
+                              if reach.map_reached(u.id))
+            if swappers and not dead_in:
+                details.append(", ".join(swappers[:3]) + " lädt das Layout per setmaplayoutindex; "
+                               "die Karte selbst ist nur ein Rest")
+                status, sev = "nachgewiesen", "optional"
             self.add(0, "K-UNERREICHBAR", m, None, status, sev,
                      "Aktive Karte ist vom Spielstart aus nicht erreichbar", details)
 
