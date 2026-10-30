@@ -284,6 +284,7 @@ NewBarkTown_Lab_EventScript_RoomForStarter:
 	end
 
 NewBarkTown_Lab_EventScript_StarterToBox::
+	call_if_eq VAR_TEMP_3, MON_GIVEN_TO_PC, Common_EventScript_AskNicknameGiftBoxMon
 	msgbox NewBarkTown_Lab_Text_StarterToBox, MSGBOX_DEFAULT
 	closemessage
 	release

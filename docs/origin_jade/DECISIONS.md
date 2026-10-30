@@ -1187,7 +1187,8 @@ dated 2026-10-10 or later were decided directly.
     `...BoxMon` (`data/event_scripts.s`) or the same check in their own
     script:
     - Kanto: the starter (Oak's lab), Lapras, Eevee, the Dojo's Pokemon,
-      the fossils, the Game Corner prizes, the Magikarp on Route 4.
+      the fossils, the Game Corner prizes, the Magikarp on Route 4;
+    - Johto: the starter, also when it goes to the PC (Elm's lab).
   - Open: deaths in the Trainer Hills (O-028).
 - **Evidence:** audit 2026-10-30 (A23, A25, A30, A79, A83, A87); owner
   decision 2026-10-30 (rules as usual in the Nuzlocke community: static
