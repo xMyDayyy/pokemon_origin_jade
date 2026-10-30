@@ -75,7 +75,7 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** 92afbf1a13, 9163d7dd9f, b751e8ca72, dea50a503c, 3e9cd28737.
 
 ### D-004 Arrival in Johto: the Kanto champion is a stranger there
-- **Status:** Active (2026-09-08 onwards)
+- **Status:** Active (2026-09-08 onwards, GS Ball changed 2026-10-30)
 - **Decision:** After the Kanto league Oak asks the player to his lab and
   hands over the GS Ball for Elm (`VAR_JOHTO_HANDOVER`: 0 nothing, 1 Oak
   asked, 2 GS Ball received, 3 delivered to Elm). The way to Johto leads
@@ -85,6 +85,9 @@ dated 2026-10-10 or later were decided directly.
   at Mr. Pokemon's house; the Johto Pokedex extension comes from Oak right
   after the GS Ball. The adventure and the Nuzlocke start at Oak's Pokedex
   handover in Kanto.
+- **Rules:** The GS Ball is a key item: it cannot be sold, tossed, stored
+  or thrown, so it always reaches Elm. Celebi's shrine asks for it
+  (`checkitem`, D-026).
 - **Evidence:** 1602e8b729, 6b0d350e04, b01bc5bebb, e77afc248a,
   66c8c06d55, 567810fe2e, e88ed22ac8, 1c01993e43, c904a2d5ab, 9c25e8f5e1,
   3b9309c7f9, d862d25c3d, c7104b184e.

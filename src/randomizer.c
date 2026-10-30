@@ -466,8 +466,7 @@ static inline bool32 IsKeyItem(u16 itemId)
 
 static inline bool32 ShouldRandomizeItem(u16 itemId)
 {
-    // ITEM_GS_BALL sits in POCKET_POKE_BALLS rather than POCKET_KEY_ITEMS, so the key-item
-    // check below doesn't cover it. It gates Kurt's Celebi chain (checkitem/removeitem in
+    // ITEM_GS_BALL gates Kurt's Celebi chain (checkitem/removeitem in
     // AzaleaTown_KurtsHouse_hns), so rolling it into something else softlocks that quest.
     return !(IsItemHM(itemId) || IsKeyItem(itemId) || itemId == ITEM_GS_BALL || itemId == ITEM_NONE);
 }

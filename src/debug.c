@@ -4233,6 +4233,8 @@ static void DebugAction_PCBag_Fill_PocketPokeBalls(u8 taskId)
 {
     for (enum PokeBall ballId = BALL_STRANGE; ballId < POKEBALL_COUNT; ballId++)
     {
+        if (gPokeBalls[ballId].itemId == ITEM_NONE)
+            continue;
         if (CheckBagHasSpace(gPokeBalls[ballId].itemId, MAX_BAG_ITEM_CAPACITY))
             AddBagItem(gPokeBalls[ballId].itemId, MAX_BAG_ITEM_CAPACITY);
     }

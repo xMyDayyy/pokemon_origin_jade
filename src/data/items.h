@@ -16520,17 +16520,18 @@ const struct ItemInfo gItemsInfo[] =
 
 // HnS Items
 
+    // Key item: Oak's parcel for Elm (D-004), opens Celebi's shrine (D-026).
     [ITEM_GS_BALL] =
     {
         .name = ITEM_NAME("GS-Ball"),
-        .price = 1000,
+        .price = 0,
         .description = COMPOUND_STRING(
             "Ein geheimnisvoller\n"
             "Ball."),
-        .pocket = POCKET_POKE_BALLS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_PokeBall,
-        .battleUsage = EFFECT_ITEM_THROW_BALL,
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = BALL_GS,
         .iconPic = gItemIcon_GSBall,
         .iconPalette = gItemIconPalette_GSBall,

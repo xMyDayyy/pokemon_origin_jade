@@ -241,7 +241,10 @@ IlexForest_EventScript_BugcatcherWayne::
 
 IlexForest_EventScript_Shrine::
 	lock
-	goto_if_eq VAR_AZALEA_TOWN_STATE, 9, IlexForest_EventScript_Celebi_Event
+	goto_if_ne VAR_AZALEA_TOWN_STATE, 9, IlexForest_EventScript_ShrineText
+	checkitem ITEM_GS_BALL
+	goto_if_eq VAR_RESULT, TRUE, IlexForest_EventScript_Celebi_Event
+IlexForest_EventScript_ShrineText::
 	msgbox IlexForest_Text_Shrine, MSGBOX_DEFAULT
 	closemessage
 	release
