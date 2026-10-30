@@ -116,7 +116,7 @@ Common_EventScript_HoennHideStoryNpcs::
 	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
 	setflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
 	setflag FLAG_HIDE_RUSTBORO_CITY_SCIENTIST
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN
+	@ Origin Jade: the fat man in Littleroot Town stays visible.
 	@ Origin Jade: no Poke Mart tour in Oldale Town.
 	setflag FLAG_HIDE_OLDALE_TOWN_MART_EMPLOYEE
 	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
