@@ -619,8 +619,9 @@ bool32 TryRunFromBattle(enum BattlerId battler)
         }
         else if (gSaveBlock3Ptr->challengeSettings.tx_Challenges_LessEscapes)
         {
-            speedVar = (gBattleMons[battler].speed * 128) / (gBattleMons[runningFromBattler].speed) + (gBattleStruct->runTries * 30);
-            if (speedVar > (Random() & 512))
+            // Usual formula against 0-511 instead of 0-255; four times the foe's speed escapes for sure.
+            u32 escapeVar = (gBattleMons[battler].speed * 128) / (gBattleMons[runningFromBattler].speed) + (gBattleStruct->runTries * 30);
+            if (escapeVar > Random() % 512)
                 effect++;
         }
         else if (gBattleMons[battler].speed < gBattleMons[runningFromBattler].speed)
