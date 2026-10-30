@@ -1115,8 +1115,8 @@ dated 2026-10-10 or later were decided directly.
   retiring it).
 
 ### D-045 Nuzlocke rules
-- **Status:** Active (2026-10-30; changed 2026-10-30: static encounters).
-  The end point waits for the owner's confirmation (O-025).
+- **Status:** Active (2026-10-30; changed 2026-10-30: static encounters,
+  eggs). The end point waits for the owner's confirmation (O-025).
 - **Decision:** The challenge menu's Nuzlocke (`src/nuzlocke.c`) works like
   this in Origin Jade:
   - Start and end: it starts at Oak's Pokedex handover in Kanto
@@ -1126,10 +1126,9 @@ dated 2026-10-10 or later were decided directly.
     rules applies: no encounter limit, no deaths, no nickname rule, no save
     deletion on a whiteout.
   - First encounter per area (Normal and Hart; map sections, `sNuzlockeLUT`):
-    the first single wild battle in an area uses it up, caught or not; a
-    hatched egg uses up the area where it hatches. These do not use it up:
-    trainer battles, double wild battles, scripted static encounters,
-    legendary and roamer battles, the
+    the first single wild battle in an area uses it up, caught or not.
+    These do not use it up: trainer battles, double wild battles, scripted
+    static encounters, legendary and roamer battles, the
     Safari Zone and the Bug-Catching Contest (free catching there), battles
     in which catching is impossible (`FLAG_NO_WILD_CATCHING`, e.g. Route 41's
     Tentacruel; the Pokemon Tower's ghosts without the Silph Scope and the
@@ -1147,6 +1146,7 @@ dated 2026-10-10 or later were decided directly.
     species or dupes check, and use up nothing (`NuzlockeIsStaticEncounter`,
     set in `BattleSetup_StartScriptedWildBattle`). Legendaries are free as
     well (see above).
+  - Eggs always hatch, in any area, and use up no area.
   - Deaths: a Pokemon that faints dies when the battle ends (or when it
     faints from poison in the field): released, or moved to the PC as
     unusable ("Friedhof", always in Leicht). No deaths in Trainer Hill,
@@ -1166,11 +1166,10 @@ dated 2026-10-10 or later were decided directly.
     Corner prizes, the Magikarp on Route 4) do so through
     `Common_EventScript_AskNicknameGiftPartyMon` / `...BoxMon`
     (`data/event_scripts.s`).
-  - Open: eggs in used-up areas (O-027), deaths in the Trainer Hills
-    (O-028).
+  - Open: deaths in the Trainer Hills (O-028).
 - **Evidence:** audit 2026-10-30 (A23, A25, A30, A79, A83, A87); owner
   decision 2026-10-30 (rules as usual in the Nuzlocke community: static
-  encounters are free).
+  encounters and eggs are free).
 
 ### D-046 Only Origin Jade is built
 - **Status:** Active (2026-10-30)
@@ -1312,12 +1311,8 @@ dated 2026-10-10 or later were decided directly.
   (D-045); until 2026-10-30 it ended when Red was beaten. Owner to confirm.
 - **O-026** Resolved 2026-10-30: scripted static encounters can always be
   caught and use up no area (D-045).
-- **O-027** Nuzlocke and eggs: an egg hatches only in an area whose first
-  encounter is still open (`src/daycare.c`), and hatching uses the area up
-  (`src/egg_hatch.c`); map sections without an entry in `sNuzlockeLUT` share
-  one bit. Late in a run eggs hardly hatch anywhere (also the Mystery Egg),
-  which blocks breeding (D-013, D-037). Rule needed, e.g. eggs always hatch,
-  or eggs are exempt from the area rule.
+- **O-027** Resolved 2026-10-30: eggs always hatch and use up no area
+  (D-045).
 - **O-028** Nuzlocke and the Trainer Hills (Route 40, D-041; Route 111 in
   Hoenn): their battles skip Nuzlocke deaths (`BATTLE_TYPE_TRAINER_HILL`
   in `HandleEndTurn_FinishBattle`, D-045), so a Pokemon that faints there

@@ -24,7 +24,6 @@ EWRAM_DATA u8 NuzlockeIsStaticEncounter = FALSE;
 
 // Zone-to-bit mapping for one-encounter-per-area tracking.
 // Only locations with wild encounters should be listed.
-// Egg hatching counts as an encounter in the hatching zone.
 // Special/gift Pokemon do NOT consume the zone's encounter.
 static const u8 sNuzlockeLUT[] =
 {
