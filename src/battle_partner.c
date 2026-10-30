@@ -6,6 +6,7 @@
 #include "data.h"
 #include "frontier_util.h"
 #include "difficulty.h"
+#include "level_scaling.h"
 #include "string_util.h"
 #include "text.h"
 
@@ -30,13 +31,30 @@ void FillPartnerParty(u16 trainerId)
     u16 monId;
     u32 otID;
     u8 trainerName[(PLAYER_NAME_LENGTH * 3) + 1];
+    u8 scaledLevels[MULTI_PARTY_SIZE];
+    u16 scaledSpecies[MULTI_PARTY_SIZE];
     enum DifficultyLevel difficulty = GetBattlePartnerDifficultyLevel(trainerId);
     SetFacilityPtrsGetLevel();
 
     if (trainerId > TRAINER_PARTNER(PARTNER_NONE))
     {
+        const struct Trainer *partner = &gBattlePartners[difficulty][trainerId - TRAINER_PARTNER(PARTNER_NONE)];
+        u8 partyMaxLevel = 0;
+
         for (i = 0; i < 3; i++)
             ZeroMonData(&gPlayerParty[i + 3]);
+
+        // Level scaling (D-012): levels and species before the partner's Pokemon join the party.
+        for (i = 0; i < 3 && i < partner->partySize; i++)
+        {
+            if (partner->party[i].lvl > partyMaxLevel)
+                partyMaxLevel = partner->party[i].lvl;
+        }
+        for (i = 0; i < 3 && i < partner->partySize; i++)
+        {
+            scaledLevels[i] = ScalePartnerMonLevel(partner->party[i].lvl, partyMaxLevel);
+            scaledSpecies[i] = ScaleTrainerMonSpecies(partner->party[i].species, scaledLevels[i], trainerId, i);
+        }
 
         for (i = 0; i < 3 && i < gBattlePartners[difficulty][trainerId - TRAINER_PARTNER(PARTNER_NONE)].partySize; i++)
         {
@@ -72,7 +90,7 @@ void FillPartnerParty(u16 trainerId)
             else if (partyData[i].gender == TRAINER_MON_FEMALE)
                 personality = (personality & 0xFFFFFF00) | GeneratePersonalityForGender(MON_FEMALE, partyData[i].species);
             ModifyPersonalityForNature(&personality, partyData[i].nature);
-            CreateMon(&gPlayerParty[i + 3], partyData[i].species, partyData[i].lvl, personality, OTID_STRUCT_PRESET(otID));
+            CreateMon(&gPlayerParty[i + 3], scaledSpecies[i], scaledLevels[i], personality, OTID_STRUCT_PRESET(otID));
             j = partyData[i].isShiny;
             SetMonData(&gPlayerParty[i + 3], MON_DATA_IS_SHINY, &j);
             SetMonData(&gPlayerParty[i + 3], MON_DATA_HELD_ITEM, &partyData[i].heldItem);

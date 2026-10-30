@@ -1,5 +1,6 @@
 #include "global.h"
 #include "level_scaling.h"
+#include "battle.h"
 #include "data.h"
 #include "overworld.h"
 #include "pokemon.h"
@@ -247,13 +248,14 @@ bool32 LevelScalingActive(void)
 
 // Anchor: mean of the three highest party levels (fewer Pokemon: their mean), rounded,
 // but at least the highest level - SCALING_ANCHOR_MAX_DROP. Eggs excluded (0 = no Pokemon).
+// Only the first partySlots party slots count.
 // See docs/origin_jade/DECISIONS.md, D-012.
-static u8 GetScalingAnchor(void)
+static u8 GetScalingAnchor(u32 partySlots)
 {
     u8 top[3] = {0}; // highest first
     u32 i, j, count = 0, sum = 0, anchor;
 
-    for (i = 0; i < PARTY_SIZE; i++)
+    for (i = 0; i < partySlots; i++)
     {
         u8 level, temp;
 
@@ -311,7 +313,7 @@ u8 ScaleWildMonLevel(u8 level)
 
     if (rules == NULL)
         return level;
-    anchor = GetScalingAnchor();
+    anchor = GetScalingAnchor(PARTY_SIZE);
     if (anchor == 0)
         return level;
 
@@ -337,7 +339,7 @@ u8 ScaleStaticMonLevel(u8 level)
 
     if (rules == NULL || !rules->staticFloor)
         return level;
-    anchor = GetScalingAnchor();
+    anchor = GetScalingAnchor(PARTY_SIZE);
     if (anchor == 0)
         return level;
     GetCorridor(rules, &floor, &ceiling);
@@ -408,8 +410,8 @@ static u32 TrainerEvoHash(u16 trainerId, u8 partyIndex, u8 step)
 // at GetTrainerEvoLevel, see docs/origin_jade/DECISIONS.md, D-012.
 // Each step is skipped with evoSkipPercent, which also ends the evolution.
 // Skips and branches come from TrainerEvoHash.
-// Call right after ScaleTrainerMonLevel for the same Pokemon. partyIndex: its index
-// in the trainer's party data.
+// Call right after ScaleTrainerMonLevel or ScalePartnerMonLevel for the same Pokemon.
+// partyIndex: its index in the trainer's party data.
 u16 ScaleTrainerMonSpecies(u16 species, u8 scaledLevel, u16 trainerId, u8 partyIndex)
 {
     const struct ScalingRules *rules = GetScalingRules();
@@ -522,26 +524,27 @@ static u8 RaiseToKantoRematchFloor(const struct Trainer *trainer, u8 level, u8 p
     return raised;
 }
 
-// partyMaxLevel: highest original level in the trainer's party.
-u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel)
+// Trainer band of rules. partyMaxLevel: highest original level in the party.
+// In a battle with an in-game partner the anchor counts only the player's own
+// slots (the partner's team fills the last MULTI_PARTY_SIZE).
+static u8 ScaleToTrainerBand(const struct ScalingRules *rules, u8 level, u8 partyMaxLevel, bool32 isBoss)
 {
-    const struct ScalingRules *rules = GetScalingRules();
     s32 anchor, top, scaled;
     u8 floor, ceiling;
 
-    sRematchFloorRules = NULL;
-    if (rules == NULL)
-        return RaiseToKantoRematchFloor(trainer, level, partyMaxLevel);
     if (partyMaxLevel >= rules->fixedMinLevel)
         return level;
 
-    anchor = GetScalingAnchor();
+    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
+        anchor = GetScalingAnchor(PARTY_SIZE - MULTI_PARTY_SIZE);
+    else
+        anchor = GetScalingAnchor(PARTY_SIZE);
     if (anchor == 0 || partyMaxLevel == 0)
         return level;
 
     // The ace goes to the top of the band, the others keep their distance to it.
     top = anchor + rules->trainerAbove;
-    if (IsBossTrainer(trainer))
+    if (isBoss)
         top += rules->bossExtra;
     scaled = top - (s32)(partyMaxLevel - level);
     if (scaled < anchor - rules->trainerBelow)
@@ -552,6 +555,28 @@ u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLeve
     if (rules->originalLevelIsFloor && scaled < level)
         scaled = level;
     return scaled;
+}
+
+// partyMaxLevel: highest original level in the trainer's party.
+u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel)
+{
+    const struct ScalingRules *rules = GetScalingRules();
+
+    sRematchFloorRules = NULL;
+    if (rules == NULL)
+        return RaiseToKantoRematchFloor(trainer, level, partyMaxLevel);
+    return ScaleToTrainerBand(rules, level, partyMaxLevel, IsBossTrainer(trainer));
+}
+
+// partyMaxLevel: highest original level in the partner's party.
+u8 ScalePartnerMonLevel(u8 level, u8 partyMaxLevel)
+{
+    const struct ScalingRules *rules = GetScalingRules();
+
+    sRematchFloorRules = NULL;
+    if (rules == NULL)
+        return level;
+    return ScaleToTrainerBand(rules, level, partyMaxLevel, FALSE);
 }
 
 #else // Pass-through without scaling (Emerald/FRLG build or switched off)
@@ -572,6 +597,11 @@ u8 ScaleStaticMonLevel(u8 level)
 }
 
 u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel)
+{
+    return level;
+}
+
+u8 ScalePartnerMonLevel(u8 level, u8 partyMaxLevel)
 {
     return level;
 }

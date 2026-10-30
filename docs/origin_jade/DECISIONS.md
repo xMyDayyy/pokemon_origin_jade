@@ -244,7 +244,8 @@ dated 2026-10-10 or later were decided directly.
   ladder: decision 2026-10-29.
 
 ### D-012 Johto and Hoenn: dynamic level scaling
-- **Status:** Active (anchor, bands and corridors changed 2026-10-29)
+- **Status:** Active (anchor, bands and corridors changed 2026-10-29,
+  battle partners changed 2026-10-30)
 - **Decision:** Johto and Hoenn scale to the player (`src/level_scaling.c`,
   `include/config/johto_scaling.h`, `include/config/hoenn_scaling.h`).
   - Anchor, in every region: the mean of the three highest party levels,
@@ -270,7 +271,11 @@ dated 2026-10-10 or later were decided directly.
   Johto's gym leaders have six Pokemon; route trainers at least three
   (`tools/fill_johto_parties.py`: trainer class beats the local wild pool,
   duplicate a Pokemon rather than break the class). Rematch teams scale
-  as well (every stage is below level 77). HnS's badge gate for rematch
+  as well (every stage is below level 77). In-game battle partners (Troy
+  in Mossdeep's Space Center, Siegfried in the Rocket Hideout) scale like
+  a trainer of the map without the boss extra (`ScalePartnerMonLevel`,
+  `src/battle_partner.c`); while a partner fights along, the anchor counts
+  only the player's three Pokemon. HnS's badge gate for rematch
   stages (`GetMaxRematchStageForBadges`, `src/battle_setup.c`) counts the
   badges of the region the trainer stands in (Johto `VAR_JOHTO_BADGES`,
   Hoenn `VAR_HOENN_BADGES`, D-007); that region's title opens every stage.

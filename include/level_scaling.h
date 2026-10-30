@@ -21,8 +21,12 @@ u8 ScaleWildMonLevel(u8 level);
 // (maps with Johto's or Hoenn's rules).
 u8 ScaleStaticMonLevel(u8 level);
 u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel);
-// Call right after ScaleTrainerMonLevel for the same Pokemon. partyIndex: its index
-// in the trainer's party data.
+// In-game battle partners (FillPartnerParty): the current map's trainer band without the
+// boss extra and without Kanto's rematch floor. Call before the partner's Pokemon join
+// the party.
+u8 ScalePartnerMonLevel(u8 level, u8 partyMaxLevel);
+// Call right after ScaleTrainerMonLevel or ScalePartnerMonLevel for the same Pokemon.
+// partyIndex: its index in the trainer's party data.
 u16 ScaleTrainerMonSpecies(u16 species, u8 scaledLevel, u16 trainerId, u8 partyIndex);
 
 // Not tied to scaling: also used by the region map, location names and HM licenses.
