@@ -120,8 +120,8 @@ CeruleanCity_House1_Text_AttackStatFlash::
 
 CeruleanCity_House1_Text_ObeyLv30Cut::
 #if GERMAN
-	.string "Pokémon bis Level 30 folgen deinen\n"
-	.string "Befehlen!\p"
+	.string "Mit zwei Orden folgen dir Pokémon\n"
+	.string "bis Level 20!\p"
 	.string "Pokémon höherer Level gehorchen\n"
 	.string "dir jedoch nicht!\p"
 	.string "Ferner kannst du den Zerschneider\n"
@@ -152,8 +152,8 @@ CeruleanCity_House1_Text_SpeedStatFly::
 
 CeruleanCity_House1_Text_ObeyLv50Strength::
 #if GERMAN
-	.string "Pokémon bis Level 50 folgen deinen\n"
-	.string "Befehlen.\p"
+	.string "Mit vier Orden folgen dir Pokémon\n"
+	.string "bis Level 30.\p"
 	.string "Pokémon höherer Level gehorchen\n"
 	.string "dir jedoch nicht!\p"
 	.string "Zusätzlich kannst du außerhalb von\n"
@@ -184,8 +184,8 @@ CeruleanCity_House1_Text_DefenseStatSurf::
 
 CeruleanCity_House1_Text_ObeyLv70RockSmash::
 #if GERMAN
-	.string "Pokémon bis Level 70 folgen deinen\n"
-	.string "Befehlen.\p"
+	.string "Mit sechs Orden folgen dir Pokémon\n"
+	.string "bis Level 40.\p"
 	.string "Das gilt auch für getauschte\n"
 	.string "Pokémon!\p"
 	.string "Pokémon höherer Level gehorchen\n"
@@ -218,7 +218,8 @@ CeruleanCity_House1_Text_SpStatsWaterfall::
 
 CeruleanCity_House1_Text_AllMonsWillObeyYou::
 #if GERMAN
-	.string "Jegliches Pokémon gehorcht dir!$"
+	.string "Mit acht Orden folgen dir Pokémon\n"
+	.string "bis Level 50!$"
 #else
 	.string "All POKéMON will obey you!$"
 #endif
