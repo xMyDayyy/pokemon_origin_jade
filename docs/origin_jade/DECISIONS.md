@@ -502,6 +502,21 @@ dated 2026-10-10 or later were decided directly.
   - Trainers ("Trainer: Zufall"): each opponent's team is seeded by its
     trainer constant, team size and slot (after the level scaling's species
     choice), so two trainers of one class get different teams.
+  - Fixed Pokemon ("Feste PKMN: Zufall"): from the first starter on, script
+    gifts (`givemon`), static and event battles (`setwildbattle`,
+    `setwildbattleshiny`, `seteventmon`) are randomized by
+    `RandomizeScriptedFixedMon`, seeded by the trainer ID, the map, the
+    local ID of the object talked to and the species. Outside the chaos mode
+    a soft reset gives the same result. Unchanged, as the menu text says:
+    named gifts (`givenamedmon`), roamers, the casino prizes (Goldenrod
+    Game Corner, Celadon prize room), Cianwood's Tentacool (stands in for a
+    missing Surf user) and the starters of Oak's, Elm's and Birch's labs
+    (`sFixedMonExceptionMaps`, map-wide). Scripted double wild battles are
+    not randomized.
+  - Starters ("Starter: Zufall"): only Oak's preview applies it (and the
+    one-type challenge); the lab hands out exactly the previewed and named
+    species with the preview's shininess (D-035). Elm's and Birch's labs
+    hand out the shown species.
 - **Evidence:** b0a460c224, 6a6a4fcaec, c3c361d4b4. The row came in with
   6a6a4fcaec, the default TRUE with cc58e0c648; both reverted 2026-10-12.
 

@@ -15,6 +15,7 @@
 #include "constants/pokedex.h"
 #include "data/randomizer/ability_whitelist.h"
 #include "move.h"
+#include "constants/map_groups.h"
 
 const u16 gStarterAndGiftMonTable[STARTER_AND_GIFT_MON_COUNT] =
 {
@@ -1137,6 +1138,48 @@ u16 RandomizeFixedEncounterMon(u16 species, u8 mapNum, u8 mapGroup, u8 localId)
     }
 
     return species;
+}
+
+#if IS_HNS
+// Maps whose script gifts keep their species with "Feste PKMN": the starter labs,
+// the casino prize counters and Cianwood's Tentacool (see docs/origin_jade/DECISIONS.md, D-023).
+static const u16 sFixedMonExceptionMaps[] =
+{
+    MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB,
+    MAP_NEW_BARK_TOWN_LAB_HNS,
+    MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB,
+    MAP_GOLDENROD_CITY_GAME_CORNER_HNS,
+    MAP_CELADON_CITY_GAME_CORNER_PRIZE_ROOM,
+    MAP_CIANWOOD_POKECENTER_HNS,
+};
+#endif
+
+static bool32 IsFixedMonExceptionMap(void)
+{
+#if IS_HNS
+    u32 i;
+    u16 map = gSaveBlock1Ptr->location.mapNum | (gSaveBlock1Ptr->location.mapGroup << 8);
+
+    for (i = 0; i < ARRAY_COUNT(sFixedMonExceptionMaps); i++)
+    {
+        if (sFixedMonExceptionMaps[i] == map)
+            return TRUE;
+    }
+#endif
+    return FALSE;
+}
+
+// "Feste PKMN" for script gifts, static and event battles: seeded by the current
+// map, the object talked to and the species, so the result never changes.
+u16 RandomizeScriptedFixedMon(u16 species)
+{
+    if (IsFixedMonExceptionMap())
+        return species;
+
+    return RandomizeFixedEncounterMon(species,
+        gSaveBlock1Ptr->location.mapNum,
+        gSaveBlock1Ptr->location.mapGroup,
+        gSpecialVar_LastTalked);
 }
 
 EWRAM_DATA static u32 sLastMonRandomizerSeed = 0;
