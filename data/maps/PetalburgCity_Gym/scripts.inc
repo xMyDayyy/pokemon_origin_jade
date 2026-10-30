@@ -99,8 +99,11 @@ PetalburgCity_Gym_EventScript_TurnPlayerNorth::
 	end
 
 PetalburgCity_Gym_OnFrame:
-	@ HnS: state 2 = gym closed until the 4th Hoenn badge.
+	@ HnS: states 2-5 = gym closed until the 4th Hoenn badge (each badge adds 1).
 	map_script_2 VAR_PETALBURG_GYM_STATE, 2, PetalburgCity_Gym_EventScript_ClosedEject
+	map_script_2 VAR_PETALBURG_GYM_STATE, 3, PetalburgCity_Gym_EventScript_ClosedEject
+	map_script_2 VAR_PETALBURG_GYM_STATE, 4, PetalburgCity_Gym_EventScript_ClosedEject
+	map_script_2 VAR_PETALBURG_GYM_STATE, 5, PetalburgCity_Gym_EventScript_ClosedEject
 	map_script_2 VAR_PETALBURG_GYM_STATE, 1, PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial
 	.2byte 0
 
