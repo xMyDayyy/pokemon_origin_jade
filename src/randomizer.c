@@ -474,7 +474,8 @@ static inline bool32 ShouldRandomizeItem(u16 itemId)
 
 #include "data/randomizer/item_whitelist.h"
 
-u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u8 localId)
+// eventId: local id of the item ball or NPC, or the flag of a hidden item.
+u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u16 eventId)
 {
     struct Sfc32State state;
     u16 result;
@@ -483,9 +484,9 @@ u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u8 localId)
     if (!ShouldRandomizeItem(itemId))
         return itemId;
 
-    mapSeed = ((u32)mapGroup) << 16;
-    mapSeed |= ((u32)mapNum) << 8;
-    mapSeed |= localId;
+    mapSeed = ((u32)mapGroup) << 24;
+    mapSeed |= ((u32)mapNum) << 16;
+    mapSeed |= eventId;
 
     state = RandomizerRandSeed(RANDOMIZER_REASON_FIELD_ITEM, mapSeed, itemId);
 
@@ -507,8 +508,8 @@ static inline void RandomizeFoundItemScript(u16 *scriptVar)
         u8 objEvent = gSelectedObjectEvent;
         *scriptVar = RandomizeFoundItem(
             *scriptVar,
-            gObjectEvents[objEvent].mapGroup,
             gObjectEvents[objEvent].mapNum,
+            gObjectEvents[objEvent].mapGroup,
             gObjectEvents[objEvent].localId);
     }
 }
@@ -518,9 +519,18 @@ void FindItemRandomize_NativeCall(struct ScriptContext *ctx)
     RandomizeFoundItemScript(&gSpecialVar_0x8000);
 }
 
+// Hidden items have no object event: seed off the current map and the item's
+// hidden flag (VAR_0x8004).
 void FindHiddenItemRandomize_NativeCall(struct ScriptContext *ctx)
 {
-    RandomizeFoundItemScript(&gSpecialVar_0x8005);
+    if (RandomizerFeatureEnabled(RANDOMIZE_FIELD_ITEMS))
+    {
+        gSpecialVar_0x8005 = RandomizeFoundItem(
+            gSpecialVar_0x8005,
+            gSaveBlock1Ptr->location.mapNum,
+            gSaveBlock1Ptr->location.mapGroup,
+            gSpecialVar_0x8004);
+    }
 }
 
 // Items handed over by NPCs (the `giveitem` macro / STD_OBTAIN_ITEM). These have no

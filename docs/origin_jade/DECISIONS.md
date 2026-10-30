@@ -491,7 +491,10 @@ dated 2026-10-10 or later were decided directly.
     Glass Workshop) still go through it. A Kanto gift with its own receive
     text (`giveitem_msg`: the gym leaders' TMs, the Master Ball, the Amulet
     Coin and others) gets the generic obtain message when its item was
-    changed; the dialogue around it still names the original item.
+    changed; the dialogue around it still names the original item. Outside
+    the chaos mode each item has its own fixed result, seeded by the trainer
+    ID, the map, the local ID (item ball, NPC) or the hidden flag (hidden
+    item) and the original item.
 - **Evidence:** b0a460c224, 6a6a4fcaec, c3c361d4b4. The row came in with
   6a6a4fcaec, the default TRUE with cc58e0c648; both reverted 2026-10-12.
 
