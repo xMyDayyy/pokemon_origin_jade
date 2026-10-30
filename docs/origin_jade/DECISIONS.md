@@ -145,10 +145,12 @@ dated 2026-10-10 or later were decided directly.
   71301e75a1, 9c9eac68df, cf857f4e0e.
 
 ### D-009 The gatehouse south of Route 23 (four-way junction)
-- **Status:** Active
+- **Status:** Active (Johto exit changed 2026-10-30)
 - **Decision:** `ReceptionGate_hns` connects east to Kanto (Route 22 gate,
   needs all eight Kanto badges), south to Johto (opens with
-  `FLAG_SYS_GAME_CLEAR`, i.e. after the Kanto league), west to Mt. Silver
+  `FLAG_SYS_GAME_CLEAR`, i.e. after the Kanto league; while
+  `VAR_JOHTO_HANDOVER` is 1 the guard sends the player to Oak for the GS
+  Ball first, D-004), west to Mt. Silver
   (opens only with `FLAG_IS_JOHTO_CHAMPION` - Red is level 77-93) and north
   to the league (D-010). Each check has its own temp var, so passing one
   does not switch off the others for the rest of the visit. HnS's Black Belt

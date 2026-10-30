@@ -119,10 +119,22 @@ VictoryRoadGate_Text_LeftBlackBelt:
 
 ReceptionGate_EventScript_BlockJohto::
 	lock
-	goto_if_set FLAG_SYS_GAME_CLEAR, ReceptionGate_EventScript_PassJohto
+	goto_if_set FLAG_SYS_GAME_CLEAR, ReceptionGate_EventScript_CheckGsBall
 	applymovement LOCALID_INDIGOJUNCTION_POLICEMAN, Common_Movement_ExclamationMark
 	waitmovement 0
 	msgbox ReceptionGate_Text_JohtoClosed, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkUp1
+	waitmovement 0
+	release
+	end
+
+@ After the Kanto title the way south waits until Oak has handed over the GS Ball (D-004).
+ReceptionGate_EventScript_CheckGsBall::
+	goto_if_ne VAR_JOHTO_HANDOVER, 1, ReceptionGate_EventScript_PassJohto
+	applymovement LOCALID_INDIGOJUNCTION_POLICEMAN, Common_Movement_ExclamationMark
+	waitmovement 0
+	msgbox ReceptionGate_Text_SeeOakFirst, MSGBOX_DEFAULT
 	closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkUp1
 	waitmovement 0
@@ -162,6 +174,19 @@ ReceptionGate_Text_JohtoClosed:
 	.string "The road stays closed until the\n"
 	.string "ELITE FOUR have been defeated.\p"
 	.string "Prove yourself here first.$"
+#endif
+
+ReceptionGate_Text_SeeOakFirst:
+#if GERMAN
+	.string "Halt! Prof. Eich hat hier angerufen.\p"
+	.string "Er möchte dich in seinem Labor in\n"
+	.string "Alabastia sprechen, bevor du nach\l"
+	.string "Johto reist.$"
+#else
+	.string "Hold it! PROF. OAK called here.\p"
+	.string "He wants to see you at his lab in\n"
+	.string "PALLET TOWN before you go on to\l"
+	.string "JOHTO.$"
 #endif
 
 ReceptionGate_Text_MtSilverClosed:
