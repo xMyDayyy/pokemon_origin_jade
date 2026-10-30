@@ -556,10 +556,16 @@ $(OBJ_DIR)/sym_common.ld: sym_common.txt $(C_OBJS) $(wildcard common_syms/*.txt)
 $(OBJ_DIR)/sym_ewram.ld: sym_ewram.txt
 	$(RAMSCRGEN) ewram_data $< ENGLISH > $@
 
-TEACHABLE_DEPS := $(ALL_LEARNABLES_JSON) $(INCLUDE_DIRS)/constants/tms_hms.h $(INCLUDE_DIRS)/config/pokemon.h $(DATA_SRC_SUBDIR)/pokemon/special_movesets.json $(INCLUDE_DIRS)/config/pokedex_plus_hgss.h $(LEARNSET_HELPERS_DIR)/make_teachables.py
+# Holds the GAME_VERSION teachable_learnsets.h was made for; regenerates it when that changes.
+TEACHABLES_VERSION := $(LEARNSET_HELPERS_BUILD_DIR)/game_version
+
+TEACHABLE_DEPS := $(ALL_LEARNABLES_JSON) $(INCLUDE_DIRS)/constants/tms_hms.h $(INCLUDE_DIRS)/config/pokemon.h $(DATA_SRC_SUBDIR)/pokemon/special_movesets.json $(INCLUDE_DIRS)/config/pokedex_plus_hgss.h $(LEARNSET_HELPERS_DIR)/make_teachables.py $(TEACHABLES_VERSION)
 
 $(LEARNSET_HELPERS_BUILD_DIR):
 	@mkdir -p $@
+
+$(TEACHABLES_VERSION): FORCE | $(LEARNSET_HELPERS_BUILD_DIR)
+	@(echo "$(GAME_VERSION)" | cmp -s $@ -) || echo "$(GAME_VERSION)" > $@
 
 $(ALL_LEARNABLES_JSON):  | $(wildcard $(LEARNSET_HELPERS_DATA_DIR)/*.json)
 	python3 $(LEARNSET_HELPERS_DIR)/make_learnables.py $(LEARNSET_HELPERS_DATA_DIR) $@
