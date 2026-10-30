@@ -5,29 +5,39 @@ A map is active when its game_version matches the build (default "hns", the
 jade build; a missing game_version counts as "emerald", as in mapjson) and it is
 listed in data/maps/map_groups.json.
 
-Checks:
-  1. Warps: the warp tile can trigger the warp (door, arrow, stairs, ladder,
-     escalator, warp pad, hole, ...; tile enterable, elevation fits), the
-     target map is active and the target warp id exists.
-  2. Warp targets: the arrival tile lies inside the map and the player can
-     leave it (walkable neighbour or a warp on the tile itself).
-  3. Objects, item balls and hidden items stand on or next to tiles the player
-     can reach.
-  4. Connections are two-way, offsets mirror each other, the maps overlap and
-     the shared edge has a passage.
-  5. Layout files match their declared size; metatile ids exist in the tilesets.
+Checks and finding codes:
+  0. K-UNERREICHBAR  active map the walk never reaches (with the dead
+                     entrances that cause it).
+  1. Warps: W-NICHT-AUSLOESBAR (no warp behaviour), W-NICHT-BETRETBAR (step-on
+     warp on a blocked tile), W-TUER-VERSPERRT, W-PFEIL-WAND, W-HOEHE (warp
+     elevation never matches the player's), W-AUSSERHALB, W-ZIEL-FEHLT,
+     W-ZIEL-INAKTIV, W-ZIEL-ID; W-SKRIPT if a coord event or script warp of
+     the map serves the warp instead.
+  2. Arrival tiles: Z-AUSSERHALB, Z-EINGESPERRT (no step possible),
+     Z-SACKGASSE (no way out of the map), Z-IN-WAND.
+  3. Objects, item balls, hidden items and signs: O-EINGEMAUERT,
+     O-UNERREICHBAR, O-HOEHE (bg event elevation never matches); coord
+     events: C-HOEHE.
+  4. Connections: V-ZIEL-INAKTIV, V-EINSEITIG, V-OFFSET, V-GROESSE,
+     V-KEIN-UEBERLAPP, V-NICHT-BEGEHBAR, V-KANTE.
+  5. Layouts: L-FEHLT, L-MAPBIN, L-BORDER, L-TILESET, L-ZU-GROSS,
+     L-METATILE-ID.
 
 Reachability uses one walk over all active maps, starting at the new-game
-position. It is optimistic: field moves (Surf, Waterfall, Rock Climb, Cut,
-Strength, Rock Smash) are available, objects never block, story flags are
-ignored, every setmetatile of a map that opens a tile counts, and warps done
-by scripts of a reached map (or by shared scripts) count. So "unreachable" is a
-strong result, "reachable" is not a proof.
+position, with the engine's collision, elevation, ledge, surf and warp rules.
+It is optimistic: field moves (Surf, Waterfall, Rock Climb, Cut, Strength,
+Rock Smash) are available, objects never block, story flags are ignored, every
+setmetatile and setmaplayoutindex a map's scripts can run counts, and warps
+done by scripts count once the map running them is reached (scripts are
+assigned to maps through their call graph). So "unreachable" is a strong
+result, "reachable" is not a proof. Not modelled: rides and puzzles moved by
+applymovement (maps with many of them get "ungeprueft"), bike-only paths,
+warps set up in C with runtime values.
 
 Findings carry a provisional status (nachgewiesen/verdacht/vorschlag/
 ungeprueft) and severity (blocker/kritisch/wichtig/klein/optional). Whether a
 finding blocks the story needs a human look; the tool marks a warp whose target
-map has no other access as kritisch.
+map has no other access but has content as kritisch.
 
 Usage:
     python3 -I tools/check_maps.py                    # report of the work tree
@@ -91,6 +101,8 @@ C_WARP_RE = re.compile(r"SetWarpDestination\(\s*MAP_GROUP\((MAP_\w+)\)\s*,\s*MAP
                        r"\s*([-\w]+)\s*,\s*(-?\w+)\s*,\s*(-?\w+)\s*\)")
 C_TABLE_RE = re.compile(r"\{\s*MAP_GROUP\((MAP_\w+)\)\s*,\s*MAP_NUM\(\1\)\s*,\s*(\w+)\s*,\s*(\w+)\s*\}")
 C_MAPREF_RE = re.compile(r"\bMAP_GROUP\((MAP_\w+)\)")
+PLAYER_MOVE_RE = re.compile(r"^\s*applymovement\s+(OBJ_EVENT_ID_PLAYER|LOCALID_PLAYER)\b", re.M)
+RIDE_MIN_MOVES = 10  # from this many player movements a map counts as a scripted ride/puzzle
 GAME_CLEAR_RE = re.compile(r"\s*special\s+\w*(GameClear|HallOfFame)\w*")
 # Script commands that hand out something or change the game state (object rating).
 EFFECT_RE = re.compile(r"^\s*(giveitem|givemon|giveegg|givedecoration|trainerbattle\w*|setwildbattle|"
@@ -615,6 +627,7 @@ class World:
         self.map_respawns = collections.defaultdict(list)
         self.map_arrival_scripts = set()   # maps whose map scripts run on arrival
         self.map_game_clear = set()        # maps whose scripts end in the Hall of Fame sequence
+        self.map_rides = set()             # maps whose own scripts move the player a lot (rides, puzzles)
         self.script_targets = collections.defaultdict(list)   # map id -> [where]
         for m in self.active_maps():
             roots = set(self.scripts.labels_in_file(m.scripts_path))
@@ -624,6 +637,8 @@ class World:
             text = self.src.text(m.scripts_path) or ""
             if re.search(r"MAP_SCRIPT_ON_(FRAME_TABLE|WARP_INTO_MAP_TABLE)", text):
                 self.map_arrival_scripts.add(m.id)
+            if len(PLAYER_MOVE_RE.findall(text)) >= RIDE_MIN_MOVES:
+                self.map_rides.add(m.id)
             for block in self.scripts.closure(roots):
                 if any(GAME_CLEAR_RE.match(line) for line in block.lines):
                     self.map_game_clear.add(m.id)
@@ -779,6 +794,8 @@ class Reach:
         self.entered = set()
         self.queue = collections.deque()
         self.incoming = collections.defaultdict(list)  # map id -> [(src map id, warp index)]
+        self.dynamic_returns = collections.defaultdict(set)  # map id -> warps the player came in by
+        self.dynamic_fired = set()                           # maps whose MAP_DYNAMIC warp was used
         for m in world.active_maps():
             for i, w in enumerate(m.warps()):
                 self.incoming[w["dest_map"]].append((m.id, i))
@@ -856,15 +873,20 @@ class Reach:
         self.used_warps.add((m.id, index))
         dest = w["dest_map"]
         if dest == "MAP_DYNAMIC":
-            for src_id, src_index in self.incoming.get(m.id, ()):
-                src = self.world.maps[src_id]
-                sw = src.warps()[src_index]
+            # A dynamic warp returns to the warp the player came in by.
+            self.dynamic_fired.add(m.id)
+            for src_id, src_index in self.dynamic_returns[m.id]:
+                sw = self.world.maps[src_id].warps()[src_index]
                 self.seed(src_id, sw["x"], sw["y"])
             return
         dm = self.world.maps.get(dest)
         wid = parse_int(str(w["dest_warp_id"]))
         if not self.world.usable(dm) or wid is None or not 0 <= wid < len(dm.warps()):
             return
+        if (m.id, index) not in self.dynamic_returns[dm.id]:
+            self.dynamic_returns[dm.id].add((m.id, index))
+            if dm.id in self.dynamic_fired:
+                self.seed(m.id, w["x"], w["y"])
         self.seed(dest, warp_id=wid)
 
     def warps_at(self, m, x, y):
@@ -1056,13 +1078,11 @@ class Checker:
                 where = f"data/maps/{m.folder}/map.json warp_events[{i}]"
                 dest = w["dest_map"]
                 if not m.inside(x, y):
-                    targeted = [s for s, si in reach.incoming.get(m.id, ())
-                                if self._dest_index(s, si) == i and (s, si) in reach.used_warps]
-                    sev = "wichtig" if targeted else "optional"
+                    # Never fires; as an arrival spot it puts the player outside the map (check 2).
+                    _, sev, consequence = self._dead_warp_rating(m, i, w, groups, False, False)
                     self.add(1, "W-AUSSERHALB", m, (x, y), "nachgewiesen", sev,
-                             f"Warp {i} liegt außerhalb der Karte ({m.width}x{m.height})",
-                             [where] + ([f"Ziel genutzter Warps von: {', '.join(world.maps[s].name for s in targeted)}"]
-                                        if targeted else []), index=i)
+                             f"Warp {i} → {self._dest_name(w)} liegt außerhalb der Karte ({m.width}x{m.height})",
+                             [where, consequence], index=i)
                     continue
                 trig = self.warp_trigger(m, i, w)
                 source_ok = trig[0] is not None and reach.tile_reached(m.id, *trig[1])
@@ -1167,31 +1187,24 @@ class Checker:
         (one-way by design, e.g. Elite Four rooms).
         """
         reach = self.reach
-        x, y = w["x"], w["y"]
-        near = [(x + dx, y + dy) for dx, dy in DIRS.values()] + [(x, y)]
-        source_near = any(reach.tile_reached(m.id, nx, ny) for nx, ny in near)
-        dest = w["dest_map"]
-        dest_lost = dest != "MAP_DYNAMIC" and not reach.map_reached(dest)
-        dm = self.world.maps.get(dest)
         wid = parse_int(str(w["dest_warp_id"]))
-        empty_area = False
-        if not dest_lost and self.world.usable(dm) and wid is not None and 0 <= wid < len(dm.warps()):
-            t = dm.warps()[wid]
-            around = [(t["x"] + dx, t["y"] + dy) for dx, dy in DIRS.values()] + [(t["x"], t["y"])]
-            dest_lost = not any(reach.tile_reached(dm.id, ax, ay) for ax, ay in around)
-            empty_area = dest_lost and not self.area_content(dm, t["x"], t["y"], wid)
-        if empty_area:
-            return "nachgewiesen", "optional", "Ziel ist ein sonst unerreichbarer, leerer Kartenbereich"
+        if w["dest_map"] == m.id and wid == i:
+            return "nachgewiesen", "optional", "Warp zeigt auf sich selbst (Platzhalter, Bedienung per Skript)"
         if not reach.map_reached(m.id):
             return "nachgewiesen", "optional", "Ohne Wirkung: die Karte selbst ist nicht erreichbar"
-        if not source_near:
-            if dest_lost:
-                return "nachgewiesen", "wichtig", ("Ziel hat keinen anderen Zugang; zusätzlich ist das Warp-Feld "
+        lost, content = self._target_loss(m, w)
+        if lost and not content:
+            return "nachgewiesen", "optional", f"{lost} hat keinen anderen Zugang, aber auch keinen Inhalt"
+        x, y = w["x"], w["y"]
+        near = [(x + dx, y + dy) for dx, dy in DIRS.values()] + [(x, y)]
+        if not any(m.inside(nx, ny) and reach.tile_reached(m.id, nx, ny) for nx, ny in near):
+            if lost:
+                return "nachgewiesen", "wichtig", (f"{lost} hat keinen anderen Zugang; zusätzlich ist das Warp-Feld "
                                                    "selbst nicht erreichbar (abgeschnittener Kartenteil)")
             return "nachgewiesen", "optional", "Ohne Wirkung: das Feld ist ohnehin nicht erreichbar"
-        if dest_lost:
-            return "nachgewiesen", "kritisch", "Ziel (Karte bzw. Ankunftsfeld) hat keinen anderen Zugang"
-        siblings = [j for j in groups[dest] if j != i and (m.id, j) in reach.used_warps]
+        if lost:
+            return "nachgewiesen", "kritisch", f"{lost} hat keinen anderen Zugang; Inhalt: " + ", ".join(content[:6])
+        siblings = [j for j in groups[w["dest_map"]] if j != i and (m.id, j) in reach.used_warps]
         if siblings:
             sev = "klein" if hints or warp_tile else "optional"
             return "nachgewiesen", sev, f"Andere Warps zum selben Ziel funktionieren: {siblings}"
@@ -1204,12 +1217,45 @@ class Checker:
         if arrivals:
             return "verdacht", "optional", ("Nur Ankunftspunkt (von " + ", ".join(arrivals)
                                             + "); Rückweg über dieses Feld nicht möglich, oft gewollt")
-        return "verdacht", "klein", "Zielkarte ist anders erreichbar; Warp ohne Funktion"
+        return "verdacht", "optional", "Zielkarte ist anders erreichbar; Warp ohne Funktion"
+
+    def _target_loss(self, m, w):
+        """(what, content) the dead warp alone leads to, or (None, None) if the target is reachable otherwise."""
+        dm = self.world.maps.get(w["dest_map"])
+        wid = parse_int(str(w["dest_warp_id"]))
+        if not self.world.usable(dm) or wid is None or not 0 <= wid < len(dm.warps()):
+            return None, None
+        if not self.reach.map_reached(dm.id):
+            return "Zielkarte", self.map_content(dm, exclude=m.id)
+        t = dm.warps()[wid]
+        around = [(t["x"] + dx, t["y"] + dy) for dx, dy in DIRS.values()] + [(t["x"], t["y"])]
+        if any(self.reach.tile_reached(dm.id, ax, ay) for ax, ay in around):
+            return None, None
+        return "Zielbereich", self.area_content(dm, t["x"], t["y"], wid)
+
+    def map_content(self, m, exclude=None, seen=None):
+        """Items, trainers, NPCs with effects and maps behind it (other than exclude) of a map."""
+        seen = seen if seen is not None else {m.id}
+        found = []
+        for o in m.objects():
+            kind, detail = self.object_kind(o)
+            if kind in ("Item-Ball", "Trainer", "Figur", "Beerenbaum"):
+                found.append(f"{kind} {detail}".strip())
+        found += [f"verstecktes Item {b.get('item', '')}" for b in m.bg_events() if b.get("type") == "hidden_item"]
+        for w in m.warps():
+            dm = self.world.maps.get(w["dest_map"])
+            if self.world.usable(dm) and dm.id != exclude and dm.id not in seen and not self.reach.map_reached(dm.id):
+                seen.add(dm.id)
+                if self.map_content(dm, exclude, seen):
+                    found.append(f"dahinter {dm.name}")
+        return found
 
     def area_content(self, m, x, y, own_warp):
         """Objects, signs, items and other warps in the walkable area around (x, y)."""
-        start = [(x, y)] + [(x + dx, y + dy) for dx, dy in DIRS.values()]
-        todo = [p for p in start if m.inside(*p) and m.passable(*p)]
+        if not m.inside(x, y):
+            return []
+        start = [p for p in [(x, y)] + [(x + dx, y + dy) for dx, dy in DIRS.values()] if m.inside(*p)]
+        todo = [p for p in start if m.passable(*p)]
         area = set(todo)
         while todo:
             cx, cy = todo.pop()
@@ -1309,6 +1355,8 @@ class Checker:
             return "Trainer", ""
         if obj.get("movement_type") == "MOVEMENT_TYPE_BERRY_TREE_GROWTH":
             return "Beerenbaum", ""
+        if re.search(r"BOULDER|CUTTABLE_TREE|BREAKABLE_ROCK|ROCK_SMASH|WHIRLPOOL", gfx):
+            return "Hindernis", ""
         effects = self.script_effects(script)
         if effects:
             return "Figur", "/".join(sorted(effects))
@@ -1344,13 +1392,54 @@ class Checker:
                 self._rate_spot(m, x, y, f"object_events[{i}] {label} ({obj.get('script', '')})", kind,
                                 obj.get("flag", "0") not in ("0", 0, ""), f"{path} object_events[{i}]", i)
             for i, bg in enumerate(m.bg_events()):
-                if bg.get("type") != "hidden_item":
-                    continue
                 x, y = bg["x"], bg["y"]
                 if not m.inside(x, y):
                     continue
-                self._rate_spot(m, x, y, f"bg_events[{i}] verstecktes Item {bg.get('item', '')}", "Verstecktes Item",
-                                False, f"{path} bg_events[{i}]", i, elevation=bg.get("elevation", 0))
+                if bg.get("type") == "hidden_item":
+                    self._rate_spot(m, x, y, f"bg_events[{i}] verstecktes Item {bg.get('item', '')}", "Verstecktes Item",
+                                    False, f"{path} bg_events[{i}]", i, elevation=bg.get("elevation", 0))
+                elif bg.get("type") == "sign":
+                    self._check_bg_elevation(m, x, y, bg, f"{path} bg_events[{i}]", i)
+            for i, ce in enumerate(m.coord_events()):
+                if ce.get("type") != "weather" and m.inside(ce["x"], ce["y"]):
+                    self._check_coord_elevation(m, ce, f"{path} coord_events[{i}]", i)
+
+    def _check_bg_elevation(self, m, x, y, bg, where, index):
+        """A sign is readable only from a tile where the player's elevation matches."""
+        elevation = bg.get("elevation", 0)
+        reached = [s for s in self.stand_tiles(m, x, y) if self.reach.tile_reached(m.id, *s)]
+        if elevation == 0 or not reached:
+            return
+        ok, fixed = self.facing_elevation_ok(m, reached, elevation)
+        if not ok:
+            self.add(3, "O-HOEHE", m, (x, y), "nachgewiesen" if fixed else "verdacht", "optional",
+                     f"bg_events[{index}] Schild ({bg.get('script', '')}): Höhe {elevation} passt zu keinem "
+                     f"erreichbaren Nachbarfeld, nicht lesbar",
+                     [where, f"Nachbarfelder (Höhe): {[(s, m.elevation(*s)) for s in reached]}"], index=index)
+
+    def _check_coord_elevation(self, m, ce, where, index):
+        """A coord event fires only if its elevation is 0 or equals the player's elevation on the tile."""
+        x, y, elevation = ce["x"], ce["y"], ce.get("elevation", 0)
+        prevs = self.reach.tiles.get(m.id, {}).get((x, y))
+        if elevation == 0 or not prevs or elevation in prevs:
+            return
+        fixed = m.elevation(x, y) not in (0, 15)
+        script = ce.get("script", "")
+        self.add(3, "C-HOEHE", m, (x, y), "nachgewiesen" if fixed else "verdacht", "wichtig",
+                 f"coord_events[{index}] {script} ({ce.get('var')} = {ce.get('var_value')}): Höhe {elevation}, "
+                 f"Spielerhöhe auf dem Feld {sorted(prevs)}, das Ereignis löst nie aus",
+                 [where, f"Kachel: {self.describe_tile(m, x, y)}"], index=index)
+
+    def facing_elevation_ok(self, m, stand_tiles, elevation):
+        """(ok, fixed): can a bg event of this elevation be faced from one of the stand tiles."""
+        fixed = True
+        for sx, sy in stand_tiles:
+            e = m.elevation(sx, sy)
+            if e == 15:
+                fixed = False
+            if e != 0 and elevation in self.reach.tiles[m.id].get((sx, sy), ()):
+                return True, fixed
+        return False, fixed
 
     def _rate_spot(self, m, x, y, label, kind, hidden_flag, where, index, elevation=None):
         reach = self.reach
@@ -1364,6 +1453,9 @@ class Checker:
         else:
             status, sev = "verdacht", "optional"
         details = [where, f"Kachel: {self.describe_tile(m, x, y)}"]
+        if m.id in self.world.map_rides:
+            status = "ungeprueft"
+            details.append("Karte bewegt den Spieler oft per Skript (Fahrt/Rätsel), das Modell sieht diese Wege nicht")
         if not stands:
             self.add(3, "O-EINGEMAUERT", m, (x, y), status, sev,
                      f"{label}: alle Nachbarfelder sind Kollision", details, index=index)
@@ -1371,15 +1463,11 @@ class Checker:
             self.add(3, "O-UNERREICHBAR", m, (x, y), status, sev,
                      f"{label}: kein erreichbares Nachbarfeld", details + [f"Nachbarfelder: {stands}"], index=index)
         elif elevation not in (None, 0):
-            ok = False
-            for sx, sy in reached:
-                prevs = reach.tiles[m.id][(sx, sy)]
-                if m.elevation(sx, sy) != 0 and elevation in prevs:
-                    ok = True
+            ok, fixed = self.facing_elevation_ok(m, reached, elevation)
             if not ok:
-                self.add(3, "O-HOEHE", m, (x, y), "verdacht", sev,
-                         f"{label}: Höhe {elevation} passt zu keinem erreichbaren Nachbarfeld",
-                         details + [f"erreichbare Nachbarfelder: {reached}"], index=index)
+                self.add(3, "O-HOEHE", m, (x, y), "nachgewiesen" if fixed else "verdacht", sev,
+                         f"{label}: Höhe {elevation} passt zu keinem erreichbaren Nachbarfeld, nicht auffindbar",
+                         details + [f"Nachbarfelder (Höhe): {[(s, m.elevation(*s)) for s in reached]}"], index=index)
 
     # check 4 ------------------------------------------------------------
     def check_connections(self):
@@ -1497,10 +1585,9 @@ class Checker:
         for m in sorted(world.active_maps(), key=lambda mm: mm.name):
             if not world.usable(m) or reach.map_reached(m.id):
                 continue
-            items = sum(1 for o in m.objects() if self.object_kind(o)[0] == "Item-Ball")
-            hidden = sum(1 for b in m.bg_events() if b.get("type") == "hidden_item")
-            trainers = sum(1 for o in m.objects() if self.object_kind(o)[0] == "Trainer")
-            details = [f"Inhalt: {items} Item-Bälle, {hidden} versteckte Items, {trainers} Trainer"]
+            content = self.map_content(m)
+            details = ["Inhalt: " + (", ".join(content[:8]) if content
+                                     else "keiner (keine Items, Trainer oder Figuren mit Wirkung)")]
             dead_in, via = self.dead_entrances(m.id)
             if dead_in:
                 details.append("Nicht nutzbare Eingänge aus erreichten Karten: " + "; ".join(dead_in))
@@ -1510,7 +1597,7 @@ class Checker:
             if refs:
                 details.append("Referenzen (Skript/C): " + ", ".join(sorted(set(refs))[:5]))
             status = "ungeprueft" if refs and not dead_in else "verdacht"
-            sev = "wichtig" if dead_in else "klein"
+            sev = ("wichtig" if dead_in else "klein") if content else "optional"
             self.add(0, "K-UNERREICHBAR", m, None, status, sev,
                      "Aktive Karte ist vom Spielstart aus nicht erreichbar", details)
 
