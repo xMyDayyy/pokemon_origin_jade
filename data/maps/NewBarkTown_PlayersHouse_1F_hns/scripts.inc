@@ -14,7 +14,6 @@ NewBarkTown_PlayersHouse_1F_SetMomStandingAtTable::
 
 	@add to newgame later
 	clearflag FLAG_HIDE_MOMS_FRIEND
-	clearflag FLAG_MOM_VISITED
 	return
 
 @ Origin Jade: LOCALID_MOM is the woman of the house, not the player's mom.
