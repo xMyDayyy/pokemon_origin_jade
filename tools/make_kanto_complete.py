@@ -52,13 +52,14 @@ ARM_CPP = ["arm-none-eabi-cpp", "-iquote", "include", "-Wno-trigraphs", "-std=gn
 # (0 Bulbasaur, 1 Squirtle, 2 Charmander).
 KANTO_COMPLETE_STARTER = 2
 KANTO_COMPLETE_PARTY_STARTER_FINAL = ["SPECIES_VENUSAUR", "SPECIES_BLASTOISE", "SPECIES_CHARIZARD"]
-KANTO_COMPLETE_PARTY_STARTER_LEVEL = 45
+# Levels of an average player after the champion (Gen 5 experience, D-011).
+KANTO_COMPLETE_PARTY_STARTER_LEVEL = 49
 KANTO_COMPLETE_PARTY = [
-    ("SPECIES_PIDGEOT", 45),
-    ("SPECIES_RAICHU", 45),
-    ("SPECIES_NIDOKING", 45),
-    ("SPECIES_GYARADOS", 44),
-    ("SPECIES_ALAKAZAM", 45),
+    ("SPECIES_PIDGEOT", 43),
+    ("SPECIES_RAICHU", 44),
+    ("SPECIES_NIDOKING", 43),
+    ("SPECIES_GYARADOS", 42),
+    ("SPECIES_SNORLAX", 42),
 ]
 
 # Active FRLG maps a run up to the first Hall of Fame never enters: post-title
@@ -223,11 +224,13 @@ UNCATCHABLE_STATIC = {"SPECIES_MAROWAK"}   # Pokemon Tower ghost
 # evolved ones their evolution level (or the pre-evolution's level + 5).
 GIFT_LEVELS = {
     "SPECIES_BULBASAUR": 5, "SPECIES_CHARMANDER": 5, "SPECIES_SQUIRTLE": 5,
-    "SPECIES_EEVEE": 25, "SPECIES_LAPRAS": 25, "SPECIES_MAGIKARP": 5,
-    "SPECIES_OMANYTE": 5, "SPECIES_KABUTO": 5, "SPECIES_AERODACTYL": 5,
-    "SPECIES_HITMONLEE": 25, "SPECIES_HITMONCHAN": 25,
+    "SPECIES_EEVEE": 25, "SPECIES_LAPRAS": 35, "SPECIES_MAGIKARP": 10,
+    "SPECIES_OMANYTE": 40, "SPECIES_KABUTO": 40, "SPECIES_AERODACTYL": 40,
+    "SPECIES_HITMONLEE": 35, "SPECIES_HITMONCHAN": 35,
     "SPECIES_ARTICUNO": 40, "SPECIES_ZAPDOS": 40, "SPECIES_MOLTRES": 40, "SPECIES_MEW": 40,
-    "SPECIES_SNORLAX": 24,
+    "SPECIES_SNORLAX": 35, "SPECIES_ELECTRODE": 35,
+    # Game Corner prizes that are not wild.
+    "SPECIES_PORYGON": 25, "SPECIES_FARFETCHD": 25, "SPECIES_LICKITUNG": 25, "SPECIES_MR_MIME": 25,
 }
 DEFAULT_BOX_LEVEL = 20
 MAX_BOX_LEVEL = 50
@@ -1085,6 +1088,7 @@ class KantoRun:
                 if c == "IF_HOLD_ITEM" and self.item(arg) not in self.items_available:
                     return False
             return True
+        via = {}  # evolved species -> (pre-evolution, evolution entry used)
         changed = True
         while changed:
             changed = False
@@ -1092,6 +1096,7 @@ class KantoRun:
                 for e in sp.get(s, {"evos": []})["evos"]:
                     if e["target"] in sp and e["target"] not in how and evo_ok(e):
                         how[e["target"]] = "evo"
+                        via[e["target"]] = (s, e)
                         changed = True
                 b = root(s)
                 if self.breeding and b in sp and b not in how:
@@ -1113,7 +1118,7 @@ class KantoRun:
                 elif h == "breed":
                     lv = 1
                 elif h == "evo":
-                    base, e = pre[s]
+                    base, e = via[s]
                     lv = level(base)
                     p = e["param"]
                     if e["method"] in ("EVO_LEVEL", "EVO_LEVEL_BATTLE_ONLY") and p.isdigit() and int(p) > 0:

@@ -183,26 +183,62 @@ dated 2026-10-10 or later were decided directly.
 
 ## Balancing
 
-### D-011 Kanto: hand-set level ladder up to 52
-- **Status:** Active
+### D-011 Kanto: hand-set level ladder up to 47
+- **Status:** Active (ladder changed 2026-10-29)
 - **Decision:** Kanto's levels are set by hand and end with the champion at
-  52; legendaries at most 40. Teams rise monotonically, at most two levels
-  below the ace; route trainers sit 3-5 levels below the next boss. The
-  Exp. Share is on from the start and the level band is tuned for it
-  (`B_SPLIT_EXP` Gen 5). Obedience for traded Pokemon follows the number of
-  Kanto badges (10, then +5 per badge, 50 with eight); after the Johto
-  title every Pokemon obeys (D-031). Kanto's Elite Four rematch teams are
-  also capped at 52. After the Kanto title Kanto scales to the player and
-  these hand-set levels are the floor (D-031).
-- **Evidence:** b20f555d4d, 20fa75b584, 1662b679fc, 2f349b5ce2, af10c86033.
+  45-47. They follow an average player: about three of four trainers, half
+  of the other wild Pokemon fought, new species caught, the Exp. Share on
+  from the start (`B_SPLIT_EXP` Gen 5) and Gen 5 experience (D-042). That
+  player meets every boss within about two levels of the team mean; aces
+  may stand higher. Rushers have to train.
+  - Boss aces: Brock 10, Misty 17, Surge 21, Erika 28, Koga 36, Sabrina 39,
+    Blaine 42, Giovanni 42; the rival 7, 15, 20, 31, 38 and 43 (Route 22);
+    Giovanni at the Game Corner 31 and at Silph 39; Elite Four 43-46;
+    champion 45-47. Teams rise monotonically.
+  - Route and dungeon trainers moved with their section's next boss
+    (`tools/shift_kanto_ladder.py`).
+  - Elite Four and champion rematch teams: 47 (D-015).
+  - Legendaries: birds and Mew 40, Mewtwo 50. Other statics and gifts at
+    the player's level when they are met, rounded: Snorlax 30 (Route 12)
+    and 35 (Route 16), Marowak 30, the Power Plant's Electrode 35,
+    Hitmonlee and Hitmonchan 35, Lapras 35, the fossils 40, Magikarp 10,
+    the Game Corner prizes 25.
+  - The average player's team at the title: about 49/44/43/43/42/42 (mean
+    44, anchor 45). The debug menu's Johto test starts with such a team
+    (`tools/make_kanto_complete.py`).
+  - Obedience for traded Pokemon follows the number of Kanto badges (10,
+    then +5 per badge, 50 with eight); after the Johto title every Pokemon
+    obeys (D-031).
+  - After the Kanto title Kanto scales to the player and these hand-set
+    levels are the floor (D-031).
+- **Evidence:** b20f555d4d, 20fa75b584, 1662b679fc, 2f349b5ce2, af10c86033;
+  ladder: decision 2026-10-29.
 
 ### D-012 Johto and Hoenn: dynamic level scaling
-- **Status:** Active
+- **Status:** Active (anchor, bands and corridors changed 2026-10-29)
 - **Decision:** Johto and Hoenn scale to the player (`src/level_scaling.c`,
-  `include/config/johto_scaling.h`): Johto corridors 45-80 (Mt. Silver
-  70-90, Red unscaled), trainers anchor -3..+2, bosses +3 (Hoenn +5, it is
-  the final region). The arrival corridor has the full band. Johto's gym
-  leaders have six Pokemon; route trainers at least three
+  `include/config/johto_scaling.h`, `include/config/hoenn_scaling.h`).
+  - Anchor, in every region: the mean of the three highest party levels,
+    rounded, but at most `SCALING_ANCHOR_MAX_DROP` (8) below the highest
+    level (`include/level_scaling.h`). Weak fillers do not pull the levels
+    down: a level 100 Pokemon with five level 1 Pokemon gives 92.
+  - Trainers: anchor -3..+0 (Hoenn -5..+0), a boss's ace +1. Wild Pokemon:
+    anchor -10..-4. Corridors per map section clamp both.
+  - Johto corridors: Routes 26 and 27, Tohjo Falls 40-80; arrival up to
+    Bugsy 41-50 (Cherrygrove 41-48); Whitney and Morty 44-53 (Goldenrod and
+    Ecruteak 44-61: Radio Tower, theater); Chuck and Jasmine 47-55; Rocket
+    Hideout and Pryce 50-58; Clair, Tin Tower and the Whirl Islands 56-64;
+    Victory Road and the league 58-65; Mt. Silver 70-90 (Red unscaled).
+  - Hoenn corridors: entry 65-85, early middle 70-90, late middle 75-95,
+    final stretch 80-100, endgame 85-100; side areas reached later sit a
+    tier higher.
+  - The average player of D-011 meets the bosses at about +1..+2.5 over the
+    team mean in Johto and +0..+3 in Hoenn. Team at the Johto title about
+    70/63/63/62/60/60 (mean 63, anchor 65), at the Hoenn league about
+    100/88/88/87/85/85 (mean 89, anchor 92). Rushers fall behind and have
+    to train; stronger teams meet the corridor ceilings.
+  - Experience is Gen 5 in every region (D-042).
+  Johto's gym leaders have six Pokemon; route trainers at least three
   (`tools/fill_johto_parties.py`: trainer class beats the local wild pool,
   duplicate a Pokemon rather than break the class). Rematch teams scale
   as well (every stage is below level 77). HnS's badge gate for rematch
@@ -284,12 +320,13 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** 09aac39e14, 5b0269166d, f9bd3e5021 (Waterfall, Whirlpool).
 
 ### D-015 Kanto's Elite Four rematch after the Kanto title
-- **Status:** Active (2026-10-10)
+- **Status:** Active (2026-10-10, levels 2026-10-29)
 - **Decision:** After the Kanto title the Kanto Elite Four use their
   rematch teams, matching the rematch texts that already showed. FRLG picked
   the teams by `FLAG_IS_CHAMPION`, which only FRLG's postgame (One Island)
-  sets. The rematches end when the league changes (D-010).
-- **Evidence:** review 2026-10-09, decided 2026-10-10.
+  sets. The rematches end when the league changes (D-010). Their teams are
+  at level 47 (D-011) and scale from there (D-031).
+- **Evidence:** review 2026-10-09, decided 2026-10-10; levels 2026-10-29.
 
 ## Data, saves and maps (technical conventions)
 
@@ -445,7 +482,8 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-13 (O-016).
 
 ### D-026 Legendary rules: caught means gone for good
-- **Status:** Active (2026-10-15, Johto levels changed 2026-10-27, D-039)
+- **Status:** Active (2026-10-15, Johto levels changed 2026-10-27, D-039,
+  Hoenn levels 2026-10-29, D-043)
 - **Decision:** All one-time encounters share one table
   (`src/legendaries_oj.c`, ids in `include/constants/legendaries_oj.h`):
   Articuno, Zapdos, Moltres, Mewtwo, Mew (Mt. Moon only), Lugia, Ho-Oh,
@@ -468,11 +506,12 @@ dated 2026-10-10 or later were decided directly.
     title once the chosen one is caught (level 80; the chosen one keeps its
     story level 78, D-039). Route 41's Tentacruel then step aside for Ho-Oh
     choosers.
-  - Latias and Latios both roam Hoenn after the first Hoenn title (level 40,
+  - Latias and Latios both roam Hoenn after the first Hoenn title (level 100,
     Emerald routes). No Latias roams Kanto or Johto. Faraway Island,
     Southern Island and Navel Rock are not offered anywhere.
-  - Levels: Johto's follow D-039 (set by story point, never below the top of
-    the map's wild band); Kanto's and Hoenn's stay fixed. Sudowoodo and
+  - Levels: Johto's follow D-039, Hoenn's D-043 (both never below the top of
+    the map's wild band); Kanto's are fixed (birds and Mew 40, Mewtwo 50,
+    D-011). Sudowoodo and
     Snorlax never return. The GS Ball is used up at the shrine; there is no
     second Celebi.
 - **Evidence:** decision 2026-10-15 (O-004).
@@ -549,7 +588,8 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-15 (O-006).
 
 ### D-031 Level scaling after a region's title
-- **Status:** Active (2026-10-15, Johto statics changed 2026-10-27, D-039)
+- **Status:** Active (2026-10-15, Johto statics changed 2026-10-27, D-039,
+  Hoenn statics 2026-10-29, D-043)
 - **Decision:** After a region's title its trainers (rematches included) and
   wild Pokemon scale to the player's anchor without a ceiling (level 100).
   - Kanto: FRLG maps, off before `FLAG_IS_KANTO_CHAMPION`; no corridors, the
@@ -557,9 +597,9 @@ dated 2026-10-10 or later were decided directly.
     Pokemon evolve (`include/config/kanto_scaling.h`).
   - Johto and Hoenn: corridor ceilings become 100 with
     `FLAG_IS_JOHTO_CHAMPION` / `FLAG_IS_HOENN_CHAMPION`; floors stay.
-  - Fixed: Red, the facilities, and Kanto's and Hoenn's static and scripted
-    encounters and roamers (D-026). Johto's never fall below the top of the
-    map's wild band (D-039). Steven at Meteor Falls (level 75-78) stays
+  - Fixed: Red, the facilities, and Kanto's static and scripted encounters
+    (D-026). Johto's and Hoenn's, roamers included, never fall below the top
+    of the map's wild band (D-039, D-043). Steven at Meteor Falls (level 75-78) stays
     fixed as the owner set it before (876c3d4c19, Hoenn's counterpart to
     Red, `HOENN_SCALING_FIXED_MIN_LEVEL` 70); setting it to 79 lets only him
     scale.
@@ -610,7 +650,7 @@ dated 2026-10-10 or later were decided directly.
   day 2026-10-20.
 
 ### D-034 Kanto rematches through the VS Seeker
-- **Status:** Active (2026-10-20)
+- **Status:** Active (2026-10-20, levels 2026-10-29)
 - **Decision:** On FRLG maps every trainer with a FireRed/LeafGreen rematch
   can be fought again through the VS Seeker (Kampffahnder, Vermilion
   Pokemon Center): 157 trainers, without the Sevii rows (D-019). FRLG
@@ -620,10 +660,11 @@ dated 2026-10-10 or later were decided directly.
   - Teams by tier: VS Seeker received, 4 Kanto badges, 6 Kanto badges,
     Kanto title, Johto title. The newest team up to the current tier
     fights; a trainer without one fights his first team again.
-  - The first three tiers sit on the D-011 ladder (16-19, 30-31, 33-35);
-    from the Kanto title on the teams scale (D-031).
+  - The first three tiers sit on the D-011 ladder (18-21, 30-31, 37);
+    from the Kanto title on the teams scale (D-031). Route 6's rematch teams
+    (Ricky, Jeff, Isabelle) moved up with their first teams.
   - Before the Kanto title a rematch team whose highest level is below its
-    tier's floor (16, 29, 33) moves up as a whole until it reaches it and
+    tier's floor (18, 30, 37) moves up as a whole until it reaches it and
     evolves like Kanto's scaling (D-012: levels from
     `src/data/trainer_evo_levels.h`, 10 % of the steps skipped, skips and
     branches fixed per rematch team and party slot, rare forms never)
@@ -737,8 +778,8 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-27.
 
 ### D-039 Johto's static and legendary levels fit the scaling
-- **Status:** Active (2026-10-27). Replaces the fixed levels of D-026 and
-  D-031 for Johto.
+- **Status:** Active (2026-10-27, event and player levels 2026-10-29).
+  Replaces the fixed levels of D-026 and D-031 for Johto.
 - **Decision:** Johto's legendaries sit at 75-80 by story point; the other
   strong statics fit the corridor (D-012) where they can first be met. None
   of them falls below the top of the map's wild band afterwards.
@@ -750,34 +791,37 @@ dated 2026-10-10 or later were decided directly.
       theater): 78 (50);
     - the Lugia or Ho-Oh not chosen (after the first Johto title): 80 (70);
     - Deoxys, Birth Island (after the Johto title): 80 (70);
-    - Sudowoodo, Route 36 (after Whitney, corridor 50-61): 60 (20);
-    - Union Cave's Lapras (Surf, after Morty): 60 (20);
-    - the red Gyarados, Lake of Rage (about 6 badges, corridor 60-73):
-      70 (30);
-    - the Rocket Hideout's three Electrode (corridor 60-76): 65 (30);
-    - the Kampfzone's Sudowoodo (after the Johto title): 75 (40).
+    - Sudowoodo, Route 36 (after Whitney, corridor 44-53): 50 (20);
+    - Union Cave's Lapras (Surf, after Morty): 55 (20);
+    - the red Gyarados, Lake of Rage (about 6 badges, corridor 50-58):
+      55 (30);
+    - the Rocket Hideout's three Electrode (corridor 50-58): 60 (30);
+    - the Kampfzone's Sudowoodo (after the Johto title): 65 (40).
     Route 41's four Tentacruel stay at 100: they guard the Whirl Islands
     (unwinnable, healed after the battle), they are not an encounter: not
     catchable, never shiny (`FLAG_NO_WILD_CATCHING` with
     `P_ONLY_OBTAINABLE_SHINIES`).
-  - Player levels behind the numbers (highest party level): arrival from
-    Kanto about 50-55, after Whitney 57-61, after Morty 59-62, six badges
-    65-69, eight badges 70-75, first Johto title 75-80; afterwards it keeps
-    rising (ceilings 100, D-031).
-  - Floor: on maps with Johto's scaling, static and scripted encounters
-    (`seteventmon`, `setwildbattle`, `setwildbattleshiny`) and roamers are at
-    least the top of the map's wild band (anchor - 4, clamped to the
+  - The average player's anchor (highest level in brackets): arrival from
+    Kanto 46 (49), after Whitney 52 (57), after Morty 53 (57), Lake of Rage
+    57-58 (62-63), eight badges 63-64 (68), first Johto title 65 (70);
+    afterwards it keeps rising (ceilings 100, D-031). The legendaries stay
+    in the owner's range of 75-80 and so stand well above that player
+    (Raikou and Entei +22 at the Burned Tower, the Glockenturm about +14).
+  - Floor: on maps with Johto's or Hoenn's scaling, static and scripted
+    encounters
+    (`seteventmon`, `setwildbattle`, `setwildbattleshiny`) and roamers are
+    at least the top of the map's wild band (anchor - 4, clamped to the
     corridor; `ScaleStaticMonLevel`, `src/level_scaling.c`). Before the
     title the corridor ceilings cap it, so it lifts a Pokemon only for
-    players above that corridor (e.g. Sudowoodo to 61, a roamer on Route 26
+    players above that corridor (e.g. Sudowoodo to 53, a roamer on Route 26
     up to 80). After the title it lifts the returns of D-026 with the player.
-    Kanto, Hoenn and unscaled maps (Birth Island, the Kampfzone) keep fixed
-    levels.
+    Kanto and unscaled maps (Birth Island, the Kampfzone) keep fixed levels
+    (`staticFloor` in `src/level_scaling.c`).
   - Roamers keep the level they started with. Raikou and Entei start at
     their level in `src/legendaries_oj.c`; a roamer below it, or below the
     floor, moves up at its next encounter and keeps its share of HP
     (`TryRaiseRoamerLevel`, `src/roamer.c`).
-  - Kanto (D-011) and Hoenn statics are unchanged; the owner decides later.
+  - Kanto: D-011, Hoenn: D-043.
 - **Evidence:** decision 2026-10-27.
 
 ### D-040 Hoenn keeps its own state where a finished Kanto would leak into it
@@ -837,6 +881,39 @@ dated 2026-10-10 or later were decided directly.
   - Level-cap challenge (`src/caps.c`): Kanto badges table until the Kanto
     title, then 70 until `FLAG_IS_JOHTO_CHAMPION`, then no cap.
 - **Evidence:** full Kanto run analysis, decision 2026-10-29.
+
+### D-042 Gen 5 experience in every region
+- **Status:** Active (2026-10-29)
+- **Decision:** Experience follows Gen 5 everywhere (`B_SCALED_EXP` Gen 5,
+  `include/config/battle.h`): base experience / 5, weighted by the level
+  difference, so Pokemon behind the foe catch up and those far ahead gain
+  little. On top of that:
+  - trainer battles x1.5 (`B_TRAINER_EXP_MULTIPLIER` Gen 3);
+  - the classic split with the Exp. Share key item from the start
+    (`B_SPLIT_EXP` Gen 5, D-011);
+  - damping by the receiving Pokemon's level: 100 % up to 30, 70 % at
+    31-60, 50 % from 61 (`EXP_DAMP_*`, `include/config/hoenn_scaling.h`);
+  - the challenge menu's experience rate.
+  The levels of all three regions are tuned for the average player (D-011,
+  D-012); rushers have to train.
+- **Evidence:** decision 2026-10-29.
+
+### D-043 Hoenn's static and legendary levels fit the scaling
+- **Status:** Active (2026-10-29). Replaces the fixed Hoenn levels of D-026
+  and D-031.
+- **Decision:** The player reaches level 100 in Hoenn. Its legendaries sit
+  at 100, the other static encounters at the player's level where they are
+  met, rounded (old in brackets):
+  - Regirock, Regice and Registeel: 100 (40);
+  - Groudon, Kyogre and Rayquaza: 100 (70);
+  - Latias and Latios, roaming after the first Hoenn title: 100 (40);
+  - Kecleon on Routes 119 and 120: 80 (30);
+  - New Mauville's Voltorb: 75 (25);
+  - the Aqua Hideout's Electrode: 85 (30).
+  - Floor as in Johto: static and scripted encounters and roamers on Hoenn
+    maps are at least the top of the map's wild band (D-039).
+  - Gifts keep their levels (Castform 25, the fossils 20, Beldum 5).
+- **Evidence:** decision 2026-10-29.
 
 ---
 

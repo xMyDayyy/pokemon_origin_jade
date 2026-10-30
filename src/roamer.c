@@ -441,8 +441,9 @@ bool8 IsRoamerAt(u32 roamerIndex, u8 mapGroup, u8 mapNum)
 }
 
 #if IS_HNS
-// Raises a roamer to its level in the legendary table and to the map's floor
-// (ScaleStaticMonLevel), keeping its share of HP. See docs/origin_jade/DECISIONS.md, D-039.
+// Raises a roamer to its level in the legendary table and, on Johto and Hoenn maps, to
+// the map's floor (ScaleStaticMonLevel), keeping its share of HP.
+// See docs/origin_jade/DECISIONS.md, D-039.
 static void TryRaiseRoamerLevel(u32 roamerIndex)
 {
     struct Pokemon *mon = &gEnemyParty[0];

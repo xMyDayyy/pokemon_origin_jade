@@ -9,9 +9,16 @@ struct Trainer;
 // include/config/hoenn_scaling.h, johto_scaling.h and kanto_scaling.h.
 // Before the Kanto title ScaleTrainerMonLevel raises Kanto VS Seeker rematch teams
 // to their tier's floor (src/vs_seeker.c). Pass-throughs everywhere else.
+
+// Anchor of all regions: mean of the three highest party levels (eggs excluded;
+// fewer Pokemon: their mean), rounded, but at most this far below the highest level.
+// See docs/origin_jade/DECISIONS.md, D-012.
+#define SCALING_ANCHOR_MAX_DROP 8
+
 bool32 LevelScalingActive(void);
 u8 ScaleWildMonLevel(u8 level);
-// Static and scripted encounters and roamers: never below the top of the map's wild band (Johto).
+// Static and scripted encounters and roamers: never below the top of the map's wild band
+// (maps with Johto's or Hoenn's rules).
 u8 ScaleStaticMonLevel(u8 level);
 u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel);
 // Call right after ScaleTrainerMonLevel for the same Pokemon. partyIndex: its index

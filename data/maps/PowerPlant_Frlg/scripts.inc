@@ -68,7 +68,7 @@ PowerPlant_EventScript_RanFromZapdos::
 PowerPlant_EventScript_Electrode1::
 	lock
 	faceplayer
-	setwildbattle SPECIES_ELECTRODE, 26
+	setwildbattle SPECIES_ELECTRODE, 35
 	waitse
 	playmoncry SPECIES_ELECTRODE, CRY_MODE_ENCOUNTER
 	delay 40
@@ -92,7 +92,7 @@ PowerPlant_EventScript_FoughtElectrode1::
 PowerPlant_EventScript_Electrode2::
 	lock
 	faceplayer
-	setwildbattle SPECIES_ELECTRODE, 26
+	setwildbattle SPECIES_ELECTRODE, 35
 	waitse
 	playmoncry SPECIES_ELECTRODE, CRY_MODE_ENCOUNTER
 	delay 40

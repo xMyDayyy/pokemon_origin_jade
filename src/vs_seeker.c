@@ -112,11 +112,13 @@ enum
 // is lower moves up as a whole until it reaches the floor (src/level_scaling.c).
 // 0 = no floor. From the Kanto title on the teams scale instead, see
 // docs/origin_jade/DECISIONS.md, D-031 and D-034.
+// Keep each floor below the ace of the tier's next gym leader. A rematch team
+// below its own first team is raised in src/data/trainers_frlg.party instead.
 static const u8 sKantoRematchLevelFloors[KANTO_REMATCH_TIERS] =
 {
-    [KANTO_REMATCH_TIER_VS_SEEKER] = 16,
-    [KANTO_REMATCH_TIER_4_BADGES]  = 29,
-    [KANTO_REMATCH_TIER_6_BADGES]  = 33,
+    [KANTO_REMATCH_TIER_VS_SEEKER] = 18,
+    [KANTO_REMATCH_TIER_4_BADGES]  = 30,
+    [KANTO_REMATCH_TIER_6_BADGES]  = 37,
 };
 
 // Trainers that want a rematch are kept as a bit per local id in two vars.

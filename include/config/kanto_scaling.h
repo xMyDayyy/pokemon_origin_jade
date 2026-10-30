@@ -6,7 +6,7 @@
 //
 // Off until FLAG_IS_KANTO_CHAMPION: the first run keeps the hand-set
 // levels (D-011). After the title, trainers (rematches included) and wild
-// Pokemon follow the highest level in the player's party (the anchor) up to
+// Pokemon follow the player's anchor (include/level_scaling.h) up to
 // KANTO_SCALING_MAX_LEVEL. Scaling only raises levels: the hand-set level is
 // the floor. Kanto has no corridors.
 // Before the title only VS Seeker rematch teams move up, to their tier's
@@ -18,10 +18,10 @@
 #define KANTO_LEVEL_SCALING          TRUE  // master switch
 
 #define KANTO_SCALING_TRAINER_BELOW  3     // Trainer band: anchor - 3 ...
-#define KANTO_SCALING_TRAINER_ABOVE  2     // ... up to anchor + 2
+#define KANTO_SCALING_TRAINER_ABOVE  0     // ... up to the anchor
 #define KANTO_SCALING_WILD_BELOW     10    // Wild band: anchor - 10 ...
 #define KANTO_SCALING_WILD_ABOVE     4     // ... up to anchor - 4
-#define KANTO_SCALING_BOSS_EXTRA     1     // Boss ace: anchor + 2 + 1
+#define KANTO_SCALING_BOSS_EXTRA     1     // Boss ace: anchor + 1
 
 // Trainers with an original level of at least this are not scaled (none in Kanto today).
 #define KANTO_SCALING_FIXED_MIN_LEVEL 77
