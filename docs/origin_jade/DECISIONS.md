@@ -892,6 +892,10 @@ dated 2026-10-10 or later were decided directly.
   - `FLAG_HOENN_RECEIVED_REVIVED_FOSSIL_MON`: Devon's fossil revival, read by
     the Fossil Maniac on Route 114; `FLAG_RECEIVED_REVIVED_FOSSIL_MON` stays
     the Ruins of Alph lab's.
+  - `VAR_HOENN_SAFARI_ZONE_STATE`: Hoenn's Safari Zone. Time up, no Safari
+    Balls left or retiring there leads back to the Route 121 entrance
+    (`data/scripts/safari_zone.inc`), not to Johto's gate;
+    `VAR_SAFARI_ZONE_STATE` stays the Johto gate's.
   - Hoenn post-game checks use `FLAG_IS_HOENN_CHAMPION`, not
     `FLAG_SYS_GAME_CLEAR`: the Hoenn gym leaders' rematch calls, Secret Base
     battles, TV mass outbreaks, PokeNews and the Battle Tower profile show,

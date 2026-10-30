@@ -91,6 +91,9 @@
 #define VAR_HOENN_WHICH_FOSSIL_REVIVED          (OJ_VARS_HOENN + 16)
 // Legendary flee cooldowns, 2 bits per encounter (src/legendaries_oj.c).
 #define VAR_LEGENDARY_FLEE_HOENN                (OJ_VARS_HOENN + 17)
+// Hoenn Safari Zone (Route 121): 0 in or out, 1 exiting, 2 entering.
+// VAR_SAFARI_ZONE_STATE belongs to Johto's Safari Zone gate.
+#define VAR_HOENN_SAFARI_ZONE_STATE             (OJ_VARS_HOENN + 18)
 
 // ---------------------------------------------------------------------
 // Cross-region (OJ_VARS_GLOBAL + 0 to + 15)

@@ -3,6 +3,8 @@ SafariZone_EventScript_OutOfBallsMidBattle::
 	setvar VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 3
 #elif IS_HNS
 	goto_if_set FLAG_IN_KANTO_SAFARI_ZONE, SafariZone_EventScript_ExitKantoMidBattle
+	specialvar VAR_RESULT, IsPlayerInHoenn
+	goto_if_eq VAR_RESULT, TRUE, SafariZone_EventScript_ExitHoennMidBattle
 	setvar VAR_SAFARI_ZONE_STATE, 1
 #else
 	setvar VAR_SAFARI_ZONE_STATE, 1
@@ -18,7 +20,7 @@ SafariZone_EventScript_OutOfBallsMidBattle::
 	end
 
 @ Origin Jade: leave Kanto's Safari Zone through the FRLG entrance.
-@ Do not touch VAR_SAFARI_ZONE_STATE here, it belongs to the Johto and Hoenn gates.
+@ Do not touch VAR_SAFARI_ZONE_STATE here, it belongs to Johto's gate.
 SafariZone_EventScript_ExitKantoMidBattle::
 	clearflag FLAG_IN_KANTO_SAFARI_ZONE
 	setvar VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 3
@@ -31,6 +33,8 @@ SafariZone_EventScript_Exit::
 	setvar VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 1
 #elif IS_HNS
 	goto_if_set FLAG_IN_KANTO_SAFARI_ZONE, SafariZone_EventScript_ExitKanto
+	specialvar VAR_RESULT, IsPlayerInHoenn
+	goto_if_eq VAR_RESULT, TRUE, SafariZone_EventScript_ExitHoenn
 	setvar VAR_SAFARI_ZONE_STATE, 1
 #else
 	setvar VAR_SAFARI_ZONE_STATE, 1
@@ -54,6 +58,23 @@ SafariZone_EventScript_ExitKanto::
 	warp MAP_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 4, 1
 	waitstate
 	end
+
+#if IS_HNS
+@ Origin Jade: leave Hoenn's Safari Zone through the Route 121 entrance.
+@ See docs/origin_jade/DECISIONS.md, D-040.
+SafariZone_EventScript_ExitHoennMidBattle::
+	setvar VAR_HOENN_SAFARI_ZONE_STATE, 1
+	special ExitSafariMode
+	setwarp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5
+	end
+
+SafariZone_EventScript_ExitHoenn::
+	setvar VAR_HOENN_SAFARI_ZONE_STATE, 1
+	special ExitSafariMode
+	warp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5
+	waitstate
+	end
+#endif
 
 SafariZone_EventScript_RetirePrompt::
 	lockall
