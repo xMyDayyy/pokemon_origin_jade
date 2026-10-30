@@ -11,7 +11,8 @@ Usage (from the repository root):
     python3 check_merge.py --only warps,flags
     python3 check_merge.py --quiet         # no notes, at most 10 messages per section
 
-Exit code 1 if errors (not warnings) were found.
+Exit code 1 if errors (not warnings) were found. Errors listed in
+KNOWN_ERRORS are reported as known and do not count.
 """
 
 import argparse
@@ -26,6 +27,21 @@ LAYOUTS = "data/layouts/layouts.json"
 WILD = "src/data/wild_encounters.json"
 REGION_MAP = "src/data/region_map/region_map_sections.json"
 EVENT_SCRIPTS = "data/event_scripts.s"
+MAP_GROUPS = "data/maps/map_groups.json"
+
+# Errors on content that is unreachable or intended: (section, message start, reason).
+KNOWN_ERRORS = [
+    ("warps", "Route23_hns Warp #0 ", "D-010: Route23_hns is not reachable"),
+    ("connections", "Route23_hns up ", "D-010: Route23_hns is not reachable"),
+    ("connections", "IndigoPlateau_hns down ",
+     "D-010: one way, the plateau is reached by Teleport only"),
+    ("warps", "NewSinjoh_House1_hns Warp #1 ",
+     "D-019: Sinjoh is locked; the warp lies outside the map"),
+    ("warps", "SSAqua_1F_hns Warp #0 ",
+     "warp tile is blocked by the door sailor; the ship warps by script"),
+    ("connections", "SaffronCity_Connection_Frlg ",
+     "no warp or connection leads to this map"),
+]
 
 DEFINE_RE = re.compile(r"^\s*#define\s+(\w+)\s+(0x[0-9A-Fa-f]+|\d+)\s*(?://.*)?$")
 
@@ -36,9 +52,16 @@ class Report:
         self.errors = []
         self.warnings = []
         self.notes = []
+        self.known = []
+        self.used_known = set()
         self.quiet = quiet
 
     def error(self, section, msg):
+        for entry in KNOWN_ERRORS:
+            if entry[0] == section and msg.startswith(entry[1]):
+                self.known.append((section, f"{msg}  [{entry[2]}]"))
+                self.used_known.add(entry)
+                return
         self.errors.append((section, msg))
 
     def warn(self, section, msg):
@@ -49,6 +72,7 @@ class Report:
 
     def dump(self):
         for label, bucket in (("FEHLER", self.errors),
+                              ("BEKANNT", self.known),
                               ("WARNUNG", self.warnings),
                               ("HINWEIS", self.notes)):
             if not bucket:
@@ -68,6 +92,7 @@ class Report:
                     print(f"   ... und {len(msgs) - len(shown)} weitere")
         print("\n===== ZUSAMMENFASSUNG =====")
         print(f"Fehler:    {len(self.errors)}")
+        print(f"Bekannt:   {len(self.known)}")
         print(f"Warnungen: {len(self.warnings)}")
         print(f"Hinweise:  {len(self.notes)}")
 
@@ -106,6 +131,13 @@ def parse_relative_defines(path):
             if m:
                 out.add(m.group(1))
     return out
+
+def load_grouped_maps():
+    """Names of the maps listed in map_groups.json; only these are built."""
+    with open(MAP_GROUPS, encoding="utf-8") as fh:
+        groups = json.load(fh)
+    return {name for group in groups["group_order"] for name in groups[group]}
+
 
 def load_maps():
     """Loads every data/maps/*/map.json, keyed by map name."""
@@ -405,7 +437,8 @@ def check_script_includes(maps, active_names, rep):
         text = fh.read()
     included = set(re.findall(r'\.include\s+"data/maps/([^/]+)/scripts\.inc"', text))
     for name in sorted(active_names):
-        d = maps[name]["_dir"]
+        # Maps with shared_scripts_map use the scripts of that map.
+        d = maps.get(maps[name].get("shared_scripts_map"), maps[name])["_dir"]
         path = os.path.join(MAPS_DIR, d, "scripts.inc")
         if os.path.exists(path) and d not in included:
             rep.error("event_scripts",
@@ -577,7 +610,9 @@ def main():
     rep = Report(quiet=args.quiet)
 
     maps = load_maps()
-    active = {n for n, m in maps.items() if m["game_version"] == args.version}
+    grouped = load_grouped_maps()
+    active = {n for n, m in maps.items()
+              if m["game_version"] == args.version and n in grouped}
 
     print(f"Build-Version : {args.version}")
     print(f"Maps gesamt   : {len(maps)}")
@@ -611,6 +646,11 @@ def main():
             check_flags(used_flags, args.version, rep)
         if "vars" in wanted:
             check_var_collisions(used_vars, rep)
+
+    for entry in KNOWN_ERRORS:
+        if entry[0] in wanted and entry not in rep.used_known:
+            rep.warn("known-errors",
+                     f"KNOWN_ERRORS-Eintrag trifft nichts mehr: {entry[1].strip()}")
 
     rep.dump()
     return 1 if rep.errors else 0
