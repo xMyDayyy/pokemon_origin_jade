@@ -275,8 +275,8 @@ CeruleanCity_House5_Text_ExchangeWithWhat::
 
 CeruleanCity_House1_Text_YoullExchangeBerryPowderForItem::
 #if GERMAN
-	.string "Gut, ich gebe dir {STR_VAR_1} im Austausch\n"
-	.string "für deinen Beerenpuder!$"
+	.string "Gut, ich gebe dir {STR_VAR_1}\n"
+	.string "im Austausch für deinen Beerenpuder!$"
 #else
 	.string "Fine, you'll exchange your BERRY\n"
 	.string "POWDER for one {STR_VAR_1}?$"
