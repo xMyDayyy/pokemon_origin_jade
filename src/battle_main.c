@@ -5955,9 +5955,11 @@ static void HandleEndTurn_FinishBattle(void)
                 // An off-type mon under the One Type Challenge could never have been
                 // caught, so it must not burn the route's Nuzlocke encounter.
                 // Safari Zone and Bug Contest catches do not use it up either.
-                // Neither do battles without catching (B_FLAG_NO_CATCHING, ghosts).
+                // Neither do battles without catching (B_FLAG_NO_CATCHING, ghosts)
+                // and shinies under the shiny clause.
                 if (!NuzlockeIsSpeciesClauseActive && !OneTypeChallengeCaptureBlocked
-                 && !IsNuzlockeCaptureSuspended() && !FlagGet(B_FLAG_NO_CATCHING))
+                 && !IsNuzlockeCaptureSuspended() && !FlagGet(B_FLAG_NO_CATCHING)
+                 && !(gSaveBlock3Ptr->challengeSettings.tx_Nuzlocke_ShinyClause && gBattleResults.shinyWildMon))
                     NuzlockeFlagSet(NuzlockeGetCurrentRegionMapSectionId());
             }
             NuzlockeIsCaptureBlocked = FALSE;

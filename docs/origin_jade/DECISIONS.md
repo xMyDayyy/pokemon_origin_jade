@@ -1046,9 +1046,12 @@ dated 2026-10-10 or later were decided directly.
     in which catching is impossible (`FLAG_NO_WILD_CATCHING`, e.g. Route 41's
     Tentacruel; the Pokemon Tower's ghosts without the Silph Scope and the
     Marowak ghost, `BATTLE_TYPE_GHOST`), an off-type Pokemon under the One
-    Type Challenge and a Pokemon blocked by the species clause ("Duplikate").
-    Code: `HandleEndTurn_FinishBattle` (`src/battle_main.c`).
-- **Evidence:** audit 2026-10-30 (A23, A25).
+    Type Challenge, a Pokemon blocked by the species clause ("Duplikate")
+    and a shiny under the shiny clause. Code: `HandleEndTurn_FinishBattle`
+    (`src/battle_main.c`).
+  - Shiny clause ("Shiny-Klausel"): a shiny can always be caught, and
+    meeting one never uses up the area.
+- **Evidence:** audit 2026-10-30 (A23, A25, A83).
 
 ---
 
