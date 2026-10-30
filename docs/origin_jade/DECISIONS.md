@@ -971,6 +971,23 @@ dated 2026-10-10 or later were decided directly.
   - Gifts keep their levels (Castform 25, the fossils 20, Beldum 5).
 - **Evidence:** decision 2026-10-29.
 
+### D-044 Two Trainer Hills: HnS's by Route 40, Emerald's on Route 111
+- **Status:** Active (2026-10-30)
+- **Decision:** Both hills work, each with its own data:
+  - Route 40 (Johto post-game, D-041) stays HnS's hill: HnS trainers, party
+    at level 50, item prizes plus money, records in SaveBlock1
+    (`trainerHillTimes`).
+  - Route 111 (opens with `FLAG_IS_HOENN_CHAMPION`) is Emerald's hill:
+    Emerald's trainers and floors, opponents at the level of the player's
+    strongest Pokemon, Emerald's prizes (TMs and items, no money), records
+    of its own in SaveBlock3 (`trainerHillTimesHoenn`). A loss returns the
+    player to its own reception.
+  - `src/trainer_hill.c` picks the set by the map layout
+    (`IsHnsTrainerHill`); scripts ask with `trainerhill_inhoennhill`.
+  - Both hills share `MAPSEC_TRAINER_HILL` (O-024).
+- **Evidence:** decision 2026-10-30 (make the Route 111 hill work instead of
+  retiring it).
+
 ---
 
 ## Planned, not built yet
@@ -1053,6 +1070,13 @@ dated 2026-10-10 or later were decided directly.
   (all random Match Calls, "after Whitney" in HnS), the Gen-9 catch malus,
   the challenge menu's trainer IV/EV tables, the continue window's badge
   total (the save menu adds Johto and Hoenn).
+- **O-024** Both Trainer Hills use `MAPSEC_TRAINER_HILL`, which the HnS
+  build places on the Johto map and `IsHoennMapsec` does not count as Hoenn:
+  inside the hill on Route 111 the region map shows Johto, its trainer
+  battles play Johto's battle and victory music (`MUS_HG_VS_TRAINER`,
+  `MUS_HG_VICTORY_TRAINER`), and Hoenn-only mapsec rules (rival name, item
+  texts, Hoenn licenses) do not apply (D-044). A Hoenn mapsec of their own
+  for the seven Emerald `TrainerHill_*` maps would end all of these.
 
 ## Superseded decisions (kept for the record)
 

@@ -54,10 +54,15 @@ TrainerHill_1F_EventScript_Lost::
 TrainerHill_EventScript_WarpToEntranceCounter::
 	setvar VAR_TEMP_1, 0
 #if IS_HNS
+	trainerhill_inhoennhill
+	goto_if_eq VAR_RESULT, TRUE, TrainerHill_EventScript_WarpToHoennEntranceCounter
 	warp MAP_TRAINER_HILL_ENTRANCE_HNS, 9, 6
-#else
-	warp MAP_TRAINER_HILL_ENTRANCE, 9, 6
+	waitstate
+	end
+
+TrainerHill_EventScript_WarpToHoennEntranceCounter::
 #endif
+	warp MAP_TRAINER_HILL_ENTRANCE, 9, 6
 	waitstate
 	end
 

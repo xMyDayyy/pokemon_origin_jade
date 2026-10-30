@@ -106,3 +106,9 @@
 	copyvar VAR_0x8005, \mode
 	special CallTrainerHillFunction
 	.endm
+
+	@ TRUE on the Trainer Hill on Route 111, FALSE on the HnS one by Route 40
+	.macro trainerhill_inhoennhill
+	setvar VAR_0x8004, TRAINER_HILL_FUNC_IN_HOENN_HILL
+	special CallTrainerHillFunction
+	.endm

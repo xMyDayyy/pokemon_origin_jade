@@ -377,6 +377,11 @@ struct SaveBlock3
     // constants/vars_origin_jade.h), mapped in GetFlagPointer/GetVarPointer.
     u8 flagsOj[OJ_NUM_FLAG_BYTES];
     u16 varsOj[OJ_VARS_COUNT];
+#if FREE_TRAINER_HILL == FALSE
+    // Origin Jade: best times of the Trainer Hill on Route 111; trainerHillTimes
+    // in SaveBlock1 belong to the HnS hill by Route 40.
+    u32 trainerHillTimesHoenn[NUM_TRAINER_HILL_MODES];
+#endif
     // Origin Jade: append new fields here, at the end (save layout).
 #endif
 }; /* max size 1624 bytes */
