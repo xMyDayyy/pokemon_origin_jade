@@ -238,7 +238,8 @@ Route36_Movement_SudoWoodo:
 Route36_Text_UseSquirtbottle:
 #if GERMAN
 	.string "Das ist ein merkwürdiger Baum.\n"
-	.string "Möchtest du die Schiggykanne benutzen?$"
+	.string "Möchtest du die Schiggykanne\l"
+	.string "benutzen?$"
 #else
 	.string "Use SQUIRTBOTTLE?$"
 #endif
