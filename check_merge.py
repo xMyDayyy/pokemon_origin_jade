@@ -37,8 +37,6 @@ KNOWN_ERRORS = [
      "D-010: one way, the plateau is reached by Teleport only"),
     ("warps", "NewSinjoh_House1_hns Warp #1 ",
      "D-019: Sinjoh is locked; the warp lies outside the map"),
-    ("warps", "SSAqua_1F_hns Warp #0 ",
-     "warp tile is blocked by the door sailor; the ship warps by script"),
     ("connections", "SaffronCity_Connection_Frlg ",
      "no warp or connection leads to this map"),
 ]
