@@ -357,6 +357,9 @@ class ScriptIndex:
 
     @staticmethod
     def _ends(block):
+        """True if the block does not fall through to the next label (also text data)."""
+        if any(line.lstrip().startswith(".string") for line in block.lines):
+            return True
         return bool(block.lines) and bool(TERMINAL_RE.match(block.lines[-1]))
 
     def _commands(self, block):
@@ -454,7 +457,7 @@ class ScriptIndex:
     def closure(self, roots):
         """Blocks reachable from the roots through references and fall-through."""
         seen = set()
-        stack = [r for r in roots if r in self.blocks]
+        stack = sorted(r for r in roots if r in self.blocks)
         out = []
         while stack:
             name = stack.pop()
@@ -463,7 +466,7 @@ class ScriptIndex:
             seen.add(name)
             block = self.blocks[name]
             out.append(block)
-            stack.extend(block.refs - seen)
+            stack.extend(sorted(block.refs - seen))
             if block.next and block.next not in seen:
                 stack.append(block.next)
         return out
