@@ -41,10 +41,10 @@ ungeprueft) and severity (blocker/kritisch/wichtig/klein/optional). Whether a
 finding blocks the story needs a human look; the tool marks a warp whose target
 map has no other access but has content as kritisch. Content means items,
 trainers, berry trees and NPCs whose map-specific script has an effect (scripts
-shared by 3+ maps, such as cable club attendants, do not count). Findings on
-maps the walk never reaches, and one-way connections without a passage, are
-optional; a broken warp target behind an object that always blocks the access
-tile is only verdacht.
+shared by 3+ maps, such as cable club attendants, do not count). Broken warp
+targets and connections of maps the walk never reaches, and one-way
+connections without a passage, are optional; a broken warp target behind an
+object that always blocks the access tile is only verdacht.
 
 Usage:
     python3 -I tools/check_maps.py                    # report of the work tree
@@ -56,6 +56,7 @@ Usage:
     python3 -I tools/check_maps.py --verbose          # details also for optional findings
     python3 -I tools/check_maps.py --render MtMoon_B3F_Frlg   # ASCII view of one map
     python3 -I tools/check_maps.py --selftest         # known hits on the base commit
+    python3 -I tools/check_maps.py --rev audit --compare 3525d22e71   # fixed/new since a commit
 
 Regions follow the map folder name: *_Frlg = Kanto, *_hns = Johto, rest = Hoenn.
 Exit status 1 if a finding is nachgewiesen and at least wichtig.
@@ -1878,9 +1879,47 @@ def selftest(root):
     return 0 if ok else 1
 
 
+def select(findings, args):
+    """Findings that pass the --min-severity, --region and --map filters."""
+    limit = SEVERITY_ORDER.index(args.min_severity)
+    shown = [f for f in findings if SEVERITY_ORDER.index(f.severity) <= limit]
+    if args.region:
+        shown = [f for f in shown if f.region.lower() == args.region]
+    if args.map:
+        shown = [f for f in shown if f.map in args.map]
+    return shown
+
+
+def finding_key(f):
+    """Identity of a finding across revisions: code, map and event index (or the text)."""
+    return (f.code, f.map, f.index if f.index is not None else f.text)
+
+
+def print_compare(old, new, rev, out):
+    """Findings fixed, added or rated differently since rev."""
+    old_by = {finding_key(f): f for f in old}
+    new_by = {finding_key(f): f for f in new}
+    fixed = sorted((f for k, f in old_by.items() if k not in new_by), key=sort_key)
+    added = sorted((f for k, f in new_by.items() if k not in old_by), key=sort_key)
+    changed = sorted((f for k, f in new_by.items() if k in old_by
+                      and (old_by[k].status, old_by[k].severity) != (f.status, f.severity)), key=sort_key)
+    print(f"\n{'=' * 78}\nVergleich mit {rev}: behoben {len(fixed)}, neu {len(added)}, "
+          f"anders bewertet {len(changed)}\n{'=' * 78}", file=out)
+    for title, part in (("Behoben (nur in " + rev + ")", fixed), ("Neu (nur im geprüften Stand)", added)):
+        print(f"\n-- {title}: {len(part)}", file=out)
+        for f in part:
+            print(f"[{f.status}/{f.severity}] {f.region} {f.code} {f.where()}: {f.text}", file=out)
+    print(f"\n-- Anders bewertet: {len(changed)}", file=out)
+    for f in changed:
+        o = old_by[finding_key(f)]
+        print(f"[{o.status}/{o.severity} -> {f.status}/{f.severity}] {f.region} {f.code} {f.where()}: {f.text}",
+              file=out)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--rev", help="check a git revision instead of the work tree")
+    parser.add_argument("--compare", metavar="REV", help="also check REV and list findings fixed or new since then")
     parser.add_argument("--version", default="hns", help="game_version of the build (default hns)")
     parser.add_argument("--region", choices=["kanto", "johto", "hoenn"])
     parser.add_argument("--map", action="append", help="only findings of this map (name), repeatable")
@@ -1899,13 +1938,11 @@ def main():
         for name in args.render:
             render_map(world, reach, name, sys.stdout)
         return 0
-    limit = SEVERITY_ORDER.index(args.min_severity)
-    shown = [f for f in findings if SEVERITY_ORDER.index(f.severity) <= limit]
-    if args.region:
-        shown = [f for f in shown if f.region.lower() == args.region]
-    if args.map:
-        shown = [f for f in shown if f.map in args.map]
+    shown = select(findings, args)
     print_report(shown, world, reach, sys.stdout, args.verbose)
+    if args.compare:
+        _, _, old = run_checks(Source(REPO, args.compare), args.version)
+        print_compare(select(old, args), shown, args.compare, sys.stdout)
     if args.json:
         with open(args.json, "w", encoding="utf-8") as fh:
             json.dump([f.as_dict() for f in shown], fh, ensure_ascii=False, indent=1)
