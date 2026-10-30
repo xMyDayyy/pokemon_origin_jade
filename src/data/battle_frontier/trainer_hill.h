@@ -3712,9 +3712,9 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                                         },
                                     [5] =
                                         {
-                                            .species = SPECIES_REGIELEKI,
+                                            .species = SPECIES_RAIKOU,
                                             .heldItem = ITEM_MAGNET,
-                                            .moves = {MOVE_THUNDERBOLT, MOVE_EXTREME_SPEED, MOVE_LIGHT_SCREEN, MOVE_EXPLOSION},
+                                            .moves = {MOVE_THUNDERBOLT, MOVE_EXTREME_SPEED, MOVE_LIGHT_SCREEN, MOVE_CRUNCH},
                                             .speedEV = 255,
                                             .spAttackEV = 255,
                                             .otId = TRAINER_HILL_OTID,
@@ -3726,7 +3726,7 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                                             .spDefenseIV = 15,
                                             .abilityNum = 0,
                                             .personality = 0x6,
-                                            .nickname = _("Regieleki"),
+                                            .nickname = _("Raikou"),
                                             .friendship = MAX_FRIENDSHIP,
                                         },
                                 },

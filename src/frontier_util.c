@@ -3261,8 +3261,10 @@ u16 GetRandomFrontierMonFromSet(u16 trainerId)
     {
         // "High tier" Pokémon are only allowed on open level mode
         // 20 is not a possible value for level here
+        // Species disabled in species_enabled.h are skipped.
         monId = monSet[Random() % numMons];
-    } while ((level == FRONTIER_MAX_LEVEL_50 || level == 20) && monId > FRONTIER_MONS_HIGH_TIER);
+    } while (((level == FRONTIER_MAX_LEVEL_50 || level == 20) && monId > FRONTIER_MONS_HIGH_TIER)
+          || !IsSpeciesEnabled(gFacilityTrainerMons[monId].species));
 
     return monId;
 }
