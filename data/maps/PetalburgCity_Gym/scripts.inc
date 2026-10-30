@@ -505,6 +505,7 @@ PetalburgCity_Gym_EventScript_NormanBattle::
 	closemessage
 #if IS_HNS
 	@ HnS: skip the scene with Wally's father (state 5 = Surf handover done).
+	setflag FLAG_HOENN_RECEIVED_HM_SURF
 	setvar VAR_PETALBURG_CITY_STATE, 5
 	releaseall
 	end

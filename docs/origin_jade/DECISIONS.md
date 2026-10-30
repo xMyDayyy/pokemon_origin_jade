@@ -867,10 +867,10 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-27.
 
 ### D-040 Hoenn keeps its own state where a finished Kanto would leak into it
-- **Status:** Active (2026-10-29)
-- **Decision:** A finished Kanto must not unlock or change Hoenn content.
-  Where FRLG and Emerald share a flag or var, Hoenn gets its own state or
-  checks the Hoenn title:
+- **Status:** Active (2026-10-29, Johto leaks changed 2026-10-30)
+- **Decision:** A finished Kanto or Johto must not unlock or change Hoenn
+  content. Where FRLG or HnS and Emerald share a flag or var, Hoenn gets its
+  own state or checks the Hoenn title:
   - Trainer Fan Clubs: Saffron's club (`src/trainer_fan_club.c`) uses
     `VAR_SAFFRON_FANCLUB_FAN_COUNTER` / `VAR_SAFFRON_FANCLUB_LOSE_FAN_TIMER`;
     `VAR_FANCLUB_FAN_COUNTER` / `VAR_FANCLUB_LOSE_FAN_TIMER` are Lilycove's.
@@ -884,6 +884,8 @@ dated 2026-10-10 or later were decided directly.
     (Emerald's meaning; it places her on Route 104 until Rustboro or
     Dewford). Route 103 registers May through `FLAG_ENABLE_RIVAL_MATCH_CALL`
     only, so Route 104 shows her PokeCom line once.
+  - `FLAG_HOENN_RECEIVED_HM_SURF`: Norman's Surf license, read by Wally's
+    parents. `FLAG_RECEIVED_HM_SURF` stays the Ecruteak theater's.
   - Hoenn post-game checks use `FLAG_IS_HOENN_CHAMPION`, not
     `FLAG_SYS_GAME_CLEAR`: the Hoenn gym leaders' rematch calls, Secret Base
     battles, TV mass outbreaks, PokeNews and the Battle Tower profile show,
