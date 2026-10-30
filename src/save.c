@@ -113,6 +113,9 @@ STATIC_ASSERT(offsetof(struct SaveBlock3, rivalNameKanto) == 656, SaveBlock3Riva
 STATIC_ASSERT(offsetof(struct SaveBlock3, flagsHnsRematchTiers) == 664, SaveBlock3RematchTiersPinned);
 STATIC_ASSERT(offsetof(struct SaveBlock3, flagsOj) == 669, SaveBlock3FlagsOjPinned);
 STATIC_ASSERT(offsetof(struct SaveBlock3, varsOj) == 734, SaveBlock3VarsOjPinned);
+#if FREE_TRAINER_HILL == FALSE
+STATIC_ASSERT(offsetof(struct SaveBlock3, trainerHillTimesHoenn) == 992, SaveBlock3TrainerHillHoennPinned);
+#endif
 #endif
 
 COMMON_DATA u16 gLastWrittenSector = 0;

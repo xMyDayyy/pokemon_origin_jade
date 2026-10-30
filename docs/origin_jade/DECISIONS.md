@@ -423,7 +423,7 @@ dated 2026-10-10 or later were decided directly.
   that number belongs to HnS upstream and is bumped there.
 - **Budget** (2026-10-30; `python3 tools/check_budget.py` prints it after a
   build): SaveBlock1 15868 of 15872 bytes (4 free), SaveBlock2 3892 of 3968
-  (76 free), SaveBlock3 992 of 1624 (632 free), PokemonStorage 34144 of
+  (76 free), SaveBlock3 1008 of 1624 (616 free), PokemonStorage 34144 of
   35712 (1568 free). The limits are the flash space `src/save.c` checks
   with `STATIC_ASSERT`; new Origin Jade data goes to SaveBlock3 (D-016).
   SaveBlock1 reserves that can be reused in place without moving offsets:
@@ -433,7 +433,7 @@ dated 2026-10-10 or later were decided directly.
   (78.44 %), ROM 25875604 of 33554432 (77.12 %).
 - **Layout guards and reserves (2026-10-30):**
   - Sizes: SaveBlock1 15868 of 15872 bytes (4 free), SaveBlock2 3892,
-    SaveBlock3 992 of 1624 (632 free), PokemonStorage 34144. `test/save.c`
+    SaveBlock3 1008 of 1624 (616 free), PokemonStorage 34144. `test/save.c`
     checks these sizes; the build checks the limits.
   - SaveBlock3: new fields only at its end. The offsets of the Origin Jade
     fields are pinned by STATIC_ASSERTs in `src/save.c`. The config
