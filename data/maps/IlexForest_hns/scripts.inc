@@ -219,12 +219,17 @@ IlexForest_EventScript_CutDone::
 	setflag FLAG_HIDE_ILEX_FOREST_APPRENTICE
 	setflag FLAG_HIDE_ILEX_FOREST_FARFETCHD_1
 	setvar VAR_ILEX_FOREST_FARFETCHD, 3
-	setvar VAR_AZALEA_TOWN_STATE, 7
+	call_if_lt VAR_AZALEA_TOWN_STATE, 7, IlexForest_EventScript_SetAzaleaState7
 	clearflag FLAG_HIDE_AZALEA_TOWN_FARFETCHD
 	clearflag FLAG_HIDE_AZALEA_TOWN_CUT_MASTER
 	closemessage
 	release
 	end
+
+@ Raises Azalea's state to 7; the GS Ball states 8-10 stay.
+IlexForest_EventScript_SetAzaleaState7::
+	setvar VAR_AZALEA_TOWN_STATE, 7
+	return
 
 IlexForest_EventScript_Picnicker::
 	lock
