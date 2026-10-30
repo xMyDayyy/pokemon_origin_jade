@@ -125,7 +125,7 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** f5aa45302b, 20ceec5a1e, 161ede4b96, 9f4cf4bb86.
 
 ### D-008 Field moves per region
-- **Status:** Active
+- **Status:** Active (changed 2026-10-30: note on Victory Road)
 - **Decision:** Kanto uses the FRLG badge thresholds (Flash 1, Cut 2, Fly 3,
   Strength 4, Surf 5, Rock Smash 6, Waterfall 7). Johto uses permits
   ("Befugnis", `VAR_JOHTO_PERMITS`) handed out by the Johto gym leaders
@@ -133,6 +133,11 @@ dated 2026-10-10 or later were decided directly.
   Clair Waterfall). Hoenn uses licenses ("Erlaubnis"). Fly and Flash are not
   locked in Johto and Hoenn. Routes 26, 27 and the Tohjo Falls are exempt
   from the permits: they are walked twice, the first time on arrival.
+- **Note:** Kanto's Victory Road needs Rock Smash. On `VictoryRoad_1F_Frlg`
+  the breakable rocks at (7,19) and (6,10) (752eca56bd) close the way from
+  Route 23 to the ladder up to 2F. HM06 comes only from Giovanni with the
+  eighth badge (`ViridianCity_Gym_Frlg`), so the order holds; moving HM06
+  or these rocks changes it.
 - **Evidence:** 0bcda4eed1, c569114c6b, 4f711ce15d, f7ec752555,
   71301e75a1, 9c9eac68df, cf857f4e0e.
 
@@ -988,7 +993,11 @@ dated 2026-10-10 or later were decided directly.
   Emerald's until Lanette do not occur.
 - **O-022** Nuzlocke: Kanto's Route 22 and HnS's `Route22_hns` share
   `MAPSEC_ROUTE_22` (one first encounter for both); `MAPSEC_INDIGO_PLATEAU`
-  is shared too, with no wild table there yet.
+  is shared too, with no wild table there yet. In practice only the plateau
+  matters: `Route22_hns` is active (game_version "hns", own wild table) but
+  cannot be entered. No warp leads there, and its only active connection,
+  from `Route26North_hns`, has no walkable tile on either edge. Only
+  `src/roamer.c` and `src/string_util.c` refer to the map.
 - **O-023** Badge readers still on Kanto's count: `HasEnoughBadgesForRematch`
   (all random Match Calls, "after Whitney" in HnS), the Gen-9 catch malus,
   the challenge menu's trainer IV/EV tables, the continue window's badge
