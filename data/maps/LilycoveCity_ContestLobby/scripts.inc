@@ -970,7 +970,13 @@ LilycoveCity_ContestLobby_Movement_LinkReceptionistFacePlayer:
 LilycoveCity_ContestLobby_EventScript_LittleGirl::
 	lock
 	faceplayer
+#if IS_HNS
+	@ Origin Jade: the reception hands out the case by item check, as in contest_hall.inc.
+	checkitem ITEM_POKEBLOCK_CASE
+	goto_if_eq VAR_RESULT, TRUE, LilycoveCity_ContestLobby_EventScript_LittleGirlHaveCase
+#else
 	goto_if_set FLAG_RECEIVED_POKEBLOCK_CASE, LilycoveCity_ContestLobby_EventScript_LittleGirlHaveCase
+#endif
 	msgbox LilycoveCity_ContestLobby_Text_LadyGaveMePokeblockCase, MSGBOX_DEFAULT
 	release
 	end
