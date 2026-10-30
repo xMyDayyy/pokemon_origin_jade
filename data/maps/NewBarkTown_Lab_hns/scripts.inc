@@ -354,6 +354,7 @@ NewBarkTown_Lab_EventScript_MrPokemonMovementSafe::
 	clearflag FLAG_RECEIVED_FIRST_BALLS
 	clearflag FLAG_RECEIVED_FIRST_POTION
 	setvar VAR_NEWBARK_TOWN_STATE, 3
+	setflag FLAG_ENABLE_CONDITION
 	release
 	end
 
