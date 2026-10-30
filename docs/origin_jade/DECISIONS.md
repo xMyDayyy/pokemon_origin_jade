@@ -519,6 +519,12 @@ dated 2026-10-10 or later were decided directly.
     one-type challenge); the lab hands out exactly the previewed and named
     species with the preview's shininess (D-035). Elm's and Birch's labs
     hand out the shown species.
+  - Field moves: with any option that changes the player's species
+    (Starter, wild, fixed, evolutions, evolution lines) or the moves, owning
+    the HM is enough; the first party Pokemon may use it
+    (`HMsOverwriteOptionActive`, `src/challenge_menu.c`, as for Nuzlocke,
+    party limit, mirror and one-type runs). Badges and permits (D-008)
+    still apply.
 - **Evidence:** b0a460c224, 6a6a4fcaec, c3c361d4b4. The row came in with
   6a6a4fcaec, the default TRUE with cc58e0c648; both reverted 2026-10-12.
 
