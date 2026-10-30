@@ -1070,6 +1070,8 @@ dated 2026-10-10 or later were decided directly.
     Corner prizes, the Magikarp on Route 4) do so through
     `Common_EventScript_AskNicknameGiftPartyMon` / `...BoxMon`
     (`data/event_scripts.s`).
+  - Open: scripted static encounters (O-026), eggs in used-up areas
+    (O-027), deaths in the Trainer Hills (O-028).
 - **Evidence:** audit 2026-10-30 (A23, A25, A30, A79, A83, A87).
 
 ---
@@ -1174,6 +1176,28 @@ dated 2026-10-10 or later were decided directly.
   for the seven Emerald `TrainerHill_*` maps would end all of these.
 - **O-025** Nuzlocke end point: the Nuzlocke ends at the first Hoenn title
   (D-045); until 2026-10-30 it ended when Red was beaten. Owner to confirm.
+- **O-026** Nuzlocke and scripted static encounters (`setwildbattle` with
+  `dowildbattle`: Snorlax on Routes 12 and 16, Sudowoodo on Route 36, Union
+  Cave's Lapras, the Electrode of the Power Plant, the Rocket Hideout and the
+  Aqua Hideout, New Mauville's Voltorb, Kecleon on Routes 119 and 120): they
+  can always be caught, without the area, species or dupes check, but use up
+  the area's first encounter if it is still open, even after fleeing.
+  Legendary battles use up nothing (D-045). Rule needed: free like the
+  legendaries, or counted like wild Pokemon (`SetNuzlockeChecks` for
+  scripted battles).
+- **O-027** Nuzlocke and eggs: an egg hatches only in an area whose first
+  encounter is still open (`src/daycare.c`), and hatching uses the area up
+  (`src/egg_hatch.c`); map sections without an entry in `sNuzlockeLUT` share
+  one bit. Late in a run eggs hardly hatch anywhere (also the Mystery Egg),
+  which blocks breeding (D-013, D-037). Rule needed, e.g. eggs always hatch,
+  or eggs are exempt from the area rule.
+- **O-028** Nuzlocke and the Trainer Hills (Route 40, D-041; Route 111 in
+  Hoenn): their battles skip Nuzlocke deaths (`BATTLE_TYPE_TRAINER_HILL`
+  in `HandleEndTurn_FinishBattle`, D-045), so a Pokemon that faints there
+  stays in the party at 0 HP. Leaving a hill after a loss heals the party
+  (`HealPlayerParty` in the entrance scripts), otherwise a Pokemon Center
+  does. Rule needed: deaths count there like in other trainer battles, or
+  the hills stay exempt like the Battle Frontier.
 
 ## Superseded decisions (kept for the record)
 
