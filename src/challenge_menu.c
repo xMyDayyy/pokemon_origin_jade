@@ -616,9 +616,9 @@ static const u8 *const sChoices_TrainerEVs[] = {
 };
 
 static const u8 *const sChoices_PlayerIVs[] = {
-    COMPOUND_STRING("Ja"),
-    COMPOUND_STRING("Nein"),
-    COMPOUND_STRING("Nein (KR)"),
+    COMPOUND_STRING("Normal"),
+    COMPOUND_STRING("Max"),
+    COMPOUND_STRING("Max (KR)"),
 };
 
 static const u8 *const sChoices_PkmnCenter[] = {
@@ -658,7 +658,7 @@ static const u8 *const sDesc_RtcSpeed[] = {
 
 static const u8 *const sDesc_RtcType[] = {
     COMPOUND_STRING("Normale Echtzeit-Uhr verwenden."),
-    COMPOUND_STRING("Gefälschte Echtzeit-Uhr.\n1h echt = 1 Tag im Spiel."),
+    COMPOUND_STRING("Gefälschte Echtzeit-Uhr.\nTempo unter Uhr-Tempo wählbar."),
 };
 static const u8 *const sDesc_ShinyChance[] = {
     COMPOUND_STRING("Sehr geringe Chance auf Shiny.\nStandard aus Generation III."),
@@ -913,7 +913,7 @@ static const u8 *const sDesc_Nuzlocke[] = {
     COMPOUND_STRING("Nuzlocke-Modus ist deaktiviert."),
     COMPOUND_STRING("Besiegte {PKMN} unbenutzbar.\nKeine weiteren Regeln gelten."),
     COMPOUND_STRING("Ein Fang pro Route! Besiegte {PKMN}\nsind nicht mehr verwendbar."),
-    COMPOUND_STRING("Wie Normal, aber löscht auch\nbei Kampfverlust den Spielstand!"),
+    COMPOUND_STRING("Wie Normal, aber löscht bei jeder\nNiederlage den Spielstand!"),
 };
 static const u8 *const sDesc_SpeciesClause[] = {
     COMPOUND_STRING("Nur nicht gefangene {PKMN} zählen\nals erste Begegnung. Empfohlen!"),
@@ -1003,10 +1003,10 @@ static const u8 *const sDesc_LevelCap[] = {
     COMPOUND_STRING("Max. Level basiert auf dem niedrigsten\n{PKMN}-Level der nächsten Arena."),
 };
 static const u8 *const sDesc_ExpMult[] = {
-    COMPOUND_STRING("{PKMN} erhalten normale EP.\nStapelt mit Schwer-Modus-EP."),
-    COMPOUND_STRING("{PKMN} erhalten 50% mehr EP.\nStapelt mit Schwer-Modus-EP."),
-    COMPOUND_STRING("{PKMN} erhalten doppelte EP!\nStapelt mit Schwer-Modus-EP."),
-    COMPOUND_STRING("{PKMN} erhalten keine EP!!!\nGilt auch für Schwer-Modus-EP."),
+    COMPOUND_STRING("{PKMN} erhalten normale EP."),
+    COMPOUND_STRING("{PKMN} erhalten 50% mehr EP."),
+    COMPOUND_STRING("{PKMN} erhalten doppelte EP!"),
+    COMPOUND_STRING("{PKMN} erhalten keine EP!!!"),
 };
 static const u8 *const sDesc_ItemPlayer[] = {
     COMPOUND_STRING("Spieler kann Kampfitems nutzen."),
@@ -1018,7 +1018,7 @@ static const u8 *const sDesc_ItemTrainer[] = {
 };
 static const u8 *const sDesc_NoEVs[] = {
     COMPOUND_STRING("Deine {PKMN} erhalten wie erwartet\nFleiß-Punkte."),
-    COMPOUND_STRING("Deine {PKMN} erhalten keine\nFleiß-Punkte!"),
+    COMPOUND_STRING("Deine {PKMN} erhalten bis zum Sieg\nüber Rot keine Fleiß-Punkte!"),
 };
 static const u8 *const sDesc_ScalingIVs[] = {
     COMPOUND_STRING("{PKMN} gegnerischer Trainer haben\nerwartete IV."),
@@ -1129,7 +1129,7 @@ static const struct ChallengeMenuItem sTabItems_Difficulty[] = {
 
 static const u8 *const sDesc_Pokecenter[] = {
     COMPOUND_STRING("Spieler kann in {PKMN}-Centern\nund anderen Orten heilen."),
-    COMPOUND_STRING("Spieler kann keine {PKMN}-Center\noder Orte zum Heilen nutzen."),
+    COMPOUND_STRING("Keine Heilung in {PKMN}-Centern,\nbei Mama und in Betten."),
 };
 static const u8 *const sDesc_Expensive[] = {
     COMPOUND_STRING("Alles hat den üblichen Preis."),
