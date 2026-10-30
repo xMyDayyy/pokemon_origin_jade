@@ -17,6 +17,7 @@ Common_EventScript_SailToHoenn::
 	setflag FLAG_HIDE_ROUTE104_HOENN_BIRCH
 	setvar VAR_HOENN_ARRIVAL_STATE, 1
 Common_EventScript_SailToRoute104Pier::
+	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_LAB
 	warpsilent MAP_ROUTE104, 12, 52
 	waitstate
 	release
@@ -25,6 +26,7 @@ Common_EventScript_SailToRoute104Pier::
 @ Later trips: Slateport's harbour once Slateport was visited, otherwise the Route 104 pier.
 Common_EventScript_SailToHoennAgain::
 	goto_if_unset FLAG_VISITED_SLATEPORT_CITY, Common_EventScript_SailToRoute104Pier
+	setrespawn HEAL_LOCATION_SLATEPORT_CITY
 	warpsilent MAP_SLATEPORT_CITY_HARBOR, 8, 11
 	waitstate
 	release
@@ -330,6 +332,14 @@ Route104_EventScript_HoennArrivalTalk::
 @ ------------------------------------------------------------
 @ In the lab: Pokedex upgrade
 @ ------------------------------------------------------------
+@ Catch-up for players who left the Route 104 beach before Birch's greeting (state 1):
+@ on the door row they walk up to Birch, anywhere else the welcome runs in place.
+LittlerootTown_ProfessorBirchsLab_EventScript_HoennWelcomeCatchUp::
+	lockall
+	getplayerxy VAR_TEMP_0, VAR_TEMP_1
+	goto_if_ne VAR_TEMP_1, 12, LittlerootTown_ProfessorBirchsLab_EventScript_HoennWelcome
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_ProfessorBirchsLab_Movement_PlayerEnterLabForPokedex
+	waitmovement 0
 LittlerootTown_ProfessorBirchsLab_EventScript_HoennWelcome::
 	lockall
 	delay 40
