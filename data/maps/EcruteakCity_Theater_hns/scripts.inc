@@ -338,9 +338,7 @@ EcruteakCity_Theater_EventScript_SurfGuy::
 	end
 
 EcruteakCity_Theater_EventScript_SurfGuy_GiveSurf::
-	checkitem ITEM_HM_SURF
-	call_if_eq VAR_RESULT, TRUE, EcruteakCity_Theater_EventScript_SurfGuyHasSurf
-	call_if_eq VAR_RESULT, FALSE, EcruteakCity_Theater_EventScript_SurfGuyGivesSurf
+	call EcruteakCity_Theater_EventScript_SurfGuyReward
 	setflag FLAG_RECEIVED_HM_SURF
 	closemessage
 	setflag FLAG_RECEIVED_HM_SURF
@@ -348,6 +346,10 @@ EcruteakCity_Theater_EventScript_SurfGuy_GiveSurf::
 	release
 	end
 
+@ Surf's HM, or Mystic Water for a player who still has it from Kanto (D-014).
+EcruteakCity_Theater_EventScript_SurfGuyReward::
+	checkitem ITEM_HM_SURF
+	goto_if_eq VAR_RESULT, TRUE, EcruteakCity_Theater_EventScript_SurfGuyHasSurf
 EcruteakCity_Theater_EventScript_SurfGuyGivesSurf::
 	msgbox EcruteakCity_Theater_Text_SurfGuyGiveSurf, MSGBOX_DEFAULT
 	giveitem ITEM_HM_SURF
@@ -370,9 +372,7 @@ EcruteakCity_Theater_EventScript_TriggerSurfGuy::
 	applymovement LOCALID_SURF_GUY, EcruteakCity_Theater_Movement_SurfGuy1
 	waitmovement 0
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
-	checkitem ITEM_HM_SURF
-	call_if_eq VAR_RESULT, TRUE, EcruteakCity_Theater_EventScript_SurfGuyHasSurf
-	call_if_eq VAR_RESULT, FALSE, EcruteakCity_Theater_EventScript_SurfGuyGivesSurf
+	call EcruteakCity_Theater_EventScript_SurfGuyReward
 	setflag FLAG_RECEIVED_HM_SURF
 	closemessage
 	setflag FLAG_RECEIVED_HM_SURF
