@@ -231,6 +231,8 @@ WhirlIslands_LugiaChamber_EventScript_LugiaFlewAway::
 	doweather
 	setflag FLAG_HIDE_LUGIA
 	fadescreenswapbuffers FADE_FROM_BLACK
+	@ "Flew away" only after running or fleeing, not after a knockout.
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Common_EventScript_NopReturn
 	bufferspeciesname STR_VAR_1, SPECIES_LUGIA
 	msgbox gText_LegendaryFlewAway, MSGBOX_DEFAULT
 	return
