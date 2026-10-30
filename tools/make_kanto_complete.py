@@ -1146,7 +1146,7 @@ class KantoRun:
         gen1 = {s for s, d in sp.items() if 1 <= natdex.get(d["natdex"], 0) <= 151}
         roots = {root(s) for s in gen1}
         forms = re.compile(r"_(GMAX|MEGA|ALOLA|GALAR|HISUI|PALDEA|CAP|COSPLAY|ORIGINAL|PARTNER|STARTER|ROCK_STAR"
-                           r"|BELLE|POP_STAR|PH_D|LIBRE|HOENN|SINNOH|UNOVA|KALOS|WORLD|FEMALE)")
+                           r"|BELLE|POP_STAR|PHD|LIBRE|HOENN|SINNOH|UNOVA|KALOS|WORLD|FEMALE)")
         self.not_obtainable = sorted(s for s in sp if root(s) in roots and s not in self.how and not forms.search(s))
 
 
