@@ -30,7 +30,10 @@ longest prefix; battle paragraphs without \\n or \\l are wrapped by the game
 
 Visibility comes from the map events and map scripts that reach a text;
 a text reached from a trigger or map script, or from a script that gives a
-badge, an HM or a starter or fights a boss, counts as story path.
+badge, an HM or a starter or fights a boss, counts as story path. A debug
+text or a text of a locked or retired map that an active map shows counts
+for that map. Scripts reached only through a jump on VAR_SINJOH_STORYLINE
+count as locked (Sinjoh, D-019).
 English text is found with a word list heuristic (English and German
 function words); texts of locked and retired maps are listed apart.
 
@@ -136,6 +139,11 @@ AUTO_WRAP_FILES = {"src/battle_message.c"}
 SRC_FIELD_FONT = {("src/data/help_window.h", "desc"): "FONT_SMALL"}
 DEBUG_FILES = ("data/scripts/debug.inc", "data/scripts/config.inc", "src/debug.c",
                "src/pokemon_sprite_visualizer.c", "src/battle_debug.c")
+ACTIVE_REGIONS = ("kanto", "johto", "hoenn")
+INACTIVE_REGIONS = ("gesperrt", "stillgelegt")
+# Script conditions on locked content (D-019); a jump on them leads to locked content.
+LOCKED_GATE_RE = re.compile(r"\bVAR_SINJOH_STORYLINE\b")
+LOCKED_VIS = "gesperrt (Sinjoh-Bedingung)"
 
 EN_WORDS = set("""
 the you your you're i i'm it's is are was were this that these those what with
@@ -398,6 +406,8 @@ class Text:
         self.literals = []        # [(line, body)]
         self.lines = []           # [DisplayLine]
         self.font = None          # font id at the start, None = FONT_NORMAL
+        self.shown_in = []        # active maps whose events reach a script that shows it
+        self.locked = False       # shown only behind a LOCKED_GATE_RE condition
 
     def plain(self):
         return " ".join(re.sub(r"\{[^}]*\}|\\[nlp]|\$", " ", b) for _, b in self.literals)
@@ -711,13 +721,18 @@ def analyse_blocks(texts, blocks, maps, trainer_story, ctexts):
     refs = collections.defaultdict(list)        # text label -> [(block, buffers)]
     file_buffers = collections.defaultdict(lambda: collections.defaultdict(set))
     entries = collections.defaultdict(set)      # block label -> entry kinds
+    entry_maps = collections.defaultdict(set)   # block label -> map dirs it is an entry of
     for d, info in maps.by_dir.items():
         for label, kinds in info["entries"].items():
             entries[label] |= kinds
+            entry_maps[label].add(d)
     edges = collections.defaultdict(set)
+    locked_edges = collections.defaultdict(set)  # jumps on a LOCKED_GATE_RE condition
     jumps = collections.defaultdict(list)       # block label -> [(target, buffers)]
     for block in blocks.values():
         buffers = {}
+        m = re.match(r"data/maps/([^/]+)/", block.file)
+        block_map = m.group(1) if m else None
         for line_no, cmd, args in block.cmds:
             if cmd in BUFFER_KINDS and len(args) >= 1:
                 arg = args[1] if len(args) > 1 else ""
@@ -727,19 +742,23 @@ def analyse_blocks(texts, blocks, maps, trainer_story, ctexts):
                 for a in args:
                     if a in blocks:
                         entries[a].add("mapscript")
+                        if block_map:
+                            entry_maps[a].add(block_map)
             if STORY_CMD_RE.match(cmd + " " + " ".join(args)):
                 block.story = True
             if cmd.startswith("trainerbattle") and any(a in trainer_story for a in args):
                 block.story = True
+            gated = cmd.startswith(("goto_if", "call_if")) and any(LOCKED_GATE_RE.search(a) for a in args)
             for a in args:
                 a = a.strip()
                 if a in texts or a in ctexts:
                     refs[a].append((block, dict(buffers)))
-                if a in blocks and a != block.label:
-                    edges[block.label].add(a)
+                # text labels are data: no control flow into or through them
+                if a in blocks and a != block.label and a not in texts:
+                    (locked_edges if gated else edges)[block.label].add(a)
                     if cmd.startswith(("goto", "call")):
                         jumps[block.label].append((a, dict(buffers)))
-        if block.next:
+        if block.next and block.label not in texts and block.next not in texts:
             edges[block.label].add(block.next)
             jumps[block.label].append((block.next, dict(buffers)))
     # buffers that are set before a block is entered (goto/call/fall-through)
@@ -756,26 +775,37 @@ def analyse_blocks(texts, blocks, maps, trainer_story, ctexts):
                         changed = True
         if not changed:
             break
-    # visibility of each block: reached from which entry kinds, story chain
-    reach = collections.defaultdict(set)
-    story_reach = set()
-    for start, kinds in entries.items():
-        if start not in blocks:
-            continue
+    def walk(start, *edge_maps):
         seen = {start}
         todo = [start]
         while todo:
             b = todo.pop()
-            for n in edges.get(b, ()):
-                if n not in seen and n in blocks:
-                    seen.add(n)
-                    todo.append(n)
+            for em in edge_maps:
+                for n in em.get(b, ()):
+                    if n not in seen and n in blocks:
+                        seen.add(n)
+                        todo.append(n)
+        return seen
+
+    # visibility of each block: reached from which entry kinds and maps, story chain
+    reach = collections.defaultdict(set)
+    reach_maps = collections.defaultdict(set)
+    story_reach = set()
+    locked = set()                              # reached only through a locked condition
+    for start, kinds in entries.items():
+        if start not in blocks:
+            continue
+        seen = walk(start, edges)
         chain_story = any(blocks[b].story for b in seen)
         for b in seen:
             reach[b] |= kinds
+            reach_maps[b] |= entry_maps[start]
             if chain_story:
                 story_reach.add(b)
-    return refs, file_buffers, reach, story_reach, incoming
+        if any(b in locked_edges for b in seen):
+            locked |= walk(start, edges, locked_edges)
+    locked -= set(reach)
+    return refs, file_buffers, reach, story_reach, incoming, reach_maps, locked
 
 
 # ---------------------------------------------------------------- C strings
@@ -1084,7 +1114,7 @@ def collect(repo, threads):
                                       (line.startswith("Class:") and STORY_CLASS_RE.search(line))):
                         trainer_story.add(current)
 
-        refs, file_buffers, reach, story_reach, incoming = analyse_blocks(
+        refs, file_buffers, reach, story_reach, incoming, reach_maps, locked = analyse_blocks(
             texts, blocks, maps, trainer_story, ctexts)
         names = Names(repo, charmap, font, ctexts)
         est = Estimator(names, ctexts, texts, charmap, font)
@@ -1121,12 +1151,16 @@ def collect(repo, threads):
             t.lines = best
             kinds = set()
             story = False
+            shown = set()
             for block, _ in refs.get(label, []):
                 kinds |= reach.get(block.label, set())
                 story = story or block.label in story_reach
+                shown |= reach_maps.get(block.label, set())
             t.reach = kinds
             t.story = story or bool(kinds & {"trigger", "mapscript"})
             t.referenced = bool(refs.get(label)) or label in c_idents
+            t.shown_in = sorted(d for d in shown if maps.by_dir[d]["region"] in ACTIVE_REGIONS)
+            t.locked = bool(refs.get(label)) and all(b.label in locked for b, _ in refs[label])
         for t in ctexts.values():
             t.reach, t.story, t.referenced = set(), False, True
         return texts, ctexts, maps, unknown, cpp.stubs
@@ -1134,9 +1168,14 @@ def collect(repo, threads):
         cpp.close()
 
 
-def visibility(t):
-    """(category in German, story path?) of a text."""
-    if t.file.startswith(DEBUG_FILES):
+def visibility(t, borrowed=False):
+    """(category in German, story path?) of a text.
+
+    borrowed: a debug text or a text of a locked or retired map that an
+    active map shows; it is rated like a text of that map."""
+    if t.locked:
+        return LOCKED_VIS, False
+    if t.file.startswith(DEBUG_FILES) and not borrowed:
         return "Debug", False
     if t.origin == "c":
         if t.file in SRC_CHECKED_WINDOW:
@@ -1144,24 +1183,28 @@ def visibility(t):
         if t.file.startswith(SRC_OWN_WINDOW):
             return "eigenes Fenster", False
         return "Quelltext, Fenster ungeprüft", False
-    if not t.file.startswith("data/maps/"):
+    if not t.file.startswith("data/maps/") and not borrowed:
         if t.file in FREQUENT_COMMON:
             return "gemeinsam, häufig", True
         return "gemeinsam", False
     if t.reach & {"trigger", "mapscript"}:
-        return "Auslöser/Kartenskript", True
-    if t.story:
-        return "Story-NPC", True
-    if "npc" in t.reach:
-        return "NPC", False
-    if "sign" in t.reach:
-        return "Schild", False
-    if t.referenced:
-        return "Skript/C (Einstieg unbekannt)", False
-    return "nicht referenziert", False
+        vis, story = "Auslöser/Kartenskript", True
+    elif t.story:
+        vis, story = "Story-NPC", True
+    elif "npc" in t.reach:
+        vis, story = "NPC", False
+    elif "sign" in t.reach:
+        vis, story = "Schild", False
+    elif t.referenced:
+        vis, story = "Skript/C (Einstieg unbekannt)", False
+    else:
+        vis, story = "nicht referenziert", False
+    if borrowed:
+        vis += " (gezeigt auf %s)" % ", ".join(t.shown_in[:3])
+    return vis, story
 
 
-def rows_for(texts, limit, region_of):
+def rows_for(texts, limit, maps):
     over, english, stats = [], [], collections.defaultdict(collections.Counter)
     # files with English texts and no German one: their short texts are English too
     english_files = collections.Counter()
@@ -1172,11 +1215,13 @@ def rows_for(texts, limit, region_of):
         elif is_german(t.plain()):
             german_files.add(t.file)
     for t in texts:
-        region = region_of(t.file) if t.origin == "script" else "src"
+        home = maps.region_of(t.file) if t.origin == "script" else "src"
+        borrowed = bool(t.shown_in) and (t.file.startswith(DEBUG_FILES) or home in INACTIVE_REGIONS)
+        region = maps.by_dir[t.shown_in[0]]["region"] if borrowed else home
         t.region = region
         s = stats[region]
         s["texte"] += 1
-        vis, story = visibility(t)
+        vis, story = visibility(t, borrowed)
         own_window = t.origin == "c" and t.file.startswith(SRC_OWN_WINDOW)
         for ln in t.lines:
             s["zeilen"] += 1
@@ -1199,7 +1244,7 @@ def rows_for(texts, limit, region_of):
 
 
 def severity(region, vis, story):
-    if region in ("gesperrt", "stillgelegt") or vis in ("Debug", "nicht referenziert"):
+    if region in INACTIVE_REGIONS or vis in ("Debug", "nicht referenziert", LOCKED_VIS):
         return "optional"
     return "wichtig" if story else "klein"
 
@@ -1233,7 +1278,7 @@ def main():
     repo = Repo(args.repo)
     texts, ctexts, maps, unknown, stubs = collect(repo, args.threads)
     all_texts = list(texts.values()) + list(ctexts.values())
-    over, english, stats = rows_for(all_texts, args.limit, maps.region_of)
+    over, english, stats = rows_for(all_texts, args.limit, maps)
 
     print("Text widths, limit %d px (window %d px), repo %s" % (args.limit, WINDOW, repo.root))
     cols = ["texte", "zeilen", "über %d exakt" % args.limit, "über %d geschätzt" % args.limit,
