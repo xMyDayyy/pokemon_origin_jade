@@ -1036,7 +1036,18 @@ dated 2026-10-10 or later were decided directly.
   first egg, Lilycove's game designer the Schillerpin for the completed
   National Pokedex after the first Hoenn title (D-036).
 - **O-009** Enabling Sinjoh also needs the Gen 4+ and regional forms in
-  `species_enabled.h`.
+  `species_enabled.h`. Risks found 2026-10-30, harmless while Sinjoh stays
+  locked and Alola has no way in:
+  - Locked content still uses disabled species: the POSTOBC rematch teams
+    in `trainers_hns.party` (the Elite Four, Lance and Red, chosen only at
+    `VAR_SINJOH_STORYLINE` 13 or more; the gym leaders in HnS's retired
+    Dojo VIP room), Sinjoh, Route 49/50 and Alola trainers, and the wild
+    tables of Snowswept Cavern, Route 49 and the Alola caves.
+  - The 20 Alola maps (`MelemeleIsle_hns` and the others) are active
+    (`game_version` `hns`) but have no way in: the only warps are in the
+    retired `Route13_hns`, and the Melemele fly spot needs
+    `FLAG_VISITED_ALOLA`, which only Melemele sets. D-019 does not list
+    them yet.
 - **O-010** Resolved 2026-10-12: the Route 30 and Route 26 trees use the
   reserve slots `BERRY_TREE_ROUTE_30_ORAN` and `BERRY_TREE_ROUTE_26_SITRUS`;
   slot 33 is only shared with retired maps. Older saves are migrated in
