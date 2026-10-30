@@ -187,7 +187,7 @@ RustboroCity_DevonCorp_2F_EventScript_ReceivedLileepFanfare::
 
 RustboroCity_DevonCorp_2F_EventScript_FinishReceivingLileep::
 	setvar VAR_HOENN_FOSSIL_RESURRECTION_STATE, 0
-	setflag FLAG_RECEIVED_REVIVED_FOSSIL_MON
+	setflag FLAG_HOENN_RECEIVED_REVIVED_FOSSIL_MON
 	release
 	end
 
@@ -232,7 +232,7 @@ RustboroCity_DevonCorp_2F_EventScript_ReceivedAnorithFanfare::
 
 RustboroCity_DevonCorp_2F_EventScript_FinishReceivingAnorith::
 	setvar VAR_HOENN_FOSSIL_RESURRECTION_STATE, 0
-	setflag FLAG_RECEIVED_REVIVED_FOSSIL_MON
+	setflag FLAG_HOENN_RECEIVED_REVIVED_FOSSIL_MON
 	release
 	end
 

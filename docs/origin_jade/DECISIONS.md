@@ -886,6 +886,12 @@ dated 2026-10-10 or later were decided directly.
     only, so Route 104 shows her PokeCom line once.
   - `FLAG_HOENN_RECEIVED_HM_SURF`: Norman's Surf license, read by Wally's
     parents. `FLAG_RECEIVED_HM_SURF` stays the Ecruteak theater's.
+  - `FLAG_HOENN_RECEIVED_HM_ROCK_SMASH`: Mauville's Rock Smash man (and the
+    hint man on Route 111 he hides); `FLAG_RECEIVED_HM_ROCK_SMASH` stays
+    Route 36's.
+  - `FLAG_HOENN_RECEIVED_REVIVED_FOSSIL_MON`: Devon's fossil revival, read by
+    the Fossil Maniac on Route 114; `FLAG_RECEIVED_REVIVED_FOSSIL_MON` stays
+    the Ruins of Alph lab's.
   - Hoenn post-game checks use `FLAG_IS_HOENN_CHAMPION`, not
     `FLAG_SYS_GAME_CLEAR`: the Hoenn gym leaders' rematch calls, Secret Base
     battles, TV mass outbreaks, PokeNews and the Battle Tower profile show,

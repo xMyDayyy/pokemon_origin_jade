@@ -146,6 +146,10 @@
 #define FLAG_HOENN_REGISTER_RIVAL_POKENAV                    (OJ_TRAINER_FLAGS_HOENN_END + 13)
 // Norman's Surf license given; Wally's parents talk about Wally having left.
 #define FLAG_HOENN_RECEIVED_HM_SURF                          (OJ_TRAINER_FLAGS_HOENN_END + 14)
+// Talked to Mauville's Rock Smash man; hides the hint man on Route 111.
+#define FLAG_HOENN_RECEIVED_HM_ROCK_SMASH                    (OJ_TRAINER_FLAGS_HOENN_END + 15)
+// Devon revived a fossil; read by the Fossil Maniac on Route 114.
+#define FLAG_HOENN_RECEIVED_REVIVED_FOSSIL_MON               (OJ_TRAINER_FLAGS_HOENN_END + 16)
 
 // ---------------------------------------------------------------------
 // Cross-region (OJ_FLAGS_GLOBAL + 0 to + 63)
