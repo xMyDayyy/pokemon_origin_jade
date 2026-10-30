@@ -1,0 +1,28 @@
+# Known compiler warnings of a full jade build: count file kind.
+# Checked by tools/check_warnings.py; update with --update.
+1 data/maps/CeladonCity_DepartmentStore_Elevator_Frlg/scripts.inc other
+1 data/maps/MauvilleCity_GameCorner/scripts.inc other
+1 data/maps/RocketHideout_Elevator_Frlg/scripts.inc other
+1 data/maps/Route113_GlassWorkshop/scripts.inc other
+1 data/maps/SilphCo_Elevator_Frlg/scripts.inc other
+1 data/maps/SlateportCity_PokemonFanClub/scripts.inc other
+1 data/maps/TrainerTower_Elevator_Frlg/scripts.inc other
+2 data/maps/UlaUla_Forest_hns/scripts.inc other
+1 data/scripts/debug.inc other
+1 src/battle_gfx_sfx_util.c -Wunused-function
+7 src/data/battle_frontier/battle_frontier_exchange_corner.h -Wunused-variable
+1 src/data/trainers.party -Woverride-init
+1 src/field_region_map.c -Wunused-function
+2 src/intro_hns.c -Wunused-function
+1 src/match_call.c -Wunused-function
+2 src/menu.c -Wunused-variable
+1 src/nuzlocke.c -Wunused-variable
+2 src/pokedex_area_screen.c -Wunused-variable
+1 src/pokemon_summary_screen.c -Wunused-function
+1 src/pokenav_match_call_data.c -Wunused-function
+2 src/pokenav_menu_handler_gfx.c -Wunused-function
+70 src/region_map.c -Woverride-init
+1 src/region_map.c -Wunused-but-set-variable
+1 src/region_map.c -Wunused-function
+1 src/sliding_puzzle.c -Wunused-variable
+1 src/start_menu.c -Wunused-function
