@@ -3750,7 +3750,19 @@ bool32 GetAbnormalWeatherMapNameAndType(void)
 
     u16 abnormalWeather = VarGet(VAR_ABNORMAL_WEATHER_LOCATION);
 
+#if IS_HNS
+    // No forecast left: start a new one before reading the table.
+    if (abnormalWeather == ABNORMAL_WEATHER_NONE)
+    {
+        CreateAbnormalWeatherEvent();
+        abnormalWeather = VarGet(VAR_ABNORMAL_WEATHER_LOCATION);
+    }
+    // GetMapName needs the map section of the route, not its map number.
+    GetMapName(gStringVar1, Overworld_GetMapHeaderByGroupAndId(MAP_GROUP(MAP_ROUTE114),
+               sAbnormalWeatherMapNumbers[abnormalWeather - 1])->regionMapSectionId, 0);
+#else
     GetMapName(gStringVar1, sAbnormalWeatherMapNumbers[abnormalWeather - 1], 0);
+#endif
 
     if (abnormalWeather < MARINE_CAVE_LOCATIONS_START)
         return FALSE;
