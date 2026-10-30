@@ -245,7 +245,8 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-012 Johto and Hoenn: dynamic level scaling
 - **Status:** Active (anchor, bands and corridors changed 2026-10-29,
-  battle partners and the Goldenrod/Ecruteak ceilings changed 2026-10-30)
+  battle partners, the Goldenrod/Ecruteak ceilings and rematch team sizes
+  changed 2026-10-30)
 - **Decision:** Johto and Hoenn scale to the player (`src/level_scaling.c`,
   `include/config/johto_scaling.h`, `include/config/hoenn_scaling.h`).
   - Anchor, in every region: the mean of the three highest party levels,
@@ -271,9 +272,11 @@ dated 2026-10-10 or later were decided directly.
     100/88/88/87/85/85 (mean 89, anchor 92). Rushers fall behind and have
     to train; stronger teams meet the corridor ceilings.
   - Experience is Gen 5 in every region (D-042).
-  Johto's gym leaders have six Pokemon; route trainers at least three
-  (`tools/fill_johto_parties.py`: trainer class beats the local wild pool,
-  duplicate a Pokemon rather than break the class). Rematch teams scale
+  Johto's gym leaders have six Pokemon; route trainers and their phone
+  rematch stages at least three (`tools/fill_johto_parties.py`: trainer
+  class beats the local wild pool, duplicate a Pokemon rather than break
+  the class; a rematch stage uses the maps of its first stage and keeps
+  its own Pokemon). Rematch teams scale
   as well (every stage is below level 77). In-game battle partners (Troy
   in Mossdeep's Space Center, Siegfried in the Rocket Hideout) scale like
   a trainer of the map without the boss extra (`ScalePartnerMonLevel`,

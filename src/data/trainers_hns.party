@@ -12367,6 +12367,12 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
+Hoothoot
+Level: 27
+
+Pidgey
+Level: 27
+
 Rattata @ Silk Scarf
 Level: 27
 - Quick Attack
@@ -12382,6 +12388,12 @@ Gender: Male
 Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Pidgey
+Level: 30
+
+Hoothoot
+Level: 30
 
 Rattata @ Silk Scarf
 Level: 30
@@ -12399,6 +12411,12 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
+Hoothoot
+Level: 40
+
+Pidgey
+Level: 40
+
 Rattata @ Silk Scarf
 Level: 40
 - Body Slam
@@ -12414,6 +12432,12 @@ Gender: Male
 Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Pidgey
+Level: 65
+
+Hoothoot
+Level: 65
 
 Rattata @ Silk Scarf
 Level: 65
@@ -12432,6 +12456,9 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Beedrill
+Level: 20
+
+Spinarak
 Level: 20
 
 Pineco
@@ -12509,6 +12536,12 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
+Magikarp
+Level: 24
+
+Quagsire
+Level: 24
+
 Goldeen
 Level: 24
 
@@ -12522,6 +12555,9 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Qwilfish
+Level: 28
+
+Tentacruel
 Level: 28
 
 Seaking
@@ -12597,6 +12633,9 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Weepinbell
+Level: 24
+
+Bellsprout
 Level: 24
 
 Nidorina
@@ -12676,6 +12715,9 @@ Gender: Male
 Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Geodude
+Level: 11
 
 Geodude
 Level: 11
@@ -13011,6 +13053,9 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Yanma
 Level: 28
 
+Ledyba
+Level: 28
+
 Venonat
 Level: 28
 
@@ -13084,6 +13129,9 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Tangela
+Level: 24
+
+Exeggcute
 Level: 24
 
 Growlithe
@@ -13168,6 +13216,9 @@ Level: 25
 - Thunder Shock
 - Thunder Wave
 
+Magnemite
+Level: 25
+
 Psyduck
 Level: 25
 - Scratch
@@ -13190,6 +13241,9 @@ Level: 37
 - Disable
 - Confusion
 - Screech
+
+Magnemite
+Level: 37
 
 Ampharos
 Level: 37
@@ -13214,6 +13268,9 @@ Level: 44
 - Psychic
 - Screech
 
+Magnemite
+Level: 44
+
 Ampharos
 Level: 45
 - Headbutt
@@ -13237,6 +13294,9 @@ Level: 54
 - Psychic
 - Screech
 
+Magnemite
+Level: 54
+
 Ampharos
 Level: 55
 - Headbutt
@@ -13256,6 +13316,9 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Mr. Mime
 Level: 28
 
+Noctowl
+Level: 27
+
 Magnemite
 Level: 26
 
@@ -13271,6 +13334,9 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Mr. Mime
 Level: 37
 
+Magnemite
+Level: 36
+
 Magneton
 Level: 35
 
@@ -13285,6 +13351,9 @@ AI: Check Bad Move / Try To Faint / Check Viability
 
 Mr. Mime
 Level: 46
+
+Magnemite
+Level: 45
 
 Magneton
 Level: 44
@@ -13305,6 +13374,9 @@ Level: 54
 - Reflect
 - Encore
 
+Magnemite
+Level: 56
+
 Magneton
 Level: 58
 - Thunder
@@ -13324,6 +13396,9 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Pikachu
 Level: 25
 
+Magnemite
+Level: 26
+
 Ponyta
 Level: 27
 
@@ -13340,6 +13415,9 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Pikachu
 Level: 36
 
+Magnemite
+Level: 35
+
 Ponyta
 Level: 35
 
@@ -13354,6 +13432,9 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Pikachu
+Level: 45
+
+Magnemite
 Level: 45
 
 Rapidash
@@ -13376,6 +13457,9 @@ Level: 55
 - Quick Attack
 - Thunder Wave
 
+Ponyta
+Level: 55
+
 Rapidash
 Level: 56
 - Fire Blast
@@ -13392,6 +13476,12 @@ Gender: Male
 Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Remoraid
+Level: 24
+
+Goldeen
+Level: 24
 
 Qwilfish
 Level: 24
@@ -13441,6 +13531,12 @@ Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
+Girafarig
+Level: 33
+
+Raticate
+Level: 33
+
 Kangaskhan
 Level: 33
 
@@ -13452,6 +13548,12 @@ Gender: Male
 Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Raticate
+Level: 46
+
+Furret
+Level: 46
 
 Porygon
 Level: 46
@@ -13469,6 +13571,12 @@ Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
+Furret
+Level: 53
+
+Farfetchd
+Level: 53
+
 Chansey
 Level: 53
 - Rollout
@@ -13485,6 +13593,12 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
+Venonat
+Level: 37
+
+Flaaffy
+Level: 37
+
 Clefairy
 Level: 37
 - Encore
@@ -13500,6 +13614,12 @@ Gender: Male
 Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Flaaffy
+Level: 29
+
+Girafarig
+Level: 29
 
 Clefable
 Level: 29
@@ -13523,6 +13643,9 @@ Level: 53
 - Encore
 - Moonlight
 - Minimize
+
+Girafarig
+Level: 53
 
 Wigglytuff
 Level: 54
@@ -13764,6 +13887,9 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Sunflora
 Level: 24
 
+Sunkern
+Level: 23
+
 Voltorb
 Level: 23
 
@@ -13778,6 +13904,9 @@ AI: Check Bad Move / Try To Faint / Check Viability
 
 Gloom
 Level: 28
+
+Weedle
+Level: 30
 
 Electrode
 Level: 31
@@ -13839,6 +13968,12 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
+Psyduck
+Level: 27
+
+Psyduck
+Level: 27
+
 Snubbull
 Level: 27
 
@@ -13851,6 +13986,12 @@ Gender: Male
 Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Psyduck
+Level: 36
+
+Psyduck
+Level: 36
 
 Granbull
 Level: 36
@@ -13865,6 +14006,12 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
+Psyduck
+Level: 46
+
+Psyduck
+Level: 46
+
 Granbull
 Level: 46
 
@@ -13877,6 +14024,12 @@ Gender: Male
 Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Psyduck
+Level: 56
+
+Psyduck
+Level: 56
 
 Granbull @ Sitrus Berry
 Level: 56
@@ -13901,6 +14054,9 @@ Level: 28
 Poliwhirl
 Level: 28
 
+Poliwhirl
+Level: 28
+
 === TRAINER_HUEY_3_HNS ===
 Name: Nepomuk
 Class: Sailor Hns
@@ -13911,6 +14067,9 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Poliwhirl
+Level: 34
+
+Poliwrath
 Level: 34
 
 Poliwrath
@@ -13931,6 +14090,9 @@ Level: 38
 - Rain Dance
 - Body Slam
 - Perish Song
+
+Poliwrath
+Level: 38
 
 Poliwrath
 Level: 38

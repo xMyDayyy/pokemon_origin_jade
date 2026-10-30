@@ -3,8 +3,10 @@
 
   - Bosses (leaders, Elite Four, champion, Rocket admins, Silver) to six.
   - Route trainers with fewer than three to three.
+  - Phone rematch stages (HnS's gRematchTable in src/battle_setup.c) count
+    as trainers on the maps of their first stage.
   - Newcomers come from the wild pool of the trainer's map and share a type
-    with the existing team.
+    with the existing team. Existing Pokemon keep species and level.
   - No move block: the engine uses the learnset moves for the level.
 
 Usage: fill_johto_parties.py <corridor floor of the stage>
@@ -116,13 +118,30 @@ def parse_party():
     return parsed
 
 
+def rematch_stages():
+    """Rematch stage -> first stage, from HnS's gRematchTable."""
+    s = open(os.path.join(REPO, 'src/battle_setup.c'), encoding='utf-8').read()
+    start = s.index('#if IS_HNS\nconst struct RematchTrainer gRematchTable')
+    out = {}
+    for m in re.finditer(r'REMATCH\(([^)]*)\)', s[start:s.index('};', start)]):
+        ids = [x.strip() for x in m.group(1).split(',')[:5]]
+        for t in ids[1:]:
+            if t != ids[0]:
+                out.setdefault(t, ids[0])
+    return out
+
+
 def trainer_maps():
-    """Trainer -> map directories whose scripts reference it."""
+    """Trainer -> map directories whose scripts reference it; rematch stages
+    get the maps of their first stage."""
     out = collections.defaultdict(set)
     for f in glob.glob(os.path.join(REPO, 'data/maps/*/scripts.inc')):
         d = os.path.basename(os.path.dirname(f))
         for m in re.finditer(r'\b(TRAINER_[A-Z_0-9]+_HNS)\b', open(f, encoding='utf-8', errors='replace').read()):
             out[m.group(1)].add(d)
+    for stage, first in rematch_stages().items():
+        if first in out:
+            out[stage] |= out[first]
     return out
 
 
@@ -224,6 +243,7 @@ def main(stage_floor):
         lvls = [int(re.search(r'Level:\s*(\d+)', '\n'.join(m)).group(1)) for m in mons]
         lo, hi = min(lvls), max(lvls)
         need = target - len(mons)
+        new_segs = []
         for i in range(need):
             sp = cands[i % len(cands)]
             pretty = sp.title().replace('_', ' ')
@@ -231,9 +251,13 @@ def main(stage_floor):
             if iv:
                 seg.append(iv)
             mons.insert(len(mons) - 1, seg)   # insert before the previous ace
+            new_segs.append(seg)
             added[name] += 1
+        # Newcomers get the level of their place between lo and hi.
         n = len(mons)
         for i, seg in enumerate(mons):
+            if not any(seg is x for x in new_segs):
+                continue
             lvl = lo + round((hi - lo) * i / (n - 1)) if n > 1 else lo
             for k, l in enumerate(seg):
                 if l.startswith('Level:'):
