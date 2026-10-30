@@ -561,6 +561,9 @@ bool32 ShouldDoNormanCall(void)
 {
     if (!FlagGet(FLAG_HNS_NORMAN_CALL_PENDING))
         return FALSE;
+    // Only Hoenn steps count; outside Hoenn the call waits.
+    if (!IsHoennMapsec(gMapHeader.regionMapSectionId))
+        return FALSE;
 
     switch (gMapHeader.mapType)
     {
