@@ -208,7 +208,8 @@ dated 2026-10-10 or later were decided directly.
 ## Balancing
 
 ### D-011 Kanto: hand-set level ladder up to 47
-- **Status:** Active (ladder changed 2026-10-29)
+- **Status:** Active (ladder changed 2026-10-29, level caps changed
+  2026-10-30)
 - **Decision:** Kanto's levels are set by hand and end with the champion at
   45-47. They follow an average player: about three of four trainers, half
   of the other wild Pokemon fought, new species caught, the Exp. Share on
@@ -233,6 +234,10 @@ dated 2026-10-10 or later were decided directly.
   - Obedience for traded Pokemon follows the number of Kanto badges (10,
     then +5 per badge, 50 with eight); after the Johto title every Pokemon
     obeys (D-031).
+  - Level-cap challenge (`src/caps.c`, D-041), per number of Kanto badges:
+    "Normal" is the next leader's ace (10, 17, 21, 28, 36, 39, 42, 42; with
+    eight badges the champion's 47), "Hard" the next leader's lowest level
+    (9, 16, 19, 26, 34, 37, 40, 40; 45), as HnS derived its tables.
   - After the Kanto title Kanto scales to the player and these hand-set
     levels are the floor (D-031).
 - **Evidence:** b20f555d4d, 20fa75b584, 1662b679fc, 2f349b5ce2, af10c86033;
@@ -937,7 +942,7 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** full Kanto run analysis, decision 2026-10-29.
 
 ### D-041 Johto keeps its own state where a finished Kanto would leak into it
-- **Status:** Active (2026-10-29)
+- **Status:** Active (2026-10-29, Kanto cap table changed 2026-10-30)
 - **Decision:** A finished Kanto must not unlock or change Johto content:
   - Badge-based marts (`pokemart 0`: Violet City, the Trainer Hill clerk by
     Route 40) count Johto badges (`GetNumberOfBadges`, `src/shop.c`).
@@ -956,8 +961,9 @@ dated 2026-10-10 or later were decided directly.
   - After each Kanto title the plateau scene ends with
     `special ClearCreditsSceneState`, which restores map name popups, map
     music and sound effects (FRLG's credits did this).
-  - Level-cap challenge (`src/caps.c`): Kanto badges table until the Kanto
-    title, then 70 until `FLAG_IS_JOHTO_CHAMPION`, then no cap.
+  - Level-cap challenge (`src/caps.c`): Kanto badges table (values in
+    D-011) until the Kanto title, then 70 until `FLAG_IS_JOHTO_CHAMPION`,
+    then no cap.
 - **Evidence:** full Kanto run analysis, decision 2026-10-29.
 
 ### D-042 Gen 5 experience in every region
