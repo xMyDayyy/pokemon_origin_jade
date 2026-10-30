@@ -23,8 +23,13 @@ GoldenrodCity_FlowerShop_EventScript_MintClerkNotReady::
 	end
 
 GoldenrodCity_FlowerShop_Text_MintClerkNotReady:
+#if GERMAN
+	.string "Leider ist gerade alles ausverkauft.\p"
+	.string "Bitte komm später wieder.$"
+#else
 	.string "We are currently out of stock.\p"
 	.string "Please come back later.$"
+#endif
 
 	.align 2
 GoldenrodCity_FlowerShop_Mints:
