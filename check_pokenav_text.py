@@ -27,8 +27,8 @@ def load_glyph_widths(path="src/fonts.c"):
     with open(path, encoding="utf-8", errors="replace") as fh:
         text = fh.read()
     start = text.index("gFontNormalLatinGlyphWidths[] = {")
-    block = text[start:text.index("};", start)]
-    return [int(x) for x in re.findall(r"\b(\d+)\b", block)[1:]]
+    block = text[text.index("{", start) + 1:text.index("};", start)]
+    return [int(x) for x in re.findall(r"\b(\d+)\b", block)]
 
 
 def load_charmap(path="charmap.txt"):
@@ -39,7 +39,10 @@ def load_charmap(path="charmap.txt"):
         for line in fh:
             m = pattern.match(line.strip())
             if m:
-                mapping[m.group(1)] = int(m.group(2), 16)
+                char = m.group(1)
+                if char == "\\'":
+                    char = "'"
+                mapping[char] = int(m.group(2), 16)
     return mapping
 
 
