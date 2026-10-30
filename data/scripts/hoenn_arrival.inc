@@ -364,7 +364,6 @@ LittlerootTown_ProfessorBirchsLab_EventScript_HoennWelcome::
 	setflag FLAG_ENABLE_PROF_BIRK_MATCH_CALL
 	setflag FLAG_HIDE_ROUTE104_HOENN_BIRCH
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
-	setflag FLAG_LANDMARK_POKEMON_LEAGUE
 	setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
 	releaseall
 	end
