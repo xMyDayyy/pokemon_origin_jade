@@ -959,8 +959,9 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-27.
 
 ### D-039 Johto's static and legendary levels fit the scaling
-- **Status:** Active (2026-10-27, event and player levels 2026-10-29).
-  Replaces the fixed levels of D-026 and D-031 for Johto.
+- **Status:** Active (2026-10-27, event and player levels 2026-10-29;
+  changed 2026-10-30: roamer example corrected). Replaces the fixed levels
+  of D-026 and D-031 for Johto.
 - **Decision:** Johto's legendaries sit at 75-80 by story point; the other
   strong statics fit the corridor (D-012) where they can first be met. None
   of them falls below the top of the map's wild band afterwards.
@@ -994,8 +995,10 @@ dated 2026-10-10 or later were decided directly.
     at least the top of the map's wild band (anchor - 4, clamped to the
     corridor; `ScaleStaticMonLevel`, `src/level_scaling.c`). Before the
     title the corridor ceilings cap it, so it lifts a Pokemon only for
-    players above that corridor (e.g. Sudowoodo to 53, a roamer on Route 26
-    up to 80). After the title it lifts the returns of D-026 with the player.
+    players above that corridor (e.g. Sudowoodo to 53). Raikou and Entei
+    stay at 75 until then: their routes (`sRoamerLocationsJohto`, Routes
+    29-39, 42-46 and 48) reach at most 64 (Routes 44 and 45). After the
+    title it lifts the returns of D-026 and the roamers with the player.
     Kanto and unscaled maps (Birth Island, the Kampfzone) keep fixed levels
     (`staticFloor` in `src/level_scaling.c`).
   - Roamers keep the level they started with. Raikou and Entei start at
