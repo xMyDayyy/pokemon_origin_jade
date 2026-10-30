@@ -1038,7 +1038,17 @@ dated 2026-10-10 or later were decided directly.
     save, D-028). Red on Mt. Silver does not end it. Afterwards none of its
     rules applies: no encounter limit, no deaths, no nickname rule, no save
     deletion on a whiteout.
-- **Evidence:** audit 2026-10-30 (A23).
+  - First encounter per area (Normal and Hart; map sections, `sNuzlockeLUT`):
+    the first single wild battle in an area uses it up, caught or not; a
+    hatched egg uses up the area where it hatches. These do not use it up:
+    trainer battles, double wild battles, legendary and roamer battles, the
+    Safari Zone and the Bug-Catching Contest (free catching there), battles
+    in which catching is impossible (`FLAG_NO_WILD_CATCHING`, e.g. Route 41's
+    Tentacruel; the Pokemon Tower's ghosts without the Silph Scope and the
+    Marowak ghost, `BATTLE_TYPE_GHOST`), an off-type Pokemon under the One
+    Type Challenge and a Pokemon blocked by the species clause ("Duplikate").
+    Code: `HandleEndTurn_FinishBattle` (`src/battle_main.c`).
+- **Evidence:** audit 2026-10-30 (A23, A25).
 
 ---
 

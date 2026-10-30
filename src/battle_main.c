@@ -5949,13 +5949,15 @@ static void HandleEndTurn_FinishBattle(void)
                                         | BATTLE_TYPE_TWO_OPPONENTS
                                         | BATTLE_TYPE_INGAME_PARTNER
                                         | BATTLE_TYPE_TOWER_LINK_MULTI
-                                        | BATTLE_TYPE_RECORDED_LINK)))
+                                        | BATTLE_TYPE_RECORDED_LINK
+                                        | BATTLE_TYPE_GHOST)))
             {
                 // An off-type mon under the One Type Challenge could never have been
                 // caught, so it must not burn the route's Nuzlocke encounter.
                 // Safari Zone and Bug Contest catches do not use it up either.
+                // Neither do battles without catching (B_FLAG_NO_CATCHING, ghosts).
                 if (!NuzlockeIsSpeciesClauseActive && !OneTypeChallengeCaptureBlocked
-                 && !IsNuzlockeCaptureSuspended())
+                 && !IsNuzlockeCaptureSuspended() && !FlagGet(B_FLAG_NO_CATCHING))
                     NuzlockeFlagSet(NuzlockeGetCurrentRegionMapSectionId());
             }
             NuzlockeIsCaptureBlocked = FALSE;
