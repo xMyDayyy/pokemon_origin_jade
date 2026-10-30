@@ -335,7 +335,7 @@
     },
     {
       "x": 3,
-      "y": 20,
+      "y": 21,
       "elevation": 3,
       "dest_map": "MAP_ROUTE8_WEST_ENTRANCE",
       "dest_warp_id": "2"
