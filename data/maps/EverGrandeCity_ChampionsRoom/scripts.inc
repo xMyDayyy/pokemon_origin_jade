@@ -63,9 +63,14 @@ EverGrandeCity_ChampionsRoom_EventScript_Defeated::
 	goto_if_set FLAG_IS_HOENN_CHAMPION, EverGrandeCity_ChampionsRoom_EventScript_TitleDefenceExitForHoF
 #endif
 	playse SE_DOOR
+#if IS_HNS
+	@ Origin Jade: the Hoenn rival is always May.
+	call EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic
+#else
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic
 	call_if_eq VAR_RESULT, FEMALE, EverGrandeCity_ChampionsRoom_EventScript_PlayBrendanMusic
+#endif
 	addobject LOCALID_CHAMPIONS_ROOM_RIVAL
 	call EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer
 #if IS_HNS
