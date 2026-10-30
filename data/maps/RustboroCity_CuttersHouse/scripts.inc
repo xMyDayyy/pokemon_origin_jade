@@ -7,6 +7,7 @@ RustboroCity_CuttersHouse_EventScript_Cutter::
 #if IS_HNS
 	@ HnS: no handover, the Cut license comes from Roxanne.
 	msgbox RustboroCity_CuttersHouse_Text_YouCanPutThisHMToGoodUse, MSGBOX_DEFAULT
+	msgbox Text_HnsCutterKnowsCut, MSGBOX_DEFAULT
 	release
 	end
 #endif
@@ -94,6 +95,19 @@ RustboroCity_CuttersHouse_Text_DadHelpedClearLandOfTrees:
 #endif
 
 #if IS_HNS
+Text_HnsCutterKnowsCut:
+#if GERMAN
+	.string "Zerschneider beherrschst du längst,\n"
+	.string "das sehe ich sofort.\p"
+	.string "In Hoenn brauchst du dafür aber den\n"
+	.string "Steinorden aus der Arena hier.$"
+#else
+	.string "You've long known how to use CUT,\n"
+	.string "I can tell at a glance.\p"
+	.string "In HOENN, though, you need the\n"
+	.string "STONE BADGE from the GYM here.$"
+#endif
+
 Text_HnsCutLicense:
 #if GERMAN
 	.string "{PLAYER} erhält die Lizenz für\n"
