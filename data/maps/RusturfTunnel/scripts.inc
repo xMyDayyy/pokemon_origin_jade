@@ -64,7 +64,7 @@ RusturfTunnel_EventScript_ClearTunnelScene::
 #if !IS_HNS
 	giveitem ITEM_HM_STRENGTH
 #endif
-	setflag FLAG_RECEIVED_HM_STRENGTH
+	setflag FLAG_HOENN_RECEIVED_HM_STRENGTH
 #if !IS_HNS
 	msgbox RusturfTunnel_Text_ExplainStrength, MSGBOX_DEFAULT
 #endif

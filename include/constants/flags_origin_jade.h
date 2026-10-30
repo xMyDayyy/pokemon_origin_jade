@@ -150,6 +150,8 @@
 #define FLAG_HOENN_RECEIVED_HM_ROCK_SMASH                    (OJ_TRAINER_FLAGS_HOENN_END + 15)
 // Devon revived a fossil; read by the Fossil Maniac on Route 114.
 #define FLAG_HOENN_RECEIVED_REVIVED_FOSSIL_MON               (OJ_TRAINER_FLAGS_HOENN_END + 16)
+// Rusturf Tunnel cleared; read by the PokeNav calls of Mr. Stone and the rival.
+#define FLAG_HOENN_RECEIVED_HM_STRENGTH                      (OJ_TRAINER_FLAGS_HOENN_END + 17)
 
 // ---------------------------------------------------------------------
 // Cross-region (OJ_FLAGS_GLOBAL + 0 to + 63)

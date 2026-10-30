@@ -1001,7 +1001,8 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-27.
 
 ### D-040 Hoenn keeps its own state where a finished Kanto would leak into it
-- **Status:** Active (2026-10-29, Johto leaks changed 2026-10-30)
+- **Status:** Active (2026-10-29, Johto leaks changed 2026-10-30, Strength
+  and Flash changed 2026-10-30)
 - **Decision:** A finished Kanto or Johto must not unlock or change Hoenn
   content. Where FRLG or HnS and Emerald share a flag or var, Hoenn gets its
   own state or checks the Hoenn title:
@@ -1026,6 +1027,11 @@ dated 2026-10-10 or later were decided directly.
   - `FLAG_HOENN_RECEIVED_REVIVED_FOSSIL_MON`: Devon's fossil revival, read by
     the Fossil Maniac on Route 114; `FLAG_RECEIVED_REVIVED_FOSSIL_MON` stays
     the Ruins of Alph lab's.
+  - `FLAG_HOENN_RECEIVED_HM_STRENGTH`: the Rusturf Tunnel scene (no HM in
+    Hoenn), read by the PokeNav calls of Mr. Stone and the rival;
+    `FLAG_RECEIVED_HM_STRENGTH` stays the Olivine cafe sailor's. The Granite
+    Cave hiker gives no HM Flash and sets no flag; `FLAG_RECEIVED_HM_FLASH`
+    stays Sage Li's in Sprout Tower.
   - `VAR_HOENN_SAFARI_ZONE_STATE`: Hoenn's Safari Zone. Time up, no Safari
     Balls left or retiring there leads back to the Route 121 entrance
     (`data/scripts/safari_zone.inc`), not to Johto's gate;

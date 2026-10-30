@@ -6,7 +6,6 @@ GraniteCave_1F_EventScript_Hiker::
 	faceplayer
 #if IS_HNS
 	@ HnS: no HM Flash in Hoenn, the hiker only talks.
-	setflag FLAG_RECEIVED_HM_FLASH
 	msgbox GraniteCave_1F_Text_HnsHikerDark, MSGBOX_DEFAULT
 	release
 	end
