@@ -1291,24 +1291,30 @@ SootopolisCity_EventScript_Wallace::
 
 SootopolisCity_EventScript_GiveWaterfall::
 #if IS_HNS
-	@ HnS: no HM from Wallace, the Rain Badge grants the Waterfall license.
-	msgbox Text_HnsWallaceNoWaterfallHandover, MSGBOX_DEFAULT
-#else
+	@ HnS: the HM only if it is not in the bag (D-014), the Rain Badge grants the Waterfall license.
+	checkitem ITEM_HM_WATERFALL
+	goto_if_eq VAR_RESULT, TRUE, SootopolisCity_EventScript_HnsWaterfallOwned
+#endif
 	msgbox SootopolisCity_Text_ThankYouForHelpAcceptThis, MSGBOX_DEFAULT
 	giveitem ITEM_HM_WATERFALL
-#endif
 	setflag FLAG_RECEIVED_HM_WATERFALL
-#if IS_HNS
-	msgbox Text_HnsWallaceWaterfallGoToGym, MSGBOX_DEFAULT
-#else
 	msgbox SootopolisCity_Text_ExplainWaterfallGoToGym, MSGBOX_DEFAULT
-#endif
+SootopolisCity_EventScript_WallaceStepAside::
 	closemessage
 	call_if_eq VAR_FACING, DIR_NORTH, SootopolisCity_EventScript_WallaceMoveFromGym
 	call_if_eq VAR_FACING, DIR_EAST, SootopolisCity_EventScript_WallaceMoveFromGym
 	call_if_eq VAR_FACING, DIR_WEST, SootopolisCity_EventScript_WallaceMoveFromGymWest
 	release
 	end
+
+#if IS_HNS
+SootopolisCity_EventScript_HnsWaterfallOwned::
+	msgbox Text_HnsWallaceNoWaterfallHandover, MSGBOX_DEFAULT
+	setflag FLAG_RECEIVED_HM_WATERFALL
+	msgbox Text_HnsWallaceWaterfallGoToGym, MSGBOX_DEFAULT
+	goto SootopolisCity_EventScript_WallaceStepAside
+	end
+#endif
 
 SootopolisCity_EventScript_WallaceMoveFromGym::
 	applymovement LOCALID_SOOTOPOLIS_WALLACE, SootopolisCity_Movement_WallaceMoveFromGym

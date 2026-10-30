@@ -353,7 +353,7 @@ dated 2026-10-10 or later were decided directly.
   night).
 
 ### D-014 HM handovers in Johto never leave the player empty-handed
-- **Status:** Active
+- **Status:** Active (changed 2026-10-30: Wallace's HM Waterfall in Hoenn)
 - **Decision:** A player from Kanto already owns most HMs. Every HM handover
   checks for the HM; if it is already owned, there is a different reward
   with an in-world reason - never "then I have nothing for you". Exploring
@@ -362,7 +362,14 @@ dated 2026-10-10 or later were decided directly.
   (no active Kanto map hands them out). They stay regular Johto finds: the
   ball on the Ice Path holds Waterfall, and Lance hands over Whirlpool in the
   Rocket Hideout. Waterfall can only be used with Clair's permit (D-008).
-- **Evidence:** 09aac39e14, 5b0269166d, f9bd3e5021 (Waterfall, Whirlpool).
+- **Hoenn:** the Ice Path ball is optional, but Ever Grande City and the
+  Hoenn league lie behind a waterfall. Wallace in Sootopolis (after
+  Rayquaza) therefore hands over HM Waterfall when it is not in the bag
+  (`SootopolisCity_EventScript_GiveWaterfall`); with the HM in the bag he
+  only points to the gym. The Rain Badge is the Waterfall license (D-008).
+  `FLAG_RECEIVED_HM_WATERFALL` is a Hoenn flag (`flags_hoenn_de.h`).
+- **Evidence:** 09aac39e14, 5b0269166d, f9bd3e5021 (Waterfall, Whirlpool);
+  audit 2026-10-30 (Wallace).
 
 ### D-015 Kanto's Elite Four rematch after the Kanto title
 - **Status:** Active (2026-10-10, levels 2026-10-29)
