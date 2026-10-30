@@ -376,7 +376,7 @@ dated 2026-10-10 or later were decided directly.
 ## Data, saves and maps (technical conventions)
 
 ### D-016 Flags and vars
-- **Status:** Active (storage checks changed 2026-10-30)
+- **Status:** Active (reserves and storage checks changed 2026-10-30)
 - **Rules:**
   - New Origin Jade flags and vars come only from
     `include/constants/flags_origin_jade.h` and `vars_origin_jade.h`
@@ -401,11 +401,21 @@ dated 2026-10-10 or later were decided directly.
     and vars without storage, `--free` lists only free numbers with
     storage, and in the test build `GetFlagPointer`/`GetVarPointer` make a
     test INVALID for such a number.
+  - Reserves (2026-10-30): SaveBlock1 trainer flag window 2 ids
+    (`TRAINER_FLAGS_END` 0xAC7, last HnS/Hoenn trainer 1477 = 0xAC5,
+    STATIC_ASSERT in `src/event_data.c` on `TRAINERS_COUNT_HNS`, which a
+    new id raises by hand; `check_flags.py` check 2 also catches a trainer
+    flag on a named flag); Hoenn vars 25 (0x415E-0x4176,
+    `VARS_END` is fixed); FRLG flags from `FRLG_FLAGS_RESERVE_START`
+    (0x12A1) to 0x13FF; Origin Jade sections: their spare slots
+    (`check_flags.py --free`). Hoenn flags move `FLAGS_COUNT`: up to 12 more
+    keep the SaveBlock1 layout, more move `vars` and the fields after it
+    (see D-017).
 - **Evidence:** 9a12676bc2, c2cbd316ad, 5dbd22cc65, 5bda779144,
-  f89324b8d2, 42058c2f69, 2e9792740c; audit 2026-10-30 (A44, A96).
+  f89324b8d2, 42058c2f69, 2e9792740c; audit 2026-10-30 (A44, A89, A95, A96).
 
 ### D-017 Saves and migrations
-- **Status:** Active (changed 2026-10-30)
+- **Status:** Active (changed 2026-10-30: budget, layout guards)
 - **Rules:** The save layout freezes with the release; until then it may
   grow deliberately (2cbf85903d). One-time migrations of Origin Jade run in
   `LoadGameSave` (`src/save.c`) and are keyed to a flag from the Origin Jade
@@ -421,7 +431,22 @@ dated 2026-10-10 or later were decided directly.
   `unused_9C6` (2), `outbreakUnused1/2/3`. Memory: EWRAM 249164 of 262144
   bytes (95.05 %, of which `gHeap` 115968), IWRAM 25704 of 32768
   (78.44 %), ROM 25875604 of 33554432 (77.12 %).
-- **Evidence:** 2cbf85903d, 9635b02081, 2026-10-10 (Johto starter var).
+- **Layout guards and reserves (2026-10-30):**
+  - Sizes: SaveBlock1 15868 of 15872 bytes (4 free), SaveBlock2 3892,
+    SaveBlock3 992 of 1624 (632 free), PokemonStorage 34144. `test/save.c`
+    checks these sizes; the build checks the limits.
+  - SaveBlock3: new fields only at its end. The offsets of the Origin Jade
+    fields are pinned by STATIC_ASSERTs in `src/save.c`. The config
+    switches in front of them (`FNPC_ENABLE_NPC_FOLLOWERS`,
+    `OW_SHOW_ITEM_DESCRIPTIONS`, `USE_DEXNAV_SEARCH_LEVELS`,
+    `APRICORN_TREE_COUNT`) would move them.
+  - SaveBlock1: `flags[]` grows with `FLAGS_COUNT` (D-016); from 13 more
+    Hoenn flags on, `vars` and later fields move, and with more than 60 the
+    build fails.
+  - A deliberate layout change updates the asserts in `src/save.c` and
+    the sizes in `test/save.c` in the same commit.
+- **Evidence:** 2cbf85903d, 9635b02081, 2026-10-10 (Johto starter var);
+  audit 2026-10-30 (A38, A89, A93, A97).
 
 ### D-018 Maps and layouts
 - **Status:** Active

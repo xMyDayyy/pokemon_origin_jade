@@ -693,6 +693,7 @@
 #define TRAINER_DRAKE_2                          1476
 #define TRAINER_WALLACE_2                        1477
 
+// Last HnS/Hoenn trainer id + 1. Raise it with every new id; src/event_data.c checks it.
 #define TRAINERS_COUNT_HNS                       1478
 #define MAX_TRAINERS_COUNT_HNS                   1480
 
