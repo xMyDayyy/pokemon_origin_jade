@@ -3834,7 +3834,7 @@ bool8 AbnormalWeatherHasExpired(void)
         }
 
         if (gSaveBlock1Ptr->location.mapNum == sAbnormalWeatherMapNumbers[abnormalWeather - 1] &&
-            gSaveBlock1Ptr->location.mapGroup == 0)
+            gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_ROUTE114))
         {
             return TRUE;
         }
