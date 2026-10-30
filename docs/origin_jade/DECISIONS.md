@@ -556,6 +556,7 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-028 Leagues: farmable, continue in the region, credits at the end
 - **Status:** Active (2026-10-15). Replaces D-002 for Johto, Hoenn and Red.
+  Changed 2026-10-30 (no Emerald after-title scenes in Littleroot).
 - **Decision:**
   - Johto's league can be repeated: the Black Belt in front of the Elite
     Four door never shows. Title defences use the `_2` teams, a short Lance
@@ -566,7 +567,9 @@ dated 2026-10-10 or later were decided directly.
   - After every Johto title and after Red: Hall of Fame (saves), no credits,
     the game continues in New Bark Town in front of Elm's lab
     (`HEAL_LOCATION_NEW_BARK_TOWN_LAB_HNS`). After every Hoenn title it
-    continues in Littleroot Town in front of Birch's lab.
+    continues in Littleroot Town in front of Birch's lab. Emerald's
+    S.S. Ticket and Lati TV scene in Norman's and Birch's houses does not
+    run (D-002, D-003); Latias and Latios roam without it (D-026).
   - The credits roll once, at the first Hoenn title, the end of the game
     (`FLAG_ROLLED_ENDING_CREDITS`).
   - Silver waits in Johto's league center for a daily battle after the Johto
