@@ -5,6 +5,8 @@
 #include "load_save.h"
 #include "main.h"
 #include "malloc.h"
+#include "new_game.h"
+#include "pokemon_storage_system.h"
 #include "random.h"
 #include "task.h"
 #include "constants/characters.h"
@@ -200,6 +202,10 @@ static void ClearSaveBlocks(void)
     ClearSav1();
     ClearSav2();
     ClearSav3();
+    // Challenge settings and PC boxes as in a new game.
+    SetDefaultChallengeSettings();
+    gSaveBlock3Ptr->challengeSettings.tx_Challenges_OneTypeChallenge = 31; // ONE_TYPE_OFF
+    ResetPokemonStorageSystem();
 }
 
 void CB2_TestRunner(void)
