@@ -139,6 +139,11 @@ void SetDefaultChallengeSettings(void)
     gSaveblock3.challengeSettings.musicOnOff = 0;
     gSaveblock3.challengeSettings.runType = 0;
 
+    // Fake clock preselected when the cartridge clock reports an error at start.
+    gSaveblock3.challengeSettings.tx_Features_RTCType = 0;
+    if (RtcGetErrorStatus() & RTC_ERR_FLAG_MASK)
+        gSaveblock3.challengeSettings.tx_Features_RTCType = 1;
+
     // Challenge menu — "RECOMMENDED" defaults
     gSaveblock3.challengeSettings.tx_Mode_Modern_Moves       = 1;
     gSaveblock3.challengeSettings.tx_Mode_Synchronize        = 1;
