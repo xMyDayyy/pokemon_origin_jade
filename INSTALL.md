@@ -62,7 +62,7 @@ Follow these steps to build `pokehns-expansion`.
 4. Build the project.
 
     ```console
-    make hns
+    make
     ```
 5. If everything worked correctly, something very similar to this should be seen.
 
@@ -77,7 +77,7 @@ Follow these steps to build `pokehns-expansion`.
     arm-none-eabi-objcopy -O binary pokeemerald.elf pokeemerald.gba
     tools/gbafix/gbafix pokeemerald.gba -p --silent
     ```
-    And the build ROM will be in the directory as `pokehns.gba`.
+    And the build ROM will be in the directory as `Pokemon_Origin_Jade.gba`.
 
 # Building guidance
 
@@ -91,7 +91,7 @@ nproc
 ```
 Builds can then be sped up by running the following command:
 ```console
-make hns -j<output of nproc>
+make -j<output of nproc>
 ```
 Replace `<output of nproc>` with the number that the `nproc` command returned.
 
