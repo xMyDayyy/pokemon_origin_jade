@@ -166,9 +166,18 @@ EcruteakCity_Theater_EventScript_Rocket::
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
 	msgbox EcruteakCity_Theater_Text_KimonoRocket3, MSGBOX_DEFAULT
 	closemessage
-	setvar VAR_ECRUTEAK_CITY_THEATER, 2
+	call_if_lt VAR_ECRUTEAK_CITY_THEATER, 2, EcruteakCity_Theater_EventScript_SetRocketBeaten
 	release
 	end
+
+@ The theater state only moves forward: the league change needs it at 8 (D-010).
+EcruteakCity_Theater_EventScript_SetRocketBeaten::
+	setvar VAR_ECRUTEAK_CITY_THEATER, 2
+	return
+
+EcruteakCity_Theater_EventScript_SetSurfGiven::
+	setvar VAR_ECRUTEAK_CITY_THEATER, 3
+	return
 
 EcruteakCity_Theater_EventScript_PostRocketLeft::
 	applymovement LOCALID_ECRUTEAK_ZUKI, Common_Movement_WalkLeft1
@@ -335,7 +344,7 @@ EcruteakCity_Theater_EventScript_SurfGuy_GiveSurf::
 	setflag FLAG_RECEIVED_HM_SURF
 	closemessage
 	setflag FLAG_RECEIVED_HM_SURF
-	setvar VAR_ECRUTEAK_CITY_THEATER, 3
+	call_if_lt VAR_ECRUTEAK_CITY_THEATER, 3, EcruteakCity_Theater_EventScript_SetSurfGiven
 	release
 	end
 
@@ -367,7 +376,7 @@ EcruteakCity_Theater_EventScript_TriggerSurfGuy::
 	setflag FLAG_RECEIVED_HM_SURF
 	closemessage
 	setflag FLAG_RECEIVED_HM_SURF
-	setvar VAR_ECRUTEAK_CITY_THEATER, 3
+	call_if_lt VAR_ECRUTEAK_CITY_THEATER, 3, EcruteakCity_Theater_EventScript_SetSurfGiven
 	applymovement LOCALID_SURF_GUY, EcruteakCity_Theater_Movement_SurfGuy2
 	waitmovement 0
 	release

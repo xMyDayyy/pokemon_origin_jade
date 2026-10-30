@@ -470,12 +470,18 @@ NewBarkTown_Lab_EventScript_ElmMasterBall::
 	msgbox NewBarkTown_Lab_Text_KimonoGirls, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_NEWBARKTOWN_LABSTATE, 8
-	setvar VAR_ECRUTEAK_CITY_THEATER, 4
+	call_if_lt VAR_ECRUTEAK_CITY_THEATER, 4, NewBarkTown_Lab_EventScript_SetTheaterKimonos
 	setflag FLAG_HIDE_ECRUTEAK_SILVER
 	setflag FLAG_HIDE_ECRUTEAK_CITY_THEATER_NPCS
+	setflag FLAG_HIDE_ECRUTEAK_ROCKET
 	clearflag FLAG_HIDE_ECRUTEAK_CITY_THEATER_KIMONOS
 	release
 	end
+
+@ The theater state only moves forward: the league change needs it at 8 (D-010).
+NewBarkTown_Lab_EventScript_SetTheaterKimonos::
+	setvar VAR_ECRUTEAK_CITY_THEATER, 4
+	return
 
 NewBarkTown_Lab_EventScript_ElmKimono::
 	lock

@@ -159,7 +159,8 @@ dated 2026-10-10 or later were decided directly.
   2026-10-11 (Black Belt).
 
 ### D-010 The league changes after the eighth Johto badge and the legendary event
-- **Status:** Active (2026-10-10, 2026-10-11, 2026-10-12).
+- **Status:** Active (2026-10-10, 2026-10-11, 2026-10-12, theater state
+  changed 2026-10-30).
 - **Decision:** There is one way to the league: the gatehouse north exit,
   Kanto's Route 23 and Victory Road (Moltres), Kanto's Indigo Plateau. The
   league changes once the player holds all eight Johto badges and has
@@ -185,6 +186,10 @@ dated 2026-10-10 or later were decided directly.
   Silver: `IndigoPlateau_EventScript_SetupSilverFinal`. HnS's checkpoint at
   the south entrance is removed: that entrance is the way home from Johto
   to Kanto.
+  - The theater state `VAR_ECRUTEAK_CITY_THEATER` only moves forward: the
+    early theater (Rocket grunt 2, Surf gentleman 3) is optional and never
+    lowers a later state, and Elm's Master Ball scene (4) also sends the
+    grunt away.
 - **Evidence:** decisions 2026-10-10, 2026-10-11 and 2026-10-12 (HnS's
   Victory Road only if needed, Moltres stays in Kanto's; flying must not skip
   Silver); e900a95bad; 9be851b978.
