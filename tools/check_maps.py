@@ -29,10 +29,12 @@ It is optimistic: field moves (Surf, Waterfall, Rock Climb, Cut, Strength,
 Rock Smash) are available, objects never block, story flags are ignored, every
 setmetatile and setmaplayoutindex a map's scripts can run counts, and warps
 done by scripts count once the map running them is reached (scripts are
-assigned to maps through their call graph). So "unreachable" is a strong
-result, "reachable" is not a proof. Not modelled: rides and puzzles moved by
-applymovement (maps with many of them get "ungeprueft"), bike-only paths,
-warps set up in C with runtime values.
+assigned to maps through their call graph). Player moves by applymovement in
+coord event scripts count (every branch, the player ends up after each move).
+So "unreachable" is a strong result, "reachable" is not a proof. Not modelled:
+rides started by talking or by map scripts (maps with many player moves get
+"ungeprueft" for objects), bike-only paths, warps set up in C with runtime
+values.
 
 Findings carry a provisional status (nachgewiesen/verdacht/vorschlag/
 ungeprueft) and severity (blocker/kritisch/wichtig/klein/optional). Whether a
@@ -103,6 +105,15 @@ C_TABLE_RE = re.compile(r"\{\s*MAP_GROUP\((MAP_\w+)\)\s*,\s*MAP_NUM\(\1\)\s*,\s*
 C_MAPREF_RE = re.compile(r"\bMAP_GROUP\((MAP_\w+)\)")
 PLAYER_MOVE_RE = re.compile(r"^\s*applymovement\s+(OBJ_EVENT_ID_PLAYER|LOCALID_PLAYER)\b", re.M)
 RIDE_MIN_MOVES = 10  # from this many player movements a map counts as a scripted ride/puzzle
+PLAYER_APPLY_RE = re.compile(r"^\s*applymovement\s+(?:OBJ_EVENT_ID_PLAYER|LOCALID_PLAYER)\s*,\s*(\w+)")
+BRANCH_RE = re.compile(r"^\s*(goto|call|case)(_if\w*)?\s+(?:[^@\n]*,\s*)?(\w+)\s*$")
+# Movement commands that move the object, and how far (asm/macros/movement.inc).
+STEP_RE = re.compile(r"^\s*(walk_slow_stairs|walk_slow|walk_faster|walk_fast|walk|ride_water_current|slide|player_run|"
+                     r"jump_2|jump_special|jump|acro_wheelie_hop|acro_wheelie_jump|acro_pop_wheelie_move|"
+                     r"acro_wheelie_move|acro_end_wheelie_move)_(down|up|left|right)(?:_affine)?\s*$")
+DIAG_RE = re.compile(r"^\s*walk_(?:slow_)?diag_(north|south)(west|east)\s*$")
+STEP_DIST = {"jump_2": 2, "jump_special": 2, "acro_wheelie_jump": 2}
+STEP_DIR = {"down": (0, 1), "up": (0, -1), "left": (-1, 0), "right": (1, 0)}
 GAME_CLEAR_RE = re.compile(r"\s*special\s+\w*(GameClear|HallOfFame)\w*")
 # Script commands that hand out something or change the game state (object rating).
 EFFECT_RE = re.compile(r"^\s*(giveitem|givemon|giveegg|givedecoration|trainerbattle\w*|setwildbattle|"
@@ -374,6 +385,64 @@ class ScriptIndex:
     def labels_in_file(self, path):
         return self.by_file.get(path, [])
 
+    def movement_shift(self, label):
+        """(dx, dy) a movement script moves its object by, or None if the label is unknown."""
+        name, dx, dy = label, 0, 0
+        for _ in range(8):
+            block = self.blocks.get(name)
+            if block is None:
+                return None if name == label else (dx, dy)
+            for line in block.lines:
+                if line.strip() == "step_end":
+                    return dx, dy
+                m = STEP_RE.match(line)
+                if m:
+                    sx, sy = STEP_DIR[m.group(2)]
+                    dist = STEP_DIST.get(m.group(1), 1)
+                    dx, dy = dx + sx * dist, dy + sy * dist
+                    continue
+                m = DIAG_RE.match(line)
+                if m:
+                    dx += -1 if m.group(2) == "west" else 1
+                    dy += -1 if m.group(1) == "north" else 1
+            if not block.next:
+                break
+            name = block.next
+        return dx, dy
+
+    def player_shifts(self, label, limit=400):
+        """Offsets the player stands at after each scripted move of a script (all branches)."""
+        found = set()
+        seen = set()
+        stack = [(label, 0, 0, 0)]
+        while stack and len(seen) < limit:
+            name, i, dx, dy = stack.pop()
+            block = self.blocks.get(name)
+            if block is None or (name, i, dx, dy) in seen:
+                continue
+            seen.add((name, i, dx, dy))
+            if i >= len(block.lines):
+                if block.next and not self._ends(block):
+                    stack.append((block.next, 0, dx, dy))
+                continue
+            line = block.lines[i]
+            m = PLAYER_APPLY_RE.match(line)
+            if m:
+                shift = self.movement_shift(m.group(1))
+                if shift and shift != (0, 0):
+                    dx, dy = dx + shift[0], dy + shift[1]
+                    found.add((dx, dy))
+                stack.append((name, i + 1, dx, dy))
+                continue
+            m = BRANCH_RE.match(line)
+            if m and m.group(3) in self.blocks:
+                stack.append((m.group(3), 0, dx, dy))
+            if line.split()[0] in ("end", "return", "goto", "step_end"):
+                continue
+            stack.append((name, i + 1, dx, dy))
+        found.discard((0, 0))
+        return found
+
     def closure(self, roots):
         """Blocks reachable from the roots through references and fall-through."""
         seen = set()
@@ -629,7 +698,13 @@ class World:
         self.map_game_clear = set()        # maps whose scripts end in the Hall of Fame sequence
         self.map_rides = set()             # maps whose own scripts move the player a lot (rides, puzzles)
         self.script_targets = collections.defaultdict(list)   # map id -> [where]
+        self.coord_rides = collections.defaultdict(dict)      # map id -> {(x, y): {(dx, dy)}} moved by coord events
         for m in self.active_maps():
+            for ce in m.coord_events():
+                if ce.get("type") != "weather" and ce.get("script") in self.scripts.blocks:
+                    shifts = self.scripts.player_shifts(ce["script"])
+                    if shifts:
+                        self.coord_rides[m.id].setdefault((ce["x"], ce["y"]), set()).update(shifts)
             roots = set(self.scripts.labels_in_file(m.scripts_path))
             for ev in m.objects() + m.coord_events() + m.bg_events():
                 if ev.get("script") in self.scripts.blocks:
@@ -938,10 +1013,22 @@ class Reach:
                 self.follow_warp(m, i)
             for target in self.coordinate_exits(m, x, y):
                 self.seed(target, x, y)
+            for tx, ty in self.ride_targets(m, x, y):
+                for state in Walker.arrival_states(m, tx, ty):
+                    self.push(m, tx, ty, *state)
             for d in DIRS:
                 for nxt in self.walker.steps(m, x, y, cur, prev, d):
                     self.push(*nxt)
         return self
+
+    def ride_targets(self, m, x, y):
+        """Passable tiles a coord event on (x, y) moves the player to by applymovement."""
+        out = []
+        for dx, dy in self.world.coord_rides.get(m.id, {}).get((x, y), ()):
+            tx, ty = x + dx, y + dy
+            if m.inside(tx, ty) and m.passable(tx, ty):
+                out.append((tx, ty))
+        return out
 
     def escapes(self, m, x, y):
         """True if the player placed on (x, y) can leave the map by walking, warping or a connection."""
@@ -964,14 +1051,16 @@ class Reach:
                 return True
             if self.coordinate_exits(m, cx, cy):
                 return True
+            nexts = [(tx, ty) + Walker.arrival_state(m, tx, ty) for tx, ty in self.ride_targets(m, cx, cy)]
             for d in DIRS:
                 for nxt in self.walker.steps(m, cx, cy, cur, prev, d):
                     if nxt[0] is not m:
                         return True
-                    state = nxt[1:]
-                    if state not in seen:
-                        seen.add(state)
-                        stack.append(state)
+                    nexts.append(nxt[1:])
+            for state in nexts:
+                if state not in seen:
+                    seen.add(state)
+                    stack.append(state)
         return False
 
     def map_reached(self, map_id):
