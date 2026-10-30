@@ -757,7 +757,7 @@ static const u8 *const sDesc_RandomStatic[] = {
     COMPOUND_STRING("Benannte, Casino- und Streuner-{PKMN}\nsowie Sonderfälle bleiben gleich."),
 };
 static const u8 *const sDesc_RandomSimilar[] = {
-    COMPOUND_STRING("{PKMN} durch ähnlich starke ersetzt.\nDerzeit nach Entwicklungsstufe."),
+    COMPOUND_STRING("{PKMN} nach Entwicklungsstufe ersetzt,\nLegendäre nur durch Legendäre."),
     COMPOUND_STRING("Verteilung der {PKMN} ist nicht nach\nihrer Stärke ausbalanciert!"),
 };
 static const u8 *const sDesc_RandomLegendaries[] = {
@@ -1345,7 +1345,8 @@ static bool8 CheckConditions(u8 tab, u8 itemIndex)
         case ITEM_RANDOM_SIMILAR:
             return masterOn && anyPkmn && !(*GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_CHAOS));
         case ITEM_RANDOM_LEGENDARIES:
-            return masterOn && anyPkmn;
+            // Only with balancing off (1 = Aus); with balancing GetRandomizerOption ignores it.
+            return masterOn && anyPkmn && *GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_SIMILAR) == 1;
         case ITEM_RANDOM_CHAOS:
             return masterOn && (anyPkmn
                 || *GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_TYPE)
