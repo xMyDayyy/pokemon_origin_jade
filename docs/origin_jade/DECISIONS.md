@@ -605,12 +605,14 @@ dated 2026-10-10 or later were decided directly.
     state of Emerald's intro (`Common_EventScript_HoennSkipIntro`) and lands
     on the Route 104 pier, where Birch's arrival scene starts. Later trips
     change no Hoenn state: they dock at Slateport's harbour (where the S.S.
-    Tidal docks) once the player has visited Slateport, otherwise at the
-    Route 104 pier, so a trip never opens a town early. The ticket is not
-    used up. Every trip sets the respawn: in front of Birch's lab for the
-    pier, Slateport's Pokemon Center for the harbour. Whoever leaves the
-    beach before Birch's greeting (Fly, Teleport, Dig) gets the welcome
-    (Pokedex, badge case, Birch's contact) on entering the lab (D-005).
+    Tidal docks) once the player has visited Slateport and Team Aqua's
+    submarine scene there is not pending (`VAR_SLATEPORT_HARBOR_STATE` is
+    not 1), otherwise at the Route 104 pier, so a trip never opens a town
+    early or lands in a scene. The ticket is not used up. Every trip sets
+    the respawn: in front of Birch's lab for the pier, Slateport's Pokemon
+    Center for the harbour. Whoever leaves the beach before Birch's
+    greeting (Fly, Teleport, Dig) gets the welcome (Pokedex, badge case,
+    Birch's contact) on entering the lab (D-005).
   - The woman in Olivine City gives the Aurora Ticket only after the Johto
     title (`FLAG_IS_JOHTO_CHAMPION`).
   - Faraway Island and Southern Island are not offered.

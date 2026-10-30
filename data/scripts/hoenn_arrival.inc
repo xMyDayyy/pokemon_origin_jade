@@ -23,9 +23,11 @@ Common_EventScript_SailToRoute104Pier::
 	release
 	end
 
-@ Later trips: Slateport's harbour once Slateport was visited, otherwise the Route 104 pier.
+@ Later trips: Slateport's harbour once Slateport was visited and Team Aqua's
+@ submarine scene there is not pending, otherwise the Route 104 pier.
 Common_EventScript_SailToHoennAgain::
 	goto_if_unset FLAG_VISITED_SLATEPORT_CITY, Common_EventScript_SailToRoute104Pier
+	goto_if_eq VAR_SLATEPORT_HARBOR_STATE, 1, Common_EventScript_SailToRoute104Pier
 	setrespawn HEAL_LOCATION_SLATEPORT_CITY
 	warpsilent MAP_SLATEPORT_CITY_HARBOR, 8, 11
 	waitstate
