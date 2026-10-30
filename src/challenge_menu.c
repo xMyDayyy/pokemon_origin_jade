@@ -1991,7 +1991,9 @@ static void Task_ConfirmSaveYes(u8 taskId)
     struct ChallengeSettings *cs = &gSaveBlock3Ptr->challengeSettings;
 
 #if IS_HNS
-    SeedRngAndSetTrainerId();
+    // New game only: seeds the RNG and the trainer id from the timers the naming screen started.
+    if (sIsInitialSetup)
+        SeedRngAndSetTrainerId();
 #endif
 
     // Mode tab
