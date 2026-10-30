@@ -128,7 +128,8 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** f5aa45302b, 20ceec5a1e, 161ede4b96, 9f4cf4bb86.
 
 ### D-008 Field moves per region
-- **Status:** Active (changed 2026-10-30: note on Victory Road)
+- **Status:** Active (changed 2026-10-30: notes on Victory Road, Whirlpool
+  and New Bark Town)
 - **Decision:** Kanto uses the FRLG badge thresholds (Flash 1, Cut 2, Fly 3,
   Strength 4, Surf 5, Rock Smash 6, Waterfall 7). Johto uses permits
   ("Befugnis", `VAR_JOHTO_PERMITS`) handed out by the Johto gym leaders
@@ -136,11 +137,19 @@ dated 2026-10-10 or later were decided directly.
   Clair Waterfall). Hoenn uses licenses ("Erlaubnis"). Fly and Flash are not
   locked in Johto and Hoenn. Routes 26, 27 and the Tohjo Falls are exempt
   from the permits: they are walked twice, the first time on arrival.
-- **Note:** Kanto's Victory Road needs Rock Smash. On `VictoryRoad_1F_Frlg`
-  the breakable rocks at (7,19) and (6,10) (752eca56bd) close the way from
-  Route 23 to the ladder up to 2F. HM06 comes only from Giovanni with the
-  eighth badge (`ViridianCity_Gym_Frlg`), so the order holds; moving HM06
-  or these rocks changes it.
+- **Notes (as built):**
+  - Kanto's Victory Road needs Rock Smash. On `VictoryRoad_1F_Frlg` the
+    breakable rocks at (7,19) and (6,10) (752eca56bd) close the way from
+    Route 23 to the ladder up to 2F. HM06 comes only from Giovanni with the
+    eighth badge (`ViridianCity_Gym_Frlg`), so the order holds; moving HM06
+    or these rocks changes it.
+  - Whirlpool has no permit. The whirlpools (Route 41, Dragon's Den) open
+    with the seventh Johto badge (Pryce) alone; neither the HM nor a
+    Pokemon that knows Whirlpool is checked (`EventScript_Whirlpool`,
+    `data/scripts/field_move_scripts_hns.inc`).
+  - New Bark Town's east shore is the town's own water, not the exempt
+    Route 27. On foot the way back east to Route 27 and Kanto therefore
+    opens with Morty's Surf permit; before that only Fly leads back.
 - **Evidence:** 0bcda4eed1, c569114c6b, 4f711ce15d, f7ec752555,
   71301e75a1, 9c9eac68df, cf857f4e0e.
 
