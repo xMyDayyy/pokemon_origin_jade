@@ -16,7 +16,6 @@
 2 src/intro_hns.c -Wunused-function
 1 src/match_call.c -Wunused-function
 2 src/menu.c -Wunused-variable
-1 src/nuzlocke.c -Wunused-variable
 2 src/pokedex_area_screen.c -Wunused-variable
 1 src/pokemon_summary_screen.c -Wunused-function
 1 src/pokenav_match_call_data.c -Wunused-function
