@@ -10335,14 +10335,14 @@ u16 GetFirstAliveBoxPokemon(void)
     return IN_BOX_COUNT * TOTAL_BOXES_COUNT;
 }
 
-void MoveFirstBoxPokemonToParty(void)
+void MoveFirstBoxPokemonToParty(u32 partySlot)
 {
     u16 position = GetFirstAliveBoxPokemon();
     if (position != IN_BOX_COUNT * TOTAL_BOXES_COUNT)
     {
         u16 boxNum = position / IN_BOX_COUNT;
         u16 boxIndex = position - (boxNum * IN_BOX_COUNT);
-        BoxMonAtToMon(boxNum, boxIndex, &gPlayerParty[0]);
+        BoxMonAtToMon(boxNum, boxIndex, &gPlayerParty[partySlot]);
         PurgeMonOrBoxMon(boxNum, boxIndex);
     }
 }

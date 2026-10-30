@@ -1060,7 +1060,11 @@ dated 2026-10-10 or later were decided directly.
     Space Center) this happens to the player's own Pokemon once the party
     is restored after the battle (multi battle macros in
     `asm/macros/battle_frontier/battle_tower.inc`).
-- **Evidence:** audit 2026-10-30 (A23, A25, A30, A83).
+  - Whiteout: fainted party members die as above; eggs and members that can
+    still fight stay. If none can fight, the first living Pokemon from the
+    PC joins in the first free slot, a level 1 Rattata when the PC has none
+    (`NuzlockeRefillPartyAfterWhiteOut`). Hart deletes the save instead.
+- **Evidence:** audit 2026-10-30 (A23, A25, A30, A79, A83).
 
 ---
 

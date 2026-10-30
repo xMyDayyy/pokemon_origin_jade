@@ -510,6 +510,42 @@ void NuzlockeDeleteFaintedAfterPartnerBattle(void)
     }
 }
 
+// Whiteout: fainted party members die, eggs and members that can fight stay. If none can
+// fight, the first living PC mon (else a level 1 Rattata) joins in the first free slot.
+void NuzlockeRefillPartyAfterWhiteOut(void)
+{
+    u32 i, freeSlot = PARTY_SIZE;
+    bool32 canFight = FALSE;
+
+    NuzlockeDeleteFaintedPartyPokemon();
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) == SPECIES_NONE)
+        {
+            if (freeSlot == PARTY_SIZE)
+                freeSlot = i;
+        }
+        else if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
+        {
+            canFight = TRUE;
+        }
+    }
+
+    if (!canFight && freeSlot < PARTY_SIZE)
+    {
+        if (GetFirstAliveBoxPokemon() == IN_BOX_COUNT * TOTAL_BOXES_COUNT)
+        {
+            CreateMon(&gPlayerParty[freeSlot], SPECIES_RATTATA, 1, 0, OTID_STRUCT_PLAYER_ID);
+            CalculateMonStats(&gPlayerParty[freeSlot]);
+        }
+        else
+        {
+            MoveFirstBoxPokemonToParty(freeSlot);
+        }
+    }
+    CalculatePlayerPartyCount();
+}
+
 u8 NuzlockeGetCurrentRegionMapSectionId(void)
 {
     return GetCurrentRegionMapSectionId();
