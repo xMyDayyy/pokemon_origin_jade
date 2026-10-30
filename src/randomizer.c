@@ -71,7 +71,8 @@ bool32 RandomizerFeatureEnabled(enum RandomizerFeature feature)
             #ifdef FORCE_RANDOMIZE_FIELD_ITEMS
                 return FORCE_RANDOMIZE_FIELD_ITEMS;
             #else
-                return settings->tx_Random_Items && FlagGet(FLAG_RECEIVED_FIRST_BALLS);
+                // Active from the first starter on; Oak's Poke Balls bypass it.
+                return settings->tx_Random_Items && FlagGet(FLAG_SYS_POKEMON_GET);
             #endif
         case RANDOMIZE_TRAINER_MON:
             #ifdef FORCE_RANDOMIZE_TRAINER_MON

@@ -2170,6 +2170,13 @@
 	callstd STD_OBTAIN_ITEM
 	.endm
 
+	@ Origin Jade: giveitem without the item randomizer, for prizes the player pays for.
+	.macro giveitem_norandom item:req, amount=1
+	setorcopyvar VAR_0x8000, \item
+	setorcopyvar VAR_0x8001, \amount
+	call EventScript_ObtainItemNoRandomizer
+	.endm
+
 	@ HnS: giveitem for gifts that exist in Johto/Kanto and in Hoenn. Skips the
 	@ gift with a notice when a second copy is useless (CheckItemHandoverPointless).
 	@ VAR_RESULT stays TRUE when skipped.
@@ -2926,14 +2933,22 @@ HnsItemDone_\@:
 	.endm
 
 	@ Adds the specified item to the bag, then prints a message with fanfare. See description of msgreceiveditem.
-	@ Origin Jade: the item goes through the item randomizer first.
+	@ Origin Jade: the item goes through the item randomizer first; a changed item gets
+	@ the generic giveitem message instead of 'msg'.
 	.macro giveitem_msg msg:req, item:req, amount=1, fanfare=MUS_LEVEL_UP
 	setorcopyvar VAR_0x8000, \item
 #if RANDOMIZER_AVAILABLE
 	callnative ObtainItemRandomize_NativeCall
+	goto_if_ne VAR_0x8000, \item, GiveItemMsgRandomized_\@
 #endif
 	additem VAR_0x8000, \amount
 	msgreceiveditem \msg, VAR_0x8000, \amount, \fanfare
+#if RANDOMIZER_AVAILABLE
+	goto GiveItemMsgDone_\@
+GiveItemMsgRandomized_\@:
+	giveitem_norandom VAR_0x8000, \amount
+GiveItemMsgDone_\@:
+#endif
 	.endm
 
 	@ Depends on the provided function. With the default argument, unlocks the specified entry in the Fame Checker.

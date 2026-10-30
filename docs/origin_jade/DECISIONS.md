@@ -475,12 +475,23 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-11.
 
 ### D-023 Randomizer without a GEN SCOPE row
-- **Status:** Active
+- **Status:** Active (changed 2026-10-30)
 - **Decision:** HnS's GEN SCOPE option (randomizer pool limited to Gen 1-3
   families) stays in the code and the save, but has no row in the challenge
   menu and is off (`RANDOMIZER_DEFAULT_GEN_SCOPE_1_3` FALSE in
   `include/config/randomizer.h`). Gen 4-9 and the regional forms are off in
   `species_enabled.h`, so both settings give the same pool.
+  - Items ("Items: Zufall", `src/randomizer.c`): item balls, hidden items
+    and NPC gifts are randomized from the first starter on
+    (`FLAG_SYS_POKEMON_GET`), so in all three regions. Key items, HMs and
+    the GS Ball keep their place. Oak's five Poke Balls (after the Pokedex
+    and the refill after the Route 22 rival) and the coin prizes of
+    Celadon's prize room (`giveitem_norandom`) bypass the randomizer. Other
+    exchanges that use `giveitem` (Cerulean's Berry Powder man, Route 113's
+    Glass Workshop) still go through it. A Kanto gift with its own receive
+    text (`giveitem_msg`: the gym leaders' TMs, the Master Ball, the Amulet
+    Coin and others) gets the generic obtain message when its item was
+    changed; the dialogue around it still names the original item.
 - **Evidence:** b0a460c224, 6a6a4fcaec, c3c361d4b4. The row came in with
   6a6a4fcaec, the default TRUE with cc58e0c648; both reverted 2026-10-12.
 

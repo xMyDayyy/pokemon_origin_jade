@@ -274,7 +274,8 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_TryGivePrize::
 	goto_if_eq VAR_RESULT, FALSE, CeladonCity_GameCorner_PrizeRoom_EventScript_BagFull
 	removecoins VAR_TEMP_2
 	updatecoinsbox 0, 5
-	giveitem VAR_TEMP_1
+	@ Origin Jade: coin prizes bypass the item randomizer.
+	giveitem_norandom VAR_TEMP_1
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
 	end
 
