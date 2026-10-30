@@ -163,9 +163,13 @@ RadioTower1F_EventScript_ReceptionGivePrize::
 	removeobject LOCALID_GOLDENROD_RADIOTOWER_WHITNEY
 	setflag FLAG_WON_GOLDENROD_RADIO_QUIZ
 	setflag FLAG_HIDE_GOLDENROD_BEAUTY
-	setvar VAR_GOLDENROD_CITY_STATE, 2
+	call_if_lt VAR_GOLDENROD_CITY_STATE, 2, RadioTower1F_EventScript_SetQuizWonState
 	release
 	end
+
+RadioTower1F_EventScript_SetQuizWonState::
+	setvar VAR_GOLDENROD_CITY_STATE, 2
+	return
 
 GoldenrodCity_RadioTower_4F_Movement_WhitneyLeave:
 	face_left
