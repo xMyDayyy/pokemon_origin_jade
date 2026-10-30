@@ -82,6 +82,9 @@ static u32 *GetHillTimes(void);
 static void SetTrainerHillMonLevel(struct Pokemon *mon, u8 level);
 #if FREE_TRAINER_HILL == FALSE
 static u16 GetPrizeItemId(void);
+#if IS_HNS
+static u32 GetPrizeMoney(s32 minutes);
+#endif
 #endif //FREE_TRAINER_HILL
 
 // const data
@@ -670,6 +673,10 @@ static void GiveChallengePrize(void)
     else if (AddBagItem(itemId, 1) == TRUE)
     {
         CopyItemName(itemId, gStringVar2);
+#if IS_HNS
+        if (IsHnsTrainerHill())
+            AddMoney(&gSaveBlock1Ptr->money, GetPrizeMoney((signed)(gSaveBlock1Ptr->trainerHill.timer) / (60 * 60)));
+#endif
         gSaveBlock1Ptr->trainerHill.receivedPrize = TRUE;
         gSaveBlock2Ptr->frontier.unk_EF9 = 0;
         gSpecialVar_Result = 0;
@@ -1412,10 +1419,6 @@ static u16 GetPrizeItemId(void)
     // entering the Hall of Fame, there would be 1 additional prize possibility (ITEM_MAX_ETHER)
     // as Normal / Unique modes would use sPrizeListSets[0][3] / sPrizeListSets[1][3] respectively.
     minutes = (signed)(gSaveBlock1Ptr->trainerHill.timer) / (60 * 60);
-#if IS_HNS
-    if (IsHnsTrainerHill())
-        AddMoney(&gSaveBlock1Ptr->money, GetPrizeMoney(minutes));
-#endif
     if (minutes < 12)
         id = 0; // Depends on list
     else if (minutes < 13)
