@@ -362,7 +362,7 @@ RocketHideout_B2F_EventScript_DoLanceMultiBattle::
 	applymovement LOCALID_ROCKETHIDEOUT2_GRUNT, Common_Movement_WalkUp1
 	waitmovement 0
 	turnobject LOCALID_ROCKETHIDEOUT2_GRUNT, DIR_WEST
-	multi_2_vs_2 TRAINER_ARIANA_1_HNS, Debug_Text_ArianaDefeat, TRAINER_GRUNT_23_HNS, Debug_Text_Grunt23Defeat, PARTNER_LANCE_HNS
+	multi_2_vs_2 TRAINER_ARIANA_1_HNS, RocketHideout_B2F_Text_ArianaLoss, TRAINER_GRUNT_23_HNS, RocketHideout_B2F_Text_GruntLoss, PARTNER_LANCE_HNS
 	@ special DoSpecialTrainerBattle
 	@ waitstate
 	@ frontier_saveparty
