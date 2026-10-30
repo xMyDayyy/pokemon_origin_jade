@@ -259,7 +259,7 @@ IlexForest_EventScript_Celebi_Event::
 	msgbox IlexForest_Text_ShrineCelebiEvent, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, FALSE, IlexForest_EventScript_Shrine_Cancel
 	msgbox IlexForest_Text_InsertGSBall, MSGBOX_DEFAULT
-	clearflag FLAG_HIDE_CELEBI
+	@ addobject shows Celebi for this scene; FLAG_HIDE_CELEBI stays set.
 	addobject LOCALID_ILEX_FOREST_CELEBI
 	playse SE_M_PETAL_DANCE
 	applymovement LOCALID_ILEX_FOREST_CELEBI, IlexForest_Movement_Celebi1
