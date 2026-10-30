@@ -787,8 +787,11 @@ dated 2026-10-10 or later were decided directly.
     starters are wild at 5 %, day and night, all before the second badge
     - Chikorita in Ilex Forest, Cyndaquil on Route 31, Totodile on Route 32
     (grass on the coast) - and an overworld Pokemon shows each. The
-    share comes from the table's most common species where the slot rates
-    allow (Ilex Forest at night: Paras). Kanto's starters: D-013.
+    Hoenn starters are wild at 5 % around the clock (no night tables
+    there): Treecko in Petalburg Woods, Torchic on Route 113, Mudkip on
+    Route 102. The share comes from the table's most common species where
+    the slot rates allow (Ilex Forest at night: Paras; Petalburg Woods:
+    Wurmple). Kanto's starters: D-013.
   - `src/data/wild_encounters.json`: the plain table is the day table
     (morning, day and evening), the entry with the suffix `_Night` the night
     table (19:00-6:00), right after it. A map without a night table uses its
