@@ -11623,7 +11623,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Fire Fang
 
 === TRAINER_RED_HNS ===
-Name: RED
+Name: Rot
 Class: Pkmn Trainer 1 Hns
 Pic: Red Hns
 Gender: Male
@@ -12346,7 +12346,7 @@ Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BRANDON_BF_BRAIN_HNS ===
-Name: BRANDON
+Name: Brian
 Class: Pyramid King Hns
 Pic: Pyramid King Brandon
 Gender: Male
@@ -12954,7 +12954,7 @@ Level: 55
 - Mud-Slap
 
 === TRAINER_IRWIN_2_HNS ===
-Name: IRWIN
+Name: Erich
 Class: Juggler Hns
 Pic: Juggler Hns
 Gender: Male
@@ -12973,7 +12973,7 @@ Level: 27
 
 
 === TRAINER_IRWIN_3_HNS ===
-Name: IRWIN
+Name: Erich
 Class: Juggler Hns
 Pic: Juggler Hns
 Gender: Male
@@ -12992,7 +12992,7 @@ Level: 35
 
 
 === TRAINER_IRWIN_4_HNS ===
-Name: IRWIN
+Name: Erich
 Class: Juggler Hns
 Pic: Juggler Hns
 Gender: Male
@@ -13011,7 +13011,7 @@ Level: 45
 
 
 === TRAINER_IRWIN_5_HNS ===
-Name: IRWIN
+Name: Erich
 Class: Juggler Hns
 Pic: Juggler Hns
 Gender: Male
@@ -13385,7 +13385,7 @@ Level: 58
 - Tri Attack
 
 === TRAINER_DEREK_2_HNS ===
-Name: DEREK
+Name: Söncke
 Class: Pokefan Hns
 Pic: Pokefan M
 Gender: Male
@@ -13404,7 +13404,7 @@ Level: 27
 
 
 === TRAINER_DEREK_3_HNS ===
-Name: DEREK
+Name: Söncke
 Class: Pokefan Hns
 Pic: Pokefan M
 Gender: Male
@@ -13423,7 +13423,7 @@ Level: 35
 
 
 === TRAINER_DEREK_4_HNS ===
-Name: DEREK
+Name: Söncke
 Class: Pokefan Hns
 Pic: Pokefan M
 Gender: Male
@@ -13442,7 +13442,7 @@ Level: 46
 
 
 === TRAINER_DEREK_5_HNS ===
-Name: DEREK
+Name: Söncke
 Class: Pokefan Hns
 Pic: Pokefan M
 Gender: Male
@@ -13960,7 +13960,7 @@ Level: 37
 - Moonlight
 
 === TRAINER_BEVERLY_2_HNS ===
-Name: BEVERLY
+Name: Irmgard
 Class: Parasol Lady Hns
 Pic: Parasol Lady
 Gender: Male
@@ -13979,7 +13979,7 @@ Level: 27
 
 
 === TRAINER_BEVERLY_3_HNS ===
-Name: BEVERLY
+Name: Irmgard
 Class: Parasol Lady Hns
 Pic: Parasol Lady
 Gender: Male
@@ -13998,7 +13998,7 @@ Level: 36
 
 
 === TRAINER_BEVERLY_4_HNS ===
-Name: BEVERLY
+Name: Irmgard
 Class: Parasol Lady Hns
 Pic: Parasol Lady
 Gender: Male
@@ -14017,7 +14017,7 @@ Level: 46
 
 
 === TRAINER_BEVERLY_5_HNS ===
-Name: BEVERLY
+Name: Irmgard
 Class: Parasol Lady Hns
 Pic: Parasol Lady
 Gender: Male
@@ -17391,7 +17391,7 @@ Level: 79
 - Dragon Dance  
 
 === TRAINER_RED_POSTOBC_HNS ===
-Name: RED
+Name: Rot
 Class: Pkmn Trainer 1 Hns
 Pic: Red Hns
 Gender: Male
