@@ -56,6 +56,10 @@ struct ScalingCorridor
     u16 mapsec;
     u8 floor;
     u8 ceiling;
+    // Optional: storyCeiling replaces ceiling while var storyVar is below storyValue.
+    u8 storyCeiling;
+    u16 storyVar;
+    u16 storyValue;
 };
 
 struct ScalingRules
@@ -208,7 +212,12 @@ static bool32 FindCorridor(const struct ScalingRules *rules, u16 mapsec, u8 *flo
             if (floor != NULL)
                 *floor = rules->corridors[i].floor;
             if (ceiling != NULL)
+            {
                 *ceiling = rules->corridors[i].ceiling;
+                if (rules->corridors[i].storyVar != 0
+                 && VarGet(rules->corridors[i].storyVar) < rules->corridors[i].storyValue)
+                    *ceiling = rules->corridors[i].storyCeiling;
+            }
             return TRUE;
         }
     }

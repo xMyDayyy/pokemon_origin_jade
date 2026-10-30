@@ -71,7 +71,7 @@ def johto_stages():
     """Map section -> (corridor floor, ceiling); the floor identifies the stage."""
     s = open(os.path.join(REPO, 'include/config/johto_scaling.h'), encoding='utf-8').read()
     out = {}
-    for m in re.finditer(r'\{\s*(MAPSEC_\w+),\s*(\d+),\s*(\d+)\s*\}', s):
+    for m in re.finditer(r'\{\s*(MAPSEC_\w+),\s*(\d+),\s*(\d+)\s*[,}]', s):
         out[m.group(1)] = (int(m.group(2)), int(m.group(3)))
     return out
 

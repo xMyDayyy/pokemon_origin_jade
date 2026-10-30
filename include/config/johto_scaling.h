@@ -8,6 +8,8 @@
 // the three highest party levels, at most SCALING_ANCHOR_MAX_DROP below
 // the highest, include/level_scaling.h), clamped to the area's corridor
 // {map section, floor, ceiling} below. Areas missing there are not scaled.
+// Optional {..., lower ceiling, var, value}: the lower ceiling holds while
+// the var is below the value.
 // Levels in trainers_hns.party only set the gaps within a team.
 // =====================================================================
 
@@ -67,14 +69,14 @@
     { MAPSEC_ROUTE_46,          41,  50 }, \
     /* Tier 2: Whitney and Morty (44-53) */ \
     { MAPSEC_ROUTE_34,          44,  53 }, \
-    /* Radio Tower after Pryce */ \
-    { MAPSEC_GOLDENROD_CITY,    44,  61 }, \
+    /* Radio Tower after Pryce: 61 from the takeover (Elm's call) */ \
+    { MAPSEC_GOLDENROD_CITY,    44,  61, 53, VAR_MAHOGANY_TOWN_STATE, 16 }, \
     { MAPSEC_ROUTE_35,          44,  53 }, \
     { MAPSEC_NATIONAL_PARK,     44,  53 }, \
     { MAPSEC_ROUTE_36,          44,  53 }, \
     { MAPSEC_ROUTE_37,          44,  53 }, \
-    /* Theater with eight badges */ \
-    { MAPSEC_ECRUTEAK_CITY,     44,  61 }, \
+    /* Theater with eight badges: 61 from Elm's Master Ball */ \
+    { MAPSEC_ECRUTEAK_CITY,     44,  61, 53, VAR_ECRUTEAK_CITY_THEATER, 4 }, \
     { MAPSEC_BURNED_TOWER,      44,  53 }, \
     /* Only with eight badges: tier 5 */ \
     { MAPSEC_TIN_TOWER,         56,  64 }, \

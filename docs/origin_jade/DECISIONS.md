@@ -245,7 +245,7 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-012 Johto and Hoenn: dynamic level scaling
 - **Status:** Active (anchor, bands and corridors changed 2026-10-29,
-  battle partners changed 2026-10-30)
+  battle partners and the Goldenrod/Ecruteak ceilings changed 2026-10-30)
 - **Decision:** Johto and Hoenn scale to the player (`src/level_scaling.c`,
   `include/config/johto_scaling.h`, `include/config/hoenn_scaling.h`).
   - Anchor, in every region: the mean of the three highest party levels,
@@ -255,8 +255,11 @@ dated 2026-10-10 or later were decided directly.
   - Trainers: anchor -3..+0 (Hoenn -5..+0), a boss's ace +1. Wild Pokemon:
     anchor -10..-4. Corridors per map section clamp both.
   - Johto corridors: Routes 26 and 27, Tohjo Falls 40-80; arrival up to
-    Bugsy 41-50 (Cherrygrove 41-48); Whitney and Morty 44-53 (Goldenrod and
-    Ecruteak 44-61: Radio Tower, theater); Chuck and Jasmine 47-55; Rocket
+    Bugsy 41-50 (Cherrygrove 41-48); Whitney and Morty 44-53 (Goldenrod
+    44-61 from the Radio Tower takeover, `VAR_MAHOGANY_TOWN_STATE` 16;
+    Ecruteak 44-61 from Elm's Master Ball, which opens the theater's
+    legendary event, `VAR_ECRUTEAK_CITY_THEATER` 4; optional story
+    ceilings in the corridor table); Chuck and Jasmine 47-55; Rocket
     Hideout and Pryce 50-58; Clair, Tin Tower and the Whirl Islands 56-64;
     Victory Road and the league 58-65; Mt. Silver 70-90 (Red unscaled).
   - Hoenn corridors: entry 65-85, early middle 70-90, late middle 75-95,
