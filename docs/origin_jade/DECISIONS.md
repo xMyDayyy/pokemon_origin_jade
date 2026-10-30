@@ -1179,19 +1179,21 @@ dated 2026-10-10 or later were decided directly.
     still fight stay. If none can fight, the first living Pokemon from the
     PC joins in the first free slot, a level 1 Rattata when the PC has none
     (`NuzlockeRefillPartyAfterWhiteOut`). Hart deletes the save instead.
-  - Nicknames ("Spitzname"): caught and hatched Pokemon and gifts through
-    the common receive scripts (`Common_EventScript_GiftMon`) open the
-    naming screen without asking. The rule does not wait for
-    `FLAG_START_NUZLOCKE`; it holds from the start of the game. Other
-    gifts do so through `Common_EventScript_AskNicknameGiftPartyMon` /
-    `...BoxMon` (`data/event_scripts.s`) or the same check in their own
-    script:
+  - Nicknames ("Spitzname"): caught and hatched Pokemon (also from gift
+    eggs such as Togepi and Wynaut) and gifts through the common receive
+    scripts (`Common_EventScript_GiftMon`) open the naming screen without
+    asking. The rule does not wait for `FLAG_START_NUZLOCKE`; it holds
+    from the start of the game. Other gifts do so through
+    `Common_EventScript_AskNicknameGiftPartyMon` / `...BoxMon`
+    (`data/event_scripts.s`) or the same check in their own script:
     - Kanto: the starter (Oak's lab), Lapras, Eevee, the Dojo's Pokemon,
       the fossils, the Game Corner prizes, the Magikarp on Route 4;
     - Johto: the starter, also when it goes to the PC (Elm's lab), the
       Game Corner prizes, Bill's Eevee, the elder's special Dratini, the
       fossils of the Ruins of Alph's lab, but not Kenya and Shuckie, who
-      keep the nickname of their former trainer.
+      keep the nickname of their former trainer;
+    - Hoenn: Castform (Weather Institute), the fossils at Devon, and after
+      the title, outside the Nuzlocke, Beldum and Birch's Johto starters.
   - Open: deaths in the Trainer Hills (O-028).
 - **Evidence:** audit 2026-10-30 (A23, A25, A30, A79, A83, A87); owner
   decision 2026-10-30 (rules as usual in the Nuzlocke community: static
