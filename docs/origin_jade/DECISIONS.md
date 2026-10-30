@@ -499,6 +499,9 @@ dated 2026-10-10 or later were decided directly.
     the chaos mode each item has its own fixed result, seeded by the trainer
     ID, the map, the local ID (item ball, NPC) or the hidden flag (hidden
     item) and the original item.
+  - Trainers ("Trainer: Zufall"): each opponent's team is seeded by its
+    trainer constant, team size and slot (after the level scaling's species
+    choice), so two trainers of one class get different teams.
 - **Evidence:** b0a460c224, 6a6a4fcaec, c3c361d4b4. The row came in with
   6a6a4fcaec, the default TRUE with cc58e0c648; both reverted 2026-10-12.
 

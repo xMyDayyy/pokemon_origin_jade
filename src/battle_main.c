@@ -2074,7 +2074,7 @@ static u8 CreateNPCTrainerPartyWithId(struct Pokemon *party, const struct Traine
                 u8 scaledLvl = ScaleTrainerMonLevel(trainer, partyData[monIndex].lvl, scalingPartyMaxLvl);
                 u16 species = ScaleTrainerMonSpecies(partyData[monIndex].species, scaledLvl, trainerId, monIndex);
                 #if RANDOMIZER_AVAILABLE == TRUE
-                species = RandomizeTrainerMon(trainer->trainerClass, i, monsCount, species);
+                species = RandomizeTrainerMon(trainerId, i, monsCount, species);
                 #endif
                 CreateMon(&party[i], species, scaledLvl, personalityValue, otId);
             }
