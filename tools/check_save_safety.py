@@ -17,6 +17,11 @@ Checks:
               cleared on the way into a new game (new game speech).
   migrations  Origin Jade save migrations in LoadGameSave: each flag lies in
               the Origin Jade block and is set by new games (D-017).
+  hof         Hall of Fame team limits of all implementations and the title
+              scripts (setrespawn before the Hall of Fame special, nothing
+              but waitstate/release/end after it).
+  rtc         Content that needs a running RTC and the default RTC type.
+  link        Link, Union Room and Mystery Gift features on active maps.
 
 Active maps are those with game_version "hns" in map.json (D-018). Maps of
 locked content (LOCKED_MAPSECS) and, with --maps-json, maps the map checker
@@ -747,10 +752,165 @@ def check_migrations(repo, ctx):
     return findings
 
 
+# --------------------------------------------------------------- check: hof
+
+HOF_SPECIALS = ("GameClear", "GameClearNoCredits", "EnterHallOfFame")
+
+
+def check_hof(repo, ctx):
+    findings = []
+    limits = {}
+    for path in sorted(glob.glob(repo.path("src/hall_of_fame*.c"))):
+        rel = os.path.relpath(path, repo.root)
+        for no, line in enumerate(repo.lines(rel), 1):
+            m = re.match(r"#define HALL_OF_FAME_MAX_TEAMS\s+(\d+)", line)
+            if m:
+                limits[rel] = (int(m.group(1)), no)
+    viewer = None
+    if repo.exists("src/hof_pc.c"):
+        text = repo.text("src/hof_pc.c")
+        # The jade build is not IS_FRLG: take the else branch if there is one.
+        m = re.search(r"if \(IS_FRLG\)\s*SetMainCallback2\(\w+\);\s*else\s*SetMainCallback2\((\w+)\)", text) \
+            or re.search(r"SetMainCallback2\((\w+)\)", text)
+        if m:
+            for rel in limits:
+                if re.search(r"^void %s\(void\)" % m.group(1), repo.text(rel), re.M):
+                    viewer = (m.group(1), rel)
+    if len({v[0] for v in limits.values()}) > 1:
+        ev = ", ".join("%s:%d = %d" % (rel, no, n) for rel, (n, no) in sorted(limits.items()))
+        text = ("Die Ruhmeshallen-Implementierungen teilen dieselben Save-Sektoren und dieselbe "
+                "struct HallofFameTeam, rechnen aber mit verschiedenen Teamzahlen. Die Kanto-Ruhmeshalle "
+                "(FRLG-Code) schreibt bis zur größeren Zahl; die Johto-/Hoenn-Ruhmeshalle und die "
+                "PC-Anzeige sehen nur die kleinere. Sind mehr Kanto-Teams gespeichert, zeigt der PC "
+                "die neuesten nicht, und der Emerald-Code schiebt nur die ersten Plätze weiter, "
+                "die Einträge dahinter bleiben stehen.")
+        if viewer:
+            text += " PC-Anzeige: %s (%s)." % viewer
+        findings.append(Finding("hof", "nachgewiesen", "klein",
+                                "Ruhmeshalle: unterschiedliche Teamgrenzen", ev, text))
+    for rel in repo.map_scripts():
+        entries = repo.script(rel)
+        for idx, entry in enumerate(entries):
+            if entry[0] != "op" or entry[1] != "special" or not entry[2] or entry[2][0] not in HOF_SPECIALS:
+                continue
+            no = entry[3]
+            has_respawn = every_path_has(repo, rel, idx, lambda e: e[1] == "setrespawn")
+            if not has_respawn:
+                findings.append(Finding("hof", "verdacht", "wichtig",
+                                        "Ruhmeshalle ohne setrespawn davor",
+                                        "%s:%d" % (rel, no),
+                                        "Im HnS-Build übernimmt GameClear lastHealLocation als "
+                                        "Fortsetzungspunkt; ohne setrespawn auf jedem Weg davor geht "
+                                        "es beim Fortsetzen am letzten Pokémon-Center weiter."))
+            for frel, fop, fargs, fno in follow(repo, rel, idx + 1):
+                if fop in ("waitstate", "releaseall", "release", "end"):
+                    continue
+                if is_state_change(fop, fargs) or fop == "clearflag":
+                    findings.append(Finding("hof", "nachgewiesen", "wichtig",
+                                            "Zustand nach dem Ruhmeshallen-Speichern gesetzt",
+                                            "%s:%d -> %s:%d" % (rel, no, frel, fno),
+                                            "%s %s steht nach der Ruhmeshalle; der Spielstand ist "
+                                            "da schon geschrieben." % (fop, ", ".join(fargs))))
+                break
+    ctx["hof_limits"] = limits
+    ctx["notes"].append("hof: Teamgrenzen %s"
+                        % ", ".join("%s=%d" % (r, n) for r, (n, _) in sorted(limits.items())))
+    return findings
+
+
+# --------------------------------------------------------------- check: rtc
+
+def check_rtc(repo, ctx):
+    findings = []
+    weekday_maps = []
+    time_maps = []
+    for rel in repo.map_scripts():
+        text = repo.text(rel)
+        if re.search(r"\bGetWeekday\b", text):
+            weekday_maps.append(rel.split("/")[2])
+        if re.search(r"\b(gettime|GetTimeOfDay|dotimebasedevents)\b", text):
+            time_maps.append(rel.split("/")[2])
+    per_day = []
+    if repo.exists("src/clock.c"):
+        body = re.search(r"^static void UpdatePerDay\([^;{]*\)\s*\{(.*?)\n\}", repo.text("src/clock.c"),
+                         re.S | re.M)
+        if body:
+            per_day = re.findall(r"^\s+(\w+)\((?:daysSince)?\);", body.group(1), re.M)
+    defaults = repo.text("src/new_game.c")
+    m = re.search(r"void SetDefaultChallengeSettings\(void\)\s*\{(.*?)^\}", defaults, re.S | re.M)
+    rtc_default = "tx_Features_RTCType" in (m.group(1) if m else "")
+    menu_callers = []
+    for path in sorted(glob.glob(repo.path("src/*.c"))):
+        rel = os.path.relpath(path, repo.root)
+        if rel == "src/challenge_menu.c":
+            continue
+        for no, line in enumerate(repo.lines(rel), 1):
+            if "CB2_InitChallengeMenu" in line:
+                menu_callers.append("%s:%d" % (rel, no))
+    dummy = re.search(r"sRtcDummy\s*=\s*\{([^}]*)\}", repo.text("src/rtc.c"))
+    text = ("Ohne funktionierende RTC liefert RtcGetInfo immer sRtcDummy (%s); die Uhrzeit steht "
+            "still, es gibt keinen Tageswechsel. UpdatePerDay läuft nie: %s. Wochentagsinhalte "
+            "(special GetWeekday) sehen immer denselben Tag: %s. Uhrzeitabhängige Skripte: %d Karten. "
+            % ((dummy.group(1).strip() if dummy else "?"), ", ".join(per_day) or "?",
+               ", ".join(weekday_maps) or "keine", len(time_maps)))
+    text += ("Der RTC-Typ steht in ChallengeSettings.tx_Features_RTCType; SetDefaultChallengeSettings "
+             "%s (Standard 0: Hardware-RTC), änderbar nur im Challenge-Menü des neuen Spiels (%s)."
+             % ("setzt ihn" if rtc_default else "setzt ihn nicht", ", ".join(menu_callers) or "?"))
+    findings.append(Finding("rtc", "nachgewiesen", "wichtig",
+                            "Ohne RTC: kein Tageswechsel, Wochentag fest",
+                            "src/rtc.c RtcGetInfo/sRtcDummy; src/clock.c UpdatePerDay; src/new_game.c "
+                            "SetDefaultChallengeSettings", text))
+    ctx["rtc"] = {"weekday_maps": weekday_maps, "time_maps": time_maps, "per_day": per_day}
+    return findings
+
+
+# -------------------------------------------------------------- check: link
+
+LINK_SCRIPT_RE = re.compile(r"CableClub|UnionRoom|WirelessClub|DirectCorner|RecordCorner|TradeCenter|"
+                            r"Colosseum|MysteryGift|MysteryEvent|LinkContest|WonderNews|RecordMix")
+LINK_SPECIAL_RE = re.compile(r"\bspecial\s+(TryTradeLinkup|TryBattleLinkup|TryBecomeLinkLeader|"
+                             r"TryJoinLinkGroup|TryRecordMixLinkup|TryContest\w*Linkup|DoCableClubWarp|"
+                             r"TrySetBattleTowerLinkType|EnableMysteryGift|EnableMysteryEvent)\b")
+
+
+def check_link(repo, ctx):
+    findings = []
+    attendants = collections.defaultdict(list)
+    for name in sorted(repo.active_maps):
+        data = repo.map_json[name]
+        for e in data.get("object_events", []) + data.get("bg_events", []):
+            script = str(e.get("script", ""))
+            if LINK_SCRIPT_RE.search(script) and not name.startswith(("UnionRoom", "TradeCenter",
+                                                                     "BattleColosseum", "RecordCorner")):
+                attendants[script].append("%s (%s,%s)" % (name, e.get("x"), e.get("y")))
+    specials = []
+    mg_enable = []
+    for rel in repo.map_scripts():
+        for no, line in enumerate(repo.lines(rel), 1):
+            m = LINK_SPECIAL_RE.search(line)
+            if m:
+                target = mg_enable if m.group(1).startswith("Enable") else specials
+                target.append("%s:%d %s" % (rel, no, m.group(1)))
+            if re.search(r"setflag\s+FLAG_SYS_MYSTERY_(GIFT|EVENT)_ENABLE", line):
+                mg_enable.append("%s:%d" % (rel, no))
+    if attendants or specials:
+        ev = "; ".join("%s: %d Karten, z. B. %s" % (s, len(v), v[0]) for s, v in sorted(attendants.items()))
+        text = ("Auf aktiven Karten erreichbar: %s. Dazu Link-Specials: %s. Mystery-Gift-Freischaltung "
+                "auf aktiven Karten: %s." % (ev, "; ".join(specials) or "keine",
+                                             "; ".join(mg_enable) or "keine (Menüpunkt nur per Debug)"))
+        evidence = "%d Ansprechpartner-Skripte, %d Link-Specials" % (len(attendants), len(specials))
+        findings.append(Finding("link", "nachgewiesen", "optional",
+                                "Link-Funktionen im Jade-Build erreichbar", evidence, text))
+    ctx["link"] = {"attendants": dict(attendants), "specials": specials,
+                   "mg_enable": mg_enable}
+    return findings
+
+
 # ------------------------------------------------------------------- driver
 
 CHECKS = [("pockets", check_pockets), ("gifts", check_gifts), ("newgame", check_newgame),
-          ("migrations", check_migrations)]
+          ("migrations", check_migrations), ("hof", check_hof), ("rtc", check_rtc),
+          ("link", check_link)]
 
 
 def main():
@@ -806,8 +966,9 @@ def main():
     if args.json:
         with open(args.json, "w", encoding="utf-8") as out:
             json.dump({"repo": repo.root, "findings": [f.as_dict() for f in findings],
-                       "pockets": ctx.get("pocket_lines"), "key_items": ctx.get("key_items")},
-                      out, ensure_ascii=False, indent=1)
+                       "pockets": ctx.get("pocket_lines"), "key_items": ctx.get("key_items"),
+                       "hof_limits": ctx.get("hof_limits"), "rtc": ctx.get("rtc"),
+                       "link": ctx.get("link")}, out, ensure_ascii=False, indent=1)
     return 1 if any(f.severity in ("blocker", "kritisch") for f in findings) else 0
 
 
