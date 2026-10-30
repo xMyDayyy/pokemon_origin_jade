@@ -52,6 +52,7 @@
 #include "constants/map_groups.h"
 #include "constants/items.h"
 #include "difficulty.h"
+#include "challenge_menu.h"
 #include "follower_npc.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
@@ -148,6 +149,9 @@ void SetDefaultChallengeSettings(void)
     gSaveblock3.challengeSettings.tx_Mode_InfiniteTMs        = 1;
     gSaveblock3.challengeSettings.tx_Mode_Mints              = 1;
     gSaveblock3.challengeSettings.tx_Mode_PoisonSurvive      = 1;
+
+    // No one-type challenge (0 would be TYPE_NONE)
+    gSaveblock3.challengeSettings.tx_Challenges_OneTypeChallenge = ONE_TYPE_OFF;
 
     // Randomizer defaults (shown when Randomizer is ON)
     gSaveblock3.challengeSettings.tx_Random_Similar          = 1;

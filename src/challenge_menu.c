@@ -1143,7 +1143,6 @@ static const u8 *const sDesc_EvoLimit[] = {
     COMPOUND_STRING("{PKMN} können sich gar nicht entwickeln!"),
 };
 #define NUM_ONE_TYPE_CHOICES 20
-#define ONE_TYPE_OFF 31
 #define EVO_LINE_TYPE_SEARCH_DEPTH 4 // deepest evolution chain worth walking
 
 #if GERMAN
@@ -2390,7 +2389,7 @@ bool32 HMsOverwriteOptionActive(void)
             || cs->tx_Random_Evolutions
             || cs->tx_Random_EvolutionMethods
             || cs->tx_Challenges_PartyLimit != 0
-            || cs->tx_Challenges_OneTypeChallenge != ONE_TYPE_OFF);
+            || IsOneTypeChallengeActive());
 }
 
 u8 GetMaxPartySize(void)
@@ -2479,7 +2478,10 @@ bool8 IsPokecenterChallengeActivated(void)
 
 bool8 IsOneTypeChallengeActive(void)
 {
-    return gSaveBlock3Ptr->challengeSettings.tx_Challenges_OneTypeChallenge != ONE_TYPE_OFF;
+    u8 type = gSaveBlock3Ptr->challengeSettings.tx_Challenges_OneTypeChallenge;
+
+    // TYPE_NONE (zeroed SaveBlock3) counts as off, as in the menu.
+    return type != ONE_TYPE_OFF && type != TYPE_NONE;
 }
 
 // Returns TRUE if the species has the given type, or if any species it can
