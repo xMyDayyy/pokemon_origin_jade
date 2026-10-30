@@ -4,17 +4,7 @@ FuchsiaCity_Frlg_MapScripts::
 
 FuchsiaCity_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_FUCHSIA_CITY
-	call_if_set FLAG_GOT_DOME_FOSSIL, FuchsiaCity_EventScript_SetOmanyteGfx
-	call_if_unset FLAG_GOT_DOME_FOSSIL, FuchsiaCity_EventScript_SetKabutoGfx
 	end
-
-FuchsiaCity_EventScript_SetOmanyteGfx::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_OMANYTE
-	return
-
-FuchsiaCity_EventScript_SetKabutoGfx::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_KABUTO
-	return
 
 FuchsiaCity_EventScript_LittleBoy::
 	msgbox FuchsiaCity_Text_DidYouTrySafariGame, MSGBOX_NPC
@@ -126,18 +116,9 @@ FuchsiaCity_EventScript_LaprasSign::
 	releaseall
 	end
 
+@ Origin Jade: Omanyte, like the zoo's fixed sprite.
 FuchsiaCity_EventScript_FossilMonSign::
 	lockall
-	goto_if_set FLAG_GOT_DOME_FOSSIL, FuchsiaCity_EventScript_OmanyteSign
-	setvar VAR_0x8004, SPECIES_KABUTO
-	special SetSeenMon
-	showmonpic SPECIES_KABUTO, 10, 3
-	msgbox FuchsiaCity_Text_KabutoSign
-	hidemonpic
-	releaseall
-	end
-
-FuchsiaCity_EventScript_OmanyteSign::
 	setvar VAR_0x8004, SPECIES_OMANYTE
 	special SetSeenMon
 	showmonpic SPECIES_OMANYTE, 10, 3
@@ -318,6 +299,7 @@ FuchsiaCity_Text_OmanyteSign::
 	.string "regenerated from a fossil.$"
 #endif
 
+@ Unused
 FuchsiaCity_Text_KabutoSign::
 #if GERMAN
 	.string "Name: Kabuto\p"
