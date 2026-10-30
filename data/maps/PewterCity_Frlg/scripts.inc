@@ -1152,4 +1152,5 @@ PewterCity_Text_RunningShoesLetterFromMom::
 PewterCity_EventScript_AideAlreadyHasShoes::
 	setflag FLAG_HIDE_PEWTER_CITY_RUNNING_SHOES_GUY
 	removeobject LOCALID_PEWTER_AIDE
+	setvar VAR_MAP_SCENE_PEWTER_CITY, 2
 	return
