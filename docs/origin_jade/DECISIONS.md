@@ -1027,6 +1027,19 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-30 (make the Route 111 hill work instead of
   retiring it).
 
+### D-045 Nuzlocke rules
+- **Status:** Active (2026-10-30). The end point waits for the owner's
+  confirmation (O-025).
+- **Decision:** The challenge menu's Nuzlocke (`src/nuzlocke.c`) works like
+  this in Origin Jade:
+  - Start and end: it starts at Oak's Pokedex handover in Kanto
+    (`FLAG_START_NUZLOCKE`, D-004) and ends at the first Hoenn title, the end
+    of the game (`FLAG_END_NUZLOCKE`, set in Hoenn's Hall of Fame before the
+    save, D-028). Red on Mt. Silver does not end it. Afterwards none of its
+    rules applies: no encounter limit, no deaths, no nickname rule, no save
+    deletion on a whiteout.
+- **Evidence:** audit 2026-10-30 (A23).
+
 ---
 
 ## Planned, not built yet
@@ -1127,6 +1140,8 @@ dated 2026-10-10 or later were decided directly.
   `MUS_HG_VICTORY_TRAINER`), and Hoenn-only mapsec rules (rival name, item
   texts, Hoenn licenses) do not apply (D-044). A Hoenn mapsec of their own
   for the seven Emerald `TrainerHill_*` maps would end all of these.
+- **O-025** Nuzlocke end point: the Nuzlocke ends at the first Hoenn title
+  (D-045); until 2026-10-30 it ended when Red was beaten. Owner to confirm.
 
 ## Superseded decisions (kept for the record)
 
