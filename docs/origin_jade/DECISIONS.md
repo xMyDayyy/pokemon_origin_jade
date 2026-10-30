@@ -576,7 +576,8 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-15 (O-013).
 
 ### D-029 Magnet Train, radio quiz and ships
-- **Status:** Active (2026-10-15, ships changed 2026-10-20)
+- **Status:** Active (2026-10-15, ships changed 2026-10-20, Hoenn trips
+  changed 2026-10-30)
 - **Decision:**
   - Kanto has one way into Johto: the gatehouse (D-009). Flying between the
     regions opens with the first Johto visit.
@@ -593,6 +594,13 @@ dated 2026-10-10 or later were decided directly.
   - The sailors at the Kampfzone and on Birth Island sail to Olivine,
     Vermilion or Hoenn. The Hoenn entry has the ports' condition (Johto
     title, maiden voyage done) and uses `Common_EventScript_SailToHoenn`.
+  - Only the first Hoenn trip (`VAR_HOENN_ARRIVAL_STATE` 0) sets the end
+    state of Emerald's intro (`Common_EventScript_HoennSkipIntro`) and lands
+    on the Route 104 pier, where Birch's arrival scene starts. Later trips
+    change no Hoenn state: they dock at Slateport's harbour (where the S.S.
+    Tidal docks) once the player has visited Slateport, otherwise at the
+    Route 104 pier, so a trip never opens a town early. The ticket is not
+    used up.
   - The woman in Olivine City gives the Aurora Ticket only after the Johto
     title (`FLAG_IS_JOHTO_CHAMPION`).
   - Faraway Island and Southern Island are not offered.

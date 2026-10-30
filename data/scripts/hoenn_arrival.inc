@@ -3,6 +3,7 @@
 @ ============================================================
 
 @ Called from both ports as soon as the player picks Hoenn.
+@ Only the first trip sets the intro's end state; see docs/origin_jade/DECISIONS.md, D-029.
 Common_EventScript_SailToHoenn::
 	checkitem ITEM_HOENN_TICKET
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_HoennNoTicket
@@ -11,10 +12,20 @@ Common_EventScript_SailToHoenn::
 	msgbox Common_Text_HoennSetSail, MSGBOX_DEFAULT
 	closemessage
 	fadescreen FADE_TO_BLACK
+	goto_if_ne VAR_HOENN_ARRIVAL_STATE, 0, Common_EventScript_SailToHoennAgain
 	call Common_EventScript_HoennSkipIntro
 	setflag FLAG_HIDE_ROUTE104_HOENN_BIRCH
 	setvar VAR_HOENN_ARRIVAL_STATE, 1
+Common_EventScript_SailToRoute104Pier::
 	warpsilent MAP_ROUTE104, 12, 52
+	waitstate
+	release
+	end
+
+@ Later trips: Slateport's harbour once Slateport was visited, otherwise the Route 104 pier.
+Common_EventScript_SailToHoennAgain::
+	goto_if_unset FLAG_VISITED_SLATEPORT_CITY, Common_EventScript_SailToRoute104Pier
+	warpsilent MAP_SLATEPORT_CITY_HARBOR, 8, 11
 	waitstate
 	release
 	end
