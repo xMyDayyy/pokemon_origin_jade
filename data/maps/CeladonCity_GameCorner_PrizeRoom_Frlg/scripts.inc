@@ -155,14 +155,6 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_PartyFull::
 	release
 	end
 
-CeladonCity_GameCorner_PrizeRoom_EventScript_NicknamePartyMon::
-	getpartysize
-	subvar VAR_RESULT, 1
-	copyvar VAR_0x8004, VAR_RESULT
-	call Common_EventScript_NameReceivedPartyMon
-	goto CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
-	end
-
 CeladonCity_GameCorner_PrizeRoom_EventScript_NeedCoinCase::
 	textcolor NPC_TEXT_COLOR_NEUTRAL
 	msgbox CeladonCity_GameCorner_PrizeRoom_Text_CoinCaseRequired
@@ -182,8 +174,7 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_ReceivedMonParty::
 	message gText_PlayerObtainedTheMon
 	waitmessage
 	waitfanfare
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, CeladonCity_GameCorner_PrizeRoom_EventScript_NicknamePartyMon
+	call Common_EventScript_AskNicknameGiftPartyMon
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
 	end
 
@@ -195,9 +186,7 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_ReceivedMonPC::
 	message gText_PlayerObtainedTheMon
 	waitmessage
 	waitfanfare
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, CeladonCity_GameCorner_PrizeRoom_EventScript_TransferredToPC
-	call Common_EventScript_NameReceivedBoxMon
+	call Common_EventScript_AskNicknameGiftBoxMon
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_TransferredToPC
 	end
 

@@ -1064,7 +1064,13 @@ dated 2026-10-10 or later were decided directly.
     still fight stay. If none can fight, the first living Pokemon from the
     PC joins in the first free slot, a level 1 Rattata when the PC has none
     (`NuzlockeRefillPartyAfterWhiteOut`). Hart deletes the save instead.
-- **Evidence:** audit 2026-10-30 (A23, A25, A30, A79, A83).
+  - Nicknames ("Spitzname"): caught and hatched Pokemon and gifts through
+    the common receive scripts open the naming screen without asking.
+    Kanto's gifts (Lapras, Eevee, the Dojo's Pokemon, the fossils, the Game
+    Corner prizes, the Magikarp on Route 4) do so through
+    `Common_EventScript_AskNicknameGiftPartyMon` / `...BoxMon`
+    (`data/event_scripts.s`).
+- **Evidence:** audit 2026-10-30 (A23, A25, A30, A79, A83, A87).
 
 ---
 

@@ -54,8 +54,14 @@ Route4_PokemonCenter_1F_EventScript_TryBuyMagikarp::
 
 Route4_PokemonCenter_1F_EventScript_BuyMagikarpParty::
 	call Route4_PokemonCenter_1F_EventScript_PayForMagikarp
+	specialvar VAR_RESULT, IsNuzlockeNicknamingActive
+	goto_if_eq VAR_RESULT, TRUE, Route4_PokemonCenter_1F_EventScript_NicknameMagikarpParty
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route4_PokemonCenter_1F_EventScript_EndPurchaseMagikarp
+	goto Route4_PokemonCenter_1F_EventScript_NicknameMagikarpParty
+	end
+
+Route4_PokemonCenter_1F_EventScript_NicknameMagikarpParty::
 	call Common_EventScript_GetGiftMonPartySlot
 	fadescreen FADE_TO_BLACK
 	hidemoneybox
@@ -66,10 +72,17 @@ Route4_PokemonCenter_1F_EventScript_BuyMagikarpParty::
 
 Route4_PokemonCenter_1F_EventScript_BuyMagikarpPC::
 	call Route4_PokemonCenter_1F_EventScript_PayForMagikarp
+	specialvar VAR_RESULT, IsNuzlockeNicknamingActive
+	goto_if_eq VAR_RESULT, TRUE, Route4_PokemonCenter_1F_EventScript_NicknameMagikarpPC
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route4_PokemonCenter_1F_EventScript_TransferMagikarpCloseMoneyBox
+	goto Route4_PokemonCenter_1F_EventScript_NicknameMagikarpPC
+	end
+
+Route4_PokemonCenter_1F_EventScript_NicknameMagikarpPC::
 	fadescreen FADE_TO_BLACK
 	hidemoneybox
+	setvar VAR_0x8004, PC_MON_CHOSEN
 	special ChangePokemonNickname
 	waitstate
 	lock

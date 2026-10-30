@@ -132,10 +132,7 @@ SilphCo_7F_EventScript_ReceiveLaprasParty::
 	waitmessage
 	waitfanfare
 	bufferspeciesname STR_VAR_1, SPECIES_LAPRAS
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, SilphCo_7F_EventScript_EndReceiveLapras
-	call Common_EventScript_GetGiftMonPartySlot
-	call Common_EventScript_NameReceivedPartyMon
+	call Common_EventScript_AskNicknameGiftPartyMon
 	goto SilphCo_7F_EventScript_EndReceiveLapras
 	end
 
@@ -146,9 +143,7 @@ SilphCo_7F_EventScript_ReceiveLaprasPC::
 	waitmessage
 	waitfanfare
 	bufferspeciesname STR_VAR_1, SPECIES_LAPRAS
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, SilphCo_7F_EventScript_LaprasTransferredToPC
-	call Common_EventScript_NameReceivedBoxMon
+	call Common_EventScript_AskNicknameGiftBoxMon
 	goto SilphCo_7F_EventScript_LaprasTransferredToPC
 	end
 

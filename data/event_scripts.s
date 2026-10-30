@@ -1499,6 +1499,22 @@ Common_EventScript_ForceNameReceivedBoxMon::
 	call Common_EventScript_NameReceivedBoxMon
 	call Common_EventScript_TransferredToPC
 	return
+
+@ Nickname step for gifts with their own "received" message: asks, or names right away
+@ under the Nuzlocke nickname rule.
+Common_EventScript_AskNicknameGiftPartyMon::
+	specialvar VAR_RESULT, IsNuzlockeNicknamingActive
+	goto_if_eq VAR_RESULT, TRUE, Common_EventScript_NameReceivedPartyMonFull
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, Common_EventScript_NameReceivedPartyMonFull
+	return
+
+Common_EventScript_AskNicknameGiftBoxMon::
+	specialvar VAR_RESULT, IsNuzlockeNicknamingActive
+	goto_if_eq VAR_RESULT, TRUE, Common_EventScript_NameReceivedBoxMon
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, Common_EventScript_NameReceivedBoxMon
+	return
 	
 Common_EventScript_NameReceivedPartyMonFull::
 	call Common_EventScript_GetGiftMonPartySlot

@@ -76,10 +76,7 @@ SaffronCity_Dojo_EventScript_ReceivedHitmonParty::
 	waitmessage
 	waitfanfare
 	call SaffronCity_Dojo_EventScript_MarkBallTaken
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, SaffronCity_Dojo_EventScript_EndGiveMon
-	call Common_EventScript_GetGiftMonPartySlot
-	call Common_EventScript_NameReceivedPartyMon
+	call Common_EventScript_AskNicknameGiftPartyMon
 	goto SaffronCity_Dojo_EventScript_EndGiveMon
 	end
 
@@ -91,9 +88,7 @@ SaffronCity_Dojo_EventScript_ReceivedHitmonPC::
 	waitmessage
 	waitfanfare
 	call SaffronCity_Dojo_EventScript_MarkBallTaken
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, SaffronCity_Dojo_EventScript_TransferredHitmonToPC
-	call Common_EventScript_NameReceivedBoxMon
+	call Common_EventScript_AskNicknameGiftBoxMon
 	goto SaffronCity_Dojo_EventScript_TransferredHitmonToPC
 	end
 
