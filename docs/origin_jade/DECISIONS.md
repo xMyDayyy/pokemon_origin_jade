@@ -1477,10 +1477,14 @@ dated 2026-10-10 or later were decided directly.
     shown on).
   - Johto Pokedex (`HasAllJohotoMons`, `GetPokedexRatingText`): HnS's
     Johto dex (282 entries) lists Azurill and Wynaut, which count to
-    Hoenn. Elm's and Birch's rating, the trainer card's star and
-    Lilycove's diploma (D-036) leave them out like the mythicals, so
-    the Johto dex can be completed before Hoenn. The seen and caught
-    numbers shown stay as they are.
+    Hoenn. Elm's and Birch's rating, Lilycove's diploma (D-036) and the
+    star count of `CountPlayerTrainerStars` (the nurse's Gold Card
+    greeting at four stars, the Frontier Pass colour) leave them out
+    like the mythicals, so the Johto dex can be completed before Hoenn.
+    The trainer card's stars do not count the Pokedex: in this build
+    `GetHnSTrainerStars` gives one each for the Johto, Kanto and Hoenn
+    titles and for beating Red. The seen and caught numbers shown stay
+    as they are.
 - **Code:** `src/region_rule_oj.c` (the table of national numbers above
   386), `TryUnlockJohtoOnMapLoad` in both map loads of `src/overworld.c`;
   test `test/origin_jade/region_rule.c`.
