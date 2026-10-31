@@ -1,6 +1,7 @@
 #include "global.h"
 #include "daycare.h"
 #include "event_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "region_rule_oj.h"
 #include "test/overworld_script.h"
@@ -211,4 +212,37 @@ TEST("Region rule: a Pikachu pair in Kanto's Day Care gives a Pikachu egg")
     StorePokemonInDaycare(&gPlayerParty[0], &gSaveBlock1Ptr->daycare.mons[1]);
     RUN_OVERWORLD_SCRIPT( special GiveEggFromDaycare; );
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), egg);
+}
+
+TEST("Region rule: species seen in battle wait for their region unless caught")
+{
+    EXPECT(CanRegisterSeenSpecies(SPECIES_ZUBAT));
+    EXPECT(CanRegisterSeenSpecies(SPECIES_GOLBAT));
+    EXPECT(!CanRegisterSeenSpecies(SPECIES_CROBAT));
+    EXPECT(!CanRegisterSeenSpecies(SPECIES_DUSKULL));
+
+    GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_CROBAT), FLAG_SET_CAUGHT);
+    EXPECT(CanRegisterSeenSpecies(SPECIES_CROBAT));
+
+    FlagSet(FLAG_JOHTO_UNLOCKED);
+    EXPECT(CanRegisterSeenSpecies(SPECIES_CHIKORITA));
+    EXPECT(!CanRegisterSeenSpecies(SPECIES_DUSKULL));
+    VarSet(VAR_HOENN_ARRIVAL_STATE, 1);
+    EXPECT(CanRegisterSeenSpecies(SPECIES_DUSKULL));
+}
+
+TEST("Region rule: species seen in battle count at once with randomized species")
+{
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_WildPokemon = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Static = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Starter = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Evolutions = TRUE; }
+    EXPECT(CanRegisterSeenSpecies(SPECIES_CHIKORITA));
+    EXPECT(CanRegisterSeenSpecies(SPECIES_DUSKULL));
+}
+
+TEST("Region rule: random trainers alone keep the seen rule")
+{
+    gSaveBlock3Ptr->challengeSettings.tx_Random_Trainer = TRUE;
+    EXPECT(!CanRegisterSeenSpecies(SPECIES_DUSKULL));
 }

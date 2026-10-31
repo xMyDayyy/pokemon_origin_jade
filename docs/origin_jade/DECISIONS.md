@@ -1443,6 +1443,22 @@ dated 2026-10-10 or later were decided directly.
     evolutions): the randomizer mixes the regions on purpose (plan item
     C8; which options count is open, O-033). Two upstream tests in
     `test/daycare.c` expect a Pichu egg and are known failures.
+  - Seen (`CanRegisterSeenSpecies`, battle end in `src/battle_main.c`): a
+    Pokemon sent out in battle goes into the Pokedex as seen only if its
+    region is unlocked or the player has caught one. Trainers keep their
+    teams: Kanto's Elite Four and Blue's rematches after the Kanto title (7
+    Johto species), the Johto gym and Elite Four rematches and Janine (21
+    Hoenn species) and the evolutions of the level scaling. What they show
+    early is not stored and counts once met again after the unlock, so the
+    National Pokedex list (HnS's obtainable order up to the highest seen
+    entry) does not jump into a later region's block. Without the
+    randomizer, wild tables and static encounters offer no species of a
+    later region, so this concerns trainers (plan item C7). Not with a
+    randomizer option that changes the player's species, as for Day Care
+    eggs (C8, O-033): the randomizer mixes the regions on purpose. Other
+    sources (gifts, eggs, evolutions, trades) set seen and caught as
+    before. The Pokedex's evolution page still names later evolutions and
+    babies (O-034).
 - **Code:** `src/region_rule_oj.c` (the table of national numbers above
   386), `TryUnlockJohtoOnMapLoad` in both map loads of `src/overworld.c`;
   test `test/origin_jade/region_rule.c`.
@@ -1613,10 +1629,21 @@ dated 2026-10-10 or later were decided directly.
   the region rule off "in random mode". The code reads that as: off with
   an option that changes the player's species (wild, fixed Pokemon with
   gift eggs, starters, evolutions). With only "Trainer: Zufall", "Items:
-  Zufall" or the other options on, Day Care eggs follow the region rule;
-  the item randomizer follows it anyway (Root and Claw Fossil, D-023).
-  Owner to confirm; the option set is `IsPlayerSpeciesRandomized` in
-  `src/region_rule_oj.c`.
+  Zufall" or the other options on, Day Care eggs and the seen rule
+  follow the region rule, so random trainers do not fill the Pokedex
+  with later species; the item randomizer follows it anyway (Root and
+  Claw Fossil, D-023). Owner to confirm; the option set is
+  `IsPlayerSpeciesRandomized` in `src/region_rule_oj.c`.
+- **O-034** Pokedex evolution page: the HGSS Pokedex names every
+  evolution and pre-evolution of a seen species and shows its icon, also
+  those of a later region (Golbat shows Crobat in Kanto, Pikachu shows
+  Pichu). Owner point 8 says Kanto's Pokedex shows only Kanto Pokemon;
+  the list shows a later species only once the player has it (D-049),
+  this page shows them all. Simplest change:
+  `HGSS_HIDE_UNSEEN_EVOLUTION_NAMES` TRUE
+  (`include/config/pokedex_plus_hgss.h`) and no icon for an unseen
+  target in `HandleTargetSpeciesPrintIcon` (`src/pokedex_plus_hgss.c`);
+  that hides every unseen evolution, of any region.
 
 ## Superseded decisions (kept for the record)
 

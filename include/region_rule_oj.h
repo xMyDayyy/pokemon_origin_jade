@@ -20,5 +20,9 @@ void TryUnlockJohtoOnMapLoad(void);
 // with a randomizer option that changes the player's species, or if no stage of
 // the line is unlocked.
 u16 GetUnlockedEggSpecies(u16 eggSpecies, u16 parentSpecies);
+// Battle end: a species seen in battle goes into the Pokedex only if its region is
+// unlocked or the player has caught one; always with a randomizer option that
+// changes the player's species.
+bool32 CanRegisterSeenSpecies(u16 species);
 
 #endif // GUARD_REGION_RULE_OJ_H

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "event_data.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "randomizer.h"
 #include "region_rule_oj.h"
@@ -153,6 +154,13 @@ u16 GetUnlockedEggSpecies(u16 eggSpecies, u16 parentSpecies)
     return eggSpecies;
 }
 
+bool32 CanRegisterSeenSpecies(u16 species)
+{
+    return IsSpeciesRegionUnlocked(species)
+        || IsPlayerSpeciesRandomized()
+        || GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT);
+}
+
 #else
 
 enum Region GetSpeciesRegion(u16 species) { return REGION_NONE; }
@@ -160,5 +168,6 @@ bool32 IsRegionUnlocked(enum Region region) { return TRUE; }
 bool32 IsSpeciesRegionUnlocked(u16 species) { return TRUE; }
 void TryUnlockJohtoOnMapLoad(void) {}
 u16 GetUnlockedEggSpecies(u16 eggSpecies, u16 parentSpecies) { return eggSpecies; }
+bool32 CanRegisterSeenSpecies(u16 species) { return TRUE; }
 
 #endif

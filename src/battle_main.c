@@ -51,6 +51,7 @@
 #include "randomizer.h"
 #include "nuzlocke.h"
 #include "recorded_battle.h"
+#include "region_rule_oj.h"
 #include "roamer.h"
 #include "safari_zone.h"
 #include "scanline_effect.h"
@@ -5892,7 +5893,9 @@ static void HandleEndTurn_FinishBattle(void)
 
                 for (u32 partySlot = 0; partySlot < PARTY_SIZE; partySlot++)
                 {
-                    if (gBattleStruct->partyState[side][partySlot].sentOut)
+                    // Origin Jade: species of a region not unlocked yet stay unseen (D-049).
+                    if (gBattleStruct->partyState[side][partySlot].sentOut
+                     && CanRegisterSeenSpecies(GetMonData(&party[partySlot], MON_DATA_SPECIES)))
                         HandleSetPokedexFlagFromMon(&party[partySlot], FLAG_SET_SEEN);
                 }
             }

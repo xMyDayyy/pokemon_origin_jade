@@ -104,7 +104,7 @@ var number without storage (D-016).
   region of the ROM cannot be checked there); Johto unlock on the first
   Johto map after the Kanto title (not the gatehouse), its catch-ups and
   the Hoenn unlock; Day Care eggs before the unlock (also through the Day
-  Care itself) and with randomized species. D-049.
+  Care itself) and with randomized species; the seen rule. D-049.
 - `test/save.c`: save block sizes of Origin Jade (D-017).
 
 The tests read the bands from `include/config/*_scaling.h`. They use
