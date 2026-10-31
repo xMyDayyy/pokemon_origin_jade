@@ -17605,7 +17605,7 @@
               {
                 "min_level": 45,
                 "max_level": 45,
-                "species": "SPECIES_WOBBUFFET"
+                "species": "SPECIES_DITTO"
               },
               {
                 "min_level": 50,
@@ -18052,7 +18052,7 @@
               {
                 "min_level": 48,
                 "max_level": 48,
-                "species": "SPECIES_WOBBUFFET"
+                "species": "SPECIES_DITTO"
               },
               {
                 "min_level": 50,
@@ -18270,7 +18270,7 @@
               {
                 "min_level": 50,
                 "max_level": 50,
-                "species": "SPECIES_WOBBUFFET"
+                "species": "SPECIES_DITTO"
               }
             ]
           },

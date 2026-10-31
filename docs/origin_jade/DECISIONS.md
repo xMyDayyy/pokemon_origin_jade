@@ -1407,6 +1407,10 @@ dated 2026-10-10 or later were decided directly.
     `GetCurrentRegion` counts the Kampfzone and Birth Island as Hoenn.
     Oak's Johto extension of the Pokedex at the GS Ball handover stays a
     text.
+  - Fixed sources changed for the rule:
+    - Cerulean Cave: FireRed's tables (1F, 2F, B1F) and the overworld
+      Pokemon on 2F have Ditto, from FRLG's own table of the cave, in
+      Wobbuffet's place (same level).
 - **Code:** `src/region_rule_oj.c` (the table of national numbers above
   386), `TryUnlockJohtoOnMapLoad` in both map loads of `src/overworld.c`;
   test `test/origin_jade/region_rule.c`.
