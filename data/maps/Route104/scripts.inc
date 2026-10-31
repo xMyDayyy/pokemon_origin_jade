@@ -389,6 +389,7 @@ Route104_EventScript_SailToDewfordNoCall::
 	waitmovement 0
 	goto Route104_EventScript_ArriveInDewford
 
+#if !IS_HNS
 Route104_EventScript_SailToDewfordDadCalls::
 	applymovement LOCALID_ROUTE104_BOAT, Route104_Movement_SailToDewfordBeforeDadCalls
 	applymovement LOCALID_PLAYER, Route104_Movement_SailToDewfordBeforeDadCalls
@@ -407,6 +408,7 @@ Route104_EventScript_SailToDewfordDadCalls::
 	waitmovement LOCALID_ROUTE104_BOAT, MAP_ROUTE104
 	waitmovement 0
 	goto Route104_EventScript_ArriveInDewford
+#endif
 
 Route104_EventScript_ArriveInDewford::
 	delay 50

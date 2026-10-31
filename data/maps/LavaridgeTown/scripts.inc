@@ -75,6 +75,7 @@ LavaridgeTown_EventScript_MayGiveGoGoggles::
 	goto LavaridgeTown_EventScript_RivalExit
 	end
 
+#if !IS_HNS
 LavaridgeTown_EventScript_BrendanGiveGoGoggles::
 	msgbox LavaridgeTown_Text_BrendanNiceBadgesTakeThis, MSGBOX_DEFAULT
 	giveitem ITEM_GO_GOGGLES
@@ -82,6 +83,7 @@ LavaridgeTown_EventScript_BrendanGiveGoGoggles::
 	msgbox LavaridgeTown_Text_BrendanExplainGoGogglesChallengeDad, MSGBOX_DEFAULT
 	goto LavaridgeTown_EventScript_RivalExit
 	end
+#endif
 
 LavaridgeTown_EventScript_RivalExit::
 	closemessage
@@ -348,6 +350,7 @@ LavaridgeTown_Text_BrendanNiceBadgesTakeThis:
 	.string "You may as well have this.$"
 #endif
 
+#if !IS_HNS
 LavaridgeTown_Text_BrendanExplainGoGogglesChallengeDad:
 #if GERMAN
 	.string "Maike: Nimm das mit, wenn du in die Wüste\n"
@@ -374,6 +377,7 @@ LavaridgeTown_Text_BrendanExplainGoGogglesChallengeDad:
 	.string "Unlike you, {PLAYER}, your dad looks like\n"
 	.string "he really is tough.\p"
 	.string "See you around!$"
+#endif
 #endif
 
 LavaridgeTown_Text_HaveEggWillYouTakeIt:

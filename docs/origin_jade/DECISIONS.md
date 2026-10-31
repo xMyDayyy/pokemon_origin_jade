@@ -1368,7 +1368,10 @@ dated 2026-10-10 or later were decided directly.
     May's or Brendan's greeting of the new neighbour in their house ("a gym
     leader's kid"); the arrival with Mom in the moving truck and her
     Running Shoes in front of the house ("your father will be overjoyed");
-    Birch's starter gift after the rescue ("your father's blood").
+    Birch's starter gift after the rescue ("your father's blood"); Dad's
+    PokeNav call on Mr. Briney's boat; the Hall of Fame step that brings
+    Dad home with the S.S. Ticket; Brendan's Go-Goggles line in Lavaridge
+    ("your dad").
 - **Evidence:** owner requirements 2026-10-31 (point 4).
 
 ---
