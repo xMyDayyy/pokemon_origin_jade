@@ -1995,7 +1995,7 @@ static void DebugAction_Util_KantoTest(u8 taskId)
 #if IS_HNS
 #include "data/debug_kanto_complete.h"
 
-static void GiveKantoCompleteMon(u16 species, u8 level)
+static void GiveDebugStateMon(u16 species, u8 level)
 {
     struct Pokemon mon;
 
@@ -2003,22 +2003,19 @@ static void GiveKantoCompleteMon(u16 species, u8 level)
     GiveScriptedMonToPlayer(&mon, PARTY_SIZE);
 }
 
-// Test tool: on a new game, sets the state right after the first Kanto Hall of
-// Fame (tools/make_debug_states.py) and warps home to Pallet Town.
-static void DebugAction_Util_JohtoTest(u8 taskId)
+// FALSE with a message once the player has a Pokémon: the debug states need a new game.
+static bool32 CanStartDebugState(u8 taskId, const u8 *message)
 {
-    u32 i;
-    u32 starter = KANTO_COMPLETE_STARTER;
-    u16 starterFinal = sKantoCompletePartyStarter[starter].species;
-    bool8 ribbon = TRUE;
+    if (!FlagGet(FLAG_SYS_POKEMON_GET))
+        return TRUE;
+    StringCopy(gStringVar4, message);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_ShowFieldMessageStringVar4);
+    return FALSE;
+}
 
-    if (FlagGet(FLAG_SYS_POKEMON_GET))
-    {
-        StringCopy(gStringVar4, COMPOUND_STRING("Johto Test needs a new game\nbefore the first Pokémon."));
-        Debug_DestroyMenu_Full_Script(taskId, Debug_ShowFieldMessageStringVar4);
-        return;
-    }
-
+// Clock, empty bag, party, PC and Pokedex; challenge settings stay as chosen.
+static void ResetForDebugState(void)
+{
     if (!FlagGet(FLAG_SYS_CLOCK_SET))
         RtcInitLocalTimeOffset(0, 0);
     InitTimeBasedEvents();
@@ -2027,6 +2024,13 @@ static void DebugAction_Util_JohtoTest(u8 taskId)
     ZeroPlayerPartyMons();
     ResetPokemonStorageSystem();
     ResetPokedex();
+}
+
+// Flags, vars, trainers, bag and money right after the first Kanto Hall of Fame.
+static void ApplyKantoCompleteStory(void)
+{
+    u32 i;
+    u32 starter = KANTO_COMPLETE_STARTER;
 
     for (i = 0; i < ARRAY_COUNT(sKantoCompleteFlagsSet); i++)
         FlagSet(sKantoCompleteFlagsSet[i]);
@@ -2041,26 +2045,41 @@ static void DebugAction_Util_JohtoTest(u8 taskId)
         SetTrainerFlag(sKantoCompleteRivalTrainers[starter][i]);
     EnableNationalPokedex();
 
-    // Party first, then the box; the starter's final stage only in the party.
-    GiveKantoCompleteMon(starterFinal, sKantoCompletePartyStarter[starter].level);
-    for (i = 0; i < ARRAY_COUNT(sKantoCompleteParty); i++)
-        GiveKantoCompleteMon(sKantoCompleteParty[i].species, sKantoCompleteParty[i].level);
-    for (i = 0; i < ARRAY_COUNT(sKantoCompleteMons); i++)
-    {
-        if (sKantoCompleteMons[i].species != starterFinal)
-            GiveKantoCompleteMon(sKantoCompleteMons[i].species, sKantoCompleteMons[i].level);
-    }
-    CalculatePlayerPartyCount();
-    for (i = 0; i < ARRAY_COUNT(sKantoCompleteSeenOnly); i++)
-        GetSetPokedexFlag(SpeciesToNationalPokedexNum(sKantoCompleteSeenOnly[i]), FLAG_SET_SEEN);
-
     for (i = 0; i < ARRAY_COUNT(sKantoCompleteBag); i++)
         AddBagItem(sKantoCompleteBag[i].item, sKantoCompleteBag[i].quantity);
     SetMoney(&gSaveBlock1Ptr->money, KANTO_COMPLETE_MONEY);
+}
 
-    // EnterHallOfFame and the Hall of Fame save's entry count, without the screens.
+// Party first, then the PC; every species of the Pokedex list seen and caught.
+static void GiveDebugStateMons(const struct KantoCompleteMon *party, u32 partyCount,
+                               const struct KantoCompleteMon *box, u32 boxCount,
+                               const u16 *dex, u32 dexCount, const u16 *seenOnly, u32 seenOnlyCount)
+{
+    u32 i;
+
+    for (i = 0; i < partyCount; i++)
+        GiveDebugStateMon(party[i].species, party[i].level);
+    for (i = 0; i < boxCount; i++)
+        GiveDebugStateMon(box[i].species, box[i].level);
+    CalculatePlayerPartyCount();
+    for (i = 0; i < dexCount; i++)
+    {
+        GetSetPokedexFlag(SpeciesToNationalPokedexNum(dex[i]), FLAG_SET_SEEN);
+        GetSetPokedexFlag(SpeciesToNationalPokedexNum(dex[i]), FLAG_SET_CAUGHT);
+    }
+    for (i = 0; i < seenOnlyCount; i++)
+        GetSetPokedexFlag(SpeciesToNationalPokedexNum(seenOnly[i]), FLAG_SET_SEEN);
+}
+
+// EnterHallOfFame and the Hall of Fame save's entry count for each title, without the screens.
+static void SetDebugStateHallOfFame(u32 titles)
+{
+    u32 i;
+    bool8 ribbon = TRUE;
+
     FlagSet(FLAG_SYS_GAME_CLEAR);
-    IncrementGameStat(GAME_STAT_ENTERED_HOF);
+    for (i = 0; i < titles; i++)
+        IncrementGameStat(GAME_STAT_ENTERED_HOF);
     if (GetGameStat(GAME_STAT_FIRST_HOF_PLAY_TIME) == 0)
         SetGameStat(GAME_STAT_FIRST_HOF_PLAY_TIME, (gSaveBlock2Ptr->playTimeHours << 16) | (gSaveBlock2Ptr->playTimeMinutes << 8) | gSaveBlock2Ptr->playTimeSeconds);
     for (i = 0; i < PARTY_SIZE; i++)
@@ -2071,11 +2090,35 @@ static void DebugAction_Util_JohtoTest(u8 taskId)
     IncrementGameStat(GAME_STAT_RECEIVED_RIBBONS);
     FlagSet(FLAG_SYS_RIBBON_GET);
     HealPlayerParty();
+}
 
+// State right after the first Kanto Hall of Fame (tools/make_debug_states.py).
+void Debug_SetJohtoTestState(void)
+{
+    ResetForDebugState();
+    ApplyKantoCompleteStory();
+    GiveDebugStateMons(sKantoCompleteParty, ARRAY_COUNT(sKantoCompleteParty),
+                       sKantoCompleteMons, ARRAY_COUNT(sKantoCompleteMons),
+                       sKantoCompleteDex, ARRAY_COUNT(sKantoCompleteDex),
+                       sKantoCompleteSeenOnly, ARRAY_COUNT(sKantoCompleteSeenOnly));
+    SetDebugStateHallOfFame(1);
+}
+
+// Test tool: on a new game, sets the Johto Test state and warps home to Pallet Town.
+static void DebugAction_Util_JohtoTest(u8 taskId)
+{
+    if (!CanStartDebugState(taskId, COMPOUND_STRING("Johto Test needs a new game\nbefore the first Pokémon.")))
+        return;
+
+    Debug_SetJohtoTestState();
     PlaySE(SE_EXP_MAX);
     Debug_DestroyMenu_Full_Script(taskId, Debug_EventScript_JohtoTestWarpHome);
 }
 #else
+void Debug_SetJohtoTestState(void)
+{
+}
+
 static void DebugAction_Util_JohtoTest(u8 taskId)
 {
     Debug_DestroyMenu_Full(taskId);

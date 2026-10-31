@@ -6,6 +6,7 @@ extern const u8 Debug_FlagsAndVarNotSetBattleConfigMessage[];
 const u8 *GetWeatherName(u32 weatherId);
 const struct Trainer* GetDebugAiTrainer(void);
 
+void Debug_SetJohtoTestState(void);
 void DebugNative_GetAbilityNames(void);
 void DebugNative_Party_SetFriendship(void);
 

@@ -1,30 +1,54 @@
 #!/usr/bin/env python3
 """Generates the debug menu's test states (src/debug.c).
 
-src/data/debug_kanto_complete.h, the state of a complete Kanto run: the
-debug menu's "Johto Test" applies it to a new game: every
-Kanto trainer beaten, every item, TM and HM found or received, every event
-done, every species obtainable in Kanto caught and evolved as far as Kanto
-allows, right after the first Kanto Hall of Fame.
+State A, src/data/debug_kanto_complete.h ("Johto Test"): Kanto complete,
+right after the first Kanto Hall of Fame. Every Kanto trainer beaten, every
+item, TM and HM found or received, every event done. Johto and Hoenn are
+not unlocked.
+
+Pokemon: every stage of the region's lines (babies and later
+evolutions included) seen and caught in the Pokedex; party and PC hold the
+final stages of the lines (every branch) once, levels by LEVEL RULES below.
 
 Sources (all in the repository):
-  - the active Kanto maps: FRLG maps (*_Frlg) whose map.json and layout in
-    layouts.json have game_version "hns", minus EXCLUDED_MAPS;
+  - the active maps (map.json and layout with game_version "hns"): the FRLG
+    maps (*_Frlg) minus EXCLUDED_MAPS;
   - every script label these maps reach (data/event_scripts.s and its
-    includes, #if and .if resolved for the jade build), minus CUT_LABELS:
-    flags, vars, trainers, items, gifts, trades, static battles, legendaries;
+    includes, #if and .if resolved for the jade build), minus the cut labels
+    of the state: flags, vars, trainers, items, gifts, trades, static
+    battles, legendaries, and the flags and vars the specials they call
+    write in C;
   - item balls and hidden items of these maps;
   - new_game.inc's new game items and src/new_game.c's start money;
   - wild_encounters.json: the FireRed and _Night tables of these maps;
   - trainers_frlg.party and gTrainerClasses for the prize money;
-  - gSpeciesInfo of the preprocessed src/pokemon.c for the evolutions.
+  - gSpeciesInfo of the preprocessed src/pokemon.c for the evolutions,
+    include/constants/pokedex.h and src/region_rule_oj.c (through
+    tools/check_regions.py) for the species' regions;
+  - src/legendaries_oj.c for the caught flags of one-time encounters.
 Values the scripts leave open come from the configuration below.
 
-Usage (needs arm-none-eabi-cpp and a host C compiler, cc or $CC):
+LEVEL RULES of the PC, the owner's (2026-10-31):
+  - level evolution: the evolution level (Pidgeot 36);
+  - other evolution (stone, trade, friendship, item, move, place): the
+    pre-evolution's level + 2;
+  - single stage or legendary: its catch level in this game.
+The generator's reading of them:
+  - catch level, also of a first stage below a later one: the highest
+    level in Kanto's wild tables, else the level of the gift or static
+    battle;
+  - a baby that only hatches from an egg does not count as a
+    pre-evolution when the next stage can be caught.
+
+Usage (needs arm-none-eabi-cpp, a host C compiler, cc or $CC, and the
+generated src/data/pokemon/teachable_learnsets.h of a build):
   python3 tools/make_debug_states.py            # writes the header
-  python3 tools/make_debug_states.py --check    # exit 1 if the header is stale
-  python3 tools/make_debug_states.py --overlap  # flags/vars Johto or Hoenn share
-                                                # with the run, exit 1 on new ones
+  python3 tools/make_debug_states.py --check    # exit 1 if the header is stale or a
+                                                # flag or var of the region is
+                                                # neither in the state nor in UNTOUCHED
+  python3 tools/make_debug_states.py --overlap  # flags/vars of state A that Johto or
+                                                # Hoenn share, exit 1 on new ones
+  python3 tools/make_debug_states.py --levels   # how each PC level was derived
 Rerun it after changes to Kanto maps, scripts, wild tables, trainers or items.
 """
 
@@ -40,14 +64,20 @@ import subprocess
 import sys
 import tempfile
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import check_regions  # noqa: E402
+import oj_world  # noqa: E402
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HEADER = "src/data/debug_kanto_complete.h"
 DEFINES = ["-DPOKEMON_HNS", "-DMODERN=1", "-DTESTING=0"]
 ARM_CPP = ["arm-none-eabi-cpp", "-iquote", "include", "-Wno-trigraphs", "-std=gnu17"] + DEFINES
+MAX_MONEY = 9999999
+PC_SIZE = 14 * 30
 
 
 # ---------------------------------------------------------------------------
-# Configuration
+# Configuration, state A: right after the first Kanto Hall of Fame
 
 # Party right after the Kanto league. Starter index: VAR_STARTER_MON
 # (0 Bulbasaur, 1 Squirtle, 2 Charmander).
@@ -65,20 +95,36 @@ KANTO_COMPLETE_PARTY = [
 
 # Active FRLG maps a run up to the first Hall of Fame never enters: post-title
 # content, link rooms, unused houses.
-EXCLUDED_MAPS = {
-    "CeruleanCave_1F_Frlg", "CeruleanCave_2F_Frlg", "CeruleanCave_B1F_Frlg",
+KANTO_POST_TITLE_MAPS = {"CeruleanCave_1F_Frlg", "CeruleanCave_2F_Frlg", "CeruleanCave_B1F_Frlg"}
+KANTO_NEVER_MAPS = {
     "BattleColosseum_2P_Frlg", "BattleColosseum_4P_Frlg", "RecordCorner_Frlg",
     "TradeCenter_Frlg", "UnionRoom_Frlg",
     "Route19_UnusedHouse_Frlg", "Route6_UnusedHouse_Frlg", "SaffronCity_Connection_Frlg",
 }
+EXCLUDED_MAPS = KANTO_POST_TITLE_MAPS | KANTO_NEVER_MAPS
 
 # Script labels the walk does not enter: content after the Kanto title,
 # trips to Johto, Hoenn and the Sevii Islands, rematches.
-CUT_LABELS = {
-    # Vermilion port and Cinnabar: ships after the title, Sevii trips.
+CUT_LABELS_POST_TITLE = {
+    # Vermilion port: ships after the title.
     "VermilionPortFrlg_EventScript_Sailor_AfterKanto",
     "VermilionPortFrlg_EventScript_FirstTripFromOlivine",
     "VermilionPortFrlg_EventScript_ShowSSAqua",
+    # Janina and Blue as gym leaders after the league change.
+    "FuchsiaCity_Gym_EventScript_SetJanineLeader",
+    "FuchsiaCity_Gym_EventScript_JanineLeader",
+    "FuchsiaCity_Gym_EventScript_JanineRematch",
+    "FuchsiaCity_Gym_EventScript_JanineGiveTM",
+    "ViridianCity_Gym_EventScript_BlueLeader",
+    "ViridianCity_Gym_EventScript_BlueRematch",
+    # Oak after the title: National Dex scene, GS Ball handover.
+    "PalletTown_ProfessorOaksLab_EventScript_TryStartNationalDexScene",
+    "PalletTown_ProfessorOaksLab_EventScript_GsBallReminder",
+    "PalletTown_ProfessorOaksLab_EventScript_GiveGsBall",
+    "PokedexRating_EventScript_DexComplete",
+}
+CUT_LABELS_ALWAYS = {
+    # Ships to Hoenn and the Sevii Islands.
     "Common_EventScript_SailToHoenn",
     "CinnabarIsland_EventScript_ReadyObjectsSailToOneIslandFromPokeCenter",
     "CinnabarIsland_EventScript_ReadyObjectsSailToOneIsland",
@@ -91,25 +137,17 @@ CUT_LABELS = {
     "CinnabarIsland_EventScript_BillScene",
     "CinnabarIsland_PokemonCenter_1F_EventScript_Bill",
     "IndigoPlateau_PokemonCenter_1F_EventScript_SeviiIslandComplete",
-    # Janina and Blue as gym leaders after the league change.
-    "FuchsiaCity_Gym_EventScript_SetJanineLeader",
-    "FuchsiaCity_Gym_EventScript_JanineLeader",
-    "FuchsiaCity_Gym_EventScript_JanineRematch",
-    "FuchsiaCity_Gym_EventScript_JanineGiveTM",
-    "ViridianCity_Gym_EventScript_BlueLeader",
-    "ViridianCity_Gym_EventScript_BlueRematch",
+    # Troy hands over the Hoenn Ticket after the first Johto title (D-047).
+    "PalletTown_ProfessorOaksLab_EventScript_TroyScene",
+    "PalletTown_ProfessorOaksLab_EventScript_Troy",
     # Elite Four rematches after the title.
     "PokemonLeague_AgathasRoom_EventScript_Rematch",
     "PokemonLeague_BrunosRoom_EventScript_Rematch",
     "PokemonLeague_LancesRoom_EventScript_Rematch",
     "PokemonLeague_LoreleisRoom_EventScript_Rematch",
     "PokemonLeague_ChampionsRoom_EventScript_Rematch",
-    # Oak after the title: National Dex scene, GS Ball handover.
-    "PalletTown_ProfessorOaksLab_EventScript_TryStartNationalDexScene",
-    "PalletTown_ProfessorOaksLab_EventScript_GsBallReminder",
-    "PalletTown_ProfessorOaksLab_EventScript_GiveGsBall",
-    "PokedexRating_EventScript_DexComplete",
 }
+CUT_LABELS = CUT_LABELS_POST_TITLE | CUT_LABELS_ALWAYS
 # Label prefixes cut the same way: link features, Johto gyms, Hoenn arrival,
 # Sevii Islands.
 CUT_PREFIXES = (
@@ -118,15 +156,15 @@ CUT_PREFIXES = (
     "OneIsland_", "Seagallop", "EventScript_Seagallop",
 )
 
-# Flags Kanto scripts write that are not part of the saved state.
+# Flags the scripts write that are not part of the saved state: name -> reason.
 DROP_FLAGS = {
-    "FLAG_SYS_USE_STRENGTH",            # cleared on every map load
-    "FLAG_SAFE_FOLLOWER_MOVEMENT",      # follower runtime flag
-    "FLAG_SYS_CTRL_OBJ_DELETE",         # set and cleared around static battles
-    "FLAG_TALKED_TO_TEA_LADY_AFTER_HOF",  # dialogue after the title
-    "FLAG_SHOWN_AURORA_TICKET",         # event tickets
-    "FLAG_SHOWN_MYSTIC_TICKET",
-    "FLAG_NURSE_UNION_ROOM_REMINDER",   # link feature
+    "FLAG_SYS_USE_STRENGTH": "cleared on every map load",
+    "FLAG_SAFE_FOLLOWER_MOVEMENT": "follower runtime flag",
+    "FLAG_SYS_CTRL_OBJ_DELETE": "set and cleared around static battles",
+    "FLAG_TALKED_TO_TEA_LADY_AFTER_HOF": "dialogue after the title",
+    "FLAG_SHOWN_AURORA_TICKET": "event ticket",
+    "FLAG_SHOWN_MYSTIC_TICKET": "event ticket",
+    "FLAG_NURSE_UNION_ROOM_REMINDER": "link feature",
 }
 
 # Flags Kanto scripts set and clear: their value right after the first
@@ -197,12 +235,60 @@ MANUAL_VARS = {
     "VAR_MASSAGE_COOLDOWN_STEP_COUNTER": 500,
 }
 
-# Flags and vars src/debug.c sets itself (Hall of Fame, clock, Pokedex,
-# starter); never emitted.
+# Flags and vars src/debug.c or the debug script set (Hall of Fame, clock,
+# Pokedex, starter): never emitted. Name -> where.
 SET_BY_DEBUG_C = {
-    "FLAG_SYS_GAME_CLEAR", "FLAG_SYS_RIBBON_GET", "FLAG_SYS_NATIONAL_DEX",
-    "FLAG_SYS_CLOCK_SET", "VAR_NATIONAL_DEX", "VAR_STARTER_MON",
+    "FLAG_SYS_GAME_CLEAR": "debug.c, Hall of Fame",
+    "FLAG_SYS_RIBBON_GET": "debug.c, Hall of Fame",
+    "FLAG_SYS_NATIONAL_DEX": "EnableNationalPokedex in debug.c",
+    "FLAG_SYS_CLOCK_SET": "RtcInitLocalTimeOffset in debug.c",
+    "VAR_NATIONAL_DEX": "EnableNationalPokedex in debug.c",
+    "VAR_STARTER_MON": "debug.c, KANTO_COMPLETE_STARTER",
 }
+
+# Flags and vars the region's scripts or specials write that the state leaves
+# at their new game value on purpose: name -> reason.
+UNTOUCHED = {
+    "FLAG_HIDE_OAKS_LAB_TROY": "Troy waits in Oak's lab only after the first Johto title; "
+                               "the lab sets it on every visit (D-047)",
+    "VAR_HOENN_TICKET_STATE": "0 until the first Johto title (D-047)",
+    # C writes of specials the scripts call.
+    "FLAG_HIDE_FANCLUB_BOY": "Emerald's fan club (Lilycove), not the jade build's Script_UpdateTrainerFanClubGameClear",
+    "FLAG_HIDE_FANCLUB_LADY": "Emerald's fan club (Lilycove), not the jade build's Script_UpdateTrainerFanClubGameClear",
+    "FLAG_HIDE_FANCLUB_LITTLE_BOY": "Emerald's fan club (Lilycove), not the jade build's "
+                                    "Script_UpdateTrainerFanClubGameClear",
+    "FLAG_HIDE_FANCLUB_OLD_LADY": "Emerald's fan club (Lilycove), not the jade build's Script_UpdateTrainerFanClubGameClear",
+    "FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER": "Emerald's fan club (Lilycove), not the jade build's "
+                                               "Script_UpdateTrainerFanClubGameClear",
+    "VAR_LILYCOVE_FAN_CLUB_STATE": "Emerald's fan club (Lilycove), not the jade build's "
+                                   "Script_UpdateTrainerFanClubGameClear",
+    "VAR_RUSTURF_TUNNEL_STATE": "Emerald's Rusturf Tunnel part of the same special",
+    "FLAG_HIDE_MAP_NAME_POPUP": "credits scene state",
+    "FLAG_SHOWN_BOX_WAS_FULL_MESSAGE": "message state of a full PC box",
+    "FLAG_SYS_SAFARI_MODE": "set and cleared around a Safari Zone visit",
+    "VAR_DAILY_PICKED_BERRIES": "daily counter",
+    "VAR_DAILY_PLANTED_BERRIES": "daily counter",
+    "VAR_DAILY_WILDS": "daily counter",
+    "VAR_TRAINER_CARD_MON_ICON_1": "trainer card photo, rebuilt from the party",
+    "VAR_TRAINER_CARD_MON_ICON_2": "trainer card photo, rebuilt from the party",
+    "VAR_TRAINER_CARD_MON_ICON_3": "trainer card photo, rebuilt from the party",
+    "VAR_TRAINER_CARD_MON_ICON_4": "trainer card photo, rebuilt from the party",
+    "VAR_TRAINER_CARD_MON_ICON_5": "trainer card photo, rebuilt from the party",
+    "VAR_TRAINER_CARD_MON_ICON_6": "trainer card photo, rebuilt from the party",
+    "VAR_TRAINER_CARD_MON_ICON_TINT_IDX": "trainer card photo, rebuilt from the party",
+}
+
+# Writers in C the effect scan of the specials does not see: name -> function.
+C_WRITERS = {
+    "FLAG_HIDE_SAFFRON_FAN_CLUB_BLACKBELT": "Script_UpdateTrainerFanClubGameClear (src/trainer_fan_club.c)",
+    "FLAG_HIDE_SAFFRON_FAN_CLUB_ROCKER": "Script_UpdateTrainerFanClubGameClear (src/trainer_fan_club.c)",
+    "FLAG_HIDE_SAFFRON_FAN_CLUB_WOMAN": "Script_UpdateTrainerFanClubGameClear (src/trainer_fan_club.c)",
+    "FLAG_HIDE_SAFFRON_FAN_CLUB_BEAUTY": "Script_UpdateTrainerFanClubGameClear (src/trainer_fan_club.c)",
+    "VAR_LEGENDARY_FLEE_KANTO": "RecordLegendaryBattleOutcome, UpdateLegendaryFleeCooldowns (src/legendaries_oj.c)",
+}
+
+# Flags reset on every day change, never part of the state.
+DAILY_FLAG_RE = re.compile(r"^FLAG_DAILY_\w+$")
 
 # Scratch vars, never part of the state.
 SCRATCH_VAR_RE = re.compile(
@@ -220,27 +306,19 @@ EXTRA_ITEMS = {
 # Static battles that cannot end in a catch.
 UNCATCHABLE_STATIC = {"SPECIES_MAROWAK"}   # Pokemon Tower ghost
 
-# Box levels: species neither wild nor bred nor evolved get these, else
-# DEFAULT_BOX_LEVEL. Wild species get their highest wild level, bred ones 1,
-# evolved ones their evolution level (or the pre-evolution's level + 5).
-GIFT_LEVELS = {
-    "SPECIES_BULBASAUR": 5, "SPECIES_CHARMANDER": 5, "SPECIES_SQUIRTLE": 5,
-    "SPECIES_EEVEE": 25, "SPECIES_LAPRAS": 35, "SPECIES_MAGIKARP": 10,
-    "SPECIES_OMANYTE": 40, "SPECIES_KABUTO": 40, "SPECIES_AERODACTYL": 40,
-    "SPECIES_HITMONLEE": 35, "SPECIES_HITMONCHAN": 35,
-    "SPECIES_ARTICUNO": 40, "SPECIES_ZAPDOS": 40, "SPECIES_MOLTRES": 40, "SPECIES_MEW": 40,
-    "SPECIES_SNORLAX": 35, "SPECIES_ELECTRODE": 35,
-    # Game Corner prizes that are not wild.
-    "SPECIES_PORYGON": 25, "SPECIES_FARFETCHD": 25, "SPECIES_LICKITUNG": 25, "SPECIES_MR_MIME": 25,
-}
-DEFAULT_BOX_LEVEL = 20
-MAX_BOX_LEVEL = 50
+# Level of a species Kanto gives only by trade (the trade keeps the level of
+# the Pokemon given away).
+KANTO_TRADE_LEVEL = 20
 
 # Trainer flags the run never sets: rematch teams after the title.
 TRAINER_SKIP_RE = re.compile(r"^TRAINER_(ELITE_FOUR_\w+_2|CHAMPION_REMATCH_\w+)$")
 # Rival battles, one set per player starter.
-RIVAL_RE = re.compile(r"^TRAINER_(RIVAL_\w+|CHAMPION_FIRST)_(BULBASAUR|CHARMANDER|SQUIRTLE)$")
-STARTER_NAMES = ["Bulbasaur", "Squirtle", "Charmander"]   # by VAR_STARTER_MON
+KANTO_RIVALS = {
+    "var": "VAR_STARTER_MON",
+    "re": re.compile(r"^TRAINER_(RIVAL_\w+|CHAMPION_FIRST)_(?P<starter>BULBASAUR|CHARMANDER|SQUIRTLE)$"),
+    "names": ["Bulbasaur", "Squirtle", "Charmander"],   # by VAR_STARTER_MON
+    "chosen": KANTO_COMPLETE_STARTER,
+}
 
 # State the run sets outside the generated lists (debug C, the Hall of Fame
 # script's specials). Only for --overlap.
@@ -379,6 +457,11 @@ def split_top(text):
     if "".join(cur).strip():
         parts.append("".join(cur).strip())
     return parts
+
+
+def map_dir_of(path):
+    """Map folder of a script file under data/maps, else None."""
+    return path.split("/")[2] if path.startswith("data/maps/") else None
 
 
 # ---------------------------------------------------------------------------
@@ -575,9 +658,14 @@ class Maps:
             lay = layouts.get(d.get("layout"))
             if d.get("game_version") == "hns" and lay and lay.get("game_version") == "hns":
                 self.all[d["id"]] = d
+        self.by_dir = {d["_dir"]: d for d in self.all.values()}
+        self.sections = oj_world.MapSections()
         self.kanto = sorted((d for d in self.all.values()
                              if d["_dir"].endswith("_Frlg") and d["_dir"] not in EXCLUDED_MAPS),
                             key=lambda d: d["_dir"])
+        self.kanto_all = sorted((d for d in self.all.values()
+                                 if d["_dir"].endswith("_Frlg") and d["_dir"] not in KANTO_NEVER_MAPS),
+                                key=lambda d: d["_dir"])
 
     @staticmethod
     def region(d):
@@ -687,20 +775,33 @@ def load_natdex_order():
     return order
 
 
-def load_key_items(cond):
-    """Items in the key items pocket of this build (src/data/items.h)."""
-    items, cur = set(), None
+def load_item_pockets(cond):
+    """Item -> pocket (POCKET_*) of this build (src/data/items.h)."""
+    pockets, cur = {}, None
     for _, line in cond.lines("src/data/items.h"):
         m = re.match(r"\s*\[(ITEM_\w+)\]\s*=", line)
         if m:
             cur = m.group(1)
-        elif cur and re.search(r"\.pocket\s*=\s*POCKET_KEY_ITEMS\b", line):
-            items.add(cur)
-    return items
+            continue
+        pm = re.search(r"\.pocket\s*=\s*(POCKET_\w+)", line)
+        if cur and pm:
+            pockets.setdefault(cur, pm.group(1))
+    return pockets
 
 
-def load_item_aliases():
-    return dict(re.findall(r"^\s*(ITEM_\w+) = (ITEM_\w+),", read("include/constants/items.h"), re.M))
+def load_item_aliases(cond):
+    """Item alias -> item: ITEM_X = ITEM_Y lines of constants/items.h and the
+    TM and HM names (ITEM_TM_<MOVE> -> ITEM_TMnn) of the jade build."""
+    aliases = dict(re.findall(r"^\s*(ITEM_\w+) = (ITEM_\w+),", read("include/constants/items.h"), re.M))
+    # constants/tms_hms.h: the IS_HNS lists come first, the others after #else.
+    lists = collections.defaultdict(list)
+    for m in re.finditer(r"#define FOREACH_(TM|HM)\(F\)((?:[^\n]*\\\n)*[^\n]*)", read("include/constants/tms_hms.h")):
+        lists[m.group(1)].append(re.findall(r"\bF\((\w+)\)", m.group(2)))
+    branch = 0 if cond.eval("IS_HNS") else -1
+    for kind, versions in lists.items():
+        for n, move in enumerate(versions[branch], 1):
+            aliases["ITEM_%s_%s" % (kind, move)] = "ITEM_%s%02d" % (kind, n)
+    return aliases
 
 
 def species_constant(name):
@@ -788,8 +889,29 @@ def prize_money(party, class_money):
     return 4 * party["mons"][-1][1] * class_money.get(cls, 5) * (2 if party["double"] else 1)
 
 
+def load_legendaries():
+    """LEGENDARY_ id -> {caught, done, species, level} of src/legendaries_oj.c."""
+    out = {}
+    text = read("src/legendaries_oj.c")
+    for m in re.finditer(r"\[(LEGENDARY_\w+)\]\s*=\s*STATIC_LEGENDARY\((\w+),\s*(\w+)", text):
+        out[m.group(1)] = {"caught": m.group(2), "done": m.group(3) if m.group(3) != "0" else None,
+                           "species": None, "level": None}
+    for m in re.finditer(r"\[(LEGENDARY_\w+)\]\s*=\s*ROAMING_LEGENDARY\((\w+),\s*(SPECIES_\w+),\s*(\d+),\s*(\w+)",
+                         text):
+        out[m.group(1)] = {"caught": m.group(2), "done": None, "species": m.group(3), "level": int(m.group(4)),
+                           "release": m.group(5)}
+    return out
+
+
+def load_fly_flags():
+    """Flags of the combined Johto-Kanto fly map (sMapFlyDestinations, src/region_map.c)."""
+    text = read("src/region_map.c")
+    return sorted(set(re.findall(r"\.regionMapType\s*=\s*REGION_MAP_JK,\s*\.mapsec\s*=\s*\w+,\s*\.flag\s*=\s*(FLAG_\w+)",
+                                 text)))
+
+
 # ---------------------------------------------------------------------------
-# The run
+# A run: everything the state's maps reach
 
 TRAINER_BATTLES = {
     "trainerbattle_single": [0], "trainerbattle_double": [0], "trainerbattle_no_intro": [0],
@@ -798,25 +920,48 @@ TRAINER_BATTLES = {
 }
 
 
-class KantoRun:
+class World:
+    """Data both states share."""
+
     def __init__(self):
         self.cond = Conditions()
         self.scripts = Scripts(self.cond)
         self.maps = Maps()
+        self.item_aliases = load_item_aliases(self.cond)
+        self.cfuncs = oj_world.CFunctions()
+        self.legendaries = load_legendaries()
+        self.pockets = load_item_pockets(self.cond)
+        self.key_items = {i for i, p in self.pockets.items() if p == "POCKET_KEY_ITEMS"}
+        self.class_money = load_class_money()
+        self.parties = {}
+        for path in ("src/data/trainers_frlg.party", "src/data/trainers_hns.party"):
+            for t, p in load_parties(path).items():
+                self.parties.setdefault(t, p)
+
+    def item(self, name):
+        return self.item_aliases.get(name, name)
+
+
+class Run:
+    """The state of a run through the configured maps and labels."""
+
+    def __init__(self, world, cfg):
+        self.w = world
+        self.cfg = cfg
+        self.scripts = world.scripts
+        self.maps = cfg["maps"]
         self.warnings = []
         self.labels = set()
-        for d in self.maps.kanto:
-            self.labels |= self.scripts.walk(Maps.entries(d), is_cut)
-        self.item_aliases = load_item_aliases()
+        for d in self.maps:
+            self.labels |= self.scripts.walk(Maps.entries(d), cfg["cut"])
         self._collect()
         self._flags()
         self._vars()
         self._trainers()
         self._items()
-        self._species()
 
     def item(self, name):
-        return self.item_aliases.get(name, name)
+        return self.w.item(name)
 
     def cmds(self):
         for name in sorted(self.labels):
@@ -826,54 +971,67 @@ class KantoRun:
     def _collect(self):
         self.flag_writes = collections.defaultdict(set)
         self.var_writes = collections.defaultdict(set)
+        self.c_writes = collections.defaultdict(set)        # name -> specials that write it in C
         self.trainers_fought = set()
         self.trainers_cleared = set()
         self.var_setvalues = collections.defaultdict(set)   # VAR -> SPECIES_/ITEM_ values
+        self.file_var_species = collections.defaultdict(set)  # (file, VAR) -> SPECIES_ values
         self.legendaries = set()
         self.statics = set()
         self.gift_species = set()
-        self.trade_ids = set()
-        self.item_gifts = collections.defaultdict(dict)    # item -> label -> quantity
+        self.trade_ids = collections.defaultdict(set)       # INGAME_TRADE_ -> map folders
+        self.mon_sources = []                               # (kind, species or var, level, file)
+        self.item_gifts = collections.defaultdict(dict)     # item -> label -> quantity
         self.item_removed = collections.defaultdict(int)
         self.item_var_gifts = set()
         self.shops = set()
         self.breeding = False
-        objs = {d["_dir"]: d.get("object_events") or [] for d in self.maps.kanto}
+        objs = {d["_dir"]: d.get("object_events") or [] for d in self.maps}
 
         def object_flag(mdir, lid):
             for i, o in enumerate(objs.get(mdir, [])):
                 if o.get("local_id") == lid or str(i + 1) == lid:
                     return o.get("flag")
             return None
+        init_labels = self.cfg.get("init_labels", set())
+        init_flags = collections.defaultdict(set)
+        init_vars = collections.defaultdict(set)
         for name, cmd, a in self.cmds():
             path = self.scripts.labels[name]["file"]
-            mdir = path.split("/")[2] if path.startswith("data/maps/") else None
+            mdir = map_dir_of(path)
+            flag_writes = init_flags if name in init_labels else self.flag_writes
+            var_writes = init_vars if name in init_labels else self.var_writes
             if cmd in ("setflag", "setworldmapflag"):
-                self.flag_writes[a[0]].add(1)
+                flag_writes[a[0]].add(1)
             elif cmd == "clearflag":
-                self.flag_writes[a[0]].add(0)
+                flag_writes[a[0]].add(0)
             elif cmd == "removeobject" and a and a[0] != "VAR_LAST_TALKED":
                 fl = object_flag(mdir, a[0]) if mdir else None
                 if fl and fl != "0":
-                    self.flag_writes[fl].add(1)
+                    flag_writes[fl].add(1)
             elif cmd == "setvar":
-                self.var_writes[a[0]].add(a[1])
+                var_writes[a[0]].add(a[1])
                 if re.match(r"(SPECIES|ITEM)_", a[1]):
                     self.var_setvalues[a[0]].add(a[1])
+                    if a[1].startswith("SPECIES_"):
+                        self.file_var_species[(path, a[0])].add(a[1])
                 elif a[1].startswith("INGAME_TRADE_"):
-                    self.trade_ids.add(a[1])
+                    self.trade_ids[a[1]].add(mdir)
                 elif a[0] == "VAR_0x8004" and a[1].startswith("LEGENDARY_"):
                     self.legendaries.add(a[1])
             elif cmd in ("addvar", "subvar", "copyvar"):
-                self.var_writes[a[0]].add(cmd + " " + a[1])
+                var_writes[a[0]].add(cmd + " " + a[1])
+            elif cmd == "ingame_trade" and a:
+                self.trade_ids[a[0]].add(mdir)
             elif cmd == "settrainerflag":
                 self.trainers_fought.add(a[0])
             elif cmd == "cleartrainerflag":
                 self.trainers_cleared.add(a[0])
             elif cmd in TRAINER_BATTLES:
                 for i in TRAINER_BATTLES[cmd]:
-                    self.trainers_fought.add(a[i])
-            elif cmd in ("giveitem", "additem") and a:
+                    # gas macro arguments may also be separated by spaces.
+                    self.trainers_fought.add(a[i].split()[0])
+            elif cmd in ("giveitem", "additem", "giveitem_norandom") and a:
                 if a[0].startswith("ITEM_"):
                     self.item_gifts[self.item(a[0])][name] = int(a[1]) if len(a) > 1 and a[1].isdigit() else 1
                 else:
@@ -884,14 +1042,29 @@ class KantoRun:
             elif cmd == "removeitem" and a and a[0].startswith("ITEM_"):
                 q = int(a[1]) if len(a) > 1 and a[1].isdigit() else 1
                 self.item_removed[self.item(a[0])] = max(self.item_removed[self.item(a[0])], q)
-            elif cmd in ("givemon", "giveegg") and a:
+            elif cmd == "givemon" and a:
                 self.gift_species.add(a[0])   # a species or a var, resolved below
-            elif cmd == "setwildbattle" and a:
+                self.mon_sources.append(("gift", a[0], int(a[1]) if len(a) > 1 and a[1].isdigit() else None, path))
+            elif cmd == "giveegg" and a:
+                self.gift_species.add(a[0])
+                self.mon_sources.append(("egg", a[0], None, path))
+            elif cmd in ("setwildbattle", "setwildbattleshiny", "seteventmon") and a:
                 self.statics.add(a[0])
+                self.mon_sources.append(("static", a[0], int(a[1]) if len(a) > 1 and a[1].isdigit() else None, path))
             elif cmd == "pokemart" and a:
                 self.shops.add(a[0])
-            elif cmd in ("special", "specialvar", "callnative") and a and a[-1] == "GiveEggFromDaycare":
-                self.breeding = True
+            elif cmd in ("special", "specialvar", "callnative") and a:
+                if a[-1] == "GiveEggFromDaycare":
+                    self.breeding = True
+                eff = self.w.cfuncs.effects(a[-1], depth=1)
+                for n in eff["set"] | eff["clear"] | eff["vars"]:
+                    self.c_writes[n].add(a[-1])
+        for n, values in init_flags.items():
+            if n not in self.flag_writes:
+                self.flag_writes[n] = values
+        for n, values in init_vars.items():
+            if n not in self.var_writes:
+                self.var_writes[n] = values
         resolved = set()
         for s in self.gift_species:
             if s.startswith("SPECIES_"):
@@ -899,34 +1072,45 @@ class KantoRun:
             else:
                 resolved |= {v for v in self.var_setvalues.get(s, ()) if v.startswith("SPECIES_")}
         self.gift_species = resolved
+        sources = []
+        for kind, s, level, path in self.mon_sources:
+            names = [s] if s.startswith("SPECIES_") else sorted(self.file_var_species.get((path, s), ()))
+            for n in names:
+                sources.append((kind, n, level, path))
+        self.mon_sources = sources
 
     def _flags(self):
+        cfg = self.cfg
         flags = {}
-        unresolved = []
+        self.unresolved_flags = []
         for name, values in self.flag_writes.items():
-            if name.startswith("FLAG_TEMP_") or name in DROP_FLAGS or name in SET_BY_DEBUG_C:
+            if name.startswith("FLAG_TEMP_") or DAILY_FLAG_RE.match(name) or name in cfg["drop_flags"] \
+                    or name in cfg["set_by_c"]:
                 continue
-            if name in MANUAL_FLAGS:
+            if name in cfg["manual_flags"] or name in cfg["untouched"]:
                 continue
             if len(values) == 1:
                 flags[name] = next(iter(values))
             else:
-                unresolved.append(name)
-        for name in sorted(unresolved):
-            self.warnings.append("%s is set and cleared by Kanto scripts and has no MANUAL_FLAGS entry; "
-                                 "left at its new game value" % name)
-        for name, value in MANUAL_FLAGS.items():
+                self.unresolved_flags.append(name)
+                if name not in cfg["untouched"]:
+                    self.warnings.append("%s is set and cleared by the scripts and has no manual flag entry; "
+                                         "left at its new game value" % name)
+        for name, value in cfg["manual_flags"].items():
             flags[name] = value
+        # Roamers the run releases.
+        for lid, leg in self.w.legendaries.items():
+            if leg.get("release") and flags.get(leg["release"]) == 1:
+                self.legendaries.add(lid)
         # Legendaries caught: RecordLegendaryBattleOutcome sets the caught and done flags.
-        table = read("src/legendaries_oj.c")
-        for lid in self.legendaries:
-            m = re.search(r"\[%s\]\s*=\s*STATIC_LEGENDARY\((\w+),\s*(\w+)" % lid, table)
-            if m:
-                flags[m.group(1)] = 1
-                if m.group(2) != "0":
-                    flags[m.group(2)] = 1
-        # Item balls and hidden items of the Kanto maps.
-        for d in self.maps.kanto:
+        for lid in sorted(self.legendaries | set(cfg.get("extra_legendaries", ()))):
+            leg = self.w.legendaries.get(lid)
+            if leg:
+                flags[leg["caught"]] = 1
+                if leg["done"]:
+                    flags[leg["done"]] = 1
+        # Item balls and hidden items of the maps.
+        for d in self.maps:
             for o in d.get("object_events") or []:
                 if self._ball_item(o) and o.get("flag", "0") not in ("0", ""):
                     flags[o["flag"]] = 1
@@ -945,67 +1129,85 @@ class KantoRun:
         return None
 
     def _vars(self):
+        cfg = self.cfg
         out = {}
+        self.unresolved_vars = []
         for name, values in self.var_writes.items():
-            if SCRATCH_VAR_RE.match(name) or name in SET_BY_DEBUG_C or name in MANUAL_VARS:
+            if SCRATCH_VAR_RE.match(name) or name in cfg["set_by_c"] or name in cfg["manual_vars"] \
+                    or name in cfg["untouched"]:
                 continue
             if len(values) == 1 and not next(iter(values)).startswith(("addvar", "subvar", "copyvar")):
                 out[name] = next(iter(values))
             else:
-                self.warnings.append("%s is written with %s by Kanto scripts and has no MANUAL_VARS entry; "
-                                     "left at its new game value" % (name, ", ".join(sorted(values))))
-        for name, value in MANUAL_VARS.items():
+                self.unresolved_vars.append(name)
+                if name not in cfg["untouched"]:
+                    self.warnings.append("%s is written with %s by the scripts and has no manual var entry; "
+                                         "left at its new game value" % (name, ", ".join(sorted(values))))
+        for name, value in cfg["manual_vars"].items():
             out[name] = str(value)
         self.vars = out
 
     def _trainers(self):
-        parties = load_parties("src/data/trainers_frlg.party")
-        class_money = load_class_money()
-        fought = {t for t in self.trainers_fought if t.startswith("TRAINER_") and not TRAINER_SKIP_RE.match(t)}
+        parties = self.w.parties
+        class_money = self.w.class_money
+        cfg = self.cfg
+        fought = {t for t in self.trainers_fought if t.startswith("TRAINER_") and not cfg["trainer_skip"].match(t)}
         missing = sorted(t for t in fought if t not in parties)
         if missing:
-            self.warnings.append("trainers without a party in trainers_frlg.party: " + ", ".join(missing))
-        self.trainers = sorted(t for t in fought if not RIVAL_RE.match(t) and t not in self.trainers_cleared)
-        common_money = sum(prize_money(parties.get(t), class_money) for t in fought if not RIVAL_RE.match(t))
-        # VAR_STARTER_MON -> the rival's starter, from the branches on VAR_STARTER_MON.
-        rival_of = collections.defaultdict(set)
-        for name, cmd, a in self.cmds():
-            if cmd.endswith("_if_eq") and len(a) == 3 and a[0] == "VAR_STARTER_MON" and a[1].isdigit():
-                for lab in self.scripts.walk([a[2]], is_cut):
-                    for _, c, args in self.scripts.labels[lab]["cmds"]:
-                        if c in TRAINER_BATTLES:
-                            m = RIVAL_RE.match(args[0])
-                            if m:
-                                rival_of[int(a[1])].add(m.group(2))
-        self.rival_by_starter = []
-        self.rival_money = []
-        for starter in range(len(STARTER_NAMES)):
-            suffixes = rival_of.get(starter, set())
-            if len(suffixes) != 1:
-                sys.exit("cannot tell the rival's starter for VAR_STARTER_MON %d: %s" % (starter, sorted(suffixes)))
-            suffix = next(iter(suffixes))
-            battles = sorted(t for t in fought if RIVAL_RE.match(t) and RIVAL_RE.match(t).group(2) == suffix)
-            self.rival_by_starter.append([t for t in battles if t not in self.trainers_cleared])
-            self.rival_money.append(sum(prize_money(parties.get(t), class_money) for t in battles))
-        sizes = {len(r) for r in self.rival_by_starter}
-        if len(sizes) != 1:
-            sys.exit("the three rival paths have different lengths: %s" % self.rival_by_starter)
-        start = re.search(r"SetMoney\(&gSaveBlock1Ptr->money,\s*(\d+)\)", read("src/new_game.c"))
-        self.money = int(start.group(1)) + common_money + self.rival_money[KANTO_COMPLETE_STARTER]
+            self.warnings.append("trainers without a party: " + ", ".join(missing))
+
+        def is_rival(t):
+            return any(r["re"].match(t) for r in cfg["rivals"])
+        self.trainers = sorted(t for t in fought if not is_rival(t) and t not in self.trainers_cleared)
+        money = sum(prize_money(parties.get(t), class_money) for t in fought if not is_rival(t))
+        self.rivals = []
+        for rcfg in cfg["rivals"]:
+            # Starter var -> the rival's starter, from the branches on the var.
+            rival_of = collections.defaultdict(set)
+            for name, cmd, a in self.cmds():
+                if cmd.endswith("_if_eq") and len(a) == 3 and a[0] == rcfg["var"] and a[1].isdigit():
+                    for lab in self.scripts.walk([a[2]], cfg["cut"]):
+                        for _, c, args in self.scripts.labels[lab]["cmds"]:
+                            if c in TRAINER_BATTLES:
+                                m = rcfg["re"].match(args[0])
+                                if m:
+                                    rival_of[int(a[1])].add(m.group("starter"))
+            by_starter, rival_money = [], []
+            for starter in range(len(rcfg["names"])):
+                suffixes = rival_of.get(starter, set())
+                if len(suffixes) != 1:
+                    sys.exit("cannot tell the rival's starter for %s %d: %s" % (rcfg["var"], starter, sorted(suffixes)))
+                suffix = next(iter(suffixes))
+                battles = sorted(t for t in fought if rcfg["re"].match(t)
+                                 and rcfg["re"].match(t).group("starter") == suffix)
+                by_starter.append([t for t in battles if t not in self.trainers_cleared])
+                rival_money.append(sum(prize_money(parties.get(t), class_money) for t in battles))
+            sizes = {len(r) for r in by_starter}
+            if len(sizes) != 1:
+                sys.exit("the rival paths of %s have different lengths: %s" % (rcfg["var"], by_starter))
+            money += rival_money[rcfg["chosen"]]
+            self.rivals.append({"cfg": rcfg, "by_starter": by_starter})
+        if cfg.get("start_money"):
+            start = re.search(r"SetMoney\(&gSaveBlock1Ptr->money,\s*(\d+)\)", read("src/new_game.c"))
+            money += int(start.group(1))
+        self.money = money
         # Species seen in trainer battles.
-        self.seen_common = {s for t in fought if not RIVAL_RE.match(t) for s, _ in parties.get(t, {"mons": []})["mons"]}
-        self.seen_rival = [{s for t in r for s, _ in parties.get(t, {"mons": []})["mons"]}
-                           for r in self.rival_by_starter]
+        self.seen_common = {s for t in fought if not is_rival(t) for s, _ in parties.get(t, {"mons": []})["mons"]}
+        self.seen_rival = []
+        for r in self.rivals:
+            self.seen_rival.append([{s for t in path for s, _ in parties.get(t, {"mons": []})["mons"]}
+                                    for path in r["by_starter"]])
 
     def _items(self):
         bag = collections.Counter()
-        # New game items (removed again by ClearBag).
-        for label in ("EventScript_ResetAllMapFlagsHnS", "EventScript_ResetAllMapFlagsFrlg"):
-            if label in self.scripts.labels:
-                for _, cmd, a in self.scripts.run_straight(label):
-                    if cmd == "additem" and a[0].startswith("ITEM_"):
-                        bag[self.item(a[0])] += int(a[1]) if len(a) > 1 and a[1].isdigit() else 1
-        for d in self.maps.kanto:
+        if self.cfg.get("new_game_items"):
+            # New game items (removed again by ClearBag).
+            for label in ("EventScript_ResetAllMapFlagsHnS", "EventScript_ResetAllMapFlagsFrlg"):
+                if label in self.scripts.labels:
+                    for _, cmd, a in self.scripts.run_straight(label):
+                        if cmd == "additem" and a[0].startswith("ITEM_"):
+                            bag[self.item(a[0])] += int(a[1]) if len(a) > 1 and a[1].isdigit() else 1
+        for d in self.maps:
             for o in d.get("object_events") or []:
                 found = self._ball_item(o)
                 if found:
@@ -1017,144 +1219,324 @@ class KantoRun:
         for item, by_label in self.item_gifts.items():
             if item not in SKIP_GIFT_ITEMS:
                 bag[item] += sum(by_label.values())
-        for item, q in EXTRA_ITEMS.items():
+        for item, q in self.cfg.get("extra_items", {}).items():
             bag[self.item(item)] += q
         for item, q in self.item_removed.items():
             bag[item] -= q
-        # One of each key item: gifts in exclusive branches (e.g. the Route 15
-        # aide's Exp. Share or Small Exp. Share) are all counted above.
-        for item in load_key_items(self.cond):
-            if bag[item] > 1:
+        # One of each key item and HM: gifts in exclusive branches (e.g. the
+        # Route 15 aide's Exp. Share or Small Exp. Share) are all counted above.
+        for item in list(bag):
+            if bag[item] > 1 and (item in self.w.key_items or item.startswith("ITEM_HM")):
                 bag[item] = 1
+        for item in self.cfg.get("skip_items", {}):
+            bag.pop(item, None)
         self.bag = {i: q for i, q in sorted(bag.items()) if q > 0}
-        # Items for evolutions: everything found, given, sold or won in Kanto.
-        avail = set(bag) | set(self.item_gifts)
-        for var in self.item_var_gifts:
-            avail |= {self.item(v) for v in self.var_setvalues.get(var, ()) if v.startswith("ITEM_")}
-        for shop in self.shops:
-            for _, cmd, a in self.scripts.labels.get(shop, {"cmds": []})["cmds"]:
-                if cmd == ".2byte" and a and a[0].startswith("ITEM_"):
-                    avail.add(self.item(a[0]))
-        self.items_available = avail
 
-    def _species(self):
-        sp = load_species()
-        kanto_ids = {d["id"] for d in self.maps.kanto}
-        wild_levels = {}
-        for group in load_json("src/data/wild_encounters.json")["wild_encounter_groups"]:
-            if not group.get("for_maps"):
+    def written(self):
+        """Every flag and var the run's scripts and specials write."""
+        return set(self.flag_writes) | set(self.var_writes) | set(self.c_writes)
+
+    def coverage(self):
+        """Problems: flags and vars the run writes that are neither in the state
+        nor listed with a reason, and list entries nothing writes."""
+        cfg = self.cfg
+        state = set(self.flags) | set(self.vars)
+        problems = []
+        listed = set(cfg["drop_flags"]) | set(cfg["untouched"]) | set(cfg["set_by_c"])
+        for name in sorted(self.written()):
+            if name.startswith("FLAG_TEMP_") or DAILY_FLAG_RE.match(name) or SCRATCH_VAR_RE.match(name):
                 continue
-            for e in group["encounters"]:
-                if e["map"] not in kanto_ids or "LeafGreen" in e["base_label"]:
-                    continue
-                for key in ("land_mons", "water_mons", "rock_smash_mons", "fishing_mons"):
-                    for m in (e.get(key) or {}).get("mons", []):
-                        wild_levels[m["species"]] = max(wild_levels.get(m["species"], 0), m["max_level"])
-        trades = {}
-        kept = "\n".join(l for _, l in self.cond.lines("src/data/trade.h"))
-        for tid in self.trade_ids:
-            m = re.search(r"\[%s\]\s*=\s*\{(.*?)\n\s*\}," % tid, kept, re.S)
-            if m:
-                sm = re.search(r"\.species\s*=\s*(SPECIES_\w+)", m.group(1))
-                if sm:
-                    trades[tid] = sm.group(1)
-        kanto_mapsecs = {d.get("region_map_section") for d in self.maps.kanto}
-        how = {}
-        for s in wild_levels:
-            how.setdefault(s, "wild")
-        for s in sorted(self.statics - UNCATCHABLE_STATIC):
-            how.setdefault(s, "static")
-        for s in sorted(self.gift_species):
-            how.setdefault(s, "gift")
-        for s in sorted(trades.values()):
-            how.setdefault(s, "trade")
-        pre = {}
-        for s, d in sp.items():
-            for e in d["evos"]:
-                pre.setdefault(e["target"], (s, e))
+            if name in state or name in listed:
+                continue
+            if name in self.unresolved_flags or name in self.unresolved_vars:
+                values = self.flag_writes.get(name) or self.var_writes.get(name)
+                problems.append("%s: written with %s, needs a manual value or an UNTOUCHED reason"
+                                % (name, ", ".join(sorted(str(v) for v in values))))
+            else:
+                problems.append("%s: written in C by %s, needs a manual value or an UNTOUCHED reason"
+                                % (name, ", ".join(sorted(self.c_writes.get(name, ())))))
+        written = self.written() | set(C_WRITERS)
+        for table in ("manual_flags", "manual_vars", "drop_flags", "untouched"):
+            for name in sorted(cfg[table]):
+                if name not in written:
+                    problems.append("%s: listed in %s, but nothing in the run writes it" % (name, table))
+        return problems
 
-        def root(s):
-            while s in pre:
-                s = pre[s][0]
-            return s
 
-        def evo_ok(e):
-            if e["method"] == "EVO_TRADE":
-                return False
-            if e["method"] == "EVO_ITEM" and self.item(e["param"]) not in self.items_available:
-                return False
-            for c, arg in e["conds"]:
-                if c == "IF_IN_MAPSEC" and arg not in kanto_mapsecs:
-                    return False
-                if c == "IF_HOLD_ITEM" and self.item(arg) not in self.items_available:
-                    return False
-            return True
-        via = {}  # evolved species -> (pre-evolution, evolution entry used)
-        changed = True
-        while changed:
-            changed = False
-            for s in list(how):
-                for e in sp.get(s, {"evos": []})["evos"]:
-                    if e["target"] in sp and e["target"] not in how and evo_ok(e):
-                        how[e["target"]] = "evo"
-                        via[e["target"]] = (s, e)
-                        changed = True
-                b = root(s)
-                if self.breeding and b in sp and b not in how:
-                    how[b] = "breed"
-                    changed = True
-        missing = [s for s in how if s not in sp]
-        if missing:
-            self.warnings.append("species not enabled in this build: " + ", ".join(sorted(missing)))
-        self.how = {s: h for s, h in how.items() if s in sp}
-        levels = {}
+# ---------------------------------------------------------------------------
+# Species: Pokedex, PC and levels
 
-        def level(s):
-            if s not in levels:
-                h = self.how.get(s)
-                if s in wild_levels:
-                    lv = wild_levels[s]
-                elif s in GIFT_LEVELS:
-                    lv = GIFT_LEVELS[s]
-                elif h == "breed":
-                    lv = 1
-                elif h == "evo":
-                    base, e = via[s]
-                    lv = level(base)
-                    p = e["param"]
-                    if e["method"] in ("EVO_LEVEL", "EVO_LEVEL_BATTLE_ONLY") and p.isdigit() and int(p) > 0:
-                        lv = max(lv, int(p))
-                    else:
-                        lv += 5
-                else:
-                    lv = DEFAULT_BOX_LEVEL
-                levels[s] = min(lv, MAX_BOX_LEVEL)
-            return levels[s]
-        party = {s for s, _ in KANTO_COMPLETE_PARTY}
-        for s in list(party) + KANTO_COMPLETE_PARTY_STARTER_FINAL:
-            if s not in self.how:
-                self.warnings.append("party species %s is not obtainable in Kanto" % s)
-        self.box = [(s, level(s)) for s in sorted(self.how, key=lambda s: sp[s]["num"]) if s not in party]
-        self.seen_only = sorted((s for s in self.seen_common if s not in self.how and s in sp),
-                                key=lambda s: sp[s]["num"])
-        for i, seen in enumerate(self.seen_rival):
-            extra = sorted(s for s in seen if s not in self.how and s not in self.seen_common)
-            if extra:
-                sys.exit("the rival of a %s player fields species Kanto does not offer: %s"
-                         % (STARTER_NAMES[i], ", ".join(extra)))
-        # Gen-1 families not obtainable, for the summary.
+class Species:
+    def __init__(self):
+        self.info = load_species()
         natdex = load_natdex_order()
-        gen1 = {s for s, d in sp.items() if 1 <= natdex.get(d["natdex"], 0) <= 151}
-        roots = {root(s) for s in gen1}
-        forms = re.compile(r"_(GMAX|MEGA|ALOLA|GALAR|HISUI|PALDEA|CAP|COSPLAY|ORIGINAL|PARTNER|STARTER|ROCK_STAR"
-                           r"|BELLE|POP_STAR|PHD|LIBRE|HOENN|SINNOH|UNOVA|KALOS|WORLD|FEMALE)")
-        self.not_obtainable = sorted(s for s in sp if root(s) in roots and s not in self.how and not forms.search(s))
+        self.national = {s: natdex.get(d["natdex"], 0) for s, d in self.info.items()}
+        self.later = check_regions.later_species_regions(check_regions.national_dex_numbers())
+        self.base = {}   # national number -> the species with the lowest species number
+        for s, d in sorted(self.info.items(), key=lambda x: x[1]["num"]):
+            n = self.national[s]
+            if n and n not in self.base:
+                self.base[n] = s
+        self.bases = set(self.base.values())
+        self.evos = {s: [e for e in self.info[s]["evos"] if e["target"] in self.bases] for s in self.bases}
+        self.pre = {}
+        for s in sorted(self.bases, key=self.num):
+            for e in self.evos[s]:
+                self.pre.setdefault(e["target"], s)
+        # Lines: species connected by evolutions.
+        parent = {s: s for s in self.bases}
 
+        def find(s):
+            while parent[s] != s:
+                parent[s] = parent[parent[s]]
+                s = parent[s]
+            return s
+        for t, p in self.pre.items():
+            parent[find(t)] = find(p)
+        self.line = {s: find(s) for s in self.bases}
+
+    def num(self, s):
+        return self.info[s]["num"]
+
+    def region(self, s):
+        n = self.national[s]
+        if n <= 151:
+            return "Kanto"
+        if n <= 251:
+            return "Johto"
+        if n <= 386:
+            return "Hoenn"
+        return self.later.get(n, "Hoenn")
+
+    def canonical(self, s):
+        """The base species of a species or form, by national number."""
+        return self.base.get(self.national.get(s, 0))
+
+    def dex_set(self, regions):
+        """Every stage of the lines with a species of these regions."""
+        lines = {self.line[s] for s in self.bases if self.region(s) in regions}
+        return {s for s in self.bases if self.line[s] in lines}
+
+    def finals(self, members):
+        return {s for s in members if not any(e["target"] in members for e in self.evos[s])}
+
+    def evo_step(self, pre, s):
+        """('level', N) for a level evolution, else ('other', None)."""
+        levels = [int(e["param"]) for e in self.evos[pre] if e["target"] == s
+                  and e["method"] in ("EVO_LEVEL", "EVO_LEVEL_BATTLE_ONLY") and e["param"].isdigit()
+                  and int(e["param"]) > 0]
+        return ("level", min(levels)) if levels else ("other", None)
+
+    def describe(self, pre, s):
+        es = [e for e in self.evos[pre] if e["target"] == s]
+        return es[0]["method"].replace("EVO_", "").lower() if es else "?"
+
+
+class Levels:
+    """PC levels of a state (LEVEL RULES in the docstring)."""
+
+    def __init__(self, species, members, catch, fixed=None):
+        self.sp = species
+        self.members = members           # species the pre-evolution search sees
+        self.catch = catch               # species -> catch level in the region
+        self.fixed = fixed or {}         # species -> level kept from state A
+        self.memo = {}
+        self.how = {}
+
+    def _pre(self, s):
+        p = self.sp.pre.get(s)
+        return p if p in self.members else None
+
+    def _breed_only(self, s):
+        if s in self.fixed or s in self.catch:
+            return False
+        p = self._pre(s)
+        return p is None or self._breed_only(p)
+
+    def level(self, s):
+        if s in self.memo:
+            return self.memo[s]
+        if s in self.fixed:
+            lv, how = self.fixed[s], "as in state A"
+        else:
+            p = self._pre(s)
+            if p is None or (self._breed_only(p) and s in self.catch):
+                lv = self.catch.get(s)
+                how = "caught" if lv is not None else "no source"
+            else:
+                kind, param = self.sp.evo_step(p, s)
+                if kind == "level":
+                    lv, how = param, "level evolution of %s" % p
+                else:
+                    base = self.level(p)
+                    lv = base + 2 if base is not None else None
+                    how = "%s of %s (%s) + 2" % (self.sp.describe(p, s), p, base)
+        self.memo[s], self.how[s] = lv, how
+        return lv
+
+
+def trade_species(world, run):
+    """Species the run's in-game trades give: species -> map folders."""
+    out = collections.defaultdict(set)
+    kept = "\n".join(l for _, l in world.cond.lines("src/data/trade.h"))
+    for tid, mdirs in run.trade_ids.items():
+        m = re.search(r"\[%s\]\s*=\s*\{(.*?)\n\s*\}," % tid, kept, re.S)
+        if m:
+            sm = re.search(r"\.species\s*=\s*(SPECIES_\w+)", m.group(1))
+            if sm:
+                out[sm.group(1)] |= {d for d in mdirs if d}
+    return out
+
+
+def kanto_catch_levels(world, runs, species):
+    """Species -> catch level in Kanto: highest level in the wild tables of
+    state A's maps, else the highest gift or static level of Kanto's scripts,
+    else KANTO_TRADE_LEVEL for trades."""
+    ids = {d["id"] for d in world.maps.kanto}
+    wild = {}
+    for group in load_json("src/data/wild_encounters.json")["wild_encounter_groups"]:
+        if not group.get("for_maps"):
+            continue
+        for e in group["encounters"]:
+            if e["map"] not in ids or "LeafGreen" in e["base_label"]:
+                continue
+            for key in ("land_mons", "water_mons", "rock_smash_mons", "fishing_mons"):
+                for m in (e.get(key) or {}).get("mons", []):
+                    s = species.canonical(m["species"])
+                    if s:
+                        wild[s] = max(wild.get(s, 0), m["max_level"])
+    scripted = {}
+    for run in runs:
+        for kind, s, level, path in run.mon_sources:
+            mdir = map_dir_of(path)
+            if not mdir or not mdir.endswith("_Frlg") or (kind == "static" and s in UNCATCHABLE_STATIC):
+                continue
+            s = species.canonical(s)
+            if s and level:
+                scripted[s] = max(scripted.get(s, 0), level)
+    out = {}
+    for run in runs:
+        for s in trade_species(world, run):
+            cs = species.canonical(s)
+            if cs and any(d.endswith("_Frlg") for d in trade_species(world, run)[s]):
+                out[cs] = KANTO_TRADE_LEVEL
+    out.update(scripted)
+    out.update(wild)
+    return out
+
+
+# ---------------------------------------------------------------------------
+# The state
+
+def config_a(world):
+    return {
+        "name": "A", "maps": world.maps.kanto, "cut": is_cut,
+        "drop_flags": DROP_FLAGS, "manual_flags": MANUAL_FLAGS, "manual_vars": MANUAL_VARS,
+        "untouched": UNTOUCHED, "set_by_c": SET_BY_DEBUG_C,
+        "trainer_skip": TRAINER_SKIP_RE, "rivals": [KANTO_RIVALS],
+        "new_game_items": True, "start_money": True, "extra_items": EXTRA_ITEMS,
+        # Mewtwo is in the PC (the whole Kanto Pokedex); its cave opens after the title.
+        "extra_legendaries": ["LEGENDARY_MEWTWO"],
+    }
+
+
+class States:
+    def __init__(self):
+        self.world = World()
+        self.sp = Species()
+        self.problems = []
+        self._state_a()
+
+    def _state_a(self):
+        """Kanto lines in the Pokedex, Kanto's final stages in party and PC."""
+        w, sp = self.world, self.sp
+        self.a = Run(w, config_a(w))
+        # Gifts and static battles of Kanto after the title (Mewtwo), for levels only.
+        kanto_post = Run(w, dict(config_a(w), maps=[d for d in w.maps.kanto_all if d not in w.maps.kanto], rivals=[]))
+        self.kanto = {s for s in sp.bases if sp.region(s) == "Kanto"}
+        self.dex_a = sp.dex_set({"Kanto"})
+        self.finals_a = sp.finals(self.kanto)
+        self.levels_a = Levels(sp, self.kanto, kanto_catch_levels(w, [self.a, kanto_post], sp))
+        starter = KANTO_COMPLETE_PARTY_STARTER_FINAL[KANTO_COMPLETE_STARTER]
+        self.party_a = [(starter, KANTO_COMPLETE_PARTY_STARTER_LEVEL)] + KANTO_COMPLETE_PARTY
+        self.box_a = self._box(self.finals_a, self.party_a, self.levels_a, "A")
+        self.seen_a = self._seen_only(self.a, self.dex_a, {"Kanto"})
+
+    def _box(self, finals, party, levels, name):
+        party_species = {s for s, _ in party}
+        box = []
+        for s in sorted(finals - party_species, key=self.sp.num):
+            lv = levels.level(s)
+            if lv is None:
+                self.problems.append("state %s: no catch level for %s (%s)" % (name, s, levels.how[s]))
+                continue
+            box.append((s, max(1, min(lv, 100))))
+        return box
+
+    def _seen_only(self, run, dex, regions):
+        """Species trainers show that are not in the Pokedex list, of unlocked regions."""
+        seen = set(run.seen_common)
+        for r, sets in zip(run.rivals, run.seen_rival):
+            seen |= sets[r["cfg"]["chosen"]]
+        out = set()
+        for s in seen:
+            c = self.sp.canonical(s)
+            if c and c not in dex and self.sp.region(c) in regions:
+                out.add(c)
+        return sorted(out, key=self.sp.num)
+
+    def check(self):
+        """Every problem --check reports besides a stale header."""
+        out = list(self.problems)
+        out += self._check_a()
+        return out
+
+    @staticmethod
+    def _check_mons(name, dex, finals, party, box):
+        out = []
+        owned = [s for s, _ in party] + [s for s, _ in box]
+        dup = sorted(s for s, n in collections.Counter(owned).items() if n > 1)
+        if dup:
+            out.append("state %s: species twice in party and PC: %s" % (name, ", ".join(dup)))
+        if set(owned) != finals:
+            out.append("state %s: party and PC are not the final stages: missing %s, not final %s"
+                       % (name, sorted(finals - set(owned)), sorted(set(owned) - finals)))
+        if not finals <= dex:
+            out.append("state %s: final stages outside the Pokedex list" % name)
+        if len(box) > PC_SIZE or len(party) > 6:
+            out.append("state %s: %d party and %d PC Pokemon do not fit" % (name, len(party), len(box)))
+        return out
+
+    def _check_a(self):
+        out = ["state A: %s" % p for p in self.a.coverage()]
+        out += self._check_mons("A", self.dex_a, self.finals_a, self.party_a, self.box_a)
+        flags_a = {n for n, v in self.a.flags.items() if v}
+        for f in ("FLAG_JOHTO_UNLOCKED", "FLAG_JOHTO_ARRIVAL_DONE"):
+            if f in flags_a:
+                out.append("state A: %s set; Johto stays locked (D-049)" % f)
+        if int(self.a.vars.get("VAR_JOHTO_HANDOVER", "0"), 0) >= 3:
+            out.append("state A: VAR_JOHTO_HANDOVER 3 unlocks Johto (D-049)")
+        if int(self.a.vars.get("VAR_HOENN_ARRIVAL_STATE", "0"), 0) != 0:
+            out.append("state A: VAR_HOENN_ARRIVAL_STATE unlocks Hoenn (D-049)")
+        for f in load_fly_flags():
+            if f.startswith("FLAG_WORLD_MAP_") and f not in flags_a:
+                out.append("state A: fly destination %s not set" % f)
+        return out
 
 # ---------------------------------------------------------------------------
 # Header
 
-def render(run):
+def c_array(w, decl, items):
+    w(decl)
+    w("{")
+    for item in items:
+        w("    %s," % item)
+    w("};")
+    w("")
+
+
+def render(states):
+    run = states.a
     out = []
     w = out.append
     w("// Generated by tools/make_debug_states.py - do not edit.")
@@ -1169,37 +1551,29 @@ def render(run):
     w("struct KantoCompleteVar { u16 var; u16 value; };")
     w("struct KantoCompleteItem { u16 item; u16 quantity; };")
     w("")
-
-    def array(decl, items):
-        w(decl)
-        w("{")
-        for item in items:
-            w("    %s," % item)
-        w("};")
-        w("")
-    array("static const u16 sKantoCompleteFlagsSet[] =", sorted(n for n, v in run.flags.items() if v))
-    array("static const u16 sKantoCompleteFlagsClear[] =", sorted(n for n, v in run.flags.items() if not v))
-    array("static const struct KantoCompleteVar sKantoCompleteVars[] =",
-          ["{ %s, %s }" % (n, v) for n, v in sorted(run.vars.items())])
-    array("static const u16 sKantoCompleteTrainers[] =", run.trainers)
+    c_array(w, "static const u16 sKantoCompleteFlagsSet[] =", sorted(n for n, v in run.flags.items() if v))
+    c_array(w, "static const u16 sKantoCompleteFlagsClear[] =", sorted(n for n, v in run.flags.items() if not v))
+    c_array(w, "static const struct KantoCompleteVar sKantoCompleteVars[] =",
+            ["{ %s, %s }" % (n, v) for n, v in sorted(run.vars.items())])
+    c_array(w, "static const u16 sKantoCompleteTrainers[] =", run.trainers)
+    rivals = run.rivals[0]["by_starter"]
     w("// Index: VAR_STARTER_MON.")
-    w("static const u16 sKantoCompleteRivalTrainers[%d][%d] =" % (len(run.rival_by_starter), len(run.rival_by_starter[0])))
+    w("static const u16 sKantoCompleteRivalTrainers[%d][%d] =" % (len(rivals), len(rivals[0])))
     w("{")
-    for i, r in enumerate(run.rival_by_starter):
+    for i, r in enumerate(rivals):
         w("    [%d] = { %s }," % (i, ", ".join(r)))
     w("};")
     w("")
-    array("static const struct KantoCompleteItem sKantoCompleteBag[] =",
-          ["{ %s, %d }" % (i, q) for i, q in run.bag.items()])
-    w("// Index: VAR_STARTER_MON.")
-    array("static const struct KantoCompleteMon sKantoCompletePartyStarter[] =",
-          ["{ %s, %d }" % (s, KANTO_COMPLETE_PARTY_STARTER_LEVEL) for s in KANTO_COMPLETE_PARTY_STARTER_FINAL])
-    array("static const struct KantoCompleteMon sKantoCompleteParty[] =",
-          ["{ %s, %d }" % (s, lv) for s, lv in KANTO_COMPLETE_PARTY])
-    w("// Box: every other species caught or evolved in Kanto; the chosen starter's")
-    w("// final stage is in the party.")
-    array("static const struct KantoCompleteMon sKantoCompleteMons[] =", ["{ %s, %d }" % m for m in run.box])
-    array("static const u16 sKantoCompleteSeenOnly[] =", run.seen_only)
+    c_array(w, "static const struct KantoCompleteItem sKantoCompleteBag[] =",
+            ["{ %s, %d }" % (i, q) for i, q in run.bag.items()])
+    w("// Party: the chosen starter's final stage first.")
+    c_array(w, "static const struct KantoCompleteMon sKantoCompleteParty[] =",
+            ["{ %s, %d }" % (s, lv) for s, lv in states.party_a])
+    w("// PC: the other final stages of the Kanto lines (every branch).")
+    c_array(w, "static const struct KantoCompleteMon sKantoCompleteMons[] =", ["{ %s, %d }" % m for m in states.box_a])
+    w("// Pokedex, seen and caught: every stage of the Kanto lines.")
+    c_array(w, "static const u16 sKantoCompleteDex[] =", sorted(states.dex_a, key=states.sp.num))
+    c_array(w, "static const u16 sKantoCompleteSeenOnly[] =", states.seen_a)
     return "\n".join(out).rstrip("\n") + "\n"
 
 
@@ -1287,7 +1661,7 @@ def overlap(run):
     any_refs = collections.defaultdict(set)
     funcs = c_functions()
     reached = collections.defaultdict(set)
-    for d in run.maps.all.values():
+    for d in run.w.maps.all.values():
         region = Maps.region(d)
         if region == "kanto":
             continue
@@ -1328,7 +1702,7 @@ def overlap(run):
             for t in set(tok.findall(f.read())):
                 c_refs[t].add(rel)
                 any_refs[t].add(rel)
-    names = {n for n in run.cond.macros if n.startswith(("FLAG_", "VAR_"))
+    names = {n for n in run.w.cond.macros if n.startswith(("FLAG_", "VAR_"))
              and not n.endswith(("_START", "_END", "_COUNT", "_SIZE", "_BASE"))}
     values = resolve_values(names)
     by_value = collections.defaultdict(set)
@@ -1376,44 +1750,63 @@ def overlap(run):
 
 # ---------------------------------------------------------------------------
 
-def summary(run):
-    sets = sum(1 for v in run.flags.values() if v)
-    print("flags set %d, clear %d, vars %d, trainers %d + rival %d, bag entries %d, box %d, seen only %d, money %d"
-          % (sets, len(run.flags) - sets, len(run.vars), len(run.trainers), len(run.rival_by_starter[0]),
-             len(run.bag), len(run.box), len(run.seen_only), run.money))
-    print("Kanto maps %d, reached labels %d; Gen-1 family species not obtainable in Kanto: %s"
-          % (len(run.maps.kanto), len(run.labels), ", ".join(run.not_obtainable) or "none"))
-    for w in run.warnings:
-        print("warning: " + w, file=sys.stderr)
+def summary(states):
+    for name, run in (("A", states.a),):
+        sets = sum(1 for v in run.flags.values() if v)
+        print("state %s run: flags set %d, clear %d, vars %d, trainers %d, bag entries %d, money %d, maps %d, labels %d"
+              % (name, sets, len(run.flags) - sets, len(run.vars), len(run.trainers), len(run.bag), run.money,
+                 len(run.maps), len(run.labels)))
+    print("state A: Pokedex %d, party %d, PC %d, seen only %d"
+          % (len(states.dex_a), len(states.party_a), len(states.box_a), len(states.seen_a)))
+    for name, run in (("A", states.a),):
+        for w in run.warnings:
+            print("warning (state %s): %s" % (name, w), file=sys.stderr)
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--check", action="store_true", help="exit 1 if the header is stale")
-    ap.add_argument("--overlap", action="store_true", help="report flags/vars shared with Johto or Hoenn")
+    ap.add_argument("--check", action="store_true",
+                    help="exit 1 if the header is stale or a flag/var of the region is not covered")
+    ap.add_argument("--overlap", action="store_true", help="report flags/vars of state A shared with Johto or Hoenn")
+    ap.add_argument("--levels", action="store_true", help="print how each PC level was derived")
     args = ap.parse_args()
-    run = KantoRun()
-    text = render(run)
-    path = os.path.join(REPO, HEADER)
+    states = States()
     if args.overlap:
-        sys.exit(overlap(run))
-    if args.check:
-        try:
-            with open(path, encoding="utf-8") as f:
-                old = f.read()
-        except OSError:
-            old = ""
-        if old != text:
-            sys.stdout.writelines(difflib.unified_diff(old.splitlines(True), text.splitlines(True),
-                                                       HEADER, HEADER + " (regenerated)"))
-            print("%s is stale: run python3 tools/make_debug_states.py" % HEADER)
-            sys.exit(1)
-        print("%s is up to date" % HEADER)
+        sys.exit(overlap(states.a))
+    if args.levels:
+        for name, box, levels in (("A", states.box_a, states.levels_a),):
+            for s, lv in box:
+                print("%s %-30s %3d  %s" % (name, s, lv, levels.how.get(s, "")))
         return
-    with open(path, "w", encoding="utf-8") as f:
-        f.write(text)
-    summary(run)
-    print("wrote " + HEADER)
+    texts = {HEADER: render(states)}
+    if args.check:
+        failed = False
+        for header, text in texts.items():
+            try:
+                with open(os.path.join(REPO, header), encoding="utf-8") as f:
+                    old = f.read()
+            except OSError:
+                old = ""
+            if old != text:
+                sys.stdout.writelines(difflib.unified_diff(old.splitlines(True), text.splitlines(True),
+                                                           header, header + " (regenerated)"))
+                print("%s is stale: run python3 tools/make_debug_states.py" % header)
+                failed = True
+            else:
+                print("%s is up to date" % header)
+        problems = states.check()
+        for p in problems:
+            print("problem: " + p)
+        if problems:
+            print("%d problems" % len(problems))
+        sys.exit(1 if failed or problems else 0)
+    for header, text in texts.items():
+        with open(os.path.join(REPO, header), "w", encoding="utf-8") as f:
+            f.write(text)
+        print("wrote " + header)
+    summary(states)
+    for p in states.check():
+        print("problem: " + p, file=sys.stderr)
 
 
 if __name__ == "__main__":
