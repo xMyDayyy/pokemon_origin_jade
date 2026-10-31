@@ -1,8 +1,9 @@
 # Origin Jade - changelog
 
-Changes of the audit round of 2026-10-30/31 for players and testers. The
-upstream `CHANGELOG.md` in the repository root belongs to
-pokeemerald-expansion and is not about Origin Jade.
+Changes of the audit round of 2026-10-30/31 and of the story packages that
+followed it on 2026-10-31, for players and testers. The upstream
+`CHANGELOG.md` in the repository root belongs to pokeemerald-expansion and
+is not about Origin Jade.
 
 - Base: `3525d22e71` (branch `balancing`). The commit ids below are those of
   the integration branch `audit`; `docs/origin_jade/PATCHES.md` lists every
@@ -15,6 +16,124 @@ pokeemerald-expansion and is not about Origin Jade.
   `docs/origin_jade/BETA_READINESS.md`.
 - Saves made before this round are not migrated and were not tested; start
   a new game (owner decision 2026-10-30). Randomizer seeds changed as well.
+
+## Story packages of 2026-10-31
+
+The owner's requirements of 2026-10-31: the Hoenn Ticket story (D-047),
+Hoenn without a father (D-048), Pokemon per region (D-049) and two debug
+states (D-050). All new German texts are drafts for the owner to review.
+
+### The way to Hoenn: Hoenn Ticket and ports (D-047)
+
+- After the Kanto title, every Johto title and the win over Red the player
+  wakes up in their room in Pallet Town, also after a restart once the Hall
+  of Fame has saved; before, Johto titles and Red continued in New Bark
+  Town (Neuborkia). A whiteout from the room leads to Mom downstairs.
+  `93ae559803`, `da69d2519c`
+- Johto Hall of Fame: at the first Johto title Prof. Oak and an unknown man
+  ("???", Troy) come in after the record. Troy asks Oak for an urgent talk
+  in his lab and leaves; Oak asks the player to come to his lab at home.
+  Title defences have no such scene. `56be2a1860`
+- Oak's lab in Pallet Town: entering it after the first Johto title starts
+  Troy's scene. Oak introduces Troy as the former champion of Hoenn and
+  asks the player to travel there (Team Magma and Team Aqua are up to
+  something); Troy hands over the Hoenn Ticket and leaves. With a full Key
+  Items pocket he waits and hands it over when talked to. Saves already
+  past the Johto title get the scene too. `59bd5a6e39`
+- The Hoenn Ticket is a key item with a new description: it cannot be
+  sold, tossed or stored, "Items: Zufall" does not replace it, and it stays
+  in the bag after the crossing. `84e8dc6bb5`
+- The ports of Vermilion City (Orania City) and Olivine City (Oliviana
+  City) and the sailors at the Battle Frontier (Kampfzone) and on Birth
+  Island list only where a ship goes now: "Hoenn" with the ticket until
+  Birch's welcome in his lab (a one-way trip, every crossing lands on the
+  Route 104 pier), "Graphitport City" and "Seegrasulb City" after the
+  welcome once the town was visited. The Hoenn ferry leaves both ports at
+  once, also before the M.S. Aqua's maiden voyage. The way back from Hoenn
+  is Fly. `a18797946a`
+- Olivine City port: Prof. Oak no longer waits there to see the player off,
+  and Elm's (Lind's) text after the Johto title no longer sends the player
+  there. `e8c6cc9b93`
+
+### Hoenn: an unknown trainer, Norman is not the father (D-048)
+
+- Using an item at the wrong place in Hoenn shows "Birk sagt immer…"
+  instead of "Vati sagt immer…". `d27f2c12bd`
+- At the first Hoenn title Prof. Birch names Norman instead of "your
+  father". `1e2c25cad3`
+- People in Hoenn know at most of a strong trainer from the mainland: May
+  (Maike) on Route 103, Route 110 and in Lilycove City (Seegrasulb City),
+  Birch's son, Sidney, Glacia, Drake, Scott's call after the Sootopolis
+  badge and the man in Slateport's mart. Wallace's speech stays (Troy told
+  him). `e6e74b3a85`, `af94011ea4`
+- Mom's PokeCom calls follow the journey (Pallet Town in Kanto and Johto,
+  Hoenn from the arrival, three leagues after the Hoenn title), and she is
+  "Mama" everywhere. `5a0cfc67c1`, `7f3ae8b30f`
+- Petalburg City (Blütenburg City): once the gym is open (fourth Hoenn
+  badge, as before), five townspeople no longer talk of the rebuilding;
+  Norman's PokeNav call after his defeat has a text of its own.
+  `5ddcaaf6da`, `fd64cd265f`
+- The PCs in Norman's son's room, in May's room and upstairs in the New
+  Bark Town house show the Pokemon Trainer School e-mail, and the player's
+  decorations are not set up in Littleroot Town; the player's bedroom PC
+  is the one in Pallet Town. `ea9a0f7287`
+- Emerald's scenes in which the player is Norman's child (moving in, Dad
+  on TV, the new neighbours' greeting, Mom's Running Shoes, Birch's
+  starter gift, Dad's PokeNav call, the S.S. Ticket after the title,
+  Brendan's Go-Goggles line, Mom after the wall clock) are no longer built;
+  they were unreachable in a normal game (Mom after the wall clock only on
+  saves without a set clock). The unused berry texts name Norman.
+  `40102c8756`, `7d5e1d669e`, `d5542f3a39`, `3b20fb905a`, `fe370081c1`,
+  `68df18a8b8`, `d38acf1988`
+- English branches (not shown in the German build) no longer call Norman
+  "DAD". `1c7b9f82a6`
+
+### Pokemon per region (D-049)
+
+- Every species belongs to a region: Kanto 151, Johto 129, Hoenn 142;
+  babies and later evolutions of Kanto and Johto lines count to Johto,
+  those of Hoenn lines to Hoenn. Johto is unlocked on the first Johto map
+  after the Kanto title, Hoenn with the first crossing. Before that no
+  source hands out a species of the region; evolutions are exempt.
+  `58e89bd76b`
+- Cerulean Cave: Ditto instead of Wobbuffet. `66a9a36a4c`
+- Ecruteak City (Teak City) gym: Morty's (Jens') first team has a second
+  Misdreavus instead of Duskull. `16eb7f6e2e`
+- Olivine City: the Aurora Ticket (Deoxys) only after the first trip to
+  Hoenn. `d0f6521cf6`
+- "Items: Zufall" no longer rolls the Root and Claw Fossil. `42e8c25c46`
+- Day Care: an egg of a region that is not unlocked yet hatches as the
+  first unlocked stage (Pikachu instead of Pichu in Kanto, Marill instead
+  of Azurill in Johto); not with a randomizer option that changes the
+  player's species (O-033). `8fcbb1acc0`
+- Pokedex: a Pokemon of a locked region that a trainer sends out is
+  registered as seen only once the region is unlocked or the species was
+  caught, so the National Pokedex list no longer jumps into a later block.
+  `f37a68c419`
+- Kanto Pokedex: Oak's rating, his aides' gifts and the game designer in
+  Celadon City count the 151; Oak calls the Pokedex complete with all 151
+  but Mew (he never did before), and the Celadon diploma names the Kanto
+  Pokedex. `756563f7d7`, `26979b66fe`
+- Johto Pokedex: Elm's and Birch's rating, Lilycove's diploma and the star
+  count behind the nurse's Gold Card greeting no longer need Azurill and
+  Wynaut, so the Johto Pokedex can be completed before Hoenn. The trainer
+  card's stars count titles and Red, not the Pokedex (D-049 corrected).
+  `58f244eade`, `2f4f6ccede`; the English rating text ends correctly
+  (not shown in the German build) `e6466779e5`
+
+### Debug states (D-050, beta build only)
+
+- "Johto Test" (overworld debug menu, new game before the first Pokemon):
+  Kanto right after its first Hall of Fame, the Pokedex of all Kanto lines
+  (185), in party and PC only the 81 final stages, Oak waits with the GS
+  Ball, Johto and Hoenn locked; the player wakes up in the room.
+  `ae3e095a3c`
+- "Hoenn Test": Kanto and Johto done by a completionist (story, badges and
+  permits, league, Red, one-time encounters, every item ball and hidden
+  item but no purchases (O-035), Pokedex 282, the 142 final stages; team
+  Charizard 70, Meganium 63, Gyarados 63, Ampharos 62, Nidoking 60, Espeon
+  60). It starts at the door of Oak's lab, where Troy's scene runs, and
+  replaces the hand-written Hoenn quick start. `13bf3c8cb6`
 
 ## Kanto
 
@@ -120,15 +239,20 @@ pokeemerald-expansion and is not about Origin Jade.
 
 ## Hoenn
 
-Hoenn is reached by ship with the Hoenn Ticket, which has no source in the
-game yet except the debug menu (open question O-002).
+Hoenn is reached by ship with the Hoenn Ticket, which Troy hands over in
+Oak's lab after the first Johto title (D-047, see the story packages
+above).
 
 - Later ship trips to Hoenn no longer reset Hoenn's story (Petalburg gym
   softlock, Mossdeep Space Center battle, Mr. Briney, repeated arrival
   scenes, the second desert fossil). `ffa85af6e0`
-- Later trips dock in Slateport City's (Graphitport City's) harbor once it
-  was visited, but not while the Team Aqua submarine scene is pending.
-  `ffa85af6e0`, `2c6403fa2d`
+- Until Prof. Birch's welcome every "Hoenn" trip lands on the Route 104
+  pier. After the welcome the port menus offer "Graphitport City"
+  (Slateport City; once it was visited, not while the Team Aqua submarine
+  scene is pending) and "Seegrasulb City" (Lilycove City; once it was
+  visited), and the ships land in their harbors. `a18797946a`; before,
+  later trips docked in Slateport City's harbor on their own once it was
+  visited (`ffa85af6e0`, `2c6403fa2d`).
 - Every trip sets the respawn point in Hoenn; Prof. Birch's welcome is
   caught up in his lab if the player left the beach before it.
   `84a564e935`
@@ -279,17 +403,35 @@ game yet except the debug menu (open question O-002).
   tests, and `tools/run_tests.py` with a baseline of known failures.
   `c68220b18f`, `a0e623d5ea`, `17cb0ed51e`, `78aa81bd8e`, `631abb6cca`,
   `c441d676ef`
+- `tools/check_regions.py`: no wild table, overworld Pokemon, gift or
+  static battle of an active map offers a species of a later region, and
+  the National Pokedex order cannot jump into a later block (`--dex-gaps`);
+  part of the CI. `bb850c8d7c`
+- `tools/simulate_progress.py` and `tools/check_save_safety.py` know
+  `giveitem_norandom`; the simulator reaches the Hoenn title without
+  `--hoenn-ticket`. `e505824673`
+- `tools/make_debug_states.py` (was `make_kanto_complete.py`) generates
+  both debug states; `--check` (CI) also fails on a Kanto or Johto story
+  flag or var that is neither in a state nor listed with a reason.
+  `0ab7449520`, `ae3e095a3c`, `13bf3c8cb6`
+- Origin Jade tests for the region rule (`test/origin_jade/region_rule.c`)
+  and the debug states (`test/origin_jade/debug_states.c`); two upstream
+  Day Care tests that expect a Pichu egg are known failures now (D-049).
+  `58e89bd76b` and the following region commits, `b022af5623`
 
 ## Known open points
 
 `docs/origin_jade/BETA_READINESS.md` lists everything that is still open,
 with evidence and the owner decisions it needs. The most important:
 
-- Hoenn has no ticket source outside the debug menu (O-002); a normal
-  playthrough stops after the Johto title.
+- The new German texts of the story packages are drafts (D-047, D-048).
+  The packages and their text check left open questions O-029 to O-040
+  (e.g. Elm's call after the Johto title comes only in New Bark Town,
+  O-036; Troy's sprite, O-031).
 - English texts remain on the Johto story path (Radio Tower 5F, Goldenrod
   Underground, Mahogany Town, Union Cave) and in shared scripts (Safari
   Zone, Battle Tents, move tutors) (O-012).
 - Owner decisions are pending on boss movesets (A20), regional forms (A19)
   and several smaller points.
-- Nothing of this round was played in an emulator.
+- Nothing of this round was played in an emulator; `BETA_READINESS.md`
+  lists what to test first.
