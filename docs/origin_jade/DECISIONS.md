@@ -1367,7 +1367,8 @@ dated 2026-10-10 or later were decided directly.
     Johto"; only Emerald's moving truck started it);
     May's or Brendan's greeting of the new neighbour in their house ("a gym
     leader's kid"); the arrival with Mom in the moving truck and her
-    Running Shoes in front of the house ("your father will be overjoyed").
+    Running Shoes in front of the house ("your father will be overjoyed");
+    Birch's starter gift after the rescue ("your father's blood").
 - **Evidence:** owner requirements 2026-10-31 (point 4).
 
 ---

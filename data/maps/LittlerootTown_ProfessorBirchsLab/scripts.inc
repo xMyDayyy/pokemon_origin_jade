@@ -96,7 +96,9 @@ LittlerootTown_ProfessorBirchsLab_EventScript_SetObjectPosForJohtoStarters::
 	end
 
 LittlerootTown_ProfessorBirchsLab_OnFrame:
+#if !IS_HNS
 	map_script_2 VAR_BIRCH_LAB_STATE, 2, LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent
+#endif
 	map_script_2 VAR_BIRCH_LAB_STATE, 4, LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedexEvent
 	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex
 	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 4, LittlerootTown_ProfessorBirchsLab_EventScript_ChooseJohtoStarter
@@ -106,6 +108,7 @@ LittlerootTown_ProfessorBirchsLab_OnFrame:
 
 @ The starter is technically given prior to this on Route 101 by special ChooseStarter
 @ This is just where the game tells you its yours and lets you nickname it
+#if !IS_HNS
 LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent::
 	lockall
 	bufferleadmonspeciesname STR_VAR_1
@@ -142,6 +145,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_DeclineSeeingRival::
 	goto_if_eq VAR_RESULT, YES, LittlerootTown_ProfessorBirchsLab_EventScript_AgreeToSeeRival
 	goto_if_eq VAR_RESULT, NO, LittlerootTown_ProfessorBirchsLab_EventScript_DeclineSeeingRival
 	end
+#endif
 
 LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedexEvent::
 	lockall
@@ -720,6 +724,7 @@ LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo:
 	.string "There's a lot of love there.$"
 #endif
 
+#if !IS_HNS
 LittlerootTown_ProfessorBirchsLab_Text_LikeYouToHavePokemon:
 #if GERMAN
 	.string "Prof. Birk: Du bist also\n"
@@ -750,6 +755,7 @@ LittlerootTown_ProfessorBirchsLab_Text_LikeYouToHavePokemon:
 	.string "I'd like you to have the POKéMON you\l"
 	.string "used earlier.\p"
 	.string "{PLAYER} received the {STR_VAR_1}!$"
+#endif
 #endif
 
 LittlerootTown_ProfessorBirchsLab_Text_WhyNotGiveNicknameToMon:
