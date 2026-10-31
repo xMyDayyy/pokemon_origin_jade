@@ -431,16 +431,16 @@ dated 2026-10-10 or later were decided directly.
   `LoadGameSave` (`src/save.c`) and are keyed to a flag from the Origin Jade
   block, which new games set right away - never through `SAVE_VERSION`:
   that number belongs to HnS upstream and is bumped there.
-- **Budget** (2026-10-30; `python3 tools/check_budget.py` prints it after a
+- **Budget** (2026-10-31; `python3 tools/check_budget.py` prints it after a
   build): SaveBlock1 15868 of 15872 bytes (4 free), SaveBlock2 3892 of 3968
   (76 free), SaveBlock3 1008 of 1624 (616 free), PokemonStorage 34144 of
   35712 (1568 free). The limits are the flash space `src/save.c` checks
   with `STATIC_ASSERT`; new Origin Jade data goes to SaveBlock3 (D-016).
   SaveBlock1 reserves that can be reused in place without moving offsets:
   `roamerPadding` (84 bytes), `dexPadding1` and `dexPadding2` (63 each),
-  `unused_9C6` (2), `outbreakUnused1/2/3`. Memory: EWRAM 249164 of 262144
+  `unused_9C6` (2), `outbreakUnused1/2/3`. Memory: EWRAM 249180 of 262144
   bytes (95.05 %, of which `gHeap` 115968), IWRAM 25704 of 32768
-  (78.44 %), ROM 25875604 of 33554432 (77.12 %).
+  (78.44 %), ROM 25897336 of 33554432 (77.18 %).
 - **Layout guards and reserves (2026-10-30):**
   - Sizes: SaveBlock1 15868 of 15872 bytes (4 free), SaveBlock2 3892,
     SaveBlock3 1008 of 1624 (616 free), PokemonStorage 34144. `test/save.c`
