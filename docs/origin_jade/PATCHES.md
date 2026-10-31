@@ -1,14 +1,18 @@
 # Origin Jade - patch series of the audit round
 
-This file describes the patch series of the audit round of 2026-10-30/31:
-how it was made, which commits depend on each other, how each commit was
-verified and how to apply it. What changed for players is in
+This file describes the patch series of the audit round of 2026-10-30/31
+and of the story packages that followed it on 2026-10-31: how it was made,
+which commits depend on each other, how each commit was verified and how
+to apply it. What changed for players is in
 `docs/origin_jade/CHANGELOG.md`, what is still open in
 `docs/origin_jade/BETA_READINESS.md`.
 
-- **Range:** `3525d22e71..audit`, 144 commits, plus 6 documentation commits
-  on top (this file is one of them), 150 in all. `3525d22e71` was the tip
-  of `balancing` when the audit started.
+- **Range:** `3525d22e71..b022af5623`, 192 commits: the audit series (144),
+  its 6 documentation commits, then the story packages, the fixes after
+  their text check and the debug states (42). Another 6 documentation
+  commits follow on top (this file is one of them), 198 in all.
+  `3525d22e71` was the tip of `balancing` when the audit started; nothing
+  is committed there before the owner's approval.
 - **Commit ids:** all ids (shas) in this file are those of the integration
   branch `audit` in the integration clone. Applying the series with
   `git am` or a rebase gives new ids; the content stays the same.
@@ -19,7 +23,11 @@ verified and how to apply it. What changed for players is in
   `W-<tool>-<n>` from the tool runs, `N-<package>-<n>` from the open points
   of the waves. Their evidence lives in the audit reports, outside the
   repository; `BETA_READINESS.md` repeats the open ones with their
-  evidence.
+  evidence. The story packages implement the owner's requirements of
+  2026-10-31 instead of findings: `owner <n>` is point n of those
+  requirements, `plan <id>` an item of the implementation plan's short
+  list (A0-D2) that the owner approved with them, `text check` a finding
+  of the text check of the story packages.
 
 ## How the series was made
 
@@ -50,6 +58,23 @@ verified and how to apply it. What changed for players is in
    fixed up before integration.
 6. **Documentation (6 commits).** D-017 budget numbers, this file,
    `CHANGELOG.md`, `BETA_READINESS.md`, `TESTS.md` and `README.md`.
+7. **Story packages (35 commits).** The owner's requirements of 2026-10-31
+   (Hoenn Ticket story instead of the debug ticket, Hoenn without a father,
+   Pokemon per region) became an implementation plan, which the owner
+   approved with corrections. Three packages from `13e6f261fd`, each in
+   its own worktree: `ticket` (D-047, resolves O-002), `norman` (D-048),
+   `regions` (D-049). Each was reviewed, the review fixes were folded in,
+   and the packages were integrated onto `audit` one after the other
+   (new ids).
+8. **Fixes after the text check (3 commits).** A text check of the story
+   packages found three slips (`storyfix`); most of its other findings
+   are open questions O-036 to O-040.
+9. **Debug states (4 commits).** Package `debug` (D-050): the generator
+   `tools/make_debug_states.py` and the debug menu's "Johto Test" and
+   "Hoenn Test", reviewed and fixed up before integration.
+10. **Documentation (6 commits).** `DECISIONS.md` (O-036 to O-040),
+    `CHANGELOG.md`, `BETA_READINESS.md`, `TESTS.md`, `README.md` and this
+    file for the 42 commits of steps 7 to 9.
 
 Rules every commit follows: one finding (or a tight group of the same
 kind) per commit; `DECISIONS.md` changes in the same commit as the
@@ -121,15 +146,66 @@ the patches conflict there. Inside the series these orders are required:
   (`66c8c9114f`, `d30437a99d`, `488df2564a`); `src/save.c`, `test/save.c`
   (`78aa81bd8e`, `c441d676ef`).
 - **Debug state.** `src/data/debug_kanto_complete.h` is not changed by the
-  series; `python3 tools/make_kanto_complete.py --check` reports it up to
-  date at the tip (2026-10-31).
+  audit series; `python3 tools/make_kanto_complete.py --check` reports it
+  up to date at its tip (2026-10-31). The debug package changes that:
+  `0ab7449520` renames the generator to `tools/make_debug_states.py`,
+  `ae3e095a3c` regenerates `debug_kanto_complete.h`, `13bf3c8cb6` adds
+  `src/data/debug_johto_complete.h`. The per-commit log records the check
+  of `debug_kanto_complete.h` as up to date at `0ab7449520` and
+  `ae3e095a3c` and that of `debug_johto_complete.h` at `13bf3c8cb6`; at
+  the tip both headers are up to date (`integ_b10`).
+- **Story packages: flags, vars and DECISIONS ids.** `59bd5a6e39` adds
+  `FLAG_HIDE_OAKS_LAB_TROY` (`OJ_FLAGS_KANTO` + 10) and gives
+  `VAR_HOENN_TICKET_STATE` (`vars_hoenn_de.h`) its new meaning;
+  `58e89bd76b` adds `FLAG_JOHTO_UNLOCKED` (`OJ_FLAGS_GLOBAL` + 0). New
+  entries: D-047 (`84e8dc6bb5`, extended by every `ticket` commit), D-048
+  (`d27f2c12bd`, extended by the `norman` package), D-049 (`58e89bd76b`,
+  extended by the `regions` package, `26979b66fe` and `2f4f6ccede`), D-050
+  (`13bf3c8cb6`); O-031 (`59bd5a6e39`), O-032 (`a18797946a`), O-029
+  (`ea9a0f7287`), O-030 (`40102c8756`), O-033 (`8fcbb1acc0`), O-034
+  (`f37a68c419`), O-035 (`13bf3c8cb6`), O-036 to O-040 (documentation).
+  The packages reserved their O- ids before integration, so `ticket`'s
+  O-031 and O-032 come before `norman`'s O-029 and O-030 in the series.
+  D-002 (`ticket`, `norman`) and D-029 (`ticket`, `regions`) are edited by
+  two packages each.
+- **Story packages: shared code.** `GetSpeciesRegion` and
+  `IsRegionUnlocked` (`58e89bd76b`, `src/region_rule_oj.c`) are used by
+  `8fcbb1acc0`, `f37a68c419`, `756563f7d7` and `58f244eade`;
+  `tools/check_regions.py` (`bb850c8d7c`) and the generator (`ae3e095a3c`)
+  read its table of national numbers. `59bd5a6e39` hands the ticket over
+  with `giveitem_norandom` (`28158c0e9d`), which `e505824673` teaches the
+  simulator and `check_save_safety.py`. The debug commits `0ab7449520`,
+  `ae3e095a3c`, `13bf3c8cb6` and `b022af5623` build on each other; the
+  Hoenn Test needs Troy's scene (`56be2a1860`, `59bd5a6e39`) and the
+  room's heal location (`93ae559803`).
+- **Same lines in the same file** (story packages): the port maps
+  `OlivineCity_PortInside_hns`, `VermilionCity_PortInside_Frlg`,
+  `SSAqua_1F_hns` (`e8c6cc9b93`, `a18797946a`);
+  `PokemonLeague_HallOfFame_hns` (`da69d2519c`, `56be2a1860`); the
+  Littleroot Town house maps and `data/scripts/players_house.inc`
+  (`7f3ae8b30f`, `ea9a0f7287`, `40102c8756`, `7d5e1d669e`, `d38acf1988`);
+  `src/pokenav_match_call_data.c` and `data/text/match_call.inc`
+  (`1c7b9f82a6`, `5a0cfc67c1`, `fd64cd265f`, `af94011ea4`);
+  `src/strings.c` (`d27f2c12bd`, `7f3ae8b30f`, `68df18a8b8`);
+  `src/region_rule_oj.c`, `include/region_rule_oj.h` and
+  `test/origin_jade/region_rule.c` (`58e89bd76b`, `8fcbb1acc0`,
+  `f37a68c419`, `756563f7d7`, `bb850c8d7c`, `58f244eade`); `src/pokedex.c`
+  and `src/birch_pc.c` (`756563f7d7`, `58f244eade`);
+  `tools/make_debug_states.py` and `src/debug.c` (`0ab7449520`,
+  `ae3e095a3c`, `13bf3c8cb6`); `include/debug.h` (`ae3e095a3c`,
+  `13bf3c8cb6`); `.github/workflows/build.yml` (`bb850c8d7c`,
+  `0ab7449520`); `docs/origin_jade/TESTS.md` (ten of the 42 commits).
+  `8fcbb1acc0` adds the two Day Care tests that expect a Pichu egg to
+  `test/known_failures.tsv`.
 
 ## Verification per commit
 
-Every commit was built (`make jade -j3` on the package branches, `make -j2`
-later; both build the same Jade ROM) and checked with
-`python3 tools/check_flags.py` (0 problems). The logs are kept in the
-audit workspace, not in the repository.
+Every commit up to `b022af5623` was built (`make jade -j3` on the package
+branches, `make -j2` later; both build the same Jade ROM) and checked with
+`python3 tools/check_flags.py` (0 problems); for wave 1 the table says
+where only a package or integration build exists. The 6 documentation
+commits 193-198 change no code and were not built. The logs are kept in
+the audit workspace, not in the repository.
 
 | Part | Commits | Per-commit build and `check_flags` | Logs |
 |---|---:|---|---|
@@ -138,10 +214,19 @@ audit workspace, not in the repository.
 | Wave 3 | 40 | 40 of 40 `make=ok`, `check_flags` 0, with the ids of `audit` | `percommit_w3.log` |
 | Tip `b62f22e381` | 144 | `make` 0, ROM SHA-1 `5c1c08ae7685bf6073ea20c7f87df981d6488c2a`, `check_flags` 0, `check_budget.py`, `check_text_width.py`, `make_kanto_complete.py --check`, test suite with `tools/run_tests.py`: 0 new and 0 changed failures | `integ_b8.res`, `integ_tests_b8.log` |
 | Documentation | 6 | each commit: `make -j2` 0, ROM SHA-1 unchanged, `check_flags` 0 | `abschluss/work/repo_docs/` (full and release builds), `abschluss/work/crosscheck/percommit_docs.log` (per commit, final ids) |
+| Story packages | 35 | 35 of 35 `make=ok`, `check_flags` 0, with the ids of `audit`; before that every commit also on its package branch after the review fixes | `percommit_story.log`; package logs |
+| Story state `58f244eade` | 185 | `make` 0, ROM SHA-1 `7665d2fdd3ffbb2ef1ce2d5b6061f753f7058942`, `check_flags` 0, `check_budget.py`, `check_text_width.py`, `make_kanto_complete.py --check`, `check_regions.py` 0 problems, `check_maps.py` 88 minor, `check_merge.py` 0 errors (8 known), simulator without `--hoenn-ticket`: Hoenn title in wave 137, test suite with `tools/run_tests.py`: 5138 tests, 0 new and 0 changed failures | `integ_b9.res`, `integ_tests_b9.log` |
+| Fixes and debug states | 7 | 7 of 7 `make=ok`, `check_flags` 0, with the ids of `audit`; the debug state check (before `0ab7449520` still `make_kanto_complete.py`) without a problem, the log records `debug_kanto_complete.h` up to date up to `ae3e095a3c` and `debug_johto_complete.h` from `13bf3c8cb6` on | `percommit_b10.log` |
+| Tip `b022af5623` | 192 | `make` 0, ROM SHA-1 `11bec7d4cba038d647668f2f86c68ef3a29eee1f` (also after a build from scratch), `check_flags` 0, `check_budget.py`, `check_text_width.py`, `make_debug_states.py --check` (both headers up to date), `check_regions.py` 0 problems, `check_maps.py` 88 minor, `check_merge.py` 0 errors (8 known), simulator without `--hoenn-ticket`: Hoenn title in wave 137, test suite with `tools/run_tests.py`: 5140 tests, 0 new and 0 changed failures | `integ_b10.res`, `integ_tests_b10.log` |
+| Documentation (2) | 6 | documentation only, not built; `check_flags` 0 | - |
 
-On 2026-10-31 the tip was also built from scratch in a fresh worktree
-(all 397 C files compiled): the ROM has the same SHA-1 as above, and
-`tools/check_warnings.py` finds 105 warnings, as many as the baseline.
+On 2026-10-31 the audit tip `b62f22e381` and the tip `b022af5623` were
+also built from scratch in a separate worktree (all 397 C files
+compiled): each ROM has the same SHA-1 as above, and
+`tools/check_warnings.py` finds 105 warnings on each full log, as many as
+the baseline. `make release` of `b022af5623` gives exit 0 and SHA-1
+`34e173bde2dc2b804e1132a60a5675f928dd33b4` (111 warnings, as on
+`b62f22e381`; see N-build_tools-4 in `BETA_READINESS.md`).
 
 ## How to apply
 
@@ -157,11 +242,12 @@ The series sits on `3525d22e71`. Two ways:
 **Patches** (`git am`), e.g. when `balancing` has moved on:
 
     # in the integration clone
-    git format-patch 3525d22e71..audit -o patches/audit/
-    # the doc commits are exported separately, base audit: patches/docs/
+    git format-patch 3525d22e71..b022af5623 -o patches/audit/
+    # the last 6 doc commits are exported separately, base b022af5623:
+    # patches/docs2/
     # in the target repository
     git checkout balancing
-    git am --3way patches/audit/*.patch patches/docs/*.patch
+    git am --3way patches/audit/*.patch patches/docs2/*.patch
 
 `git am` keeps author, author date and message; the committer date and so
 the commit ids change. The per-package exports of the waves
@@ -172,6 +258,7 @@ After applying, run:
 
     make -j$(nproc)
     python3 tools/check_flags.py
+    python3 tools/check_regions.py
     python3 tools/make_debug_states.py --check
     python3 tools/check_budget.py
     python3 check_merge.py
@@ -179,7 +266,8 @@ After applying, run:
 
 If the target branch has new commits, also run the static tools of
 `docs/origin_jade/TESTS.md` (`tools/check_maps.py`,
-`tools/simulate_progress.py --hoenn-ticket`).
+`tools/simulate_progress.py`, which needs no `--hoenn-ticket` any more and
+ends with exit 0 only if the Hoenn title is reachable).
 
 ## Full list in order
 
@@ -462,11 +550,95 @@ The number is the position in the series; the title is the commit title
 |---:|---|---|---|
 | 145 | `38a08f72f4` | Doku: Budgetzahlen in D-017 auf den aktuellen Stand | A38 |
 | 146 | `bb1681f692` | Doku: CHANGELOG.md für Spieler und Tester dieser Runde | - |
-| 147 | this commit | Doku: PATCHES.md mit Reihenfolge, Prüfung und Anwendung der Reihe | - |
-| 148 | follows | Doku: BETA_READINESS.md mit Kriterien, offenen Punkten und Risiken | - |
-| 149 | follows | Doku: TESTS.md um die Prüfwerkzeuge und die Testmatrix ergänzt | A10 |
-| 150 | follows | Doku: README.md für Origin Jade | A46 |
+| 147 | `985723383a` | Doku: PATCHES.md mit Reihenfolge, Prüfung und Anwendung der Reihe | - |
+| 148 | `ee3c444213` | Doku: BETA_READINESS.md mit Kriterien, offenen Punkten und Risiken | - |
+| 149 | `52ba1053c9` | Doku: TESTS.md um die Prüfwerkzeuge und die Testmatrix ergänzt | A10 |
+| 150 | `13e6f261fd` | Doku: README.md für Origin Jade | A46 |
 
-The ids of commits 147 to 150 are in `git log`; a commit cannot name its
-own id. `src/data/debug_kanto_complete.h` was up to date, so no commit
-regenerates it.
+`src/data/debug_kanto_complete.h` was up to date at the end of the audit
+series, so none of commits 1 to 150 regenerates it.
+
+### Story packages (owner requirements of 2026-10-31)
+
+#### `ticket`: Hoenn Ticket story and ports (D-047)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 151 | `84e8dc6bb5` | Hoenn: Hoennticket als Basis-Item | owner 1, plan A4 |
+| 152 | `93ae559803` | Alabastia: Heilort im Zimmer, nach dem Kanto-Titel dort weiter | owner 1 |
+| 153 | `da69d2519c` | Johto-Liga und Rot: danach im Zimmer in Alabastia aufwachen | owner 1, plan A1 |
+| 154 | `59bd5a6e39` | Eichs Labor: Troy übergibt das Hoennticket | owner 1, owner 15, plan A0, W-progress_sim-4 (O-002) |
+| 155 | `56be2a1860` | Johto-Ruhmeshalle: Eich und Troy kommen nach der Aufzeichnung | owner 1 |
+| 156 | `e8c6cc9b93` | Oliviana: Eichs Abschied am Hafen entfällt, Linds Text angepasst | plan A6 |
+| 157 | `a18797946a` | Häfen: dynamische Menüs mit Hoenn, Graphitport und Seegrasulb | owner 2, plan A5a, plan A5b |
+| 158 | `e505824673` | Werkzeuge: giveitem_norandom bekannt, Hoenn ohne Schalter erreichbar | W-progress_sim-4 |
+
+#### `norman`: Hoenn without a father (D-048)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 159 | `d27f2c12bd` | Hoenn: „Birk sagt immer…“ statt „Vati sagt immer…“ | owner 4 |
+| 160 | `1e2c25cad3` | Hoenn-Liga: Birk nennt beim ersten Titel Norman statt „deinen Vater“ | owner 4 |
+| 161 | `1c7b9f82a6` | Englische Zweige: Norman ist auch dort nicht „DAD“ | owner 4 |
+| 162 | `e6e74b3a85` | Hoenn: Maike, Birks Sohn und Ulrich wissen nur Vages über den Spieler | owner 4, plan B3 |
+| 163 | `5a0cfc67c1` | PokéCom: Mamas Anrufe passen zu Kanto, Johto und Hoenn | owner 4, P-005 |
+| 164 | `7f3ae8b30f` | Mama heißt überall Mama, nicht Mutti oder Mutter | owner 4 |
+| 165 | `5ddcaaf6da` | Blütenburg City: nach der Arenaöffnung spricht niemand mehr vom Umbau | owner 12 |
+| 166 | `fd64cd265f` | PokéCom: Norman nach seiner Niederlage mit eigenem Anruftext | owner 4 |
+| 167 | `ea9a0f7287` | Wurzelheim: Zimmer von Normans Sohn ohne PC und Deko des Spielers | owner 4, T-hoenn_a-12 |
+| 168 | `40102c8756` | Wurzelheim: Szenen im Haus der Spielerfamilie nicht mehr im Jade-Build | owner 4, plan B8, N-hoenn-1 |
+| 169 | `7d5e1d669e` | Wurzelheim: Begrüßung als neue Nachbarn nicht mehr im Jade-Build | owner 4, plan B8 |
+| 170 | `d5542f3a39` | Wurzelheim: Ankunft mit Mama und Laufschuh-Szene nicht mehr im Jade-Build | plan B8 |
+| 171 | `3b20fb905a` | Birks Labor: Emeralds Starter-Übergabe nicht mehr im Jade-Build | plan B8 |
+| 172 | `fe370081c1` | Hoenn: Papas Anruf, Ticket-Schritt und Brix' Vater-Satz nicht mehr gebaut | plan B8, N-hoenn-1 |
+| 173 | `68df18a8b8` | Vater-Texte: Beeren, Mystery Event und gText_Dad ohne Vater | owner 4, plan B8 |
+| 174 | `d38acf1988` | Wanduhr: erstes Stellen ohne Mamas Umzugsszene | plan B8 |
+| 175 | `af94011ea4` | Hoenn: Frosina, Dragan, Scott und ein Marktkunde nennen keinen Champion | owner 4, plan B3 |
+
+#### `regions`: Pokemon per region (D-049)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 176 | `58e89bd76b` | Regionen: Artenzuordnung und Freischaltung von Johto und Hoenn | owner 8, owner 10, plan C1 |
+| 177 | `66a9a36a4c` | Azurblaue Höhle: Ditto statt Woingenau | plan C2 |
+| 178 | `16eb7f6e2e` | Jens: Traunfugil statt Zwirrlicht im ersten Arenateam | owner 18, plan C6 |
+| 179 | `d0f6521cf6` | Oliviana City: Auroraticket erst nach der Ankunft in Hoenn | plan C4 |
+| 180 | `42e8c25c46` | Zufall: Wurzel- und Klauenfossil keine Item-Ergebnisse mehr | plan C5 |
+| 181 | `8fcbb1acc0` | Pension: Eier vor der Freischaltung als erste erlaubte Stufe | plan C3, plan C8 |
+| 182 | `f37a68c419` | Pokédex: Gegner späterer Regionen erst nach der Freischaltung gesehen | owner 13, plan C7, plan C8 |
+| 183 | `756563f7d7` | Kanto-Pokédex: Eichs Bewertung und das Diplom zählen die 151 | plan C7 |
+| 184 | `bb850c8d7c` | Werkzeug: check_regions.py prüft Arten je Region und die Pokédex-Folge | plan C7 |
+| 185 | `58f244eade` | Johto-Pokédex: Bewertung, Stern und Diplom ohne Azurill und Isso | owner 8 |
+
+### Fixes after the text check of the story packages
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 186 | `26979b66fe` | Diplom in Prismania City: Kanto-Pokédex statt Johto-Pokédex | text check |
+| 187 | `e6466779e5` | Johto-Bewertung: Endzeichen im englischen Text ergänzt | text check |
+| 188 | `2f4f6ccede` | D-049: Der Johto-Pokédex zählt nicht für die Sterne des Trainerpasses | text check |
+
+### `debug`: debug states "Johto Test" and "Hoenn Test" (D-050)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 189 | `0ab7449520` | Werkzeug: make_kanto_complete.py heißt jetzt make_debug_states.py | - |
+| 190 | `ae3e095a3c` | Johto Test: Pokédex aller Kanto-Linien, im PC nur die Endformen | owner 7, owner 11, owner 14, owner 17 |
+| 191 | `13bf3c8cb6` | Hoenn Test: Kanto und Johto komplett aus dem Generator, Start bei Troy | owner 6, owner 11, owner 14, owner 17, plan D1, plan D2 |
+| 192 | `b022af5623` | Test: debug_states.c prüft Johto Test und Hoenn Test | A10 |
+
+### Documentation (2)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 193 | `6a543a57fc` | Doku: DECISIONS.md mit O-036 bis O-040 aus der Textprüfung der Story | text check |
+| 194 | `e48f92fb79` | Doku: CHANGELOG.md um die Story-Pakete, Nachfixes und Debug-Zustände | - |
+| 195 | `e330acc928` | Doku: BETA_READINESS.md mit Hoenn über Troy und Emulator-Testliste | - |
+| 196 | `60d8ddbb0f` | Doku: TESTS.md mit Testmatrix der Spitze b022af5623 | A10 |
+| 197 | `3d4e34b85c` | Doku: README.md nennt Hoenn über Troys Hoennticket erreichbar | - |
+| 198 | this commit | Doku: PATCHES.md um die 42 Commits der Story-Pakete und Debug-Zustände | - |
+
+The id of commit 198 is in `git log`; a commit cannot name its own id.
+The ids of commits 193 to 198 are those of branch `wp-docs2` on
+`b022af5623`; a fast-forward of `audit` keeps them, `git am` or a rebase
+gives new ones.
