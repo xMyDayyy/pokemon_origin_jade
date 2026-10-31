@@ -107,6 +107,12 @@ var number without storage (D-016).
   Care itself) and with randomized species; the seen rule; the Kanto
   Pokedex count and Celadon's diploma (151, Mew not needed); the Johto
   Pokedex complete without Azurill and Wynaut. D-049.
+- `test/origin_jade/debug_states.c`: the debug menu's "Johto Test" and
+  "Hoenn Test" (D-050) on a fresh save: Pokedex counts (185 and 282),
+  party and PC (75 and 136 final stages) with some levels, usable PC
+  Pokemon, Johto and Hoenn locked or unlocked, badges, Troy's
+  `VAR_HOENN_TICKET_STATE` 1 and room for the Hoenn Ticket, a picked-up
+  TM and fossil of Johto, `FLAG_MINTS_DISABLED` as the new game set it.
 - `test/save.c`: save block sizes of Origin Jade (D-017).
 
 The tests read the bands from `include/config/*_scaling.h`. They use

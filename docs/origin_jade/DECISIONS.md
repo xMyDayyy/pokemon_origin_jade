@@ -1594,7 +1594,7 @@ dated 2026-10-10 or later were decided directly.
 - **Code:** `tools/make_debug_states.py`; `Debug_SetJohtoTestState`,
   `Debug_SetHoennTestState` and the menu actions in `src/debug.c`;
   `Debug_EventScript_JohtoTestWarpHome`, `Debug_EventScript_HoennTestWarpLab`
-  in `data/scripts/debug.inc`.
+  in `data/scripts/debug.inc`; test `test/origin_jade/debug_states.c`.
 - **Evidence:** owner requirements 2026-10-31 (points 6, 7, 11, 14, 17);
   plan part D.
 
