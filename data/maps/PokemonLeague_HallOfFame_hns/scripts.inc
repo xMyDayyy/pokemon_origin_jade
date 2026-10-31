@@ -24,6 +24,7 @@ PokemonLeague_HallOfFame_EventScript_Cutscene::
 	waitfieldeffect FLDEFF_HALL_OF_FAME_RECORD_FRLG
 	delay 40
 	setvar VAR_TEMP_1, 1
+	call PokemonLeague_HallOfFame_EventScript_OakAndTroy
 	call PokemonLeague_HallOfFame_EventScript_SetFirstGameClearFlags
 	goto PokemonLeague_HallOfFame_EventScript_GameClear
 
@@ -67,7 +68,64 @@ PokemonLeague_HallOfFame_EventScript_SetFirstGameClearFlags::
 	setflag FLAG_HIDE_BATTLEFRONTIER_ENGINEER
 	setvar VAR_LEAGUE_STATE, 1
 	setvar VAR_NEWBARK_TOWN_STATE, 6
+	@ Troy waits in Oak's lab (D-047); set before the Hall of Fame saves.
+	goto_if_ne VAR_HOENN_TICKET_STATE, 0, Common_EventScript_NopReturn
+	setvar VAR_HOENN_TICKET_STATE, 1
 	return
+
+@ First Johto title: Oak and Troy come in after the record. Troy only talks to Oak, then Oak
+@ asks the player to his lab. See docs/origin_jade/DECISIONS.md, D-047.
+PokemonLeague_HallOfFame_EventScript_OakAndTroy::
+	addobject LOCALID_HALLOFFAME_OAK
+	addobject LOCALID_HALLOFFAME_TROY
+	applymovement LOCALID_HALLOFFAME_TROY, PokemonLeague_HallOfFame_Movement_TroyEnter
+	applymovement LOCALID_HALLOFFAME_OAK, PokemonLeague_HallOfFame_Movement_OakEnter
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
+	waitmovement LOCALID_HALLOFFAME_TROY
+	waitmovement LOCALID_HALLOFFAME_OAK
+	msgbox PokemonLeague_HallOfFame_Text_TroyToOak, MSGBOX_DEFAULT
+	msgbox PokemonLeague_HallOfFame_Text_OakToTroy, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_HALLOFFAME_TROY, PokemonLeague_HallOfFame_Movement_TroyLeave
+	waitmovement LOCALID_HALLOFFAME_TROY
+	playse SE_EXIT
+	removeobject LOCALID_HALLOFFAME_TROY
+	applymovement LOCALID_HALLOFFAME_OAK, Common_Movement_WalkUp
+	waitmovement LOCALID_HALLOFFAME_OAK
+	msgbox PokemonLeague_HallOfFame_Text_OakComeToLab, MSGBOX_DEFAULT
+	closemessage
+	return
+
+@ From the door (4,12) to (4,6), next to Oak.
+PokemonLeague_HallOfFame_Movement_TroyEnter:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	face_right
+	step_end
+
+@ From the door (5,12) to (5,6), two tiles below the player; steps up after Troy leaves.
+PokemonLeague_HallOfFame_Movement_OakEnter:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	face_left
+	step_end
+
+PokemonLeague_HallOfFame_Movement_TroyLeave:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
 
 PokemonLeague_HallOfFame_Movement_LanceEnter:
 	walk_up
@@ -129,6 +187,40 @@ PokemonLeague_HallOfFame_LanceText:
     .string "all the makings of greatness!\p"
     .string "{PLAYER}, allow me to register you\n"
     .string "and your partners as CHAMPIONS!$"
+#endif
+
+PokemonLeague_HallOfFame_Text_TroyToOak:
+#if GERMAN
+	.string "???: Professor Eich! Verzeihen Sie\n"
+	.string "die Störung.\p"
+	.string "Ich muss dringend etwas mit Ihnen\n"
+	.string "besprechen.\p"
+	.string "Ich warte in Ihrem Labor.$"
+#else
+	.string "???: PROF. OAK! Forgive the\n"
+	.string "interruption.\p"
+	.string "I urgently need to talk to you.\p"
+	.string "I'll wait for you in your LAB.$"
+#endif
+
+PokemonLeague_HallOfFame_Text_OakToTroy:
+#if GERMAN
+	.string "Prof. Eich: Oh! …Gut, ich komme,\n"
+	.string "so schnell ich kann.$"
+#else
+	.string "PROF.OAK: Oh! …Very well, I'll come\n"
+	.string "as soon as I can.$"
+#endif
+
+PokemonLeague_HallOfFame_Text_OakComeToLab:
+#if GERMAN
+	.string "Prof. Eich: {PLAYER}!\p"
+	.string "Wenn du wieder zu Hause bist, komm\n"
+	.string "bitte in mein Labor.$"
+#else
+	.string "PROF.OAK: {PLAYER}!\p"
+	.string "When you're back home, please\n"
+	.string "come to my LAB.$"
 #endif
 
 PokemonLeague_HallOfFame_Rematch_LanceText:

@@ -1244,6 +1244,12 @@ dated 2026-10-10 or later were decided directly.
 ### D-047 Hoenn Ticket story and ports
 - **Status:** Active (2026-10-31). Resolves O-002.
 - **Decision:**
+  - At the first Johto title Oak and an unknown man ("???", Troy) come
+    into Johto's Hall of Fame after the record. Troy talks only to Oak (he
+    urgently needs to speak to him and waits in his lab) and leaves; Oak
+    then briefly asks the player to come to his lab at home. The scene sets
+    `VAR_HOENN_TICKET_STATE` 1 before the Hall of Fame saves. Title
+    defences have no such scene.
   - Troy (Steven) brings the Hoenn Ticket. He waits in Oak's lab from the
     first Johto title on (`VAR_HOENN_TICKET_STATE` 1): Oak and Troy stand
     side by side and face each other. Entering the lab starts the scene;
@@ -1266,7 +1272,9 @@ dated 2026-10-10 or later were decided directly.
     alone (only key items, HMs and the GS Ball are exempt). Scripts hand it
     over with `giveitem_norandom`. It stays in the bag after the crossing
     as a souvenir.
-- **Code:** `PalletTown_ProfessorOaksLab_Frlg` (`SetupTroy`, `TroyScene`,
+- **Code:** `PokemonLeague_HallOfFame_hns` (`OakAndTroy`, both objects
+  hidden by `FLAG_HIDE_INDIGO_PLATEAU_MARY_OAK` until `addobject`);
+  `PalletTown_ProfessorOaksLab_Frlg` (`SetupTroy`, `TroyScene`,
   `FLAG_HIDE_OAKS_LAB_TROY`); `VAR_HOENN_TICKET_STATE` in
   `include/constants/vars_hoenn_de.h`; `ITEM_HOENN_TICKET` in
   `src/data/items.h`.
@@ -1398,7 +1406,7 @@ dated 2026-10-10 or later were decided directly.
   (D-047). The build uses Emerald's `OBJ_EVENT_GFX_STEVEN`; HnS's
   `OBJ_EVENT_GFX_STEVEN_HNS` is the alternative. Not compared in an
   emulator yet next to the other people of his scenes (FRLG's Oak in his
-  lab).
+  lab, HnS's Oak and Lance in Johto's Hall of Fame).
 
 ## Superseded decisions (kept for the record)
 
