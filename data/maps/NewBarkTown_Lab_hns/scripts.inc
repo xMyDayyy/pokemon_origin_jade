@@ -509,7 +509,6 @@ NewBarkTown_Lab_EventScript_ElmSSTicket::
 	closemessage
 	clearflag FLAG_HIDE_SSAQUA_1F_GRANDPA
 	setvar VAR_NEWBARKTOWN_LABSTATE, 11
-	clearflag FLAG_HIDE_OLIVINE_PORT_OAK
 	release
 	end
 
@@ -1395,16 +1394,14 @@ NewBarkTown_Lab_Text_ElmGiveTicket2:
 	.string "Lind: Die M.S. Aqua fährt nach\n"
 	.string "Orania City und in die Kampfzone,\l"
 	.string "wo starke Trainer auf dich warten.\p"
-	.string "Professor Eich wartet übrigens im\n"
-	.string "Hafen von Oliviana City auf dich.\p"
-	.string "Grüße ihn bitte von mir!$"
+	.string "Grüße Professor Eich von mir, wenn\n"
+	.string "du wieder in Alabastia bist!$"
 #else
 	.string "It sails to VERMILION CITY and to\n"
 	.string "the BATTLE FRONTIER, where tough\l"
 	.string "trainers await you.\p"
-	.string "By the way, PROF.OAK is waiting for\n"
-	.string "you at the OLIVINE port.\p"
-	.string "Give him my regards!$"
+	.string "Say hello to PROF.OAK for me when\n"
+	.string "you're back in PALLET TOWN!$"
 #endif
 
 NewBarkTown_Lab_Text_LabMonEgg:

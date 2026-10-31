@@ -254,7 +254,6 @@ SSAqua_EventScript_ReturnRefused::
 
 SSAqua_EventScript_ReturnToOlivine::
 	call SSAqua_EventScript_ReturnDepart
-	@ 8,15: Oak may still stand at 8,16 in front of the sailor.
 	warpsilent MAP_OLIVINE_CITY_PORT_INSIDE_HNS, 8, 15
 	waitstate
 	release

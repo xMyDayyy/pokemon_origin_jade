@@ -175,7 +175,6 @@ VermilionPortFrlg_EventScript_ChoseOlivine::
 	bufferitemname STR_VAR_1, ITEM_SS_TICKET
 	goto_if_eq VAR_RESULT, FALSE, VermilionPortFrlg_EventScript_Sailor_NoCredentials
 	call VermilionPortFrlg_EventScript_EnterShip
-	@ 8,15: Oak may still stand at 8,16 in front of the sailor.
 	warpsilent MAP_OLIVINE_CITY_PORT_INSIDE_HNS, 8, 15
 	waitstate
 	release

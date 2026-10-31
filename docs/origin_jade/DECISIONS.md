@@ -1267,6 +1267,10 @@ dated 2026-10-10 or later were decided directly.
     arm the scene on entering the lab (D-005).
   - Troy has one sprite everywhere (owner); currently
     `OBJ_EVENT_GFX_STEVEN`, see O-031.
+  - Oak no longer sees the player off at the Olivine port (HnS's National
+    Dex scene, "maybe to Hoenn someday"): his object and scene are gone,
+    and Elm's M.S. Aqua news after the first Johto title no longer sends
+    the player there.
   - The Hoenn Ticket is a key item (`POCKET_KEY_ITEMS`, importance 1): it
     cannot be sold, tossed or stored, and the item randomizer leaves it
     alone (only key items, HMs and the GS Ball are exempt). Scripts hand it
