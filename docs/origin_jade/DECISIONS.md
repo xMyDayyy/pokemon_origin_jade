@@ -545,7 +545,8 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-11.
 
 ### D-023 Randomizer without a GEN SCOPE row
-- **Status:** Active (changed 2026-10-30)
+- **Status:** Active (changed 2026-10-30, changed 2026-10-31: no fossils
+  rolled)
 - **Decision:** HnS's GEN SCOPE option (randomizer pool limited to Gen 1-3
   families) stays in the code and the save, but has no row in the challenge
   menu and is off (`RANDOMIZER_DEFAULT_GEN_SCOPE_1_3` FALSE in
@@ -558,7 +559,9 @@ dated 2026-10-10 or later were decided directly.
     (sort types evolution stone, evolution item and fossil, plus King's
     Rock, Metal Coat, Deep Sea Tooth, Deep Sea Scale, Razor Claw and Razor
     Fang), so D-013 and D-037 hold with the item randomizer too; they can
-    still be rolled for other items. Oak's five Poke Balls (after the
+    still be rolled for other items, fossils never (Root and Claw Fossil
+    left the whitelist `src/data/randomizer/item_whitelist.h`, D-049).
+    Oak's five Poke Balls (after the
     Pokedex and the refill after the Route 22 rival) and the coin prizes of
     Celadon's prize room (`giveitem_norandom`) bypass the randomizer. Other
     exchanges that use `giveitem` (Cerulean's Berry Powder man, Route 113's
@@ -1416,6 +1419,8 @@ dated 2026-10-10 or later were decided directly.
       Pokemon on 2F have Ditto, from FRLG's own table of the cave, in
       Wobbuffet's place (same level).
     - Deoxys: the Aurora Ticket only after the first trip to Hoenn (D-029).
+    - Item randomizer: Root and Claw Fossil are no longer rolled; Ruins of
+      Alph's lab would revive them in Johto (D-023).
     - Morty's first team (`TRAINER_MORTY_1_HNS`): a second Misdreavus
       (level 25, Astonish, Confuse Ray, Mean Look, Hex) in Duskull's
       place. Rematch teams keep their species.
