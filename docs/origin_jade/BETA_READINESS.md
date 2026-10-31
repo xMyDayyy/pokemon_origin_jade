@@ -1,9 +1,15 @@
 # Origin Jade - beta readiness
 
-State of 2026-10-31: branch `audit` at `b62f22e381` (144 commits on
-`3525d22e71`) plus the documentation commits of this round, which change
-no code. The sources are the audit's finding list (297 findings, each with
-a status), its test matrix and the checks repeated on 2026-10-31.
+State of 2026-10-31: branch `audit` at `b022af5623` (192 commits on
+`3525d22e71`: the audit series up to `b62f22e381`, its documentation
+commits, the story packages D-047 to D-049, three fixes after their text
+check and the debug states D-050) plus the documentation commits on top,
+which change no code. The sources are the audit's finding list (297
+findings, each with a status; used here in its update for the 42 commits
+after the audit series: 128 fixed, 122 open or partly fixed), its test
+matrix, the reports of the story packages and the checks repeated on
+2026-10-31 (integration runs `integ_b9` on the story state `58f244eade`
+and `integ_b10` on the tip, a fresh build and a release build of the tip).
 `docs/origin_jade/CHANGELOG.md` lists what changed,
 `docs/origin_jade/PATCHES.md` how the series was made and verified.
 
@@ -31,70 +37,70 @@ a status), its test matrix and the checks repeated on 2026-10-31.
   progress simulator reaches the Kanto title and the Johto title, the map
   checker finds nothing from "important" up, and the known story traps are
   fixed in the source. English texts remain on the Johto story path.
-- **Hoenn cannot be reached in a normal playthrough.** The Hoenn Ticket has
-  no source except the debug menu (O-002, blocker). With the ticket the
-  simulator reaches all eight Hoenn badges and the Hoenn title.
+- **Hoenn is reachable in a normal playthrough** (O-002 resolved, D-047):
+  after the first Johto title Troy hands over the Hoenn Ticket in Oak's
+  lab, and the ferries in Vermilion City and Olivine City sail to Hoenn.
+  The simulator now reaches the Hoenn title without any switch. No known
+  blocker is left; the new scenes are checked statically and by tool only.
 - **Nothing was played.** Every fix is checked statically or by tool; the
   emulator test of the three test steps (play A to Z, balancing, reach
-  everything) is still to do.
+  everything) and of the story packages (list below) is still to do.
 - So the build fits a **closed beta** with testers who use the beta build
-  (debug menus on) and take the Hoenn Ticket from the debug menu after the
-  Johto title. It is **not ready for an open beta or a release** until
-  O-002 is decided, the English story texts are translated and an
-  emulator playthrough has been done.
+  (debug menus on); the debug menu's "Johto Test" and "Hoenn Test" (D-050)
+  start at the Johto and the Hoenn chapter. It is **not ready for an open
+  beta or a release** until the English story texts are translated, the
+  owner has reviewed the draft texts and decisions of the story packages,
+  and an emulator playthrough has been done.
 
 ## Beta criteria
 
 | # | Criterion | Verdict | Evidence |
 |---:|---|---|---|
-| 1 | Build is reproducible | met | 2026-10-31: `make -j2` in a fresh worktree compiles all 397 C files, exit 0; ROM SHA-1 `5c1c08ae7685bf6073ea20c7f87df981d6488c2a`, the same as the incremental build of the integration clone (`integ_b8`). Every commit of waves 2 and 3 and of the documentation was built on its own with its final id; the wave-1 commits were built on their package branches before integration, 7 of them only as part of a package or integration build (`PATCHES.md`). Toolchain arm-none-eabi-gcc 13.2.1. |
-| 2 | Release build, debug menus off | met (statically) | `make release` of the same state, 2026-10-31: exit 0, SHA-1 `182fd390ba35e26e171f5684d6a87d3b5f7a7ca0`. The overworld debug menu (`Debug_ShowMainMenu`) is not in the release ELF; the battle debug menu's only trigger (Select, `src/battle_controller_player.c:398`) is compiled out. The sprite visualizer has no caller in the HnS summary screen and is linked in neither build. The release ROM was not started. |
-| 3 | No known blocker on the story path Kanto -> Johto title | met (by tool) | `simulate_progress.py`: Kanto title in wave 50, GS Ball 51, Johto badges 55-91, Johto title 105; no stop on the main path. `check_maps.py`: 0 findings from "important" up (base: 3 critical, 10 important). Base: the simulator stopped in Kanto at the Celadon Game Corner (A01). Story traps A02, A03, A13, A57, A102 and the deep review's state bugs are fixed in the source (statically). |
-| 4 | No known blocker on the story path Johto -> Hoenn title | **not met** | The Hoenn Ticket has no source (O-002, `W-progress_sim-4`). With `--hoenn-ticket` the simulator reaches Hoenn in wave 111, the Hoenn badges in 112-130 and the Hoenn title in 140. The critical findings A04 (ship trips reset Hoenn) and A05 (S.S. Ticket scene after the title) are fixed but only matter once Hoenn is reachable. |
-| 5 | Saves are safe | met (statically), with risks | `check_budget.py`: every save block within its flash space (SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1008/1624, PokemonStorage 34144/35712). `STATIC_ASSERT`s pin the layout; `test/save.c` (4 tests) passes. `check_save_safety.py`: no blocker or critical finding; 1 important (no running clock, mitigated by `5e1b5f870d`, which the tool does not model), 3 minor (one is a false alarm on the Hall of Fame size, two concern the item randomizer's bag pockets), 74 optional. New games clear the Nuzlocke area flags. Saving and loading never ran in an emulator; old saves are out of scope (owner decision). |
-| 6 | No English text on the story path | **not met** | `check_game_text.py --english`: Johto 125 English texts (51 important: 40 story NPCs, 11 triggers; base 144), shared scripts 252 (169 minor, 83 debug), Hoenn 7, Kanto 5 (all in locked content). On the story path: Radio Tower 5F, Goldenrod Underground switches, Mahogany Town, Elm's call about the Radio Tower, Union Cave 1F; in every region the Safari Zone system texts, the Battle Tents and the Emerald move tutors (T-johto_a-2, T-johto_b-2, T-hoenn_a-1 to -3). |
-| 7 | Text fits the message box (208 px) | not met (minor) | `check_text_width.py --list` on the built ROM: 35 exact lines over 208 px (Johto 28, Kanto 1, locked maps 6); none over the 216 px window outside locked maps. 365 lines with placeholders are estimates. |
-| 8 | Static checks green | met | `check_flags.py` 0 problems (3426 flags, 693 vars); `check_merge.py` 0 errors (8 known with a reason); `check_maps.py` 0 findings from "important" up (88 minor); `make_debug_states.py --check` up to date, `--overlap` 0 new; `check_budget.py` exit 0; `check_warnings.py` on the full build log of 2026-10-31: 105 warnings, as in the baseline. |
-| 9 | Test suite without new failures | met (regression check) | `tools/run_tests.py` on `b62f22e381`: 5124 tests in 946 files, 2333 ok, 629 todo, 2162 failures, all known, 0 new, 0 changed. Origin Jade tests: level scaling 9/9, flag/var routing 7/7, save sizes 4/4. Limit: about 2100 upstream tests cannot check anything because battle texts are German, and 24 failures are not triaged (A32, `N-tests-1`). |
-| 10 | Every Pokedex species obtainable without trading | met except Jirachi | Availability model of the inventory on this state: 421 of 422 species have a source; Jirachi has none (A69; D-036 does not require it). All nine starters and Meditite/Medicham are wild. Hoenn sources need the ticket (criterion 4). |
-| 11 | Played through in an emulator | **not met** | No emulator test. The checklists for the three test steps are in the audit's test matrix; "What was not verified" below names the gaps. |
+| 1 | Build is reproducible | met (fresh build of `b022af5623`) | 2026-10-31: after `rm -rf build/jade`, `make` in a separate worktree of the tip `b022af5623` compiles all 397 C files, exit 0; ROM SHA-1 `11bec7d4cba038d647668f2f86c68ef3a29eee1f`, the same as the incremental build of the integration clone (`integ_b10`). The audit tip `b62f22e381` matched the same way (`5c1c08ae7685bf6073ea20c7f87df981d6488c2a`, `integ_b8`). Every commit of waves 2 and 3 and of the documentation was built on its own with its final id; the wave-1 commits were built on their package branches before integration, 7 of them only as part of a package or integration build (`PATCHES.md`). The 42 commits after the audit series were each built with their final ids (`make` ok, `check_flags` 0). Toolchain arm-none-eabi-gcc 13.2.1. |
+| 2 | Release build, debug menus off | met (statically, `b022af5623`) | `make release` of the tip, 2026-10-31: exit 0, SHA-1 `34e173bde2dc2b804e1132a60a5675f928dd33b4` (audit tip `b62f22e381`: `182fd390ba35e26e171f5684d6a87d3b5f7a7ca0`). The overworld debug menu (`Debug_ShowMainMenu`) and with it the debug states (D-050) are not in the release ELF; the battle debug menu's only trigger (Select, `src/battle_controller_player.c:398`) is compiled out. The sprite visualizer has no caller in the HnS summary screen and is linked in neither build. The release ROM was not started. |
+| 3 | No known blocker on the story path Kanto -> Johto title | met (by tool) | `simulate_progress.py` on the tip (`integ_b10`): Kanto title in wave 50, GS Ball 51, Johto badges 55-91, Johto title 105; no stop on the main path. `check_maps.py`: 0 findings from "important" up (base: 3 critical, 10 important). Base: the simulator stopped in Kanto at the Celadon Game Corner (A01). Story traps A02, A03, A13, A57, A102 and the deep review's state bugs are fixed in the source (statically). |
+| 4 | No known blocker on the story path Johto -> Hoenn title | met (by tool) | O-002 resolved by D-047: the first Johto title sets `VAR_HOENN_TICKET_STATE` 1, Troy hands over the Hoenn Ticket in Oak's lab, both ports sail to Hoenn. `simulate_progress.py` without `--hoenn-ticket` on the tip (`integ_b10`): Hoenn Ticket in wave 106, Hoenn reached in 108, Hoenn badges 109-127, Hoenn title 137, exit 0 (`W-progress_sim-4` fixed). Unreachable active maps: 195 of 1125 (before: 566), all off the story path (Alola, Sinjoh, event islands, secret bases, facility rooms, unused maps). The critical findings A04 (ship trips reset Hoenn) and A05 (S.S. Ticket scene after the title) are fixed and now matter. None of the new scenes ran in an emulator. |
+| 5 | Saves are safe | met (statically), with risks | `check_budget.py`: every save block within its flash space (SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1008/1624, PokemonStorage 34144/35712). `STATIC_ASSERT`s pin the layout; `test/save.c` (4 tests) passes. `check_budget.py` gives the same save numbers on the tip. `check_save_safety.py` (last full run on the debug package before its integration; the integration clone gave the same count): no blocker or critical finding; 1 important (no running clock, mitigated by `5e1b5f870d`, which the tool does not model), 3 minor (one is a false alarm on the Hall of Fame size, two concern the item randomizer's bag pockets), 72 optional (74 on `b62f22e381`); the Key Items pocket holds 58 obtainable key items in 60 slots, the Hoenn Ticket included. New games clear the Nuzlocke area flags. Saving and loading never ran in an emulator; old saves are out of scope (owner decision). |
+| 6 | No English text on the story path | **not met** | `check_game_text.py --english` on the tip: Johto 125 English texts, shared scripts 252, Hoenn 7, Kanto 5 (all in locked content), the same counts as on `b62f22e381`; the split there: Johto 51 important (40 story NPCs, 11 triggers; base 144), shared 169 minor and 83 debug. The new English message of the debug menu ("Hoenn Test needs a new game..."; the Johto Test message only moved) is debug-only (D-020). On the story path: Radio Tower 5F, Goldenrod Underground switches, Mahogany Town, Elm's call about the Radio Tower, Union Cave 1F; in every region the Safari Zone system texts, the Battle Tents and the Emerald move tutors (T-johto_a-2, T-johto_b-2, T-hoenn_a-1 to -3). |
+| 7 | Text fits the message box (208 px) | not met (minor) | `check_text_width.py --list` on the built ROM of the tip (`integ_b10`): 35 exact lines over 208 px (Johto 28, Kanto 1, locked maps 6), the same as on `b62f22e381`; none over the 216 px window outside locked maps. Every new or changed German line of the story packages is at most 207 px (PokeCom texts at most 184 of 192 px). 365 lines with placeholders are estimates. |
+| 8 | Static checks green | met | On the tip (`integ_b10`): `check_flags.py` 0 problems (3428 flags, 693 vars); `check_merge.py` 0 errors (8 known with a reason, 205 warnings and 273 hints as in the baseline); `check_maps.py` 0 findings from "important" up (88 minor); `check_regions.py` 0 problems (known exceptions listed); `make_debug_states.py --check`: both debug headers up to date (`--overlap` 0 new in the debug package); `check_budget.py` exit 0. `check_warnings.py` on the log of the fresh build of the tip: 105 warnings, as in the baseline (the same on `b62f22e381`). |
+| 9 | Test suite without new failures | met (regression check) | `tools/run_tests.py` on the tip (`integ_tests_b10`): 5140 tests in 948 files, 2347 ok, 629 todo, 2164 failures, all known, 0 new, 0 changed (on `b62f22e381`: 5124 tests, 2162 known). Origin Jade tests: level scaling 9/9, flag/var routing 7/7, save sizes 4/4, region rule 14/14, debug states 2/2. The two new known failures are upstream Day Care tests that expect a Pichu egg before Johto is unlocked (D-049). Limit: about 2100 upstream tests cannot check anything because battle texts are German, and 24 failures are not triaged (A32, `N-tests-1`). |
+| 10 | Every Pokedex species obtainable without trading | met except Jirachi | Availability model of the inventory on `b62f22e381`: 421 of 422 species have a source; Jirachi has none (A69; D-036 does not require it). All nine starters and Meditite/Medicham are wild. Not re-run after the story packages, which move sources by region (D-049): babies hatch once their region is unlocked, Ditto replaces Wobbuffet in Cerulean Cave, Deoxys comes after the first Hoenn trip. `check_regions.py` finds no wild table, overworld Pokemon, gift or static battle of a later region; Hoenn's sources are reachable now (criterion 4). |
+| 11 | Played through in an emulator | **not met** | No emulator test. The checklists for the three test steps are in the audit's test matrix; "Emulator test list for the story packages" and "What was not verified" below name what to test first and the gaps. |
 | 12 | Owner decisions taken | **not met** | See "Owner decisions still needed". |
 
 ## Open findings by priority
 
-From the audit's finding list: 124 of 297 findings are open or only
-partly fixed (1 blocker, 0 critical, 14 important, 43 minor, 66
-optional). Fixed: 126; no bug or refuted: 12; intended by a decision: 4;
-duplicates: 31.
+From the audit's finding list, as of the audit series: 124 of 297
+findings were open or only partly fixed (1 blocker, 0 critical, 14
+important, 43 minor, 66 optional). Fixed: 126; no bug or refuted: 12;
+intended by a decision: 4; duplicates: 31. The list was then checked
+against the 42 later commits: the blocker W-progress_sim-4 (O-002) is
+fixed, and so is A46 (`README.md` rewritten for Origin Jade); T-hoenn_a-12,
+N-hoenn-1, W-progress_sim-17 and W-core_save-8 are partly fixed. So 122
+are open or partly fixed now: 0 blockers, 0 critical, 14 important, 42
+minor, 66 optional. Fixed: 128; the other groups are unchanged. The story
+packages' own open points are owner questions (O-029 to O-040, "Owner
+decisions still needed").
 
 ### Blocker
 
-#### W-progress_sim-4 / O-002: Hoenn is not reachable without the Hoenn Ticket
+None open. W-progress_sim-4 / O-002 (Hoenn not reachable without the
+Hoenn Ticket) is fixed by the package `ticket` (D-047):
 
-- **Status:** open, owner decision (O-002: "story after the ticket ... will
-  be redesigned. Do not implement in the meantime").
-- **Evidence:** `Common_EventScript_SailToHoenn`
-  (`data/scripts/hoenn_arrival.inc:7-9`) runs only with `ITEM_HOENN_TICKET`
-  in the bag, otherwise `Common_EventScript_HoennNoTicket`. The ticket has
-  no source in the game except the debug menu ("Give item").
-- **Files:** `data/scripts/hoenn_arrival.inc`; the ports that call it
-  (`VermilionCity_PortInside_Frlg`, `VermilionCity_PortInside_hns`,
-  `OlivineCity_PortInside_hns`, `SSAqua_1F_hns`); the future ticket source.
-- **Repro:** `python3 -I tools/simulate_progress.py` ends with exit 1
-  (Hoenn not reached). In the game: after the Johto title choose Hoenn at
-  a port without the ticket.
-- **Impact:** a normal playthrough ends after the Johto title; without the
-  ticket 566 active maps stay unreachable, 420 of them in Hoenn.
-- **Proposal:** the owner decides the ticket's story and source. Until
-  then testers take the ticket from the debug menu after the Johto title
-  and pick Hoenn at the port; the simulator runs with `--hoenn-ticket`.
-- **Test status:** checked by tool (`simulate_progress.py` with and without
-  the ticket); not checked in an emulator.
+- **Fix:** the first Johto title sets `VAR_HOENN_TICKET_STATE` 1
+  (`56be2a1860`); Troy hands over the ticket in Oak's lab (`59bd5a6e39`);
+  the port menus offer "Hoenn" with it from both ports (`a18797946a`); the
+  ticket is a key item, so "Items: Zufall" cannot replace it
+  (`84e8dc6bb5`).
+- **Test status:** checked by tool (`simulate_progress.py` without
+  `--hoenn-ticket` reaches the Hoenn title, wave 137); not checked in an
+  emulator (see "Emulator test list for the story packages").
 
 ### Critical
 
-None open. A04 and A05 are fixed (statically checked); they take effect
-once Hoenn is reachable.
+None open. A04 and A05 are fixed (statically checked); with D-047 they
+take effect in a normal playthrough.
 
 ### Important
 
@@ -157,11 +163,14 @@ once Hoenn is reachable.
 
 #### A10: Origin Jade tests - partly fixed
 
-- **Status:** partly fixed (`17cb0ed51e`, `78aa81bd8e`, `c441d676ef`).
+- **Status:** partly fixed (`17cb0ed51e`, `78aa81bd8e`, `c441d676ef`;
+  region rule `58e89bd76b` and follow-ups, debug states `b022af5623`).
 - **Evidence:** `test/origin_jade/level_scaling.c` (9 tests),
-  `test/origin_jade/event_data.c` (7), `test/save.c` (4) pass. Missing:
-  tests for story scripts (GS Ball handover, theater state) and for save
-  migrations.
+  `test/origin_jade/event_data.c` (7), `test/save.c` (4),
+  `test/origin_jade/region_rule.c` (14, D-049) and
+  `test/origin_jade/debug_states.c` (2, D-050) pass. Missing: tests for
+  story scripts (GS Ball handover, theater state, Troy's scenes, the port
+  menus) and for save migrations.
 - **Files:** `test/origin_jade/`, `src/save.c` (`LoadGameSave`).
 - **Proposal:** tests for the migrations and for the region rules (D-006);
   story scripts need an emulator or a script-level test harness.
@@ -341,10 +350,9 @@ once Hoenn is reachable.
 | A50 | Kanto | `Route22_hns` is active but cannot be entered (O-022) | partly fixed | O-022 documented (`b4a8ab9ce9`); retire or connect (owner) | by tool (`check_maps`) |
 | A74 | Kanto | Kanto ladder: 53 under-levelled evolutions (e.g. Dragonite 46/47, Tyranitar 47) | owner | use pre-evolutions or accept | static |
 | A78 | Kanto | No move reminder in Kanto (chapter 1) | owner | add one or accept | static |
-| A37 | technical | GitHub Actions never ran | partly fixed | Jade workflow committed (`c64f0a28dd`); the owner has to enable Actions; the test job is a placeholder | static (workflow never ran) |
+| A37 | technical | GitHub Actions never ran | partly fixed | Jade workflow committed (`c64f0a28dd`), since `bb850c8d7c` and `0ab7449520` also with `check_regions.py` and the check of both debug states; the owner has to enable Actions; the test job is a placeholder | static (workflow never ran) |
 | A38 | technical | Save and RAM budget almost used up (SaveBlock1 4 bytes free, EWRAM 95 %) | partly fixed | `tools/check_budget.py`, D-017; more reserve is an owner decision (see A89) | by tool (`check_budget`) |
 | A40 | technical | Width tests in `test/text.c`: German overflows and the grammar slip "von das gegnerische" | text round | the 6 width failures are in the baseline | static |
-| A46 | technical | Build target and README described HnS | partly fixed | `INSTALL.md` builds with `make` (`8e41cc9191`); `README.md` is rewritten by the last documentation commit of this round | static |
 | A89 | technical | SaveBlock1 has 4 bytes left; its layout depends on `FLAGS_COUNT` | partly fixed | `STATIC_ASSERT`s, D-016/D-017; pinning `FLAGS_COUNT`/`VARS_COUNT` is an owner decision | by tool (build with asserts, `check_budget`) |
 | A94 | technical | `test/text.c` fails on German Z-move names | partly fixed | in the baseline; adapt the expectations or exclude the tests (owner) | by tool (`run_tests`) |
 | N-kanto_maps-3* | technical | Older HnS imports: Johto and Hoenn layouts not checked for Origin Jade tiles reverted by a merge | open | three-way check as in `425eb2fbb1` | not checked |
@@ -365,23 +373,23 @@ once Hoenn is reachable.
 | N-randomizer-6* | shared | Scripted double wild battles are never randomized | open | whether an active map uses them is not checked |
 | N-w3_nuzlocke-1* | shared | The new nickname question also appears without Nuzlocke (Johto starter and Goldenrod prizes in the PC, Bill's Eevee, the Dragon's Den Dratini) | owner | may be rejected |
 | W-core_save-4 | shared | 72 gift and trade scripts without a space check (71 in the tool report; Wallace's HM Waterfall is new) | open | secure the story-relevant ones (fossils, Bug-Catching Contest, Exp. Share, Metal Coat) with `checkitemspace` |
-| W-core_save-5 | shared | Key items pocket: 3 slots reserve | open | a rule in D-017 |
+| W-core_save-5 | shared | Key items pocket: 2 slots reserve (58 of 60 since the Hoenn Ticket became a key item, `84e8dc6bb5`) | open | a rule in D-017 |
 | W-core_save-6 | shared | Link features (Cable Club, Union Room, ...) reachable in the Jade build | owner | offer them on purpose (then test them) or hide them |
 | W-progress_sim-14 | shared | Birth Island (HnS): warp 0 to the port lies in the wall | open | dead warp; the sailor replaces it |
 | W-progress_sim-16 | shared | Orphaned active maps (nothing leads there) | owner | retire (D-018/D-019) or keep |
 | A107 | Hoenn | Dead and write-only Hoenn data | open | clean-up (D-018/D-019) |
 | A112 | Hoenn | May and Wally are no bosses (+1), unlike Silver and Blue | owner | |
 | A114 | Hoenn | Hoenn corridor floors are very hard for story rushers (+9 to +12 levels from Winona on) | owner | |
-| N-hoenn-1* | Hoenn | Dead Jade branches after A05/A58 (Birch and May at the lab, the Dad scene) | open | delete, or a short scene with owner text |
+| N-hoenn-1* | Hoenn | Dead Jade branches after A05/A58 (Birch and May at the lab, the Dad scene) | partly fixed | the father scenes are no longer built (`40102c8756`, `fe370081c1`, D-048); left: the unreachable branch with Birch and May at the lab, hidden objects (O-030) |
 | N-hoenn-2* | Hoenn | The heading of D-040 names only Kanto | open | cosmetic |
 | N-pokemon-1* | Hoenn | Medicham appears in the Battle Pyramid; dead test gift at the Safari gate | open | |
 | N-randomizer-7* | Hoenn | Item randomizer swaps Shoal Salt and Shoal Shells; the Shell Bell can become unreachable | open | |
 | N-w3_hoenn-1* | Hoenn | Wallace gives nothing if HM Waterfall is already in the bag | owner | a substitute reward would be a design decision |
 | N-w3_hoenn-3* | Hoenn | Wallace's text says the badge is needed to teach the HM; in Jade it is the permit | owner | text |
-| T-hoenn_a-12 | Hoenn | Emerald player room leftovers in Norman's and Birch's house (D-002) | owner | |
+| T-hoenn_a-12 | Hoenn | Emerald player room leftovers in Norman's and Birch's house (D-002) | partly fixed | PC and decorations are the son's and May's (`ea9a0f7287`); Mom's Amulet Coin script and her scene after the wall clock are no longer built (`40102c8756`, `d38acf1988`); left: notebook and wall clock, room decorations in Pallet Town (O-029), hidden objects of Mom and Dad (O-030) |
 | T-hoenn_b-4 | Hoenn | Steven in Meteor Falls stays at level 75-78, about 20 below the Hoenn post-game (D-031 vs. D-043) | owner | |
 | T-legend_endgame-3 | Hoenn | Weather Institute 1F and the sailor judge Kyogre/Groudon differently for up to 3 days | open | |
-| W-progress_sim-17 | Hoenn | Dead script code from design decisions (e.g. Brendan's teams, D-003) | open | clean-up |
+| W-progress_sim-17 | Hoenn | Dead script code from design decisions (e.g. Brendan's teams, D-003) | partly fixed | Brendan's Go-Goggles handover in Lavaridge Town is no longer built (`fe370081c1`, D-048); the rest is clean-up |
 | A105 | Johto | Dead states, never-set flags and test warps in Johto (New Bark Town 4-7, Ecruteak City 4/5/14) | owner | |
 | A110 | Johto | League ceiling 65: Elite Four, Silver and Lance equally strong | owner | |
 | N-johto_story-3* | Johto | The Wailmer Pail does not wake the Battle Frontier Sudowoodo (only the SquirtBottle does) | open | |
@@ -391,7 +399,7 @@ once Hoenn is reachable.
 | T-johto_b-5 | Johto | Kimono Girls' dance repeats until the legendary battle | partly fixed | once per visit (`b702b50666`); after a map change or whiteout it restarts as in HnS |
 | T-johto_b-6 | Johto | Route 40 Trainer Hill courtyard open before the Johto title | owner | bind to `FLAG_IS_JOHTO_CHAMPION` or keep |
 | T-johto_b-7 | Johto | Johto Safari Zone: west extension locked, Baoba's quest dead (P-004) | open | builder texts English |
-| T-legend_endgame-4 | Johto | "... flew away!" after knocking out Deoxys | partly fixed | Lugia and Ho-Oh fixed (`ffe4fc5792`); Birth Island needs an event ticket |
+| T-legend_endgame-4 | Johto | "... flew away!" after knocking out Deoxys | partly fixed | Lugia and Ho-Oh fixed (`ffe4fc5792`); Deoxys on Birth Island still shows it; the island is reached with the Aurora Ticket from Olivine City, since `d0f6521cf6` only after the first Hoenn trip |
 | W-map_checker-11 | Johto | Route 41: the Tentacruel barrier (D-026) blocks nothing | owner | move it in front of an island entrance or drop it |
 | W-map_checker-13 | Johto | Battle Frontier Pokemon Center: stairs to 1F outside the map (HnS) | open | no change recommended |
 | W-text_width-9 | Johto | Help window `HELP_GAMESTART_WINDOW` 226/221 px | text round | probably never shown |
@@ -406,12 +414,12 @@ once Hoenn is reachable.
 | T-kanto_a-8 | Kanto | Cerulean City house 2 (burglary) has no entrance and wrong exits | owner | retire or restore the entrance |
 | T-kanto_b-3 | Kanto | Fuchsia City: a girl still calls Koga the gym leader | owner | needs new story text |
 | T-kanto_b-7 | Kanto | Saffron City station sign all in capitals (D-020) | text round | |
-| W-core_save-8 | Kanto | Kanto title: Oak's plateau scene only after saving | open | no softlock |
+| W-core_save-8 | Kanto | Kanto title: Oak's plateau scene only after saving | partly fixed | a restart after the Hall of Fame save wakes the player in the room (`93ae559803`); Oak's line on the plateau is missed if the player switches off before the scene ends; no softlock |
 | W-map_checker-12 | Kanto | S.S. Anne deck active but without access; its hidden Lava Cookie is lost | owner | move or give up |
 | A121 | technical | Hall of Fame entries carry no region | partly fixed | all regions hold 50 teams (`cd155adc3d`); a region per entry is an owner decision |
 | N-build_tools-2* | technical | Leftovers of removed build targets (`make compare` checks Emerald's `rom.sha1`, `make debug` writes the same file name, `docs/tutorials/how_to_frlg.md` names `make firered`) | open | |
 | N-build_tools-3* | technical | CI docs check removed (`DECISIONS.md` not in `docs/SUMMARY.md`) | owner | mdbook docs wanted? |
-| N-build_tools-4* | technical | The release build (LTO) has 6 warnings more than the baseline; the warning check covers the normal build only | open | confirmed 2026-10-31: 111 vs. 105 |
+| N-build_tools-4* | technical | The release build (LTO) has 6 warnings more than the baseline; the warning check covers the normal build only | open | confirmed 2026-10-31: 111 vs. 105, also on `b022af5623` |
 | N-build_tools-5* | technical | `make GAME_VERSION=EMERALD` on the command line still overrides the fixed version | open | |
 | N-tests-2* | technical | 16 ball tests INVALID (HnS balls need a party index in the runner) | open | small runner exception possible |
 | N-tests-3* | technical | 6 spread move damage tests fail on `B_MULTIPLE_TARGETS_DMG GEN_3` (HnS) | owner | intended? not in DECISIONS |
@@ -424,7 +432,25 @@ once Hoenn is reachable.
 ## Owner decisions still needed
 
 **Story and content**
-- O-002: source and story of the Hoenn Ticket (blocker for Hoenn).
+- Review of the story packages (D-047 to D-050, plan approved by the owner
+  on 2026-10-31): every new German text is a draft (Oak's and Troy's
+  scenes, the port texts, the ticket description, the Hoenn texts of
+  D-048, Mom's calls), among them Troy's "Ich erwarte dich in Hoenn!"
+  where the owner's outline said "dort"; Troy and Wallace as the only
+  people in Hoenn who know the player (D-048); Troy's sprite (O-031);
+  Nuzlocke without a flyer after Birch's welcome (O-032); room
+  decorations in Pallet Town (O-029, rest of T-hoenn_a-12); hidden
+  leftovers of the father scenes (O-030).
+- Region rule (D-049): which randomizer options switch it off (O-033); the
+  Pokedex evolution page still shows later species (O-034); the Johto
+  Pokedex counts as complete without Azurill and Wynaut, implemented by
+  analogy to the Kanto 151 (to confirm). Debug states: the generator's
+  readings of the owner's rules (O-035).
+- From the text check of the story packages: Elm's call after the Johto
+  title comes only in New Bark Town (O-036), Mom's heal texts after a
+  whiteout at home (O-037), placeholder National Pokedex ratings (O-038),
+  the nurse's Gold Card greeting against the trainer card's stars
+  (O-039), old text defects for the text round (O-040).
 - English game text in the German build: a text round with the official
   German terms, or by the owner. It covers O-012 (Johto story) and the
   shared texts O-012 does not name (Safari Zone, Battle Tents, move tutors,
@@ -436,8 +462,8 @@ once Hoenn is reachable.
   (W-map_checker-12), orphaned maps (W-progress_sim-16), test warps
   (A105), Pallet Town door tiles (N-kanto_maps-1).
 - Suicune sighting on Route 42 (A54), Route 40 hill courtyard before the
-  title (T-johto_b-6), Fuchsia girl and Koga (T-kanto_b-3), player room in
-  Littleroot (T-hoenn_a-12), Berry Powder only by link (N-w3_kanto-1).
+  title (T-johto_b-6), Fuchsia girl and Koga (T-kanto_b-3), Berry Powder
+  only by link (N-w3_kanto-1).
 - Owner text for the Petalburg gym boy after beating Wally in Mauville
   first (T-hoenn_a-4), for Clair in state 3 (T-johto_b-1) and for a
   Nuzlocke whiteout without a living Pokemon (A79); approval of the new
@@ -493,8 +519,8 @@ once Hoenn is reachable.
 - The Nuzlocke ends at the first Hoenn title (A23); a shiny first
   encounter and battles without a chance to catch use up no area (A83,
   A25).
-- Later ship trips to Hoenn do not reset Hoenn and dock in a fixed Hoenn
-  harbor (A04, D-029).
+- Later ship trips to Hoenn do not reset Hoenn (A04, D-029); where they
+  dock follows the owner's port rules of 2026-10-31 (D-047).
 - Kanto level caps follow the level ladder (A28); battle partners scale
   like opponents (A21).
 - Meditite and Medicham are wild in Hoenn (A16).
@@ -518,8 +544,67 @@ once Hoenn is reachable.
   kept HM Surf from Kanto (A13); the Kimono Girls' dance runs once per
   visit (T-johto_b-5).
 
-Open questions that stay in `DECISIONS.md`: O-002, O-009, O-012, O-020,
-O-021, O-022, O-023, O-024, O-025, O-028; planned items P-001 to P-005.
+Open questions that stay in `DECISIONS.md`: O-009, O-012, O-020, O-021,
+O-022, O-023, O-024, O-025, O-028 and O-029 to O-040 (O-002 is resolved by
+D-047); planned items P-001 to P-004 (P-005 is done).
+
+## Emulator test list for the story packages
+
+The story packages (D-047 to D-050) were checked statically, with the
+simulator and with the C tests; none of their scenes ran. Test these first,
+in the beta build (the debug states reach them quickly):
+
+1. **Johto Hall of Fame** at the first Johto title: after the record Oak
+   and "???" (Troy) come in from the door, Troy talks only to Oak and
+   leaves, Oak asks the player to come to his lab. No scene at a title
+   defence. Troy's sprite next to HnS's Oak and Lance (O-031).
+2. **Waking up in the room** after the Kanto title, every Johto title and
+   Red, also after a restart once the Hall of Fame has saved; a whiteout
+   from there leads to Mom downstairs (her texts: O-037). Elm's call after
+   the Johto title comes only on entering New Bark Town (O-036).
+3. **Oak's lab, Troy's scene:** from the door the player walks up to Oak
+   and Troy; the scene in place when the player stands below Oak; the
+   ticket handover and Troy leaving, stepping aside if the player is in
+   his way. Bag-full branch (Key Items pocket full, in practice only with
+   the debug menu): Troy stays, Oak points to him, Troy hands over the
+   ticket when talked to after the player made room.
+4. **Port menus and the one-way ticket:** Vermilion City before the M.S.
+   Aqua's maiden voyage (note and only the Hoenn entries), Olivine City
+   before it ("Orania City" and the Hoenn entries) and after it, the
+   sailors at the Kampfzone and on Birth Island, the menu height with all
+   entries. "Hoenn" disappears after Birch's welcome in his lab;
+   "Graphitport City" appears only after a visit and not during the
+   submarine scene, "Seegrasulb City" after a visit; landing in both
+   harbours and the respawn there; Fly to Littleroot Town; the ticket
+   stays in the Key Items pocket.
+5. **Pokedex before and after Johto and Hoenn:** in Kanto the list has no
+   jump into a later block, also after the Elite Four and Blue rematches;
+   Johto species register from the first Johto map (not in the gatehouse),
+   Hoenn species of Johto rematches and Janine only after the first
+   crossing; Oak calls the Kanto Pokedex complete with all 151 but Mew;
+   the evolution page still shows later species (O-034).
+6. **Day Care eggs:** in Kanto Pikachu, Chansey, Snorlax or the parent's
+   Hitmon instead of the baby, in Johto Marill and Wobbuffet instead of
+   Azurill and Wynaut; babies once their region is unlocked; the old
+   behaviour with a species randomizer (O-033).
+7. **Morty's team:** the first Ecruteak City gym battle has two Misdreavus
+   (levels 24 and 25) and no Duskull; rematches unchanged.
+8. **Cerulean Cave:** Ditto in Wobbuffet's old slots on 1F, 2F and B1F,
+   and the overworld Pokemon on 2F shows Ditto.
+9. **Aurora Ticket timing:** the woman in Olivine City gives it only after
+   the first trip to Hoenn and says her first line before.
+10. **Diplomas:** Celadon City's game designer (all 151 but Mew) names the
+    Kanto Pokedex, Lilycove City's the Johto Pokedex (without Azurill and
+    Wynaut), both the National Pokedex once it is complete; the nurse's
+    Gold Card greeting (O-039).
+11. **Debug states:** "Johto Test" and "Hoenn Test" on a new game before
+    the first Pokemon: team, PC (75 and 136 Pokemon, all usable), Pokedex
+    185 and 282, waking up in the room or starting at the door of Oak's
+    lab with Troy's scene, then on to Hoenn; the challenge settings stay
+    as chosen.
+12. **Hoenn texts of D-048:** "Birk sagt immer…", May, Birch's son, the
+    Elite Four, Scott's call, Norman's PokeNav call after his defeat, the
+    Petalburg townspeople after the gym opened, Mom's calls in each region.
 
 ## Risks
 
@@ -527,7 +612,8 @@ O-021, O-022, O-023, O-024, O-025, O-028; planned items P-001 to P-005.
   teleporters, Seafoam currents, Victory Road boulders, Rocket spin tiles,
   Ice Path, Dragon's Den), battles that can be lost, time of day and luck
   are only modelled or read. Fixes of story state (theater, Azalea, Clair,
-  Celebi, Hoenn arrival) are checked statically.
+  Celebi, Hoenn arrival) and the scenes of the story packages (Hall of
+  Fame, Oak's lab, port menus) are checked statically.
 - **SaveBlock1 has 4 bytes left** and EWRAM is at 95 %. 13 more Hoenn flags
   move the vars; more than 60 break the build (D-017). New data goes to
   SaveBlock3 (616 bytes free).
@@ -541,7 +627,9 @@ O-021, O-022, O-023, O-024, O-025, O-028; planned items P-001 to P-005.
   fill up, and gifts without a space check are then lost.
 - **Integration:** the wave-1 commits were built one by one on their
   package branches, not again after integration (new ids); the integrated
-  tips were built.
+  tips were built. The 42 commits after the audit series were built one by
+  one with their final ids; the tip was also built from scratch (same
+  ROM SHA-1) and as a release build.
 - **CI** never ran on GitHub; the release build has 6 more warnings than
   the baseline the CI checks (LTO and newlib stubs).
 - **Link features** are reachable and untested.
@@ -551,6 +639,9 @@ O-021, O-022, O-023, O-024, O-025, O-028; planned items P-001 to P-005.
 - Any play in an emulator or on hardware: story scenes, puzzle dungeons,
   menus, battles at runtime, graphics, sound, saving and loading. The
   release ROM was built and inspected, not started.
+- The scenes and rules of the story packages at runtime (the list above);
+  the debug states only ran in `test/origin_jade/debug_states.c` on a
+  fresh save, never in the game.
 - The checklists of the three test steps (play A to Z, balancing, reach
   everything) of the audit's test matrix.
 - The clock at runtime: change of day, weekdays, berries, the fake clock
