@@ -1366,7 +1366,8 @@ dated 2026-10-10 or later were decided directly.
     Norman's wife's and Birch's wife's greeting at the first visit ("from
     Johto"; only Emerald's moving truck started it);
     May's or Brendan's greeting of the new neighbour in their house ("a gym
-    leader's kid").
+    leader's kid"); the arrival with Mom in the moving truck and her
+    Running Shoes in front of the house ("your father will be overjoyed").
 - **Evidence:** owner requirements 2026-10-31 (point 4).
 
 ---

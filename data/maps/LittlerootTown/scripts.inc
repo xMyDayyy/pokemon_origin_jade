@@ -102,11 +102,14 @@ LittlerootTown_EventScript_SetMomInFrontOfDoorFemale::
 	return
 
 LittlerootTown_OnFrame:
+#if !IS_HNS
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 1, LittlerootTown_EventScript_StepOffTruckMale
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_EventScript_StepOffTruckFemale
+#endif
 	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_EventScript_BeginDexUpgradeScene
 	.2byte 0
 
+#if !IS_HNS
 LittlerootTown_EventScript_StepOffTruckMale::
 	lockall
 	setvar VAR_0x8004, 5
@@ -201,6 +204,7 @@ LittlerootTown_Movement_PlayerStepOffTruck:
 	delay_16
 	delay_16
 	step_end
+#endif
 
 LittlerootTown_EventScript_BeginDexUpgradeScene::
 	lockall
@@ -444,6 +448,7 @@ LittlerootTown_EventScript_PlayersHouseSignFemale::
 	msgbox LittlerootTown_Text_PlayersHouse, MSGBOX_DEFAULT
 	return
 
+#if !IS_HNS
 LittlerootTown_EventScript_GiveRunningShoesTrigger0::
 	lockall
 	setvar VAR_0x8008, 0
@@ -1027,6 +1032,28 @@ LittlerootTown_Text_ComeHomeIfAnythingHappens:
 	.string "…But please be careful.\n"
 	.string "If anything happens, you can come home.\p"
 	.string "Go on, go get them, honey!$"
+#endif
+#else
+LittlerootTown_EventScript_GiveRunningShoesTrigger0::
+	end
+
+LittlerootTown_EventScript_GiveRunningShoesTrigger1::
+	end
+
+LittlerootTown_EventScript_GiveRunningShoesTrigger2::
+	end
+
+LittlerootTown_EventScript_GiveRunningShoesTrigger3::
+	end
+
+LittlerootTown_EventScript_GiveRunningShoesTrigger4::
+	end
+
+LittlerootTown_EventScript_GiveRunningShoesTrigger5::
+	end
+
+LittlerootTown_EventScript_Mom::
+	end
 #endif
 
 LittlerootTown_Text_CanUsePCToStoreItems:
