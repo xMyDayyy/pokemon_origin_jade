@@ -47,13 +47,18 @@ LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToDoor::
 @ Many of the below scripts have no gender check because they assume youre in the correct house
 @ The below SS Ticket script uses Mays house state by accident(?), but theyre both set identically after the intro
 LittlerootTown_BrendansHouse_1F_OnFrame:
+#if !IS_HNS
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_BrendansHouse_1F_EventScript_EnterHouseMovingIn
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_BrendansHouse_1F_EventScript_GoUpstairsToSetClock
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport
+#endif
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 1, LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor
+#if !IS_HNS
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
+#endif
 	.2byte 0
 
+#if !IS_HNS
 LittlerootTown_BrendansHouse_1F_EventScript_GoUpstairsToSetClock::
 	lockall
 	msgbox PlayersHouse_1F_Text_GoSetTheClock, MSGBOX_DEFAULT
@@ -83,6 +88,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport::
 	setvar VAR_0x8005, LOCALID_PLAYERS_HOUSE_1F_MOM
 	goto PlayersHouse_1F_EventScript_PetalburgGymReportMale
 	end
+#endif
 
 LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor::
 	lockall
@@ -110,6 +116,7 @@ LittlerootTown_BrendansHouse_1F_Movement_RivalMomApproach:
 	walk_right
 	step_end
 
+#if !IS_HNS
 LittlerootTown_BrendansHouse_1F_EventScript_GoSeeRoom::
 	lockall
 	setvar VAR_0x8004, LOCALID_PLAYERS_HOUSE_1F_MOM
@@ -118,6 +125,10 @@ LittlerootTown_BrendansHouse_1F_EventScript_GoSeeRoom::
 	waitmovement 0
 	goto PlayersHouse_1F_EventScript_MomGoSeeRoom
 	end
+#else
+LittlerootTown_BrendansHouse_1F_EventScript_GoSeeRoom::
+	end
+#endif
 
 LittlerootTown_BrendansHouse_1F_EventScript_MeetRival0::
 	lockall
@@ -283,6 +294,7 @@ LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs2:
 	walk_up
 	step_end
 
+#if !IS_HNS
 PlayersHouse_1F_Text_IsntItNiceInHere:
 #if GERMAN
 	.string "Mutter: Siehst du, {PLAYER}?\n"
@@ -460,6 +472,7 @@ PlayersHouse_1F_Text_RegisteredMom:
 	.string "Registered MOM\n"
 	.string "in the POKéGEAR.$"
 #endif
+#endif
 
 PlayersHouse_1F_Text_Vigoroth1:
 	.string "Fugiiiiih!$"
@@ -467,6 +480,7 @@ PlayersHouse_1F_Text_Vigoroth1:
 PlayersHouse_1F_Text_Vigoroth2:
 	.string "Huggoh, uggo uggo…$"
 
+#if !IS_HNS
 PlayersHouse_1F_Text_ReportFromPetalburgGym:
 #if GERMAN
 	.string "Interviewer: Das war unsere Reportage\n"
@@ -474,6 +488,7 @@ PlayersHouse_1F_Text_ReportFromPetalburgGym:
 #else
 	.string "INTERVIEWER: …We brought you this\n"
 	.string "report from in front of PETALBURG GYM.$"
+#endif
 #endif
 
 PlayersHouse_1F_Text_TheresAMovieOnTV:
@@ -506,6 +521,7 @@ PlayersHouse_1F_Text_RunningShoesManual:
 	.string "the road running!”$"
 #endif
 
+#if !IS_HNS
 PlayersHouse_1F_Text_TicketFromBrineyCameForYou:
 #if GERMAN
 	.string "Vater: Hm?\p"
@@ -578,6 +594,7 @@ PlayersHouse_1F_Text_IsThatABreakingStory:
 #else
 	.string "MOM: Is that a breaking news story?$"
 #endif
+#endif
 
 PlayersHouse_1F_Text_LatiEmergencyNewsFlash:
 #if GERMAN
@@ -601,6 +618,7 @@ PlayersHouse_1F_Text_LatiEmergencyNewsFlash:
 	.string "movie program.$"
 #endif
 
+#if !IS_HNS
 PlayersHouse_1F_Text_WhatColorDidTheySay:
 #if GERMAN
 	.string "Mutter: {PLAYER}, hast du das\n"
@@ -621,6 +639,7 @@ PlayersHouse_1F_Text_StillUnknownPokemon:
 #else
 	.string "MOM: Well, isn't that something!\n"
 	.string "There are still unknown POKéMON.$"
+#endif
 #endif
 
 BrendansHouse_1F_Text_ChampionVisit:

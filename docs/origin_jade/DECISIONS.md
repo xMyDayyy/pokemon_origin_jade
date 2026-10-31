@@ -1332,7 +1332,8 @@ dated 2026-10-10 or later were decided directly.
   Norman knows only the rumours: the player comes from the mainland and is
   a good trainer. Norman is a regular gym leader whose family lives in
   Littleroot Town (D-002, D-003). He is never the player's father, and no
-  text the jade build can show says so.
+  text the jade build can show says so. Hidden map objects and code names
+  from Emerald's father scenes are still there (O-030).
 - **Rules / code:**
   - Using an item at the wrong place shows "Birk sagt immer…"
     (`gText_BirchsAdvice`) on Hoenn maps and on Emerald maps outside Kanto,
@@ -1357,6 +1358,11 @@ dated 2026-10-10 or later were decided directly.
     player's room decorations are not set up in either room. The PC upstairs
     in the New Bark Town house runs the same script as Brendan's and shows
     the e-mail too (D-002); that room still sets up the decorations (O-029).
+  - Emerald's scenes in which the player is Norman's child are not built
+    for jade (`#if !IS_HNS`; the source stays for merges, D-046). Labels
+    that `map.json` or a map script table needs stay as empty stubs. Not
+    built: the player's house in Littleroot Town (moving in, Dad on TV,
+    Mom's PokeNav, the Amulet Coin, Dad's S.S. Ticket and the Lati news).
 - **Evidence:** owner requirements 2026-10-31 (point 4).
 
 ---
@@ -1491,6 +1497,18 @@ dated 2026-10-10 or later were decided directly.
   `SecretBase_EventScript_InitDecorations` as in New Bark Town; check the
   FRLG layout in Porymap first), or hide "Dekoration" in the bedroom PC menu
   and stop setting them up in New Bark Town.
+- **O-030** Leftovers of Emerald's father scenes, none of them visible in
+  jade: the Littleroot Town maps keep the objects of the player's family,
+  always hidden: Dad with Norman's sprite on the ground floor of both houses
+  (`LOCALID_PLAYERS_HOUSE_1F_DAD`, `FLAG_HIDE_PLAYERS_HOUSE_DAD`), Mom in
+  both houses (`LOCALID_PLAYERS_HOUSE_1F_MOM` with the empty
+  `PlayersHouse_1F_EventScript_Mom`, `LOCALID_PLAYERS_HOUSE_2F_MOM`) and
+  in front of them (`LOCALID_LITTLEROOT_MOM`). Upstream names stay too,
+  e.g. `DisplayDadsAdviceCannotUseItemMessage` (shows Birch's line in Hoenn,
+  D-048) and `gText_DadsAdvice` (not built). Removing the objects needs
+  Porymap, and the non-jade scenes kept for merges still use them;
+  renaming upstream names makes merges larger (D-021, D-046). Owner to
+  decide whether they go.
 - **O-031** Troy's sprite: the owner decided on one sprite everywhere
   (D-047). The build uses Emerald's `OBJ_EVENT_GFX_STEVEN`; HnS's
   `OBJ_EVENT_GFX_STEVEN_HNS` is the alternative. Not compared in an

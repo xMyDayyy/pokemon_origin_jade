@@ -2,6 +2,7 @@ PlayersHouse_2F_EventScript_BlockStairsUntilClockIsSet::
 	setvar VAR_LITTLEROOT_INTRO_STATE, 5
 	return
 
+#if !IS_HNS
 PlayersHouse_1F_EventScript_EnterHouseMovingIn::
 	msgbox PlayersHouse_1F_Text_IsntItNiceInHere, MSGBOX_DEFAULT
 	applymovement VAR_0x8004, Common_Movement_FacePlayer
@@ -39,6 +40,7 @@ PlayersHouse_1F_EventScript_MomGoSeeRoom::
 	waitmovement 0
 	releaseall
 	end
+#endif
 
 LittlerootTown_BrendansHouse_2F_EventScript_WallClock::
 	lockall
@@ -152,6 +154,7 @@ PlayersHouse_2F_Movement_MomExitsFemale:
 	delay_8
 	step_end
 
+#if !IS_HNS
 PlayersHouse_1F_EventScript_SetWatchedBroadcast::
 	setvar VAR_LITTLEROOT_INTRO_STATE, 7
 	releaseall
@@ -376,6 +379,10 @@ PlayersHouse_1F_EventScript_MomHealsParty_PokecenterChallenge::
 	msgbox PlayersHouse_1F_Text_YouShouldRestABit_PokecenterChallenge, MSGBOX_DEFAULT
 	closemessage
 	end
+#else
+PlayersHouse_1F_EventScript_Mom::
+	end
+#endif
 
 PlayersHouse_1F_Text_YouShouldRestABit_PokecenterChallenge:
 #if GERMAN
@@ -386,6 +393,7 @@ PlayersHouse_1F_Text_YouShouldRestABit_PokecenterChallenge:
 	.string "with the POKéCENTER challenge!$"
 #endif
 
+#if !IS_HNS
 PlayersHouse_1F_EventScript_SeeYouHoney::
 	msgbox PlayersHouse_1F_Text_SeeYouHoney, MSGBOX_DEFAULT
 	release
@@ -403,6 +411,7 @@ PlayersHouse_1F_EventScript_DidYouMeetProfBirch::
 	msgbox PlayersHouse_1F_Text_DidYouMeetProfBirch, MSGBOX_DEFAULT
 	release
 	end
+#endif
 
 PlayersHouse_1F_EventScript_Vigoroth1::
 	lock
@@ -424,6 +433,7 @@ PlayersHouse_1F_EventScript_Vigoroth2::
 	release
 	end
 
+#if !IS_HNS
 PlayersHouse_1F_Movement_PlayerApproachTVForGymMale:
 	walk_down
 	walk_down
@@ -711,6 +721,7 @@ PlayersHouse_1F_Movement_PlayerApproachTVForLatiFemale:
 	walk_right
 	walk_in_place_faster_up
 	step_end
+#endif
 
 EventScript_RunningShoesManual::
 	msgbox PlayersHouse_1F_Text_RunningShoesManual, MSGBOX_SIGN

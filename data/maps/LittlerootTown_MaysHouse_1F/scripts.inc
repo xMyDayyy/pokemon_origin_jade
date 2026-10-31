@@ -46,13 +46,18 @@ LittlerootTown_MaysHouse_1F_EventScript_MoveMomToDoor::
 
 @ Many of the below scripts have no gender check because they assume youre in the correct house
 LittlerootTown_MaysHouse_1F_OnFrame:
+#if !IS_HNS
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_MaysHouse_1F_EventScript_EnterHouseMovingIn
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_MaysHouse_1F_EventScript_GoUpstairsToSetClock
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_MaysHouse_1F_EventScript_PetalburgGymReport
+#endif
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 1, LittlerootTown_MaysHouse_1F_EventScript_YoureNewNeighbor
+#if !IS_HNS
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
+#endif
 	.2byte 0
 
+#if !IS_HNS
 LittlerootTown_MaysHouse_1F_EventScript_GoUpstairsToSetClock::
 	lockall
 	msgbox PlayersHouse_1F_Text_GoSetTheClock, MSGBOX_DEFAULT
@@ -82,6 +87,7 @@ LittlerootTown_MaysHouse_1F_EventScript_PetalburgGymReport::
 	setvar VAR_0x8005, LOCALID_PLAYERS_HOUSE_1F_MOM
 	goto PlayersHouse_1F_EventScript_PetalburgGymReportFemale
 	end
+#endif
 
 LittlerootTown_MaysHouse_1F_EventScript_YoureNewNeighbor::
 	lockall
@@ -143,6 +149,7 @@ RivalsHouse_1F_EventScript_RivalSibling::
 	release
 	end
 
+#if !IS_HNS
 LittlerootTown_MaysHouse_1F_EventScript_GoSeeRoom::
 	lockall
 	setvar VAR_0x8004, LOCALID_PLAYERS_HOUSE_1F_MOM
@@ -151,6 +158,10 @@ LittlerootTown_MaysHouse_1F_EventScript_GoSeeRoom::
 	waitmovement 0
 	goto PlayersHouse_1F_EventScript_MomGoSeeRoom
 	end
+#else
+LittlerootTown_MaysHouse_1F_EventScript_GoSeeRoom::
+	end
+#endif
 
 LittlerootTown_MaysHouse_1F_EventScript_MeetRival0::
 	lockall
