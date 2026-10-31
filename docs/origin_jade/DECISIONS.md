@@ -74,11 +74,12 @@ dated 2026-10-10 or later were decided directly.
   families), ca0ca34bf4 (Birch sees off "the foreign champion").
 
 ### D-003 Rivals and families
-- **Status:** Active
+- **Status:** Active (changed 2026-10-31)
 - **Decision:** Blue is the rival in Kanto, Silver in Johto, May in Hoenn
   (always May, starter line fixed to Torchic). `{RIVAL}` resolves by region:
   Kanto `rivalNameKanto` (SaveBlock3), Johto `rivalName`, Hoenn May.
-  Norman is a regular gym leader, not the player's father.
+  Norman is a regular gym leader, not the player's father; what people in
+  Hoenn know about the player is ruled in D-048.
 - **Evidence:** 92afbf1a13, 9163d7dd9f, b751e8ca72, dea50a503c, 3e9cd28737.
 
 ### D-004 Arrival in Johto: the Kanto champion is a stranger there
@@ -1313,6 +1314,23 @@ dated 2026-10-10 or later were decided directly.
   `ITEM_HOENN_TICKET` in `src/data/items.h`.
 - **Evidence:** owner decisions 2026-10-31 (plan part A, Hoenn Ticket
   story).
+
+### D-048 Hoenn: an unknown trainer, Norman is not the father
+- **Status:** Active (2026-10-31)
+- **Decision:** In Hoenn the player is a stranger. Nobody there knows that
+  the player is the champion of Kanto and Johto or where exactly they come
+  from; a few people have vague news (from the mainland, a strong trainer).
+  Norman knows only the rumours: the player comes from the mainland and is
+  a good trainer. Norman is a regular gym leader whose family lives in
+  Littleroot Town (D-002, D-003). He is never the player's father, and no
+  text the jade build can show says so.
+- **Rules / code:**
+  - Using an item at the wrong place shows "Birk sagt immer…"
+    (`gText_BirchsAdvice`) on Hoenn maps and on Emerald maps outside Kanto,
+    as Oak does in Kanto and Elm in Johto (`GetCannotUseItemText` in
+    `src/item_use.c`, also the Battle Pyramid bag). `gText_DadsAdvice` is
+    not built.
+- **Evidence:** owner requirements 2026-10-31 (point 4).
 
 ---
 

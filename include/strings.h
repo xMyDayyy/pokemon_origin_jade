@@ -655,6 +655,7 @@ extern const u8 gText_MoveRelearnerAppeal[];
 extern const u8 gText_MoveRelearnerJam[];
 
 extern const u8 gText_DadsAdvice[];
+extern const u8 gText_BirchsAdvice[];
 extern const u8 gText_ElmsAdvice[];
 extern const u8 gText_OaksAdvice[];
 extern const u8 gText_PlayerUsedVar2[];

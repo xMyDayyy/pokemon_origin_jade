@@ -245,23 +245,23 @@ static void Task_PartyMenuItemUseFromField(u8 taskId)
     }
 }
 
-// Cannot-use text of the current map: Oak on FRLG Kanto maps, Dad in Hoenn, Elm in
+// Cannot-use text of the current map: Oak on FRLG Kanto maps, Birch in Hoenn, Elm in
 // Johto (HnS maps and the Kampfzone with its Artisan Cave, see
-// docs/origin_jade/DECISIONS.md, D-030).
+// docs/origin_jade/DECISIONS.md, D-030 and D-048).
 static const u8 *GetCannotUseItemText(void)
 {
 #if IS_HNS
     u32 mapsec = gMapHeader.regionMapSectionId;
 
     if (IsHoennMapsec(mapsec))
-        return gText_DadsAdvice;
+        return gText_BirchsAdvice;
     // Emerald and FRLG maps come after HnS's in data/maps/map_groups.json.
     if (gSaveBlock1Ptr->location.mapGroup >= MAP_GROUP(MAP_LITTLEROOT_TOWN)
      && mapsec != MAPSEC_BATTLE_FRONTIER)
     {
         if (GetCurrentRegion() == REGION_KANTO)
             return gText_OaksAdvice;
-        return gText_DadsAdvice;
+        return gText_BirchsAdvice;
     }
     return gText_ElmsAdvice;
 #else
