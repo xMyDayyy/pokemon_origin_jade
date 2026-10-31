@@ -7,6 +7,7 @@ const u8 *GetWeatherName(u32 weatherId);
 const struct Trainer* GetDebugAiTrainer(void);
 
 void Debug_SetJohtoTestState(void);
+void Debug_SetHoennTestState(void);
 void DebugNative_GetAbilityNames(void);
 void DebugNative_Party_SetFriendship(void);
 

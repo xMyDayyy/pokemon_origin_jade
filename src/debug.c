@@ -274,7 +274,7 @@ static void DebugAction_Util_Weather(u8 taskId);
 static void DebugAction_Util_Weather_SelectId(u8 taskId);
 static void DebugAction_Util_WatchCredits(u8 taskId);
 static void DebugAction_Util_CheatStart(u8 taskId);
-static void DebugAction_Util_HnsFinishJohtoKanto(u8 taskId);
+static void DebugAction_Util_HoennTest(u8 taskId);
 static void DebugAction_Util_KantoTest(u8 taskId);
 static void DebugAction_Util_JohtoTest(u8 taskId);
 static void DebugAction_Util_KantoRepair(u8 taskId);
@@ -379,7 +379,7 @@ extern const u8 Debug_FlagsNotSetBattleConfigMessage[];
 extern const u8 Debug_VarsNotSetBattleConfigMessage[];
 extern const u8 Debug_FlagsAndVarNotSetBattleConfigMessage[];
 extern const u8 Debug_EventScript_FontTest[];
-extern const u8 Debug_EventScript_HnsWarpOlivinePort[];
+extern const u8 Debug_EventScript_HoennTestWarpLab[];
 extern const u8 Debug_EventScript_JohtoTestWarpHome[];
 extern const u8 Debug_EventScript_CheckEVs[];
 extern const u8 Debug_EventScript_CheckIVs[];
@@ -589,7 +589,7 @@ static const struct DebugMenuOption sDebugMenu_Actions_Utilities[] =
     { COMPOUND_STRING("Time Functions…"),   DebugAction_OpenSubMenu, sDebugMenu_Actions_TimeMenu, },
     { COMPOUND_STRING("Watch credits…"),    DebugAction_Util_WatchCredits },
     { COMPOUND_STRING("Cheat start"),       DebugAction_Util_CheatStart },
-    { COMPOUND_STRING("Hoenn Test"), DebugAction_Util_HnsFinishJohtoKanto },
+    { COMPOUND_STRING("Hoenn Test"), DebugAction_Util_HoennTest },
     { COMPOUND_STRING("Kanto Test"), DebugAction_Util_KantoTest },
     { COMPOUND_STRING("Johto Test"), DebugAction_Util_JohtoTest },
     { COMPOUND_STRING("Kanto Flag-Reparatur"), DebugAction_Util_KantoRepair },
@@ -1869,102 +1869,6 @@ static void DebugAction_Util_CheatStart(u8 taskId)
 }
 
 #if IS_HNS
-// Test tool: finishes Johto and Kanto and warps to the Olivine port.
-static void DebugAction_Util_HnsFinishJohtoKanto(u8 taskId)
-{
-    static const u16 sJkVisitedFlags[] =
-    {
-        FLAG_VISITED_NEWBARK_TOWN,   FLAG_VISITED_CHERRYGROVE_CITY,
-        FLAG_VISITED_VIOLET_CITY,    FLAG_VISITED_AZALEA_TOWN,
-        FLAG_VISITED_GOLDENROD_CITY, FLAG_VISITED_ECRUTEAK_CITY,
-        FLAG_VISITED_OLIVINE_CITY,   FLAG_VISITED_CIANWOOD_CITY,
-        FLAG_VISITED_MAHOGANY_TOWN,  FLAG_VISITED_LAKE_OF_RAGE,
-        FLAG_VISITED_BLACKTHORN_CITY, FLAG_VISITED_MT_SILVER,
-        FLAG_VISITED_INDIGO_PLATEAU, FLAG_VISITED_RECEPTION_GATE,
-        FLAG_VISITED_SAFARI_ZONE_GATE,
-        FLAG_VISITED_PALLET_TOWN,    FLAG_VISITED_OAKS_LAB,
-        FLAG_VISITED_VIRIDIAN_CITY,  FLAG_VISITED_PEWTER_CITY,
-        FLAG_VISITED_CERULEAN_CITY,  FLAG_VISITED_VERMILION_CITY,
-        FLAG_VISITED_LAVENDER_TOWN,  FLAG_VISITED_CELADON_CITY,
-        FLAG_VISITED_SAFFRON_CITY,   FLAG_VISITED_FUCHSIA_CITY,
-        FLAG_VISITED_CINNABAR_ISLAND,
-    };
-    static const u16 sTeamSpecies[] =
-    {
-        SPECIES_RAYQUAZA, SPECIES_KYOGRE, SPECIES_CHARIZARD,
-        SPECIES_ZAPDOS, SPECIES_SALAMENCE, SPECIES_PROBOPASS,
-    };
-    u32 i;
-    u16 f;
-
-    // All 16 badge flags.
-    for (f = FLAG_BADGE01_GET; f <= FLAG_BADGE08_GET; f++)
-        FlagSet(f);
-    for (f = FLAG_BADGE09_GET; f <= FLAG_BADGE16_GET; f++)
-        FlagSet(f);
-    // Champion + systems
-    FlagSet(FLAG_SYS_GAME_CLEAR);
-    FlagSet(FLAG_SYS_POKEDEX_GET);
-    // Start menu entries.
-    FlagSet(FLAG_SYS_POKEMON_GET);
-    FlagSet(FLAG_SYS_POKENAV_GET);
-    // PokeGear: trainer call, radio and condition entries.
-    FlagSet(FLAG_HAS_MATCH_CALL);
-    FlagSet(FLAG_ADDED_MATCH_CALL_TO_POKENAV);
-    FlagSet(FLAG_ENABLE_RADIO);
-    FlagSet(FLAG_ENABLE_CONDITION);
-    FlagSet(FLAG_ADVENTURE_STARTED);
-    FlagSet(FLAG_RECEIVED_RUNNING_SHOES);
-    FlagSet(FLAG_SYS_B_DASH);
-    FlagSet(FLAG_VISITED_JOHTO);
-    FlagSet(FLAG_IS_CHAMPION);
-    FlagSet(FLAG_IS_KANTO_CHAMPION);
-    // Origin Jade: Johto's badges, permits and title.
-    VarSet(VAR_JOHTO_BADGES, 0xFF);
-    VarSet(VAR_JOHTO_PERMITS, (1 << PERM_COUNT) - 1);
-    FlagSet(FLAG_IS_JOHTO_CHAMPION);
-    FlagSet(FLAG_RECEIVED_PASS_BINDER);
-    // Fly points Johto and Kanto.
-    for (i = 0; i < ARRAY_COUNT(sJkVisitedFlags); i++)
-        FlagSet(sJkVisitedFlags[i]);
-    // S.S. Aqua: 7 = Hoenn route open.
-    VarSet(VAR_SSAQUA_STATE, 7);
-    // Hoenn Ticket chain done, ticket in the bag.
-    VarSet(VAR_HOENN_TICKET_STATE, 3);
-    FlagSet(FLAG_HIDE_SILPHCO_TROY);
-    AddBagItem(ITEM_HOENN_TICKET, 1);
-    AddBagItem(ITEM_RARE_CANDY, MAX_BAG_ITEM_CAPACITY);
-    ZeroPlayerPartyMons();
-    for (i = 0; i < ARRAY_COUNT(sTeamSpecies); i++)
-        ScriptGiveMon(sTeamSpecies[i], MAX_LEVEL, ITEM_NONE);
-    CalculatePlayerPartyCount();
-    SetMoney(&gSaveBlock1Ptr->money, 200000);
-    // All TMs up to the last assigned one (TM92), then all HMs.
-    for (i = ITEM_TM01; i <= ITEM_TM_TRICK_ROOM; i++)
-        AddBagItem(i, 1);
-    // By HM index: ITEM_HM09 does not follow ITEM_HM08.
-    for (i = NUM_TECHNICAL_MACHINES + 1; i <= NUM_ALL_MACHINES; i++)
-        AddBagItem(GetTMHMItemId(i), 1);
-    // Pokedex 1-251 seen and caught.
-    for (i = 1; i <= NATIONAL_DEX_CELEBI; i++)
-    {
-        GetSetPokedexFlag(i, FLAG_SET_SEEN);
-        GetSetPokedexFlag(i, FLAG_SET_CAUGHT);
-    }
-
-    PlaySE(SE_EXP_MAX);
-    Debug_DestroyMenu_Full_Script(taskId, Debug_EventScript_HnsWarpOlivinePort);
-}
-
-#else
-static void DebugAction_Util_HnsFinishJohtoKanto(u8 taskId)
-{
-    Debug_DestroyMenu_Full(taskId);
-    ScriptContext_Enable();
-}
-#endif
-
-#if IS_HNS
 // Test tool: level 100 team and all TMs/HMs, the story stays untouched.
 static void DebugAction_Util_KantoTest(u8 taskId)
 {
@@ -1994,6 +1898,7 @@ static void DebugAction_Util_KantoTest(u8 taskId)
 
 #if IS_HNS
 #include "data/debug_kanto_complete.h"
+#include "data/debug_johto_complete.h"
 
 static void GiveDebugStateMon(u16 species, u8 level)
 {
@@ -2050,6 +1955,31 @@ static void ApplyKantoCompleteStory(void)
     SetMoney(&gSaveBlock1Ptr->money, KANTO_COMPLETE_MONEY);
 }
 
+// Changes on top of ApplyKantoCompleteStory: Kanto after its title and Johto done.
+static void ApplyJohtoCompleteStory(void)
+{
+    u32 i;
+    u32 starter = JOHTO_COMPLETE_JOHTO_STARTER;
+
+    for (i = 0; i < ARRAY_COUNT(sJohtoCompleteFlagsSet); i++)
+        FlagSet(sJohtoCompleteFlagsSet[i]);
+    for (i = 0; i < ARRAY_COUNT(sJohtoCompleteFlagsClear); i++)
+        FlagClear(sJohtoCompleteFlagsClear[i]);
+    for (i = 0; i < ARRAY_COUNT(sJohtoCompleteVars); i++)
+        VarSet(sJohtoCompleteVars[i].var, sJohtoCompleteVars[i].value);
+    VarSet(VAR_JOHTO_STARTER_MON, starter);
+    for (i = 0; i < ARRAY_COUNT(sJohtoCompleteTrainers); i++)
+        SetTrainerFlag(sJohtoCompleteTrainers[i]);
+    for (i = 0; i < ARRAY_COUNT(sJohtoCompleteRivalTrainers[starter]); i++)
+        SetTrainerFlag(sJohtoCompleteRivalTrainers[starter][i]);
+
+    for (i = 0; i < ARRAY_COUNT(sJohtoCompleteBagRemove); i++)
+        RemoveBagItem(sJohtoCompleteBagRemove[i].item, sJohtoCompleteBagRemove[i].quantity);
+    for (i = 0; i < ARRAY_COUNT(sJohtoCompleteBag); i++)
+        AddBagItem(sJohtoCompleteBag[i].item, sJohtoCompleteBag[i].quantity);
+    SetMoney(&gSaveBlock1Ptr->money, JOHTO_COMPLETE_MONEY);
+}
+
 // Party first, then the PC; every species of the Pokedex list seen and caught.
 static void GiveDebugStateMons(const struct KantoCompleteMon *party, u32 partyCount,
                                const struct KantoCompleteMon *box, u32 boxCount,
@@ -2104,6 +2034,20 @@ void Debug_SetJohtoTestState(void)
     SetDebugStateHallOfFame(1);
 }
 
+// State of a completionist after the first Johto Hall of Fame (tools/make_debug_states.py),
+// see docs/origin_jade/DECISIONS.md, D-050.
+void Debug_SetHoennTestState(void)
+{
+    ResetForDebugState();
+    ApplyKantoCompleteStory();
+    ApplyJohtoCompleteStory();
+    GiveDebugStateMons(sJohtoCompleteParty, ARRAY_COUNT(sJohtoCompleteParty),
+                       sJohtoCompleteMons, ARRAY_COUNT(sJohtoCompleteMons),
+                       sJohtoCompleteDex, ARRAY_COUNT(sJohtoCompleteDex),
+                       sJohtoCompleteSeenOnly, ARRAY_COUNT(sJohtoCompleteSeenOnly));
+    SetDebugStateHallOfFame(2);
+}
+
 // Test tool: on a new game, sets the Johto Test state and warps home to Pallet Town.
 static void DebugAction_Util_JohtoTest(u8 taskId)
 {
@@ -2114,12 +2058,34 @@ static void DebugAction_Util_JohtoTest(u8 taskId)
     PlaySE(SE_EXP_MAX);
     Debug_DestroyMenu_Full_Script(taskId, Debug_EventScript_JohtoTestWarpHome);
 }
+
+// Test tool: on a new game, sets the Hoenn Test state and warps into Oak's lab,
+// where Troy waits with the Hoenn Ticket.
+static void DebugAction_Util_HoennTest(u8 taskId)
+{
+    if (!CanStartDebugState(taskId, COMPOUND_STRING("Hoenn Test needs a new game\nbefore the first Pokémon.")))
+        return;
+
+    Debug_SetHoennTestState();
+    PlaySE(SE_EXP_MAX);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_EventScript_HoennTestWarpLab);
+}
 #else
 void Debug_SetJohtoTestState(void)
 {
 }
 
+void Debug_SetHoennTestState(void)
+{
+}
+
 static void DebugAction_Util_JohtoTest(u8 taskId)
+{
+    Debug_DestroyMenu_Full(taskId);
+    ScriptContext_Enable();
+}
+
+static void DebugAction_Util_HoennTest(u8 taskId)
 {
     Debug_DestroyMenu_Full(taskId);
     ScriptContext_Enable();

@@ -138,6 +138,20 @@ plays the game. Run them from the repository root; the ones marked
   unreachable `Route22_hns`, O-022; the Hoenn fossils of the Ruins of
   Alph lab; an uncalled test script) are listed but do not fail. Exit 1
   on a finding.
+- `python3 tools/make_debug_states.py --check` (needs the generated
+  teachable learnsets of a build): the debug states of D-050
+  (`src/data/debug_kanto_complete.h`, `src/data/debug_johto_complete.h`)
+  are up to date, and every flag and var the scripts of Kanto and Johto
+  (and the specials they call) write is either part of a state or listed
+  in the generator with a reason (`UNTOUCHED`, the manual tables), so a
+  new story flag cannot be forgotten; no value comes from a write that
+  runs only after Hoenn progress. Also: every map pickup and hidden item
+  collected, Johto locked in the Johto Test, Hoenn locked in both, every
+  fly destination of the regions set, no badge flag 09-16, party and PC
+  hold exactly the final stages, Troy's scene pending without a Hoenn
+  Ticket in the bag. `--levels` prints how each PC level was derived,
+  `--overlap` the flags and vars of the Johto Test that Johto or Hoenn
+  share. Exit 1 on a finding.
 - `python3 -I tools/simulate_progress.py --out DIR`: static playthrough
   model Kanto -> Johto -> Hoenn (milestones in order, where progress
   stops, unreachable maps, items, trainers, gifts); `--hoenn-ticket`

@@ -8,10 +8,13 @@ Debug_ShowFieldMessageStringVar4::
 	special ShowFieldMessageStringVar4
 	goto Debug_MessageEnd
 
-@ Debug: warp into Olivine City's port building.
-Debug_EventScript_HnsWarpOlivinePort::
-	setvar VAR_OLIVINE_CITY_STATE, 5
-	warp MAP_OLIVINE_CITY_PORT_INSIDE_HNS, 8, 9
+@ Debug: the Kanto Hall of Fame's flags and vars, then from the door into Oak's lab,
+@ where Troy's scene starts (D-047, D-050).
+Debug_EventScript_HoennTestWarpLab::
+	call EventScript_SetDefeatedEliteFourFlagsVars
+	setrespawn HEAL_LOCATION_PALLET_TOWN_PLAYERS_ROOM
+	fadescreen FADE_TO_BLACK
+	warp MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB, 6, 12
 	waitstate
 	end
 

@@ -246,8 +246,8 @@ dated 2026-10-10 or later were decided directly.
     Hitmonlee and Hitmonchan 35, Lapras 35, the fossils 40, Magikarp 10,
     the Game Corner prizes 25.
   - The average player's team at the title: about 49/44/43/43/42/42 (mean
-    44, anchor 45). The debug menu's Johto test starts with such a team
-    (`tools/make_debug_states.py`).
+    44, anchor 45). The debug menu's Johto Test starts with such a team
+    (`tools/make_debug_states.py`, D-050).
   - Obedience for traded Pokemon follows the number of Kanto badges (10,
     then +5 per badge, 50 with eight); after the Johto title every Pokemon
     obeys (D-031).
@@ -1242,7 +1242,7 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-046 Only Origin Jade is built
 - **Status:** Active (2026-10-30, changed 2026-10-31: region check in the
-  CI)
+  CI, debug states D-050)
 - **Decision:** The make process builds only Origin Jade: `GAME_VERSION`
   `POKEMON_HNS` (so `IS_HNS`), map version `hns`, title "POKEMON JADE",
   `Pokemon_Origin_Jade.gba`. `make`, `make jade`, `make check`,
@@ -1262,7 +1262,8 @@ dated 2026-10-10 or later were decided directly.
   `check_merge.py` runs without blocking. Map errors that are unreachable
   or intended go into its `KNOWN_ERRORS` with the decision that covers
   them. The upstream Docs and Labels workflows run only by hand.
-- **Debug menus:** the overworld debug menu (R + Start, with "Johto Test"),
+- **Debug menus:** the overworld debug menu (R + Start, with "Johto Test"
+  and "Hoenn Test", D-050),
   the battle debug menu (Select) and the sprite visualizer are on in the
   normal build (beta testing) and off in `make release`
   (`DISABLED_ON_RELEASE`, `include/config/debug.h`).
@@ -1509,6 +1510,94 @@ dated 2026-10-10 or later were decided directly.
   Kanto 151 (C7) and the owner's 280 species after Johto (review
   2026-10-31).
 
+### D-050 Debug states "Johto Test" and "Hoenn Test"
+- **Status:** Active (2026-10-31, owner requirements; the generator's own
+  readings of them are open in O-035)
+- **Decision:** The overworld debug menu (D-046) sets two test states on a
+  new game (before the first Pokemon); `tools/make_debug_states.py`
+  generates both from the game data.
+  - "Johto Test" (`src/data/debug_kanto_complete.h`): Kanto right after the
+    first Kanto Hall of Fame. Every Kanto trainer, item, TM, HM and event,
+    Kanto's eight badges and fly destinations; Oak waits with the GS Ball
+    (`VAR_JOHTO_HANDOVER` 1). Johto and Hoenn stay locked (D-049). The
+    player wakes up in their room in Pallet Town. Team as before (D-011):
+    Charizard 49, Pidgeot 43, Raichu 44, Nidoking 43, Gyarados 42, Snorlax
+    42.
+  - "Hoenn Test" (`src/data/debug_johto_complete.h`, applied on top of the
+    Johto Test): Kanto after its title and Johto done by a completionist.
+    Johto's story, gyms (`VAR_JOHTO_BADGES` 0xFF, every permit), league
+    and Red; the one-time encounters of both regions caught (birds, Mew,
+    Mewtwo, Snorlax, Lugia and Ho-Oh, Celebi, Suicune, Raikou, Entei,
+    Sudowoodo, Union Cave's Lapras, the red Gyarados; the generator takes
+    Ho-Oh as the bird chosen on Route 39); the M.S. Aqua's maiden voyage;
+    every item of both regions (see the generator rules); Kanto's and
+    Johto's fly destinations; no badge flags 09-16.
+    Untouched: the battle facilities (Kampfzone, both Trainer Hills), Sinjoh
+    (locked, D-019), Hoenn, rematches and title defences. Johto is
+    unlocked, Hoenn not. The player starts at the door of Oak's lab with
+    `VAR_HOENN_TICKET_STATE` 1, so Troy's scene runs at once (D-047); the
+    Hoenn Ticket is not in the bag before it. Team: Charizard 70, Meganium
+    63, Gyarados 63, Ampharos 62, Nidoking 60, Espeon 60 (D-012), no
+    legendary; Johto starter Chikorita.
+  - Pokedex: every stage of the region's lines is seen and caught, babies
+    and later evolutions included (Kanto lines 185 species; Kanto and Johto
+    lines 282, Azurill and Wynaut included). Party and PC hold each final
+    stage once, every branch, no living dex (owner): 81 for Kanto's 151
+    (Golbat, Onix, Scyther ... are final there), 142 for Kanto and Johto.
+    Mewtwo is in the Johto Test's PC and counts as caught; his cave opens
+    after the title.
+  - PC levels (owner): a level evolution at its evolution level (Pidgeot
+    36); stone, trade, friendship, item and other evolutions at the
+    pre-evolution's level + 2; single stages and legendaries at their
+    catch level in this game.
+  - PC levels, the generator's reading (O-035): the catch level, also of a
+    first stage below a later one, is in Kanto the highest level in
+    Kanto's wild tables, else the gift or static level (D-011); in Johto
+    the top of an average player's wild band where the species first
+    appears (corridor floor + 2, D-012), else the gift or static level
+    (D-039; Lugia 80, the chosen Ho-Oh 78); eggs and trades the band of
+    their map (Togepi 43). A baby that only hatches does not count as the
+    pre-evolution of a stage that can be caught (Wobbuffet from Wynaut,
+    Sudowoodo from Bonsly). In the Hoenn Test the species of Kanto lines
+    keep their Johto Test level, those of its party their party level
+    (Pidgeot 43, Raichu 44, Snorlax 42).
+  - Every Pokemon is usable: the player is the original trainer, Poke
+    Ball, no egg; the debug states create them directly, so the randomizer
+    does not change them. Hall of Fame count, champion ribbon and money
+    (every prize, at most 9,999,999) as after the titles.
+  - Challenge settings (Nuzlocke, randomizer, level caps, one type, mints)
+    stay as chosen for the new game; the Hoenn Test leaves
+    `FLAG_MINTS_DISABLED` alone (Goldenrod's flower shop clears it only
+    after the Hoenn title).
+- **Generator rules:** each state walks every script label its maps reach.
+  A flag or var written with one value takes it; one written with several
+  values, by `copyvar`/`addvar` or by C code behind a special needs a value
+  in the generator's manual tables or a reason in `UNTOUCHED`. HnS's
+  first-visit flag setup of a town (its "flag heap") counts only for names
+  nothing else writes. Items: every map pickup (an object whose script
+  runs `finditem`: FRLG's and HnS's item balls, HnS's Poke Ball objects,
+  the Ruins of Alph's fossils) and hidden item is collected and in the
+  bag, every gift too; of two gifts that exclude each other one counts
+  (Ice Path's TM72); key items and HMs once. A label that takes money or
+  coins is a purchase and does not count (marts, the Game Corner prize
+  rooms, Mahogany's merchant). `--check` (CI) fails on a stale header, on
+  a written flag or var that is neither in the state nor listed, on a
+  value the state takes from a write that runs only after Hoenn progress
+  (`FLAG_IS_HOENN_CHAMPION`, `VAR_HOENN_*`), on a list entry that nothing
+  writes any more, on a pickup or hidden item not collected, and on a
+  state that would unlock Johto or Hoenn too early, misses a fly
+  destination, sets a badge flag 09-16, owns more or fewer Pokemon than
+  the final stages, holds the Hoenn Ticket or leaves no room for it.
+- **Replaces:** the hand-written Hoenn quick start (wrong Kanto fly flags,
+  badge flags 09-16, Rayquaza and Kyogre at level 100, a ticket var nothing
+  read, start at the Olivine port) and the Johto Test's living dex.
+- **Code:** `tools/make_debug_states.py`; `Debug_SetJohtoTestState`,
+  `Debug_SetHoennTestState` and the menu actions in `src/debug.c`;
+  `Debug_EventScript_JohtoTestWarpHome`, `Debug_EventScript_HoennTestWarpLab`
+  in `data/scripts/debug.inc`.
+- **Evidence:** owner requirements 2026-10-31 (points 6, 7, 11, 14, 17);
+  plan part D.
+
 ---
 
 ## Planned, not built yet
@@ -1685,6 +1774,34 @@ dated 2026-10-10 or later were decided directly.
   (`include/config/pokedex_plus_hgss.h`) and no icon for an unseen
   target in `HandleTargetSpeciesPrintIcon` (`src/pokedex_plus_hgss.c`);
   that hides every unseen evolution, of any region.
+- **O-035** Debug states (D-050): the owner's rules leave room, the
+  generator fills it as follows. Owner to confirm or change:
+  - Catch level: in Kanto the highest level in Kanto's wild tables, else
+    the gift or static level; in Johto the corridor floor + 2 of the first
+    corridor with the species (D-012), else the gift or static level;
+    eggs and trades of Johto the band of their map (Togepi 43). A first
+    stage below a later one (Jigglypuff for Wigglytuff) gets its catch
+    level the same way.
+  - A baby that only hatches from an egg does not count as a
+    pre-evolution when the next stage can be caught (Wobbuffet from
+    Wynaut, Sudowoodo from Bonsly, Marill from Azurill).
+  - Read literally, the rules give low levels to early stone and
+    friendship evolutions: Wigglytuff 7 (Jigglypuff 5 + 2), Nidoqueen 18
+    (Nidorina 16 + 2), Crobat 24 (Golbat 22 + 2), Hitmontop 20 (Tyrogue's
+    level evolution).
+  - Ho-Oh is the bird chosen on Route 39 (`VAR_LUGIA_OR_HOOH` 2, Ho-Oh 78
+    at its story level, Lugia 80); Lugia's path items (Tidal Bell, Silver
+    Wing) are not in the bag.
+  - In the Hoenn Test the species of Kanto lines keep their Johto Test
+    level, those of its party their party level (Pidgeot 43, Raichu 44,
+    Snorlax 42).
+  - Purchases are no items of a completionist: nothing bought in marts,
+    the Game Corner prize rooms (Celadon, Goldenrod) or from Mahogany's
+    merchant, so the Hoenn Test has no prize TMs (Ice Beam, Thunderbolt,
+    Swords Dance, Substitute).
+  - The Hoenn Test's team (Charizard 70, Meganium 63, Gyarados 63,
+    Ampharos 62, Nidoking 60, Espeon 60) and Chikorita as the Johto
+    starter follow owner point 6 (mixed, average, no legendary).
 
 ## Superseded decisions (kept for the record)
 

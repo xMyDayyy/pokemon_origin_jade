@@ -1,27 +1,38 @@
 #!/usr/bin/env python3
-"""Generates the debug menu's test states (src/debug.c).
+"""Generates the debug menu's test states (src/debug.c), see
+docs/origin_jade/DECISIONS.md, D-050.
 
 State A, src/data/debug_kanto_complete.h ("Johto Test"): Kanto complete,
 right after the first Kanto Hall of Fame. Every Kanto trainer beaten, every
 item, TM and HM found or received, every event done. Johto and Hoenn are
 not unlocked.
 
-Pokemon: every stage of the region's lines (babies and later
+State B, src/data/debug_johto_complete.h ("Hoenn Test"): applied on top of
+state A. Kanto after its title and Johto complete as a completionist: the
+Johto story and league, Red, the one-time encounters of both regions; battle
+facilities untouched. Johto is unlocked, Hoenn not; Troy waits in Oak's lab
+with the Hoenn Ticket (VAR_HOENN_TICKET_STATE 1).
+
+Pokemon of both states: every stage of the region's lines (babies and later
 evolutions included) seen and caught in the Pokedex; party and PC hold the
 final stages of the lines (every branch) once, levels by LEVEL RULES below.
 
 Sources (all in the repository):
-  - the active maps (map.json and layout with game_version "hns"): the FRLG
-    maps (*_Frlg) minus EXCLUDED_MAPS;
+  - the active maps (map.json and layout with game_version "hns"): state A
+    the FRLG maps (*_Frlg) minus EXCLUDED_MAPS; state B also the
+    post-title Kanto maps and the HnS maps of Johto and Johto's league;
   - every script label these maps reach (data/event_scripts.s and its
     includes, #if and .if resolved for the jade build), minus the cut labels
     of the state: flags, vars, trainers, items, gifts, trades, static
     battles, legendaries, and the flags and vars the specials they call
     write in C;
-  - item balls and hidden items of these maps;
+  - map pickups (objects whose script runs finditem) and hidden items of
+    these maps;
   - new_game.inc's new game items and src/new_game.c's start money;
-  - wild_encounters.json: the FireRed and _Night tables of these maps;
-  - trainers_frlg.party and gTrainerClasses for the prize money;
+  - wild_encounters.json (Kanto: FireRed and _Night tables), the Johto
+    corridors in include/config/johto_scaling.h;
+  - trainers_frlg.party, trainers_hns.party and gTrainerClasses for the
+    prize money;
   - gSpeciesInfo of the preprocessed src/pokemon.c for the evolutions,
     include/constants/pokedex.h and src/region_rule_oj.c (through
     tools/check_regions.py) for the species' regions;
@@ -33,23 +44,35 @@ LEVEL RULES of the PC, the owner's (2026-10-31):
   - other evolution (stone, trade, friendship, item, move, place): the
     pre-evolution's level + 2;
   - single stage or legendary: its catch level in this game.
-The generator's reading of them:
-  - catch level, also of a first stage below a later one: the highest
-    level in Kanto's wild tables, else the level of the gift or static
-    battle;
+The generator's reading of them (open for the owner, O-035):
+  - catch level, also of a first stage below a later one: in Kanto the
+    highest level in Kanto's wild tables, else the level of the gift or
+    static battle; in Johto the top of the wild band of an average player
+    where the species first appears (corridor floor + 2, D-012), else the
+    gift or static level (D-039); eggs and trades of Johto the band of
+    their map;
   - a baby that only hatches from an egg does not count as a
-    pre-evolution when the next stage can be caught.
+    pre-evolution when the next stage can be caught;
+  - in state B the species of Kanto lines keep their level of state A,
+    those of state A's party their party level.
+
+ITEMS: every map pickup (an object whose script runs finditem) and hidden
+item, every gift; one of two gifts that exclude each other
+(EXCLUSIVE_GIFTS_B); key items and HMs once. Purchases (a label that takes
+money or coins: marts, prize rooms, merchants) do not count.
 
 Usage (needs arm-none-eabi-cpp, a host C compiler, cc or $CC, and the
 generated src/data/pokemon/teachable_learnsets.h of a build):
-  python3 tools/make_debug_states.py            # writes the header
-  python3 tools/make_debug_states.py --check    # exit 1 if the header is stale or a
-                                                # flag or var of the region is
-                                                # neither in the state nor in UNTOUCHED
+  python3 tools/make_debug_states.py            # writes both headers
+  python3 tools/make_debug_states.py --check    # exit 1 if a header is stale or a
+                                                # rule of D-050 fails (a flag or var
+                                                # neither in the state nor in UNTOUCHED,
+                                                # a pickup not collected, ...)
   python3 tools/make_debug_states.py --overlap  # flags/vars of state A that Johto or
                                                 # Hoenn share, exit 1 on new ones
   python3 tools/make_debug_states.py --levels   # how each PC level was derived
-Rerun it after changes to Kanto maps, scripts, wild tables, trainers or items.
+Rerun it after changes to maps, scripts, wild tables, trainers or items of
+Kanto and Johto.
 """
 
 import argparse
@@ -70,6 +93,7 @@ import oj_world  # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HEADER = "src/data/debug_kanto_complete.h"
+HEADER_B = "src/data/debug_johto_complete.h"
 DEFINES = ["-DPOKEMON_HNS", "-DMODERN=1", "-DTESTING=0"]
 ARM_CPP = ["arm-none-eabi-cpp", "-iquote", "include", "-Wno-trigraphs", "-std=gnu17"] + DEFINES
 MAX_MONEY = 9999999
@@ -137,7 +161,8 @@ CUT_LABELS_ALWAYS = {
     "CinnabarIsland_EventScript_BillScene",
     "CinnabarIsland_PokemonCenter_1F_EventScript_Bill",
     "IndigoPlateau_PokemonCenter_1F_EventScript_SeviiIslandComplete",
-    # Troy hands over the Hoenn Ticket after the first Johto title (D-047).
+    # Troy hands over the Hoenn Ticket after the first Johto title (D-047);
+    # in state B the scene runs after the warp into Oak's lab.
     "PalletTown_ProfessorOaksLab_EventScript_TroyScene",
     "PalletTown_ProfessorOaksLab_EventScript_Troy",
     # Elite Four rematches after the title.
@@ -285,6 +310,7 @@ C_WRITERS = {
     "FLAG_HIDE_SAFFRON_FAN_CLUB_WOMAN": "Script_UpdateTrainerFanClubGameClear (src/trainer_fan_club.c)",
     "FLAG_HIDE_SAFFRON_FAN_CLUB_BEAUTY": "Script_UpdateTrainerFanClubGameClear (src/trainer_fan_club.c)",
     "VAR_LEGENDARY_FLEE_KANTO": "RecordLegendaryBattleOutcome, UpdateLegendaryFleeCooldowns (src/legendaries_oj.c)",
+    "FLAG_JOHTO_UNLOCKED": "TryUnlockJohtoOnMapLoad (src/region_rule_oj.c)",
 }
 
 # Flags reset on every day change, never part of the state.
@@ -373,6 +399,218 @@ SHARED_ON_PURPOSE = {
     "FLAG_REGISTER_RIVAL_POKENAV@johto": "rival in the PokeCom; Hoenn uses FLAG_HOENN_REGISTER_RIVAL_POKENAV (D-040)",
     "FLAG_SYS_GAME_CLEAR@hoenn": "a league was won: global uses only; Hoenn post-game checks the Hoenn title (D-040)",
     "VAR_STARTER_MON": "Kanto's starter; Johto uses VAR_JOHTO_STARTER_MON, Hoenn's readers are cut by IS_HNS (D-040)",
+}
+
+
+# ---------------------------------------------------------------------------
+# Configuration, state B: Kanto and Johto complete, on top of state A
+
+# Party right after the Johto league (D-012: about 70/63/63/62/60/60), no
+# legendary. Johto starter index: VAR_JOHTO_STARTER_MON (0 Chikorita,
+# 1 Cyndaquil, 2 Totodile).
+JOHTO_COMPLETE_JOHTO_STARTER = 0
+JOHTO_COMPLETE_PARTY = [
+    ("SPECIES_CHARIZARD", 70),
+    ("SPECIES_MEGANIUM", 63),
+    ("SPECIES_GYARADOS", 63),
+    ("SPECIES_AMPHAROS", 62),
+    ("SPECIES_NIDOKING", 60),
+    ("SPECIES_ESPEON", 60),
+]
+
+# HnS maps of state B besides Johto's map sections: Johto's league on the
+# Indigo Plateau. Route22_hns cannot be entered (O-022).
+JOHTO_EXCLUDED_MAPS = {"Route22_hns"}
+
+# Script labels of state B's walk that stay cut: battle facilities, link,
+# Hoenn, the Sevii Islands, rematches, Troy's ticket, Sinjoh (locked by
+# SINJOH_CONTENT_AVAILABLE, D-019).
+CUT_LABELS_B = CUT_LABELS_ALWAYS | {
+    "MtSilver_PokemonCenter_EventScript_Meara_BonusContentPrompt",
+    "MtSilver_1F_WaterfallRoom_Scientist_Scene",
+    # The Aurora Ticket comes after the first trip to Hoenn (D-029, D-049).
+    "OlivineCity_EventScript_EonTicketWomanChamp",
+}
+# Items state B's run finds that a finished run no longer has: item -> reason.
+SKIP_ITEMS_B = {
+    "ITEM_SPORT_BALL": "Bug-Catching Contest balls, taken back after the contest",
+    "ITEM_GS_BALL": "used up at Ilex Forest's shrine (D-026)",
+    "ITEM_AZURE_FLUTE": "Sinjoh, locked (SINJOH_CONTENT_AVAILABLE, D-019); its item ball stays hidden",
+    "ITEM_TIDAL_BELL": "Lugia's path; state B chose Ho-Oh (VAR_LUGIA_OR_HOOH 2)",
+    "ITEM_SILVER_WING": "Lugia's path; state B chose Ho-Oh (VAR_LUGIA_OR_HOOH 2)",
+}
+# Gift labels of state B a run cannot use besides another label that gives
+# the same item: label -> reason.
+EXCLUSIVE_GIFTS_B = {
+    "IcePath_B3F_EventScript_Swinub": "Delibird or Swinub gives TM72, FLAG_ITEM_ICEPATH4_TM_AVALANCHE allows one",
+}
+CUT_PREFIXES_B = CUT_PREFIXES + (
+    "BattleFrontier_", "TrainerHill_", "ArtisanCave_",
+    "Common_EventScript_SailTo",
+)
+# Script files whose labels state B's walk never enters.
+CUT_FILES_B = re.compile(r"^data/scripts/(battle_frontier|trainer_hill|cable_club|mystery_event)")
+
+# HnS's first-visit initialisation of a town's flags ("flag heap", a coord
+# event at the town's entrance while its state var is 0): their writes count
+# only for names no other label of the run writes.
+INIT_LABELS_B = {
+    "VioletCity_EventScript_Trigger", "AzaleaTown_EventScript_Trigger", "GoldenrodCity_EventScript_Trigger",
+    "EcruteakCity_EventScript_Trigger", "OlivineCity_EventScript_CityTrigger",
+    "MahoganyTown_EventScript_TownTrigger", "RocketHideout_B1F_TriggerTest",
+    "Route27_OnTransition",
+}
+
+# State B: flags the Kanto and Johto scripts set and clear, value of a
+# completionist after the first Johto title. Entries of MANUAL_FLAGS hold
+# unless listed here.
+MANUAL_FLAGS_B = {
+    "FLAG_HIDE_VERMILION_SS_AQUA": 1,                  # Vermilion's port sets it on every visit
+    "FLAG_HIDE_OAKS_LAB_TROY": 0,                      # Troy waits in Oak's lab (D-047)
+    "FLAG_JOHTO_UNLOCKED": 1,                          # first Johto map after the Kanto title (D-049)
+    # Bug-Catching Contest over, Safari Zone left, Route 41's Tentacruel fought.
+    "FLAG_DISABLE_EXP_GAIN": 0, "FLAG_HIDE_BUG_CONTEST_ATTENDANT_SIDE": 1, "FLAG_GOOD_LUCK_SAFARI_ZONE": 1,
+    "FLAG_NO_SHINY": 0, "FLAG_NO_WILD_CATCHING": 0,
+    # Goldenrod's underground switches, cleared on every load once solved.
+    "FLAG_GOLDENROD_SWITCH_1": 0, "FLAG_GOLDENROD_SWITCH_2": 0, "FLAG_GOLDENROD_SWITCH_3": 0,
+    "FLAG_GOLDENROD_SWITCH_ORDER": 0,
+    "FLAG_GOT_DRATINI": 1,                             # the Dragon's Den elder's Dratini
+    # Azalea: Bugsy's gym puzzle (set on every visit), Kurt, Silver, the Slowpoke.
+    "FLAG_HIDE_AZALEA_ARIADOS_LEFT": 1, "FLAG_HIDE_AZALEA_ARIADOS_MID": 1, "FLAG_HIDE_AZALEA_ARIADOS_RIGHT": 1,
+    "FLAG_HIDE_AZALEA_TOWN_KURT": 1, "FLAG_HIDE_AZALEA_TOWN_SILVER": 1, "FLAG_HIDE_AZALEA_TOWN_SLOWPOKE": 1,
+    "FLAG_HIDE_KURT_1": 1,
+    # Ilex Forest: the Farfetch'd caught, the charcoal master and his apprentice back in Azalea,
+    # Kurt's and the Kimono Girl's scenes done, Celebi caught.
+    "FLAG_HIDE_AZALEA_TOWN_CUT_MASTER": 0, "FLAG_HIDE_AZALEA_TOWN_FARFETCHD": 0,
+    "FLAG_HIDE_ILEX_FOREST_APPRENTICE": 1, "FLAG_HIDE_ILEX_FOREST_MASTER": 1,
+    "FLAG_HIDE_ILEX_FOREST_FARFETCHD_1": 1, "FLAG_HIDE_ILEX_FOREST_FARFETCHD_2": 1,
+    "FLAG_HIDE_ILEX_FOREST_FARFETCHD_3": 1, "FLAG_HIDE_ILEX_FOREST_FARFETCHD_4": 1,
+    "FLAG_HIDE_ILEX_FOREST_KIMONO": 1, "FLAG_HIDE_ILEX_FOREST_KURT": 1, "FLAG_HIDE_ILEX_FOREST_SECOND_CELEBI": 1,
+    # Cherrygrove's guide back home, Silver's battles in Cherrygrove, New Bark, Olivine,
+    # Ecruteak, Goldenrod's underground and the Rocket Hideout done.
+    "FLAG_HIDE_CHERRYGROVE_GUIDE_GENT_HOUSE": 0, "FLAG_HIDE_SILVER_CHERRYGROVE": 1,
+    "FLAG_HIDE_SILVER_NEWBARKTOWN": 1, "FLAG_HIDE_OLIVINE_SILVER": 1, "FLAG_HIDE_ECRUTEAK_SILVER": 1,
+    "FLAG_HIDE_GOLDENROD_UNDERGROUND_SILVER": 1, "FLAG_HIDE_ROCKETHIDEOUT3_SILVER": 1,
+    # Suicune's sightings in Cianwood and on Route 42 done.
+    "FLAG_HIDE_CIANWOOD_EUSINE": 1, "FLAG_HIDE_CIANWOOD_SUICUNE": 1, "FLAG_HIDE_ROUTE42_EUSINE": 1,
+    # Clair gave the badge in the Dragon's Den.
+    "FLAG_HIDE_DRAGONS_DEN_CAVERN_CLAIR": 1, "FLAG_HIDE_DRAGONS_DEN_SHRINE_CLAIR": 1,
+    # Ecruteak's theater back to normal after the legendary, Tin Tower open.
+    "FLAG_HIDE_ECRUTEAK_CITY_THEATER_KIMONOS": 0, "FLAG_HIDE_ECRUTEAK_CITY_THEATER_NPCS": 0,
+    "FLAG_HIDE_ECRUTEAK_CITY_THEATER_ZUKI": 0, "FLAG_HIDE_TINTOWER_GUARD": 1,
+    "FLAG_HIDE_TIN_TOWER_KIMONO_GIRLS": 1, "FLAG_HIDE_WHIRL_ISLANDS_KIMONO_GIRLS": 1,
+    "FLAG_HIDE_WHIRL_ISLANDS_TENTACRUEL": 1, "FLAG_HIDE_ROUTE39_SHADOW": 1,
+    # Goldenrod's Radio Tower freed.
+    "FLAG_HIDE_GOLDENROD_NPCS": 0, "FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR": 0,
+    "FLAG_HIDE_GOLDENROD_RADIOTOWER_PETREL": 1, "FLAG_HIDE_GOLDENROD_ROCKETS": 1,
+    "FLAG_HIDE_GOLDENROD_UNDERGROUND_KIMONO": 1, "FLAG_HIDE_ROCKET_GOLDENROD_RADIOTOWER_1": 1,
+    # One-time encounters caught (the maps set these on every visit as well).
+    "FLAG_HIDE_HO_OH": 1, "FLAG_HIDE_LUGIA": 1, "FLAG_HIDE_LAKE_OF_RAGE_GYARADOS": 1, "FLAG_HIDE_MEWTWO": 1,
+    "FLAG_HIDE_UNION_CAVE_LAPRAS": 1,
+    # Silver waits in Johto's league center after the title (D-028).
+    "FLAG_HIDE_INDIGO_PLATEAU_SILVER": 0,
+    # Lake of Rage and Mahogany done.
+    "FLAG_HIDE_LAKE_OF_RAGE_LANCE": 1, "FLAG_HIDE_MAHOGANY_TOWN_SHOP_NPCS": 1,
+    "FLAG_HIDE_LAB_POLICEMAN": 1, "FLAG_HIDE_NEWBARKTOWN_LAB_AIDE": 0,
+    "FLAG_HIDE_VIOLET_CITY_AIDE": 1, "FLAG_HIDE_VIOLET_CITY_KIMONO_GIRL": 1,
+    "FLAG_RECEIVED_FIRST_BALLS": 1,
+    # Red beaten; he returns for rematches.
+    "FLAG_HIDE_MTSILVER_RED": 0,
+    # Rocket Hideout done.
+    "FLAG_HIDE_ROCKETHIDEOUT2_ARIANA_AND_GRUNT": 1, "FLAG_HIDE_ROCKETHIDEOUT2_LANCE_DRAGONITE": 1,
+    "FLAG_HIDE_ROCKETHIDEOUT2_MURKROWGATE": 1, "FLAG_HIDE_ROCKETHIDEOUT2_MURKROWSTAIRS": 1,
+    "FLAG_HIDE_ROCKETHIDEOUT3_GIOVANNI": 1, "FLAG_HIDE_ROCKETHIDEOUT3_MURKROWSTAIRS": 1,
+    "FLAG_HIDE_ROCKETHIDEOUT3_PETREL": 1, "FLAG_HIDE_ROCKETHIDEOUT_ROCKETS": 1,
+    "FLAG_ROCKETHIDEOUT2_BATTLE": 0, "FLAG_ROCKETHIDEOUT_SWITCH": 1,
+    "FLAG_HIDE_ROUTE28_SCIENTIST": 1,
+    # The M.S. Aqua's maiden voyage done: the granddaughter found.
+    "FLAG_HIDE_SSAQUA_1F_GRANDPA": 1, "FLAG_HIDE_SSAQUA_CAPTAINS_ROOM_GRANDDAUGHTER": 1,
+    "FLAG_HIDE_SSAQUA_ROOM_SSE_GRANDDAUGHTER": 0, "FLAG_HIDE_SSAQUA_SAILOR": 0,
+    "FLAG_HIDE_TOHJO_GIOVANNI": 1,                     # Celebi's scene at Tohjo Falls
+}
+
+# State B: vars, as MANUAL_VARS.
+MANUAL_VARS_B = {
+    "VAR_HOENN_TICKET_STATE": 1,                       # Troy waits in Oak's lab (D-047)
+    "VAR_JOHTO_HANDOVER": 3,                           # GS Ball delivered to Elm (D-004)
+    "VAR_JOHTO_BADGES": "0xFF",                        # SetJohtoBadge, all eight (D-007)
+    "VAR_JOHTO_PERMITS": "(1 << PERM_COUNT) - 1",      # SetJohtoPermit, every permit (D-008)
+    "VAR_NUM_BADGES": 8,                               # HnS's badge count, the eight Johto gyms
+    # Story vars of Johto: the last stage.
+    "VAR_AZALEA_TOWN_STATE": 10,
+    "VAR_BLACKTHORN_CITY_STATE": 5,
+    "VAR_BLACKTHORN_GYM_STATE": 4,
+    "VAR_BUG_CONTEST_STATE": 0,
+    "VAR_CHERRYGROVE_CITY_STATE": 4,
+    "VAR_DRAGONS_DEN_QUIZ": 0,
+    "VAR_ECRUTEAK_CITY_STATE": 4,
+    "VAR_ECRUTEAK_CITY_THEATER": 8,
+    "VAR_ELECTRODES_FAINTED": 4,
+    "VAR_FOSSIL_RESURRECTION_STATE": 0,
+    "VAR_GETFLY": 2,
+    "VAR_GOLDENROD_CITY_STATE": 11,
+    "VAR_ILEX_FOREST_FARFETCHD": 4,
+    "VAR_KENYA": 3,
+    "VAR_LAKE_OF_RAGE_FISHERMAN": 2,
+    "VAR_LEAGUE_STATE": 1,
+    "VAR_MAHOGANY_TOWN_STATE": 17,
+    "VAR_NEWBARKTOWN_LABSTATE": 11,                    # Elm's S.S. Ticket after the title
+    "VAR_NEWBARK_TOWN_STATE": 7,                       # Elm's call after the title came
+    "VAR_OLIVINE_CITY_STATE": 8,
+    "VAR_ROCKET_HIDEOUT_STATUE_1": 2, "VAR_ROCKET_HIDEOUT_STATUE_2": 2, "VAR_ROCKET_HIDEOUT_STATUE_3": 2,
+    "VAR_ROCKET_HIDEOUT_STATUE_4": 2, "VAR_ROCKET_HIDEOUT_STATUE_5": 2,
+    "VAR_ROCKET_PASSWORD": 3,
+    "VAR_ROUTE39_BARN": 5,                             # Miltank healed
+    "VAR_RUINSOFALPH_STATE": 0,
+    "VAR_SAFARI_ZONE_GATE_STATE": 4,
+    "VAR_SAFARI_ZONE_STATE": 1,
+    "VAR_SHUCKIE": 3,
+    "VAR_SSAQUA_STATE": 7,                             # maiden voyage done (D-029)
+    "VAR_SUICUNE_ENCOUNTERS": 8,                       # Suicune caught in the Glockenturm (D-038)
+    "VAR_TRIGGER_ELM_ROCKET_CALL": 2,
+    "VAR_VIOLET_CITY_KIMONO_GIRL": 2,
+    "VAR_VIOLET_CITY_STATE": 5,
+    # Ho-Oh chosen on Route 39 (2; 1 Lugia); both caught (D-026).
+    "VAR_LUGIA_OR_HOOH": 2, "VAR_COMPLETED_HO_OH": 3, "VAR_COMPLETED_LUGIA": 3,
+}
+
+SET_BY_DEBUG_C_B = dict(SET_BY_DEBUG_C, **{
+    "VAR_JOHTO_STARTER_MON": "debug.c, JOHTO_COMPLETE_JOHTO_STARTER",
+})
+
+UNTOUCHED_B = dict(UNTOUCHED, **{
+    "FLAG_SYS_BUG_CONTEST_MODE": "set and cleared around a Bug-Catching Contest",
+    "FLAG_SYS_LAKE_OF_RAGE_TIDE": "follows the clock",
+    "FLAG_SYS_SHOAL_TIDE": "follows the clock",
+    "VAR_TIME_BASED_ENCOUNTER": "follows the clock, set on every map load",
+    "VAR_CABLE_CLUB_STATE": "link feature",
+    "VAR_ELEVATOR": "elevator position, set on every ride",
+    "VAR_POKELOT_PRIZE_ITEM": "lottery prize waiting for room in the bag; none",
+    "VAR_POKELOT_PRIZE_PLACE": "lottery prize waiting for room in the bag; none",
+    "VAR_SECRET_BASE_INITIALIZED": "bedroom decorations, set on every visit of New Bark's house (O-029)",
+    "VAR_TOHJO_FALLS_GIOVANNI_STATE": "Celebi's scene at Tohjo Falls, reset on every visit without Celebi",
+    "VAR_WHICH_FOSSIL_REVIVED": "only read while a fossil is being revived",
+    "FLAG_MINTS_DISABLED": "challenge option tx_Mode_Mints; the flower shop clears it only after the Hoenn title",
+    "VAR_BAOBA_QUEST_STATE": "Baoba's Safari Zone quest starts only in FuchsiaCity_hns, a retired map (P-004)",
+})
+
+DROP_FLAGS_B = dict(DROP_FLAGS)
+
+# Rematch and title defence teams after the titles (D-015, D-028, D-032).
+TRAINER_SKIP_RE_B = re.compile(r"^TRAINER_(ELITE_FOUR_\w+_2|CHAMPION_REMATCH_\w+|\w+_POSTOBC_HNS|"
+                               r"(FALKNER|BUGSY|WHITNEY|MORTY|CHUCK|JASMINE|PRYCE|CLAIR|WILL|KOGA|BRUNO|KAREN|LANCE)"
+                               r"_[2-9]_HNS)$")
+JOHTO_RIVALS = {
+    "var": "VAR_JOHTO_STARTER_MON",
+    "re": re.compile(r"^TRAINER_RIVAL_(?P<starter>CHIKORITA|CYNDAQUIL|TOTODILE)_\d+_HNS$"),
+    "names": ["Chikorita", "Cyndaquil", "Totodile"],   # by VAR_JOHTO_STARTER_MON
+    "chosen": JOHTO_COMPLETE_JOHTO_STARTER,
+}
+
+# Catch levels that differ from the highest level of a species' sources:
+# the chosen one of Lugia and Ho-Oh at its story level (D-039).
+LEVEL_OVERRIDES_B = {
+    "SPECIES_HO_OH": 78,
 }
 
 
@@ -644,6 +882,29 @@ def is_cut(name):
     return name in CUT_LABELS or name.startswith(CUT_PREFIXES)
 
 
+# Hoenn progress: 0 in both states (Troy's VAR_HOENN_TICKET_STATE is part of state B).
+HOENN_PROGRESS_RE = re.compile(r"^(FLAG_IS_HOENN_CHAMPION|VAR_HOENN_(?!TICKET_STATE$)\w+)$")
+BRANCH_RE = re.compile(r"^(goto|call)_if_(set|unset|eq|ne|lt|le|gt|ge)$")
+
+
+def hoenn_branch(cmd, args):
+    """For a branch on Hoenn progress: (its target, the commands after it) each
+    True if it runs only after Hoenn progress. None for other commands."""
+    m = BRANCH_RE.match(cmd)
+    if not m or not args or not HOENN_PROGRESS_RE.match(args[0]):
+        return None
+    kind = m.group(2)
+    if kind in ("set", "unset"):
+        taken = kind == "unset"
+    else:
+        try:
+            n = int(args[1], 0)
+        except (IndexError, ValueError):
+            return None
+        taken = {"eq": n == 0, "ne": n != 0, "lt": 0 < n, "le": 0 <= n, "gt": 0 > n, "ge": 0 >= n}[kind]
+    return not taken, taken and m.group(1) == "goto"
+
+
 # ---------------------------------------------------------------------------
 # Maps
 
@@ -666,6 +927,12 @@ class Maps:
         self.kanto_all = sorted((d for d in self.all.values()
                                  if d["_dir"].endswith("_Frlg") and d["_dir"] not in KANTO_NEVER_MAPS),
                                 key=lambda d: d["_dir"])
+        # Johto's map sections and Johto's league (Kanto sections in HnS's maps).
+        self.johto = sorted((d for d in self.all.values()
+                             if d["_dir"].endswith("_hns") and d["_dir"] not in JOHTO_EXCLUDED_MAPS
+                             and self.sections.region(d.get("region_map_section", "MAPSEC_NONE"))
+                             in ("Johto", "Kanto")),
+                            key=lambda d: d["_dir"])
 
     @staticmethod
     def region(d):
@@ -903,11 +1170,25 @@ def load_legendaries():
     return out
 
 
+def load_johto_corridors():
+    """MAPSEC_ -> (floor, ceiling) of JOHTO_SCALING_CORRIDORS."""
+    text = read("include/config/johto_scaling.h")
+    return {m.group(1): (int(m.group(2)), int(m.group(3)))
+            for m in re.finditer(r"\{\s*(MAPSEC_\w+),\s*(\d+),\s*(\d+)", text)}
+
+
 def load_fly_flags():
     """Flags of the combined Johto-Kanto fly map (sMapFlyDestinations, src/region_map.c)."""
     text = read("src/region_map.c")
     return sorted(set(re.findall(r"\.regionMapType\s*=\s*REGION_MAP_JK,\s*\.mapsec\s*=\s*\w+,\s*\.flag\s*=\s*(FLAG_\w+)",
                                  text)))
+
+
+def load_bag_limits():
+    """Pocket -> slots of the jade build (include/constants/global.h, IS_HNS)."""
+    text = read("include/constants/global.h")
+    m = re.search(r"#define BAG_KEYITEMS_COUNT (\d+)", text)
+    return {"POCKET_KEY_ITEMS": int(m.group(1)) if m else 60}
 
 
 # ---------------------------------------------------------------------------
@@ -968,6 +1249,45 @@ class Run:
             for n, cmd, args in self.scripts.labels[name]["cmds"]:
                 yield name, cmd, args
 
+    def _hoenn_gated(self):
+        """Commands of the run's labels that run only after Hoenn progress,
+        as (label, line): behind a branch on HOENN_PROGRESS_RE, or in a label
+        that only such commands reach."""
+        labels = self.scripts.labels
+        roots = {e for d in self.maps for e in Maps.entries(d)}
+        gated = set()
+        refs = collections.defaultdict(list)   # label -> (from label, line, needs Hoenn progress)
+        for name in self.labels:
+            cmds = labels[name]["cmds"]
+            after = False
+            for n, cmd, args in cmds:
+                if after:
+                    gated.add((name, n))
+                branch = hoenn_branch(cmd, args)
+                if cmd not in STRING_CMDS:
+                    for a in args:
+                        for tok in re.findall(r"\b\w+\b", a):
+                            if tok in self.labels:
+                                refs[tok].append((name, n, bool(branch and branch[0] and tok == args[-1])))
+                if branch and branch[1]:
+                    after = True
+            nxt = labels[name]["next"]
+            if labels[name]["falls"] and nxt in self.labels:
+                refs[nxt].append((name, cmds[-1][0] if cmds else None, after))
+        gated_labels = set()
+        changed = True
+        while changed:
+            changed = False
+            for name in self.labels:
+                if name in gated_labels or name in roots or not refs.get(name):
+                    continue
+                if all(hoenn or src in gated_labels or (src, n) in gated for src, n, hoenn in refs[name]):
+                    gated_labels.add(name)
+                    changed = True
+        for name in gated_labels:
+            gated |= {(name, n) for n, _, _ in labels[name]["cmds"]}
+        return gated
+
     def _collect(self):
         self.flag_writes = collections.defaultdict(set)
         self.var_writes = collections.defaultdict(set)
@@ -996,11 +1316,26 @@ class Run:
         init_labels = self.cfg.get("init_labels", set())
         init_flags = collections.defaultdict(set)
         init_vars = collections.defaultdict(set)
+        # Labels that take money or coins: purchases, not counted (as marts).
+        purchases = {name for name in self.labels
+                     if any(c in ("removemoney", "removecoins") for _, c, _ in self.scripts.labels[name]["cmds"])}
+        gated = self._hoenn_gated()
+        self.hoenn_writes = collections.defaultdict(set)    # name -> labels that write it after Hoenn progress
+        self.other_writes = set()                           # names also written without Hoenn progress
+        for name in sorted(self.labels):
+            for n, cmd, a in self.scripts.labels[name]["cmds"]:
+                if cmd in ("setflag", "setworldmapflag", "clearflag", "setvar", "addvar", "subvar", "copyvar") and a:
+                    if (name, n) in gated:
+                        self.hoenn_writes[a[0]].add(name)
+                    else:
+                        self.other_writes.add(a[0])
         for name, cmd, a in self.cmds():
             path = self.scripts.labels[name]["file"]
             mdir = map_dir_of(path)
             flag_writes = init_flags if name in init_labels else self.flag_writes
             var_writes = init_vars if name in init_labels else self.var_writes
+            if cmd in ("giveitem", "additem", "giveitem_norandom", "giveitem_msg") and name in purchases:
+                continue
             if cmd in ("setflag", "setworldmapflag"):
                 flag_writes[a[0]].add(1)
             elif cmd == "clearflag":
@@ -1109,19 +1444,20 @@ class Run:
                 flags[leg["caught"]] = 1
                 if leg["done"]:
                     flags[leg["done"]] = 1
-        # Item balls and hidden items of the maps.
+        # Pickups (item balls, fossils) and hidden items of the maps.
         for d in self.maps:
             for o in d.get("object_events") or []:
-                if self._ball_item(o) and o.get("flag", "0") not in ("0", ""):
+                if self.pickup(o) and o.get("flag", "0") not in ("0", ""):
                     flags[o["flag"]] = 1
             for b in d.get("bg_events") or []:
                 if b.get("type") == "hidden_item" and b.get("flag"):
                     flags[b["flag"]] = 1
         self.flags = flags
 
-    def _ball_item(self, obj):
+    def pickup(self, obj):
+        """(item, quantity) of a map pickup: an object whose script runs finditem."""
         script = obj.get("script")
-        if script not in self.scripts.labels or "ITEM_BALL" not in (obj.get("graphics_id") or ""):
+        if script not in self.scripts.labels:
             return None
         for _, cmd, args in self.scripts.labels[script]["cmds"]:
             if cmd == "finditem":
@@ -1209,16 +1545,17 @@ class Run:
                             bag[self.item(a[0])] += int(a[1]) if len(a) > 1 and a[1].isdigit() else 1
         for d in self.maps:
             for o in d.get("object_events") or []:
-                found = self._ball_item(o)
+                found = self.pickup(o)
                 if found:
                     bag[found[0]] += found[1]
             for b in d.get("bg_events") or []:
                 # ITEM_NONE: Game Corner coins, not counted.
                 if b.get("type") == "hidden_item" and b["item"] != "ITEM_NONE":
                     bag[self.item(b["item"])] += int(b.get("quantity", 1))
+        exclusive = self.cfg.get("exclusive_gifts", {})
         for item, by_label in self.item_gifts.items():
             if item not in SKIP_GIFT_ITEMS:
-                bag[item] += sum(by_label.values())
+                bag[item] += sum(q for label, q in by_label.items() if label not in exclusive)
         for item, q in self.cfg.get("extra_items", {}).items():
             bag[self.item(item)] += q
         for item, q in self.item_removed.items():
@@ -1255,11 +1592,20 @@ class Run:
             else:
                 problems.append("%s: written in C by %s, needs a manual value or an UNTOUCHED reason"
                                 % (name, ", ".join(sorted(self.c_writes.get(name, ())))))
+        manual = set(cfg["manual_flags"]) | set(cfg["manual_vars"])
+        for name in sorted(self.hoenn_writes):
+            if name in state and name not in self.other_writes and name not in manual:
+                problems.append("%s: written only after Hoenn progress (%s), needs an UNTOUCHED reason"
+                                % (name, ", ".join(sorted(self.hoenn_writes[name]))))
         written = self.written() | set(C_WRITERS)
         for table in ("manual_flags", "manual_vars", "drop_flags", "untouched"):
             for name in sorted(cfg[table]):
                 if name not in written:
                     problems.append("%s: listed in %s, but nothing in the run writes it" % (name, table))
+        gift_labels = {label for by_label in self.item_gifts.values() for label in by_label}
+        for label in sorted(cfg.get("exclusive_gifts", {})):
+            if label not in gift_labels:
+                problems.append("%s: listed in exclusive_gifts, but gives no item in the run" % label)
         return problems
 
 
@@ -1425,8 +1771,65 @@ def kanto_catch_levels(world, runs, species):
     return out
 
 
+def johto_catch_levels(world, run, species):
+    """Species -> catch level in Johto: corridor floor + 2 of the lowest
+    corridor whose wild tables have it, else the highest gift or static level
+    of Johto's scripts (roamers: src/legendaries_oj.c), else for eggs and
+    trades the band of their map."""
+    corridors = load_johto_corridors()
+    by_id = {d["id"]: d for d in world.maps.johto}
+
+    def band(mapsec):
+        c = corridors.get(mapsec)
+        return min(c[0] + 2, c[1]) if c else None
+    wild = {}
+    for group in load_json("src/data/wild_encounters.json")["wild_encounter_groups"]:
+        if not group.get("for_maps"):
+            continue
+        for e in group["encounters"]:
+            d = by_id.get(e["map"])
+            lv = band(d.get("region_map_section")) if d else None
+            if lv is None:
+                continue
+            for key in ("land_mons", "water_mons", "rock_smash_mons", "fishing_mons", "hidden_mons"):
+                for m in (e.get(key) or {}).get("mons", []):
+                    s = species.canonical(m["species"])
+                    if s:
+                        wild[s] = min(wild.get(s, 999), lv)
+    scripted, mapped = {}, {}
+    for kind, s, level, path in run.mon_sources:
+        mdir = map_dir_of(path)
+        if not mdir or not mdir.endswith("_hns") or mdir not in world.maps.by_dir:
+            continue
+        s = species.canonical(s)
+        if not s:
+            continue
+        if kind == "egg" or not level:
+            lv = band(world.maps.by_dir[mdir].get("region_map_section"))
+            if lv is not None:
+                mapped[s] = min(mapped.get(s, 999), lv)
+        else:
+            scripted[s] = max(scripted.get(s, 0), level)
+    for lid in run.legendaries:
+        leg = world.legendaries.get(lid)
+        if leg and leg["species"]:
+            scripted.setdefault(leg["species"], leg["level"])
+    for s, mdirs in trade_species(world, run).items():
+        for mdir in mdirs:
+            d = world.maps.by_dir.get(mdir)
+            lv = band(d.get("region_map_section")) if d and mdir.endswith("_hns") else None
+            cs = species.canonical(s)
+            if lv is not None and cs:
+                mapped[cs] = min(mapped.get(cs, 999), lv)
+    out = dict(mapped)
+    out.update(scripted)
+    out.update(wild)
+    out.update(LEVEL_OVERRIDES_B)
+    return out
+
+
 # ---------------------------------------------------------------------------
-# The state
+# The two states
 
 def config_a(world):
     return {
@@ -1440,12 +1843,36 @@ def config_a(world):
     }
 
 
+def config_b(world):
+    kanto_johto = {d["_dir"] for d in world.maps.kanto_all} | {d["_dir"] for d in world.maps.johto}
+
+    def cut(name):
+        if name in CUT_LABELS_B or name.startswith(CUT_PREFIXES_B):
+            return True
+        f = world.scripts.labels[name]["file"]
+        if CUT_FILES_B.match(f):
+            return True
+        mdir = map_dir_of(f)
+        return bool(mdir) and mdir not in kanto_johto
+    return {
+        "name": "B", "maps": world.maps.kanto_all + world.maps.johto, "cut": cut,
+        "drop_flags": DROP_FLAGS_B, "manual_flags": dict(MANUAL_FLAGS, **MANUAL_FLAGS_B),
+        "manual_vars": dict(MANUAL_VARS, **MANUAL_VARS_B),
+        "untouched": {n: r for n, r in UNTOUCHED_B.items() if n not in MANUAL_FLAGS_B and n not in MANUAL_VARS_B},
+        "set_by_c": SET_BY_DEBUG_C_B, "init_labels": INIT_LABELS_B,
+        "trainer_skip": TRAINER_SKIP_RE_B, "rivals": [KANTO_RIVALS, JOHTO_RIVALS],
+        "new_game_items": True, "start_money": True, "extra_items": EXTRA_ITEMS,
+        "skip_items": SKIP_ITEMS_B, "exclusive_gifts": EXCLUSIVE_GIFTS_B, "extra_legendaries": [],
+    }
+
+
 class States:
     def __init__(self):
         self.world = World()
         self.sp = Species()
         self.problems = []
         self._state_a()
+        self._state_b()
 
     def _state_a(self):
         """Kanto lines in the Pokedex, Kanto's final stages in party and PC."""
@@ -1461,6 +1888,21 @@ class States:
         self.party_a = [(starter, KANTO_COMPLETE_PARTY_STARTER_LEVEL)] + KANTO_COMPLETE_PARTY
         self.box_a = self._box(self.finals_a, self.party_a, self.levels_a, "A")
         self.seen_a = self._seen_only(self.a, self.dex_a, {"Kanto"})
+
+    def _state_b(self):
+        """Kanto and Johto lines; species of Kanto lines keep their level of state A
+        (party or PC)."""
+        w, sp = self.world, self.sp
+        self.b = Run(w, config_b(w))
+        self.dex_b = sp.dex_set({"Kanto", "Johto"})
+        self.finals_b = sp.finals(self.dex_b)
+        fixed = {s: self.levels_a.level(s) for s in self.kanto if self.levels_a.level(s) is not None}
+        fixed.update(self.party_a)
+        self.levels_b = Levels(sp, self.dex_b, johto_catch_levels(w, self.b, sp), fixed)
+        self.party_b = list(JOHTO_COMPLETE_PARTY)
+        self.box_b = self._box(self.finals_b, self.party_b, self.levels_b, "B")
+        self.seen_b = self._seen_only(self.b, self.dex_b, {"Kanto", "Johto"})
+        self._delta()
 
     def _box(self, finals, party, levels, name):
         party_species = {s for s, _ in party}
@@ -1485,10 +1927,27 @@ class States:
                 out.add(c)
         return sorted(out, key=self.sp.num)
 
+    def _delta(self):
+        """State B as changes on top of state A."""
+        a, b = self.a, self.b
+        self.flags_b = {n: v for n, v in b.flags.items() if a.flags.get(n) != v}
+        self.vars_b = {n: v for n, v in b.vars.items() if a.vars.get(n) != v}
+        trainers_a = set(a.trainers)
+        self.trainers_b = [t for t in b.trainers if t not in trainers_a]
+        if a.rivals[0]["by_starter"] != b.rivals[0]["by_starter"]:
+            self.problems.append("state B: Kanto rival battles differ from state A: %s" % b.rivals[0]["by_starter"])
+        self.rival_b = b.rivals[1]["by_starter"]
+        bag = collections.Counter(b.bag)
+        bag.subtract(collections.Counter(a.bag))
+        self.bag_add_b = {i: q for i, q in sorted(bag.items()) if q > 0}
+        self.bag_remove_b = {i: -q for i, q in sorted(bag.items()) if q < 0}
+        self.money_b = min(b.money, MAX_MONEY)
+
     def check(self):
         """Every problem --check reports besides a stale header."""
         out = list(self.problems)
         out += self._check_a()
+        out += self._check_b()
         return out
 
     @staticmethod
@@ -1507,9 +1966,30 @@ class States:
             out.append("state %s: %d party and %d PC Pokemon do not fit" % (name, len(party), len(box)))
         return out
 
+    @staticmethod
+    def _check_pickups(name, run, flags, bag):
+        """Every pickup and hidden item of the state's maps collected."""
+        out = []
+        skip = run.cfg.get("skip_items", {})
+        for d in run.maps:
+            for o in d.get("object_events") or []:
+                found = run.pickup(o)
+                if not found or o.get("flag", "0") in ("0", ""):
+                    continue
+                if not flags.get(o["flag"]):
+                    out.append("state %s: pickup %s of %s not collected (%s)" % (name, found[0], d["_dir"], o["flag"]))
+                if found[0] not in skip and found[0] not in run.item_removed and bag.get(found[0], 0) <= 0:
+                    out.append("state %s: pickup %s of %s not in the bag" % (name, found[0], d["_dir"]))
+            for b in d.get("bg_events") or []:
+                if b.get("type") == "hidden_item" and b.get("flag") and not flags.get(b["flag"]):
+                    out.append("state %s: hidden item %s of %s not collected (%s)"
+                               % (name, b["item"], d["_dir"], b["flag"]))
+        return out
+
     def _check_a(self):
         out = ["state A: %s" % p for p in self.a.coverage()]
         out += self._check_mons("A", self.dex_a, self.finals_a, self.party_a, self.box_a)
+        out += self._check_pickups("A", self.a, self.a.flags, self.a.bag)
         flags_a = {n for n, v in self.a.flags.items() if v}
         for f in ("FLAG_JOHTO_UNLOCKED", "FLAG_JOHTO_ARRIVAL_DONE"):
             if f in flags_a:
@@ -1523,8 +2003,40 @@ class States:
                 out.append("state A: fly destination %s not set" % f)
         return out
 
+    def _check_b(self):
+        out = ["state B: %s" % p for p in self.b.coverage()]
+        out += self._check_mons("B", self.dex_b, self.finals_b, self.party_b, self.box_b)
+        flags_ab = {n for n, v in dict(self.a.flags, **self.flags_b).items() if v}
+        vars_ab = dict(self.a.vars, **self.vars_b)
+        if int(vars_ab.get("VAR_HOENN_ARRIVAL_STATE", "0"), 0) != 0:
+            out.append("state B: VAR_HOENN_ARRIVAL_STATE unlocks Hoenn (D-049)")
+        if vars_ab.get("VAR_HOENN_TICKET_STATE") != "1":
+            out.append("state B: VAR_HOENN_TICKET_STATE must be 1, Troy waits in Oak's lab (D-047)")
+        if "ITEM_HOENN_TICKET" in self.a.bag or "ITEM_HOENN_TICKET" in self.bag_add_b:
+            out.append("state B: the Hoenn Ticket is in the bag before Troy's scene")
+        if "FLAG_JOHTO_UNLOCKED" not in flags_ab:
+            out.append("state B: FLAG_JOHTO_UNLOCKED not set (D-049)")
+        for f in sorted(flags_ab):
+            m = re.match(r"FLAG_BADGE(\d\d)_GET$", f)
+            if m and int(m.group(1)) > 8:
+                out.append("state B: %s set; Johto counts its badges in VAR_JOHTO_BADGES (D-007)" % f)
+        for f in load_fly_flags():
+            if f not in flags_ab:
+                out.append("state B: fly destination %s not set" % f)
+        bag_ab = collections.Counter(self.a.bag)
+        bag_ab.update(self.bag_add_b)
+        bag_ab.subtract(self.bag_remove_b)
+        out += self._check_pickups("B", self.b, dict(self.a.flags, **self.flags_b), bag_ab)
+        # Room for the Hoenn Ticket in the key items pocket.
+        limit = load_bag_limits()["POCKET_KEY_ITEMS"]
+        keys = sum(1 for i, q in bag_ab.items() if q > 0 and self.world.pockets.get(i) == "POCKET_KEY_ITEMS")
+        if keys >= limit:
+            out.append("state B: %d key items leave no room for the Hoenn Ticket (pocket %d)" % (keys, limit))
+        return out
+
+
 # ---------------------------------------------------------------------------
-# Header
+# Headers
 
 def c_array(w, decl, items):
     w(decl)
@@ -1574,6 +2086,46 @@ def render(states):
     w("// Pokedex, seen and caught: every stage of the Kanto lines.")
     c_array(w, "static const u16 sKantoCompleteDex[] =", sorted(states.dex_a, key=states.sp.num))
     c_array(w, "static const u16 sKantoCompleteSeenOnly[] =", states.seen_a)
+    return "\n".join(out).rstrip("\n") + "\n"
+
+
+def render_b(states):
+    out = []
+    w = out.append
+    w("// Generated by tools/make_debug_states.py - do not edit.")
+    w("// State after the first Johto Hall of Fame for the debug menu's \"Hoenn Test\",")
+    w("// applied on top of debug_kanto_complete.h (include that first).")
+    w("// Regenerate: python3 tools/make_debug_states.py (check: --check).")
+    w("")
+    w("#define JOHTO_COMPLETE_JOHTO_STARTER %d  // VAR_JOHTO_STARTER_MON: 0 Chikorita, 1 Cyndaquil, 2 Totodile"
+      % JOHTO_COMPLETE_JOHTO_STARTER)
+    w("#define JOHTO_COMPLETE_MONEY %d  // start money and every prize of both regions" % states.money_b)
+    w("")
+    c_array(w, "static const u16 sJohtoCompleteFlagsSet[] =", sorted(n for n, v in states.flags_b.items() if v))
+    c_array(w, "static const u16 sJohtoCompleteFlagsClear[] =", sorted(n for n, v in states.flags_b.items() if not v))
+    c_array(w, "static const struct KantoCompleteVar sJohtoCompleteVars[] =",
+            ["{ %s, %s }" % (n, v) for n, v in sorted(states.vars_b.items())])
+    c_array(w, "static const u16 sJohtoCompleteTrainers[] =", states.trainers_b)
+    rivals = states.rival_b
+    w("// Index: VAR_JOHTO_STARTER_MON.")
+    w("static const u16 sJohtoCompleteRivalTrainers[%d][%d] =" % (len(rivals), len(rivals[0])))
+    w("{")
+    for i, r in enumerate(rivals):
+        w("    [%d] = { %s }," % (i, ", ".join(r)))
+    w("};")
+    w("")
+    c_array(w, "static const struct KantoCompleteItem sJohtoCompleteBag[] =",
+            ["{ %s, %d }" % (i, q) for i, q in states.bag_add_b.items()])
+    w("// Items of state A used up later.")
+    c_array(w, "static const struct KantoCompleteItem sJohtoCompleteBagRemove[] =",
+            ["{ %s, %d }" % (i, q) for i, q in states.bag_remove_b.items()])
+    c_array(w, "static const struct KantoCompleteMon sJohtoCompleteParty[] =",
+            ["{ %s, %d }" % (s, lv) for s, lv in states.party_b])
+    w("// PC: the other final stages of the Kanto and Johto lines (every branch).")
+    c_array(w, "static const struct KantoCompleteMon sJohtoCompleteMons[] =", ["{ %s, %d }" % m for m in states.box_b])
+    w("// Pokedex, seen and caught: every stage of the Kanto and Johto lines.")
+    c_array(w, "static const u16 sJohtoCompleteDex[] =", sorted(states.dex_b, key=states.sp.num))
+    c_array(w, "static const u16 sJohtoCompleteSeenOnly[] =", states.seen_b)
     return "\n".join(out).rstrip("\n") + "\n"
 
 
@@ -1696,7 +2248,7 @@ def overlap(run):
     c_refs = collections.defaultdict(set)
     for path in glob.glob(os.path.join(REPO, "src/**/*.[ch]"), recursive=True):
         rel = os.path.relpath(path, REPO)
-        if rel in ("src/debug.c", HEADER):
+        if rel in ("src/debug.c", HEADER, HEADER_B):
             continue
         with open(path, encoding="utf-8", errors="replace") as f:
             for t in set(tok.findall(f.read())):
@@ -1751,14 +2303,18 @@ def overlap(run):
 # ---------------------------------------------------------------------------
 
 def summary(states):
-    for name, run in (("A", states.a),):
+    for name, run in (("A", states.a), ("B", states.b)):
         sets = sum(1 for v in run.flags.values() if v)
         print("state %s run: flags set %d, clear %d, vars %d, trainers %d, bag entries %d, money %d, maps %d, labels %d"
               % (name, sets, len(run.flags) - sets, len(run.vars), len(run.trainers), len(run.bag), run.money,
                  len(run.maps), len(run.labels)))
     print("state A: Pokedex %d, party %d, PC %d, seen only %d"
           % (len(states.dex_a), len(states.party_a), len(states.box_a), len(states.seen_a)))
-    for name, run in (("A", states.a),):
+    print("state B (on top of A): flags %d, vars %d, trainers %d, bag +%d -%d, money %d; Pokedex %d, party %d, "
+          "PC %d, seen only %d" % (len(states.flags_b), len(states.vars_b), len(states.trainers_b),
+                                   len(states.bag_add_b), len(states.bag_remove_b), states.money_b,
+                                   len(states.dex_b), len(states.party_b), len(states.box_b), len(states.seen_b)))
+    for name, run in (("A", states.a), ("B", states.b)):
         for w in run.warnings:
             print("warning (state %s): %s" % (name, w), file=sys.stderr)
 
@@ -1766,7 +2322,7 @@ def summary(states):
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--check", action="store_true",
-                    help="exit 1 if the header is stale or a flag/var of the region is not covered")
+                    help="exit 1 if a header is stale or a flag/var of the regions is not covered")
     ap.add_argument("--overlap", action="store_true", help="report flags/vars of state A shared with Johto or Hoenn")
     ap.add_argument("--levels", action="store_true", help="print how each PC level was derived")
     args = ap.parse_args()
@@ -1774,11 +2330,11 @@ def main():
     if args.overlap:
         sys.exit(overlap(states.a))
     if args.levels:
-        for name, box, levels in (("A", states.box_a, states.levels_a),):
+        for name, box, levels in (("A", states.box_a, states.levels_a), ("B", states.box_b, states.levels_b)):
             for s, lv in box:
                 print("%s %-30s %3d  %s" % (name, s, lv, levels.how.get(s, "")))
         return
-    texts = {HEADER: render(states)}
+    texts = {HEADER: render(states), HEADER_B: render_b(states)}
     if args.check:
         failed = False
         for header, text in texts.items():
