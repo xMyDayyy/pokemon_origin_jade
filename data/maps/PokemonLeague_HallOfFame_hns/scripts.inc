@@ -47,11 +47,11 @@ PokemonLeague_HallOfFame_EventScript_CutsceneKantoChamp::
 	goto PokemonLeague_HallOfFame_EventScript_GameClear
 
 @ Every Johto title: knocked-out legendaries return (D-026), the Hall of Fame screen saves, then the
-@ player continues in New Bark Town in front of Elm's lab, without credits.
+@ player wakes up in their room in Pallet Town, without credits.
 @ See docs/origin_jade/DECISIONS.md, D-028.
 PokemonLeague_HallOfFame_EventScript_GameClear:
 	call Common_EventScript_ReviveDefeatedLegendaries
-	setrespawn HEAL_LOCATION_NEW_BARK_TOWN_LAB_HNS
+	setrespawn HEAL_LOCATION_PALLET_TOWN_PLAYERS_ROOM
 	fadescreenspeed FADE_TO_BLACK, 24
 	special GameClearNoCredits
 	waitstate

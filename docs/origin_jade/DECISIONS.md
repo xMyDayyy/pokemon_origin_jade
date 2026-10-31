@@ -45,16 +45,17 @@ dated 2026-10-10 or later were decided directly.
 - **Status:** Active (2026-10-10). Supersedes the rule
   "New Bark Town once Johto was visited" from a740935891. Changed
   2026-10-15 for Johto, Hoenn and Red (D-028), changed 2026-10-31 (the
-  continue point after the Kanto league is the player's room).
+  continue point after the Kanto league, the Johto titles and Red is the
+  player's room).
 - **Decision:** Mom lives in Pallet Town only. The house in New Bark Town
   belongs to a stranger, and Littleroot Town has no player family (Brendan's
   house is Norman's family, May's house is Professor Birch's). After the
   Kanto league the player wakes up in their room in Pallet Town, also when
   the game is restarted after the Hall of Fame has saved
   (`HEAL_LOCATION_PALLET_TOWN_PLAYERS_ROOM`); a whiteout from there still
-  leads to Mom on the ground floor. After Johto
-  titles and Red the game continues in New Bark Town, after Hoenn titles in
-  Littleroot Town, each in front of the professor's lab (D-028).
+  leads to Mom on the ground floor. The same holds after every Johto title
+  and after Red. After Hoenn titles the game continues in Littleroot Town
+  in front of Birch's lab (D-028).
 - **Why:** The player grew up in Pallet Town (intro text), Mom gives the
   PokeCom and the Running Shoes there, her savings menu moved there, the
   wall clock is set there. Waking up in New Bark Town or Littleroot Town
@@ -682,7 +683,9 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-028 Leagues: farmable, continue in the region, credits at the end
 - **Status:** Active (2026-10-15). Replaces D-002 for Johto, Hoenn and Red.
-  Changed 2026-10-30 (no Emerald after-title scenes in Littleroot).
+  Changed 2026-10-30 (no Emerald after-title scenes in Littleroot),
+  changed 2026-10-31 (Johto titles and Red continue in the player's room
+  in Pallet Town).
 - **Decision:**
   - Johto's league can be repeated: the Black Belt in front of the Elite
     Four door never shows. Title defences use the `_2` teams, a short Lance
@@ -691,8 +694,11 @@ dated 2026-10-10 or later were decided directly.
   - Kanto's league can be repeated until the league change (D-010, D-015).
     Hoenn's league can be repeated; later Hoenn titles skip May and Birch.
   - After every Johto title and after Red: Hall of Fame (saves), no credits,
-    the game continues in New Bark Town in front of Elm's lab
-    (`HEAL_LOCATION_NEW_BARK_TOWN_LAB_HNS`). After every Hoenn title it
+    the player wakes up in their room in Pallet Town
+    (`HEAL_LOCATION_PALLET_TOWN_PLAYERS_ROOM`, D-002);
+    `HEAL_LOCATION_NEW_BARK_TOWN_LAB_HNS` is no longer used. Elm's call
+    after the first Johto title comes on the next visit to New Bark Town.
+    After every Hoenn title it
     continues in Littleroot Town in front of Birch's lab. Emerald's
     S.S. Ticket and Lati TV scene in Norman's and Birch's houses does not
     run (D-002, D-003); Latias and Latios roam without it (D-026). Neither
