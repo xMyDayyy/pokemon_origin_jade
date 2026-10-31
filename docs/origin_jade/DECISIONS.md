@@ -1229,6 +1229,18 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** owner decisions 2026-10-30 (only Jade; debug menus on in
   the beta, off in the release).
 
+### D-047 Hoenn Ticket story and ports
+- **Status:** Active (2026-10-31)
+- **Decision:**
+  - The Hoenn Ticket is a key item (`POCKET_KEY_ITEMS`, importance 1): it
+    cannot be sold, tossed or stored, and the item randomizer leaves it
+    alone (only key items, HMs and the GS Ball are exempt). Scripts hand it
+    over with `giveitem_norandom`. It stays in the bag after the crossing
+    as a souvenir.
+- **Code:** `ITEM_HOENN_TICKET` in `src/data/items.h`.
+- **Evidence:** owner decisions 2026-10-31 (plan part A, Hoenn Ticket
+  story).
+
 ---
 
 ## Planned, not built yet

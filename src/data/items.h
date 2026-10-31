@@ -14974,16 +14974,17 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_OldKey,
     },
 
+    // Key item: Troy's ticket for the ferry to Hoenn (D-047).
     [ITEM_HOENN_TICKET] =
     {
         .name = ITEM_NAME("Hoennticket"),
         .price = 0,
         .description = COMPOUND_STRING(
             "Fahrkarte für die\n"
-            "Überfahrt in die\n"
-            "Hoenn-Region."),
+            "einfache Überfahrt\n"
+            "nach Hoenn."),
         .importance = 1,
-        .pocket = POCKET_ITEMS,
+        .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_SSTicket,
