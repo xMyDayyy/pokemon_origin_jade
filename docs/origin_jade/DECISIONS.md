@@ -1352,6 +1352,11 @@ dated 2026-10-10 or later were decided directly.
     waiting", between his defeat and the Hoenn title its own text
     (`MatchCall_Text_NormanAfterBadge`, `MatchCall_GetMessage_Trainer`),
     after the title his rematch texts as before.
+  - Norman's son's room (Brendan's house, 2F) and May's room are theirs:
+    the PC there shows an e-mail, never the player's bedroom PC, and the
+    player's room decorations are not set up in either room. The PC upstairs
+    in the New Bark Town house runs the same script as Brendan's and shows
+    the e-mail too (D-002); that room still sets up the decorations (O-029).
 - **Evidence:** owner requirements 2026-10-31 (point 4).
 
 ---
@@ -1475,6 +1480,17 @@ dated 2026-10-10 or later were decided directly.
   (`HealPlayerParty` in the entrance scripts), otherwise a Pokemon Center
   does. Rule needed: deaths count there like in other trainer battles, or
   the hills stay exempt like the Battle Frontier.
+- **O-029** Room decorations: the bedroom PC in Pallet Town is the only one
+  left (D-048) and still offers "Dekoration", but the Pallet Town bedroom
+  never sets decorations up (no `SecretBase_EventScript_InitDecorations`
+  there): dolls and cushions placed there are not shown again once the
+  player leaves the room. The only room that still sets them up, at the same
+  spots, is upstairs in the New Bark Town house, which belongs to a stranger
+  (D-002). Options: set them up in the Pallet Town bedroom (ON_TRANSITION
+  `SecretBase_EventScript_SetDecorationFlags` and ON_WARP
+  `SecretBase_EventScript_InitDecorations` as in New Bark Town; check the
+  FRLG layout in Porymap first), or hide "Dekoration" in the bedroom PC menu
+  and stop setting them up in New Bark Town.
 - **O-031** Troy's sprite: the owner decided on one sprite everywhere
   (D-047). The build uses Emerald's `OBJ_EVENT_GFX_STEVEN`; HnS's
   `OBJ_EVENT_GFX_STEVEN_HNS` is the alternative. Not compared in an

@@ -41,6 +41,10 @@ LittlerootTown_MaysHouse_2F_OnWarp:
 	.2byte 0
 
 LittlerootTown_MaysHouse_2F_EventScript_CheckInitDecor::
+#if IS_HNS
+	@ Origin Jade: May's room, no player decorations.
+	end
+#endif
 	checkplayergender
 	goto_if_eq VAR_RESULT, FEMALE, SecretBase_EventScript_InitDecorations
 	end
