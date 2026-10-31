@@ -59,7 +59,8 @@ In [`docs/origin_jade/`](docs/origin_jade/):
 - [`BETA_READINESS.md`](docs/origin_jade/BETA_READINESS.md): beta
   criteria, open points, owner decisions, risks.
 - [`PATCHES.md`](docs/origin_jade/PATCHES.md): the patch series of the
-  audit round, its order, verification and how to apply it.
+  audit round and the story packages of 2026-10-31, its order,
+  verification and how to apply it.
 - [`TESTS.md`](docs/origin_jade/TESTS.md): test suite and check tools.
 
 [`FEATURES.md`](FEATURES.md) (Heart & Soul) and
@@ -69,11 +70,11 @@ belongs to pokeemerald-expansion.
 
 ## Current state
 
-Beta preparation. Kanto and Johto can be played to their titles without a
-known blocker; this is checked statically and with the check tools, not
-yet in an emulator. Hoenn needs the Hoenn Ticket, which has no source in
-the game yet except the debug menu. English texts remain in parts of Johto
-and in shared scripts. Details and the open list:
+Beta preparation. Kanto, Johto and Hoenn can be played to their titles
+without a known blocker: after the first Johto title Troy hands over the
+Hoenn Ticket in Prof. Oak's lab. This is checked statically and with the
+check tools, not yet in an emulator. English texts remain in parts of
+Johto and in shared scripts. Details and the open list:
 [`docs/origin_jade/BETA_READINESS.md`](docs/origin_jade/BETA_READINESS.md).
 
 Until the release the save layout may still change, and older saves are
