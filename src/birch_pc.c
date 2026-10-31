@@ -314,7 +314,12 @@ static const u8 *GetProfOaksRatingMessageByCount(u16 count)
     if (count < 140)
         return PokedexRating_Text_LessThan140;
 
+#if IS_HNS
+    // Origin Jade: complete with the 151 but Mew (D-049).
+    if (count < NATIONAL_DEX_MEW - 1)
+#else
     if (count < KANTO_DEX_COUNT - 1)
+#endif
         return PokedexRating_Text_LessThan150;
 
     gSpecialVar_Result = TRUE;

@@ -342,7 +342,8 @@ dated 2026-10-10 or later were decided directly.
   The other 34 species of the Gen-1 families (babies and later evolutions)
   count to Johto: the evolutions are possible in Kanto as before
   (evolutions are exempt), the babies hatch from Kanto's Day Care only
-  once Johto is unlocked.
+  once Johto is unlocked. Oak's rating, his aides' gifts and Celadon's
+  diploma count the 151 (D-049).
   - Fossils: Mt. Moon B2F gives both; Cinnabar's lab revives each one the
     player took and still carries
     (`CinnabarIsland_PokemonLab_ExperimentRoom_Frlg`).
@@ -1459,6 +1460,13 @@ dated 2026-10-10 or later were decided directly.
     sources (gifts, eggs, evolutions, trades) set seen and caught as
     before. The Pokedex's evolution page still names later evolutions and
     babies (O-034).
+  - Kanto Pokedex (`GetKantoPokedexCount`, `HasAllKantoMons`): HnS's Kanto
+    dex order keeps its 185 entries (`P_NEW_EVOS_IN_REGIONAL_DEX`), but the
+    counts of Oak's rating and his aides and Celadon's diploma take only
+    national numbers 1-151. Oak calls it complete with all 151 but Mew
+    (`GetProfOaksRatingMessageByCount`; FRLG's threshold there was one too
+    high with the expansion's `KANTO_DEX_COUNT`, so it never said
+    complete).
 - **Code:** `src/region_rule_oj.c` (the table of national numbers above
   386), `TryUnlockJohtoOnMapLoad` in both map loads of `src/overworld.c`;
   test `test/origin_jade/region_rule.c`.

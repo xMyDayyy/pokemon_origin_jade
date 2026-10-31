@@ -246,3 +246,28 @@ TEST("Region rule: random trainers alone keep the seen rule")
     gSaveBlock3Ptr->challengeSettings.tx_Random_Trainer = TRUE;
     EXPECT(!CanRegisterSeenSpecies(SPECIES_DUSKULL));
 }
+
+TEST("Region rule: the Kanto Pokedex counts the 151")
+{
+    u32 nationalNum;
+
+    for (nationalNum = 1; nationalNum <= NATIONAL_DEX_COUNT; nationalNum++)
+    {
+        GetSetPokedexFlag(nationalNum, FLAG_SET_SEEN);
+        GetSetPokedexFlag(nationalNum, FLAG_SET_CAUGHT);
+    }
+    EXPECT_EQ(GetKantoPokedexCount(FLAG_GET_SEEN), 151);
+    EXPECT_EQ(GetKantoPokedexCount(FLAG_GET_CAUGHT), 151);
+}
+
+TEST("Region rule: Celadon's diploma needs the 151 but Mew, no babies")
+{
+    u32 nationalNum;
+
+    for (nationalNum = NATIONAL_DEX_BULBASAUR + 1; nationalNum < NATIONAL_DEX_MEW; nationalNum++)
+        GetSetPokedexFlag(nationalNum, FLAG_SET_CAUGHT);
+    EXPECT(!HasAllKantoMons());
+    GetSetPokedexFlag(NATIONAL_DEX_BULBASAUR, FLAG_SET_CAUGHT);
+    EXPECT(HasAllKantoMons());
+    EXPECT(!GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_PICHU), FLAG_GET_CAUGHT));
+}
