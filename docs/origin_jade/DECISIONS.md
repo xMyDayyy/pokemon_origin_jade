@@ -1326,7 +1326,8 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-048 Hoenn: an unknown trainer, Norman is not the father
 - **Status:** Active (2026-10-31)
-- **Decision:** In Hoenn the player is a stranger. Nobody there knows that
+- **Decision:** In Hoenn the player is a stranger. Apart from Troy, who
+  brought the player to Hoenn, and Wallace (below), nobody there knows that
   the player is the champion of Kanto and Johto or where exactly they come
   from; a few people have vague news (from the mainland, a strong trainer).
   Norman knows only the rumours: the player comes from the mainland and is
@@ -1342,9 +1343,14 @@ dated 2026-10-10 or later were decided directly.
     not built.
   - Who knows what: Norman only the rumours (his call, battle and PokeNav
     texts). Birch and his family know from Troy that a strong trainer from
-    the mainland is coming; May (Route 103, Route 110, Lilycove), Birch's
-    son and Sidney speak only of that. Wallace may know more, because Troy,
-    the former champion, told him; his speech stays.
+    the mainland is coming; May (Route 103, Route 110, Lilycove) and Birch's
+    son speak only of that. Others have at most heard of a strong trainer
+    from afar: Sidney, Glacia and Drake in the league, Scott's call after
+    the Sootopolis badge; the man in Slateport's mart only thinks the player
+    looks like a pro. Wallace may know more, because Troy, the former
+    champion, told him; his speech stays.
+  - The German texts this entry added or changed are drafts for the owner
+    to review.
   - The Petalburg gym opens as before with the fourth Hoenn badge (owner
     2026-10-31). From `VAR_PETALBURG_GYM_STATE` 6 (open) on, the mart
     woman, the man in the Pokemon Center, the gentleman, Wally and his

@@ -49,14 +49,14 @@ SlateportCity_Mart_Text_GreatBallIsBetter:
 	.string "Ein Hyperball fängt besser als ein\n"
 	.string "Superball…\p"
 	.string "Aber was erzähle ich das ausgerechnet\n"
-	.string "dir? Du bist doch der Champion!\p"
+	.string "dir? Du siehst aus wie ein Profi!\p"
 	.string "Eigentlich könntest du MIR ein paar\n"
 	.string "Fangtipps geben…$"
 #else
 	.string "An ULTRA BALL beats a GREAT BALL\n"
 	.string "at catching POKéMON…\p"
-	.string "But who am I telling? You're\n"
-	.string "the CHAMPION!\p"
+	.string "But who am I telling? You look\n"
+	.string "like a real pro!\p"
 	.string "Really, you could be giving ME\n"
 	.string "some catching tips…$"
 #endif
