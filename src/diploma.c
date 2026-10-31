@@ -18,6 +18,7 @@
 
 extern const u8 gText_DexNational[];
 extern const u8 gText_DexHoenn[];
+extern const u8 gText_Kanto[];
 extern const u8 gText_Johto[];
 extern const u8 gText_PokedexDiploma[];
 
@@ -137,7 +138,12 @@ static void DisplayDiplomaText(void)
     {
         SetGpuReg(REG_OFFSET_BG1HOFS, 0);
 #if IS_HNS
-        StringCopy(gStringVar1, gText_Johto);
+        // Celadon's designer checks the Kanto dex, Lilycove's the Johto dex (D-049).
+        if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_CELADON_CITY_CONDOMINIUMS_3F)
+         && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_CELADON_CITY_CONDOMINIUMS_3F))
+            StringCopy(gStringVar1, gText_Kanto);
+        else
+            StringCopy(gStringVar1, gText_Johto);
 #else
         StringCopy(gStringVar1, gText_DexHoenn);
 #endif

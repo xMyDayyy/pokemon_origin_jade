@@ -1403,7 +1403,8 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** owner requirements 2026-10-31 (point 4).
 
 ### D-049 Pokemon per region
-- **Status:** Active (2026-10-31, owner decision)
+- **Status:** Active (2026-10-31, owner decision; changed 2026-10-31:
+  Celadon's diploma names the Kanto Pokedex)
 - **Decision:** Kanto has only Kanto Pokemon, Johto adds Johto's and Hoenn
   adds Hoenn's: before a region is unlocked, no source hands out a species
   of that region. Evolutions are exempt: a Golbat may become a Crobat in
@@ -1470,7 +1471,10 @@ dated 2026-10-10 or later were decided directly.
     national numbers 1-151. Oak calls it complete with all 151 but Mew
     (`GetProfOaksRatingMessageByCount`; FRLG's threshold there was one too
     high with the expansion's `KANTO_DEX_COUNT`, so it never said
-    complete).
+    complete). Celadon's diploma names the Kanto Pokedex, Lilycove's the
+    Johto Pokedex, both the National Pokedex once `HasAllMons` reports it
+    complete (`DisplayDiplomaText` in `src/diploma.c`, by the map it is
+    shown on).
   - Johto Pokedex (`HasAllJohotoMons`, `GetPokedexRatingText`): HnS's
     Johto dex (282 entries) lists Azurill and Wynaut, which count to
     Hoenn. Elm's and Birch's rating, the trainer card's star and
