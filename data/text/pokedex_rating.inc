@@ -751,7 +751,7 @@ gJohtoDexRatingText_Complete::
 	.string "Das ist wirklich eine außergewöhnliche\l"
 	.string "Leistung!$"
 #else
-	.string "Wow!\n"
+	.string "Wow!$"
 #endif
 
 gNationalDexRatingText_LessThan100::
