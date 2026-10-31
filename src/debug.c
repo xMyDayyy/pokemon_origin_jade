@@ -2004,7 +2004,7 @@ static void GiveKantoCompleteMon(u16 species, u8 level)
 }
 
 // Test tool: on a new game, sets the state right after the first Kanto Hall of
-// Fame (tools/make_kanto_complete.py) and warps home to Pallet Town.
+// Fame (tools/make_debug_states.py) and warps home to Pallet Town.
 static void DebugAction_Util_JohtoTest(u8 taskId)
 {
     u32 i;

@@ -247,7 +247,7 @@ dated 2026-10-10 or later were decided directly.
     the Game Corner prizes 25.
   - The average player's team at the title: about 49/44/43/43/42/42 (mean
     44, anchor 45). The debug menu's Johto test starts with such a team
-    (`tools/make_kanto_complete.py`).
+    (`tools/make_debug_states.py`).
   - Obedience for traded Pokemon follows the number of Kanto badges (10,
     then +5 per badge, 50 with eight); after the Johto title every Pokemon
     obeys (D-031).
@@ -1257,7 +1257,7 @@ dated 2026-10-10 or later were decided directly.
   ROM and the release ROM on every push and pull request, prints their
   SHA-1 and runs `tools/check_warnings.py` (no warning beyond
   `tools/warnings_baseline.txt`), `tools/check_flags.py`,
-  `tools/check_regions.py` (D-049), `tools/make_kanto_complete.py
+  `tools/check_regions.py` (D-049), `tools/make_debug_states.py
   --check` and `tools/check_budget.py`;
   `check_merge.py` runs without blocking. Map errors that are unreachable
   or intended go into its `KNOWN_ERRORS` with the decision that covers

@@ -118,7 +118,7 @@ floors below the anchors they set (46 and 86).
 These tools read the sources, the map data or the built ELF; none of them
 plays the game. Run them from the repository root; the ones marked
 "after make" need a built ROM. The CI workflow (D-046) runs
-`check_flags.py`, `check_regions.py`, `make_kanto_complete.py --check`,
+`check_flags.py`, `check_regions.py`, `make_debug_states.py --check`,
 `check_budget.py`, `check_warnings.py` and, without blocking,
 `check_merge.py`.
 
@@ -171,7 +171,7 @@ plays the game. Run them from the repository root; the ones marked
 
 Also after every change to flags, vars, trainers or Kanto content:
 `python3 tools/check_flags.py` (D-016) and
-`python3 tools/make_kanto_complete.py --check`.
+`python3 tools/make_debug_states.py --check`.
 
 ## Test matrix (2026-10-31)
 

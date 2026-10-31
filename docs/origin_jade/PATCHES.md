@@ -172,7 +172,7 @@ After applying, run:
 
     make -j$(nproc)
     python3 tools/check_flags.py
-    python3 tools/make_kanto_complete.py --check
+    python3 tools/make_debug_states.py --check
     python3 tools/check_budget.py
     python3 check_merge.py
     python3 tools/run_tests.py
