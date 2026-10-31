@@ -246,10 +246,10 @@ static const struct MatchCallBirch sProfBirkMatchCallHeader =
 };
 
 static const match_call_text_data_t sMomTextScripts[] = {
-    // Call texts by Hoenn progress.
-    { MatchCall_Text_Mom1, ALWAYS_AVAILABLE,            NO_FLAG_TO_SET },
-    { MatchCall_Text_Mom2, FLAG_DEFEATED_PETALBURG_GYM, NO_FLAG_TO_SET },
-    { MatchCall_Text_Mom3, FLAG_IS_HOENN_CHAMPION,      NO_FLAG_TO_SET },
+    // Call texts: Kanto and Johto, after the arrival in Hoenn, after the Hoenn title.
+    { MatchCall_Text_Mom2, ALWAYS_AVAILABLE,             NO_FLAG_TO_SET },
+    { MatchCall_Text_Mom1, FLAG_VISITED_LITTLEROOT_TOWN, NO_FLAG_TO_SET },
+    { MatchCall_Text_Mom3, FLAG_IS_HOENN_CHAMPION,       NO_FLAG_TO_SET },
     MATCH_CALL_TEXT_END
 };
 

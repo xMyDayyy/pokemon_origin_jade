@@ -46,7 +46,7 @@ dated 2026-10-10 or later were decided directly.
   "New Bark Town once Johto was visited" from a740935891. Changed
   2026-10-15 for Johto, Hoenn and Red (D-028), changed 2026-10-31 (the
   continue point after the Kanto league, the Johto titles and Red is the
-  player's room).
+  player's room; Mom's calls).
 - **Decision:** Mom lives in Pallet Town only. The house in New Bark Town
   belongs to a stranger, and Littleroot Town has no player family (Brendan's
   house is Norman's family, May's house is Professor Birch's). After the
@@ -67,6 +67,15 @@ dated 2026-10-10 or later were decided directly.
   D-028; the respawn fallback in `src/overworld.c`; the Abra teleport "home" in
   `IndigoPlateau_PokemonCenter_hns`. Fly to Littleroot lands in front of the
   lab, not in a bedroom (c41aa5ed17).
+- **Mom's calls:** her PokeCom calls follow the journey (`sMomTextScripts`
+  in `src/pokenav_match_call_data.c`, last set flag wins). In Kanto and
+  Johto she talks about Pallet Town (`MatchCall_Text_Mom2`, from the moment
+  she hands over the PokeCom), from the arrival in Hoenn
+  (`FLAG_VISITED_LITTLEROOT_TOWN`) about Hoenn, after the Hoenn title
+  (`FLAG_IS_HOENN_CHAMPION`) about three leagues and Oak. Her lines start
+  with "Mama:" like her PokeCom name. Mom2 and Mom3 are drafts for the
+  owner to review; Mom2 ("ich höre ja von deinen Erfolgen") also plays
+  before the first badge.
 - **Evidence:** 91a23faa50 (intro: the player lives in Pallet Town),
   515df62894 / c8104f5e3a / 458db58a02 (Mom in Pallet), e77afc248a (New Bark
   is not home any more, savings moved), 848361320c (wall clock in Pallet),
@@ -1351,8 +1360,8 @@ dated 2026-10-10 or later were decided directly.
   eighth Kanto badge; after the Johto title every Pokemon obeys (D-031).
 - **P-004** Baoba's Safari Zone call should come back through his own quest
   line (5f794c19fd, 0bee0d524b).
-- **P-005** Mom's three call texts still describe Hoenn milestones and should
-  be re-hung for Kanto/Johto.
+- **P-005** Done 2026-10-31: Mom's call texts follow Kanto, Johto and
+  Hoenn (D-002).
 
 ## Open questions
 
