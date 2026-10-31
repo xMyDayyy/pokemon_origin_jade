@@ -2,6 +2,7 @@
 #include "event_data.h"
 #include "field_message_box.h"
 #include "pokedex.h"
+#include "region_rule_oj.h"
 #include "strings.h"
 
 bool16 ScriptGetPokedexInfo(void)
@@ -58,6 +59,14 @@ const u8 *GetPokedexRatingText(u32 count)
     {
         j = RegionalToNationalOrder(i + 1);
         k = NationalPokedexNumToSpecies(j);
+        // Origin Jade: Johto's Hoenn species (Azurill, Wynaut) are not needed (D-049).
+        if (GetSpeciesRegion(k) == REGION_HOENN)
+        {
+            if (GetSetPokedexFlag(j, FLAG_GET_CAUGHT))
+                count--;
+            maxDex--;
+            continue;
+        }
         if (gSpeciesInfo[k].dexNotRequired || (gSpeciesInfo[k].isMythical && !gSpeciesInfo[k].dexForceRequired))
         {
             if (GetSetPokedexFlag(j, FLAG_GET_CAUGHT))

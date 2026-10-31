@@ -105,7 +105,8 @@ var number without storage (D-016).
   Johto map after the Kanto title (not the gatehouse), its catch-ups and
   the Hoenn unlock; Day Care eggs before the unlock (also through the Day
   Care itself) and with randomized species; the seen rule; the Kanto
-  Pokedex count and Celadon's diploma (151, Mew not needed). D-049.
+  Pokedex count and Celadon's diploma (151, Mew not needed); the Johto
+  Pokedex complete without Azurill and Wynaut. D-049.
 - `test/save.c`: save block sizes of Origin Jade (D-017).
 
 The tests read the bands from `include/config/*_scaling.h`. They use

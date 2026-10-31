@@ -1,4 +1,5 @@
 #include "global.h"
+#include "birch_pc.h"
 #include "daycare.h"
 #include "event_data.h"
 #include "pokedex.h"
@@ -270,4 +271,31 @@ TEST("Region rule: Celadon's diploma needs the 151 but Mew, no babies")
     GetSetPokedexFlag(NATIONAL_DEX_BULBASAUR, FLAG_SET_CAUGHT);
     EXPECT(HasAllKantoMons());
     EXPECT(!GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_PICHU), FLAG_GET_CAUGHT));
+}
+
+TEST("Region rule: Johto's Pokedex is complete without Azurill and Wynaut")
+{
+    u32 i, nationalNum;
+
+    for (i = 1; i < JOHTO_DEX_COUNT; i++)
+    {
+        nationalNum = JohtoToNationalOrder(i);
+        if (nationalNum != NATIONAL_DEX_CHIKORITA
+         && GetSpeciesRegion(NationalPokedexNumToSpecies(nationalNum)) != REGION_HOENN)
+            GetSetPokedexFlag(nationalNum, FLAG_SET_CAUGHT);
+    }
+    EXPECT(!HasAllJohotoMons());
+    GetPokedexRatingText(GetJohtoPokedexCount(FLAG_GET_CAUGHT));
+    EXPECT_EQ(gSpecialVar_Result, FALSE);
+
+    GetSetPokedexFlag(NATIONAL_DEX_CHIKORITA, FLAG_SET_CAUGHT);
+    EXPECT(HasAllJohotoMons());
+    GetPokedexRatingText(GetJohtoPokedexCount(FLAG_GET_CAUGHT));
+    EXPECT_EQ(gSpecialVar_Result, TRUE);
+
+    // A caught Azurill changes nothing.
+    GetSetPokedexFlag(NATIONAL_DEX_AZURILL, FLAG_SET_CAUGHT);
+    EXPECT(HasAllJohotoMons());
+    GetPokedexRatingText(GetJohtoPokedexCount(FLAG_GET_CAUGHT));
+    EXPECT_EQ(gSpecialVar_Result, TRUE);
 }

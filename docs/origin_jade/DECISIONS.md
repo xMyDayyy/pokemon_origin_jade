@@ -889,7 +889,8 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-20 (O-011).
 
 ### D-036 Charm sources
-- **Status:** Active (2026-10-21, changed 2026-10-31: 422 species)
+- **Status:** Active (2026-10-21, changed 2026-10-31: 422 species; Johto
+  dex without Azurill and Wynaut)
 - **Decision:**
   - Ovalpin (Oval Charm): the Day Care man hands it over once, right after
     the player's first egg, at every active Day Care (Kanto Route 5, Johto
@@ -902,7 +903,8 @@ dated 2026-10-10 or later were decided directly.
     the first Hoenn title (`FLAG_IS_HOENN_CHAMPION`) and `HasAllMons` reports
     the National Pokedex complete (`FLAG_RECEIVED_SHINY_CHARM`). He only
     appears after the first Hoenn title; his diploma logic (Johto dex) is
-    unchanged. The charm adds `I_SHINY_CHARM_ADDITIONAL_ROLLS` shiny rolls.
+    unchanged, except that Azurill and Wynaut are not needed (D-049). The
+    charm adds `I_SHINY_CHARM_ADDITIONAL_ROLLS` shiny rolls.
   - The National Pokedex counts the enabled species of HnS's obtainable dex
     (422: Kanto 151, Johto 129, Hoenn 142, D-049); species disabled in this
     build do not count, in `HasAllMons` as in the count and the rating. All
@@ -1469,6 +1471,12 @@ dated 2026-10-10 or later were decided directly.
     (`GetProfOaksRatingMessageByCount`; FRLG's threshold there was one too
     high with the expansion's `KANTO_DEX_COUNT`, so it never said
     complete).
+  - Johto Pokedex (`HasAllJohotoMons`, `GetPokedexRatingText`): HnS's
+    Johto dex (282 entries) lists Azurill and Wynaut, which count to
+    Hoenn. Elm's and Birch's rating, the trainer card's star and
+    Lilycove's diploma (D-036) leave them out like the mythicals, so
+    the Johto dex can be completed before Hoenn. The seen and caught
+    numbers shown stay as they are.
 - **Code:** `src/region_rule_oj.c` (the table of national numbers above
   386), `TryUnlockJohtoOnMapLoad` in both map loads of `src/overworld.c`;
   test `test/origin_jade/region_rule.c`.
@@ -1489,7 +1497,9 @@ dated 2026-10-10 or later were decided directly.
   species of a later region should first turn up there.
 - **Evidence:** owner decisions 2026-10-31 (Pokemon per region, evolutions
   exempt, no Pokedex filter, Gen 4 evolutions of Kanto lines count to
-  Johto).
+  Johto). The Johto dex without Azurill and Wynaut follows the plan's
+  Kanto 151 (C7) and the owner's 280 species after Johto (review
+  2026-10-31).
 
 ---
 

@@ -18,6 +18,7 @@
 #include "pokedex_area_screen.h"
 #include "pokedex_cry_screen.h"
 #include "pokedex_plus_hgss.h"
+#include "region_rule_oj.h"
 #include "rtc.h"
 #include "scanline_effect.h"
 #include "sound.h"
@@ -4703,6 +4704,11 @@ bool16 HasAllJohotoMons(void)
     {
         j = JohtoToNationalOrder(i + 1);
         k = NationalPokedexNumToSpecies(j);
+#if IS_HNS
+        // Origin Jade: Johto's Hoenn species (Azurill, Wynaut) are not needed (D-049).
+        if (GetSpeciesRegion(k) == REGION_HOENN)
+            continue;
+#endif
         if (!(gSpeciesInfo[k].dexNotRequired || (gSpeciesInfo[k].isMythical && !gSpeciesInfo[k].dexForceRequired)) && !GetSetPokedexFlag(j, FLAG_GET_CAUGHT))
             return FALSE;
     }
