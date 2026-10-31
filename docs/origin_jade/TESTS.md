@@ -100,3 +100,77 @@ var number without storage (D-016).
 The tests read the bands from `include/config/*_scaling.h`. They use
 Route 29 (Johto) and Route 101 (Hoenn) as maps with a corridor and need
 floors below the anchors they set (46 and 86).
+
+## Static check tools
+
+These tools read the sources, the map data or the built ELF; none of them
+plays the game. Run them from the repository root; the ones marked
+"after make" need a built ROM. The CI workflow (D-046) runs
+`check_flags.py`, `make_kanto_complete.py --check`, `check_budget.py`,
+`check_warnings.py` and, without blocking, `check_merge.py`.
+
+- `python3 -I tools/check_maps.py --min-severity klein`: warps, arrival
+  tiles, objects, connections and layouts of all active maps, with a
+  reachability walk from the new game; `--rev audit --compare 3525d22e71`
+  compares two states, `--render MAP` draws a map. Exit 1 on a proven
+  finding from "wichtig" up.
+- `python3 -I tools/simulate_progress.py --out DIR`: static playthrough
+  model Kanto -> Johto -> Hoenn (milestones in order, where progress
+  stops, unreachable maps, items, trainers, gifts); `--hoenn-ticket`
+  assumes the Hoenn Ticket (O-002), `--diff OLD NEW` compares two
+  reports. Exit 0 only if the Hoenn title is reachable, so without the
+  ticket it ends with 1.
+- `tools/oj_world.py`: shared data layer of the static tools (maps,
+  layouts, metatile behaviours, map sections, items, event scripts);
+  imported with `sys.path.insert(0, "tools"); import oj_world`, no command
+  line of its own.
+- `python3 -I tools/check_game_text.py --english --out DIR`: measures every
+  game text line in the sources against 208 px and lists English
+  leftovers by region; `--list` prints the over-wide lines. Exit 1 on a
+  proven over-wide line of active content.
+- `python3 -I tools/check_save_safety.py --json out.json`: gifts without a
+  space check, bag pockets (also with the item randomizer), new game
+  state, migrations, Hall of Fame, clock and link features; `--check NAME`
+  runs one check. Exit 1 on a blocker or critical finding.
+- `python3 tools/check_text_width.py --list` (after make): line widths of
+  all script texts as the built ROM shows them. Exit 1 on an exact line
+  over the limit outside locked maps.
+- `python3 tools/check_budget.py` (after make): save blocks and EWRAM,
+  IWRAM and ROM against their limits (D-017); `--elf` for the release ELF,
+  `--min-free N` to fail below N free bytes.
+- `python3 tools/check_warnings.py build.log`: compiler warnings of a full
+  build (`make clean`, then `make -O 2>&1 | tee build.log`) against
+  `tools/warnings_baseline.txt`; `--update` rewrites the baseline.
+- `python3 check_merge.py`: consistency of the Kanto/Johto/Hoenn merge
+  (warps, connections, flags, layouts, wild tables); known cases are in
+  its `KNOWN_ERRORS` with the decision that covers them.
+
+Also after every change to flags, vars, trainers or Kanto content:
+`python3 tools/check_flags.py` (D-016) and
+`python3 tools/make_kanto_complete.py --check`.
+
+## Test matrix (2026-10-31)
+
+State: branch `audit` at `b62f22e381` and the documentation commits on
+top (no code change). Details, the emulator checklists and the raw data are
+in the audit's test matrix; `docs/origin_jade/BETA_READINESS.md` gives the
+verdict per beta criterion. Nothing was checked in an emulator.
+
+| Area | Check | Result |
+|---|---|---|
+| Build | `make -j2` from scratch | exit 0, 397 of 397 C files, ROM SHA-1 `5c1c08ae7685bf6073ea20c7f87df981d6488c2a` (same as the incremental build) |
+| Build | `make release` | exit 0, SHA-1 `182fd390ba35e26e171f5684d6a87d3b5f7a7ca0`, overworld debug menu not linked; not started |
+| Build | `check_warnings.py` | 105 warnings, as in the baseline; release build 111 (LTO and newlib stubs) |
+| Data | `check_merge.py` | 0 errors, 8 known |
+| Data | `make_kanto_complete.py --check`, `--overlap` | header up to date, 0 new shared names |
+| Flags and vars | `check_flags.py`; `test/origin_jade/event_data.c` | 0 problems (3426 flags, 693 vars); 7 of 7 tests pass |
+| Saves | `check_budget.py`; `test/save.c` | SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1008/1624, PokemonStorage 34144/35712; EWRAM 95.05 %, IWRAM 78.44 %, ROM 77.18 %; 4 of 4 tests pass |
+| Saves | `check_save_safety.py` | 78 findings: 1 important (no running clock; the fake clock preselection is not modelled), 3 minor (Hall of Fame size is a false alarm, two bag pockets with the item randomizer), 74 optional |
+| Progress | `simulate_progress.py` | without the ticket: Kanto title in wave 50, Johto title in 105, Hoenn unreachable (O-002); with `--hoenn-ticket`: Hoenn title in 140; no other stop on the main path |
+| Maps | `check_maps.py --min-severity klein` | 88 findings, all minor (base `3525d22e71`: 117, of them 3 critical and 10 important) |
+| Texts | `check_text_width.py --list` | 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6), none over 216 px outside locked maps |
+| Texts | `check_game_text.py --english` | English: Johto 125 (51 important), shared 252, Hoenn 7, Kanto 5 (locked) |
+| Pokemon | availability model of the audit | 421 of 422 Pokedex species with a source (Jirachi none, A69); all 9 starters wild |
+| Engine | `run_tests.py` | 5124 tests in 946 files: 2333 ok, 629 todo, 2162 known failures, 0 new, 0 changed (the baseline of 2026-10-30 holds) |
+| Engine | `test/origin_jade/level_scaling.c` | 9 of 9 pass |
+| Not checked | - | play in an emulator, the clock at runtime, link features, Battle Frontier and other facilities at runtime, randomizer and Nuzlocke at runtime, the CI workflow on GitHub |
