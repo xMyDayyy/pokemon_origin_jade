@@ -293,6 +293,7 @@ PlayersHouse_2F_Text_ClockIsStopped:
 	.string "Better set it and start it!$"
 #endif
 
+#if !IS_HNS
 PlayersHouse_2F_Text_HowDoYouLikeYourRoom:
 #if GERMAN
 	.string "Mutter: {PLAYER}, wie gefällt dir dein\n"
@@ -314,6 +315,7 @@ PlayersHouse_2F_Text_HowDoYouLikeYourRoom:
 	.string "POKéMON movers are so convenient!\p"
 	.string "Oh, you should make sure that\n"
 	.string "everything's all there on your desk.$"
+#endif
 #endif
 
 PlayersHouse_2F_Text_Notebook:

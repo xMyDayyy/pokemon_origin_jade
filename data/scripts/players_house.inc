@@ -72,6 +72,12 @@ PlayersHouse_2F_EventScript_WallClock::
 	msgbox PlayersHouse_2F_Text_ClockIsStopped, MSGBOX_DEFAULT
 	call PlayersHouse_2F_EventScript_SetWallClock
 	delay 30
+#if IS_HNS
+	@ Origin Jade: sets the clock only, no Mom scene.
+	setflag FLAG_SET_WALL_CLOCK
+	releaseall
+	end
+#else
 	setvar VAR_LITTLEROOT_INTRO_STATE, 6
 	setflag FLAG_SET_WALL_CLOCK
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1
@@ -83,7 +89,9 @@ PlayersHouse_2F_EventScript_WallClock::
 	removeobject VAR_0x8008
 	releaseall
 	end
+#endif
 
+#if !IS_HNS
 PlayersHouse_2F_EventScript_MomComesUpstairsMale::
 	setvar VAR_0x8008, LOCALID_PLAYERS_HOUSE_2F_MOM
 	addobject VAR_0x8008
@@ -109,6 +117,7 @@ PlayersHouse_2F_EventScript_MomComesUpstairsFemale::
 	applymovement VAR_0x8008, PlayersHouse_2F_Movement_MomExitsFemale
 	waitmovement 0
 	return
+#endif
 
 PlayersHouse_2F_EventScript_CheckWallClock::
 	incrementgamestat GAME_STAT_CHECKED_CLOCK
@@ -124,6 +133,7 @@ PlayersHouse_2F_EventScript_SetWallClock::
 	waitstate
 	return
 
+#if !IS_HNS
 PlayersHouse_2F_Movement_MomEntersMale:
 	delay_8
 	walk_down
@@ -153,6 +163,7 @@ PlayersHouse_2F_Movement_MomExitsFemale:
 	walk_up
 	delay_8
 	step_end
+#endif
 
 #if !IS_HNS
 PlayersHouse_1F_EventScript_SetWatchedBroadcast::
