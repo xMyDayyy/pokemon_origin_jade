@@ -1344,6 +1344,10 @@ dated 2026-10-10 or later were decided directly.
     the mainland is coming; May (Route 103, Route 110, Lilycove), Birch's
     son and Sidney speak only of that. Wallace may know more, because Troy,
     the former champion, told him; his speech stays.
+  - The Petalburg gym opens as before with the fourth Hoenn badge (owner
+    2026-10-31). From `VAR_PETALBURG_GYM_STATE` 6 (open) on, the mart
+    woman, the man in the Pokemon Center, the gentleman, Wally and his
+    mother no longer say that the gym is closed or being rebuilt.
 - **Evidence:** owner requirements 2026-10-31 (point 4).
 
 ---
