@@ -1,80 +1,116 @@
-![HnS Logo](HnS_Logo.png)
+# Pokémon Origin Jade
 
-# About `pokemonHnS-expansion`
+Pokémon Origin Jade is a German ROM hack for the Game Boy Advance: one
+journey through three regions, Kanto first, then Johto, then Hoenn. Kanto
+uses the FireRed/LeafGreen maps, Johto comes from Pokémon Heart & Soul
+2.0.5, Hoenn from Emerald. The game is built on pokemonHnS-expansion
+(Heart & Soul) and RHH's pokeemerald-expansion.
 
-<!-- If you want to re-record or change these gifs, here are some notes that I used: https://files.catbox.moe/05001g.md -->
-<!-- TODO: Actually change these gifs, and generally update contents to convey HnS-specific information -->
-![HnS Collage](HnS_Collage_YourAdventure.png)
+The game text is German. Code comments and the project documentation are
+English.
 
-**`pokemonHnS-expansion`**, aka Pokémon Heart and Soul 2.0, is a GBA ROM hack that is both a remake of GSC and demake of HGSS, with added quality-of-life, customization, and more.  
-Originally built on top of [resetes12's **`Modern Emerald`**](https://github.com/resetes12/pokeemerald).  
-Now additionally built on top of [RHH's **`pokeemerald-expansion`**](https://github.com/rh-hideout/pokeemerald-expansion) GBA ROM hack base.  
-Finally, all of these projects are built on top of [pret's **`pokeemerald`**](https://github.com/pret/pokeemerald) decompilation project.
+## Features
 
-> Pokémon Heart & Soul brings the classic Johto Region and its iconic story to the world of modern GBA decomp hacking. Built on Modern Emerald and pokeemerald-expansion, this project offers a fresh take on the GSC/HGSS experience, blending key aspects of the Gen 2 and Gen 4 games, while incorporating many modern QoL features, as well as some familiar mechanics from Gen 3 to Gen 9. Not only is Heart & Soul (HnS) a first-of-its-kind, fully completed, playtested, and largely faithful GSC remake / HGSS demake, it's also completely open source, and is intended to be a base for a new generation of Johto rom hacks.
+- **Three regions in order.** The game starts in Pallet Town; Kanto is
+  chapter one, then Johto and Hoenn, each with its own badges, league and
+  title. Field moves follow the region's rules (Kanto badges, Johto
+  permits, Hoenn licenses). The credits come at the end of the whole
+  journey.
+- **Level design.** Kanto has a hand-set level ladder up to the champion
+  at 45-47. Johto and Hoenn scale trainers and wild Pokémon to the
+  player's team, within level corridors per area.
+- **No trading needed.** Kanto and Hoenn are designed so that their
+  Pokédex can be completed without trading; all nine starters are also
+  wild.
+- **Challenges**, chosen in the challenge menu of a new game: Nuzlocke
+  (with nickname rule and hardcore mode), randomizer (starters, wild,
+  fixed and trainer Pokémon, evolutions, moves, items), level caps, item
+  prices, fewer escapes, EXP multiplier, no EVs, maximum IVs, no Pokémon
+  Center, one-type challenge, clock type.
+- **Debug menus in beta builds.** The overworld debug menu (R + Start) and
+  the battle debug menu (Select) are on in the build made by `make` and
+  off in `make release`.
 
-Unfortunately, saves from before 2.0 will not be compatible moving forward.
+The design decisions behind all of this are in
+[`docs/origin_jade/DECISIONS.md`](docs/origin_jade/DECISIONS.md).
 
-2.0.1 will be the last "official" release of Pokémon Heart and Soul, after which any bug fixes, content updates, or any propogated updates from **`pokeemerald`** or **`pokeemerald-expansion`** will only be available via community forks of the project.
+## Building
 
-# [Features](FEATURES.md)
+Set up the toolchain as described in [`INSTALL.md`](INSTALL.md), then:
 
-**`pokemonHnS-expansion`** includes a mix of vanilla Emerald/FRLG features, re/de-made implementations of GSC/HGSS features, custom **`Modern Emerald`** features, and both features from [core series Pokémon games](https://bulbapedia.bulbagarden.net/wiki/Core_series) and popular QOL enhancements made available by **`pokeemerald-expansion`**.  
-A full list of the features present in Pokémon Heart & Soul 2.0 can be found in [`FEATURES.md`](FEATURES.md)
-A full list of the features made available by **`pokeemerald-expansion`** can be found in [`AVAILABLE_FEATURES.md`](AVAILABLE_FEATURES.md).
+    make -j$(nproc)              # Pokemon_Origin_Jade.gba (beta build, debug menus on)
+    make release                 # Pokemon_Origin_Jade-release.gba (debug menus off)
+    make check                   # test ELF and the whole test suite in one run
+    python3 tools/run_tests.py   # test suite against the list of known failures
 
-# [Credits](CREDITS.md)
+`make` builds only Origin Jade; `make jade` is an alias. The checks to run
+after a change are listed in
+[`docs/origin_jade/TESTS.md`](docs/origin_jade/TESTS.md).
 
-<!-- TODO: update .all-contributorsrc and CREDITS.md to match https://pokemonhns-development.github.io/pokehns-expansion-documentation/credits.html -->
-<!-- [![](https://img.shields.io/github/all-contributors/pokemonHnS-Development/pokemonHnS-expansion/upcoming)](CREDITS.md) -->
+## Documentation
 
-<!-- TODO: confirm our actual crediting policy and how best to respect our upstreams -->
-If you use **`pokemonHnS-expansion`**, please credit **Pokemon Heart and Soul**, and retain the full chain of credits as best possible.  
-If you additionally use a more updated version of **`pokeemerald-expansion`**, please *specifically* credit **RHH (Rom Hacking Hideout)** and include the version number for clarity.
-For example:
+In [`docs/origin_jade/`](docs/origin_jade/):
 
-<!-- TODO: confirm the closest applicable expansion version number -->
+- [`DECISIONS.md`](docs/origin_jade/DECISIONS.md): design decisions
+  (`D-`), planned work (`P-`) and open questions (`O-`). Read the entry
+  before changing what it covers.
+- [`CHANGELOG.md`](docs/origin_jade/CHANGELOG.md): changes of the current
+  round for players and testers.
+- [`BETA_READINESS.md`](docs/origin_jade/BETA_READINESS.md): beta
+  criteria, open points, owner decisions, risks.
+- [`PATCHES.md`](docs/origin_jade/PATCHES.md): the patch series of the
+  audit round, its order, verification and how to apply it.
+- [`TESTS.md`](docs/origin_jade/TESTS.md): test suite and check tools.
+
+[`FEATURES.md`](FEATURES.md) (Heart & Soul) and
+[`AVAILABLE_FEATURES.md`](AVAILABLE_FEATURES.md) (pokeemerald-expansion)
+describe the upstream features; the root [`CHANGELOG.md`](CHANGELOG.md)
+belongs to pokeemerald-expansion.
+
+## Current state
+
+Beta preparation. Kanto and Johto can be played to their titles without a
+known blocker; this is checked statically and with the check tools, not
+yet in an emulator. Hoenn needs the Hoenn Ticket, which has no source in
+the game yet except the debug menu. English texts remain in parts of Johto
+and in shared scripts. Details and the open list:
+[`docs/origin_jade/BETA_READINESS.md`](docs/origin_jade/BETA_READINESS.md).
+
+Until the release the save layout may still change, and older saves are
+not migrated.
+
+Trades and link battles come from Heart & Soul and were not tested in
+Origin Jade. Linking with the official games or other ROM hacks is not
+supported.
+
+## Credits
+
+Origin Jade stands on a chain of projects. If you use it, credit Origin
+Jade and keep the full chain:
+
+- **Pokémon Heart & Soul** (pokemonHnS-expansion) 2.0.5 by the HnS team,
+  [PokemonHnS-Development/pokehns-expansion](https://github.com/PokemonHnS-Development/pokehns-expansion).
+  Its contributors are listed in [`CREDITS.md`](CREDITS.md).
+- **Modern Emerald** by resetes12,
+  [resetes12/pokeemerald](https://github.com/resetes12/pokeemerald), the
+  base Heart & Soul was first built on.
+- **pokeemerald-expansion** by RHH (Rom Hacking Hideout),
+  [rh-hideout/pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion),
+  version 1.15.1 with later unreleased changes
+  (`include/constants/expansion.h`) and selected fixes up to 1.17.1.
+- **pokeemerald** by pret,
+  [pret/pokeemerald](https://github.com/pret/pokeemerald), the
+  decompilation all of these build on.
+
+Heart & Soul asks everyone who uses it to credit Pokémon Heart and Soul,
+to retain the full chain of credits, and, with a more recent
+pokeemerald-expansion, to credit RHH with the version number. For example:
+
 ```
-pokemonHnS-expansion 2.0 is Based off RHH's pokeemerald-expansion version 1.15.1 https://github.com/rh-hideout/pokemonHnS-expansion/
+Pokémon Origin Jade is based on Pokémon Heart & Soul 2.0.5
+(pokemonHnS-expansion), built on resetes12's Modern Emerald and RHH's
+pokeemerald-expansion 1.15.1, which build on pret's pokeemerald.
 ```
 
-Finally, please consider [crediting all contributors](CREDITS.md) involved in the project!
-
-# **`pokemonHnS-expansion`** multiplayer compatibility
-
-- **`pokemonHnS-expansion`** supports trade and link battle multiplayer functionality, which *should* extend to forks built on **`pokemonHnS-expansion`** but cannot be guaranteed.
-- **`pokemonHnS-expansion`** is not compatible with official Pokémon games, **`pokemonHnS 1.X`**, **`Modern Emerald`**, or other **`pokeemerald-expansion`** projects.
-
-# [Getting Started](INSTALL.md)
-
-❗❗ **Important**: Do not use GitHub's "Download Zip" option as it will not include commit history. This is necessary if you want to update or merge other feature branches from **`pokeemerald-expansion`**.
-
-If you're new to git and GitHub, [Team Aqua's Asset Repo](https://github.com/Pawkkie/Team-Aquas-Asset-Repo/) has a [guide to forking and cloning the repository](https://github.com/Pawkkie/Team-Aquas-Asset-Repo/wiki/The-Basics-of-GitHub). Then you can follow one of the following guides:
-
-<!-- TODO: update INSTALL.md to refer to HnS-specific things -->
-## 📥 [Installing **`pokemonHnS-expansion`**](INSTALL.md)
-## 🏗️ [Building **`pokemonHnS-expansion`**](INSTALL.md#Building-pokemonHnS-expansion)
-
-# [Documentation](https://pokemonhns-development.github.io/pokehns-expansion-documentation/)
-
-For our player-facing documentation, visit the [**`pokemonHnS-expansion`** documentation page](https://pokemonhns-development.github.io/pokehns-expansion-documentation/).
-
-# [Contributions and Community](https://discord.gg/ksNTFNSBj)
-
-[![](https://dcbadge.limes.pink/api/server/ksNTFNSBj)](https://discord.gg/ksNTFNSBj)
-
-If - in the window between 2.0 release and 2.0.1 release - you are looking to report a bug, make a suggestion, or give feedback, please join the [Pokémon Heart and Soul Discord server](https://discord.gg/ksNTFNSBj). You are also welcome to join just to participate in the community, including pinging our @guides (and only our guides) for help answering questions not sufficiently covered by our documentation or in-game resources.
-
-# AI Disclosure
-Since this is a controversial topic at the moment, we'd like to be transparent about use of AI for this project.
-
-Every line of code written for the game is either hand-written or manually reviewed by a member of the team. However, it is still important to point out that LLMs like Claude Code and GitHub Copilot have been used for some tasks.
-
-Here is what AI has been used for:
-- Code Reviews of hand-written code
-- Debugging more complex scenarios
-- Auto Completion (stuff like repeating lists, DebugPrints, etc.)
-- Creating Python Scripts for I/O procedures (like downloading/writing list data, I/O data with Excel, etc. namely for documentation)
-
-AI has not been used for:
-- Generating assets of any kind; Art or Music
+Please also consider crediting all contributors listed in
+[`CREDITS.md`](CREDITS.md).
