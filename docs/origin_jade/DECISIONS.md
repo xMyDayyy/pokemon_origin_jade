@@ -44,18 +44,24 @@ dated 2026-10-10 or later were decided directly.
 ### D-002 Home is Pallet Town
 - **Status:** Active (2026-10-10). Supersedes the rule
   "New Bark Town once Johto was visited" from a740935891. Changed
-  2026-10-15 for Johto, Hoenn and Red (D-028).
+  2026-10-15 for Johto, Hoenn and Red (D-028), changed 2026-10-31 (the
+  continue point after the Kanto league is the player's room).
 - **Decision:** Mom lives in Pallet Town only. The house in New Bark Town
   belongs to a stranger, and Littleroot Town has no player family (Brendan's
   house is Norman's family, May's house is Professor Birch's). After the
-  Kanto league the player wakes up at home in Pallet Town. After Johto
+  Kanto league the player wakes up in their room in Pallet Town, also when
+  the game is restarted after the Hall of Fame has saved
+  (`HEAL_LOCATION_PALLET_TOWN_PLAYERS_ROOM`); a whiteout from there still
+  leads to Mom on the ground floor. After Johto
   titles and Red the game continues in New Bark Town, after Hoenn titles in
   Littleroot Town, each in front of the professor's lab (D-028).
 - **Why:** The player grew up in Pallet Town (intro text), Mom gives the
   PokeCom and the Running Shoes there, her savings menu moved there, the
   wall clock is set there. Waking up in New Bark Town or Littleroot Town
   contradicts all of that.
-- **Code:** `EnterHallOfFame` in `src/post_battle_event_funcs.c` (Kanto);
+- **Code:** `EnterHallOfFame` in `src/post_battle_event_funcs.c` (Kanto),
+  the room's heal location at the end of `src/data/heal_locations.json`
+  and in `IsLastHealLocationPlayerHouse` (`src/heal_location.c`);
   `setrespawn` in `data/scripts/new_game.inc`; Johto, Hoenn and Red:
   D-028; the respawn fallback in `src/overworld.c`; the Abra teleport "home" in
   `IndigoPlateau_PokemonCenter_hns`. Fly to Littleroot lands in front of the

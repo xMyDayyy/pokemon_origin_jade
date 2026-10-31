@@ -127,8 +127,8 @@ bool8 EnterHallOfFame(void)
         SetGameStat(GAME_STAT_FIRST_HOF_PLAY_TIME, (gSaveBlock2Ptr->playTimeHours << 16) | (gSaveBlock2Ptr->playTimeMinutes << 8) | gSaveBlock2Ptr->playTimeSeconds);
     }
     SetContinueGameWarpStatus();
-    // Origin Jade: after a Kanto title the player continues at home in Pallet Town (D-002).
-    SetContinueGameWarpToHealLocation(HEAL_LOCATION_PALLET_TOWN);
+    // Origin Jade: after a Kanto title the player continues in their room in Pallet Town (D-002).
+    SetContinueGameWarpToHealLocation(HEAL_LOCATION_PALLET_TOWN_PLAYERS_ROOM);
     gaveAtLeastOneRibbon = FALSE;
     for (i = 0, r7 = &ribbonState; i < PARTY_SIZE; i++)
     {
