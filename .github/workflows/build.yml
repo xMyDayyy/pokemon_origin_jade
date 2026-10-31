@@ -51,6 +51,9 @@ jobs:
       - name: Flags and vars
         run: python3 tools/check_flags.py
 
+      - name: Species per region and Pokedex order (D-049)
+        run: python3 -I tools/check_regions.py
+
       - name: Kanto debug state up to date
         run: python3 tools/make_kanto_complete.py --check
 

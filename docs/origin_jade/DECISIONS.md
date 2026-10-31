@@ -1239,7 +1239,8 @@ dated 2026-10-10 or later were decided directly.
   encounters and eggs are free).
 
 ### D-046 Only Origin Jade is built
-- **Status:** Active (2026-10-30)
+- **Status:** Active (2026-10-30, changed 2026-10-31: region check in the
+  CI)
 - **Decision:** The make process builds only Origin Jade: `GAME_VERSION`
   `POKEMON_HNS` (so `IS_HNS`), map version `hns`, title "POKEMON JADE",
   `Pokemon_Origin_Jade.gba`. `make`, `make jade`, `make check`,
@@ -1254,7 +1255,8 @@ dated 2026-10-10 or later were decided directly.
   ROM and the release ROM on every push and pull request, prints their
   SHA-1 and runs `tools/check_warnings.py` (no warning beyond
   `tools/warnings_baseline.txt`), `tools/check_flags.py`,
-  `tools/make_kanto_complete.py --check` and `tools/check_budget.py`;
+  `tools/check_regions.py` (D-049), `tools/make_kanto_complete.py
+  --check` and `tools/check_budget.py`;
   `check_merge.py` runs without blocking. Map errors that are unreachable
   or intended go into its `KNOWN_ERRORS` with the decision that covers
   them. The upstream Docs and Labels workflows run only by hand.
@@ -1470,6 +1472,19 @@ dated 2026-10-10 or later were decided directly.
 - **Code:** `src/region_rule_oj.c` (the table of national numbers above
   386), `TryUnlockJohtoOnMapLoad` in both map loads of `src/overworld.c`;
   test `test/origin_jade/region_rule.c`.
+- **Check:** `tools/check_regions.py` (also in the CI): no wild table of
+  an active Kanto map has a species of Johto or Hoenn, none of a Johto map
+  one of Hoenn, and neither do the overworld Pokemon that show a map's
+  species nor the gifts and static battles of the map scripts. Known
+  exceptions: `Route22_hns` (Taillow), which cannot be entered (O-022);
+  the Ruins of Alph lab's Lileep and Anorith (only from Hoenn's fossils);
+  an uncalled test script at the Johto Safari Zone gate. In the National
+  Pokedex order (`enum ObtainableDexOrder`) every Kanto species lies in
+  the Kanto block and every Johto species in the Kanto or Johto block, so
+  the list cannot jump; `--dex-gaps` prints the blocks (Kanto 1-185, Johto
+  186-282; the 34 Johto species of Kanto lines in the Kanto block, Azurill
+  and Wynaut in the Johto block). Trainer parties and trades are not
+  checked.
 - **Why:** The regions open one after the other in the story (D-001); a
   species of a later region should first turn up there.
 - **Evidence:** owner decisions 2026-10-31 (Pokemon per region, evolutions

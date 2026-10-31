@@ -117,14 +117,26 @@ floors below the anchors they set (46 and 86).
 These tools read the sources, the map data or the built ELF; none of them
 plays the game. Run them from the repository root; the ones marked
 "after make" need a built ROM. The CI workflow (D-046) runs
-`check_flags.py`, `make_kanto_complete.py --check`, `check_budget.py`,
-`check_warnings.py` and, without blocking, `check_merge.py`.
+`check_flags.py`, `check_regions.py`, `make_kanto_complete.py --check`,
+`check_budget.py`, `check_warnings.py` and, without blocking,
+`check_merge.py`.
 
 - `python3 -I tools/check_maps.py --min-severity klein`: warps, arrival
   tiles, objects, connections and layouts of all active maps, with a
   reachability walk from the new game; `--rev audit --compare 3525d22e71`
   compares two states, `--render MAP` draws a map. Exit 1 on a proven
   finding from "wichtig" up.
+- `python3 -I tools/check_regions.py`: no wild table of an active map, no
+  overworld Pokemon showing a species and no gift or static battle of a
+  map script (`givemon`, `giveegg`, `setwildbattle`, `seteventmon`) offers
+  a species of a later region (Kanto maps only Kanto species, Johto maps
+  Kanto and Johto ones, D-049), and no Kanto or Johto species lies behind
+  its region's block of the National Pokedex order; species regions as
+  in `src/region_rule_oj.c`. `--list` prints the species of each region's
+  maps, `--dex-gaps` the Pokedex blocks. Known exceptions (the
+  unreachable `Route22_hns`, O-022; the Hoenn fossils of the Ruins of
+  Alph lab; an uncalled test script) are listed but do not fail. Exit 1
+  on a finding.
 - `python3 -I tools/simulate_progress.py --out DIR`: static playthrough
   model Kanto -> Johto -> Hoenn (milestones in order, where progress
   stops, unreachable maps, items, trainers, gifts); `--hoenn-ticket`

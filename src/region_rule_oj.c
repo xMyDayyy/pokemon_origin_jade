@@ -13,6 +13,7 @@
 #if IS_HNS
 
 // National numbers above 386 that the build enables: region of their line.
+// tools/check_regions.py reads this table.
 static const struct
 {
     u16 nationalNum;
