@@ -370,8 +370,10 @@ dated 2026-10-10 or later were decided directly.
   - No evolution needs a trade: Kadabra, Machoke, Graveler and Haunter also
     evolve by level; the held-item evolutions take the item from the bag
     (`I_USE_EVO_HELD_ITEMS_FROM_BAG`).
-  - Everything is obtainable before the first Kanto title except Mewtwo and
-    Electivire, which come from Cerulean Cave right after it.
+  - Of the 151, everything is obtainable before the first Kanto title
+    except Mewtwo, who comes from Cerulean Cave right after it; so does the
+    Electirizer for Electivire. The babies follow once Johto is unlocked
+    (D-049).
 - **Evidence:** 71a79b3a14, ff6d47ca45, ead606af10, 7aacaa2699,
   d8f26d241e, d0e2cc9ec4, 2d0e6a62af, 00da4d2a7a, 535f47948b, 5578b2caee;
   decision 2026-10-29 (LeafGreen exclusives at night, Sevii items replaced,
@@ -736,8 +738,7 @@ dated 2026-10-10 or later were decided directly.
 ### D-029 Magnet Train, radio quiz and ships
 - **Status:** Active (2026-10-15, ships changed 2026-10-20, Hoenn trips
   changed 2026-10-30, changed 2026-10-31: Hoenn entries of the ship menus,
-  D-047)
-  changed 2026-10-30, Aurora Ticket changed 2026-10-31)
+  D-047; Aurora Ticket, D-049)
 - **Decision:**
   - Kanto has one way into Johto: the gatehouse (D-009). Flying between the
     regions opens with the first Johto visit.
@@ -1802,6 +1803,30 @@ dated 2026-10-10 or later were decided directly.
   - The Hoenn Test's team (Charizard 70, Meganium 63, Gyarados 63,
     Ampharos 62, Nidoking 60, Espeon 60) and Chikorita as the Johto
     starter follow owner point 6 (mixed, average, no legendary).
+- **O-036** Elm's call after the Johto title fires only on entering New
+  Bark Town (`VAR_NEWBARK_TOWN_STATE` 6); since the player now wakes up in
+  Pallet Town it can come after the maiden voyage or after Hoenn, and its
+  "the M.S. Aqua finally sets sail" news is stale. Proposal: trigger it on
+  waking up in Pallet Town, or pick Elm's lab text by maiden voyage state.
+- **O-037** Mom's heal texts after a whiteout at home
+  (`gText_HadQuiteAnExperienceTakeRest`, `gText_MomExplainHPGetPotions`):
+  capitals "MAMA"/"POKéMON", a beginner tutorial; reachable from the start
+  of a new game (whiteout before the first Pokemon Center heal, respawn
+  `HEAL_LOCATION_PALLET_TOWN` from `new_game.inc`), after the Kanto title,
+  and now also after a Johto title or Red (room respawn). Proposal: owner
+  text; tutorial only before the first badge.
+- **O-038** The German National dex rating texts are placeholders ("Unter
+  300. / Weiter so!"); through Elm's call after the completed Johto dex
+  they are now reachable before Hoenn. Needs owner text.
+- **O-039** The Gold pass greeting of the nurse counts
+  `CountPlayerTrainerStars` (Hall of Fame, Johto dex, 4 museum paintings,
+  all Frontier symbols), the trainer card shows `GetHnSTrainerStars` (three
+  titles + Red); both can disagree.
+- **O-040** Old German text defects found in the story text check, for the
+  text round: trainer school e-mail (`gText_PokemonTrainerSchoolEmail`, now
+  at three PCs), "mit Pokécenter challenge!" (`players_house.inc`), Birch's
+  league text paragraph break mid-sentence, Lilycove game designer `\l`
+  before `\p` and "Aner- kennung".
 
 ## Superseded decisions (kept for the record)
 
