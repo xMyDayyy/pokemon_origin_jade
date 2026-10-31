@@ -1371,7 +1371,8 @@ dated 2026-10-10 or later were decided directly.
     Birch's starter gift after the rescue ("your father's blood"); Dad's
     PokeNav call on Mr. Briney's boat; the Hall of Fame step that brings
     Dad home with the S.S. Ticket; Brendan's Go-Goggles line in Lavaridge
-    ("your dad").
+    ("your dad"); `gText_Dad`. The Enigma Berry and the Mystery Event berry,
+    both off in Origin Jade, name Norman instead of "Vater".
 - **Evidence:** owner requirements 2026-10-31 (point 4).
 
 ---

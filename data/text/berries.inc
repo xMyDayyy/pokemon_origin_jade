@@ -1,10 +1,10 @@
 PetalburgCity_Gym_Text_GiveEnigmaBerry:
 #if GERMAN
-	.string "Vater: Hallo, {PLAYER}!\p"
+	.string "Norman: Hallo, {PLAYER}!\p"
 	.string "Ich habe gerade eine sehr seltene\n"
 	.string "Beere erhalten. Die schenke ich dir.$"
 #else
-	.string "DAD: Hi, {PLAYER}!\p"
+	.string "NORMAN: Hi, {PLAYER}!\p"
 	.string "I just received a very rare BERRY.\n"
 	.string "I'd like you to have it.$"
 #endif

@@ -1976,10 +1976,12 @@ const u8 gText_MailToBagMessageErased[] = _("Der Brief, dessen Inhalt gelöscht\
 #else
 const u8 gText_MailToBagMessageErased[] = _("The MAIL was returned to the BAG\nwith its message erased.{PAUSE_UNTIL_PRESS}");
 #endif
+#if !IS_HNS
 #if GERMAN
 const u8 gText_Dad[] = _("Vati");
 #else
 const u8 gText_Dad[] = _("DAD");
+#endif
 #endif
 #if GERMAN
 const u8 gText_Mom[] = _("Mama");

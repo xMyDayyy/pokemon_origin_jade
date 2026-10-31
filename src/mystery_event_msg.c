@@ -1,9 +1,9 @@
 #include "global.h"
 
 #if GERMAN
-const u8 gText_MysteryEventBerry[] = _("Eine {STR_VAR_2}beere! Vater in der \nArena von Blütenburg City besitzt\lauch eine.");
+const u8 gText_MysteryEventBerry[] = _("Eine {STR_VAR_2}beere! Norman in der \nArena von Blütenburg City besitzt\lauch eine.");
 #else
-const u8 gText_MysteryEventBerry[] = _("Obtained a {STR_VAR_2} BERRY!\nDad has it at PETALBURG GYM.");
+const u8 gText_MysteryEventBerry[] = _("Obtained a {STR_VAR_2} BERRY!\nNORMAN has it at PETALBURG GYM.");
 #endif
 #if GERMAN
 const u8 gText_MysteryEventBerryTransform[] = _("Die {STR_VAR_1}beere verwandelte\nsich in eine {STR_VAR_2}beere!");
