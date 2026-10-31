@@ -95,6 +95,12 @@ var number without storage (D-016).
 - `test/origin_jade/event_data.c`: flag and var routing of
   `GetFlagPointer`/`GetVarPointer` into SaveBlock1 and the SaveBlock3
   windows (FRLG, FRLG trainers, HnS rematch tiers, Origin Jade). D-016.
+- `test/origin_jade/region_rule.c`: region of single species; every baby
+  and later evolution of a Gen 1-3 line counts to its line's region (29
+  Johto, 7 Hoenn; the test build enables every family, so the counts per
+  region of the ROM cannot be checked there); Johto unlock on the first
+  Johto map after the Kanto title (not the gatehouse), its catch-ups and
+  the Hoenn unlock. D-049.
 - `test/save.c`: save block sizes of Origin Jade (D-017).
 
 The tests read the bands from `include/config/*_scaling.h`. They use

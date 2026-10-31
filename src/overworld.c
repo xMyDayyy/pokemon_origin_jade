@@ -52,6 +52,7 @@
 #include "palette.h"
 #include "play_time.h"
 #include "random.h"
+#include "region_rule_oj.h"
 #include "roamer.h"
 #include "rotating_gate.h"
 #include "rtc.h"
@@ -930,6 +931,7 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
     TrySetHoennVisitedFlag();
+    TryUnlockJohtoOnMapLoad();
     InitMap();
     CopySecondaryTilesetToVramUsingHeap(gMapHeader.mapLayout);
     LoadSecondaryTilesetPalette(gMapHeader.mapLayout, TRUE); // skip copying to Faded, gamma shift will take care of it
@@ -1001,6 +1003,7 @@ static void LoadMapFromWarp(bool32 a1)
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
     TrySetHoennVisitedFlag();
+    TryUnlockJohtoOnMapLoad();
     UpdateLocationHistoryForRoamer();
     MoveAllRoamersToOtherLocationSets();
     gChainFishingDexNavStreak = 0;

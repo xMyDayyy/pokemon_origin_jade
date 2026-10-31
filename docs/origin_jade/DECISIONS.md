@@ -878,7 +878,7 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-20 (O-011).
 
 ### D-036 Charm sources
-- **Status:** Active (2026-10-21)
+- **Status:** Active (2026-10-21, changed 2026-10-31: 422 species)
 - **Decision:**
   - Ovalpin (Oval Charm): the Day Care man hands it over once, right after
     the player's first egg, at every active Day Care (Kanto Route 5, Johto
@@ -893,10 +893,11 @@ dated 2026-10-10 or later were decided directly.
     appears after the first Hoenn title; his diploma logic (Johto dex) is
     unchanged. The charm adds `I_SHINY_CHARM_ADDITIONAL_ROLLS` shiny rolls.
   - The National Pokedex counts the enabled species of HnS's obtainable dex
-    (415); species disabled in this build do not count, in `HasAllMons` as
-    in the count and the rating. All 415 are obtainable without trading
-    (D-037). Not required: the mythicals and Regirock, Regice, Registeel
-    (HnS's `dexNotRequired`; owner kept it 2026-10-26).
+    (422: Kanto 151, Johto 129, Hoenn 142, D-049); species disabled in this
+    build do not count, in `HasAllMons` as in the count and the rating. All
+    422 are obtainable without trading (D-037). Not required: the
+    mythicals and Regirock, Regice, Registeel (HnS's `dexNotRequired`;
+    owner kept it 2026-10-26).
   - Code: `DayCare_EventScript_GiveOvalCharm` (`data/scripts/day_care.inc`,
     called by the egg scripts of Route 5, Route 34 and Route 117);
     `LilycoveCity_CoveLilyMotel_2F_EventScript_TryGiveShinyCharm` (runs
@@ -904,9 +905,10 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-21 (O-008).
 
 ### D-037 Hoenn is complete without trading
-- **Status:** Active (2026-10-26, changed 2026-10-30, starters: owner decision)
-- **Decision:** All 415 species of the National Pokedex and the whole Hoenn
-  dex are obtainable without link trades. As in Kanto (D-013), day and night
+- **Status:** Active (2026-10-26, changed 2026-10-30, starters: owner decision;
+  changed 2026-10-31: 422 species)
+- **Decision:** All 422 species of the National Pokedex (D-049) and the
+  whole Hoenn dex are obtainable without link trades. As in Kanto (D-013), day and night
   replace the Ruby/Sapphire version split on Emerald's wild tables.
   - Route 102: Surskit (10 %); Route 117: Roselia (20 %) and Surskit (10 %),
     day and night. Masquerain at level 22, Budew by breeding Roselia without
@@ -1382,6 +1384,37 @@ dated 2026-10-10 or later were decided directly.
     Enigma Berry and the Mystery Event berry, both off in Origin Jade, name
     Norman instead of "Vater".
 - **Evidence:** owner requirements 2026-10-31 (point 4).
+
+### D-049 Pokemon per region
+- **Status:** Active (2026-10-31, owner decision)
+- **Decision:** Kanto has only Kanto Pokemon, Johto adds Johto's and Hoenn
+  adds Hoenn's: before a region is unlocked, no source hands out a species
+  of that region. Evolutions are exempt: a Golbat may become a Crobat in
+  Kanto, so every evolution stays possible early. There is no Pokedex
+  filter; the National Pokedex stays as it is.
+  - Regions of the 422 enabled species (`GetSpeciesRegion`): national
+    numbers 1-151 are Kanto, 152-251 Johto, 252-386 Hoenn. Babies and later
+    evolutions (Gen 4, 6, 8 and 9) of Kanto and Johto lines count to Johto
+    (Pichu, Crobat, Magnezone, Sylveon, Kleavor ...), those of Hoenn lines
+    to Hoenn (Budew, Gallade, Dusknoir ...). Kanto 151, Johto 129, Hoenn
+    142, so 280 species after Johto. Forms count as their species.
+  - Unlocked (`IsRegionUnlocked`): Kanto always. Johto on the first Johto
+    map after the Kanto title (`FLAG_JOHTO_UNLOCKED`, set on every map
+    load); the gatehouse south of Route 23 (`ReceptionGate_hns`, D-009) does
+    not count. Catch-ups (D-005): `FLAG_JOHTO_ARRIVAL_DONE`,
+    `VAR_JOHTO_HANDOVER` 3, Hoenn unlocked. Hoenn with the first trip there
+    (`VAR_HOENN_ARRIVAL_STATE` 1 or more). The current map does not decide:
+    `GetCurrentRegion` counts the Kampfzone and Birth Island as Hoenn.
+    Oak's Johto extension of the Pokedex at the GS Ball handover stays a
+    text.
+- **Code:** `src/region_rule_oj.c` (the table of national numbers above
+  386), `TryUnlockJohtoOnMapLoad` in both map loads of `src/overworld.c`;
+  test `test/origin_jade/region_rule.c`.
+- **Why:** The regions open one after the other in the story (D-001); a
+  species of a later region should first turn up there.
+- **Evidence:** owner decisions 2026-10-31 (Pokemon per region, evolutions
+  exempt, no Pokedex filter, Gen 4 evolutions of Kanto lines count to
+  Johto).
 
 ---
 

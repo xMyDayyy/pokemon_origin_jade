@@ -160,6 +160,7 @@
 // ---------------------------------------------------------------------
 // Cross-region (OJ_FLAGS_GLOBAL + 0 to + 63)
 // ---------------------------------------------------------------------
-// no entries yet
+// Johto species unlocked: first Johto map after the Kanto title (D-049).
+#define FLAG_JOHTO_UNLOCKED                          (OJ_FLAGS_GLOBAL + 0)
 
 #endif // GUARD_CONSTANTS_FLAGS_ORIGIN_JADE_H
