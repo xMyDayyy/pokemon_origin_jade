@@ -44,7 +44,11 @@ failures and only reports what is new.
 place and reason of the failing check. Tests that fail on a file's
 `ASSUMPTIONS` block get the place and reason of that block. State of
 2026-10-30: 5124 tests in 946 files, 2333 ok, 629 todo, 2162 known
-failures. Two runs gave the same results. The causes:
+failures. Two runs gave the same results. State of 2026-10-31 at
+`b022af5623`: 5140 tests in 948 files, 2347 ok, 629 todo, 2164 known
+failures (the 16 new tests are `test/origin_jade/region_rule.c` and
+`test/origin_jade/debug_states.c`; the two Day Care tests below are the
+new known failures). The causes:
 
 - 1969 "Unmatched MESSAGE": the tests expect English battle texts. Battle
   texts and names are German without a language switch, so
@@ -61,8 +65,8 @@ failures. Two runs gave the same results. The causes:
 - 6 text width tests in `test/text.c` with German texts; each stops at the
   first text that is too wide.
 - 2 Day Care tests in `test/daycare.c` (added 2026-10-31, not in the
-  numbers above) expect a Pichu egg from Pikachu: in the test's fresh save
-  Johto is not unlocked, so the egg is a Pikachu (D-049).
+  numbers of 2026-10-30) expect a Pichu egg from Pikachu: in the test's
+  fresh save Johto is not unlocked, so the egg is a Pikachu (D-049).
 - 24 others, not triaged yet: animation order (11), AI move choice (4),
   bag sorting, Sheer Force, Daycare regional forms, the form table of
   Alolan Raticate, `CreateNPCTrainerPartyForTrainer`, a trainer slide and
@@ -160,10 +164,11 @@ plays the game. Run them from the repository root; the ones marked
   share. Exit 1 on a finding.
 - `python3 -I tools/simulate_progress.py --out DIR`: static playthrough
   model Kanto -> Johto -> Hoenn (milestones in order, where progress
-  stops, unreachable maps, items, trainers, gifts); `--hoenn-ticket`
-  starts with the Hoenn Ticket already received (what-if; in the game
-  Troy hands it over in Oak's lab, D-047), `--diff OLD NEW` compares two
-  reports. Exit 0 only if the Hoenn title is reachable.
+  stops, unreachable maps, items, trainers, gifts). Without a switch it
+  follows the story through Troy's scene in Oak's lab (D-047) and the
+  ferry; `--hoenn-ticket` starts with the Hoenn Ticket already received
+  (what-if), `--diff OLD NEW` compares two reports. Exit 0 only if the
+  Hoenn title is reachable.
 - `tools/oj_world.py`: shared data layer of the static tools (maps,
   layouts, metatile behaviours, map sections, items, event scripts);
   imported with `sys.path.insert(0, "tools"); import oj_world`, no command
@@ -191,14 +196,49 @@ plays the game. Run them from the repository root; the ones marked
 
 Also after every change to flags, vars, trainers or Kanto content:
 `python3 tools/check_flags.py` (D-016) and
-`python3 tools/make_debug_states.py --check`.
+`python3 tools/make_debug_states.py --check`; after a change to wild
+tables, overworld Pokemon, gifts or the Pokedex order:
+`python3 -I tools/check_regions.py` (D-049).
 
 ## Test matrix (2026-10-31)
 
+State: branch `audit` at `b022af5623` (the audit series, the story
+packages D-047 to D-049, their fixes and the debug states D-050) and the
+documentation commits on top (no code change). Results from the
+integration run `integ_b10` on the tip unless another run is named; the
+fresh build, the release build, the warning count and the English count
+come from a separate worktree of the tip.
+`docs/origin_jade/BETA_READINESS.md` gives the verdict per beta criterion
+and the emulator test list for the story packages. Nothing was checked in
+an emulator.
+
+| Area | Check | Result |
+|---|---|---|
+| Build | `make` in the integration clone (incremental) | exit 0, ROM SHA-1 `11bec7d4cba038d647668f2f86c68ef3a29eee1f`; each of the 42 commits after the audit series built with its final id (`make=ok`, `check_flags` 0) |
+| Build | `make` from scratch (after `rm -rf build/jade`) | exit 0, 397 C files, the same ROM SHA-1 as the incremental build |
+| Build | `make release` | exit 0, SHA-1 `34e173bde2dc2b804e1132a60a5675f928dd33b4`, overworld debug menu and debug states not linked; not started |
+| Build | `check_warnings.py` | 105 warnings on the log of the fresh build, as in the baseline; release build 111 (LTO and newlib stubs) |
+| Data | `check_merge.py` | 0 errors, 8 known (205 warnings, 273 hints, as in the baseline) |
+| Data | `check_regions.py` | 0 problems, the known exceptions listed; `--dex-gaps` (regions package): Kanto block 1-185, Johto block 186-282, no species behind its region's block |
+| Data | `make_debug_states.py --check`, `--overlap` | both headers up to date at the tip; at each of the 7 commits after the story packages the per-commit log records one header up to date and no problem: `debug_kanto_complete.h` up to `ae3e095a3c` (before `0ab7449520` the generator was `make_kanto_complete.py`), `debug_johto_complete.h` (new in `13bf3c8cb6`) from `13bf3c8cb6` on; `--overlap` 0 new (debug package) |
+| Flags and vars | `check_flags.py`; `test/origin_jade/event_data.c` | 0 problems (3428 flags, 693 vars); 7 of 7 tests pass |
+| Saves | `check_budget.py`; `test/save.c` | SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1008/1624, PokemonStorage 34144/35712; EWRAM 95.05 %, IWRAM 78.44 %, ROM 77.16 %; 4 of 4 tests pass |
+| Saves | `check_save_safety.py` | 76 findings (debug package, the integration clone gave the same count): 1 important, 3 minor, 72 optional; Key Items pocket 58 obtainable of 60 slots |
+| Progress | `simulate_progress.py` | without a switch: Kanto title in wave 50, Johto title 105, Hoenn Ticket 106 (Oak's lab), Hoenn reached 108, Hoenn badges 109-127, Hoenn title 137, exit 0; 195 of 1125 active maps unreachable, none on the story path; the same waves on `58f244eade` (`integ_b9`) |
+| Progress | `simulate_progress.py --hoenn-ticket` | Hoenn title in 136; nothing lost against the run with the switch on `b62f22e381` (Hoenn title in 140) (ticket package) |
+| Maps | `check_maps.py --min-severity klein` | 88 findings, all minor |
+| Texts | `check_text_width.py --list` | 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6), none over 216 px outside locked maps |
+| Texts | `check_game_text.py --english` | English: Johto 125, shared 252, Hoenn 7, Kanto 5 (locked), as on `b62f22e381`; the new English message of the debug menu ("Hoenn Test needs a new game..."; the Johto Test message only moved) is debug-only (D-020) |
+| Pokemon | availability model of the audit | not re-run after the story packages (see the earlier state); `check_regions.py` above |
+| Engine | `run_tests.py` | 5140 tests in 948 files: 2347 ok, 629 todo, 2164 known failures, 0 new, 0 changed (`integ_tests_b10`); on `58f244eade`: 5138 tests, 0 new, 0 changed (`integ_tests_b9`) |
+| Engine | Origin Jade tests | `level_scaling.c` 9/9, `event_data.c` 7/7, `region_rule.c` 14/14, `debug_states.c` 2/2, `test/save.c` 4/4 |
+| Not checked | - | play in an emulator (story scenes, port menus, Pokedex, Day Care, debug states), the clock at runtime, link features, Battle Frontier and other facilities at runtime, randomizer and Nuzlocke at runtime, the CI workflow on GitHub |
+
+### Earlier state: `b62f22e381` (audit series)
+
 State: branch `audit` at `b62f22e381` and the documentation commits on
 top (no code change). Details, the emulator checklists and the raw data are
-in the audit's test matrix; `docs/origin_jade/BETA_READINESS.md` gives the
-verdict per beta criterion. Nothing was checked in an emulator.
+in the audit's test matrix. Nothing was checked in an emulator.
 
 | Area | Check | Result |
 |---|---|---|
@@ -210,7 +250,7 @@ verdict per beta criterion. Nothing was checked in an emulator.
 | Flags and vars | `check_flags.py`; `test/origin_jade/event_data.c` | 0 problems (3426 flags, 693 vars); 7 of 7 tests pass |
 | Saves | `check_budget.py`; `test/save.c` | SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1008/1624, PokemonStorage 34144/35712; EWRAM 95.05 %, IWRAM 78.44 %, ROM 77.18 %; 4 of 4 tests pass |
 | Saves | `check_save_safety.py` | 78 findings: 1 important (no running clock; the fake clock preselection is not modelled), 3 minor (Hall of Fame size is a false alarm, two bag pockets with the item randomizer), 74 optional |
-| Progress | `simulate_progress.py` | with the Hoenn Ticket story (D-047), without `--hoenn-ticket`: Kanto title in wave 50, Johto title in 105, Hoenn Ticket in 106 (Oak's lab), Hoenn reached in 108, Hoenn title in 137 (exit 0); with `--hoenn-ticket`: Hoenn title in 136; nothing lost against the earlier run with `--hoenn-ticket` (Hoenn title in 140); no other stop on the main path |
+| Progress | `simulate_progress.py` | without the ticket: Kanto title in wave 50, Johto title in 105, Hoenn unreachable (O-002, resolved later by D-047); with `--hoenn-ticket`: Hoenn title in 140; no other stop on the main path |
 | Maps | `check_maps.py --min-severity klein` | 88 findings, all minor (base `3525d22e71`: 117, of them 3 critical and 10 important) |
 | Texts | `check_text_width.py --list` | 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6), none over 216 px outside locked maps |
 | Texts | `check_game_text.py --english` | English: Johto 125 (51 important), shared 252, Hoenn 7, Kanto 5 (locked) |
