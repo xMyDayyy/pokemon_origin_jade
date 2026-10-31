@@ -2,17 +2,19 @@
 @ Crossing to Hoenn and arrival at Professor Birch's
 @ ============================================================
 
-@ Called from both ports as soon as the player picks Hoenn.
-@ Only the first trip sets the intro's end state; see docs/origin_jade/DECISIONS.md, D-029.
+@ Called from the ports and islands as soon as the player picks Hoenn. Only the first trip sets
+@ the intro's end state; every trip lands on the Route 104 pier.
+@ See docs/origin_jade/DECISIONS.md, D-029 and D-047.
 Common_EventScript_SailToHoenn::
-	checkitem ITEM_HOENN_TICKET
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_HoennNoTicket
+	goto_if_lt VAR_HOENN_TICKET_STATE, 3, Common_EventScript_HoennNoTicket
+	call Common_EventScript_CheckShipToHoenn
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShipMenuCancel
 	closemessage
 	delay 20
 	msgbox Common_Text_HoennSetSail, MSGBOX_DEFAULT
 	closemessage
 	fadescreen FADE_TO_BLACK
-	goto_if_ne VAR_HOENN_ARRIVAL_STATE, 0, Common_EventScript_SailToHoennAgain
+	goto_if_ne VAR_HOENN_ARRIVAL_STATE, 0, Common_EventScript_SailToRoute104Pier
 	call Common_EventScript_HoennSkipIntro
 	setflag FLAG_HIDE_ROUTE104_HOENN_BIRCH
 	setvar VAR_HOENN_ARRIVAL_STATE, 1
@@ -23,14 +25,37 @@ Common_EventScript_SailToRoute104Pier::
 	release
 	end
 
-@ Later trips: Slateport's harbour once Slateport was visited and Team Aqua's
-@ submarine scene there is not pending, otherwise the Route 104 pier.
-Common_EventScript_SailToHoennAgain::
-	goto_if_unset FLAG_VISITED_SLATEPORT_CITY, Common_EventScript_SailToRoute104Pier
-	goto_if_eq VAR_SLATEPORT_HARBOR_STATE, 1, Common_EventScript_SailToRoute104Pier
+@ Later trips go to Slateport's or Lilycove's harbour and change no Hoenn state.
+Common_EventScript_SailToSlateport::
+	call Common_EventScript_CheckShipToSlateport
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShipMenuCancel
+	closemessage
+	delay 20
+	msgbox Common_Text_SetSailSlateport, MSGBOX_DEFAULT
+	closemessage
+	fadescreen FADE_TO_BLACK
 	setrespawn HEAL_LOCATION_SLATEPORT_CITY
 	warpsilent MAP_SLATEPORT_CITY_HARBOR, 8, 11
 	waitstate
+	release
+	end
+
+Common_EventScript_SailToLilycove::
+	call Common_EventScript_CheckShipToLilycove
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShipMenuCancel
+	closemessage
+	delay 20
+	msgbox Common_Text_SetSailLilycove, MSGBOX_DEFAULT
+	closemessage
+	fadescreen FADE_TO_BLACK
+	setrespawn HEAL_LOCATION_LILYCOVE_CITY
+	warpsilent MAP_LILYCOVE_CITY_HARBOR, 8, 11
+	waitstate
+	release
+	end
+
+Common_EventScript_ShipMenuCancel::
+	closemessage
 	release
 	end
 
@@ -425,6 +450,109 @@ Common_Movement_HoennFaceRight:
 	step_end
 
 @ ------------------------------------------------------------
+@ Ship menu of the ports and islands
+@ ------------------------------------------------------------
+@ In: VAR_0x8008 = SHIP_PORT_*. Out: VAR_RESULT = SHIP_DEST_* or MULTI_B_PRESSED.
+@ Lists only what can be sailed to now; VAR_0x8009 counts the rows so that the menu ends above
+@ the message box. See docs/origin_jade/DECISIONS.md, D-047.
+Common_EventScript_ShipMenu::
+	setvar VAR_0x8009, 12
+	call_if_ne VAR_0x8008, SHIP_PORT_OLIVINE, Common_EventScript_ShipMenuPushOlivine
+	call_if_ne VAR_0x8008, SHIP_PORT_VERMILION, Common_EventScript_ShipMenuPushVermilion
+	call_if_ne VAR_0x8008, SHIP_PORT_ISLAND, Common_EventScript_ShipMenuPushIslands
+	call Common_EventScript_ShipMenuPushHoenn
+	call Common_EventScript_ShipMenuPushSlateport
+	call Common_EventScript_ShipMenuPushLilycove
+	dynmultipush gText_Exit, SHIP_DEST_EXIT
+	subvar VAR_0x8009, 2
+	call_if_eq VAR_0x8009, 0, Common_EventScript_ShipMenuTopRow
+	dynmultistack 28, VAR_0x8009, FALSE, 6, FALSE, 0, DYN_MULTICHOICE_CB_NONE
+	return
+
+Common_EventScript_ShipMenuTopRow::
+	setvar VAR_0x8009, 1
+	return
+
+@ Olivine from the islands always, from Vermilion once the M.S. Aqua sails every day.
+Common_EventScript_ShipMenuPushOlivine::
+	goto_if_eq VAR_0x8008, SHIP_PORT_ISLAND, Common_EventScript_ShipMenuPushOlivineEntry
+	goto_if_lt VAR_SSAQUA_STATE, 7, Common_EventScript_NopReturn
+Common_EventScript_ShipMenuPushOlivineEntry::
+	dynmultipush Common_Text_ShipOlivine, SHIP_DEST_OLIVINE
+	subvar VAR_0x8009, 2
+	return
+
+@ Vermilion from Olivine (before VAR_SSAQUA_STATE 7 this is the maiden voyage) and the islands.
+Common_EventScript_ShipMenuPushVermilion::
+	dynmultipush Common_Text_ShipVermilion, SHIP_DEST_VERMILION
+	subvar VAR_0x8009, 2
+	return
+
+@ Kampfzone and Birth Island from both ports once the M.S. Aqua sails every day.
+Common_EventScript_ShipMenuPushIslands::
+	goto_if_lt VAR_SSAQUA_STATE, 7, Common_EventScript_NopReturn
+	dynmultipush gText_BattleFrontier, SHIP_DEST_BATTLE_FRONTIER
+	dynmultipush gText_BirthIsland, SHIP_DEST_BIRTH_ISLAND
+	subvar VAR_0x8009, 4
+	return
+
+Common_EventScript_ShipMenuPushHoenn::
+	call Common_EventScript_CheckShipToHoenn
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn
+	dynmultipush gText_HoennRegion, SHIP_DEST_HOENN
+	subvar VAR_0x8009, 2
+	return
+
+Common_EventScript_ShipMenuPushSlateport::
+	call Common_EventScript_CheckShipToSlateport
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn
+	dynmultipush gText_SlateportCity, SHIP_DEST_SLATEPORT
+	subvar VAR_0x8009, 2
+	return
+
+Common_EventScript_ShipMenuPushLilycove::
+	call Common_EventScript_CheckShipToLilycove
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn
+	dynmultipush gText_LilycoveCity, SHIP_DEST_LILYCOVE
+	subvar VAR_0x8009, 2
+	return
+
+@ VAR_RESULT = TRUE while the Hoenn ferry runs to the Route 104 pier: from the Hoenn Ticket
+@ until Birch's welcome in his lab.
+Common_EventScript_CheckShipToHoenn::
+	setvar VAR_RESULT, FALSE
+	goto_if_lt VAR_HOENN_TICKET_STATE, 3, Common_EventScript_NopReturn
+	goto_if_ge VAR_HOENN_ARRIVAL_STATE, 3, Common_EventScript_NopReturn
+	setvar VAR_RESULT, TRUE
+	return
+
+@ VAR_RESULT = TRUE after Birch's welcome once Slateport was visited, unless its harbour is closed
+@ for Team Aqua's submarine scene.
+Common_EventScript_CheckShipToSlateport::
+	setvar VAR_RESULT, FALSE
+	goto_if_lt VAR_HOENN_ARRIVAL_STATE, 3, Common_EventScript_NopReturn
+	goto_if_unset FLAG_VISITED_SLATEPORT_CITY, Common_EventScript_NopReturn
+	goto_if_eq VAR_SLATEPORT_HARBOR_STATE, 1, Common_EventScript_NopReturn
+	setvar VAR_RESULT, TRUE
+	return
+
+@ VAR_RESULT = TRUE after Birch's welcome once Lilycove was visited.
+Common_EventScript_CheckShipToLilycove::
+	setvar VAR_RESULT, FALSE
+	goto_if_lt VAR_HOENN_ARRIVAL_STATE, 3, Common_EventScript_NopReturn
+	goto_if_unset FLAG_VISITED_LILYCOVE_CITY, Common_EventScript_NopReturn
+	setvar VAR_RESULT, TRUE
+	return
+
+@ VAR_RESULT = TRUE if the ship menu has any Hoenn entry.
+Common_EventScript_CheckHoennFerry::
+	call Common_EventScript_CheckShipToHoenn
+	goto_if_eq VAR_RESULT, TRUE, Common_EventScript_NopReturn
+	call Common_EventScript_CheckShipToSlateport
+	goto_if_eq VAR_RESULT, TRUE, Common_EventScript_NopReturn
+	goto Common_EventScript_CheckShipToLilycove
+
+@ ------------------------------------------------------------
 @ Texts
 @ ------------------------------------------------------------
 Common_Text_HoennSetSail:
@@ -434,6 +562,38 @@ Common_Text_HoennSetSail:
 #else
 	.string "We cast off soon! Get on board.\n"
 	.string "Next stop: HOENN!$"
+#endif
+
+Common_Text_SetSailSlateport:
+#if GERMAN
+	.string "Wir legen bald ab! Geh an Bord.\n"
+	.string "Nächster Halt: Graphitport City!$"
+#else
+	.string "We cast off soon! Get on board.\n"
+	.string "Next stop: SLATEPORT CITY!$"
+#endif
+
+Common_Text_SetSailLilycove:
+#if GERMAN
+	.string "Wir legen bald ab! Geh an Bord.\n"
+	.string "Nächster Halt: Seegrasulb City!$"
+#else
+	.string "We cast off soon! Get on board.\n"
+	.string "Next stop: LILYCOVE CITY!$"
+#endif
+
+Common_Text_ShipOlivine:
+#if GERMAN
+	.string "Oliviana City$"
+#else
+	.string "OLIVINE$"
+#endif
+
+Common_Text_ShipVermilion:
+#if GERMAN
+	.string "Orania City$"
+#else
+	.string "VERMILION$"
 #endif
 
 Route104_Text_BirchGreeting:

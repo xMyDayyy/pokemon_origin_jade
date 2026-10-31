@@ -716,7 +716,8 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-029 Magnet Train, radio quiz and ships
 - **Status:** Active (2026-10-15, ships changed 2026-10-20, Hoenn trips
-  changed 2026-10-30)
+  changed 2026-10-30, changed 2026-10-31: Hoenn entries of the ship menus,
+  D-047)
 - **Decision:**
   - Kanto has one way into Johto: the gatehouse (D-009). Flying between the
     regions opens with the first Johto visit.
@@ -728,21 +729,19 @@ dated 2026-10-10 or later were decided directly.
     is gone.
   - After the first Johto title the M.S. Aqua sails. Its first trip is the
     maiden voyage from Olivine to Vermilion; afterwards both ports offer the
-    other port, the Kampfzone, Entstehungsinsel (with the Aurora Ticket) and
-    Hoenn (unchanged, O-002). The M.S. Aqua sails every day from both ports.
-  - The sailors at the Kampfzone and on Birth Island sail to Olivine,
-    Vermilion or Hoenn. The Hoenn entry has the ports' condition (Johto
-    title, maiden voyage done) and uses `Common_EventScript_SailToHoenn`.
+    other port, the Kampfzone and Entstehungsinsel (with the Aurora
+    Ticket). The M.S. Aqua sails every day from both ports. The Hoenn
+    entries of the menus follow D-047.
+  - The sailors at the Kampfzone and on Birth Island sail to Olivine and
+    Vermilion, and to Hoenn like the ports (D-047).
   - Only the first Hoenn trip (`VAR_HOENN_ARRIVAL_STATE` 0) sets the end
-    state of Emerald's intro (`Common_EventScript_HoennSkipIntro`) and lands
-    on the Route 104 pier, where Birch's arrival scene starts. Later trips
-    change no Hoenn state: they dock at Slateport's harbour (where the S.S.
-    Tidal docks) once the player has visited Slateport and Team Aqua's
-    submarine scene there is not pending (`VAR_SLATEPORT_HARBOR_STATE` is
-    not 1), otherwise at the Route 104 pier, so a trip never opens a town
-    early or lands in a scene. The ticket is not used up. Every trip sets
-    the respawn: in front of Birch's lab for the pier, Slateport's Pokemon
-    Center for the harbour. Whoever leaves the beach before Birch's
+    state of Emerald's intro (`Common_EventScript_HoennSkipIntro`); every
+    trip with the "Hoenn" entry lands on the Route 104 pier, where Birch's
+    arrival scene starts. The trips to Slateport and Lilycove (D-047)
+    change no Hoenn state, so a trip never opens a town early or lands in
+    a scene. The ticket is not used up. Every trip sets the respawn: in
+    front of Birch's lab for the pier, the Pokemon Center of Slateport or
+    Lilycove for their harbours. Whoever leaves the beach before Birch's
     greeting (Fly, Teleport, Dig) gets the welcome (Pokedex, badge case,
     Birch's contact) on entering the lab (D-005).
   - The woman in Olivine City gives the Aurora Ticket only after the Johto
@@ -1267,6 +1266,33 @@ dated 2026-10-10 or later were decided directly.
     arm the scene on entering the lab (D-005).
   - Troy has one sprite everywhere (owner); currently
     `OBJ_EVENT_GFX_STEVEN`, see O-031.
+  - The ship menus in Vermilion, Olivine and on the islands (Kampfzone,
+    Birth Island) are built on every visit and list only what can be
+    sailed to now:
+    - "Hoenn" from the Hoenn Ticket (`VAR_HOENN_TICKET_STATE` 3) until
+      Birch's welcome in his lab (`VAR_HOENN_ARRIVAL_STATE` 3); every trip
+      with it lands on the Route 104 pier (D-029). The entry stays after
+      the first crossing while the welcome is pending (arrival state 1 or
+      2); after the welcome the ticket opens no more trips.
+    - "Graphitport City" after the welcome once Slateport was visited,
+      unless its harbour is closed for Team Aqua's submarine scene
+      (`VAR_SLATEPORT_HARBOR_STATE` 1); it lands in Slateport's harbour
+      (8,11).
+    - "Seegrasulb City" after the welcome once Lilycove was visited; it
+      lands in Lilycove's harbour (8,11).
+    - Without such a visit no ship goes there. Fly to Littleroot Town
+      always works, because the first crossing marks it visited.
+  - The Hoenn ferry runs from both ports as soon as the player has the
+    ticket, also before the M.S. Aqua's maiden voyage: Vermilion then
+    offers only the Hoenn entries, Olivine the maiden voyage ("Orania
+    City") and the Hoenn entries.
+  - No ship sails from Slateport or Lilycove to Kanto or Johto before the
+    Hoenn title; Fly is enough. The S.S. Tidal is unchanged (to the
+    Kampfzone after the Hoenn title, D-030). The island sailors list
+    "Hoenn", "Graphitport City" and "Seegrasulb City" under the same
+    conditions as the ports, so also before the Hoenn title.
+  - The static lists `MULTI_OLIVINE_HARBOR`, `MULTI_VERMILION_HARBOR` and
+    `MULTI_SSAQUA_RETURN(_PORTS)` are no longer used.
   - Oak no longer sees the player off at the Olivine port (HnS's National
     Dex scene, "maybe to Hoenn someday"): his object and scene are gone,
     and Elm's M.S. Aqua news after the first Johto title no longer sends
@@ -1279,9 +1305,12 @@ dated 2026-10-10 or later were decided directly.
 - **Code:** `PokemonLeague_HallOfFame_hns` (`OakAndTroy`, both objects
   hidden by `FLAG_HIDE_INDIGO_PLATEAU_MARY_OAK` until `addobject`);
   `PalletTown_ProfessorOaksLab_Frlg` (`SetupTroy`, `TroyScene`,
-  `FLAG_HIDE_OAKS_LAB_TROY`); `VAR_HOENN_TICKET_STATE` in
-  `include/constants/vars_hoenn_de.h`; `ITEM_HOENN_TICKET` in
-  `src/data/items.h`.
+  `FLAG_HIDE_OAKS_LAB_TROY`); `Common_EventScript_ShipMenu`, the
+  `Common_EventScript_CheckShipTo*` and `Common_EventScript_SailTo*`
+  scripts in `data/scripts/hoenn_arrival.inc`, `SHIP_DEST_*` and
+  `SHIP_PORT_*` in `include/constants/script_menu.h`;
+  `VAR_HOENN_TICKET_STATE` in `include/constants/vars_hoenn_de.h`;
+  `ITEM_HOENN_TICKET` in `src/data/items.h`.
 - **Evidence:** owner decisions 2026-10-31 (plan part A, Hoenn Ticket
   story).
 
@@ -1411,6 +1440,14 @@ dated 2026-10-10 or later were decided directly.
   `OBJ_EVENT_GFX_STEVEN_HNS` is the alternative. Not compared in an
   emulator yet next to the other people of his scenes (FRLG's Oak in his
   lab, HnS's Oak and Lance in Johto's Hall of Fame).
+- **O-032** Nuzlocke without a flyer after Birch's welcome: from then on
+  the ship menus offer no "Hoenn" entry, and Slateport's and Lilycove's
+  harbours only once visited (D-047). A player who flies back to Kanto or
+  Johto before reaching Slateport and then loses every Pokemon that can
+  use Fly (Nuzlocke deaths) has no way back to Hoenn until they get a new
+  flyer, and the areas of Kanto and Johto are mostly used up by then.
+  Rule needed: e.g. keep "Hoenn" until Slateport was visited, or accept
+  it.
 
 ## Superseded decisions (kept for the record)
 

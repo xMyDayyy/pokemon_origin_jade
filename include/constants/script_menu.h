@@ -204,6 +204,21 @@
 #define SS_AQUA_RETURN_HOENN               2
 #define SS_AQUA_RETURN_EXIT                3
 
+// Destinations of the dynamic ship menu (Common_EventScript_ShipMenu, D-047)
+#define SHIP_DEST_OLIVINE                  0
+#define SHIP_DEST_VERMILION                1
+#define SHIP_DEST_BATTLE_FRONTIER          2
+#define SHIP_DEST_BIRTH_ISLAND             3
+#define SHIP_DEST_HOENN                    4
+#define SHIP_DEST_SLATEPORT                5
+#define SHIP_DEST_LILYCOVE                 6
+#define SHIP_DEST_EXIT                     7
+
+// Port the ship menu is opened in (VAR_0x8008 for Common_EventScript_ShipMenu)
+#define SHIP_PORT_OLIVINE                  0
+#define SHIP_PORT_VERMILION                1
+#define SHIP_PORT_ISLAND                   2
+
 // Lilycove SS Tidal Multichoice Selections
 #define SSTIDAL_SELECTION_SLATEPORT        0
 #define SSTIDAL_SELECTION_BATTLE_FRONTIER  1

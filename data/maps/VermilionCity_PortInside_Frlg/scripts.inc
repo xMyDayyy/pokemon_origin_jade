@@ -142,8 +142,12 @@ VermilionPortFrlg_EventScript_Sailor::
 	goto_if_unset FLAG_HIDE_SS_ANNE, VermilionPortFrlg_EventScript_SSAnnePresent
 	@ Phase 3: no ship until the first Johto title
 	goto_if_unset FLAG_IS_JOHTO_CHAMPION, VermilionPortFrlg_EventScript_NoShipInPort
-	goto_if_lt VAR_SSAQUA_STATE, 7, VermilionPortFrlg_EventScript_FirstTripFromOlivine
 	@ Phase 4: M.S. Aqua, every day (see docs/origin_jade/DECISIONS.md, D-029)
+	goto_if_ge VAR_SSAQUA_STATE, 7, VermilionPortFrlg_EventScript_Sailor_AfterKanto
+	@ Before the maiden voyage only the Hoenn ferry leaves here (D-047).
+	call Common_EventScript_CheckHoennFerry
+	goto_if_eq VAR_RESULT, FALSE, VermilionPortFrlg_EventScript_FirstTripFromOlivine
+	msgbox VermilionPortFrlg_Text_OnlyHoennFerry, MSGBOX_DEFAULT
 	goto VermilionPortFrlg_EventScript_Sailor_AfterKanto
 	end
 
@@ -160,12 +164,15 @@ VermilionPortFrlg_EventScript_SSAnnePresent::
 VermilionPortFrlg_EventScript_Sailor_AfterKanto::
 	message VermilionPortFrlg_Text_WhereSail
 	waitmessage
-	multichoice 28, 2, MULTI_VERMILION_HARBOR, FALSE
+	setvar VAR_0x8008, SHIP_PORT_VERMILION
+	call Common_EventScript_ShipMenu
 	switch VAR_RESULT
-	case SS_AQUA_SELECTION_OTHER_PORT, VermilionPortFrlg_EventScript_ChoseOlivine
-	case SS_AQUA_SELECTION_BATTLE_FRONTIER, VermilionPortFrlg_EventScript_ChoseBattleFrontier
-	case SS_AQUA_SELECTION_BIRTH_ISLAND, VermilionPortFrlg_EventScript_ChoseBirthIsland
-	case SS_AQUA_SELECTION_HOENN, Common_EventScript_SailToHoenn
+	case SHIP_DEST_OLIVINE, VermilionPortFrlg_EventScript_ChoseOlivine
+	case SHIP_DEST_BATTLE_FRONTIER, VermilionPortFrlg_EventScript_ChoseBattleFrontier
+	case SHIP_DEST_BIRTH_ISLAND, VermilionPortFrlg_EventScript_ChoseBirthIsland
+	case SHIP_DEST_HOENN, Common_EventScript_SailToHoenn
+	case SHIP_DEST_SLATEPORT, Common_EventScript_SailToSlateport
+	case SHIP_DEST_LILYCOVE, Common_EventScript_SailToLilycove
 	goto VermilionPortFrlg_EventScript_Sailor_Refused
 
 VermilionPortFrlg_EventScript_ChoseOlivine::
@@ -301,6 +308,19 @@ VermilionPortFrlg_Text_FirstTripFromOlivine:
 	.string "The S.S.AQUA starts her maiden\n"
 	.string "voyage in OLIVINE CITY.\p"
 	.string "She'll only call here after that.$"
+#endif
+
+VermilionPortFrlg_Text_OnlyHoennFerry:
+#if GERMAN
+	.string "Die M.S. Aqua startet ihre\n"
+	.string "Jungfernfahrt in Oliviana City.\p"
+	.string "Die Fähre nach Hoenn legt aber\n"
+	.string "schon hier ab.$"
+#else
+	.string "The S.S.AQUA starts her maiden\n"
+	.string "voyage in OLIVINE CITY.\p"
+	.string "But the ferry to HOENN already\n"
+	.string "leaves from here.$"
 #endif
 
 VermilionPortFrlg_Text_ComeAgain:

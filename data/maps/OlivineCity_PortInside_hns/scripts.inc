@@ -19,12 +19,15 @@ OlivinePort_EventScript_Youngster::
 	end
 
 @ Origin Jade: the M.S. Aqua sails every day from the first Johto title on; the first trip is the
-@ maiden voyage to Vermilion. See docs/origin_jade/DECISIONS.md, D-029.
+@ maiden voyage to Vermilion. The Hoenn ferry needs no maiden voyage.
+@ See docs/origin_jade/DECISIONS.md, D-029 and D-047.
 OlivinePort_EventScript_Sailor::
 	lock
 	faceplayer
 	goto_if_unset FLAG_IS_JOHTO_CHAMPION, OlivinePort_EventScript_SailorNotYet
 	goto_if_ge VAR_SSAQUA_STATE, 7, OlivinePort_EventScript_Sailor_AfterKanto
+	call Common_EventScript_CheckHoennFerry
+	goto_if_eq VAR_RESULT, TRUE, OlivinePort_EventScript_Sailor_AfterKanto
 	msgbox OlivinePort_Text_AskBoard, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, FALSE, OlivinePort_EventScript_Sailor_Refused
 	checkitem ITEM_SS_TICKET
@@ -43,12 +46,15 @@ OlivinePort_EventScript_SailorNotYet::
 OlivinePort_EventScript_Sailor_AfterKanto::
 	message OlivinePort_Text_WhereSail
 	waitmessage
-	multichoice 28, 2, MULTI_OLIVINE_HARBOR, FALSE
+	setvar VAR_0x8008, SHIP_PORT_OLIVINE
+	call Common_EventScript_ShipMenu
 	switch VAR_RESULT
-	case SS_AQUA_SELECTION_OTHER_PORT, OlivinePort_EventScript_ChoseVermilion
-	case SS_AQUA_SELECTION_BATTLE_FRONTIER, OlivinePort_EventScript_ChoseBattleFrontier
-	case SS_AQUA_SELECTION_BIRTH_ISLAND, OlivinePort_EventScript_ChoseBirthIsland
-	case SS_AQUA_SELECTION_HOENN, Common_EventScript_SailToHoenn
+	case SHIP_DEST_VERMILION, OlivinePort_EventScript_ChoseVermilion
+	case SHIP_DEST_BATTLE_FRONTIER, OlivinePort_EventScript_ChoseBattleFrontier
+	case SHIP_DEST_BIRTH_ISLAND, OlivinePort_EventScript_ChoseBirthIsland
+	case SHIP_DEST_HOENN, Common_EventScript_SailToHoenn
+	case SHIP_DEST_SLATEPORT, Common_EventScript_SailToSlateport
+	case SHIP_DEST_LILYCOVE, Common_EventScript_SailToLilycove
 	goto OlivinePort_EventScript_Sailor_Refused
 
 OlivinePort_EventScript_ChoseVermilion::
@@ -57,6 +63,7 @@ OlivinePort_EventScript_ChoseVermilion::
 	checkitem ITEM_SS_TICKET
 	bufferitemname STR_VAR_1, ITEM_SS_TICKET
 	goto_if_eq VAR_RESULT, FALSE, OlivinePort_EventScript_Sailor_NoCredentials
+	goto_if_lt VAR_SSAQUA_STATE, 7, OlivinePort_EventScript_Sailor_MaidenVoyage
 	call OlivinePort_EventScript_EnterShip
 	@ Origin Jade: lands in Vermilion's port building, in front of the sailor.
 	warpsilent MAP_VERMILION_CITY_PORT_INSIDE_FRLG, 8, 9
