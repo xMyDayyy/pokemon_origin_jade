@@ -1,7 +1,9 @@
 #include "global.h"
+#include "daycare.h"
 #include "event_data.h"
 #include "pokemon.h"
 #include "region_rule_oj.h"
+#include "test/overworld_script.h"
 #include "test/test.h"
 #include "constants/maps.h"
 #include "constants/region_map_sections.h"
@@ -158,4 +160,55 @@ TEST("Region rule: Hoenn unlocks with the first trip there")
     EXPECT(IsRegionUnlocked(REGION_HOENN));
     EXPECT(IsSpeciesRegionUnlocked(SPECIES_DUSKULL));
     EXPECT(IsSpeciesRegionUnlocked(SPECIES_DUSKNOIR));
+}
+
+TEST("Region rule: Day Care eggs before the unlock hatch as the first unlocked stage")
+{
+    // Kanto only.
+    EXPECT_EQ(GetUnlockedEggSpecies(SPECIES_PICHU, SPECIES_RAICHU), SPECIES_PIKACHU);
+    EXPECT_EQ(GetUnlockedEggSpecies(SPECIES_PICHU, SPECIES_PIKACHU), SPECIES_PIKACHU);
+    EXPECT_EQ(GetUnlockedEggSpecies(SPECIES_HAPPINY, SPECIES_BLISSEY), SPECIES_CHANSEY);
+    EXPECT_EQ(GetUnlockedEggSpecies(SPECIES_MUNCHLAX, SPECIES_SNORLAX), SPECIES_SNORLAX);
+    EXPECT_EQ(GetUnlockedEggSpecies(SPECIES_TYROGUE, SPECIES_HITMONCHAN), SPECIES_HITMONCHAN);
+    EXPECT_EQ(GetUnlockedEggSpecies(SPECIES_TYROGUE, SPECIES_HITMONLEE), SPECIES_HITMONLEE);
+    EXPECT_EQ(GetUnlockedEggSpecies(SPECIES_BULBASAUR, SPECIES_VENUSAUR), SPECIES_BULBASAUR);
+    // No stage of the line unlocked: the egg keeps its species.
+    EXPECT_EQ(GetUnlockedEggSpecies(SPECIES_TYROGUE, SPECIES_HITMONTOP), SPECIES_TYROGUE);
+
+    // Johto unlocked, Hoenn not.
+    FlagSet(FLAG_JOHTO_UNLOCKED);
+    EXPECT_EQ(GetUnlockedEggSpecies(SPECIES_PICHU, SPECIES_RAICHU), SPECIES_PICHU);
+    EXPECT_EQ(GetUnlockedEggSpecies(SPECIES_AZURILL, SPECIES_AZUMARILL), SPECIES_MARILL);
+    EXPECT_EQ(GetUnlockedEggSpecies(SPECIES_WYNAUT, SPECIES_WOBBUFFET), SPECIES_WOBBUFFET);
+
+    // Hoenn unlocked.
+    VarSet(VAR_HOENN_ARRIVAL_STATE, 1);
+    EXPECT_EQ(GetUnlockedEggSpecies(SPECIES_AZURILL, SPECIES_AZUMARILL), SPECIES_AZURILL);
+    EXPECT_EQ(GetUnlockedEggSpecies(SPECIES_WYNAUT, SPECIES_WOBBUFFET), SPECIES_WYNAUT);
+}
+
+TEST("Region rule: Day Care eggs keep their species with randomized species")
+{
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_WildPokemon = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Static = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Starter = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Evolutions = TRUE; }
+    EXPECT_EQ(GetUnlockedEggSpecies(SPECIES_PICHU, SPECIES_RAICHU), SPECIES_PICHU);
+}
+
+TEST("Region rule: a Pikachu pair in Kanto's Day Care gives a Pikachu egg")
+{
+    u32 egg = 0;
+
+    PARAMETRIZE { egg = SPECIES_PIKACHU; }
+    PARAMETRIZE { egg = SPECIES_PICHU; FlagSet(FLAG_JOHTO_UNLOCKED); }
+    ZeroPlayerPartyMons();
+    RUN_OVERWORLD_SCRIPT(
+        givemon SPECIES_PIKACHU, 100, gender=MON_MALE;
+        givemon SPECIES_PIKACHU, 100, gender=MON_FEMALE;
+    );
+    StorePokemonInDaycare(&gPlayerParty[0], &gSaveBlock1Ptr->daycare.mons[0]);
+    StorePokemonInDaycare(&gPlayerParty[0], &gSaveBlock1Ptr->daycare.mons[1]);
+    RUN_OVERWORLD_SCRIPT( special GiveEggFromDaycare; );
+    EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), egg);
 }

@@ -331,13 +331,18 @@ dated 2026-10-10 or later were decided directly.
   skipped steps, rare forms: decision 2026-10-26.
 
 ### D-013 Kanto is complete without trading
-- **Status:** Active (amended 2026-10-29, changed 2026-10-30, owner decision)
-- **Decision:** All 185 species of the Gen-1 families are obtainable in
-  Kanto without link trades: both fossils at Mt. Moon, both Hitmons at the
+- **Status:** Active (amended 2026-10-29, changed 2026-10-30, owner decision;
+  changed 2026-10-31: babies of the Gen-1 families count to Johto, D-049)
+- **Decision:** All 151 Kanto species (D-049) are obtainable in Kanto
+  without link trades: both fossils at Mt. Moon, both Hitmons at the
   dojo, evolution items placed in Kanto, all three starters in the wild
   (5 %), two-slot day care with breeding, extra Game Corner prizes. Day and
   night replace the FireRed/LeafGreen version split. Overworld Pokemon show
   what can be caught on a map (next to, not on, the encounter tiles).
+  The other 34 species of the Gen-1 families (babies and later evolutions)
+  count to Johto: the evolutions are possible in Kanto as before
+  (evolutions are exempt), the babies hatch from Kanto's Day Care only
+  once Johto is unlocked.
   - Fossils: Mt. Moon B2F gives both; Cinnabar's lab revives each one the
     player took and still carries
     (`CinnabarIsland_PokemonLab_ExperimentRoom_Frlg`).
@@ -1424,6 +1429,20 @@ dated 2026-10-10 or later were decided directly.
     - Morty's first team (`TRAINER_MORTY_1_HNS`): a second Misdreavus
       (level 25, Astonish, Confuse Ray, Mean Look, Hex) in Duskull's
       place. Rematch teams keep their species.
+  - Day Care eggs (`GetUnlockedEggSpecies`, called in
+    `DetermineEggSpeciesAndParentSlots`): an egg of a region not unlocked
+    yet gets the first stage on the way to the mother's species (or the
+    non-Ditto parent's) whose region is unlocked: Pikachu instead of Pichu,
+    Chansey instead of Happiny, the parent's Hitmon instead of Tyrogue in
+    Kanto; Marill instead of Azurill, Wobbuffet instead of Wynaut in Johto.
+    Babies hatch normally once their region is unlocked; an egg keeps its
+    species. With no unlocked stage between egg and parent (a Hitmontop
+    parent before Johto) the egg keeps its species too; no such parent can
+    be had before the unlock. Not with a randomizer option that changes the
+    player's species (wild, fixed Pokemon and gift eggs, starters,
+    evolutions): the randomizer mixes the regions on purpose (plan item
+    C8; which options count is open, O-033). Two upstream tests in
+    `test/daycare.c` expect a Pichu egg and are known failures.
 - **Code:** `src/region_rule_oj.c` (the table of national numbers above
   386), `TryUnlockJohtoOnMapLoad` in both map loads of `src/overworld.c`;
   test `test/origin_jade/region_rule.c`.
@@ -1590,6 +1609,14 @@ dated 2026-10-10 or later were decided directly.
   flyer, and the areas of Kanto and Johto are mostly used up by then.
   Rule needed: e.g. keep "Hoenn" until Slateport was visited, or accept
   it.
+- **O-033** Region rule and the randomizer (D-049): the plan (C8) turns
+  the region rule off "in random mode". The code reads that as: off with
+  an option that changes the player's species (wild, fixed Pokemon with
+  gift eggs, starters, evolutions). With only "Trainer: Zufall", "Items:
+  Zufall" or the other options on, Day Care eggs follow the region rule;
+  the item randomizer follows it anyway (Root and Claw Fossil, D-023).
+  Owner to confirm; the option set is `IsPlayerSpeciesRandomized` in
+  `src/region_rule_oj.c`.
 
 ## Superseded decisions (kept for the record)
 

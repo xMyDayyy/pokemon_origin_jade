@@ -60,6 +60,9 @@ failures. Two runs gave the same results. The causes:
   `absorb.c`): `B_MULTIPLE_TARGETS_DMG GEN_3` from HnS.
 - 6 text width tests in `test/text.c` with German texts; each stops at the
   first text that is too wide.
+- 2 Day Care tests in `test/daycare.c` (added 2026-10-31, not in the
+  numbers above) expect a Pichu egg from Pikachu: in the test's fresh save
+  Johto is not unlocked, so the egg is a Pikachu (D-049).
 - 24 others, not triaged yet: animation order (11), AI move choice (4),
   bag sorting, Sheer Force, Daycare regional forms, the form table of
   Alolan Raticate, `CreateNPCTrainerPartyForTrainer`, a trainer slide and
@@ -100,7 +103,8 @@ var number without storage (D-016).
   Johto, 7 Hoenn; the test build enables every family, so the counts per
   region of the ROM cannot be checked there); Johto unlock on the first
   Johto map after the Kanto title (not the gatehouse), its catch-ups and
-  the Hoenn unlock. D-049.
+  the Hoenn unlock; Day Care eggs before the unlock (also through the Day
+  Care itself) and with randomized species. D-049.
 - `test/save.c`: save block sizes of Origin Jade (D-017).
 
 The tests read the bands from `include/config/*_scaling.h`. They use

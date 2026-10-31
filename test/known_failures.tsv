@@ -2155,6 +2155,8 @@ test/battle/weather/strong_winds.c	Strong winds can be replaced by Desolate Land
 test/battle/weather/strong_winds.c	Strong winds can be replaced by Primordial Sea	FAIL	test/battle/weather/strong_winds.c:246	Unmatched MESSAGE
 test/battle/weather/strong_winds.c	Strong winds prevent Weakness Policy from activating on Flying-type weaknesses	FAIL	test/battle/weather/strong_winds.c:110	Unmatched MESSAGE
 test/battle/weather/strong_winds.c	Strong winds remove Flying-type weaknesses of all battlers 1/6	FAIL	test/battle/weather/strong_winds.c:34	Unmatched MESSAGE
+test/daycare.c	(Daycare) Pokémon generate Eggs of the lowest member of the evolutionary family	FAIL	test/daycare.c:29	EXPECT_EQ(25, 172) failed
+test/daycare.c	(Daycare) Pokémon offspring species is based off the mother's species 2/2	FAIL	test/daycare.c:44	EXPECT_EQ(25, 172) failed
 test/daycare.c	(Daycare) Pokémon with regional forms give the correct offspring	FAIL	test/daycare.c:166	EXPECT_EQ(965, 52) failed
 test/pokemon.c	Pokémon level up learnsets fit within MAX_LEVEL_UP_MOVES and MAX_RELEARNER_MOVES 1436/1573	INVALID		src/pokemon.c:10628: disabled species: 1435
 test/species.c	Form species ID tables are shared between all forms: (283/283) ID:957 - Rattikarl�A	FAIL	test/species.c:24	EXPECT_EQ(144038060, 144038048) failed

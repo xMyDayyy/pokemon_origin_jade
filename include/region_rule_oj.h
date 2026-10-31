@@ -15,5 +15,10 @@ bool32 IsRegionUnlocked(enum Region region);
 bool32 IsSpeciesRegionUnlocked(u16 species);
 // Map load: sets FLAG_JOHTO_UNLOCKED on a Johto map after the Kanto title.
 void TryUnlockJohtoOnMapLoad(void);
+// Day Care egg of a region not unlocked yet: the first stage on the way to
+// parentSpecies whose region is unlocked (Pikachu instead of Pichu). Unchanged
+// with a randomizer option that changes the player's species, or if no stage of
+// the line is unlocked.
+u16 GetUnlockedEggSpecies(u16 eggSpecies, u16 parentSpecies);
 
 #endif // GUARD_REGION_RULE_OJ_H

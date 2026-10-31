@@ -22,6 +22,7 @@
 #include "list_menu.h"
 #include "overworld.h"
 #include "item.h"
+#include "region_rule_oj.h"
 #include "regions.h"
 #include "malloc.h"
 #include "constants/form_change_types.h"
@@ -1084,6 +1085,11 @@ static u16 DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u8 *parent
         eggSpecies = SPECIES_MIMIKYU_DISGUISED;
     else if (eggSpecies == SPECIES_TOGEDEMARU_TOTEM)
         eggSpecies = SPECIES_TOGEDEMARU;
+
+#if IS_HNS
+    // Origin Jade: no egg of a region not unlocked yet (D-049).
+    eggSpecies = GetUnlockedEggSpecies(eggSpecies, species[parentSlots[0]]);
+#endif
 
     // Make Ditto the "mother" slot if the other daycare mon is male.
     if (species[parentSlots[1]] == SPECIES_DITTO && GetBoxMonGender(&daycare->mons[parentSlots[0]].mon) != MON_FEMALE)

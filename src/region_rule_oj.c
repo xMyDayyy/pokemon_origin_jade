@@ -1,6 +1,7 @@
 #include "global.h"
 #include "event_data.h"
 #include "pokemon.h"
+#include "randomizer.h"
 #include "region_rule_oj.h"
 #include "regions.h"
 #include "constants/maps.h"
@@ -111,11 +112,53 @@ void TryUnlockJohtoOnMapLoad(void)
     FlagSet(FLAG_JOHTO_UNLOCKED);
 }
 
+// Randomizer options that change the species the player gets.
+static bool32 IsPlayerSpeciesRandomized(void)
+{
+#if RANDOMIZER_AVAILABLE
+    return RandomizerFeatureEnabled(RANDOMIZE_WILD_MON)
+        || RandomizerFeatureEnabled(RANDOMIZE_FIXED_MON)
+        || RandomizerFeatureEnabled(RANDOMIZE_STARTER_AND_GIFT_MON)
+        || RandomizerFeatureEnabled(RANDOMIZE_EGG_MON)
+        || RandomizerFeatureEnabled(RANDOMIZE_EVOLUTIONS);
+#else
+    return FALSE;
+#endif
+}
+
+u16 GetUnlockedEggSpecies(u16 eggSpecies, u16 parentSpecies)
+{
+    u16 line[8];
+    u32 count = 0;
+    u16 species = parentSpecies;
+
+    if (IsSpeciesRegionUnlocked(eggSpecies) || IsPlayerSpeciesRandomized())
+        return eggSpecies;
+    // The line from the parent back to the egg species.
+    while (species != SPECIES_NONE && count < ARRAY_COUNT(line))
+    {
+        line[count++] = species;
+        if (species == eggSpecies)
+            break;
+        species = GetSpeciesPreEvolution(species);
+    }
+    if (count == 0 || line[count - 1] != eggSpecies)
+        return eggSpecies;
+    while (count-- > 0)
+    {
+        if (IsSpeciesRegionUnlocked(line[count]))
+            return line[count];
+    }
+    // No stage of the line unlocked (a Hitmontop parent before Johto): the egg stays.
+    return eggSpecies;
+}
+
 #else
 
 enum Region GetSpeciesRegion(u16 species) { return REGION_NONE; }
 bool32 IsRegionUnlocked(enum Region region) { return TRUE; }
 bool32 IsSpeciesRegionUnlocked(u16 species) { return TRUE; }
 void TryUnlockJohtoOnMapLoad(void) {}
+u16 GetUnlockedEggSpecies(u16 eggSpecies, u16 parentSpecies) { return eggSpecies; }
 
 #endif
