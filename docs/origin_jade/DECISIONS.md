@@ -1348,6 +1348,10 @@ dated 2026-10-10 or later were decided directly.
     2026-10-31). From `VAR_PETALBURG_GYM_STATE` 6 (open) on, the mart
     woman, the man in the Pokemon Center, the gentleman, Wally and his
     mother no longer say that the gym is closed or being rebuilt.
+  - Norman's PokeNav call: before his battle "my gym is open, I am still
+    waiting", between his defeat and the Hoenn title its own text
+    (`MatchCall_Text_NormanAfterBadge`, `MatchCall_GetMessage_Trainer`),
+    after the title his rematch texts as before.
 - **Evidence:** owner requirements 2026-10-31 (point 4).
 
 ---

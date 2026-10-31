@@ -1611,6 +1611,12 @@ static void MatchCall_GetMessage_Trainer(match_call_t matchCall, u8 *dest)
 {
     if (matchCall.common->type != MC_TYPE_LEADER)
         MatchCall_BufferCallMessageText(matchCall.trainer->textData, dest);
+#if IS_HNS
+    // Norman between his defeat and the Hoenn title.
+    else if (matchCall.leader->rematchTableIdx == REMATCH_NORMAN
+          && FlagGet(FLAG_DEFEATED_PETALBURG_GYM) && !FlagGet(FLAG_IS_HOENN_CHAMPION))
+        StringExpandPlaceholders(dest, MatchCall_Text_NormanAfterBadge);
+#endif
     else
         MatchCall_BufferCallMessageTextByRematchTeam(matchCall.leader->textData, matchCall.leader->rematchTableIdx, dest);
 }

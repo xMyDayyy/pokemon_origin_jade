@@ -6014,6 +6014,23 @@ MatchCall_Text_Norman1::
 	.string "prefer to see for myself.$"
 #endif
 
+MatchCall_Text_NormanAfterBadge::
+#if GERMAN
+	.string "Norman: {PLAYER}.\p"
+	.string "Mein Balanceorden ist bei dir in\n"
+	.string "guten Händen.\p"
+	.string "Von Gerüchten halte ich wenig, aber\n"
+	.string "unser Kampf hat mich überzeugt.\p"
+	.string "Zeig ganz Hoenn, was in dir steckt!$"
+#else
+	.string "NORMAN: {PLAYER}.\p"
+	.string "My BALANCE BADGE is in good\n"
+	.string "hands with you.\p"
+	.string "I don't think much of rumours, but\n"
+	.string "our battle convinced me.\p"
+	.string "Show all of HOENN what you've got!$"
+#endif
+
 MatchCall_Text_Norman2::
 #if GERMAN
 	.string "Norman: {PLAYER}!\p"
