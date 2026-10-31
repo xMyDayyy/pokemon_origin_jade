@@ -51,11 +51,14 @@ LittlerootTown_MaysHouse_2F_EventScript_CheckInitDecor::
 
 LittlerootTown_MaysHouse_2F_EventScript_RivalsPokeBall::
 	lockall
+#if !IS_HNS
 	goto_if_eq VAR_LITTLEROOT_RIVAL_STATE, 2, LittlerootTown_MaysHouse_2F_EventScript_MeetMay
+#endif
 	msgbox RivalsHouse_2F_Text_ItsRivalsPokeBall, MSGBOX_DEFAULT
 	releaseall
 	end
 
+#if !IS_HNS
 LittlerootTown_MaysHouse_2F_EventScript_MeetMay::
 	delay 10
 	addobject LOCALID_RIVALS_HOUSE_2F_RIVAL
@@ -236,6 +239,7 @@ LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMayEast:
 	delay_16
 	walk_in_place_faster_right
 	step_end
+#endif
 
 RivalsHouse_2F_EventScript_Rival::
 	lockall
@@ -321,6 +325,7 @@ LittlerootTown_MaysHouse_2F_EventScript_TurnOffPlayerPC::
 	releaseall
 	end
 
+#if !IS_HNS
 RivalsHouse_2F_Text_MayWhoAreYou:
 #if GERMAN
 	.string "Was? Wer… Wer bist du denn?\p"
@@ -372,6 +377,7 @@ RivalsHouse_2F_Text_MayWhoAreYou:
 	.string "some wild POKéMON!\p"
 	.string "{PLAYER}{KUN}, I'll catch you later!$"
 #endif
+#endif
 
 RivalsHouse_2F_Text_MayGettingReady:
 #if GERMAN
@@ -382,6 +388,7 @@ RivalsHouse_2F_Text_MayGettingReady:
 	.string "Items ready, and…$"
 #endif
 
+#if !IS_HNS
 RivalsHouse_2F_Text_BrendanWhoAreYou:
 #if GERMAN
 	.string "Hey! Du…\p"
@@ -423,6 +430,7 @@ RivalsHouse_2F_Text_BrendanWhoAreYou:
 	.string "I'm supposed to go help my dad catch\n"
 	.string "some wild POKéMON.\p"
 	.string "Some other time, okay?$"
+#endif
 #endif
 
 RivalsHouse_2F_Text_BrendanGettingReady:

@@ -1362,7 +1362,11 @@ dated 2026-10-10 or later were decided directly.
     for jade (`#if !IS_HNS`; the source stays for merges, D-046). Labels
     that `map.json` or a map script table needs stay as empty stubs. Not
     built: the player's house in Littleroot Town (moving in, Dad on TV,
-    Mom's PokeNav, the Amulet Coin, Dad's S.S. Ticket and the Lati news).
+    Mom's PokeNav, the Amulet Coin, Dad's S.S. Ticket and the Lati news);
+    Norman's wife's and Birch's wife's greeting at the first visit ("from
+    Johto"; only Emerald's moving truck started it);
+    May's or Brendan's greeting of the new neighbour in their house ("a gym
+    leader's kid").
 - **Evidence:** owner requirements 2026-10-31 (point 4).
 
 ---

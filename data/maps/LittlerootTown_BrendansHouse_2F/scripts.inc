@@ -52,11 +52,14 @@ LittlerootTown_BrendansHouse_2F_EventScript_CheckInitDecor::
 
 LittlerootTown_BrendansHouse_2F_EventScript_RivalsPokeBall::
 	lockall
+#if !IS_HNS
 	goto_if_eq VAR_LITTLEROOT_RIVAL_STATE, 2, LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendan
+#endif
 	msgbox RivalsHouse_2F_Text_ItsRivalsPokeBall, MSGBOX_DEFAULT
 	releaseall
 	end
 
+#if !IS_HNS
 LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendan::
 	delay 10
 	addobject LOCALID_RIVALS_HOUSE_2F_RIVAL
@@ -236,6 +239,7 @@ LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanEast:
 	delay_16
 	walk_in_place_faster_left
 	step_end
+#endif
 
 LittlerootTown_BrendansHouse_2F_EventScript_PC::
 	lockall

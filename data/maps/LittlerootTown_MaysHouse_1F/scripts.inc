@@ -50,9 +50,7 @@ LittlerootTown_MaysHouse_1F_OnFrame:
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_MaysHouse_1F_EventScript_EnterHouseMovingIn
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_MaysHouse_1F_EventScript_GoUpstairsToSetClock
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_MaysHouse_1F_EventScript_PetalburgGymReport
-#endif
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 1, LittlerootTown_MaysHouse_1F_EventScript_YoureNewNeighbor
-#if !IS_HNS
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
 #endif
 	.2byte 0
@@ -89,6 +87,7 @@ LittlerootTown_MaysHouse_1F_EventScript_PetalburgGymReport::
 	end
 #endif
 
+#if !IS_HNS
 LittlerootTown_MaysHouse_1F_EventScript_YoureNewNeighbor::
 	lockall
 	playse SE_PIN
@@ -114,6 +113,7 @@ LittlerootTown_MaysHouse_1F_Movement_RivalMomApproach:
 	walk_left
 	walk_left
 	step_end
+#endif
 
 RivalsHouse_1F_EventScript_RivalMom::
 	lock
@@ -163,6 +163,7 @@ LittlerootTown_MaysHouse_1F_EventScript_GoSeeRoom::
 	end
 #endif
 
+#if !IS_HNS
 LittlerootTown_MaysHouse_1F_EventScript_MeetRival0::
 	lockall
 	setvar VAR_0x8008, 0
@@ -326,7 +327,18 @@ LittlerootTown_MaysHouse_1F_Movement_MayGoUpstairs2:
 	walk_up
 	walk_up
 	step_end
+#else
+LittlerootTown_MaysHouse_1F_EventScript_MeetRival0::
+	end
 
+LittlerootTown_MaysHouse_1F_EventScript_MeetRival1::
+	end
+
+LittlerootTown_MaysHouse_1F_EventScript_MeetRival2::
+	end
+#endif
+
+#if !IS_HNS
 RivalsHouse_1F_Text_OhYoureTheNewNeighbor:
 #if GERMAN
 	.string "Oh, hallo. Wer bist du?\p"
@@ -350,6 +362,7 @@ RivalsHouse_1F_Text_OhYoureTheNewNeighbor:
 	.string "kitchen. What a day!\p"
 	.string "My child is out there somewhere too.\n"
 	.string "Maybe you will run into each other.$"
+#endif
 #endif
 
 RivalsHouse_1F_Text_LikeChildLikeFather:
@@ -415,6 +428,7 @@ RivalsHouse_1F_Text_ShouldGoHomeEverySoOften:
 	.string "worries about you, {PLAYER}{KUN}.$"
 #endif
 
+#if !IS_HNS
 RivalsHouse_1F_Text_MayWhoAreYou:
 #if GERMAN
 	.string "Was? Wer… Wer bist du denn?\p"
@@ -508,6 +522,7 @@ RivalsHouse_1F_Text_BrendanWhoAreYou:
 	.string "I'm supposed to go help my dad catch\n"
 	.string "some wild POKéMON.\p"
 	.string "Some other time, okay?$"
+#endif
 #endif
 
 RivalsHouse_1F_Text_DoYouHavePokemon:

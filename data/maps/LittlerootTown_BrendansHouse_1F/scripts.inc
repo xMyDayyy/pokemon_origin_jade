@@ -51,9 +51,7 @@ LittlerootTown_BrendansHouse_1F_OnFrame:
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_BrendansHouse_1F_EventScript_EnterHouseMovingIn
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_BrendansHouse_1F_EventScript_GoUpstairsToSetClock
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport
-#endif
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 1, LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor
-#if !IS_HNS
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
 #endif
 	.2byte 0
@@ -90,6 +88,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport::
 	end
 #endif
 
+#if !IS_HNS
 LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor::
 	lockall
 	playse SE_PIN
@@ -115,6 +114,7 @@ LittlerootTown_BrendansHouse_1F_Movement_RivalMomApproach:
 	walk_right
 	walk_right
 	step_end
+#endif
 
 #if !IS_HNS
 LittlerootTown_BrendansHouse_1F_EventScript_GoSeeRoom::
@@ -130,6 +130,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_GoSeeRoom::
 	end
 #endif
 
+#if !IS_HNS
 LittlerootTown_BrendansHouse_1F_EventScript_MeetRival0::
 	lockall
 	setvar VAR_0x8008, 0
@@ -293,6 +294,16 @@ LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs2:
 	walk_up
 	walk_up
 	step_end
+#else
+LittlerootTown_BrendansHouse_1F_EventScript_MeetRival0::
+	end
+
+LittlerootTown_BrendansHouse_1F_EventScript_MeetRival1::
+	end
+
+LittlerootTown_BrendansHouse_1F_EventScript_MeetRival2::
+	end
+#endif
 
 #if !IS_HNS
 PlayersHouse_1F_Text_IsntItNiceInHere:
@@ -642,6 +653,7 @@ PlayersHouse_1F_Text_StillUnknownPokemon:
 #endif
 #endif
 
+#if !IS_HNS
 BrendansHouse_1F_Text_ChampionVisit:
 #if GERMAN
 	.string "Oh! Besuch?\p"
@@ -665,6 +677,7 @@ BrendansHouse_1F_Text_ChampionVisit:
 	.string "Do sit down. Oh, you'll want to be\n"
 	.string "off - you TRAINERS are always in\l"
 	.string "a hurry.$"
+#endif
 #endif
 
 @ HnS: this house belongs to Norman's family.
