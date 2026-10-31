@@ -1411,6 +1411,9 @@ dated 2026-10-10 or later were decided directly.
     - Cerulean Cave: FireRed's tables (1F, 2F, B1F) and the overworld
       Pokemon on 2F have Ditto, from FRLG's own table of the cave, in
       Wobbuffet's place (same level).
+    - Morty's first team (`TRAINER_MORTY_1_HNS`): a second Misdreavus
+      (level 25, Astonish, Confuse Ray, Mean Look, Hex) in Duskull's
+      place. Rematch teams keep their species.
 - **Code:** `src/region_rule_oj.c` (the table of national numbers above
   386), `TryUnlockJohtoOnMapLoad` in both map loads of `src/overworld.c`;
   test `test/origin_jade/region_rule.c`.
