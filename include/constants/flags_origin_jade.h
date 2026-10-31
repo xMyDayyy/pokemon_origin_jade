@@ -50,6 +50,8 @@
 // VS Seeker used: trainers in view want a rematch until it has recharged
 // (I_VS_SEEKER_CHARGING, src/vs_seeker.c).
 #define FLAG_VS_SEEKER_CHARGING                              (OJ_FLAGS_KANTO + 9)
+// Hides Troy in Oak's lab; set again on every entry unless he waits there (D-047).
+#define FLAG_HIDE_OAKS_LAB_TROY                              (OJ_FLAGS_KANTO + 10)
 
 // ---------------------------------------------------------------------
 // Johto (OJ_FLAGS_JOHTO + 0 to + 159)

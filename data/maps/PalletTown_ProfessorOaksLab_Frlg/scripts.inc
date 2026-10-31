@@ -17,6 +17,7 @@ PalletTown_ProfessorOaksLab_OnTransition::
 	call_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 7, PalletTown_ProfessorOaksLab_EventScript_ReadyOakForNationalDexScene
 	call_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 8, PalletTown_ProfessorOaksLab_EventScript_SetNationalDexSceneFinished
 	call_if_set FLAG_GOT_POKEBALLS_FROM_OAK_AFTER_22_RIVAL, PalletTown_ProfessorOaksLab_EventScript_SetSkipPokeBallCheck
+	call PalletTown_ProfessorOaksLab_EventScript_SetupTroy
 	end
 
 PalletTown_ProfessorOaksLab_EventScript_SetSkipPokeBallCheck::
@@ -49,6 +50,7 @@ PalletTown_ProfessorOaksLab_EventScript_ReadyPlayerForStarterScene::
 PalletTown_ProfessorOaksLab_OnFrame::
 	map_script_2 VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 1, PalletTown_ProfessorOaksLab_ChooseStarterScene
 	map_script_2 VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 7, PalletTown_ProfessorOaksLab_EventScript_EnterForNationalDexScene
+	map_script_2 VAR_HOENN_TICKET_STATE, 1, PalletTown_ProfessorOaksLab_EventScript_TroyScene
 	.2byte 0
 
 PalletTown_ProfessorOaksLab_EventScript_EnterForNationalDexScene:: @ 8169002
@@ -569,7 +571,8 @@ PalletTown_ProfessorOaksLab_EventScript_RivalChoseStarter::
 PalletTown_ProfessorOaksLab_EventScript_ProfOak::
 	lock
 	faceplayer
-	@ Keep the GS Ball checks before the Dex rating.
+	@ Keep the GS Ball and Hoenn Ticket checks before the Dex rating.
+	goto_if_eq VAR_HOENN_TICKET_STATE, 2, PalletTown_ProfessorOaksLab_EventScript_OakTroyWaits
 	goto_if_eq VAR_JOHTO_HANDOVER, 1, PalletTown_ProfessorOaksLab_EventScript_GiveGsBall
 	goto_if_eq VAR_JOHTO_HANDOVER, 2, PalletTown_ProfessorOaksLab_EventScript_GsBallReminder
 	goto_if_set SHOWED_OAK_COMPLETE_DEX, PalletTown_ProfessorOaksLab_EventScript_OakJustShownCompleteDex
@@ -609,6 +612,114 @@ PalletTown_ProfessorOaksLab_EventScript_GsBallReminder::
 	msgbox PalletTown_ProfessorOaksLab_Text_OakGsBallReminder
 	release
 	end
+
+@ Troy waits next to Oak while VAR_HOENN_TICKET_STATE is 1 or 2. See docs/origin_jade/DECISIONS.md, D-047.
+PalletTown_ProfessorOaksLab_EventScript_SetupTroy::
+	call_if_set FLAG_IS_JOHTO_CHAMPION, PalletTown_ProfessorOaksLab_EventScript_TryArmTroyScene
+	setflag FLAG_HIDE_OAKS_LAB_TROY
+	goto_if_eq VAR_HOENN_TICKET_STATE, 0, Common_EventScript_NopReturn
+	goto_if_ge VAR_HOENN_TICKET_STATE, 3, Common_EventScript_NopReturn
+	clearflag FLAG_HIDE_OAKS_LAB_TROY
+	goto_if_ne VAR_HOENN_TICKET_STATE, 1, Common_EventScript_NopReturn
+	setobjectmovementtype LOCALID_OAKS_LAB_PROF_OAK, MOVEMENT_TYPE_FACE_RIGHT
+	setobjectmovementtype LOCALID_OAKS_LAB_TROY, MOVEMENT_TYPE_FACE_LEFT
+	return
+
+@ Catch-up (D-005): saves past the first Johto title that have not been to Hoenn arm the scene here.
+PalletTown_ProfessorOaksLab_EventScript_TryArmTroyScene::
+	goto_if_ne VAR_HOENN_TICKET_STATE, 0, Common_EventScript_NopReturn
+	goto_if_ne VAR_HOENN_ARRIVAL_STATE, 0, Common_EventScript_NopReturn
+	setvar VAR_HOENN_TICKET_STATE, 1
+	return
+
+@ From the door the player walks up to Oak and Troy; anywhere else the scene runs in place.
+PalletTown_ProfessorOaksLab_EventScript_TroyScene::
+	lockall
+	textcolor NPC_TEXT_COLOR_MALE
+	getplayerxy VAR_TEMP_0, VAR_TEMP_1
+	goto_if_ne VAR_TEMP_0, 6, PalletTown_ProfessorOaksLab_EventScript_TroySceneInPlace
+	goto_if_ne VAR_TEMP_1, 12, PalletTown_ProfessorOaksLab_EventScript_TroySceneInPlace
+	applymovement LOCALID_PLAYER, PalletTown_ProfessorOaksLab_Movement_PlayerEnter
+	waitmovement 0
+	goto PalletTown_ProfessorOaksLab_EventScript_TroySceneTalk
+
+@ A player below Oak's row turns up to him.
+PalletTown_ProfessorOaksLab_EventScript_TroySceneInPlace::
+	goto_if_lt VAR_TEMP_1, 4, PalletTown_ProfessorOaksLab_EventScript_TroySceneTalk
+	applymovement LOCALID_PLAYER, Common_Movement_FaceUp
+	waitmovement 0
+PalletTown_ProfessorOaksLab_EventScript_TroySceneTalk::
+	applymovement LOCALID_OAKS_LAB_PROF_OAK, Common_Movement_FaceDown
+	applymovement LOCALID_OAKS_LAB_TROY, Common_Movement_FaceDown
+	waitmovement 0
+	msgbox PalletTown_ProfessorOaksLab_Text_OakIntroducesTroy
+	msgbox PalletTown_ProfessorOaksLab_Text_TroyGreeting
+	msgbox PalletTown_ProfessorOaksLab_Text_OakHoennInDanger
+	msgbox PalletTown_ProfessorOaksLab_Text_TroyTrustsPlayer
+	goto PalletTown_ProfessorOaksLab_EventScript_TroyGiveTicket
+
+@ Bag full in the scene: Troy stays (state 2) and hands the ticket over when talked to.
+PalletTown_ProfessorOaksLab_EventScript_Troy::
+	lock
+	faceplayer
+	textcolor NPC_TEXT_COLOR_MALE
+	checkitemspace ITEM_HOENN_TICKET
+	goto_if_eq VAR_RESULT, FALSE, PalletTown_ProfessorOaksLab_EventScript_TroyBagFull
+	msgbox PalletTown_ProfessorOaksLab_Text_TroyRoomNow
+PalletTown_ProfessorOaksLab_EventScript_TroyGiveTicket::
+	checkitemspace ITEM_HOENN_TICKET
+	goto_if_eq VAR_RESULT, FALSE, PalletTown_ProfessorOaksLab_EventScript_TroyBagFull
+	giveitem_norandom ITEM_HOENN_TICKET
+	setvar VAR_HOENN_TICKET_STATE, 3
+	msgbox PalletTown_ProfessorOaksLab_Text_TroySeeYouInHoenn
+	closemessage
+	call PalletTown_ProfessorOaksLab_EventScript_ClearTroysWay
+	applymovement LOCALID_OAKS_LAB_TROY, PalletTown_ProfessorOaksLab_Movement_TroyLeave
+	waitmovement 0
+	playse SE_EXIT
+	removeobject LOCALID_OAKS_LAB_TROY
+	setobjectmovementtype LOCALID_OAKS_LAB_PROF_OAK, MOVEMENT_TYPE_FACE_DOWN
+	releaseall
+	end
+
+PalletTown_ProfessorOaksLab_EventScript_TroyBagFull::
+	msgbox PalletTown_ProfessorOaksLab_Text_TroyBagFull
+	setvar VAR_HOENN_TICKET_STATE, 2
+	setobjectmovementtype LOCALID_OAKS_LAB_PROF_OAK, MOVEMENT_TYPE_FACE_DOWN
+	setobjectmovementtype LOCALID_OAKS_LAB_TROY, MOVEMENT_TYPE_FACE_DOWN
+	releaseall
+	end
+
+@ Troy leaves down column 7; a player standing in it steps aside first.
+PalletTown_ProfessorOaksLab_EventScript_ClearTroysWay::
+	getplayerxy VAR_TEMP_0, VAR_TEMP_1
+	goto_if_ne VAR_TEMP_0, 7, Common_EventScript_NopReturn
+	goto_if_lt VAR_TEMP_1, 4, Common_EventScript_NopReturn
+	applymovement LOCALID_PLAYER, PalletTown_ProfessorOaksLab_Movement_PlayerStepAside
+	waitmovement 0
+	return
+
+PalletTown_ProfessorOaksLab_EventScript_OakTroyWaits::
+	msgbox PalletTown_ProfessorOaksLab_Text_OakTroyWaits
+	release
+	end
+
+PalletTown_ProfessorOaksLab_Movement_TroyLeave::
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+PalletTown_ProfessorOaksLab_Movement_PlayerStepAside::
+	walk_left
+	face_right
+	step_end
 
 PalletTown_ProfessorOaksLab_EventScript_OakJustShownCompleteDex::
 	msgbox PokedexRating_Text_ThankYouMadeDreamReality
@@ -1656,6 +1767,107 @@ PalletTown_ProfessorOaksLab_Text_OakGsBallReminder::
 	.string "GS BALL in NEW BARK TOWN.\p"
 	.string "Head south from ROUTE 23 and you\n"
 	.string "will get there.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakIntroducesTroy::
+#if GERMAN
+	.string "Eich: Ah, {PLAYER}! Da bist du ja.\p"
+	.string "Darf ich vorstellen? Das ist Troy,\n"
+	.string "der ehemalige Champion von Hoenn.$"
+#else
+	.string "OAK: Ah, {PLAYER}! There you are.\p"
+	.string "Allow me to introduce STEVEN,\n"
+	.string "the former CHAMPION of HOENN.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_TroyGreeting::
+#if GERMAN
+	.string "Troy: Freut mich. Professor Eich hat\n"
+	.string "mir schon viel von dir erzählt.$"
+#else
+	.string "STEVEN: A pleasure. PROF. OAK has\n"
+	.string "told me a lot about you.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakHoennInDanger::
+#if GERMAN
+	.string "Eich: Troy macht sich Sorgen um\n"
+	.string "seine Heimat.\p"
+	.string "Er vermutet, dass in Hoenn das\n"
+	.string "Gleichgewicht kippt… Gezeiten,\l"
+	.string "Land und Meer.\p"
+	.string "Team Magma und Team Aqua haben\n"
+	.string "wohl etwas vor. Genaueres weiß\l"
+	.string "noch niemand.\p"
+	.string "{PLAYER}, ich möchte dich bitten,\n"
+	.string "nach Hoenn zu reisen.$"
+#else
+	.string "OAK: STEVEN is worried about his\n"
+	.string "home region.\p"
+	.string "He fears the balance in HOENN is\n"
+	.string "tipping… the tides, land and sea.\p"
+	.string "TEAM MAGMA and TEAM AQUA seem to be\n"
+	.string "up to something. No one knows more\l"
+	.string "yet.\p"
+	.string "{PLAYER}, I'd like to ask you to\n"
+	.string "travel to HOENN.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_TroyTrustsPlayer::
+#if GERMAN
+	.string "Troy: Als Champion von Kanto und\n"
+	.string "Johto bist du stark genug dafür.\p"
+	.string "Ich vertraue dir. Ich selbst muss\n"
+	.string "meinen Forschungen nachgehen.\p"
+	.string "Nimm bitte das hier.$"
+#else
+	.string "STEVEN: As the CHAMPION of KANTO and\n"
+	.string "JOHTO, you are strong enough.\p"
+	.string "I trust you. I have to follow my\n"
+	.string "own research.\p"
+	.string "Please take this.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_TroySeeYouInHoenn::
+#if GERMAN
+	.string "Troy: Das Ticket gilt für die Fähren\n"
+	.string "in Orania City und Oliviana City.\p"
+	.string "Ich erwarte dich in Hoenn!$"
+#else
+	.string "STEVEN: The ticket is valid for the\n"
+	.string "ferries in VERMILION CITY and\l"
+	.string "OLIVINE CITY.\p"
+	.string "I'll be waiting for you in HOENN!$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_TroyBagFull::
+#if GERMAN
+	.string "Troy: Oh, in deinem Beutel ist kein\n"
+	.string "Platz mehr.\p"
+	.string "Ich warte hier. Sprich mich an,\n"
+	.string "wenn du Platz gemacht hast.$"
+#else
+	.string "STEVEN: Oh, your BAG is full.\p"
+	.string "I'll wait here. Talk to me once\n"
+	.string "you have made some room.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_TroyRoomNow::
+#if GERMAN
+	.string "Troy: Hast du jetzt Platz? Dann\n"
+	.string "nimm bitte das hier.$"
+#else
+	.string "STEVEN: Do you have room now?\n"
+	.string "Then please take this.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakTroyWaits::
+#if GERMAN
+	.string "Eich: Troy hat noch etwas für dich.\n"
+	.string "Sprich ihn ruhig an.$"
+#else
+	.string "OAK: STEVEN still has something for\n"
+	.string "you. Go on, talk to him.$"
 #endif
 
 PalletTown_ProfessorOaksLab_Text_OakWhichOneWillYouChoose::

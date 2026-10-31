@@ -1242,14 +1242,34 @@ dated 2026-10-10 or later were decided directly.
   the beta, off in the release).
 
 ### D-047 Hoenn Ticket story and ports
-- **Status:** Active (2026-10-31)
+- **Status:** Active (2026-10-31). Resolves O-002.
 - **Decision:**
+  - Troy (Steven) brings the Hoenn Ticket. He waits in Oak's lab from the
+    first Johto title on (`VAR_HOENN_TICKET_STATE` 1): Oak and Troy stand
+    side by side and face each other. Entering the lab starts the scene;
+    from the door the player walks up to them. Oak introduces Troy as the
+    former champion of Hoenn (Wallace stays the champion of Hoenn's
+    league), says vaguely that the balance of land and sea in Hoenn is in
+    danger because Team Magma and Team Aqua are up to something, and asks
+    the player to travel to Hoenn. Troy: as champion of Kanto and Johto
+    the player is strong enough, he has to follow his own research. He
+    hands over the ticket for the ferries in Vermilion City and Olivine
+    City ("Ich erwarte dich in Hoenn") and leaves (state 3). With a full
+    bag he stays (state 2) and hands it over when talked to; Oak points to
+    him meanwhile.
+  - Saves already past the first Johto title that have not been to Hoenn
+    arm the scene on entering the lab (D-005).
+  - Troy has one sprite everywhere (owner); currently
+    `OBJ_EVENT_GFX_STEVEN`, see O-031.
   - The Hoenn Ticket is a key item (`POCKET_KEY_ITEMS`, importance 1): it
     cannot be sold, tossed or stored, and the item randomizer leaves it
     alone (only key items, HMs and the GS Ball are exempt). Scripts hand it
     over with `giveitem_norandom`. It stays in the bag after the crossing
     as a souvenir.
-- **Code:** `ITEM_HOENN_TICKET` in `src/data/items.h`.
+- **Code:** `PalletTown_ProfessorOaksLab_Frlg` (`SetupTroy`, `TroyScene`,
+  `FLAG_HIDE_OAKS_LAB_TROY`); `VAR_HOENN_TICKET_STATE` in
+  `include/constants/vars_hoenn_de.h`; `ITEM_HOENN_TICKET` in
+  `src/data/items.h`.
 - **Evidence:** owner decisions 2026-10-31 (plan part A, Hoenn Ticket
   story).
 
@@ -1273,9 +1293,8 @@ dated 2026-10-10 or later were decided directly.
 ## Open questions
 
 - **O-001** Resolved 2026-10-11: the league has changed (D-010).
-- **O-002** Hoenn Ticket: no source in the game except the debug menu. The
-  story after the ticket exists but does not fit the earlier system; it
-  will be redesigned (2026-10-10). Do not implement in the meantime.
+- **O-002** Resolved 2026-10-31: Troy hands over the Hoenn Ticket in Oak's
+  lab after the first Johto title (D-047).
 - **O-003** Resolved 2026-10-15 (D-029).
 - **O-004** Resolved 2026-10-15 (D-026).
 - **O-005** Resolved 2026-10-12: Kanto never sets HnS's `FLAG_SYS_PC_BILL`
@@ -1375,6 +1394,11 @@ dated 2026-10-10 or later were decided directly.
   (`HealPlayerParty` in the entrance scripts), otherwise a Pokemon Center
   does. Rule needed: deaths count there like in other trainer battles, or
   the hills stay exempt like the Battle Frontier.
+- **O-031** Troy's sprite: the owner decided on one sprite everywhere
+  (D-047). The build uses Emerald's `OBJ_EVENT_GFX_STEVEN`; HnS's
+  `OBJ_EVENT_GFX_STEVEN_HNS` is the alternative. Not compared in an
+  emulator yet next to the other people of his scenes (FRLG's Oak in his
+  lab).
 
 ## Superseded decisions (kept for the record)
 
