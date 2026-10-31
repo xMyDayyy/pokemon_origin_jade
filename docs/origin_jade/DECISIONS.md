@@ -728,6 +728,7 @@ dated 2026-10-10 or later were decided directly.
 - **Status:** Active (2026-10-15, ships changed 2026-10-20, Hoenn trips
   changed 2026-10-30, changed 2026-10-31: Hoenn entries of the ship menus,
   D-047)
+  changed 2026-10-30, Aurora Ticket changed 2026-10-31)
 - **Decision:**
   - Kanto has one way into Johto: the gatehouse (D-009). Flying between the
     regions opens with the first Johto visit.
@@ -754,8 +755,9 @@ dated 2026-10-10 or later were decided directly.
     Lilycove for their harbours. Whoever leaves the beach before Birch's
     greeting (Fly, Teleport, Dig) gets the welcome (Pokedex, badge case,
     Birch's contact) on entering the lab (D-005).
-  - The woman in Olivine City gives the Aurora Ticket only after the Johto
-    title (`FLAG_IS_JOHTO_CHAMPION`).
+  - The woman in Olivine City gives the Aurora Ticket only after the first
+    trip to Hoenn (`VAR_HOENN_ARRIVAL_STATE` 1 or more, which needs the
+    Johto title), so Deoxys comes after Hoenn is unlocked (D-049).
   - Faraway Island and Southern Island are not offered.
 - **Evidence:** decision 2026-10-15 (O-003); daily ship, return trips to
   Hoenn and Aurora Ticket 2026-10-20.
@@ -983,7 +985,8 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-039 Johto's static and legendary levels fit the scaling
 - **Status:** Active (2026-10-27, event and player levels 2026-10-29;
-  changed 2026-10-30: roamer example corrected). Replaces the fixed levels
+  changed 2026-10-30: roamer example corrected; changed 2026-10-31:
+  Deoxys after the first trip to Hoenn). Replaces the fixed levels
   of D-026 and D-031 for Johto.
 - **Decision:** Johto's legendaries sit at 75-80 by story point; the other
   strong statics fit the corridor (D-012) where they can first be met. None
@@ -995,7 +998,8 @@ dated 2026-10-10 or later were decided directly.
     - Lugia and Ho-Oh, story battle and the chosen one's returns (8 badges,
       theater): 78 (50);
     - the Lugia or Ho-Oh not chosen (after the first Johto title): 80 (70);
-    - Deoxys, Birth Island (after the Johto title): 80 (70);
+    - Deoxys, Birth Island (after the first trip to Hoenn, D-029): 80
+      (70);
     - Sudowoodo, Route 36 (after Whitney, corridor 44-53): 50 (20);
     - Union Cave's Lapras (Surf, after Morty): 55 (20);
     - the red Gyarados, Lake of Rage (about 6 badges, corridor 50-58):
@@ -1411,6 +1415,7 @@ dated 2026-10-10 or later were decided directly.
     - Cerulean Cave: FireRed's tables (1F, 2F, B1F) and the overworld
       Pokemon on 2F have Ditto, from FRLG's own table of the cave, in
       Wobbuffet's place (same level).
+    - Deoxys: the Aurora Ticket only after the first trip to Hoenn (D-029).
     - Morty's first team (`TRAINER_MORTY_1_HNS`): a second Misdreavus
       (level 25, Astonish, Confuse Ray, Mean Look, Hex) in Duskull's
       place. Rematch teams keep their species.
