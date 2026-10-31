@@ -117,9 +117,9 @@ plays the game. Run them from the repository root; the ones marked
 - `python3 -I tools/simulate_progress.py --out DIR`: static playthrough
   model Kanto -> Johto -> Hoenn (milestones in order, where progress
   stops, unreachable maps, items, trainers, gifts); `--hoenn-ticket`
-  assumes the Hoenn Ticket (O-002), `--diff OLD NEW` compares two
-  reports. Exit 0 only if the Hoenn title is reachable, so without the
-  ticket it ends with 1.
+  starts with the Hoenn Ticket already received (what-if; in the game
+  Troy hands it over in Oak's lab, D-047), `--diff OLD NEW` compares two
+  reports. Exit 0 only if the Hoenn title is reachable.
 - `tools/oj_world.py`: shared data layer of the static tools (maps,
   layouts, metatile behaviours, map sections, items, event scripts);
   imported with `sys.path.insert(0, "tools"); import oj_world`, no command
@@ -166,7 +166,7 @@ verdict per beta criterion. Nothing was checked in an emulator.
 | Flags and vars | `check_flags.py`; `test/origin_jade/event_data.c` | 0 problems (3426 flags, 693 vars); 7 of 7 tests pass |
 | Saves | `check_budget.py`; `test/save.c` | SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1008/1624, PokemonStorage 34144/35712; EWRAM 95.05 %, IWRAM 78.44 %, ROM 77.18 %; 4 of 4 tests pass |
 | Saves | `check_save_safety.py` | 78 findings: 1 important (no running clock; the fake clock preselection is not modelled), 3 minor (Hall of Fame size is a false alarm, two bag pockets with the item randomizer), 74 optional |
-| Progress | `simulate_progress.py` | without the ticket: Kanto title in wave 50, Johto title in 105, Hoenn unreachable (O-002); with `--hoenn-ticket`: Hoenn title in 140; no other stop on the main path |
+| Progress | `simulate_progress.py` | with the Hoenn Ticket story (D-047), without `--hoenn-ticket`: Kanto title in wave 50, Johto title in 105, Hoenn Ticket in 106 (Oak's lab), Hoenn reached in 108, Hoenn title in 137 (exit 0); with `--hoenn-ticket`: Hoenn title in 136; nothing lost against the earlier run with `--hoenn-ticket` (Hoenn title in 140); no other stop on the main path |
 | Maps | `check_maps.py --min-severity klein` | 88 findings, all minor (base `3525d22e71`: 117, of them 3 critical and 10 important) |
 | Texts | `check_text_width.py --list` | 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6), none over 216 px outside locked maps |
 | Texts | `check_game_text.py --english` | English: Johto 125 (51 important), shared 252, Hoenn 7, Kanto 5 (locked) |

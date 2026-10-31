@@ -9,13 +9,15 @@ trainers, gifts and static encounters stay out of reach.
 Usage:
     python3 -I tools/simulate_progress.py                 # report to stdout
     python3 -I tools/simulate_progress.py --out DIR       # report.txt + report.json
-    python3 -I tools/simulate_progress.py --hoenn-ticket  # assume the Hoenn Ticket (O-002)
+    python3 -I tools/simulate_progress.py --hoenn-ticket  # start with the Hoenn Ticket (what-if)
     python3 -I tools/simulate_progress.py --force-warp MAP_CELADON_CITY:0
     python3 -I tools/simulate_progress.py --give-item ITEM_POKE_FLUTE --set-flag FLAG_X
     python3 -I tools/simulate_progress.py --diff old/report.json new/report.json
 
 Options:
-    --hoenn-ticket       start with ITEM_HOENN_TICKET (its source is open, O-002)
+    --hoenn-ticket       start with the Hoenn Ticket received (ITEM_HOENN_TICKET,
+                         VAR_HOENN_TICKET_STATE 3); not needed for the main path,
+                         Troy hands it over in Oak's lab (D-047)
     --force-warp M:N     warp N of map M triggers from its tile or any neighbour
                          (what-if test for broken warp tiles, no data change)
     --give-item ITEM     start with ITEM (what-if)
@@ -1191,7 +1193,7 @@ class Simulator:
             return None
 
         # -- items --
-        if c in ("giveitem", "finditem", "additem", "addpcitem", "giveitem_unless_owned"):
+        if c in ("giveitem", "giveitem_norandom", "finditem", "additem", "addpcitem", "giveitem_unless_owned"):
             for it in self.item_arg(p, a[0], eff, ctx):
                 self.give_item(p, it, eff, idx)
             if c == "finditem" and ctx.get("last_talked") is not None:
@@ -2846,7 +2848,7 @@ class Report:
                 return "setflag %s" % a[0]
         if c in ("special",) and a and a[0] in ("SetJohtoBadge", "SetHoennBadge", "SetJohtoPermit", "SetHoennLicense"):
             return "special %s" % a[0]
-        if c in ("giveitem", "finditem", "additem", "giveitem_msg") and a:
+        if c in ("giveitem", "giveitem_norandom", "finditem", "additem", "giveitem_msg") and a:
             it = W.canonical_item(a[1] if c == "giveitem_msg" else a[0])
             if sim.items_db.is_key(it) or sim.items_db.is_hm(it):
                 return "%s %s" % (c, it)
@@ -3100,6 +3102,8 @@ def init_state(sim):
         sim.executed |= eff.executed
     if sim.args.hoenn_ticket:
         st.items["ITEM_HOENN_TICKET"] = FLAG_SET
+        k = sim.var_key("VAR_HOENN_TICKET_STATE", None)
+        st.vars[k] = vs_union(st.var(k), frozenset([3]))
     for it in sim.args.give_item or []:
         st.items[W.canonical_item(it)] = FLAG_SET
     for fl in sim.args.set_flag or []:
@@ -3116,7 +3120,8 @@ def init_state(sim):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--hoenn-ticket", action="store_true", help="start with ITEM_HOENN_TICKET (O-002)")
+    parser.add_argument("--hoenn-ticket", action="store_true",
+                        help="start with the Hoenn Ticket received (what-if, D-047)")
     parser.add_argument("--force-warp", action="append", metavar="MAP:N", help="warp N of MAP always triggers")
     parser.add_argument("--give-item", action="append", metavar="ITEM", help="start with ITEM")
     parser.add_argument("--set-flag", action="append", metavar="FLAG", help="start with FLAG set")

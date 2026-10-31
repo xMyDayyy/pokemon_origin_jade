@@ -6,8 +6,9 @@ its findings in German with status, severity and file:line evidence.
 
 Checks:
   gifts       Gift and trade scripts that change story state although the
-              item may not have reached the bag (giveitem without a
-              VAR_RESULT check, giveitem_msg/additem without checkitemspace,
+              item may not have reached the bag (giveitem or
+              giveitem_norandom without a VAR_RESULT check,
+              giveitem_msg/additem without checkitemspace,
               removeitem before a gift).
   pockets     Distinct obtainable items per bag pocket against the pocket
               size (BAG_*_COUNT), without and with the item randomizer
@@ -73,11 +74,11 @@ TEMP_FLAG_RE = re.compile(r"^FLAG_(TEMP_|SYS_CTRL_OBJ_DELETE$|HIDE_MAP_NAME_POPU
 
 # Script commands that overwrite VAR_RESULT, besides check* and get*.
 RESULT_WRITERS = {"yesnobox", "multichoice", "multichoicedefault", "multichoicegrid",
-                  "dynmultichoice", "giveitem", "giveitem_msg", "giveitem_unless_owned",
+                  "dynmultichoice", "giveitem", "giveitem_norandom", "giveitem_msg", "giveitem_unless_owned",
                   "additem", "removeitem", "givemon", "giveegg", "random", "trainerbattle",
                   "dofieldeffect"}
 
-GIFT_OPS = {"giveitem", "giveitem_unless_owned", "giveitem_msg", "additem"}
+GIFT_OPS = {"giveitem", "giveitem_norandom", "giveitem_unless_owned", "giveitem_msg", "additem"}
 SILENT_GIFT_OPS = {"giveitem_msg", "additem"}
 
 
@@ -385,7 +386,8 @@ def obtainable_items(repo):
                 continue
             _, op, args, no = entry
             item = None
-            if op in ("giveitem", "giveitem_unless_owned", "finditem", "additem") and args:
+            if op in ("giveitem", "giveitem_norandom", "giveitem_unless_owned", "finditem",
+                      "additem") and args:
                 item = args[0]
             elif op == "giveitem_msg" and len(args) > 1:
                 item = args[1]
