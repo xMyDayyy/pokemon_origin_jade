@@ -76,7 +76,7 @@ EverGrandeCity_SidneysRoom_Text_IntroSpeech:
 #if GERMAN
 	.string "Da bist du ja endlich!\n"
 	.string "Ich bin Ulrich von den Top Vier.\p"
-	.string "Der Champion von Johto und Kanto,\n"
+	.string "Ein starker Trainer vom Festland,\n"
 	.string "hier in unserer Liga…\l"
 	.string "Gut! Das sieht gut aus!\p"
 	.string "Schön! Dann lass uns beide einen Kampf\n"
@@ -85,7 +85,7 @@ EverGrandeCity_SidneysRoom_Text_IntroSpeech:
 #else
 	.string "So you finally made it!\n"
 	.string "I'm SIDNEY of the ELITE FOUR.\p"
-	.string "The CHAMPION of JOHTO and KANTO,\n"
+	.string "A strong TRAINER from the mainland,\n"
 	.string "right here in our LEAGUE…\l"
 	.string "That's good! Looking real good!\p"
 	.string "All right! You and me, let's enjoy\n"

@@ -1330,6 +1330,11 @@ dated 2026-10-10 or later were decided directly.
     as Oak does in Kanto and Elm in Johto (`GetCannotUseItemText` in
     `src/item_use.c`, also the Battle Pyramid bag). `gText_DadsAdvice` is
     not built.
+  - Who knows what: Norman only the rumours (his call, battle and PokeNav
+    texts). Birch and his family know from Troy that a strong trainer from
+    the mainland is coming; May (Route 103, Route 110, Lilycove), Birch's
+    son and Sidney speak only of that. Wallace may know more, because Troy,
+    the former champion, told him; his speech stays.
 - **Evidence:** owner requirements 2026-10-31 (point 4).
 
 ---

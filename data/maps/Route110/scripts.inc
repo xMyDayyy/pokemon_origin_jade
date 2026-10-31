@@ -843,12 +843,12 @@ Route110_Text_MayDefeated:
 Route110_Text_MayTakeThis:
 #if GERMAN
 	.string "Maike: Du hast doch bestimmt noch\n"
-	.string "deinen Itemradar aus Johto dabei?\p"
+	.string "deinen Itemradar dabei?\p"
 	.string "Gut. Ich will dich in Bestform, wenn\n"
 	.string "ich dich endlich schlage.$"
 #else
-	.string "MAY: You still carry your ITEMFINDER\n"
-	.string "from JOHTO, right?\p"
+	.string "MAY: You still carry your ITEMFINDER,\n"
+	.string "right?\p"
 	.string "Good. I want you at your best when\n"
 	.string "I finally beat you.$"
 #endif

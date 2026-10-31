@@ -461,8 +461,9 @@ LilycoveCity_Text_MayShoppingLetsBattle:
 	.string "Team noch gebraucht hat.\p"
 	.string "Sechs Pokémon, jedes einzelne von mir\n"
 	.string "großgezogen.\p"
-	.string "Irgendwann schlage ich einen Champion.\n"
-	.string "Und du bist der, den ich meine.$"
+	.string "Irgendwann schlage ich den stärksten\n"
+	.string "Trainer, den ich kenne.\p"
+	.string "Und das bist du!$"
 #else
 	.string "MAY: Oh, hey?\n"
 	.string "{PLAYER}{KUN}, are you shopping, too?\p"

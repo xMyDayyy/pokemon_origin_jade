@@ -540,11 +540,13 @@ LittlerootTown_MaysHouse_1F_Text_BirksKind:
 #if GERMAN
 	.string "Meine große Schwester Maike ist\n"
 	.string "Pokémon-Trainerin!\p"
-	.string "Papa sagt, du bist ein Champion.\n"
+	.string "Papa sagt, du kommst vom Festland\n"
+	.string "und bist richtig stark.\p"
 	.string "Stimmt das wirklich?$"
 #else
 	.string "My big sister MAY is a POKéMON\n"
 	.string "TRAINER!\p"
-	.string "Dad says you're a CHAMPION.\n"
+	.string "Dad says you came from the mainland\n"
+	.string "and you're really strong.\p"
 	.string "Is that really true?$"
 #endif
