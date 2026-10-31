@@ -304,7 +304,7 @@ static const struct MatchCallStructNPC sStevenMatchCallHeader =
 #if GERMAN
 static const u8 gText_MayBrendanMatchCallDesc[] = _("Birks Tochter");
 #else
-static const u8 gText_MayBrendanMatchCallDesc[] = _("RAD NEIGHBOR");
+static const u8 gText_MayBrendanMatchCallDesc[] = _("BIRCH's DAUGHTER");
 #endif
 
 static const match_call_text_data_t sMayTextScripts[] = {

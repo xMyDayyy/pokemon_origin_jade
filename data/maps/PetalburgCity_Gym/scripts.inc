@@ -1585,7 +1585,7 @@ PetalburgCity_Gym_Text_ExplainFacade:
 	.string "aussichtslose Situation vielleicht\l"
 	.string "gerettet werden.$"
 #else
-	.string "DAD: TM42 contains FACADE.\p"
+	.string "TM42 contains FACADE.\p"
 	.string "It doubles the power of moves if\n"
 	.string "the POKéMON is poisoned, paralyzed,\l"
 	.string "or burned.\p"
