@@ -1982,17 +1982,17 @@ const u8 gText_Dad[] = _("Vati");
 const u8 gText_Dad[] = _("DAD");
 #endif
 #if GERMAN
-const u8 gText_Mom[] = _("Mutti");
+const u8 gText_Mom[] = _("Mama");
 #else
 const u8 gText_Mom[] = _("MOM");
 #endif
 #if GERMAN
-const u8 gText_MomHowMuchDeposit[] = _("Wieviel möchtest du\nbei Mutti einzahlen?");
+const u8 gText_MomHowMuchDeposit[] = _("Wieviel möchtest du\nbei Mama einzahlen?");
 #else
 const u8 gText_MomHowMuchDeposit[] = _("How much would you like to\ndeposit with your MOM?");
 #endif
 #if GERMAN
-const u8 gText_MomHowMuchWithdraw[] = _("Wieviel möchtest du\nbei Mutti entnehmen?");
+const u8 gText_MomHowMuchWithdraw[] = _("Wieviel möchtest du\nbei Mama entnehmen?");
 #else
 const u8 gText_MomHowMuchWithdraw[] = _("How much would you like to\nwithdraw from your MOM?");
 #endif
@@ -2002,7 +2002,7 @@ const u8 gText_MomMatchCallDesc[] = _("Ruhig & Nett");
 const u8 gText_MomMatchCallDesc[] = _("CALM & KIND");
 #endif
 #if GERMAN
-const u8 gText_MomMatchCallName[] = _("Mutti");
+const u8 gText_MomMatchCallName[] = _("Mama");
 #else
 const u8 gText_MomMatchCallName[] = _("MOM");
 #endif
