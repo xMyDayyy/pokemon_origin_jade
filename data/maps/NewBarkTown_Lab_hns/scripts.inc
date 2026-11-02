@@ -187,6 +187,7 @@ NewBarkTown_Lab_EventScript_ChikoritaBall_Choice::
 	playmoncry PLAYER_STARTER_SPECIES, CRY_MODE_NORMAL
 	bufferspeciesname STR_VAR_1, PLAYER_STARTER_SPECIES
 	buffermoncategory STR_VAR_2, PLAYER_STARTER_SPECIES
+	goto_if_ne PLAYER_STARTER_SPECIES, SPECIES_CHIKORITA, NewBarkTown_Lab_EventScript_ConfirmOtherStarter
 	msgbox NewBarkTown_Lab_Text_ChooseChikorita, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, NewBarkTown_Lab_EventScript_ChoseStarter
 	goto_if_eq VAR_RESULT, NO, NewBarkTown_Lab_EventScript_DeclinedStarter
@@ -209,6 +210,7 @@ NewBarkTown_Lab_EventScript_CyndaquilBall_Choice::
 	playmoncry PLAYER_STARTER_SPECIES, CRY_MODE_NORMAL
 	bufferspeciesname STR_VAR_1, PLAYER_STARTER_SPECIES
 	buffermoncategory STR_VAR_2, PLAYER_STARTER_SPECIES
+	goto_if_ne PLAYER_STARTER_SPECIES, SPECIES_CYNDAQUIL, NewBarkTown_Lab_EventScript_ConfirmOtherStarter
 	msgbox NewBarkTown_Lab_Text_ChooseCyndaquil, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, NewBarkTown_Lab_EventScript_ChoseStarter
 	goto_if_eq VAR_RESULT, NO, NewBarkTown_Lab_EventScript_DeclinedStarter
@@ -231,7 +233,15 @@ NewBarkTown_Lab_EventScript_TotodileBall_Choice::
 	playmoncry PLAYER_STARTER_SPECIES, CRY_MODE_NORMAL
 	bufferspeciesname STR_VAR_1, PLAYER_STARTER_SPECIES
 	buffermoncategory STR_VAR_2, PLAYER_STARTER_SPECIES
+	goto_if_ne PLAYER_STARTER_SPECIES, SPECIES_TOTODILE, NewBarkTown_Lab_EventScript_ConfirmOtherStarter
 	msgbox NewBarkTown_Lab_Text_ChooseTotodile, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, NewBarkTown_Lab_EventScript_ChoseStarter
+	goto_if_eq VAR_RESULT, NO, NewBarkTown_Lab_EventScript_DeclinedStarter
+	end
+
+@ The preview shows another species than the ball's (randomizer).
+NewBarkTown_Lab_EventScript_ConfirmOtherStarter::
+	msgbox NewBarkTown_Lab_Text_ChooseOtherStarter, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, NewBarkTown_Lab_EventScript_ChoseStarter
 	goto_if_eq VAR_RESULT, NO, NewBarkTown_Lab_EventScript_DeclinedStarter
 	end
@@ -874,6 +884,15 @@ NewBarkTown_Lab_Text_ChooseTotodile:
 	.string "Wasser-Pokémon?$"
 #else
 	.string "ELM: Do you want {STR_VAR_1},\n"
+	.string "the {STR_VAR_2} POKéMON?$"
+#endif
+
+NewBarkTown_Lab_Text_ChooseOtherStarter:
+#if GERMAN
+	.string "Lind: Also, {STR_VAR_1} gefällt dir,\n"
+	.string "das {STR_VAR_2}-Pokémon?$"
+#else
+	.string "ELM: So, you like {STR_VAR_1},\n"
 	.string "the {STR_VAR_2} POKéMON?$"
 #endif
 

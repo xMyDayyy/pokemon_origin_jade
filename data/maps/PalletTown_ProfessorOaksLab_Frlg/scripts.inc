@@ -1240,19 +1240,30 @@ PalletTown_ProfessorOaksLab_EventScript_ConfirmStarterChoice::
 	end
 
 PalletTown_ProfessorOaksLab_EventScript_ConfirmBulbasaur::
+	goto_if_ne PLAYER_STARTER_SPECIES, SPECIES_BULBASAUR, PalletTown_ProfessorOaksLab_EventScript_ConfirmOtherStarter
 	msgbox PalletTown_ProfessorOaksLab_Text_OakChoosingBulbasaur, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, PalletTown_ProfessorOaksLab_EventScript_ChoseStarter
 	goto_if_eq VAR_RESULT, NO, PalletTown_ProfessorOaksLab_EventScript_DeclinedStarter
 	end
 
 PalletTown_ProfessorOaksLab_EventScript_ConfirmSquirtle::
+	goto_if_ne PLAYER_STARTER_SPECIES, SPECIES_SQUIRTLE, PalletTown_ProfessorOaksLab_EventScript_ConfirmOtherStarter
 	msgbox PalletTown_ProfessorOaksLab_Text_OakChoosingSquirtle, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, PalletTown_ProfessorOaksLab_EventScript_ChoseStarter
 	goto_if_eq VAR_RESULT, NO, PalletTown_ProfessorOaksLab_EventScript_DeclinedStarter
 	end
 
 PalletTown_ProfessorOaksLab_EventScript_ConfirmCharmander::
+	goto_if_ne PLAYER_STARTER_SPECIES, SPECIES_CHARMANDER, PalletTown_ProfessorOaksLab_EventScript_ConfirmOtherStarter
 	msgbox PalletTown_ProfessorOaksLab_Text_OakChoosingCharmander, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, PalletTown_ProfessorOaksLab_EventScript_ChoseStarter
+	goto_if_eq VAR_RESULT, NO, PalletTown_ProfessorOaksLab_EventScript_DeclinedStarter
+	end
+
+@ The preview shows another species than the ball's (randomizer, one-type challenge).
+PalletTown_ProfessorOaksLab_EventScript_ConfirmOtherStarter::
+	bufferspeciesname STR_VAR_1, PLAYER_STARTER_SPECIES
+	msgbox PalletTown_ProfessorOaksLab_Text_OakChoosingOtherStarter, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, PalletTown_ProfessorOaksLab_EventScript_ChoseStarter
 	goto_if_eq VAR_RESULT, NO, PalletTown_ProfessorOaksLab_EventScript_DeclinedStarter
 	end
@@ -1903,6 +1914,17 @@ PalletTown_ProfessorOaksLab_Text_OakChoosingCharmander::
 	.string "You should raise it patiently.\p"
 	.string "So, {PLAYER}, you're claiming the\n"
 	.string "FIRE POKéMON CHARMANDER?$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakChoosingOtherStarter::
+#if GERMAN
+	.string "Ah! {STR_VAR_1} soll es sein!\p"
+	.string "{PLAYER}, du möchtest also\n"
+	.string "{STR_VAR_1}?$"
+#else
+	.string "Ah! {STR_VAR_1} is your choice.\p"
+	.string "So, {PLAYER}, you want to go with\n"
+	.string "{STR_VAR_1}?$"
 #endif
 
 PalletTown_ProfessorOaksLab_Text_OakChoosingSquirtle::

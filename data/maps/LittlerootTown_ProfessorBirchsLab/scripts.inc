@@ -297,8 +297,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Cyndaquil::
 	goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6, LittlerootTown_ProfessorBirchsLab_EventScript_AlreadyChoseJohtoStarter
 	applymovement LOCALID_BIRCHS_LAB_BIRCH, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
-	showmonpic SPECIES_CYNDAQUIL, 10, 3
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_YoullTakeCyndaquil, MSGBOX_YESNO
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CYNDAQUIL
+	showmonpic VAR_TEMP_TRANSFERRED_SPECIES, 10, 3
+	bufferspeciesname STR_VAR_1, VAR_TEMP_TRANSFERRED_SPECIES
+	call_if_eq VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CYNDAQUIL, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeCyndaquil
+	call_if_ne VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CYNDAQUIL, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeOtherStarter
 	goto_if_eq VAR_RESULT, NO, LittlerootTown_ProfessorBirchsLab_EventScript_TakeYourTime
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_GiveCyndaquil
 	end
@@ -308,8 +311,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Totodile::
 	goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6, LittlerootTown_ProfessorBirchsLab_EventScript_AlreadyChoseJohtoStarter
 	applymovement LOCALID_BIRCHS_LAB_BIRCH, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
-	showmonpic SPECIES_TOTODILE, 10, 3
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_YoullTakeTotodile, MSGBOX_YESNO
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TOTODILE
+	showmonpic VAR_TEMP_TRANSFERRED_SPECIES, 10, 3
+	bufferspeciesname STR_VAR_1, VAR_TEMP_TRANSFERRED_SPECIES
+	call_if_eq VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TOTODILE, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeTotodile
+	call_if_ne VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TOTODILE, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeOtherStarter
 	goto_if_eq VAR_RESULT, NO, LittlerootTown_ProfessorBirchsLab_EventScript_TakeYourTime
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_GiveTotodile
 	end
@@ -319,11 +325,31 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Chikorita::
 	goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6, LittlerootTown_ProfessorBirchsLab_EventScript_AlreadyChoseJohtoStarter
 	applymovement LOCALID_BIRCHS_LAB_BIRCH, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
-	showmonpic SPECIES_CHIKORITA, 10, 3
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_YoullTakeChikorita, MSGBOX_YESNO
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CHIKORITA
+	showmonpic VAR_TEMP_TRANSFERRED_SPECIES, 10, 3
+	bufferspeciesname STR_VAR_1, VAR_TEMP_TRANSFERRED_SPECIES
+	call_if_eq VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CHIKORITA, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeChikorita
+	call_if_ne VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CHIKORITA, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeOtherStarter
 	goto_if_eq VAR_RESULT, NO, LittlerootTown_ProfessorBirchsLab_EventScript_TakeYourTime
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_GiveChikorita
 	end
+
+LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeCyndaquil::
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_YoullTakeCyndaquil, MSGBOX_YESNO
+	return
+
+LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeTotodile::
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_YoullTakeTotodile, MSGBOX_YESNO
+	return
+
+LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeChikorita::
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_YoullTakeChikorita, MSGBOX_YESNO
+	return
+
+@ The preview shows another species than the ball's (randomizer).
+LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeOtherStarter::
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_YoullTakeOtherStarter, MSGBOX_YESNO
+	return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_AlreadyChoseJohtoStarter::
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_BetterLeaveOthersAlone, MSGBOX_DEFAULT
@@ -337,8 +363,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_TakeYourTime::
 	end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_GiveCyndaquil::
-	bufferspeciesname STR_VAR_1, SPECIES_CYNDAQUIL
-	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CYNDAQUIL
+	bufferspeciesname STR_VAR_1, VAR_TEMP_TRANSFERRED_SPECIES
 	call_if_unset FLAG_SHINY_STARTER_2, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterNotShiny
 	call_if_set FLAG_SHINY_STARTER_2, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterShiny
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, LittlerootTown_ProfessorBirchsLab_EventScript_SendCyndaquilToParty
@@ -374,8 +399,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedCyndaquil::
 	end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_GiveTotodile::
-	bufferspeciesname STR_VAR_1, SPECIES_TOTODILE
-	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TOTODILE
+	bufferspeciesname STR_VAR_1, VAR_TEMP_TRANSFERRED_SPECIES
 	call_if_unset FLAG_SHINY_STARTER_3, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterNotShiny
 	call_if_set FLAG_SHINY_STARTER_3, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterShiny
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, LittlerootTown_ProfessorBirchsLab_EventScript_SendTotodileToParty
@@ -411,8 +435,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedTotodile::
 	end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_GiveChikorita::
-	bufferspeciesname STR_VAR_1, SPECIES_CHIKORITA
-	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CHIKORITA
+	bufferspeciesname STR_VAR_1, VAR_TEMP_TRANSFERRED_SPECIES
 	call_if_unset FLAG_SHINY_STARTER_1, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterNotShiny
 	call_if_set FLAG_SHINY_STARTER_1, LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterShiny
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, LittlerootTown_ProfessorBirchsLab_EventScript_SendChikoritaToParty
@@ -1243,6 +1266,17 @@ LittlerootTown_ProfessorBirchsLab_Text_YoullTakeChikorita:
 	.string "CHIKORITA is your choice!\p"
 	.string "You sure know what you're doing.\p"
 	.string "So, you'll take the CHIKORITA?$"
+#endif
+
+LittlerootTown_ProfessorBirchsLab_Text_YoullTakeOtherStarter:
+#if GERMAN
+	.string "Prof. Birk: {STR_VAR_1} hat dein\n"
+	.string "Interesse geweckt?\p"
+	.string "Du möchtest {STR_VAR_1} haben?$"
+#else
+	.string "PROF. BIRCH: {STR_VAR_1} caught\n"
+	.string "your eye!\p"
+	.string "So, you'll take the {STR_VAR_1}?$"
 #endif
 
 LittlerootTown_ProfessorBirchsLab_Text_TakeYourTimeAllInvaluable:

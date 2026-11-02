@@ -655,7 +655,9 @@ dated 2026-10-10 or later were decided directly.
   - Starters ("Starter: Zufall"): only Oak's preview applies it (and the
     one-type challenge); the lab hands out exactly the previewed and named
     species with the preview's shininess (D-035). Elm's and Birch's labs
-    hand out the shown species.
+    hand out the shown species. When a preview shows another species than
+    the ball's, the lab asks with a text that names it (`...OtherStarter`
+    in the three labs) instead of the ball's own text.
   - Field moves: with any option that changes the player's species
     (Starter, wild, fixed, evolutions, evolution lines) or the moves, owning
     the HM is enough; the first party Pokemon may use it
