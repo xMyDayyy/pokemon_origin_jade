@@ -1841,6 +1841,39 @@ dated 2026-10-10 or later were decided directly.
 ### D-053 Balance round 2: boss movesets, league ladder, region badges
 - **Status:** Active (2026-11-02, owner answers 2026-10-31 to B-01-B-13)
 - **Decision:**
+  - Fixed boss movesets (B-01): every Pokemon of a scaled boss (gym
+    leaders, Elite Four, champions, rivals, Team Rocket's admins and
+    Giovanni, first teams and rematches) carries a fixed set of four
+    moves, chosen for strength and type coverage at its scaled level
+    and good up to level 100: its best STAB attacks, coverage, at most
+    one setup move (Swords Dance, Dragon Dance, Calm Mind, Nasty Plot,
+    Bulk Up, Curse ...) and a status or recovery move where it pays off
+    (sleep, paralysis, burn, Recover, Roost ...). Moves of the old set
+    stay where they hold up. Unreliable or situational moves are not
+    used (Return, Frustration, Hidden Power, one-hit KOs, two-turn
+    attacks except Solar Beam with Drought, self-KO moves, Fake Out,
+    Dream Eater, weight- and HP-based moves). Bosses that fight double
+    or 2-vs-2 battles (Ariana with a grunt) carry no move that also hits
+    their partner (Earthquake, Surf, Discharge, Sludge Wave ...) unless every
+    Pokemon that can stand next to them is immune (Flying type,
+    Levitate ...): such a move hits the partner at full damage (B-13),
+    and the AI uses it as long as the partner survives. Single-target
+    and both-foes moves (Rock Slide, Earth Power, Hydro Pump ...) take
+    their place. The TMs and tutors below count per region reached, not
+    per boss: an early Johto leader may know a TM the player only finds
+    later in Johto (an implementation choice, not set by the owner).
+    Every move is learnable in
+    this game by the species the boss fields at the floor of its
+    corridor (after the scaling's evolutions, D-012, pre-evolutions
+    included): level-up up to the corridor's ceiling (100 for rematches
+    after a title) in either learnset option, a TM, HM or tutor the
+    player can get in the regions reached by then (Kanto for Kanto's
+    rematches; Kanto and Johto for Johto and for Blue's and Janina's
+    Kanto gyms after the league change; all for Hoenn), or an egg move
+    (not for legendaries and not for a rival's starter). Held items and
+    abilities stay. Done for Johto (`src/data/trainers_hns.party`).
+    Kanto's first-run bosses are not scaled and keep FireRed's sets
+    (D-011); Troy and Red: below.
   - May and Wally count as bosses (+1 on the ace) like Silver and Blue:
     `TRAINER_CLASS_RIVAL` is a boss class in `IsBossTrainer`
     (`src/level_scaling.c`). Brendan's teams (unused, D-003) and Troy
