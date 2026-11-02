@@ -2218,6 +2218,55 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** owner answers 2026-11-02 (beta plan, "Deutsch
   vervollständigen"); S-04 (the HnS tent copies at Route 40 stay).
 
+### D-057 German completion of the map texts
+- **Status:** Active (2026-11-02, owner: the beta comes out in German
+  first, everything that is not German gets translated, both languages
+  stay selectable)
+- **Decision:**
+  - Every text in `data/maps/*/scripts.inc` that the German build shows
+    on a Kanto, Johto or Hoenn map has a German branch under `#if GERMAN`;
+    the English text stays as the `#else` branch (D-020). Exceptions: the
+    cases under "Not covered" below, and short cries and interjections
+    that read the same in German (such as "Arrgh!", "Gwah!", "Zombies!",
+    "Mew!"), which keep a single string without a branch.
+  - Names and terms as in the German HGSS, FRLG and Emerald games and in
+    the owner's existing map texts (Mahagonia City, Wutkeks, Norbert,
+    Intendant, Lambda, Athena, Atlas, Siegfried, Kelleröffner, Aufseher
+    Baoba, Safari-Level, Pokériegel, Napf, IVs as in the challenge menu).
+    The texts are own translations in the style of the neighbouring
+    texts; the owner reads them in the text round. Title case (D-020);
+    message lines at most 208 px, PokeNav call lines at most 192 px.
+  - Done 2026-11-02, Johto: Mahogany Town (13 texts, also Elm's call
+    about the radio tower), the radio tower's top floor (map
+    `GoldenrodCity_RadioTower_5F_hns`, "4S" on its signs; 20) and the
+    Underground switch room (29), the Safari Zone gate entrance (18),
+    Union Cave 1F (15), the Moomoo Farm barn (11), Meara in the Mt. Silver
+    Pokemon Center (4; she appears only with Sinjoh, D-019) and the Day
+    Care's party limit message (1). Kanto: the "Space Shuttle" sign in
+    Pewter's museum ("Raumfähre"). Hoenn: the Poochyena on Route 114
+    ("Wau! Wauwau!").
+  - "$" ends a string (`charmap.txt`) and must never stand in a text.
+    Five German texts that used it for money were cut off there (Route 32,
+    Moomoo Farm, Route 4 Pokemon Center, Pewter mart, Route 34 Day Care);
+    they use "¥" now, which the font shows as the Pokedollar sign, in the
+    place and spacing their own wording had ("500 ¥", "500¥"). The order
+    is not settled: the owner's texts use both "500 ¥" and "¥300"; he
+    decides the style in the text round.
+- **Not covered:** the Slateport Battle Tent lobby and corridor (O-065;
+  the owner is rebuilding Slateport and the tents, S-04/S-05), trainer
+  names in the party files (O-066), locked and retired maps (D-019; the
+  tool counts 290 and 3 texts there), unreferenced Japanese FRLG texts,
+  common texts (D-056).
+- **Check:** `python3 -I tools/check_game_text.py --english` lists no map
+  text of an active region any more except the 7 of the Slateport tent
+  (area "hoenn"); the other 23 (Johto) and 5 (Kanto) entries are party
+  names (O-066). The word list does not see short texts; every map text
+  of an active region without a German branch was read by hand (left:
+  the interjections and cries named above and the unreferenced Japanese
+  FRLG texts).
+- **Evidence:** owner answers 2026-11-02 (beta plan, "Deutsch
+  vervollständigen").
+
 ---
 
 ## Planned, not built yet
@@ -2531,6 +2580,20 @@ dated 2026-10-10 or later were decided directly.
   (`data/scripts/contest_hall.inc`). Proposal: once the RS contests (owner
   2026-11-02) fix where Hoenn's case comes from, Route 121 gets its own
   line naming that place.
+- **O-065** The HnS copy of the Slateport Battle Tent lobby
+  (`SlateportCity_BattleTentLobby_hns`) still shows five English NPC
+  texts, its corridor (`SlateportCity_BattleTentCorridor`) holds two
+  unreferenced English contest hall texts. Left alone because the owner
+  is rebuilding Slateport and removes the tents (S-04/S-05, RS contests).
+  Proposal: translate what is still shown after the owner's Porymap work,
+  or delete it with the tent.
+- **O-066** 28 trainer names in `src/data/trainers_hns.party` are still in
+  upstream capitals (HnS's Kanto leaders and Blue, the POSTOBC rematch
+  teams of Johto and Kanto). None is shown today: no script fights them,
+  the POSTOBC teams only behind Sinjoh (D-019). Proposal: German names
+  (Rocko, Misty, Major Bob, Erika, Sabrina, Pyro, Blau, Falk, Kai, Bianka,
+  Jens, Hartwig, Jasmin, Norbert, Sandra, Janina, Willi, Koga, Bruno,
+  Melanie, Siegfried) when Sinjoh is unlocked or a team is reused.
 
 ## Superseded decisions (kept for the record)
 
