@@ -446,8 +446,7 @@ take effect in a normal playthrough.
   readings of the owner's rules (O-035).
 - From the text check of the story packages: Mom's heal texts after a
   whiteout at home (O-037), placeholder National Pokedex ratings (O-038),
-  the nurse's Gold Card greeting against the trainer card's stars
-  (O-039), old text defects for the text round (O-040).
+  old text defects for the text round (O-040).
 - English game text in the German build: a text round with the official
   German terms, or by the owner. It covers O-012 (Johto story) and the
   shared texts O-012 does not name (Safari Zone, Battle Tents, move tutors,
@@ -601,7 +600,7 @@ in the beta build (the debug states reach them quickly):
 10. **Diplomas:** Celadon City's game designer (all 151 but Mew) names the
     Kanto Pokedex, Lilycove City's the Johto Pokedex (without Azurill and
     Wynaut), both the National Pokedex once it is complete; the nurse's
-    Gold Card greeting (O-039).
+    Gold Card greeting with the trainer card's four stars (O-039).
 11. **Debug states:** "Johto Test" and "Hoenn Test" on a new game before
     the first Pokemon: team, PC (75 and 136 Pokemon, all usable), Pokedex
     185 and 282, waking up in the room or starting at the door of Oak's

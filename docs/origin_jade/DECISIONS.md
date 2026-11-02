@@ -1532,7 +1532,8 @@ dated 2026-10-10 or later were decided directly.
 ### D-049 Pokemon per region
 - **Status:** Active (2026-10-31, owner decision; changed 2026-10-31:
   Celadon's diploma names the Kanto Pokedex; changed 2026-11-02: Jirachi
-  on Route 4, the rule is off with any randomizer option)
+  on Route 4, the rule is off with any randomizer option, stars as on the
+  trainer card)
 - **Decision:** Kanto has only Kanto Pokemon, Johto adds Johto's and Hoenn
   adds Hoenn's: before a region is unlocked, no source hands out a species
   of that region. Evolutions are exempt: a Golbat may become a Crobat in
@@ -1609,14 +1610,15 @@ dated 2026-10-10 or later were decided directly.
     shown on).
   - Johto Pokedex (`HasAllJohotoMons`, `GetPokedexRatingText`): HnS's
     Johto dex (282 entries) lists Azurill and Wynaut, which count to
-    Hoenn. Elm's and Birch's rating, Lilycove's diploma (D-036) and the
-    star count of `CountPlayerTrainerStars` (the nurse's Gold Card
-    greeting at four stars, the Frontier Pass colour) leave them out
-    like the mythicals, so the Johto dex can be completed before Hoenn.
-    The trainer card's stars do not count the Pokedex: in this build
-    `GetHnSTrainerStars` gives one each for the Johto, Kanto and Hoenn
-    titles and for beating Red. The seen and caught numbers shown stay
-    as they are.
+    Hoenn. Elm's and Birch's rating and Lilycove's diploma (D-036) leave
+    them out like the mythicals, so the Johto dex can be completed before
+    Hoenn. The seen and caught numbers shown stay as they are.
+  - Stars (owner 2026-11-02, O-039 option a): the trainer card, the
+    nurse's Gold Card greeting (at four stars) and the Frontier Pass
+    colour count the same stars, one each for the Johto, Kanto and Hoenn
+    titles and for beating Red (`GetHnSTrainerStars`, which
+    `CountPlayerTrainerStars` returns in this build). No Pokedex counts
+    for them.
 - **Code:** `src/region_rule_oj.c` (the table of national numbers above
   386), `TryUnlockJohtoOnMapLoad` in both map loads of `src/overworld.c`;
   test `test/origin_jade/region_rule.c`.
@@ -1961,10 +1963,9 @@ dated 2026-10-10 or later were decided directly.
 - **O-038** The German National dex rating texts are placeholders ("Unter
   300. / Weiter so!"); through Elm's call after the completed Johto dex
   they are now reachable before Hoenn. Needs owner text.
-- **O-039** The Gold pass greeting of the nurse counts
-  `CountPlayerTrainerStars` (Hall of Fame, Johto dex, 4 museum paintings,
-  all Frontier symbols), the trainer card shows `GetHnSTrainerStars` (three
-  titles + Red); both can disagree.
+- **O-039** Resolved 2026-11-02 (owner, option a): the nurse's Gold Card
+  greeting and the Frontier Pass colour count the trainer card's stars
+  (three titles and Red, D-049).
 - **O-040** Old German text defects found in the story text check, for the
   text round: trainer school e-mail (`gText_PokemonTrainerSchoolEmail`, now
   at three PCs), "mit Pokécenter challenge!" (`players_house.inc`), Birch's
