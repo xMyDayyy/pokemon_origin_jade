@@ -117,7 +117,11 @@ var number without storage (D-016).
   party and PC (75 and 136 final stages) with some levels, usable PC
   Pokemon, Johto and Hoenn locked or unlocked, badges, Troy's
   `VAR_HOENN_TICKET_STATE` 1 and room for the Hoenn Ticket, a picked-up
-  TM and fossil of Johto, `FLAG_MINTS_DISABLED` as the new game set it.
+  TM and fossil of Johto, one item of each kind of purchase or repeatable
+  source (Game Corner, marts and their Premier Ball, berry trees, phone
+  gifts, the Route 40 Trainer Hill's prizes ...),
+  `FLAG_MINTS_DISABLED` as the new game set it and Goldenrod's mints only
+  while that option sells them.
 - `test/origin_jade/daycares.c`: Kanto's, Johto's and Hoenn's Day Cares
   keep their own Pokemon, and a pair in Johto's lays its egg there without
   touching Hoenn's `FLAG_PENDING_DAYCARE_EGG`. D-052.

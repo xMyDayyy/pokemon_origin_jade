@@ -130,10 +130,18 @@ states (D-050). All new German texts are drafts for the owner to review.
   `ae3e095a3c`
 - "Hoenn Test": Kanto and Johto done by a completionist (story, badges and
   permits, league, Red, one-time encounters, every item ball and hidden
-  item but no purchases (O-035), Pokedex 282, the 142 final stages; team
-  Charizard 70, Meganium 63, Gyarados 63, Ampharos 62, Nidoking 60, Espeon
-  60). It starts at the door of Oak's lab, where Troy's scene runs, and
-  replaces the hand-written Hoenn quick start. `13bf3c8cb6`
+  item, Pokedex 282, the 142 final stages; team Charizard 70, Meganium 63,
+  Gyarados 63, Ampharos 62, Nidoking 60, Espeon 60). It starts at the door
+  of Oak's lab, where Troy's scene runs, and replaces the hand-written
+  Hoenn quick start. `13bf3c8cb6`
+- Items of both states: every item the finished regions give, and once
+  each what can be bought or got again (marts and their Premier Ball, Game
+  Corner prizes, vending machines, merchants, Kurt, contest, lottery and
+  phone gifts, Mom's purchases, berry trees, Rock Smash, trade items, in
+  the Hoenn Test the Route 40 Trainer Hill's prizes); Goldenrod's mints
+  only while the mints option sells them; what does not fit into a pocket
+  goes into the PC's item storage (D-050, O-035). Items bought with Battle
+  Points are open (O-060).
 
 ## Kanto
 

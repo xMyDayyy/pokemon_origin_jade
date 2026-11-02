@@ -93,6 +93,16 @@ TEST("Debug states: Johto Test is Kanto complete, Johto and Hoenn stay locked")
     EXPECT_EQ(GetPcMonLevel(SPECIES_CROBAT), 0);
     EXPECT(IsPcMonUsable(SPECIES_DRAGONITE));
 
+    // Every item obtainable in Kanto, purchases and repeatable sources once.
+    EXPECT(CheckBagHasItem(ITEM_TM13, 1));             // Game Corner prize
+    EXPECT(CheckBagHasItem(ITEM_FRESH_WATER, 1));      // vending machine
+    EXPECT(CheckBagHasItem(ITEM_POKE_DOLL, 1));        // Celadon's department store
+    EXPECT(CheckBagHasItem(ITEM_PREMIER_BALL, 1));     // mart bonus for ten balls
+    EXPECT(CheckBagHasItem(ITEM_CHOICE_BAND, 1));      // Mom's savings
+    EXPECT(CheckBagHasItem(ITEM_TAMATO_BERRY, 1));     // berry tree
+    EXPECT(CheckBagHasItem(ITEM_LEEK, 1));             // held item of an in-game trade
+    EXPECT(CheckBagHasItem(ITEM_HEART_SCALE, 1));      // Rock Smash find
+
     EXPECT(FlagGet(FLAG_IS_KANTO_CHAMPION));
     EXPECT(FlagGet(FLAG_SYS_GAME_CLEAR));
     for (flag = FLAG_BADGE01_GET; flag <= FLAG_BADGE08_GET; flag++)
@@ -141,8 +151,19 @@ TEST("Debug states: Hoenn Test is Kanto and Johto complete, Troy waits in Oak's 
     EXPECT(CheckBagHasItem(ITEM_TM_BULLET_SEED, 1));
     EXPECT(FlagGet(FLAG_ITEM_DOME_FOSSIL));
     EXPECT(CheckBagHasItem(ITEM_DOME_FOSSIL, 1));
-    // Challenge settings untouched.
+    // Purchases and repeatable sources of both regions once.
+    EXPECT(CheckBagHasItem(ITEM_TM13, 1));             // Celadon's Game Corner
+    EXPECT(CheckBagHasItem(ITEM_TM_SUBSTITUTE, 1));    // Goldenrod's Game Corner
+    EXPECT(CheckBagHasItem(ITEM_RAGE_CANDY_BAR, 1));   // Mahogany's merchant
+    EXPECT(CheckBagHasItem(ITEM_MOOMOO_MILK, 1));      // Moomoo Farm
+    EXPECT(CheckBagHasItem(ITEM_LOVE_BALL, 1));        // Kurt
+    EXPECT(CheckBagHasItem(ITEM_SUN_STONE, 1));        // Bug-Catching Contest
+    EXPECT(CheckBagHasItem(ITEM_LEPPA_BERRY, 1));      // berry tree
+    EXPECT(CheckBagHasItem(ITEM_SHARP_BEAK, 1));       // phone trainer's gift
+    EXPECT(CheckBagHasItem(ITEM_SALAC_BERRY, 1));      // Route 40 Trainer Hill prize
+    // Challenge settings untouched; mints only while the option sells them.
     EXPECT(FlagGet(FLAG_MINTS_DISABLED));
+    EXPECT(!CheckBagHasItem(ITEM_ADAMANT_MINT, 1));
 
     EXPECT(FlagGet(FLAG_IS_KANTO_CHAMPION));
     EXPECT(FlagGet(FLAG_IS_JOHTO_CHAMPION));
@@ -162,4 +183,14 @@ TEST("Debug states: Hoenn Test is Kanto and Johto complete, Troy waits in Oak's 
     EXPECT(!CheckBagHasItem(ITEM_HOENN_TICKET, 1));
     EXPECT(CheckBagHasSpace(ITEM_HOENN_TICKET, 1));
     EXPECT(!CheckBagHasItem(ITEM_GS_BALL, 1));
+}
+
+TEST("Debug states: Hoenn Test holds Goldenrod's mints when the challenge option sells them")
+{
+    FlagClear(FLAG_MINTS_DISABLED);
+    Debug_SetHoennTestState();
+
+    EXPECT(!FlagGet(FLAG_MINTS_DISABLED));
+    EXPECT(CheckBagHasItem(ITEM_ADAMANT_MINT, 1));
+    EXPECT(CheckBagHasItem(ITEM_MIRROR_HERB, 1));
 }

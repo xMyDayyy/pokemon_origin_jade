@@ -1696,8 +1696,8 @@ dated 2026-10-10 or later were decided directly.
   2026-10-31).
 
 ### D-050 Debug states "Johto Test" and "Hoenn Test"
-- **Status:** Active (2026-10-31, owner requirements; the generator's own
-  readings of them are open in O-035)
+- **Status:** Active (2026-10-31, owner requirements; changed 2026-11-02:
+  every obtainable item, O-035 answered)
 - **Decision:** The overworld debug menu (D-046) sets two test states on a
   new game (before the first Pokemon); `tools/make_debug_states.py`
   generates both from the game data.
@@ -1731,11 +1731,36 @@ dated 2026-10-10 or later were decided directly.
     (Golbat, Onix, Scyther ... are final there), 142 for Kanto and Johto.
     Mewtwo is in the Johto Test's PC and counts as caught; his cave opens
     after the title.
+  - Items (owner, 2026-11-02, O-035): the bag holds everything the finished
+    regions give, so the owner can see what a player can have. Found and
+    received items with their count; key items and HMs once; at least one
+    of every item a player can buy or get again: mart goods (also the
+    Johto badge mart) and the Premier Ball a mart adds for ten balls, the
+    Game Corner prizes, vending machines, merchants (Rage Candy Bar,
+    Moomoo Milk), Kurt's balls, Bug-Catching Contest, lottery and Buena
+    prizes, phone trainers' gifts, Mom's purchases, berry trees, Rock Smash
+    finds, held items of in-game trades; in the Hoenn Test also the prizes
+    and the shop of the Trainer Hill by Route 40 (Johto post-game, D-041);
+    Goldenrod's mints and Mirror Herb only while the mints option sells
+    them (`FLAG_MINTS_DISABLED` clear). Each pocket keeps 20 free slots for
+    the next region; what does not fit goes into the PC's item storage
+    (none so far: the Johto Test has 187 items, the Hoenn Test 297, the
+    fullest pocket holds 107 of 236 slots). Money stays as without
+    purchases.
+  - Items left out, the generator's reading: link-only rewards (Wonder
+    News, Berry Powder), decorations (not bag items), held items of wild
+    Pokemon and Pickup (random finds), and the Kampfzone with everything
+    bought with Battle Points (its BP exchange and that of the Trainer
+    Hill's courtyard). Battle Points come only from the Kampfzone's
+    facilities; the M.S. Aqua reaches the Kampfzone after the maiden
+    voyage (D-029), but the states leave it untouched and
+    `GetCurrentRegion` counts it as Hoenn (D-049). Open: O-060.
   - PC levels (owner): a level evolution at its evolution level (Pidgeot
     36); stone, trade, friendship, item and other evolutions at the
     pre-evolution's level + 2; single stages and legendaries at their
     catch level in this game.
-  - PC levels, the generator's reading (O-035): the catch level, also of a
+  - PC levels, the generator's reading (O-035; owner 2026-11-02: the
+    states need not be perfect): the catch level, also of a
     first stage below a later one, is in Kanto the highest level in
     Kanto's wild tables, else the gift or static level (D-011); in Johto
     the top of an average player's wild band where the species first
@@ -1763,16 +1788,33 @@ dated 2026-10-10 or later were decided directly.
   runs `finditem`: FRLG's and HnS's item balls, HnS's Poke Ball objects,
   the Ruins of Alph's fossils) and hidden item is collected and in the
   bag, every gift too; of two gifts that exclude each other one counts
-  (Ice Path's TM72); key items and HMs once. A label that takes money or
-  coins is a purchase and does not count (marts, the Game Corner prize
-  rooms, Mahogany's merchant). `--check` (CI) fails on a stale header, on
-  a written flag or var that is neither in the state nor listed, on a
-  value the state takes from a write that runs only after Hoenn progress
-  (`FLAG_IS_HOENN_CHAMPION`, `VAR_HOENN_*`), on a list entry that nothing
-  writes any more, on a pickup or hidden item not collected, and on a
-  state that would unlock Johto or Hoenn too early, misses a fly
-  destination, sets a badge flag 09-16, owns more or fewer Pokemon than
-  the final stages, holds the Hoenn Ticket or leaves no room for it.
+  (Ice Path's TM72); key items and HMs once. Once each: the lists of the
+  `pokemart` commands the walk reaches (`pokemart 0`: every list of
+  `src/shop.c`'s badge mart), the items of a label that takes money or
+  coins (a purchase), gifts through a var (the script's own `setvar`
+  values, C arrays in `VAR_GIFT_TABLES`, the phone trainers' arrays of
+  `src/match_call.c`, `random` with `addvar`), `C_ITEM_SOURCES` (Mom's
+  savings), the berry trees of the state's maps (`new_game.inc`), Rock
+  Smash finds and held items of in-game trades; the Premier Ball of a
+  mart list with a ball (`src/shop.c`, `I_PREMIER_BALL_BONUS`);
+  `FACILITY_ITEMS` (the Route 40 Trainer Hill's prize lists of
+  `src/trainer_hill.c` and its shop while the state sets
+  `FLAG_IS_JOHTO_CHAMPION`); `VAR_GIFT_SKIP` lists the link-only gifts.
+  A mart whose clerk is hidden by a flag the state leaves at its new game
+  value (a challenge option, `UNTOUCHED`) adds the items only it sells
+  while that flag is clear (`JOHTO_COMPLETE_OPTION_FLAG`).
+  Not counted: purchases behind Hoenn progress. `--check` (CI) fails on a
+  stale header, on a written flag or var that is neither in the state nor
+  listed, on a value the state takes from a write that runs only after Hoenn
+  progress (`FLAG_IS_HOENN_CHAMPION`, `VAR_HOENN_*`), on a list entry that
+  nothing writes any more, on a pickup or hidden item not collected, and on
+  a state that would unlock Johto or Hoenn too early, misses a fly
+  destination, sets a badge flag 09-16, owns more or fewer Pokemon than the
+  final stages, holds the Hoenn Ticket or leaves no room for it. It also
+  fails on a gift through a var, a mart list or a berry tree it cannot
+  resolve, on an item table entry nothing uses, on a `FACILITY_ITEMS` flag
+  state B does not set or prize lists without items, on an item without a
+  pocket, and on a pocket or the PC's item storage over its slots.
 - **Replaces:** the hand-written Hoenn quick start (wrong Kanto fly flags,
   badge flags 09-16, Rayquaza and Kyogre at level 100, a ticket var nothing
   read, start at the Olivine port) and the Johto Test's living dex.
@@ -1781,7 +1823,9 @@ dated 2026-10-10 or later were decided directly.
   `Debug_EventScript_JohtoTestWarpHome`, `Debug_EventScript_HoennTestWarpLab`
   in `data/scripts/debug.inc`; test `test/origin_jade/debug_states.c`.
 - **Evidence:** owner requirements 2026-10-31 (points 6, 7, 11, 14, 17);
-  plan part D.
+  plan part D; owner answers 2026-11-02 (O-035 and its addendum: every
+  other item of the region once, pocket sizes checked, overflow into the
+  PC).
 
 ### D-051 Calls by region and the calls after a title
 - **Status:** Active (2026-11-02)
@@ -2218,34 +2262,10 @@ dated 2026-10-10 or later were decided directly.
   (`include/config/pokedex_plus_hgss.h`) and no icon for an unseen
   target in `HandleTargetSpeciesPrintIcon` (`src/pokedex_plus_hgss.c`);
   that hides every unseen evolution, of any region.
-- **O-035** Debug states (D-050): the owner's rules leave room, the
-  generator fills it as follows. Owner to confirm or change:
-  - Catch level: in Kanto the highest level in Kanto's wild tables, else
-    the gift or static level; in Johto the corridor floor + 2 of the first
-    corridor with the species (D-012), else the gift or static level;
-    eggs and trades of Johto the band of their map (Togepi 43). A first
-    stage below a later one (Jigglypuff for Wigglytuff) gets its catch
-    level the same way.
-  - A baby that only hatches from an egg does not count as a
-    pre-evolution when the next stage can be caught (Wobbuffet from
-    Wynaut, Sudowoodo from Bonsly, Marill from Azurill).
-  - Read literally, the rules give low levels to early stone and
-    friendship evolutions: Wigglytuff 7 (Jigglypuff 5 + 2), Nidoqueen 18
-    (Nidorina 16 + 2), Crobat 24 (Golbat 22 + 2), Hitmontop 20 (Tyrogue's
-    level evolution).
-  - Ho-Oh is the bird chosen on Route 39 (`VAR_LUGIA_OR_HOOH` 2, Ho-Oh 78
-    at its story level, Lugia 80); Lugia's path items (Tidal Bell, Silver
-    Wing) are not in the bag.
-  - In the Hoenn Test the species of Kanto lines keep their Johto Test
-    level, those of its party their party level (Pidgeot 43, Raichu 44,
-    Snorlax 42).
-  - Purchases are no items of a completionist: nothing bought in marts,
-    the Game Corner prize rooms (Celadon, Goldenrod) or from Mahogany's
-    merchant, so the Hoenn Test has no prize TMs (Ice Beam, Thunderbolt,
-    Swords Dance, Substitute).
-  - The Hoenn Test's team (Charizard 70, Meganium 63, Gyarados 63,
-    Ampharos 62, Nidoking 60, Espeon 60) and Chikorita as the Johto
-    starter follow owner point 6 (mixed, average, no legendary).
+- **O-035** Resolved 2026-11-02: the debug states need not be perfect but
+  hold everything the finished regions give; purchases such as the Game
+  Corner prize TMs and every other item, shop goods too, once each (D-050).
+  The generator's other readings stay.
 - **O-036** Resolved 2026-11-02 (owner: as in HnS): Elm's call comes on
   the first step out of the house in Pallet Town after the first Johto
   title, as HnS's came in New Bark Town (D-051).
@@ -2396,6 +2416,19 @@ dated 2026-10-10 or later were decided directly.
   every list and in the region rule and dex counts (D-049), the locked
   content of O-009 comes back into play; several days with tests.
   Proposal: (a) for the beta.
+- **O-060** Kampfzone items in the Hoenn Test (D-050): the M.S. Aqua
+  reaches the Kampfzone after its maiden voyage, so after the Johto title
+  (D-029), and Battle Points then buy 32 items the Hoenn Test does not
+  hold (Power items, Choice Scarf, Focus Sash, Assault Vest, Eviolite,
+  Rocky Helmet, Ability Capsule and Patch, Dive, Repeat and Timer Ball
+  ..., at the BP exchange of the Kampfzone and of the Trainer Hill's
+  courtyard). The generator leaves the Kampfzone out because the states
+  leave it untouched and `GetCurrentRegion` counts it as Hoenn. The owner's
+  answer to S-02 ("Kampfzone erst ab Hoenn-Titel") was given on the Hoenn
+  ferries. Options: (a) the Hoenn Test adds the BP items once; (b) they
+  stay out, the Kampfzone counts as Hoenn; (c) the Kampfzone opens only
+  after the Hoenn title everywhere (the M.S. Aqua entry,
+  `Common_EventScript_ShipMenuPushIslands`), then (b) follows.
 
 ## Superseded decisions (kept for the record)
 

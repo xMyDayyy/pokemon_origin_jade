@@ -443,8 +443,8 @@ take effect in a normal playthrough.
 - Region rule (D-049): off with any randomizer option (O-033, decided); the
   Pokedex evolution page still shows later species (O-034); the Johto
   Pokedex counts as complete without Azurill and Wynaut, implemented by
-  analogy to the Kanto 151 (to confirm). Debug states: the generator's
-  readings of the owner's rules (O-035).
+  analogy to the Kanto 151 (to confirm). Debug states: items bought with
+  Battle Points in the Hoenn Test (O-060).
 - From the text check of the story packages: Mom's heal texts after a
   whiteout at home (O-037), placeholder National Pokedex ratings (O-038),
   old text defects for the text round (O-040).

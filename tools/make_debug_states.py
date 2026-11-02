@@ -36,7 +36,11 @@ Sources (all in the repository):
   - gSpeciesInfo of the preprocessed src/pokemon.c for the evolutions,
     include/constants/pokedex.h and src/region_rule_oj.c (through
     tools/check_regions.py) for the species' regions;
-  - src/legendaries_oj.c for the caught flags of one-time encounters.
+  - src/legendaries_oj.c for the caught flags of one-time encounters;
+  - the item lists of marts, the C arrays of VAR_GIFT_TABLES, C_ITEM_SOURCES
+    and FACILITY_ITEMS, src/match_call.c's phone gifts and src/shop.c's badge
+    mart, the berry trees of new_game.inc and the held items of
+    src/data/trade.h.
 Values the scripts leave open come from the configuration below.
 
 LEVEL RULES of the PC, the owner's (2026-10-31):
@@ -44,7 +48,8 @@ LEVEL RULES of the PC, the owner's (2026-10-31):
   - other evolution (stone, trade, friendship, item, move, place): the
     pre-evolution's level + 2;
   - single stage or legendary: its catch level in this game.
-The generator's reading of them (open for the owner, O-035):
+The generator's reading of them (O-035; owner 2026-11-02: the states need
+not be perfect):
   - catch level, also of a first stage below a later one: in Kanto the
     highest level in Kanto's wild tables, else the level of the gift or
     static battle; in Johto the top of the wild band of an average player
@@ -56,10 +61,25 @@ The generator's reading of them (open for the owner, O-035):
   - in state B the species of Kanto lines keep their level of state A,
     those of state A's party their party level.
 
-ITEMS: every map pickup (an object whose script runs finditem) and hidden
-item, every gift; one of two gifts that exclude each other
-(EXCLUSIVE_GIFTS_B); key items and HMs once. Purchases (a label that takes
-money or coins: marts, prize rooms, merchants) do not count.
+ITEMS, the owner's (2026-11-02): everything the finished regions give.
+  - every map pickup (an object whose script runs finditem) and hidden item,
+    every gift; one of two gifts that exclude each other (EXCLUSIVE_GIFTS_B);
+    key items and HMs once;
+  - at least one of each item a run can buy or get again: mart lists (also
+    the badge mart, pokemart 0) and the Premier Ball a mart adds for ten
+    balls, purchases (a label that takes money or coins: prize rooms,
+    vending machines, merchants), gifts through a var (the script's own
+    setvar values, VAR_GIFT_TABLES, phone trainers, random picks),
+    C_ITEM_SOURCES (Mom's savings), FACILITY_ITEMS (the Route 40 Trainer
+    Hill's prizes and shop once the state opens it), berry trees, Rock Smash
+    finds, held items of in-game trades. Items only a clerk sells whose flag
+    the state leaves untouched (a challenge option: Goldenrod's mints) are
+    added only while that flag is clear.
+  - the generator's reading: not counted are link-only sources
+    (VAR_GIFT_SKIP), decorations, held items of wild Pokemon, Pickup, and
+    the Kampfzone with everything bought with Battle Points (O-060);
+  - a pocket keeps POCKET_RESERVE free slots for the next region; what does
+    not fit goes into the PC's item storage, purchases first.
 
 Usage (needs arm-none-eabi-cpp, a host C compiler, cc or $CC, and the
 generated src/data/pokemon/teachable_learnsets.h of a build):
@@ -67,7 +87,8 @@ generated src/data/pokemon/teachable_learnsets.h of a build):
   python3 tools/make_debug_states.py --check    # exit 1 if a header is stale or a
                                                 # rule of D-050 fails (a flag or var
                                                 # neither in the state nor in UNTOUCHED,
-                                                # a pickup not collected, ...)
+                                                # a pickup not collected, an item source
+                                                # not resolved, a full pocket, ...)
   python3 tools/make_debug_states.py --overlap  # flags/vars of state A that Johto or
                                                 # Hoenn share, exit 1 on new ones
   python3 tools/make_debug_states.py --levels   # how each PC level was derived
@@ -329,13 +350,61 @@ SCRATCH_VAR_RE = re.compile(
     r"^VAR_(RESULT|0x[0-9A-Fa-f]+|TEMP_\w+|ITEM_ID|SPECIAL_\w+|FRONTIER_\w+|TEXT_COLOR"
     r"|LAST_TALKED|FACING|OBJ_GFX_ID_\w+|ELEVATOR_FLOOR)$")
 
-# Random Rock Smash finds, not counted.
-SKIP_GIFT_ITEMS = {"ITEM_RED_SHARD", "ITEM_BLUE_SHARD", "ITEM_GREEN_SHARD", "ITEM_YELLOW_SHARD",
-                   "ITEM_HEART_SCALE"}
-# Items handed out through a var the walk does not follow.
-EXTRA_ITEMS = {
-    "ITEM_TM16": 1, "ITEM_TM20": 1, "ITEM_TM33": 1,   # Celadon roof, thirsty girl (VAR_0x8009)
+# Random Rock Smash finds: once each, as the other repeatable sources.
+RANDOM_GIFT_ITEMS = {"ITEM_RED_SHARD", "ITEM_BLUE_SHARD", "ITEM_GREEN_SHARD", "ITEM_YELLOW_SHARD",
+                     "ITEM_HEART_SCALE"}
+
+# Gifts through a var that C code sets: label -> (file, array) of the items.
+VAR_GIFT_TABLES = {
+    "AzaleaTown_KurtsHouse_EventScript_Kurt2": [("src/shop.c", "sKurtBallShopItems")],
+    "AzaleaTown_KurtsHouse_EventScript_SingularBall": [("src/shop.c", "sKurtBallShopItems")],
+    "BugContestEventScript_Judging": [("src/bug_contest.c", "sFirstPlaceRewards"),
+                                      ("src/bug_contest.c", "sSecondPlaceRewards"),
+                                      ("src/bug_contest.c", "sThirdPlaceRewards")],
+    "GoldenrodCity_RadioTower_1F_EventScript_LotteryClerk": [("src/lottery_corner.c", "sLotteryPrizes")],
+    "GoldenrodCity_RadioTower_1F_EventScript_GivePrizeFromEarlier": [("src/lottery_corner.c", "sLotteryPrizes")],
+    "GoldenrodCity_RadioTower_2F_EventScript_BuenaCorrect": [("src/pokenav_radio.c", "sBuenaRewardTable")],
 }
+# Phone trainers' gifts: the item var and array of each HNS_MC_ITEM entry.
+MATCH_CALL_FILE = "src/match_call.c"
+# Items C code gives without a script: label that opens the source -> arrays.
+C_ITEM_SOURCES = {
+    # Mom buys items with the player's savings.
+    "PalletTown_PlayersHouse_1F_EventScript_MomSavingsMenu": [("src/mom_savings.c", "sMomGifts_Sequential"),
+                                                              ("src/mom_savings.c", "sMomGifts_Berries")],
+}
+# Battle facilities the walk leaves out whose items count once: the flag that
+# opens one -> (prize arrays as (file, name pattern), mart lists of its
+# clerks). The facility's own flags and records stay untouched.
+FACILITY_ITEMS = {
+    # Route 40 Trainer Hill (D-041); GetPrizeItemId picks from these lists.
+    "FLAG_IS_JOHTO_CHAMPION": ([("src/trainer_hill.c", re.compile(r"^sPrizeList\w+_Hns$"))],
+                               ["TrainerHill_Entrance_hns_Pokemart_Basic"]),
+}
+# src/shop.c adds one per ten balls bought in a mart (I_PREMIER_BALL_BONUS).
+PREMIER_BALL_BONUS = "ITEM_PREMIER_BALL"
+# Gifts through a var a single player cannot get: label -> reason.
+VAR_GIFT_SKIP = {
+    "CeruleanCity_House4_EventScript_Reward_RecvSmall": "Wonder News reward (Mystery Gift, link)",
+    "CeruleanCity_House4_EventScript_Reward_RecvBig": "Wonder News reward (Mystery Gift, link)",
+    "CeruleanCity_House4_EventScript_Reward_SentSmall": "Wonder News reward (Mystery Gift, link)",
+    "CeruleanCity_House4_EventScript_Reward_SentBig": "Wonder News reward (Mystery Gift, link)",
+    "CeruleanCity_House5_EventScript_ExchangePowderForItem": "Berry Powder comes only from Berry Crush (link)",
+}
+# Arrays of the badge mart (pokemart 0) in src/shop.c, every badge count and
+# the Pokemon Center challenge's lists.
+BADGE_MART_RE = re.compile(r"^sShopInventory_\w+$")
+
+# Bag pockets: pocket -> slot count macro (include/constants/global.h).
+POCKET_SLOTS = {
+    "POCKET_ITEMS": "BAG_ITEMS_COUNT", "POCKET_MEDICINE": "BAG_MEDICINE_COUNT",
+    "POCKET_POKE_BALLS": "BAG_POKEBALLS_COUNT", "POCKET_TM_HM": "BAG_TMHM_COUNT",
+    "POCKET_BERRIES": "BAG_BERRIES_COUNT", "POCKET_KEY_ITEMS": "BAG_KEYITEMS_COUNT",
+    "POCKET_BATTLE_ITEMS": "BAG_BATTLE_ITEMS_COUNT", "POCKET_TREASURES": "BAG_TREASURES_COUNT",
+}
+# Free slots each pocket keeps for the next region's items; what does not fit
+# goes into the PC's item storage.
+POCKET_RESERVE = 20
 
 # Static battles that cannot end in a catch.
 UNCATCHABLE_STATIC = {"SPECIES_MAROWAK"}   # Pokemon Tower ghost
@@ -750,6 +819,18 @@ class Conditions:
         e = self.expand(e).replace("/", "//")
         return bool(eval(e, {"__builtins__": {}}, {}))
 
+    def value(self, expr):
+        """Integer value of an expression of the build's macros."""
+        e = re.sub(r"\b(0[xX][0-9a-fA-F]+|\d+)[uUlL]+\b", r"\1", self.expand(expr)).replace("/", "//")
+        return int(eval(e, {"__builtins__": {}}, {}))
+
+    def pocket(self, name):
+        """The pocket a POCKET_ name stands for (POCKET_TREASURES -> POCKET_ITEMS
+        with combined pockets)."""
+        while self.macros.get(name, "").startswith("POCKET_"):
+            name = self.macros[name]
+        return name
+
     def defined(self, name):
         return name in self.macros
 
@@ -1077,6 +1158,65 @@ def load_item_aliases(cond):
     return aliases
 
 
+def load_item_values():
+    """ITEM_ constant -> number, and number -> constant, of the Item enum (jade build)."""
+    m = re.search(r"enum\s+__attribute__\(\(packed\)\)\s+Item\s*\{(.*?)\n\};", read("include/constants/items.h"), re.S)
+    values, by_number, n = {}, {}, -1
+    for line in re.sub(r"//[^\n]*", "", m.group(1)).split("\n"):
+        em = re.match(r"\s*(\w+)\s*(?:=\s*(\w+))?\s*,", line)
+        if not em:
+            continue
+        name, val = em.groups()
+        if val is None:
+            n += 1
+        elif val.isdigit():
+            n = int(val)
+        elif val in values:
+            n = values[val]
+        else:
+            continue
+        values[name] = n
+        if name.startswith("ITEM_") and not (val or "").startswith("ITEM_"):
+            by_number.setdefault(n, name)
+    return values, by_number
+
+
+def c_item_array(cond, path, name):
+    """ITEM_ constants of a C array initializer (plain or struct entries)."""
+    text = "\n".join(l for _, l in cond.lines(path))
+    m = re.search(r"\b%s\s*\[\s*\w*\s*\]\s*=\s*\{" % re.escape(name), text)
+    if not m:
+        return []
+    body = text[m.end() - 1:match_brace(text, m.end() - 1)]
+    return [i for i in re.findall(r"\bITEM_\w+\b", body) if i != "ITEM_NONE"]
+
+
+def c_array_names(cond, path, pattern):
+    """Names of the C arrays of a file that match pattern."""
+    text = "\n".join(l for _, l in cond.lines(path))
+    return sorted(n for n in re.findall(r"\b(\w+)\s*\[\s*\w*\s*\]\s*=\s*\{", text) if pattern.match(n))
+
+
+def load_match_call_gifts(cond):
+    """Item var -> array of the phone trainers' gifts (HNS_MC_ITEM entries)."""
+    text = "\n".join(l for _, l in cond.lines(MATCH_CALL_FILE))
+    return {var: arr for var, arr in
+            re.findall(r"HNS_MC_ITEM\d\(\s*\w+,\s*\w+,\s*\w+,\s*(VAR_\w+),\s*(\w+)\s*\)", text)}
+
+
+def load_berry_trees(cond):
+    """Berry tree id (number) -> berries planted by the new game's setberrytree."""
+    ids = {}
+    for name, val in re.findall(r"#define\s+(BERRY_TREE_\w+)\s+(\w+)", read("include/constants/berry.h")):
+        ids[name] = int(val) if val.isdigit() else ids.get(val)
+    trees = collections.defaultdict(set)
+    for _, line in cond.lines("data/scripts/new_game.inc"):
+        m = re.match(r"\s*setberrytree\s+(\w+)\s*,\s*ITEM_TO_BERRY\((ITEM_\w+)\)", line)
+        if m and ids.get(m.group(1)) is not None:
+            trees[ids[m.group(1)]].add(m.group(2))
+    return ids, trees
+
+
 def species_constant(name):
     """trainerproc's species name -> SPECIES_ constant."""
     if name.startswith("SPECIES_"):
@@ -1190,11 +1330,14 @@ def load_fly_flags():
                                  text)))
 
 
-def load_bag_limits():
-    """Pocket -> slots of the jade build (include/constants/global.h, IS_HNS)."""
-    text = read("include/constants/global.h")
-    m = re.search(r"#define BAG_KEYITEMS_COUNT (\d+)", text)
-    return {"POCKET_KEY_ITEMS": int(m.group(1)) if m else 60}
+def load_bag_limits(cond):
+    """Pocket -> slots of the jade build (include/constants/global.h); pockets
+    the build combines (I_COMBINE_BAG_POCKETS) under the pocket they join."""
+    limits = {}
+    for pocket, macro in POCKET_SLOTS.items():
+        if pocket == cond.pocket(pocket) and macro in cond.macros:
+            limits[pocket] = cond.value(macro)
+    return limits
 
 
 # ---------------------------------------------------------------------------
@@ -1217,8 +1360,12 @@ class World:
         self.item_aliases = load_item_aliases(self.cond)
         self.cfuncs = oj_world.CFunctions()
         self.legendaries = load_legendaries()
-        self.pockets = load_item_pockets(self.cond)
+        self.pockets = {self.item(i): self.cond.pocket(p) for i, p in load_item_pockets(self.cond).items()}
         self.key_items = {i for i, p in self.pockets.items() if p == "POCKET_KEY_ITEMS"}
+        self.bag_limits = load_bag_limits(self.cond)
+        self.item_values, self.item_by_value = load_item_values()
+        self.match_call_gifts = load_match_call_gifts(self.cond)
+        self.berry_tree_ids, self.berry_trees = load_berry_trees(self.cond)
         self.class_money = load_class_money()
         self.parties = {}
         for path in ("src/data/trainers_frlg.party", "src/data/trainers_hns.party"):
@@ -1311,6 +1458,10 @@ class Run:
         self.item_removed = collections.defaultdict(int)
         self.item_var_gifts = set()
         self.shops = set()
+        self.purchase_items = collections.defaultdict(set)  # item -> purchase labels
+        self.var_gift_sites = []                            # (label, var, file) of gifts through a var
+        self.file_var_items = collections.defaultdict(set)  # (file, VAR) -> ITEM_ values of setvar
+        self.marts = collections.defaultdict(set)           # list label ("0": badge mart) -> labels
         self.breeding = False
         objs = {d["_dir"]: d.get("object_events") or [] for d in self.maps}
 
@@ -1335,6 +1486,22 @@ class Run:
                         self.hoenn_writes[a[0]].add(name)
                     else:
                         self.other_writes.add(a[0])
+        for name in sorted(self.labels):
+            path = self.scripts.labels[name]["file"]
+            for n, cmd, a in self.scripts.labels[name]["cmds"]:
+                if (name, n) in gated:
+                    continue
+                arg = (a[1] if cmd == "giveitem_msg" else a[0]) if len(a) > (cmd == "giveitem_msg") else None
+                if cmd in ("giveitem", "additem", "giveitem_norandom", "giveitem_msg") and arg:
+                    if arg.startswith("ITEM_"):
+                        if name in purchases:
+                            self.purchase_items[self.item(arg)].add(name)
+                    elif arg.startswith("VAR_"):
+                        self.var_gift_sites.append((name, arg, path))
+                elif cmd == "setvar" and len(a) > 1 and a[1].startswith("ITEM_") and a[1] != "ITEM_NONE":
+                    self.file_var_items[(path, a[0])].add(self.item(a[1]))
+                elif cmd == "pokemart" and a:
+                    self.marts[a[0]].add(name)
         for name, cmd, a in self.cmds():
             path = self.scripts.labels[name]["file"]
             mdir = map_dir_of(path)
@@ -1559,13 +1726,21 @@ class Run:
                 if b.get("type") == "hidden_item" and b["item"] != "ITEM_NONE":
                     bag[self.item(b["item"])] += int(b.get("quantity", 1))
         exclusive = self.cfg.get("exclusive_gifts", {})
+        self._once_items()
         for item, by_label in self.item_gifts.items():
-            if item not in SKIP_GIFT_ITEMS:
+            if item in RANDOM_GIFT_ITEMS:
+                self.once[item] |= set(by_label)
+            else:
                 bag[item] += sum(q for label, q in by_label.items() if label not in exclusive)
-        for item, q in self.cfg.get("extra_items", {}).items():
-            bag[self.item(item)] += q
         for item, q in self.item_removed.items():
             bag[item] -= q
+        # Items only clerks behind a challenge option sell: item -> the flag that hides the clerk.
+        self.option_items = {i: next(iter(g)) for i, g in self.once_gates.items()
+                             if len(g) == 1 and None not in g and bag[i] <= 0
+                             and all(src in self.marts for src in self.once[i])}
+        # Purchases and repeatable sources: at least one of each.
+        for item in self.once:
+            bag[item] = max(bag[item], 1)
         # One of each key item and HM: gifts in exclusive branches (e.g. the
         # Route 15 aide's Exp. Share or Small Exp. Share) are all counted above.
         for item in list(bag):
@@ -1574,6 +1749,113 @@ class Run:
         for item in self.cfg.get("skip_items", {}):
             bag.pop(item, None)
         self.bag = {i: q for i, q in sorted(bag.items()) if q > 0}
+
+    def _once_items(self):
+        """Items the bag holds at least once (owner, 2026-11-02): purchases
+        (marts, prize rooms, merchants), gifts through a var (C tables, random
+        picks, script values), berry trees and held items of in-game trades.
+        Sets self.once (item -> sources) and self.once_problems."""
+        w = self.w
+        once = collections.defaultdict(set)
+        gates = collections.defaultdict(set)   # item -> clerk flags of its marts (None: always open)
+        problems = []
+        for item, labels in self.purchase_items.items():
+            once[item] |= labels
+            gates[item].add(None)
+        marts = dict(self.marts)
+        for flag, (_, lists) in FACILITY_ITEMS.items():
+            if self.flags.get(flag) == 1:
+                for lst in lists:
+                    marts[lst] = marts.get(lst, set()) | {flag}
+        for lst, labels in sorted(marts.items()):
+            if lst == "0":
+                items = [i for arr in c_array_names(w.cond, "src/shop.c", BADGE_MART_RE)
+                         for i in c_item_array(w.cond, "src/shop.c", arr)]
+            else:
+                items = []
+                for _, cmd, args in self.scripts.labels.get(lst, {"cmds": []})["cmds"]:
+                    if cmd != ".2byte" or not args or args[0] == "ITEM_NONE":
+                        break
+                    items.append(args[0])
+            if not items:
+                problems.append("mart list %s of %s has no items" % (lst, ", ".join(sorted(labels))))
+            gate = self._clerk_flag(labels)
+            if any(w.pockets.get(self.item(i)) == "POCKET_POKE_BALLS" for i in items):
+                items.append(PREMIER_BALL_BONUS)
+            for i in items:
+                once[self.item(i)].add(lst if lst != "0" else "badge mart")
+                gates[self.item(i)].add(gate)
+        self.var_gift_skipped = set()
+        for label, var, path in self.var_gift_sites:
+            items = []
+            if label in VAR_GIFT_SKIP:
+                self.var_gift_skipped.add(label)
+                continue
+            if label in VAR_GIFT_TABLES:
+                items = [i for p, arr in VAR_GIFT_TABLES[label] for i in c_item_array(w.cond, p, arr)]
+            elif var in w.match_call_gifts:
+                items = c_item_array(w.cond, MATCH_CALL_FILE, w.match_call_gifts[var])
+            else:
+                items = self._random_items(label, var) or sorted(self.file_var_items.get((path, var), ()))
+            if not items:
+                problems.append("%s gives an item through %s that the generator cannot resolve; "
+                                "needs VAR_GIFT_TABLES or VAR_GIFT_SKIP" % (label, var))
+            for i in items:
+                once[self.item(i)].add(label)
+        for label, arrays in C_ITEM_SOURCES.items():
+            if label in self.labels:
+                for p, arr in arrays:
+                    for i in c_item_array(w.cond, p, arr):
+                        once[self.item(i)].add(label)
+        for flag, (arrays, _) in FACILITY_ITEMS.items():
+            if self.flags.get(flag) == 1:
+                for p, pattern in arrays:
+                    for arr in c_array_names(w.cond, p, pattern):
+                        for i in c_item_array(w.cond, p, arr):
+                            once[self.item(i)].add(arr)
+        for d in self.maps:
+            for o in d.get("object_events") or []:
+                if o.get("script") != "BerryTreeScript":
+                    continue
+                tid = str(o.get("trainer_sight_or_berry_tree_id", ""))
+                num = int(tid) if tid.isdigit() else w.berry_tree_ids.get(tid)
+                berries = w.berry_trees.get(num)
+                if not berries:
+                    problems.append("berry tree %s of %s has no berry in new_game.inc" % (tid, d["_dir"]))
+                for b in berries or ():
+                    once[self.item(b)].add("berry tree %s" % d["_dir"])
+        kept = "\n".join(l for _, l in w.cond.lines("src/data/trade.h"))
+        for tid in self.trade_ids:
+            m = re.search(r"\[%s\]\s*=\s*\{(.*?)\n\s*\}," % tid, kept, re.S)
+            hm = re.search(r"\.heldItem\s*=\s*(ITEM_\w+)", m.group(1)) if m else None
+            if hm and hm.group(1) != "ITEM_NONE":
+                once[self.item(hm.group(1))].add(tid)
+        self.once = once
+        self.once_gates = gates
+        self.once_problems = problems
+
+    def _clerk_flag(self, labels):
+        """The flag that hides the clerk of a mart, if the state leaves it at
+        its new game value (a challenge option, UNTOUCHED); else None."""
+        flags = {o.get("flag") for d in self.maps for o in d.get("object_events") or []
+                 if o.get("script") in labels}
+        if len(flags) == 1 and next(iter(flags)) in self.cfg["untouched"]:
+            return next(iter(flags))
+        return None
+
+    def _random_items(self, label, var):
+        """Items of 'random N' and 'addvar var, FIRST' before the gift: FIRST
+        and the N-1 items after it."""
+        n = None
+        for _, cmd, args in self.scripts.labels[label]["cmds"]:
+            if cmd == "random" and args and args[0].isdigit():
+                n = int(args[0])
+            elif cmd == "addvar" and n and len(args) > 1 and args[0] == var:
+                first = self.w.item_values.get(args[1])
+                if first is None:
+                    return []
+                return [self.w.item_by_value[v] for v in range(first, first + n) if v in self.w.item_by_value]
+        return []
 
     def written(self):
         """Every flag and var the run's scripts and specials write."""
@@ -1843,7 +2125,7 @@ def config_a(world):
         "drop_flags": DROP_FLAGS, "manual_flags": MANUAL_FLAGS, "manual_vars": MANUAL_VARS,
         "untouched": UNTOUCHED, "set_by_c": SET_BY_DEBUG_C,
         "trainer_skip": TRAINER_SKIP_RE, "rivals": [KANTO_RIVALS],
-        "new_game_items": True, "start_money": True, "extra_items": EXTRA_ITEMS,
+        "new_game_items": True, "start_money": True,
         # Mewtwo is in the PC (the whole Kanto Pokedex); its cave opens after the title.
         "extra_legendaries": ["LEGENDARY_MEWTWO"],
     }
@@ -1867,7 +2149,7 @@ def config_b(world):
         "untouched": {n: r for n, r in UNTOUCHED_B.items() if n not in MANUAL_FLAGS_B and n not in MANUAL_VARS_B},
         "set_by_c": SET_BY_DEBUG_C_B, "init_labels": INIT_LABELS_B,
         "trainer_skip": TRAINER_SKIP_RE_B, "rivals": [KANTO_RIVALS, JOHTO_RIVALS],
-        "new_game_items": True, "start_money": True, "extra_items": EXTRA_ITEMS,
+        "new_game_items": True, "start_money": True,
         "skip_items": SKIP_ITEMS_B, "exclusive_gifts": EXCLUSIVE_GIFTS_B, "extra_legendaries": [],
     }
 
@@ -1943,11 +2225,51 @@ class States:
         if a.rivals[0]["by_starter"] != b.rivals[0]["by_starter"]:
             self.problems.append("state B: Kanto rival battles differ from state A: %s" % b.rivals[0]["by_starter"])
         self.rival_b = b.rivals[1]["by_starter"]
-        bag = collections.Counter(b.bag)
-        bag.subtract(collections.Counter(a.bag))
+        self.bag_a, self.pc_a = self._split_pc(a.bag, "A")
+        if a.option_items:
+            self.problems.append("state A: items behind a challenge option need an array of their own: %s"
+                                 % sorted(a.option_items))
+        bag_ab, pc_ab = self._split_pc(b.bag, "B")
+        # Items only a clerk behind a challenge option sells: added only while the option allows it.
+        self.option_bag_b = {i: bag_ab.pop(i) for i in sorted(b.option_items) if i in bag_ab}
+        flags = set(b.option_items.values())
+        if len(flags) > 1:
+            self.problems.append("state B: more than one challenge option flag for items: %s" % sorted(flags))
+        self.option_flag_b = next(iter(flags)) if flags else "0"
+        bag = collections.Counter(bag_ab)
+        bag.subtract(collections.Counter(self.bag_a))
         self.bag_add_b = {i: q for i, q in sorted(bag.items()) if q > 0}
         self.bag_remove_b = {i: -q for i, q in sorted(bag.items()) if q < 0}
+        pc = collections.Counter(pc_ab)
+        pc.subtract(collections.Counter(self.pc_a))
+        self.pc_b = {i: q for i, q in sorted(pc.items()) if q > 0}
+        if any(q < 0 for q in pc.values()):
+            self.problems.append("state B: items of state A's PC missing: %s"
+                                 % sorted(i for i, q in pc.items() if q < 0))
         self.money_b = min(b.money, MAX_MONEY)
+
+    def _split_pc(self, bag, name):
+        """(bag, PC items) of a state's items: a pocket keeps POCKET_RESERVE free
+        slots, the rest of it goes into the PC, first the items only purchases
+        and repeatable sources give, highest item number first. Key items and
+        HMs stay in the bag."""
+        w = self.world
+        run = self.a if name == "A" else self.b
+        found = set(run.bag) - set(run.once)
+        bag, pc = dict(bag), {}
+        by_pocket = collections.defaultdict(list)
+        for i in bag:
+            by_pocket[w.pockets.get(i)].append(i)
+        for pocket, items in sorted(by_pocket.items(), key=lambda x: str(x[0])):
+            room = w.bag_limits.get(pocket, 0) - POCKET_RESERVE
+            movable = sorted((i for i in items if pocket != "POCKET_KEY_ITEMS" and not i.startswith("ITEM_HM")
+                              and i not in run.option_items),
+                             key=lambda i: (i in found, -w.item_values.get(i, 0)))
+            while len(items) > room and movable:
+                i = movable.pop(0)
+                items.remove(i)
+                pc[i] = bag.pop(i)
+        return bag, dict(sorted(pc.items()))
 
     def check(self):
         """Every problem --check reports besides a stale header."""
@@ -1996,6 +2318,7 @@ class States:
         out = ["state A: %s" % p for p in self.a.coverage()]
         out += self._check_mons("A", self.dex_a, self.finals_a, self.party_a, self.box_a)
         out += self._check_pickups("A", self.a, self.a.flags, self.a.bag)
+        out += self._check_items("A", self.a, self.bag_a, self.pc_a)
         flags_a = {n for n, v in self.a.flags.items() if v}
         for f in ("FLAG_JOHTO_UNLOCKED", "FLAG_JOHTO_ARRIVAL_DONE"):
             if f in flags_a:
@@ -2018,7 +2341,7 @@ class States:
             out.append("state B: VAR_HOENN_ARRIVAL_STATE unlocks Hoenn (D-049)")
         if vars_ab.get("VAR_HOENN_TICKET_STATE") != "1":
             out.append("state B: VAR_HOENN_TICKET_STATE must be 1, Troy waits in Oak's lab (D-047)")
-        if "ITEM_HOENN_TICKET" in self.a.bag or "ITEM_HOENN_TICKET" in self.bag_add_b:
+        if "ITEM_HOENN_TICKET" in self.b.bag:
             out.append("state B: the Hoenn Ticket is in the bag before Troy's scene")
         if "FLAG_JOHTO_UNLOCKED" not in flags_ab:
             out.append("state B: FLAG_JOHTO_UNLOCKED not set (D-049)")
@@ -2029,15 +2352,57 @@ class States:
         for f in load_fly_flags():
             if f not in flags_ab:
                 out.append("state B: fly destination %s not set" % f)
-        bag_ab = collections.Counter(self.a.bag)
+        bag_ab = collections.Counter(self.bag_a)
         bag_ab.update(self.bag_add_b)
         bag_ab.subtract(self.bag_remove_b)
-        out += self._check_pickups("B", self.b, dict(self.a.flags, **self.flags_b), bag_ab)
+        bag_ab.update(self.option_bag_b)
+        pc_ab = collections.Counter(self.pc_a)
+        pc_ab.update(self.pc_b)
+        out += self._check_pickups("B", self.b, dict(self.a.flags, **self.flags_b), bag_ab + pc_ab)
+        out += self._check_items("B", self.b, {i: q for i, q in bag_ab.items() if q > 0}, dict(pc_ab))
         # Room for the Hoenn Ticket in the key items pocket.
-        limit = load_bag_limits()["POCKET_KEY_ITEMS"]
+        limit = self.world.bag_limits["POCKET_KEY_ITEMS"]
         keys = sum(1 for i, q in bag_ab.items() if q > 0 and self.world.pockets.get(i) == "POCKET_KEY_ITEMS")
         if keys >= limit:
             out.append("state B: %d key items leave no room for the Hoenn Ticket (pocket %d)" % (keys, limit))
+        # Table entries no gift of the run uses (state B's maps include state A's).
+        sites = {label for label, _, _ in self.b.var_gift_sites}
+        for table in (VAR_GIFT_TABLES, VAR_GIFT_SKIP):
+            for label in sorted(set(table) - sites):
+                out.append("%s: listed in %s, but gives no item through a var in the run"
+                           % (label, "VAR_GIFT_TABLES" if table is VAR_GIFT_TABLES else "VAR_GIFT_SKIP"))
+        for label, arrays in sorted(C_ITEM_SOURCES.items()):
+            if label not in self.b.labels:
+                out.append("%s: listed in C_ITEM_SOURCES, but the run does not reach it" % label)
+            for p, arr in arrays:
+                if not c_item_array(self.world.cond, p, arr):
+                    out.append("%s: no items in %s of %s (C_ITEM_SOURCES)" % (label, arr, p))
+        for flag, (arrays, _) in sorted(FACILITY_ITEMS.items()):
+            if self.b.flags.get(flag) != 1:
+                out.append("%s: listed in FACILITY_ITEMS, but state B does not set it" % flag)
+            for p, pattern in arrays:
+                if not any(c_item_array(self.world.cond, p, arr)
+                           for arr in c_array_names(self.world.cond, p, pattern)):
+                    out.append("%s: no prize arrays %s in %s (FACILITY_ITEMS)" % (flag, pattern.pattern, p))
+        return out
+
+    def _check_items(self, name, run, bag, pc):
+        """Every item of the run in the bag or the PC, pockets and PC not over
+        their slots, every source of the once items resolved."""
+        w = self.world
+        out = ["state %s: %s" % (name, p) for p in run.once_problems]
+        for i in sorted(run.bag):
+            if bag.get(i, 0) + pc.get(i, 0) < run.bag[i]:
+                out.append("state %s: %s missing in bag and PC" % (name, i))
+            if w.pockets.get(i) not in w.bag_limits:
+                out.append("state %s: %s has no pocket of this build" % (name, i))
+        used = collections.Counter(w.pockets.get(i) for i in bag)
+        for pocket, n in sorted(used.items(), key=lambda x: str(x[0])):
+            if pocket in w.bag_limits and n > w.bag_limits[pocket]:
+                out.append("state %s: %d items in %s (%d slots)" % (name, n, pocket, w.bag_limits[pocket]))
+        room = w.cond.value("PC_ITEMS_COUNT") - len(c_item_array(w.cond, "src/player_pc.c", "sNewGamePCItems"))
+        if len(pc) > room:
+            out.append("state %s: %d items for the PC, %d slots free" % (name, len(pc), room))
         return out
 
 
@@ -2083,7 +2448,10 @@ def render(states):
     w("};")
     w("")
     c_array(w, "static const struct KantoCompleteItem sKantoCompleteBag[] =",
-            ["{ %s, %d }" % (i, q) for i, q in run.bag.items()])
+            ["{ %s, %d }" % (i, q) for i, q in states.bag_a.items()])
+    w("// PC item storage: what does not fit into the bag's pockets.")
+    c_array(w, "static const struct KantoCompleteItem sKantoCompletePcItems[] =",
+            ["{ %s, %d }" % (i, q) for i, q in states.pc_a.items()])
     w("// Party: the chosen starter's final stage first.")
     c_array(w, "static const struct KantoCompleteMon sKantoCompleteParty[] =",
             ["{ %s, %d }" % (s, lv) for s, lv in states.party_a])
@@ -2125,6 +2493,13 @@ def render_b(states):
     w("// Items of state A used up later.")
     c_array(w, "static const struct KantoCompleteItem sJohtoCompleteBagRemove[] =",
             ["{ %s, %d }" % (i, q) for i, q in states.bag_remove_b.items()])
+    w("// PC item storage: what does not fit into the bag's pockets.")
+    c_array(w, "static const struct KantoCompleteItem sJohtoCompletePcItems[] =",
+            ["{ %s, %d }" % (i, q) for i, q in states.pc_b.items()])
+    w("// Sold only by a clerk a challenge option hides: added while this flag is clear.")
+    w("#define JOHTO_COMPLETE_OPTION_FLAG %s" % states.option_flag_b)
+    c_array(w, "static const struct KantoCompleteItem sJohtoCompleteOptionBag[] =",
+            ["{ %s, %d }" % (i, q) for i, q in states.option_bag_b.items()])
     c_array(w, "static const struct KantoCompleteMon sJohtoCompleteParty[] =",
             ["{ %s, %d }" % (s, lv) for s, lv in states.party_b])
     w("// PC: the other final stages of the Kanto and Johto lines (every branch).")
@@ -2320,6 +2695,19 @@ def summary(states):
           "PC %d, seen only %d" % (len(states.flags_b), len(states.vars_b), len(states.trainers_b),
                                    len(states.bag_add_b), len(states.bag_remove_b), states.money_b,
                                    len(states.dex_b), len(states.party_b), len(states.box_b), len(states.seen_b)))
+    for name, run, bag, pc in (("A", states.a, states.bag_a, states.pc_a), ("B", states.b, None, states.pc_b)):
+        if bag is None:
+            bag = collections.Counter(states.bag_a)
+            bag.update(states.bag_add_b)
+            bag.subtract(states.bag_remove_b)
+            bag.update(states.option_bag_b)
+            bag = {i: q for i, q in bag.items() if q > 0}
+        used = collections.Counter(states.world.pockets.get(i) for i in bag)
+        print("state %s items: %d, %d of them once (purchases, repeatable sources); pockets %s; PC items %s"
+              % (name, len(run.bag), len(run.once),
+                 ", ".join("%s %d/%d" % (p[len("POCKET_"):], used[p], n)
+                           for p, n in sorted(states.world.bag_limits.items())),
+                 ", ".join("%s %d" % x for x in pc.items()) or "none"))
     for name, run in (("A", states.a), ("B", states.b)):
         for w in run.warnings:
             print("warning (state %s): %s" % (name, w), file=sys.stderr)

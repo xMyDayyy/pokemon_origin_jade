@@ -1931,7 +1931,7 @@ static void ResetForDebugState(void)
     ResetPokedex();
 }
 
-// Flags, vars, trainers, bag and money right after the first Kanto Hall of Fame.
+// Flags, vars, trainers, bag, PC items and money right after the first Kanto Hall of Fame.
 static void ApplyKantoCompleteStory(void)
 {
     u32 i;
@@ -1952,6 +1952,8 @@ static void ApplyKantoCompleteStory(void)
 
     for (i = 0; i < ARRAY_COUNT(sKantoCompleteBag); i++)
         AddBagItem(sKantoCompleteBag[i].item, sKantoCompleteBag[i].quantity);
+    for (i = 0; i < ARRAY_COUNT(sKantoCompletePcItems); i++)
+        AddPCItem(sKantoCompletePcItems[i].item, sKantoCompletePcItems[i].quantity);
     SetMoney(&gSaveBlock1Ptr->money, KANTO_COMPLETE_MONEY);
 }
 
@@ -1977,6 +1979,13 @@ static void ApplyJohtoCompleteStory(void)
         RemoveBagItem(sJohtoCompleteBagRemove[i].item, sJohtoCompleteBagRemove[i].quantity);
     for (i = 0; i < ARRAY_COUNT(sJohtoCompleteBag); i++)
         AddBagItem(sJohtoCompleteBag[i].item, sJohtoCompleteBag[i].quantity);
+    for (i = 0; i < ARRAY_COUNT(sJohtoCompletePcItems); i++)
+        AddPCItem(sJohtoCompletePcItems[i].item, sJohtoCompletePcItems[i].quantity);
+    if (!FlagGet(JOHTO_COMPLETE_OPTION_FLAG))
+    {
+        for (i = 0; i < ARRAY_COUNT(sJohtoCompleteOptionBag); i++)
+            AddBagItem(sJohtoCompleteOptionBag[i].item, sJohtoCompleteOptionBag[i].quantity);
+    }
     SetMoney(&gSaveBlock1Ptr->money, JOHTO_COMPLETE_MONEY);
 }
 
