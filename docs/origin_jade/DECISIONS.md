@@ -453,25 +453,26 @@ dated 2026-10-10 or later were decided directly.
   f89324b8d2, 42058c2f69, 2e9792740c; audit 2026-10-30 (A44, A89, A95, A96).
 
 ### D-017 Saves and migrations
-- **Status:** Active (changed 2026-10-30: budget, layout guards)
+- **Status:** Active (changed 2026-10-30: budget, layout guards; changed
+  2026-11-02: SaveBlock3 holds Kanto's and Johto's Day Cares, D-052)
 - **Rules:** The save layout freezes with the release; until then it may
   grow deliberately (2cbf85903d). One-time migrations of Origin Jade run in
   `LoadGameSave` (`src/save.c`) and are keyed to a flag from the Origin Jade
   block, which new games set right away - never through `SAVE_VERSION`:
   that number belongs to HnS upstream and is bumped there.
-- **Budget** (2026-10-31; `python3 tools/check_budget.py` prints it after a
+- **Budget** (2026-11-02; `python3 tools/check_budget.py` prints it after a
   build): SaveBlock1 15868 of 15872 bytes (4 free), SaveBlock2 3892 of 3968
-  (76 free), SaveBlock3 1008 of 1624 (616 free), PokemonStorage 34144 of
-  35712 (1568 free). The limits are the flash space `src/save.c` checks
+  (76 free), SaveBlock3 1584 of 1624 (40 free; 1008 before the Day Cares of
+  D-052), PokemonStorage 34144 of 35712 (1568 free). The limits are the flash space `src/save.c` checks
   with `STATIC_ASSERT`; new Origin Jade data goes to SaveBlock3 (D-016).
   SaveBlock1 reserves that can be reused in place without moving offsets:
   `roamerPadding` (84 bytes), `dexPadding1` and `dexPadding2` (63 each),
-  `unused_9C6` (2), `outbreakUnused1/2/3`. Memory: EWRAM 249180 of 262144
-  bytes (95.05 %, of which `gHeap` 115968), IWRAM 25704 of 32768
-  (78.44 %), ROM 25897336 of 33554432 (77.18 %).
+  `unused_9C6` (2), `outbreakUnused1/2/3`. Memory: EWRAM 249756 of 262144
+  bytes (95.27 %, of which `gHeap` 115968), IWRAM 25704 of 32768
+  (78.44 %), ROM 25892184 of 33554432 (77.16 %).
 - **Layout guards and reserves (2026-10-30):**
   - Sizes: SaveBlock1 15868 of 15872 bytes (4 free), SaveBlock2 3892,
-    SaveBlock3 1008 of 1624 (616 free), PokemonStorage 34144. `test/save.c`
+    SaveBlock3 1584 of 1624 (40 free), PokemonStorage 34144. `test/save.c`
     checks these sizes; the build checks the limits.
   - SaveBlock3: new fields only at its end. The offsets of the Origin Jade
     fields are pinned by STATIC_ASSERTs in `src/save.c`. The config
@@ -1773,6 +1774,36 @@ dated 2026-10-10 or later were decided directly.
   `NewBarkTown_OnFrame` (`NewBarkTown_EventScript_ElmCallAfterLeague`).
 - **Evidence:** owner answers 2026-10-31 (S-02, S-07) and 2026-11-02
   (O-036: as in HnS).
+### D-052 Day Cares per region
+- **Status:** Active (2026-11-02, owner decision 2026-10-31)
+- **Decision:** Kanto (Route 5), Johto (Route 34) and Hoenn (Route 117)
+  each have their own Day Care; Pokemon, steps and eggs left in one region
+  stay there (owner: no shared storage).
+  - The Day Care scripts and specials work on the Day Care of the current
+    map's region (`GetCurrentDaycare`, `src/daycare.c`, by
+    `GetCurrentRegion`).
+  - Storage: Hoenn's is Emerald's `gSaveBlock1Ptr->daycare` (SaveBlock1
+    has 4 bytes left); Kanto's and Johto's are `daycareKanto` and
+    `daycareJohto` at the end of SaveBlock3, word arrays of 288 bytes
+    holding a `struct DayCare` (size checked in `src/daycare.c`, offsets
+    pinned in `src/save.c`). The save layout changed: SaveBlock3 grows from
+    1008 to 1584 of 1624 bytes (40 left, D-017). Old saves are out of scope
+    (owner), there is no migration.
+  - Every step counts in all three: their Pokemon gain steps and can lay an
+    egg wherever the player walks (`ShouldEggHatch`). Eggs in the party
+    hatch on the step counter of SaveBlock1's Day Care, as before.
+  - `FLAG_PENDING_DAYCARE_EGG` stays Hoenn's (it puts Route 117's Day Care
+    man at the fence); Kanto's and Johto's eggs set no flag, and their
+    scripts no longer clear it (they read `GetDaycareState`).
+  - Record mixing (a link feature) exchanges the mail of Hoenn's Day Care
+    only, as in Emerald.
+  - Unchanged: the Oval Charm at every Day Care (D-036), the region rule
+    for eggs (D-049).
+- **Code:** `GetCurrentDaycare`, `GetRegionDaycare`, `TryProduceEgg`,
+  `ShouldEggHatch` (`src/daycare.c`); `struct SaveBlock3`
+  (`include/global.h`); `Route5_Frlg`, `Route34_DayCare_hns`; test
+  `test/origin_jade/daycares.c`.
+- **Evidence:** owner answers 2026-10-31 (S-16, O-020).
 
 ---
 
@@ -1857,9 +1888,8 @@ dated 2026-10-10 or later were decided directly.
 - **O-019** Resolved 2026-10-26: Surskit, Roselia, Zangoose and Lunatone are
   wild in Hoenn; Masquerain, Budew and Roserade follow by level, breeding and
   the Shiny Stone (D-037).
-- **O-020** The Day Cares of Route 5, Route 34 and Route 117 share one save
-  slot (`gSaveBlock1Ptr->daycare`, `FLAG_PENDING_DAYCARE_EGG`): Pokemon and
-  eggs left in one region can be collected in the others.
+- **O-020** Resolved 2026-11-02: each region has its own Day Care (owner,
+  D-052).
 - **O-021** Bill's PC name: `FLAG_SYS_PC_LANETTE` from Bill's Sea Cottage
   names the storage "Bills PC" in Kanto, Johto and Hoenn alike (Lanette on
   Route 114 sets the same flag). HnS's "Jemandes PC" until Ecruteak and

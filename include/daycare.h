@@ -12,6 +12,7 @@ struct RecordMixingDaycareMail
 
 u8 *GetMonNicknameVanilla(struct Pokemon *mon, u8 *dest);
 u8 *GetBoxMonNickname(struct BoxPokemon *mon, u8 *dest);
+struct DayCare *GetCurrentDaycare(void);
 u8 CountPokemonInDaycare(struct DayCare *daycare);
 void InitDaycareMailRecordMixing(struct DayCare *daycare, struct RecordMixingDaycareMail *mixMail);
 s8 Daycare_FindEmptySpot(struct DayCare *daycare);

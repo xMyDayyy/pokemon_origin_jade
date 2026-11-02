@@ -287,7 +287,6 @@ Route34_EventScript_DaycareEggWaiting::
 	msgbox Route34_Text_IWillKeepDoYouWantIt, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, Route34_EventScript_DaycareAcceptEgg
 	msgbox Route34_Text_IllKeepIt, MSGBOX_DEFAULT
-	clearflag FLAG_PENDING_DAYCARE_EGG
 	special RejectEggFromDayCare
 	release
 	end
@@ -307,7 +306,6 @@ Route34_EventScript_DaycareReceiveEgg::
 	waitbuttonpress
 	msgbox Route34_Text_TakeGoodCareOfIt, MSGBOX_DEFAULT
 	special GiveEggFromDaycare
-	clearflag FLAG_PENDING_DAYCARE_EGG
 	call_if_unset FLAG_RECEIVED_OVAL_CHARM, DayCare_EventScript_GiveOvalCharm
 	release
 	end

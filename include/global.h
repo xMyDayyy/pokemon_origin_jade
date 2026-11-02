@@ -342,6 +342,9 @@ struct ChallengeSettings
     u8 tx_Features_RtcSpeed:2;
 };
 
+// Words of one struct DayCare kept in SaveBlock3 (checked in src/daycare.c).
+#define DAYCARE_SAVE_WORDS 72
+
 struct SaveBlock3
 {
     struct SiiRtcInfo fakeRTC;
@@ -382,6 +385,10 @@ struct SaveBlock3
     // in SaveBlock1 belong to the HnS hill by Route 40.
     u32 trainerHillTimesHoenn[NUM_TRAINER_HILL_MODES];
 #endif
+    // Origin Jade: Day Cares of Kanto (Route 5) and Johto (Route 34), each a struct DayCare
+    // (GetCurrentDaycare, src/daycare.c); gSaveBlock1Ptr->daycare is Hoenn's (Route 117).
+    u32 daycareKanto[DAYCARE_SAVE_WORDS];
+    u32 daycareJohto[DAYCARE_SAVE_WORDS];
     // Origin Jade: append new fields here, at the end (save layout).
 #endif
 }; /* max size 1624 bytes */

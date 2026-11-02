@@ -115,6 +115,8 @@ STATIC_ASSERT(offsetof(struct SaveBlock3, flagsOj) == 669, SaveBlock3FlagsOjPinn
 STATIC_ASSERT(offsetof(struct SaveBlock3, varsOj) == 734, SaveBlock3VarsOjPinned);
 #if FREE_TRAINER_HILL == FALSE
 STATIC_ASSERT(offsetof(struct SaveBlock3, trainerHillTimesHoenn) == 992, SaveBlock3TrainerHillHoennPinned);
+STATIC_ASSERT(offsetof(struct SaveBlock3, daycareKanto) == 1008, SaveBlock3DaycareKantoPinned);
+STATIC_ASSERT(offsetof(struct SaveBlock3, daycareJohto) == 1296, SaveBlock3DaycareJohtoPinned);
 #endif
 #endif
 

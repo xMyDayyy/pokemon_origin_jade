@@ -6,6 +6,7 @@
 #include "berry.h"
 #include "data.h"
 #include "debug.h"
+#include "daycare.h"
 #include "decoration.h"
 #include "decompress.h"
 #include "event_data.h"
@@ -11855,7 +11856,7 @@ void GetDaycareGraphics(struct ScriptContext *ctx)
 
     for (i = 0; i < 2; i++)
     {
-        GetMonInfo((struct Pokemon *) &gSaveBlock1Ptr->daycare.mons[i].mon, &specGfx, &shiny, &female);
+        GetMonInfo((struct Pokemon *) &GetCurrentDaycare()->mons[i].mon, &specGfx, &shiny, &female);
         if (specGfx == SPECIES_NONE)
             break;
         // Assemble gfx ID like FollowerSetGraphics

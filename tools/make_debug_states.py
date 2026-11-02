@@ -215,7 +215,7 @@ MANUAL_FLAGS = {
     # Hidden on the next Vermilion visit after talking to Oak's aide.
     "FLAG_HIDE_VERMILION_CITY_OAKS_AIDE": 1,
     "FLAG_IN_KANTO_SAFARI_ZONE": 0, "FLAG_POKEMON_MANSION_SWITCH_STATE": 0,
-    "FLAG_SYS_ON_CYCLING_ROAD": 0, "FLAG_PENDING_DAYCARE_EGG": 0,
+    "FLAG_SYS_ON_CYCLING_ROAD": 0,
     # Mom's first call has rung (Common_EventScript_HnsMomCall, started from C).
     "FLAG_HNS_MOM_CALL_PENDING": 0,
     # Power Plant Electrode fought: removeobject sets the hide flags.
@@ -396,7 +396,6 @@ SHARED_ON_PURPOSE = {
     "FLAG_CAUGHT_MEW": "one Mew, caught means gone for good (D-026)",
     "FLAG_DEFEATED_MEW": "one Mew, caught means gone for good (D-026)",
     "FLAG_RECEIVED_OVAL_CHARM": "one Oval Charm from the first Day Care egg (D-036)",
-    "FLAG_PENDING_DAYCARE_EGG": "Day Care egg state, whole game",
     "FLAG_DONT_TRANSITION_MUSIC": "engine flag around warps",
     "FLAG_SYS_ON_CYCLING_ROAD@alias": "FLAG_SYS_CYCLING_ROAD, Emerald name of the same flag",
     "FLAG_HAS_MATCH_CALL@hoenn": "one PokeCom with Match Call from Pallet Town; Hoenn registers trainers on it (D-005)",

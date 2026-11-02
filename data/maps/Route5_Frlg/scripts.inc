@@ -33,7 +33,10 @@ Route5_EventScript_DaycareEggWaiting::
 	msgbox DayCare_Text_IWillKeepDoYouWantIt, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, Route5_EventScript_DaycareAcceptEgg
 	msgbox DayCare_Text_IllKeepIt
+	@ Origin Jade: FLAG_PENDING_DAYCARE_EGG belongs to Route 117's Day Care (D-052).
+#if !IS_HNS
 	clearflag FLAG_PENDING_DAYCARE_EGG
+#endif
 	special RejectEggFromDayCare
 	release
 	end
@@ -54,7 +57,9 @@ Route5_EventScript_DaycareReceivedEgg::
 	waitbuttonpress
 	msgbox DayCare_Text_TakeGoodCareOfIt
 	special GiveEggFromDaycare
+#if !IS_HNS
 	clearflag FLAG_PENDING_DAYCARE_EGG
+#endif
 	call_if_unset FLAG_RECEIVED_OVAL_CHARM, DayCare_EventScript_GiveOvalCharm
 	release
 	end

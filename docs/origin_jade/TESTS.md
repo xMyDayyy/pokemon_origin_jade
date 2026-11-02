@@ -118,6 +118,9 @@ var number without storage (D-016).
   Pokemon, Johto and Hoenn locked or unlocked, badges, Troy's
   `VAR_HOENN_TICKET_STATE` 1 and room for the Hoenn Ticket, a picked-up
   TM and fossil of Johto, `FLAG_MINTS_DISABLED` as the new game set it.
+- `test/origin_jade/daycares.c`: Kanto's, Johto's and Hoenn's Day Cares
+  keep their own Pokemon, and a pair in Johto's lays its egg there without
+  touching Hoenn's `FLAG_PENDING_DAYCARE_EGG`. D-052.
 - `test/save.c`: save block sizes of Origin Jade (D-017).
 
 The tests read the bands from `include/config/*_scaling.h`. They use
