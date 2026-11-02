@@ -1879,6 +1879,17 @@ dated 2026-10-10 or later were decided directly.
     (`src/data/trainers_frlg.party`, D-015).
     Kanto's first-run bosses are not scaled and keep FireRed's sets
     (D-011); Troy and Red: below.
+  - Every other trainer Pokemon only knows moves its species (or a
+    pre-evolution) can learn in this game: level-up in either learnset
+    option, a TM, HM or tutor of this game's data, or an egg move (B-02).
+    244 moves of 156 Pokemon in all four party files were replaced by a
+    learnable move of a similar role (same type and category and similar
+    power, or the same kind of status move, preferring level-up moves up
+    to the Pokemon's level), locked content included (Sinjoh, Alola,
+    HnS's retired Kanto teams). Owen's Nidorino and Nidorina had each
+    other's moves and swap them back. Pokemon of disabled species
+    (regional forms in locked content) have no learnsets in this build
+    and keep their moves.
   - May and Wally count as bosses (+1 on the ace) like Silver and Blue:
     `TRAINER_CLASS_RIVAL` is a boss class in `IsBossTrainer`
     (`src/level_scaling.c`). Brendan's teams (unused, D-003) and Troy

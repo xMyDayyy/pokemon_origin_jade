@@ -9442,7 +9442,7 @@ Aerodactyl @ Hard Stone
 Level: 66
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Ancient Power
-- Sky Attack
+- Fly
 - Earthquake
 - Fire Fang
 
@@ -9467,8 +9467,8 @@ Level: 66
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Hydro Pump
 - Rock Slide
-- Curse
-- Thunderbolt
+- Harden
+- Surf
 
 Kleavor @ Quick Claw
 Level: 66
@@ -9586,7 +9586,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Thunderbolt
 - Fire Punch
 - Ice Punch
-- Submission
+- Brick Break
 
 Raichu @ Magnet
 Level: 60
@@ -9687,7 +9687,7 @@ Level: 64
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Rest
 - Sleep Talk
-- Submission
+- Drain Punch
 - Surf
 
 Wobbuffet @ Leftovers
@@ -9704,7 +9704,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Psychic
 - Morning Sun
 - Future Sight
-- Power Gem
+- Shadow Ball
 
 Alakazam @ Twisted Spoon
 Level: 66
@@ -9814,7 +9814,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Flamethrower
 - Recover
 - Amnesia
-- Hypnosis
+- Yawn
 
 Torkoal @ White Herb
 Level: 67
@@ -9906,14 +9906,14 @@ Articuno @ Sitrus Berry
 Level: 69
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Ice Beam
-- Sky Attack
+- Fly
 - Rest
 - Toxic
 
 Alakazam @ Twisted Spoon
 Level: 68
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Thunderbolt
+- Shock Wave
 - Recover
 - Psychic
 - Shadow Ball
@@ -9940,13 +9940,13 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Hydro Pump
 - Double Team
 - Body Slam
-- Reversal
+- Rock Smash
 
 Arcanine @ Silk Scarf
 Level: 69
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Flamethrower
-- Curse
+- Agility
 - Crunch
 - Extreme Speed
 
@@ -10556,7 +10556,7 @@ Level: 68
 - Waterfall
 - Earthquake
 - Dragon Dance
-- Dragon Rush
+- Dragon Pulse
 
 Charizard @ Leftovers
 Level: 68
@@ -10914,7 +10914,7 @@ Level: 64
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hammer Arm
 - Moonblast
-- Ancient Power
+- Rock Tomb
 - Rest
 
 Crobat @ Leftovers
@@ -11326,7 +11326,7 @@ Level: 64
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hammer Arm
 - Moonblast
-- Ancient Power
+- Rock Tomb
 - Rest
 
 Crobat @ Leftovers
@@ -11738,7 +11738,7 @@ Level: 64
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hammer Arm
 - Moonblast
-- Ancient Power
+- Rock Tomb
 - Rest
 
 Crobat @ Leftovers
@@ -11930,7 +11930,7 @@ Level: 27
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 - Thunder Wave
 - Sonic Boom
-- Body Slam
+- Headbutt
 - Thunderbolt
 
 === TRAINER_GIOVANNI_HNS ===
@@ -12219,7 +12219,7 @@ Level: 39
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Tri Attack
 - Zap Cannon
-- Flamethrower
+- Thunderbolt
 - Ice Beam
 
 Tauros
@@ -12235,7 +12235,7 @@ Level: 39
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Bite
 - Strength
-- Gust
+- Whirlpool
 - Surf
 
 Houndoom
@@ -12270,7 +12270,7 @@ Level: 39
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Tri Attack
 - Zap Cannon
-- Flamethrower
+- Thunderbolt
 - Ice Beam
 
 Tauros
@@ -12286,7 +12286,7 @@ Level: 39
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Bite
 - Strength
-- Gust
+- Whirlpool
 - Surf
 
 Houndoom
@@ -12866,13 +12866,13 @@ Level: 48
 - Waterfall
 - Megahorn
 - Rain Dance
-- Drill Peck
+- Poison Jab
 
 Tentacruel
 Level: 45
 - Sludge Bomb
 - Surf
-- Acid Armor
+- Barrier
 - Ice Beam
 
 === TRAINER_RALPH_5_HNS ===
@@ -12896,13 +12896,13 @@ Level: 58
 - Waterfall
 - Megahorn
 - Rain Dance
-- Drill Peck
+- Poison Jab
 
 Tentacruel
 Level: 55
 - Sludge Bomb
 - Surf
-- Acid Armor
+- Barrier
 - Ice Beam
 
 === TRAINER_LIZ_2_HNS ===
@@ -15263,7 +15263,7 @@ Ability: Drizzle
 Level: 63   
 Bold Nature  
 IVs: 0 Atk  
-- Weather Ball  
+- Swift
 - Icy Wind  
 - Whirlpool  
 - Perish Song  
@@ -15273,7 +15273,7 @@ Ability: Swift Swim
 Level: 63    
 Modest Nature  
 IVs: 0 Atk  
-- Hurricane  
+- Air Slash
 - Water Pulse  
 - Signal Beam  
 - Aqua Ring  
@@ -15306,22 +15306,22 @@ Level: 63
 IVs: 0 Atk  
 - Surf  
 - Ice Beam  
-- Feather Dance  
+- Growl
 - Shock Wave  
 
 Poliwrath @ Life Orb  
 Ability: Water Absorb  
 Level: 63  
-- Darkest Lariat  
+- Thief
 - Drain Punch  
-- Liquidation  
-- Power-Up Punch  
+- Waterfall
+- Rock Smash
 
 Huntail @ White Herb  
 Ability: Water Veil  
 Level: 68  
 - Shell Smash  
-- Super Fang  
+- Facade
 - Waterfall  
 - Scary Face  
 
@@ -15342,15 +15342,15 @@ EVs: 140 HP / 204 Atk / 104 Def / 60 SpD
 Adamant Nature  
 - Dive  
 - Avalanche  
-- Curse  
+- Harden
 - Recover  
 
 Seaking @ King's Rock  
 Ability: Lightning Rod  
 Level: 67    
-- Drill Run  
-- Acupressure  
-- Scale Shot  
+- Waterfall
+- Supersonic
+- Peck
 - Tail Whip  
 
 Golduck @ Scope Lens  
@@ -15381,7 +15381,7 @@ IVs: 0 Spe
 - Liquidation  
 - Head Smash  
 - Recover  
-- Sucker Punch  
+- Flail
 
 Octillery @ Leftovers  
 Ability: Moody  
@@ -15396,9 +15396,9 @@ Ability: Water Absorb
 Level: 66      
 Careful Nature  
 - Mirror Coat  
-- Seed Bomb  
-- Aqua Tail  
-- Rock Blast  
+- Bounce
+- Waterfall
+- Rock Tomb
 
 === TRAINER_AKALA_SWIMMER_3_HNS ===
 Name: Geoff
@@ -15412,8 +15412,8 @@ AI: Check Bad Move
 Tentacruel  
 Ability: Liquid Ooze  
 Level: 64
-- Gunk Shot  
-- Flip Turn  
+- Poison Jab
+- Water Pulse
 - Toxic Spikes  
 - Rapid Spin  
 
@@ -15422,7 +15422,7 @@ Ability: Moxie
 Level: 64 
 - Crunch  
 - Earthquake  
-- Rage  
+- Tackle
 - Scary Face  
 
 Kingdra @ Scope Lens  
@@ -15452,7 +15452,7 @@ EVs: 252 Def / 248 Spe
 Timid Nature  
 - Scald  
 - Draining Kiss  
-- Bind  
+- Facade
 - Confuse Ray  
 
 Luvdisc  
@@ -15462,8 +15462,8 @@ EVs: 252 Spe
 Jolly Nature  
 - Charm  
 - Captivate  
-- Flip Turn  
-- Wish  
+- Water Pulse
+- Aqua Ring
 
 Milotic (F)  
 Ability: Cute Charm  
@@ -15511,7 +15511,7 @@ Ability: Sheer Force
 Level: 65 
 EVs: 8 HP / 248 Atk / 252 SpD  
 - Crabhammer  
-- Hone Claws  
+- Harden
 - Dig  
 - Guillotine  
 
@@ -15531,7 +15531,7 @@ Ability: Levitate
 Level: 63   
 IVs: 0 Atk  
 - Cosmic Power  
-- Stored Power  
+- Confusion
 - Calm Mind  
 - Power Gem  
 
@@ -15540,8 +15540,8 @@ Ability: Levitate
 Level: 63   
 IVs: 0 Atk  
 - Sunny Day  
-- Weather Ball  
-- Morning Sun  
+- Swift
+- Rest
 - Solar Beam  
 
 Magmar @ Eviolite  
@@ -15569,7 +15569,7 @@ Level: 64
 IVs: 0 Atk  
 - Venoshock  
 - Toxic  
-- Iron Defense  
+- Harden
 - Quiver Dance  
 
 Pinsir @ Life Orb  
@@ -15578,15 +15578,15 @@ Level: 61
 - Storm Throw  
 - X-Scissor  
 - Guillotine  
-- Curse  
+- Swords Dance
 
 Ludicolo  
 Ability: Rain Dish  
 Level: 63
 - Teeter Dance  
 - Scald  
-- Trailblaze  
-- Encore  
+- Razor Leaf
+- Growl
 
 
 
@@ -15605,14 +15605,14 @@ Level: 63
 - Boomburst  
 - Brave Bird  
 - Roost  
-- Tailwind  
+- Growl
 
 Beedrill @ Scope Lens  
 Ability: Sniper  
 Level: 65  
 - Poison Jab  
-- Drill Run  
-- Outrage  
+- X Scissor
+- Double Edge
 - Fell Stinger  
 
 Dustox  
@@ -15640,16 +15640,16 @@ Ability: Hyper Cutter
 Level: 61  
 - Close Combat  
 - Double-Edge  
-- Outrage  
+- Thrash
 - Rock Slide  
 
 Scyther @ Eviolite  
 Ability: Technician  
 Level: 63 
-- Psycho Cut  
+- Slash
 - Steel Wing  
 - Roost  
-- Bug Bite  
+- X Scissor
 
 
 
@@ -15666,9 +15666,9 @@ Butterfree @ Bright Powder
 Ability: Compound Eyes  
 Level: 64   
 IVs: 0 Atk  
-- Hurricane  
+- Air Slash
 - Quiver Dance  
-- Signal Beam  
+- Silver Wind
 - Sleep Powder  
 
 Heracross @ Flame Orb  
@@ -15676,7 +15676,7 @@ Ability: Guts
 Level: 61  
 - Facade  
 - Close Combat  
-- Throat Chop  
+- Night Slash
 - Megahorn  
 
 
@@ -15711,7 +15711,7 @@ Ability: Harvest
 Level: 62   
 - Dragon Dance  
 - Dragon Hammer  
-- Petal Blizzard  
+- Leaf Blade
 - Safeguard  
 
 
@@ -15729,7 +15729,7 @@ Primeape
 Ability: Anger Point  
 Level: 61  
 - Cross Chop  
-- Curse  
+- Work Up
 - Rage Fist  
 - Ice Punch  
 
@@ -15765,14 +15765,14 @@ Ability: Scrappy
 Level: 62  
 Happiness: 254  
 - Return  
-- Power-Up Punch  
-- Beat Up  
+- Rock Smash
+- Bite
 - Disable  
 
 Solrock  
 Ability: Levitate  
 Level: 64  
-- Ancient Power  
+- Rock Throw
 - Acrobatics  
 - Flamethrower  
 - Reflect  
@@ -15797,9 +15797,9 @@ Swellow
 Ability: Scrappy  
 Level: 61  
 IVs: 0 Atk  
-- Heat Wave  
-- Air Cutter  
-- Feather Dance  
+- Air Slash
+- Wing Attack
+- Growl
 - Supersonic  
 
 Tangela @ Eviolite  
@@ -15814,7 +15814,7 @@ IVs: 0 Atk
 Miltank  
 Ability: Thick Fat  
 Level: 61  
-- Retaliate  
+- Stomp
 - Earthquake  
 - Heal Bell  
 - Milk Drink  
@@ -15844,7 +15844,7 @@ Level: 61
 - Brutal Swing  
 - Bullet Punch  
 - Swords Dance  
-- Sand Tomb  
+- Double Hit
 
 Leafeon @ Sitrus Berry  
 Ability: Leaf Guard  
@@ -15871,7 +15871,7 @@ Level: 62
 - Ice Fang  
 - Play Rough  
 - Stealth Rock  
-- Psychic Fangs  
+- Iron Head
 
 Magmar @ Sitrus Berry  
 Ability: Flame Body  
@@ -15879,7 +15879,7 @@ Level: 63
 - Fire Punch  
 - Belly Drum  
 - Mach Punch  
-- Dual Chop  
+- Rock Smash
 
 Electivire @ Zoom Lens  
 Ability: Motor Drive  
@@ -15888,7 +15888,7 @@ Brave Nature
 IVs: 0 Spe  
 - Thunder Punch  
 - Dynamic Punch  
-- Charge  
+- Thunder Wave
 - Barrier  
 
 
@@ -15905,7 +15905,7 @@ AI: Check Bad Move
 Skarmory  
 Ability: Keen Eye  
 Level: 61 
-- Iron Defense  
+- Agility
 - Autotomize  
 - Drill Peck  
 - Rock Slide  
@@ -15916,7 +15916,7 @@ Level: 64
 Happiness: 0  
 - Frustration  
 - Close Combat  
-- Lash Out  
+- Assurance
 - Taunt  
 
 Tauros @ Life Orb  
@@ -15924,8 +15924,8 @@ Ability: Sheer Force
 Level: 63 
 - Wild Charge  
 - Bulldoze  
-- Raging Bull  
-- Focus Energy  
+- Take Down
+- Work Up
 
 
 
@@ -15946,7 +15946,7 @@ IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 156 HP / 0 Atk / 100 Def / 0 SpA / 252 SpD / 0 Spe
 - Milk Drink
 - Curse
-- Body Press 
+- Wake Up Slap
 - Protect
 
 Miltank @ Charcoal
@@ -15956,7 +15956,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 4 SpD / 0 Spe
 - Milk Drink
 - Fire Punch
-- Iron Head
+- Gyro Ball
 - Stealth Rock
 
 Miltank @ Leftovers
@@ -15976,7 +15976,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 4 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 - Milk Drink
 - Defense Curl
-- Body Press 
+- Wake Up Slap
 - RollOut
 
 Miltank @ Lagging Tail
@@ -15997,7 +15997,7 @@ EVs: 4 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 - Milk Drink
 - Double-Edge
 - Play Rough 
-- Power-Up Punch
+- Rock Smash
 
 === TRAINER_MIHARU_HNS ===
 Name: Miharu
@@ -16037,7 +16037,7 @@ Modest Nature
 IVs: 0 Atk  
 - Synchronoise
 - Blizzard  
-- Chilling Water  
+- Water Pulse
 - Shadow Ball 
 
 === TRAINER_SHIZUKO_HNS ===
@@ -16056,10 +16056,10 @@ Level: 70
 Happiness: 254   
 EVs: 124 HP / 252 Atk / 132 Def  
 Adamant Nature  
-- Skull Bash  
+- Double Edge
 - Iron Tail  
 - Curse  
-- Sing  
+- Toxic
 
 === TRAINER_STEVEN_HNS ===
 Name: Troy
@@ -16079,7 +16079,7 @@ EVs: 8 HP / 252 Atk / 248 Def
 Adamant Nature  
 - Autotomize  
 - Brave Bird  
-- Iron Head  
+- Steel Wing
 - Spikes  
 
 Omastar @ Sitrus Berry  
@@ -16089,7 +16089,7 @@ EVs: 128 Def / 40 SpA / 252 SpD
 Relaxed Nature  
 IVs: 0 Atk  
 - Hydro Pump  
-- Meteor Beam  
+- Stone Edge
 - Brine  
 - Toxic Spikes  
 
@@ -16101,7 +16101,7 @@ Modest Nature
 IVs: 0 Atk  
 - Light Screen  
 - Reflect  
-- Expanding Force  
+- Extrasensory
 - Earth Power  
 
 Aggron @ Rocky Helmet  
@@ -16110,7 +16110,7 @@ Level: 77
 EVs: 4 HP / 248 Atk / 252 Def / 4 SpD  
 Adamant Nature  
 - Heavy Slam  
-- Body Press  
+- Brick Break
 - Curse  
 - Rock Slide  
 
@@ -16121,7 +16121,7 @@ EVs: 124 Atk / 132 Def / 252 Spe
 Adamant Nature  
 - Stone Axe  
 - X-Scissor  
-- Cross Poison  
+- Slash
 - Double Team  
 
 Metagross @ Metal Coat  
@@ -16131,8 +16131,8 @@ EVs: 128 HP / 120 Atk / 4 Def / 252 SpD
 Brave Nature  
 - Bullet Punch  
 - Meteor Mash  
-- Psychic Fangs  
-- Cosmic Power 
+- Zen Headbutt
+- Agility
 
 === TRAINER_FINLEY_HNS ===
 Name: Finley
@@ -16149,10 +16149,10 @@ Level: 70
 EVs: 252 SpA / 252 Spe  
 Modest Nature  
 IVs: 0 Atk  
-- Dragon Cheer  
-- Alluring Voice  
-- Heat Wave  
-- Scorching Sands  
+- Dragon Dance
+- Earth Power
+- Flamethrower
+- Mud Shot
 
 Salamence @ Draco Plate
 Ability: Intimidate  
@@ -16162,7 +16162,7 @@ Adamant Nature
 - Dragon Dance  
 - Dragon Rush  
 - Crunch  
-- Temper Flare  
+- Fire Fang
 
 Kingdra @ Scope Lens  
 Ability: Sniper  
@@ -16198,7 +16198,7 @@ Level: 70
 EVs: 116 HP / 140 SpA / 252 SpD  
 Sassy Nature  
 IVs: 0 Atk  
-- Weather Ball  
+- Swift
 - Earth Power  
 - Seismic Toss  
 - Ice Beam  
@@ -16208,10 +16208,10 @@ Level: 70
 EVs: 252 HP / 92 Def / 72 SpA / 92 SpD  
 Quiet Nature  
 IVs: 0 Atk  
-- Clear Smog  
+- Water Pulse
 - Scald  
 - Earth Power
-- Recover  
+- Rest
 
 Lanturn @ Assault Vest  
 Ability: Volt Absorb  
@@ -16254,7 +16254,7 @@ IVs: 0 Atk
 - Hurricane  
 - Hydro Pump  
 - Tailwind  
-- Feather Dance  
+- Growl
 
 === TRAINER_WESSEL_HNS ===
 Name: Wessel
@@ -16280,9 +16280,9 @@ Level: 70
 EVs: 252 HP / 252 SpD  
 Sassy Nature  
 IVs: 0 Spe  
-- Head Smash  
+- Stone Edge
 - Gyro Ball  
-- Psychic Fangs  
+- Slam
 - Fire Fang  
 
 Scizor @ Covert Cloak  
@@ -16290,10 +16290,10 @@ Ability: Technician
 Level: 70  
 EVs: 172 HP / 124 Atk / 88 Def / 124 SpD  
 Adamant Nature  
-- Pounce  
-- Dual Wingbeat  
+- X Scissor
+- Wing Attack
 - Iron Head  
-- Curse  
+- Swords Dance
 
 Aggron @ Loaded Dice  
 Ability: Heavy Metal  
@@ -16301,9 +16301,9 @@ Level: 70
 EVs: 108 HP / 252 Atk / 28 Def / 120 SpD  
 Relaxed Nature  
 - Heavy Slam  
-- Body Press  
+- Brick Break
 - Iron Defense  
-- Rock Blast  
+- Rock Tomb
 
 Perrserker @ Iron Plate  
 Ability: Steely Spirit  
@@ -16329,17 +16329,17 @@ Ability: Technician
 Level: 70
 EVs: 4 HP / 252 Atk / 252 Spe  
 Hasty Nature  
-- Dual Wingbeat  
-- Close Combat  
-- Lunge  
-- Psycho Cut  
+- Wing Attack
+- Brick Break
+- X Scissor
+- Slash
 
 Gliscor @ Toxic Orb  
 Ability: Poison Heal  
 Level: 70 
 EVs: 124 Atk / 252 Def / 132 SpD  
 Adamant Nature  
-- Tailwind  
+- Swords Dance
 - Fling  
 - Acrobatics  
 - Earthquake  
@@ -16362,7 +16362,7 @@ Adamant Nature
 - Facade  
 - Roost  
 - Steel Wing  
-- Tailwind  
+- Growl
 
 Fearow @ Scope Lens  
 Ability: Sniper  
@@ -16421,7 +16421,7 @@ Level: 69
 Pidgeot  
 Ability: Keen Eye  
 Level: 69  
-- Extreme Speed  
+- Quick Attack
 - Fly  
 - Tailwind  
 - Sand Attack  
@@ -16432,7 +16432,7 @@ Level: 69
 IVs: 0 Atk  
 - Hurricane  
 - Brine  
-- Feather Dance  
+- Growl
 - Roost  
 
 === TRAINER_BUGSY_POSTOBC_HNS ===
@@ -16486,14 +16486,14 @@ Ability: Wonder Guard
 Level: 71 
 - Phantom Force  
 - X-Scissor  
-- Hone Claws  
+- Harden
 - Sand Attack  
 
 Scizor @ Scope Lens  
 Ability: Technician  
 Level: 69  
 - Bullet Punch  
-- Bug Bite  
+- X Scissor
 - Swords Dance  
 - Roost  
 
@@ -16513,7 +16513,7 @@ Ability: Cute Charm
 Level: 70   
 IVs: 0 Atk  
 - Moonblast  
-- Meteor Beam  
+- Solar Beam
 - Healing Wish  
 - Encore  
 
@@ -16529,7 +16529,7 @@ Ambipom @ Loaded Dice
 Ability: Technician  
 Level: 70 
 - Tail Slap  
-- Knock Off  
+- Thief
 - Tail Whip  
 - Aerial Ace  
 
@@ -16538,7 +16538,7 @@ Ability: Mind's Eye
 Level: 69  
 IVs: 0 Atk  
 - Blood Moon  
-- Lunar Blessing  
+- Rest
 - Earth Power  
 - Calm Mind  
 
@@ -16548,7 +16548,7 @@ Level: 70
 - Milk Drink  
 - Defense Curl  
 - Rollout  
-- Iron Head  
+- Gyro Ball
 
 Obstagoon  
 Ability: Reckless  
@@ -16645,7 +16645,7 @@ Medicham
 Ability: Pure Power  
 Level: 70 
 - Acupressure  
-- Stored Power  
+- Confusion
 - High Jump Kick  
 - Detect  
 
@@ -16676,10 +16676,10 @@ Level: 70
 Poliwrath @ Sitrus Berry  
 Ability: Water Absorb  
 Level: 71  
-- Liquidation  
+- Waterfall
 - Submission  
 - Belly Drum  
-- Skull Bash  
+- Mega Kick
 
 === TRAINER_JASMINE_POSTOBC_HNS ===
 Name: JASMINE
@@ -16739,9 +16739,9 @@ IVs: 0 Spe
 Steelix @ Quick Claw  
 Ability: Rock Head  
 Level: 70
-- Head Smash  
+- Stone Edge
 - Earthquake  
-- Dragon Dance  
+- Rock Polish
 - Heavy Slam  
 
 === TRAINER_PRYCE_POSTOBC_HNS ===
@@ -16785,8 +16785,8 @@ Slowking
 Ability: Regenerator  
 Level: 70  
 IVs: 0 Atk  
-- Chilly Reception  
-- Hydro Pump  
+- Yawn
+- Surf
 - Reflect  
 - Safeguard  
 
@@ -16805,7 +16805,7 @@ IVs: 0 Atk
 - Shadow Ball  
 - Blizzard  
 - Will-O-Wisp  
-- Pain Split  
+- Protect
 
 === TRAINER_CLAIR_POSTOBC_HNS ===
 Name: CLAIR
@@ -16832,7 +16832,7 @@ Level: 69
 - Charge Beam  
 - Boomburst  
 - Poison Jab  
-- Tailwind  
+- Roost
 
 Exeggutor-Alola @ Sitrus Berry  
 Ability: Harvest  
@@ -16847,7 +16847,7 @@ Ability: Moxie
 Level: 71
 - Dragon Dance  
 - Dragon Rush  
-- Iron Head  
+- Steel Wing
 - Flamethrower  
 
 Kingdra @ Scope Lens  
@@ -16889,18 +16889,18 @@ Level: 72
 Gliscor @ Toxic Orb  
 Ability: Poison Heal  
 Level: 71 
-- Spikes  
+- Sand Attack
 - Protect  
-- Crabhammer  
+- Stone Edge
 - Earthquake  
 
 Aerodactyl  
 Ability: Unnerve  
 Level: 72
 - Fire Fang  
-- Sky Attack  
+- Fly
 - Earthquake  
-- Dragon Dance  
+- Agility
 
 Omastar  
 Ability: Swift Swim  
@@ -16914,10 +16914,10 @@ IVs: 0 Atk
 Relicanth @ Hard Stone  
 Ability: Rock Head  
 Level: 70 
-- Wave Crash  
+- Hydro Pump
 - Head Smash  
 - Calm Mind  
-- Thunderbolt  
+- Surf
 
 Golem-Alola @ Magnet  
 Ability: Galvanize  
@@ -16941,7 +16941,7 @@ Items: Full Restore / Full Restore
 Politoed @ Damp Rock  
 Ability: Drizzle  
 Level: 71 
-- Weather Ball  
+- Swift
 - Seismic Toss  
 - Metronome  
 - Hypnosis  
@@ -16952,7 +16952,7 @@ Level: 71
 - Rain Dance  
 - Barrier  
 - Earthquake  
-- Liquidation  
+- Waterfall
 
 Vaporeon @ Leftovers  
 Ability: Water Absorb  
@@ -17013,7 +17013,7 @@ Jolteon
 Ability: Volt Absorb  
 Level: 69   
 IVs: 0 Atk  
-- Electric Terrain  
+- Thunder Wave
 - Thunder  
 - Rain Dance  
 - Reflect  
@@ -17131,7 +17131,7 @@ Swalot
 Ability: Liquid Ooze  
 IVs: 0 Atk  
 Level: 70
-- Toxic Spikes  
+- Toxic
 - Stockpile  
 - Swallow  
 - Spit Up  
@@ -17212,8 +17212,8 @@ Level: 70
 IVs: 0 Atk  
 - Psychic  
 - Morning Sun  
-- Psychic Terrain  
-- Power Gem  
+- Tail Whip
+- Shadow Ball
 
 Rapidash-Galar  
 Ability: Pastel Veil  
@@ -17239,7 +17239,7 @@ IVs: 0 Atk
 - Psyshock  
 - Shadow Ball  
 - Calm Mind  
-- Tri Attack  
+- Swift
 
 === TRAINER_BLAINE_POSTOBC_HNS ===
 Name: BLAINE
@@ -17274,7 +17274,7 @@ Blaziken @ Scope Lens
 Ability: Speed Boost  
 Level: 70 
 - Blaze Kick  
-- Power-Up Punch  
+- Double Kick
 - Thunder Punch  
 - Protect  
 
@@ -17362,7 +17362,7 @@ IVs: 0 Atk
 - Scald  
 - Dark Pulse  
 - Water Spout  
-- Shell Smash  
+- Withdraw
 
 === TRAINER_WILL_POSTOBC_HNS ===
 Name: WILL
@@ -17382,7 +17382,7 @@ IVs: 0 Atk
 - Psyshock  
 - Moonblast  
 - Reflect  
-- Vacuum Wave  
+- Disarming Voice
 
 Jynx @ Never-Melt Ice  
 Ability: Dry Skin  
@@ -17414,7 +17414,7 @@ IVs: 0 Atk
 Slowbro  
 Ability: Oblivious  
 Level: 77  
-- Fire Punch  
+- Flamethrower
 - Curse  
 - Earthquake  
 - Zen Headbutt  
@@ -17472,7 +17472,7 @@ IVs: 0 Atk
 - Fire Blast  
 - Ice Beam  
 - Earth Power  
-- Noble Roar  
+- Leer
 
 Venomoth @ Bright Powder  
 Ability: Shield Dust  
@@ -17510,7 +17510,7 @@ Sassy Nature
 - Heavy Slam  
 - Earthquake  
 - Crunch  
-- Aqua Tail  
+- Stone Edge
 
 Tauros-Paldea-Blaze  
 Ability: Intimidate  
@@ -17526,7 +17526,7 @@ Level: 76
 - Pin Missile  
 - Close Combat  
 - Earthquake  
-- Knock Off  
+- Night Slash
 
 Hariyama @ Sitrus Berry  
 Ability: Thick Fat  
@@ -17540,7 +17540,7 @@ Hitmontop @ Expert Belt
 Ability: Technician  
 Level: 77 
 - Triple Kick  
-- Victory Dance  
+- Agility
 - Bullet Punch  
 - Pursuit  
 
@@ -17567,8 +17567,8 @@ Umbreon @ Black Glasses
 Ability: Synchronize  
 Level: 74  
 IVs: 0 Atk  
-- Lunar Blessing  
-- Foul Play  
+- Tail Whip
+- Feint Attack
 - Shadow Ball  
 - Calm Mind  
 
@@ -17578,7 +17578,7 @@ Level: 75
 - Hone Claws  
 - Night Slash  
 - Icicle Crash  
-- Low Kick  
+- Revenge
 
 Persian-Alola @ Charcoal  
 Ability: Fur Coat  
@@ -17626,8 +17626,8 @@ Mugshot: Blue
 Salamence @ Assault Vest  
 Ability: Intimidate  
 Level: 77 
-- Draco Meteor  
-- Iron Head  
+- Dragon Pulse
+- Steel Wing
 - Double-Edge  
 - Fly  
 
@@ -17661,13 +17661,13 @@ Ability: Rock Head
 Level: 79
 - Rock Slide  
 - Earthquake  
-- Sky Attack  
-- Dragon Dance  
+- Fly
+- Agility
 
 Dragonite @ Leftovers  
 Ability: Multiscale  
 Level: 79 
-- Iron Head  
+- Steel Wing
 - Fire Punch  
 - Dragon Rush  
 - Dragon Dance  
@@ -17714,7 +17714,7 @@ EVs: 252 Spe
 IVs: 0 Atk  
 - Sunny Day  
 - Solar Beam  
-- Earth Power  
+- Earthquake
 - Sleep Powder 
 
 Blastoise @ Leftovers  

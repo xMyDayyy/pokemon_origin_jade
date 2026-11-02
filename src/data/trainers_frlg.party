@@ -6243,18 +6243,18 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Nidorino
 Level: 34
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Scratch
-- Poison Sting
-- Double Kick
-- Bite
-
-Nidorina
-Level: 34
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Horn Attack
 - Poison Sting
 - Double Kick
 - Leer
+
+Nidorina
+Level: 34
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Scratch
+- Poison Sting
+- Double Kick
+- Bite
 
 Raticate
 Level: 34

@@ -1871,9 +1871,9 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Tentacool
 Level: 13
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
-- Sand Attack
+- Supersonic
 - Headbutt
-- Tail Whip
+- Acid
 - Surf
 
 === TRAINER_SIMON ===
@@ -1938,9 +1938,9 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Tentacool
 Level: 27
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
-- Sand Attack
-- Pin Missile
-- Tail Whip
+- Supersonic
+- Acid
+- Constrict
 - Surf
 
 === TRAINER_RICKY_3 ===
@@ -1963,9 +1963,9 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Tentacool
 Level: 30
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Sand Attack
-- Pin Missile
-- Tail Whip
+- Supersonic
+- Acid
+- Constrict
 - Surf
 
 === TRAINER_RICKY_4 ===
@@ -1988,9 +1988,9 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Tentacool
 Level: 33
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
-- Sand Attack
-- Pin Missile
-- Tail Whip
+- Supersonic
+- Acid
+- Constrict
 - Surf
 
 === TRAINER_RICKY_5 ===
@@ -2013,8 +2013,8 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Azurill
 Level: 36
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
-- Sand Attack
-- Pin Missile
+- Charm
+- Bubble Beam
 - Tail Whip
 - Surf
 
@@ -8291,37 +8291,37 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Zigzagoon @ Oran Berry
 Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Assist
+- Tail Whip
 - Charm
-- Feint Attack
-- Heal Bell
+- Thief
+- Rest
 
 
 Whismur @ Oran Berry
 Level: 40
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Assist
-- Charm
-- Feint Attack
-- Heal Bell
+- Supersonic
+- Screech
+- Stomp
+- Rest
 
 
 Poochyena @ Oran Berry
 Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Assist
-- Charm
-- Feint Attack
-- Heal Bell
+- Howl
+- Sand Attack
+- Bite
+- Rest
 
 
 Linoone @ Oran Berry
 Level: 30
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Assist
+- Tail Whip
 - Charm
-- Feint Attack
-- Heal Bell
+- Thief
+- Rest
 
 Delcatty @ Oran Berry
 Level: 42
@@ -9010,7 +9010,7 @@ Pikachu
 Level: 17
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Headbutt
-- Sand Attack
+- Tail Whip
 - Growl
 - Thunderbolt
 
@@ -9021,10 +9021,10 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Voltorb
 Level: 17
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Amnesia
-- Sludge
-- Yawn
-- Pound
+- Charge
+- Spark
+- Screech
+- Tackle
 
 === TRAINER_QUINCY ===
 Name: Dirk
@@ -11378,7 +11378,7 @@ Lanturn
 Level: 43
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Thunderbolt
-- Earthquake
+- Take Down
 
 === TRAINER_JANI ===
 Name: Leila
@@ -11421,18 +11421,18 @@ Gulpin
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Poison Gas
-- Tackle
+- Pound
 - Smog
-- Self Destruct
+- Explosion
 
 
 Zubat
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Poison Gas
-- Tackle
-- Sludge
-- Self Destruct
+- Toxic
+- Quick Attack
+- Venoshock
+- Wing Attack
 
 === TRAINER_LUNG ===
 Name: Arnd
@@ -11481,15 +11481,15 @@ Gulpin
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Poison Gas
-- Tackle
+- Pound
 - Sludge
-- Self Destruct
+- Explosion
 
 Zubat
 Level: 26
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Tackle
-- Sludge
+- Quick Attack
+- Venoshock
 
 === TRAINER_LAO_3 ===
 Name: Eduard
@@ -11519,14 +11519,14 @@ Gulpin
 Level: 27
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 - Poison Gas
-- Tackle
+- Pound
 - Sludge
 
 Zubat
 Level: 29
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Tackle
-- Sludge
+- Quick Attack
+- Venoshock
 
 === TRAINER_LAO_4 ===
 Name: Eduard
@@ -11554,14 +11554,14 @@ Gulpin
 Level: 30
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 - Poison Gas
-- Tackle
+- Pound
 - Sludge
 
 Zubat
 Level: 32
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
-- Tackle
-- Sludge
+- Quick Attack
+- Venoshock
 
 === TRAINER_LAO_5 ===
 Name: Eduard
@@ -11590,9 +11590,9 @@ Gulpin
 Level: 33
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 - Poison Gas
-- Tackle
+- Pound
 - Sludge
-- Self Destruct
+- Explosion
 
 Weezing @ Smoke Ball
 Level: 35
@@ -12785,10 +12785,10 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Trapinch
 Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Rollout
-- Bubble Beam
-- Tail Whip
-- Defense Curl
+- Rock Tomb
+- Bulldoze
+- Sand Attack
+- Swagger
 
 === TRAINER_CAROL ===
 Name: Natalie
@@ -12906,10 +12906,10 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Solrock
 Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Destiny Bond
+- Cosmic Power
 - Safeguard
-- Counter
-- Mirror Coat
+- Rock Slide
+- Psychic
 
 === TRAINER_IRENE ===
 Name: Irene
@@ -13788,9 +13788,9 @@ Carvanha
 Level: 34
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Bite
-- Roar
-- Thunder Wave
-- Thunderbolt
+- Swagger
+- Toxic
+- Surf
 
 === TRAINER_REYNA ===
 Name: Gilda
@@ -17805,9 +17805,9 @@ Magcargo
 Level: 23
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Flamethrower
-- Fury Swipes
-- Feint Attack
-- Bind
+- Rock Throw
+- Ancient Power
+- Yawn
 
 Numel
 Level: 22
@@ -17829,8 +17829,8 @@ AI: Check Bad Move
 Machoke
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Bide
-- Detect
+- Low Kick
+- Protect
 - Karate Chop
 - Thunder Punch
 
@@ -17842,7 +17842,7 @@ Machoke
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Thunder Punch
-- Detect
+- Protect
 - Low Kick
 - Seismic Toss
 
@@ -17858,9 +17858,9 @@ AI: Check Bad Move
 Combusken
 Level: 23
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Bide
-- Detect
-- Confusion
+- Quick Attack
+- Protect
+- Ember
 - Fire Punch
 
 Torkoal
@@ -18955,9 +18955,9 @@ Slakoth
 Level: 35
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Flamethrower
-- Take Down
+- Body Slam
 - Rest
-- Earthquake
+- Shadow Claw
 
 Swablu
 Level: 33
@@ -23250,8 +23250,8 @@ Magnemite
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Shock Wave
-- Quick Attack
-- Charm
+- Tackle
+- Metal Sound
 
 Voltorb
 Level: 14
@@ -23261,8 +23261,8 @@ Magneton
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Shock Wave
-- Quick Attack
-- Confuse Ray
+- Tackle
+- Supersonic
 
 === TRAINER_DARIUS ===
 Name: Raimond
