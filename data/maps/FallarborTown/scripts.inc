@@ -5,6 +5,9 @@ FallarborTown_MapScripts::
 FallarborTown_OnTransition:
 	setflag FLAG_VISITED_FALLARBOR_TOWN
 	setvar VAR_CONTEST_HALL_STATE, 0
+#if IS_HNS
+	setflag FLAG_HIDE_FALLARBOR_TOWN_CONTEST_REPORTER
+#endif
 	clearflag FLAG_CONTEST_SKETCH_CREATED
 	end
 

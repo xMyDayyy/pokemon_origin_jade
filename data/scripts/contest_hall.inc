@@ -3,10 +3,18 @@ LilycoveCity_ContestLobby_EventScript_SpeakToContestReceptionist::
 	lock
 	faceplayer
 #if IS_HNS
+	@ Ruby/Sapphire reception: VAR_CONTEST_RANK is the rank of this hall, set by
+	@ its receptionist script. Entries need the Contest Pass (D-058).
+	checkitem ITEM_CONTEST_PASS
+	call_if_eq VAR_RESULT, FALSE, ContestLobby_EventScript_ClearGreeted
 	goto_if_ne VAR_CONTEST_PRIZE_PICKUP_HNS, 0, LilycoveCity_ContestLobby_EventScript_PickUpPrize
-	checkitem ITEM_POKEBLOCK_CASE
-	call_if_eq VAR_RESULT, TRUE, LilycoveCity_ContestLobby_EventScript_ReceptionWelcome
-	call_if_eq VAR_RESULT, FALSE, LilycoveCity_ContestLobby_EventScript_GivePokeblockCase
+	goto_if_set FLAG_TEMP_1, LilycoveCity_ContestLobby_EventScript_AskEnterContest
+	call ContestHall_EventScript_GetContestRankStringId
+	bufferstdstring STR_VAR_1, VAR_0x8009
+	msgbox ContestLobby_Text_RegistrationsForRank, MSGBOX_DEFAULT
+	checkitem ITEM_CONTEST_PASS
+	goto_if_eq VAR_RESULT, FALSE, ContestLobby_EventScript_NoContestPass
+	setflag FLAG_TEMP_1
 #else
 	goto_if_ne VAR_CONTEST_PRIZE_PICKUP_EM, 0, LilycoveCity_ContestLobby_EventScript_PickUpPrize
 	call_if_set FLAG_RECEIVED_POKEBLOCK_CASE, LilycoveCity_ContestLobby_EventScript_ReceptionWelcome
@@ -62,7 +70,11 @@ LilycoveCity_ContestLobby_EventScript_AskEnterContest::
 	waitmessage
 	multichoice 0, 0, MULTI_ENTERINFO, FALSE
 	switch VAR_RESULT
+#if IS_HNS
+	case 0, LilycoveCity_ContestLobby_EventScript_ChooseContestType
+#else
 	case 0, LilycoveCity_ContestLobby_EventScript_ChooseContestRank
+#endif
 	case 1, LilycoveCity_ContestLobby_EventScript_ContestInfo
 	case 2, LilycoveCity_ContestLobby_EventScript_CancelEnterContest
 	case MULTI_B_PRESSED, LilycoveCity_ContestLobby_EventScript_CancelEnterContest
@@ -198,6 +210,134 @@ LilycoveCity_ContestLobby_EventScript_EnterMon::
 	releaseall
 	setvar VAR_CONTEST_HALL_STATE, 1
 	return
+
+@ Ruby/Sapphire contest halls in Verdanturf, Fallarbor and Slateport (D-058).
+@ The receptionist script of each hall sets VAR_CONTEST_RANK and goes here.
+ContestLobby_EventScript_ContestReceptionist::
+	special ClearLinkContestFlags
+	call LilycoveCity_ContestLobby_EventScript_SpeakToContestReceptionist
+	call ContestLobby_EventScript_LeadToContestHall
+	special SetContestTrainerGfxIds
+	call LilycoveCity_ContestLobby_EventScript_SetPlayerGfx
+	call LilycoveCity_ContestLobby_EventScript_SetContestType
+	call LilycoveCity_ContestLobby_EventScript_WarpToContestHall
+	waitstate
+	end
+
+ContestLobby_EventScript_ClearGreeted::
+	clearflag FLAG_TEMP_1
+	return
+
+@ Only the Normal Rank hall (Verdanturf) issues the Contest Pass.
+ContestLobby_EventScript_NoContestPass::
+	goto_if_eq VAR_CONTEST_RANK, CONTEST_RANK_NORMAL, ContestLobby_EventScript_OfferContestPass
+	msgbox ContestLobby_Text_GetContestPassInVerdanturf, MSGBOX_DEFAULT
+	release
+	end
+
+ContestLobby_EventScript_OfferContestPass::
+	msgbox ContestLobby_Text_IssueContestPass, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, ContestLobby_EventScript_DeclineContestPass
+	msgbox ContestLobby_Text_HereYouGo, MSGBOX_DEFAULT
+	giveitem ITEM_CONTEST_PASS
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	setflag FLAG_TEMP_1
+	msgbox LilycoveCity_ContestLobby_Text_ExplainContests, MSGBOX_DEFAULT
+	goto LilycoveCity_ContestLobby_EventScript_AskEnterContest
+	end
+
+ContestLobby_EventScript_DeclineContestPass::
+	msgbox ContestLobby_Text_VisitWheneverYouLike, MSGBOX_DEFAULT
+	release
+	end
+
+@ The receptionist (VAR_LAST_TALKED) leads the player through the counter
+@ flap at (4,2) to the stage door at (1,1) of the Ruby/Sapphire lobby layout.
+ContestLobby_EventScript_LeadToContestHall::
+	lockall
+	applymovement VAR_LAST_TALKED, ContestLobby_Movement_ReceptionistApproachCounter
+	waitmovement 0
+	playse SE_BRIDGE_WALK
+	setmetatile 4, 2, METATILE_Contest_WallShadow, TRUE
+	setmetatile 4, 3, METATILE_Contest_FloorShadow, TRUE
+	special DrawWholeMapView
+	applymovement VAR_LAST_TALKED, ContestLobby_Movement_ReceptionistExitCounter
+	waitmovement 0
+	playse SE_BRIDGE_WALK
+	setmetatile 4, 2, METATILE_Contest_CounterFlap_Top, TRUE
+	setmetatile 4, 3, METATILE_Contest_CounterFlap_Bottom, TRUE
+	special DrawWholeMapView
+	delay 20
+	applymovement VAR_LAST_TALKED, ContestLobby_Movement_ReceptionistFacePlayer
+	waitmovement 0
+	applymovement LOCALID_PLAYER, ContestLobby_Movement_PlayerFaceReceptionist
+	waitmovement 0
+	msgbox LilycoveCity_ContestLobby_Text_ComeThroughHere, MSGBOX_DEFAULT
+	closemessage
+	applymovement VAR_LAST_TALKED, ContestLobby_Movement_ReceptionistWalkToContestHall
+	applymovement LOCALID_PLAYER, ContestLobby_Movement_PlayerWalkToContestHall
+	waitmovement 0
+	releaseall
+	return
+
+ContestLobby_Movement_ReceptionistApproachCounter:
+	walk_left
+	walk_in_place_faster_down
+	step_end
+
+ContestLobby_Movement_ReceptionistExitCounter:
+	walk_down
+	walk_down
+	walk_in_place_faster_up
+	step_end
+
+ContestLobby_Movement_ReceptionistFacePlayer:
+	walk_in_place_faster_right
+	step_end
+
+ContestLobby_Movement_PlayerFaceReceptionist:
+	walk_in_place_faster_left
+	step_end
+
+ContestLobby_Movement_ReceptionistWalkToContestHall:
+	walk_left
+	walk_left
+	walk_left
+	walk_up
+	walk_up
+	walk_up
+	delay_8
+	set_invisible
+	step_end
+
+ContestLobby_Movement_PlayerWalkToContestHall:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_up
+	walk_up
+	walk_up
+	delay_8
+	set_invisible
+	step_end
+
+@ Berry Blender beside the old man in the Ruby/Sapphire lobbies.
+@ VAR_0x8008: local id of the blend leader, VAR_0x8009: number of NPCs who blend (1 or 2).
+ContestLobby_EventScript_BerryBlender::
+	applymovement VAR_0x8008, BerryBlender_Movement_BlendLeaderWalkInPlace
+	waitmovement 0
+	goto_if_eq VAR_0x8009, 2, ContestLobby_EventScript_BerryBlenderWithTwo
+	msgbox BerryBlender_Text_WantToMakePokeblocks, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, BerryBlender_EventScript_TryUseBerryBlender1
+	goto BerryBlender_EventScript_DeclineBlender1
+	end
+
+ContestLobby_EventScript_BerryBlenderWithTwo::
+	msgbox BerryBlender_Text_WantToBlendPokeblocksWithUs, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, BerryBlender_EventScript_TryUseBerryBlender2
+	goto BerryBlender_EventScript_DeclineBlender2
+	end
 
 ContestHall_EventScript_DoContest::
 	special LinkContestTryShowWirelessIndicator
@@ -1061,7 +1201,7 @@ ContestHall_EventScript_CheckRankIsMaster::
 ContestHall_EventScript_DontSkipPrize::
 	return
 
-@ This flag is never read
+@ Read by the sketch artist in Fallarbor's contest lobby (D-058)
 ContestHall_EventScript_SetSketchFlag::
 	setflag FLAG_CONTEST_SKETCH_CREATED
 	return
@@ -1656,6 +1796,68 @@ LilycoveCity_ContestLobby_Text_ComeBackForPrizeLater:
 	.string "later on.$"
 #endif
 
+ContestLobby_Text_RegistrationsForRank:
+#if GERMAN
+	.string "Hallo!\p"
+	.string "Wir nehmen Anmeldungen für die\n"
+	.string "{STR_VAR_1}-Klasse Pokémon\l"
+	.string "Wettbewerbe entgegen.$"
+#else
+	.string "Hello, there!\p"
+	.string "We're accepting registrations for\n"
+	.string "{STR_VAR_1} Rank POKéMON CONTESTS.$"
+#endif
+
+ContestLobby_Text_GetContestPassInVerdanturf:
+#if GERMAN
+	.string "Jeder, der eine Wettbewerbskarte\n"
+	.string "besitzt, darf teilnehmen.\p"
+	.string "Du bekommst die Wettbewerbskarte\n"
+	.string "kostenlos in der Wettbewerbshalle für\l"
+	.string "die Normal-Klasse in Wiesenflur.\p"
+	.string "Bitte hol dir die Karte dort ab und\n"
+	.string "komm dann wieder.$"
+#else
+	.string "Anyone with a CONTEST PASS may enter.\p"
+	.string "You may obtain a CONTEST PASS at the\n"
+	.string "NORMAL RANK CONTEST HALL in\l"
+	.string "VERDANTURF TOWN free of charge.\p"
+	.string "Please obtain a CONTEST PASS and\n"
+	.string "come again.$"
+#endif
+
+ContestLobby_Text_IssueContestPass:
+#if GERMAN
+	.string "Jeder, der eine Wettbewerbskarte\n"
+	.string "besitzt, darf teilnehmen.\p"
+	.string "Wenn du keine hast, kann ich dir\n"
+	.string "sofort eine ausstellen.\p"
+	.string "Möchtest du eine Wettbewerbskarte\n"
+	.string "haben?$"
+#else
+	.string "Anyone with a CONTEST PASS may enter.\p"
+	.string "If you don't have one, I can issue one\n"
+	.string "for you right now.\p"
+	.string "Would you like me to issue you a\n"
+	.string "CONTEST PASS?$"
+#endif
+
+ContestLobby_Text_HereYouGo:
+#if GERMAN
+	.string "Bitte schön!$"
+#else
+	.string "Here you go!$"
+#endif
+
+ContestLobby_Text_VisitWheneverYouLike:
+#if GERMAN
+	.string "Bitte komm vorbei, wann immer du an\n"
+	.string "einem Wettbewerb teilnehmen möchtest.$"
+#else
+	.string "Please visit whenever you would like\n"
+	.string "to enter a CONTEST.$"
+#endif
+
 ContestHall_Text_GettingStartedParticipantsAsFollows:
 #if GERMAN
 	.string "MC: Hallo! Wir fangen nun mit einem \n"
@@ -2028,6 +2230,30 @@ LilycoveCity_ContestLobby_Text_LinkContestReception:
 	.string "link reception counter.\p"
 	.string "You may enter CONTESTS together with\n"
 	.string "one or more friends.$"
+#endif
+
+LilycoveCity_ContestLobby_Text_RegistrationsFromFourNeedContestPass:
+#if GERMAN
+	.string "Ich akzeptiere nur Anmeldungen von\n"
+	.string "vier Spielern, die via Link verbunden\l"
+	.string "sind und am Pokémon Wettbewerb\l"
+	.string "teilnehmen wollen.\p"
+	.string "Jeder, der eine Wettbewerbskarte\n"
+	.string "besitzt, darf teilnehmen.\p"
+	.string "Du bekommst die Wettbewerbskarte\n"
+	.string "kostenlos in der Wettbewerbshalle für\l"
+	.string "die Normal-Klasse in Wiesenflur.\p"
+	.string "Bitte hol dir die Karte dort ab und\n"
+	.string "komm dann wieder.$"
+#else
+	.string "I accept registrations only from four\n"
+	.string "linked players for a POKéMON CONTEST.\p"
+	.string "Anyone with a CONTEST PASS may enter.\p"
+	.string "You may obtain a CONTEST PASS at the\n"
+	.string "NORMAL RANK CONTEST HALL in\l"
+	.string "VERDANTURF TOWN free of charge.\p"
+	.string "Please obtain a CONTEST PASS and\n"
+	.string "come again.$"
 #endif
 
 LilycoveCity_ContestLobby_Text_WhichTopic2:

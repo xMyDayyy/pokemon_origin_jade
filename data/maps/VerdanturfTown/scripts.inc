@@ -5,6 +5,9 @@ VerdanturfTown_MapScripts::
 VerdanturfTown_OnTransition:
 	setflag FLAG_VISITED_VERDANTURF_TOWN
 	setvar VAR_CONTEST_HALL_STATE, 0
+#if IS_HNS
+	setflag FLAG_HIDE_VERDANTURF_TOWN_CONTEST_REPORTER
+#endif
 	end
 
 VerdanturfTown_EventScript_Twin::

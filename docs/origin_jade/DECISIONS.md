@@ -998,7 +998,7 @@ dated 2026-10-10 or later were decided directly.
 ### D-037 Hoenn is complete without trading
 - **Status:** Active (2026-10-26, changed 2026-10-30, starters: owner decision;
   changed 2026-10-31: 422 species; changed 2026-11-02: Jirachi, evolution
-  items in Hoenn's marts, Milotic)
+  items in Hoenn's marts, Milotic; Pokeblock Case and blenders, D-058)
 - **Decision:** All 422 species of the National Pokedex (D-049) and the
   whole Hoenn dex are obtainable without link trades. As in Kanto (D-013), day and night
   replace the Ruby/Sapphire version split on Emerald's wild tables.
@@ -1048,8 +1048,9 @@ dated 2026-10-10 or later were decided directly.
       the treasure hunter on Route 124, Captain Stern's Scanner trade).
   - Milotic (owner 2026-10-31): only by beauty, as in Gen 3. Feebas bites
     on the six Feebas tiles of Route 119 (any rod, `src/wild_encounter.c`);
-    beauty 170 or more from Pokeblocks (the Berry Blenders in Lilycove's
-    Contest Lobby; the Pokeblock Case from its contest receptionist or from
+    beauty 170 or more from Pokeblocks (the Berry Blenders in the contest
+    lobbies of Verdanturf, Fallarbor, Slateport and Lilycove; the Pokeblock
+    Case from the little girl in Slateport's contest lobby, D-058, or from
     Baoba at Johto's Safari Zone gate), then a level up. No Prism Scale
     lies anywhere (no item ball, shop or gift); its evolution entries stay
     in the species data. Only the item randomizer can roll one
@@ -2293,6 +2294,72 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** owner answers 2026-11-02 (beta plan, "Deutsch
   vervollständigen").
 
+### D-058 Contests as in Ruby/Sapphire
+- **Status:** Active (2026-11-02, owner: contests "ganz wie Rubin/Saphir",
+  in four halls)
+- **Decision:** Pokemon Contests work as in Ruby/Sapphire (pret
+  `pokeruby` was the reference). Each hall holds one rank:
+  - Verdanturf Town: Normal Rank; Fallarbor Town: Super Rank; Slateport
+    City: Hyper Rank; Lilycove City: Master Rank and, as before, the link
+    contests (X-08). The owner's note names the towns the other way round
+    for Normal and Super (O-068).
+  - Lobbies: Verdanturf, Fallarbor and Slateport have RS's lobby with its
+    people (`VerdanturfTown_ContestLobby`, `FallarborTown_ContestLobby`,
+    `SlateportCity_ContestLobby`, new maps at the end of their town's map
+    group, behind the doors the owner drew in place of the battle tents).
+    They use RS's lobby layout, which Emerald kept unused as
+    `LAYOUT_FALLARBOR_TOWN_LEFTOVER_RSCONTEST_LOBBY`. Lilycove keeps
+    Emerald's lobby.
+  - Contest Pass (`ITEM_CONTEST_PASS`, "Wettbewerbskarte"): every hall's
+    receptionist asks for it. Verdanturf's issues it on request, the others
+    send the player to Verdanturf; Lilycove's link counter asks for it too.
+  - Reception: the receptionist names the hall's rank and offers enter,
+    info and exit; there is no rank menu. The hall's receptionist script
+    sets `VAR_CONTEST_RANK` (`ContestLobby_EventScript_ContestReceptionist`
+    and the Origin Jade branch of
+    `LilycoveCity_ContestLobby_EventScript_SpeakToContestReceptionist`,
+    `data/scripts/contest_hall.inc`). Rank requirements are RS's (and
+    Emerald's): any Pokemon may enter Normal; a higher rank needs the
+    ribbon of the rank below in the same category (`TryEnterContestMon`).
+  - Stage and return: the contest runs on Emerald's stage maps
+    (`ContestHall*`, by category). Afterwards the player returns to the
+    lobby of the hall that held it (`ContestHall_EventScript_SetExitWarp*`
+    by `VAR_CONTEST_TYPE`, which names the hall because each hall has one
+    rank), where the reporter of the Bravo Trainer interview may wait
+    (`LilycoveCity_ContestLobby_EventScript_TryShowContestReporter`; new
+    flags `FLAG_HIDE_VERDANTURF_TOWN_CONTEST_REPORTER` and
+    `FLAG_HIDE_FALLARBOR_TOWN_CONTEST_REPORTER`, Slateport and Lilycove use
+    their Emerald flags; each town hides its reporter on entry).
+    Lilycove's contest artist (museum painting) stays; he comes only after
+    a Master Rank win.
+  - Prizes as in RS and Emerald: a ribbon; a Master Rank win with a
+    Pokemon that already holds that ribbon gives a Luxury Ball (with a full
+    bag it waits at the counter of any hall).
+  - Pokeblock Case: the little girl in Slateport's lobby gives it, by item
+    check (a case from Baoba counts); Lilycove's receptionist no longer
+    does (RS). The little girl in Lilycove's lobby no longer says that the
+    lady at the counter gave her a case; she always gives Emerald's other
+    line, the tip on making Pokeblocks. Berry Blenders: each RS lobby has
+    a link blender and one with people (Verdanturf and Fallarbor: the old
+    man; Slateport: the old man and a boy,
+    `ContestLobby_EventScript_BerryBlender`). The old man
+    gives a Pecha Berry once a day to a player without berries
+    (`FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY`, one flag for all lobbies, as
+    in RS). Lilycove's blenders and the Blend Master stay.
+  - Paintings: the frame in each RS lobby shows the newest contest winner
+    (`CONTEST_WINNER_HALL_1`, the first of Lilycove's six frames). Emerald
+    keeps one list of the six newest winners of all ranks; RS kept one
+    painting per rank (O-069).
+  - Fallarbor's sketch artist says the sketch of the player's Pokemon is
+    up after a win there (`FLAG_CONTEST_SKETCH_CREATED`, cleared when the
+    player enters the town).
+  - TM Attract: the girl in Verdanturf's lobby, with a flag of her own
+    (`FLAG_HOENN_RECEIVED_TM_ATTRACT`); the girl in the HnS tent copy at
+    Route 40 keeps `FLAG_RECEIVED_TM_ATTRACT` (O-067).
+- **Evidence:** owner answers 2026-11-02 ("Wettbewerbe (Owner,
+  endgültig)"); owner commits 06ea236bdb and ad4a8db368 (hall buildings
+  with doors).
+
 ---
 
 ## Planned, not built yet
@@ -2657,6 +2724,23 @@ dated 2026-10-10 or later were decided directly.
   Safeguard. Proposal: nothing; it ends when the Emerald tents go
   (S-04). Should the Emerald lobby stay, the HnS girl gets a flag of her
   own.
+- **O-068** Rank per contest hall (D-058): the owner's note of
+  2026-11-02 gives Laubwechselfeld (Fallarbor) the Normal Rank and
+  Wiesenflur (Verdanturf) the Super Rank, but also asks for contests
+  "ganz wie Rubin/Saphir", where Verdanturf holds Normal and Fallarbor
+  Super and the German RS texts send the player to Wiesenflur for the
+  Contest Pass. Built as RS. Swapping the two needs the two receptionist
+  scripts (`VAR_CONTEST_RANK`), the stage's exit warps
+  (`data/maps/ContestHall/scripts.inc`), the Contest Pass texts and the
+  town and stage signs. Owner to confirm.
+- **O-069** Contest paintings (D-058): the frame in the lobbies of
+  Verdanturf, Fallarbor and Slateport shows the newest winner of any
+  contest, because Emerald keeps one list of the six newest winners
+  (Lilycove's six frames). RS kept one painting for Normal, one for Super
+  and three each for Hyper and Master. Per-rank paintings would need
+  `GetContestWinnerSaveIdx` (`src/contest.c`) to file winners by rank, and
+  Lilycove's frames would then show Master and Hyper winners only.
+  Proposal: keep the newest winner everywhere.
 
 ## Superseded decisions (kept for the record)
 

@@ -168,5 +168,10 @@
 // ---------------------------------------------------------------------
 // Johto species unlocked: first Johto map after the Kanto title (D-049).
 #define FLAG_JOHTO_UNLOCKED                          (OJ_FLAGS_GLOBAL + 0)
+// Contest reporters in the Verdanturf and Fallarbor contest lobbies (D-058).
+#define FLAG_HIDE_VERDANTURF_TOWN_CONTEST_REPORTER   (OJ_FLAGS_GLOBAL + 1)
+#define FLAG_HIDE_FALLARBOR_TOWN_CONTEST_REPORTER    (OJ_FLAGS_GLOBAL + 2)
+// TM Attract from the girl in Verdanturf's contest lobby (D-058).
+#define FLAG_HOENN_RECEIVED_TM_ATTRACT               (OJ_FLAGS_GLOBAL + 3)
 
 #endif // GUARD_CONSTANTS_FLAGS_ORIGIN_JADE_H
