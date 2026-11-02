@@ -429,7 +429,7 @@ Route32_Text_SlowpokeTailOffer:
 #if GERMAN
 	.string "Wie wär’s mit einer schmackhaften und\n"
 	.string "nahrhaften Flegmon-Rute?\p"
-	.string "Für dich jetzt nur 1.000.000 $!\n"
+	.string "Für dich jetzt nur 1.000.000 ¥!\n"
 	.string "Na, wie sieht’s aus?$"
 #else
 	.string "How would you like to have this\n"

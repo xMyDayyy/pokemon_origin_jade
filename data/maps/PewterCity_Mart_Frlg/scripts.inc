@@ -38,7 +38,7 @@ PewterCity_Mart_Text_BoughtWeirdFishFromShadyGuy::
 	.string "Ein zwielichtiger, alter Mann hat\n"
 	.string "mir dieses seltsame Pkmn angedreht!\p"
 	.string "Es ist vollkommen schwach und hat\n"
-	.string "500$ gekostet!$"
+	.string "500¥ gekostet!$"
 #else
 	.string "A shady old guy sucked me into\n"
 	.string "buying this weird fish POKéMON!\p"

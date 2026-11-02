@@ -220,7 +220,7 @@ Route4_PokemonCenter_1F_Text_SweetieBuyMagikarpForJust500::
 Route4_PokemonCenter_1F_Text_PaidOutrageouslyForMagikarp::
 #if GERMAN
 	.string "{PLAYER} bezahlte den Wucherpreis\n"
-	.string "von 500$ für ein Karpador…\l$"
+	.string "von 500¥ für ein Karpador…$"
 #else
 	.string "{PLAYER} paid an outrageous ¥500\n"
 	.string "and bought the MAGIKARP…$"
