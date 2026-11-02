@@ -198,10 +198,17 @@ static const u8 sText_Daughter[] = _("Tochter");
 #else
 static const u8 sText_Daughter[] = _("daughter");
 #endif
+#if GERMAN
+static const u8 sText_99TimesPlus[] = _("99-mal +");
+static const u8 sText_1MinutePlus[] = _("1 Minute +");
+static const u8 sText_SpaceSeconds[] = _(" Sekunden");
+static const u8 sText_SpaceTimes[] = _("-mal");
+#else
 static const u8 sText_99TimesPlus[] = _("99 times +");
 static const u8 sText_1MinutePlus[] = _("1 minute +");
 static const u8 sText_SpaceSeconds[] = _(" seconds");
 static const u8 sText_SpaceTimes[] = _(" time(s)");
+#endif
 
 #if GERMAN
 static const u8 sText_Wallace[] = _("Wassili");
@@ -2685,6 +2692,19 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
     },
     [SCROLL_MULTI_POKEMON_FAN_CLUB_RATER] =
     {
+#if GERMAN
+        COMPOUND_STRING("0 Pkt."),
+        COMPOUND_STRING("10 Pkt."),
+        COMPOUND_STRING("20 Pkt."),
+        COMPOUND_STRING("30 Pkt."),
+        COMPOUND_STRING("40 Pkt."),
+        COMPOUND_STRING("50 Pkt."),
+        COMPOUND_STRING("60 Pkt."),
+        COMPOUND_STRING("70 Pkt."),
+        COMPOUND_STRING("80 Pkt."),
+        COMPOUND_STRING("90 Pkt."),
+        COMPOUND_STRING("100 Pkt."),
+#else
         COMPOUND_STRING("0 pts"),
         COMPOUND_STRING("10 pts"),
         COMPOUND_STRING("20 pts"),
@@ -2696,6 +2716,7 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
         COMPOUND_STRING("80 pts"),
         COMPOUND_STRING("90 pts"),
         COMPOUND_STRING("100 pts"),
+#endif
         COMPOUND_STRING("?")
     },
     [SCROLL_MULTI_BF_EXCHANGE_CORNER_DECOR_VENDOR_1] =
