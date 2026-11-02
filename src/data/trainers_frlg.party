@@ -13404,42 +13404,42 @@ Mugshot: Purple
 Dewgong
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Ice Beam
 - Surf
-- Signal Beam
-- Double Team
+- Ice Beam
+- Toxic
+- Encore
 
 Cloyster
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Ice Beam
+- Icicle Crash
 - Surf
-- Supersonic
-- Rain Dance
+- Poison Jab
+- Shell Smash
 
 Piloswine
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Blizzard
 - Earthquake
-- Double Edge
-- Rock Slide
+- Icicle Crash
+- Curse
+- Toxic
 
 Jynx
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Ice Beam
 - Psychic
-- Lovely Kiss
-- Attract
+- Shadow Ball
+- Nasty Plot
 
 Lapras @ Cheri Berry
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Ice Beam
 - Surf
-- Psychic
-- Thunder
+- Ice Beam
+- Earthquake
+- Toxic
 
 === TRAINER_ELITE_FOUR_BRUNO_2 ===
 Name: Bruno
@@ -13456,41 +13456,41 @@ Steelix
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Earthquake
-- Iron Tail
-- Crunch
-- Rock Tomb
+- Iron Head
+- Stone Edge
+- Curse
 
 Hitmonchan
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sky Uppercut
-- Mach Punch
+- Hi Jump Kick
+- Earthquake
 - Rock Slide
-- Counter
+- Swords Dance
 
 Hitmonlee
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Mega Kick
-- Foresight
+- Hi Jump Kick
 - Earthquake
 - Rock Slide
+- Swords Dance
 
 Steelix
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Earthquake
-- Iron Tail
-- Crunch
-- Dragon Breath
+- Iron Head
+- Stone Edge
+- Curse
 
 Machamp @ Persim Berry
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Cross Chop
+- Close Combat
 - Earthquake
-- Brick Break
 - Rock Slide
+- Bulk Up
 
 === TRAINER_ELITE_FOUR_AGATHA_2 ===
 Name: Agathe
@@ -13507,41 +13507,41 @@ Gengar
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Shadow Ball
-- Psychic
-- Confuse Ray
+- Sludge
+- Thunderbolt
 - Hypnosis
 
 Crobat
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sludge Bomb
-- Air Cutter
-- Shadow Ball
-- Confuse Ray
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Hypnosis
 
 Misdreavus
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Shadow Ball
 - Psychic
-- Thunderbolt
-- Attract
+- Power Gem
+- Nasty Plot
 
 Arbok
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sludge Bomb
+- Gunk Shot
 - Earthquake
-- Giga Drain
-- Double Team
+- Crunch
+- Coil
 
 Gengar @ Chesto Berry
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Shadow Ball
-- Psychic
+- Sludge
 - Thunderbolt
-- Sludge Bomb
+- Thunder Wave
 
 === TRAINER_ELITE_FOUR_LANCE_2 ===
 Name: Siegfried
@@ -13557,42 +13557,42 @@ Mugshot: Blue
 Gyarados
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hyper Beam
-- Dragon Dance
+- Aqua Tail
 - Earthquake
-- Thunder Wave
+- Crunch
+- Dragon Dance
 
 Dragonite
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hyper Beam
+- Outrage
 - Earthquake
-- Dragon Claw
-- Flamethrower
+- Fire Punch
+- Dragon Dance
 
 Kingdra
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hyper Beam
-- Dragon Dance
 - Surf
+- Dragon Pulse
 - Ice Beam
+- Agility
 
 Aerodactyl
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hyper Beam
-- Ancient Power
-- Aerial Ace
+- Rock Slide
 - Earthquake
+- Aerial Ace
+- Curse
 
 Dragonite @ Persim Berry
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hyper Beam
 - Outrage
-- Thunderbolt
-- Ice Beam
+- Earthquake
+- Fire Punch
+- Dragon Dance
 
 === TRAINER_CHAMPION_REMATCH_SQUIRTLE ===
 Name: Terry
@@ -13608,10 +13608,10 @@ Mugshot: Yellow
 Heracross
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Close Combat
 - Megahorn
 - Earthquake
-- Counter
-- Rock Tomb
+- Swords Dance
 
 Alakazam
 Level: 47
@@ -13619,39 +13619,39 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psychic
 - Shadow Ball
 - Calm Mind
-- Reflect
+- Recover
 
 Tyranitar
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Stone Edge
 - Crunch
 - Earthquake
-- Thunderbolt
-- Aerial Ace
+- Dragon Dance
 
 Arcanine
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Extreme Speed
-- Overheat
-- Aerial Ace
-- Iron Tail
+- Flare Blitz
+- Close Combat
+- Outrage
+- Morning Sun
 
 Exeggutor
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Giga Drain
+- Leaf Storm
 - Psychic
-- Sleep Powder
-- Light Screen
+- Earthquake
+- Calm Mind
 
 Blastoise @ Sitrus Berry
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hydro Pump
-- Ice Beam
 - Earthquake
-- Rain Dance
+- Ice Beam
+- Toxic
 
 === TRAINER_CHAMPION_REMATCH_BULBASAUR ===
 Name: Terry
@@ -13667,10 +13667,10 @@ Mugshot: Yellow
 Heracross
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Close Combat
 - Megahorn
 - Earthquake
-- Counter
-- Rock Tomb
+- Swords Dance
 
 Alakazam
 Level: 47
@@ -13678,39 +13678,39 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psychic
 - Shadow Ball
 - Calm Mind
-- Reflect
+- Recover
 
 Tyranitar
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Stone Edge
 - Crunch
 - Earthquake
-- Thunderbolt
-- Aerial Ace
+- Dragon Dance
 
 Gyarados
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hydro Pump
-- Dragon Dance
+- Aqua Tail
 - Earthquake
-- Hyper Beam
+- Crunch
+- Dragon Dance
 
 Arcanine
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Extreme Speed
-- Overheat
-- Aerial Ace
-- Iron Tail
+- Flare Blitz
+- Close Combat
+- Outrage
+- Morning Sun
 
 Venusaur @ Sitrus Berry
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Solar Beam
-- Sludge Bomb
+- Giga Drain
+- Sludge
 - Earthquake
-- Sunny Day
+- Sleep Powder
 
 === TRAINER_CHAMPION_REMATCH_CHARMANDER ===
 Name: Terry
@@ -13726,10 +13726,10 @@ Mugshot: Yellow
 Heracross
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Close Combat
 - Megahorn
 - Earthquake
-- Counter
-- Rock Tomb
+- Swords Dance
 
 Alakazam
 Level: 47
@@ -13737,39 +13737,39 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psychic
 - Shadow Ball
 - Calm Mind
-- Reflect
+- Recover
 
 Tyranitar
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Stone Edge
 - Crunch
 - Earthquake
-- Thunderbolt
-- Aerial Ace
+- Dragon Dance
 
 Exeggutor
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Giga Drain
+- Leaf Storm
 - Psychic
-- Sleep Powder
-- Light Screen
+- Earthquake
+- Calm Mind
 
 Gyarados
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hydro Pump
-- Dragon Dance
+- Aqua Tail
 - Earthquake
-- Hyper Beam
+- Crunch
+- Dragon Dance
 
 Charizard @ Sitrus Berry
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Fire Blast
-- Dragon Claw
-- Aerial Ace
+- Overheat
+- Air Slash
 - Earthquake
+- Toxic
 
 === TRAINER_CUE_BALL_PAXTON ===
 Name: Paul
