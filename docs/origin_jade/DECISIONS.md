@@ -1853,8 +1853,9 @@ dated 2026-10-10 or later were decided directly.
     used (Return, Frustration, Hidden Power, one-hit KOs, two-turn
     attacks except Solar Beam with Drought, self-KO moves, Fake Out,
     Dream Eater, weight- and HP-based moves). Bosses that fight double
-    or 2-vs-2 battles (Ariana with a grunt) carry no move that also hits
-    their partner (Earthquake, Surf, Discharge, Sludge Wave ...) unless every
+    or 2-vs-2 battles (Ariana with a grunt, Hoenn's gym rematches, Tate
+    and Liza, Maxie with Tabitha) carry no move that also hits their
+    partner (Earthquake, Surf, Discharge, Sludge Wave ...) unless every
     Pokemon that can stand next to them is immune (Flying type,
     Levitate ...): such a move hits the partner at full damage (B-13),
     and the AI uses it as long as the partner survives. Single-target
@@ -1871,7 +1872,9 @@ dated 2026-10-10 or later were decided directly.
     rematches; Kanto and Johto for Johto and for Blue's and Janina's
     Kanto gyms after the league change; all for Hoenn), or an egg move
     (not for legendaries and not for a rival's starter). Held items and
-    abilities stay. Done for Johto (`src/data/trainers_hns.party`).
+    abilities stay. Done for Johto (`src/data/trainers_hns.party`) and
+    Hoenn (`src/data/trainers.party`, Magma's and Aqua's leaders and
+    admins, May and Wally included).
     Kanto's first-run bosses are not scaled and keep FireRed's sets
     (D-011); Troy and Red: below.
   - May and Wally count as bosses (+1 on the ace) like Silver and Blue:
