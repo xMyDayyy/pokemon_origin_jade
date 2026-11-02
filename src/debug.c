@@ -106,6 +106,7 @@ enum FlagsVarsDebugMenu
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_FRONTIER_PASS,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_COLLISION,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_ENCOUNTER,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_EVEN_WILD_SLOTS,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE,
@@ -194,7 +195,7 @@ enum DebugTrainerSelection
 #define DEBUG_NUMBER_ICON_X 210
 #define DEBUG_NUMBER_ICON_Y 50
 
-#define DEBUG_MAX_MENU_ITEMS 20
+#define DEBUG_MAX_MENU_ITEMS 21
 #define DEBUG_MAX_SUB_MENU_LEVELS 4
 
 // *******************************
@@ -239,6 +240,7 @@ static EWRAM_DATA struct DebugMonData *sDebugMonData = NULL;
 static EWRAM_DATA struct DebugMenuListData *sDebugMenuListData = NULL;
 EWRAM_DATA bool8 gIsDebugBattle = FALSE;
 EWRAM_DATA u64 gDebugAIFlags = 0;
+EWRAM_DATA bool8 gDebugEvenWildSlots = FALSE;
 
 // *******************************
 // Define functions
@@ -329,6 +331,7 @@ static void DebugAction_FlagsVars_ToggleGameClear(u8 taskId);
 static void DebugAction_FlagsVars_ToggleFrontierPass(u8 taskId);
 static void DebugAction_FlagsVars_CollisionOnOff(u8 taskId);
 static void DebugAction_FlagsVars_EncounterOnOff(u8 taskId);
+static void DebugAction_FlagsVars_EvenWildSlotsOnOff(u8 taskId);
 static void DebugAction_FlagsVars_TrainerSeeOnOff(u8 taskId);
 static void DebugAction_FlagsVars_BagUseOnOff(u8 taskId);
 static void DebugAction_FlagsVars_CatchingOnOff(u8 taskId);
@@ -734,6 +737,7 @@ static const struct DebugMenuOption sDebugMenu_Actions_Flags[] =
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_FRONTIER_PASS] = { COMPOUND_STRING("Toggle {STR_VAR_1}Frontier Pass"),   DebugAction_ToggleFlag, DebugAction_FlagsVars_ToggleFrontierPass },
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_COLLISION]     = { COMPOUND_STRING("Toggle {STR_VAR_1}Collision OFF"),   DebugAction_ToggleFlag, DebugAction_FlagsVars_CollisionOnOff },
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_ENCOUNTER]     = { COMPOUND_STRING("Toggle {STR_VAR_1}Encounter OFF"),   DebugAction_ToggleFlag, DebugAction_FlagsVars_EncounterOnOff },
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_EVEN_WILD_SLOTS] = { COMPOUND_STRING("Toggle {STR_VAR_1}Even Wild Slots"), DebugAction_ToggleFlag, DebugAction_FlagsVars_EvenWildSlotsOnOff },
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE]   = { COMPOUND_STRING("Toggle {STR_VAR_1}Trainer See OFF"), DebugAction_ToggleFlag, DebugAction_FlagsVars_TrainerSeeOnOff },
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING]      = { COMPOUND_STRING("Toggle {STR_VAR_1}Catching OFF"),    DebugAction_ToggleFlag, DebugAction_FlagsVars_CatchingOnOff },
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE]       = { COMPOUND_STRING("Toggle {STR_VAR_1}Bag Use OFF"),     DebugAction_ToggleFlag, DebugAction_FlagsVars_BagUseOnOff },
@@ -1274,6 +1278,9 @@ static u32 Debug_CheckToggleFlags(u8 id)
         result = FlagGet(OW_FLAG_NO_ENCOUNTER);
         break;
     #endif
+    case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_EVEN_WILD_SLOTS:
+        result = gDebugEvenWildSlots;
+        break;
     #if OW_FLAG_NO_TRAINER_SEE != 0
     case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE:
         result = FlagGet(OW_FLAG_NO_TRAINER_SEE);
@@ -2989,6 +2996,17 @@ static void DebugAction_FlagsVars_EncounterOnOff(u8 taskId)
         PlaySE(SE_PC_LOGIN);
     FlagToggle(OW_FLAG_NO_ENCOUNTER);
 #endif
+}
+
+// Every slot of a wild encounter table equally likely (land, water, Rock Smash,
+// each rod); not saved.
+static void DebugAction_FlagsVars_EvenWildSlotsOnOff(u8 taskId)
+{
+    if (gDebugEvenWildSlots)
+        PlaySE(SE_PC_OFF);
+    else
+        PlaySE(SE_PC_LOGIN);
+    gDebugEvenWildSlots = !gDebugEvenWildSlots;
 }
 
 static void DebugAction_FlagsVars_TrainerSeeOnOff(u8 taskId)

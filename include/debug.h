@@ -13,5 +13,6 @@ void DebugNative_Party_SetFriendship(void);
 
 extern EWRAM_DATA bool8 gIsDebugBattle;
 extern EWRAM_DATA u64 gDebugAIFlags;
+extern EWRAM_DATA bool8 gDebugEvenWildSlots;
 
 #endif // GUARD_DEBUG_H

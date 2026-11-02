@@ -125,6 +125,9 @@ var number without storage (D-016).
 - `test/origin_jade/daycares.c`: Kanto's, Johto's and Hoenn's Day Cares
   keep their own Pokemon, and a pair in Johto's lays its egg there without
   touching Hoenn's `FLAG_PENDING_DAYCARE_EGG`. D-052.
+- `test/origin_jade/even_wild_slots.c`: the debug toggle "Even Wild Slots"
+  (D-055): every land, water and Rock Smash slot comes up about equally
+  often while it is on; off, the last land slot keeps its 1 %.
 - `test/save.c`: save block sizes of Origin Jade (D-017).
 
 The tests read the bands from `include/config/*_scaling.h`. They use

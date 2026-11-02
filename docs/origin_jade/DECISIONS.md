@@ -1374,7 +1374,7 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-046 Only Origin Jade is built
 - **Status:** Active (2026-10-30, changed 2026-10-31: region check in the
-  CI, debug states D-050)
+  CI, debug states D-050; changed 2026-11-02: "Even Wild Slots", D-055)
 - **Decision:** The make process builds only Origin Jade: `GAME_VERSION`
   `POKEMON_HNS` (so `IS_HNS`), map version `hns`, title "POKEMON JADE",
   `Pokemon_Origin_Jade.gba`. `make`, `make jade`, `make check`,
@@ -1395,7 +1395,7 @@ dated 2026-10-10 or later were decided directly.
   or intended go into its `KNOWN_ERRORS` with the decision that covers
   them. The upstream Docs and Labels workflows run only by hand.
 - **Debug menus:** the overworld debug menu (R + Start, with "Johto Test"
-  and "Hoenn Test", D-050),
+  and "Hoenn Test", D-050, and the switch "Even Wild Slots", D-055),
   the battle debug menu (Select) and the sprite visualizer are on in the
   normal build (beta testing) and off in `make release`
   (`DISABLED_ON_RELEASE`, `include/config/debug.h`).
@@ -2123,6 +2123,29 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** owner answers 2026-10-31 and 2026-11-02 (group 4: "alles
   wie im HnS-Upstream"; FRLG's Kanto against HnS's Kanto); HnS code
   compared with `git show 9041f705db:<file>`.
+### D-055 Debug toggle "Even Wild Slots"
+- **Status:** Active (2026-11-02, owner: test aid "Wilde gleich verteilt")
+- **Decision:** The overworld debug menu's "Flags & Vars" list has "Even
+  Wild Slots" (debug texts stay English, D-020). While it is on, every
+  slot of the current encounter table is equally likely: land, water,
+  Rock Smash (also the Headbutt trees, which use its table) and each rod
+  (Old Rod slots 0-1, Good Rod 2-4, Super Rod 5-9). The table itself
+  (map, time of day, randomizer) and the levels stay as they are;
+  abilities that draw a type (Magnet Pull, Static ...) still come first.
+  DexNav's sightings while walking (`TryFindHiddenPokemon`) and the map's
+  wild species behind ambient cries and a transforming follower
+  (`GetLocalWildMon`, `GetLocalWaterMon`) use the even slots too; the
+  species of DexNav's hidden table and mass outbreaks keep their own
+  odds. The switch lives in RAM (`gDebugEvenWildSlots`): off after a
+  reset, nothing in the save, no save layout change. `make release` has
+  no debug menu (D-046) and drops the check (`DEBUG_OVERWORLD_MENU`).
+- **Why:** A tester who checks which Pokemon a map has would need
+  hundreds of encounters for a slot of 1 %.
+- **Code:** `UseDebugEvenWildSlots` and `ChooseWildMonIndex_*` in
+  `src/wild_encounter.c`, `DebugAction_FlagsVars_EvenWildSlotsOnOff` in
+  `src/debug.c`; test `test/origin_jade/even_wild_slots.c`.
+- **Evidence:** owner answers 2026-11-02 (test aid "Wilde gleich
+  verteilt": yes).
 
 ---
 

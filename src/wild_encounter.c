@@ -23,6 +23,7 @@
 #include "level_scaling.h"
 #include "randomizer.h"
 #include "battle_debug.h"
+#include "debug.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
 #include "constants/abilities.h"
@@ -186,12 +187,22 @@ static void FeebasSeedRng(u16 seed)
     sFeebasRngValue = seed;
 }
 
+// Debug menu "Even Wild Slots": every slot of a table equally likely.
+static bool32 UseDebugEvenWildSlots(void)
+{
+    return DEBUG_OVERWORLD_MENU && gDebugEvenWildSlots;
+}
+
 // LAND_WILD_COUNT
 u32 ChooseWildMonIndex_Land(void)
 {
     u8 wildMonIndex = 0;
     bool8 swap = FALSE;
-    u8 rand = Random() % ENCOUNTER_CHANCE_LAND_MONS_TOTAL;
+    u8 rand;
+
+    if (UseDebugEvenWildSlots())
+        return Random() % LAND_WILD_COUNT;
+    rand = Random() % ENCOUNTER_CHANCE_LAND_MONS_TOTAL;
 
     if (rand < ENCOUNTER_CHANCE_LAND_MONS_SLOT_0)
         wildMonIndex = 0;
@@ -232,7 +243,11 @@ u32 ChooseWildMonIndex_Water(void)
 {
     u32 wildMonIndex = 0;
     bool8 swap = FALSE;
-    u8 rand = Random() % ENCOUNTER_CHANCE_WATER_MONS_TOTAL;
+    u8 rand;
+
+    if (UseDebugEvenWildSlots())
+        return Random() % WATER_WILD_COUNT;
+    rand = Random() % ENCOUNTER_CHANCE_WATER_MONS_TOTAL;
 
     if (rand < ENCOUNTER_CHANCE_WATER_MONS_SLOT_0)
         wildMonIndex = 0;
@@ -259,7 +274,11 @@ u32 ChooseWildMonIndex_Rocks(void)
 {
     u32 wildMonIndex = 0;
     bool8 swap = FALSE;
-    u8 rand = Random() % ENCOUNTER_CHANCE_ROCK_SMASH_MONS_TOTAL;
+    u8 rand;
+
+    if (UseDebugEvenWildSlots())
+        return Random() % ROCK_WILD_COUNT;
+    rand = Random() % ENCOUNTER_CHANCE_ROCK_SMASH_MONS_TOTAL;
 
     if (rand < ENCOUNTER_CHANCE_ROCK_SMASH_MONS_SLOT_0)
         wildMonIndex = 0;
@@ -286,8 +305,19 @@ static u32 ChooseWildMonIndex_Fishing(u8 rod)
 {
     u8 wildMonIndex = 0;
     bool8 swap = FALSE;
-    u8 rand = Random() % max(max(ENCOUNTER_CHANCE_FISHING_MONS_OLD_ROD_TOTAL, ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_TOTAL),
-                             ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_TOTAL);
+    u8 rand;
+
+    // The rods' slots as below: Old Rod 0-1, Good Rod 2-4, Super Rod 5-9.
+    if (UseDebugEvenWildSlots())
+    {
+        if (rod == OLD_ROD)
+            return Random() % 2;
+        if (rod == GOOD_ROD)
+            return 2 + Random() % 3;
+        return 5 + Random() % 5;
+    }
+    rand = Random() % max(max(ENCOUNTER_CHANCE_FISHING_MONS_OLD_ROD_TOTAL, ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_TOTAL),
+                          ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_TOTAL);
 
     if (LURE_STEP_COUNT != 0 && (Random() % 10 < 2))
         swap = TRUE;

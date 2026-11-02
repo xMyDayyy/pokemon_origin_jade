@@ -121,7 +121,7 @@ states (D-050). All new German texts are drafts for the owner to review.
   `58f244eade`, `2f4f6ccede`; the English rating text ends correctly
   (not shown in the German build) `e6466779e5`
 
-### Debug states (D-050, beta build only)
+### Debug menu (D-050, D-055, beta build only)
 
 - "Johto Test" (overworld debug menu, new game before the first Pokemon):
   Kanto right after its first Hall of Fame, the Pokedex of all Kanto lines
@@ -142,6 +142,10 @@ states (D-050). All new German texts are drafts for the owner to review.
   only while the mints option sells them; what does not fit into a pocket
   goes into the PC's item storage (D-050, O-035). Items bought with Battle
   Points are open (O-060).
+- "Even Wild Slots" (overworld debug menu, "Flags & Vars"): while it is
+  on, every slot of the current encounter table is equally likely (land,
+  water, Rock Smash and Headbutt, each rod); off after a reset, nothing in
+  the save (D-055).
 
 ## Kanto
 
