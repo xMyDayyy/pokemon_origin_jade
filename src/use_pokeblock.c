@@ -168,7 +168,7 @@ static const u8 sText_NothingChanged[] = _("Nothing changed!");
 static const u8 sText_WontEatAnymore[] = _("It won't eat anymore…");
 #endif
 #if GERMAN
-static const u8 sText_NatureSlash[] = _("Nature/");
+static const u8 sText_NatureSlash[] = _("Wesen/");
 #else
 static const u8 sText_NatureSlash[] = _("NATURE/");
 #endif

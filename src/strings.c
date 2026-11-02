@@ -5297,7 +5297,7 @@ const u8 gText_MoveRelearnerContestMovesTitle[] = _("Wett.-Attacken");
 const u8 gText_MoveRelearnerContestMovesTitle[] = _("CONTEST MOVES");
 #endif
 #if GERMAN
-const u8 gText_MoveRelearnerType[] = _("Type/");
+const u8 gText_MoveRelearnerType[] = _("Typ/");
 #else
 const u8 gText_MoveRelearnerType[] = _("TYPE/");
 #endif // Unused
