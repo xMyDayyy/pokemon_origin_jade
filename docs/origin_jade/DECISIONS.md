@@ -2147,6 +2147,77 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** owner answers 2026-11-02 (test aid "Wilde gleich
   verteilt": yes).
 
+### D-056 German completion of the common texts
+- **Status:** Active (2026-11-02, owner: the beta comes out in German
+  first, everything that is not German gets translated, both languages
+  stay selectable)
+- **Decision:**
+  - Every common text the German build shows (`data/text`,
+    `data/scripts`, strings in `src`) has a German branch under
+    `#if GERMAN`; the English text stays as the `#else` branch (D-020).
+    Where a file or table had no `#if GERMAN` yet, the pattern is added
+    per text.
+  - Sources, in this order: the official German Emerald texts
+    (pokeemerald-german), the German Ruby/Sapphire texts (pokeruby
+    `data-de`) where Emerald has none; written in title case (D-020).
+    Line breaks change only where a line would exceed 208 px. Obvious
+    slips of the official text are smoothed (punctuation, a garbled
+    sentence, grammar such as "so lange" or "gemäß ihrem Wesen", speaker
+    names as in the owner's existing texts, e.g. "Mr. Brack:"); the
+    commit messages name each case. HnS-only texts without an official
+    German text are own translations in the style of the neighbouring
+    texts; the owner reads them in the text round.
+  - Where the official text has no term, the owner's existing German
+    texts decide: stat abbreviations as in the Pokedex (KP, Ang, Ver,
+    Init, SP.A, SP.V), "IVs" as in the challenge menu, the HnS tent
+    copies as "Kampfcamp Arena", "Kampfcamp Palast", "Kampfcamp Fabrik".
+  - Done 2026-11-02: the move tutors of Emerald and HnS; the Safari
+    Zone's common texts (Route 121, also used by Johto's Safari Zone gate
+    and Fuchsia's entrance); the event-ticket sailors and signs (not
+    reachable, D-026, D-029); the Blend Master's champion gate; the two
+    Pokeblock feeder help windows; Dewford's fishing choice; Pokeblock
+    names and flavours; the PC wallpaper "Punkte"; the game names in two
+    TV shows ("Automaten" instead of the official "Einarmigen Banditen",
+    which does not fit the German lines of the show); "Lv." in the
+    Pokedex move list; the battle tents (`data/text/battle_tent.inc`,
+    shown by the HnS copies at the Route 40 Trainer Hill, which stay
+    under S-04); the menu answers of the Trick House Mechadolls,
+    Fortree's Hidden Power giver and the Battle Tower feelings man; the
+    Lilycove ladies (favour requests, contest categories and the contest
+    lady's nicknames as in German Emerald); the Cycling Road results; the
+    Trainer Fan Club ratings; the Exp. Candy, ability change and form
+    change messages of the party menu; the elder's quiz answer "Freund"
+    in the Dragon's Den; the list of banned species at the Battle
+    Frontier and tent desks; the easy chat keyboard; English words in
+    existing German branches ("Wesen/" when feeding Pokeblocks, "Typ/",
+    the move relearner's "Level-Attacken").
+  - Stays English on purpose: debug texts (D-020: `data/scripts/debug.inc`,
+    `data/scripts/config.inc`, `src/debug.c`, the sprite visualizer);
+    strings marked unused (`src/data/union_room.h`, the 16 battle tent
+    texts marked `@ Unused`, unused entries of `src/strings.c`); names in
+    the credits; internal strings (identifiers, link and compatibility
+    strings).
+  - English strings in `src` that cannot be reached stay as they are:
+    the DexNav (`DEXNAV_ENABLED` FALSE), the R-button fly prompt of the
+    region map (`OW_FLAG_POKE_RIDER` 0), the FRLG Trainer Tower, Seagallop
+    and Safari Zone battle menus (Sevii retired, D-019; `IS_FRLG` 0),
+    Alola and Sinjoh map names (D-019), the Sleep Clause message
+    (`B_FLAG_SLEEP_CLAUSE` 0), the code entry screen (special `EnterCode`
+    is not called), the Battle Tower interview's "Satisfied" and
+    "Dissatisfied" (only the retired Emerald Battle Frontier lobby) and
+    the Regi doll menu of the game corner (script not called).
+- **Not covered:** map texts (`data/maps/*`), trainer names in the party
+  files.
+- **Check:** `python3 -I tools/check_game_text.py --english`; after this
+  change the area "gemeinsam" lists only debug texts (83) and 14 of the
+  16 unused battle tent texts, the area "src" only debug (5), unused
+  union room texts (4) and credits names (2). The word list does not see
+  single words, all-caps names or lowercase fragments; those were
+  searched by hand in every common and `src` literal without German
+  words.
+- **Evidence:** owner answers 2026-11-02 (beta plan, "Deutsch
+  vervollständigen"); S-04 (the HnS tent copies at Route 40 stay).
+
 ---
 
 ## Planned, not built yet
@@ -2452,6 +2523,14 @@ dated 2026-10-10 or later were decided directly.
   stay out, the Kampfzone counts as Hoenn; (c) the Kampfzone opens only
   after the Hoenn title everywhere (the M.S. Aqua entry,
   `Common_EventScript_ShipMenuPushIslands`), then (b) follows.
+- **O-063** The Safari Zone desk on Route 121 (Hoenn) shares HnS's text for
+  a missing Pokeblock case
+  (`Route121_SafariZoneEntrance_Text_YouNeedPokeblockCase`): "the boy
+  over there" has one, but only Johto's gate has that boy; in
+  Hoenn the case comes from Lilycove's Contest Hall
+  (`data/scripts/contest_hall.inc`). Proposal: once the RS contests (owner
+  2026-11-02) fix where Hoenn's case comes from, Route 121 gets its own
+  line naming that place.
 
 ## Superseded decisions (kept for the record)
 
