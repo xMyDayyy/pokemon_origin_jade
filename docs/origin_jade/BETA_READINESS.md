@@ -387,7 +387,7 @@ take effect in a normal playthrough.
 | N-w3_hoenn-1* | Hoenn | Wallace gives nothing if HM Waterfall is already in the bag | owner | a substitute reward would be a design decision |
 | N-w3_hoenn-3* | Hoenn | Wallace's text says the badge is needed to teach the HM; in Jade it is the permit | owner | text |
 | T-hoenn_a-12 | Hoenn | Emerald player room leftovers in Norman's and Birch's house (D-002) | partly fixed | PC and decorations are the son's and May's (`ea9a0f7287`); Mom's Amulet Coin script and her scene after the wall clock are no longer built (`40102c8756`, `d38acf1988`); room decorations are set up in Pallet Town (O-029, D-048); the hidden objects of Mom and Dad are removed (O-030, D-048); left: notebook and wall clock |
-| T-hoenn_b-4 | Hoenn | Steven in Meteor Falls stays at level 75-78, about 20 below the Hoenn post-game (D-031 vs. D-043) | owner | |
+| T-hoenn_b-4 | Hoenn | Steven in Meteor Falls stays at level 75-78, about 20 below the Hoenn post-game (D-031 vs. D-043) | fixed | Troy and Red: six Pokemon at level 100 (D-053) |
 | T-legend_endgame-3 | Hoenn | Weather Institute 1F and the sailor judge Kyogre/Groudon differently for up to 3 days | open | |
 | W-progress_sim-17 | Hoenn | Dead script code from design decisions (e.g. Brendan's teams, D-003) | partly fixed | Brendan's Go-Goggles handover in Lavaridge Town is no longer built (`fe370081c1`, D-048); the rest is clean-up |
 | A105 | Johto | Dead states, never-set flags and test warps in Johto (New Bark Town 4-7, Ecruteak City 4/5/14) | owner | |

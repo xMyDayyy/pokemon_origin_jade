@@ -171,13 +171,14 @@ dated 2026-10-10 or later were decided directly.
   71301e75a1, 9c9eac68df, cf857f4e0e.
 
 ### D-009 The gatehouse south of Route 23 (four-way junction)
-- **Status:** Active (Johto exit changed 2026-10-30)
+- **Status:** Active (Johto exit changed 2026-10-30; Red's level changed
+  2026-11-02, D-053)
 - **Decision:** `ReceptionGate_hns` connects east to Kanto (Route 22 gate,
   needs all eight Kanto badges), south to Johto (opens with
   `FLAG_SYS_GAME_CLEAR`, i.e. after the Kanto league; while
   `VAR_JOHTO_HANDOVER` is 1 the guard sends the player to Oak for the GS
   Ball first, D-004), west to Mt. Silver
-  (opens only with `FLAG_IS_JOHTO_CHAMPION` - Red is level 77-93) and north
+  (opens only with `FLAG_IS_JOHTO_CHAMPION` - Red's team is level 100) and north
   to the league (D-010). Each check has its own temp var, so passing one
   does not switch off the others for the rest of the visit. HnS's Black Belt
   in the west corridor steps aside with the Johto title as well (HnS hid him
@@ -819,7 +820,7 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-031 Level scaling after a region's title
 - **Status:** Active (2026-10-15, Johto statics changed 2026-10-27, D-039,
-  Hoenn statics 2026-10-29, D-043)
+  Hoenn statics 2026-10-29, D-043; Troy and Red changed 2026-11-02, D-053)
 - **Decision:** After a region's title its trainers (rematches included) and
   wild Pokemon scale to the player's anchor without a ceiling (level 100).
   - Kanto: FRLG maps, off before `FLAG_IS_KANTO_CHAMPION`; no corridors, the
@@ -829,10 +830,12 @@ dated 2026-10-10 or later were decided directly.
     `FLAG_IS_JOHTO_CHAMPION` / `FLAG_IS_HOENN_CHAMPION`; floors stay.
   - Fixed: Red, the facilities, and Kanto's static and scripted encounters
     (D-026). Johto's and Hoenn's, roamers included, never fall below the top
-    of the map's wild band (D-039, D-043). Steven at Meteor Falls (level 75-78) stays
-    fixed as the owner set it before (876c3d4c19, Hoenn's counterpart to
-    Red, `HOENN_SCALING_FIXED_MIN_LEVEL` 70); setting it to 79 lets only him
-    scale.
+    of the map's wild band (D-039, D-043). Red on Mt. Silver and Troy
+    (Steven) at Meteor Falls are the final bosses of the story: six
+    Pokemon each at level 100 with fixed movesets (D-053), above
+    `JOHTO_SCALING_FIXED_MIN_LEVEL` (77) and `HOENN_SCALING_FIXED_MIN_LEVEL`
+    (70), so no corridor or level cap of the scaling touches them (before:
+    Red 77-93, Troy 75-78 as set in 876c3d4c19).
   - After the Johto title every Pokemon obeys, traded ones too (Johto badge
     limits: P-003).
 - **Evidence:** decision 2026-10-15; Steven: 876c3d4c19.
@@ -1823,6 +1826,20 @@ dated 2026-10-10 or later were decided directly.
     `TRAINER_CLASS_RIVAL` is a boss class in `IsBossTrainer`
     (`src/level_scaling.c`). Brendan's teams (unused, D-003) and Troy
     share the class; Troy is not scaled (D-031). (B-06, D-012)
+  - Troy at Meteor Falls (`TRAINER_STEVEN`) and Red on Mt. Silver
+    (`TRAINER_RED_HNS`) are the absolute final bosses of the story: both
+    field six Pokemon at level 100 with fixed movesets, held items as
+    before, never scaled (B-10, D-031). Troy: Skarmory (Spikes, Stealth
+    Rock, Roost, Brave Bird), Claydol (Earthquake, Psychic, Ice Beam,
+    Shadow Ball), Aggron (Head Smash, Iron Head, Earthquake, Autotomize),
+    Cradily (Curse, Recover, Rock Slide, Earthquake), Armaldo (Swords
+    Dance, X-Scissor, Rock Blast, Earthquake), Metagross (Meteor Mash,
+    Earthquake, Zen Headbutt, Bullet Punch). Red: Pikachu (Volt Tackle,
+    Surf, Iron Tail, Brick Break), Snorlax (Curse, Body Slam, Earthquake,
+    Crunch), Charizard (Fire Blast, Air Slash, Dragon Pulse, Focus
+    Blast), Venusaur (Giga Drain, Sludge Bomb, Sleep Powder, Synthesis),
+    Blastoise (Hydro Pump, Ice Beam, Dark Pulse, Focus Blast), Espeon
+    (Calm Mind, Psychic, Shadow Ball, Morning Sun).
 - **Evidence:** owner answers 2026-10-31 (B-01-B-13) and 2026-11-02.
 
 ---

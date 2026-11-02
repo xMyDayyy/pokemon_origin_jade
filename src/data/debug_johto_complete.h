@@ -4,7 +4,7 @@
 // Regenerate: python3 tools/make_debug_states.py (check: --check).
 
 #define JOHTO_COMPLETE_JOHTO_STARTER 0  // VAR_JOHTO_STARTER_MON: 0 Chikorita, 1 Cyndaquil, 2 Totodile
-#define JOHTO_COMPLETE_MONEY 723064  // start money and every prize of both regions
+#define JOHTO_COMPLETE_MONEY 723464  // start money and every prize of both regions
 
 static const u16 sJohtoCompleteFlagsSet[] =
 {
