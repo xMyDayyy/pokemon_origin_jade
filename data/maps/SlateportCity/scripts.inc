@@ -210,7 +210,7 @@ SlateportCity_EventScript_RichBoy::
 	lock
 	faceplayer
 	call_if_eq VAR_SLATEPORT_CITY_STATE, 1, SlateportCity_EventScript_RichBoySternInterview
-	msgbox SlateportCity_Text_GoingToCompeteInBattleTent, MSGBOX_DEFAULT
+	msgbox SlateportCity_Text_GoingToCompeteInPokemonContest, MSGBOX_DEFAULT
 	release
 	end
 
@@ -254,8 +254,8 @@ SlateportCity_EventScript_Woman1AquaGone::
 	release
 	end
 
-SlateportCity_EventScript_BattleTentSign::
-	msgbox SlateportCity_Text_BattleTentSign, MSGBOX_SIGN
+SlateportCity_EventScript_ContestHallSign::
+	msgbox SlateportCity_Text_ContestHallSign, MSGBOX_SIGN
 	end
 
 SlateportCity_EventScript_SternsShipyardSign::
@@ -346,7 +346,7 @@ SlateportCity_EventScript_PokefanF::
 	end
 
 SlateportCity_EventScript_Man2::
-	msgbox SlateportCity_Text_BattleTentBuiltRecently, MSGBOX_NPC
+	msgbox SlateportCity_Text_ContestHallBuiltRecently, MSGBOX_NPC
 	end
 
 SlateportCity_EventScript_AquaGrunt1::
@@ -869,7 +869,7 @@ SlateportCity_EventScript_NotEnoughBerryPowder::
 	goto SlateportCity_EventScript_ChooseBerryPowderItem
 	end
 
-SlateportCity_EventScript_ScottBattleTentScene::
+SlateportCity_EventScript_ScottContestHallScene::
 	lockall
 	applymovement LOCALID_PLAYER, Common_Movement_FaceUp
 	waitmovement 0
@@ -877,14 +877,14 @@ SlateportCity_EventScript_ScottBattleTentScene::
 	waitdooranim
 	addobject LOCALID_SLATEPORT_SCOTT
 	applymovement LOCALID_PLAYER, SlateportCity_Movement_PushPlayerDown
-	applymovement LOCALID_SLATEPORT_SCOTT, SlateportCity_Movement_ScottExitBattleTent
+	applymovement LOCALID_SLATEPORT_SCOTT, SlateportCity_Movement_ScottExitContestHall
 	waitmovement 0
 	closedoor 10, 12
 	waitdooranim
-	msgbox SlateportCity_Text_TakingBattleTentChallenge, MSGBOX_DEFAULT
+	msgbox SlateportCity_Text_ScottLeavesContestHall, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_PLAYER, SlateportCity_Movement_PlayerWatchScottExit
-	applymovement LOCALID_SLATEPORT_SCOTT, SlateportCity_Movement_ScottExitAfterBattleTent
+	applymovement LOCALID_SLATEPORT_SCOTT, SlateportCity_Movement_ScottWalkAwayFromContestHall
 	waitmovement 0
 	removeobject LOCALID_SLATEPORT_SCOTT
 	addvar VAR_SCOTT_STATE, 1
@@ -903,12 +903,12 @@ SlateportCity_Movement_PlayerWatchScottExit:
 	walk_in_place_faster_right
 	step_end
 
-SlateportCity_Movement_ScottExitBattleTent:
+SlateportCity_Movement_ScottExitContestHall:
 	delay_8
 	walk_down
 	step_end
 
-SlateportCity_Movement_ScottExitAfterBattleTent:
+SlateportCity_Movement_ScottWalkAwayFromContestHall:
 	walk_right
 	walk_right
 	walk_right
@@ -1062,17 +1062,19 @@ SlateportCity_Text_BuyBricksSoDecorWontGetDirty:
 	.string "when I leave them out.$"
 #endif
 
-SlateportCity_Text_GoingToCompeteInBattleTent:
+SlateportCity_Text_GoingToCompeteInPokemonContest:
 #if GERMAN
-	.string "Wroooaaar! Ich werde auch im Kampfcamp\n"
-	.string "mein Können unter Beweis stellen! \p"
+	.string "Yeah! Darauf habe ich lange gewartet!\n"
+	.string "Wettbewerbe für Pokémon!\l"
+	.string "Ich werde mit Sicherheit teilnehmen!\p"
 	.string "Aber vorher muss ich mir einige\n"
 	.string "Pokémon fangen!$"
 #else
-	.string "Wroooar! I'm going to compete in\n"
-	.string "the BATTLE TENT, too!\p"
-	.string "But before that, I need to catch\n"
-	.string "some POKéMON!$"
+	.string "Yeah! I've waited so long for this!\n"
+	.string "POKéMON CONTESTS!\l"
+	.string "I'm going to enter!\p"
+	.string "But before I do, I have to catch some\n"
+	.string "POKéMON!$"
 #endif
 
 SlateportCity_Text_BushedHikingFromMauville:
@@ -1329,22 +1331,18 @@ SlateportCity_Text_CantChangeTradeMonName:
 	.string "POKéMON is in the nickname.$"
 #endif
 
-SlateportCity_Text_BattleTentBuiltRecently:
+SlateportCity_Text_ContestHallBuiltRecently:
 #if GERMAN
-	.string "In Graphitport City wurde vor kurzem\n"
-	.string "ein Kampfcamp aufgebaut.\p"
-	.string "Arenen machen Spaß, aber die Kampf-\n"
-	.string "camps sind einfach unglaublich!\p"
-	.string "Such dir aber erst ein paar starke\n"
-	.string "Pokémon, bevor du in ein Kampfcamp\l"
-	.string "gehst.$"
+	.string "Eine Wettbewerbshalle für Pokémon\n"
+	.string "wurde kürzlich in Graphitport City\l"
+	.string "eröffnet.\p"
+	.string "Ich plane dort hinzugehen, wenn ich\n"
+	.string "meine Pokémon besser trainiert habe.$"
 #else
-	.string "Recently, a BATTLE TENT was built\n"
-	.string "in SLATEPORT.\p"
-	.string "GYMS are fun, but the BATTLE TENT's\n"
-	.string "awesome in its own way.\p"
-	.string "You should go find tough POKéMON\n"
-	.string "for the BATTLE TENT!$"
+	.string "A POKéMON CONTEST HALL opened in\n"
+	.string "SLATEPORT recently.\p"
+	.string "I plan on entering after I improve the\n"
+	.string "condition of my POKéMON.$"
 #endif
 
 SlateportCity_Text_CaptSternBeingInterviewed:
@@ -1550,13 +1548,15 @@ SlateportCity_Text_PleaseComeWithMe:
 	.string "Please, come with me!$"
 #endif
 
-SlateportCity_Text_BattleTentSign:
+SlateportCity_Text_ContestHallSign:
 #if GERMAN
-	.string "Kampfcamp Graphitport City\n"
-	.string "“Finde es! Das ultimative Pokémon!”$"
+	.string "Pokémon Wettbewerbe\n"
+	.string "Hyper-Klasse Registrierungen\p"
+	.string "“Lasst es krachen, Pokémon-Trainer!”$"
 #else
-	.string "BATTLE TENT SLATEPORT SITE\n"
-	.string "“Find it! The ultimate POKéMON!”$"
+	.string "POKéMON CONTESTS\n"
+	.string "HYPER RANK REGISTRATION\p"
+	.string "“Let it burn! POKéMON TRAINERS!”$"
 #endif
 
 SlateportCity_Text_SternsShipyardWantedSign:
@@ -1871,27 +1871,23 @@ SlateportCity_Text_KeepEyeOnTrainersBeSeeingYou:
 	.string "Be seeing you, {PLAYER}{KUN}!$"
 #endif
 
-SlateportCity_Text_TakingBattleTentChallenge:
+SlateportCity_Text_ScottLeavesContestHall:
 #if GERMAN
 	.string "Scott: Oh, hey!\n"
 	.string "Wenn das nicht {PLAYER}{KUN} ist!\p"
-	.string "Lass mich raten, {PLAYER}{KUN} - du\n"
-	.string "stellst dich der Herausforderung im\l"
-	.string "Kampfcamp?\p"
-	.string "\p"
-	.string "Yeah! Eine gute Idee!\n"
-	.string "Eine wirklich sehr gute Idee!\p"
-	.string "Denn ein starker Trainer ist wie\n"
-	.string "geschaffen für das Kampfcamp! \p"
-	.string "Gib dein Bestes!$"
+	.string "Ich habe mich gerade in der\n"
+	.string "Wettbewerbshalle umgesehen.\p"
+	.string "Dort zählen Coolness und Anmut, aber\n"
+	.string "ich suche starke Trainer!\p"
+	.string "Und du, {PLAYER}{KUN}, siehst mir ganz\n"
+	.string "danach aus! Gib dein Bestes!$"
 #else
 	.string "SCOTT: Oh, hey!\n"
 	.string "If it isn't {PLAYER}{KUN}!\p"
-	.string "{PLAYER}{KUN}, let me guess--you're going\n"
-	.string "to take the BATTLE TENT challenge?\p"
-	.string "Yeah! That's a good idea!\n"
-	.string "That's a really great idea!\p"
-	.string "After all, a tough TRAINER is\n"
-	.string "the perfect fit for the BATTLE TENT!\p"
+	.string "I was just looking around the\n"
+	.string "CONTEST HALL.\p"
+	.string "In there, it's all about looks and\n"
+	.string "charm, but I'm after tough TRAINERS!\p"
+	.string "And you, {PLAYER}{KUN}, look like one!\n"
 	.string "Give it your best effort!$"
 #endif

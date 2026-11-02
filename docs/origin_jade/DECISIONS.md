@@ -2363,6 +2363,15 @@ dated 2026-10-10 or later were decided directly.
     tents, with the owner's German (O-065). The sailor in Slateport's hall
     gives TM Torment, with a flag of his own
     (`FLAG_HOENN_RECEIVED_TM_TORMENT`).
+  - Towns: the signs at the hall doors and the people who spoke of the
+    battle tents have their RS contest texts again: in Verdanturf the
+    camper, the old man in the Pokemon Center and the old lady in the
+    mart; in Slateport the boy, a man by the market and the girl in the
+    house near it, who asks for the Contest Pass as in RS. Lilycove's hall
+    sign names the Master Rank, as in RS. Scott still leaves Slateport's
+    hall after the museum
+    (`SlateportCity_EventScript_ScottContestHallScene`, he counts for
+    `VAR_SCOTT_STATE`); his line is new (O-070).
 - **Evidence:** owner answers 2026-11-02 ("Wettbewerbe (Owner,
   endgültig)"); owner commits 06ea236bdb and ad4a8db368 (hall buildings
   with doors).
@@ -2747,6 +2756,14 @@ dated 2026-10-10 or later were decided directly.
   `GetContestWinnerSaveIdx` (`src/contest.c`) to file winners by rank, and
   Lilycove's frames would then show Master and Hyper winners only.
   Proposal: keep the newest winner everywhere.
+- **O-070** Scott in Slateport (D-058): Emerald lets him leave the battle
+  tent after the museum scene and talk about the tent challenge. The tent
+  is a contest hall now; he leaves the hall and says he looked for strong
+  trainers there (`SlateportCity_Text_ScottLeavesContestHall`, a new text,
+  not from an official game). Ruby/Sapphire has no such scene. Options:
+  (a) keep the scene with the new text; (b) drop the scene (one Scott
+  meeting less for `VAR_SCOTT_STATE`, which sets the Battle Points he
+  gives in the Kampfzone). Proposal: (a); the owner reads the text.
 
 ## Superseded decisions (kept for the record)
 

@@ -1018,11 +1018,24 @@ LilycoveCity_Text_CitySign:
 
 LilycoveCity_Text_ContestHallSign:
 #if GERMAN
+#if IS_HNS
+	.string "Pokémon Wettbewerb\n"
+	.string "Master-Klasse Registrierungen\p"
+	.string "“Nimm mit deinen Freunden am\n"
+	.string "Wettbewerb teil!”$"
+#else
 	.string "Pokémon Wettbewerbshalle\n"
 	.string "“Der Treffpunkt für Trainer.”$"
+#endif
+#else
+#if IS_HNS
+	.string "POKéMON CONTESTS\n"
+	.string "MASTER RANK REGISTRATION\p"
+	.string "“Enter CONTESTS with your friends!”$"
 #else
 	.string "POKéMON CONTEST HALL\n"
 	.string "“The gathering place for TRAINERS!”$"
+#endif
 #endif
 
 LilycoveCity_Text_MotelSign:
