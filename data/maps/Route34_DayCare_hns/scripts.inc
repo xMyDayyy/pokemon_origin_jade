@@ -398,9 +398,15 @@ Route34_DayCare_EventScript_ClosedForChallenge::
 	end
 
 Route34_DayCare_Text_ClosedForChallenge:
+#if GERMAN
+	.string "Tut mir leid, aber während einer\n"
+	.string "Teamlimit-Herausforderung können wir\l"
+	.string "deine Pokémon nicht aufnehmen!$"
+#else
 	.string "Sorry, we can't look after your\n"
 	.string "POKéMON during a party limit\l"
 	.string "challenge!$"
+#endif
 
 Route34_DayCare_EventScript_OnlyOneMon::
 	msgbox Route34_DayCare_Text_YouHaveJustOneMon, MSGBOX_DEFAULT
