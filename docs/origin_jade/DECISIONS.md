@@ -593,6 +593,7 @@ dated 2026-10-10 or later were decided directly.
 - **Status:** Active (changed 2026-10-30, changed 2026-10-31: no fossils
   rolled; changed 2026-11-02: Bloodmoon Ursaluna, regional forms as
   evolutions)
+  rolled, changed 2026-11-02: exchange menus, D-054)
 - **Decision:** HnS's GEN SCOPE option (randomizer pool limited to Gen 1-3
   families) stays in the code and the save, but has no row in the challenge
   menu and is off (`RANDOMIZER_DEFAULT_GEN_SCOPE_1_3` FALSE in
@@ -622,10 +623,11 @@ dated 2026-10-10 or later were decided directly.
     still be rolled for other items, fossils never (Root and Claw Fossil
     left the whitelist `src/data/randomizer/item_whitelist.h`, D-049).
     Oak's five Poke Balls (after the
-    Pokedex and the refill after the Route 22 rival) and the coin prizes of
-    Celadon's prize room (`giveitem_norandom`) bypass the randomizer. Other
-    exchanges that use `giveitem` (Cerulean's Berry Powder man, Route 113's
-    Glass Workshop) still go through it. A Kanto gift with its own receive
+    Pokedex and the refill after the Route 22 rival) and what the player
+    picks from an exchange menu (`giveitem_norandom`: Celadon's coin prizes,
+    Cerulean's Berry Powder man, Route 113's Glass Workshop flutes,
+    Route 124's shard trades, Captain Stern's Scanner trade in Slateport's
+    harbour; D-054) bypass the randomizer. A Kanto gift with its own receive
     text (`giveitem_msg`: the gym leaders' TMs, the Master Ball, the Amulet
     Coin and others) gets the generic obtain message when its item was
     changed; the dialogue around it still names the original item. Outside
@@ -2006,6 +2008,18 @@ dated 2026-10-10 or later were decided directly.
     the voyage still ends after the usual steps) and the Weather
     Institute's on Route 119 (`Route119_WeatherInstitute_1F`). The menu
     text names exactly these.
+  - Paid exchanges and the item randomizer (N-07): HnS's exchanges with a
+    menu (Goldenrod's Game Corner prizes and drink machine, Kurt's balls,
+    the Moomoo Milk) give the chosen item (`additem`); Mom's purchases, the
+    lottery and Mahogany's merchant (`giveitem`) go through the randomizer.
+    Origin Jade gives the chosen item at its exchange menus too:
+    Celadon's prize room, Cerulean's Berry Powder man, Route 113's Glass
+    Workshop, Route 124's treasure hunter (shards for stones and Deep Sea
+    items) and Captain Stern in Slateport's harbour (Scanner for a Deep Sea
+    Tooth or Scale) (`giveitem_norandom`, D-023; the last two trade only
+    evolution items, which keep their place anyway); Celadon's and
+    Lilycove's drink machines and Mauville's prizes already use `additem`.
+    Mom and both lotteries stay randomized as in HnS.
 - **Evidence:** owner answers 2026-10-31 and 2026-11-02 (group 4: "alles
   wie im HnS-Upstream"; FRLG's Kanto against HnS's Kanto); HnS code
   compared with `git show 9041f705db:<file>`.

@@ -339,6 +339,7 @@ SlateportCity_Harbor_EventScript_AskToTradeScanner::
 	goto SlateportCity_Harbor_EventScript_ChooseScannerTrade
 	end
 
+@ Scanner trades: no item randomizer (see docs/origin_jade/DECISIONS.md, D-054).
 SlateportCity_Harbor_EventScript_ChooseScannerTrade::
 	multichoice 0, 0, MULTI_STERN_DEEPSEA, FALSE
 	switch VAR_RESULT
@@ -351,7 +352,7 @@ SlateportCity_Harbor_EventScript_ChooseScannerTrade::
 SlateportCity_Harbor_EventScript_DeepSeaTooth::
 	msgbox SlateportCity_Harbor_Text_TradeForDeepSeaTooth, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, SlateportCity_Harbor_EventScript_ChooseDifferentTrade
-	giveitem ITEM_DEEP_SEA_TOOTH
+	giveitem_norandom ITEM_DEEP_SEA_TOOTH
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	removeitem ITEM_SCANNER
 	msgbox SlateportCity_Harbor_Text_HandedScannerToStern, MSGBOX_DEFAULT
@@ -362,7 +363,7 @@ SlateportCity_Harbor_EventScript_DeepSeaTooth::
 SlateportCity_Harbor_EventScript_DeepSeaScale::
 	msgbox SlateportCity_Harbor_Text_TradeForDeepSeaScale, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, SlateportCity_Harbor_EventScript_ChooseDifferentTrade
-	giveitem ITEM_DEEP_SEA_SCALE
+	giveitem_norandom ITEM_DEEP_SEA_SCALE
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	removeitem ITEM_SCANNER
 	msgbox SlateportCity_Harbor_Text_HandedScannerToStern, MSGBOX_DEFAULT

@@ -251,13 +251,20 @@ Route124_DivingTreasureHuntersHouse_EventScript_TryTradeShard::
 
 Route124_DivingTreasureHuntersHouse_EventScript_TradeShard::
 	removeitem VAR_0x8008
-	giveitem VAR_0x8009
+	@ Paid with a shard: no item randomizer (see docs/origin_jade/DECISIONS.md, D-054).
+	giveitem_norandom VAR_0x8009
+	goto_if_eq VAR_RESULT, FALSE, Route124_DivingTreasureHuntersHouse_EventScript_ReturnShard
 	msgbox Route124_DivingTreasureHuntersHouse_Text_ItsADeal, MSGBOX_DEFAULT
 	call Route124_DivingTreasureHuntersHouse_EventScript_GetPlayersShards
 	goto_if_eq VAR_TEMP_1, 0, Route124_DivingTreasureHuntersHouse_EventScript_EndTrade
 	msgbox Route124_DivingTreasureHuntersHouse_Text_TradeSomethingElse, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, Route124_DivingTreasureHuntersHouse_EventScript_ShowTradeOptions
 	goto Route124_DivingTreasureHuntersHouse_EventScript_DeclineTrade
+	end
+
+Route124_DivingTreasureHuntersHouse_EventScript_ReturnShard::
+	additem VAR_0x8008
+	goto Route124_DivingTreasureHuntersHouse_EventScript_BagFull
 	end
 
 Route124_DivingTreasureHuntersHouse_EventScript_BagFull::
