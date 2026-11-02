@@ -8,7 +8,10 @@ that decisions are not undone by accident or argued again from scratch.
 
 - Every entry has an ID (`D-` decision, `P-` planned but not built,
   `O-` open question). IDs are never reused or renumbered. New entries go at
-  the end of their list.
+  the end of their list. Work packages reserve O- ids before they are
+  integrated; reserved ids a package did not use stay unused and are
+  never assigned later (O-042 to O-044, O-046 to O-049, O-051 to O-054,
+  O-059, O-061, O-062, O-064).
 - Status: **Active**, **Superseded** (the entry names its successor),
   **Planned** (decided, not built yet) or **Open** (no decision yet).
 - Code that implements a decision should name its ID in a comment, e.g.
@@ -490,13 +493,16 @@ dated 2026-10-10 or later were decided directly.
 - **Budget** (2026-11-02; `python3 tools/check_budget.py` prints it after a
   build): SaveBlock1 15868 of 15872 bytes (4 free), SaveBlock2 3892 of 3968
   (76 free), SaveBlock3 1584 of 1624 (40 free; 1008 before the Day Cares of
-  D-052), PokemonStorage 34144 of 35712 (1568 free). The limits are the flash space `src/save.c` checks
-  with `STATIC_ASSERT`; new Origin Jade data goes to SaveBlock3 (D-016).
-  SaveBlock1 reserves that can be reused in place without moving offsets:
-  `roamerPadding` (84 bytes), `dexPadding1` and `dexPadding2` (63 each),
-  `unused_9C6` (2), `outbreakUnused1/2/3`. Memory: EWRAM 249756 of 262144
-  bytes (95.27 %, of which `gHeap` 115968), IWRAM 25704 of 32768
-  (78.44 %), ROM 25892184 of 33554432 (77.16 %).
+  D-052), PokemonStorage 34144 of 35712 (1568 free). The limits are the
+  flash space `src/save.c` checks with `STATIC_ASSERT`; new Origin Jade
+  data goes to SaveBlock3 (D-016), which has only 40 bytes left since the
+  Day Cares of D-052; new save data needs the SaveBlock1 reserves below or
+  a layout decision. SaveBlock1 reserves that can be reused in place
+  without moving offsets: `roamerPadding` (84 bytes), `dexPadding1` and
+  `dexPadding2` (63 each), `unused_9C6` (2), `outbreakUnused1/2/3`.
+  Memory: EWRAM 249760 of 262144 bytes (95.28 %, of which `gHeap`
+  115968), IWRAM 25704 of 32768 (78.44 %), ROM 25896296 of 33554432
+  (77.18 %).
 - **Layout guards and reserves (2026-10-30):**
   - Sizes: SaveBlock1 15868 of 15872 bytes (4 free), SaveBlock2 3892,
     SaveBlock3 1584 of 1624 (40 free), PokemonStorage 34144. `test/save.c`
@@ -592,9 +598,7 @@ dated 2026-10-10 or later were decided directly.
 ### D-023 Randomizer without a GEN SCOPE row
 - **Status:** Active (changed 2026-10-30, changed 2026-10-31: no fossils
   rolled; changed 2026-11-02: Bloodmoon Ursaluna, regional forms as
-  evolutions)
-  rolled, changed 2026-11-02: exchange menus, D-054)
-  rolled, changed 2026-11-02: exchange menus and lab starters, D-054)
+  evolutions; exchange menus and lab starters, D-054)
 - **Decision:** HnS's GEN SCOPE option (randomizer pool limited to Gen 1-3
   families) stays in the code and the save, but has no row in the challenge
   menu and is off (`RANDOMIZER_DEFAULT_GEN_SCOPE_1_3` FALSE in
@@ -798,7 +802,8 @@ dated 2026-10-10 or later were decided directly.
 ### D-029 Magnet Train, radio quiz and ships
 - **Status:** Active (2026-10-15, ships changed 2026-10-20, Hoenn trips
   changed 2026-10-30, changed 2026-10-31: Hoenn entries of the ship menus,
-  D-047; Aurora Ticket, D-049)
+  D-047; Aurora Ticket, D-049; changed 2026-11-02: Birch's greeting only
+  after the first trip, D-047)
 - **Decision:**
   - Kanto has one way into Johto: the gatehouse (D-009). Flying between the
     regions opens with the first Johto visit.
@@ -817,14 +822,15 @@ dated 2026-10-10 or later were decided directly.
     Vermilion, and to Hoenn like the ports (D-047).
   - Only the first Hoenn trip (`VAR_HOENN_ARRIVAL_STATE` 0) sets the end
     state of Emerald's intro (`Common_EventScript_HoennSkipIntro`); every
-    trip with the "Hoenn" entry lands on the Route 104 pier, where Birch's
-    arrival scene starts. The trips to Slateport and Lilycove (D-047)
-    change no Hoenn state, so a trip never opens a town early or lands in
-    a scene. The ticket is not used up. Every trip sets the respawn: in
-    front of Birch's lab for the pier, the Pokemon Center of Slateport or
-    Lilycove for their harbours. Whoever leaves the beach before Birch's
-    greeting (Fly, Teleport, Dig) gets the welcome (Pokedex, badge case,
-    Birch's contact) on entering the lab (D-005).
+    trip with the "Hoenn" entry lands on the Route 104 pier, where only
+    the first trip starts Birch's arrival scene; later "Hoenn" trips land
+    there without an event (D-047). The trips to Slateport and Lilycove
+    (D-047) change no Hoenn state, so a trip never opens a town early or
+    lands in a scene. The ticket is not used up. Every trip sets the
+    respawn: in front of Birch's lab for the pier, the Pokemon Center of
+    Slateport or Lilycove for their harbours. Whoever leaves the beach
+    before Birch's greeting (Fly, Teleport, Dig) gets the welcome
+    (Pokedex, badge case, Birch's contact) on entering the lab (D-005).
   - The woman in Olivine City gives the Aurora Ticket only after the first
     trip to Hoenn (`VAR_HOENN_ARRIVAL_STATE` 1 or more, which needs the
     Johto title), so Deoxys comes after Hoenn is unlocked (D-049).
@@ -1282,7 +1288,10 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-29.
 
 ### D-044 Two Trainer Hills: HnS's by Route 40, Emerald's on Route 111
-- **Status:** Active (2026-10-30)
+- **Status:** Active (2026-10-30). The owner decided on 2026-11-02 that
+  Emerald's hill on Route 111 goes (S-05, P-006); its entrance is already
+  off the map on `balancing` (06ea236bdb), and until the clean-up the code
+  works as described here.
 - **Decision:** Both hills work, each with its own data:
   - Route 40 (Johto post-game, D-041) stays HnS's hill: HnS trainers, party
     at level 50, item prizes plus money, records in SaveBlock1
@@ -1296,7 +1305,8 @@ dated 2026-10-10 or later were decided directly.
     (`IsHnsTrainerHill`); scripts ask with `trainerhill_inhoennhill`.
   - Both hills share `MAPSEC_TRAINER_HILL` (O-024).
 - **Evidence:** decision 2026-10-30 (make the Route 111 hill work instead of
-  retiring it).
+  retiring it); owner answer 2026-11-02 (S-05: HnS's hill by Route 40 is
+  enough, P-006).
 
 ### D-045 Nuzlocke rules
 - **Status:** Active (2026-10-30; changed 2026-10-30: static encounters,
@@ -1648,7 +1658,7 @@ dated 2026-10-10 or later were decided directly.
     may then fill the Pokedex with later species. Other
     sources (gifts, eggs, evolutions, trades) set seen and caught as
     before. The Pokedex's evolution page still names later evolutions and
-    babies (O-034).
+    babies, as a help (owner 2026-11-02, O-034).
   - Kanto Pokedex (`GetKantoPokedexCount`, `HasAllKantoMons`): HnS's Kanto
     dex order keeps its 185 entries (`P_NEW_EVOS_IN_REGIONAL_DEX`), but the
     counts of Oak's rating and his aides and Celadon's diploma take only
@@ -1868,6 +1878,7 @@ dated 2026-10-10 or later were decided directly.
   `NewBarkTown_OnFrame` (`NewBarkTown_EventScript_ElmCallAfterLeague`).
 - **Evidence:** owner answers 2026-10-31 (S-02, S-07) and 2026-11-02
   (O-036: as in HnS).
+
 ### D-052 Day Cares per region, Bill's PC
 - **Status:** Active (2026-11-02, owner decisions 2026-10-31)
 - **Decision:** Kanto (Route 5), Johto (Route 34) and Hoenn (Route 117)
@@ -1907,6 +1918,7 @@ dated 2026-10-10 or later were decided directly.
   (`include/global.h`); `Route5_Frlg`, `Route34_DayCare_hns`; test
   `test/origin_jade/daycares.c`.
 - **Evidence:** owner answers 2026-10-31 (S-16, O-020, O-021).
+
 ### D-053 Balance round 2: boss movesets, league ladder, region badges
 - **Status:** Active (2026-11-02, owner answers 2026-10-31 to B-01-B-13)
 - **Decision:**
@@ -2044,6 +2056,7 @@ dated 2026-10-10 or later were decided directly.
       The six upstream tests that expect the later rule stay in the
       baseline of known failures (B-13).
 - **Evidence:** owner answers 2026-10-31 (B-01-B-13) and 2026-11-02.
+
 ### D-054 Nuzlocke, challenges and randomizer work as in HnS
 - **Status:** Active (2026-11-02)
 - **Decision:** The Nuzlocke, the challenges, the randomizer and the
@@ -2123,6 +2136,7 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** owner answers 2026-10-31 and 2026-11-02 (group 4: "alles
   wie im HnS-Upstream"; FRLG's Kanto against HnS's Kanto); HnS code
   compared with `git show 9041f705db:<file>`.
+
 ### D-055 Debug toggle "Even Wild Slots"
 - **Status:** Active (2026-11-02, owner: test aid "Wilde gleich verteilt")
 - **Decision:** The overworld debug menu's "Flags & Vars" list has "Even
@@ -2295,6 +2309,21 @@ dated 2026-10-10 or later were decided directly.
   line (5f794c19fd, 0bee0d524b).
 - **P-005** Done 2026-10-31: Mom's call texts follow Kanto, Johto and
   Hoenn (D-002).
+- **P-006** Emerald's Battle Tents (Fallarbor Town, Verdanturf Town,
+  Slateport City) and Emerald's Trainer Hill on Route 111 go; HnS's
+  endgame counts, with the tent copies and the hill by Route 40 (owner
+  2026-10-31 and 2026-11-02, S-04, S-05). The owner has removed the
+  buildings from the maps on `balancing` (06ea236bdb: the three tents and
+  the hill, with the hill's warp event, the last of Route 111, and its
+  sign; the tents' warp events stay; ad4a8db368: the tilesets). Still to
+  do: round 2 on top of those commits, `tools/check_maps.py` and a
+  clean-up of the scripts, flags and texts left (D-044, O-024, O-065,
+  O-067). Contest halls as in Ruby and Sapphire take the tents' places
+  (owner 2026-11-02): Verdanturf Town (Normal, with the contest pass),
+  Fallarbor Town (Super), Slateport City (Hyper) and Lilycove City
+  (Master), with rank locks, the contest pass and the Pokeblock case as in
+  Ruby and Sapphire. The owner's note had the first two ranks swapped;
+  Ruby and Sapphire's order counts (owner: "ganz wie Rubin/Saphir").
 
 ## Open questions
 
@@ -2333,8 +2362,12 @@ dated 2026-10-10 or later were decided directly.
   `LoadGameSave` (`FLAG_MIGRATED_JOHTO_BERRY_SLOTS`).
 - **O-011** Resolved 2026-10-15: Oak's lab copies the ball number before the
   preview and hands out the starter with the preview's shininess.
-- **O-012** Text debt: 172 Johto texts without a German branch
-  (346072a202). Line widths, re-measured 2026-10-30 with
+- **O-012** Text debt. Partly resolved 2026-11-02: the 172 Johto texts
+  without a German branch (346072a202) and every other English text the
+  German build showed on an active map or from the common scripts have a
+  German branch now (D-056, D-057). Left for the text round: the owner's
+  reading of those translations and the line widths. Line widths,
+  re-measured 2026-10-30 with
   `tools/check_text_width.py` (bytes of the built German ROM, FONT_NORMAL
   widths by glyph id, lines split at `\n`, `\l`, `\p`): no German line is
   wider than the 216 px text window; 30 are wider than the 208 px limit
@@ -2343,8 +2376,10 @@ dated 2026-10-10 or later were decided directly.
   of 6 px): 199 may exceed 216 px, most of them in `data/text`. The locked
   Sinjoh and Alola maps (D-019) add 6 English lines over 208 px. The
   earlier 4951 lines over 216 px (652123e252) match the widths
-  `check_pokenav_text.py` read one glyph off until 2026-10-30. Later, as
-  its own round (owner 2026-10-21).
+  `check_pokenav_text.py` read one glyph off until 2026-10-30. On
+  2026-11-02, after the translations, the built ROM has the same 35 exact
+  lines over 208 px as before (Johto 28, Kanto 1, locked maps 6). Later,
+  as its own round (owner 2026-10-21).
 - **O-013** Resolved 2026-10-15 (D-028).
 - **O-014** Resolved 2026-10-15: Silver's daily battle (D-028), gym rematches
   and Janina in Fuchsia (D-032). The signposts and the Dojo VIP room stay off.
@@ -2381,7 +2416,8 @@ dated 2026-10-10 or later were decided directly.
   battles play Johto's battle and victory music (`MUS_HG_VS_TRAINER`,
   `MUS_HG_VICTORY_TRAINER`), and Hoenn-only mapsec rules (rival name, item
   texts, Hoenn licenses) do not apply (D-044). A Hoenn mapsec of their own
-  for the seven Emerald `TrainerHill_*` maps would end all of these.
+  for the seven Emerald `TrainerHill_*` maps would end all of these. The
+  question ends with the Route 111 hill (P-006).
 - **O-025** Nuzlocke end point: the Nuzlocke ends at the first Hoenn title
   (D-045); until 2026-10-30 it ended when Red was beaten. Owner to confirm.
 - **O-026** Resolved 2026-10-30: scripted static encounters can always be
@@ -2407,16 +2443,17 @@ dated 2026-10-10 or later were decided directly.
   game itself fixes stays (a Day Care egg comes from its parents; fossils
   are never rolled, D-023). `IsAnyRandomizerOptionOn` in
   `src/region_rule_oj.c` (D-049).
-- **O-034** Pokedex evolution page: the HGSS Pokedex names every
-  evolution and pre-evolution of a seen species and shows its icon, also
-  those of a later region (Golbat shows Crobat in Kanto, Pikachu shows
-  Pichu). Owner point 8 says Kanto's Pokedex shows only Kanto Pokemon;
-  the list shows a later species only once the player has it (D-049),
-  this page shows them all. Simplest change:
-  `HGSS_HIDE_UNSEEN_EVOLUTION_NAMES` TRUE
+- **O-034** Resolved 2026-11-02 (owner: keep, the page is a help;
+  `HGSS_HIDE_UNSEEN_EVOLUTION_NAMES` stays FALSE). The question was: the
+  HGSS Pokedex's evolution page names every evolution and pre-evolution
+  of a seen species and shows its icon, also those of a later region
+  (Golbat shows Crobat in Kanto, Pikachu shows Pichu). Owner point 8 says
+  Kanto's Pokedex shows only Kanto Pokemon; the list shows a later
+  species only once the player has it (D-049), this page shows them all.
+  The change not made: `HGSS_HIDE_UNSEEN_EVOLUTION_NAMES` TRUE
   (`include/config/pokedex_plus_hgss.h`) and no icon for an unseen
-  target in `HandleTargetSpeciesPrintIcon` (`src/pokedex_plus_hgss.c`);
-  that hides every unseen evolution, of any region.
+  target in `HandleTargetSpeciesPrintIcon` (`src/pokedex_plus_hgss.c`),
+  which would hide every unseen evolution, of any region.
 - **O-035** Resolved 2026-11-02: the debug states need not be perfect but
   hold everything the finished regions give; purchases such as the Game
   Corner prize TMs and every other item, shop goods too, once each (D-050).
@@ -2644,3 +2681,9 @@ dated 2026-10-10 or later were decided directly.
 | Entering the Bug-Catching Contest uses up the day | D-033 (2026-10-15) | D-033 (2026-10-20) |
 | Suicune waits on Glockenturm 1F after both Johto sightings (var 3); Eusine's hint at the second sighting | D-027 (2026-10-15) | D-038 (2026-10-27) |
 | Johto's static and legendary levels fixed (Lugia/Ho-Oh 50 and 70, Suicune 50, Raikou/Entei 40, Sudowoodo 20) | D-026 / D-031 (2026-10-15) | D-039 (2026-10-27) |
+| Pokemon that faint in a battle with an AI partner die at its end | d05aa4864f (audit A30) | D-054 (2026-11-02, as in HnS) |
+| The ship menus offer "Hoenn" only until Birch's welcome | D-047 (2026-10-31) | D-047 (2026-11-02, O-032) |
+| The region rule is off only with randomizer options that change the player's species | D-049 (2026-10-31) | D-049 (2026-11-02, O-033) |
+| Elm's call after the first Johto title waits for a visit to New Bark Town | `NewBarkTown_OnFrame` (HnS trigger kept while home moved to Pallet Town, D-028) | D-051 (2026-11-02, O-036) |
+| One Day Care storage for all regions | Emerald / HnS | D-052 (2026-11-02) |
+| Scaled bosses keep the moves of their original level; Johto's league aces all at the corridor's 65 | HnS / Emerald, D-012 | D-053 (2026-11-02) |
