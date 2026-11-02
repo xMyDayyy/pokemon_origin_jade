@@ -386,7 +386,7 @@ take effect in a normal playthrough.
 | N-randomizer-7* | Hoenn | Item randomizer swaps Shoal Salt and Shoal Shells; the Shell Bell can become unreachable | open | |
 | N-w3_hoenn-1* | Hoenn | Wallace gives nothing if HM Waterfall is already in the bag | owner | a substitute reward would be a design decision |
 | N-w3_hoenn-3* | Hoenn | Wallace's text says the badge is needed to teach the HM; in Jade it is the permit | owner | text |
-| T-hoenn_a-12 | Hoenn | Emerald player room leftovers in Norman's and Birch's house (D-002) | partly fixed | PC and decorations are the son's and May's (`ea9a0f7287`); Mom's Amulet Coin script and her scene after the wall clock are no longer built (`40102c8756`, `d38acf1988`); left: notebook and wall clock, room decorations in Pallet Town (O-029), hidden objects of Mom and Dad (O-030) |
+| T-hoenn_a-12 | Hoenn | Emerald player room leftovers in Norman's and Birch's house (D-002) | partly fixed | PC and decorations are the son's and May's (`ea9a0f7287`); Mom's Amulet Coin script and her scene after the wall clock are no longer built (`40102c8756`, `d38acf1988`); room decorations are set up in Pallet Town (O-029, D-048); left: notebook and wall clock, hidden objects of Mom and Dad (O-030) |
 | T-hoenn_b-4 | Hoenn | Steven in Meteor Falls stays at level 75-78, about 20 below the Hoenn post-game (D-031 vs. D-043) | owner | |
 | T-legend_endgame-3 | Hoenn | Weather Institute 1F and the sailor judge Kyogre/Groudon differently for up to 3 days | open | |
 | W-progress_sim-17 | Hoenn | Dead script code from design decisions (e.g. Brendan's teams, D-003) | partly fixed | Brendan's Go-Goggles handover in Lavaridge Town is no longer built (`fe370081c1`, D-048); the rest is clean-up |
@@ -438,8 +438,8 @@ take effect in a normal playthrough.
   D-048, Mom's calls), among them Troy's "Ich erwarte dich in Hoenn!"
   where the owner's outline said "dort"; Troy and Wallace as the only
   people in Hoenn who know the player (D-048); Troy's sprite (O-031);
-  room decorations in Pallet Town (O-029, rest of T-hoenn_a-12); hidden
-  leftovers of the father scenes (O-030).
+  the continue point in the Pallet Town bedroom in front of the stairs
+  (O-041); hidden leftovers of the father scenes (O-030).
 - Region rule (D-049): which randomizer options switch it off (O-033); the
   Pokedex evolution page still shows later species (O-034); the Johto
   Pokedex counts as complete without Azurill and Wynaut, implemented by
@@ -558,8 +558,11 @@ in the beta build (the debug states reach them quickly):
    leaves, Oak asks the player to come to his lab. No scene at a title
    defence. Troy's sprite next to HnS's Oak and Lance (O-031).
 2. **Waking up in the room** after the Kanto title, every Johto title and
-   Red, also after a restart once the Hall of Fame has saved; a whiteout
-   from there leads to Mom downstairs (her texts: O-037). Elm's call after
+   Red, also after a restart once the Hall of Fame has saved, in front of
+   the stairs at (9,3) (O-041); a whiteout from there leads to Mom
+   downstairs (her texts: O-037). Dolls and cushions placed at the bedroom
+   PC are still there after leaving the room and after a title (O-029,
+   D-048); a new game starts next to the bed. Elm's call after
    the first Johto title comes on the first step out of the house in
    Pallet Town (O-036, D-051), not again in New Bark Town.
 3. **Oak's lab, Troy's scene:** from the door the player walks up to Oak

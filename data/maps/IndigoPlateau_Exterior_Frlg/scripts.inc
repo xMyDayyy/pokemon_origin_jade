@@ -108,9 +108,10 @@ IndigoPlateau_Exterior_EventScript_OakLeaves:
 	@ Origin Jade: no credits, so map name popups and map music come back here.
 	special ClearCreditsSceneState
 	@ Origin Jade: no credits, warp the player home to Pallet Town.
+	@ Same tile as HEAL_LOCATION_PALLET_TOWN_PLAYERS_ROOM.
 	setrespawn HEAL_LOCATION_PALLET_TOWN
 	fadescreen FADE_TO_BLACK
-	warp MAP_PALLET_TOWN_PLAYERS_HOUSE_2F, 6, 6
+	warp MAP_PALLET_TOWN_PLAYERS_HOUSE_2F, 9, 3
 	waitstate
 	releaseall
 	end

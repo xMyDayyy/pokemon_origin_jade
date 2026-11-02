@@ -1358,7 +1358,8 @@ dated 2026-10-10 or later were decided directly.
   story); owner answer 2026-11-02 (O-032).
 
 ### D-048 Hoenn: an unknown trainer, Norman is not the father
-- **Status:** Active (2026-10-31)
+- **Status:** Active (2026-10-31; changed 2026-11-02: decorations in
+  Pallet Town, O-029; continue point in front of the stairs, O-041)
 - **Decision:** In Hoenn the player is a stranger. Apart from Troy, who
   brought the player to Hoenn, and Wallace (below), nobody there knows that
   the player is the champion of Kanto and Johto or where exactly they come
@@ -1396,7 +1397,24 @@ dated 2026-10-10 or later were decided directly.
     the PC there shows an e-mail, never the player's bedroom PC, and the
     player's room decorations are not set up in either room. The PC upstairs
     in the New Bark Town house runs the same script as Brendan's and shows
-    the e-mail too (D-002); that room still sets up the decorations (O-029).
+    the e-mail too (D-002); that room has no decoration objects, so nothing
+    is set up there either.
+  - The player's room decorations (dolls and cushions placed with
+    "Dekoration" at the bedroom PC) are set up in the player's room in
+    Pallet Town, the only room with the player's PC (owner 2026-11-02,
+    O-029): ON_TRANSITION `SecretBase_EventScript_SetDecorationFlags`, ON_WARP
+    `SecretBase_EventScript_InitDecorations`, the twelve decoration objects
+    of HnS's room (`FLAG_DECORATION_1` to `_12`, saved flags that the
+    room sets again on every visit). The room uses HnS's bedroom layout
+    (since `23e37d3239`), whose floor holds decorations almost
+    everywhere, also around the bed; the PC does not check whether a doll
+    cuts a tile off. After a title (Kanto, every Johto title, Red) the game
+    therefore continues at (9,3) in front of the stairs, a floor tile that
+    never holds decorations, next to the stairs warp (9,2):
+    `HEAL_LOCATION_PALLET_TOWN_PLAYERS_ROOM` and the warp after the Kanto
+    credits scene (`IndigoPlateau_Exterior_Frlg`). Dolls cannot box the
+    player in there. A new game still starts at (6,6) next to the bed,
+    before any decoration (O-041).
   - Emerald's scenes in which the player is Norman's child are not built
     for jade (`#if !IS_HNS`; the source stays for merges, D-046). Labels
     that `map.json` or a map script table needs stay as empty stubs. Not
@@ -1414,7 +1432,8 @@ dated 2026-10-10 or later were decided directly.
     clock setting ("your new room"; the wall clock only sets the time). The
     Enigma Berry and the Mystery Event berry, both off in Origin Jade, name
     Norman instead of "Vater".
-- **Evidence:** owner requirements 2026-10-31 (point 4).
+- **Evidence:** owner requirements 2026-10-31 (point 4); owner answer
+  2026-11-02 (O-029: set up in Pallet Town).
 
 ### D-049 Pokemon per region
 - **Status:** Active (2026-10-31, owner decision; changed 2026-10-31:
@@ -1774,17 +1793,8 @@ dated 2026-10-10 or later were decided directly.
   (`HealPlayerParty` in the entrance scripts), otherwise a Pokemon Center
   does. Rule needed: deaths count there like in other trainer battles, or
   the hills stay exempt like the Battle Frontier.
-- **O-029** Room decorations: the bedroom PC in Pallet Town is the only one
-  left (D-048) and still offers "Dekoration", but the Pallet Town bedroom
-  never sets decorations up (no `SecretBase_EventScript_InitDecorations`
-  there): dolls and cushions placed there are not shown again once the
-  player leaves the room. The only room that still sets them up, at the same
-  spots, is upstairs in the New Bark Town house, which belongs to a stranger
-  (D-002). Options: set them up in the Pallet Town bedroom (ON_TRANSITION
-  `SecretBase_EventScript_SetDecorationFlags` and ON_WARP
-  `SecretBase_EventScript_InitDecorations` as in New Bark Town; check the
-  FRLG layout in Porymap first), or hide "Dekoration" in the bedroom PC menu
-  and stop setting them up in New Bark Town.
+- **O-029** Resolved 2026-11-02 (owner): the player's room decorations
+  are set up in the bedroom in Pallet Town (D-048).
 - **O-030** Leftovers of Emerald's father scenes, none of them visible in
   jade: the Littleroot Town maps keep the objects of the player's family,
   always hidden: Dad with Norman's sprite on the ground floor of both houses
@@ -1876,6 +1886,17 @@ dated 2026-10-10 or later were decided directly.
   at three PCs), "mit Pokécenter challenge!" (`players_house.inc`), Birch's
   league text paragraph break mid-sentence, Lilycove game designer `\l`
   before `\p` and "Aner- kennung".
+- **O-041** Continue point in the Pallet Town bedroom (D-048, O-029):
+  placed dolls and cushions now stay in the room, and the bedroom PC puts
+  them on any decoration tile, also around the bed. At the old continue
+  point (6,6) next to the bed three dolls ((5,6), (6,5), (6,7); the bed
+  is at (7,6)), or six one tile further out, box the player in for good
+  in the save the Hall of Fame makes: no Fly or Teleport indoors, no
+  Escape Rope or Dig outside caves, the PC out of reach. The game now
+  continues after a title at (9,3) in front of the stairs, which no doll
+  can block; a new game starts at (6,6) as before (no decorations yet).
+  Owner: keep (9,3), or the spot next to the bed with a PC that refuses
+  any doll that would cut (6,6) off from the stairs and the PC.
 
 ## Superseded decisions (kept for the record)
 

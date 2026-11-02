@@ -279,6 +279,8 @@ UNTOUCHED = {
     "FLAG_HIDE_OAKS_LAB_TROY": "Troy waits in Oak's lab only after the first Johto title; "
                                "the lab sets it on every visit (D-047)",
     "VAR_HOENN_TICKET_STATE": "0 until the first Johto title (D-047)",
+    "VAR_SECRET_BASE_INITIALIZED": "bedroom decorations, set on every visit of the player's room in Pallet Town "
+                                   "and of New Bark's house (D-048)",
     # C writes of specials the scripts call.
     "FLAG_HIDE_FANCLUB_BOY": "Emerald's fan club (Lilycove), not the jade build's Script_UpdateTrainerFanClubGameClear",
     "FLAG_HIDE_FANCLUB_LADY": "Emerald's fan club (Lilycove), not the jade build's Script_UpdateTrainerFanClubGameClear",
@@ -589,7 +591,6 @@ UNTOUCHED_B = dict(UNTOUCHED, **{
     "VAR_ELEVATOR": "elevator position, set on every ride",
     "VAR_POKELOT_PRIZE_ITEM": "lottery prize waiting for room in the bag; none",
     "VAR_POKELOT_PRIZE_PLACE": "lottery prize waiting for room in the bag; none",
-    "VAR_SECRET_BASE_INITIALIZED": "bedroom decorations, set on every visit of New Bark's house (O-029)",
     "VAR_TOHJO_FALLS_GIOVANNI_STATE": "Celebi's scene at Tohjo Falls, reset on every visit without Celebi",
     "VAR_WHICH_FOSSIL_REVIVED": "only read while a fossil is being revived",
     "FLAG_MINTS_DISABLED": "challenge option tx_Mode_Mints; the flower shop clears it only after the Hoenn title",
