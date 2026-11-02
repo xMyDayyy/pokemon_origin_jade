@@ -58,9 +58,8 @@
 #include "constants/trainers.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
+#include "caps.h"
 #include "fishing.h"
-#include "hoenn_badges.h"
-#include "johto_badges.h"
 #include "nuzlocke.h"
 #include "regions.h"
 
@@ -2358,22 +2357,7 @@ static const u8 sRematchLevelCeilingByBadges[NUM_BADGES + 1] =
 // Origin Jade: badges (0-8) of the region the trainer stands in (D-007).
 static u32 GetRematchBadgeCount(void)
 {
-    u32 i, count = 0;
-
-    switch (GetCurrentRegion())
-    {
-    case REGION_JOHTO:
-        return GetJohtoBadgeCount();
-    case REGION_HOENN:
-        return GetHoennBadgeCount();
-    default:
-        for (i = FLAG_BADGE01_GET; i <= FLAG_BADGE08_GET; i++)
-        {
-            if (FlagGet(i))
-                count++;
-        }
-        return count;
-    }
+    return GetCurrentRegionBadgeCount();
 }
 
 // Origin Jade: title of the region the trainer stands in.
@@ -2538,6 +2522,10 @@ static bool8 WasSecondRematchWon(const struct RematchTrainer *table, u16 firstBa
 #if FREE_MATCH_CALL == FALSE
 bool32 HasEnoughBadgesForRematch(void)
 {
+#if IS_HNS
+    // Origin Jade: badges of the region the player stands in (D-053).
+    return GetCurrentRegionBadgeCount() >= OW_REMATCH_BADGE_COUNT;
+#else
     s32 i, count;
 
     for (count = 0, i = 0; i < ARRAY_COUNT(gBadgeFlags); i++)
@@ -2550,6 +2538,7 @@ bool32 HasEnoughBadgesForRematch(void)
     }
 
     return FALSE;
+#endif
 }
 #endif //FREE_MATCH_CALL
 

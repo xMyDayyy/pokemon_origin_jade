@@ -265,3 +265,22 @@ TEST("Level scaling: Hoenn and Johto mapsecs")
     EXPECT(!IsHoennMapsec(MAPSEC_ROUTE_29));
     EXPECT(!IsHoennMapsec(MAPSEC_PALLET_TOWN));
 }
+
+TEST("Level scaling: corridor ceiling of the current map")
+{
+    u32 mapsec = gMapHeader.regionMapSectionId;
+
+    FlagClear(FLAG_IS_JOHTO_CHAMPION);
+    FlagClear(FLAG_IS_KANTO_CHAMPION);
+    SetMap(MAP_ROUTE29_HNS, MAPSEC_ROUTE_27);
+    EXPECT_EQ(GetScalingCeiling(), 80);
+    SetMap(MAP_ROUTE29_HNS, MAPSEC_ROUTE_42);
+    EXPECT_EQ(GetScalingCeiling(), 58);
+    FlagSet(FLAG_IS_JOHTO_CHAMPION);
+    EXPECT_EQ(GetScalingCeiling(), JOHTO_SCALING_TITLE_CEILING);
+    FlagClear(FLAG_IS_JOHTO_CHAMPION);
+    // Kanto's first run is not scaled.
+    SetMap(MAP_PALLET_TOWN, MAPSEC_PALLET_TOWN);
+    EXPECT_EQ(GetScalingCeiling(), 0);
+    gMapHeader.regionMapSectionId = mapsec;
+}

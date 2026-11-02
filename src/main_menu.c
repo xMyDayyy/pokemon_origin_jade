@@ -6,6 +6,7 @@
 #include "constants/trainers.h"
 #include "data.h"
 #include "decompress.h"
+#include "caps.h"
 #include "event_data.h"
 #include "field_effect.h"
 #include "gpu_regs.h"
@@ -2291,13 +2292,19 @@ static void MainMenu_FormatSavegameBadges(void)
 {
     u8 str[0x20];
     u8 badgeCount = 0;
-    u32 i;
 
+#if IS_HNS
+    // Origin Jade: badges of the region the save was made in (D-053).
+    badgeCount = GetRegionBadgeCount(Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->location.mapGroup,
+                                                                        gSaveBlock1Ptr->location.mapNum)->regionMapSectionId);
+#else
+    u32 i;
     for (i = FLAG_BADGE01_GET; i < FLAG_BADGE01_GET + NUM_BADGES; i++)
     {
         if (FlagGet(i))
             badgeCount++;
     }
+#endif
     StringExpandPlaceholders(gStringVar4, gText_ContinueMenuBadges);
     AddTextPrinterParameterized3(2, FONT_NORMAL, 0x6C, 33, sTextColor_MenuInfo, TEXT_SKIP_DRAW, gStringVar4);
     ConvertIntToDecimalStringN(str, badgeCount, STR_CONV_MODE_LEADING_ZEROS, 2);

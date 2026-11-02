@@ -2,7 +2,10 @@
 #include "battle.h"
 #include "event_data.h"
 #include "caps.h"
+#include "hoenn_badges.h"
+#include "johto_badges.h"
 #include "pokemon.h"
+#include "regions.h"
 
 u8 GetCurrentBadgeCount(void)
 {
@@ -14,6 +17,34 @@ u8 GetCurrentBadgeCount(void)
             badgeCount++;
     }
     return badgeCount;
+}
+
+u32 GetRegionBadgeCount(u32 mapSecId)
+{
+    u32 i, count = 0;
+
+#if IS_HNS
+    switch (GetRegionForSectionId(mapSecId))
+    {
+    case REGION_JOHTO:
+        return GetJohtoBadgeCount();
+    case REGION_HOENN:
+        return GetHoennBadgeCount();
+    default:
+        break;
+    }
+#endif
+    for (i = FLAG_BADGE01_GET; i <= FLAG_BADGE08_GET; i++)
+    {
+        if (FlagGet(i))
+            count++;
+    }
+    return count;
+}
+
+u32 GetCurrentRegionBadgeCount(void)
+{
+    return GetRegionBadgeCount(gMapHeader.regionMapSectionId);
 }
 
 // Kanto badges (D-011 ladder): the next leader's ace, after eight badges the champion's.

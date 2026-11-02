@@ -130,13 +130,20 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** 0bcda4eed1, 5eee70eda6, e86ff35706, 9163d7dd9f.
 
 ### D-007 Badges and titles per region
-- **Status:** Active
+- **Status:** Active (badge readers changed 2026-11-02, D-053)
 - **Decision:**
   - Kanto badges are `FLAG_BADGE01_GET`-`FLAG_BADGE08_GET` (FRLG gyms).
   - Johto badges are the bitmask `VAR_JOHTO_BADGES` (`src/johto_badges.c`).
     The Johto gym scripts still set `FLAG_BADGE0x_GET` as well; in Johto
     those flags mean nothing, because the Kanto league set them long before.
   - Hoenn badges are `VAR_HOENN_BADGES` (`src/hoenn_badges.c`).
+  - Badge readers count the badges of the region the player stands in
+    (`GetCurrentRegionBadgeCount`, `src/caps.c`; D-053): the rematch
+    stages (D-012), match calls (`HasEnoughBadgesForRematch`, Hoenn's
+    battle requests), the Gen 9 catch malus, the challenge menu's
+    trainer IV/EV tables, and the continue window (the region of the
+    saved map). The save menu shows the badges of all regions; obedience
+    (P-003) and the level-cap challenge (D-011) stay on Kanto's badges.
   - Titles: `FLAG_IS_KANTO_CHAMPION`, `FLAG_IS_JOHTO_CHAMPION`,
     `FLAG_IS_HOENN_CHAMPION`. `FLAG_SYS_GAME_CLEAR` is first set by the Kanto
     league; Hoenn post-game checks use `FLAG_IS_HOENN_CHAMPION` (D-040).
@@ -1863,6 +1870,25 @@ dated 2026-10-10 or later were decided directly.
     Code: `JOHTO_SCALING_ROOMS` (`include/config/johto_scaling.h`),
     `FindScalingRoom` (`src/level_scaling.c`); the rooms apply to
     opponents only, not to battle partners, wild or static encounters.
+  - Badge readers count the badges of the current region (B-08, D-007):
+    `GetRegionBadgeCount` / `GetCurrentRegionBadgeCount` (`src/caps.c`)
+    serve `HasEnoughBadgesForRematch` (Johto 3 badges, "after Whitney" as
+    in HnS; Hoenn the same 3), Hoenn's battle requests by phone
+    (`GetNumOwnedBadges`, 5 badges as in Emerald), the Gen 9 catch malus,
+    the challenge menu's trainer IV/EV tables (`GetChallengesBadgeCount`)
+    and the badge number of the continue window (region of the saved
+    map). The catch malus keeps its rule (each step above the level of
+    the badge count costs a fifth of the odds), but in Johto and Hoenn the
+    levels are the corridor ceilings of the next gym's tier: Johto 50,
+    50, 53, 53, 55, 55, 58, 64 for 0-7 badges, Hoenn 85, 85, 90, 95, 95,
+    95, 100, 100 (Kanto keeps Gen 9's 25-60). In Johto and Hoenn it only
+    applies above the corridor ceiling of the map (`GetScalingCeiling`,
+    `src/level_scaling.c`): nothing on the ways in from Kanto (Routes 26
+    and 27, Tohjo Falls, 40-80) before the first Johto badge or in tiers
+    visited before their gym. With Kanto's table every Johto and Hoenn
+    Pokemon would be above the levels; with these only Pokemon
+    above the corridor are harder to catch, mainly Raikou, Entei and
+    Celebi at 75 before the eighth Johto badge (O-050).
 - **Evidence:** owner answers 2026-10-31 (B-01-B-13) and 2026-11-02.
 
 ---
@@ -1959,10 +1985,8 @@ dated 2026-10-10 or later were decided directly.
   cannot be entered. No warp leads there, and its only active connection,
   from `Route26North_hns`, has no walkable tile on either edge. Only
   `src/roamer.c` and `src/string_util.c` refer to the map.
-- **O-023** Badge readers still on Kanto's count: `HasEnoughBadgesForRematch`
-  (all random Match Calls, "after Whitney" in HnS), the Gen-9 catch malus,
-  the challenge menu's trainer IV/EV tables, the continue window's badge
-  total (the save menu adds Johto and Hoenn).
+- **O-023** Resolved 2026-11-02: the badge readers count the region the
+  player stands in (D-007, D-053).
 - **O-024** Both Trainer Hills use `MAPSEC_TRAINER_HILL`, which the HnS
   build places on the Johto map and `IsHoennMapsec` does not count as Hoenn:
   inside the hill on Route 111 the region map shows Johto, its trainer
@@ -2097,6 +2121,21 @@ dated 2026-10-10 or later were decided directly.
   Enabling one needs `species_enabled.h`, a source for its first stage,
   the Pokedex lists and the region table of `src/region_rule_oj.c`
   (D-049).
+- **O-050** Gen 9 catch malus in Johto and Hoenn (D-053): the owner
+  decided that the badge readers count the current region (B-08); the
+  malus's levels per badge count in Johto and Hoenn are the corridor
+  ceilings of the next gym's tier (`sBadgeLevelJohto`,
+  `sBadgeLevelHoenn` in `src/battle_script_commands.c`), and it only
+  applies to Pokemon above the corridor ceiling of the map
+  (`GetScalingCeiling`). Effect: Raikou, Entei and Celebi (75) cost 0.8
+  per step above it (3-4 Johto badges: 0.33-0.41 of the odds; nothing on
+  Routes 26 and 27 and at Tohjo Falls, corridor 40-80), the Rocket
+  Hideout's Electrode (60, 6 badges) 0.8; wild Pokemon of the corridor
+  never, also not on the ways in from Kanto before the first Johto badge
+  or in a tier visited before its gym. Before B-08 the malus counted
+  Kanto's badges, so it never applied in Johto and Hoenn (all eight are
+  won by then). Owner to confirm, or to switch the malus off outside
+  Kanto.
 
 ## Superseded decisions (kept for the record)
 

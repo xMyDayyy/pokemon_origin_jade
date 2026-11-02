@@ -378,6 +378,17 @@ u8 ScaleWildMonLevel(u8 level)
     return scaled;
 }
 
+u8 GetScalingCeiling(void)
+{
+    const struct ScalingRules *rules = GetScalingRules();
+    u8 floor, ceiling;
+
+    if (rules == NULL)
+        return 0;
+    GetCorridor(rules, NULL, &floor, &ceiling);
+    return ceiling;
+}
+
 // Static and scripted encounters and roamers on maps with Johto's or Hoenn's rules: at
 // least the top of the map's wild band, see docs/origin_jade/DECISIONS.md, D-039.
 // Pass-through elsewhere (Kanto keeps its levels).
@@ -648,6 +659,11 @@ u8 ScaleWildMonLevel(u8 level)
 u8 ScaleStaticMonLevel(u8 level)
 {
     return level;
+}
+
+u8 GetScalingCeiling(void)
+{
+    return 0;
 }
 
 u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel)

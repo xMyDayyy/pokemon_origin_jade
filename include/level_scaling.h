@@ -21,6 +21,8 @@ u8 ScaleWildMonLevel(u8 level);
 // (maps with Johto's or Hoenn's rules).
 u8 ScaleStaticMonLevel(u8 level);
 u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel);
+// Corridor ceiling of the current map (highest scaled wild level), 0 on maps without scaling.
+u8 GetScalingCeiling(void);
 // In-game battle partners (FillPartnerParty): the current map's trainer band without the
 // boss extra and without Kanto's rematch floor. Call before the partner's Pokemon join
 // the party.

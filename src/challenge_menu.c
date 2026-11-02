@@ -1,5 +1,6 @@
 #include "global.h"
 #include "bg.h"
+#include "caps.h"
 #include "event_data.h"
 #include "gpu_regs.h"
 #include "international_string_util.h"
@@ -2414,13 +2415,18 @@ u32 GetBaseStatEqualizerValue(void)
 
 static u8 GetChallengesBadgeCount(void)
 {
-    u16 i;
     u8 badgeCount = 0;
+#if IS_HNS
+    // Origin Jade: badges of the region the player stands in (D-053).
+    badgeCount = GetCurrentRegionBadgeCount();
+#else
+    u16 i;
     for (i = FLAG_BADGE01_GET; i < FLAG_BADGE01_GET + NUM_BADGES; i++)
     {
         if (FlagGet(i))
             badgeCount++;
     }
+#endif
     if (badgeCount > 8)
         badgeCount = 8;
     return badgeCount;

@@ -56,6 +56,7 @@
 #include "data.h"
 #include "generational_changes.h"
 #include "move.h"
+#include "regions.h"
 #include "constants/abilities.h"
 #include "constants/battle_anim.h"
 #include "constants/battle_move_effects.h"
@@ -10904,6 +10905,14 @@ static const u8 sBadgeLevel[] = {
     100,
 };
 
+#if IS_HNS
+// Origin Jade: levels above which the malus starts in Johto and Hoenn, by the
+// region's badge count: the corridor ceiling of the next gym's tier
+// (include/config/johto_scaling.h, hoenn_scaling.h), see D-053.
+static const u8 sBadgeLevelJohto[ARRAY_COUNT(sBadgeLevel)] = { 50, 50, 53, 53, 55, 55, 58, 64, 100 };
+static const u8 sBadgeLevelHoenn[ARRAY_COUNT(sBadgeLevel)] = { 85, 85, 90, 95, 95, 95, 100, 100, 100 };
+#endif
+
 static u32 ComputeCaptureOdds(u32 wildMonBattler, u32 playerBattler)
 {
     struct BallData ball;
@@ -10932,18 +10941,32 @@ static u32 ComputeCaptureOdds(u32 wildMonBattler, u32 playerBattler)
 
     // sBadgeLevel only covers 8 badges, so the count driving the malus is clamped to it.
     u8 badgeCount = 0;
+    const u8 *badgeLevel = sBadgeLevel;
+    u32 malusFreeLevel = 0;
+#if IS_HNS
+    // Origin Jade: badges and levels of the region the player stands in (D-053).
+    badgeCount = GetCurrentRegionBadgeCount();
+    if (GetCurrentRegion() == REGION_JOHTO)
+        badgeLevel = sBadgeLevelJohto;
+    else if (GetCurrentRegion() == REGION_HOENN)
+        badgeLevel = sBadgeLevelHoenn;
+    // Johto and Hoenn: no Gen 9 malus up to the corridor ceiling of the map.
+    if (badgeLevel != sBadgeLevel)
+        malusFreeLevel = GetScalingCeiling();
+#else
     for (u32 i = FLAG_BADGE01_GET; i < FLAG_BADGE01_GET + NUM_BADGES; i++)
     {
         if (FlagGet(i))
             badgeCount++;
     }
+#endif
     if (badgeCount > NUM_BADGES_CAPPED)
         badgeCount = NUM_BADGES_CAPPED;
     if (GetConfig(B_MISSING_BADGE_CATCH_MALUS) == GEN_8 && badgeCount < NUM_BADGES_CAPPED && gBattleMons[playerBattler].level < battleMon->level)
         odds = odds * 410 / 4096;
-    if (GetConfig(B_MISSING_BADGE_CATCH_MALUS) == GEN_9 && badgeCount < NUM_BADGES_CAPPED)
+    if (GetConfig(B_MISSING_BADGE_CATCH_MALUS) == GEN_9 && badgeCount < NUM_BADGES_CAPPED && battleMon->level > malusFreeLevel)
     {
-        for (u32 i = badgeCount; i < ARRAY_COUNT(sBadgeLevel) && battleMon->level > sBadgeLevel[i]; i++)
+        for (u32 i = badgeCount; i < ARRAY_COUNT(sBadgeLevel) && battleMon->level > badgeLevel[i]; i++)
             odds = odds * 4 / 5;
     }
 
