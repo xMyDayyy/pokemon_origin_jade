@@ -1173,7 +1173,11 @@ const u8 gText_PkmnElevatedToLvVar2[] = _("{STR_VAR_1} erreicht\nLv. {STR_VAR_2}
 #else
 const u8 gText_PkmnElevatedToLvVar2[] = _("{STR_VAR_1} was elevated to\nLv. {STR_VAR_2}.");
 #endif
+#if GERMAN
+const u8 gText_PkmnGainedExp[] = _("{STR_VAR_1} erhält\n{STR_VAR_2} E.-Punkte!{PAUSE_UNTIL_PRESS}");
+#else
 const u8 gText_PkmnGainedExp[] = _("{STR_VAR_1} gained {STR_VAR_2} Exp. Points!{PAUSE_UNTIL_PRESS}");
+#endif
 #if GERMAN
 const u8 gText_PkmnGainedExpAndElevatedToLvVar3[] = _("{STR_VAR_1} erreicht\nLv. {STR_VAR_3}.");
 #else
@@ -1209,7 +1213,11 @@ const u8 gText_PkmnGotOverInfatuation[] = _("{STR_VAR_1} fühlt sich nicht\nmehr
 #else
 const u8 gText_PkmnGotOverInfatuation[] = _("{STR_VAR_1} got over its\ninfatuation.{PAUSE_UNTIL_PRESS}");
 #endif
+#if GERMAN
+const u8 gText_PkmnTransformed[] = _("{STR_VAR_1} hat sich verwandelt!{PAUSE_UNTIL_PRESS}");
+#else
 const u8 gText_PkmnTransformed[] = _("{STR_VAR_1} transformed!{PAUSE_UNTIL_PRESS}");
+#endif
 #if GERMAN
 const u8 gText_ThrowAwayItem[] = _("{STR_VAR_1}\nwegwerfen?");
 #else
@@ -4095,7 +4103,11 @@ const u8 gText_4th[] = _("4. ");
 #else
 const u8 gText_4th[] = _("4th");
 #endif
+#if GERMAN
+const u8 gText_Friend[] = _("Freund");
+#else
 const u8 gText_Friend[] = _("Friend");
+#endif
 #if GERMAN
 const u8 gText_Pokemon3[] = _("Pokémon");
 #else
@@ -4292,7 +4304,11 @@ const u8 gText_FrontierFacilityTotalCaughtSpeciesBanned[] = _(" und {STR_VAR_2} 
 #else
 const u8 gText_FrontierFacilityTotalCaughtSpeciesBanned[] = _(" and {STR_VAR_2} of the POKéMON species\nyou caught are inelegible");
 #endif
+#if GERMAN
+const u8 gText_FrontierFacilityIncluding[] = _(".\pDazu gehören ");
+#else
 const u8 gText_FrontierFacilityIncluding[] = _(".\pThese include ");
+#endif
 #if GERMAN
 const u8 gText_FrontierFacilityAreInelegible[] = _(" sind nicht zugelassen");
 #else

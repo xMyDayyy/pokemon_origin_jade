@@ -517,7 +517,11 @@ static const u8 sText_askText[] = _("Möchtest du die Fähigkeit von {STR_VAR_1}
 #else
 static const u8 sText_askText[] = _("Would you like to change {STR_VAR_1}'s\nability to {STR_VAR_2}?");
 #endif
+#if GERMAN
+static const u8 sText_doneText[] = _("Die Fähigkeit von {STR_VAR_1} ist\njetzt {STR_VAR_2}!{PAUSE_UNTIL_PRESS}");
+#else
 static const u8 sText_doneText[] = _("{STR_VAR_1}'s ability became\n{STR_VAR_2}!{PAUSE_UNTIL_PRESS}");
+#endif
 #if GERMAN
 static const u8 sText_BasePointsResetToZero[] = _("Die antrainierten Werte von {STR_VAR_1}\nwurden zurückgesetzt!{PAUSE_UNTIL_PRESS}");
 #else
