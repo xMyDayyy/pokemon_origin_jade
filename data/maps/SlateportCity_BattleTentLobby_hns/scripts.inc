@@ -283,6 +283,17 @@ SlateportCity_BattleTentLobby_hns_EventScript_ExitRules::
 	end
 
 SlateportCity_BattleTentLobby_hns_Text_CouldntFindMonForMe:
+#if GERMAN
+	.string "Ich habe keine Pokémon gefunden, die,\n"
+	.string "nun ja, wie für mich gemacht sind.\p"
+	.string "Und da habe ich mir gedacht, ich\n"
+	.string "beschwer mich, nun ja, bei dem Typen\l"
+	.string "hier.\p"
+	.string "Aber der hat nicht einmal zugehört,\n"
+	.string "Mann! Das ist vielleicht eine Niete.\p"
+	.string "Hey! Zieh dir das mal rein!\n"
+	.string "Hier, Mann, das ist für dich!$"
+#else
 	.string "So, like, I couldn't find myself any\n"
 	.string "POKéMON that were, like, for me.\p"
 	.string "So, I figured, like, hey, I should file\n"
@@ -291,14 +302,25 @@ SlateportCity_BattleTentLobby_hns_Text_CouldntFindMonForMe:
 	.string "So, like, total bummer, man!\p"
 	.string "Hey, like, you! Zip it, you know?\n"
 	.string "Just, you know, take this!$"
+#endif
 
 SlateportCity_BattleTentLobby_hns_Text_ExplainTorment:
+#if GERMAN
+	.string "Das ist die TM41, weißt du?\n"
+	.string "Hey, das ist Folterknecht, sag ich dir.\p"
+	.string "Der Gegner wird so daran gehindert, eine\n"
+	.string "Attacke zweimal hintereinander\l"
+	.string "auszuführen.\p"
+	.string "Aber nun hör mir gut zu. Ich würde nie\n"
+	.string "Folterknecht gegen dich einsetzen.$"
+#else
 	.string "That's, like, TM41, you know?\n"
 	.string "Hey, it's TORMENT, you hearing me?\p"
 	.string "Like, it won't let the other guy\n"
 	.string "use the same move twice in a row, see?\p"
 	.string "Hey, now, you listen here, like,\n"
 	.string "I'm not laying a torment on you!$"
+#endif
 
 SlateportCity_BattleTentLobby_hns_Text_IllTryUsingBugMons:
 #if GERMAN
