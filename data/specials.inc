@@ -732,3 +732,4 @@ gSpecials::
 	def_special GameClearNoCredits
 	def_special GetWeekday
 	def_special ClearCreditsSceneState
+	def_special RetrieveHoennLotteryNumber

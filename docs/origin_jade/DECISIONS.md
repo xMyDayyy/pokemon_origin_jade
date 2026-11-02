@@ -1054,7 +1054,7 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-040 Hoenn keeps its own state where a finished Kanto would leak into it
 - **Status:** Active (2026-10-29, Johto leaks changed 2026-10-30, Strength
-  and Flash changed 2026-10-30)
+  and Flash changed 2026-10-30; changed 2026-11-02: Lilycove's lottery)
 - **Decision:** A finished Kanto or Johto must not unlock or change Hoenn
   content. Where FRLG or HnS and Emerald share a flag or var, Hoenn gets its
   own state or checks the Hoenn title:
@@ -1088,6 +1088,16 @@ dated 2026-10-10 or later were decided directly.
     Balls left or retiring there leads back to the Route 121 entrance
     (`data/scripts/safari_zone.inc`), not to Johto's gate;
     `VAR_SAFARI_ZONE_STATE` stays the Johto gate's.
+  - Lottery: Lilycove's Department Store draws
+    its own ticket each day. `FLAG_HOENN_PICKED_LOTO_TICKET` (cleared with
+    the daily flags in `ClearDailyFlags`) and the prize waiting for room
+    in the bag (`VAR_HOENN_POKELOT_PRIZE_ITEM`,
+    `VAR_HOENN_POKELOT_PRIZE_PLACE`) are Lilycove's;
+    `FLAG_DAILY_PICKED_LOTO_TICKET` and `VAR_POKELOT_PRIZE_*` stay
+    Goldenrod's Radio Tower. Lilycove's number is the upper half of the
+    daily lottery number (`RetrieveHoennLotteryNumber`,
+    `src/lottery_corner.c`), Goldenrod's and the Lucky Channel's the lower
+    half, so the two draws differ.
   - Hoenn post-game checks use `FLAG_IS_HOENN_CHAMPION`, not
     `FLAG_SYS_GAME_CLEAR`: the Hoenn gym leaders' rematch calls, Secret Base
     battles, TV mass outbreaks, PokeNews and the Battle Tower profile show,
@@ -1102,7 +1112,8 @@ dated 2026-10-10 or later were decided directly.
     starter) in Origin Jade (`#if IS_HNS`).
   - Other builds map the new names to the vanilla flags and vars
     (`include/constants/flags.h`, `vars.h`).
-- **Evidence:** full Kanto run analysis, decision 2026-10-29.
+- **Evidence:** full Kanto run analysis, decision 2026-10-29; owner
+  2026-10-31 (Hoenn's own lottery ticket).
 
 ### D-041 Johto keeps its own state where a finished Kanto would leak into it
 - **Status:** Active (2026-10-29, Kanto cap table changed 2026-10-30)

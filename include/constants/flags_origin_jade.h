@@ -156,6 +156,8 @@
 #define FLAG_HOENN_RECEIVED_REVIVED_FOSSIL_MON               (OJ_TRAINER_FLAGS_HOENN_END + 16)
 // Rusturf Tunnel cleared; read by the PokeNav calls of Mr. Stone and the rival.
 #define FLAG_HOENN_RECEIVED_HM_STRENGTH                      (OJ_TRAINER_FLAGS_HOENN_END + 17)
+// Lilycove's lottery ticket drawn today; cleared by ClearDailyFlags.
+#define FLAG_HOENN_PICKED_LOTO_TICKET                        (OJ_TRAINER_FLAGS_HOENN_END + 18)
 
 // ---------------------------------------------------------------------
 // Cross-region (OJ_FLAGS_GLOBAL + 0 to + 63)

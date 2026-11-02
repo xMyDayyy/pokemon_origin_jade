@@ -94,6 +94,9 @@
 // Hoenn Safari Zone (Route 121): 0 in or out, 1 exiting, 2 entering.
 // VAR_SAFARI_ZONE_STATE belongs to Johto's Safari Zone gate.
 #define VAR_HOENN_SAFARI_ZONE_STATE             (OJ_VARS_HOENN + 18)
+// Lilycove's lottery prize waiting for room in the bag (item, matched digits - 1).
+#define VAR_HOENN_POKELOT_PRIZE_ITEM            (OJ_VARS_HOENN + 19)
+#define VAR_HOENN_POKELOT_PRIZE_PLACE           (OJ_VARS_HOENN + 20)
 
 // ---------------------------------------------------------------------
 // Cross-region (OJ_VARS_GLOBAL + 0 to + 15)

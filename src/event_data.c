@@ -87,6 +87,7 @@ void ClearDailyFlags(void)
     u16 i;
     for (i = DAILY_FLAGS_START; i <= DAILY_FLAGS_END; i++)
         FlagClear(i);
+    FlagClear(FLAG_HOENN_PICKED_LOTO_TICKET);
 #else
     memset(&gSaveBlock1Ptr->flags[DAILY_FLAGS_START / 8], 0, DAILY_FLAGS_SIZE);
 #endif
