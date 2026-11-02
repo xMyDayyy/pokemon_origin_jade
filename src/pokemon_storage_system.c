@@ -8264,7 +8264,11 @@ static const u8 *const sMenuTexts[] =
     [MENU_SEAFLOOR]   = COMPOUND_STRING("Unterwasser"),
     [MENU_RIVER]      = COMPOUND_STRING("Fluss"),
     [MENU_SKY]        = COMPOUND_STRING("Himmel"),
+#if GERMAN
+    [MENU_POLKADOT]   = COMPOUND_STRING("Punkte"),
+#else
     [MENU_POLKADOT]   = COMPOUND_STRING("POLKA-DOT"),
+#endif
     [MENU_POKECENTER] = COMPOUND_STRING("Pokécenter"),
     [MENU_MACHINE]    = COMPOUND_STRING("Maschine"),
     [MENU_SIMPLE]     = COMPOUND_STRING("Simpel"),
