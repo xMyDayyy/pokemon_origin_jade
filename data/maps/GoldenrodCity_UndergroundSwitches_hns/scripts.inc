@@ -54,9 +54,15 @@ GoldenrodCity_UndergroundSwitches_EventScript_AntiSoftLock_TP::
 	end
 
 GoldenrodCity_UndergroundSwitches_EventScript_AntiSoftLock_Text::
+#if GERMAN
+	.string "Du steckst vielleicht fest.\p"
+	.string "Zurück zum Eingang und die Schalter\n"
+	.string "zurücksetzen?$"
+#else
 	.string "You may be stuck.\p"
 	.string "Go back to the entrance\n"
 	.string "and reset switches?$"
+#endif
 
 @ 3->2->1
 
@@ -522,6 +528,18 @@ GoldenrodCity_UndergroundSwitches_EventScript_Item_SmokeBall::
 	end
 
 GoldenrodUnderground_Text_SilverBefore:
+#if GERMAN
+	.string "Halt!\p"
+	.string "Ich habe dich gesehen und bin dir\n"
+	.string "gefolgt.\p"
+	.string "Du stehst mir nur im Weg, während ich\n"
+	.string "mich um Team Rocket kümmere.\p"
+	.string "…Moment mal. Du hast mich doch schon\n"
+	.string "mal besiegt, oder?\p"
+	.string "Das war reines Glück.\p"
+	.string "Ich habe mein Team trainiert, und\n"
+	.string "jetzt zahle ich es dir heim!$"
+#else
     .string "Hold it!\p"
     .string "I saw you, so I tailed you.\p"
     .string "I don't need you underfoot while I\n"
@@ -531,14 +549,39 @@ GoldenrodUnderground_Text_SilverBefore:
     .string "That was just a fluke.\p"
     .string "I've been training my team and now\n"
     .string "I will repay my debts!$"
+#endif
 
 GoldenrodUnderground_Text_SilverWin:
+#if GERMAN
+	.string "…Warum… Warum verliere ich?\p"
+	.string "Ich habe die stärksten Pokémon\n"
+	.string "zusammengestellt.\p"
+	.string "Ich habe nie lockergelassen.\p"
+	.string "Warum verliere ich dann?$"
+#else
     .string "…Why… Why do I lose?\p"
     .string "I've assembled the toughest POKéMON.\p"
     .string "I didn't ease up on the gas.\p"
     .string "So why do I lose?$"
+#endif
 
 GoldenrodUnderground_Text_SilverAfter:
+#if GERMAN
+	.string "…Ich verstehe das nicht…\p"
+	.string "Hat dieser Siegfried etwa recht?\p"
+	.string "Dass ich Pokémon nicht richtig\n"
+	.string "behandle?\p"
+	.string "Liebe…\p"
+	.string "Vertrauen…\p"
+	.string "Fehlt mir das wirklich?\p"
+	.string "Hindert mich das am Gewinnen?\p"
+	.string "Ich… Ich verstehe es einfach nicht.\p"
+	.string "Aber hier ist noch nicht Schluss.\p"
+	.string "Nicht jetzt. Nicht deswegen.\p"
+	.string "Ich gebe meinen Traum nicht auf, der\n"
+	.string "beste Pokémon-Trainer der Welt zu\l"
+	.string "werden!$"
+#else
     .string "…I don't understand…\p"
     .string "Is what that LANCE guy said true?\p"
     .string "That I don't treat POKéMON properly?\p"
@@ -551,101 +594,232 @@ GoldenrodUnderground_Text_SilverAfter:
     .string "Not now. Not because of this.\p"
     .string "I won't give up my dream of becoming\n"
     .string "the world's best POKéMON trainer!$"
+#endif
 
 GoldenrodUnderground_Text_SilverLoss:
+#if GERMAN
+	.string "Pah. Das ist meine wahre Stärke,\n"
+	.string "Schwächling.\p"
+	.string "Ich mache Team Rocket den Garaus.\p"
+	.string "Und diesen Siegfried trete ich in\n"
+	.string "den Staub.$"
+#else
     .string "Humph. This is my real power, wimp.\p"
     .string "I'll make TEAM ROCKET history.\p"
     .string "And I'm going to grind that LANCE\n"
     .string "under my heels.$"
+#endif
 
 GoldenrodUnderground_Text_GruntM11Seen:
+#if GERMAN
+	.string "Öffnest du ein Rolltor, schließt sich\n"
+	.string "ein anderes.\p"
+	.string "Wetten, du kommst nie dahin, wo du\n"
+	.string "hinwillst?$"
+#else
     .string "Open one shutter, another closes.\p"
     .string "Bet you can't get where you want!$"
+#endif
 
 GoldenrodUnderground_Text_GruntM11Beaten:
+#if GERMAN
+	.string "Mist! Ich war zu unentschlossen!$"
+#else
     .string "Drat! I was sunk by indecision!$"
+#endif
 
 GoldenrodUnderground_Text_GruntM11After:
+#if GERMAN
+	.string "Ich blicke auch nicht durch… Den\n"
+	.string "Schalter am Ende muss man zuerst\l"
+	.string "drücken, aber…$"
+#else
     .string "I'm confused too… The switch on the\n"
     .string "end is the one to press first, but…$"
+#endif
 
 GoldenrodUnderground_Text_GruntM25Seen:
+#if GERMAN
+	.string "Kwahaha!\p"
+	.string "Die Rolltore machen dir zu schaffen,\n"
+	.string "was?\p"
+	.string "Ich verrate dir ein Geheimnis, wenn\n"
+	.string "du mich besiegst!$"
+#else
     .string "Kwahaha!\p"
     .string "Confounded by the shutters, are we?\p"
     .string "I'll let you in on a secret if you\n"
     .string "can beat me!$"
+#endif
 
 GoldenrodUnderground_Text_GruntM25Beaten:
+#if GERMAN
+	.string "Uuuh… Vermasselt.$"
+#else
     .string "Uwww… I blew it.$"
+#endif
 
 GoldenrodUnderground_Text_GruntM25After:
+#if GERMAN
+	.string "Na gut. Ein Tipp!\p"
+	.string "Ändere die Reihenfolge der Schalter.\p"
+	.string "Dann öffnen und schließen sich die\n"
+	.string "Rolltore anders.$"
+#else
     .string "All right. A hint!\p"
     .string "Change the order of switching.\p"
     .string "That'll change the ways the shutters\n"
     .string "open and close.$"
+#endif
 
 GoldenrodUnderground_Text_BurglarDuncanSeen:
+#if GERMAN
+	.string "Rück deine Sachen raus!$"
+#else
     .string "Fork over your goodies!$"
+#endif
 
 GoldenrodUnderground_Text_BurglarDuncanBeaten:
+#if GERMAN
+	.string "Gnade!$"
+#else
     .string "Mercy!$"
+#endif
 
 GoldenrodUnderground_Text_BurglarDuncanAfter:
+#if GERMAN
+	.string "Stehlen und verkaufen! Das ist das\n"
+	.string "Einmaleins des Verbrechens, Kind!$"
+#else
     .string "Steal and sell! That's basic in\n"
     .string "crime, kid!$"
+#endif
 
 GoldenrodUnderground_Text_BurglarEddieSeen:
+#if GERMAN
+	.string "Diese Baustelle wurde aufgegeben,\n"
+	.string "bevor sie fertig war.\p"
+	.string "Ich suche nach liegen gebliebener\n"
+	.string "Beute.$"
+#else
     .string "They ditched this project before they\n"
     .string "finished.\p"
     .string "I'm searching for leftover loot.$"
+#endif
 
 GoldenrodUnderground_Text_BurglarEddieBeaten:
+#if GERMAN
+	.string "Das war zu viel!$"
+#else
     .string "Over the top!$"
+#endif
 
 GoldenrodUnderground_Text_BurglarEddieAfter:
+#if GERMAN
+	.string "Das Lagerhaus im Untergrund?\p"
+	.string "Was willst du denn da?\p"
+	.string "Da unten gibt es nichts.$"
+#else
     .string "UNDERGROUND WAREHOUSE?\p"
     .string "What do you want to go there for?\p"
     .string "There's nothing down there.$"
+#endif
 
 GoldenrodUnderground_Text_GruntM13Seen:
+#if GERMAN
+	.string "Mir egal, ob du dich verlaufen hast.\p"
+	.string "Wer sich hierher verirrt, wird unser\n"
+	.string "Opfer!$"
+#else
     .string "I don't care if you're lost.\p"
     .string "You show up here, you're nothing but\n"
     .string "a victim!$"
+#endif
 
 GoldenrodUnderground_Text_GruntM13Beaten:
+#if GERMAN
+	.string "Urgh! Hältst dich wohl für cool, was?$"
+#else
     .string "Urk! Yeah, think you're cool, huh?$"
+#endif
 
 GoldenrodUnderground_Text_GruntM13After:
+#if GERMAN
+	.string "Du musst Eis in den Adern haben, dass\n"
+	.string "du dich mit Team Rocket anlegst.$"
+#else
     .string "You must have ice in your veins to\n"
     .string "diss TEAM ROCKET.$"
+#endif
 
 GoldenrodUnderground_Text_GruntF3Seen:
+#if GERMAN
+	.string "Hast du dich verlaufen? Nein, kann\n"
+	.string "nicht sein.\p"
+	.string "Du siehst gar nicht verängstigt aus.\p"
+	.string "Dann gebe ich dir einen Grund, Angst\n"
+	.string "zu haben!$"
+#else
     .string "Are you lost? No, you can't be.\p"
     .string "You don't have that scared look.\p"
     .string "I'll give you something to be\n"
     .string "scared about!$"
+#endif
 
 GoldenrodUnderground_Text_GruntF3Beaten:
+#if GERMAN
+	.string "Wie konntest du nur?$"
+#else
     .string "How could you?$"
+#endif
 
 GoldenrodUnderground_Text_GruntF3After:
+#if GERMAN
+	.string "Geh doch, wohin du willst! Hau ab!\n"
+	.string "Ist mir doch egal!$"
+#else
     .string "Go wherever you'd like! Get lost!\n"
     .string "See if I care!$"
+#endif
 
 GoldenrodUnderground_Text_Switch1:
+#if GERMAN
+	.string "Schalter 1 aktiviert.$"
+#else
     .string "SWITCH 1 activated.$"
+#endif
 
 GoldenrodUnderground_Text_Switch2:
+#if GERMAN
+	.string "Schalter 2 aktiviert.$"
+#else
     .string "SWITCH 2 activated.$"
+#endif
 
 GoldenrodUnderground_Text_Switch3:
+#if GERMAN
+	.string "Schalter 3 aktiviert.$"
+#else
     .string "SWITCH 3 activated.$"
+#endif
 
 GoldenrodUnderground_Text_Switch1Off:
+#if GERMAN
+	.string "Schalter 1 deaktiviert.$"
+#else
     .string "SWITCH 1 deactivated.$"
+#endif
 
 GoldenrodUnderground_Text_Switch2Off:
+#if GERMAN
+	.string "Schalter 2 deaktiviert.$"
+#else
     .string "SWITCH 2 deactivated.$"
+#endif
 
 GoldenrodUnderground_Text_Switch3Off:
+#if GERMAN
+	.string "Schalter 3 deaktiviert.$"
+#else
     .string "SWITCH 3 deactivated.$"
+#endif

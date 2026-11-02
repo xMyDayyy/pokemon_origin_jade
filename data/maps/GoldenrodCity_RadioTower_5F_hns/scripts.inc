@@ -97,9 +97,24 @@ GoldenrodCity_RadioTower_5F_Movement_Spin2:
 
 
 GoldenrodCity_RadioTower_5F_Text_FakeDirector1:
+#if GERMAN
+	.string "D-du! Bist du gekommen, um mich zu\n"
+	.string "retten?$"
+#else
 	.string "Y-you! You came to rescue me?$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_FakeDirector2:
+#if GERMAN
+	.string "Hast du das etwa erwartet?\p"
+	.string "Falsch gedacht! Ich bin ein Betrüger!\p"
+	.string "Ich habe mich als der Echte ausgegeben,\n"
+	.string "um unsere Übernahme vorzubereiten.\p"
+	.string "Willst du wissen, wo wir den echten\n"
+	.string "Intendanten versteckt haben?\p"
+	.string "Klar, ich verrate es dir. Aber nur,\n"
+	.string "wenn du mich besiegst!$"
+#else
 	.string "Is that what you were expecting?\p"
 	.string "Wrong! I'm an imposter!\p"
 	.string "I pretended to be the real thing to\n"
@@ -108,11 +123,28 @@ GoldenrodCity_RadioTower_5F_Text_FakeDirector2:
 	.string "the real DIRECTOR?\p"
 	.string "Sure, I'll tell you. But only if you\n"
 	.string "can beat me!$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_FakeDirectorWin:
+#if GERMAN
+	.string "Schon gut, schon gut. Ich sage dir,\n"
+	.string "wo er ist.$"
+#else
 	.string "OK, OK. I'll tell you where he is.$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_FakeDirectorAfter:
+#if GERMAN
+	.string "Der Boss hat den Intendanten im\n"
+	.string "Lagerhaus im Untergrund versteckt.\p"
+	.string "Es liegt ganz am Ende des\n"
+	.string "Untergrunds.\p"
+	.string "Weil ich so nett bin, gebe ich dir den\n"
+	.string "Kelleröffner. Damit kommst du ins\l"
+	.string "Lagerhaus.\p"
+	.string "Aber ich bezweifle, dass du so weit\n"
+	.string "kommst.$"
+#else
 	.string "The boss stashed the DIRECTOR in\n"
 	.string "the UNDERGROUND WAREHOUSE.\p"
 	.string "It's at the far end of the UNDER-\n"
@@ -121,8 +153,19 @@ GoldenrodCity_RadioTower_5F_Text_FakeDirectorAfter:
 	.string "the BASEMENT KEY to get to the\l"
 	.string "UNDERGROUND WAREHOUSE.\p"
 	.string "But I doubt you'll get that far.$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_FakeDirectorAfter2:
+#if GERMAN
+	.string "Der Boss hat den Intendanten im\n"
+	.string "Lagerhaus im Untergrund versteckt.\p"
+	.string "Es liegt ganz am Ende des\n"
+	.string "Untergrunds.\p"
+	.string "Mit dem Kelleröffner kommst du ins\n"
+	.string "Lagerhaus.\p"
+	.string "Aber ich bezweifle, dass du so weit\n"
+	.string "kommst.$"
+#else
 	.string "The boss stashed the DIRECTOR in\n"
 	.string "the UNDERGROUND WAREHOUSE.\p"
 	.string "It's at the far end of the UNDER-\n"
@@ -130,6 +173,7 @@ GoldenrodCity_RadioTower_5F_Text_FakeDirectorAfter2:
 	.string "You can use the BASEMENT KEY to\n"
 	.string "get to the UNDERGROUND WAREHOUSE.\p"
 	.string "But I doubt you'll get that far.$"
+#endif
 
 @=======[STUDIO]==============================================================================================================================
 
@@ -323,24 +367,62 @@ GoldenrodCity_RadioTower_5F_Movement_Leave2:
 	step_end
 
 GoldenrodCity_RadioTower_5F_Text_ExecutiveF1Seen:
+#if GERMAN
+	.string "Erinnerst du dich an mich aus dem\n"
+	.string "Versteck in Mahagonia City?\p"
+	.string "Mein Boss hat mich ausgeschimpft,\n"
+	.string "aber jetzt bin ich stärker.\p"
+	.string "Damals habe ich verloren, aber\n"
+	.string "diesmal nicht!$"
+#else
 	.string "Remember me from the HIDEOUT in\n"
 	.string "MAHOGANY TOWN?\p"
 	.string "My boss scolded me but I'm stronger.\p"
 	.string "I lost then, but I won't this time.$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_ExecutiveF1Beaten:
+#if GERMAN
+	.string "Das darf nicht wahr sein!\p"
+	.string "Ich habe hart gekämpft und trotzdem\n"
+	.string "verloren…\p"
+	.string "Es tut mir so leid, Giovanni…$"
+#else
 	.string "This can't be happening!\p"
 	.string "I fought hard, but I still lost…\p"
 	.string "I'm so sorry GIOVANNI…$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_ExecutiveF1After:
+#if GERMAN
+	.string "{PLAYER}, nicht wahr?\p"
+	.string "Ein Gör wie du weiß die Größe von\n"
+	.string "Team Rocket nicht zu schätzen.\p"
+	.string "Wie schade. Deine Stärke bewundere\n"
+	.string "ich wirklich.$"
+#else
 	.string "{PLAYER}, isn't it?\p"
 	.string "A brat like you won't appreciate\n"
 	.string "the magnificence of TEAM ROCKET.\p"
 	.string "That's too bad. I really admire\n"
 	.string "your power.$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_RocketBossSeen:
+#if GERMAN
+	.string "Oh? Du hast es tatsächlich bis hierher\n"
+	.string "geschafft?\p"
+	.string "Du scheinst ja einiges draufzuhaben.\p"
+	.string "Wir wollen diesen Radiosender\n"
+	.string "übernehmen und unsere Rückkehr\l"
+	.string "verkünden.\p"
+	.string "Das sollte unseren Boss Giovanni aus\n"
+	.string "seinem einsamen Training zurückholen.\p"
+	.string "Wir werden zu altem Glanz\n"
+	.string "zurückfinden…\p"
+	.string "Ich lasse nicht zu, dass du unsere\n"
+	.string "sorgfältigen Pläne durchkreuzt!$"
+#else
 	.string "Oh? You managed to get this far?\p"
 	.string "You must be quite the trainer.\p"
 	.string "We intend to take over this RADIO\n"
@@ -351,26 +433,64 @@ GoldenrodCity_RadioTower_5F_Text_RocketBossSeen:
 	.string "glory...\p"
 	.string "I won't allow you to interfere with\n"
 	.string "our meticulous plans!$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_RocketBossBeaten:
+#if GERMAN
+	.string "Nein! Vergib mir, Giovanni!$"
+#else
 	.string "No! Forgive me, GIOVANNI!$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_RocketBossAfter:
+#if GERMAN
+	.string "Wie konnte das passieren?\p"
+	.string "Unsere Träume sind geplatzt.\p"
+	.string "Ich war der Aufgabe wohl doch nicht\n"
+	.string "gewachsen.\p"
+	.string "So wie Giovanni vor mir löse ich Team\n"
+	.string "Rocket heute hier auf.\p"
+	.string "Leb wohl.$"
+#else
 	.string "How could this be?\p"
 	.string "Our dreams have come to naught.\p"
 	.string "I wasn't up to the task after all.\p"
 	.string "Like GIOVANNI did before me, I will\n"
 	.string "disband TEAM ROCKET here today.\p"
 	.string "Farewell.$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_DirectorThanks:
+#if GERMAN
+	.string "Intendant: {PLAYER}, vielen Dank!\p"
+	.string "Dein Mut hat die Pokémon im ganzen\n"
+	.string "Land gerettet.\p"
+	.string "Es ist nicht viel, aber bitte nimm\n"
+	.string "das hier.$"
+#else
 	.string "DIRECTOR: {PLAYER}, thank you!\p"
 	.string "Your courageous actions have saved\n"
 	.string "POKéMON nationwide.\p"
 	.string "I know it's not much, but please\n"
 	.string "take this.$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_DirectorClearWingExplanation:
+#if GERMAN
+	.string "Hier in Dukatia City stand früher\n"
+	.string "einmal ein Turm.\p"
+	.string "Aber er war alt und baufällig.\p"
+	.string "Deshalb haben wir ihn durch unseren\n"
+	.string "Radioturm ersetzt.\p"
+	.string "Diese Buntschwinge haben wir beim Bau\n"
+	.string "ausgegraben.\p"
+	.string "Ich habe gehört, dass früher alle\n"
+	.string "möglichen Pokémon in Dukatia lebten.\p"
+	.string "Vielleicht…\p"
+	.string "Vielleicht hängt die Buntschwinge mit\n"
+	.string "dem Glockenturm in Teak City zusammen…\p"
+	.string "So, ich gehe jetzt besser in mein Büro.$"
+#else
 	.string "There used to be a tower right here\n"
 	.string "in GOLDENROD CITY.\p"
 	.string "But it was old and creaky.\p"
@@ -384,8 +504,25 @@ GoldenrodCity_RadioTower_5F_Text_DirectorClearWingExplanation:
 	.string "That wing has some connection to the\n"
 	.string "TIN TOWER in ECRUTEAK CITY…\p"
 	.string "OK, I better go to my OFFICE.$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_DirectorTidalWingExplanation:
+#if GERMAN
+	.string "Hier in Dukatia City stand früher\n"
+	.string "einmal ein Turm.\p"
+	.string "Aber er war alt und baufällig.\p"
+	.string "Deshalb haben wir ihn durch unseren\n"
+	.string "Radioturm ersetzt.\p"
+	.string "Diesen Silberflügel haben wir beim Bau\n"
+	.string "ausgegraben.\p"
+	.string "Ich habe gehört, dass früher alle\n"
+	.string "möglichen Pokémon in Dukatia lebten.\p"
+	.string "Vielleicht…\p"
+	.string "Vielleicht hängt der Silberflügel mit\n"
+	.string "den Strudelinseln bei Anemonia City\l"
+	.string "zusammen…\p"
+	.string "So, ich gehe jetzt besser in mein Büro.$"
+#else
 	.string "There used to be a tower right here\n"
 	.string "in GOLDENROD CITY.\p"
 	.string "But it was old and creaky.\p"
@@ -399,8 +536,22 @@ GoldenrodCity_RadioTower_5F_Text_DirectorTidalWingExplanation:
 	.string "That wing has some connection to the\n"
 	.string "WHIRL ISLANDS near CIANWOOD CITY…\p"
 	.string "OK, I better go to my OFFICE.$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_DirectorLegendary:
+#if GERMAN
+	.string "Ah!\p"
+	.string "Da fällt mir ein…\p"
+	.string "Was ich dir gegeben habe…\n"
+	.string "Ich glaube, das hat etwas mit dem\l"
+	.string "legendären Pokémon zu tun.\p"
+	.string "Aber! Das legendäre Pokémon erscheint\n"
+	.string "nicht allein dadurch…\p"
+	.string "Man braucht wohl noch etwas anderes…\n"
+	.string "Oder so ähnlich.\p"
+	.string "Was war das noch gleich…\p"
+	.string "Ich komme nicht mehr drauf.$"
+#else
 	.string "Ah!\p"
 	.string "That reminds me…\p"
 	.string "That wing I gave you... I think\n"
@@ -412,26 +563,55 @@ GoldenrodCity_RadioTower_5F_Text_DirectorLegendary:
 	.string "you need... Or something like that.\p"
 	.string "I wonder what it was...\p"
 	.string "I can't remember.$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_DirectorFakeout:
+#if GERMAN
+	.string "Hast du noch etwas erwartet?\n"
+	.string "Das nennt man wohl Mogelhieb.\p"
+	.string "Diesmal muss ich aber wirklich in mein\n"
+	.string "Büro. Bis dann!$"
+#else
 	.string "Are you expecting something?\n"
 	.string "This is what they call FAKE OUT.\p"
 	.string "I really must go back to my OFFICE\n"
 	.string "this time. See ya!$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_DirectorIntro:
+#if GERMAN
+	.string "Intendant: Hallo, {PLAYER}!\p"
+	.string "Weißt du, ich liebe Pokémon.\p"
+	.string "Ich habe diesen Radioturm gebaut, um\n"
+	.string "meine Liebe zu Pokémon auszudrücken.\p"
+	.string "Es wäre schön, wenn die Leute unsere\n"
+	.string "Sendungen gern hören würden.$"
+#else
 	.string "DIRECTOR: Hello, {PLAYER}!\p"
 	.string "You know, I love POKéMON.\p"
 	.string "I built this RADIO TOWER so I could\n"
 	.string "express my love of POKéMON.\p"
 	.string "It would be nice if people enjoyed\n"
 	.string "our programs.$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_Ben:
+#if GERMAN
+	.string "Ben: Hörst du dir unsere Musik an?$"
+#else
 	.string "BEN: Do you listen to our music?$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_DirectorOfficeSign:
+#if GERMAN
+	.string "4S: Büro des Intendanten$"
+#else
 	.string "5F DIRECTOR'S   OFFICE$"
+#endif
 
 GoldenrodCity_RadioTower_5F_Text_Studio1Sign:
+#if GERMAN
+	.string "4S Studio 1$"
+#else
 	.string "5F STUDIO 1$"
+#endif
