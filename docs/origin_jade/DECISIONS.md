@@ -1532,7 +1532,7 @@ dated 2026-10-10 or later were decided directly.
 ### D-049 Pokemon per region
 - **Status:** Active (2026-10-31, owner decision; changed 2026-10-31:
   Celadon's diploma names the Kanto Pokedex; changed 2026-11-02: Jirachi
-  on Route 4)
+  on Route 4, the rule is off with any randomizer option)
 - **Decision:** Kanto has only Kanto Pokemon, Johto adds Johto's and Hoenn
   adds Hoenn's: before a region is unlocked, no source hands out a species
   of that region. Evolutions are exempt: a Golbat may become a Crobat in
@@ -1572,10 +1572,14 @@ dated 2026-10-10 or later were decided directly.
     Babies hatch normally once their region is unlocked; an egg keeps its
     species. With no unlocked stage between egg and parent (a Hitmontop
     parent before Johto) the egg keeps its species too; no such parent can
-    be had before the unlock. Not with a randomizer option that changes the
-    player's species (wild, fixed Pokemon and gift eggs, starters,
-    evolutions): the randomizer mixes the regions on purpose (plan item
-    C8; which options count is open, O-033). Two upstream tests in
+    be had before the unlock. Not while any randomizer option is on
+    (owner 2026-11-02, O-033; `IsAnyRandomizerOptionOn`): wild, trainer,
+    item, fixed Pokemon, starter, evolution, evolution method, type, type
+    effectiveness, ability or move randomization. The randomizer mixes the
+    regions on purpose (plan item C8); an egg then hatches as its parents
+    make it, babies included. The modifiers (chaos, similar strength,
+    map-based, legendaries) change nothing alone, and the item randomizer
+    counts from the first Pokemon on (D-023). Two upstream tests in
     `test/daycare.c` expect a Pichu egg and are known failures.
   - Seen (`CanRegisterSeenSpecies`, battle end in `src/battle_main.c`): a
     Pokemon sent out in battle goes into the Pokedex as seen only if its
@@ -1587,9 +1591,9 @@ dated 2026-10-10 or later were decided directly.
     National Pokedex list (HnS's obtainable order up to the highest seen
     entry) does not jump into a later region's block. Without the
     randomizer, wild tables and static encounters offer no species of a
-    later region, so this concerns trainers (plan item C7). Not with a
-    randomizer option that changes the player's species, as for Day Care
-    eggs (C8, O-033): the randomizer mixes the regions on purpose. Other
+    later region, so this concerns trainers (plan item C7). Not while any
+    randomizer option is on, as for Day Care eggs (O-033): random trainers
+    may then fill the Pokedex with later species. Other
     sources (gifts, eggs, evolutions, trades) set seen and caught as
     before. The Pokedex's evolution page still names later evolutions and
     babies (O-034).
@@ -1901,15 +1905,11 @@ dated 2026-10-10 or later were decided directly.
   "Graphitport City" can be offered, then that replaces it; "Seegrasulb
   City" is added once Lilycove was visited. No dead end without a flyer
   (D-047).
-- **O-033** Region rule and the randomizer (D-049): the plan (C8) turns
-  the region rule off "in random mode". The code reads that as: off with
-  an option that changes the player's species (wild, fixed Pokemon with
-  gift eggs, starters, evolutions). With only "Trainer: Zufall", "Items:
-  Zufall" or the other options on, Day Care eggs and the seen rule
-  follow the region rule, so random trainers do not fill the Pokedex
-  with later species; the item randomizer follows it anyway (Root and
-  Claw Fossil, D-023). Owner to confirm; the option set is
-  `IsPlayerSpeciesRandomized` in `src/region_rule_oj.c`.
+- **O-033** Resolved 2026-11-02 (owner, option b): the region rule is off
+  with any randomizer option, trainers or items alone included; what the
+  game itself fixes stays (a Day Care egg comes from its parents; fossils
+  are never rolled, D-023). `IsAnyRandomizerOptionOn` in
+  `src/region_rule_oj.c` (D-049).
 - **O-034** Pokedex evolution page: the HGSS Pokedex names every
   evolution and pre-evolution of a seen species and shows its icon, also
   those of a later region (Golbat shows Crobat in Kanto, Pikachu shows

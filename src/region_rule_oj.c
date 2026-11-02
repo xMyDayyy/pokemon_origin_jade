@@ -114,18 +114,19 @@ void TryUnlockJohtoOnMapLoad(void)
     FlagSet(FLAG_JOHTO_UNLOCKED);
 }
 
-// Randomizer options that change the species the player gets.
-static bool32 IsPlayerSpeciesRandomized(void)
+// TRUE while any randomizer option randomizes something; the region rule is off then.
+static bool32 IsAnyRandomizerOptionOn(void)
 {
 #if RANDOMIZER_AVAILABLE
-    return RandomizerFeatureEnabled(RANDOMIZE_WILD_MON)
-        || RandomizerFeatureEnabled(RANDOMIZE_FIXED_MON)
-        || RandomizerFeatureEnabled(RANDOMIZE_STARTER_AND_GIFT_MON)
-        || RandomizerFeatureEnabled(RANDOMIZE_EGG_MON)
-        || RandomizerFeatureEnabled(RANDOMIZE_EVOLUTIONS);
-#else
-    return FALSE;
+    enum RandomizerFeature feature;
+
+    for (feature = RANDOMIZE_WILD_MON; feature <= RANDOMIZE_TYPE_EFFECTIVENESS; feature++)
+    {
+        if (RandomizerFeatureEnabled(feature))
+            return TRUE;
+    }
 #endif
+    return FALSE;
 }
 
 u16 GetUnlockedEggSpecies(u16 eggSpecies, u16 parentSpecies)
@@ -134,7 +135,7 @@ u16 GetUnlockedEggSpecies(u16 eggSpecies, u16 parentSpecies)
     u32 count = 0;
     u16 species = parentSpecies;
 
-    if (IsSpeciesRegionUnlocked(eggSpecies) || IsPlayerSpeciesRandomized())
+    if (IsSpeciesRegionUnlocked(eggSpecies) || IsAnyRandomizerOptionOn())
         return eggSpecies;
     // The line from the parent back to the egg species.
     while (species != SPECIES_NONE && count < ARRAY_COUNT(line))
@@ -158,7 +159,7 @@ u16 GetUnlockedEggSpecies(u16 eggSpecies, u16 parentSpecies)
 bool32 CanRegisterSeenSpecies(u16 species)
 {
     return IsSpeciesRegionUnlocked(species)
-        || IsPlayerSpeciesRandomized()
+        || IsAnyRandomizerOptionOn()
         || GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT);
 }
 

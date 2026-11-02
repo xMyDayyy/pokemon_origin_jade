@@ -439,7 +439,7 @@ take effect in a normal playthrough.
   where the owner's outline said "dort"; Troy and Wallace as the only
   people in Hoenn who know the player (D-048); the continue point in the
   Pallet Town bedroom in front of the stairs (O-041).
-- Region rule (D-049): which randomizer options switch it off (O-033); the
+- Region rule (D-049): off with any randomizer option (O-033, decided); the
   Pokedex evolution page still shows later species (O-034); the Johto
   Pokedex counts as complete without Azurill and Wynaut, implemented by
   analogy to the Kanto 151 (to confirm). Debug states: the generator's
@@ -591,7 +591,7 @@ in the beta build (the debug states reach them quickly):
 6. **Day Care eggs:** in Kanto Pikachu, Chansey, Snorlax or the parent's
    Hitmon instead of the baby, in Johto Marill and Wobbuffet instead of
    Azurill and Wynaut; babies once their region is unlocked; the old
-   behaviour with a species randomizer (O-033).
+   behaviour with any randomizer option (O-033).
 7. **Morty's team:** the first Ecruteak City gym battle has two Misdreavus
    (levels 24 and 25) and no Duskull; rematches unchanged.
 8. **Cerulean Cave:** Ditto in Wobbuffet's old slots on 1F, 2F and B1F,

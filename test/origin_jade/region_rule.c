@@ -189,12 +189,19 @@ TEST("Region rule: Day Care eggs before the unlock hatch as the first unlocked s
     EXPECT_EQ(GetUnlockedEggSpecies(SPECIES_WYNAUT, SPECIES_WOBBUFFET), SPECIES_WYNAUT);
 }
 
-TEST("Region rule: Day Care eggs keep their species with randomized species")
+TEST("Region rule: Day Care eggs keep their species with any randomizer option")
 {
     PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_WildPokemon = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Trainer = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Items = TRUE; FlagSet(FLAG_SYS_POKEMON_GET); }
     PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Static = TRUE; }
     PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Starter = TRUE; }
     PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Evolutions = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_EvolutionMethods = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Type = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_TypeEffectiveness = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Abilities = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Moves = TRUE; }
     EXPECT_EQ(GetUnlockedEggSpecies(SPECIES_PICHU, SPECIES_RAICHU), SPECIES_PICHU);
 }
 
@@ -232,20 +239,31 @@ TEST("Region rule: species seen in battle wait for their region unless caught")
     EXPECT(CanRegisterSeenSpecies(SPECIES_DUSKULL));
 }
 
-TEST("Region rule: species seen in battle count at once with randomized species")
+TEST("Region rule: species seen in battle count at once with any randomizer option")
 {
     PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_WildPokemon = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Trainer = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Items = TRUE; FlagSet(FLAG_SYS_POKEMON_GET); }
     PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Static = TRUE; }
     PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Starter = TRUE; }
     PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Evolutions = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_EvolutionMethods = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Type = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_TypeEffectiveness = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Abilities = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Moves = TRUE; }
     EXPECT(CanRegisterSeenSpecies(SPECIES_CHIKORITA));
     EXPECT(CanRegisterSeenSpecies(SPECIES_DUSKULL));
 }
 
-TEST("Region rule: random trainers alone keep the seen rule")
+TEST("Region rule: modifiers alone and items before the first Pokemon keep the rule")
 {
-    gSaveBlock3Ptr->challengeSettings.tx_Random_Trainer = TRUE;
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Chaos = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Similar = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_IncludeLegendaries = TRUE; }
+    PARAMETRIZE { gSaveBlock3Ptr->challengeSettings.tx_Random_Items = TRUE; }
     EXPECT(!CanRegisterSeenSpecies(SPECIES_DUSKULL));
+    EXPECT_EQ(GetUnlockedEggSpecies(SPECIES_PICHU, SPECIES_RAICHU), SPECIES_PIKACHU);
 }
 
 TEST("Region rule: the Kanto Pokedex counts the 151")
