@@ -2279,15 +2279,14 @@ dated 2026-10-10 or later were decided directly.
     place and spacing their own wording had ("500 ¥", "500¥"). The order
     is not settled: the owner's texts use both "500 ¥" and "¥300"; he
     decides the style in the text round.
-- **Not covered:** two unreferenced contest hall texts in the corridor of
-  the Emerald Slateport Battle Tent (O-065; the owner is rebuilding
-  Slateport and the tents, S-04/S-05), trainer names in the party files
-  (O-066), locked and retired maps (D-019; the tool counts 290 and 3
-  texts there), unreferenced Japanese FRLG texts, common texts (D-056).
+- **Not covered:** trainer names in the party files (O-066), locked and
+  retired maps (D-019; the tool counts 290 and 3 texts there),
+  unreferenced Japanese FRLG texts, common texts (D-056).
 - **Check:** `python3 -I tools/check_game_text.py --english` lists no map
-  text of an active region any more except the two unreferenced texts of
-  the Emerald Slateport tent corridor (area "hoenn", O-065); the other 23
-  (Johto) and 5 (Kanto) entries are party names (O-066). The word list
+  text of an active region any more (the two English contest hall texts
+  of the Emerald Slateport tent corridor are German since the RS contest
+  halls use them, O-065); the 23 (Johto) and 5 (Kanto) entries are party
+  names (O-066). The word list
   does not see short texts; every map text of an active region without a
   German branch was read by hand (left: the interjections and cries named
   above and the unreferenced Japanese FRLG texts).
@@ -2356,6 +2355,14 @@ dated 2026-10-10 or later were decided directly.
   - TM Attract: the girl in Verdanturf's lobby, with a flag of her own
     (`FLAG_HOENN_RECEIVED_TM_ATTRACT`); the girl in the HnS tent copy at
     Route 40 keeps `FLAG_RECEIVED_TM_ATTRACT` (O-067).
+  - Contest halls: a door in each RS lobby leads to RS's audience hall
+    with its stage and people (`VerdanturfTown_ContestHall`,
+    `FallarborTown_ContestHall`, `SlateportCity_ContestHall`, RS's layout
+    `LAYOUT_FALLARBOR_TOWN_LEFTOVER_RSCONTEST_HALL`). Their texts are the
+    RS hall texts that Emerald left unused in the corridors of its battle
+    tents, with the owner's German (O-065). The sailor in Slateport's hall
+    gives TM Torment, with a flag of his own
+    (`FLAG_HOENN_RECEIVED_TM_TORMENT`).
 - **Evidence:** owner answers 2026-11-02 ("Wettbewerbe (Owner,
   endgültig)"); owner commits 06ea236bdb and ad4a8db368 (hall buildings
   with doors).
@@ -2696,13 +2703,12 @@ dated 2026-10-10 or later were decided directly.
   (`data/scripts/contest_hall.inc`). Proposal: once the RS contests (owner
   2026-11-02) fix where Hoenn's case comes from, Route 121 gets its own
   line naming that place.
-- **O-065** The corridor of the Emerald Slateport Battle Tent
-  (`SlateportCity_BattleTentCorridor`) holds two unreferenced English
-  contest hall texts (`MyPapaIsContestJudge`, `ItsAppealTime`, marked
-  unused). Left alone because the owner is rebuilding Slateport and
-  removes the tents (S-04/S-05, RS contests). Proposal: translate them if
-  the RS contest halls use them, or delete them with the tent. The texts
-  of the HnS copy of the lobby at Route 40
+- **O-065** Resolved 2026-11-02: the Ruby/Sapphire contest halls behind
+  the lobbies of Verdanturf, Fallarbor and Slateport (D-058) show the RS
+  contest hall texts that sat unused in the corridors of the Emerald
+  battle tents. `MyPapaIsContestJudge` and `ItsAppealTime`, the two that
+  were still English, and the three stage signs got the German Ruby/
+  Sapphire wording. The texts of the HnS copy of the lobby at Route 40
   (`SlateportCity_BattleTentLobby_hns`: 3 shown, 2 of an unused script)
   have been German since 2026-11-02 (D-057).
 - **O-066** 28 trainer names in `src/data/trainers_hns.party` are still in

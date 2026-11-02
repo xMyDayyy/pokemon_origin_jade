@@ -810,7 +810,8 @@
     "FallarborTown_PokemonCenter_2F",
     "FallarborTown_CozmosHouse",
     "FallarborTown_MoveRelearnersHouse",
-    "FallarborTown_ContestLobby"
+    "FallarborTown_ContestLobby",
+    "FallarborTown_ContestHall"
   ],
   "gMapGroup_IndoorVerdanturf": [
     "VerdanturfTown_BattleTentLobby",
@@ -822,7 +823,8 @@
     "VerdanturfTown_WandasHouse",
     "VerdanturfTown_FriendshipRatersHouse",
     "VerdanturfTown_House",
-    "VerdanturfTown_ContestLobby"
+    "VerdanturfTown_ContestLobby",
+    "VerdanturfTown_ContestHall"
   ],
   "gMapGroup_IndoorPacifidlog": [
     "PacifidlogTown_PokemonCenter_1F",
@@ -857,7 +859,8 @@
     "SlateportCity_PokemonCenter_1F",
     "SlateportCity_PokemonCenter_2F",
     "SlateportCity_Mart",
-    "SlateportCity_ContestLobby"
+    "SlateportCity_ContestLobby",
+    "SlateportCity_ContestHall"
   ],
   "gMapGroup_IndoorMauville": [
     "MauvilleCity_Gym",
