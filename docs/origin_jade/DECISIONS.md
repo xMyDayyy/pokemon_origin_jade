@@ -264,7 +264,8 @@ dated 2026-10-10 or later were decided directly.
 ### D-012 Johto and Hoenn: dynamic level scaling
 - **Status:** Active (anchor, bands and corridors changed 2026-10-29,
   battle partners, the Goldenrod/Ecruteak ceilings and rematch team sizes
-  changed 2026-10-30; bosses changed 2026-11-02, D-053)
+  changed 2026-10-30; bosses and the Johto league rooms changed
+  2026-11-02, D-053)
 - **Decision:** Johto and Hoenn scale to the player (`src/level_scaling.c`,
   `include/config/johto_scaling.h`, `include/config/hoenn_scaling.h`).
   - Anchor, in every region: the mean of the three highest party levels,
@@ -283,7 +284,17 @@ dated 2026-10-10 or later were decided directly.
     legendary event, `VAR_ECRUTEAK_CITY_THEATER` 4; optional story
     ceilings in the corridor table); Chuck and Jasmine 47-55; Rocket
     Hideout and Pryce 50-58; Clair, Tin Tower and the Whirl Islands 56-64;
-    Victory Road and the league 58-65; Mt. Silver 70-90 (Red unscaled).
+    Victory Road and the league 58-65, in the league rooms rising from
+    Will to Lance (below); Mt. Silver 70-90 (Red unscaled).
+  - Johto league rooms (`JOHTO_SCALING_ROOMS`, D-053): like HGSS the
+    levels rise from Will to Lance, with HnS's steps (aces 50, 52, 54, 55,
+    56). Per room the ace goes to anchor + extra instead of the boss
+    extra, clamped to the room's own floor and ceiling: Will -1 (58-62),
+    Koga +1 (59-63), Bruno +3 (61-64), Karen +4 (62-65), Lance +5
+    (63-67). The Elite Four stay within the league corridor, the
+    champion's ceiling is 2 above it (owner, option (b) of B-05). The
+    average player (anchor 64) meets 62, 63, 64, 65 and 67; after the
+    Johto title the ceilings become 100 and the steps stay.
   - Hoenn corridors: entry 65-85, early middle 70-90, late middle 75-95,
     final stretch 80-100, endgame 85-100; side areas reached later sit a
     tier higher.
@@ -1840,6 +1851,18 @@ dated 2026-10-10 or later were decided directly.
     Blast), Venusaur (Giga Drain, Sludge Bomb, Sleep Powder, Synthesis),
     Blastoise (Hydro Pump, Ice Beam, Dark Pulse, Focus Blast), Espeon
     (Calm Mind, Psychic, Shadow Ball, Morning Sun).
+  - Johto league: levels rise from Will to Lance like HGSS instead of all
+    aces at the corridor's 65; each room has its own band top and
+    corridor, the champion stands above the Elite Four (B-05, D-012).
+    The owner chose option (b): the champion room's ceiling is 2 above
+    the league's 65, so Lance tops out at 67 and the Elite Four rise
+    within 58-65. The steps per room (extras -1, +1, +3, +4, +5 after
+    HnS's aces; floors 58, 59, 61, 62, 63; ceilings 62, 63, 64, 65, 67)
+    are an implementation choice, not set by the owner, and can be tuned
+    in the table.
+    Code: `JOHTO_SCALING_ROOMS` (`include/config/johto_scaling.h`),
+    `FindScalingRoom` (`src/level_scaling.c`); the rooms apply to
+    opponents only, not to battle partners, wild or static encounters.
 - **Evidence:** owner answers 2026-10-31 (B-01-B-13) and 2026-11-02.
 
 ---

@@ -117,4 +117,18 @@
     { MAPSEC_ROUTE_28,          70,  90 }, \
     { MAPSEC_MT_SILVER,         70,  90 },
 
+// Johto league rooms: levels rise from Will to Lance like HGSS (HnS's aces
+// 50, 52, 54, 55, 56). Per room {map, extra, floor, ceiling}: the trainers'
+// ace goes to anchor + extra (instead of the boss extra), clamped to the
+// room's floor and ceiling (instead of the league corridor). The Elite Four's
+// ceilings stay within the league corridor (65), the champion's is 2 above it.
+// After the Johto title the ceilings become JOHTO_SCALING_TITLE_CEILING, the
+// floors stay. See docs/origin_jade/DECISIONS.md, D-053.
+#define JOHTO_SCALING_ROOMS \
+    { MAP_POKEMON_LEAGUE_WILLS_ROOM_HNS,     -1, 58, 62 }, \
+    { MAP_POKEMON_LEAGUE_KOGAS_ROOM_HNS,      1, 59, 63 }, \
+    { MAP_POKEMON_LEAGUE_BRUNOS_ROOM_HNS,     3, 61, 64 }, \
+    { MAP_POKEMON_LEAGUE_KARENS_ROOM_HNS,     4, 62, 65 }, \
+    { MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM_HNS,  5, 63, 67 },
+
 #endif // GUARD_CONFIG_JOHTO_SCALING_H

@@ -62,10 +62,21 @@ struct ScalingCorridor
     u16 storyValue;
 };
 
+// A map whose trainers have their own band top and corridor (Johto league rooms).
+struct ScalingRoom
+{
+    u16 map;
+    s8 extra;
+    u8 floor;
+    u8 ceiling;
+};
+
 struct ScalingRules
 {
     const struct ScalingCorridor *corridors;
     u16 corridorCount;
+    const struct ScalingRoom *rooms;
+    u16 roomCount;
     u8 trainerBelow;
     u8 trainerAbove;
     u8 wildBelow;
@@ -129,10 +140,17 @@ static const struct ScalingCorridor sJohtoCorridors[] =
     JOHTO_SCALING_CORRIDORS
 };
 
+static const struct ScalingRoom sJohtoRooms[] =
+{
+    JOHTO_SCALING_ROOMS
+};
+
 static const struct ScalingRules sJohtoRules =
 {
     .corridors           = sJohtoCorridors,
     .corridorCount       = ARRAY_COUNT(sJohtoCorridors),
+    .rooms               = sJohtoRooms,
+    .roomCount           = ARRAY_COUNT(sJohtoRooms),
     .trainerBelow        = JOHTO_SCALING_TRAINER_BELOW,
     .trainerAbove        = JOHTO_SCALING_TRAINER_ABOVE,
     .wildBelow           = JOHTO_SCALING_WILD_BELOW,
@@ -291,11 +309,34 @@ static u8 GetScalingAnchor(u32 partySlots)
     return anchor;
 }
 
-static void GetCorridor(const struct ScalingRules *rules, u8 *floor, u8 *ceiling)
+// Room of the current map, NULL if it has none.
+static const struct ScalingRoom *FindScalingRoom(const struct ScalingRules *rules)
+{
+    u32 i;
+    u16 map = gSaveBlock1Ptr->location.mapNum | (gSaveBlock1Ptr->location.mapGroup << 8);
+
+    for (i = 0; i < rules->roomCount; i++)
+    {
+        if (rules->rooms[i].map == map)
+            return &rules->rooms[i];
+    }
+    return NULL;
+}
+
+// room: replaces the corridor of the map section (trainers only), may be NULL.
+static void GetCorridor(const struct ScalingRules *rules, const struct ScalingRoom *room, u8 *floor, u8 *ceiling)
 {
     *floor = rules->defaultFloor;
     *ceiling = rules->defaultCeiling;
-    FindCorridor(rules, gMapHeader.regionMapSectionId, floor, ceiling);
+    if (room != NULL)
+    {
+        *floor = room->floor;
+        *ceiling = room->ceiling;
+    }
+    else
+    {
+        FindCorridor(rules, gMapHeader.regionMapSectionId, floor, ceiling);
+    }
     // After the region's title only the floor stays (D-031).
     if (FlagGet(rules->titleFlag) && *ceiling < rules->titleCeiling)
         *ceiling = rules->titleCeiling;
@@ -330,7 +371,7 @@ u8 ScaleWildMonLevel(u8 level)
     width = rules->wildBelow - rules->wildAbove + 1;
     scaled = anchor - rules->wildBelow + (s32)(Random() % width);
 
-    GetCorridor(rules, &floor, &ceiling);
+    GetCorridor(rules, NULL, &floor, &ceiling);
     scaled = ClampScaledLevel(rules, scaled, floor, ceiling);
     if (rules->originalLevelIsFloor && scaled < level)
         scaled = level;
@@ -351,7 +392,7 @@ u8 ScaleStaticMonLevel(u8 level)
     anchor = GetScalingAnchor(PARTY_SIZE);
     if (anchor == 0)
         return level;
-    GetCorridor(rules, &floor, &ceiling);
+    GetCorridor(rules, NULL, &floor, &ceiling);
     top = ClampScaledLevel(rules, anchor - rules->wildAbove, floor, ceiling);
     if (top > level)
         return top;
@@ -537,7 +578,8 @@ static u8 RaiseToKantoRematchFloor(const struct Trainer *trainer, u8 level, u8 p
 // Trainer band of rules. partyMaxLevel: highest original level in the party.
 // In a battle with an in-game partner the anchor counts only the player's own
 // slots (the partner's team fills the last MULTI_PARTY_SIZE).
-static u8 ScaleToTrainerBand(const struct ScalingRules *rules, u8 level, u8 partyMaxLevel, bool32 isBoss)
+// room: own band top and corridor of the map (opponents only), may be NULL.
+static u8 ScaleToTrainerBand(const struct ScalingRules *rules, u8 level, u8 partyMaxLevel, bool32 isBoss, const struct ScalingRoom *room)
 {
     s32 anchor, top, scaled;
     u8 floor, ceiling;
@@ -554,13 +596,15 @@ static u8 ScaleToTrainerBand(const struct ScalingRules *rules, u8 level, u8 part
 
     // The ace goes to the top of the band, the others keep their distance to it.
     top = anchor + rules->trainerAbove;
-    if (isBoss)
+    if (room != NULL)
+        top += room->extra;
+    else if (isBoss)
         top += rules->bossExtra;
     scaled = top - (s32)(partyMaxLevel - level);
     if (scaled < anchor - rules->trainerBelow)
         scaled = anchor - rules->trainerBelow;
 
-    GetCorridor(rules, &floor, &ceiling);
+    GetCorridor(rules, room, &floor, &ceiling);
     scaled = ClampScaledLevel(rules, scaled, floor, ceiling);
     if (rules->originalLevelIsFloor && scaled < level)
         scaled = level;
@@ -575,7 +619,7 @@ u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLeve
     sRematchFloorRules = NULL;
     if (rules == NULL)
         return RaiseToKantoRematchFloor(trainer, level, partyMaxLevel);
-    return ScaleToTrainerBand(rules, level, partyMaxLevel, IsBossTrainer(trainer));
+    return ScaleToTrainerBand(rules, level, partyMaxLevel, IsBossTrainer(trainer), FindScalingRoom(rules));
 }
 
 // partyMaxLevel: highest original level in the partner's party.
@@ -586,7 +630,7 @@ u8 ScalePartnerMonLevel(u8 level, u8 partyMaxLevel)
     sRematchFloorRules = NULL;
     if (rules == NULL)
         return level;
-    return ScaleToTrainerBand(rules, level, partyMaxLevel, FALSE);
+    return ScaleToTrainerBand(rules, level, partyMaxLevel, FALSE, NULL);
 }
 
 #else // Pass-through without scaling (Emerald/FRLG build or switched off)

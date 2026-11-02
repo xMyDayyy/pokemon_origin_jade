@@ -120,6 +120,66 @@ TEST("Level scaling: boss aces get the boss extra levels")
     gMapHeader.regionMapSectionId = mapsec;
 }
 
+// Ace of a boss in each Johto league room, Will's first.
+static void LeagueAces(u32 *aces)
+{
+    static const u16 sRooms[] =
+    {
+        MAP_POKEMON_LEAGUE_WILLS_ROOM_HNS,
+        MAP_POKEMON_LEAGUE_KOGAS_ROOM_HNS,
+        MAP_POKEMON_LEAGUE_BRUNOS_ROOM_HNS,
+        MAP_POKEMON_LEAGUE_KARENS_ROOM_HNS,
+        MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM_HNS,
+    };
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sRooms); i++)
+    {
+        SetMap(sRooms[i], MAPSEC_INDIGO_PLATEAU);
+        aces[i] = ScaleTrainerMonLevel(&sBoss, 50, 50);
+    }
+}
+
+TEST("Level scaling: Johto league rooms rise from Will to Lance")
+{
+    u32 mapsec = gMapHeader.regionMapSectionId;
+    u32 aces[5], i;
+
+    // Average player at the league: the rooms' ceilings, the Elite Four within
+    // the league corridor, the champion 2 above it.
+    SET_PARTY(64, 64, 64);
+    LeagueAces(aces);
+    EXPECT_EQ(aces[0], 62);
+    EXPECT_EQ(aces[3], 65);
+    EXPECT_EQ(aces[4], 67);
+    for (i = 1; i < ARRAY_COUNT(aces); i++)
+        EXPECT_LT(aces[i - 1], aces[i]);
+
+    // Weak team: the rooms' floors, still rising.
+    SET_PARTY(45, 45, 45);
+    LeagueAces(aces);
+    EXPECT_EQ(aces[0], 58);
+    EXPECT_EQ(aces[4], 63);
+    for (i = 1; i < ARRAY_COUNT(aces); i++)
+        EXPECT_LT(aces[i - 1], aces[i]);
+
+    // After the title only the floors stay.
+    FlagSet(FLAG_IS_JOHTO_CHAMPION);
+    SET_PARTY(90, 90, 90);
+    LeagueAces(aces);
+    EXPECT_EQ(aces[0], 89);
+    EXPECT_EQ(aces[4], 95);
+    for (i = 1; i < ARRAY_COUNT(aces); i++)
+        EXPECT_LT(aces[i - 1], aces[i]);
+
+    // Victory Road keeps the league corridor and the boss extra.
+    FlagClear(FLAG_IS_JOHTO_CHAMPION);
+    SetMap(MAP_ROUTE29_HNS, MAPSEC_VICTORY_ROAD_HNS);
+    SET_PARTY(64, 64, 64);
+    EXPECT_EQ(ScaleTrainerMonLevel(&sBoss, 50, 50), 64 + JOHTO_SCALING_TRAINER_ABOVE + JOHTO_SCALING_BOSS_EXTRA);
+    gMapHeader.regionMapSectionId = mapsec;
+}
+
 TEST("Level scaling: team members keep their distance, down to the trainer band")
 {
     u32 mapsec = gMapHeader.regionMapSectionId;
