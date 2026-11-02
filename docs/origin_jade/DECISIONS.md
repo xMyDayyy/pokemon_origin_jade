@@ -540,8 +540,8 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-019 Retired and locked content
 - **Status:** Active (changed 2026-11-02: Alola listed; Sinjoh and Alola
-  stay locked, owner; changed 2026-11-02: Emerald's battle tents
-  retired)
+  stay locked, owner; changed 2026-11-02: Emerald's battle tents and
+  Trainer Hill retired)
 - **Decision:** HnS's own Kanto maps are retired (`hns_kanto_retired`); the
   FRLG Kanto maps are used. The Sevii Islands are retired, reversibly
   (`frlg_sevii_retired`); everything that would lead there is disabled (Bill
@@ -553,8 +553,9 @@ dated 2026-10-10 or later were decided directly.
   `FLAG_VISITED_ALOLA`, which only Melemele sets. Sinjoh and Alola stay
   locked (owner 2026-10-31); what unlocking them would need is in O-009.
   Emerald's facilities that HnS has too are retired in favour of HnS's
-  (owner 2026-11-02): the Battle Frontier (`frontier_em_retired`, D-030)
-  and the battle tents (`em_tents_retired`, D-030).
+  (owner 2026-11-02): the Battle Frontier (`frontier_em_retired`, D-030),
+  the battle tents (`em_tents_retired`, D-030) and the Trainer Hill on
+  Route 111 (`em_trainer_hill_retired`, D-044).
 - **Evidence:** 752b880dee, 67c1384191, 82f533ac08, 020c34f826,
   84e198c40c, ba8f5e9168, review 2026-10-09.
 
@@ -1300,26 +1301,30 @@ dated 2026-10-10 or later were decided directly.
   - Gifts keep their levels (Castform 25, the fossils 20, Beldum 5).
 - **Evidence:** decision 2026-10-29.
 
-### D-044 Two Trainer Hills: HnS's by Route 40, Emerald's on Route 111
-- **Status:** Active (2026-10-30). The owner decided on 2026-11-02 that
-  Emerald's hill on Route 111 goes (S-05, P-006); its entrance is already
-  off the map on `balancing` (06ea236bdb), and until the clean-up the code
-  works as described here.
-- **Decision:** Both hills work, each with its own data:
-  - Route 40 (Johto post-game, D-041) stays HnS's hill: HnS trainers, party
-    at level 50, item prizes plus money, records in SaveBlock1
-    (`trainerHillTimes`).
-  - Route 111 (opens with `FLAG_IS_HOENN_CHAMPION`) is Emerald's hill:
-    Emerald's trainers and floors, opponents at the level of the player's
-    strongest Pokemon, Emerald's prizes (TMs and items, no money), records
-    of its own in SaveBlock3 (`trainerHillTimesHoenn`). A loss returns the
-    player to its own reception.
-  - `src/trainer_hill.c` picks the set by the map layout
-    (`IsHnsTrainerHill`); scripts ask with `trainerhill_inhoennhill`.
-  - Both hills share `MAPSEC_TRAINER_HILL` (O-024).
+### D-044 One Trainer Hill: HnS's by Route 40
+- **Status:** Active (2026-10-30; changed 2026-11-02: Emerald's hill on
+  Route 111 retired, owner S-05)
+- **Decision:** Only HnS's hill by Route 40 is in the game (Johto
+  post-game, D-041): HnS trainers, party at level 50, item prizes plus
+  money, records in SaveBlock1 (`trainerHillTimes`). HnS's endgame counts
+  (owner 2026-11-02).
+  - Emerald's hill on Route 111 is retired: the owner removed its building,
+    warp and sign from Route 111 (06ea236bdb); its seven maps
+    (`TrainerHill_Entrance`, `TrainerHill_1F` to `_4F`, `TrainerHill_Roof`,
+    `TrainerHill_Elevator`) and seven layouts (with
+    `LAYOUT_BATTLE_ELEVATOR`, used otherwise only by the retired Emerald
+    frontier) carry game_version `em_trainer_hill_retired`. The script and
+    text of the Route 111 sign and Route 111's reset of
+    `VAR_TRAINER_HILL_IS_ACTIVE` are gone. The PokeNav map no longer lists
+    the hill as a landmark on Route 111 (`src/landmark.c`).
+  - What made Emerald's hill work stays in the code, unused: Emerald's
+    trainers, floors and prizes selected by the map layout in
+    `src/trainer_hill.c` (`IsHnsTrainerHill`), `trainerhill_inhoennhill`,
+    and its records in SaveBlock3 (`trainerHillTimesHoenn`; the save layout
+    stays). Bringing it back needs the maps active again and an entrance on
+    Route 111.
 - **Evidence:** decision 2026-10-30 (make the Route 111 hill work instead of
-  retiring it); owner answer 2026-11-02 (S-05: HnS's hill by Route 40 is
-  enough, P-006).
+  retiring it); owner answers 2026-11-02 (S-05).
 
 ### D-045 Nuzlocke rules
 - **Status:** Active (2026-10-30; changed 2026-10-30: static encounters,
@@ -1384,9 +1389,9 @@ dated 2026-10-10 or later were decided directly.
       keep the nickname of their former trainer;
     - Hoenn: Castform (Weather Institute), the fossils at Devon, and after
       the title, outside the Nuzlocke, Beldum and Birch's Johto starters.
-  - Trainer Hills: no deaths there, as in HnS (D-054, O-028). A Pokemon
-    that faints stays in the party at 0 HP; leaving a hill after a loss
-    heals the party, otherwise a Pokemon Center does.
+  - Trainer Hill (by Route 40, D-044): no deaths there, as in HnS (D-054,
+    O-028). A Pokemon that faints stays in the party at 0 HP; leaving the
+    hill after a loss heals the party, otherwise a Pokemon Center does.
   - Route 41's Tentacruel guards (level 100, no catching): a Pokemon that
     faints there dies, as in HnS; the battle uses up no area (static
     encounter, see above).
@@ -1740,7 +1745,7 @@ dated 2026-10-10 or later were decided directly.
     Ho-Oh as the bird chosen on Route 39); the M.S. Aqua's maiden voyage;
     every item of both regions (see the generator rules); Kanto's and
     Johto's fly destinations; no badge flags 09-16.
-    Untouched: the battle facilities (Kampfzone, both Trainer Hills), Sinjoh
+    Untouched: the battle facilities (Kampfzone, the Trainer Hill), Sinjoh
     (locked, D-019), Hoenn, rematches and title defences. Johto is
     unlocked, Hoenn not. The player starts at the door of Oak's lab with
     `VAR_HOENN_TICKET_STATE` 1, so Troy's scene runs at once (D-047); the
@@ -2080,9 +2085,8 @@ dated 2026-10-10 or later were decided directly.
   - Trainer Hills (N-01, O-028): HnS's battle end skips Nuzlocke deaths
     in its Trainer Hill (`BATTLE_TYPE_TRAINER_HILL`, like the Battle
     Frontier), and its reception heals after a loss; Origin Jade's Route 40
-    hill is the same, unchanged (D-045). Emerald's hill on Route 111 has no
-    counterpart in HnS; it uses the same battle type and so the same rule
-    as long as it exists (it is being retired, owner 2026-11-02).
+    hill is the same, unchanged (D-045). Emerald's hill on Route 111 is
+    retired (D-044).
   - Route 41's Tentacruel guards (N-02): HnS's own fight, same script and
     same spot (also K-04). A Pokemon that faints there dies, as in HnS;
     unlike HnS the fight uses up no area (static encounters, owner
@@ -2273,7 +2277,8 @@ dated 2026-10-10 or later were decided directly.
     Pewter's museum ("Raumfähre"). Hoenn: the Poochyena on Route 114
     ("Wau! Wauwau!"). Route 40 Trainer Hill: the HnS copy of the Slateport
     Battle Tent lobby (`SlateportCity_BattleTentLobby_hns`; the tool
-    counts it under Hoenn because both hills share `MAPSEC_TRAINER_HILL`)
+    counts it under Hoenn because `MAPSEC_TRAINER_HILL` is an Emerald map
+    section, outside the tool's Johto range)
     shows 3 NPC texts (man, girl, woman), now the owner's German texts of
     the Emerald lobby, whose English texts are the same. Its TM giver
     script (`SlateportCity_BattleTentLobby_hns_EventScript_TormentGiver`)
@@ -2508,14 +2513,9 @@ dated 2026-10-10 or later were decided directly.
   `src/roamer.c` and `src/string_util.c` refer to the map.
 - **O-023** Resolved 2026-11-02: the badge readers count the region the
   player stands in (D-007, D-053).
-- **O-024** Both Trainer Hills use `MAPSEC_TRAINER_HILL`, which the HnS
-  build places on the Johto map and `IsHoennMapsec` does not count as Hoenn:
-  inside the hill on Route 111 the region map shows Johto, its trainer
-  battles play Johto's battle and victory music (`MUS_HG_VS_TRAINER`,
-  `MUS_HG_VICTORY_TRAINER`), and Hoenn-only mapsec rules (rival name, item
-  texts, Hoenn licenses) do not apply (D-044). A Hoenn mapsec of their own
-  for the seven Emerald `TrainerHill_*` maps would end all of these. The
-  question ends with the Route 111 hill (P-006).
+- **O-024** Resolved 2026-11-02: Emerald's hill on Route 111 is retired
+  (D-044); `MAPSEC_TRAINER_HILL` on the Johto map fits the remaining hill
+  by Route 40.
 - **O-025** Nuzlocke end point: the Nuzlocke ends at the first Hoenn title
   (D-045); until 2026-10-30 it ended when Red was beaten. Owner to confirm.
 - **O-026** Resolved 2026-10-30: scripted static encounters can always be
@@ -2802,3 +2802,4 @@ dated 2026-10-10 or later were decided directly.
 | Elm's call after the first Johto title waits for a visit to New Bark Town | `NewBarkTown_OnFrame` (HnS trigger kept while home moved to Pallet Town, D-028) | D-051 (2026-11-02, O-036) |
 | One Day Care storage for all regions | Emerald / HnS | D-052 (2026-11-02) |
 | Scaled bosses keep the moves of their original level; Johto's league aces all at the corridor's 65 | HnS / Emerald, D-012 | D-053 (2026-11-02) |
+| Emerald's Trainer Hill on Route 111 works with its own trainers, prizes and records | D-044 (2026-10-30) | D-044 (2026-11-02) |

@@ -3214,7 +3214,7 @@
       "secondary_tileset": "gTileset_BattleFrontier",
       "border_filepath": "data/layouts/BattleElevator/border.bin",
       "blockdata_filepath": "data/layouts/BattleElevator/map.bin",
-      "game_version": "hns",
+      "game_version": "em_trainer_hill_retired",
       "layout_version": "emerald"
     },
     {
@@ -5038,7 +5038,7 @@
       "secondary_tileset": "gTileset_TrainerHill",
       "border_filepath": "data/layouts/TrainerHill_Entrance/border.bin",
       "blockdata_filepath": "data/layouts/TrainerHill_Entrance/map.bin",
-      "game_version": "hns",
+      "game_version": "em_trainer_hill_retired",
       "layout_version": "emerald"
     },
     {
@@ -5050,7 +5050,7 @@
       "secondary_tileset": "gTileset_TrainerHill",
       "border_filepath": "data/layouts/TrainerHill_1F/border.bin",
       "blockdata_filepath": "data/layouts/TrainerHill_1F/map.bin",
-      "game_version": "hns",
+      "game_version": "em_trainer_hill_retired",
       "layout_version": "emerald"
     },
     {
@@ -5062,7 +5062,7 @@
       "secondary_tileset": "gTileset_TrainerHill",
       "border_filepath": "data/layouts/TrainerHill_2F/border.bin",
       "blockdata_filepath": "data/layouts/TrainerHill_2F/map.bin",
-      "game_version": "hns",
+      "game_version": "em_trainer_hill_retired",
       "layout_version": "emerald"
     },
     {
@@ -5074,7 +5074,7 @@
       "secondary_tileset": "gTileset_TrainerHill",
       "border_filepath": "data/layouts/TrainerHill_3F/border.bin",
       "blockdata_filepath": "data/layouts/TrainerHill_3F/map.bin",
-      "game_version": "hns",
+      "game_version": "em_trainer_hill_retired",
       "layout_version": "emerald"
     },
     {
@@ -5086,7 +5086,7 @@
       "secondary_tileset": "gTileset_TrainerHill",
       "border_filepath": "data/layouts/TrainerHill_4F/border.bin",
       "blockdata_filepath": "data/layouts/TrainerHill_4F/map.bin",
-      "game_version": "hns",
+      "game_version": "em_trainer_hill_retired",
       "layout_version": "emerald"
     },
     {
@@ -5098,7 +5098,7 @@
       "secondary_tileset": "gTileset_TrainerHill",
       "border_filepath": "data/layouts/TrainerHill_Roof/border.bin",
       "blockdata_filepath": "data/layouts/TrainerHill_Roof/map.bin",
-      "game_version": "hns",
+      "game_version": "em_trainer_hill_retired",
       "layout_version": "emerald"
     },
     {
