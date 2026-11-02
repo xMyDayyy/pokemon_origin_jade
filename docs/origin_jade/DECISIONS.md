@@ -233,7 +233,8 @@ dated 2026-10-10 or later were decided directly.
 ## Balancing
 
 ### D-011 Kanto: hand-set level ladder up to 47
-- **Status:** Active (ladder changed 2026-10-29, level caps changed
+- **Status:** Active (ladder changed 2026-10-29, evolved teams confirmed
+  2026-11-02, level caps changed
   2026-10-30)
 - **Decision:** Kanto's levels are set by hand and end with the champion at
   45-47. They follow an average player: about three of four trainers, half
@@ -265,8 +266,11 @@ dated 2026-10-10 or later were decided directly.
     (9, 16, 19, 26, 34, 37, 40, 40; 45), as HnS derived its tables.
   - After the Kanto title Kanto scales to the player and these hand-set
     levels are the floor (D-031).
+  - The ladder lowered the levels, not the teams: 53 evolved Pokemon stand
+    below their evolution level (e.g. Dragonite 46 and 47, Tyranitar 47);
+    the owner keeps them (2026-11-02, D-053).
 - **Evidence:** b20f555d4d, 20fa75b584, 1662b679fc, 2f349b5ce2, af10c86033;
-  ladder: decision 2026-10-29.
+  ladder: decision 2026-10-29; evolved teams: owner answer 2026-10-31 (B-03).
 
 ### D-012 Johto and Hoenn: dynamic level scaling
 - **Status:** Active (anchor, bands and corridors changed 2026-10-29,
@@ -1092,6 +1096,7 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-039 Johto's static and legendary levels fit the scaling
 - **Status:** Active (2026-10-27, event and player levels 2026-10-29;
+  legendaries in the anchor confirmed 2026-11-02, D-053;
   changed 2026-10-30: roamer example corrected; changed 2026-10-31:
   Deoxys after the first trip to Hoenn). Replaces the fixed levels
   of D-026 and D-031 for Johto.
@@ -1135,6 +1140,12 @@ dated 2026-10-10 or later were decided directly.
     title it lifts the returns of D-026 and the roamers with the player.
     Kanto and unscaled maps (Birth Island, the Kampfzone) keep fixed levels
     (`staticFloor` in `src/level_scaling.c`).
+  - A legendary in the party counts for the anchor like any other
+    Pokemon (D-012): a Raikou, Entei or Celebi at 75 lifts the anchor to
+    at least 67, and trainers and wild Pokemon then sit at the corridor
+    ceilings until the league. In the box it does not count. The owner
+    keeps this (2026-11-02, D-053): the scaling follows the team the
+    player uses.
   - Roamers keep the level they started with. Raikou and Entei start at
     their level in `src/legendaries_oj.c`; a roamer below it, or below the
     floor, moves up at its next encounter and keeps its share of HP
@@ -1952,6 +1963,28 @@ dated 2026-10-10 or later were decided directly.
     Eeveelutions). The newcomers use the level-up moves of their level,
     except Smeargle, whose only level-up move is Sketch: it knows Spore,
     Fake Out, Shadow Ball and Thunderbolt.
+  - Kept as they are (owner answers):
+    - Kanto's ladder keeps evolved Pokemon below their evolution level
+      (B-03, D-011).
+    - Legendaries in the party count for the anchor (B-04, D-039,
+      D-012; checked in `GetScalingAnchor`, which skips only eggs).
+      Mythicals do not count for Pokedex completion (D-036).
+    - Boss IVs stay as HnS and Emerald set them (B-07), e.g. Whitney 2,
+      Falkner to Morty 12, Silver 0 in his first three battles, May 0;
+      the challenge option for trainer IVs follows the region's badges
+      (B-08).
+    - Hoenn's corridor floors stay hard for players who skip trainers:
+      from Flannery on about 9-12 levels above such a team (B-09, D-012
+      asks for training).
+    - Ariana in the Rocket Hideout B2F (`TRAINER_ARIANA_1_HNS`) keeps six
+      Pokemon; in the 2-vs-2 battle with Lance against her and a grunt
+      (`multi_2_vs_2`) only her first three fight, as scripted (B-11).
+    - Spread moves follow Gen 3 (`B_MULTIPLE_TARGETS_DMG GEN_3` in
+      `include/config/battle.h`, as in HnS): in double battles a move
+      that hits both foes does 50 % to each, one that hits the whole
+      field (Earthquake) full damage; from Gen 4 on it is 75 %.
+      The six upstream tests that expect the later rule stay in the
+      baseline of known failures (B-13).
 - **Evidence:** owner answers 2026-10-31 (B-01-B-13) and 2026-11-02.
 
 ---

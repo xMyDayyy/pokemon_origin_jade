@@ -106,7 +106,8 @@ take effect in a normal playthrough.
 
 #### A20: fixed movesets of scaled bosses stay at their original level
 
-- **Status:** open, owner decision.
+- **Status:** fixed (D-053): every Pokemon of a scaled boss has a fixed
+  set for its scaled level (owner answer B-01, 2026-10-31).
 - **Evidence:** `CustomTrainerPartyAssignMoves` (`src/battle_main.c`) sets
   a trainer Pokemon's listed moves regardless of the scaled level. Boss
   moveset simulation (`000c8fd011`; trainer data and scaling unchanged
@@ -340,15 +341,15 @@ take effect in a normal playthrough.
 | N-facilities-2* | Hoenn | Emerald Trainer Hill maps do not set `FLAG_TEMP_HIDE_FOLLOWER` (HnS maps do) | open | check the follower Pokemon at runtime | not checked |
 | N-w3_hoenn-2* | Hoenn | Wally's, Scott's (two) and Roxanne's calls count steps in Johto and Kanto too | fixed | the calls count steps only on Hoenn maps, like Norman's call; the rival's call after the Space Center too (D-051, owner S-07) | static |
 | A54 | Johto | Suicune sighting on Route 42 in a pocket behind a Cut tree | owner | move the trigger, add a hint, or record it in D-038 | static |
-| A75 | Johto | A caught legendary (level 75) lifts the Johto anchor to 67 or more | owner | legendary levels and anchor effect (also Red, Mt. Silver floor, theater ceiling) | static |
-| N-balance-1* | Johto | Four Johto trainers with fewer than 3 Pokemon (Marc, Rich, Shirley, Zuki) | owner | fill up or an exception in D-012 | by tool (audit script) |
+| A75 | Johto | A caught legendary (level 75) lifts the Johto anchor to 67 or more | decided | kept: legendaries in the party count for the anchor (D-039, D-053) | static |
+| N-balance-1* | Johto | Four Johto trainers with fewer than 3 Pokemon (Marc, Rich, Shirley, Zuki) | fixed | filled up to three Pokemon (D-053) | by tool (audit script) |
 | N-johto_story-1* | Johto | Celebi is no longer caught with the GS Ball (key item, not throwable); level 75, normal balls | owner | accept and document, or change | static |
 | N-johto_story-2* | Johto | The theater's Mystic Water is lost with a full bag (`giveitem` without a space check) | open | `checkitemspace` (see W-core_save-4) | static |
 | N-nuzlocke-2* | Johto | Route 41: Pokemon that faint in the unwinnable level-100 Tentacruel guard battle die | owner | exception? The guards stand where nobody passes anyway (W-map_checker-11) | static |
-| W-moveset_sim-3 | Johto | Ariana 1 (Rocket Hideout B2F) has 6 Pokemon; the double battle shows only the first 3 | owner | stronger ones first, drop slots 4-6, or keep | by tool (moveset simulation) |
+| W-moveset_sim-3 | Johto | Ariana 1 (Rocket Hideout B2F) has 6 Pokemon; the double battle shows only the first 3 | decided | kept as scripted (D-053) | by tool (moveset simulation) |
 | A48 | Kanto | TM27 (Return) is lost behind the retired Route 12 north gatehouse | owner | move the girl, drop TM27 in Kanto, or keep; then `EXCLUDED_MAPS` in `tools/make_debug_states.py` | by tool (`check_maps`, `simulate_progress`) |
 | A50 | Kanto | `Route22_hns` is active but cannot be entered (O-022) | partly fixed | O-022 documented (`b4a8ab9ce9`); retire or connect (owner) | by tool (`check_maps`) |
-| A74 | Kanto | Kanto ladder: 53 under-levelled evolutions (e.g. Dragonite 46/47, Tyranitar 47) | owner | use pre-evolutions or accept | static |
+| A74 | Kanto | Kanto ladder: 53 under-levelled evolutions (e.g. Dragonite 46/47, Tyranitar 47) | decided | kept (D-011, D-053) | static |
 | A78 | Kanto | No move reminder in Kanto (chapter 1) | owner | add one or accept | static |
 | A37 | technical | GitHub Actions never ran | partly fixed | Jade workflow committed (`c64f0a28dd`), since `bb850c8d7c` and `0ab7449520` also with `check_regions.py` and the check of both debug states; the owner has to enable Actions; the test job is a placeholder | static (workflow never ran) |
 | A38 | technical | Save and RAM budget almost used up (SaveBlock1 4 bytes free, EWRAM 95 %) | partly fixed | `tools/check_budget.py`, D-017; more reserve is an owner decision (see A89) | by tool (`check_budget`) |
@@ -363,8 +364,8 @@ take effect in a normal playthrough.
 | Id | Area | Finding | Status | Note |
 |---|---|---|---|---|
 | A109 | shared | Mamoswine practically needs the move reminder (Ancient Power) | open | comfort proposal; the condition can be met |
-| A111 | shared | 147 active trainer Pokemon with moves they cannot learn (9 bosses confirmed, W-moveset_sim-2) | owner | review the list |
-| A113 | shared | Low IVs of Johto/Hoenn bosses for their scaled level (see O-023) | owner | |
+| A111 | shared | 147 active trainer Pokemon with moves they cannot learn (9 bosses confirmed, W-moveset_sim-2) | fixed | all trainers cleaned, 244 moves (D-053) |
+| A113 | shared | Low IVs of Johto/Hoenn bosses for their scaled level (see O-023) | decided | boss IVs stay as in HnS (D-053) |
 | N-balance-4* | shared | Partner OT name cut to "Siegfri" (7 characters), only in the summary | open | |
 | N-challenge-1* | shared | Escape formula: `u8 speedVar` in `TryRunFromBattle` overflows after 5-6 tries (upstream) | open | |
 | N-randomizer-3* | shared | With "Starter: Zufall" Oak's confirmation names the original species (the received message is right) | owner | text |
@@ -378,8 +379,8 @@ take effect in a normal playthrough.
 | W-progress_sim-14 | shared | Birth Island (HnS): warp 0 to the port lies in the wall | open | dead warp; the sailor replaces it |
 | W-progress_sim-16 | shared | Orphaned active maps (nothing leads there) | owner | retire (D-018/D-019) or keep |
 | A107 | Hoenn | Dead and write-only Hoenn data | open | clean-up (D-018/D-019) |
-| A112 | Hoenn | May and Wally are no bosses (+1), unlike Silver and Blue | owner | |
-| A114 | Hoenn | Hoenn corridor floors are very hard for story rushers (+9 to +12 levels from Winona on) | owner | |
+| A112 | Hoenn | May and Wally are no bosses (+1), unlike Silver and Blue | fixed | May and Wally are bosses (D-053) |
+| A114 | Hoenn | Hoenn corridor floors are very hard for story rushers (+9 to +12 levels from Winona on) | decided | kept hard (D-053) |
 | N-hoenn-1* | Hoenn | Dead Jade branches after A05/A58 (Birch and May at the lab, the Dad scene) | partly fixed | the father scenes are no longer built (`40102c8756`, `fe370081c1`, D-048); the hidden family objects are removed (O-030, D-048); left: the unreachable branch with Birch and May at the lab |
 | N-hoenn-2* | Hoenn | The heading of D-040 names only Kanto | open | cosmetic |
 | N-pokemon-1* | Hoenn | Medicham appears in the Battle Pyramid; dead test gift at the Safari gate | open | |
@@ -391,7 +392,7 @@ take effect in a normal playthrough.
 | T-legend_endgame-3 | Hoenn | Weather Institute 1F and the sailor judge Kyogre/Groudon differently for up to 3 days | open | |
 | W-progress_sim-17 | Hoenn | Dead script code from design decisions (e.g. Brendan's teams, D-003) | partly fixed | Brendan's Go-Goggles handover in Lavaridge Town is no longer built (`fe370081c1`, D-048); the rest is clean-up |
 | A105 | Johto | Dead states, never-set flags and test warps in Johto (New Bark Town 4-7, Ecruteak City 4/5/14) | owner | |
-| A110 | Johto | League ceiling 65: Elite Four, Silver and Lance equally strong | owner | |
+| A110 | Johto | League ceiling 65: Elite Four, Silver and Lance equally strong | fixed | league rooms rise from Will to Lance (D-012, D-053) |
 | N-johto_story-3* | Johto | The Wailmer Pail does not wake the Battle Frontier Sudowoodo (only the SquirtBottle does) | open | |
 | N-johto_story-4* | Johto | The new gate text has an English `#else` branch for non-German builds | owner | keep or German only |
 | N-w3_nuzlocke-3* | Johto | Johto starter: the nickname question in the Nuzlocke branch has no YES/NO | open | works |
@@ -422,7 +423,7 @@ take effect in a normal playthrough.
 | N-build_tools-4* | technical | The release build (LTO) has 6 warnings more than the baseline; the warning check covers the normal build only | open | confirmed 2026-10-31: 111 vs. 105, also on `b022af5623` |
 | N-build_tools-5* | technical | `make GAME_VERSION=EMERALD` on the command line still overrides the fixed version | open | |
 | N-tests-2* | technical | 16 ball tests INVALID (HnS balls need a party index in the runner) | open | small runner exception possible |
-| N-tests-3* | technical | 6 spread move damage tests fail on `B_MULTIPLE_TARGETS_DMG GEN_3` (HnS) | owner | intended? not in DECISIONS |
+| N-tests-3* | technical | 6 spread move damage tests fail on `B_MULTIPLE_TARGETS_DMG GEN_3` (HnS) | decided | Gen 3 rule kept as in HnS (D-053) |
 | N-tests-4* | technical | `make check`: the hydra runner buffers without a limit | open | `run_tests.py` is not affected |
 | W-core_save-7 | technical | Save migrations run on every `LoadGameSave` | open | harmless today; run them only for `SAVE_NORMAL` with status OK |
 | W-map_checker-17 | technical | Unreached maps: intended or not modelled | open | maybe mark them retired in D-018/D-019 |
@@ -467,15 +468,11 @@ take effect in a normal playthrough.
   write.
 
 **Balance**
-- Fixed movesets of scaled bosses (A20, three options).
-- Under-levelled evolutions of the Kanto ladder (A74); legendary levels
-  and their effect on the anchor, Red, the Mt. Silver floor and the
-  theater ceiling (A75).
-- League ceiling (A110), May and Wally as bosses (A112), boss IVs (A113),
-  Hoenn floors for rushers (A114), Steven in Meteor Falls (T-hoenn_b-4).
-- 147 trainer moves that cannot be learned (A111); Ariana 1 in the double
-  battle (W-moveset_sim-3); Johto trainers with fewer than 3 Pokemon
-  (N-balance-1).
+- Decided 2026-11-02 (D-053): boss movesets (A20), unlearnable trainer
+  moves (A111), league ladder (A110), May and Wally (A112), Troy and Red
+  (T-hoenn_b-4), the four small Johto teams (N-balance-1); kept: A74,
+  A75, A113, A114, W-moveset_sim-3. Open: the catch malus levels in
+  Johto and Hoenn (O-050).
 
 **Pokemon and items**
 - Regional forms, Sneasler and Overqwil (A19).
@@ -542,8 +539,8 @@ take effect in a normal playthrough.
   visit (T-johto_b-5).
 
 Open questions that stay in `DECISIONS.md`: O-009, O-012, O-020, O-021,
-O-022, O-023, O-024, O-025, O-028 and O-029 to O-040 (O-002 is resolved by
-D-047); planned items P-001 to P-004 (P-005 is done).
+O-022, O-024, O-025, O-028, O-029 to O-040 and O-050 (O-002 is resolved by
+D-047, O-023 by D-053); planned items P-001 to P-004 (P-005 is done).
 
 ## Emulator test list for the story packages
 
