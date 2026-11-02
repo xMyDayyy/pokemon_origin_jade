@@ -1447,7 +1447,10 @@ dated 2026-10-10 or later were decided directly.
     are not built, the Hoenn arrival no longer sets their hide flags, and
     Emerald's heal locations of the two houses (unused in jade) have no
     healer. The non-jade scenes that still name these objects (D-046) are
-    not built either.
+    not built either. The function that shows the cannot-use line is
+    `DisplayAdviceCannotUseItemMessage` (Emerald's
+    `DisplayDadsAdviceCannotUseItemMessage`); `gText_DadsAdvice` is only in
+    the non-jade branches.
 - **Evidence:** owner requirements 2026-10-31 (point 4); owner answers
   2026-11-02 (O-029: set up in Pallet Town; O-030: remove).
 
@@ -1812,8 +1815,8 @@ dated 2026-10-10 or later were decided directly.
 - **O-029** Resolved 2026-11-02 (owner): the player's room decorations
   are set up in the bedroom in Pallet Town (D-048).
 - **O-030** Resolved 2026-11-02 (owner: remove): the hidden objects of
-  Emerald's player family are removed from the Littleroot Town maps
-  (D-048).
+  Emerald's player family are removed from the Littleroot Town maps, and
+  the jade code no longer names Dad's advice (D-048).
 - **O-031** Resolved 2026-11-02 (owner): Troy has Emerald's sprite
   `OBJ_EVENT_GFX_STEVEN` everywhere (D-047).
 - **O-032** Resolved 2026-11-02 (owner): "Hoenn" (Route 104 pier, Birch's
