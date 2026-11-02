@@ -563,12 +563,27 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-023 Randomizer without a GEN SCOPE row
 - **Status:** Active (changed 2026-10-30, changed 2026-10-31: no fossils
-  rolled)
+  rolled; changed 2026-11-02: Bloodmoon Ursaluna, regional forms as
+  evolutions)
 - **Decision:** HnS's GEN SCOPE option (randomizer pool limited to Gen 1-3
   families) stays in the code and the save, but has no row in the challenge
   menu and is off (`RANDOMIZER_DEFAULT_GEN_SCOPE_1_3` FALSE in
   `include/config/randomizer.h`). Gen 4-9 and the regional forms are off in
   `species_enabled.h`, so both settings give the same pool.
+  - Regional forms (`P_REGIONAL_FORMS` FALSE, 4458a3bc2e) stay off. The
+    owner keeps regional forms that are evolutions where HnS does not tie
+    the evolution to a region (2026-10-31); every such case in HnS's data
+    is tied to a region or starts from a regional form that only locked
+    content offers, so none is enabled (list in O-045).
+  - Bloodmoon Ursaluna stays as HnS has it (owner 2026-10-31): it is a
+    form of Ursaluna (`P_GEN_8_CROSS_EVOS`), not a regional form. Ursaring
+    with a Peat Block at night inside Mt. Moon (`IF_IN_MAPSEC`
+    `MAPSEC_MT_MOON`; every FRLG Mt. Moon floor has that map section)
+    becomes Bloodmoon Ursaluna, elsewhere at night Ursaluna (HnS's order,
+    3430ae928d). The Peat Block is sold in Mahogany's granny shop;
+    Teddiursa lives in Dark Cave, Ursaring on Route 45 and Mt. Silver.
+    HnS's Hisui branch needs `SINJOH_CONTENT_AVAILABLE` (D-019). Trainers
+    never evolve into it (`sTrainerEvoExcluded`, D-012).
   - Items ("Items: Zufall", `src/randomizer.c`): item balls, hidden items
     and NPC gifts are randomized from the first starter on
     (`FLAG_SYS_POKEMON_GET`), so in all three regions. Key items, HMs and
@@ -1966,6 +1981,33 @@ dated 2026-10-10 or later were decided directly.
   can block; a new game starts at (6,6) as before (no decorations yet).
   Owner: keep (9,3), or the spot next to the bed with a PC that refuses
   any doll that would cut (6,6) off from the stairs and the PC.
+- **O-045** Regional forms as evolutions (owner 2026-10-31: keep those
+  whose evolution HnS does not tie to a region, report the others). All
+  are off (`P_REGIONAL_FORMS` FALSE, D-023) and stay off; no case qualifies,
+  each is tied to a region. Owner to decide case by case:
+  - Tied by the evolution itself (`IF_REGION`, never true in this game):
+    Pikachu to Alolan Raichu (Thunder Stone), Exeggcute to Alolan
+    Exeggutor (Leaf Stone), Cubone to Alolan Marowak (level 28, night),
+    Koffing to Galarian Weezing (level 35), Mime Jr. to Galarian Mr. Mime
+    (knows Mimic), Quilava to Hisuian Typhlosion (level 36), Hisuian
+    Qwilfish to Overqwil (knows Barb Barrage; HnS added the Hisui
+    condition, 743d0ba49d).
+  - Tied by the first stage, a regional form that HnS offers only on the
+    locked Alola maps, in locked Sinjoh (Route 49 and 50, Snowswept
+    Cavern) or nowhere; the evolution itself has no region condition:
+    Sneasler (Hisuian Sneasel with a Razor Claw by day; HnS has Sneasler
+    itself wild on Route 49 and in Snowswept Cavern), Perrserker,
+    Sirfetch'd, Mr. Rime, Cursola, Obstagoon (Galarian Zigzagoon and
+    Linoone), Clodsire, and the regional second stages Raticate,
+    Sandslash, Ninetales, Dugtrio, Persian, Graveler and Golem, Muk
+    (Alola), Rapidash, Slowbro and Slowking (Galar), Arcanine and
+    Electrode (Hisui).
+  - Not regional forms, in the game as they are: Kleavor, Ursaluna and
+    Bloodmoon Ursaluna (D-023), Wyrdeer, Annihilape, Farigiraf,
+    Dudunsparce.
+  Enabling one needs `species_enabled.h`, a source for its first stage,
+  the Pokedex lists and the region table of `src/region_rule_oj.c`
+  (D-049).
 
 ## Superseded decisions (kept for the record)
 
