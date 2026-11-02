@@ -445,8 +445,7 @@ take effect in a normal playthrough.
   Pokedex counts as complete without Azurill and Wynaut, implemented by
   analogy to the Kanto 151 (to confirm). Debug states: the generator's
   readings of the owner's rules (O-035).
-- From the text check of the story packages: Elm's call after the Johto
-  title comes only in New Bark Town (O-036), Mom's heal texts after a
+- From the text check of the story packages: Mom's heal texts after a
   whiteout at home (O-037), placeholder National Pokedex ratings (O-038),
   the nurse's Gold Card greeting against the trainer card's stars
   (O-039), old text defects for the text round (O-040).
@@ -561,7 +560,8 @@ in the beta build (the debug states reach them quickly):
 2. **Waking up in the room** after the Kanto title, every Johto title and
    Red, also after a restart once the Hall of Fame has saved; a whiteout
    from there leads to Mom downstairs (her texts: O-037). Elm's call after
-   the Johto title comes only on entering New Bark Town (O-036).
+   the first Johto title comes on the first step out of the house in
+   Pallet Town (O-036, D-051), not again in New Bark Town.
 3. **Oak's lab, Troy's scene:** from the door the player walks up to Oak
    and Troy; the scene in place when the player stands below Oak; the
    ticket handover and Troy leaving, stepping aside if the player is in

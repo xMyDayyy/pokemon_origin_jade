@@ -706,7 +706,7 @@ dated 2026-10-10 or later were decided directly.
 - **Status:** Active (2026-10-15). Replaces D-002 for Johto, Hoenn and Red.
   Changed 2026-10-30 (no Emerald after-title scenes in Littleroot),
   changed 2026-10-31 (Johto titles and Red continue in the player's room
-  in Pallet Town).
+  in Pallet Town), changed 2026-11-02 (Elm's call in Pallet Town, D-051).
 - **Decision:**
   - Johto's league can be repeated: the Black Belt in front of the Elite
     Four door never shows. Title defences use the `_2` teams, a short Lance
@@ -718,8 +718,8 @@ dated 2026-10-10 or later were decided directly.
     the player wakes up in their room in Pallet Town
     (`HEAL_LOCATION_PALLET_TOWN_PLAYERS_ROOM`, D-002);
     `HEAL_LOCATION_NEW_BARK_TOWN_LAB_HNS` is no longer used. Elm's call
-    after the first Johto title comes on the next visit to New Bark Town.
-    After every Hoenn title it
+    after the first Johto title comes on the first step out of the house
+    in Pallet Town (D-051). After every Hoenn title it
     continues in Littleroot Town in front of Birch's lab. Emerald's
     S.S. Ticket and Lati TV scene in Norman's and Birch's houses does not
     run (D-002, D-003); Latias and Latios roam without it (D-026). Neither
@@ -733,7 +733,8 @@ dated 2026-10-10 or later were decided directly.
     title. `{RIVAL}` shows Silver's name on Johto's league maps.
   - Code: `special GameClearNoCredits` (`src/post_battle_event_funcs.c`),
     `HallOfFame_SetRollCredits` (`src/hall_of_fame.c`).
-- **Evidence:** decision 2026-10-15 (O-013).
+- **Evidence:** decision 2026-10-15 (O-013); owner answer 2026-11-02
+  (O-036).
 
 ### D-029 Magnet Train, radio quiz and ships
 - **Status:** Active (2026-10-15, ships changed 2026-10-20, Hoenn trips
@@ -1632,6 +1633,14 @@ dated 2026-10-10 or later were decided directly.
     On board Scott invites the player to the Kampfzone, which the ferries
     list from then on (D-030). Whoever meets him on board before the call
     does not get it any more.
+  - Elm's call after the first Johto title ("I have news, come by my
+    lab") comes as in HnS right after the title at home: HnS continued in
+    New Bark Town and started it on the town's first frame
+    (`VAR_NEWBARK_TOWN_STATE` 6); Origin Jade wakes the player up in
+    Pallet Town (D-028), so Pallet Town starts it too, on the first step
+    out of the house. It no longer waits for a visit to New Bark Town,
+    which could come after the M.S. Aqua's maiden voyage or after Hoenn
+    (O-036). Elm's lab text (the M.S. Aqua sets sail) is unchanged.
 - **Code:** `HOENN_CALL_WAITS` in `ShouldDoWallyCall`,
   `ShouldDoScottFortreeCall`, `ShouldDoScottBattleFrontierCall`,
   `ShouldDoRoxanneCall`, `ShouldDoRivalRayquazaCall`; `ShouldDoNormanCall`
@@ -1639,8 +1648,10 @@ dated 2026-10-10 or later were decided directly.
   `EverGrandeCity_HallOfFame_EventScript_SkipDexUpgradeEvent`
   (`data/scripts/hall_of_fame.inc`),
   `LittlerootTown_ProfessorBirchsLab_EventScript_ScottAboardSSTidalCall`,
-  `SSTidalCorridor_EventScript_ScottScene`.
-- **Evidence:** owner answers 2026-10-31 (S-02, S-07).
+  `SSTidalCorridor_EventScript_ScottScene`; `PalletTown_OnFrame` and
+  `NewBarkTown_OnFrame` (`NewBarkTown_EventScript_ElmCallAfterLeague`).
+- **Evidence:** owner answers 2026-10-31 (S-02, S-07) and 2026-11-02
+  (O-036: as in HnS).
 
 ---
 
@@ -1843,11 +1854,9 @@ dated 2026-10-10 or later were decided directly.
   - The Hoenn Test's team (Charizard 70, Meganium 63, Gyarados 63,
     Ampharos 62, Nidoking 60, Espeon 60) and Chikorita as the Johto
     starter follow owner point 6 (mixed, average, no legendary).
-- **O-036** Elm's call after the Johto title fires only on entering New
-  Bark Town (`VAR_NEWBARK_TOWN_STATE` 6); since the player now wakes up in
-  Pallet Town it can come after the maiden voyage or after Hoenn, and its
-  "the M.S. Aqua finally sets sail" news is stale. Proposal: trigger it on
-  waking up in Pallet Town, or pick Elm's lab text by maiden voyage state.
+- **O-036** Resolved 2026-11-02 (owner: as in HnS): Elm's call comes on
+  the first step out of the house in Pallet Town after the first Johto
+  title, as HnS's came in New Bark Town (D-051).
 - **O-037** Mom's heal texts after a whiteout at home
   (`gText_HadQuiteAnExperienceTakeRest`, `gText_MomExplainHPGetPotions`):
   capitals "MAMA"/"POKéMON", a beginner tutorial; reachable from the start

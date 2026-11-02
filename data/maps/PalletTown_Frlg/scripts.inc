@@ -36,6 +36,9 @@ PalletTown_EventScript_MoveSignLadyToRouteEntrance::
 
 PalletTown_OnFrame::
 	map_script_2 VAR_MAP_SCENE_PALLET_TOWN_OAK, 2, PalletTown_EventScript_OakRatingScene
+	@ Elm's call after the first Johto title, on the first step out of the house.
+	@ See docs/origin_jade/DECISIONS.md, D-051.
+	map_script_2 VAR_NEWBARK_TOWN_STATE, 6, NewBarkTown_EventScript_ElmCallAfterLeague
 	.2byte 0
 
 @ Oak approaches player after exiting their house post Elite Four to check if they should receieve the National Dex

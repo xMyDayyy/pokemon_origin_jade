@@ -161,6 +161,8 @@ CUT_LABELS_ALWAYS = {
     "CinnabarIsland_EventScript_BillScene",
     "CinnabarIsland_PokemonCenter_1F_EventScript_Bill",
     "IndigoPlateau_PokemonCenter_1F_EventScript_SeviiIslandComplete",
+    # Elm's call after the first Johto title, also in Pallet Town (D-051).
+    "NewBarkTown_EventScript_ElmCallAfterLeague",
     # Troy hands over the Hoenn Ticket after the first Johto title (D-047);
     # in state B the scene runs after the warp into Oak's lab.
     "PalletTown_ProfessorOaksLab_EventScript_TroyScene",
