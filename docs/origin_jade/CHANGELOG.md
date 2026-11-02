@@ -304,7 +304,9 @@ above).
 - Shiny clause: a shiny first encounter does not use up the area.
   `ac46dd2994`
 - Pokemon that faint in double battles with a computer-controlled partner
-  (Lance, Steven) die like in other battles. `d05aa4864f`
+  (Lance, Steven) die like in other battles. `d05aa4864f` (taken back on
+  2026-11-02: as in HnS, they die only if they are not healed before the
+  next battle, D-054)
 - A whiteout no longer overwrites eggs in the party. `df06d73321`
 - Scripted static encounters (Snorlax, Sudowoodo, Lapras, Electrode,
   Voltorb, Kecleon) are free and can always be caught. `321f7eb411`

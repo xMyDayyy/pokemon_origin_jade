@@ -499,17 +499,6 @@ void NuzlockeDeleteFaintedPartyPokemon(void)
     CompactPartySlots();
 }
 
-// Deaths of a battle with an AI partner, which the end of the battle skips.
-// The multi battle macros call it once the player's party is restored.
-void NuzlockeDeleteFaintedAfterPartnerBattle(void)
-{
-    if (IsNuzlockeActive() || IsNuzlockeEasyActive())
-    {
-        NuzlockeDeleteFaintedPartyPokemon();
-        CalculatePlayerPartyCount();
-    }
-}
-
 // Whiteout: fainted party members die, eggs and members that can fight stay. If none can
 // fight, the first living PC mon (else a level 1 Rattata) joins in the first free slot.
 void NuzlockeRefillPartyAfterWhiteOut(void)

@@ -1300,9 +1300,9 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-045 Nuzlocke rules
 - **Status:** Active (2026-10-30; changed 2026-10-30: static encounters,
-  eggs, nicknames of starters and gifts; changed 2026-11-02: Trainer Hills
-  and Route 41 as in HnS, D-054). The end point waits for the owner's
-  confirmation (O-025).
+  eggs, nicknames of starters and gifts; changed 2026-11-02: Trainer
+  Hills, Route 41 and battles with an AI partner as in HnS, D-054). The
+  end point waits for the owner's confirmation (O-025).
 - **Decision:** The challenge menu's Nuzlocke (`src/nuzlocke.c`) works like
   this in Origin Jade:
   - Start and end: it starts at Oak's Pokedex handover in Kanto
@@ -1337,11 +1337,11 @@ dated 2026-10-10 or later were decided directly.
     faints from poison in the field): released, or moved to the PC as
     unusable ("Friedhof", always in Leicht). No deaths in Trainer Hill,
     Battle Frontier, link, first-battle and catch-tutorial battles, nor in
-    the Bug-Catching Contest (its party is restored afterwards). In battles
-    with an AI partner (Lance in the Rocket Hideout, Steven in Mossdeep's
-    Space Center) this happens to the player's own Pokemon once the party
-    is restored after the battle (multi battle macros in
-    `asm/macros/battle_frontier/battle_tower.inc`).
+    the Bug-Catching Contest (its party is restored afterwards). Battles
+    with an AI partner (Lance in the Rocket Hideout, Troy in Mossdeep's
+    Space Center) are skipped too, as in HnS (D-054): a Pokemon that
+    faints there comes back into the party at 0 HP and dies at the end of
+    the next battle unless it is healed first.
   - Whiteout: fainted party members die as above; eggs and members that can
     still fight stay. If none can fight, the first living Pokemon from the
     PC joins in the first free slot, a level 1 Rattata when the PC has none
@@ -2064,6 +2064,14 @@ dated 2026-10-10 or later were decided directly.
   - Hall of Fame (N-10): HnS keeps one list without a region; its league
     titles and Red's victory (`GameClear`) are mixed in it. Origin Jade's
     three regions share the 50 places the same way (no region marker).
+  - Battles with an AI partner (from O-055): HnS skips the Nuzlocke deaths
+    at the end of such a battle (`BATTLE_TYPE_INGAME_PARTNER`, Lance in
+    the Rocket Hideout); a Pokemon that fainted comes back into the party
+    at 0 HP and dies at the end of the next battle unless it is healed
+    first. Origin Jade does the same again, also for Troy in Mossdeep's
+    Space Center: the multi battle macros (`multi_do`, `multi_do_fixed`)
+    no longer call a death check of their own after the party is restored
+    (audit 2026-10-30, A30, taken back), D-045.
 - **Open:** O-055 (Nuzlocke rules that differ from HnS outside these
   points), O-056 (move tutors in Kanto against HnS's Kanto), O-057 (item
   randomizer: Slateport's Berry Powder man, single items for money,
@@ -2314,13 +2322,6 @@ dated 2026-10-10 or later were decided directly.
   Kanto.
 - **O-055** Nuzlocke rules that differ from HnS outside D-054's points.
   Owner to decide whether they follow HnS too:
-  - Battles with an AI partner (Lance in the Rocket Hideout, Troy in
-    Mossdeep's Space Center): HnS lets nothing die there
-    (`BATTLE_TYPE_INGAME_PARTNER` is skipped at the end of the battle);
-    Origin Jade kills the player's fainted Pokemon once the party is
-    restored (`NuzlockeDeleteFaintedAfterPartnerBattle` in `multi_do` and
-    `multi_do_fixed`, audit 2026-10-30, D-045). Proposal: as HnS, drop the
-    two calls.
   - End point: HnS ends the Nuzlocke with Red, where its credits roll;
     Origin Jade ends it at the first Hoenn title, where its credits roll
     (D-028). Same rule, so O-025 can be confirmed as it is.
