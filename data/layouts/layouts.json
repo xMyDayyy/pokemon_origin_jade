@@ -4630,7 +4630,7 @@
       "secondary_tileset": "gTileset_BattleTent",
       "border_filepath": "data/layouts/BattleTentLobby/border.bin",
       "blockdata_filepath": "data/layouts/BattleTentLobby/map.bin",
-      "game_version": "hns",
+      "game_version": "em_tents_retired",
       "layout_version": "emerald"
     },
     {
@@ -4642,7 +4642,7 @@
       "secondary_tileset": "gTileset_BattleTent",
       "border_filepath": "data/layouts/BattleTentCorridor/border.bin",
       "blockdata_filepath": "data/layouts/BattleTentCorridor/map.bin",
-      "game_version": "hns",
+      "game_version": "em_tents_retired",
       "layout_version": "emerald"
     },
     {
@@ -4654,7 +4654,7 @@
       "secondary_tileset": "gTileset_BattleTent",
       "border_filepath": "data/layouts/BattleTentBattleRoom/border.bin",
       "blockdata_filepath": "data/layouts/BattleTentBattleRoom/map.bin",
-      "game_version": "hns",
+      "game_version": "em_tents_retired",
       "layout_version": "emerald"
     },
     {
@@ -4666,7 +4666,7 @@
       "secondary_tileset": "gTileset_BattleTent",
       "border_filepath": "data/layouts/VerdanturfTown_BattleTentBattleRoom/border.bin",
       "blockdata_filepath": "data/layouts/VerdanturfTown_BattleTentBattleRoom/map.bin",
-      "game_version": "hns",
+      "game_version": "em_tents_retired",
       "layout_version": "emerald"
     },
     {

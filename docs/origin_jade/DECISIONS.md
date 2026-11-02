@@ -540,7 +540,8 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-019 Retired and locked content
 - **Status:** Active (changed 2026-11-02: Alola listed; Sinjoh and Alola
-  stay locked, owner)
+  stay locked, owner; changed 2026-11-02: Emerald's battle tents
+  retired)
 - **Decision:** HnS's own Kanto maps are retired (`hns_kanto_retired`); the
   FRLG Kanto maps are used. The Sevii Islands are retired, reversibly
   (`frlg_sevii_retired`); everything that would lead there is disabled (Bill
@@ -551,6 +552,9 @@ dated 2026-10-10 or later were decided directly.
   retired `Route13_hns`, and the Melemele fly spot needs
   `FLAG_VISITED_ALOLA`, which only Melemele sets. Sinjoh and Alola stay
   locked (owner 2026-10-31); what unlocking them would need is in O-009.
+  Emerald's facilities that HnS has too are retired in favour of HnS's
+  (owner 2026-11-02): the Battle Frontier (`frontier_em_retired`, D-030)
+  and the battle tents (`em_tents_retired`, D-030).
 - **Evidence:** 752b880dee, 67c1384191, 82f533ac08, 020c34f826,
   84e198c40c, ba8f5e9168, review 2026-10-09.
 
@@ -839,7 +843,8 @@ dated 2026-10-10 or later were decided directly.
   Hoenn and Aurora Ticket 2026-10-20.
 
 ### D-030 One Battle Frontier: the HnS Kampfzone
-- **Status:** Active (2026-10-15; changed 2026-11-02: Scott's hint, D-051)
+- **Status:** Active (2026-10-15; changed 2026-11-02: Scott's hint, D-051;
+  changed 2026-11-02: Emerald's battle tents retired)
 - **Decision:** The Emerald frontier (47 maps, 36 layouts) is retired
   (`frontier_em_retired`). The HnS Kampfzone is reached by ship (D-029) and,
   after the Hoenn title, from Slateport and Lilycove: the S.S. Tidal lists
@@ -851,8 +856,15 @@ dated 2026-10-10 or later were decided directly.
   Kampfzone is open (ledge corner at (29,9), the Engineer beside the path;
   owner confirmed 2026-10-26).
   A whiteout there leads to the Kampfzone's nurse.
+  Emerald's battle tents in Verdanturf, Fallarbor and Slateport are retired
+  as well (9 maps and 4 layouts with game_version `em_tents_retired`; owner
+  2026-11-02, S-04: HnS's endgame counts). Their buildings are contest
+  halls now (D-058). The HnS copies of the three tents in the courtyard of
+  the Route 40 Trainer Hill stay; Scott's two tent meetings
+  (`FLAG_MET_SCOTT_IN_VERDANTURF`, `FLAG_MET_SCOTT_IN_FALLARBOR`) happen
+  there only.
 - **Evidence:** decision 2026-10-15 (O-006); owner answer 2026-10-31
-  (S-02).
+  (S-02); owner answers 2026-11-02 (S-04).
 
 ### D-031 Level scaling after a region's title
 - **Status:** Active (2026-10-15, Johto statics changed 2026-10-27, D-039,
@@ -2364,6 +2376,8 @@ dated 2026-10-10 or later were decided directly.
     tents, with the owner's German (O-065). The sailor in Slateport's hall
     gives TM Torment, with a flag of his own
     (`FLAG_HOENN_RECEIVED_TM_TORMENT`).
+  - The contest halls stand where Emerald had its battle tents; the tents
+    are retired (D-030, D-019).
   - Towns: the signs at the hall doors and the people who spoke of the
     battle tents have their RS contest texts again: in Verdanturf the
     camper, the old man in the Pokemon Center and the old lady in the
@@ -2727,16 +2741,12 @@ dated 2026-10-10 or later were decided directly.
   Sabrina, Pyro, Blau, Falk, Kai, Bianka, Jens, Hartwig, Jasmin, Norbert,
   Sandra, Janina, Willi, Koga, Bruno, Melanie, Siegfried) when Sinjoh is
   unlocked or a team is reused.
-- **O-067** Both Verdanturf Battle Tent lobbies set
-  `FLAG_RECEIVED_TM_ATTRACT`: the girl in the HnS copy at Route 40
-  (`VerdanturfTown_BattleTentLobby_hns`) gives TM Safeguard, the one in
-  Emerald's Verdanturf (`VerdanturfTown_BattleTentLobby`) TM Attract.
-  Whichever the player talks to first gives her TM; the other one then
-  gives nothing. Small loss: Whitney gives TM Attract
-  (`GoldenrodCity_Gym_hns`), Lilycove's department store (4F) sells TM
-  Safeguard. Proposal: nothing; it ends when the Emerald tents go
-  (S-04). Should the Emerald lobby stay, the HnS girl gets a flag of her
-  own.
+- **O-067** Resolved 2026-11-02: Emerald's Verdanturf Battle Tent is
+  retired (D-030), so only the girl in the HnS copy of its lobby at
+  Route 40 (`VerdanturfTown_BattleTentLobby_hns`) sets
+  `FLAG_RECEIVED_TM_ATTRACT`; she gives TM Safeguard. The girl in
+  Verdanturf's contest lobby (Ruby/Sapphire) gives TM Attract with a flag
+  of her own, `FLAG_HOENN_RECEIVED_TM_ATTRACT` (D-058).
 - **O-068** Rank per contest hall (D-058): the owner's note of
   2026-11-02 gives Laubwechselfeld (Fallarbor) the Normal Rank and
   Wiesenflur (Verdanturf) the Super Rank, but also asks for contests
