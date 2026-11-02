@@ -334,7 +334,7 @@ take effect in a normal playthrough.
 | W-text_width-7 | shared | Other estimated over-wide lines with placeholders | text round | measure with real values | not checked (tool estimate) |
 | W-text_width-8 | shared | Four source text lines over 208 px in windows of their own | text round | window widths not measured | not checked (tool estimate) |
 | A61 | Hoenn | Johto flags change Hoenn dialogs (D-040 leaks outside its list) | partly fixed | Wally's father, Rock Smash man, fossil maniac, Safari Zone, Strength have Hoenn flags; open: shared daily lottery ticket Lilycove/Goldenrod, tent TMs and Scott's flags once per game (owner) | static |
-| A63 | Hoenn | Battle Frontier offered from Hoenn only after an S.S. Tidal trip (`FLAG_MET_SCOTT_ON_SS_TIDAL`), not in D-030 | owner | document in D-030 or relax the condition | static |
+| A63 | Hoenn | Battle Frontier offered from Hoenn only after an S.S. Tidal trip (`FLAG_MET_SCOTT_ON_SS_TIDAL`), not in D-030 | decided | kept, in D-030; Scott's call after the first Hoenn title points to the ship (owner S-02, D-051) | static |
 | A67 | Hoenn | Hoenn families need evolution items sold only in Kanto/Johto | owner | sell them in Hoenn marts or document | not checked (suspicion) |
 | A68 | Hoenn | Prism Scale has no source | owner | place one or document the Beauty path to Milotic | static |
 | N-facilities-2* | Hoenn | Emerald Trainer Hill maps do not set `FLAG_TEMP_HIDE_FOLLOWER` (HnS maps do) | open | check the follower Pokemon at runtime | not checked |
@@ -496,9 +496,10 @@ take effect in a normal playthrough.
   without Nuzlocke (N-w3_nuzlocke-1).
 
 **Hoenn details**
-- Battle Frontier only after the S.S. Tidal (A63); shared lottery ticket,
-  tent TMs and Scott's flags (A61); Wallace's reward and text
-  (N-w3_hoenn-1, -3).
+- Shared lottery ticket, tent TMs and Scott's flags (A61); Wallace's
+  reward and text (N-w3_hoenn-1, -3); the wording of Scott's call after
+  the first Hoenn title, Emerald's text kept as the hint to the S.S. Tidal
+  (S-02, D-051).
 - Hoenn map section for the Route 111 Trainer Hill and its prize rule
   (A15, O-024, D-044).
 
@@ -609,7 +610,9 @@ in the beta build (the debug states reach them quickly):
 13. **Hoenn calls only in Hoenn (D-051):** with a call of Wally, Roxanne,
     Scott or the rival still to come, fly to Kanto or Johto: it does not
     ring there and comes after a few steps outdoors back in Hoenn; Mom's,
-    Elm's and the Johto trainers' calls ring as before.
+    Elm's and the Johto trainers' calls ring as before. After the first
+    Hoenn title Scott calls in Littleroot Town (S.S. Tidal); whoever meets
+    him on board first does not get the call any more.
 
 ## Risks
 

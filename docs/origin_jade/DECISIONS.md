@@ -773,16 +773,20 @@ dated 2026-10-10 or later were decided directly.
   Hoenn and Aurora Ticket 2026-10-20.
 
 ### D-030 One Battle Frontier: the HnS Kampfzone
-- **Status:** Active (2026-10-15)
+- **Status:** Active (2026-10-15; changed 2026-11-02: Scott's hint, D-051)
 - **Decision:** The Emerald frontier (47 maps, 36 layouts) is retired
   (`frontier_em_retired`). The HnS Kampfzone is reached by ship (D-029) and,
-  after the Hoenn title, from Slateport and Lilycove. It is only on the
+  after the Hoenn title, from Slateport and Lilycove: the S.S. Tidal lists
+  it once the player has met Scott on board (`FLAG_MET_SCOTT_ON_SS_TIDAL`,
+  his scene at the first boarding); his call after the first Hoenn title
+  points there (D-051, owner 2026-10-31). It is only on the
   Johto/Kanto region map. The Artisan Cave is bound to the HnS Kampfzone and
   counts as part of it (`MAPSEC_BATTLE_FRONTIER`); unlike HnS its door in the
   Kampfzone is open (ledge corner at (29,9), the Engineer beside the path;
   owner confirmed 2026-10-26).
   A whiteout there leads to the Kampfzone's nurse.
-- **Evidence:** decision 2026-10-15 (O-006).
+- **Evidence:** decision 2026-10-15 (O-006); owner answer 2026-10-31
+  (S-02).
 
 ### D-031 Level scaling after a region's title
 - **Status:** Active (2026-10-15, Johto statics changed 2026-10-27, D-039,
@@ -1620,11 +1624,23 @@ dated 2026-10-10 or later were decided directly.
     text, which only HnS's Johto trainers have, and Birch is only called
     by the player. Kanto's and Johto's calls (Mom, Elm, HnS's trainers)
     are unchanged.
+  - After the first Hoenn title Scott calls (Emerald's call and text,
+    kept): he is aboard the S.S. Tidal and invites the player to take the
+    ferry in Slateport or Lilycove. The Hall of Fame arms it
+    (`FLAG_SCOTT_CALL_BATTLE_FRONTIER`); it comes after 10 steps outdoors
+    in Hoenn, normally right after the title in Littleroot Town (D-028).
+    On board Scott invites the player to the Kampfzone, which the ferries
+    list from then on (D-030). Whoever meets him on board before the call
+    does not get it any more.
 - **Code:** `HOENN_CALL_WAITS` in `ShouldDoWallyCall`,
   `ShouldDoScottFortreeCall`, `ShouldDoScottBattleFrontierCall`,
   `ShouldDoRoxanneCall`, `ShouldDoRivalRayquazaCall`; `ShouldDoNormanCall`
-  (`src/field_specials.c`).
-- **Evidence:** owner answers 2026-10-31 (S-07).
+  (`src/field_specials.c`);
+  `EverGrandeCity_HallOfFame_EventScript_SkipDexUpgradeEvent`
+  (`data/scripts/hall_of_fame.inc`),
+  `LittlerootTown_ProfessorBirchsLab_EventScript_ScottAboardSSTidalCall`,
+  `SSTidalCorridor_EventScript_ScottScene`.
+- **Evidence:** owner answers 2026-10-31 (S-02, S-07).
 
 ---
 

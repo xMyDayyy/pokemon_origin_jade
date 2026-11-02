@@ -203,6 +203,10 @@ SSTidalCorridor_EventScript_ScottScene::
 	delay 30
 	setflag FLAG_MET_SCOTT_ON_SS_TIDAL
 	setvar VAR_SS_TIDAL_SCOTT_STATE, 1
+#if IS_HNS
+	@ Drops Scott's invitation call if it is still waiting.
+	clearflag FLAG_SCOTT_CALL_BATTLE_FRONTIER
+#endif
 	releaseall
 	end
 
