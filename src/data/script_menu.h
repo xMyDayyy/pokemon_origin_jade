@@ -168,7 +168,11 @@ static const struct MenuAction MultichoiceList_Mechadoll3_Q3[] =
 {
     {COMPOUND_STRING("Sie kosten dann mehr.")},
     {COMPOUND_STRING("Sie kosten dann weniger.")},
+#if GERMAN
+    {COMPOUND_STRING("Gleicher Preis")},
+#else
     {COMPOUND_STRING("Same price")},
+#endif
 };
 
 static const struct MenuAction MultichoiceList_Mechadoll4_Q1[] =
@@ -180,14 +184,24 @@ static const struct MenuAction MultichoiceList_Mechadoll4_Q1[] =
 
 static const struct MenuAction MultichoiceList_Mechadoll4_Q2[] =
 {
+#if GERMAN
+    {COMPOUND_STRING("Ältere Herren")},
+    {COMPOUND_STRING("Ältere Damen")},
+    {COMPOUND_STRING("Gleich viele")},
+#else
     {COMPOUND_STRING("Elderly men")},
     {COMPOUND_STRING("Elderly ladies")},
     {COMPOUND_STRING("Same number")},
+#endif
 };
 
 static const struct MenuAction MultichoiceList_Mechadoll4_Q3[] =
 {
+#if GERMAN
+    {COMPOUND_STRING("Keine")},
+#else
     {COMPOUND_STRING("None")},
+#endif
     {COMPOUND_STRING("1")},
     {COMPOUND_STRING("2")},
 };
@@ -334,8 +348,13 @@ static const struct MenuAction MultichoiceList_GameCornerCoins[] =
 
 static const struct MenuAction MultichoiceList_HowsFishing[] =
 {
+#if GERMAN
+    {COMPOUND_STRING("Klasse!")},
+    {COMPOUND_STRING("Naja…")},
+#else
     {COMPOUND_STRING("Excellent")},
     {COMPOUND_STRING("Not so good")},
+#endif
 };
 
 static const struct MenuAction MultichoiceList_SSTidalSlateportWithBF[] =
@@ -354,8 +373,13 @@ static const struct MenuAction MultichoiceList_SSTidalBattleFrontier[] =
 
 static const struct MenuAction MultichoiceList_RightLeft[] =
 {
+#if GERMAN
+    {COMPOUND_STRING("Rechts")},
+    {COMPOUND_STRING("Links")},
+#else
     {COMPOUND_STRING("Right")},
     {COMPOUND_STRING("Left")},
+#endif
 };
 
 static const struct MenuAction MultichoiceList_SSTidalSlateportNoBF[] =
@@ -789,8 +813,13 @@ static const struct MenuAction MultichoiceList_TVLati[] =
 static const struct MenuAction MultichoiceList_BattleTowerFeelings[] =
 {
     {COMPOUND_STRING("Ich bin dran!")},
+#if GERMAN
+    {COMPOUND_STRING("Ich gewinne!")},
+    {COMPOUND_STRING("Ich verliere!")},
+#else
     {COMPOUND_STRING("I won!")},
     {COMPOUND_STRING("I lost!")},
+#endif
     {COMPOUND_STRING("Ich sage nix!")},
 };
 
