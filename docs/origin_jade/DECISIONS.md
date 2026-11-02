@@ -1363,7 +1363,8 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-048 Hoenn: an unknown trainer, Norman is not the father
 - **Status:** Active (2026-10-31; changed 2026-11-02: decorations in
-  Pallet Town, O-029; continue point in front of the stairs, O-041)
+  Pallet Town, O-029; continue point in front of the stairs, O-041;
+  family objects removed, O-030)
 - **Decision:** In Hoenn the player is a stranger. Apart from Troy, who
   brought the player to Hoenn, and Wallace (below), nobody there knows that
   the player is the champion of Kanto and Johto or where exactly they come
@@ -1371,8 +1372,9 @@ dated 2026-10-10 or later were decided directly.
   Norman knows only the rumours: the player comes from the mainland and is
   a good trainer. Norman is a regular gym leader whose family lives in
   Littleroot Town (D-002, D-003). He is never the player's father, and no
-  text the jade build can show says so. Hidden map objects and code names
-  from Emerald's father scenes are still there (O-030).
+  text the jade build can show says so. The always hidden objects of
+  Emerald's player family are gone from the Littleroot Town maps (owner
+  2026-11-02, O-030, below).
 - **Rules / code:**
   - Using an item at the wrong place shows "Birk sagt immer…"
     (`gText_BirchsAdvice`) on Hoenn maps and on Emerald maps outside Kanto,
@@ -1436,8 +1438,18 @@ dated 2026-10-10 or later were decided directly.
     clock setting ("your new room"; the wall clock only sets the time). The
     Enigma Berry and the Mystery Event berry, both off in Origin Jade, name
     Norman instead of "Vater".
-- **Evidence:** owner requirements 2026-10-31 (point 4); owner answer
-  2026-11-02 (O-029: set up in Pallet Town).
+  - No hidden objects of the player's family are left in Littleroot Town
+    (O-030): Dad with Norman's sprite on the ground floor of both houses,
+    Mom on both floors of both houses and Mom in front of them are removed
+    from the maps. The scripts that placed them (`MoveMomTo*`,
+    `SetMomStandingInFrontOfDoorPos`) and the empty stubs
+    `PlayersHouse_1F_EventScript_Mom` and `LittlerootTown_EventScript_Mom`
+    are not built, the Hoenn arrival no longer sets their hide flags, and
+    Emerald's heal locations of the two houses (unused in jade) have no
+    healer. The non-jade scenes that still name these objects (D-046) are
+    not built either.
+- **Evidence:** owner requirements 2026-10-31 (point 4); owner answers
+  2026-11-02 (O-029: set up in Pallet Town; O-030: remove).
 
 ### D-049 Pokemon per region
 - **Status:** Active (2026-10-31, owner decision; changed 2026-10-31:
@@ -1799,18 +1811,9 @@ dated 2026-10-10 or later were decided directly.
   the hills stay exempt like the Battle Frontier.
 - **O-029** Resolved 2026-11-02 (owner): the player's room decorations
   are set up in the bedroom in Pallet Town (D-048).
-- **O-030** Leftovers of Emerald's father scenes, none of them visible in
-  jade: the Littleroot Town maps keep the objects of the player's family,
-  always hidden: Dad with Norman's sprite on the ground floor of both houses
-  (`LOCALID_PLAYERS_HOUSE_1F_DAD`, `FLAG_HIDE_PLAYERS_HOUSE_DAD`), Mom in
-  both houses (`LOCALID_PLAYERS_HOUSE_1F_MOM` with the empty
-  `PlayersHouse_1F_EventScript_Mom`, `LOCALID_PLAYERS_HOUSE_2F_MOM`) and
-  in front of them (`LOCALID_LITTLEROOT_MOM`). Upstream names stay too,
-  e.g. `DisplayDadsAdviceCannotUseItemMessage` (shows Birch's line in Hoenn,
-  D-048) and `gText_DadsAdvice` (not built). Removing the objects needs
-  Porymap, and the non-jade scenes kept for merges still use them;
-  renaming upstream names makes merges larger (D-021, D-046). Owner to
-  decide whether they go.
+- **O-030** Resolved 2026-11-02 (owner: remove): the hidden objects of
+  Emerald's player family are removed from the Littleroot Town maps
+  (D-048).
 - **O-031** Resolved 2026-11-02 (owner): Troy has Emerald's sprite
   `OBJ_EVENT_GFX_STEVEN` everywhere (D-047).
 - **O-032** Resolved 2026-11-02 (owner): "Hoenn" (Route 104 pier, Birch's

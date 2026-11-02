@@ -380,13 +380,13 @@ take effect in a normal playthrough.
 | A107 | Hoenn | Dead and write-only Hoenn data | open | clean-up (D-018/D-019) |
 | A112 | Hoenn | May and Wally are no bosses (+1), unlike Silver and Blue | owner | |
 | A114 | Hoenn | Hoenn corridor floors are very hard for story rushers (+9 to +12 levels from Winona on) | owner | |
-| N-hoenn-1* | Hoenn | Dead Jade branches after A05/A58 (Birch and May at the lab, the Dad scene) | partly fixed | the father scenes are no longer built (`40102c8756`, `fe370081c1`, D-048); left: the unreachable branch with Birch and May at the lab, hidden objects (O-030) |
+| N-hoenn-1* | Hoenn | Dead Jade branches after A05/A58 (Birch and May at the lab, the Dad scene) | partly fixed | the father scenes are no longer built (`40102c8756`, `fe370081c1`, D-048); the hidden family objects are removed (O-030, D-048); left: the unreachable branch with Birch and May at the lab |
 | N-hoenn-2* | Hoenn | The heading of D-040 names only Kanto | open | cosmetic |
 | N-pokemon-1* | Hoenn | Medicham appears in the Battle Pyramid; dead test gift at the Safari gate | open | |
 | N-randomizer-7* | Hoenn | Item randomizer swaps Shoal Salt and Shoal Shells; the Shell Bell can become unreachable | open | |
 | N-w3_hoenn-1* | Hoenn | Wallace gives nothing if HM Waterfall is already in the bag | owner | a substitute reward would be a design decision |
 | N-w3_hoenn-3* | Hoenn | Wallace's text says the badge is needed to teach the HM; in Jade it is the permit | owner | text |
-| T-hoenn_a-12 | Hoenn | Emerald player room leftovers in Norman's and Birch's house (D-002) | partly fixed | PC and decorations are the son's and May's (`ea9a0f7287`); Mom's Amulet Coin script and her scene after the wall clock are no longer built (`40102c8756`, `d38acf1988`); room decorations are set up in Pallet Town (O-029, D-048); left: notebook and wall clock, hidden objects of Mom and Dad (O-030) |
+| T-hoenn_a-12 | Hoenn | Emerald player room leftovers in Norman's and Birch's house (D-002) | partly fixed | PC and decorations are the son's and May's (`ea9a0f7287`); Mom's Amulet Coin script and her scene after the wall clock are no longer built (`40102c8756`, `d38acf1988`); room decorations are set up in Pallet Town (O-029, D-048); the hidden objects of Mom and Dad are removed (O-030, D-048); left: notebook and wall clock |
 | T-hoenn_b-4 | Hoenn | Steven in Meteor Falls stays at level 75-78, about 20 below the Hoenn post-game (D-031 vs. D-043) | owner | |
 | T-legend_endgame-3 | Hoenn | Weather Institute 1F and the sailor judge Kyogre/Groudon differently for up to 3 days | open | |
 | W-progress_sim-17 | Hoenn | Dead script code from design decisions (e.g. Brendan's teams, D-003) | partly fixed | Brendan's Go-Goggles handover in Lavaridge Town is no longer built (`fe370081c1`, D-048); the rest is clean-up |
@@ -438,8 +438,7 @@ take effect in a normal playthrough.
   D-048, Mom's calls), among them Troy's "Ich erwarte dich in Hoenn!"
   where the owner's outline said "dort"; Troy and Wallace as the only
   people in Hoenn who know the player (D-048); the continue point in the
-  Pallet Town bedroom in front of the stairs (O-041); hidden leftovers of
-  the father scenes (O-030).
+  Pallet Town bedroom in front of the stairs (O-041).
 - Region rule (D-049): which randomizer options switch it off (O-033); the
   Pokedex evolution page still shows later species (O-034); the Johto
   Pokedex counts as complete without Azurill and Wynaut, implemented by

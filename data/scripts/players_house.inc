@@ -390,9 +390,6 @@ PlayersHouse_1F_EventScript_MomHealsParty_PokecenterChallenge::
 	msgbox PlayersHouse_1F_Text_YouShouldRestABit_PokecenterChallenge, MSGBOX_DEFAULT
 	closemessage
 	end
-#else
-PlayersHouse_1F_EventScript_Mom::
-	end
 #endif
 
 PlayersHouse_1F_Text_YouShouldRestABit_PokecenterChallenge:
