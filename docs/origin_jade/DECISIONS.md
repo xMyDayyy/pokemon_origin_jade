@@ -2244,7 +2244,19 @@ dated 2026-10-10 or later were decided directly.
     Pokemon Center (4; she appears only with Sinjoh, D-019) and the Day
     Care's party limit message (1). Kanto: the "Space Shuttle" sign in
     Pewter's museum ("Raumfähre"). Hoenn: the Poochyena on Route 114
-    ("Wau! Wauwau!").
+    ("Wau! Wauwau!"). Route 40 Trainer Hill: the HnS copy of the Slateport
+    Battle Tent lobby (`SlateportCity_BattleTentLobby_hns`; the tool
+    counts it under Hoenn because both hills share `MAPSEC_TRAINER_HILL`)
+    shows 3 NPC texts (man, girl, woman), now the owner's German texts of
+    the Emerald lobby, whose English texts are the same. Its TM giver
+    script (`SlateportCity_BattleTentLobby_hns_EventScript_TormentGiver`)
+    has no object on the HnS map, so its two texts (`CouldntFindMonForMe`,
+    `ExplainTorment`) are never shown; they got the Emerald lobby's German
+    texts as well. Both branches of `ExplainTorment` name TM41 Torment,
+    while the unused script would give TM42 Facade (HnS changed only its
+    `giveitem`). If the owner ever places the NPC, item and text have to
+    agree, and its flag is the Emerald TM giver's
+    (`FLAG_RECEIVED_TM_TORMENT`).
   - "$" ends a string (`charmap.txt`) and must never stand in a text.
     Five German texts that used it for money were cut off there (Route 32,
     Moomoo Farm, Route 4 Pokemon Center, Pewter mart, Route 34 Day Care);
@@ -2252,18 +2264,18 @@ dated 2026-10-10 or later were decided directly.
     place and spacing their own wording had ("500 ¥", "500¥"). The order
     is not settled: the owner's texts use both "500 ¥" and "¥300"; he
     decides the style in the text round.
-- **Not covered:** the Slateport Battle Tent lobby and corridor (O-065;
-  the owner is rebuilding Slateport and the tents, S-04/S-05), trainer
-  names in the party files (O-066), locked and retired maps (D-019; the
-  tool counts 290 and 3 texts there), unreferenced Japanese FRLG texts,
-  common texts (D-056).
+- **Not covered:** two unreferenced contest hall texts in the corridor of
+  the Emerald Slateport Battle Tent (O-065; the owner is rebuilding
+  Slateport and the tents, S-04/S-05), trainer names in the party files
+  (O-066), locked and retired maps (D-019; the tool counts 290 and 3
+  texts there), unreferenced Japanese FRLG texts, common texts (D-056).
 - **Check:** `python3 -I tools/check_game_text.py --english` lists no map
-  text of an active region any more except the 7 of the Slateport tent
-  (area "hoenn"); the other 23 (Johto) and 5 (Kanto) entries are party
-  names (O-066). The word list does not see short texts; every map text
-  of an active region without a German branch was read by hand (left:
-  the interjections and cries named above and the unreferenced Japanese
-  FRLG texts).
+  text of an active region any more except the two unreferenced texts of
+  the Emerald Slateport tent corridor (area "hoenn", O-065); the other 23
+  (Johto) and 5 (Kanto) entries are party names (O-066). The word list
+  does not see short texts; every map text of an active region without a
+  German branch was read by hand (left: the interjections and cries named
+  above and the unreferenced Japanese FRLG texts).
 - **Evidence:** owner answers 2026-11-02 (beta plan, "Deutsch
   vervollständigen").
 
@@ -2580,20 +2592,24 @@ dated 2026-10-10 or later were decided directly.
   (`data/scripts/contest_hall.inc`). Proposal: once the RS contests (owner
   2026-11-02) fix where Hoenn's case comes from, Route 121 gets its own
   line naming that place.
-- **O-065** The HnS copy of the Slateport Battle Tent lobby
-  (`SlateportCity_BattleTentLobby_hns`) still shows five English NPC
-  texts, its corridor (`SlateportCity_BattleTentCorridor`) holds two
-  unreferenced English contest hall texts. Left alone because the owner
-  is rebuilding Slateport and removes the tents (S-04/S-05, RS contests).
-  Proposal: translate what is still shown after the owner's Porymap work,
-  or delete it with the tent.
+- **O-065** The corridor of the Emerald Slateport Battle Tent
+  (`SlateportCity_BattleTentCorridor`) holds two unreferenced English
+  contest hall texts (`MyPapaIsContestJudge`, `ItsAppealTime`, marked
+  unused). Left alone because the owner is rebuilding Slateport and
+  removes the tents (S-04/S-05, RS contests). Proposal: translate them if
+  the RS contest halls use them, or delete them with the tent. The texts
+  of the HnS copy of the lobby at Route 40
+  (`SlateportCity_BattleTentLobby_hns`: 3 shown, 2 of an unused script)
+  have been German since 2026-11-02 (D-057).
 - **O-066** 28 trainer names in `src/data/trainers_hns.party` are still in
   upstream capitals (HnS's Kanto leaders and Blue, the POSTOBC rematch
-  teams of Johto and Kanto). None is shown today: no script fights them,
-  the POSTOBC teams only behind Sinjoh (D-019). Proposal: German names
-  (Rocko, Misty, Major Bob, Erika, Sabrina, Pyro, Blau, Falk, Kai, Bianka,
-  Jens, Hartwig, Jasmin, Norbert, Sandra, Janina, Willi, Koga, Bruno,
-  Melanie, Siegfried) when Sinjoh is unlocked or a team is reused.
+  teams of Johto and Kanto). None is shown today: only scripts of retired
+  HnS Kanto maps fight the leaders (`src/battle_bg.c` uses Blaine's id
+  only for the background), the POSTOBC teams only behind Sinjoh
+  (D-019). Proposal: German names (Rocko, Misty, Major Bob, Erika,
+  Sabrina, Pyro, Blau, Falk, Kai, Bianka, Jens, Hartwig, Jasmin, Norbert,
+  Sandra, Janina, Willi, Koga, Bruno, Melanie, Siegfried) when Sinjoh is
+  unlocked or a team is reused.
 
 ## Superseded decisions (kept for the record)
 
