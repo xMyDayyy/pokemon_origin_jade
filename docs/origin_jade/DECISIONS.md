@@ -263,7 +263,7 @@ dated 2026-10-10 or later were decided directly.
 ### D-012 Johto and Hoenn: dynamic level scaling
 - **Status:** Active (anchor, bands and corridors changed 2026-10-29,
   battle partners, the Goldenrod/Ecruteak ceilings and rematch team sizes
-  changed 2026-10-30)
+  changed 2026-10-30; bosses changed 2026-11-02, D-053)
 - **Decision:** Johto and Hoenn scale to the player (`src/level_scaling.c`,
   `include/config/johto_scaling.h`, `include/config/hoenn_scaling.h`).
   - Anchor, in every region: the mean of the three highest party levels,
@@ -271,7 +271,10 @@ dated 2026-10-10 or later were decided directly.
     level (`include/level_scaling.h`). Weak fillers do not pull the levels
     down: a level 100 Pokemon with five level 1 Pokemon gives 92.
   - Trainers: anchor -3..+0 (Hoenn -5..+0), a boss's ace +1. Wild Pokemon:
-    anchor -10..-4. Corridors per map section clamp both.
+    anchor -10..-4. Corridors per map section clamp both. Bosses
+    (`IsBossTrainer`): gym leaders, Elite Four, champions, the rivals
+    (Blue, Silver, May and Wally), Team Rocket's, Magma's and Aqua's
+    leaders and admins.
   - Johto corridors: Routes 26 and 27, Tohjo Falls 40-80; arrival up to
     Bugsy 41-50 (Cherrygrove 41-48); Whitney and Morty 44-53 (Goldenrod
     44-61 from the Radio Tower takeover, `VAR_MAHOGANY_TOWN_STATE` 16;
@@ -1813,6 +1816,14 @@ dated 2026-10-10 or later were decided directly.
   (`include/global.h`); `Route5_Frlg`, `Route34_DayCare_hns`; test
   `test/origin_jade/daycares.c`.
 - **Evidence:** owner answers 2026-10-31 (S-16, O-020, O-021).
+### D-053 Balance round 2: boss movesets, league ladder, region badges
+- **Status:** Active (2026-11-02, owner answers 2026-10-31 to B-01-B-13)
+- **Decision:**
+  - May and Wally count as bosses (+1 on the ace) like Silver and Blue:
+    `TRAINER_CLASS_RIVAL` is a boss class in `IsBossTrainer`
+    (`src/level_scaling.c`). Brendan's teams (unused, D-003) and Troy
+    share the class; Troy is not scaled (D-031). (B-06, D-012)
+- **Evidence:** owner answers 2026-10-31 (B-01-B-13) and 2026-11-02.
 
 ---
 

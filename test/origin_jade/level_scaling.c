@@ -14,6 +14,7 @@
 
 static const struct Trainer sTrainer = { .trainerClass = TRAINER_CLASS_YOUNGSTER_HNS };
 static const struct Trainer sBoss = { .trainerClass = TRAINER_CLASS_LEADER_HNS };
+static const struct Trainer sHoennRival = { .trainerClass = TRAINER_CLASS_RIVAL };
 
 // Map for GetScalingRules: map group (HnS, Emerald or FRLG maps) and mapsec.
 static void SetMap(u32 map, u32 mapsec)
@@ -114,6 +115,8 @@ TEST("Level scaling: boss aces get the boss extra levels")
     SET_PARTY(90, 90, 90);
     EXPECT_EQ(ScaleTrainerMonLevel(&sTrainer, 30, 30), 90 + HOENN_SCALING_TRAINER_ABOVE);
     EXPECT_EQ(ScaleTrainerMonLevel(&sBoss, 30, 30), 90 + HOENN_SCALING_TRAINER_ABOVE + HOENN_SCALING_BOSS_EXTRA);
+    // May and Wally count as bosses like Silver and Blue.
+    EXPECT_EQ(ScaleTrainerMonLevel(&sHoennRival, 30, 30), 90 + HOENN_SCALING_TRAINER_ABOVE + HOENN_SCALING_BOSS_EXTRA);
     gMapHeader.regionMapSectionId = mapsec;
 }
 

@@ -6,7 +6,8 @@
 // anchor (mean of the three highest party levels, at most
 // SCALING_ANCHOR_MAX_DROP below the highest, include/level_scaling.h),
 // clamped to a corridor per area. Bosses (leaders, Elite Four, champion,
-// Magma/Aqua bosses and admins) get HOENN_SCALING_BOSS_EXTRA on top.
+// Magma/Aqua bosses and admins, the rivals May and Wally) get
+// HOENN_SCALING_BOSS_EXTRA on top.
 // Johto: config/johto_scaling.h, Kanto: config/kanto_scaling.h.
 // =====================================================================
 

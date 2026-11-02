@@ -496,6 +496,7 @@ static bool32 IsBossTrainer(const struct Trainer *trainer)
     case TRAINER_CLASS_MAGMA_ADMIN:
     case TRAINER_CLASS_AQUA_LEADER:
     case TRAINER_CLASS_AQUA_ADMIN:
+    case TRAINER_CLASS_RIVAL: // May and Wally
     // Johto
     case TRAINER_CLASS_LEADER_HNS:
     case TRAINER_CLASS_LEADER_KANTO_HNS:
