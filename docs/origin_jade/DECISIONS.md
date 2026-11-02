@@ -2610,6 +2610,16 @@ dated 2026-10-10 or later were decided directly.
   Sabrina, Pyro, Blau, Falk, Kai, Bianka, Jens, Hartwig, Jasmin, Norbert,
   Sandra, Janina, Willi, Koga, Bruno, Melanie, Siegfried) when Sinjoh is
   unlocked or a team is reused.
+- **O-067** Both Verdanturf Battle Tent lobbies set
+  `FLAG_RECEIVED_TM_ATTRACT`: the girl in the HnS copy at Route 40
+  (`VerdanturfTown_BattleTentLobby_hns`) gives TM Safeguard, the one in
+  Emerald's Verdanturf (`VerdanturfTown_BattleTentLobby`) TM Attract.
+  Whichever the player talks to first gives her TM; the other one then
+  gives nothing. Small loss: Whitney gives TM Attract
+  (`GoldenrodCity_Gym_hns`), Lilycove's department store (4F) sells TM
+  Safeguard. Proposal: nothing; it ends when the Emerald tents go
+  (S-04). Should the Emerald lobby stay, the HnS girl gets a flag of her
+  own.
 
 ## Superseded decisions (kept for the record)
 
