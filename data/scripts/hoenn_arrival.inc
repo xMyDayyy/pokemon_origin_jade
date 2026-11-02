@@ -3,7 +3,7 @@
 @ ============================================================
 
 @ Called from the ports and islands as soon as the player picks Hoenn. Only the first trip sets
-@ the intro's end state; every trip lands on the Route 104 pier.
+@ the intro's end state and arms Birch's greeting; every trip lands on the Route 104 pier.
 @ See docs/origin_jade/DECISIONS.md, D-029 and D-047.
 Common_EventScript_SailToHoenn::
 	goto_if_lt VAR_HOENN_TICKET_STATE, 3, Common_EventScript_HoennNoTicket
@@ -518,12 +518,17 @@ Common_EventScript_ShipMenuPushLilycove::
 	return
 
 @ VAR_RESULT = TRUE while the Hoenn ferry runs to the Route 104 pier: from the Hoenn Ticket
-@ until Birch's welcome in his lab.
+@ as long as no ship can land in Slateport's harbour.
 Common_EventScript_CheckShipToHoenn::
 	setvar VAR_RESULT, FALSE
 	goto_if_lt VAR_HOENN_TICKET_STATE, 3, Common_EventScript_NopReturn
-	goto_if_ge VAR_HOENN_ARRIVAL_STATE, 3, Common_EventScript_NopReturn
+	call Common_EventScript_CheckShipToSlateport
+	goto_if_eq VAR_RESULT, TRUE, Common_EventScript_ShipToHoennReplaced
 	setvar VAR_RESULT, TRUE
+	return
+
+Common_EventScript_ShipToHoennReplaced::
+	setvar VAR_RESULT, FALSE
 	return
 
 @ VAR_RESULT = TRUE after Birch's welcome once Slateport was visited, unless its harbour is closed

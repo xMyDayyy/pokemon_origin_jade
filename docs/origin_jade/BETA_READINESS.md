@@ -438,8 +438,7 @@ take effect in a normal playthrough.
   D-048, Mom's calls), among them Troy's "Ich erwarte dich in Hoenn!"
   where the owner's outline said "dort"; Troy and Wallace as the only
   people in Hoenn who know the player (D-048); Troy's sprite (O-031);
-  Nuzlocke without a flyer after Birch's welcome (O-032); room
-  decorations in Pallet Town (O-029, rest of T-hoenn_a-12); hidden
+  room decorations in Pallet Town (O-029, rest of T-hoenn_a-12); hidden
   leftovers of the father scenes (O-030).
 - Region rule (D-049): which randomizer options switch it off (O-033); the
   Pokedex evolution page still shows later species (O-034); the Johto
@@ -572,11 +571,13 @@ in the beta build (the debug states reach them quickly):
    Aqua's maiden voyage (note and only the Hoenn entries), Olivine City
    before it ("Orania City" and the Hoenn entries) and after it, the
    sailors at the Kampfzone and on Birth Island, the menu height with all
-   entries. "Hoenn" disappears after Birch's welcome in his lab;
-   "Graphitport City" appears only after a visit and not during the
-   submarine scene, "Seegrasulb City" after a visit; landing in both
-   harbours and the respawn there; Fly to Littleroot Town; the ticket
-   stays in the Key Items pocket.
+   entries. "Hoenn" stays until "Graphitport City" replaces it (after a
+   visit; during the submarine scene "Hoenn" is back instead); Birch's
+   greeting at the Route 104 pier only after the first trip, later
+   "Hoenn" trips land there without an event (O-032, D-047);
+   "Seegrasulb City" is added after a visit; landing in both harbours
+   and the respawn there; Fly to Littleroot Town; the ticket stays in
+   the Key Items pocket.
 5. **Pokedex before and after Johto and Hoenn:** in Kanto the list has no
    jump into a later block, also after the Elite Four and Blue rematches;
    Johto species register from the first Johto map (not in the gatehouse),
