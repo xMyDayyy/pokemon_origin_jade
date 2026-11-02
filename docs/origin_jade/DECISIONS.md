@@ -2336,7 +2336,8 @@ dated 2026-10-10 or later were decided directly.
     bag it waits at the counter of any hall).
   - Pokeblock Case: the little girl in Slateport's lobby gives it, by item
     check (a case from Baoba counts); Lilycove's receptionist no longer
-    does (RS). The little girl in Lilycove's lobby no longer says that the
+    does (RS); the Safari Zone desk on Route 121 names Slateport's hall
+    (O-063). The little girl in Lilycove's lobby no longer says that the
     lady at the counter gave her a case; she always gives Emerald's other
     line, the tip on making Pokeblocks. Berry Blenders: each RS lobby has
     a link blender and one with people (Verdanturf and Fallarbor: the old
@@ -2704,14 +2705,11 @@ dated 2026-10-10 or later were decided directly.
   stay out, the Kampfzone counts as Hoenn; (c) the Kampfzone opens only
   after the Hoenn title everywhere (the M.S. Aqua entry,
   `Common_EventScript_ShipMenuPushIslands`), then (b) follows.
-- **O-063** The Safari Zone desk on Route 121 (Hoenn) shares HnS's text for
-  a missing Pokeblock case
-  (`Route121_SafariZoneEntrance_Text_YouNeedPokeblockCase`): "the boy
-  over there" has one, but only Johto's gate has that boy; in
-  Hoenn the case comes from Lilycove's Contest Hall
-  (`data/scripts/contest_hall.inc`). Proposal: once the RS contests (owner
-  2026-11-02) fix where Hoenn's case comes from, Route 121 gets its own
-  line naming that place.
+- **O-063** Resolved 2026-11-02: Hoenn's Pokeblock Case comes from the
+  little girl in Slateport's contest lobby (D-058). The desk on Route 121
+  has a line of its own naming Slateport's contest hall
+  (`Route121_SafariZoneEntrance_Text_YouNeedPokeblockCaseSlateport`);
+  Johto's Safari Zone gate keeps "the boy over there".
 - **O-065** Resolved 2026-11-02: the Ruby/Sapphire contest halls behind
   the lobbies of Verdanturf, Fallarbor and Slateport (D-058) show the RS
   contest hall texts that sat unused in the corridors of the Emerald

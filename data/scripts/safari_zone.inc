@@ -373,6 +373,28 @@ Route121_SafariZoneEntrance_Text_YouNeedPokeblockCase:
 #endif
 #endif
 
+Route121_SafariZoneEntrance_Text_YouNeedPokeblockCaseSlateport:
+#if GERMAN
+	.string "Entschuldigung!\n"
+	.string "Du besitzt keine {POKEBLOCK}Box.\p"
+	.string "Dein Safari-Spiel wäre viel\n"
+	.string "erfolgreicher, wenn du {POKEBLOCK}\l"
+	.string "benutzen würdest.\p"
+	.string "Bitte besorge dir doch eine\n"
+	.string "{POKEBLOCK}Box.\p"
+	.string "Vielleicht erhältst du in der\n"
+	.string "Wettbewerbshalle von Graphitport City\l"
+	.string "eine.$"
+#else
+	.string "Excuse me!\n"
+	.string "You seem to be without a {POKEBLOCK} CASE.\p"
+	.string "Your SAFARI Game will be much more\n"
+	.string "fruitful if you use {POKEBLOCK}S.\p"
+	.string "Please come back with a {POKEBLOCK} CASE.\p"
+	.string "You may obtain a {POKEBLOCK} CASE from\n"
+	.string "the SLATEPORT CONTEST HALL.$"
+#endif
+
 SafariZone_South_Text_StillHaveTimeExit:
 #if GERMAN
 	.string "Du hast noch Zeit übrig. Möchtest du\n"
