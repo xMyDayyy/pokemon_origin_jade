@@ -48,7 +48,11 @@ failures. Two runs gave the same results. State of 2026-10-31 at
 `b022af5623`: 5140 tests in 948 files, 2347 ok, 629 todo, 2164 known
 failures (the 16 new tests are `test/origin_jade/region_rule.c` and
 `test/origin_jade/debug_states.c`; the two Day Care tests below are the
-new known failures). The causes:
+new known failures). State of 2026-11-02 at `124a45487b` (round 2): 5148
+tests in 951 files, 2355 ok, 629 todo, 2164 known failures; the 8 new
+tests (`daycares.c` 2, `even_wild_slots.c` 2, `region_badges.c` 1, two more
+in `level_scaling.c`, one more in `debug_states.c`) pass, and no known
+failure changed. The causes:
 
 - 1969 "Unmatched MESSAGE": the tests expect English battle texts. Battle
   texts and names are German without a language switch, so
@@ -61,7 +65,8 @@ new known failures). The causes:
 - 14 ASSUMPTION_FAIL (evolution tracker, Revelation Dance, sleep turns,
   sleep clause): the test's assumptions do not hold with the HnS configs.
 - 6 spread-move damage tests (`damage_formula.c`, `levitate.c`,
-  `absorb.c`): `B_MULTIPLE_TARGETS_DMG GEN_3` from HnS.
+  `absorb.c`): `B_MULTIPLE_TARGETS_DMG GEN_3` from HnS, kept by the owner
+  (B-13, D-053).
 - 6 text width tests in `test/text.c` with German texts; each stops at the
   first text that is too wide.
 - 2 Day Care tests in `test/daycare.c` (added 2026-10-31, not in the
@@ -97,8 +102,12 @@ var number without storage (D-016).
   levels, at most `SCALING_ANCHOR_MAX_DROP` below the highest, eggs left
   out), corridor clamp and the title lifting the ceiling, boss extra
   levels, team spread, wild band, static floor on Johto and Hoenn maps,
-  Kanto unscaled before its title and never below the set level after it.
-  Rules: D-012, D-031, D-039.
+  Kanto unscaled before its title and never below the set level after it;
+  since round 2 also the Hoenn rival as a boss (+1 on the ace), the five
+  Johto league rooms rising from Will to Lance (average and weak team,
+  after the title, Victory Road) and the corridor ceiling of the current
+  map (`GetScalingCeiling`, used by the catch malus). Rules: D-012, D-031,
+  D-039, D-053.
 - `test/origin_jade/event_data.c`: flag and var routing of
   `GetFlagPointer`/`GetVarPointer` into SaveBlock1 and the SaveBlock3
   windows (FRLG, FRLG trainers, HnS rematch tiers, Origin Jade). D-016.
@@ -112,10 +121,10 @@ var number without storage (D-016).
   the rule); the seen rule; the Kanto
   Pokedex count and Celadon's diploma (151, Mew not needed); the Johto
   Pokedex complete without Azurill and Wynaut. D-049.
-- `test/origin_jade/debug_states.c`: the debug menu's "Johto Test" and
-  "Hoenn Test" (D-050) on a fresh save: Pokedex counts (185 and 282),
-  party and PC (75 and 136 final stages) with some levels, usable PC
-  Pokemon, Johto and Hoenn locked or unlocked, badges, Troy's
+- `test/origin_jade/debug_states.c` (3 tests): the debug menu's "Johto
+  Test" and "Hoenn Test" (D-050) on a fresh save: Pokedex counts (185 and
+  282), party and PC (75 and 136 final stages) with some levels, usable
+  PC Pokemon, Johto and Hoenn locked or unlocked, badges, Troy's
   `VAR_HOENN_TICKET_STATE` 1 and room for the Hoenn Ticket, a picked-up
   TM and fossil of Johto, one item of each kind of purchase or repeatable
   source (Game Corner, marts and their Premier Ball, berry trees, phone
@@ -128,6 +137,9 @@ var number without storage (D-016).
 - `test/origin_jade/even_wild_slots.c`: the debug toggle "Even Wild Slots"
   (D-055): every land, water and Rock Smash slot comes up about equally
   often while it is on; off, the last land slot keeps its 1 %.
+- `test/origin_jade/region_badges.c`: the badge readers count the region
+  of a map: Kanto's badge flags, `VAR_JOHTO_BADGES` and `VAR_HOENN_BADGES`
+  (`GetRegionBadgeCount`, D-007, D-053).
 - `test/save.c`: save block sizes of Origin Jade (D-017).
 
 The tests read the bands from `include/config/*_scaling.h`. They use
@@ -157,8 +169,8 @@ plays the game. Run them from the repository root; the ones marked
   in `src/region_rule_oj.c`. `--list` prints the species of each region's
   maps, `--dex-gaps` the Pokedex blocks. Known exceptions (the
   unreachable `Route22_hns`, O-022; the Hoenn fossils of the Ruins of
-  Alph lab; an uncalled test script) are listed but do not fail. Exit 1
-  on a finding.
+  Alph lab; an uncalled test script; Jirachi on Route 4, only after the
+  first trip to Hoenn) are listed but do not fail. Exit 1 on a finding.
 - `python3 tools/make_debug_states.py --check` (needs the generated
   teachable learnsets of a build): the debug states of D-050
   (`src/data/debug_kanto_complete.h`, `src/data/debug_johto_complete.h`)
@@ -170,7 +182,10 @@ plays the game. Run them from the repository root; the ones marked
   collected, Johto locked in the Johto Test, Hoenn locked in both, every
   fly destination of the regions set, no badge flag 09-16, party and PC
   hold exactly the final stages, Troy's scene pending without a Hoenn
-  Ticket in the bag. `--levels` prints how each PC level was derived,
+  Ticket in the bag; since round 2 also every purchase and repeatable item
+  resolved (gifts through vars, mart lists, berry trees), no unused item
+  table entry, every item in a pocket and no pocket or PC item storage
+  over its slots. `--levels` prints how each PC level was derived,
   `--overlap` the flags and vars of the Johto Test that Johto or Hoenn
   share. Exit 1 on a finding.
 - `python3 -I tools/simulate_progress.py --out DIR`: static playthrough
@@ -211,17 +226,52 @@ Also after every change to flags, vars, trainers or Kanto content:
 tables, overworld Pokemon, gifts or the Pokedex order:
 `python3 -I tools/check_regions.py` (D-049).
 
-## Test matrix (2026-10-31)
+## Test matrix (2026-11-02, round 2)
+
+State: round 2 on `2f284d83b9`: the branch `runde2` with the seven
+packages of the owner's answers (58 commits, tip `124a45487b`), the four
+German rest commits on top (`ae42426ece`) and the documentation commits
+on top of those (no code change). Results from the integration run
+`integ_r2` and the test run `integ_tests_r2` on `124a45487b` unless the
+documentation tip is named; the build from scratch, the release build,
+the warning count, the text checks, the save check and the budget come
+from a new worktree of the documentation tip, whose code is that of
+`ae42426ece` (the rest commits change only texts of one map and the
+documentation). `docs/origin_jade/BETA_READINESS.md` gives the verdict
+per beta criterion and the emulator test list. Nothing was checked in an
+emulator.
+
+| Area | Check | Result |
+|---|---|---|
+| Build | `make` in the integration clone (incremental) | exit 0 on `124a45487b`, ROM SHA-1 `2c85c88afce3eb8d88bff8e265d3a955955ac0b6`; each of the 58 commits of `runde2` built with its final id (`make=ok`, `check_flags` 0, both debug headers up to date, `percommit_r2`); the four rest commits with their final ids one by one in their package worktree (`make` ok, `check_flags` 0, both debug headers up to date, ROM `9d8271bc…` from the second on, `r2derest_final`) |
+| Build | `make` from scratch (new worktree of the documentation tip) | exit 0, ROM SHA-1 `9d8271bcd2f622c5b09d2b263bd3f8b8f74aec21`, the same as the rest package's build of `ae42426ece` |
+| Build | `make release` (documentation tip) | exit 0, SHA-1 `18eedc2ebb50f9165aaf65ade559a1281e9bd625`; overworld debug menu, debug states and "Even Wild Slots" not linked; not started |
+| Build | `check_warnings.py` | 105 warnings on the log of the build from scratch, as in the baseline; release build 111 (LTO and newlib stubs), as before |
+| Data | `check_merge.py` | 0 errors, 8 known (205 warnings, 273 hints, as in the baseline) |
+| Data | `check_regions.py` | 0 problems on `124a45487b` and the documentation tip; the known exceptions listed, Jirachi on Route 4 among them |
+| Data | `make_debug_states.py --check` | both headers up to date on `124a45487b`, at each of its 58 commits and on the documentation tip |
+| Flags and vars | `check_flags.py`; `test/origin_jade/event_data.c` | 0 problems (3431 flags, 695 vars; 3 flags and 2 vars more than on `b022af5623`: the Hoenn lottery's flag and two vars, Jirachi's caught and defeated flags); 7 of 7 tests pass |
+| Saves | `check_budget.py`; `test/save.c` | SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1584/1624 (1008 before the Day Cares of D-052), PokemonStorage 34144/35712; EWRAM 95.28 %, IWRAM 78.44 %, ROM 77.18 %; 4 of 4 tests pass |
+| Saves | `check_save_safety.py` (documentation tip) | 76 findings: 1 important, 3 minor, 72 optional, as before round 2; Key Items pocket 58 obtainable of 60 slots |
+| Progress | `simulate_progress.py` | without a switch: Kanto title in wave 50, GS Ball 51, Johto badges 55-91, Johto title 105, Hoenn Ticket 106 (Oak's lab), Hoenn reached 108, Hoenn badges 109-127, Hoenn title 137, exit 0; 195 of 1125 active maps unreachable, none on the story path; the same waves as on `b022af5623` |
+| Maps | `check_maps.py --min-severity klein` | 88 findings, all minor; nothing from "important" up |
+| Texts | `check_text_width.py --list` (documentation tip) | 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6), as before round 2; none over 216 px outside locked maps |
+| Texts | `check_game_text.py --english` | documentation tip: Johto 23 and Kanto 5 (trainer names in upstream capitals, O-066), Hoenn 2 (unreferenced texts of Emerald's Slateport tent corridor, O-065), shared 97 (83 debug, 14 tent texts marked unused), `src` 11 (debug, unused union room texts, credits names), locked maps 290; on `124a45487b` Hoenn 7 (the HnS tent lobby at Route 40, German since the rest commits); before round 2 Johto 125, shared 252, Hoenn 7, Kanto 5 |
+| Pokemon | catch list (`make_fangliste.py`, outside the repository, on `124a45487b`) | after Kanto 151 of 151 Kanto species, after Johto 129 of 129 Johto species, after Hoenn 422 of 422 species (with evolutions and breeding); nothing missing at any stage; Jirachi on Route 4 |
+| Trainers | trainer atlas (`make_trainer_atlas.py`, outside the repository, on `124a45487b`) | every trainer with team, items, abilities, moves and the level range after scaling: Kanto 471, Johto 421, Hoenn 823 entries; a listing for testers, not a check |
+| Engine | `run_tests.py` | 5148 tests in 951 files: 2355 ok, 629 todo, 2164 known failures, 0 new, 0 changed (`integ_tests_r2`) |
+| Engine | Origin Jade tests | `level_scaling.c` 11/11, `event_data.c` 7/7, `region_rule.c` 14/14, `debug_states.c` 3/3, `daycares.c` 2/2, `even_wild_slots.c` 2/2, `region_badges.c` 1/1, `test/save.c` 4/4 |
+| Not checked | - | play in an emulator (story scenes, port menus, calls, Day Cares, Jirachi, boss battles, debug states, German texts in their boxes), the clock at runtime, link features, Battle Frontier and other facilities at runtime, randomizer and Nuzlocke at runtime, the CI workflow on GitHub |
+
+### Earlier state: `b022af5623` (story packages, 2026-10-31)
 
 State: branch `audit` at `b022af5623` (the audit series, the story
 packages D-047 to D-049, their fixes and the debug states D-050) and the
 documentation commits on top (no code change). Results from the
 integration run `integ_b10` on the tip unless another run is named; the
 fresh build, the release build, the warning count and the English count
-come from a separate worktree of the tip.
-`docs/origin_jade/BETA_READINESS.md` gives the verdict per beta criterion
-and the emulator test list for the story packages. Nothing was checked in
-an emulator.
+come from a separate worktree of the tip. Nothing was checked in an
+emulator.
 
 | Area | Check | Result |
 |---|---|---|
