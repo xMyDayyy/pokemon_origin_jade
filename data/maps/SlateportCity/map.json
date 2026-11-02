@@ -1,7 +1,6 @@
 {
   "id": "MAP_SLATEPORT_CITY",
   "name": "SlateportCity",
-  "game_version": "hns",
   "layout": "LAYOUT_SLATEPORT_CITY",
   "music": "MUS_SLATEPORT",
   "region_map_section": "MAPSEC_SLATEPORT_CITY",
@@ -703,5 +702,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
       "script": "SlateportCity_EventScript_BerryCrushRankingsSign"
     }
-  ]
+  ],
+  "game_version": "hns"
 }

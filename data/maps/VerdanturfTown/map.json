@@ -1,7 +1,6 @@
 {
   "id": "MAP_VERDANTURF_TOWN",
   "name": "VerdanturfTown",
-  "game_version": "hns",
   "layout": "LAYOUT_VERDANTURF_TOWN",
   "music": "MUS_VERDANTURF",
   "region_map_section": "MAPSEC_VERDANTURF_TOWN",
@@ -82,7 +81,7 @@
   ],
   "warp_events": [
     {
-      "x": 3,
+      "x": 4,
       "y": 7,
       "elevation": 0,
       "dest_map": "MAP_VERDANTURF_TOWN_BATTLE_TENT_LOBBY",
@@ -183,7 +182,7 @@
     },
     {
       "type": "sign",
-      "x": 1,
+      "x": 3,
       "y": 8,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
@@ -197,5 +196,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "VerdanturfTown_EventScript_RusturfTunnelSign"
     }
-  ]
+  ],
+  "game_version": "hns"
 }
