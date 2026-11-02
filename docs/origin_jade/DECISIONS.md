@@ -594,6 +594,7 @@ dated 2026-10-10 or later were decided directly.
   rolled; changed 2026-11-02: Bloodmoon Ursaluna, regional forms as
   evolutions)
   rolled, changed 2026-11-02: exchange menus, D-054)
+  rolled, changed 2026-11-02: exchange menus and lab starters, D-054)
 - **Decision:** HnS's GEN SCOPE option (randomizer pool limited to Gen 1-3
   families) stays in the code and the save, but has no row in the challenge
   menu and is off (`RANDOMIZER_DEFAULT_GEN_SCOPE_1_3` FALSE in
@@ -652,12 +653,14 @@ dated 2026-10-10 or later were decided directly.
     seed); Day Care eggs hatch as the parents' species. Elm counts the
     hatched Violet City egg whatever its species (`FLAG_HATCHED_TOGEPI_EGG`,
     set in `AddHatchedMonToParty`).
-  - Starters ("Starter: Zufall"): only Oak's preview applies it (and the
-    one-type challenge); the lab hands out exactly the previewed and named
-    species with the preview's shininess (D-035). Elm's and Birch's labs
-    hand out the shown species. When a preview shows another species than
-    the ball's, the lab asks with a text that names it (`...OtherStarter`
-    in the three labs) instead of the ball's own text.
+  - Starters ("Starter: Zufall"): every lab's preview applies it, Oak's,
+    Elm's and Birch's (Johto starter after the Hoenn dex; D-054), each
+    seeded by the trainer ID and the ball's species; the one-type
+    challenge changes only Oak's. The lab hands out exactly the previewed
+    and named species with the preview's shininess (D-035). When a preview
+    shows another species than the ball's, the lab asks with a text that
+    names it (`...OtherStarter` in the three labs) instead of the ball's
+    own text.
   - Field moves: with any option that changes the player's species
     (Starter, wild, fixed, evolutions, evolution lines) or the moves, owning
     the HM is enough; the first party Pokemon may use it
@@ -2022,6 +2025,14 @@ dated 2026-10-10 or later were decided directly.
     evolution items, which keep their place anyway); Celadon's and
     Lilycove's drink machines and Mauville's prizes already use `additem`.
     Mom and both lotteries stay randomized as in HnS.
+  - Starters (N-08): "Starter: Zufall" changes the player's starter in
+    HnS (its only lab, Elm's). Origin Jade applies it to every starter the
+    player chooses in a lab: Oak's, Elm's and Birch's (one Johto starter
+    after the completed Hoenn dex), in `ScrCmd_showmonpic`
+    (`src/scrcmd.c`); preview, question, receive message and Pokemon are
+    the same species (D-023, D-035); Birch's balls show the same three
+    species as Elm's. As in HnS the one-type challenge
+    changes only the first starter, and "Feste PKMN" leaves the labs alone.
 - **Evidence:** owner answers 2026-10-31 and 2026-11-02 (group 4: "alles
   wie im HnS-Upstream"; FRLG's Kanto against HnS's Kanto); HnS code
   compared with `git show 9041f705db:<file>`.

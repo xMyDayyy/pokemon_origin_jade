@@ -2758,24 +2758,22 @@ bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
         #endif
     }
 
-    // Oak's preview only: randomizer and one-type challenge change the species.
-    if (!FlagGet(FLAG_SYS_POKEMON_GET))
+    // Every lab's preview: "Starter: Zufall" changes the species (see docs/origin_jade/DECISIONS.md, D-054).
+    #if RANDOMIZER_AVAILABLE
+    if (starter >= 0 && RandomizerFeatureEnabled(RANDOMIZE_STARTER_AND_GIFT_MON))
     {
-        #if RANDOMIZER_AVAILABLE
-        if (RandomizerFeatureEnabled(RANDOMIZE_STARTER_AND_GIFT_MON))
-        {
-            species = RandomizeMon(RANDOMIZER_REASON_STARTER_AND_GIFT_MON, GetRandomizerOption(RANDOMIZER_OPTION_SPECIES_MODE), GetRandomizerSeed() ^ species, species);
-            if (varId >= VARS_START)
-                VarSet(varId, species);
-        }
-        #endif
+        species = RandomizeMon(RANDOMIZER_REASON_STARTER_AND_GIFT_MON, GetRandomizerOption(RANDOMIZER_OPTION_SPECIES_MODE), GetRandomizerSeed() ^ species, species);
+        if (varId >= VARS_START)
+            VarSet(varId, species);
+    }
+    #endif
 
-        if (IsOneTypeChallengeActive())
-        {
-            species = GetStarterPokemon(VarGet(VAR_STARTER_MON));
-            if (varId >= VARS_START)
-                VarSet(varId, species);
-        }
+    // Oak's preview only: the one-type challenge changes the species.
+    if (!FlagGet(FLAG_SYS_POKEMON_GET) && IsOneTypeChallengeActive())
+    {
+        species = GetStarterPokemon(VarGet(VAR_STARTER_MON));
+        if (varId >= VARS_START)
+            VarSet(varId, species);
     }
 
     if (shinyStarter)
