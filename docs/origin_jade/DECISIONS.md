@@ -925,14 +925,16 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-037 Hoenn is complete without trading
 - **Status:** Active (2026-10-26, changed 2026-10-30, starters: owner decision;
-  changed 2026-10-31: 422 species; changed 2026-11-02: Jirachi)
+  changed 2026-10-31: 422 species; changed 2026-11-02: Jirachi, evolution
+  items in Hoenn's marts)
 - **Decision:** All 422 species of the National Pokedex (D-049) and the
   whole Hoenn dex are obtainable without link trades. As in Kanto (D-013), day and night
   replace the Ruby/Sapphire version split on Emerald's wild tables.
   - Route 102: Surskit (10 %); Route 117: Roselia (20 %) and Surskit (10 %),
     day and night. Masquerain at level 22, Budew by breeding Roselia without
     incense (`P_INCENSE_BREEDING` Gen 9), Roserade with the Shiny Stone
-    (Celadon Department Store 4F, Mahogany's granny shop).
+    (Celadon Department Store 4F, Mahogany's granny shop, Mauville's Mart,
+    Lilycove Department Store 2F).
   - Route 114: Zangoose by day in Seviper's slots (9 %), Seviper at night.
   - Meteor Falls, all five maps: Solrock by day, Lunatone at night in
     Solrock's slots, on land and surfing.
@@ -957,6 +959,21 @@ dated 2026-10-10 or later were decided directly.
     the day table when the night has none; retired maps and maps of the other
     region map (Hoenn vs. Kanto and Johto) are skipped (`FindMapsWithMon`,
     `src/pokedex_area_screen.c`).
+  - Evolution items for the Hoenn families (owner 2026-10-31), in two
+    steps like Johto (Goldenrod's Department Store, then Mahogany's
+    granny shop):
+    - Mauville's Mart (the third gym's town, the hub after Slateport):
+      Water Stone (Ludicolo), Leaf Stone (Shiftry), Moon Stone
+      (Delcatty), Thunder Stone (Probopass), Dawn Stone (Gallade,
+      Froslass) and Shiny Stone (Roserade): Lotad, Seedot and Ralts
+      (Route 102), Skitty (Route 116), Nosepass (Granite Cave) and
+      Roselia (Route 117, east of Mauville) are met around it.
+    - Lilycove Department Store 2F, left clerk (after the sixth badge,
+      Hoenn's department store like Celadon's): the same six stones and
+      Reaper Cloth (Dusknoir), Deep Sea Tooth (Huntail) and Deep Sea
+      Scale (Gorebyss), for Mt. Pyre's Duskull and the Clamperl met with
+      Dive. Before that, the only sources are single finds (item balls,
+      the treasure hunter on Route 124, Captain Stern's Scanner trade).
   - Jirachi (owner 2026-10-31): HnS's Mt. Moon Square event, moved to
     FRLG's Route 4 because HnS's Kanto maps are retired (D-019). The white
     rock is the small rock by Mt. Moon's Pokemon Center (7,4,
