@@ -201,7 +201,11 @@ Route114_Text_ExplainRoar:
 #endif
 
 Route114_Text_Poochyena:
+#if GERMAN
+	.string "Wau! Wauwau!$"
+#else
 	.string "Bow! Bowwow!$"
+#endif
 
 Route114_Text_MeteorFallsSign:
 #if GERMAN

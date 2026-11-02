@@ -133,7 +133,11 @@ PewterCity_Museum_1F_Text_PikachuSoonIPromise::
 #endif
 
 PewterCity_Museum_1F_Text_SpaceShuttle::
+#if GERMAN
+	.string "Raumfähre$"
+#else
 	.string "Space Shuttle$"
+#endif
 
 PewterCity_Museum_1F_Text_MeteoriteThatFellOnMtMoon::
 #if GERMAN
