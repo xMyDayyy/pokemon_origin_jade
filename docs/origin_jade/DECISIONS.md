@@ -315,7 +315,8 @@ dated 2026-10-10 or later were decided directly.
   rematch stages at least three (`tools/fill_johto_parties.py`: trainer
   class beats the local wild pool, duplicate a Pokemon rather than break
   the class; a rematch stage uses the maps of its first stage and keeps
-  its own Pokemon). Rematch teams scale
+  its own Pokemon; the four the tool left out are filled by hand, D-053).
+  Rematch teams scale
   as well (every stage is below level 77). In-game battle partners (Troy
   in Mossdeep's Space Center, Siegfried in the Rocket Hideout) scale like
   a trainer of the map without the boss extra (`ScalePartnerMonLevel`,
@@ -1889,6 +1890,19 @@ dated 2026-10-10 or later were decided directly.
     Pokemon would be above the levels; with these only Pokemon
     above the corridor are harder to catch, mainly Raikou, Entei and
     Celebi at 75 before the eighth Johto badge (O-050).
+  - Johto trainers with fewer than three Pokemon are filled up to three
+    with species of the region (Kanto and Johto, D-049), by hand because
+    `tools/fill_johto_parties.py` finds no wild pool or class type for
+    them (B-12, D-012): Marc, collector in the Radio Tower 3F (Kabutops
+    and Aerodactyl 36 to his Omastar 37); Rasso (`TRAINER_RICH_HNS`),
+    collector in the Radio Tower 4F (Smeargle and Ditto 39 to his
+    Porygon 40); Hiltrud (`TRAINER_SHIRLEY_HNS`), expert on the
+    M.S. Aqua (Granbull 62 between Jigglypuff 61 and Wigglytuff 63);
+    Tamao (`TRAINER_ZUKI_HNS`), kimono girl in the Ecruteak theater (two
+    more Umbreon 48, like the other four kimono girls' three
+    Eeveelutions). The newcomers use the level-up moves of their level,
+    except Smeargle, whose only level-up move is Sketch: it knows Spore,
+    Fake Out, Shadow Ball and Thunderbolt.
 - **Evidence:** owner answers 2026-10-31 (B-01-B-13) and 2026-11-02.
 
 ---
