@@ -1019,7 +1019,11 @@ static const u8 *const sDesc_ItemTrainer[] = {
 };
 static const u8 *const sDesc_NoEVs[] = {
     COMPOUND_STRING("Deine {PKMN} erhalten wie erwartet\nFleiß-Punkte."),
-    COMPOUND_STRING("Deine {PKMN} erhalten bis zum Sieg\nüber Rot keine Fleiß-Punkte!"),
+#if GERMAN
+    COMPOUND_STRING("Deine {PKMN} erhalten bis zum Sieg in\nder Hoenn-Liga keine Fleiß-Punkte!"),
+#else
+    COMPOUND_STRING("The player's {PKMN} gain no effort\nvalues until the Hoenn League is won!"),
+#endif
 };
 static const u8 *const sDesc_ScalingIVs[] = {
     COMPOUND_STRING("{PKMN} gegnerischer Trainer haben\nerwartete IV."),

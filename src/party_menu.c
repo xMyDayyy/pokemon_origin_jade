@@ -4961,7 +4961,7 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
     {
         cannotUse = TRUE;
     }
-    else if (IsEVItem(item) && gSaveBlock3Ptr->challengeSettings.tx_Challenges_NoEVs && !FlagGet(FLAG_DEFEATED_RED))
+    else if (IsEVItem(item) && gSaveBlock3Ptr->challengeSettings.tx_Challenges_NoEVs && !FlagGet(FLAG_END_NUZLOCKE))
     {
         cannotUse = TRUE;
     }

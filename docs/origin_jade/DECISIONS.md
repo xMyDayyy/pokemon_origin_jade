@@ -1986,6 +1986,21 @@ dated 2026-10-10 or later were decided directly.
       The six upstream tests that expect the later rule stay in the
       baseline of known failures (B-13).
 - **Evidence:** owner answers 2026-10-31 (B-01-B-13) and 2026-11-02.
+### D-054 Nuzlocke, challenges and randomizer work as in HnS
+- **Status:** Active (2026-11-02)
+- **Decision:** The Nuzlocke, the challenges, the randomizer and the
+  comfort features do what HnS does (HnS 2.0.5, `9041f705db`; the upstream
+  2.0.6 changes none of it). A rule of HnS holds for Kanto and Hoenn too.
+  What FRLG's Kanto adds is checked against HnS's own Kanto: what was there
+  comes into FRLG's Kanto, what was not stays out. Per point:
+  - "Keine EVs" (N-03): HnS lifts it with Red, where its Nuzlocke ends and
+    its credits roll. Origin Jade lifts it with the Nuzlocke at the first
+    Hoenn title (`FLAG_END_NUZLOCKE`, D-045), where the credits roll
+    (D-028): `MonGainEVs` (`src/pokemon.c`), `ItemUseCB_Medicine`
+    (`src/party_menu.c`) and the menu text.
+- **Evidence:** owner answers 2026-10-31 and 2026-11-02 (group 4: "alles
+  wie im HnS-Upstream"; FRLG's Kanto against HnS's Kanto); HnS code
+  compared with `git show 9041f705db:<file>`.
 
 ---
 
