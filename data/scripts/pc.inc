@@ -112,8 +112,13 @@ EventScript_AccessPlayersFakePC::
 
 EventScript_AccessPokemonStorage::
 	playse SE_PC_LOGIN
+#if IS_HNS
+	@ Origin Jade: always Bill's PC (D-052).
+	call EventScript_AccessLanettesPC
+#else
 	call_if_unset FLAG_SYS_PC_LANETTE, EventScript_AccessSomeonesPC
 	call_if_set FLAG_SYS_PC_LANETTE, EventScript_AccessLanettesPC
+#endif
 	msgbox gText_StorageSystemOpened, MSGBOX_DEFAULT
 	special ShowPokemonStorageSystemPC
 	waitstate
@@ -122,8 +127,13 @@ EventScript_AccessPokemonStorage::
 
 EventScript_AccessFakePokemonStorage::
 	playse SE_PC_LOGIN
+#if IS_HNS
+	@ Origin Jade: always Bill's PC (D-052).
+	call EventScript_AccessLanettesPC
+#else
 	call_if_unset FLAG_SYS_PC_LANETTE, EventScript_AccessSomeonesPC
 	call_if_set FLAG_SYS_PC_LANETTE, EventScript_AccessLanettesPC
+#endif
 	msgbox gText_StorageSystemOpened, MSGBOX_DEFAULT
 	special ShowPokemonStorageSystemPC
 	waitstate

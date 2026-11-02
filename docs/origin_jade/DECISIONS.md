@@ -1774,8 +1774,8 @@ dated 2026-10-10 or later were decided directly.
   `NewBarkTown_OnFrame` (`NewBarkTown_EventScript_ElmCallAfterLeague`).
 - **Evidence:** owner answers 2026-10-31 (S-02, S-07) and 2026-11-02
   (O-036: as in HnS).
-### D-052 Day Cares per region
-- **Status:** Active (2026-11-02, owner decision 2026-10-31)
+### D-052 Day Cares per region, Bill's PC
+- **Status:** Active (2026-11-02, owner decisions 2026-10-31)
 - **Decision:** Kanto (Route 5), Johto (Route 34) and Hoenn (Route 117)
   each have their own Day Care; Pokemon, steps and eggs left in one region
   stay there (owner: no shared storage).
@@ -1799,11 +1799,20 @@ dated 2026-10-10 or later were decided directly.
     only, as in Emerald.
   - Unchanged: the Oval Charm at every Day Care (D-036), the region rule
     for eggs (D-049).
+  - Bill's PC (owner): the storage is "Bills PC" ("BILL's PC") from the
+    start, in every region. The PC menu, the access message and the
+    transfer messages after a catch, a gift or naming never say "Jemandes
+    PC" or Lanette's name in this build (`IS_HNS` in `src/script_menu.c`,
+    `src/battle_message.c`, `src/battle_script_commands.c`,
+    `src/naming_screen.c`, `data/scripts/pc.inc`,
+    `data/scripts/pc_transfer.inc`). `FLAG_SYS_PC_LANETTE`, still set at
+    Bill's Sea Cottage and by Lanette on Route 114, no longer changes the
+    name. The two transfer texts got their English branch.
 - **Code:** `GetCurrentDaycare`, `GetRegionDaycare`, `TryProduceEgg`,
   `ShouldEggHatch` (`src/daycare.c`); `struct SaveBlock3`
   (`include/global.h`); `Route5_Frlg`, `Route34_DayCare_hns`; test
   `test/origin_jade/daycares.c`.
-- **Evidence:** owner answers 2026-10-31 (S-16, O-020).
+- **Evidence:** owner answers 2026-10-31 (S-16, O-020, O-021).
 
 ---
 
@@ -1890,10 +1899,8 @@ dated 2026-10-10 or later were decided directly.
   the Shiny Stone (D-037).
 - **O-020** Resolved 2026-11-02: each region has its own Day Care (owner,
   D-052).
-- **O-021** Bill's PC name: `FLAG_SYS_PC_LANETTE` from Bill's Sea Cottage
-  names the storage "Bills PC" in Kanto, Johto and Hoenn alike (Lanette on
-  Route 114 sets the same flag). HnS's "Jemandes PC" until Ecruteak and
-  Emerald's until Lanette do not occur.
+- **O-021** Resolved 2026-11-02: the storage is always "Bills PC" (owner,
+  D-052).
 - **O-022** Nuzlocke: Kanto's Route 22 and HnS's `Route22_hns` share
   `MAPSEC_ROUTE_22` (one first encounter for both); `MAPSEC_INDIGO_PLATEAU`
   is shared too, with no wild table there yet. In practice only the plateau

@@ -11,6 +11,7 @@ gText_PkmnTransferredSomeonesPC::
 #endif
 
 gText_PkmnTransferredLanettesPC::
+#if GERMAN
 #if IS_FRLG || IS_HNS
 	.string "{STR_VAR_2} wurde auf Bills PC\n"
 #else
@@ -19,6 +20,16 @@ gText_PkmnTransferredLanettesPC::
 	.string "übertragen.\p"
 	.string "Es wurde in Box\n"
 	.string "“{STR_VAR_1}” abgelegt.$"
+#else
+	.string "{STR_VAR_2} was transferred to\n"
+#if IS_FRLG || IS_HNS
+	.string "BILL's PC.\p"
+#else
+	.string "LANETTE's PC.\p"
+#endif
+	.string "It was placed in \n"
+	.string "BOX “{STR_VAR_1}.”$"
+#endif
 
 gText_PkmnTransferredSomeonesPCBoxFull::
 #if GERMAN
@@ -36,9 +47,6 @@ gText_PkmnTransferredSomeonesPCBoxFull::
 gText_PkmnTransferredLanettesPCBoxFull::
 #if GERMAN
 	.string "Box “{STR_VAR_3}” in\n"
-#else
-	.string "BOX “{STR_VAR_3}” on\n"
-#endif
 #if IS_FRLG || IS_HNS
 	.string "Bills PC ist voll.\p"
 #else
@@ -46,6 +54,16 @@ gText_PkmnTransferredLanettesPCBoxFull::
 #endif
 	.string "{STR_VAR_2} wurde in Box\n"
 	.string "“{STR_VAR_1}” übertragen.$"
+#else
+	.string "BOX “{STR_VAR_3}” on\n"
+#if IS_FRLG || IS_HNS
+	.string "BILL's PC was full.\p"
+#else
+	.string "LANETTE's PC was full.\p"
+#endif
+	.string "{STR_VAR_2} was transferred to\n"
+	.string "BOX “{STR_VAR_1}.”$"
+#endif
 
 gText_PkmnSentToPCAfterCatch::
 #if GERMAN

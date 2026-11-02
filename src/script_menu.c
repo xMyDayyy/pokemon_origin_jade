@@ -796,8 +796,8 @@ static void CreatePCMultichoice(void)
         AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_LogOff, x, 49, TEXT_SKIP_DRAW, NULL);
     }
 
-    // Change PC name if player has met Lanette
-    if (FlagGet(FLAG_SYS_PC_LANETTE))
+    // Change PC name if player has met Lanette; Origin Jade: always Bill's PC (D-052)
+    if (IS_HNS || FlagGet(FLAG_SYS_PC_LANETTE))
     {
         if (IS_FRLG || IS_HNS)
             AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_BillsPc, x, 1, TEXT_SKIP_DRAW, NULL);
