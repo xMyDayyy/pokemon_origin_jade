@@ -381,7 +381,8 @@ dated 2026-10-10 or later were decided directly.
   night).
 
 ### D-014 HM handovers in Johto never leave the player empty-handed
-- **Status:** Active (changed 2026-10-30: Wallace's HM Waterfall in Hoenn)
+- **Status:** Active (changed 2026-10-30: Wallace's HM Waterfall in Hoenn;
+  changed 2026-11-02: no replacement in Hoenn, owner)
 - **Decision:** A player from Kanto already owns most HMs. Every HM handover
   checks for the HM; if it is already owned, there is a different reward
   with an in-world reason - never "then I have nothing for you". Exploring
@@ -395,6 +396,8 @@ dated 2026-10-10 or later were decided directly.
   Rayquaza) therefore hands over HM Waterfall when it is not in the bag
   (`SootopolisCity_EventScript_GiveWaterfall`); with the HM in the bag he
   only points to the gym. The Rain Badge is the Waterfall license (D-008).
+  The replacement rule above is Johto's: Wallace gives nothing else when
+  the HM came from Johto (owner 2026-10-31).
   `FLAG_RECEIVED_HM_WATERFALL` is a Hoenn flag (`flags_hoenn_de.h`).
 - **Evidence:** 09aac39e14, 5b0269166d, f9bd3e5021 (Waterfall, Whirlpool);
   audit 2026-10-30 (Wallace).
@@ -502,12 +505,18 @@ dated 2026-10-10 or later were decided directly.
   c95ae0fbcb, 97f2d54743, 4d57e6d6dc, 6f8f66dd8c, 35b22a81e7, e14f493887.
 
 ### D-019 Retired and locked content
-- **Status:** Active
+- **Status:** Active (changed 2026-11-02: Alola listed; Sinjoh and Alola
+  stay locked, owner)
 - **Decision:** HnS's own Kanto maps are retired (`hns_kanto_retired`); the
   FRLG Kanto maps are used. The Sevii Islands are retired, reversibly
   (`frlg_sevii_retired`); everything that would lead there is disabled (Bill
   after Blaine, the Indigo Plateau guard's Sevii branch). The Sinjoh content
   is locked by `SINJOH_CONTENT_AVAILABLE` in `include/config/general.h`.
+  HnS's 20 Alola maps (`MelemeleIsle_hns` and the others) are active
+  (`game_version` `hns`) but have no way in: their only warps are in the
+  retired `Route13_hns`, and the Melemele fly spot needs
+  `FLAG_VISITED_ALOLA`, which only Melemele sets. Sinjoh and Alola stay
+  locked (owner 2026-10-31); what unlocking them would need is in O-009.
 - **Evidence:** 752b880dee, 67c1384191, 82f533ac08, 020c34f826,
   84e198c40c, ba8f5e9168, review 2026-10-09.
 
@@ -896,7 +905,7 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-036 Charm sources
 - **Status:** Active (2026-10-21, changed 2026-10-31: 422 species; Johto
-  dex without Azurill and Wynaut)
+  dex without Azurill and Wynaut; 2026-11-02: mythicals confirmed)
 - **Decision:**
   - Ovalpin (Oval Charm): the Day Care man hands it over once, right after
     the player's first egg, at every active Day Care (Kanto Route 5, Johto
@@ -916,7 +925,12 @@ dated 2026-10-10 or later were decided directly.
     build do not count, in `HasAllMons` as in the count and the rating. All
     422 are obtainable without trading (D-037). Not required: the
     mythicals and Regirock, Regice, Registeel (HnS's `dexNotRequired`;
-    owner kept it 2026-10-26).
+    owner kept it 2026-10-26 and again 2026-10-31: Mew, Celebi, Jirachi
+    and Deoxys do not count, as in the official games). Every completion
+    check skips them (`isMythical` without `dexForceRequired`, which no
+    Gen 1-3 species sets): `HasAllMons`, `HasAllKantoMons`,
+    `HasAllJohotoMons`, `HasAllHoennMons` and Birch's PC rating
+    (`src/birch_pc.c`).
   - Code: `DayCare_EventScript_GiveOvalCharm` (`data/scripts/day_care.inc`,
     called by the egg scripts of Route 5, Route 34 and Route 117);
     `LilycoveCity_CoveLilyMotel_2F_EventScript_TryGiveShinyCharm` (runs
@@ -926,7 +940,7 @@ dated 2026-10-10 or later were decided directly.
 ### D-037 Hoenn is complete without trading
 - **Status:** Active (2026-10-26, changed 2026-10-30, starters: owner decision;
   changed 2026-10-31: 422 species; changed 2026-11-02: Jirachi, evolution
-  items in Hoenn's marts)
+  items in Hoenn's marts, Milotic)
 - **Decision:** All 422 species of the National Pokedex (D-049) and the
   whole Hoenn dex are obtainable without link trades. As in Kanto (D-013), day and night
   replace the Ruby/Sapphire version split on Emerald's wild tables.
@@ -974,6 +988,14 @@ dated 2026-10-10 or later were decided directly.
       Scale (Gorebyss), for Mt. Pyre's Duskull and the Clamperl met with
       Dive. Before that, the only sources are single finds (item balls,
       the treasure hunter on Route 124, Captain Stern's Scanner trade).
+  - Milotic (owner 2026-10-31): only by beauty, as in Gen 3. Feebas bites
+    on the six Feebas tiles of Route 119 (any rod, `src/wild_encounter.c`);
+    beauty 170 or more from Pokeblocks (the Berry Blenders in Lilycove's
+    Contest Lobby; the Pokeblock Case from its contest receptionist or from
+    Baoba at Johto's Safari Zone gate), then a level up. No Prism Scale
+    lies anywhere (no item ball, shop or gift); its evolution entries stay
+    in the species data. Only the item randomizer can roll one
+    (`src/data/randomizer/item_whitelist.h`).
   - Jirachi (owner 2026-10-31): HnS's Mt. Moon Square event, moved to
     FRLG's Route 4 because HnS's Kanto maps are retired (D-019). The white
     rock is the small rock by Mt. Moon's Pokemon Center (7,4,
@@ -1766,9 +1788,10 @@ dated 2026-10-10 or later were decided directly.
 - **O-008** Resolved 2026-10-21: the Day Care hands out the Ovalpin with the
   first egg, Lilycove's game designer the Schillerpin for the completed
   National Pokedex after the first Hoenn title (D-036).
-- **O-009** Enabling Sinjoh also needs the Gen 4+ and regional forms in
-  `species_enabled.h`. Risks found 2026-10-30, harmless while Sinjoh stays
-  locked and Alola has no way in:
+- **O-009** Resolved 2026-11-02: Sinjoh and Alola stay locked (owner,
+  D-019). Kept for a later unlock: enabling Sinjoh also needs the Gen 4+
+  and regional forms in `species_enabled.h`. Risks found 2026-10-30,
+  harmless while Sinjoh stays locked and Alola has no way in:
   - Locked content still uses disabled species: the POSTOBC rematch teams
     in `trainers_hns.party` (the Elite Four, Lance and Red, chosen only at
     `VAR_SINJOH_STORYLINE` 13 or more; the gym leaders in HnS's retired
@@ -1777,8 +1800,7 @@ dated 2026-10-10 or later were decided directly.
   - The 20 Alola maps (`MelemeleIsle_hns` and the others) are active
     (`game_version` `hns`) but have no way in: the only warps are in the
     retired `Route13_hns`, and the Melemele fly spot needs
-    `FLAG_VISITED_ALOLA`, which only Melemele sets. D-019 does not list
-    them yet.
+    `FLAG_VISITED_ALOLA`, which only Melemele sets (D-019).
 - **O-010** Resolved 2026-10-12: the Route 30 and Route 26 trees use the
   reserve slots `BERRY_TREE_ROUTE_30_ORAN` and `BERRY_TREE_ROUTE_26_SITRUS`;
   slot 33 is only shared with retired maps. Older saves are migrated in
