@@ -1998,6 +1998,14 @@ dated 2026-10-10 or later were decided directly.
     Hoenn title (`FLAG_END_NUZLOCKE`, D-045), where the credits roll
     (D-028): `MonGainEVs` (`src/pokemon.c`), `ItemUseCB_Medicine`
     (`src/party_menu.c`) and the menu text.
+  - Pokemon Center challenge (N-04): HnS blocks the nurse, Mom, the bed on
+    the S.S. Aqua and the Dojo's rest room; every other heal (story heals,
+    people who let the player rest) stays. Origin Jade blocks the same in
+    all three regions: the nurses (also FRLG's), Mom in Pallet Town and
+    every bed that heals: the S.S. Aqua's, the S.S. Tidal's (`SSTidalRooms`;
+    the voyage still ends after the usual steps) and the Weather
+    Institute's on Route 119 (`Route119_WeatherInstitute_1F`). The menu
+    text names exactly these.
 - **Evidence:** owner answers 2026-10-31 and 2026-11-02 (group 4: "alles
   wie im HnS-Upstream"; FRLG's Kanto against HnS's Kanto); HnS code
   compared with `git show 9041f705db:<file>`.

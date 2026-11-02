@@ -19,12 +19,21 @@ SSTidalRooms_EventScript_ExplainSnatch::
 	end
 
 SSTidalRooms_EventScript_Bed::
+	@ Pokemon Center challenge: no rest and no heal (see docs/origin_jade/DECISIONS.md, D-054).
+	specialvar VAR_RESULT, IsPokecenterChallengeActivated
+	goto_if_eq VAR_RESULT, TRUE, SSTidalRooms_EventScript_Bed_PokecenterChallenge
 	lockall
 	msgbox SSTidalRooms_Text_TakeRestOnBed, MSGBOX_DEFAULT
 	closemessage
 	call Common_EventScript_OutOfCenterPartyHeal
 	call SSTidalRooms_EventScript_ProgessCruiseAfterBed
 	releaseall
+	end
+
+SSTidalRooms_EventScript_Bed_PokecenterChallenge::
+	msgbox SSTidalRooms_Text_TakeRestOnBed_PokecenterChallenge, MSGBOX_DEFAULT
+	closemessage
+	release
 	end
 
 SSTidalRooms_EventScript_Colton::
@@ -61,6 +70,15 @@ SSTidalRooms_EventScript_Naomi::
 	trainerbattle_single TRAINER_NAOMI, SSTidalRooms_Text_NaomiIntro, SSTidalRooms_Text_NaomiDefeat
 	msgbox SSTidalRooms_Text_NaomiPostBattle, MSGBOX_AUTOCLOSE
 	end
+
+SSTidalRooms_Text_TakeRestOnBed_PokecenterChallenge:
+#if GERMAN
+	.string "Sorry, du machst gerade die\n"
+	.string "Pokécenter-Challenge!$"
+#else
+	.string "Sorry, you are playing with\n"
+	.string "the POKéCENTER challenge!$"
+#endif
 
 SSTidalRooms_Text_TakeRestOnBed:
 #if GERMAN
