@@ -158,6 +158,10 @@
 #define FLAG_HOENN_RECEIVED_HM_STRENGTH                      (OJ_TRAINER_FLAGS_HOENN_END + 17)
 // Lilycove's lottery ticket drawn today; cleared by ClearDailyFlags.
 #define FLAG_HOENN_PICKED_LOTO_TICKET                        (OJ_TRAINER_FLAGS_HOENN_END + 18)
+// Jirachi on Route 4, see constants/legendaries_oj.h. CAUGHT: never back;
+// DEFEATED: caught or knocked out, cleared after a league victory unless caught.
+#define FLAG_CAUGHT_JIRACHI                                  (OJ_TRAINER_FLAGS_HOENN_END + 19)
+#define FLAG_DEFEATED_JIRACHI                                (OJ_TRAINER_FLAGS_HOENN_END + 20)
 
 // ---------------------------------------------------------------------
 // Cross-region (OJ_FLAGS_GLOBAL + 0 to + 63)

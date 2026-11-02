@@ -30,6 +30,8 @@
 #define LEGENDARY_RAYQUAZA      19  // Sky Pillar
 #define LEGENDARY_LATIAS        20  // roamer, after the Hoenn title
 #define LEGENDARY_LATIOS        21  // roamer, after the Hoenn title
-#define LEGENDARY_COUNT         22
+// Kanto map, Hoenn species
+#define LEGENDARY_JIRACHI       22  // Route 4, white rock by Mt. Moon (after the first trip to Hoenn)
+#define LEGENDARY_COUNT         23
 
 #endif // GUARD_CONSTANTS_LEGENDARIES_OJ_H

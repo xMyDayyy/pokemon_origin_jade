@@ -167,6 +167,10 @@ CUT_LABELS_ALWAYS = {
     # in state B the scene runs after the warp into Oak's lab.
     "PalletTown_ProfessorOaksLab_EventScript_TroyScene",
     "PalletTown_ProfessorOaksLab_EventScript_Troy",
+    # Jirachi on Route 4 comes after the first trip to Hoenn (D-037, D-049).
+    "Route4_EventScript_TryShowJirachi",
+    "Route4_EventScript_WhiteRock",
+    "Route4_EventScript_Jirachi",
     # Elite Four rematches after the title.
     "PokemonLeague_AgathasRoom_EventScript_Rematch",
     "PokemonLeague_BrunosRoom_EventScript_Rematch",

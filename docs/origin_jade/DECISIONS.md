@@ -655,13 +655,13 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-026 Legendary rules: caught means gone for good
 - **Status:** Active (2026-10-15, Johto levels changed 2026-10-27, D-039,
-  Hoenn levels 2026-10-29, D-043)
+  Hoenn levels 2026-10-29, D-043; changed 2026-11-02: Jirachi)
 - **Decision:** All one-time encounters share one table
   (`src/legendaries_oj.c`, ids in `include/constants/legendaries_oj.h`):
   Articuno, Zapdos, Moltres, Mewtwo, Mew (Mt. Moon only), Lugia, Ho-Oh,
   Celebi, Suicune, Deoxys (HnS Birth Island only), Union Cave Lapras, the red
   Gyarados, Entei, Raikou, Regirock, Regice, Registeel, Groudon, Kyogre,
-  Rayquaza, Latias and Latios.
+  Rayquaza, Latias, Latios and Jirachi (Route 4, D-037).
   - Caught: never again. The battle outcome sets the caught flag, not the
     Pokedex (the randomizer changes species).
   - Knocked out: back after every league victory - Kanto titles while the
@@ -683,7 +683,7 @@ dated 2026-10-10 or later were decided directly.
     Southern Island and Navel Rock are not offered anywhere.
   - Levels: Johto's follow D-039, Hoenn's D-043 (both never below the top of
     the map's wild band); Kanto's are fixed (birds and Mew 40, Mewtwo 50,
-    D-011). Sudowoodo and
+    D-011; Jirachi 80 like Deoxys in D-039, HnS had 50). Sudowoodo and
     Snorlax never return. The GS Ball is used up at the shrine; there is no
     second Celebi.
 - **Evidence:** decision 2026-10-15 (O-004).
@@ -925,7 +925,7 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-037 Hoenn is complete without trading
 - **Status:** Active (2026-10-26, changed 2026-10-30, starters: owner decision;
-  changed 2026-10-31: 422 species)
+  changed 2026-10-31: 422 species; changed 2026-11-02: Jirachi)
 - **Decision:** All 422 species of the National Pokedex (D-049) and the
   whole Hoenn dex are obtainable without link trades. As in Kanto (D-013), day and night
   replace the Ruby/Sapphire version split on Emerald's wild tables.
@@ -957,8 +957,18 @@ dated 2026-10-10 or later were decided directly.
     the day table when the night has none; retired maps and maps of the other
     region map (Hoenn vs. Kanto and Johto) are skipped (`FindMapsWithMon`,
     `src/pokedex_area_screen.c`).
-  - Jirachi has no source (only HnS's retired Mt. Moon); it is not required
-    for `HasAllMons`.
+  - Jirachi (owner 2026-10-31): HnS's Mt. Moon Square event, moved to
+    FRLG's Route 4 because HnS's Kanto maps are retired (D-019). The white
+    rock is the small rock by Mt. Moon's Pokemon Center (7,4,
+    `Route4_EventScript_WhiteRock`; the rock at 5,5 holds the hidden
+    Persim Berry). Touching it at night (`FLAG_NIGHT_POKEMON` clear, as
+    in HnS) summons Jirachi once (`FLAG_SUMMONED_MTMOON_JIRACHI`), which
+    then waits below the ledge (5,9, `FLAG_HIDE_MTMOON_JIRACHI`) until it
+    is fought. HnS's Kanto came after the Johto title; here the rock
+    answers only after the first trip to Hoenn (`VAR_HOENN_ARRIVAL_STATE`
+    1 or more, D-049), like Deoxys's Aurora Ticket (D-029). Level 80,
+    fixed like Kanto's other statics; legendary rules and level in D-026
+    (`LEGENDARY_JIRACHI`). Mythicals stay out of `HasAllMons` (D-036).
 - **Evidence:** decision 2026-10-26 (O-019); audit 2026-10-30 (Meditite and
   Medicham had no reachable source); decision 2026-10-30 (every starter
   wild).
@@ -1467,7 +1477,8 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-049 Pokemon per region
 - **Status:** Active (2026-10-31, owner decision; changed 2026-10-31:
-  Celadon's diploma names the Kanto Pokedex)
+  Celadon's diploma names the Kanto Pokedex; changed 2026-11-02: Jirachi
+  on Route 4)
 - **Decision:** Kanto has only Kanto Pokemon, Johto adds Johto's and Hoenn
   adds Hoenn's: before a region is unlocked, no source hands out a species
   of that region. Evolutions are exempt: a Golbat may become a Crobat in
@@ -1557,7 +1568,8 @@ dated 2026-10-10 or later were decided directly.
   species nor the gifts and static battles of the map scripts. Known
   exceptions: `Route22_hns` (Taillow), which cannot be entered (O-022);
   the Ruins of Alph lab's Lileep and Anorith (only from Hoenn's fossils);
-  an uncalled test script at the Johto Safari Zone gate. In the National
+  an uncalled test script at the Johto Safari Zone gate; Jirachi on
+  Route 4 (only after the first trip to Hoenn, D-037). In the National
   Pokedex order (`enum ObtainableDexOrder`) every Kanto species lies in
   the Kanto block and every Johto species in the Kanto or Johto block, so
   the list cannot jump; `--dex-gaps` prints the blocks (Kanto 1-185, Johto
