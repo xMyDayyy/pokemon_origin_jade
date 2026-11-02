@@ -301,17 +301,37 @@ SlateportCity_BattleTentLobby_hns_Text_ExplainTorment:
 	.string "I'm not laying a torment on you!$"
 
 SlateportCity_BattleTentLobby_hns_Text_IllTryUsingBugMons:
+#if GERMAN
+	.string "Ich mag eigentlich keine\n"
+	.string "Käfer-Pokémon, aber vielleicht sollte\l"
+	.string "ich zur Abwechslung doch welche\l"
+	.string "fangen?\p"
+	.string "Wer weiß, vielleicht finde ich sie\n"
+	.string "dann ja doch ganz nett?$"
+#else
 	.string "I don't really like BUG POKéMON,\n"
 	.string "but maybe I'll try using some for\l"
 	.string "a change of pace.\p"
 	.string "Who knows, I might even get to like\n"
 	.string "them!$"
+#endif
 
 SlateportCity_BattleTentLobby_hns_Text_BattleEvenWithoutToughMons:
+#if GERMAN
+	.string "Du kannst hier so viel kämpfen, wie du\n"
+	.string "willst, selbst wenn du keine starken\l"
+	.string "Pokémon hast.$"
+#else
 	.string "You can battle all you want here even\n"
 	.string "if you don't have any tough POKéMON.$"
+#endif
 
 SlateportCity_BattleTentLobby_hns_Text_NiceIfMoreSelection:
+#if GERMAN
+	.string "Wäre es nicht schön, wenn sie eine\n"
+	.string "größere Auswahl hätten?$"
+#else
 	.string "Wouldn't it be nice if they had more of\n"
 	.string "a selection?$"
+#endif
 
