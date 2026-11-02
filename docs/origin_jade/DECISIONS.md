@@ -1300,8 +1300,9 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-045 Nuzlocke rules
 - **Status:** Active (2026-10-30; changed 2026-10-30: static encounters,
-  eggs, nicknames of starters and gifts). The end point waits for the
-  owner's confirmation (O-025).
+  eggs, nicknames of starters and gifts; changed 2026-11-02: Trainer Hills
+  and Route 41 as in HnS, D-054). The end point waits for the owner's
+  confirmation (O-025).
 - **Decision:** The challenge menu's Nuzlocke (`src/nuzlocke.c`) works like
   this in Origin Jade:
   - Start and end: it starts at Oak's Pokedex handover in Kanto
@@ -1360,7 +1361,13 @@ dated 2026-10-10 or later were decided directly.
       keep the nickname of their former trainer;
     - Hoenn: Castform (Weather Institute), the fossils at Devon, and after
       the title, outside the Nuzlocke, Beldum and Birch's Johto starters.
-  - Open: deaths in the Trainer Hills (O-028).
+  - Trainer Hills: no deaths there, as in HnS (D-054, O-028). A Pokemon
+    that faints stays in the party at 0 HP; leaving a hill after a loss
+    heals the party, otherwise a Pokemon Center does.
+  - Route 41's Tentacruel guards (level 100, no catching): a Pokemon that
+    faints there dies, as in HnS; the battle uses up no area (static
+    encounter, see above).
+  - Rules that differ from HnS and wait for the owner: O-055.
 - **Evidence:** audit 2026-10-30 (A23, A25, A30, A79, A83, A87); owner
   decision 2026-10-30 (rules as usual in the Nuzlocke community: static
   encounters and eggs are free).
@@ -2000,19 +2007,36 @@ dated 2026-10-10 or later were decided directly.
   2.0.6 changes none of it). A rule of HnS holds for Kanto and Hoenn too.
   What FRLG's Kanto adds is checked against HnS's own Kanto: what was there
   comes into FRLG's Kanto, what was not stays out. Per point:
+  - Trainer Hills (N-01, O-028): HnS's battle end skips Nuzlocke deaths
+    in its Trainer Hill (`BATTLE_TYPE_TRAINER_HILL`, like the Battle
+    Frontier), and its reception heals after a loss; Origin Jade's Route 40
+    hill is the same, unchanged (D-045). Emerald's hill on Route 111 has no
+    counterpart in HnS; it uses the same battle type and so the same rule
+    as long as it exists (it is being retired, owner 2026-11-02).
+  - Route 41's Tentacruel guards (N-02): HnS's own fight, same script and
+    same spot (also K-04). A Pokemon that faints there dies, as in HnS;
+    unlike HnS the fight uses up no area (static encounters, owner
+    2026-10-30, D-045).
   - "Keine EVs" (N-03): HnS lifts it with Red, where its Nuzlocke ends and
     its credits roll. Origin Jade lifts it with the Nuzlocke at the first
     Hoenn title (`FLAG_END_NUZLOCKE`, D-045), where the credits roll
     (D-028): `MonGainEVs` (`src/pokemon.c`), `ItemUseCB_Medicine`
     (`src/party_menu.c`) and the menu text.
-  - Pokemon Center challenge (N-04): HnS blocks the nurse, Mom, the bed on
-    the S.S. Aqua and the Dojo's rest room; every other heal (story heals,
-    people who let the player rest) stays. Origin Jade blocks the same in
-    all three regions: the nurses (also FRLG's), Mom in Pallet Town and
-    every bed that heals: the S.S. Aqua's, the S.S. Tidal's (`SSTidalRooms`;
-    the voyage still ends after the usual steps) and the Weather
-    Institute's on Route 119 (`Route119_WeatherInstitute_1F`). The menu
-    text names exactly these.
+  - Pokemon Center challenge (N-04): HnS blocks the nurses (also the one
+    in the Dojo's VIP room), Mom and the bed on the S.S. Aqua; every other
+    heal (story heals, people who let the player rest) stays. Origin Jade
+    blocks the same in all three regions: the nurses (also FRLG's), Mom in
+    Pallet Town and every bed that heals: the S.S. Aqua's, the S.S.
+    Tidal's (`SSTidalRooms`; the voyage still ends after the usual steps)
+    and the Weather Institute's on Route 119
+    (`Route119_WeatherInstitute_1F`). The menu text names exactly these.
+  - Hardcore (N-05): HnS deletes the save at every whiteout while the
+    Nuzlocke runs (`CB2_WhiteOut`), also after fainting from poison in the
+    field; unchanged.
+  - Item randomizer and dialogue (N-06): HnS randomizes NPC gifts
+    (`giveitem`), and the dialogue around a gift still names the original
+    item (a gym leader explaining his TM); unchanged. FRLG's Kanto gifts
+    with their own receive text follow the same rule (D-023).
   - Paid exchanges and the item randomizer (N-07): HnS's exchanges with a
     menu (Goldenrod's Game Corner prizes and drink machine, Kurt's balls,
     the Moomoo Milk) give the chosen item (`additem`); Mom's purchases, the
@@ -2031,8 +2055,19 @@ dated 2026-10-10 or later were decided directly.
     after the completed Hoenn dex), in `ScrCmd_showmonpic`
     (`src/scrcmd.c`); preview, question, receive message and Pokemon are
     the same species (D-023, D-035); Birch's balls show the same three
-    species as Elm's. As in HnS the one-type challenge
-    changes only the first starter, and "Feste PKMN" leaves the labs alone.
+    species as Elm's. As in HnS the one-type challenge changes only the
+    first starter, and "Feste PKMN" leaves the labs alone.
+  - Move relearner (N-09): HnS's Johto has one (Blackthorn City), so has
+    Emerald's Hoenn (Fallarbor Town), HnS's Kanto none; FRLG's on Two
+    Island is retired (D-019). Kanto stays without one (owner 2026-11-02,
+    A78).
+  - Hall of Fame (N-10): HnS keeps one list without a region; its league
+    titles and Red's victory (`GameClear`) are mixed in it. Origin Jade's
+    three regions share the 50 places the same way (no region marker).
+- **Open:** O-055 (Nuzlocke rules that differ from HnS outside these
+  points), O-056 (move tutors in Kanto against HnS's Kanto), O-057 (item
+  randomizer: Slateport's Berry Powder man, single items for money,
+  start), O-058 (randomizer species pool).
 - **Evidence:** owner answers 2026-10-31 and 2026-11-02 (group 4: "alles
   wie im HnS-Upstream"; FRLG's Kanto against HnS's Kanto); HnS code
   compared with `git show 9041f705db:<file>`.
@@ -2146,13 +2181,8 @@ dated 2026-10-10 or later were decided directly.
   caught and use up no area (D-045).
 - **O-027** Resolved 2026-10-30: eggs always hatch and use up no area
   (D-045).
-- **O-028** Nuzlocke and the Trainer Hills (Route 40, D-041; Route 111 in
-  Hoenn): their battles skip Nuzlocke deaths (`BATTLE_TYPE_TRAINER_HILL`
-  in `HandleEndTurn_FinishBattle`, D-045), so a Pokemon that faints there
-  stays in the party at 0 HP. Leaving a hill after a loss heals the party
-  (`HealPlayerParty` in the entrance scripts), otherwise a Pokemon Center
-  does. Rule needed: deaths count there like in other trainer battles, or
-  the hills stay exempt like the Battle Frontier.
+- **O-028** Resolved 2026-11-02: the Trainer Hills stay without Nuzlocke
+  deaths, as in HnS (D-054, D-045).
 - **O-029** Resolved 2026-11-02 (owner): the player's room decorations
   are set up in the bedroom in Pallet Town (D-048).
 - **O-030** Resolved 2026-11-02 (owner: remove): the hidden objects of
@@ -2282,6 +2312,89 @@ dated 2026-10-10 or later were decided directly.
   Kanto's badges, so it never applied in Johto and Hoenn (all eight are
   won by then). Owner to confirm, or to switch the malus off outside
   Kanto.
+- **O-055** Nuzlocke rules that differ from HnS outside D-054's points.
+  Owner to decide whether they follow HnS too:
+  - Battles with an AI partner (Lance in the Rocket Hideout, Troy in
+    Mossdeep's Space Center): HnS lets nothing die there
+    (`BATTLE_TYPE_INGAME_PARTNER` is skipped at the end of the battle);
+    Origin Jade kills the player's fainted Pokemon once the party is
+    restored (`NuzlockeDeleteFaintedAfterPartnerBattle` in `multi_do` and
+    `multi_do_fixed`, audit 2026-10-30, D-045). Proposal: as HnS, drop the
+    two calls.
+  - End point: HnS ends the Nuzlocke with Red, where its credits roll;
+    Origin Jade ends it at the first Hoenn title, where its credits roll
+    (D-028). Same rule, so O-025 can be confirmed as it is.
+  - Wild battles without catching: HnS's only one, Route 41's Tentacruel
+    (`FLAG_NO_WILD_CATCHING`), uses up the area there, because HnS's area
+    check has no exception for battles without catching or for scripted
+    static encounters. Origin Jade leaves it free like every scripted
+    static encounter (owner decision 2026-10-30, D-045). FRLG's Pokemon
+    Tower ghosts without the Silph Scope (`BATTLE_TYPE_GHOST`) and battles
+    under `B_FLAG_NO_CATCHING` have no counterpart in HnS and use up no
+    area either. Proposal: keep.
+  - Nickname question outside the Nuzlocke at four gifts (Johto starter
+    into the PC, Goldenrod's prizes into the PC, Bill's Eevee, the special
+    Dratini; D-045): HnS asks nothing there. Proposal: keep, it is what all
+    other gifts do.
+- **O-056** Move tutors in Kanto against HnS's Kanto (rule of D-054).
+  HnS's Kanto (its maps are retired, D-019) had free tutors for Sleep Talk
+  (Viridian City), Double-Edge (Viridian City), Rollout (Pewter City),
+  Dynamic Punch (Route 4), Swagger (Route 4's Pokemon Center), Mimic
+  (Saffron City's Pokemon Center) and Explosion (Cinnabar Island's Pokemon
+  Center), and in the Fighting Dojo's VIP room the three Battle Point
+  tutors that also stand at Route 40's Trainer Hill. HnS's other tutors are
+  in Johto (among them Ilex Forest, Olivine City and Route 40), at New
+  Sinjoh's hot springs and on Ulaula Isle in Alola (both locked, D-019).
+  FRLG's twelve tutors in Origin Jade's Kanto, compared with that:
+  - Mimic (the Copycat in Saffron City) and Double-Edge (Victory Road 2F):
+    HnS's Kanto taught them too, so they stay.
+  - Mega Punch and Mega Kick (Route 4), Seismic Toss (Pewter's museum),
+    Dream Eater (Viridian City), Rock Slide (Rock Tunnel), Thunder Wave
+    (Silph Co. 2F), Counter (Celadon's store 3F) and Softboiled (Celadon
+    City): HnS's Kanto taught them only for Battle Points in the Dojo's
+    VIP room, which stays off (D-032); Route 40's Trainer Hill teaches them
+    the same way.
+  - Substitute (Fuchsia City) and Metronome (Cinnabar's lab): HnS teaches
+    them only in Johto (the Route 40 gate, Olivine City).
+  - Missing in Origin Jade's Kanto: Sleep Talk, Rollout, Dynamic Punch,
+    Swagger and Explosion; Origin Jade teaches them only at their Emerald
+    places in Hoenn.
+  Proposal: keep all twelve FRLG tutors (ten moves were in HnS's Kanto,
+  the other two come in Johto right after Kanto; removing them only takes
+  moves away), and bring HnS's five missing tutors into FRLG's Kanto at
+  the same places (Viridian City, Pewter City, Route 4, Route 4's Pokemon
+  Center, Cinnabar Island's Pokemon Center). Adding them needs objects in
+  the maps (Porymap, owner); a strict reading of the rule would also take
+  out Substitute and Metronome. Owner to decide.
+- **O-057** Item randomizer, left from N-07 (D-054):
+  - Slateport's Berry Powder man (`SlateportCity/scripts.inc`) is the same
+    exchange as Cerulean's but still uses `giveitem`; the map was being
+    edited in Porymap by the owner on 2026-11-02. Proposal:
+    `giveitem_norandom` there too once the map is back.
+  - Single items for money: HnS itself differs (Mahogany's merchant through
+    the randomizer, the Moomoo Milk not). Mt. Chimney's Lava Cookie lady
+    and Route 109's Seashore House (Soda Pop) use `giveitem` like
+    Mahogany's merchant and stay randomized. Proposal: keep as HnS.
+  - Start: HnS randomizes from its first Poke Balls
+    (`FLAG_RECEIVED_FIRST_BALLS`), Origin Jade from the first starter
+    (D-023); Oak's Poke Balls and Route 1's Potion sample (`additem`) are
+    not randomized either. Proposal: keep.
+- **O-058** Randomizer species pool (owner question 2026-11-02). HnS 2.0.5
+  builds every generation (`species_enabled.h`: Gen 1-9 and the regional
+  forms on) and has a GEN SCOPE row in the randomizer tab: "GEN 1-3", the
+  default (Gen 1-3 families with their cross-gen evolutions and
+  pre-evolutions, plus the regional forms of its obtainable Pokedex), or
+  "GEN 1-9" (every species); it can be changed during a run. Origin Jade
+  builds only Gen 1-3 with their cross-gen evolutions (Gen 4-9 lines and
+  regional forms off, D-023, D-037), so its pool is HnS's default without
+  the regional forms, and the row is hidden. The Nuzlocke has no pool of
+  its own (its species clause looks at the species met). Options:
+  (a) keep it so and name the difference in the forum post;
+  (b) as HnS: Gen 4-9 and the regional forms back on and the row shown
+  again: a larger ROM and save layout (Pokedex flags), new species in
+  every list and in the region rule and dex counts (D-049), the locked
+  content of O-009 comes back into play; several days with tests.
+  Proposal: (a) for the beta.
 
 ## Superseded decisions (kept for the record)
 

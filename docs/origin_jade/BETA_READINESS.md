@@ -318,14 +318,14 @@ take effect in a normal playthrough.
 |---|---|---|---|---|---|
 | A66 | shared | Overworld Pokemon show species that cannot be caught on their map | partly fixed | Routes 26/27 fixed (`8167ea7bc6`); the others need an owner decision | by tool (map data vs. wild tables) |
 | A69 | shared | Jirachi has no source (only a retired map) | owner | create a source or record it as unobtainable (D-037 names the gap) | static |
-| N-challenge-3* | shared | Pokemon Center challenge blocks only the nurse, Mom, the S.S. Aqua bed and the Dojo; 59 maps with `HealPlayerParty` still heal | owner | menu text adjusted (`a6bb899765`); behaviour open | static |
-| N-challenge-4* | shared | Hardcore Nuzlocke deletes the save also after a faint from poison in the field | owner | text says "bei jeder Niederlage"; keep or limit to battles | static |
+| N-challenge-3* | shared | Pokemon Center challenge blocks only the nurse, Mom, the S.S. Aqua bed and the Dojo; 59 maps with `HealPlayerParty` still heal | fixed | as in HnS: nurses, Mom and every bed that heals (S.S. Aqua, S.S. Tidal, Weather Institute) are blocked, story heals and people who let the player rest stay (D-054) | static |
+| N-challenge-4* | shared | Hardcore Nuzlocke deletes the save also after a faint from poison in the field | decided | kept, as in HnS (D-054) | static |
 | N-nuzlocke-1* | shared | With "Feste PKMN: Zufall" the received message of Kanto gifts names the original species | open | buffer the species after randomizing | static |
-| N-nuzlocke-3* | shared | Nuzlocke deaths do not count in the Trainer Hills (O-028) | owner | proposal: keep them exempt like the Battle Frontier | static |
-| N-randomizer-1* | shared | Item randomizer: follow-up dialogs name the original item (e.g. Brock and TM39) | owner | generic texts or `giveitem_norandom` | static |
-| N-randomizer-2* | shared | Item randomizer: trades (Berry Powder, glass workshop, Mom's savings, lottery) give other items | owner | exclude with `giveitem_norandom` or accept | static |
+| N-nuzlocke-3* | shared | Nuzlocke deaths do not count in the Trainer Hills (O-028) | decided | kept exempt, as in HnS; O-028 resolved (D-054, D-045) | static |
+| N-randomizer-1* | shared | Item randomizer: follow-up dialogs name the original item (e.g. Brock and TM39) | decided | kept, as in HnS (D-054) | static |
+| N-randomizer-2* | shared | Item randomizer: trades (Berry Powder, glass workshop, Mom's savings, lottery) give other items | partly fixed | as in HnS, exchange menus give the chosen item (`giveitem_norandom`; D-023, D-054); Mom's savings and the lotteries stay randomized; Slateport's Berry Powder man waits for the owner's map (O-057) | static |
 | N-w3_nuzlocke-2* | shared | `Common_EventScript_PartyIsFull` ends without `release` although Bill, the Elder, Kenya and Shuckie called `lock` | open | check for a freeze in the game; add `release` | not checked |
-| T-legend_endgame-6 | shared | Challenge "Keine EVs" ends at Red, before Hoenn | owner | extend to the first Hoenn title like the Nuzlocke? | static |
+| T-legend_endgame-6 | shared | Challenge "Keine EVs" ends at Red, before Hoenn | fixed | ends with the Nuzlocke at the first Hoenn title, as HnS ends both at its credits (D-054) | static |
 | W-core_save-3 | shared | With the item randomizer the Items pocket (up to 307 items, 236 slots) and Berries pocket (68, 66 slots) can fill up | open | limit the whitelist or secure gifts (W-core_save-4) | not checked (tool suspicion) |
 | W-text_width-16 | shared | More English map texts: Moomoo twins, Route 34 Day Care, Slateport Battle Tent | text round | overlaps T-johto_b-2, T-johto_a-2, T-hoenn_a-1 | by tool |
 | W-text_width-17 | shared | English shared text files: `battle_tent.inc`, `safari_zone.inc`, `move_tutors.inc`, event tickets, Mixmeister | text round | overlaps T-hoenn_a-1 to -3 | by tool |
@@ -345,12 +345,12 @@ take effect in a normal playthrough.
 | N-balance-1* | Johto | Four Johto trainers with fewer than 3 Pokemon (Marc, Rich, Shirley, Zuki) | fixed | filled up to three Pokemon (D-053) | by tool (audit script) |
 | N-johto_story-1* | Johto | Celebi is no longer caught with the GS Ball (key item, not throwable); level 75, normal balls | owner | accept and document, or change | static |
 | N-johto_story-2* | Johto | The theater's Mystic Water is lost with a full bag (`giveitem` without a space check) | open | `checkitemspace` (see W-core_save-4) | static |
-| N-nuzlocke-2* | Johto | Route 41: Pokemon that faint in the unwinnable level-100 Tentacruel guard battle die | owner | exception? The guards stand where nobody passes anyway (W-map_checker-11) | static |
+| N-nuzlocke-2* | Johto | Route 41: Pokemon that faint in the unwinnable level-100 Tentacruel guard battle die | decided | kept, as in HnS (same battle at the same spot; D-054) | static |
 | W-moveset_sim-3 | Johto | Ariana 1 (Rocket Hideout B2F) has 6 Pokemon; the double battle shows only the first 3 | decided | kept as scripted (D-053) | by tool (moveset simulation) |
 | A48 | Kanto | TM27 (Return) is lost behind the retired Route 12 north gatehouse | owner | move the girl, drop TM27 in Kanto, or keep; then `EXCLUDED_MAPS` in `tools/make_debug_states.py` | by tool (`check_maps`, `simulate_progress`) |
 | A50 | Kanto | `Route22_hns` is active but cannot be entered (O-022) | partly fixed | O-022 documented (`b4a8ab9ce9`); retire or connect (owner) | by tool (`check_maps`) |
 | A74 | Kanto | Kanto ladder: 53 under-levelled evolutions (e.g. Dragonite 46/47, Tyranitar 47) | decided | kept (D-011, D-053) | static |
-| A78 | Kanto | No move reminder in Kanto (chapter 1) | owner | add one or accept | static |
+| A78 | Kanto | No move reminder in Kanto (chapter 1) | decided | Kanto stays without one, as HnS's Kanto (owner, D-054) | static |
 | A37 | technical | GitHub Actions never ran | partly fixed | Jade workflow committed (`c64f0a28dd`), since `bb850c8d7c` and `0ab7449520` also with `check_regions.py` and the check of both debug states; the owner has to enable Actions; the test job is a placeholder | static (workflow never ran) |
 | A38 | technical | Save and RAM budget almost used up (SaveBlock1 4 bytes free, EWRAM 95 %) | partly fixed | `tools/check_budget.py`, D-017; more reserve is an owner decision (see A89) | by tool (`check_budget`) |
 | A40 | technical | Width tests in `test/text.c`: German overflows and the grammar slip "von das gegnerische" | text round | the 6 width failures are in the baseline | static |
@@ -368,11 +368,11 @@ take effect in a normal playthrough.
 | A113 | shared | Low IVs of Johto/Hoenn bosses for their scaled level (see O-023) | decided | boss IVs stay as in HnS (D-053) |
 | N-balance-4* | shared | Partner OT name cut to "Siegfri" (7 characters), only in the summary | open | |
 | N-challenge-1* | shared | Escape formula: `u8 speedVar` in `TryRunFromBattle` overflows after 5-6 tries (upstream) | open | |
-| N-randomizer-3* | shared | With "Starter: Zufall" Oak's confirmation names the original species (the received message is right) | owner | text |
-| N-randomizer-4* | shared | "Starter: Zufall" only affects the Kanto starter; Elm and Birch give the original (D-023) | owner | |
+| N-randomizer-3* | shared | With "Starter: Zufall" Oak's confirmation names the original species (the received message is right) | fixed | Oak, Elm and Birch name the shown species (D-023, D-054) |
+| N-randomizer-4* | shared | "Starter: Zufall" only affects the Kanto starter; Elm and Birch give the original (D-023) | fixed | every lab starter, as HnS randomizes its starter (D-054) |
 | N-randomizer-5* | shared | The item randomizer menu line does not mention fossils and evolution items | owner | text |
 | N-randomizer-6* | shared | Scripted double wild battles are never randomized | open | whether an active map uses them is not checked |
-| N-w3_nuzlocke-1* | shared | The new nickname question also appears without Nuzlocke (Johto starter and Goldenrod prizes in the PC, Bill's Eevee, the Dragon's Den Dratini) | owner | may be rejected |
+| N-w3_nuzlocke-1* | shared | The new nickname question also appears without Nuzlocke (Johto starter and Goldenrod prizes in the PC, Bill's Eevee, the Dragon's Den Dratini) | owner | HnS asks nothing there; proposal keep (O-055) |
 | W-core_save-4 | shared | 72 gift and trade scripts without a space check (71 in the tool report; Wallace's HM Waterfall is new) | open | secure the story-relevant ones (fossils, Bug-Catching Contest, Exp. Share, Metal Coat) with `checkitemspace` |
 | W-core_save-5 | shared | Key items pocket: 2 slots reserve (58 of 60 since the Hoenn Ticket became a key item, `84e8dc6bb5`) | open | a rule in D-017 |
 | W-core_save-6 | shared | Link features (Cable Club, Union Room, ...) reachable in the Jade build | owner | offer them on purpose (then test them) or hide them |
@@ -417,7 +417,7 @@ take effect in a normal playthrough.
 | T-kanto_b-7 | Kanto | Saffron City station sign all in capitals (D-020) | text round | |
 | W-core_save-8 | Kanto | Kanto title: Oak's plateau scene only after saving | partly fixed | a restart after the Hall of Fame save wakes the player in the room (`93ae559803`); Oak's line on the plateau is missed if the player switches off before the scene ends; no softlock |
 | W-map_checker-12 | Kanto | S.S. Anne deck active but without access; its hidden Lava Cookie is lost | owner | move or give up |
-| A121 | technical | Hall of Fame entries carry no region | partly fixed | all regions hold 50 teams (`cd155adc3d`); a region per entry is an owner decision |
+| A121 | technical | Hall of Fame entries carry no region | decided | all regions hold 50 teams (`cd155adc3d`); one list without a region, as in HnS (D-054) |
 | N-build_tools-2* | technical | Leftovers of removed build targets (`make compare` checks Emerald's `rom.sha1`, `make debug` writes the same file name, `docs/tutorials/how_to_frlg.md` names `make firered`) | open | |
 | N-build_tools-3* | technical | CI docs check removed (`DECISIONS.md` not in `docs/SUMMARY.md`) | owner | mdbook docs wanted? |
 | N-build_tools-4* | technical | The release build (LTO) has 6 warnings more than the baseline; the warning check covers the normal build only | open | confirmed 2026-10-31: 111 vs. 105, also on `b022af5623` |
@@ -452,8 +452,8 @@ take effect in a normal playthrough.
   German terms, or by the owner. It covers O-012 (Johto story) and the
   shared texts O-012 does not name (Safari Zone, Battle Tents, move tutors,
   event tickets), plus the line widths.
-- Route 41: the Tentacruel barrier blocks nothing (W-map_checker-11), and
-  Nuzlocke deaths in its battle (N-nuzlocke-2).
+- Route 41: the Tentacruel barrier blocks nothing (W-map_checker-11); its
+  Nuzlocke deaths stay as in HnS (N-nuzlocke-2, D-054).
 - Maps without access: Cerulean City house 2 (T-kanto_a-8), TM27 on
   Route 12 (A48), `Route22_hns` (A50, O-022), S.S. Anne deck
   (W-map_checker-12), orphaned maps (W-progress_sim-16), test warps
@@ -483,11 +483,14 @@ take effect in a normal playthrough.
 
 **Challenges**
 - Confirm the Nuzlocke end at the first Hoenn title (O-025).
-- Nuzlocke in the Trainer Hills (O-028).
-- "Keine EVs" end point (T-legend_endgame-6); Pokemon Center challenge
-  scope (N-challenge-3); hardcore after field faints (N-challenge-4).
-- Randomizer texts and trades (N-randomizer-1 to -5); nickname question
-  without Nuzlocke (N-w3_nuzlocke-1).
+- Settled as in HnS (D-054, owner 2026-11-02): Trainer Hills (O-028),
+  "Keine EVs" end point (T-legend_endgame-6), Pokemon Center challenge
+  scope (N-challenge-3), hardcore after field faints (N-challenge-4),
+  randomizer texts, trades and starters (N-randomizer-1 to -4).
+- Still open: Nuzlocke rules that differ from HnS, among them the nickname
+  question without Nuzlocke (O-055, N-w3_nuzlocke-1); move tutors in Kanto
+  (O-056); item randomizer leftovers (O-057); randomizer species pool
+  (O-058); randomizer menu line (N-randomizer-5).
 
 **Hoenn details**
 - Shared lottery ticket, tent TMs and Scott's flags (A61); Wallace's
@@ -498,8 +501,8 @@ take effect in a normal playthrough.
   (A15, O-024, D-044).
 
 **Technical**
-- Move reminder in Kanto (A78); Hall of Fame with a region per entry
-  (A121).
+- Move reminder in Kanto (A78) and Hall of Fame without a region (A121):
+  settled as in HnS (D-054).
 - Link features: offer and test, or hide (W-core_save-6).
 - Tests: MESSAGE tests (A32), `test/text.c` (A94), spread move damage
   (N-tests-3); pin `FLAGS_COUNT`/`VARS_COUNT` (A89).
@@ -539,8 +542,9 @@ take effect in a normal playthrough.
   visit (T-johto_b-5).
 
 Open questions that stay in `DECISIONS.md`: O-009, O-012, O-020, O-021,
-O-022, O-024, O-025, O-028, O-029 to O-040 and O-050 (O-002 is resolved by
-D-047, O-023 by D-053); planned items P-001 to P-004 (P-005 is done).
+O-022, O-024, O-025, O-029 to O-040, O-050 and O-055 to O-058 (O-002 is
+resolved by D-047, O-023 by D-053, O-028 by D-054); planned items P-001 to
+P-004 (P-005 is done).
 
 ## Emulator test list for the story packages
 
