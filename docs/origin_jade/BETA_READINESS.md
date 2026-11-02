@@ -437,9 +437,9 @@ take effect in a normal playthrough.
   scenes, the port texts, the ticket description, the Hoenn texts of
   D-048, Mom's calls), among them Troy's "Ich erwarte dich in Hoenn!"
   where the owner's outline said "dort"; Troy and Wallace as the only
-  people in Hoenn who know the player (D-048); Troy's sprite (O-031);
-  the continue point in the Pallet Town bedroom in front of the stairs
-  (O-041); hidden leftovers of the father scenes (O-030).
+  people in Hoenn who know the player (D-048); the continue point in the
+  Pallet Town bedroom in front of the stairs (O-041); hidden leftovers of
+  the father scenes (O-030).
 - Region rule (D-049): which randomizer options switch it off (O-033); the
   Pokedex evolution page still shows later species (O-034); the Johto
   Pokedex counts as complete without Azurill and Wynaut, implemented by
@@ -556,7 +556,8 @@ in the beta build (the debug states reach them quickly):
 1. **Johto Hall of Fame** at the first Johto title: after the record Oak
    and "???" (Troy) come in from the door, Troy talks only to Oak and
    leaves, Oak asks the player to come to his lab. No scene at a title
-   defence. Troy's sprite next to HnS's Oak and Lance (O-031).
+   defence. Troy keeps Emerald's sprite next to HnS's Oak and Lance
+   (O-031, D-047).
 2. **Waking up in the room** after the Kanto title, every Johto title and
    Red, also after a restart once the Hall of Fame has saved, in front of
    the stairs at (9,3) (O-041); a whiteout from there leads to Mom

@@ -1278,7 +1278,8 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-047 Hoenn Ticket story and ports
 - **Status:** Active (2026-10-31; changed 2026-11-02: "Hoenn" stays until
-  Slateport's harbour can be sailed to, O-032). Resolves O-002.
+  Slateport's harbour can be sailed to, O-032; Troy's sprite, O-031).
+  Resolves O-002.
 - **Decision:**
   - At the first Johto title Oak and an unknown man ("???", Troy) come
     into Johto's Hall of Fame after the record. Troy talks only to Oak (he
@@ -1301,8 +1302,11 @@ dated 2026-10-10 or later were decided directly.
     him meanwhile.
   - Saves already past the first Johto title that have not been to Hoenn
     arm the scene on entering the lab (D-005).
-  - Troy has one sprite everywhere (owner); currently
-    `OBJ_EVENT_GFX_STEVEN`, see O-031.
+  - Troy has Emerald's sprite `OBJ_EVENT_GFX_STEVEN`, the one of the
+    Hoenn maps, everywhere: in Johto's Hall of Fame, in Oak's lab and in
+    Hoenn (owner 2026-11-02, O-031). HnS's `OBJ_EVENT_GFX_STEVEN_HNS` is
+    left only on maps the jade build never reaches (HnS's retired Kanto
+    maps, the locked Sinjoh maps, a test map).
   - The ship menus in Vermilion, Olivine and on the islands (Kampfzone,
     Birth Island) are built on every visit and list only what can be
     sailed to now:
@@ -1355,7 +1359,7 @@ dated 2026-10-10 or later were decided directly.
   `VAR_HOENN_TICKET_STATE` in `include/constants/vars_hoenn_de.h`;
   `ITEM_HOENN_TICKET` in `src/data/items.h`.
 - **Evidence:** owner decisions 2026-10-31 (plan part A, Hoenn Ticket
-  story); owner answer 2026-11-02 (O-032).
+  story); owner answers 2026-11-02 (O-031, O-032).
 
 ### D-048 Hoenn: an unknown trainer, Norman is not the father
 - **Status:** Active (2026-10-31; changed 2026-11-02: decorations in
@@ -1807,11 +1811,8 @@ dated 2026-10-10 or later were decided directly.
   Porymap, and the non-jade scenes kept for merges still use them;
   renaming upstream names makes merges larger (D-021, D-046). Owner to
   decide whether they go.
-- **O-031** Troy's sprite: the owner decided on one sprite everywhere
-  (D-047). The build uses Emerald's `OBJ_EVENT_GFX_STEVEN`; HnS's
-  `OBJ_EVENT_GFX_STEVEN_HNS` is the alternative. Not compared in an
-  emulator yet next to the other people of his scenes (FRLG's Oak in his
-  lab, HnS's Oak and Lance in Johto's Hall of Fame).
+- **O-031** Resolved 2026-11-02 (owner): Troy has Emerald's sprite
+  `OBJ_EVENT_GFX_STEVEN` everywhere (D-047).
 - **O-032** Resolved 2026-11-02 (owner): "Hoenn" (Route 104 pier, Birch's
   greeting only on the first trip) stays in the ship menus until
   "Graphitport City" can be offered, then that replaces it; "Seegrasulb
