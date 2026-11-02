@@ -1606,6 +1606,26 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** owner requirements 2026-10-31 (points 6, 7, 11, 14, 17);
   plan part D.
 
+### D-051 Calls by region and the calls after a title
+- **Status:** Active (2026-11-02)
+- **Decision:**
+  - Hoenn's calls ring only in Hoenn. The calls that start after a number
+    of steps outdoors count those steps only on Hoenn maps
+    (`IsHoennMapsec`); outside Hoenn they wait and come after the return:
+    Wally's call after his battle in Mauville (he registers in the
+    PokeNav), Roxanne's registration call, Scott's call after the Fortree
+    badge, the rival's call after the Space Center (May or Birch's son) and
+    Norman's call when his gym opens (D-048).
+  - No other Hoenn call rings on its own: random trainer calls need a call
+    text, which only HnS's Johto trainers have, and Birch is only called
+    by the player. Kanto's and Johto's calls (Mom, Elm, HnS's trainers)
+    are unchanged.
+- **Code:** `HOENN_CALL_WAITS` in `ShouldDoWallyCall`,
+  `ShouldDoScottFortreeCall`, `ShouldDoScottBattleFrontierCall`,
+  `ShouldDoRoxanneCall`, `ShouldDoRivalRayquazaCall`; `ShouldDoNormanCall`
+  (`src/field_specials.c`).
+- **Evidence:** owner answers 2026-10-31 (S-07).
+
 ---
 
 ## Planned, not built yet

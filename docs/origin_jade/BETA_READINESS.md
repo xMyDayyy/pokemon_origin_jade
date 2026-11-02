@@ -338,7 +338,7 @@ take effect in a normal playthrough.
 | A67 | Hoenn | Hoenn families need evolution items sold only in Kanto/Johto | owner | sell them in Hoenn marts or document | not checked (suspicion) |
 | A68 | Hoenn | Prism Scale has no source | owner | place one or document the Beauty path to Milotic | static |
 | N-facilities-2* | Hoenn | Emerald Trainer Hill maps do not set `FLAG_TEMP_HIDE_FOLLOWER` (HnS maps do) | open | check the follower Pokemon at runtime | not checked |
-| N-w3_hoenn-2* | Hoenn | Wally's, Scott's (two) and Roxanne's calls count steps in Johto and Kanto too | owner | same guard as Norman's call (`488df2564a`); changes vanilla calls | static |
+| N-w3_hoenn-2* | Hoenn | Wally's, Scott's (two) and Roxanne's calls count steps in Johto and Kanto too | fixed | the calls count steps only on Hoenn maps, like Norman's call; the rival's call after the Space Center too (D-051, owner S-07) | static |
 | A54 | Johto | Suicune sighting on Route 42 in a pocket behind a Cut tree | owner | move the trigger, add a hint, or record it in D-038 | static |
 | A75 | Johto | A caught legendary (level 75) lifts the Johto anchor to 67 or more | owner | legendary levels and anchor effect (also Red, Mt. Silver floor, theater ceiling) | static |
 | N-balance-1* | Johto | Four Johto trainers with fewer than 3 Pokemon (Marc, Rich, Shirley, Zuki) | owner | fill up or an exception in D-012 | by tool (audit script) |
@@ -497,8 +497,8 @@ take effect in a normal playthrough.
 
 **Hoenn details**
 - Battle Frontier only after the S.S. Tidal (A63); shared lottery ticket,
-  tent TMs and Scott's flags (A61); further Hoenn calls outside Hoenn
-  (N-w3_hoenn-2); Wallace's reward and text (N-w3_hoenn-1, -3).
+  tent TMs and Scott's flags (A61); Wallace's reward and text
+  (N-w3_hoenn-1, -3).
 - Hoenn map section for the Route 111 Trainer Hill and its prize rule
   (A15, O-024, D-044).
 
@@ -606,6 +606,10 @@ in the beta build (the debug states reach them quickly):
 12. **Hoenn texts of D-048:** "Birk sagt immer…", May, Birch's son, the
     Elite Four, Scott's call, Norman's PokeNav call after his defeat, the
     Petalburg townspeople after the gym opened, Mom's calls in each region.
+13. **Hoenn calls only in Hoenn (D-051):** with a call of Wally, Roxanne,
+    Scott or the rival still to come, fly to Kanto or Johto: it does not
+    ring there and comes after a few steps outdoors back in Hoenn; Mom's,
+    Elm's and the Johto trainers' calls ring as before.
 
 ## Risks
 

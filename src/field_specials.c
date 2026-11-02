@@ -454,8 +454,17 @@ enum SSTidalLocation GetSSTidalLocation(s8 *mapGroup, s8 *mapNum, s16 *x, s16 *y
     return SS_TIDAL_LOCATION_CURRENTS;
 }
 
+#if IS_HNS
+// Hoenn's calls only count steps on Hoenn maps; elsewhere they wait.
+#define HOENN_CALL_WAITS() (!IsHoennMapsec(gMapHeader.regionMapSectionId))
+#else
+#define HOENN_CALL_WAITS() FALSE
+#endif
+
 bool32 ShouldDoWallyCall(void)
 {
+    if (HOENN_CALL_WAITS())
+        return FALSE;
     if (FlagGet(FLAG_ENABLE_FIRST_WALLY_POKENAV_CALL))
     {
         switch (gMapHeader.mapType)
@@ -481,6 +490,8 @@ bool32 ShouldDoWallyCall(void)
 
 bool32 ShouldDoScottFortreeCall(void)
 {
+    if (HOENN_CALL_WAITS())
+        return FALSE;
     if (FlagGet(FLAG_SCOTT_CALL_FORTREE_GYM))
     {
         switch (gMapHeader.mapType)
@@ -506,6 +517,8 @@ bool32 ShouldDoScottFortreeCall(void)
 
 bool32 ShouldDoScottBattleFrontierCall(void)
 {
+    if (HOENN_CALL_WAITS())
+        return FALSE;
     if (FlagGet(FLAG_SCOTT_CALL_BATTLE_FRONTIER))
     {
         switch (gMapHeader.mapType)
@@ -531,6 +544,8 @@ bool32 ShouldDoScottBattleFrontierCall(void)
 
 bool32 ShouldDoRoxanneCall(void)
 {
+    if (HOENN_CALL_WAITS())
+        return FALSE;
     if (FlagGet(FLAG_ENABLE_ROXANNE_FIRST_CALL))
     {
         switch (gMapHeader.mapType)
@@ -607,6 +622,8 @@ bool32 ShouldDoMomCall(void)
 
 bool32 ShouldDoRivalRayquazaCall(void)
 {
+    if (HOENN_CALL_WAITS())
+        return FALSE;
     if (FlagGet(FLAG_DEFEATED_MAGMA_SPACE_CENTER))
     {
         switch (gMapHeader.mapType)
