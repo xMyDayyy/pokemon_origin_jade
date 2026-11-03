@@ -2314,9 +2314,14 @@ dated 2026-10-10 or later were decided directly.
     the owner's existing map texts (Mahagonia City, Wutkeks, Norbert,
     Intendant, Lambda, Athena, Atlas, Siegfried, Kelleröffner, Aufseher
     Baoba, Safari-Level, Pokériegel, Napf, IVs as in the challenge menu).
-    The texts are own translations in the style of the neighbouring
-    texts; the owner reads them in the text round. Title case (D-020);
-    message lines at most 208 px, PokeNav call lines at most 192 px.
+    Where the Poké-Corpus has the official German of the same English
+    line or sentence, it is used word for word (HGSS first, then Crystal,
+    Gold/Silver; Emerald, Ruby/Sapphire and FRLG for their maps), with
+    only the line breaks set anew: the radio tower's top floor and the
+    Underground switch room. The other texts are own translations in the
+    style of the neighbouring texts and wait for the owner's approval.
+    Title case (D-020); message lines at most 208 px, PokeNav call lines
+    at most 192 px.
   - Done 2026-11-02, Johto: Mahogany Town (13 texts, also Elm's call
     about the radio tower), the radio tower's top floor (map
     `GoldenrodCity_RadioTower_5F_hns`, "4S" on its signs; 20) and the
