@@ -73,6 +73,14 @@
 // TMs of HnS's Kanto from NPCs (D-059).
 #define FLAG_GOT_TM_EXPLOSION_UNDERGROUND_PATH               (OJ_FLAGS_KANTO + 26)
 #define FLAG_GOT_TM_SLEEP_TALK_CELADON_ROOF                  (OJ_FLAGS_KANTO + 27)
+// Hidden items and item balls with items that had no other source (D-059).
+#define FLAG_HIDDEN_ITEM_VERMILION_CITY_PEARL_STRING_FRLG    (OJ_FLAGS_KANTO + 28)
+#define FLAG_HIDDEN_ITEM_CERULEAN_CAVE_B1F_ODD_INCENSE_FRLG  (OJ_FLAGS_KANTO + 29)
+#define FLAG_HIDDEN_ITEM_ROUTE15_ROSE_INCENSE_FRLG           (OJ_FLAGS_KANTO + 30)
+#define FLAG_HIDDEN_ITEM_MT_MOON_B2F_COMET_SHARD             (OJ_FLAGS_KANTO + 31)
+#define FLAG_HIDDEN_ITEM_CERULEAN_CITY_BERSERK_GENE          (OJ_FLAGS_KANTO + 32)
+#define FLAG_HIDDEN_ITEM_ROUTE8_FAIRY_GEM_FRLG               (OJ_FLAGS_KANTO + 33)
+#define FLAG_HIDE_MT_MOON_1F_FAIRY_FEATHER                   (OJ_FLAGS_KANTO + 34)
 
 // ---------------------------------------------------------------------
 // Johto (OJ_FLAGS_JOHTO + 0 to + 159)

@@ -268,6 +268,16 @@
       "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B2F_ETHER",
       "quantity": 1,
       "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 36,
+      "y": 5,
+      "elevation": 4,
+      "item": "ITEM_COMET_SHARD",
+      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B2F_COMET_SHARD",
+      "quantity": 1,
+      "underfoot": false
     }
   ],
   "floor_number": 0,

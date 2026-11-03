@@ -757,3 +757,9 @@ CeladonCity_EventScript_ItemTMRecycle::
 ViridianForest_EventScript_ItemTMPsychUp::
 	finditem ITEM_TM_PSYCH_UP
 	end
+
+@ Origin Jade: items without another source.
+
+MtMoon_1F_EventScript_ItemFairyFeather::
+	finditem ITEM_FAIRY_FEATHER
+	end

@@ -722,6 +722,16 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "CeruleanCity_BikeShop_EventScript_Bicycle"
+    },
+    {
+      "type": "hidden_item",
+      "x": 45,
+      "y": 19,
+      "elevation": 3,
+      "item": "ITEM_BERSERK_GENE",
+      "flag": "FLAG_HIDDEN_ITEM_CERULEAN_CITY_BERSERK_GENE",
+      "quantity": 1,
+      "underfoot": false
     }
   ],
   "floor_number": 0,
