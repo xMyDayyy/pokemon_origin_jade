@@ -60,12 +60,12 @@ In [`docs/origin_jade/`](docs/origin_jade/):
   (`D-`), planned work (`P-`) and open questions (`O-`). Read the entry
   before changing what it covers.
 - [`CHANGELOG.md`](docs/origin_jade/CHANGELOG.md): changes of the audit
-  round, the story packages and rounds 2 to 4 (2026-10-30 to
+  round, the story packages and rounds 2 to 5 (2026-10-30 to
   2026-11-03) for players and testers.
 - [`BETA_READINESS.md`](docs/origin_jade/BETA_READINESS.md): beta
   criteria, open points, owner decisions, risks.
 - [`PATCHES.md`](docs/origin_jade/PATCHES.md): the patch series of the
-  audit round, the story packages and rounds 2 to 4, its order,
+  audit round, the story packages and rounds 2 to 5, its order,
   verification and how to apply it.
 - [`TESTS.md`](docs/origin_jade/TESTS.md): test suite and check tools.
 

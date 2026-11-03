@@ -3,8 +3,9 @@
 Changes of the audit round of 2026-10-30/31, of the story packages that
 followed it on 2026-10-31, of round 2 on 2026-11-02 (the owner's answers
 of 2026-10-31 and 2026-11-02), of round 3 on 2026-11-02/03 (contests as
-in Ruby and Sapphire) and of round 4 on 2026-11-03 (every item can be
-obtained), for players and testers. The upstream
+in Ruby and Sapphire), of round 4 on 2026-11-03 (every item can be
+obtained) and of round 5 on 2026-11-03 (official German texts word for
+word), for players and testers. The upstream
 `CHANGELOG.md` in the repository root belongs to pokeemerald-expansion and
 is not about Origin Jade.
 
@@ -13,7 +14,8 @@ is not about Origin Jade.
   rounds 2 and 3, of the branch `runde23` on top of the owner's map
   commits `06ea236bdb` and `ad4a8db368` (round 2 was rebased onto them;
   its ids before the rebase are no longer used); for round 4 those of the
-  branch `r4-items` on top of `r23-docs` (`74c47e7e1b`);
+  branch `r4-items` on top of `r23-docs` (`74c47e7e1b`); for round 5 those
+  of the branch `r5-text` on top of `r4-items` (`d865587460`);
   `docs/origin_jade/PATCHES.md` lists every commit, including
   documentation and tool-only ones that change nothing in the game.
 - Names: English names first, the German in-game name in parentheses where
@@ -26,7 +28,75 @@ is not about Origin Jade.
   Round 2 changes the save layout again (separate Day Cares, D-052);
   round 3 adds four flags and leaves the layout as it is; round 4 adds 44
   flags and one var in free ids of the Origin Jade blocks and leaves the
-  layout as it is.
+  layout as it is; round 5 changes only texts.
+
+## Round 5: official German texts word for word (D-056, D-057)
+
+The owner's rule of 2026-11-03: only verified official German text, word
+for word; free translations, smoothings and shortenings need his
+approval first. The 547 German texts added or changed in rounds 1 to 4
+were compared with the Poké-Corpus (the texts of the official games, line
+by line in English and German), text by text and sentence by sentence:
+118 now show the official German of the same English line (Emerald, Ruby
+and Sapphire, FRLG, HGSS, Crystal; 6 of them with an Origin Jade name or
+a placeholder in it) and 15 more their official sentences; 273 already
+did, 21 keep a deviation (Origin Jade's names and obedience levels, story
+changes, a close official line of the same scene) and 135 are own texts.
+Six older texts outside these 547 were corrected as well (see the
+bullets). Other older texts were not compared. The deviations, the
+reverted smoothings and free translations, the choice between HGSS and
+Crystal and the own texts wait for the owner's approval (an approval
+list outside the repository). Only line breaks were set anew; no line is
+wider than 208 px. No code, flag or save change.
+
+- Shared texts: the Dynamic Punch, Double-Edge and Explosion tutors, the
+  battle tents' rules, Mr. Briney's event ticket lines and a Safari Zone
+  girl as in German Emerald (round 2's smoothings are reverted, e.g.
+  "Brack:", "Moosbach", "Schauen wir auf die Alte Karte. Wo wir die Insel
+  finden."); Mom's heal tip after a whiteout in Pallet Town as in German
+  FRLG, whose Mom names Prof. Oak in the same scene (title case, "Mama:");
+  the Headbutt tutor as in HGSS and Crystal; the Blend Master's first
+  line; "Orania" in the ferry menu as in FRLG; the Battle Tent copy at
+  Route 40 greets with Emerald's full stop. Mom's Pokecenter challenge
+  line got its missing article. `951f7a595f`
+- System texts: "Trck." in the Pokeblock case, "verwandelt sich!", "Typ:"
+  for the move relearner, "mehr" on the easy chat keyboard and the intro
+  line "Dies ist ein so genanntes “Pokémon”." as in German Emerald; Mom's
+  savings prompts write "Wie viel"; the Game Corner TV show names the slot
+  machines "Einarmigen Banditen" as in German Emerald, with Emerald's line
+  breaks so that it fits. `8fe64ff0d3`
+- Kanto: the museum signs in Pewter City, "Space Shuttle" (German FRLG
+  keeps it) and the meteorite with FRLG's brackets "(Mondstein?)"
+  `1dc50fc45b`; Bill's grandfather, the Rage Candy Bar man in the
+  Underground Path and the white rock on Route 4 ("Nichts geschieht!")
+  `b050d8febc`.
+- Hoenn: the Poochyena on Route 114 says "Bow! Bowwow!" as in German
+  Emerald, Drake calls himself "Drachen-Meister", Capt. Stern in Slateport
+  says "Unterwasserhöhle" again (the text had a broken "Unter-
+  wasserhöhle"). `ac92b4e140`
+- Johto: the Radio Tower's top floor (fake director, executive, Archer,
+  director, Ben; Archer before the battle with his official sentences)
+  and the Goldenrod Underground switch room (Silver before the battle with
+  his five official sentences) `6736ab0a3c`; Mahogany Town with Elm's
+  call, Union Cave 1F (Russell after the battle now also as in HGSS), the
+  Moomoo Farm barn, Baoba's Pokeblock line as in HGSS and Elm's question
+  about a random starter `cd8f0a68e4`.
+- Contests: the audience, judge, MC and signs of the contest halls and
+  lobbies as in German Ruby and Sapphire. `2681949356`
+- Battle Frontier: the counters of all six facilities (Emerald and HnS
+  lobbies) said "Eier sind nicht zugelassen nicht zugelassen." when the
+  party was not eligible, because the placeholder already brings " sind
+  nicht zugelassen"; the map text now ends after the placeholder, as in
+  HnS's Battle Arena and Battle Dome lobbies, so the game shows German
+  Emerald's "Eier sind nicht zugelassen." `035c5ef512`
+- For testers: read these scenes once in the German build and look for
+  cut-off lines, wrong names and mixed spellings: Mom after a whiteout in
+  Pallet Town (the line before the heal tip still has Emerald's capitals,
+  O-037), the Radio Tower's top floor, the Underground switch room,
+  Mahogany Town, the Moomoo barn, Union Cave 1F, the contest halls of
+  Slateport, Fallarbor and Verdanturf, Bill's grandfather, the move
+  tutors, Drake, Elm's question about a random starter and the Game
+  Corner TV show. Nothing of round 5 was played.
 
 ## Round 4: every item can be obtained (D-059)
 
@@ -365,8 +435,9 @@ are drafts for the owner's text round.
   Radio Tower), the Radio Tower's top floor, the Goldenrod Underground
   switch room, the Safari Zone gate entrance, Union Cave 1F, the Moomoo
   Farm barn, the Mt. Silver Pokemon Center, the Day Care's party limit
-  message, the "Raumfähre" sign in Pewter City's museum, the Poochyena on
-  Route 114 and the HnS copy of Slateport's tent lobby at Route 40.
+  message, the sign in Pewter City's museum and the Poochyena on Route
+  114 (round 5 set both to the official wording, "Space Shuttle" and
+  "Bow! Bowwow!") and the HnS copy of Slateport's tent lobby at Route 40.
   `4ff756809d`, `01bbabf2ab`, `9a16d641a5`, `4efc5b011a`, `0b573ed13e`,
   `a3cbf5b4c2`, `04009d06e5`
 - Five German map texts that wrote money with "$" were cut off there
@@ -835,6 +906,13 @@ with evidence and the owner decisions it needs. The most important:
   Caps without Hyper Training (O-077); the 20 items that come only by
   luck (O-078). Brock's new line and Bill's grandfather's texts are new
   German texts for the owner's text round.
-- Nothing of rounds 2 to 4 was played in an emulator; `BETA_READINESS.md`
+- Round 5: the owner's approval list of the German texts (21
+  deviations, three small fixes of official texts, the reverted
+  smoothings and free translations, among them the contest halls, the
+  choice between HGSS and Crystal per scene, Origin Jade's names in
+  official texts, 135 own texts, 32 of them with official sentences, and
+  a few older system texts that differ from the official ones); Mom's
+  line before the heal tip (O-037).
+- Nothing of rounds 2 to 5 was played in an emulator; `BETA_READINESS.md`
   lists what to test first, among it one pass through each contest hall
   and the new item sources.

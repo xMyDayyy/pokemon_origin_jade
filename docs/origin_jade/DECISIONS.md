@@ -2654,7 +2654,24 @@ dated 2026-10-10 or later were decided directly.
   `check_pokenav_text.py` read one glyph off until 2026-10-30. On
   2026-11-02, after the translations, the built ROM has the same 35 exact
   lines over 208 px as before (Johto 28, Kanto 1, locked maps 6). Later,
-  as its own round (owner 2026-10-21).
+  as its own round (owner 2026-10-21). On 2026-11-03 the 547 German texts
+  added or changed in rounds 1 to 4 were compared with the Poké-Corpus,
+  text by text and sentence by sentence: 118 now carry the official
+  German word for word (6 of them with an Origin Jade name or a
+  placeholder in it; owner rule 2026-11-03, D-056, D-057, D-058), 273
+  already did or do except for Origin Jade's names, other line breaks or
+  a fixed typo, 21 keep a deviation (Origin Jade's names and obedience
+  levels, story changes, a close official line of the same scene) and
+  135 are own texts; 32 of those contain official sentences, 15 of them
+  were set to these sentences in that round. Six older texts were fixed
+  as well (the intro line, a museum sign, a broken word, a Union Cave
+  line and the Game Corner TV show's line breaks); the other texts from
+  before round 1 were not compared. The deviations, Origin Jade's names
+  in official texts, the three fixed typos of official texts, the
+  reverted smoothings and free translations, the choice between HGSS and
+  Crystal, the own texts and a few older system texts that differ from
+  the official ones are on the owner's approval list of that round. The
+  built ROM still has the same 35 exact lines over 208 px.
 - **O-013** Resolved 2026-10-15 (D-028).
 - **O-014** Resolved 2026-10-15: Silver's daily battle (D-028), gym rematches
   and Janina in Fuchsia (D-032). The signposts and the Dojo VIP room stay off.

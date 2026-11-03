@@ -230,7 +230,32 @@ Also after every change to flags, vars, trainers or Kanto content:
 tables, overworld Pokemon, gifts or the Pokedex order:
 `python3 -I tools/check_regions.py` (D-049).
 
-## Test matrix (2026-11-03, round 4: `r4-items`)
+## Test matrix (2026-11-03, round 5: `r5-text`)
+
+State: round 5 on top of `r4-items` (`d865587460`): the branch `r5-text`
+with 8 text commits (official German texts word for word, owner rule
+2026-11-03, D-056, D-057; tip of the texts `b050d8febc`), one Battle
+Frontier text fix (`035c5ef512`) and its documentation commit (no code
+change). Round 5 changes only texts: no code, flag, var, map object or
+save layout. Results from the per-commit run `percommit_r5`
+(`r5int/percommit.log` in the audit workspace), the text checks on the
+ROM of `b050d8febc` and of `035c5ef512`, and the end checks on the ROM
+of `035c5ef512` (the documentation commit gives the same ROM). Nothing was checked in an emulator.
+
+| Area | Check | Result |
+|---|---|---|
+| Build | `make -j3` per commit (`percommit_r5`) | 10 of 10 commits after `d865587460` `make=ok` with their final ids; `check_flags` 0 and `make_debug_states.py --check` (both headers up to date) at each; ROM SHA-1 of `b050d8febc` `123ca23a06e7a992bfd70883ff072dd192aa7b07`; `035c5ef512` and the documentation commit `369526d0c3f75df465e426fc2779560a460cbe90` |
+| Build | build from scratch in a new worktree, `make release` | the same SHA-1 `369526d0c3f75df465e426fc2779560a460cbe90`; release `c88276f7e1390dedfe3f892244180bb54a306e36` (no debug menu); `check_warnings.py` 105 warnings, as in the baseline |
+| Tests | `tools/run_tests.py` | 5148 tests in 951 files: 2355 ok, 629 todo, 2164 failing (2164 known, 0 new, 0 changed) |
+| Progress | `simulate_progress.py --compare` (against the tip before the frontier fix) | Kanto title from wave 50, Johto 105, Hoenn 137; 0 milestones gained or lost |
+| Checks | `check_flags.py`, `make_debug_states.py --check`, `check_regions.py`, `check_budget.py`, `check_save_safety.py`, `check_maps.py --compare r4-items`, `check_merge.py` | 0 problems; both headers up to date; 0 problems; SaveBlock1 15868, SaveBlock2 3892, SaveBlock3 1584 bytes as on `r4-items`; the same findings as on `r4-items`; 88 minor, 0 new; 0 errors (8 known, 205 warnings, 273 hints) |
+| Texts | `check_text_width.py --list` | 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6), as on `r4-items`; estimates: the two lines of the Game Corner TV show (212 px with 12-character placeholders) became one (217 px with a 12-character coin count; with the real 5 digits 187 px) |
+| Texts | `check_game_text.py`, `--list --english` | the same counts of exact lines over 208 px and of English texts per area as on `r4-items` (shared 97, locked 290, Johto 23, Kanto 5, `src` 11, retired 3, Hoenn 0); estimates over 208 px: shared 409 instead of 410 (the TV show) |
+| Texts | width of every new line (glyph table of `tools/check_game_text.py`) | at most 208 px, PokeNav calls at most 192 px; placeholders counted with 72 px |
+| Texts | `#if GERMAN` | every changed line sits in a German branch except Mom's heal tip in `data/event_scripts.s`, which has no English branch in either build (as before); the English `#else` branches are unchanged |
+| Not checked | - | play in an emulator (the changed scenes are listed under round 5 in `BETA_READINESS.md`, step 48), the owner's reading of the texts (approval list outside the repository) |
+
+### Earlier state: round 4 (`r4-items`, 2026-11-03)
 
 State: round 4 on top of `r23-docs` (`74c47e7e1b`): the branch `r4-items`
 with 15 commits (every item can be obtained, D-059; tip of the code

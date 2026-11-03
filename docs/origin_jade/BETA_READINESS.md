@@ -11,7 +11,10 @@ tents and the Route 111 Trainer Hill retired; tip `61ac7e277d`) and the
 documentation commits on top, which change no code; then round 4 on top of
 `r23-docs` (`74c47e7e1b`): the branch `r4-items` with 15 commits (every
 item can be obtained, D-059; the owner's answers of 2026-11-03; tip of
-the code `851aa886e2`) and its documentation commit. The sources are the
+the code `851aa886e2`) and its documentation commit; then round 5 on
+top of `r4-items` (`d865587460`): the branch `r5-text` with 10 commits
+(official German texts word for word, owner rule 2026-11-03; 8 text
+commits, one Battle Frontier text fix and one documentation commit). The sources are the
 audit's finding list (297 findings, each with a status; checked again
 against rounds 2 and 3: 149 fixed, 78 open or partly fixed), the owner's
 answers, the reports of the packages, the per-commit build log
@@ -21,8 +24,10 @@ scratch and a release build of `61ac7e277d`, and `check_save_safety.py`
 on the documentation tip; for round 4 the per-commit log `percommit_r4`
 (15 of 15), the checks on its tip, a build from scratch, the test run
 `tests_r4` and the audit's item check (`check_items.py`, outside the
-repository). The state of rounds 2 and 3 alone, of round 2 before the
-rebase and of 2026-10-31 (`b022af5623`) is in `TESTS.md`.
+repository); for round 5 the per-commit log `percommit_r5` (9 of 9) and
+the text checks on its tip. The state of round 4 alone, of rounds 2 and
+3 alone, of round 2 before the rebase and of 2026-10-31 (`b022af5623`) is
+in `TESTS.md`.
 `docs/origin_jade/CHANGELOG.md` lists what changed,
 `docs/origin_jade/PATCHES.md` how the series was made and verified.
 
@@ -82,9 +87,18 @@ rebase and of 2026-10-31 (`b022af5623`) is in `TESTS.md`.
   meetings that are left and waits for the Hoenn title (O-073). Held items
   of wild Pokemon count for now; the 20 items that come only by luck wait
   for the owner (O-078). No change to the save layout (44 flags, one var).
+- **Round 5** sets the German texts of rounds 1 to 4 to the official
+  wording wherever the Poké-Corpus has it (owner rule 2026-11-03, D-056,
+  D-057): 118 whole texts and the official sentences of 15 more, among
+  them the Radio Tower, the Goldenrod Underground, Mahogany Town, the
+  contest halls, the move tutors and Mom's heal tip in Pallet Town, and
+  six older texts (the intro line, a museum sign, the Game Corner TV
+  show's line breaks, a broken word, a Union Cave line). Round 2's
+  smoothings are reverted. 21 deviations and 135 own texts wait for the
+  owner's approval. Texts only; no code, flag or save change.
 - **Nothing was played.** Every fix is checked statically or by tool; the
   emulator test of the three test steps (play A to Z, balancing, reach
-  everything), of the story packages and of rounds 2 to 4 (list below)
+  everything), of the story packages and of rounds 2 to 5 (list below)
   is still to do.
 - So the build fits a **closed beta in German** (the owner's plan: German
   first, English during the beta; release planned for Sunday 2026-11-15)
@@ -99,14 +113,14 @@ rebase and of 2026-10-31 (`b022af5623`) is in `TESTS.md`.
 
 | # | Criterion | Verdict | Evidence |
 |---:|---|---|---|
-| 1 | Build is reproducible | met (build from scratch of `851aa886e2`) | 2026-11-03, round 4: `make -j2` of the code tip `851aa886e2` in a new worktree compiles all 398 C files, exit 0, ROM SHA-1 `8fe887d805f3db1d350df34391a5d4488830873c`, the same as the incremental build of the per-commit run; 15 of 15 commits of round 4 built with their final ids (`make` ok, `check_flags` 0, `percommit_r4`). Rounds 2 and 3: `make` of `61ac7e277d` after removing `build/jade` compiles all 398 C files, exit 0, ROM SHA-1 `6346a2591693e2c99c3f1748b676d0f207afdbef`, the same as the incremental build of the integration run (`integ_r23`). Every commit after the owner's `ad4a8db368` was built with its final id: 73 of 73 (62 of round 2, 5 documentation, 6 of round 3; `make` ok, `check_flags` 0, both debug headers up to date, `percommit_r23`). Before the rebase round 2 had been built the same way on `2f284d83b9` (`percommit_r2`, `r2derest_final`; ROM `9d8271bc…` at the rest tip, without the owner's map commits); round 3 also on its package branch. Earlier states: `b022af5623` `11bec7d4cba038d647668f2f86c68ef3a29eee1f` (also from scratch), `b62f22e381` `5c1c08ae7685bf6073ea20c7f87df981d6488c2a`. Toolchain arm-none-eabi-gcc 13.2.1. |
+| 1 | Build is reproducible | met (build from scratch of `851aa886e2`) | Round 5: 10 of 10 commits of `r5-text` built with their final ids (`make` ok, `check_flags` 0, both debug headers up to date, `percommit_r5`); texts only. 2026-11-03, round 4: `make -j2` of the code tip `851aa886e2` in a new worktree compiles all 398 C files, exit 0, ROM SHA-1 `8fe887d805f3db1d350df34391a5d4488830873c`, the same as the incremental build of the per-commit run; 15 of 15 commits of round 4 built with their final ids (`make` ok, `check_flags` 0, `percommit_r4`). Rounds 2 and 3: `make` of `61ac7e277d` after removing `build/jade` compiles all 398 C files, exit 0, ROM SHA-1 `6346a2591693e2c99c3f1748b676d0f207afdbef`, the same as the incremental build of the integration run (`integ_r23`). Every commit after the owner's `ad4a8db368` was built with its final id: 73 of 73 (62 of round 2, 5 documentation, 6 of round 3; `make` ok, `check_flags` 0, both debug headers up to date, `percommit_r23`). Before the rebase round 2 had been built the same way on `2f284d83b9` (`percommit_r2`, `r2derest_final`; ROM `9d8271bc…` at the rest tip, without the owner's map commits); round 3 also on its package branch. Earlier states: `b022af5623` `11bec7d4cba038d647668f2f86c68ef3a29eee1f` (also from scratch), `b62f22e381` `5c1c08ae7685bf6073ea20c7f87df981d6488c2a`. Toolchain arm-none-eabi-gcc 13.2.1. |
 | 2 | Release build, debug menus off | met (statically, `851aa886e2`) | Round 4: `make release` of `851aa886e2`, 2026-11-03: exit 0, SHA-1 `a4bb57818d0471f0d805d680541a76d1214f969e`, 111 warnings as before; the debug menu, the debug states and "Even Wild Slots" are not in the release ELF (they are in the beta ELF). Rounds 2 and 3: `make release` of `61ac7e277d`, 2026-11-03: exit 0, SHA-1 `10174fe5187327f5e3cb4bcfe39d7392bb493031`, 111 warnings as before (N-build_tools-4). The overworld debug menu (`Debug_ShowMainMenu`), the debug states (`Debug_SetJohtoTestState`, `Debug_SetHoennTestState`, D-050) and the switch "Even Wild Slots" (`gDebugEvenWildSlots`, D-055) are not in the release ELF (they are in the beta ELF); the battle debug menu's only trigger (Select, `src/battle_controller_player.c`) is compiled out. The sprite visualizer has no caller in the HnS summary screen and is linked in neither build. The release ROM was not started. Earlier: round 2 before the rebase `18eedc2ebb50f9165aaf65ade559a1281e9bd625`, `b022af5623` `34e173bde2dc2b804e1132a60a5675f928dd33b4`. |
 | 3 | No known blocker on the story path Kanto -> Johto title | met (by tool) | `simulate_progress.py` on `851aa886e2` (round 4): Kanto title in wave 50, GS Ball 51, Johto badges 55-91, Johto title 105; `--diff` against the round before its review fixes: no milestone, stop, map, item ball, hidden item, trainer or gift changed. On `61ac7e277d` (`integ_r23`): Kanto title in wave 50, GS Ball 51, Johto badges 55-91, Johto title 105; no stop on the main path, the same waves as on round 2 and on `b022af5623`. `check_maps.py`: 0 findings from "important" up, 88 minor (1125 active maps by its count, see criterion 4; base: 3 critical, 10 important). The two critical findings of the owner's map work (the Trainer Hill entrance's warps to the removed Route 111 warp) are gone with round 3. Base: the simulator stopped in Kanto at the Celadon Game Corner (A01). Story traps A02, A03, A13, A57, A102 and the deep review's state bugs are fixed in the source (statically). |
 | 4 | No known blocker on the story path Johto -> Hoenn title | met (by tool) | Round 4 (`851aa886e2`): Hoenn Ticket in wave 106, Hoenn reached in 108, Hoenn badges 109-127, Hoenn title 137, exit 0; 195 of 1115 active maps unreachable, as before. D-047: the first Johto title sets `VAR_HOENN_TICKET_STATE` 1, Troy hands over the Hoenn Ticket in Oak's lab, both ports sail to Hoenn; since round 2 "Hoenn" stays in the menus until "Graphitport City" can be offered (O-032), so no player is cut off from Hoenn. `simulate_progress.py` without `--hoenn-ticket` on `61ac7e277d` (`integ_r23`): Hoenn Ticket in wave 106, Hoenn reached in 108, Hoenn badges 109-127, Hoenn title 137, exit 0; the Contest Pass now in wave 112 (Verdanturf, before 121 in Lilycove). Unreachable active maps: 195 of 1115 (1125 before round 3: 16 retired, 6 new), all off the story path (Alola, Sinjoh, event islands, secret bases, facility rooms, unused maps). The simulator and `check_maps.py` count active maps differently: the simulator takes every map folder of the build without the 13 link maps (Union Room, Trade Center, Battle Colosseum, Record Corner), `check_maps.py` (1125 in criterion 3, 1135 before round 3) the maps listed in `map_groups.json` with the link maps, which leaves out 3 unused houses; with round 3 both lose the same 16 retired maps and gain the same 6 new ones. None of the scenes ran in an emulator. |
 | 5 | Saves are safe | met (statically), with risks | Round 4 (`851aa886e2`): `check_budget.py` SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1584/1624, PokemonStorage 34144/35712, as before (EWRAM 95.28 %, ROM 77.19 %); 44 flags and one var more in free ids, layout unchanged; `check_save_safety.py` 76 findings (1 important, 3 minor, 72 optional) as before, after the tool learnt that the Mach and Acro Bike are never held together: 61 different key items, at most 60 at a time, for 60 slots (D-059). Rounds 2 and 3: `check_budget.py` on `61ac7e277d`: every save block within its flash space (SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1584/1624 with 40 free since the Day Cares of Kanto and Johto, D-052, PokemonStorage 34144/35712). `STATIC_ASSERT`s pin the layout; `test/save.c` (4 tests) passes. `check_save_safety.py` on the documentation tip: no blocker or critical finding; 1 important (no running clock, mitigated by `5e1b5f870d`, which the tool does not model), 3 minor (one is a false alarm on the Hall of Fame size, two concern the item randomizer's bag pockets), 72 optional, as before rounds 2 and 3; the Key Items pocket holds 58 obtainable key items in 60 slots. New games clear the Nuzlocke area flags. Round 2 changes the layout (SaveBlock3 +576 bytes for two Day Cares); round 3 adds four flags and keeps the layout (the retired Route 111 hill's records stay in SaveBlock3, unused). Saving and loading never ran in an emulator; old saves are out of scope (owner decision). |
-| 6 | No English text on the story path | met (by tool, owner reading open) | Round 4 (`851aa886e2`): `check_game_text.py --english`: Hoenn 0, Johto 23, Kanto 5, shared 97, `src` 11, locked 290, retired 3, the same as before round 4; every new line of round 4 has a German branch (Bill's grandfather's texts, English only in HnS, are new German texts; Brock's line after the Kanto title is new). `check_game_text.py --english` on `61ac7e277d` (`integ_r23`): Hoenn 0, Johto 23 and Kanto 5 (trainer names in upstream capitals that no active script shows, O-066), shared 97 (83 debug texts and 14 battle tent texts marked unused), `src` 11 (5 debug, 4 unused union room texts, 2 credits names); the locked Sinjoh and Alola maps 290, the retired maps 3. Round 2 before round 3: Hoenn 2 (two unreferenced texts in the corridor of Emerald's Slateport tent, German since they moved into Slateport's contest hall, O-065); before round 2: Johto 125, shared 252, Hoenn 7, Kanto 5. Every active map text without a German branch was also read by hand (D-057). The translations that are not from an official German game and the new lines of round 3 (Scott in Slateport, O-070; the Route 121 Safari Zone desk) are drafts for the owner's text round. |
-| 7 | Text fits the message box (208 px) | not met (minor) | Round 4 (`851aa886e2`): `check_text_width.py --list`: 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6), as before; the new lines of round 4 at most 208 px (Brock's new line 162 px). `check_text_width.py --list` on the ROM of `61ac7e277d` (`integ_r23`): 35 exact lines over 208 px (Johto 28, Kanto 1, locked maps 6), the same as before rounds 2 and 3; none over the 216 px window outside locked maps. The new German lines of rounds 2 and 3 are at most 208 px (PokeCom lines at most 192 px). 364 lines with placeholders are estimates. |
-| 8 | Static checks green | met | On `851aa886e2` (round 4): `check_flags.py` 0 problems (3479 flags, 696 vars: 44 flags and one var more than round 3), also at each of the 15 commits; `check_merge.py` 0 errors (8 known, 205 warnings, 273 hints); `check_maps.py` 88 minor, nothing from "important" up; `check_regions.py` 0 problems; `make_debug_states.py --check`: both headers up to date (from `6f39278fee` on, which regenerates them for the round's new items); `check_warnings.py` 105 warnings on the log of the build from scratch, as in the baseline (release 111, as before). On `61ac7e277d` (`integ_r23`): `check_flags.py` 0 problems (3435 flags, 695 vars: the four flags of round 3 more), also at each of the 73 commits (`percommit_r23`); `check_merge.py` 0 errors (8 known with a reason, 205 warnings and 273 hints as in the baseline); `check_maps.py` 0 findings from "important" up (88 minor); `check_regions.py` 0 problems (known exceptions listed, Jirachi on Route 4 among them); `make_debug_states.py --check`: both debug headers up to date, also at each of the 73 commits; `check_budget.py` exit 0. `check_warnings.py` on the log of the build from scratch: 105 warnings, as in the baseline. |
+| 6 | No English text on the story path | met (by tool, owner reading open) | Round 5 (`b050d8febc`): `check_game_text.py --english` and `--list` the same as on round 4 apart from line numbers; every changed line sits in a `#if GERMAN` branch except Mom's heal tip in `data/event_scripts.s`, which has no English branch in either build (as before). The tool does not count official English words that German Emerald and FRLG keep ("Bow! Bowwow!" on Route 114, "Space Shuttle" in Pewter's museum); both are on the owner's approval list. Round 4 (`851aa886e2`): `check_game_text.py --english`: Hoenn 0, Johto 23, Kanto 5, shared 97, `src` 11, locked 290, retired 3, the same as before round 4; every new line of round 4 has a German branch (Bill's grandfather's texts, English only in HnS, are new German texts; Brock's line after the Kanto title is new). `check_game_text.py --english` on `61ac7e277d` (`integ_r23`): Hoenn 0, Johto 23 and Kanto 5 (trainer names in upstream capitals that no active script shows, O-066), shared 97 (83 debug texts and 14 battle tent texts marked unused), `src` 11 (5 debug, 4 unused union room texts, 2 credits names); the locked Sinjoh and Alola maps 290, the retired maps 3. Round 2 before round 3: Hoenn 2 (two unreferenced texts in the corridor of Emerald's Slateport tent, German since they moved into Slateport's contest hall, O-065); before round 2: Johto 125, shared 252, Hoenn 7, Kanto 5. Every active map text without a German branch was also read by hand (D-057). The translations that are not from an official German game and the new lines of round 3 (Scott in Slateport, O-070; the Route 121 Safari Zone desk) are drafts for the owner's text round. |
+| 7 | Text fits the message box (208 px) | not met (minor) | Round 5 (`b050d8febc`): `check_text_width.py --list` 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6), as before; every official text taken over fits after new line breaks (at most 208 px, calls 192 px); the Game Corner TV show uses Emerald's own line breaks, so "Einarmigen Banditen" fits without a shortening. Round 4 (`851aa886e2`): `check_text_width.py --list`: 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6), as before; the new lines of round 4 at most 208 px (Brock's new line 162 px). `check_text_width.py --list` on the ROM of `61ac7e277d` (`integ_r23`): 35 exact lines over 208 px (Johto 28, Kanto 1, locked maps 6), the same as before rounds 2 and 3; none over the 216 px window outside locked maps. The new German lines of rounds 2 and 3 are at most 208 px (PokeCom lines at most 192 px). 364 lines with placeholders are estimates. |
+| 8 | Static checks green | met | Round 5: `check_flags.py` 0 problems and both debug headers up to date at each of the 10 commits. On `851aa886e2` (round 4): `check_flags.py` 0 problems (3479 flags, 696 vars: 44 flags and one var more than round 3), also at each of the 15 commits; `check_merge.py` 0 errors (8 known, 205 warnings, 273 hints); `check_maps.py` 88 minor, nothing from "important" up; `check_regions.py` 0 problems; `make_debug_states.py --check`: both headers up to date (from `6f39278fee` on, which regenerates them for the round's new items); `check_warnings.py` 105 warnings on the log of the build from scratch, as in the baseline (release 111, as before). On `61ac7e277d` (`integ_r23`): `check_flags.py` 0 problems (3435 flags, 695 vars: the four flags of round 3 more), also at each of the 73 commits (`percommit_r23`); `check_merge.py` 0 errors (8 known with a reason, 205 warnings and 273 hints as in the baseline); `check_maps.py` 0 findings from "important" up (88 minor); `check_regions.py` 0 problems (known exceptions listed, Jirachi on Route 4 among them); `make_debug_states.py --check`: both debug headers up to date, also at each of the 73 commits; `check_budget.py` exit 0. `check_warnings.py` on the log of the build from scratch: 105 warnings, as in the baseline. |
 | 9 | Test suite without new failures | met (regression check) | Round 4 (`851aa886e2`, `tests_r4`): 5148 tests in 951 files, 2355 ok, 629 todo, 2164 failures, all known, 0 new, 0 changed; Origin Jade tests level scaling 11/11, flag/var routing 7/7, save sizes 4/4, region rule 14/14, debug states 3/3, Day Cares 2/2, even wild slots 2/2, region badges 1/1 (no test covers the new item sources). `tools/run_tests.py` on `61ac7e277d` (`tests_r23`): 5148 tests in 951 files, 2355 ok, 629 todo, 2164 failures, all known, 0 new, 0 changed (the same on round 2 before the rebase; on `b022af5623`: 5140 tests). Origin Jade tests: level scaling 11/11, flag/var routing 7/7, save sizes 4/4, region rule 14/14, debug states 3/3, Day Cares 2/2, even wild slots 2/2, region badges 1/1. Limit: about 2100 upstream tests cannot check anything because battle texts are German, and 24 failures are not triaged (A32, `N-tests-1`); no test covers the contests. |
 | 10 | Every Pokedex species obtainable without trading | met (by tool) | Round 4 changes no wild table, trainer party or Pokemon gift; `check_regions.py` 0 problems on `851aa886e2`. Items (D-059): the audit's item check finds none of the 903 items of the build without a regular source; 20 come only by luck (O-078), 335 are not meant (listed in D-059). The catch list generated on round 2 before the rebase (`make_fangliste.py`, outside the repository): after Kanto all 151 Kanto species (with evolutions), after Johto all 129 Johto species (with breeding), after Hoenn all 422 species with evolutions and breeding (300 caught or received directly); nothing missing at any stage. Jirachi has a source again: Route 4 after the first trip to Hoenn (S-12, A69). The owner's map commits and round 3 change no wild table, trainer party or Pokemon gift; `check_regions.py` on `61ac7e277d` finds no wild table, overworld Pokemon, gift or static battle of a later region. |
 | 11 | Played through in an emulator | **not met** | No emulator test. The checklists for the three test steps are in the audit's test matrix; "Emulator test list" and "What was not verified" below name what to test first and the gaps. |
@@ -394,7 +408,7 @@ S-05, `61ac7e277d`, D-044; O-024 resolved). Still open:
 ## Owner decisions still needed
 
 The owner answered most open points on 2026-10-31, 2026-11-02 and
-2026-11-03; rounds 2 to 4 built the answers (D-051 to D-059). Still open:
+2026-11-03; rounds 2 to 5 built the answers (D-051 to D-059). Still open:
 
 **Story and content**
 - Text round: the owner reads every German text he did not write: the
@@ -412,7 +426,18 @@ The owner answered most open points on 2026-10-31, 2026-11-02 and
   alike. Also the position of "¥"
   in money texts (D-057), Mom's heal texts after a whiteout at home
   (O-037), placeholder National Pokedex ratings (O-038), old text defects
-  (O-040) and the line widths (O-012).
+  (O-040) and the line widths (O-012). Round 5 compared the texts of
+  rounds 1 to 4 with the official games: the approval list asks for each
+  deviation (names, obedience levels, story changes, close official lines
+  of the same scene), Origin Jade's names inside official texts, three
+  small fixes of official texts ("noch", a closing quote,
+  "Leih-Pokémon"), the reverted smoothings and free translations (among
+  them the owner's old contest hall texts), the choice between HGSS and
+  Crystal per scene and the 135 own texts, 32 of them with official
+  sentences next to the own rest; older texts outside these rounds were
+  not compared, a few of them (fly map title, bag menu, Pokedex
+  description, Mom's menu) differ from the official games. Mom's heal tip
+  is FRLG's now, the line before it still Emerald's (O-037).
 - Continue point after a title in front of the bedroom stairs (O-041):
   keep (9,3), or the spot next to the bed with a PC that refuses dolls
   that would box the player in.
@@ -551,7 +576,8 @@ items: P-001 to P-004 (P-005 and P-006 are done).
 ## Emulator test list
 
 The story packages (D-047 to D-050), round 2 (D-051 to D-057), round 3
-(D-058) and round 4 (D-059) were checked statically, with the simulator
+(D-058), round 4 (D-059) and round 5 (texts, D-056, D-057) were checked
+statically, with the simulator
 and with the C tests; none of their scenes ran. Test these first, in the
 beta build (the debug states reach them quickly; "Even Wild Slots"
 shortens the search for wild Pokemon).
@@ -808,6 +834,26 @@ shortens the search for wild Pokemon).
     title (Brock's TM80, the rematch TMs, Rick's TM81, the Box Link, the
     grandfather's candy), the Hoenn Test with them.
 
+### Round 5 (official German texts, D-056, D-057)
+
+48. **Changed texts:** read once in the German build, look for cut-off
+    lines, a missing box and mixed names: Mom after a whiteout in Pallet
+    Town (two boxes in a row: "MAMA:" in Emerald's capitals, then FRLG's
+    heal tip with "Mama:"), the Radio Tower's top floor (fake director,
+    executive before and after, Archer before the battle, mixed from
+    Crystal and HGSS, the director with the Rainbow Wing and the Silver
+    Wing), the Underground switch room (Silver before the battle, the
+    grunts, the burglars; "Untergrund" and "Lagerhaus?" on two lines),
+    Mahogany Town with Elm's call, Union Cave 1F, the Moomoo barn (the
+    twin says "Muhkuh", then "Miltank"), Baoba's Pokeblock line, Elm's
+    question when the starter is random (three lines with two
+    placeholders), the contest halls of Slateport, Fallarbor and
+    Verdanturf, Bill's grandfather, the white rock on Route 4 by day, the
+    museum signs in Pewter City, the intro ("Dies ist ein so genanntes
+    “Pokémon”."), the Game Corner TV show ("Einarmigen Banditen", after a
+    record mix), the Dynamic Punch, Double-Edge, Explosion and Headbutt
+    tutors, the Blend Master and Drake.
+
 ## Risks
 
 - **No playtest.** Scenes with movement scripts, puzzles (Silph Co.
@@ -857,7 +903,10 @@ shortens the search for wild Pokemon).
   in Slateport, the Route 121 Safari Zone desk) and round 4 new texts for
   Bill's grandfather (English only in HnS), Brock's line after the Kanto
   title, Bill's Pokemon Box Link and the two designers' charms; until the
-  owner's text round they may read unlike his texts.
+  owner's text round they may read unlike his texts. Round 5 set the
+  official wording where it exists; the own rest of 32 texts sits next to
+  official sentences, and some scenes mix HGSS and Crystal lines; both may
+  read uneven until the owner has answered the approval list.
 - **Key pocket full:** 61 different key items have a source for 60 slots;
   since the Mach and Acro Bike are never held together, at most 60 fit at
   a time, three of them only by link or Mystery Gift (D-059). A further

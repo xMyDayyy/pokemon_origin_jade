@@ -4,8 +4,9 @@ This file describes the patch series of the audit round of 2026-10-30/31,
 of the story packages that followed it on 2026-10-31, of round 2 on
 2026-11-02 (the owner's answers of 2026-10-31 and 2026-11-02), of round
 3 on 2026-11-02/03 (contests as in Ruby and Sapphire, battle tents and the
-Route 111 Trainer Hill retired) and of round 4 on 2026-11-03 (every item
-can be obtained): how it was made, which commits depend on
+Route 111 Trainer Hill retired), of round 4 on 2026-11-03 (every item
+can be obtained) and of round 5 on 2026-11-03 (official German texts word
+for word): how it was made, which commits depend on
 each other, how each commit was verified and how to apply it. What changed
 for players is in `docs/origin_jade/CHANGELOG.md`, what is still open in
 `docs/origin_jade/BETA_READINESS.md`.
@@ -23,14 +24,17 @@ for players is in `docs/origin_jade/CHANGELOG.md`, what is still open in
   5 documentation commits and round 3 (6 commits). Another 6
   documentation commits follow on top, 277 in all (`r23-docs`). Round 4
   sits on `r23-docs`: `74c47e7e1b..851aa886e2`, 15 commits, and one
-  documentation commit on top (this file is part of it), 293 in all.
-  Nothing of rounds 2 to 4 is committed on `balancing` before the owner's
-  approval.
+  documentation commit on top, 293 in all (`r4-items`, `d865587460`).
+  Round 5 sits on `r4-items`: `d865587460..035c5ef512`, 8 text commits and
+  one Battle Frontier text fix, and one documentation commit on top (this
+  file is part of it), 303 in all (`r5-text`). Nothing of rounds 2 to 5 is committed on `balancing`
+  before the owner's approval.
 - **Commit ids:** the ids (shas) of commits 1-198 are those of the
   integration branch `audit`, now also on `balancing`. The ids of commits
   199-271 are those of the integration branch `runde23` and the ids of
   272-277 those of `r23-docs` on top of it, the ids of 278-293 those of
-  `r4-items` on top of `r23-docs`. Round 2 was first built on
+  `r4-items` on top of `r23-docs` and the ids of 294-303 those of
+  `r5-text` on top of `r4-items`. Round 2 was first built on
   `2f284d83b9` (branches `runde2`, `r2-derest`, `r2-docs`) and then rebased
   onto `ad4a8db368`, which gave every commit a new id with the same
   subject; this file lists only the new ids. Applying the series with
@@ -59,7 +63,10 @@ for players is in `docs/origin_jade/CHANGELOG.md`, what is still open in
   `items` ("wichtig ist nur, dass man alle Items im Spiel regulär
   erhalten kann"), `O-073` (Scott), `O-074` (the 21 TMs of HnS's old
   Kanto) and `options` (the joke in the options menu may go); `review`
-  marks what its review added.
+  marks what its review added. Round 5 implements the owner's text rule
+  of 2026-11-03 (`text rule`: only verified official German, word for
+  word; free translations, smoothings and shortenings need his approval);
+  `review` marks what its two reviews added.
 
 ## How the series was made
 
@@ -159,6 +166,23 @@ for players is in `docs/origin_jade/CHANGELOG.md`, what is still open in
 18. **Documentation (1 commit).** `CHANGELOG.md`, `BETA_READINESS.md`,
     `TESTS.md`, `README.md` and this file for round 4 (`DECISIONS.md`
     changed in the commits of round 4).
+19. **Round 5 (9 commits).** Package `r5-text` in its own worktree on
+    `r4-items`: an audit tool outside the repository (`corpus_match.py`)
+    compared the 547 German texts that rounds 1 to 4 added or changed
+    with the Poké-Corpus, the texts of the official games line by line in
+    English and German; the commits set the official German where the
+    English is the same, text by text and sentence by sentence, grouped
+    by region and kind. A protocol and an approval list for the owner
+    sit outside the repository. After two reviews the fixes were folded
+    into their commits (autosquash; the second also fixed six older
+    texts next to them and renamed three commits), and every commit was
+    built again with its final id (`percommit_r5`). The ninth commit
+    (302) fixes a doubled "nicht zugelassen" at the Battle Frontier
+    counters; the game now shows German Emerald's sentence "Eier sind
+    nicht zugelassen.", and it was built and checked the same way.
+20. **Documentation (1 commit).** `CHANGELOG.md`, `BETA_READINESS.md`,
+    `TESTS.md`, `README.md`, this file and O-012 in `DECISIONS.md` for
+    round 5 (D-056 and D-057 changed in the commits of round 5).
 
 Rules every commit follows: one finding (or a tight group of the same
 kind) per commit; `DECISIONS.md` changes in the same commit as the
@@ -400,7 +424,9 @@ round 3 (266-271) and the 5 documentation commits 261-265, with its final
 id on `ad4a8db368` (`percommit_r23`, 73 of 73). The 6 documentation
 commits 272-277 change no code. Every commit of round 4 (278-292) was
 built with its final id on `r23-docs` (`percommit_r4`, 15 of 15); the
-documentation commit 293 changes no code. The logs are kept in the audit
+documentation commit 293 changes no code. Every commit of round 5
+(294-302) was built with its final id on `r4-items` (`percommit_r5`, 10 of
+10 with the documentation commit 303, which changes no code). The logs are kept in the audit
 workspace, not in the repository.
 
 | Part | Commits | Per-commit build and `check_flags` | Logs |
@@ -424,6 +450,7 @@ workspace, not in the repository.
 | Round 4 | 15 | on `r4-items` after the review fixes, with the final ids: 15 of 15 `make -j2` 0, `check_flags` 0; `make_debug_states.py --check` up to date at 278, 279 and from 291 (`6f39278fee`, which regenerates both headers) on, in between it reports the round's new items as missing | `r4rev/percommit.log` |
 | Tip `851aa886e2` | 292 | `make` 0 at the end of the per-commit run and from scratch in a new worktree (398 C files), both ROM SHA-1 `8fe887d805f3db1d350df34391a5d4488830873c`; `make release` 0 (SHA-1 `a4bb57818d0471f0d805d680541a76d1214f969e`, no debug menu, debug states or "Even Wild Slots" in the ELF); `check_warnings.py` 105 (release 111); `check_flags` 0 (3479 flags, 696 vars); `make_debug_states.py --check` (both headers up to date); `check_regions.py` 0 problems; `check_text_width.py` 35 exact lines as before; `check_game_text.py --english` (Hoenn 0, Johto 23, Kanto 5, shared 97, `src` 11); `check_maps.py` 88 minor on 1125 active maps; `check_merge.py` 0 errors (8 known, 205 warnings, 273 hints); simulator without `--hoenn-ticket`: Kanto title in wave 50, Johto 105, Hoenn 137, nothing changed against the round before its review fixes; `check_budget.py` (SaveBlock3 1584/1624, as before); `check_save_safety.py` 76 findings as before; test suite with `tools/run_tests.py`: 5148 tests, 0 new and 0 changed failures; the audit's item check: no item without a regular source | `r4rev/end/`, `r4rev/full_r4rev.log`, `r4rev/tests_r4.log` |
 | Documentation (5) | 1 | documentation only, not built (the tip build above has the same code); `check_flags` 0; this list and the commit ids of the five files checked against `git log` by a script (see the end of the list) | - |
+| Round 5 | 10 | on `r5-text` after the second review, with the final ids: 10 of 10 `make -j3` 0 (the frontier fix `035c5ef512` built and checked on its own after the second review), `check_flags` 0, `make_debug_states.py --check` both headers up to date; ROM SHA-1 of `b050d8febc` `123ca23a06e7a992bfd70883ff072dd192aa7b07`; the frontier fix `035c5ef512` and the documentation commit give `369526d0c3f75df465e426fc2779560a460cbe90` (the same after a build from scratch; test suite 5148 tests, 0 new and 0 changed failures). On the ROM of `b050d8febc`: `check_text_width.py --list` 35 exact lines over 208 px as on `r4-items`; `check_game_text.py` the same counts of exact lines over 208 px and of English texts per area as on `r4-items` (only the estimates of the Game Corner TV show changed with its line breaks) | `r5int/percommit.log`, `r5int/tw_now*.txt`, `r5int/gt_now*.txt` |
 
 On 2026-10-31 the audit tip `b62f22e381` and the tip `b022af5623` were
 also built from scratch in a separate worktree (all 397 C files
@@ -440,24 +467,27 @@ Commits 1-198 are on `balancing` since 2026-10-31 (fast-forward to
 Karten" and `ad4a8db368` "Tilesets für Änderungen nachgeladen" since
 2026-11-02. Rounds 2 and 3 with their documentation (commits 199-277)
 sit on `ad4a8db368`, round 4 with its documentation (278-293) on
-`r23-docs`. As long as `balancing` is still at `ad4a8db368`, a
-fast-forward applies them and keeps the ids of this file:
+`r23-docs`, round 5 with its documentation (294-303) on `r4-items`. As
+long as `balancing` is still at `ad4a8db368`, a fast-forward applies them
+and keeps the ids of this file:
 
 **Fast-forward** (in the target repository, with the integration clone as
-a remote or after fetching `r4-items`):
+a remote or after fetching `r5-text`):
 
-    git checkout balancing        # at ad4a8db368 (or at r23-docs)
-    git merge --ff-only r4-items
+    git checkout balancing        # at ad4a8db368 (or at r23-docs, r4-items)
+    git merge --ff-only r5-text
 
 **Patches** (`git am`, also when `balancing` has moved on):
 
     # in the integration clone
     git format-patch ad4a8db368..r23-docs -o patches/runde23/
     git format-patch r23-docs..r4-items -o patches/runde4/
+    git format-patch r4-items..r5-text -o patches/runde5/
     # in the target repository
     git checkout balancing
     git am --3way patches/runde23/*.patch
     git am --3way patches/runde4/*.patch
+    git am --3way patches/runde5/*.patch
 
 With `git am` on a moved `balancing` every commit gets a new id with the
 same subject; the ids in this file, `CHANGELOG.md`, `BETA_READINESS.md`
@@ -476,7 +506,9 @@ rounds 2 and 3 (`patches/<package>/`, `patches/r2_<package>/`,
 round 2 still on `2f284d83b9`) and are not meant for applying; use the
 export of the whole branch as above. `patches/r4_items/` holds round 4
 and its documentation commit as they are on `r4-items`
-(`r23-docs..r4-items`, the same as `patches/runde4/` above).
+(`r23-docs..r4-items`, the same as `patches/runde4/` above);
+`patches/r5_text/` holds round 5 and its documentation commit as they are
+on `r5-text` (`r4-items..r5-text`, the same as `patches/runde5/` above).
 
 After applying, run:
 
@@ -1054,18 +1086,41 @@ transparent pixels from the original tiles is offered to him
 
 | # | Commit | Title | Findings |
 |---:|---|---|---|
-| 293 | this commit | Doku: CHANGELOG, BETA_READINESS, TESTS, PATCHES und README um die Runde 4 | review |
+| 293 | `d865587460` | Doku: CHANGELOG, BETA_READINESS, TESTS, PATCHES und README um die Runde 4 | review |
 
-The id of commit 293 is in `git log`; a commit cannot name its own id.
+### Round 5 (official German texts word for word)
+
+#### `r5-text`: the texts of rounds 1 to 4 compared with the official games (D-056, D-057, O-012)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 294 | `951f7a595f` | Texte: gemeinsame Skripttexte wörtlich nach den offiziellen Spielen | text rule, review |
+| 295 | `8fe64ff0d3` | Texte: Systemtexte in src wie im deutschen Smaragd | text rule, review |
+| 296 | `1dc50fc45b` | Kanto: Museumsschilder in Marmoria wie im deutschen FRLG | text rule, review |
+| 297 | `ac92b4e140` | Hoenn: Fiffyen, Dragan und Kapt. Brigg nach dem deutschen Smaragd | text rule, review |
+| 298 | `6736ab0a3c` | Johto: Radioturm und Untergrund-Schalterraum mit offiziellem Text | text rule, review |
+| 299 | `cd8f0a68e4` | Johto: Mahagonia, Einheitstunnel, Kuhmuh-Stall, Baoba, Lind mit offiziellem Text | text rule, review |
+| 300 | `2681949356` | Wettbewerbe: Hallen, Lobbys und Schilder mit dem Text aus Rubin/Saphir | text rule |
+| 301 | `b050d8febc` | Kanto: Bills Großvater, Wutkeks-Mann und weißer Stein mit offiziellem Text | text rule, review |
+| 302 | `035c5ef512` | Kampfzone: „Eier sind nicht zugelassen.“ ohne doppeltes „nicht zugelassen“ | owner question (before the beta) |
+
+### Documentation (6)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 303 | this commit | Doku: Runde 5 in O-012, CHANGELOG, BETA_READINESS, TESTS, PATCHES und README | review |
+
+The id of commit 303 is in `git log`; a commit cannot name its own id.
 The ids of commits 199 to 271 are those of `runde23`, 272 to 277 of
-`r23-docs`, 278 to 293 of `r4-items`. Applied with `git am` on a
-`balancing` that has moved on, they get new ones (see "How to apply").
+`r23-docs`, 278 to 293 of `r4-items`, 294 to 303 of `r5-text`. Applied
+with `git am` on a `balancing` that has moved on, they get new ones (see
+"How to apply").
 
 A script compared this list with `git log --reverse --first-parent
-3525d22e71..r4-items`: rows 1 to 293 are its commits in this order
+3525d22e71..r5-text`: rows 1 to 303 are its commits in this order
 without the owner's two, with the same ids and titles, and the two owner
 rows are the owner's commits. Every commit id in this file,
 `CHANGELOG.md`, `BETA_READINESS.md`, `TESTS.md`, `DECISIONS.md` and
-`README.md` is a commit in the history of `r4-items`; the ids round 2
-had before the rebase and the ids the commits of round 4 had before
-their review fixes appear nowhere.
+`README.md` is a commit in the history of `r5-text`; the ids round 2
+had before the rebase and the ids the commits of rounds 4 and 5 had
+before their review fixes appear nowhere.
