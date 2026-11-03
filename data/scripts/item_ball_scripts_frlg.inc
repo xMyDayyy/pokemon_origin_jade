@@ -723,3 +723,37 @@ MtMoon_1F_EventScript_ItemProtector::
 PokemonMansion_2F_EventScript_ItemMagmarizer::
 	finditem ITEM_MAGMARIZER
 	end
+
+@ Origin Jade: TMs of HnS's Kanto.
+
+Route6_EventScript_ItemTMSilverWind::
+	finditem ITEM_TM_SILVER_WIND
+	end
+
+Route9_EventScript_ItemTMFlashCannon::
+	finditem ITEM_TM_FLASH_CANNON
+	end
+
+Route10_EventScript_ItemTMRockPolish::
+	finditem ITEM_TM_ROCK_POLISH
+	end
+
+Route11_EventScript_ItemTMGrassKnot::
+	finditem ITEM_TM_GRASS_KNOT
+	end
+
+Route19_EventScript_ItemTMBrine::
+	finditem ITEM_TM_BRINE
+	end
+
+RockTunnel_B1F_EventScript_ItemTMFling::
+	finditem ITEM_TM_FLING
+	end
+
+CeladonCity_EventScript_ItemTMRecycle::
+	finditem ITEM_TM_RECYCLE
+	end
+
+ViridianForest_EventScript_ItemTMPsychUp::
+	finditem ITEM_TM_PSYCH_UP
+	end

@@ -52,6 +52,15 @@
 #define FLAG_VS_SEEKER_CHARGING                              (OJ_FLAGS_KANTO + 9)
 // Hides Troy in Oak's lab; set again on every entry unless he waits there (D-047).
 #define FLAG_HIDE_OAKS_LAB_TROY                              (OJ_FLAGS_KANTO + 10)
+// Item balls with the TMs of HnS's Kanto (D-059).
+#define FLAG_HIDE_ROUTE6_TM_SILVER_WIND                      (OJ_FLAGS_KANTO + 11)
+#define FLAG_HIDE_ROUTE9_TM_FLASH_CANNON                     (OJ_FLAGS_KANTO + 12)
+#define FLAG_HIDE_ROUTE10_TM_ROCK_POLISH                     (OJ_FLAGS_KANTO + 13)
+#define FLAG_HIDE_ROUTE11_TM_GRASS_KNOT                      (OJ_FLAGS_KANTO + 14)
+#define FLAG_HIDE_ROUTE19_TM_BRINE                           (OJ_FLAGS_KANTO + 15)
+#define FLAG_HIDE_ROCK_TUNNEL_B1F_TM_FLING                   (OJ_FLAGS_KANTO + 16)
+#define FLAG_HIDE_CELADON_CITY_TM_RECYCLE                    (OJ_FLAGS_KANTO + 17)
+#define FLAG_HIDE_VIRIDIAN_FOREST_TM_PSYCH_UP                (OJ_FLAGS_KANTO + 18)
 
 // ---------------------------------------------------------------------
 // Johto (OJ_FLAGS_JOHTO + 0 to + 159)
