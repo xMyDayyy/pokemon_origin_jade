@@ -636,12 +636,12 @@ dated 2026-10-10 or later were decided directly.
     Oak's five Poke Balls (after the
     Pokedex and the refill after the Route 22 rival) and what the player
     picks from an exchange menu (`giveitem_norandom`: Celadon's coin prizes,
-    Cerulean's Berry Powder man, Route 113's Glass Workshop flutes,
-    Route 124's shard trades, Captain Stern's Scanner trade in Slateport's
-    harbour; D-054) bypass the randomizer. A Kanto gift with its own receive
-    text (`giveitem_msg`: the gym leaders' TMs, the Master Ball, the Amulet
-    Coin and others) gets the generic obtain message when its item was
-    changed; the dialogue around it still names the original item. Outside
+    Cerulean's and Slateport's Berry Powder men, Route 113's Glass Workshop
+    flutes, Route 124's shard trades, Captain Stern's Scanner trade in
+    Slateport's harbour; D-054) bypass the randomizer. A Kanto gift with its
+    own receive text (`giveitem_msg`: the gym leaders' TMs, the Master Ball,
+    the Amulet Coin and others) gets the generic obtain message when its item
+    was changed; the dialogue around it still names the original item. Outside
     the chaos mode each item has its own fixed result, seeded by the trainer
     ID, the map, the local ID (item ball, NPC) or the hidden flag (hidden
     item) and the original item.
@@ -2184,9 +2184,10 @@ dated 2026-10-10 or later were decided directly.
     the Moomoo Milk) give the chosen item (`additem`); Mom's purchases, the
     lottery and Mahogany's merchant (`giveitem`) go through the randomizer.
     Origin Jade gives the chosen item at its exchange menus too:
-    Celadon's prize room, Cerulean's Berry Powder man, Route 113's Glass
-    Workshop, Route 124's treasure hunter (shards for stones and Deep Sea
-    items) and Captain Stern in Slateport's harbour (Scanner for a Deep Sea
+    Celadon's prize room, Cerulean's and Slateport's Berry Powder men
+    (Slateport's since 2026-11-03, O-057), Route 113's Glass Workshop,
+    Route 124's treasure hunter (shards for stones and Deep Sea items) and
+    Captain Stern in Slateport's harbour (Scanner for a Deep Sea
     Tooth or Scale) (`giveitem_norandom`, D-023; the last two trade only
     evolution items, which keep their place anyway); Celadon's and
     Lilycove's drink machines and Mauville's prizes already use `additem`.
@@ -2216,8 +2217,8 @@ dated 2026-10-10 or later were decided directly.
     (audit 2026-10-30, A30, taken back), D-045.
 - **Open:** O-055 (Nuzlocke rules that differ from HnS outside these
   points), O-056 (move tutors in Kanto against HnS's Kanto), O-057 (item
-  randomizer: Slateport's Berry Powder man, single items for money,
-  start), O-058 (randomizer species pool).
+  randomizer: single items for money, start), O-058 (randomizer species
+  pool).
 - **Evidence:** owner answers 2026-10-31 and 2026-11-02 (group 4: "alles
   wie im HnS-Upstream"; FRLG's Kanto against HnS's Kanto); HnS code
   compared with `git show 9041f705db:<file>`.
@@ -2909,10 +2910,9 @@ dated 2026-10-10 or later were decided directly.
   the maps (Porymap, owner); a strict reading of the rule would also take
   out Substitute and Metronome. Owner to decide.
 - **O-057** Item randomizer, left from N-07 (D-054):
-  - Slateport's Berry Powder man (`SlateportCity/scripts.inc`) is the same
-    exchange as Cerulean's but still uses `giveitem`; the map was being
-    edited in Porymap by the owner on 2026-11-02. Proposal:
-    `giveitem_norandom` there too once the map is back.
+  - Resolved 2026-11-03: Slateport's Berry Powder man
+    (`SlateportCity/scripts.inc`), the same exchange as Cerulean's, gives
+    the chosen item with `giveitem_norandom` too (D-054).
   - Single items for money: HnS itself differs (Mahogany's merchant through
     the randomizer, the Moomoo Milk not). Mt. Chimney's Lava Cookie lady
     and Route 109's Seashore House (Soda Pop) use `giveitem` like

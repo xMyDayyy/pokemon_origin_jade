@@ -846,7 +846,8 @@ SlateportCity_EventScript_TryBuyBerryPowderItem::
 	copyvar VAR_0x8004, VAR_0x8009
 	specialvar VAR_RESULT, HasEnoughBerryPowder
 	goto_if_eq VAR_RESULT, FALSE, SlateportCity_EventScript_NotEnoughBerryPowder
-	giveitem VAR_0x8008
+	@ Bought with Berry Powder: no item randomizer (see docs/origin_jade/DECISIONS.md, D-054).
+	giveitem_norandom VAR_0x8008
 	goto_if_eq VAR_RESULT, FALSE, SlateportCity_EventScript_NoRoomForBerryPowderItem
 	copyvar VAR_0x8004, VAR_0x8009
 	special TakeBerryPowder
