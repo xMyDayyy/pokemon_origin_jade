@@ -588,7 +588,7 @@ Common_Text_ShipOlivine:
 
 Common_Text_ShipVermilion:
 #if GERMAN
-	.string "Orania City$"
+	.string "Orania$"
 #else
 	.string "VERMILION$"
 #endif

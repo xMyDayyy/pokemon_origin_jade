@@ -2224,7 +2224,7 @@ dated 2026-10-10 or later were decided directly.
 ### D-056 German completion of the common texts
 - **Status:** Active (2026-11-02, owner: the beta comes out in German
   first, everything that is not German gets translated, both languages
-  stay selectable)
+  stay selectable; changed 2026-11-03)
 - **Decision:**
   - Every common text the German build shows (`data/text`,
     `data/scripts`, strings in `src`) has a German branch under
@@ -2234,13 +2234,20 @@ dated 2026-10-10 or later were decided directly.
   - Sources, in this order: the official German Emerald texts
     (pokeemerald-german), the German Ruby/Sapphire texts (pokeruby
     `data-de`) where Emerald has none; written in title case (D-020).
-    Line breaks change only where a line would exceed 208 px. Obvious
-    slips of the official text are smoothed (punctuation, a garbled
-    sentence, grammar such as "so lange" or "gemäß ihrem Wesen", speaker
-    names as in the owner's existing texts, e.g. "Mr. Brack:"); the
-    commit messages name each case. HnS-only texts without an official
-    German text are own translations in the style of the neighbouring
-    texts; the owner reads them in the text round.
+    Where the scene is one of FRLG or HnS, the Poké-Corpus gives the
+    FRLG, HGSS or Crystal text (Mom's heal tip after a whiteout in Pallet
+    Town as in FRLG, the Headbutt tutor as in HGSS and Crystal). Line
+    breaks change only where a line would exceed 208 px. The official
+    text is taken word for word, with its punctuation and grammar
+    ("solange", "gemäß ihres Wesens", "Brack:"), also single official
+    sentences inside an otherwise own text; only plain typos are fixed (a
+    missing word, a missing closing quote) and names that Origin Jade
+    changes (places, Norman, Mama). These fixes, every other deviation and
+    every text or sentence without an official German text need the
+    owner's approval (owner rule 2026-11-03; the Poké-Corpus comparison of
+    round 5 lists them). HnS-only texts without an official German text
+    are own translations in the style of the neighbouring texts until
+    then.
   - Where the official text has no term, the owner's existing German
     texts decide: stat abbreviations as in the Pokedex (KP, Ang, Ver,
     Init, SP.A, SP.V), "IVs" as in the challenge menu, the HnS tent
@@ -2716,7 +2723,11 @@ dated 2026-10-10 or later were decided directly.
   of a new game (whiteout before the first Pokemon Center heal, respawn
   `HEAL_LOCATION_PALLET_TOWN` from `new_game.inc`), after the Kanto title,
   and now also after a Johto title or Red (room respawn). Proposal: owner
-  text; tutorial only before the first badge.
+  text; tutorial only before the first badge. Since 2026-11-03
+  `gText_MomExplainHPGetPotions` is German FRLG's text of the same scene
+  word for word (title case, "Mama:" as in the other Pallet Town texts);
+  `gText_HadQuiteAnExperienceTakeRest` before it keeps Emerald's
+  capitals, FRLG's text of it waits for the owner.
 - **O-038** The German National dex rating texts are placeholders ("Unter
   300. / Weiter so!"); through Elm's call after the completed Johto dex
   they are now reachable before Hoenn. Needs owner text.

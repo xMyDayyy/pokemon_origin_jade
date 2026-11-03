@@ -20,7 +20,7 @@ EventTicket_Text_OldSeaMapTooFar:
 
 EventTicket_Text_BrineyHoldOnASecond:
 #if GERMAN
-	.string "Mr. Brack: Warte einen Moment!\p"
+	.string "Brack: Warte einen Moment!\p"
 	.string "Warum sollte ich jemandem Hilfe\n"
 	.string "verweigern, dem ich so viel zu\l"
 	.string "verdanken habe?$"
@@ -37,8 +37,8 @@ EventTicket_Text_BrineyLetsSail:
 	.string "hätte dich beinahe im Stich gelassen.\p"
 	.string "Nun, lass mich das wieder hinbiegen.\p"
 	.string "Wir setzen sofort Segel!\p"
-	.string "Suchen wir die Insel auf dieser\n"
-	.string "Alten Karte!$"
+	.string "Schauen wir auf die Alte Karte.\n"
+	.string "Wo wir die Insel finden.$"
 #else
 	.string "{PLAYER}{KUN}, I'm terribly sorry.\p"
 	.string "You came to me seeking my help,\n"

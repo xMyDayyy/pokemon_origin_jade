@@ -367,15 +367,15 @@ MoveTutor_Text_DynamicPunchTeach:
 	.string "Ich kann nicht mehr!\p"
 	.string "Das ist doch absolut hoffnungslos!\p"
 	.string "Ich bin ein Kampf-Trainer, daher kann\n"
-	.string "ich in der Arena von Moosbach City\l"
-	.string "einfach nicht gewinnen, egal, wie sehr\l"
-	.string "ich mich auch anstrenge!\p"
+	.string "ich in der Arena von Moosbach einfach\l"
+	.string "nicht gewinnen, egal, wie sehr ich mich\l"
+	.string "auch anstrenge!\p"
 	.string "Argh! Schlag! Wucht! Schlag!\n"
 	.string "Schlag! Wucht! Schlag!\p"
 	.string "Hey, was starrst du mich so an?!?\n"
 	.string "Ich schlage doch nur auf den Boden ein!\p"
-	.string "Oder möchtest du, dass ich einem\n"
-	.string "deiner Pokémon Wuchtschlag beibringe?$"
+	.string "Oder möchtest du, dass ich einem deiner\n"
+	.string "Pokémon Wuchtschlag beibringe?!?$"
 #else
 	.string "I can't do this anymore!\p"
 	.string "It's utterly hopeless!\p"
@@ -392,7 +392,7 @@ MoveTutor_Text_DynamicPunchTeach:
 
 MoveTutor_Text_DynamicPunchDeclined:
 #if GERMAN
-	.string "Mist! Du machst dich lustig über mich!\n"
+	.string "Mist! Du machst dich lustig über mich!!!\n"
 	.string "Schlag! Wucht! Schlag!$"
 #else
 	.string "Darn! You're even making fun of me?\n"
@@ -412,7 +412,7 @@ MoveTutor_Text_DynamicPunchWhichMon:
 MoveTutor_Text_DynamicPunchTaught:
 #if GERMAN
 	.string "Ich möchte, dass du in der Arena von\n"
-	.string "Moosbach City gewinnst, indem du\l"
+	.string "Moosbach gewinnst, indem du\l"
 	.string "Wuchtschlag einsetzt.$"
 #else
 	.string "I want you to win at the MOSSDEEP GYM\n"
@@ -454,7 +454,7 @@ MoveTutor_Text_DoubleEdgeDeclined:
 
 MoveTutor_Text_DoubleEdgeWhichMon:
 #if GERMAN
-	.string "Schön! Welchem Pokémon soll ich\n"
+	.string "Schön!!! Welchem Pokémon soll ich\n"
 	.string "Risikotackle beibringen?$"
 #else
 	.string "Okay, which POKéMON should I teach\n"
@@ -513,7 +513,7 @@ MoveTutor_Text_ExplosionWhichMon:
 MoveTutor_Text_ExplosionTaught:
 #if GERMAN
 	.string "Schon lange bringe ich Pokémon\n"
-	.string "Explosion bei. Jetzt wird es Zeit, an\l"
+	.string "Explosion bei. Jetzt wird es Zeit an\l"
 	.string "meine eigene Explosion zu denken…\p"
 	.string "Vielleicht bin ich schon so lange hier,\n"
 	.string "weil es mir hier doch gefällt?!?$"
@@ -527,8 +527,8 @@ MoveTutor_Text_ExplosionTaught:
 
 MoveTutor_Text_HeadbuttTeach:
 #if GERMAN
-	.string "Was ich hier mache?\p"
-	.string "Ich schüttle Bäume mit Kopfnuss.\p"
+	.string "Was ich hier tue, fragst du?\p"
+	.string "Ich schüttele Bäume mit Kopfnuss!\p"
 	.string "Ob deine Pokémon wohl auch gerne\n"
 	.string "Kopfnuss einsetzen würden?\p"
 	.string "Ich kann einem von ihnen Kopfnuss\n"
@@ -563,9 +563,9 @@ MoveTutor_Text_HeadbuttDeclined:
 
 MoveTutor_Text_HeadbuttTaught:
 #if GERMAN
-	.string "Rüttle mit Kopfnuss an Bäumen.\n"
-	.string "Manchmal fallen schlafende Pokémon\l"
-	.string "heraus.$"
+	.string "Benutze Kopfnuss, um Bäume zu\n"
+	.string "schütteln. Manchmal fallen schlafende\l"
+	.string "Pokémon herunter.$"
 #else
 	.string "Rattle trees with HEADBUTT.\n"
 	.string "Sometimes, sleeping POKéMON fall out.$"

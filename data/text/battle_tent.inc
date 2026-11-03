@@ -57,7 +57,7 @@ FallarborTown_BattleTentLobby_Text_ExplainFallarborTent:
 	.string "sollen.\p"
 	.string "Diese Reihenfolge wird im Kampf strikt\n"
 	.string "eingehalten.\p"
-	.string "Ein Pokémon bleibt so lange im Kampf,\n"
+	.string "Ein Pokémon bleibt solange im Kampf,\n"
 	.string "bis der Kampf entschieden ist.\p"
 	.string "Wenn ein Kampf nach drei Runden noch\n"
 	.string "nicht entschieden ist, wird der Sieger\l"
@@ -330,8 +330,8 @@ VerdanturfTown_BattleTentLobby_Text_ExplainVerdanturfTent:
 	.string "in den Kampf rufen und zurückziehen.\p"
 	.string "Ansonsten ist es ihnen nicht erlaubt,\n"
 	.string "in den Kampf einzugreifen.\p"
-	.string "Die Pokémon sollen sich gemäß ihrem\n"
-	.string "Wesen verhalten und kämpfen.\p"
+	.string "Die Pokémon sollen sich gemäß ihres\n"
+	.string "Wesens verhalten und kämpfen.\p"
 	.string "Du musst deinen Pokémon vertrauen und\n"
 	.string "sie beobachten.\p"
 	.string "Wenn du es schaffst, drei Trainer in\n"
@@ -502,7 +502,7 @@ VerdanturfTown_BattleTentLobby_Text_PresentYouWithPrize:
 #if IS_HNS
 SlateportCity_BattleTentLobby_Text_WelcomeToBattleTent:
 #if GERMAN
-	.string "Willkommen im Kampfcamp!\p"
+	.string "Willkommen im Kampfcamp.\p"
 	.string "Ich begleite dich zum Wechselkampf-\n"
 	.string "Turnier.$"
 #else

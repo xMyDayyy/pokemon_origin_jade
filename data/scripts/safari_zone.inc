@@ -676,7 +676,7 @@ SafariZone_Northeast_Text_Woman:
 
 SafariZone_Northeast_Text_Girl:
 #if GERMAN
-	.string "Schluchz, heul!\n"
+	.string "Schluchz heul!\n"
 	.string "Ich schaffe es nicht, eines zu fangen.\p"
 	.string "Ich habe mein Geld umsonst ausgegeben,\n"
 	.string "wenn ich nichts fange.$"

@@ -538,9 +538,9 @@ BerryBlender_EventScript_TooWeakToBlend::
 
 BerryBlender_Text_TooWeakToBlend::
 #if GERMAN
-	.string "Mixmeister: Hmmm! Du willst mich also\n"
-	.string "in Aktion sehen?\p"
-	.string "Tut mir Leid, aber meine Mixkunst ist\n"
+	.string "Mixmeister: Hmm! Du willst mich also\n"
+	.string "in Aktion sehen?!?\p"
+	.string "Tut mir leid, aber meine Mixkunst ist\n"
 	.string "für einen Anfänger wie dich noch viel\l"
 	.string "zu fortgeschritten.\p"
 	.string "Komm wieder, wenn du Großes\n"
