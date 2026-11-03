@@ -833,6 +833,16 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "EcruteakCity_EventScript_CitySign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 17,
+      "y": 18,
+      "elevation": 3,
+      "item": "ITEM_POKESHI_DOLL",
+      "flag": "FLAG_HIDDEN_ITEM_ECRUTEAK_POKESHI_DOLL",
+      "quantity": 1,
+      "underfoot": false
     }
   ],
   "game_version": "hns",

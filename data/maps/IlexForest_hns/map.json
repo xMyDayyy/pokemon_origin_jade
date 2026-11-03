@@ -629,6 +629,26 @@
       "elevation": 0,
       "item": "ITEM_BIG_MUSHROOM",
       "flag": "FLAG_HIDDEN_ITEM_ILEX_BIG_MUSHROOM"
+    },
+    {
+      "type": "hidden_item",
+      "x": 58,
+      "y": 9,
+      "elevation": 3,
+      "item": "ITEM_BIG_BAMBOO_SHOOT",
+      "flag": "FLAG_HIDDEN_ITEM_ILEX_BIG_BAMBOO_SHOOT",
+      "quantity": 1,
+      "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 17,
+      "y": 32,
+      "elevation": 3,
+      "item": "ITEM_TINY_BAMBOO_SHOOT",
+      "flag": "FLAG_HIDDEN_ITEM_ILEX_TINY_BAMBOO_SHOOT",
+      "quantity": 1,
+      "underfoot": false
     }
   ],
   "game_version": "hns",

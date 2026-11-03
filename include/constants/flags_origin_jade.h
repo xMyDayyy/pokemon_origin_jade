@@ -117,6 +117,14 @@
 #define FLAG_RECEIVED_OVAL_CHARM                     (OJ_FLAGS_JOHTO + 14)
 // The Violet City gift egg hatched, whatever its species (Elm's lab).
 #define FLAG_HATCHED_TOGEPI_EGG                      (OJ_FLAGS_JOHTO + 15)
+// Items without another source (D-059).
+#define FLAG_HIDE_MT_SILVER_ITEM_ROOM_TM_ROCK_CLIMB  (OJ_FLAGS_JOHTO + 16)
+#define FLAG_HIDE_ICE_PATH_1F_ICY_ROCK               (OJ_FLAGS_JOHTO + 17)
+#define FLAG_HIDDEN_ITEM_ILEX_BIG_BAMBOO_SHOOT       (OJ_FLAGS_JOHTO + 18)
+#define FLAG_HIDDEN_ITEM_ILEX_TINY_BAMBOO_SHOOT      (OJ_FLAGS_JOHTO + 19)
+#define FLAG_HIDDEN_ITEM_ECRUTEAK_POKESHI_DOLL       (OJ_FLAGS_JOHTO + 20)
+// Lilycove's game designer gave the EXP. Charm with the Johto diploma (D-059).
+#define FLAG_RECEIVED_EXP_CHARM                      (OJ_FLAGS_JOHTO + 21)
 
 // ---------------------------------------------------------------------
 // Hoenn (OJ_FLAGS_HOENN + 0 to + 95)

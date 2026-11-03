@@ -27,6 +27,8 @@ LilycoveCity_CoveLilyMotel_2F_EventScript_ShowDiploma::
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
 #if IS_HNS
+	clearflag FLAG_TEMP_3
+	call_if_unset FLAG_RECEIVED_EXP_CHARM, LilycoveCity_CoveLilyMotel_2F_EventScript_GiveExpCharm
 	call_if_unset FLAG_RECEIVED_SHINY_CHARM, LilycoveCity_CoveLilyMotel_2F_EventScript_TryGiveShinyCharm
 #endif
 	special Special_ShowDiploma
@@ -35,6 +37,17 @@ LilycoveCity_CoveLilyMotel_2F_EventScript_ShowDiploma::
 	end
 
 #if IS_HNS
+@ EXP. Charm with the Johto diploma (D-059). FLAG_TEMP_3: the diploma text is answered.
+LilycoveCity_CoveLilyMotel_2F_EventScript_GiveExpCharm:
+	waitbuttonpress
+	setflag FLAG_TEMP_3
+	msgbox LilycoveCity_CoveLilyMotel_2F_Text_JohtoDexTakeThisToo, MSGBOX_DEFAULT
+	giveitem ITEM_EXP_CHARM
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn
+	setflag FLAG_RECEIVED_EXP_CHARM
+	msgbox LilycoveCity_CoveLilyMotel_2F_Text_ExplainExpCharm, MSGBOX_DEFAULT
+	return
+
 @ Shiny Charm for the completed National Pokedex after the first Hoenn title.
 @ Keep the call before Special_ShowDiploma: commands after it never run.
 @ See docs/origin_jade/DECISIONS.md, D-036.
@@ -42,12 +55,16 @@ LilycoveCity_CoveLilyMotel_2F_EventScript_TryGiveShinyCharm:
 	goto_if_unset FLAG_IS_HOENN_CHAMPION, Common_EventScript_NopReturn
 	specialvar VAR_RESULT, HasAllMons
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn
-	waitbuttonpress
+	call_if_unset FLAG_TEMP_3, LilycoveCity_CoveLilyMotel_2F_EventScript_WaitButtonPress
 	msgbox LilycoveCity_CoveLilyMotel_2F_Text_NationalDexTakeThisToo, MSGBOX_DEFAULT
 	giveitem ITEM_SHINY_CHARM
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
 	setflag FLAG_RECEIVED_SHINY_CHARM
 	msgbox LilycoveCity_CoveLilyMotel_2F_Text_ExplainShinyCharm, MSGBOX_DEFAULT
+	return
+
+LilycoveCity_CoveLilyMotel_2F_EventScript_WaitButtonPress:
+	waitbuttonpress
 	return
 #endif
 
@@ -134,6 +151,22 @@ LilycoveCity_CoveLilyMotel_2F_Text_NationalDexTakeThisToo:
 #else
 	.string "Your NATIONAL POKéDEX is complete,\n"
 	.string "too! Please take this as well!$"
+#endif
+
+LilycoveCity_CoveLilyMotel_2F_Text_JohtoDexTakeThisToo:
+#if GERMAN
+	.string "Dafür bekommst du noch das hier!$"
+#else
+	.string "Please take this as well!$"
+#endif
+
+LilycoveCity_CoveLilyMotel_2F_Text_ExplainExpCharm:
+#if GERMAN
+	.string "Mit dem EP-Pin bekommen deine\n"
+	.string "Pokémon mehr Erfahrungspunkte.$"
+#else
+	.string "With the EXP. CHARM, your POKéMON\n"
+	.string "gain more EXP. POINTS.$"
 #endif
 
 LilycoveCity_CoveLilyMotel_2F_Text_ExplainShinyCharm:
