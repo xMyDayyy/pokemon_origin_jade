@@ -26,7 +26,10 @@ CeladonCity_DepartmentStore_4F_EventScript_Clerk::
 	.align 2
 CeladonCity_DepartmentStore_4F_Items::
 	.2byte ITEM_POKE_DOLL
+	.2byte ITEM_POKE_TOY
 	.2byte ITEM_RETRO_MAIL
+	.2byte ITEM_DREAM_MAIL
+	.2byte ITEM_STRANGE_SOUVENIR
 	.2byte ITEM_FIRE_STONE
 	.2byte ITEM_THUNDER_STONE
 	.2byte ITEM_WATER_STONE

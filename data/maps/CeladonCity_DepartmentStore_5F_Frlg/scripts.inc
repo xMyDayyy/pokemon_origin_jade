@@ -29,6 +29,7 @@ CeladonCity_DepartmentStore_5F_XItems::
 	.2byte ITEM_X_DEFEND
 	.2byte ITEM_X_SPEED
 	.2byte ITEM_X_SPECIAL
+	.2byte ITEM_X_SP_DEF
 	.2byte ITEM_X_ACCURACY
 	.2byte ITEM_GUARD_SPEC
 	.2byte ITEM_DIRE_HIT
@@ -54,6 +55,12 @@ CeladonCity_DepartmentStore_5F_Vitamins::
 	.2byte ITEM_CALCIUM
 	.2byte ITEM_ZINC
 	.2byte ITEM_CARBOS
+	.2byte ITEM_HEALTH_FEATHER
+	.2byte ITEM_MUSCLE_FEATHER
+	.2byte ITEM_RESIST_FEATHER
+	.2byte ITEM_GENIUS_FEATHER
+	.2byte ITEM_CLEVER_FEATHER
+	.2byte ITEM_SWIFT_FEATHER
 	.2byte ITEM_NONE
 	release
 	end
