@@ -1280,7 +1280,7 @@ BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50:
 	.string "Pokémon von Level 50 oder weniger.\p"
 	.string "Jedes muss außerdem ein anderes Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du bereit bist.$"
 #else
 	.string "Excuse me!\p"
@@ -1304,7 +1304,7 @@ BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpen:
 	.string "Pokémon.\p"
 	.string "Jedes muss außerdem ein anderes Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du bereit bist.$"
 #else
 	.string "Excuse me!\p"
@@ -1325,7 +1325,7 @@ BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Singles:
 	.string "Pokémon von Level 50 oder weniger.\p"
 	.string "Jedes muss außerdem ein anderes Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du bereit\n"
 	.string "bist.$"
 #else
@@ -1347,7 +1347,7 @@ BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpenSingles:
 	.string "Pokémon.\p"
 	.string "Jedes muss außerdem ein anderes Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du bereit\n"
 	.string "bist.$"
 #else
@@ -1369,7 +1369,7 @@ BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Doubles:
 	.string "Pokémon von Level 50 oder weniger.\p"
 	.string "Jedes muss außerdem ein anderes Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du bereit\n"
 	.string "bist.$"
 #else
@@ -1391,7 +1391,7 @@ BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpenDoubles:
 	.string "Pokémon.\p"
 	.string "Jedes muss außerdem ein anderes Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du bereit\n"
 	.string "bist.$"
 #else
@@ -1413,7 +1413,7 @@ BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50Multis:
 	.string "Pokémon von Level 50 oder weniger.\p"
 	.string "Jedes muss außerdem ein anderes Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du bereit\n"
 	.string "bist.$"
 #else
@@ -1435,7 +1435,7 @@ BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpenMultis:
 	.string "Pokémon.\p"
 	.string "Jedes muss außerdem ein anderes Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du bereit\n"
 	.string "bist.$"
 #else

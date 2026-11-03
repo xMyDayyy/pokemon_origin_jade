@@ -632,7 +632,7 @@ BattleFrontier_BattlePyramidLobby_Text_NotEnoughValidMonsLvOpen_hns:
 	.string "teilnahmeberechtigt.\p"
 	.string "Keines von ihnen darf ein Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du so weit\n"
 	.string "bist.$"
 #else
@@ -653,7 +653,7 @@ BattleFrontier_BattlePyramidLobby_Text_NotEnoughValidMonsLv50_hns:
 	.string "oder weniger.\p"
 	.string "Keines von ihnen darf ein Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du so weit\n"
 	.string "bist.$"
 #else
