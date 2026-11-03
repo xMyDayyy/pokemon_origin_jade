@@ -846,7 +846,8 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-030 One Battle Frontier: the HnS Kampfzone
 - **Status:** Active (2026-10-15; changed 2026-11-02: Scott's hint, D-051;
-  changed 2026-11-02: Emerald's battle tents retired)
+  changed 2026-11-02: Emerald's battle tents retired; changed 2026-11-03:
+  Scott's gift counts 11 meetings)
 - **Decision:** The Emerald frontier (47 maps, 36 layouts) is retired
   (`frontier_em_retired`). The HnS Kampfzone is reached by ship (D-029) and,
   after the Hoenn title, from Slateport and Lilycove: the S.S. Tidal lists
@@ -865,9 +866,19 @@ dated 2026-10-10 or later were decided directly.
   the Route 40 Trainer Hill stay, but Scott is not on their maps: their
   scripts for his two tent meetings (`FLAG_MET_SCOTT_IN_VERDANTURF`,
   `FLAG_MET_SCOTT_IN_FALLARBOR`) have no object and never run, so the two
-  meetings are no longer in the game (O-073).
+  meetings are no longer in the game. Scott is not needed for the story
+  (owner 2026-11-03). His gift in his house in the Kampfzone counts the 11
+  meetings that remain (`VAR_SCOTT_STATE`: Petalburg, Rustboro twice,
+  Slateport twice, Mauville, Route 119 and his call after the Fortree gym,
+  Lilycove, Mossdeep, Ever Grande): 4 Battle Points from 11 on (Emerald:
+  13), 3 from 9 on, 2 from 6 on, else 1. The M.S. Aqua reaches the
+  Kampfzone long before Hoenn, so Scott gives his welcome and the gift
+  only after the Hoenn title (`FLAG_IS_HOENN_CHAMPION`), when all
+  meetings are over; before that he only has his usual remarks and the
+  prizes for the frontier symbols and his shields.
 - **Evidence:** decision 2026-10-15 (O-006); owner answer 2026-10-31
-  (S-02); owner answers 2026-11-02 (S-04).
+  (S-02); owner answers 2026-11-02 (S-04); owner answer 2026-11-03
+  (O-073).
 
 ### D-031 Level scaling after a region's title
 - **Status:** Active (2026-10-15, Johto statics changed 2026-10-27, D-039,
@@ -2774,25 +2785,12 @@ dated 2026-10-10 or later were decided directly.
   not from an official game). Ruby/Sapphire has no such scene. Options:
   (a) keep the scene with the new text; (b) drop the scene (one Scott
   meeting less for `VAR_SCOTT_STATE`, which sets the Battle Points he
-  gives in the Kampfzone; two are already gone with the battle tents,
-  O-073). Proposal: (a); the owner reads the text.
-- **O-073** Scott's tent meetings (D-030, S-04): with Emerald's battle
-  tents his two meetings in Verdanturf and Fallarbor are gone. The HnS
-  copies of the tents at Route 40 have the scripts
-  (`VerdanturfTown_BattleTentLobby_hns_EventScript_Scott`,
-  `FallarborTown_BattleTentLobby_hns_EventScript_Scott`) and the flags
-  (`FLAG_MET_SCOTT_IN_VERDANTURF`, `FLAG_MET_SCOTT_IN_FALLARBOR`), but no
-  Scott object, so nothing runs them. Each meeting adds 1 to
-  `VAR_SCOTT_STATE`, which sets Scott's gift in his house in the
-  Kampfzone: 4 Battle Points after all 13 meetings, 3 from 9 on, 2 from 6
-  on, else 1. At most 11 are possible now, so at most 3 Battle Points
-  (with O-070 (b) at most 10, still 3). Options: (a) keep it so; (b) the
-  owner places Scott in the HnS copies in Porymap (scripts and flags are
-  there, but the copies stand in Johto, and the meetings belong to
-  Hoenn's story); (c) move the two meetings into the contest halls of
-  Verdanturf and Fallarbor (same places and times; needs new lines from
-  the owner, since Scott speaks of the battle tent there). Proposal: (a)
-  for the beta, (c) later if the owner wants the meetings back.
+  gives in the Kampfzone; the top gift would then need 10 instead of 11,
+  D-030). Proposal: (a); the owner reads the text.
+- **O-073** Resolved 2026-11-03: Scott is not needed for the story
+  (owner). His two tent meetings in Verdanturf and Fallarbor stay out;
+  his gift in the Kampfzone gives 4 Battle Points from 11 meetings on,
+  the number still possible (D-030).
 - **O-074** TMs of HnS's old Kanto (D-019): 21 TMs that HnS gives only in
   its own Kanto, whose maps are retired here, have no source in Origin
   Jade; only the item randomizer can roll them. 14 of their moves no
