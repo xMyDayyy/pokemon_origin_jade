@@ -1,11 +1,12 @@
 # Origin Jade - patch series of the audit round
 
 This file describes the patch series of the audit round of 2026-10-30/31,
-of the story packages that followed it on 2026-10-31 and of round 2 on
-2026-11-02 (the owner's answers of 2026-10-31 and 2026-11-02): how it was
-made, which commits depend on each other, how each commit was verified
-and how to apply it. What changed for players is in
-`docs/origin_jade/CHANGELOG.md`, what is still open in
+of the story packages that followed it on 2026-10-31, of round 2 on
+2026-11-02 (the owner's answers of 2026-10-31 and 2026-11-02) and of round
+3 on 2026-11-02/03 (contests as in Ruby and Sapphire, battle tents and the
+Route 111 Trainer Hill retired): how it was made, which commits depend on
+each other, how each commit was verified and how to apply it. What changed
+for players is in `docs/origin_jade/CHANGELOG.md`, what is still open in
 `docs/origin_jade/BETA_READINESS.md`.
 
 - **Range:** `3525d22e71..b022af5623`, 192 commits: the audit series (144),
@@ -13,19 +14,23 @@ and how to apply it. What changed for players is in
   their text check and the debug states (42). Another 6 documentation
   commits follow on top, 198 in all, up to `2f284d83b9`. The owner
   approved them, and `balancing` was fast-forwarded to `2f284d83b9` on
-  2026-10-31. Round 2 sits on `2f284d83b9`: `2f284d83b9..ae42426ece`, 62
-  commits (the seven packages of the owner's answers, 58, and four German
-  rest commits), and 5 documentation commits on top (this file is one of
-  them), 265 in all. Nothing of round 2 is committed on `balancing` before
-  the owner's approval. Since 2026-11-02 `balancing` also has the owner's
-  map commits `06ea236bdb` and `ad4a8db368` on `2f284d83b9` (see "How to
-  apply").
+  2026-10-31. On 2026-11-02 the owner pushed two map commits of his own to
+  `balancing`, `06ea236bdb` and `ad4a8db368` (not numbered here, see
+  "Owner's map commits"). Rounds 2 and 3 sit on `ad4a8db368`:
+  `ad4a8db368..61ac7e277d`, 73 commits: round 2 (62 commits: the seven
+  packages of the owner's answers, 58, and four German rest commits), its
+  5 documentation commits and round 3 (6 commits). Another 6
+  documentation commits follow on top (this file is one of them), 277 in
+  all. Nothing of rounds 2 and 3 is committed on `balancing` before the
+  owner's approval.
 - **Commit ids:** the ids (shas) of commits 1-198 are those of the
-  integration branch `audit`, now also on `balancing`. The ids of round 2
-  are those of the integration branch `runde2` (commits 199-256), of the
-  branch `r2-derest` on top of it (257-260) and of `r2-docs` on top of
-  that (261-265). Applying the series with `git am` or a rebase gives new
-  ids; the content stays the same.
+  integration branch `audit`, now also on `balancing`. The ids of commits
+  199-271 are those of the integration branch `runde23` and the ids of
+  272-277 those of `r23-docs` on top of it. Round 2 was first built on
+  `2f284d83b9` (branches `runde2`, `r2-derest`, `r2-docs`) and then rebased
+  onto `ad4a8db368`, which gave every commit a new id with the same
+  subject; this file lists only the new ids. Applying the series with
+  `git am` gives new ids again; the content stays the same.
 - **Author and committer** of every commit: xMyDayyy. Commit messages are
   German and describe the change, the files and the effect.
 - **Finding ids** in the list below: `A01`-`A122` from the audit's
@@ -43,7 +48,10 @@ and how to apply it. What changed for players is in
   challenges and randomizer), `O-` the open questions of `DECISIONS.md` he
   answered, `beta: German` his beta plan (the beta comes out in German
   first, so everything that is not German gets a German branch); finding
-  ids are added where a commit closes one.
+  ids are added where a commit closes one. Round 3 implements the owner's
+  answers on the battle tents and the Route 111 Trainer Hill (`S-04`,
+  `S-05`) and on the contests (`contests`: "ganz wie Rubin/Saphir", in
+  four halls).
 
 ## How the series was made
 
@@ -110,6 +118,25 @@ and how to apply it. What changed for players is in
 13. **Documentation (5 commits).** `DECISIONS.md` checked after the
     merge of the seven packages, `CHANGELOG.md`, `BETA_READINESS.md`,
     `TESTS.md` and this file for the 62 commits of steps 11 and 12.
+14. **Rebase onto the owner's map commits.** Meanwhile the owner had
+    removed the battle tents and the Route 111 Trainer Hill from the maps
+    and drawn the contest hall buildings (`06ea236bdb`, `ad4a8db368` on
+    `balancing`). Round 2 and its documentation were rebased onto
+    `ad4a8db368` without conflicts (new ids, same subjects and changes).
+15. **Round 3 (6 commits).** Package `contests` (D-058) in its own
+    worktree (`r3-contests`) on the rebased round 2: Ruby and Sapphire's
+    contest lobbies and audience halls for Verdanturf, Fallarbor and
+    Slateport, the towns' signs and people, the Route 121 Safari Zone
+    hint, and the clean-up of the retired tents and Trainer Hill. It was
+    reviewed, the review fixes were folded in (autosquash), and every
+    commit was built on its own. Integrated onto `runde23` without new
+    conflicts; then every commit after `ad4a8db368` was built again with
+    its final id.
+16. **Documentation (6 commits).** `DECISIONS.md` checked after round 3,
+    `CHANGELOG.md`, `BETA_READINESS.md`, `TESTS.md`, `README.md` and this
+    file for the rebased round 2 and round 3. After their review the
+    fixes were folded into their commits (autosquash); the `README.md`
+    commit was added then.
 
 Rules every commit follows: one finding (or a tight group of the same
 kind) per commit; `DECISIONS.md` changes in the same commit as the
@@ -232,58 +259,93 @@ the patches conflict there. Inside the series these orders are required:
   `0ab7449520`); `docs/origin_jade/TESTS.md` (ten of the 42 commits).
   `8fcbb1acc0` adds the two Day Care tests that expect a Pichu egg to
   `test/known_failures.tsv`.
-- **Round 2: flags, vars and DECISIONS ids.** `ba63ca78b9` adds
+- **Round 2: flags, vars and DECISIONS ids.** `43354ff84b` adds
   `FLAG_HOENN_PICKED_LOTO_TICKET` (Hoenn section of
   `flags_origin_jade.h` + 18) and `VAR_HOENN_POKELOT_PRIZE_ITEM` and
-  `_PLACE` (`OJ_VARS_HOENN` + 19, + 20); `36a20c443a` adds
+  `_PLACE` (`OJ_VARS_HOENN` + 19, + 20); `4c8c287df6` adds
   `FLAG_CAUGHT_JIRACHI` and `FLAG_DEFEATED_JIRACHI` (+ 19, + 20) and
-  `LEGENDARY_JIRACHI`. New entries: D-051 (`647a0d1054`), D-052
-  (`bc06eb8f8e`), D-053 (`4cd02e34e1`), D-054 (`25d9748af9`), D-055
-  (`19983480f5`), D-056 (`d6af502fa7`), D-057 (`124a45487b`); O-041
-  (`15003b77fa`), O-045 (`e6120b14d0`), O-050 (`c76a60fd47`), O-055 to
-  O-058 (`7899ace9a1`), O-060 (`22b6c4d130`), O-063 (`d6af502fa7`),
-  O-065 and O-066 (`124a45487b`), O-067 (`ae42426ece`), P-006 (this
-  documentation). The packages reserved their O- ids before integration;
-  the unused ones stay unused and are never assigned later. Nearly every
-  commit of round 2 edits `DECISIONS.md`, and most of them
-  `BETA_READINESS.md`.
-- **Round 2: save layout and debug headers.** `bc06eb8f8e` grows
+  `LEGENDARY_JIRACHI`. New entries: D-051 (`4a168b28b9`), D-052
+  (`f1b7342466`), D-053 (`293e135449`), D-054 (`a7d130039b`), D-055
+  (`a1509bd992`), D-056 (`f1f2e8ff0c`), D-057 (`edae0ce493`); O-041
+  (`e40a94553b`), O-045 (`f8e03c9a14`), O-050 (`3c8ec60228`), O-055 to
+  O-058 (`67f25ca805`), O-060 (`8eb46fd987`), O-063 (`f1f2e8ff0c`),
+  O-065 and O-066 (`edae0ce493`), O-067 (`bdf6de26e6`), P-006
+  (`43ee86d674`, documentation). The packages reserved their O- ids
+  before integration; the unused ones stay unused and are never assigned
+  later. Nearly every commit of round 2 edits `DECISIONS.md`, and most of
+  them `BETA_READINESS.md`.
+- **Round 2: save layout and debug headers.** `f1b7342466` grows
   SaveBlock3 from 1008 to 1584 bytes (Kanto's and Johto's Day Cares at its
   end) and updates the asserts in `src/save.c` and the size in
-  `test/save.c` in the same commit. `15003b77fa`, `bc06eb8f8e`,
-  `ba9263431e` and `22b6c4d130` regenerate the debug headers
+  `test/save.c` in the same commit. `e40a94553b`, `f1b7342466`,
+  `36760edbec` and `8eb46fd987` regenerate the debug headers
   (`src/data/debug_kanto_complete.h`, `src/data/debug_johto_complete.h`);
-  the per-commit log records both headers up to date at every commit of
-  `runde2`; the four rest commits do not touch their sources, and at the
-  tip both are up to date.
+  the per-commit logs record both headers up to date at every commit, on
+  `2f284d83b9` before the rebase (`percommit_r2`) and with the final ids
+  (`percommit_r23`); the four rest commits and round 3 do not touch their
+  sources.
 - **Round 2: same lines in the same file:** `tools/make_debug_states.py`
-  (`2366a7faef`, `15003b77fa`, `36a20c443a`, `bc06eb8f8e`, `22b6c4d130`);
-  `src/data/trainers_hns.party` (`ba9263431e`, `94ef1dfa9c`,
-  `525145feff`, `076468daf3`), `src/data/trainers.party` (`ba9263431e`,
-  `9814c8cc06`, `076468daf3`), `src/data/trainers_frlg.party`
-  (`b0516cb308`, `076468daf3`); `src/level_scaling.c` and
-  `test/origin_jade/level_scaling.c` (`4cd02e34e1`, `f453e1cd12`,
-  `c76a60fd47`); `src/debug.c` (`bc06eb8f8e`, `22b6c4d130`,
-  `19983480f5`); `src/strings.c` (`2f7ccdd058`, `8a09804587`,
-  `84105d9593`); `data/maps/Route34_DayCare_hns/scripts.inc`
-  (`bc06eb8f8e`, `b310ef0fad`, `f2ff040f0c`);
-  `data/scripts/hoenn_arrival.inc` (`23661ee2e3`, `2241a44b1e`);
-  `src/data/heal_locations.json` (`15003b77fa`, `2241a44b1e`);
-  `src/field_specials.c` (`647a0d1054`, `a44511935c`);
-  `src/battle_script_commands.c` (`2f7ccdd058`, `c76a60fd47`);
-  `src/challenge_menu.c` (`c76a60fd47`, `25d9748af9`); `src/party_menu.c`
-  (`25d9748af9`, `84105d9593`); `data/specials.inc` (`ba63ca78b9`,
-  `cd270e41d1`); `include/constants/flags_origin_jade.h` (`ba63ca78b9`,
-  `36a20c443a`); `data/maps/SlateportCity_BattleTentLobby_hns/scripts.inc`
-  (`a39d3e0ffa`, `6d8abd351d`).
-- **Round 2: shared code.** `GetRegionBadgeCount` (`c76a60fd47`,
+  (`f0b3e86bee`, `e40a94553b`, `4c8c287df6`, `f1b7342466`, `8eb46fd987`);
+  `src/data/trainers_hns.party` (`36760edbec`, `c1574fd6ce`,
+  `ad0c38ec25`, `0d034edead`), `src/data/trainers.party` (`36760edbec`,
+  `4255412581`, `0d034edead`), `src/data/trainers_frlg.party`
+  (`7e20415d95`, `0d034edead`); `src/level_scaling.c` and
+  `test/origin_jade/level_scaling.c` (`293e135449`, `0e19260900`,
+  `3c8ec60228`); `src/debug.c` (`f1b7342466`, `8eb46fd987`,
+  `a1509bd992`); `src/strings.c` (`4fb0881c9a`, `6144f1ef24`,
+  `66e606c02b`); `data/maps/Route34_DayCare_hns/scripts.inc`
+  (`f1b7342466`, `01bbabf2ab`, `102d5ed683`);
+  `data/scripts/hoenn_arrival.inc` (`8a436c258b`, `5b3acc2d2f`);
+  `src/data/heal_locations.json` (`e40a94553b`, `5b3acc2d2f`);
+  `src/field_specials.c` (`4a168b28b9`, `f86196c16d`);
+  `src/battle_script_commands.c` (`4fb0881c9a`, `3c8ec60228`);
+  `src/challenge_menu.c` (`3c8ec60228`, `a7d130039b`); `src/party_menu.c`
+  (`a7d130039b`, `66e606c02b`); `data/specials.inc` (`43354ff84b`,
+  `b1f3d2734d`); `include/constants/flags_origin_jade.h` (`43354ff84b`,
+  `4c8c287df6`); `data/maps/SlateportCity_BattleTentLobby_hns/scripts.inc`
+  (`a3cbf5b4c2`, `04009d06e5`).
+- **Round 2: shared code.** `GetRegionBadgeCount` (`3c8ec60228`,
   `src/caps.c`) and `GetScalingCeiling` (`src/level_scaling.c`) serve the
-  badge readers and the catch malus; `IsBossTrainer` (`4cd02e34e1`) and
-  `JOHTO_SCALING_ROOMS` (`f453e1cd12`) come before the boss sets
-  `525145feff` and `9814c8cc06`, which were chosen for the scaled levels.
-  `cd270e41d1` takes back the death check of `d05aa4864f` (A30) in the
-  multi battle macros. `22b6c4d130` comes before `19983480f5` in
+  badge readers and the catch malus; `IsBossTrainer` (`293e135449`) and
+  `JOHTO_SCALING_ROOMS` (`0e19260900`) come before the boss sets
+  `ad0c38ec25` and `4255412581`, which were chosen for the scaled levels.
+  `b1f3d2734d` takes back the death check of `d05aa4864f` (A30) in the
+  multi battle macros. `8eb46fd987` comes before `a1509bd992` in
   `src/debug.c`.
+- **Owner's map commits and round 3.** Round 3 needs the owner's
+  `06ea236bdb`: the doors of the three town maps (warps 0, 1 and 3) that
+  `d969de7b0b` leads into the new contest lobbies, and Route 111 without
+  the hill's warp and sign, which `61ac7e277d` relies on; `ad4a8db368`
+  has the tiles of the hall buildings and also changes tiles other maps
+  share (see "Owner's map commits" in the list). Round 2 does not touch
+  these maps, so it applies to `ad4a8db368` without conflicts.
+- **Round 3: flags and DECISIONS ids.** `d969de7b0b` adds
+  `FLAG_HIDE_VERDANTURF_TOWN_CONTEST_REPORTER`,
+  `FLAG_HIDE_FALLARBOR_TOWN_CONTEST_REPORTER` and
+  `FLAG_HOENN_RECEIVED_TM_ATTRACT` (`OJ_FLAGS_GLOBAL` + 1 to + 3),
+  `ebc78f0ec9` adds `FLAG_HOENN_RECEIVED_TM_TORMENT` (+ 4); no new var, no
+  change to the save layout. New entries: D-058 (`d969de7b0b`, extended by
+  every commit of round 3), O-068 and O-069 (`d969de7b0b`), O-070
+  (`bddcd1dc75`); resolved: O-065 (`ebc78f0ec9`), O-063 (`eb5d7173a1`),
+  O-067 (`c0a6f90aba`), O-024 (`61ac7e277d`). The package reserved O-068
+  to O-072; O-071 and O-072 stay unused. `61ac7e277d` rewrites D-044 (the
+  old version goes to the table of superseded decisions). Entries changed
+  per commit: `d969de7b0b` D-037, D-057, D-058, O-067, O-068, O-069;
+  `ebc78f0ec9` D-057, D-058, O-065; `bddcd1dc75` D-058, O-069, O-070;
+  `eb5d7173a1` D-058, O-063; `c0a6f90aba` D-019, D-030, D-058, O-067;
+  `61ac7e277d` D-019, D-044, D-045, D-050, D-054, D-057, O-024. The
+  documentation commit 272 (`d6492fdff0`) corrects D-030 (Scott is not on
+  the maps of the HnS tent copies, so his two tent meetings went with the
+  Emerald tents) and adds O-073 (those meetings) and O-074 (21 TMs of
+  HnS's old Kanto without a source).
+- **Round 3: same file in several commits:**
+  `data/maps/VerdanturfTown`, `FallarborTown` and `SlateportCity`
+  (`map.json`: `06ea236bdb`, `d969de7b0b`, `bddcd1dc75`; Verdanturf's and
+  Fallarbor's `scripts.inc`: `d969de7b0b`, `bddcd1dc75`); the three new
+  lobbies' `map.json`, `data/maps/map_groups.json`,
+  `data/event_scripts.s` and `include/constants/flags_origin_jade.h`
+  (`d969de7b0b`, `ebc78f0ec9`); `data/layouts/layouts.json`
+  (`c0a6f90aba`, `61ac7e277d`); `docs/origin_jade/DECISIONS.md` (all six).
 
 ## Verification per commit
 
@@ -292,9 +354,11 @@ branches, `make -j2` later; both build the same Jade ROM) and checked with
 `python3 tools/check_flags.py` (0 problems); for wave 1 the table says
 where only a package or integration build exists. The 6 documentation
 commits 193-198 change no code and were not built. Every commit of round
-2 (199-260) was built with its final id; the 5 documentation commits
-261-265 change no code. The logs are kept in the audit workspace, not in
-the repository.
+2 (199-260) was built twice: on `2f284d83b9` before the rebase and, with
+round 3 (266-271) and the 5 documentation commits 261-265, with its final
+id on `ad4a8db368` (`percommit_r23`, 73 of 73). The 6 documentation
+commits 272-277 change no code. The logs are kept in the audit workspace,
+not in the repository.
 
 | Part | Commits | Per-commit build and `check_flags` | Logs |
 |---|---:|---|---|
@@ -308,11 +372,12 @@ the repository.
 | Fixes and debug states | 7 | 7 of 7 `make=ok`, `check_flags` 0, with the ids of `audit`; the debug state check (before `0ab7449520` still `make_kanto_complete.py`) without a problem, the log records `debug_kanto_complete.h` up to date up to `ae3e095a3c` and `debug_johto_complete.h` from `13bf3c8cb6` on | `percommit_b10.log` |
 | Tip `b022af5623` | 192 | `make` 0, ROM SHA-1 `11bec7d4cba038d647668f2f86c68ef3a29eee1f` (also after a build from scratch), `check_flags` 0, `check_budget.py`, `check_text_width.py`, `make_debug_states.py --check` (both headers up to date), `check_regions.py` 0 problems, `check_maps.py` 88 minor, `check_merge.py` 0 errors (8 known), simulator without `--hoenn-ticket`: Hoenn title in wave 137, test suite with `tools/run_tests.py`: 5140 tests, 0 new and 0 changed failures | `integ_b10.res`, `integ_tests_b10.log` |
 | Documentation (2) | 6 | documentation only, not built; `check_flags` 0 | - |
-| Round 2 | 58 | 58 of 58 `make=ok`, `check_flags` 0, both debug headers up to date, with the ids of `runde2`; before that every commit also on its package branch after the review fixes | `percommit_r2.log`; package logs |
-| Round 2 state `124a45487b` | 256 | `make` 0, ROM SHA-1 `2c85c88afce3eb8d88bff8e265d3a955955ac0b6`, `check_flags` 0, both debug headers up to date, `check_regions.py` 0 problems, `check_text_width.py` as the baseline, `check_maps.py` 88 minor, `check_merge.py` 0 errors (8 known, 205 warnings, 273 hints), simulator without `--hoenn-ticket`: Kanto title in wave 50, Johto 105, Hoenn 137, `check_budget.py` (SaveBlock3 1584/1624), test suite with `tools/run_tests.py`: 5148 tests, 0 new and 0 changed failures | `integ_r2.res`, `integ_tests_r2.log`, `sim_r2/` |
-| German rest | 4 | 4 of 4 `make=ok`, `check_flags` 0 (3431 flags, 695 vars), both debug headers up to date, with the final ids of `r2-derest`, built one by one after the autosquash; ROM SHA-1 `8a63e8ea90ba2ad4cd36c4c7215b60a208fd5e62` for `a39d3e0ffa`, `9d8271bcd2f622c5b09d2b263bd3f8b8f74aec21` from `6d8abd351d` on | `r2derest_final.log` (the versions before the autosquash: `r2derest_c*.log`) |
-| Tip `ae42426ece` | 260 | in a new worktree of the documentation tip (same code): `make` from scratch 0, ROM SHA-1 `9d8271bcd2f622c5b09d2b263bd3f8b8f74aec21` (the same as the rest package's build), `make release` 0 (SHA-1 `18eedc2ebb50f9165aaf65ade559a1281e9bd625`, no debug menu), `check_warnings.py` 105 (release 111), `check_flags` 0 (3431 flags, 695 vars), `make_debug_states.py --check` (both headers up to date), `check_regions.py` 0 problems, `check_text_width.py` 35 exact lines as before, `check_game_text.py --english` (Johto 23, Kanto 5, Hoenn 2, shared 97), `check_save_safety.py` 76 findings as before, `check_budget.py` | `r2docs_build.log`, `r2docs_release.log` |
-| Documentation (3) | 5 | documentation only, not built one by one (the tip build above has the same code); `check_flags` 0 | - |
+| Round 2 before the rebase | 62 | on `2f284d83b9`, with the ids before the rebase: 58 of 58 `make=ok` on `runde2`, `check_flags` 0, both debug headers up to date (`percommit_r2`); before that every commit also on its package branch after the review fixes. The four rest commits one by one after the autosquash (`make` ok, `check_flags` 0 with 3431 flags and 695 vars, headers up to date; ROM `8a63e8ea…` for the first, `9d8271bc…` from the second on). Tip of `runde2` (the D-057 commit, now `edae0ce493`): ROM SHA-1 `2c85c88afce3eb8d88bff8e265d3a955955ac0b6`, `check_regions.py` 0, `check_maps.py` 88 minor, `check_merge.py` 0 errors (8 known, 205 warnings, 273 hints), simulator Kanto 50, Johto 105, Hoenn 137, 5148 tests, 0 new and 0 changed failures. Rest tip (now `bdf6de26e6`), from scratch: ROM `9d8271bcd2f622c5b09d2b263bd3f8b8f74aec21`, `make release` `18eedc2ebb50f9165aaf65ade559a1281e9bd625`, 105 warnings (release 111), English Johto 23, Kanto 5, Hoenn 2, shared 97, save check 76 findings | `percommit_r2.log`, `r2derest_final.log`, `integ_r2.res`, `integ_tests_r2.log`, `sim_r2/`, `r2docs_build.log`, `r2docs_release.log`; package logs |
+| Documentation (3) | 5 | documentation only (before the rebase not built one by one) | - |
+| Round 3 | 6 | on its package branch `r3-contests` (on round 2 rebased onto `ad4a8db368`) after the review fixes: 6 of 6 `make` 0, `check_flags` 0; at its tip `check_maps.py --compare` against the base: 2 critical findings gone (the entrance of the retired Route 111 hill), nothing new | package report |
+| All commits after `ad4a8db368` | 73 | 73 of 73 `make=ok`, `check_flags` 0, both debug headers up to date, with the final ids of `runde23` (62 of round 2, 5 documentation, 6 of round 3) | `percommit_r23.log` |
+| Tip `61ac7e277d` | 271 | `make` 0, ROM SHA-1 `6346a2591693e2c99c3f1748b676d0f207afdbef`, also after a build from scratch (398 C files), `make release` 0 (SHA-1 `10174fe5187327f5e3cb4bcfe39d7392bb493031`, no debug menu, debug states or "Even Wild Slots" in the ELF), `check_warnings.py` 105 (release 111), `check_flags` 0 (3435 flags, 695 vars), `make_debug_states.py --check` (both headers up to date), `check_regions.py` 0 problems, `check_text_width.py` 35 exact lines as before, `check_game_text.py --english` (Hoenn 0, Johto 23, Kanto 5, shared 97, `src` 11), `check_maps.py` 88 minor on 1125 active maps, `check_merge.py` 0 errors (8 known, 205 warnings, 273 hints), simulator without `--hoenn-ticket`: Kanto title in wave 50, Johto 105, Hoenn 137, `check_budget.py` (SaveBlock3 1584/1624), test suite with `tools/run_tests.py`: 5148 tests, 0 new and 0 changed failures; `check_save_safety.py` 76 findings as before (documentation tip) | `integ_r23.res`, `tests_r23.log`, `sim_r23/`, `full_r23.log`, `rel_r23.log` |
+| Documentation (4) | 6 | documentation only, not built one by one (the tip build above has the same code); `check_flags` 0; this list and every commit id of the six files checked against `git log` by a script (see the end of the list) | - |
 
 On 2026-10-31 the audit tip `b62f22e381` and the tip `b022af5623` were
 also built from scratch in a separate worktree (all 397 C files
@@ -325,38 +390,42 @@ the baseline. `make release` of `b022af5623` gives exit 0 and SHA-1
 ## How to apply
 
 Commits 1-198 are on `balancing` since 2026-10-31 (fast-forward to
-`2f284d83b9`). Round 2 (commits 199-265) sits on `2f284d83b9`. Since then
-the owner pushed his map work for P-006 to `balancing` (`06ea236bdb`
-"Anpassungen an Karten", `ad4a8db368` "Tilesets für Änderungen
-nachgeladen"), so a fast-forward that keeps the ids is no longer
-possible. Round 2 goes on top of `ad4a8db368`, by rebase or with
-`git am`; every commit gets a new id with the same subject and changes
-(the 62 code commits apply to `ad4a8db368` without conflicts). The ids in
-this file, `CHANGELOG.md`, `BETA_READINESS.md` and `TESTS.md` then have
-to be matched by subject, and the per-commit builds and the checks run
-again on the new ids.
+`2f284d83b9`), and the owner's map commits `06ea236bdb` "Anpassungen an
+Karten" and `ad4a8db368` "Tilesets für Änderungen nachgeladen" since
+2026-11-02. Rounds 2 and 3 with their documentation (commits 199-277)
+sit on `ad4a8db368`. As long as `balancing` is still at `ad4a8db368`, a
+fast-forward applies them and keeps the ids of this file:
 
-**Rebase** (in the integration clone):
+**Fast-forward** (in the target repository, with the integration clone as
+a remote or after fetching `r23-docs`):
 
-    git rebase --onto ad4a8db368 2f284d83b9 r2-docs
+    git checkout balancing        # at ad4a8db368
+    git merge --ff-only r23-docs
 
-**Patches** (`git am`):
+**Patches** (`git am`, also when `balancing` has moved on):
 
     # in the integration clone
-    git format-patch 2f284d83b9..r2-docs -o patches/runde2/
+    git format-patch ad4a8db368..r23-docs -o patches/runde23/
     # in the target repository
-    git checkout balancing        # at ad4a8db368
-    git am --3way patches/runde2/*.patch
+    git checkout balancing
+    git am --3way patches/runde23/*.patch
+
+With `git am` on a moved `balancing` every commit gets a new id with the
+same subject; the ids in this file, `CHANGELOG.md`, `BETA_READINESS.md`
+and `TESTS.md` then have to be matched by subject, and the per-commit
+builds and the checks run again on the new ids, as they did after the
+rebase of round 2.
 
 For the first round the same worked with `3525d22e71..b022af5623`
 (`patches/audit/`) and the 6 doc commits on `b022af5623`
 (`patches/docs2/`).
 
 `git am` keeps author, author date and message; the committer date and so
-the commit ids change. The per-package exports of the waves and of round
-2 (`patches/<package>/`, `patches/r2_<package>/`) hold the versions before
-integration and are not meant for applying; use the export of the whole
-branch.
+the commit ids change. The per-package exports of the waves and of
+rounds 2 and 3 (`patches/<package>/`, `patches/r2_<package>/`,
+`patches/r3_contests/`) hold the versions before integration (those of
+round 2 still on `2f284d83b9`) and are not meant for applying; use the
+export of the whole branch as above.
 
 After applying, run:
 
@@ -431,6 +500,10 @@ The number is the position in the series; the title is the commit title
 |---:|---|---|---|
 | 31 | `d0324da2bf` | Kampfzone und Trainerberg: keine deaktivierten Arten mehr in den Teams | A18 |
 | 32 | `0b265d9f0f` | Hoenn: Trainerberg auf Route 111 mit Emerald-Trainern statt leerer Etagen | A15, A29 |
+
+Round 3 retires Emerald's hill on Route 111 (`61ac7e277d`, D-044): what
+commits 32 and 101 built for it stays in the code and in SaveBlock3,
+unused.
 
 #### `pokemon`: Pokemon availability
 
@@ -745,121 +818,175 @@ series, so none of commits 1 to 150 regenerates it.
 The ids of commits 193 to 198 are those of branch `wp-docs2` on
 `b022af5623`; `audit` and `balancing` were fast-forwarded to them.
 
+### Owner's map commits (on `balancing`, not numbered)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| - | `06ea236bdb` | Anpassungen an Karten | S-04, S-05 |
+| - | `ad4a8db368` | Tilesets für Änderungen nachgeladen | S-04, S-05 |
+
+The owner's own commits of 2026-11-02 on `2f284d83b9`: the battle tents
+of Verdanturf, Fallarbor and Slateport become contest hall buildings (the
+tents' warps stay), and Emerald's Trainer Hill with its warp and sign
+leaves Route 111 (`06ea236bdb`); the tiles for it (`ad4a8db368`). Rounds
+2 and 3 sit on top of them. `ad4a8db368` also changes metatiles and tiles
+of the `mauville` and `slateport` tilesets that other maps share: the
+entrance of the desert tower on Route 111 (metatiles 988 and 996), a few
+pixels of the Trick House roof on Route 110, 1-3 pixels in Mauville and
+on Route 118, and 21 pixels of `mauville` and 16 of `slateport` that are
+no longer transparent (palette index 0 overwritten). The owner keeps the
+roof pixels and fixes the tower entrance himself; restoring the
+transparent pixels from the original tiles is offered to him
+(`BETA_READINESS.md`, "Risks").
+
 ### Round 2 (owner answers of 2026-10-31 and 2026-11-02)
 
 #### `story`: calls by region, ports and the Pallet Town room (D-051)
 
 | # | Commit | Title | Findings |
 |---:|---|---|---|
-| 199 | `23661ee2e3` | Schiffsmenüs: „Hoenn“ bleibt, bis Graphitport City anfahrbar ist | O-032 |
-| 200 | `647a0d1054` | Hoenn-Anrufe klingeln nur noch in Hoenn | S-07, N-w3_hoenn-2 |
-| 201 | `cd421bc8a8` | MS Tide: Scotts Einladung entfällt nach dem Treffen an Bord | S-02, A63 |
-| 202 | `2366a7faef` | Linds Anruf nach dem Johto-Titel kommt in Alabastia | O-036 |
-| 203 | `15003b77fa` | Zimmer-Deko im Spielerzimmer in Alabastia | O-029, O-041 |
-| 204 | `3a229e49c0` | Doku: Troy behält überall das Smaragd-Sprite | O-031 |
-| 205 | `2241a44b1e` | Wurzelheim: unsichtbare Familienobjekte der Vater-Szenen entfernt | O-030, N-hoenn-1, T-hoenn_a-12 |
-| 206 | `fe29e7cec3` | Code: Funktion für „… sagt immer“ ohne Vater im Namen | O-030 |
+| 199 | `8a436c258b` | Schiffsmenüs: „Hoenn“ bleibt, bis Graphitport City anfahrbar ist | O-032 |
+| 200 | `4a168b28b9` | Hoenn-Anrufe klingeln nur noch in Hoenn | S-07, N-w3_hoenn-2 |
+| 201 | `d84bc3c745` | MS Tide: Scotts Einladung entfällt nach dem Treffen an Bord | S-02, A63 |
+| 202 | `f0b3e86bee` | Linds Anruf nach dem Johto-Titel kommt in Alabastia | O-036 |
+| 203 | `e40a94553b` | Zimmer-Deko im Spielerzimmer in Alabastia | O-029, O-041 |
+| 204 | `9ddb662b5d` | Doku: Troy behält überall das Smaragd-Sprite | O-031 |
+| 205 | `5b3acc2d2f` | Wurzelheim: unsichtbare Familienobjekte der Vater-Szenen entfernt | O-030, N-hoenn-1, T-hoenn_a-12 |
+| 206 | `c6f9c36648` | Code: Funktion für „… sagt immer“ ohne Vater im Namen | O-030 |
 
 #### `hoenn`: lottery, marts, Jirachi, Day Cares, Bills PC (D-052)
 
 | # | Commit | Title | Findings |
 |---:|---|---|---|
-| 207 | `ba63ca78b9` | Hoenn: eigenes Tageslos im Kaufhaus Seegrasulb | S-03, A61 |
-| 208 | `36a20c443a` | Kanto: Jirachi-Ereignis vom Mondberg-Vorplatz auf Route 4 | S-12, A69 |
-| 209 | `2cc7c3a70b` | Hoenn: Läden verkaufen Entwicklungs-Items der Hoenn-Familien | S-10, A67 |
-| 210 | `9daf2269e5` | Doku: Owner-Antworten zu Wassili, Milotic, Alola/Sinjoh und Mythischen | S-06, S-11, S-15, B-04, A68, N-w3_hoenn-1, O-009 |
-| 211 | `e6120b14d0` | Doku: Blutmond-Ursaluna wie HnS, Regionalformen als Entwicklungen | S-13, S-14, A19, A108 |
-| 212 | `ad371f51b9` | Regionenregel: aus bei jeder Randomizer-Option | O-033 |
-| 213 | `901b96b798` | Trainerpass-Sterne auch für Goldpass-Begrüßung und Kampfzonenpass | O-039 |
-| 214 | `bc06eb8f8e` | Pensionen: eigene Pension für Kanto, Johto und Hoenn | S-16, O-020 |
-| 215 | `2f7ccdd058` | Bills PC heißt von Anfang an und überall Bills PC | S-16, O-021 |
+| 207 | `43354ff84b` | Hoenn: eigenes Tageslos im Kaufhaus Seegrasulb | S-03, A61 |
+| 208 | `4c8c287df6` | Kanto: Jirachi-Ereignis vom Mondberg-Vorplatz auf Route 4 | S-12, A69 |
+| 209 | `dc016bbc28` | Hoenn: Läden verkaufen Entwicklungs-Items der Hoenn-Familien | S-10, A67 |
+| 210 | `37ce3d37a5` | Doku: Owner-Antworten zu Wassili, Milotic, Alola/Sinjoh und Mythischen | S-06, S-11, S-15, B-04, A68, N-w3_hoenn-1, O-009 |
+| 211 | `f8e03c9a14` | Doku: Blutmond-Ursaluna wie HnS, Regionalformen als Entwicklungen | S-13, S-14, A19, A108 |
+| 212 | `6d8d9bcdfc` | Regionenregel: aus bei jeder Randomizer-Option | O-033 |
+| 213 | `1d8e2f2b80` | Trainerpass-Sterne auch für Goldpass-Begrüßung und Kampfzonenpass | O-039 |
+| 214 | `f1b7342466` | Pensionen: eigene Pension für Kanto, Johto und Hoenn | S-16, O-020 |
+| 215 | `4fb0881c9a` | Bills PC heißt von Anfang an und überall Bills PC | S-16, O-021 |
 
 #### `balance`: boss movesets, league ladder and region badges (D-053)
 
 | # | Commit | Title | Findings |
 |---:|---|---|---|
-| 216 | `4cd02e34e1` | Hoenn: Maike und Heiko zählen als Bosse (+1 auf das Ass) | B-06, A112 |
-| 217 | `ba9263431e` | Troy und Rot: sechs Pokémon auf Level 100 als letzte Story-Bosse | B-10, T-hoenn_b-4 |
-| 218 | `f453e1cd12` | Johto-Liga: Level steigen von Willi bis Siegfried wie in HGSS | B-05, A110 |
-| 219 | `c76a60fd47` | Ordenzähler: Rückkämpfe, Fangmalus, Challenge und Fortsetzen nach Region | B-08, O-023 |
-| 220 | `94ef1dfa9c` | Johto: vier Trainer mit weniger als drei Pokémon aufgefüllt | B-12, N-balance-1 |
-| 221 | `525145feff` | Johto-Bosse: feste, starke Movesets für skalierte Level | B-01, A20 |
-| 222 | `9814c8cc06` | Hoenn-Bosse: feste, starke Movesets für skalierte Level | B-01, A20 |
-| 223 | `b0516cb308` | Kanto-Liga: feste, starke Movesets für die skalierten Rückkampfteams | B-01, A20 |
-| 224 | `076468daf3` | Trainer: nicht erlernbare Attacken durch ähnliche erlernbare ersetzt | B-02, A111, W-moveset_sim-2 |
-| 225 | `e7d55de9d6` | Doku: D-053 mit den Balance-Antworten ohne Codeänderung | B-03, B-04, B-07, B-09, B-11, B-13, A74, A75, A113, A114, W-moveset_sim-3, N-tests-3 |
+| 216 | `293e135449` | Hoenn: Maike und Heiko zählen als Bosse (+1 auf das Ass) | B-06, A112 |
+| 217 | `36760edbec` | Troy und Rot: sechs Pokémon auf Level 100 als letzte Story-Bosse | B-10, T-hoenn_b-4 |
+| 218 | `0e19260900` | Johto-Liga: Level steigen von Willi bis Siegfried wie in HGSS | B-05, A110 |
+| 219 | `3c8ec60228` | Ordenzähler: Rückkämpfe, Fangmalus, Challenge und Fortsetzen nach Region | B-08, O-023 |
+| 220 | `c1574fd6ce` | Johto: vier Trainer mit weniger als drei Pokémon aufgefüllt | B-12, N-balance-1 |
+| 221 | `ad0c38ec25` | Johto-Bosse: feste, starke Movesets für skalierte Level | B-01, A20 |
+| 222 | `4255412581` | Hoenn-Bosse: feste, starke Movesets für skalierte Level | B-01, A20 |
+| 223 | `7e20415d95` | Kanto-Liga: feste, starke Movesets für die skalierten Rückkampfteams | B-01, A20 |
+| 224 | `0d034edead` | Trainer: nicht erlernbare Attacken durch ähnliche erlernbare ersetzt | B-02, A111, W-moveset_sim-2 |
+| 225 | `7e577dda7d` | Doku: D-053 mit den Balance-Antworten ohne Codeänderung | B-03, B-04, B-07, B-09, B-11, B-13, A74, A75, A113, A114, W-moveset_sim-3, N-tests-3 |
 
 #### `hnsalign`: Nuzlocke, challenges and randomizer as in HnS (D-054)
 
 | # | Commit | Title | Findings |
 |---:|---|---|---|
-| 226 | `25d9748af9` | Challenge „Keine EVs“ endet mit der Nuzlocke beim ersten Hoenn-Titel | N-03, T-legend_endgame-6 |
-| 227 | `d4dc31a1fc` | Pokécenter-Challenge: Betten in Hoenn heilen nicht mehr | N-04, N-challenge-3 |
-| 228 | `116c058ec8` | Item-Randomizer: Tauschmenüs geben die gewählte Ware ohne Zufall | N-07, N-randomizer-2 |
-| 229 | `514e40f424` | Starterwahl: Rückfrage nennt die gezeigte Art, wenn sie wechselt | N-08, N-randomizer-3 |
-| 230 | `03a46c603f` | Randomizer: „Starter: Zufall“ gilt auch für Linds und Birks Starter | N-08, N-randomizer-4 |
-| 231 | `7899ace9a1` | Doku: D-054 vollständig, O-028 erledigt, offene Punkte O-055 bis O-058 | N-01, N-02, N-05, N-06, N-09, N-10, O-028, N-challenge-4, N-nuzlocke-2, N-nuzlocke-3, N-randomizer-1, A78, A121 |
-| 232 | `cd270e41d1` | Nuzlocke: Kämpfe mit KI-Partner wieder wie in HnS | A30 (as in HnS) |
+| 226 | `a7d130039b` | Challenge „Keine EVs“ endet mit der Nuzlocke beim ersten Hoenn-Titel | N-03, T-legend_endgame-6 |
+| 227 | `26a2666739` | Pokécenter-Challenge: Betten in Hoenn heilen nicht mehr | N-04, N-challenge-3 |
+| 228 | `a8d021c844` | Item-Randomizer: Tauschmenüs geben die gewählte Ware ohne Zufall | N-07, N-randomizer-2 |
+| 229 | `953333a642` | Starterwahl: Rückfrage nennt die gezeigte Art, wenn sie wechselt | N-08, N-randomizer-3 |
+| 230 | `40ae485a0f` | Randomizer: „Starter: Zufall“ gilt auch für Linds und Birks Starter | N-08, N-randomizer-4 |
+| 231 | `67f25ca805` | Doku: D-054 vollständig, O-028 erledigt, offene Punkte O-055 bis O-058 | N-01, N-02, N-05, N-06, N-09, N-10, O-028, N-challenge-4, N-nuzlocke-2, N-nuzlocke-3, N-randomizer-1, A78, A121 |
+| 232 | `b1f3d2734d` | Nuzlocke: Kämpfe mit KI-Partner wieder wie in HnS | A30 (as in HnS) |
 
 #### `debugaids`: debug states, "Even Wild Slots" (D-050, D-055)
 
 | # | Commit | Title | Findings |
 |---:|---|---|---|
-| 233 | `22b6c4d130` | Debug-Zustände: jedes erhältliche Item der Regionen einmal (O-035) | O-035 |
-| 234 | `19983480f5` | Debug-Menü: Schalter für gleich verteilte wilde Pokémon (Testhilfe) | owner test aid |
+| 233 | `8eb46fd987` | Debug-Zustände: jedes erhältliche Item der Regionen einmal (O-035) | O-035 |
+| 234 | `a1509bd992` | Debug-Menü: Schalter für gleich verteilte wilde Pokémon (Testhilfe) | owner test aid |
 
 #### `decommon`: German common texts (D-056)
 
 | # | Commit | Title | Findings |
 |---:|---|---|---|
-| 235 | `267e045499` | Texte: Attacken-Lehrer aus Smaragd und HnS auf Deutsch | beta: German, T-hoenn_a-2, W-text_width-17 |
-| 236 | `6a8121aae0` | Texte: Safari-Zone (Route 121 und gemeinsame Texte) auf Deutsch | beta: German, T-hoenn_a-3, W-text_width-17 |
-| 237 | `aae4064594` | Texte: Seeleute der Fahrschein-Inseln auf Deutsch | beta: German, W-text_width-17 |
-| 238 | `78f24c21f2` | Texte: Absage des Mixmeisters vor dem Titel auf Deutsch | beta: German, W-text_width-17 |
-| 239 | `c2cc300396` | Texte: Hilfefenster zu den Riegelnäpfen der Safari-Zone auf Deutsch | beta: German, W-text_width-18 |
-| 240 | `13efde70d7` | Texte: Englische Antworten in Auswahlmenüs auf Deutsch | beta: German, W-text_width-18 |
-| 241 | `081b7785e6` | Texte: Namen und Geschmäcker der Pokériegel auf Deutsch | beta: German |
-| 242 | `f59de1486a` | Texte: PC-Hintergrund „Punkte“ und Spielnamen im TV auf Deutsch | beta: German |
-| 243 | `0769a01664` | Texte: Level-Kürzel in der Attackenliste des Pokédex auf Deutsch | beta: German |
-| 244 | `41c549abbd` | Texte: Kampfcamps am Trainerberg (Route 40) auf Deutsch | beta: German, T-hoenn_a-1, W-text_width-17 |
-| 245 | `f74fdc84cd` | Texte: Wünsche und Wettbewerbe der Damen in Seegrasulb auf Deutsch | beta: German |
-| 246 | `a44511935c` | Texte: Radweg-Ergebnis und Fanclub-Bewertung auf Deutsch | beta: German |
-| 247 | `8a09804587` | Texte: Englische Wörter in deutschen Zweigen übersetzt | beta: German |
-| 248 | `84105d9593` | Texte: Weitere Meldungen aus src auf Deutsch | beta: German |
-| 249 | `d6af502fa7` | Doku: DECISIONS D-056 (deutsche gemeinsame Texte) und O-063 | beta: German |
+| 235 | `6ccc8f8ca8` | Texte: Attacken-Lehrer aus Smaragd und HnS auf Deutsch | beta: German, T-hoenn_a-2, W-text_width-17 |
+| 236 | `d16ef564d6` | Texte: Safari-Zone (Route 121 und gemeinsame Texte) auf Deutsch | beta: German, T-hoenn_a-3, W-text_width-17 |
+| 237 | `51a78671ff` | Texte: Seeleute der Fahrschein-Inseln auf Deutsch | beta: German, W-text_width-17 |
+| 238 | `3e813d5b97` | Texte: Absage des Mixmeisters vor dem Titel auf Deutsch | beta: German, W-text_width-17 |
+| 239 | `096cfc47c9` | Texte: Hilfefenster zu den Riegelnäpfen der Safari-Zone auf Deutsch | beta: German, W-text_width-18 |
+| 240 | `bf15af40b1` | Texte: Englische Antworten in Auswahlmenüs auf Deutsch | beta: German, W-text_width-18 |
+| 241 | `1360e54789` | Texte: Namen und Geschmäcker der Pokériegel auf Deutsch | beta: German |
+| 242 | `69e5afbf16` | Texte: PC-Hintergrund „Punkte“ und Spielnamen im TV auf Deutsch | beta: German |
+| 243 | `2b0ea19966` | Texte: Level-Kürzel in der Attackenliste des Pokédex auf Deutsch | beta: German |
+| 244 | `688a8d8218` | Texte: Kampfcamps am Trainerberg (Route 40) auf Deutsch | beta: German, T-hoenn_a-1, W-text_width-17 |
+| 245 | `28e8480d50` | Texte: Wünsche und Wettbewerbe der Damen in Seegrasulb auf Deutsch | beta: German |
+| 246 | `f86196c16d` | Texte: Radweg-Ergebnis und Fanclub-Bewertung auf Deutsch | beta: German |
+| 247 | `6144f1ef24` | Texte: Englische Wörter in deutschen Zweigen übersetzt | beta: German |
+| 248 | `66e606c02b` | Texte: Weitere Meldungen aus src auf Deutsch | beta: German |
+| 249 | `f1f2e8ff0c` | Doku: DECISIONS D-056 (deutsche gemeinsame Texte) und O-063 | beta: German |
 
 #### `demaps`: German map texts (D-057)
 
 | # | Commit | Title | Findings |
 |---:|---|---|---|
-| 250 | `af909b894e` | Texte: Mahagonia City auf Deutsch | beta: German, T-johto_b-2 |
-| 251 | `b310ef0fad` | Texte: Einheitstunnel, Kuhmuh-Stall, Silberberg-Center und Pension | beta: German, T-johto_a-2, T-johto_b-2, W-text_width-16 |
-| 252 | `c76fe0e14c` | Texte: Radioturm 4. Stock und Untergrund-Schalterraum auf Deutsch | beta: German, T-johto_a-2 |
-| 253 | `3c955f5419` | Texte: Eingang der Safari-Zone am Safari-Tor auf Deutsch | beta: German, T-johto_b-2 |
-| 254 | `f2ff040f0c` | Texte: Geldbeträge mit „$“ in fünf deutschen Kartentexten | beta: German |
-| 255 | `0c3c46987e` | Texte: Museum Marmoria City und Fiffyen auf Route 114 auf Deutsch | beta: German |
-| 256 | `124a45487b` | Doku: DECISIONS D-057 (deutsche Kartentexte), O-065 und O-066 | beta: German |
+| 250 | `4ff756809d` | Texte: Mahagonia City auf Deutsch | beta: German, T-johto_b-2 |
+| 251 | `01bbabf2ab` | Texte: Einheitstunnel, Kuhmuh-Stall, Silberberg-Center und Pension | beta: German, T-johto_a-2, T-johto_b-2, W-text_width-16 |
+| 252 | `9a16d641a5` | Texte: Radioturm 4. Stock und Untergrund-Schalterraum auf Deutsch | beta: German, T-johto_a-2 |
+| 253 | `4efc5b011a` | Texte: Eingang der Safari-Zone am Safari-Tor auf Deutsch | beta: German, T-johto_b-2 |
+| 254 | `102d5ed683` | Texte: Geldbeträge mit „$“ in fünf deutschen Kartentexten | beta: German |
+| 255 | `0b573ed13e` | Texte: Museum Marmoria City und Fiffyen auf Route 114 auf Deutsch | beta: German |
+| 256 | `edae0ce493` | Doku: DECISIONS D-057 (deutsche Kartentexte), O-065 und O-066 | beta: German |
 
 #### `derest`: German rest of the tent lobby at Route 40 (D-057)
 
 | # | Commit | Title | Findings |
 |---:|---|---|---|
-| 257 | `a39d3e0ffa` | Texte: NPCs im Kampfcamp Fabrik am Trainerberg auf Deutsch | beta: German, T-johto_b-2, W-text_width-16 |
-| 258 | `6d8abd351d` | Texte: unbenutzter TM-Geber im Kampfcamp Fabrik mit Smaragd-Texten | beta: German |
-| 259 | `161ec0942e` | Doku: D-057 mit dem Kampfcamp Fabrik, O-065 und O-066 genauer | beta: German |
-| 260 | `ae42426ece` | Doku: O-067 geteiltes TM-Flag der zwei Kampfcamp-Lobbys von Wiesenflur | S-04 |
+| 257 | `a3cbf5b4c2` | Texte: NPCs im Kampfcamp Fabrik am Trainerberg auf Deutsch | beta: German, T-johto_b-2, W-text_width-16 |
+| 258 | `04009d06e5` | Texte: unbenutzter TM-Geber im Kampfcamp Fabrik mit Smaragd-Texten | beta: German |
+| 259 | `b8391f20bb` | Doku: D-057 mit dem Kampfcamp Fabrik, O-065 und O-066 genauer | beta: German |
+| 260 | `bdf6de26e6` | Doku: O-067 geteiltes TM-Flag der zwei Kampfcamp-Lobbys von Wiesenflur | S-04 |
 
 ### Documentation (3)
 
 | # | Commit | Title | Findings |
 |---:|---|---|---|
-| 261 | `9a266e3891` | Doku: DECISIONS.md nach der Zusammenführung der Runde 2 bereinigt | - |
-| 262 | `1f6159b7ab` | Doku: CHANGELOG.md um die Runde 2 mit den Owner-Antworten | - |
-| 263 | `eb05273ab1` | Doku: BETA_READINESS.md auf den Stand der Runde 2 | - |
-| 264 | `449f9a5fc6` | Doku: TESTS.md mit den neuen Tests und der Testmatrix der Runde 2 | A10 |
-| 265 | this commit | Doku: PATCHES.md um die 62 Commits der Runde 2 | - |
+| 261 | `43ee86d674` | Doku: DECISIONS.md nach der Zusammenführung der Runde 2 bereinigt | - |
+| 262 | `c2856e1b55` | Doku: CHANGELOG.md um die Runde 2 mit den Owner-Antworten | - |
+| 263 | `eb1f2bc51b` | Doku: BETA_READINESS.md auf den Stand der Runde 2 | - |
+| 264 | `fe2f2cd327` | Doku: TESTS.md mit den neuen Tests und der Testmatrix der Runde 2 | A10 |
+| 265 | `90fda5de52` | Doku: PATCHES.md um die 62 Commits der Runde 2 | - |
 
-The id of commit 265 is in `git log`; a commit cannot name its own id.
-The ids of commits 199 to 256 are those of `runde2`, 257 to 260 of
-`r2-derest` and 261 to 265 of `r2-docs`; on top of the owner's
-`ad4a8db368` (rebase or `git am`, see "How to apply") they get new ones.
+### Round 3 (contests as in Ruby and Sapphire)
+
+#### `contests`: contest halls, retired tents and Trainer Hill (D-058)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 266 | `d969de7b0b` | Wettbewerbe: Hallen in Wiesenflur, Laubwechselfeld und Graphitport | contests, S-04 |
+| 267 | `ebc78f0ec9` | Wettbewerbe: Zuschauerhallen hinter den neuen Wettbewerbslobbys | contests, O-065 |
+| 268 | `bddcd1dc75` | Wettbewerbe: Schilder und Leute in den Städten sprechen wieder davon | contests |
+| 269 | `eb5d7173a1` | Safari-Zone Route 121: Hinweis auf die Pokériegelbox aus Graphitport | contests, O-063 |
+| 270 | `c0a6f90aba` | Kampfzelte: Smaragd-Zelte in Hoenn stillgelegt | S-04, O-067, A61 (rest) |
+| 271 | `61ac7e277d` | Trainerberg: Smaragd-Trainerberg an Route 111 stillgelegt | S-05, O-024, A15, N-facilities-2 |
+
+### Documentation (4)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 272 | `d6492fdff0` | Doku: DECISIONS.md nach der Runde 3 abgeglichen | - |
+| 273 | `0714bdffe3` | Doku: CHANGELOG.md um die Runde 3 und die neuen Commit-Ids | - |
+| 274 | `5609035657` | Doku: BETA_READINESS.md auf den Stand von runde23 mit der Runde 3 | - |
+| 275 | `417a5b2d29` | Doku: TESTS.md mit der Testmatrix von runde23 | - |
+| 276 | `4a2506b6b5` | Doku: README.md auf den Stand der Runden 2 und 3 | - |
+| 277 | this commit | Doku: PATCHES.md um die Runde 3 und die neuen Ids der Runde 2 | - |
+
+The id of commit 277 is in `git log`; a commit cannot name its own id.
+The ids of commits 199 to 271 are those of `runde23`, 272 to 277 of
+`r23-docs`. Applied with `git am` on a `balancing` that has moved on,
+they get new ones (see "How to apply").
+
+A script compared this list with `git log --reverse --first-parent
+3525d22e71..r23-docs`: rows 1 to 277 are its commits in this order
+without the owner's two, with the same ids and titles, and the two owner
+rows are the owner's commits. Every commit id in this file,
+`CHANGELOG.md`, `BETA_READINESS.md`, `TESTS.md`, `DECISIONS.md` and
+`README.md` is a commit in the history of `r23-docs`; the ids round 2
+had before the rebase and the ids the documentation commits had before
+their review fixes appear nowhere.
