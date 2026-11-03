@@ -1488,7 +1488,8 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-046 Only Origin Jade is built
 - **Status:** Active (2026-10-30, changed 2026-10-31: region check in the
-  CI, debug states D-050; changed 2026-11-02: "Even Wild Slots", D-055)
+  CI, debug states D-050; changed 2026-11-02: "Even Wild Slots", D-055;
+  changed 2026-11-03: "Instant Tr. Win", D-055)
 - **Decision:** The make process builds only Origin Jade: `GAME_VERSION`
   `POKEMON_HNS` (so `IS_HNS`), map version `hns`, title "POKEMON JADE",
   `Pokemon_Origin_Jade.gba`. `make`, `make jade`, `make check`,
@@ -1509,7 +1510,8 @@ dated 2026-10-10 or later were decided directly.
   or intended go into its `KNOWN_ERRORS` with the decision that covers
   them. The upstream Docs and Labels workflows run only by hand.
 - **Debug menus:** the overworld debug menu (R + Start, with "Johto Test"
-  and "Hoenn Test", D-050, and the switch "Even Wild Slots", D-055),
+  and "Hoenn Test", D-050, and the switches "Even Wild Slots" and
+  "Instant Tr. Win", D-055),
   the battle debug menu (Select) and the sprite visualizer are on in the
   normal build (beta testing) and off in `make release`
   (`DISABLED_ON_RELEASE`, `include/config/debug.h`).
@@ -2251,8 +2253,9 @@ dated 2026-10-10 or later were decided directly.
   wie im HnS-Upstream"; FRLG's Kanto against HnS's Kanto); HnS code
   compared with `git show 9041f705db:<file>`.
 
-### D-055 Debug toggle "Even Wild Slots"
-- **Status:** Active (2026-11-02, owner: test aid "Wilde gleich verteilt")
+### D-055 Debug toggles "Even Wild Slots" and "Instant Tr. Win"
+- **Status:** Active (2026-11-02, owner: test aid "Wilde gleich verteilt";
+  changed 2026-11-03: "Instant Tr. Win", owner request)
 - **Decision:** The overworld debug menu's "Flags & Vars" list has "Even
   Wild Slots" (debug texts stay English, D-020). While it is on, every
   slot of the current encounter table is equally likely: land, water,
@@ -2267,13 +2270,44 @@ dated 2026-10-10 or later were decided directly.
   odds. The switch lives in RAM (`gDebugEvenWildSlots`): off after a
   reset, nothing in the save, no save layout change. `make release` has
   no debug menu (D-046) and drops the check (`DEBUG_OVERWORLD_MENU`).
+- **Instant Tr. Win (2026-11-03):** the same list has "Instant Tr. Win"
+  ("Instant Trainer Win" does not fit the menu), in RAM like the other
+  switch (`gDebugInstantTrainerWin`: off after a reset, nothing in the
+  save). A trainer battle opens as usual: the trainer's text before the
+  battle, the send-outs, switch-in abilities and the trainer slides
+  before the first turn. Then, instead of the action selection, every
+  opposing Pokemon on the field loses its HP like from turn damage (HP
+  bar, faint message, the "first down" slide) and the normal faint path
+  follows: EXP for the Pokemon that took part (Exp. Share, level caps
+  and the level scaling as usual), the next send-out with the shift
+  question and the "last Pokemon" slide, until the last one has fainted.
+  The win is the normal one: defeat text, money, the trainer counts as
+  beaten and says the after-battle text, rematch tiers move on. The
+  player's side is never touched (no damage, no faint, nothing for the
+  Nuzlocke). Covered: single, double, two-trainer and multi battles with
+  an AI partner, rematches, gym leaders, the Elite Four and rivals. Wild,
+  link and recorded battles, the Battle Frontier with the tents, Trainer
+  Hill, e-Reader, secret base and Pokedude battles keep the normal flow,
+  and so do the battle tests unless a test sets the switch (the AI
+  battle tests run as recorded battles; the check lets them through
+  only under the test runner). Slides that need a turn (critical hit,
+  super effective, low HP, Mega Evolution ...) do not show. `make
+  release` drops the check (`DEBUG_OVERWORLD_MENU`).
 - **Why:** A tester who checks which Pokemon a map has would need
-  hundreds of encounters for a slot of 1 %.
+  hundreds of encounters for a slot of 1 %. A tester who reads the
+  trainer texts or checks the EXP of a route would otherwise fight every
+  battle.
 - **Code:** `UseDebugEvenWildSlots` and `ChooseWildMonIndex_*` in
-  `src/wild_encounter.c`, `DebugAction_FlagsVars_EvenWildSlotsOnOff` in
-  `src/debug.c`; test `test/origin_jade/even_wild_slots.c`.
+  `src/wild_encounter.c`, `DebugAction_FlagsVars_EvenWildSlotsOnOff` and
+  `DebugAction_FlagsVars_InstantTrainerWinOnOff` in `src/debug.c`;
+  `UseDebugInstantTrainerWin` and `HandleDebugInstantTrainerWin_*` in
+  `src/battle_main.c`, `BattleScript_DebugInstantTrainerWinFaint` in
+  `data/battle_scripts_1.s`; tests `test/origin_jade/even_wild_slots.c`
+  and `test/origin_jade/instant_trainer_win.c`.
 - **Evidence:** owner answers 2026-11-02 (test aid "Wilde gleich
-  verteilt": yes).
+  verteilt": yes); owner request 2026-11-03 (debug switch: read the
+  texts, win at once, EXP as usual, then the defeat and after-battle
+  texts).
 
 ### D-056 German completion of the common texts
 - **Status:** Active (2026-11-02, owner: the beta comes out in German

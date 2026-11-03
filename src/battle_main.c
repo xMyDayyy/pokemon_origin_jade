@@ -134,6 +134,9 @@ static void HandleEndTurn_BattleLost(void);
 static void HandleEndTurn_RanFromBattle(void);
 static void HandleEndTurn_MonFled(void);
 static void HandleEndTurn_FinishBattle(void);
+static bool32 UseDebugInstantTrainerWin(void);
+static void HandleDebugInstantTrainerWin_KnockOut(void);
+static void HandleDebugInstantTrainerWin_Fainted(void);
 static u32 Crc32B (const u8 *data, u32 size);
 static u32 GeneratePartyHash(const struct Trainer *trainer, u32 i);
 
@@ -4157,6 +4160,10 @@ static void TryDoEventsBeforeFirstTurn(void)
             StopCryAndClearCrySongs();
             BattleScriptExecute(BattleScript_ArenaTurnBeginning);
         }
+        else if (UseDebugInstantTrainerWin())
+        {
+            gBattleMainFunc = HandleDebugInstantTrainerWin_KnockOut;
+        }
 
         gBattleStruct->eventState.beforeFirstTurn = 0;
         break;
@@ -4252,6 +4259,71 @@ void BattleTurnPassed(void)
         BattleScriptExecute(BattleScript_PalacePrintFlavorText);
     else if (gBattleTypeFlags & BATTLE_TYPE_ARENA && gBattleStruct->eventState.arenaTurn == 0)
         BattleScriptExecute(BattleScript_ArenaTurnBeginning);
+    else if (UseDebugInstantTrainerWin())
+        gBattleMainFunc = HandleDebugInstantTrainerWin_KnockOut;
+}
+
+// Debug menu "Instant Tr. Win" (D-055): ordinary trainer battles; not link,
+// recorded, Frontier, tents, Trainer Hill, e-Reader, secret base or Pokedude battles.
+// The AI battle tests drive the player with BATTLE_TYPE_RECORDED.
+static bool32 UseDebugInstantTrainerWin(void)
+{
+    return DEBUG_OVERWORLD_MENU && gDebugInstantTrainerWin
+        && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+        && (!(gBattleTypeFlags & BATTLE_TYPE_RECORDED) || gTestRunnerEnabled)
+        && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK
+                               | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER_HILL | BATTLE_TYPE_EREADER_TRAINER
+                               | BATTLE_TYPE_SECRET_BASE | BATTLE_TYPE_POKEDUDE));
+}
+
+// Instead of the action selection: every opponent on the field faints in turn
+// (HP bar, faint message, trainer slides); the player's side is not touched.
+static void HandleDebugInstantTrainerWin_KnockOut(void)
+{
+    if (gBattleControllerExecFlags)
+        return;
+
+    for (enum BattlerId battler = 0; battler < gBattlersCount; battler++)
+    {
+        if (IsOnPlayerSide(battler) || !IsBattlerAlive(battler))
+            continue;
+        gBattlerAttacker = gBattlerTarget = battler;
+        SetPassiveDamageAmount(battler, gBattleMons[battler].hp);
+        BattleScriptExecute(BattleScript_DebugInstantTrainerWinFaint);
+        return;
+    }
+    gBattleMainFunc = HandleDebugInstantTrainerWin_Fainted;
+}
+
+// EXP and switch-ins as after a turn, then the next opponents faint until the
+// battle is won.
+static void HandleDebugInstantTrainerWin_Fainted(void)
+{
+    // No actions were taken this turn: fainted mons are replaced right away.
+    gCurrentTurnActionNumber = gBattlersCount;
+    if (HandleFaintedMonActions())
+        return;
+    gBattleStruct->eventState.faintedAction = 0;
+    for (u32 i = 0; i < BATTLE_COMMUNICATION_ENTRIES_COUNT; i++)
+        gBattleCommunication[i] = 0;
+
+    if (gBattleOutcome != 0)
+    {
+        gCurrentActionFuncId = B_ACTION_FINISHED;
+        gBattleMainFunc = RunTurnActionsFunctions;
+        return;
+    }
+
+    for (enum BattlerId battler = 0; battler < gBattlersCount; battler++)
+    {
+        if (!IsOnPlayerSide(battler) && IsBattlerAlive(battler))
+        {
+            gBattleMainFunc = HandleDebugInstantTrainerWin_KnockOut;
+            return;
+        }
+    }
+    // Nothing left to knock out: continue with a normal turn.
+    gBattleMainFunc = HandleTurnActionSelectionState;
 }
 
 u8 IsRunningFromBattleImpossible(enum BattlerId battler)

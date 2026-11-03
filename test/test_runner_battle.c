@@ -6,6 +6,7 @@
 #include "battle_setup.h"
 #include "battle_gimmick.h"
 #include "battle_z_move.h"
+#include "debug.h"
 #include "event_data.h"
 #include "fieldmap.h"
 #include "item_menu.h"
@@ -1880,6 +1881,7 @@ static void BattleTest_TearDown(void *data)
     // aborted unexpectedly.
     ClearFlagAfterTest();
     ClearVarAfterTest();
+    gDebugInstantTrainerWin = FALSE; // debug menu toggle, set by test/origin_jade/instant_trainer_win.c
     TestFreeConfigData();
     if (!STATE->hasTornDownBattle)
     {
