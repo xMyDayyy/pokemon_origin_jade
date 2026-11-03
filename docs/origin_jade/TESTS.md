@@ -48,11 +48,14 @@ failures. Two runs gave the same results. State of 2026-10-31 at
 `b022af5623`: 5140 tests in 948 files, 2347 ok, 629 todo, 2164 known
 failures (the 16 new tests are `test/origin_jade/region_rule.c` and
 `test/origin_jade/debug_states.c`; the two Day Care tests below are the
-new known failures). State of 2026-11-02 at `124a45487b` (round 2): 5148
-tests in 951 files, 2355 ok, 629 todo, 2164 known failures; the 8 new
-tests (`daycares.c` 2, `even_wild_slots.c` 2, `region_badges.c` 1, two more
-in `level_scaling.c`, one more in `debug_states.c`) pass, and no known
-failure changed. The causes:
+new known failures). State of 2026-11-02 for round 2 (on `2f284d83b9`,
+before the rebase; its last D-057 commit is now `edae0ce493`): 5148 tests
+in 951 files, 2355 ok, 629 todo, 2164 known failures; the 8 new tests
+(`daycares.c` 2, `even_wild_slots.c` 2, `region_badges.c` 1, two more in
+`level_scaling.c`, one more in `debug_states.c`) pass, and no known
+failure changed. State of 2026-11-03 at `61ac7e277d` (rounds 2 and 3 on
+the owner's map commits): the same 5148 tests with the same results. The
+causes:
 
 - 1969 "Unmatched MESSAGE": the tests expect English battle texts. Battle
   texts and names are German without a language switch, so
@@ -226,39 +229,78 @@ Also after every change to flags, vars, trainers or Kanto content:
 tables, overworld Pokemon, gifts or the Pokedex order:
 `python3 -I tools/check_regions.py` (D-049).
 
-## Test matrix (2026-11-02, round 2)
+## Test matrix (2026-11-03, rounds 2 and 3: `runde23`)
 
-State: round 2 on `2f284d83b9`: the branch `runde2` with the seven
-packages of the owner's answers (58 commits, tip `124a45487b`), the four
-German rest commits on top (`ae42426ece`) and the documentation commits
-on top of those (no code change). Results from the integration run
-`integ_r2` and the test run `integ_tests_r2` on `124a45487b` unless the
-documentation tip is named; the build from scratch, the release build,
-the warning count, the text checks, the save check and the budget come
-from a new worktree of the documentation tip, whose code is that of
-`ae42426ece` (the rest commits change only texts of one map and the
-documentation). `docs/origin_jade/BETA_READINESS.md` gives the verdict
-per beta criterion and the emulator test list. Nothing was checked in an
-emulator.
+State: the branch `runde23`: the owner's map commits `06ea236bdb` and
+`ad4a8db368` on `2f284d83b9`, round 2 rebased onto them (62 commits, the
+same subjects as before the rebase), its 5 documentation commits, round 3
+(6 commits: contests as in Ruby and Sapphire, Emerald's battle tents and
+the Route 111 Trainer Hill retired; tip `61ac7e277d`) and the
+documentation commits on top (no code change). Results from the
+per-commit run `percommit_r23`, the integration run `integ_r23` and the
+test run `tests_r23` on `61ac7e277d`; the build from scratch, the release
+build and the warning count from the worktree of `runde23`;
+`check_save_safety.py` on the documentation tip.
+`docs/origin_jade/BETA_READINESS.md` gives the verdict per beta criterion
+and the emulator test list. Nothing was checked in an emulator.
 
 | Area | Check | Result |
 |---|---|---|
-| Build | `make` in the integration clone (incremental) | exit 0 on `124a45487b`, ROM SHA-1 `2c85c88afce3eb8d88bff8e265d3a955955ac0b6`; each of the 58 commits of `runde2` built with its final id (`make=ok`, `check_flags` 0, both debug headers up to date, `percommit_r2`); the four rest commits with their final ids one by one in their package worktree (`make` ok, `check_flags` 0, both debug headers up to date, ROM `9d8271bc…` from the second on, `r2derest_final`) |
-| Build | `make` from scratch (new worktree of the documentation tip) | exit 0, ROM SHA-1 `9d8271bcd2f622c5b09d2b263bd3f8b8f74aec21`, the same as the rest package's build of `ae42426ece` |
+| Build | `make` per commit (`percommit_r23`) | 73 of 73 commits after `ad4a8db368` `make=ok` with their final ids (62 of round 2, 5 documentation commits, 6 of round 3); `check_flags` 0 and both debug headers up to date at each |
+| Build | `make` in the integration worktree (incremental) | exit 0 on `61ac7e277d`, ROM SHA-1 `6346a2591693e2c99c3f1748b676d0f207afdbef` |
+| Build | `make` from scratch (after removing `build/jade`) | exit 0, 398 C files, the same ROM SHA-1 |
+| Build | `make release` | exit 0, SHA-1 `10174fe5187327f5e3cb4bcfe39d7392bb493031`; overworld debug menu, debug states and "Even Wild Slots" not linked (checked in the ELF's symbols); not started |
+| Build | `check_warnings.py` | 105 warnings on the log of the build from scratch, as in the baseline; release build 111 (LTO and newlib stubs), as before |
+| Data | `check_merge.py` | 0 errors, 8 known (205 warnings, 273 hints, as in the baseline) |
+| Data | `check_regions.py` | 0 problems; the known exceptions listed, Jirachi on Route 4 among them |
+| Data | `make_debug_states.py --check` | both headers up to date on `61ac7e277d` and at each of the 73 commits; round 3 does not touch their sources |
+| Flags and vars | `check_flags.py`; `test/origin_jade/event_data.c` | 0 problems (3435 flags, 695 vars; 4 flags more than round 2: the contest reporters of Verdanturf and Fallarbor, Hoenn's TM Attract and TM Torment, `OJ_FLAGS_GLOBAL` + 1 to + 4); 7 of 7 tests pass |
+| Saves | `check_budget.py`; `test/save.c` | SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1584/1624, PokemonStorage 34144/35712; EWRAM 95.28 %, IWRAM 78.44 %, ROM 77.17 %; 4 of 4 tests pass; round 3 does not change the layout |
+| Saves | `check_save_safety.py` (documentation tip) | 76 findings: 1 important, 3 minor, 72 optional, as before rounds 2 and 3; Key Items pocket 58 obtainable of 60 slots |
+| Progress | `simulate_progress.py` | without a switch: Kanto title in wave 50, GS Ball 51, Johto badges 55-91, Johto title 105, Hoenn Ticket 106 (Oak's lab), Hoenn reached 108, Hoenn badges 109-127, Hoenn title 137, exit 0; the Contest Pass in wave 112 (Verdanturf) instead of 121 (Lilycove), no other milestone moved; 195 of 1115 active maps unreachable (1125 before round 3: 16 retired, 6 new), none on the story path. The simulator counts every map folder of the build without the 13 link maps, `check_maps.py` (next row) the maps of `map_groups.json` with the link maps and without 3 unused houses; both lose the same 16 maps and gain the same 6 |
+| Maps | `check_maps.py --min-severity klein` | 88 findings, all minor, on 1125 active maps (1135 before round 3; its count differs from the simulator's, see the row above); nothing from "important" up. With round 2 on the owner's map commits alone the entrance of the Route 111 hill had two critical findings (its warps lead to the removed Route 111 warp); round 3 retires the hill's maps, and nothing new came |
+| Texts | `check_text_width.py --list` | 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6), as before rounds 2 and 3; none over 216 px outside locked maps; the new lines of round 3 at most 208 px |
+| Texts | `check_game_text.py --english` | Hoenn 0, Johto 23 and Kanto 5 (trainer names in upstream capitals, O-066), shared 97 (83 debug, 14 tent texts marked unused), `src` 11 (debug, unused union room texts, credits names), locked maps 290, retired maps 3; before round 3 Hoenn 2 (the two texts of Emerald's Slateport tent corridor, German since they moved into Slateport's contest hall, O-065) |
+| Pokemon | catch list | not generated again: the owner's map commits and round 3 change no wild table, trainer party or Pokemon gift (`check_regions.py` above); the last run is in the round-2 matrix below |
+| Engine | `run_tests.py` | 5148 tests in 951 files: 2355 ok, 629 todo, 2164 known failures, 0 new, 0 changed (`tests_r23`) |
+| Engine | Origin Jade tests | `level_scaling.c` 11/11, `event_data.c` 7/7, `region_rule.c` 14/14, `debug_states.c` 3/3, `daycares.c` 2/2, `even_wild_slots.c` 2/2, `region_badges.c` 1/1, `test/save.c` 4/4; no test covers the contests |
+| Not checked | - | play in an emulator (story scenes, port menus, calls, Day Cares, Jirachi, boss battles, debug states, the contest halls with their reception, return warps and blenders, German texts in their boxes), the clock at runtime, link features (the link contests among them), Battle Frontier and other facilities at runtime, randomizer and Nuzlocke at runtime, the CI workflow on GitHub |
+
+### Earlier state: round 2 before the rebase (2026-11-02)
+
+State: round 2 on `2f284d83b9`, before it was rebased onto the owner's
+map commits: the branch `runde2` with the seven packages of the owner's
+answers (58 commits), the four German rest commits on top and the
+documentation commits on top of those (no code change). The rebase gave
+every commit a new id with the same subject; the D-057 commit at the tip
+of `runde2` is now `edae0ce493`, the rest tip `bdf6de26e6`, and
+`PATCHES.md` lists only the new ids. The results below belong to the
+builds before the rebase, without the owner's map commits. They come from
+the integration run `integ_r2` and the test run `integ_tests_r2` on the
+tip of `runde2` unless the documentation tip is named; the build from
+scratch, the release build, the warning count, the text checks, the save
+check and the budget come from a new worktree of the documentation tip,
+whose code is that of the rest tip (the rest commits change only texts of
+one map and the documentation). Nothing was checked in an emulator.
+
+| Area | Check | Result |
+|---|---|---|
+| Build | `make` in the integration clone (incremental) | exit 0 on the tip of `runde2`, ROM SHA-1 `2c85c88afce3eb8d88bff8e265d3a955955ac0b6`; each of the 58 commits of `runde2` built with its id before the rebase (`make=ok`, `check_flags` 0, both debug headers up to date, `percommit_r2`); the four rest commits with their ids before the rebase one by one in their package worktree (`make` ok, `check_flags` 0, both debug headers up to date, ROM `9d8271bc…` from the second on, `r2derest_final`) |
+| Build | `make` from scratch (new worktree of the documentation tip) | exit 0, ROM SHA-1 `9d8271bcd2f622c5b09d2b263bd3f8b8f74aec21`, the same as the rest package's build of the rest tip |
 | Build | `make release` (documentation tip) | exit 0, SHA-1 `18eedc2ebb50f9165aaf65ade559a1281e9bd625`; overworld debug menu, debug states and "Even Wild Slots" not linked; not started |
 | Build | `check_warnings.py` | 105 warnings on the log of the build from scratch, as in the baseline; release build 111 (LTO and newlib stubs), as before |
 | Data | `check_merge.py` | 0 errors, 8 known (205 warnings, 273 hints, as in the baseline) |
-| Data | `check_regions.py` | 0 problems on `124a45487b` and the documentation tip; the known exceptions listed, Jirachi on Route 4 among them |
-| Data | `make_debug_states.py --check` | both headers up to date on `124a45487b`, at each of its 58 commits and on the documentation tip |
+| Data | `check_regions.py` | 0 problems on the tip of `runde2` and the documentation tip; the known exceptions listed, Jirachi on Route 4 among them |
+| Data | `make_debug_states.py --check` | both headers up to date on the tip of `runde2`, at each of its 58 commits and on the documentation tip |
 | Flags and vars | `check_flags.py`; `test/origin_jade/event_data.c` | 0 problems (3431 flags, 695 vars; 3 flags and 2 vars more than on `b022af5623`: the Hoenn lottery's flag and two vars, Jirachi's caught and defeated flags); 7 of 7 tests pass |
 | Saves | `check_budget.py`; `test/save.c` | SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1584/1624 (1008 before the Day Cares of D-052), PokemonStorage 34144/35712; EWRAM 95.28 %, IWRAM 78.44 %, ROM 77.18 %; 4 of 4 tests pass |
 | Saves | `check_save_safety.py` (documentation tip) | 76 findings: 1 important, 3 minor, 72 optional, as before round 2; Key Items pocket 58 obtainable of 60 slots |
 | Progress | `simulate_progress.py` | without a switch: Kanto title in wave 50, GS Ball 51, Johto badges 55-91, Johto title 105, Hoenn Ticket 106 (Oak's lab), Hoenn reached 108, Hoenn badges 109-127, Hoenn title 137, exit 0; 195 of 1125 active maps unreachable, none on the story path; the same waves as on `b022af5623` |
 | Maps | `check_maps.py --min-severity klein` | 88 findings, all minor; nothing from "important" up |
 | Texts | `check_text_width.py --list` (documentation tip) | 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6), as before round 2; none over 216 px outside locked maps |
-| Texts | `check_game_text.py --english` | documentation tip: Johto 23 and Kanto 5 (trainer names in upstream capitals, O-066), Hoenn 2 (unreferenced texts of Emerald's Slateport tent corridor, O-065), shared 97 (83 debug, 14 tent texts marked unused), `src` 11 (debug, unused union room texts, credits names), locked maps 290; on `124a45487b` Hoenn 7 (the HnS tent lobby at Route 40, German since the rest commits); before round 2 Johto 125, shared 252, Hoenn 7, Kanto 5 |
-| Pokemon | catch list (`make_fangliste.py`, outside the repository, on `124a45487b`) | after Kanto 151 of 151 Kanto species, after Johto 129 of 129 Johto species, after Hoenn 422 of 422 species (with evolutions and breeding); nothing missing at any stage; Jirachi on Route 4 |
-| Trainers | trainer atlas (`make_trainer_atlas.py`, outside the repository, on `124a45487b`) | every trainer with team, items, abilities, moves and the level range after scaling: Kanto 471, Johto 421, Hoenn 823 entries; a listing for testers, not a check |
+| Texts | `check_game_text.py --english` | documentation tip: Johto 23 and Kanto 5 (trainer names in upstream capitals, O-066), Hoenn 2 (unreferenced texts of Emerald's Slateport tent corridor, O-065), shared 97 (83 debug, 14 tent texts marked unused), `src` 11 (debug, unused union room texts, credits names), locked maps 290; on the tip of `runde2` Hoenn 7 (the HnS tent lobby at Route 40, German since the rest commits); before round 2 Johto 125, shared 252, Hoenn 7, Kanto 5 |
+| Pokemon | catch list (`make_fangliste.py`, outside the repository, on the tip of `runde2`) | after Kanto 151 of 151 Kanto species, after Johto 129 of 129 Johto species, after Hoenn 422 of 422 species (with evolutions and breeding); nothing missing at any stage; Jirachi on Route 4 |
+| Trainers | trainer atlas (`make_trainer_atlas.py`, outside the repository, on the tip of `runde2`) | every trainer with team, items, abilities, moves and the level range after scaling: Kanto 471, Johto 421, Hoenn 823 entries; a listing for testers, not a check |
 | Engine | `run_tests.py` | 5148 tests in 951 files: 2355 ok, 629 todo, 2164 known failures, 0 new, 0 changed (`integ_tests_r2`) |
 | Engine | Origin Jade tests | `level_scaling.c` 11/11, `event_data.c` 7/7, `region_rule.c` 14/14, `debug_states.c` 3/3, `daycares.c` 2/2, `even_wild_slots.c` 2/2, `region_badges.c` 1/1, `test/save.c` 4/4 |
 | Not checked | - | play in an emulator (story scenes, port menus, calls, Day Cares, Jirachi, boss battles, debug states, German texts in their boxes), the clock at runtime, link features, Battle Frontier and other facilities at runtime, randomizer and Nuzlocke at runtime, the CI workflow on GitHub |
