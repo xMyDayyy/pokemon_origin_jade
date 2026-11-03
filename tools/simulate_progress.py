@@ -28,7 +28,8 @@ Options:
     --max-waves N        stop after N waves (default 400)
     --out DIR            write report.txt and report.json into DIR
     --compare JSON       append what changed against an older report.json
-                         (e.g. base vs. a branch with fixes)
+                         (e.g. base vs. a branch with fixes), also maps whose
+                         first wave moved past a title (map_waves)
     --diff OLD NEW       only compare two report.json files, no simulation
     --quiet              no progress lines on stderr
 
@@ -2621,6 +2622,9 @@ class Report:
             self.p("  Region %-19s %s" % (region, ("erreicht ab Welle %d (%s)" % (r[0], sim.world.maps[r[1]].name))
                                          if r else "NICHT erreicht"))
         self.p("")
+        # First wave of every reached map (for --compare).
+        self.data["map_waves"] = {sim.world.maps[m].name: w for m, w in sorted(sim.map_first.items())
+                                  if m in sim.world.maps}
 
         # Milestones
         ms = self.milestones()
@@ -3069,8 +3073,37 @@ def compare_reports(old, new, old_name):
             lines.append("    - %s" % x)
         for x in sorted(b - a):
             lines.append("    + %s" % x)
+    lines.extend(compare_map_phases(old, new))
     lines.append("")
     return lines
+
+
+TITLE_PHASES = (("FLAG_IS_KANTO_CHAMPION", "bis zum Kanto-Titel"),
+                ("FLAG_IS_JOHTO_CHAMPION", "bis zum Johto-Titel"),
+                ("FLAG_IS_HOENN_CHAMPION", "bis zum Hoenn-Titel"))
+
+
+def map_phase(wave, goals):
+    """Story phase of a map's first wave: no later than which title's wave."""
+    for name, label in TITLE_PHASES:
+        g = goals.get(name)
+        if g is not None and wave <= g:
+            return label
+    return "nach dem Hoenn-Titel"
+
+
+def compare_map_phases(old, new):
+    """Text lines: reached maps whose first wave moved into another phase."""
+    a, b = old.get("map_waves"), new.get("map_waves")
+    if a is None or b is None:
+        return ["  Karten mit anderem Abschnitt: kein Vergleich (Bericht ohne map_waves)"]
+    ga, gb = old.get("goals") or {}, new.get("goals") or {}
+    rows = []
+    for name in sorted(set(a) & set(b)):
+        pa, pb = map_phase(a[name], ga), map_phase(b[name], gb)
+        if pa != pb:
+            rows.append("    %s: %s (W%d) -> %s (W%d)" % (name, pa, a[name], pb, b[name]))
+    return ["  Karten mit anderem Abschnitt (erste Welle relativ zu den Titeln): %d" % len(rows)] + rows
 
 
 # ---------------------------------------------------------------------------
