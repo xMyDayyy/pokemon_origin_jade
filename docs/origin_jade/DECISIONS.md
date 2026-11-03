@@ -2439,6 +2439,113 @@ dated 2026-10-10 or later were decided directly.
   endgültig)"); owner commits 06ea236bdb and ad4a8db368 (hall buildings
   with doors).
 
+### D-059 Every item has a regular source
+- **Status:** Active (2026-11-03, owner: "wichtig ist nur, dass man alle
+  Items im Spiel regulär erhalten kann")
+- **Decision:** Every item of the build that the game uses can be obtained
+  without link play, events or the item randomizer. Held items of wild
+  Pokemon and Pickup count for now; the 20 items that come only that way
+  wait for the owner's answer (O-078). A new source sits where HnS's own
+  Kanto had the item (its maps are retired, D-019), on the FRLG map of
+  the same place; items HnS gave only in locked Sinjoh or Alola or never
+  gave get a fitting place in their region. A check of all 903 items of
+  the build on 2026-11-03 found none without a source except the list
+  below.
+  - TMs of HnS's Kanto (O-074):
+    - Celadon Department Store 2F, TM clerk: Captivate, Brine, Gyro Ball,
+      Dream Eater, Giga Impact and Endure (HnS: its store's 3F).
+    - Item balls: Silver Wind on Route 6 (51/26), Flash Cannon on Route 9
+      (5/44), Rock Polish on Route 10 (14/36), Grass Knot on Route 11
+      (59/8), Brine on Route 19 (16/4), Fling in Rock Tunnel B1F (45/19),
+      Recycle in Celadon City (3/8), Psych Up in Viridian Forest (34/5)
+      (`data/scripts/item_ball_scripts_frlg.inc`).
+    - Trainers: Stone Edge, Will-O-Wisp, Energy Ball and Thunder Wave
+      after rematches on Routes 13 to 15 (D-034); X-Scissor from Bug
+      Catcher Rick in Viridian Forest after the Kanto title (no rematch
+      trainer there); Rock Slide from Brock after the Kanto title, with a
+      new line (HnS gave it with the badge, but its Kanto came after the
+      Johto League; O-076).
+    - People: the balding man in the Underground Path's north-south
+      tunnel trades TM Explosion for a Rage Candy Bar (Mahogany Town), as
+      in HnS; the Black Belt in the roof room of Celadon's condominiums
+      tells HnS's scary tale at night and gives TM Sleep Talk.
+    - TM Rock Climb (HnS: Route 49, Sinjoh): item ball in Mt. Silver's item
+      room (7/6), after the Johto title.
+  - Kanto, other items: Celadon Department Store 4F Poke Toy, Dream Mail,
+    Strange Souvenir; 5F X Sp. Def and the six feathers; Pewter's mart
+    Pewter Crunchies. Hidden: Pearl String in Vermilion City (51/30),
+    Odd Incense in Cerulean Cave B1F (9/5), Rose Incense on Route 15
+    (85/10), Fairy Gem on Route 8 (16/12), all at HnS's old places;
+    Comet Shard in Mt. Moon B2F (36/5), Berserk Gene in Cerulean City
+    (45/19); item ball Fairy Feather in Mt. Moon 1F (27/3).
+  - Kanto, people: Bill's grandfather from HnS's Bill's house stands in
+    the Sea Cottage. After the Kanto title he gives 1, 3, 5 and 7 EXP.
+    Candies L for seeing Meowth, Zigzagoon, Ponyta (or Rapidash) and
+    Farfetch'd (`VAR_SEA_COTTAGE_GRANDPA`), as in HnS, whose Kanto came
+    after the Johto League; before the title he only greets the player,
+    so the Kanto level ladder holds (D-011). HnS's fifth step (Slowpoke:
+    Galarica items and Bill's teleporter for Galarian forms) is left out,
+    regional forms are off (D-023, D-037). Bill gives the Pokemon Box
+    Link after the Kanto title; Celadon's game designer the Catching
+    Charm with the Kanto diploma (D-036).
+  - Johto: Goldenrod Department Store 2F Quick, Dusk and Heal Ball, Sweet
+    Heart, Lure, Super Lure, Max Lure; 3F X Sp. Def. A berry seller in
+    Goldenrod's flower shop (new object) sells the 18 Gen 4 resistance
+    berries, Micle, Custap, Jaboca, Rowap, Kee, Maranga and Enigma Berry,
+    Big Root, Rock and Luck Incense (HnS sold Yache, Rowap and Big Root
+    only in New Sinjoh). Item ball Icy Rock in Ice Path 1F (48/31);
+    hidden Big and Tiny Bamboo Shoot in Ilex Forest (58/9, 17/32) and
+    the Pokeshi Doll in Ecruteak City (17/18). Lilycove's game designer
+    gives the EXP. Charm with the Johto diploma (D-036).
+  - Hoenn, hidden: Rare Bone and Smooth Rock in Route 111's desert
+    (20/56, 33/68), Heat Rock in the Fiery Path (10/34), Damp Rock on
+    Route 119 (20/30), Soul Dew outside the Sky Pillar (9/8), the seven
+    relics in dive pockets that already hold a hidden item (Underwater
+    Routes 124, 126 and 128).
+  - Kampfzone, Battle Points: a third hold item clerk
+    (`sBPHoldItemShopEntries3`, `CreateBPHoldItemShop3`) sells the 18
+    gems, the four terrain seeds, Terrain Extender, Adrenaline Orb, Clear
+    Amulet, Punching Glove, Covert Cloak and Loaded Dice; the second list
+    adds Float Stone, Ring Target, Binding Band, Room Service, Safety
+    Goggles, Protective Pads, Throat Spray, Eject Pack, Blunder Policy,
+    Utility Umbrella and Ability Shield; the vitamin list the seven Mochi
+    and EXP. Candies XS, S, M and XL (O-076).
+  - Not meant, no source on purpose: Mega Stones and Mega Ring, Z-Crystals
+    and Z-Power Ring, Tera Shards, Tera Orb and Glimmering Charm, Dynamax
+    items and Galar materials (features off); mulches (berry mulch off);
+    Apricorns (Kurt sells the balls); form items, fossils, evolution
+    items and Plates of species not in the build; event and link items
+    (Dream, Park, Cherish, Strange and Beast Ball, Eon and Mystic Ticket,
+    Old Sea Map, D-026); the Safari Ball outside the Safari Zone; the
+    Sevii story items; FRLG devices the HnS base replaces (Town Map, TM
+    Case, Berry Pouch, Fame Checker, Teachy TV); HnS Kanto quest items
+    (Lost Item, Machine Part); items without code (room keys, Healing
+    Heart, Infinite Repel, Radio, Fertilizer, Poke Radar, AUX items,
+    Choice Dumpling, Swap Snack, Twice-Spiced Radish); the Nuzlocke's
+    infinite Rare Candies; specialities of regions not in the game;
+    Bottle Caps (no Hyper Training, O-077); the Prism Scale (owner S-11:
+    Milotic only by beauty, D-037); placeholders.
+  - Flags: `OJ_FLAGS_KANTO` + 11 to + 36; `OJ_FLAGS_JOHTO` + 16 to + 33,
+    the Hoenn hidden items among them, because a hidden item's flag must
+    lie below `FLAG_HIDDEN_ITEMS_START` + 8192 (0xEA + 8192 in this
+    build), which the Hoenn block does not.
+  - Key items: the scripts give 61 different key items for the 60 slots
+    of the key pocket (`BAG_KEYITEMS_COUNT`), the Catching Charm, EXP.
+    Charm and Pokemon Box Link included. A player holds at most 60 at a
+    time: Rydel swaps the Mach and Acro Bike, so they never meet. Three
+    of the 61 (Eon Ticket, Mystic Ticket, Old Sea Map) come only by link
+    or Mystery Gift; without them at most 57. 17 key items can be handed
+    over or swapped in the story. `tools/check_save_safety.py` counts
+    this way (`EXCLUSIVE_KEY_ITEMS`); a further key item needs a slot
+    freed this way or a larger pocket (save layout, D-017).
+  - Debug states (D-050): the Johto Test holds the new Kanto items up to
+    the title. The rewards after the Kanto title or its rematch tier
+    (Brock, Robert, Benny, Grace, Rick, Bill, the grandfather with
+    `VAR_SEA_COTTAGE_GRANDPA` 2, Meowth shown), TM Explosion, which needs
+    a Rage Candy Bar from Johto, and the new Johto items come with the
+    Hoenn Test.
+- **Evidence:** owner answer 2026-11-03 (O-074 and all items).
+
 ---
 
 ## Planned, not built yet
@@ -2821,26 +2928,56 @@ dated 2026-10-10 or later were decided directly.
   (owner). His two tent meetings in Verdanturf and Fallarbor stay out;
   his gift in the Kampfzone gives 4 Battle Points from 11 meetings on,
   the number still possible (D-030).
-- **O-074** TMs of HnS's old Kanto (D-019): 21 TMs that HnS gives only in
-  its own Kanto, whose maps are retired here, have no source in Origin
-  Jade; only the item randomizer can roll them. 14 of their moves no
-  tutor teaches either: Stone Edge, Will-O-Wisp, Energy Ball and X-Scissor
-  (rewards after the last rematch with the HnS trainers Kenny on Route 13,
-  Trevor on Route 14, Hillary on Route 15 and Rob in Viridian Forest);
-  Silver Wind, Flash Cannon, Rock Polish, Grass Knot, Brine, Fling and
-  Recycle (items on Routes 6, 9, 10, 11 and 19, in Rock Tunnel and in
-  Celadon City; Brine also in the Celadon Department Store); Giga Impact,
-  Captivate and Gyro Ball (Celadon Department Store). Seven have a tutor
-  but no TM: Endure, Explosion, Thunder Wave, Psych Up, Rock Slide, Sleep
-  Talk and Dream Eater. The rematch rewards (Stone Edge, Will-O-Wisp,
-  Energy Ball, X-Scissor, and Thunder Wave from Carter on Route 14) need
-  another giver: those HnS trainers are not in FRLG Kanto, whose rematches run through the VS
-  Seeker (D-034). Proposal, after the owner's rule that what HnS's Kanto
-  had comes to FRLG Kanto: all 21 into FRLG Kanto, at the same places
-  where possible (the department store, items and gifts; a rematch
-  reward from a FRLG trainer on the same route after his last VS Seeker
-  rematch; Rock Slide as an item in Pewter City or Rock Tunnel). Owner to
-  decide.
+- **O-074** Resolved 2026-11-03: all 21 TMs of HnS's Kanto have a source
+  in FRLG Kanto, at HnS's places where possible (owner: every item must
+  be obtainable regularly; D-059, D-034).
+- **O-075** Key items with an effect that HnS never handed out (D-059,
+  D-036): Catching Charm (Celadon's game designer, Kanto diploma), EXP.
+  Charm (Lilycove's game designer, Johto diploma; the party gains half
+  again as much experience, also against level-scaled trainers, D-031)
+  and Pokemon Box Link (Bill after the Kanto title; the PC boxes from
+  anywhere, also in a Nuzlocke run). Built so that every item can be
+  obtained. Options: (a) keep; (b) other givers or conditions; (c) take
+  one out again (then it goes to the not-meant list of D-059).
+  Proposal: (a).
+- **O-076** Prices of the new shop items (D-059): Battle Points for the
+  gems 16, terrain seeds and the lighter Gen 8/9 hold items 32, the
+  others 48 or 64, Mochi 1 (Fresh Start Mochi 4), EXP. Candies XS 1, S 2,
+  M 4, XL 16; money: the item prices of the build (berries at the flower
+  shop 20, `I_BERRY_PRICE` GEN_7, also Enigma, Micle and Custap Berry;
+  feathers 300, Pewter Crunchies 250, Dusk and Quick Ball 1000, Heal Ball
+  300). Bill's grandfather gives 16 EXP. Candies L in all after the Kanto
+  title, the last 15 only after a Zigzagoon from Hoenn (D-049). Items of
+  HnS's Kanto that HnS gave only after the Johto League and that now come
+  in chapter one: TM Giga Impact for 3000 in Celadon (TM Hyper Beam costs
+  10000 there), TM Flash Cannon as an item ball on Route 9 before Rock
+  Tunnel, Pewter Crunchies (cure every status) in Pewter's mart from the
+  start. Brock's TM Rock Slide comes after the Kanto title (option: with
+  the badge, as in HnS). Owner to check the balance.
+- **O-077** Bottle Caps (D-059): Silver and Gold Bottle Cap have no use,
+  the build has no Hyper Training (no person, no script), so they stay
+  without a source. Options: (a) keep them out; (b) add a Hyper Training
+  judge (e.g. in the Kampfzone) and sell the caps for Battle Points.
+  Proposal: (a).
+- **O-078** Items that come only by luck (D-059): 20 items have no fixed
+  source, only wild Pokemon that hold them or the Pickup ability: Berry
+  Juice (wild Shuckle), Balm Mushroom (Pickup only), Honey (wild Surskit,
+  Teddiursa), Pretty Feather (wild Wingull, Pelipper), Light Ball (wild
+  Pikachu), Thick Club (wild Cubone, Marowak), Metal Powder and Quick
+  Powder (wild Ditto), Twisted Spoon (wild Abra, Kadabra), Silver Powder
+  (wild Butterfree), Absorb Bulb (wild Oddish, Gloom), Cell Battery (wild
+  Plusle, Minun), Luminous Moss (wild Corsola), Snowball (wild Snorunt,
+  one room of the Shoal Cave), Light Clay (wild Baltoy, Claydol), Power
+  Herb (Pickup, wild Seedot, Nuzleaf), Black Sludge (wild Grimer, Muk),
+  Grip Claw (wild Sandshrew, Sandslash), Sticky Barb (wild Cacnea), Shed
+  Shell (wild Venomoth, Seviper). HnS had fixed places for some of them:
+  Light Clay (hidden, Route 9), Black Sludge (hidden, Cerulean Cave) and
+  Grip Claw (hidden, Seafoam Islands) in its retired Kanto, Berry Juice
+  (shop) and Snowball (hidden) in locked Sinjoh. Options: (a) keep them
+  as they are (as in the official games); (b) fixed sources, at HnS's
+  old places on the FRLG maps where it had one, else a shop or the Battle
+  Point lists; (c) (b) only for the five HnS had placed. The list comes
+  from the audit's item check of 2026-11-03. Proposal: (c).
 
 ## Superseded decisions (kept for the record)
 
