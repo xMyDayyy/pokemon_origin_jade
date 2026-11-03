@@ -4,16 +4,27 @@ Route42_hns_MapScripts::
 	.byte 0
 
 Route42_MapScript_OnTransition::
+	call_if_unset FLAG_RELEASED_BEASTS, Route42_MapScript_SuicuneNotReleased
 	call_if_set FLAG_HIDE_ROUTE42_SUICUNE, Route42_MapScript_HideTrigger
 	callnative SetTimeBasedEncounters
 	end
+
+@ No Suicune and no sighting before the Burned Tower release; the release clears the flag.
+Route42_MapScript_SuicuneNotReleased::
+	setflag FLAG_HIDE_ROUTE42_SUICUNE
+	return
 
 Route42_MapScript_HideTrigger::
 	setvar VAR_TEMP_0, 1
 	return
 
+@ Triggers on (10,14)-(10,16), the path from the Ecruteak gate; the scene starts on (10,15).
 Route42_EventScript_Suicune_Trigger::
 	lock
+	getplayerxy VAR_0x8004, VAR_0x8005
+	call_if_eq VAR_0x8005, 14, Route42_EventScript_SuicuneStepDown
+	call_if_eq VAR_0x8005, 16, Route42_EventScript_SuicuneStepUp
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
 	playmoncry SPECIES_SUICUNE, CRY_MODE_NORMAL
 	applymovement LOCALID_ROUTE42_SUICUNE, Route42_Movement_Suicune1
 	playse SE_LEDGE
@@ -32,8 +43,6 @@ Route42_EventScript_Suicune_Trigger::
 	delay 30
 	playse SE_LEDGE
 	delay 30
-	playse SE_LEDGE
-	delay 30
 	waitmovement 0
 
 	playmoncry SPECIES_SUICUNE, CRY_MODE_NORMAL
@@ -41,6 +50,8 @@ Route42_EventScript_Suicune_Trigger::
 	applymovement OBJ_EVENT_ID_PLAYER, Route42_Movement_Player
 	playse SE_LEDGE
 	delay 60
+	playse SE_LEDGE
+	delay 30
 	playse SE_LEDGE
 	delay 30
 	playse SE_LEDGE
@@ -82,23 +93,35 @@ Route42_EventScript_DoneJohtoSuicune::
 	setvar VAR_SUICUNE_ENCOUNTERS, 3
 	return
 
+Route42_EventScript_SuicuneStepDown::
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown
+	waitmovement 0
+	return
+
+Route42_EventScript_SuicuneStepUp::
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkUp
+	waitmovement 0
+	return
+
 Route42_Movement_Suicune1:
 	jump_in_place_right_left
 	jump_in_place_right_left
 	step_end
 
+@ (15,13) -> (11,15), in front of the player
 Route42_Movement_Suicune2:
 	jump_2_left
 	jump_2_left
+	jump_2_down
+	step_end
+
+@ Leaps over the player's tile to (9,15), then away east along row 13
+Route42_Movement_Suicune3:
+	jump_in_place_left
+	delay_2
+	face_left
 	jump_2_left
 	jump_2_up
-	step_end
-
-Route42_Movement_Suicune3:
-	jump_in_place_up
-	delay_2
-	face_up
-	jump_2_up
 	jump_2_right
 	jump_2_right
 	jump_2_right
@@ -106,21 +129,39 @@ Route42_Movement_Suicune3:
 	jump_2_right
 	step_end
 
+@ (10,15) -> (8,15), facing east
 Route42_Movement_Player:
 	lock_facing_direction
 	delay_2
-	jump_2_up
+	jump_2_left
 	unlock_facing_direction
 	step_end
 
+@ Mt. Mortar's west entrance (22,10) -> (11,15)
 Route42_Movement_Eusine1:
+	walk_fast_down
+	walk_fast_down
+	walk_fast_down
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
 	walk_down
 	walk_down
-	walk_left
 	face_right
 	step_end
 
+@ (11,15) -> (20,13), off screen
 Route42_Movement_Eusine2:
+	walk_fast_up
+	walk_fast_up
 	walk_fast_right
 	walk_fast_right
 	walk_fast_right

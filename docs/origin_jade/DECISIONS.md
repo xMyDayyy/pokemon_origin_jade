@@ -1120,14 +1120,39 @@ dated 2026-10-10 or later were decided directly.
   wild).
 
 ### D-038 Suicune: HnS's sightings, Crystal's Route 36, the Glockenturm
-- **Status:** Active (2026-10-27). Supersedes D-027 in the waiting condition
-  and Eusine's hint; D-027's tower access stays.
+- **Status:** Active (2026-10-27; changed 2026-11-03: Route 42's trigger on
+  the main path, armed by the Burned Tower release). Supersedes D-027 in the
+  waiting condition and Eusine's hint; D-027's tower access stays.
 - **Decision:** Suicune's story follows HnS up to Route 42 and Crystal after
   that. It stays in Johto; HnS's Kanto chain stays retired.
-  - Burned Tower release and Eusine: HnS, unchanged. Olivine's first visit
-    arms Cianwood: sighting and Eusine battle (HnS team), unchanged.
+  - Burned Tower release and Eusine: HnS; the release also arms Route 42
+    (below). Olivine's first visit arms Cianwood: sighting and Eusine
+    battle (HnS team), unchanged.
     Route 42: sighting with HnS's Eusine dialogue, no Glockenturm hint
-    (Cianwood neither).
+    (Cianwood neither). Changed 2026-11-03 (owner: do it): HnS's only
+    trigger sat under a Cut tree in a side pocket (46,17) that most players
+    never enter. The coord events are now (10,14), (10,15) and (10,16), the
+    whole width of the path from the Ecruteak gate, so every walk from
+    Ecruteak into Route 42 crosses them without Cut or Surf. The scene
+    starts on (10,15) (the player steps there from row 14 or 16): Suicune
+    stands at (15,13), bounds to the player, leaps over the player's tile
+    while the player hops back to (8,15) and runs off east; Eusine comes
+    out of Mt. Mortar's west entrance (22,10) instead of the middle one.
+    Condition: from the Burned Tower release until the sighting
+    (`FLAG_HIDE_ROUTE42_SUICUNE`, once per game). HnS's trigger needed Surf,
+    that is Morty's permit, and Morty's gym opens only with the release, so
+    HnS's sighting always came after it; HnS's own condition (from
+    Ecruteak's first visit) would let the new triggers fire before it. So
+    until `FLAG_RELEASED_BEASTS` is set, Route 42's OnTransition sets
+    `FLAG_HIDE_ROUTE42_SUICUNE` (no Suicune, trigger off), and
+    `BurnedTower_B1F_hns` clears it with the release. This also covers
+    saves made between Ecruteak's first visit and the release.
+    Open (owner): Mahogany can be reached through Mt. Mortar before the
+    release. A player who did that and afterwards only flies to Mahogany,
+    never walking from the Ecruteak gate into Route 42, misses the sighting,
+    and Route 36 never arms. A second trigger set on the east chokepoint
+    (x=92, rows 10-13) with a mirrored scene would cover players who enter
+    Route 42 from Mahogany; not built.
   - Route 36 (Crystal): once both sightings are done Suicune stands in the
     path from Route 37 (35,16). The coord event on (39,18), the one tile
     between that path and the rest of Route 36, starts the scene: Suicune
@@ -1153,7 +1178,7 @@ dated 2026-10-10 or later were decided directly.
     from 4.
   - Code: `Route36_hns` (`LOCALID_ROUTE36_SUICUNE`/`_EUSINE` with
     `FLAG_TEMP_2`/`FLAG_TEMP_3`, coord event at value 3), `TinTower_1F_hns`,
-    `Route42_hns`, `CianwoodCity_hns`.
+    `Route42_hns`, `BurnedTower_B1F_hns`, `CianwoodCity_hns`.
 - **Evidence:** decision 2026-10-27.
 
 ### D-039 Johto's static and legendary levels fit the scaling

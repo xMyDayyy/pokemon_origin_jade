@@ -582,6 +582,7 @@ MANUAL_FLAGS_B = {
     "FLAG_HIDE_GOLDENROD_UNDERGROUND_SILVER": 1, "FLAG_HIDE_ROCKETHIDEOUT3_SILVER": 1,
     # Suicune's sightings in Cianwood and on Route 42 done.
     "FLAG_HIDE_CIANWOOD_EUSINE": 1, "FLAG_HIDE_CIANWOOD_SUICUNE": 1, "FLAG_HIDE_ROUTE42_EUSINE": 1,
+    "FLAG_HIDE_ROUTE42_SUICUNE": 1,
     # Clair gave the badge in the Dragon's Den.
     "FLAG_HIDE_DRAGONS_DEN_CAVERN_CLAIR": 1, "FLAG_HIDE_DRAGONS_DEN_SHRINE_CLAIR": 1,
     # Ecruteak's theater back to normal after the legendary, Tin Tower open.

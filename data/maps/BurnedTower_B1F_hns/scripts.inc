@@ -117,6 +117,8 @@ BurnedTower_B1F_EventScript_ReleaseBeasts::
 	setflag FLAG_HIDE_BURNED_TOWER_NPCS
 	setflag FLAG_HIDE_ECRUTEAK_CITY_SAGE
 	special InitRoamer
+	@ Arms Suicune's sighting on Route 42.
+	clearflag FLAG_HIDE_ROUTE42_SUICUNE
 	setflag FLAG_RELEASED_BEASTS
 	setvar VAR_ECRUTEAK_CITY_STATE, 4
 	release
