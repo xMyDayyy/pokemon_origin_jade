@@ -732,3 +732,4 @@ gSpecials::
 	def_special GetWeekday
 	def_special ClearCreditsSceneState
 	def_special RetrieveHoennLotteryNumber
+	def_special CreateBPHoldItemShop3

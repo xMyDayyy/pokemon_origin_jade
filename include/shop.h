@@ -15,6 +15,7 @@ void CreateBPDecorShop2(void);
 void CreateBPPokeBallShop(void);
 void CreateBPHoldItemShop2(void);
 void CreateBPPowerShop(void);
+void CreateBPHoldItemShop3(void);
 void CreateKurtBallShop(void);
 
 #endif // GUARD_SHOP_H

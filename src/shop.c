@@ -2281,6 +2281,7 @@ void CreateBPDecorShop2(void)   { CreateBPShopCommon(MART_TYPE_BP_DECOR, sBPDeco
 void CreateBPPokeBallShop(void) { CreateBPShopCommon(MART_TYPE_BP,      sBPPokeBallShopEntries); }
 void CreateBPHoldItemShop2(void) { CreateBPShopCommon(MART_TYPE_BP_ITEM, sBPHoldItemShopEntries2); }
 void CreateBPPowerShop(void)    { CreateBPShopCommon(MART_TYPE_BP_ITEM, sBPPowerShopEntries);     }
+void CreateBPHoldItemShop3(void) { CreateBPShopCommon(MART_TYPE_BP_ITEM, sBPHoldItemShopEntries3); }
 
 static const u16 sKurtBallShopItems[] =
 {
