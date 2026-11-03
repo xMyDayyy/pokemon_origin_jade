@@ -52,6 +52,26 @@
       "elevation": 3,
       "item": "ITEM_PEARL",
       "flag": "FLAG_HIDDEN_ITEM_UNDERWATER_128_PEARL"
+    },
+    {
+      "type": "hidden_item",
+      "x": 36,
+      "y": 18,
+      "elevation": 3,
+      "item": "ITEM_RELIC_STATUE",
+      "flag": "FLAG_HIDDEN_ITEM_UNDERWATER_128_RELIC_STATUE",
+      "quantity": 1,
+      "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 72,
+      "y": 18,
+      "elevation": 3,
+      "item": "ITEM_RELIC_CROWN",
+      "flag": "FLAG_HIDDEN_ITEM_UNDERWATER_128_RELIC_CROWN",
+      "quantity": 1,
+      "underfoot": false
     }
   ]
 }

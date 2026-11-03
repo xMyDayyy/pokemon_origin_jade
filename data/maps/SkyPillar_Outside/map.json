@@ -47,5 +47,16 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 9,
+      "y": 8,
+      "elevation": 3,
+      "item": "ITEM_SOUL_DEW",
+      "flag": "FLAG_HIDDEN_ITEM_SKY_PILLAR_OUTSIDE_SOUL_DEW",
+      "quantity": 1,
+      "underfoot": false
+    }
+  ]
 }
