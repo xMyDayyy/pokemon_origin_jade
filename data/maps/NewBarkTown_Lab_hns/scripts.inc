@@ -889,8 +889,9 @@ NewBarkTown_Lab_Text_ChooseTotodile:
 
 NewBarkTown_Lab_Text_ChooseOtherStarter:
 #if GERMAN
-	.string "Lind: Also, {STR_VAR_1} gefällt dir,\n"
-	.string "das {STR_VAR_2}-Pokémon?$"
+	.string "Lind: Entscheidest du dich für\n"
+	.string "{STR_VAR_1}, das\l"
+	.string "{STR_VAR_2}-Pokémon?$"
 #else
 	.string "ELM: So, you like {STR_VAR_1},\n"
 	.string "the {STR_VAR_2} POKéMON?$"

@@ -2315,11 +2315,19 @@ dated 2026-10-10 or later were decided directly.
     Intendant, Lambda, Athena, Atlas, Siegfried, Kelleröffner, Aufseher
     Baoba, Safari-Level, Pokériegel, Napf, IVs as in the challenge menu).
     Where the Poké-Corpus has the official German of the same English
-    line or sentence, it is used word for word (HGSS first, then Crystal,
-    Gold/Silver; Emerald, Ruby/Sapphire and FRLG for their maps), with
-    only the line breaks set anew: the radio tower's top floor and the
-    Underground switch room. The other texts are own translations in the
-    style of the neighbouring texts and wait for the owner's approval.
+    line or sentence, it is used word for word, with only the line
+    breaks set anew: the radio tower's top floor, the Underground switch
+    room, Mahogany Town with Elm's call, Union Cave 1F, the Moomoo barn,
+    Elm's question about a random starter and single sentences of Baoba.
+    If HGSS and Crystal both have our English word for word, HGSS is
+    used; if only Crystal has it and HGSS has the same scene in slightly
+    different English, the Crystal text stays and the HGSS text is on the
+    owner's approval list, so some scenes mix both games (Gold/Silver
+    after Crystal; Emerald, Ruby/Sapphire and FRLG for their maps). Elm's
+    call keeps "Lind:" in front like the other calls, although HGSS has
+    no name there. That name, the mixed scenes and the other texts, own
+    translations in the style of the neighbouring texts, wait for the
+    owner's approval.
     Title case (D-020); message lines at most 208 px, PokeNav call lines
     at most 192 px.
   - Done 2026-11-02, Johto: Mahogany Town (13 texts, also Elm's call

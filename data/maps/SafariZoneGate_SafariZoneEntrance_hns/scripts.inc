@@ -492,7 +492,7 @@ SafariZoneGate_SafariZoneEntrance_Text_BaobaWelcome:
 
 SafariZoneGate_SafariZoneEntrance_Text_BaobaPokeblocks:
 #if GERMAN
-	.string "Oh! Fast hätte ich es vergessen.\p"
+	.string "Oh! Fast hätte ich’s vergessen!\p"
 	.string "Pokériegel gehören fest zu meiner\n"
 	.string "Safari-Zone, also solltest du so\l"
 	.string "etwas hier haben!$"

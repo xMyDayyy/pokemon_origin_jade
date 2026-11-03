@@ -72,9 +72,9 @@ UnionCave_1F_EventScript_Item_Awakening::
 
 UnionCave_1F_Text_HikerRussellSeen:
 #if GERMAN
-	.string "Du willst nach Azalea City, oder?\p"
-	.string "Meine Pokémon sollen prüfen, ob du\n"
-	.string "stark genug für einen Kampf bist.$"
+	.string "Du bist auf dem Weg nach Azalea City,\n"
+	.string "richtig? Wollen wir mal sehen,\l"
+	.string "ob du es bis dorthin schaffst!$"
 #else
 	.string "You're headed to AZALEA, are you?\p"
 	.string "Let my POKéMON see if you are good\n"
@@ -83,16 +83,16 @@ UnionCave_1F_Text_HikerRussellSeen:
 
 UnionCave_1F_Text_HikerRussellBeaten:
 #if GERMAN
-	.string "Oh, oh, oh!$"
+	.string "Ojemine…$"
 #else
 	.string "Oh, oh, oh!$"
 #endif
 
 UnionCave_1F_Text_HikerRussellAfter:
 #if GERMAN
-	.string "Also gut, ich habe mich entschieden.\p"
-	.string "Ich gehe hier erst weg, wenn meine\n"
-	.string "Pokémon stärker geworden sind!$"
+	.string "Gut! Ich habe mich entschieden.\p"
+	.string "Ich gehe erst, wenn meine Pokémon\n"
+	.string "stärker sind!$"
 #else
 	.string "All right, then! I've decided.\p"
 	.string "I'm not leaving until my POKéMON\n"
@@ -101,10 +101,10 @@ UnionCave_1F_Text_HikerRussellAfter:
 
 UnionCave_1F_Text_PokemaniacLarrySeen:
 #if GERMAN
-	.string "Ich ziehe weit umher, immer auf der\n"
-	.string "Suche nach Pokémon.\p"
-	.string "Suchst du etwa auch nach Pokémon?\p"
-	.string "Dann bist du mein Sammelrivale!$"
+	.string "Auf der Suche nach Pokémon habe\n"
+	.string "ich das ganze Land durchwandert.\p"
+	.string "Sammelst du auch Pokémon?\n"
+	.string "Dann bist du mein Rivale!$"
 #else
 	.string "I roam far and wide in search of\n"
 	.string "POKéMON.\p"
@@ -114,7 +114,7 @@ UnionCave_1F_Text_PokemaniacLarrySeen:
 
 UnionCave_1F_Text_PokemaniacLarryBeaten:
 #if GERMAN
-	.string "Ach… Meine armen Pokémon…$"
+	.string "Uff. Mein armes Pokémon…$"
 #else
 	.string "Ugh. My poor POKéMON…$"
 #endif
@@ -130,9 +130,8 @@ UnionCave_1F_Text_PokemaniacLarryAfter:
 
 UnionCave_1F_Text_HikerDanielSeen:
 #if GERMAN
-	.string "Huch! Was für eine Überraschung!\p"
-	.string "Ich hätte nicht gedacht, dass hier\n"
-	.string "jemand vorbeikommt!$"
+	.string "Oha! Wer hätte gedacht, dass ich hier\n"
+	.string "jemandem über den Weg laufen würde!$"
 #else
 	.string "Whoa! What a surprise!\p"
 	.string "I didn't expect to see anyone here!$"
@@ -140,16 +139,17 @@ UnionCave_1F_Text_HikerDanielSeen:
 
 UnionCave_1F_Text_HikerDanielBeaten:
 #if GERMAN
-	.string "Huch! Das war eine klare Niederlage!$"
+	.string "Oha! Und wer hätte gedacht, dass du\n"
+	.string "so stark sein würdest!$"
 #else
 	.string "Whoa! I'm beaten big time!$"
 #endif
 
 UnionCave_1F_Text_HikerDanielAfter:
 #if GERMAN
-	.string "Man hat mir eine Flegmon-Rute\n"
-	.string "angedreht.\p"
-	.string "Das arme Pokémon tut mir so leid.$"
+	.string "Man hat mich genötigt,\n"
+	.string "eine Flegmon-Rute zu kaufen.\l"
+	.string "Mir tut das arme Pokémon leid.$"
 #else
 	.string "I was conned into buying a\n"
 	.string "SLOWPOKETAIL.\p"
@@ -158,9 +158,9 @@ UnionCave_1F_Text_HikerDanielAfter:
 
 UnionCave_1F_Text_FirebreatherBillSeen:
 #if GERMAN
-	.string "Die Superschall-Attacke von Zubat\n"
-	.string "verwirrt meine Pokémon ständig.\p"
-	.string "Das regt mich richtig auf!$"
+	.string "Diese Zubat verwirren ständig\n"
+	.string "meine Pokémon mit ihrem Superschall!\l"
+	.string "Das ist zum Aus-der-Haut-Fahren!$"
 #else
 	.string "ZUBAT's SUPERSONIC keeps confusing\n"
 	.string "my POKéMON.\p"
@@ -169,15 +169,15 @@ UnionCave_1F_Text_FirebreatherBillSeen:
 
 UnionCave_1F_Text_FirebreatherBillBeaten:
 #if GERMAN
-	.string "Ich bin ausgebrannt!$"
+	.string "Aus-ge-brannt!$"
 #else
 	.string "I flamed out!$"
 #endif
 
 UnionCave_1F_Text_FirebreatherBillAfter:
 #if GERMAN
-	.string "Am Wochenende hört man tief aus der\n"
-	.string "Höhle ein seltsames Gebrüll.$"
+	.string "Am Wochenende kannst du Pokémon in\n"
+	.string "dieser Höhle brüllen hören.$"
 #else
 	.string "On weekends, you can hear strange\n"
 	.string "roars from deep in the cave.$"
@@ -185,10 +185,10 @@ UnionCave_1F_Text_FirebreatherBillAfter:
 
 UnionCave_1F_Text_FirebreatherRaySeen:
 #if GERMAN
-	.string "Ist es hell, ist eine Höhle nicht\n"
-	.string "unheimlich.\p"
-	.string "Ist man stark, sind Pokémon nicht\n"
-	.string "unheimlich.$"
+	.string "Mit Licht jagt einem eine Höhle keine\n"
+	.string "Angst ein.\p"
+	.string "Bist du stark genug, jagen dir Pokémon\n"
+	.string "keine Angst ein.$"
 #else
 	.string "If it's light, a cave isn't scary.\p"
 	.string "If you're strong, POKéMON aren't\n"
@@ -204,8 +204,9 @@ UnionCave_1F_Text_FirebreatherRayBeaten:
 
 UnionCave_1F_Text_FirebreatherRayAfter:
 #if GERMAN
-	.string "Das Feuer meiner Pokémon erhellt\n"
-	.string "diese Höhle.$"
+	.string "Hier ist es nur so hell,\n"
+	.string "weil mein Pokémon diese Höhle\l"
+	.string "mit seinem Feuer erleuchtet.$"
 #else
 	.string "It's my POKéMON's fire that lights\n"
 	.string "up this cave.$"

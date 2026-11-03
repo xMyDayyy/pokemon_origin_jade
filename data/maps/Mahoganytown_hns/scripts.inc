@@ -249,12 +249,12 @@ MahoganyTown_Movement_PlayerMerchant2:
 
 MahoganyTown_Text_RageCandyBarMerchantTryOne:
 #if GERMAN
-	.string "Hallo, du da!\p"
-	.string "Du bist wohl neu in Mahagonia City.\p"
-	.string "Dann musst du unbedingt einen\n"
-	.string "leckeren Wutkeks probieren!\p"
-	.string "Gerade gibt es ihn für nur 300 ¥!\n"
-	.string "Willst du einen?$"
+	.string "Hey, du! Komm doch mal eben her!\p"
+	.string "Wenn du schon mal in Mahagonia City\n"
+	.string "bist, solltest du unbedingt\l"
+	.string "einen Wutkeks kaufen!\p"
+	.string "Ich hätte einen für 300 ¥ für\n"
+	.string "dich im Angebot. Na, was sagst du?$"
 #else
 	.string "Hiya, kid!\p"
 	.string "I see you're new in MAHOGANY TOWN.\p"
@@ -266,7 +266,7 @@ MahoganyTown_Text_RageCandyBarMerchantTryOne:
 
 MahoganyTown_Text_RageCandyBarMerchantSavorIt:
 #if GERMAN
-	.string "Sehr gut! Lass ihn dir schmecken!$"
+	.string "Gut! Genieße ihn!$"
 #else
     .string "Good! Savor it!$"
 #endif
@@ -280,7 +280,7 @@ MahoganyTown_Text_RageCandyBarMerchantNotEnoughMoney:
 
 MahoganyTown_Text_RageCandyBarMerchantRefused:
 #if GERMAN
-	.string "Na, dann eben nicht…$"
+	.string "Dann eben nicht…$"
 #else
     .string "Oh, fine then…$"
 #endif
@@ -288,8 +288,8 @@ MahoganyTown_Text_RageCandyBarMerchantRefused:
 MahoganyTown_Text_RageCandyBarMerchantSoldOut:
 #if GERMAN
 	.string "Die Wutkekse sind ausverkauft.\p"
-	.string "Ich packe gerade zusammen.\n"
-	.string "Stör mich nicht, Kleines.$"
+	.string "Ich verschwinde. Stör mich nicht,\n"
+	.string "Kind.$"
 #else
     .string "RAGECANDYBAR's sold out.\p"
     .string "I'm packing up. Don't bother me,\n"
@@ -298,8 +298,8 @@ MahoganyTown_Text_RageCandyBarMerchantSoldOut:
 
 MahoganyTown_Text_Gramps:
 #if GERMAN
-	.string "Willst du zum See und dir das\n"
-	.string "tobende Garados ansehen?$"
+	.string "Willst du auch zum See und dir das\n"
+	.string "Garados ansehen?$"
 #else
     .string "Are you off to see the GYARADOS\n"
     .string "rampage at the LAKE?$"
@@ -307,10 +307,10 @@ MahoganyTown_Text_Gramps:
 
 MahoganyTown_Text_GrampsClearedRocketHideout:
 #if GERMAN
-	.string "Die Karpador sind in den See des\n"
-	.string "Zorns zurückgekehrt.\p"
-	.string "Das sind gute Nachrichten für die\n"
-	.string "Angler dort.$"
+	.string "Die Karpador sind zum See des Zorns\n"
+	.string "zurückgekehrt.\p"
+	.string "Das sind gute Neuigkeiten für die\n"
+	.string "Angler.$"
 #else
     .string "MAGIKARP have returned to LAKE\n"
     .string "OF RAGE.\p"
@@ -321,9 +321,10 @@ MahoganyTown_Text_GrampsClearedRocketHideout:
 MahoganyTown_Text_Fisher:
 #if GERMAN
 	.string "Wenn du schon so weit gekommen bist,\n"
-	.string "nimm dir Zeit für eine Besichtigung.\p"
-	.string "Geh nach Norden und sieh dir gleich\n"
-	.string "den See des Zorns an.$"
+	.string "solltest du dir die Zeit nehmen, um\l"
+	.string "etwas Sightseeing zu unternehmen.\p"
+	.string "Geh nach Norden und sieh dir den See\n"
+	.string "des Zorns an.$"
 #else
     .string "Since you came this far, take the\n"
     .string "time to do some sightseeing.\p"
@@ -333,8 +334,9 @@ MahoganyTown_Text_Fisher:
 
 MahoganyTown_Text_Lass:
 #if GERMAN
-	.string "Besuch mal Omas Laden. Sie verkauft\n"
-	.string "Sachen, die es sonst nirgends gibt.$"
+	.string "Besuche Großmutters Laden. Sie\n"
+	.string "verkauft Artikel, die du sonst\l"
+	.string "nirgends bekommen kannst.$"
 #else
     .string "Visit Grandma's shop. She sells\n"
     .string "stuff that nobody else has.$"
@@ -343,7 +345,7 @@ MahoganyTown_Text_Lass:
 MahoganyTown_Text_Sign:
 #if GERMAN
 	.string "Mahagonia City\p"
-	.string "Willkommen in der Heimat der Ninjas!$"
+	.string "Willkommen in der Stadt der Ninja$"
 #else
     .string "MAHOGANY TOWN\p"
     .string "Welcome to the Home of the Ninja$"
@@ -351,8 +353,7 @@ MahoganyTown_Text_Sign:
 
 MahoganyTown_Text_RagecandybarSign:
 #if GERMAN
-	.string "Probier bei deinem Besuch in\n"
-	.string "Mahagonia City einen Wutkeks!$"
+	.string "Versuchen Sie den leckeren Wutkeks!$"
 #else
     .string "While visiting MAHOGANY TOWN, try\n"
     .string "a RAGECANDYBAR!$"
@@ -361,8 +362,9 @@ MahoganyTown_Text_RagecandybarSign:
 MahoganyTown_Text_GymSign:
 #if GERMAN
 	.string "Pokémon-Arena von Mahagonia City\n"
-	.string "Leiter: Norbert\p"
-	.string "Der Lehrmeister des strengen Winters$"
+	.string "Leiter: Norbert\l"
+	.string "Er wird dir beibringen, was\l"
+	.string "ein harter Winter ist!$"
 #else
     .string "MAHOGANY TOWN POKéMON GYM\p"
     .string "LEADER: PRYCE\p"
@@ -371,17 +373,18 @@ MahoganyTown_Text_GymSign:
 
 ElmPhoneRadioTowerRocketTakeoverText:
 #if GERMAN
-	.string "Lind: Hallo, {PLAYER}! Wie läuft\n"
-	.string "es bei dir?\p"
-	.string "Ich rufe an, weil im Radio gerade\n"
-	.string "etwas Merkwürdiges passiert.\p"
-	.string "Es ging da um Team Rocket.\p"
-	.string "{PLAYER}, weißt du etwas\n"
-	.string "darüber?\p"
-	.string "Ist Team Rocket etwa zurück?\n"
-	.string "Nein, das kann einfach nicht sein.\p"
-	.string "Entschuldige die Störung.\n"
-	.string "Pass auf dich auf!$"
+	.string "Lind: He, {PLAYER}!\n"
+	.string "Wie stehen die Dinge?\p"
+	.string "Hör mal, im Radio geschieht gerade\n"
+	.string "irgendetwas Merkwürdiges.\l"
+	.string "Ich höre immer bloß “Team Rocket”…\p"
+	.string "Da dachte ich, ich rufe mal an.\n"
+	.string "{PLAYER}, weißt du, was da los ist?\p"
+	.string "Team Rocket feiert doch nicht etwa\n"
+	.string "ein Comeback?\l"
+	.string "Nein… das wäre doch zu abwegig.\p"
+	.string "Entschuldige, ich wollte dich nicht\n"
+	.string "beunruhigen. Pass auf dich auf!$"
 #else
 	.string "PROF.ELM: {PLAYER}, how are\n"
 	.string "things going?\p"
