@@ -134,7 +134,7 @@ PewterCity_Museum_1F_Text_PikachuSoonIPromise::
 
 PewterCity_Museum_1F_Text_SpaceShuttle::
 #if GERMAN
-	.string "Raumfähre$"
+	.string "Space Shuttle$"
 #else
 	.string "Space Shuttle$"
 #endif
@@ -142,7 +142,7 @@ PewterCity_Museum_1F_Text_SpaceShuttle::
 PewterCity_Museum_1F_Text_MeteoriteThatFellOnMtMoon::
 #if GERMAN
 	.string "Auf dem Mondberg gefundenes\n"
-	.string "Meteoritengestein “Mondstein?”$"
+	.string "Meteoritengestein (Mondstein?)$"
 #else
 	.string "A meteorite that fell on MT. MOON.\n"
 	.string "It is thought to be a MOON STONE.$"

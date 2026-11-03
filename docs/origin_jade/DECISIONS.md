@@ -2302,7 +2302,7 @@ dated 2026-10-10 or later were decided directly.
 ### D-057 German completion of the map texts
 - **Status:** Active (2026-11-02, owner: the beta comes out in German
   first, everything that is not German gets translated, both languages
-  stay selectable)
+  stay selectable; changed 2026-11-03)
 - **Decision:**
   - Every text in `data/maps/*/scripts.inc` that the German build shows
     on a Kanto, Johto or Hoenn map has a German branch under `#if GERMAN`;
@@ -2324,7 +2324,8 @@ dated 2026-10-10 or later were decided directly.
     Union Cave 1F (15), the Moomoo Farm barn (11), Meara in the Mt. Silver
     Pokemon Center (4; she appears only with Sinjoh, D-019) and the Day
     Care's party limit message (1). Kanto: the "Space Shuttle" sign in
-    Pewter's museum ("Raumfähre"). Hoenn: the Poochyena on Route 114
+    Pewter's museum (German FRLG keeps "Space Shuttle", so the German
+    branch does too). Hoenn: the Poochyena on Route 114
     ("Wau! Wauwau!"). Route 40 Trainer Hill: the HnS copy of the Slateport
     Battle Tent lobby (`SlateportCity_BattleTentLobby_hns`; the tool
     counts it under Hoenn because `MAPSEC_TRAINER_HILL` is an Emerald map
