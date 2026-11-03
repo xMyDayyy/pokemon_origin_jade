@@ -73,7 +73,7 @@ EverGrandeCity_DrakesRoom_Text_IntroSpeech:
 #if GERMAN
 	.string "Ich bin der letzte der Top Vier in der\n"
 	.string "Pokémon Liga, Dragan der\l"
-	.string "Drachenmeister!\p"
+	.string "Drachen-Meister!\p"
 	.string "Von Natur aus sind Pokémon wild.\n"
 	.string "Sie sind frei.\p"
 	.string "Manchmal behindern sie uns.\n"

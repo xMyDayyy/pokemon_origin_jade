@@ -202,7 +202,7 @@ Route114_Text_ExplainRoar:
 
 Route114_Text_Poochyena:
 #if GERMAN
-	.string "Wau! Wauwau!$"
+	.string "Bow! Bowwow!$"
 #else
 	.string "Bow! Bowwow!$"
 #endif

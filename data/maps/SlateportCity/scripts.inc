@@ -1479,7 +1479,7 @@ SlateportCity_Text_OhPlayerWeMadeDiscovery:
 	.string "Tiefsee-Expedition eine großartige\l"
 	.string "Entdeckung gemacht.\p"
 	.string "Wir haben auf der Route 128 eine\n"
-	.string "Unter- wasserhöhle entdeckt.\p"
+	.string "Unterwasserhöhle entdeckt.\p"
 	.string "Wir glauben, es ist die Höhle eines\n"
 	.string "Pokémon, das schon lange ausgestorben\l"
 	.string "ist.$"

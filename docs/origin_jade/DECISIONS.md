@@ -2325,13 +2325,14 @@ dated 2026-10-10 or later were decided directly.
     Pokemon Center (4; she appears only with Sinjoh, D-019) and the Day
     Care's party limit message (1). Kanto: the "Space Shuttle" sign in
     Pewter's museum (German FRLG keeps "Space Shuttle", so the German
-    branch does too). Hoenn: the Poochyena on Route 114
-    ("Wau! Wauwau!"). Route 40 Trainer Hill: the HnS copy of the Slateport
-    Battle Tent lobby (`SlateportCity_BattleTentLobby_hns`; the tool
-    counts it under Hoenn because `MAPSEC_TRAINER_HILL` is an Emerald map
-    section, outside the tool's Johto range)
-    shows 3 NPC texts (man, girl, woman), now the owner's German texts of
-    the Emerald lobby, whose English texts are the same. Its TM giver
+    branch does too). Hoenn: the Poochyena on Route 114 (German Emerald
+    keeps "Bow! Bowwow!", so the German branch does too). Route 40
+    Trainer Hill: the HnS copy of the Slateport Battle Tent lobby
+    (`SlateportCity_BattleTentLobby_hns`; the tool counts it under Hoenn
+    because `MAPSEC_TRAINER_HILL` is an Emerald map section, outside the
+    tool's Johto range) shows 3 NPC texts (man, girl, woman), now the
+    owner's German texts of the Emerald lobby, whose English texts are the
+    same. Its TM giver
     script (`SlateportCity_BattleTentLobby_hns_EventScript_TormentGiver`)
     has no object on the HnS map, so its two texts (`CouldntFindMonForMe`,
     `ExplainTorment`) are never shown; they got the Emerald lobby's German
