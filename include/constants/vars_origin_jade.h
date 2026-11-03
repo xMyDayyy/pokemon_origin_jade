@@ -36,6 +36,8 @@
 // Saffron's Trainer Fan Club (src/trainer_fan_club.c); VAR_FANCLUB_* are Lilycove's.
 #define VAR_SAFFRON_FANCLUB_FAN_COUNTER      (OJ_VARS_KANTO + 4)
 #define VAR_SAFFRON_FANCLUB_LOSE_FAN_TIMER   (OJ_VARS_KANTO + 5)
+// Bill's grandfather in the Sea Cottage: 0 = not met, 1-4 = Pokemon he asks for next, 5 = done.
+#define VAR_SEA_COTTAGE_GRANDPA              (OJ_VARS_KANTO + 6)
 
 // ---------------------------------------------------------------------
 // Johto (OJ_VARS_JOHTO + 0 to + 39)

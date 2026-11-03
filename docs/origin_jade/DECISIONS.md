@@ -1000,7 +1000,8 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-036 Charm sources
 - **Status:** Active (2026-10-21, changed 2026-10-31: 422 species; Johto
-  dex without Azurill and Wynaut; 2026-11-02: mythicals confirmed)
+  dex without Azurill and Wynaut; 2026-11-02: mythicals confirmed;
+  changed 2026-11-03: Catching Charm, D-059)
 - **Decision:**
   - Ovalpin (Oval Charm): the Day Care man hands it over once, right after
     the player's first egg, at every active Day Care (Kanto Route 5, Johto
@@ -1015,6 +1016,11 @@ dated 2026-10-10 or later were decided directly.
     appears after the first Hoenn title; his diploma logic (Johto dex) is
     unchanged, except that Azurill and Wynaut are not needed (D-049). The
     charm adds `I_SHINY_CHARM_ADDITIONAL_ROLLS` shiny rolls.
+  - Superfangpin (Catching Charm): the game designer in Celadon's
+    condominiums (3F) hands it over once with the Kanto diploma
+    (`HasAllKantoMons`, the 151 without Mew, D-049;
+    `FLAG_RECEIVED_CATCHING_CHARM`). It raises the chance of a critical
+    capture. HnS never gave it (D-059, O-075).
   - The National Pokedex counts the enabled species of HnS's obtainable dex
     (422: Kanto 151, Johto 129, Hoenn 142, D-049); species disabled in this
     build do not count, in `HasAllMons` as in the count and the rating. All

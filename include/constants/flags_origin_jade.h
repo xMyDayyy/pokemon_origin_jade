@@ -81,6 +81,10 @@
 #define FLAG_HIDDEN_ITEM_CERULEAN_CITY_BERSERK_GENE          (OJ_FLAGS_KANTO + 32)
 #define FLAG_HIDDEN_ITEM_ROUTE8_FAIRY_GEM_FRLG               (OJ_FLAGS_KANTO + 33)
 #define FLAG_HIDE_MT_MOON_1F_FAIRY_FEATHER                   (OJ_FLAGS_KANTO + 34)
+// Bill gave the Pokemon Box Link after the Kanto title (D-059).
+#define FLAG_RECEIVED_POKEMON_BOX_LINK                       (OJ_FLAGS_KANTO + 35)
+// Celadon's game designer gave the Catching Charm with the Kanto diploma (D-059).
+#define FLAG_RECEIVED_CATCHING_CHARM                         (OJ_FLAGS_KANTO + 36)
 
 // ---------------------------------------------------------------------
 // Johto (OJ_FLAGS_JOHTO + 0 to + 159)
