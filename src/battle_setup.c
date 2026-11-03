@@ -1920,6 +1920,11 @@ static void CB2_EndRematchBattle(void)
     }
     else
     {
+#if IS_HNS
+        // Carter's TM after a won VS Seeker rematch (D-034).
+        if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_BIRD_KEEPER_CARTER)
+            FlagSet(FLAG_DEFEATED_CARTER_REMATCH);
+#endif
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
         RegisterTrainerInMatchCall();
         SetBattledTrainersFlags();

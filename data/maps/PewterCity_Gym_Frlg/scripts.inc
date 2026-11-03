@@ -5,6 +5,7 @@ PewterCity_Gym_EventScript_Brock::
 	famechecker FAMECHECKER_BROCK, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
 	trainerbattle_single TRAINER_LEADER_BROCK, PewterCity_Gym_Text_BrockIntro, PewterCity_Gym_Text_BrockDefeat, PewterCity_Gym_EventScript_DefeatedBrock, NO_MUSIC
 	goto_if_unset FLAG_GOT_TM39_FROM_BROCK, PewterCity_Gym_EventScript_GiveTM39
+	call_if_set FLAG_IS_KANTO_CHAMPION, PewterCity_Gym_EventScript_TryGiveTMRockSlide
 	msgbox PewterCity_Gym_Text_BrockPostBattle
 	release
 	end
@@ -32,6 +33,15 @@ PewterCity_Gym_EventScript_GiveTM39::
 	msgbox PewterCity_Gym_Text_ExplainTM39
 	release
 	end
+
+@ Origin Jade: TM Rock Slide after the Kanto title, as in HnS's Pewter Gym (D-059).
+PewterCity_Gym_EventScript_TryGiveTMRockSlide::
+	goto_if_set FLAG_GOT_TM_ROCK_SLIDE_FROM_BROCK, Common_EventScript_NopReturn
+	msgbox PewterCity_Gym_Text_ChampionTakeRockSlide
+	giveitem ITEM_TM_ROCK_SLIDE
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn
+	setflag FLAG_GOT_TM_ROCK_SLIDE_FROM_BROCK
+	return
 
 PewterCity_Gym_EventScript_NoRoomForTM39::
 	msgbox PewterCity_Gym_Text_DontHaveRoomForThis
@@ -361,3 +371,13 @@ PewterCity_Gym_Text_ExplainTM39NoLimit::
 	.string "lowers their SPEED!$"
 #endif
 
+PewterCity_Gym_Text_ChampionTakeRockSlide::
+#if GERMAN
+	.string "Du bist jetzt Champ von Kanto?\n"
+	.string "Alle Achtung!\p"
+	.string "Dann nimm auch diese TM!$"
+#else
+	.string "You're KANTO's CHAMPION now?\n"
+	.string "Impressive!\p"
+	.string "Then take this TM, too!$"
+#endif

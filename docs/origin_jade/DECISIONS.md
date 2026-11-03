@@ -945,7 +945,8 @@ dated 2026-10-10 or later were decided directly.
   day 2026-10-20.
 
 ### D-034 Kanto rematches through the VS Seeker
-- **Status:** Active (2026-10-20, levels 2026-10-29)
+- **Status:** Active (2026-10-20, levels 2026-10-29; changed 2026-11-03: TM
+  rewards, D-059)
 - **Decision:** On FRLG maps every trainer with a FireRed/LeafGreen rematch
   can be fought again through the VS Seeker (Kampffahnder, Vermilion
   Pokemon Center): 157 trainers, without the Sevii rows (D-019). FRLG
@@ -970,9 +971,19 @@ dated 2026-10-10 or later were decided directly.
     untouched: the VS Seeker has its own table and state
     (`FLAG_VS_SEEKER_CHARGING`, `VAR_VS_SEEKER_STEPS`,
     `VAR_VS_SEEKER_REMATCH_LO/HI`).
+  - Rewards: four trainers give a TM of HnS's Kanto once after their
+    rematch, as HnS's own Kanto trainers did on the same routes (D-059):
+    Robert on Route 13 (Stone Edge), Benny on Route 14 (Will-O-Wisp) and
+    Grace on Route 15 (Energy Ball) once their last team is beaten
+    (`goto_if_defeated` on the team of the Kanto-title tier), Carter on
+    Route 14 (Thunder Wave) after a won VS Seeker rematch, which he fights
+    with his first team (`FLAG_DEFEATED_CARTER_REMATCH`, set by
+    `CB2_EndRematchBattle` in `src/battle_setup.c` when the player wins;
+    a lost rematch gives nothing). The TM comes after his line when he is
+    talked to again (`data/scripts/trainers_frlg.inc`).
   - Code: `src/vs_seeker.c`, `src/data/vs_seeker_kanto.h`, the rematch
     hooks in `src/battle_setup.c`, the level floor in `src/level_scaling.c`.
-- **Evidence:** decision 2026-10-20.
+- **Evidence:** decision 2026-10-20; owner answer 2026-11-03 (O-074).
 
 ### D-035 Starter previews roll shinies everywhere
 - **Status:** Active (2026-10-20)

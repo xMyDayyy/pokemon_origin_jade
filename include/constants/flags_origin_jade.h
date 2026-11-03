@@ -61,6 +61,15 @@
 #define FLAG_HIDE_ROCK_TUNNEL_B1F_TM_FLING                   (OJ_FLAGS_KANTO + 16)
 #define FLAG_HIDE_CELADON_CITY_TM_RECYCLE                    (OJ_FLAGS_KANTO + 17)
 #define FLAG_HIDE_VIRIDIAN_FOREST_TM_PSYCH_UP                (OJ_FLAGS_KANTO + 18)
+// TMs of HnS's Kanto given by FRLG trainers (D-059).
+#define FLAG_GOT_TM_ROCK_SLIDE_FROM_BROCK                    (OJ_FLAGS_KANTO + 19)
+#define FLAG_GOT_TM_STONE_EDGE_FROM_ROBERT                   (OJ_FLAGS_KANTO + 20)
+#define FLAG_GOT_TM_WILL_O_WISP_FROM_BENNY                   (OJ_FLAGS_KANTO + 21)
+#define FLAG_GOT_TM_ENERGY_BALL_FROM_GRACE                   (OJ_FLAGS_KANTO + 22)
+// The player won a VS Seeker rematch against Carter (Route 14), set in CB2_EndRematchBattle.
+#define FLAG_DEFEATED_CARTER_REMATCH                         (OJ_FLAGS_KANTO + 23)
+#define FLAG_GOT_TM_THUNDER_WAVE_FROM_CARTER                 (OJ_FLAGS_KANTO + 24)
+#define FLAG_GOT_TM_X_SCISSOR_FROM_RICK                      (OJ_FLAGS_KANTO + 25)
 
 // ---------------------------------------------------------------------
 // Johto (OJ_FLAGS_JOHTO + 0 to + 159)
