@@ -21,11 +21,10 @@ FallarborTown_ContestHall_EventScript_StageSign::
 
 FallarborTown_ContestHall_Text_DoAllRightInPreliminary:
 #if GERMAN
-	.string "Im ersten Durchlauf schlagen wir uns\n"
-	.string "ganz gut, aber beim Ausdruck gewinnen\l"
-	.string "wir nie…\p"
-	.string "Vielleicht muss ich mehr darauf achten,\n"
-	.string "was die anderen Teilnehmer machen…$"
+	.string "Im 1. Durchlauf schneiden wir immer\n"
+	.string "gut ab, aber im 2. Durchlauf…\p"
+	.string "Vielleicht sollte ich beobachten, was\n"
+	.string "die anderen Teilnehmer machen…$"
 #else
 	.string "We do all right in the preliminary round,\n"
 	.string "but we can never win the appeals…\p"
@@ -35,12 +34,10 @@ FallarborTown_ContestHall_Text_DoAllRightInPreliminary:
 
 FallarborTown_ContestHall_Text_MonAllTheseRibbons:
 #if GERMAN
-	.string "Sieh nur!\n"
-	.string "Mein Pokémon hat all diese Bänder\l"
-	.string "gewonnen!\p"
-	.string "Hat dein Pokémon schon Bänder\n"
-	.string "bekommen? Im PokéCom kannst du\l"
-	.string "nachsehen.$"
+	.string "Schau mal! Mein Pokémon hat all\n"
+	.string "diese Bänder gewonnen!\p"
+	.string "Besitzen deine Pokémon auch Bänder?\n"
+	.string "Du kannst das im PokéCom überprüfen.$"
 #else
 	.string "See!\n"
 	.string "My POKéMON won all these RIBBONS!\p"
@@ -50,10 +47,10 @@ FallarborTown_ContestHall_Text_MonAllTheseRibbons:
 
 FallarborTown_ContestHall_Text_CantWinEverywhere:
 #if GERMAN
-	.string "Ich kann keine Arenaleiter besiegen…\p"
-	.string "Ich kann keinen Wettbewerb gewinnen…\p"
-	.string "Ich war schon überall und nirgendwo,\n"
-	.string "und alles war vergebens…$"
+	.string "Ich kann Arenaleiter nicht besiegen…\p"
+	.string "Ich kann keine Wettbewerbe gewinnen…\p"
+	.string "Ich war schon hier und dort und überall,\n"
+	.string "aber immer vergebens.$"
 #else
 	.string "I can't beat GYM LEADERS…\p"
 	.string "I can't win any CONTESTS…\p"
@@ -63,7 +60,7 @@ FallarborTown_ContestHall_Text_CantWinEverywhere:
 
 FallarborTown_ContestHall_Text_SuperRankStage:
 #if GERMAN
-	.string "Pokémon Wettbewerbe\n"
+	.string "Pokémon-Wettbewerbe\n"
 	.string "Bühne für die Super-Klasse!$"
 #else
 	.string "POKéMON CONTESTS\n"

@@ -1552,7 +1552,7 @@ SlateportCity_Text_ContestHallSign:
 #if GERMAN
 	.string "Pokémon Wettbewerbe\n"
 	.string "Hyper-Klasse Registrierungen\p"
-	.string "“Lasst es krachen, Pokémon-Trainer!”$"
+	.string "“Lasst es krachen! Pokémon-Trainer!”$"
 #else
 	.string "POKéMON CONTESTS\n"
 	.string "HYPER RANK REGISTRATION\p"

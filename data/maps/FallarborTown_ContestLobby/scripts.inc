@@ -68,7 +68,7 @@ FallarborTown_ContestLobby_Text_AreYouMakingPokeblock:
 FallarborTown_ContestLobby_Text_ICreateSketches:
 #if GERMAN
 	.string "Siehst du, wie sie hier die Zeichnungen\n"
-	.string "der Sieger-Pokémon aushängen?\p"
+	.string "des Sieger-Pokémon aushängen?\p"
 	.string "Ich bin der Zeichner dieser Werke!\p"
 	.string "Sobald eines deiner Pokémon einen\n"
 	.string "Wettbewerb gewinnt, werde ich es mit\l"

@@ -36,7 +36,7 @@ SlateportCity_House_Text_NatureToDoWithStatGains:
 
 SlateportCity_House_Text_NeedContestPass:
 #if GERMAN
-	.string "Um an einem Wettbewerb teilnehmen zu\n"
+	.string "Um an dem Wettbewerb teilnehmen zu\n"
 	.string "können, brauchst du eine\l"
 	.string "Wettbewerbskarte.\p"
 	.string "Die bekommst du leicht. Jeder, der ein\n"

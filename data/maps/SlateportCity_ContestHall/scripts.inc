@@ -91,15 +91,16 @@ SlateportCity_ContestHall_EventScript_StageSign::
 
 SlateportCity_ContestHall_Text_AdviceForContests:
 #if GERMAN
-	.string "Möchtest du einen kleinen Tipp für\n"
-	.string "Wettbewerbe?\p"
-	.string "Wenn du eine bestimmte Attacke nach\n"
-	.string "einer anderen bestimmten Attacke\l"
-	.string "zeigst, fällst du besonders auf.\p"
-	.string "Wenn du weißt, was du tust, kannst du\n"
-	.string "beim Ausdruck groß punkten.\p"
-	.string "Natürlich könnten deine Gegner deinem\n"
-	.string "Pokémon die Schau stehlen wollen.$"
+	.string "Soll ich dir einen klitzekleinen Tipp für\n"
+	.string "den Wettbewerb geben?\p"
+	.string "Wenn du eine besondere Attacke nach\n"
+	.string "einer bestimmten Attacke einsetzt,\l"
+	.string "weckst du besondere Aufmerksamkeit.\p"
+	.string "Solange du genau weißt, was du wie zu\n"
+	.string "tun hast, wirst du erfolgreich sein.\p"
+	.string "Natürlich werden die Mitstreiter\n"
+	.string "versuchen, deinem Pokémon die Show zu\l"
+	.string "stehlen.$"
 #else
 	.string "Want a tasty little bit of advice\n"
 	.string "for CONTESTS?\p"
@@ -126,15 +127,16 @@ SlateportCity_ContestHall_Text_MyPapaIsContestJudge:
 
 SlateportCity_ContestHall_Text_ImLikeMajorlyCheesed:
 #if GERMAN
-	.string "Hey, Mann, ich bin voll sauer, weißt du.\n"
-	.string "Ich wollte doch nur wissen, warum mein\l"
-	.string "Pokémon nie gewinnt, weißt du, hey?\p"
-	.string "Also, ich hab dem Juror mal meine\n"
-	.string "Meinung gesagt, kostet ja nichts.\p"
-	.string "Und der hört mir nicht mal zu, hey!\n"
-	.string "Voll die Enttäuschung, Mann!\p"
-	.string "Hey, du da! Halt die Luft an, ja?\n"
-	.string "Und jetzt nimm das!$"
+	.string "Hey, also, das ist wohl Künstlerpech,\n"
+	.string "Mann. Ich will einfach wissen, warum\l"
+	.string "mein Pokémon nie gewinnt.\l"
+	.string "Weißt du, Mann?\p"
+	.string "Daher, Mann, habe ich dem Juror meinen\n"
+	.string "Senf dazugegeben.\p"
+	.string "Und der hat nicht einmal zugehört,\n"
+	.string "Mann! Das ist vielleicht eine Niete.\p"
+	.string "Hey! Zieh dir das mal rein!\n"
+	.string "Hier, Mann, das ist für dich!$"
 #else
 	.string "Hey, man, I'm like majorly cheesed,\n"
 	.string "you know. Like, you know, I just\l"
@@ -168,12 +170,13 @@ SlateportCity_ContestHall_Text_ExplainTorment:
 
 SlateportCity_ContestHall_Text_MCStepUpTakePartInContest:
 #if GERMAN
-	.string "MC: Oh, sieh an, sieh an!\n"
-	.string "Ist das nicht ein prächtiges Pokémon?\p"
-	.string "Bitte! Tritt näher und nimm an unseren\n"
-	.string "herrlichen Wettbewerben teil!\p"
-	.string "Du wirst dich gut schlagen! Ganz\n"
-	.string "sicher! Mein Auge täuscht mich nie!$"
+	.string "MC: Oh, meine Güte!\n"
+	.string "Ist das nicht ein Dandy von Pokémon?\p"
+	.string "Bitte! Tritt näher und nimm an unserem\n"
+	.string "großartigen Wettbewerb teil!\p"
+	.string "Ich bin sicher, du wirst hervorragend\n"
+	.string "abschneiden. Meine Augen täuschen\l"
+	.string "mich nie!$"
 #else
 	.string "MC: Oh, my, my!\n"
 	.string "Now isn't that a dandy of a POKéMON?\p"
@@ -185,14 +188,13 @@ SlateportCity_ContestHall_Text_MCStepUpTakePartInContest:
 
 SlateportCity_ContestHall_Text_JudgeWouldntDoToMissContest:
 #if GERMAN
-	.string "Juror: Hallo, sei gegrüßt!\n"
-	.string "Du bist also ein Trainer!\p"
-	.string "Dann darfst du dir einen\n"
-	.string "Pokémon-Wettbewerb auf keinen Fall\l"
-	.string "entgehen lassen!\p"
+	.string "Juror: Hallo, du da!\n"
+	.string "Wie ich sehe, bist du ein Trainer!\p"
+	.string "Nun, dann kannst du es dir eigentlich\n"
+	.string "nicht leisten, einen Wettbewerb zu\l"
+	.string "verpassen!\p"
 	.string "Hol dir in Wiesenflur eine\n"
-	.string "Wettbewerbskarte und nimm jederzeit\l"
-	.string "teil!$"
+	.string "Wettbewerbskarte und nimm teil!$"
 #else
 	.string "JUDGE: Well, hello there!\n"
 	.string "I see that you're a TRAINER!\p"
@@ -213,10 +215,10 @@ SlateportCity_ContestHall_Text_ItsAppealTime:
 
 SlateportCity_ContestHall_Text_DidntPayAttentionToAppeal:
 #if GERMAN
-	.string "Sie haben dem Ausdruck meines\n"
-	.string "Pokémon kaum Beachtung geschenkt…\p"
-	.string "Pah, dieser Juror erkennt etwas Gutes\n"
-	.string "nicht, wenn er es vor sich hat.$"
+	.string "Der Auftritt meines Pokémon fand\n"
+	.string "nicht viel Beachtung…\p"
+	.string "Männo, der Juror hat wohl Tomaten auf\n"
+	.string "den Augen!?!$"
 #else
 	.string "They didn't pay much attention to\n"
 	.string "my POKéMON's appeal…\p"
@@ -226,16 +228,16 @@ SlateportCity_ContestHall_Text_DidntPayAttentionToAppeal:
 
 SlateportCity_ContestHall_Text_RewardWithSageAdvice:
 #if GERMAN
-	.string "Oh, hallo! Du musst ein echter Fan\n"
-	.string "sein, so nah am Geschehen.\p"
-	.string "Für so viel Begeisterung habe ich\n"
-	.string "einen weisen Rat für dich.\p"
-	.string "Wenn eine Attacke richtig gut ankommt,\n"
-	.string "gerät das Publikum in Aufregung.\p"
-	.string "Und das Pokémon, das seinen Ausdruck\n"
-	.string "genau dann zeigt…\p"
-	.string "Nun, da muss doch etwas Gutes\n"
-	.string "geschehen!$"
+	.string "Oh, hi! Du musst ein wirklich großer Fan\n"
+	.string "sein, wenn du so nah herangehst.\p"
+	.string "Ich belohne deinen Enthusiasmus mit\n"
+	.string "einem weisen Rat.\p"
+	.string "Wenn eine Attacke wirklich gut gelingt,\n"
+	.string "ist das Publikum begeistert.\p"
+	.string "Wenn alle begeistert sind, hat das\n"
+	.string "Pokémon einen tollen Auftritt gehabt.\p"
+	.string "Dann weißt du, dass etwas Tolles\n"
+	.string "passieren wird!$"
 #else
 	.string "Oh, hi! You must be a serious fan to get\n"
 	.string "this close to the action.\p"
@@ -251,8 +253,8 @@ SlateportCity_ContestHall_Text_RewardWithSageAdvice:
 
 SlateportCity_ContestHall_Text_MoreFreakedOutThanMon:
 #if GERMAN
-	.string "Ich schaffe das nicht! Ich bin noch\n"
-	.string "aufgeregter als mein Pokémon.\p"
+	.string "Ich kann es einfach nicht! Ich bin\n"
+	.string "nervöser als mein Pokémon.\p"
 	.string "Ich zittere und mein Herz rast!$"
 #else
 	.string "I can't do this! I'm more freaked out\n"
@@ -262,11 +264,10 @@ SlateportCity_ContestHall_Text_MoreFreakedOutThanMon:
 
 SlateportCity_ContestHall_Text_BattleAndContestAlike:
 #if GERMAN
-	.string "Ein Kampf und ein Wettbewerb sind\n"
-	.string "nicht dasselbe, aber doch ähnlich.\p"
+	.string "Ein Kampf und ein Wettbewerb sind nicht\n"
+	.string "dasselbe, aber sie sind sich ähnlich.\p"
 	.string "Du musst hart arbeiten und an die\n"
-	.string "Pokémon glauben, die du aufgezogen\l"
-	.string "hast.$"
+	.string "Pokémon, die du aufziehst, glauben.$"
 #else
 	.string "A battle and a CONTEST aren't the\n"
 	.string "same, but they are alike, too.\p"
@@ -276,10 +277,11 @@ SlateportCity_ContestHall_Text_BattleAndContestAlike:
 
 SlateportCity_ContestHall_Text_MonLooksOnTopOfGame:
 #if GERMAN
-	.string "Dieses Pokémon ist gut in Form, was?\p"
-	.string "Ein Pokémon, das im zweiten Durchlauf\n"
-	.string "gut abschneidet, wirkt beim Ausdruck\l"
-	.string "gelassener.$"
+	.string "Dieses Pokémon scheint an der Spitze\n"
+	.string "zu stehen, was?\p"
+	.string "Ein Pokémon, das im zweiten Durchgang\n"
+	.string "gut abschneidet, wird im Wettbewerb\l"
+	.string "viel ruhiger auftreten.$"
 #else
 	.string "That POKéMON looks like it's on top\n"
 	.string "of its game, huh?\p"
@@ -290,9 +292,10 @@ SlateportCity_ContestHall_Text_MonLooksOnTopOfGame:
 
 SlateportCity_ContestHall_Text_MyMonBetterThanThatLot:
 #if GERMAN
-	.string "Schau dir dieses traurige Bild an!\p"
-	.string "Hah, mein Pokémon ist eindeutig besser\n"
-	.string "als diese Truppe!$"
+	.string "Guck dir mal diese jämmerlichen\n"
+	.string "Gestalten an.\p"
+	.string "Mein Pokémon ist viel, viel besser als\n"
+	.string "dieser Haufen!$"
 #else
 	.string "Will you look at that sorry sight?\p"
 	.string "Heh, my POKéMON's absolutely better\n"
@@ -301,9 +304,9 @@ SlateportCity_ContestHall_Text_MyMonBetterThanThatLot:
 
 SlateportCity_ContestHall_Text_GetUrgeToMoveWithMon:
 #if GERMAN
-	.string "Bekommst du nicht auch Lust, dich mit\n"
-	.string "den Pokémon zu bewegen, wenn sie einen\l"
-	.string "schwungvollen Ausdruck zeigen?$"
+	.string "Geht es dir nicht auch so? Wenn ein\n"
+	.string "Pokémon all seine Energie in eine\l"
+	.string "Attacke steckt, bewegt mich das enorm.$"
 #else
 	.string "Don't you get the urge to move with\n"
 	.string "POKéMON if they're putting on an\l"

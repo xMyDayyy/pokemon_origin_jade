@@ -2377,7 +2377,7 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-058 Contests as in Ruby/Sapphire
 - **Status:** Active (2026-11-02, owner: contests "ganz wie Rubin/Saphir",
-  in four halls)
+  in four halls; changed 2026-11-03)
 - **Decision:** Pokemon Contests work as in Ruby/Sapphire (pret
   `pokeruby` was the reference). Each hall holds one rank:
   - Verdanturf Town: Normal Rank; Fallarbor Town: Super Rank; Slateport
@@ -2443,8 +2443,8 @@ dated 2026-10-10 or later were decided directly.
     `FallarborTown_ContestHall`, `SlateportCity_ContestHall`, RS's layout
     `LAYOUT_FALLARBOR_TOWN_LEFTOVER_RSCONTEST_HALL`). Their texts are the
     RS hall texts that Emerald left unused in the corridors of its battle
-    tents, with the owner's German (O-065). The sailor in Slateport's hall
-    gives TM Torment, with a flag of his own
+    tents, in the official German of Ruby/Sapphire (O-065). The sailor in
+    Slateport's hall gives TM Torment, with a flag of his own
     (`FLAG_HOENN_RECEIVED_TM_TORMENT`).
   - The contest halls stand where Emerald had its battle tents; the tents
     are retired (D-030, D-019).

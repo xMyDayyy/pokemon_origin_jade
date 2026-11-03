@@ -22,12 +22,12 @@ VerdanturfTown_ContestHall_EventScript_StageSign::
 VerdanturfTown_ContestHall_Text_WhichContestYouEntering:
 #if GERMAN
 	.string "An welchem Wettbewerb nimmst du teil?\n"
-	.string "Möchtest du einen Rat?\p"
-	.string "Bei jedem Wettbewerb, zum Beispiel\n"
-	.string "einem Anmutwettbewerb, wird im ersten\l"
-	.string "Durchlauf nicht nur die Anmut bewertet.\p"
-	.string "Du musst Wege finden, deine Pokémon\n"
-	.string "besser aufzuziehen.$"
+	.string "Darf ich dir einen Rat geben?\p"
+	.string "In jedem Wettbewerb, zum Beispiel im\n"
+	.string "Wettbewerb für Anmut, bewerten sie im\l"
+	.string "ersten Durchlauf nicht nur die Anmut.\p"
+	.string "Du solltest daher Wege finden, deine\n"
+	.string "Pokémon besser aufzuziehen.$"
 #else
 	.string "Which CONTEST are you entering?\n"
 	.string "Want a piece of advice?\p"
@@ -40,13 +40,12 @@ VerdanturfTown_ContestHall_Text_WhichContestYouEntering:
 
 VerdanturfTown_ContestHall_Text_RaisedMonToBeCute:
 #if GERMAN
-	.string "Ich habe mein Pokémon anmutig\n"
-	.string "aufgezogen.\p"
-	.string "Ich habe herausgefunden, dass man mit\n"
-	.string "Pokémon an einem Anmutwettbewerb\l"
-	.string "teilnehmen kann!\p"
-	.string "Wie gut, dass ich mein Pokémon mit so\n"
-	.string "viel Liebe aufgezogen habe…$"
+	.string "Ich habe meine Pokémon zur Anmut\n"
+	.string "erzogen.\p"
+	.string "Man kann seine Pokémon an einem Wett-\n"
+	.string "bewerb für Anmut teilnehmen lassen!\p"
+	.string "Ich bin so froh, dass ich meine Pokémon\n"
+	.string "liebevoll aufgezogen habe.$"
 #else
 	.string "I raised my POKéMON to be cute.\p"
 	.string "I found out you can put POKéMON in\n"
@@ -57,11 +56,11 @@ VerdanturfTown_ContestHall_Text_RaisedMonToBeCute:
 
 VerdanturfTown_ContestHall_Text_MyMonRules:
 #if GERMAN
-	.string "Mein Pokémon ist spitze!\p"
-	.string "Es ist cool, stark und dabei schön,\n"
-	.string "anmutig und klug. Einfach perfekt!\p"
-	.string "Da kann ich auch gleich jeden\n"
-	.string "einzelnen Wettbewerb gewinnen wollen.$"
+	.string "Mein Pokémon ist der Kracher!\p"
+	.string "Es ist cool, stark, schön, anmutig und\n"
+	.string "klug. Alles in einem!\p"
+	.string "Ich werde mit ihm sämtliche\n"
+	.string "Wettbewerbe gewinnen!$"
 #else
 	.string "My POKéMON rules!\p"
 	.string "It's cool, tough yet beautiful, cute,\n"
