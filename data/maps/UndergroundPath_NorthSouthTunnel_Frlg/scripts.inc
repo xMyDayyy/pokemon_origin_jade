@@ -59,10 +59,10 @@ UndergroundPath_NorthSouthTunnel_Text_BaldingManIntro:
 
 UndergroundPath_NorthSouthTunnel_Text_BaldingManCandyBar:
 #if GERMAN
-	.string "Aha!\n"
+	.string "Oh!\p"
 	.string "Das ist ein Wutkeks!\p"
-	.string "Kann ich den haben?\n"
-	.string "Bitte!$"
+	.string "Her damit!\n"
+	.string "Los, gib ihn mir!$"
 #else
 	.string "Aha!\n"
 	.string "That's a RAGE CANDYBAR!\p"
@@ -72,6 +72,8 @@ UndergroundPath_NorthSouthTunnel_Text_BaldingManCandyBar:
 
 UndergroundPath_NorthSouthTunnel_Text_BaldingManGaveCandyBar:
 #if GERMAN
+	.string "{PLAYER} gibt dem Mann aus\n"
+	.string "dem Tunnelpfad den Wutkeks.\p"
 	.string "Hamm!\p"
 	.string "Knusper, knusper, knusper!\p"
 	.string "Der ist aber lecker!\p"

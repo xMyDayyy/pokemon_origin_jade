@@ -649,7 +649,7 @@ Route25_SeaCottage_EventScript_GrandpaShownAll::
 
 Route25_SeaCottage_Text_GrandpaIntro::
 #if GERMAN
-	.string "Hm? Du kennst Bill? Er ist mein\n"
+	.string "Hm? Kennst du Bill? Er ist mein\n"
 	.string "Enkel.\p"
 	.string "Er tüftelt ständig an seinen PCs,\n"
 	.string "also schaue ich ab und zu nach ihm.$"
@@ -716,8 +716,8 @@ Route25_SeaCottage_Text_GrandpaFarfetchd::
 
 Route25_SeaCottage_Text_GrandpaAskToSeeMon::
 #if GERMAN
-	.string "Wenn du dieses Pokémon hast, darf ich\n"
-	.string "es mir einmal ansehen?$"
+	.string "Hast du so ein Pokémon? Wenn ja,\n"
+	.string "dann würde ich es gerne sehen…$"
 #else
 	.string "If you have that POKéMON, may I\n"
 	.string "see it, please?$"
@@ -725,7 +725,8 @@ Route25_SeaCottage_Text_GrandpaAskToSeeMon::
 
 Route25_SeaCottage_Text_GrandpaExcitedToSee::
 #if GERMAN
-	.string "Du zeigst es mir? Wie lieb von dir!$"
+	.string "Oh, du willst mir echt eins zeigen?\n"
+	.string "Wie lieb von dir!$"
 #else
 	.string "You will show me? How good of\n"
 	.string "you!$"
@@ -733,8 +734,7 @@ Route25_SeaCottage_Text_GrandpaExcitedToSee::
 
 Route25_SeaCottage_Text_GrandpaYouDontHaveIt::
 #if GERMAN
-	.string "Du hast es nicht?\n"
-	.string "Wie schade…$"
+	.string "Ach so, schade…$"
 #else
 	.string "You don't have it?\n"
 	.string "That's too bad…$"
@@ -742,9 +742,9 @@ Route25_SeaCottage_Text_GrandpaYouDontHaveIt::
 
 Route25_SeaCottage_Text_GrandpaShownPokemon::
 #if GERMAN
-	.string "Ah, das ist also {STR_VAR_1}?\p"
-	.string "Wie niedlich! Das ist sehr\n"
-	.string "freundlich von dir.$"
+	.string "Ah, das ist {STR_VAR_1}?\p"
+	.string "Ist das nicht niedlich! Das ist nett\n"
+	.string "von dir.$"
 #else
 	.string "Ah, so that is {STR_VAR_1}?\p"
 	.string "Isn't it cute! That's so kind\n"
@@ -754,7 +754,8 @@ Route25_SeaCottage_Text_GrandpaShownPokemon::
 Route25_SeaCottage_Text_GrandpaThanks::
 #if GERMAN
 	.string "Danke!\p"
-	.string "Hier, ein kleines Dankeschön.$"
+	.string "Das ist ein Zeichen meiner\n"
+	.string "Anerkennung.$"
 #else
 	.string "Thanks!\p"
 	.string "This is a token of my\n"
@@ -763,7 +764,7 @@ Route25_SeaCottage_Text_GrandpaThanks::
 
 Route25_SeaCottage_Text_GrandpaComeAgain::
 #if GERMAN
-	.string "Besuch mich doch bald wieder.$"
+	.string "Besuche mich bitte mal wieder!$"
 #else
 	.string "Come visit again sometime.$"
 #endif
@@ -771,9 +772,9 @@ Route25_SeaCottage_Text_GrandpaComeAgain::
 Route25_SeaCottage_Text_GrandpaShownAll::
 #if GERMAN
 	.string "Danke, dass du mir so viele niedliche\n"
-	.string "Pokémon gezeigt hast.\p"
-	.string "Das hat mir viel Freude gemacht. Wie\n"
-	.string "schön, dass ich so alt werden durfte.$"
+	.string "Pokémon gezeigt hast!\l"
+	.string "Ich habe mich wirklich gut amüsiert.\p"
+	.string "Das verleiht mir richtig Lebensenergie!$"
 #else
 	.string "Thanks for showing me so many\n"
 	.string "cute POKéMON.\p"
@@ -783,9 +784,9 @@ Route25_SeaCottage_Text_GrandpaShownAll::
 
 Route25_SeaCottage_Text_GrandpaWrongPokemon::
 #if GERMAN
-	.string "Hm?\p"
-	.string "Das ist nicht das Pokémon, von dem\n"
-	.string "Bill mir erzählt hat.$"
+	.string "Hm…\p"
+	.string "Ich glaube, das ist nicht das Pokémon,\n"
+	.string "von dem ich gehört habe…$"
 #else
 	.string "Hm?\p"
 	.string "That's not the POKéMON that I\n"

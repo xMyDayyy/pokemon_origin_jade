@@ -206,7 +206,7 @@ Route4_Text_WhiteRockTouchDay:
 	.string "{PLAYER} berührt den seltsamen Stein.\n"
 	.string "..........................\l"
 	.string "..........................\l"
-	.string "Aber nichts geschieht.$"
+	.string "Nichts geschieht!$"
 #else
 	.string "{PLAYER} touched the unusual rock.\n"
 	.string "..........................\l"
