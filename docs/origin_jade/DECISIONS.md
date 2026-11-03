@@ -11,7 +11,7 @@ that decisions are not undone by accident or argued again from scratch.
   the end of their list. Work packages reserve O- ids before they are
   integrated; reserved ids a package did not use stay unused and are
   never assigned later (O-042 to O-044, O-046 to O-049, O-051 to O-054,
-  O-059, O-061, O-062, O-064).
+  O-059, O-061, O-062, O-064, O-071, O-072).
 - Status: **Active**, **Superseded** (the entry names its successor),
   **Planned** (decided, not built yet) or **Open** (no decision yet).
 - Code that implements a decision should name its ID in a comment, e.g.
@@ -490,9 +490,10 @@ dated 2026-10-10 or later were decided directly.
   `LoadGameSave` (`src/save.c`) and are keyed to a flag from the Origin Jade
   block, which new games set right away - never through `SAVE_VERSION`:
   that number belongs to HnS upstream and is bumped there.
-- **Budget** (2026-11-02; `python3 tools/check_budget.py` prints it after a
-  build): SaveBlock1 15868 of 15872 bytes (4 free), SaveBlock2 3892 of 3968
-  (76 free), SaveBlock3 1584 of 1624 (40 free; 1008 before the Day Cares of
+- **Budget** (2026-11-02, ROM as of `runde23` 2026-11-03;
+  `python3 tools/check_budget.py` prints it after a build): SaveBlock1
+  15868 of 15872 bytes (4 free), SaveBlock2 3892 of 3968 (76 free),
+  SaveBlock3 1584 of 1624 (40 free; 1008 before the Day Cares of
   D-052), PokemonStorage 34144 of 35712 (1568 free). The limits are the
   flash space `src/save.c` checks with `STATIC_ASSERT`; new Origin Jade
   data goes to SaveBlock3 (D-016), which has only 40 bytes left since the
@@ -501,8 +502,8 @@ dated 2026-10-10 or later were decided directly.
   without moving offsets: `roamerPadding` (84 bytes), `dexPadding1` and
   `dexPadding2` (63 each), `unused_9C6` (2), `outbreakUnused1/2/3`.
   Memory: EWRAM 249760 of 262144 bytes (95.28 %, of which `gHeap`
-  115968), IWRAM 25704 of 32768 (78.44 %), ROM 25896296 of 33554432
-  (77.18 %).
+  115968), IWRAM 25704 of 32768 (78.44 %), ROM 25894888 of 33554432
+  (77.17 %).
 - **Layout guards and reserves (2026-10-30):**
   - Sizes: SaveBlock1 15868 of 15872 bytes (4 free), SaveBlock2 3892,
     SaveBlock3 1584 of 1624 (40 free), PokemonStorage 34144. `test/save.c`
@@ -861,9 +862,10 @@ dated 2026-10-10 or later were decided directly.
   as well (9 maps and 4 layouts with game_version `em_tents_retired`; owner
   2026-11-02, S-04: HnS's endgame counts). Their buildings are contest
   halls now (D-058). The HnS copies of the three tents in the courtyard of
-  the Route 40 Trainer Hill stay; Scott's two tent meetings
-  (`FLAG_MET_SCOTT_IN_VERDANTURF`, `FLAG_MET_SCOTT_IN_FALLARBOR`) happen
-  there only.
+  the Route 40 Trainer Hill stay, but Scott is not on their maps: their
+  scripts for his two tent meetings (`FLAG_MET_SCOTT_IN_VERDANTURF`,
+  `FLAG_MET_SCOTT_IN_FALLARBOR`) have no object and never run, so the two
+  meetings are no longer in the game (O-073).
 - **Evidence:** decision 2026-10-15 (O-006); owner answer 2026-10-31
   (S-02); owner answers 2026-11-02 (S-04).
 
@@ -2412,21 +2414,21 @@ dated 2026-10-10 or later were decided directly.
   line (5f794c19fd, 0bee0d524b).
 - **P-005** Done 2026-10-31: Mom's call texts follow Kanto, Johto and
   Hoenn (D-002).
-- **P-006** Emerald's Battle Tents (Fallarbor Town, Verdanturf Town,
-  Slateport City) and Emerald's Trainer Hill on Route 111 go; HnS's
-  endgame counts, with the tent copies and the hill by Route 40 (owner
-  2026-10-31 and 2026-11-02, S-04, S-05). The owner has removed the
-  buildings from the maps on `balancing` (06ea236bdb: the three tents and
-  the hill, with the hill's warp event, the last of Route 111, and its
-  sign; the tents' warp events stay; ad4a8db368: the tilesets). Still to
-  do: round 2 on top of those commits, `tools/check_maps.py` and a
-  clean-up of the scripts, flags and texts left (D-044, O-024, O-065,
-  O-067). Contest halls as in Ruby and Sapphire take the tents' places
-  (owner 2026-11-02): Verdanturf Town (Normal, with the contest pass),
+- **P-006** Done 2026-11-02: Emerald's Battle Tents (Fallarbor Town,
+  Verdanturf Town, Slateport City) and Emerald's Trainer Hill on Route 111
+  are retired; HnS's endgame counts, with the tent copies and the hill by
+  Route 40 (owner 2026-10-31 and 2026-11-02, S-04, S-05; D-030, D-044,
+  D-019). The owner removed the buildings from the maps on `balancing`
+  (06ea236bdb: the three tents and the hill, with the hill's warp event,
+  the last of Route 111, and its sign; the tents' warp events stay;
+  ad4a8db368: the tilesets); round 2 sits on top of those commits, and
+  the scripts, flags and texts left are cleaned up (O-024, O-065, O-067
+  resolved). Contest halls as in Ruby and Sapphire stand in the tents'
+  places (D-058): Verdanturf Town (Normal, with the Contest Pass),
   Fallarbor Town (Super), Slateport City (Hyper) and Lilycove City
-  (Master), with rank locks, the contest pass and the Pokeblock case as in
-  Ruby and Sapphire. The owner's note had the first two ranks swapped;
-  Ruby and Sapphire's order counts (owner: "ganz wie Rubin/Saphir").
+  (Master), with rank locks, the Contest Pass and the Pokeblock Case as in
+  Ruby and Sapphire. Built in Ruby and Sapphire's order; the owner's note
+  names the towns of the first two ranks the other way round (O-068).
 
 ## Open questions
 
@@ -2523,7 +2525,8 @@ dated 2026-10-10 or later were decided directly.
 - **O-027** Resolved 2026-10-30: eggs always hatch and use up no area
   (D-045).
 - **O-028** Resolved 2026-11-02: the Trainer Hills stay without Nuzlocke
-  deaths, as in HnS (D-054, D-045).
+  deaths, as in HnS (D-054, D-045); only the hill by Route 40 is left
+  (D-044).
 - **O-029** Resolved 2026-11-02 (owner): the player's room decorations
   are set up in the bedroom in Pallet Town (D-048).
 - **O-030** Resolved 2026-11-02 (owner: remove): the hidden objects of
@@ -2771,7 +2774,45 @@ dated 2026-10-10 or later were decided directly.
   not from an official game). Ruby/Sapphire has no such scene. Options:
   (a) keep the scene with the new text; (b) drop the scene (one Scott
   meeting less for `VAR_SCOTT_STATE`, which sets the Battle Points he
-  gives in the Kampfzone). Proposal: (a); the owner reads the text.
+  gives in the Kampfzone; two are already gone with the battle tents,
+  O-073). Proposal: (a); the owner reads the text.
+- **O-073** Scott's tent meetings (D-030, S-04): with Emerald's battle
+  tents his two meetings in Verdanturf and Fallarbor are gone. The HnS
+  copies of the tents at Route 40 have the scripts
+  (`VerdanturfTown_BattleTentLobby_hns_EventScript_Scott`,
+  `FallarborTown_BattleTentLobby_hns_EventScript_Scott`) and the flags
+  (`FLAG_MET_SCOTT_IN_VERDANTURF`, `FLAG_MET_SCOTT_IN_FALLARBOR`), but no
+  Scott object, so nothing runs them. Each meeting adds 1 to
+  `VAR_SCOTT_STATE`, which sets Scott's gift in his house in the
+  Kampfzone: 4 Battle Points after all 13 meetings, 3 from 9 on, 2 from 6
+  on, else 1. At most 11 are possible now, so at most 3 Battle Points
+  (with O-070 (b) at most 10, still 3). Options: (a) keep it so; (b) the
+  owner places Scott in the HnS copies in Porymap (scripts and flags are
+  there, but the copies stand in Johto, and the meetings belong to
+  Hoenn's story); (c) move the two meetings into the contest halls of
+  Verdanturf and Fallarbor (same places and times; needs new lines from
+  the owner, since Scott speaks of the battle tent there). Proposal: (a)
+  for the beta, (c) later if the owner wants the meetings back.
+- **O-074** TMs of HnS's old Kanto (D-019): 21 TMs that HnS gives only in
+  its own Kanto, whose maps are retired here, have no source in Origin
+  Jade; only the item randomizer can roll them. 14 of their moves no
+  tutor teaches either: Stone Edge, Will-O-Wisp, Energy Ball and X-Scissor
+  (rewards after the last rematch with the HnS trainers Kenny on Route 13,
+  Trevor on Route 14, Hillary on Route 15 and Rob in Viridian Forest);
+  Silver Wind, Flash Cannon, Rock Polish, Grass Knot, Brine, Fling and
+  Recycle (items on Routes 6, 9, 10, 11 and 19, in Rock Tunnel and in
+  Celadon City; Brine also in the Celadon Department Store); Giga Impact,
+  Captivate and Gyro Ball (Celadon Department Store). Seven have a tutor
+  but no TM: Endure, Explosion, Thunder Wave, Psych Up, Rock Slide, Sleep
+  Talk and Dream Eater. The rematch rewards (Stone Edge, Will-O-Wisp,
+  Energy Ball, X-Scissor, and Thunder Wave from Carter on Route 14) need
+  another giver: those HnS trainers are not in FRLG Kanto, whose rematches run through the VS
+  Seeker (D-034). Proposal, after the owner's rule that what HnS's Kanto
+  had comes to FRLG Kanto: all 21 into FRLG Kanto, at the same places
+  where possible (the department store, items and gifts; a rematch
+  reward from a FRLG trainer on the same route after his last VS Seeker
+  rematch; Rock Slide as an item in Pewter City or Rock Tunnel). Owner to
+  decide.
 
 ## Superseded decisions (kept for the record)
 
@@ -2803,3 +2844,4 @@ dated 2026-10-10 or later were decided directly.
 | One Day Care storage for all regions | Emerald / HnS | D-052 (2026-11-02) |
 | Scaled bosses keep the moves of their original level; Johto's league aces all at the corridor's 65 | HnS / Emerald, D-012 | D-053 (2026-11-02) |
 | Emerald's Trainer Hill on Route 111 works with its own trainers, prizes and records | D-044 (2026-10-30) | D-044 (2026-11-02) |
+| Battle tents in Verdanturf, Fallarbor and Slateport; Lilycove's contest hall holds every rank and its reception gives the Pokeblock Case | Emerald | D-030, D-058 (2026-11-02) |
