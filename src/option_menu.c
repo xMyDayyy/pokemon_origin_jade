@@ -313,8 +313,13 @@ static const u8 *const sDesc_FasterJoy[] = {
     COMPOUND_STRING("Schwester Joy heilt dich mit\nnormaler Animation."),
 };
 static const u8 *const sDesc_UnitType[] = {
-    COMPOUND_STRING("Zeigt Gewicht und Größe von{PKMN}\nund Beeren in Kilogram und Meter."),
-    COMPOUND_STRING("Ja bist du denn behindert?\nMach das aus du Ungetier."),
+#if GERMAN
+    COMPOUND_STRING("Zeigt Gewicht und Größe von {PKMN}\nund Beeren in Kilogramm und Meter."),
+    COMPOUND_STRING("Zeigt Gewicht und Größe von {PKMN}\nund Beeren in Pfund und Zoll."),
+#else
+    COMPOUND_STRING("Display BERRY and {PKMN} weight\nand size in kilograms and meters."),
+    COMPOUND_STRING("Display BERRY and {PKMN} weight\nand size in pounds and inches."),
+#endif
 };
 static const u8 *const sDesc_MatchCall[] = {
     COMPOUND_STRING("Trainer können dich anrufen\nund Rückkämpfe verlangen."),
