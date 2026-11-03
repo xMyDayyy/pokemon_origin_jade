@@ -2,9 +2,10 @@
 
 This file describes the patch series of the audit round of 2026-10-30/31,
 of the story packages that followed it on 2026-10-31, of round 2 on
-2026-11-02 (the owner's answers of 2026-10-31 and 2026-11-02) and of round
+2026-11-02 (the owner's answers of 2026-10-31 and 2026-11-02), of round
 3 on 2026-11-02/03 (contests as in Ruby and Sapphire, battle tents and the
-Route 111 Trainer Hill retired): how it was made, which commits depend on
+Route 111 Trainer Hill retired) and of round 4 on 2026-11-03 (every item
+can be obtained): how it was made, which commits depend on
 each other, how each commit was verified and how to apply it. What changed
 for players is in `docs/origin_jade/CHANGELOG.md`, what is still open in
 `docs/origin_jade/BETA_READINESS.md`.
@@ -20,13 +21,16 @@ for players is in `docs/origin_jade/CHANGELOG.md`, what is still open in
   `ad4a8db368..61ac7e277d`, 73 commits: round 2 (62 commits: the seven
   packages of the owner's answers, 58, and four German rest commits), its
   5 documentation commits and round 3 (6 commits). Another 6
-  documentation commits follow on top (this file is one of them), 277 in
-  all. Nothing of rounds 2 and 3 is committed on `balancing` before the
-  owner's approval.
+  documentation commits follow on top, 277 in all (`r23-docs`). Round 4
+  sits on `r23-docs`: `74c47e7e1b..851aa886e2`, 15 commits, and one
+  documentation commit on top (this file is part of it), 293 in all.
+  Nothing of rounds 2 to 4 is committed on `balancing` before the owner's
+  approval.
 - **Commit ids:** the ids (shas) of commits 1-198 are those of the
   integration branch `audit`, now also on `balancing`. The ids of commits
   199-271 are those of the integration branch `runde23` and the ids of
-  272-277 those of `r23-docs` on top of it. Round 2 was first built on
+  272-277 those of `r23-docs` on top of it, the ids of 278-293 those of
+  `r4-items` on top of `r23-docs`. Round 2 was first built on
   `2f284d83b9` (branches `runde2`, `r2-derest`, `r2-docs`) and then rebased
   onto `ad4a8db368`, which gave every commit a new id with the same
   subject; this file lists only the new ids. Applying the series with
@@ -51,7 +55,11 @@ for players is in `docs/origin_jade/CHANGELOG.md`, what is still open in
   ids are added where a commit closes one. Round 3 implements the owner's
   answers on the battle tents and the Route 111 Trainer Hill (`S-04`,
   `S-05`) and on the contests (`contests`: "ganz wie Rubin/Saphir", in
-  four halls).
+  four halls). Round 4 implements the owner's answers of 2026-11-03:
+  `items` ("wichtig ist nur, dass man alle Items im Spiel regulär
+  erhalten kann"), `O-073` (Scott), `O-074` (the 21 TMs of HnS's old
+  Kanto) and `options` (the joke in the options menu may go); `review`
+  marks what its review added.
 
 ## How the series was made
 
@@ -137,6 +145,20 @@ for players is in `docs/origin_jade/CHANGELOG.md`, what is still open in
     file for the rebased round 2 and round 3. After their review the
     fixes were folded into their commits (autosquash); the `README.md`
     commit was added then.
+17. **Round 4 (15 commits).** Package `items` (D-059) in its own worktree
+    (`r4-items`) on `r23-docs`: an audit tool outside the repository
+    (`check_items.py`) listed every item of the build without a regular
+    source and its old place in HnS; the commits give each a source,
+    where possible at HnS's old place on the FRLG map. After the review
+    the fixes were folded into their commits (autosquash: rewards of
+    HnS's Kanto after the Kanto title, Carter's TM only after a won
+    rematch, Scott's gift after the Hoenn title, the Lilycove charms, the
+    debug states, the open questions), and the tool commit `9418d7138b`
+    was added; every commit was built again with its final id
+    (`percommit_r4`).
+18. **Documentation (1 commit).** `CHANGELOG.md`, `BETA_READINESS.md`,
+    `TESTS.md`, `README.md` and this file for round 4 (`DECISIONS.md`
+    changed in the commits of round 4).
 
 Rules every commit follows: one finding (or a tight group of the same
 kind) per commit; `DECISIONS.md` changes in the same commit as the
@@ -338,6 +360,25 @@ the patches conflict there. Inside the series these orders are required:
   the maps of the HnS tent copies, so his two tent meetings went with the
   Emerald tents) and adds O-073 (those meetings) and O-074 (21 TMs of
   HnS's old Kanto without a source).
+- **Round 4: flags, var and DECISIONS ids.** Next free ids of their
+  blocks, so the order counts: `7650a6794f` `OJ_FLAGS_KANTO` + 11 to + 18
+  (TM balls), `30c617c125` + 19 to + 25 (trainer rewards,
+  `FLAG_DEFEATED_CARTER_REMATCH` + 23), `2f6d6b94a3` + 26 and + 27,
+  `d33f4f46fc` + 28 to + 34, `fd75d5699e` + 35 and + 36 and
+  `VAR_SEA_COTTAGE_GRANDPA` (`OJ_VARS_KANTO` + 6), `5d1b18fa12`
+  `OJ_FLAGS_JOHTO` + 16 to + 21, `34d67706b3` + 22 to + 33 (Hoenn's hidden
+  items: a hidden item's flag must lie below `FLAG_HIDDEN_ITEMS_START` +
+  8192); no change to the save layout. `3400a870dc` appends the special
+  `CreateBPHoldItemShop3` to `data/specials.inc`. `6f39278fee`
+  regenerates both debug headers and needs every content commit before
+  it. New entries: D-059 and O-075 to O-078 (`851aa886e2`); resolved:
+  O-073 (`46a955fd69`), O-074 (`851aa886e2`). Entries changed per commit:
+  `46a955fd69` D-030, O-070, O-073; `30c617c125` D-034; `fd75d5699e`
+  D-036; `5d1b18fa12` D-036; `6f39278fee` D-050; `851aa886e2` D-059,
+  O-074 to O-078. Same file in several commits:
+  `include/constants/flags_origin_jade.h` (the seven commits above),
+  `docs/origin_jade/DECISIONS.md` (six) and
+  `data/scripts/item_ball_scripts_frlg.inc` (`7650a6794f`, `d33f4f46fc`).
 - **Round 3: same file in several commits:**
   `data/maps/VerdanturfTown`, `FallarborTown` and `SlateportCity`
   (`map.json`: `06ea236bdb`, `d969de7b0b`, `bddcd1dc75`; Verdanturf's and
@@ -357,8 +398,10 @@ commits 193-198 change no code and were not built. Every commit of round
 2 (199-260) was built twice: on `2f284d83b9` before the rebase and, with
 round 3 (266-271) and the 5 documentation commits 261-265, with its final
 id on `ad4a8db368` (`percommit_r23`, 73 of 73). The 6 documentation
-commits 272-277 change no code. The logs are kept in the audit workspace,
-not in the repository.
+commits 272-277 change no code. Every commit of round 4 (278-292) was
+built with its final id on `r23-docs` (`percommit_r4`, 15 of 15); the
+documentation commit 293 changes no code. The logs are kept in the audit
+workspace, not in the repository.
 
 | Part | Commits | Per-commit build and `check_flags` | Logs |
 |---|---:|---|---|
@@ -378,6 +421,9 @@ not in the repository.
 | All commits after `ad4a8db368` | 73 | 73 of 73 `make=ok`, `check_flags` 0, both debug headers up to date, with the final ids of `runde23` (62 of round 2, 5 documentation, 6 of round 3) | `percommit_r23.log` |
 | Tip `61ac7e277d` | 271 | `make` 0, ROM SHA-1 `6346a2591693e2c99c3f1748b676d0f207afdbef`, also after a build from scratch (398 C files), `make release` 0 (SHA-1 `10174fe5187327f5e3cb4bcfe39d7392bb493031`, no debug menu, debug states or "Even Wild Slots" in the ELF), `check_warnings.py` 105 (release 111), `check_flags` 0 (3435 flags, 695 vars), `make_debug_states.py --check` (both headers up to date), `check_regions.py` 0 problems, `check_text_width.py` 35 exact lines as before, `check_game_text.py --english` (Hoenn 0, Johto 23, Kanto 5, shared 97, `src` 11), `check_maps.py` 88 minor on 1125 active maps, `check_merge.py` 0 errors (8 known, 205 warnings, 273 hints), simulator without `--hoenn-ticket`: Kanto title in wave 50, Johto 105, Hoenn 137, `check_budget.py` (SaveBlock3 1584/1624), test suite with `tools/run_tests.py`: 5148 tests, 0 new and 0 changed failures; `check_save_safety.py` 76 findings as before (documentation tip) | `integ_r23.res`, `tests_r23.log`, `sim_r23/`, `full_r23.log`, `rel_r23.log` |
 | Documentation (4) | 6 | documentation only, not built one by one (the tip build above has the same code); `check_flags` 0; this list and every commit id of the six files checked against `git log` by a script (see the end of the list) | - |
+| Round 4 | 15 | on `r4-items` after the review fixes, with the final ids: 15 of 15 `make -j2` 0, `check_flags` 0; `make_debug_states.py --check` up to date at 278, 279 and from 291 (`6f39278fee`, which regenerates both headers) on, in between it reports the round's new items as missing | `r4rev/percommit.log` |
+| Tip `851aa886e2` | 292 | `make` 0 at the end of the per-commit run and from scratch in a new worktree (398 C files), both ROM SHA-1 `8fe887d805f3db1d350df34391a5d4488830873c`; `make release` 0 (SHA-1 `a4bb57818d0471f0d805d680541a76d1214f969e`, no debug menu, debug states or "Even Wild Slots" in the ELF); `check_warnings.py` 105 (release 111); `check_flags` 0 (3479 flags, 696 vars); `make_debug_states.py --check` (both headers up to date); `check_regions.py` 0 problems; `check_text_width.py` 35 exact lines as before; `check_game_text.py --english` (Hoenn 0, Johto 23, Kanto 5, shared 97, `src` 11); `check_maps.py` 88 minor on 1125 active maps; `check_merge.py` 0 errors (8 known, 205 warnings, 273 hints); simulator without `--hoenn-ticket`: Kanto title in wave 50, Johto 105, Hoenn 137, nothing changed against the round before its review fixes; `check_budget.py` (SaveBlock3 1584/1624, as before); `check_save_safety.py` 76 findings as before; test suite with `tools/run_tests.py`: 5148 tests, 0 new and 0 changed failures; the audit's item check: no item without a regular source | `r4rev/end/`, `r4rev/full_r4rev.log`, `r4rev/tests_r4.log` |
+| Documentation (5) | 1 | documentation only, not built (the tip build above has the same code); `check_flags` 0; this list and the commit ids of the five files checked against `git log` by a script (see the end of the list) | - |
 
 On 2026-10-31 the audit tip `b62f22e381` and the tip `b022af5623` were
 also built from scratch in a separate worktree (all 397 C files
@@ -393,22 +439,25 @@ Commits 1-198 are on `balancing` since 2026-10-31 (fast-forward to
 `2f284d83b9`), and the owner's map commits `06ea236bdb` "Anpassungen an
 Karten" and `ad4a8db368` "Tilesets für Änderungen nachgeladen" since
 2026-11-02. Rounds 2 and 3 with their documentation (commits 199-277)
-sit on `ad4a8db368`. As long as `balancing` is still at `ad4a8db368`, a
+sit on `ad4a8db368`, round 4 with its documentation (278-293) on
+`r23-docs`. As long as `balancing` is still at `ad4a8db368`, a
 fast-forward applies them and keeps the ids of this file:
 
 **Fast-forward** (in the target repository, with the integration clone as
-a remote or after fetching `r23-docs`):
+a remote or after fetching `r4-items`):
 
-    git checkout balancing        # at ad4a8db368
-    git merge --ff-only r23-docs
+    git checkout balancing        # at ad4a8db368 (or at r23-docs)
+    git merge --ff-only r4-items
 
 **Patches** (`git am`, also when `balancing` has moved on):
 
     # in the integration clone
     git format-patch ad4a8db368..r23-docs -o patches/runde23/
+    git format-patch r23-docs..r4-items -o patches/runde4/
     # in the target repository
     git checkout balancing
     git am --3way patches/runde23/*.patch
+    git am --3way patches/runde4/*.patch
 
 With `git am` on a moved `balancing` every commit gets a new id with the
 same subject; the ids in this file, `CHANGELOG.md`, `BETA_READINESS.md`
@@ -425,7 +474,9 @@ the commit ids change. The per-package exports of the waves and of
 rounds 2 and 3 (`patches/<package>/`, `patches/r2_<package>/`,
 `patches/r3_contests/`) hold the versions before integration (those of
 round 2 still on `2f284d83b9`) and are not meant for applying; use the
-export of the whole branch as above.
+export of the whole branch as above. `patches/r4_items/` holds round 4
+and its documentation commit as they are on `r4-items`
+(`r23-docs..r4-items`, the same as `patches/runde4/` above).
 
 After applying, run:
 
@@ -975,18 +1026,46 @@ transparent pixels from the original tiles is offered to him
 | 274 | `5609035657` | Doku: BETA_READINESS.md auf den Stand von runde23 mit der Runde 3 | - |
 | 275 | `417a5b2d29` | Doku: TESTS.md mit der Testmatrix von runde23 | - |
 | 276 | `4a2506b6b5` | Doku: README.md auf den Stand der Runden 2 und 3 | - |
-| 277 | this commit | Doku: PATCHES.md um die Runde 3 und die neuen Ids der Runde 2 | - |
+| 277 | `74c47e7e1b` | Doku: PATCHES.md um die Runde 3 und die neuen Ids der Runde 2 | - |
 
-The id of commit 277 is in `git log`; a commit cannot name its own id.
+### Round 4 (every item can be obtained)
+
+#### `items`: a regular source for every item (D-059)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 278 | `ebb6c6f435` | Optionen: Beschreibung der Einheiten neu gefasst | options |
+| 279 | `46a955fd69` | Kampfzone: Scotts BP-Geschenk zählt die 11 möglichen Treffen | O-073, review |
+| 280 | `d6a0d0d994` | Kanto: Prismania-Kaufhaus verkauft die sechs TMs aus dem HnS-Kanto | O-074 |
+| 281 | `7650a6794f` | Kanto: acht TMs aus dem HnS-Kanto als Items auf den FRLG-Karten | O-074 |
+| 282 | `30c617c125` | Kanto: Rückkampf-TMs und Rockos TM80 bei FRLG-Trainern | O-074, review |
+| 283 | `2f6d6b94a3` | Kanto: TM64 gegen einen Wutkeks und TM82 nach einer Gruselgeschichte | O-074 |
+| 284 | `946c222306` | Kanto: Läden führen Items, die es sonst nirgends gab | items |
+| 285 | `d33f4f46fc` | Kanto: versteckte Items und Feendaune im Mondberg | items |
+| 286 | `fd75d5699e` | Kanto: Bills Großvater, Pokémon-Box von Bill, Superfangpin zum Diplom | items, review |
+| 287 | `5d1b18fa12` | Johto: Bälle, Lockparfüms, Beeren und Funde, die es sonst nicht gab | items, O-074, review |
+| 288 | `9418d7138b` | Werkzeug: Prüfung der Basis-Items zählt Eilrad und Kunstrad als einen Platz | review |
+| 289 | `34d67706b3` | Hoenn: versteckte Relikte, Brocken, Steinknochen und Seelentau | items |
+| 290 | `3400a870dc` | Kampfzone: BP-Tausch mit Juwelen, Samen, Mochi und EP-Bonbons | items |
+| 291 | `6f39278fee` | Debug: Johto- und Hoenn-Test mit den neuen Items | items, O-035, review |
+| 292 | `851aa886e2` | Doku: D-059 jedes Item hat eine reguläre Quelle, O-074 erledigt | items, O-074, review |
+
+### Documentation (5)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 293 | this commit | Doku: CHANGELOG, BETA_READINESS, TESTS, PATCHES und README um die Runde 4 | review |
+
+The id of commit 293 is in `git log`; a commit cannot name its own id.
 The ids of commits 199 to 271 are those of `runde23`, 272 to 277 of
-`r23-docs`. Applied with `git am` on a `balancing` that has moved on,
-they get new ones (see "How to apply").
+`r23-docs`, 278 to 293 of `r4-items`. Applied with `git am` on a
+`balancing` that has moved on, they get new ones (see "How to apply").
 
 A script compared this list with `git log --reverse --first-parent
-3525d22e71..r23-docs`: rows 1 to 277 are its commits in this order
+3525d22e71..r4-items`: rows 1 to 293 are its commits in this order
 without the owner's two, with the same ids and titles, and the two owner
 rows are the owner's commits. Every commit id in this file,
 `CHANGELOG.md`, `BETA_READINESS.md`, `TESTS.md`, `DECISIONS.md` and
-`README.md` is a commit in the history of `r23-docs`; the ids round 2
-had before the rebase and the ids the documentation commits had before
+`README.md` is a commit in the history of `r4-items`; the ids round 2
+had before the rebase and the ids the commits of round 4 had before
 their review fixes appear nowhere.

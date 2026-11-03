@@ -207,9 +207,10 @@ plays the game. Run them from the repository root; the ones marked
   leftovers by region; `--list` prints the over-wide lines. Exit 1 on a
   proven over-wide line of active content.
 - `python3 -I tools/check_save_safety.py --json out.json`: gifts without a
-  space check, bag pockets (also with the item randomizer), new game
-  state, migrations, Hall of Fame, clock and link features; `--check NAME`
-  runs one check. Exit 1 on a blocker or critical finding.
+  space check, bag pockets (also with the item randomizer; key items a
+  player never holds together, `EXCLUSIVE_KEY_ITEMS`, take one slot), new
+  game state, migrations, Hall of Fame, clock and link features;
+  `--check NAME` runs one check. Exit 1 on a blocker or critical finding.
 - `python3 tools/check_text_width.py --list` (after make): line widths of
   all script texts as the built ROM shows them. Exit 1 on an exact line
   over the limit outside locked maps.
@@ -229,7 +230,40 @@ Also after every change to flags, vars, trainers or Kanto content:
 tables, overworld Pokemon, gifts or the Pokedex order:
 `python3 -I tools/check_regions.py` (D-049).
 
-## Test matrix (2026-11-03, rounds 2 and 3: `runde23`)
+## Test matrix (2026-11-03, round 4: `r4-items`)
+
+State: round 4 on top of `r23-docs` (`74c47e7e1b`): the branch `r4-items`
+with 15 commits (every item can be obtained, D-059; tip of the code
+`851aa886e2`) and its documentation commit (no code change). Results
+from the per-commit run `percommit_r4` and the checks on `851aa886e2`,
+the build from scratch in a new worktree of `851aa886e2`, the test run
+`tests_r4` and the audit's item check `check_items.py` (outside the
+repository). `docs/origin_jade/BETA_READINESS.md` gives the verdict per
+beta criterion and the emulator test list. Nothing was checked in an
+emulator.
+
+| Area | Check | Result |
+|---|---|---|
+| Build | `make -j2` per commit (`percommit_r4`) | 15 of 15 commits after `74c47e7e1b` `make=ok` with their final ids; `check_flags` 0 at each. `make_debug_states.py --check`: both headers up to date at the first two commits and from `6f39278fee` on; in between it reports the round's new items as missing until that commit regenerates the headers (one regeneration for the round, as planned) |
+| Build | `make -j2` from scratch (new worktree of `851aa886e2`) | exit 0, 398 C files, ROM SHA-1 `8fe887d805f3db1d350df34391a5d4488830873c`, the same as the incremental build of the per-commit run at its last commit; 8 minutes with `-j2` |
+| Build | `make release` | exit 0, SHA-1 `a4bb57818d0471f0d805d680541a76d1214f969e`; overworld debug menu, debug states and "Even Wild Slots" not linked (checked in the ELF's symbols); not started |
+| Build | `check_warnings.py` | 105 warnings on the log of the build from scratch, as in the baseline; release build 111 (LTO and newlib stubs), as before |
+| Data | `check_merge.py` | 0 errors, 8 known (205 warnings, 273 hints, as in the baseline) |
+| Data | `check_regions.py` | 0 problems; round 4 changes no wild table, overworld Pokemon or Pokemon gift |
+| Data | `make_debug_states.py --check` | both headers up to date on `851aa886e2`; Johto Test 220 items (the rewards after the Kanto title or its rematch tier moved to the Hoenn Test), Hoenn Test 379 items (four berries in the PC's item storage) |
+| Flags and vars | `check_flags.py`; `test/origin_jade/event_data.c` | 0 problems (3479 flags, 696 vars: 44 flags and one var more than round 3); 7 of 7 tests pass |
+| Saves | `check_budget.py`; `test/save.c` | SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1584/1624, PokemonStorage 34144/35712; EWRAM 95.28 %, IWRAM 78.44 %, ROM 77.19 %; round 4 does not change the layout (its flags and var lie in free ids of the Origin Jade blocks) |
+| Saves | `check_save_safety.py` | 76 findings: 1 important, 3 minor, 72 optional, as before round 4; Key Items pocket 61 obtainable, at most 60 at a time (the Mach and Acro Bike are never held together), 60 slots; without the tool change 27 minor (24 key item gifts) |
+| Items | `check_items.py` (audit tool, outside the repository) | 903 items of the build: none without a regular source; 20 only by luck (wild held items, Pickup; O-078); 335 not meant, with the reason (D-059) |
+| Progress | `simulate_progress.py` | without a switch: Kanto title in wave 50, GS Ball 51, Johto badges 55-91, Johto title 105, Hoenn Ticket 106, Hoenn reached 108, Hoenn badges 109-127, Hoenn title 137, exit 0; 195 of 1115 active maps unreachable, none on the story path; `--diff` against the round before its review fixes: nothing changed |
+| Maps | `check_maps.py --min-severity klein` | 88 findings, all minor, on 1125 active maps, as before round 4; the new objects and hidden items bring nothing new |
+| Texts | `check_text_width.py --list` | 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6), as before; the new lines of round 4 at most 208 px (Brock's line after the Kanto title 162 px, Bill's grandfather at most 196 px) |
+| Texts | `check_game_text.py --english` | Hoenn 0, Johto 23 and Kanto 5 (trainer names in upstream capitals, O-066), shared 97, `src` 11, locked maps 290, retired maps 3, as before round 4; every new text of round 4 has a German branch |
+| Engine | `run_tests.py` | 5148 tests in 951 files: 2355 ok, 629 todo, 2164 known failures, 0 new, 0 changed (`tests_r4`, in the worktree of the build from scratch) |
+| Engine | Origin Jade tests | `level_scaling.c` 11/11, `event_data.c` 7/7, `region_rule.c` 14/14, `debug_states.c` 3/3, `daycares.c` 2/2, `even_wild_slots.c` 2/2, `region_badges.c` 1/1, `test/save.c` 4/4; no test covers the new item sources, Carter's rematch flag or Scott's gift |
+| Not checked | - | play in an emulator (the new item balls, hidden items and shops, Brock, the rematch rewards, Bill's grandfather, the designers' charms, Scott in the Kampfzone, the new Battle Point lists, the options text, the debug states), balance of the new items in the game, link features, the CI workflow on GitHub |
+
+### Earlier state: rounds 2 and 3 (`runde23`, 2026-11-03)
 
 State: the branch `runde23`: the owner's map commits `06ea236bdb` and
 `ad4a8db368` on `2f284d83b9`, round 2 rebased onto them (62 commits, the

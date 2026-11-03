@@ -2,8 +2,9 @@
 
 Changes of the audit round of 2026-10-30/31, of the story packages that
 followed it on 2026-10-31, of round 2 on 2026-11-02 (the owner's answers
-of 2026-10-31 and 2026-11-02) and of round 3 on 2026-11-02/03 (contests as
-in Ruby and Sapphire), for players and testers. The upstream
+of 2026-10-31 and 2026-11-02), of round 3 on 2026-11-02/03 (contests as
+in Ruby and Sapphire) and of round 4 on 2026-11-03 (every item can be
+obtained), for players and testers. The upstream
 `CHANGELOG.md` in the repository root belongs to pokeemerald-expansion and
 is not about Origin Jade.
 
@@ -11,7 +12,8 @@ is not about Origin Jade.
   the integration branch `audit` (`balancing` up to `2f284d83b9`) and, for
   rounds 2 and 3, of the branch `runde23` on top of the owner's map
   commits `06ea236bdb` and `ad4a8db368` (round 2 was rebased onto them;
-  its ids before the rebase are no longer used);
+  its ids before the rebase are no longer used); for round 4 those of the
+  branch `r4-items` on top of `r23-docs` (`74c47e7e1b`);
   `docs/origin_jade/PATCHES.md` lists every commit, including
   documentation and tool-only ones that change nothing in the game.
 - Names: English names first, the German in-game name in parentheses where
@@ -22,7 +24,100 @@ is not about Origin Jade.
 - Saves made before this round are not migrated and were not tested; start
   a new game (owner decision 2026-10-30). Randomizer seeds changed as well.
   Round 2 changes the save layout again (separate Day Cares, D-052);
-  round 3 adds four flags and leaves the layout as it is.
+  round 3 adds four flags and leaves the layout as it is; round 4 adds 44
+  flags and one var in free ids of the Origin Jade blocks and leaves the
+  layout as it is.
+
+## Round 4: every item can be obtained (D-059)
+
+The owner's answers of 2026-11-03: every item of the game must be
+obtainable regularly, the 21 TMs of HnS's old Kanto first (O-074); Scott
+is not needed for the story (O-073); the joke in the options menu may go.
+A check of all 903 items of the build found every item that had no source
+without link play, events or the randomizer; new sources sit where HnS's
+own Kanto had the item, on the FRLG map of the same place, else at a
+fitting place of the region. Held items of wild Pokemon and Pickup count
+for now; the 20 items that come only by luck wait for the owner (O-078).
+The new lines are German with an English branch; Bill's grandfather's
+texts were English only in HnS and are new German texts.
+
+### Kanto (D-034, D-059)
+
+- Celadon Department Store 2F (Prismania-Kaufhaus), TM clerk: TM Captivate,
+  Brine, Gyro Ball, Dream Eater, Giga Impact and Endure, HnS's list of its
+  own store. `d6a0d0d994`
+- Item balls at HnS's places: TM Silver Wind (Route 6), Flash Cannon
+  (Route 9), Rock Polish (Route 10), Grass Knot (Route 11), Brine (Route
+  19), Fling (Rock Tunnel B1F), Recycle (Celadon City), Psych Up
+  (Viridian Forest). `7650a6794f`
+- Trainers: after their last VS Seeker rematch (the Kanto-title tier)
+  Robert on Route 13 gives TM Stone Edge, Benny on Route 14 TM
+  Will-O-Wisp and Grace on Route 15 TM Energy Ball; Carter on Route 14
+  gives TM Thunder Wave after a won VS Seeker rematch (a lost one gives
+  nothing); Bug Catcher Rick in Viridian Forest TM X-Scissor after the
+  Kanto title; Brock TM Rock Slide after the Kanto title, with a new line
+  (HnS gave it with the badge, but its Kanto came after the Johto
+  League). `30c617c125`
+- Underground Path north-south: a man trades TM Explosion for a Rage Candy
+  Bar (Wutkeks) from Mahogany Town; the Black Belt in the roof room of
+  Celadon's condominiums tells HnS's scary tale at night and gives TM
+  Sleep Talk. `2f6d6b94a3`
+- Shops: Celadon 4F Poke Toy, Dream Mail and Strange Souvenir; 5F X Sp.
+  Def and the six feathers; Pewter's mart Pewter Crunchies.
+  `946c222306`
+- Hidden items: Pearl String in Vermilion City, Odd Incense in Cerulean
+  Cave B1F, Rose Incense on Route 15, Fairy Gem on Route 8, Comet Shard in
+  Mt. Moon B2F, Berserk Gene in Cerulean City; item ball Fairy Feather in
+  Mt. Moon 1F. `d33f4f46fc`
+- Bill's grandfather from HnS stands in the Sea Cottage on Route 25. After
+  the Kanto title he asks to see Meowth, Zigzagoon, Ponyta and Farfetch'd
+  and gives 1, 3, 5 and 7 EXP. Candies L; before the title he only greets
+  the player. Bill gives the Pokemon Box Link (Pokémon-Box, the PC boxes
+  from anywhere) after the Kanto title; Celadon's game designer gives the
+  Catching Charm (Superfangpin) with the Kanto diploma (O-075).
+  `fd75d5699e`
+
+### Johto, Hoenn and the Kampfzone (D-036, D-059)
+
+- Goldenrod Department Store: Quick, Dusk and Heal Ball, Sweet Heart,
+  Lure, Super Lure, Max Lure (2F), X Sp. Def (3F). A berry seller in
+  Goldenrod's flower shop sells the 18 Gen 4 resistance berries, Micle,
+  Custap, Jaboca, Rowap, Kee, Maranga and Enigma Berry (20 each), Big
+  Root, Rock and Luck Incense. Item balls: TM Rock Climb in Mt. Silver's
+  item room (after the Johto title), Icy Rock in Ice Path 1F; hidden:
+  Big and Tiny Bamboo Shoot in Ilex Forest, the Pokeshi Doll in Ecruteak
+  City. Lilycove's game designer gives the EXP. Charm (EP-Pin) with the
+  Johto diploma, before the Shiny Charm (O-075). `5d1b18fa12`
+- Hoenn, hidden: Rare Bone and Smooth Rock in Route 111's desert, Heat
+  Rock in the Fiery Path, Damp Rock on Route 119, Soul Dew outside the
+  Sky Pillar, the seven relics in dive pockets of Underwater Routes 124,
+  126 and 128. `34d67706b3`
+- Kampfzone, Battle Points: a third hold item clerk with the 18 gems,
+  four terrain seeds, Terrain Extender, Adrenaline Orb, Clear Amulet,
+  Punching Glove, Covert Cloak and Loaded Dice; the second list adds
+  eleven Gen 5-9 hold items; the vitamin list the seven Mochi and EXP.
+  Candies XS, S, M and XL. Prices: O-076. `3400a870dc`
+- Scott's gift in his house in the Kampfzone counts the 11 meetings that
+  are left after the retired tents (4 Battle Points from 11 on). Because
+  the M.S. Aqua reaches the Kampfzone after the first Johto title, Scott
+  welcomes the player and gives the points only after the Hoenn title,
+  when every meeting is over (D-030, O-073). `46a955fd69`
+
+### Options, debug states and tools
+
+- Options menu, units: the joke text for the imperial setting is gone;
+  both settings say what they show (pounds and inches, kilograms and
+  metres). `ebb6c6f435`
+- Debug states (D-050): the Johto Test has the new Kanto items up to the
+  title (220 items); Kanto's rewards after the title or its rematch tier
+  (Brock, Robert, Benny, Grace, Rick, Bill, his grandfather) and the new
+  Johto items come with the Hoenn Test (379 items). `6f39278fee`
+- `tools/check_save_safety.py` counts key items that are never held
+  together (Mach and Acro Bike) as one slot: 61 different key items, at
+  most 60 at a time, for 60 slots (D-059). `9418d7138b`
+- 44 new flags (`OJ_FLAGS_KANTO` + 11 to + 36, `OJ_FLAGS_JOHTO` + 16 to
+  + 33) and one var (`VAR_SEA_COTTAGE_GRANDPA`), all in free ids of
+  their blocks; no change to the save layout.
 
 ## Round 3: contests as in Ruby and Sapphire
 
@@ -731,8 +826,15 @@ with evidence and the owner decisions it needs. The most important:
   O-024, O-063, O-065 and O-067. Older ones still open: O-022, O-025,
   O-037, O-038, O-040.
 - Open questions of round 3: the rank per contest hall (O-068), paintings
-  per rank (O-069), Scott's new line in Slateport (O-070), Scott's two
-  tent meetings that went with the tents (O-073) and 21 TMs of HnS's old
-  Kanto without a source (O-074).
-- Nothing of rounds 2 and 3 was played in an emulator; `BETA_READINESS.md`
-  lists what to test first, among it one pass through each contest hall.
+  per rank (O-069) and Scott's new line in Slateport (O-070). Round 4
+  resolved O-073 (Scott's gift counts the 11 meetings that are left) and
+  O-074 (the 21 TMs of HnS's old Kanto).
+- Open questions of round 4: the Catching Charm, EXP. Charm and Pokemon
+  Box Link, which HnS never gave (O-075); the prices of the new goods and
+  the items of HnS's Kanto that now come in chapter one (O-076); Bottle
+  Caps without Hyper Training (O-077); the 20 items that come only by
+  luck (O-078). Brock's new line and Bill's grandfather's texts are new
+  German texts for the owner's text round.
+- Nothing of rounds 2 to 4 was played in an emulator; `BETA_READINESS.md`
+  lists what to test first, among it one pass through each contest hall
+  and the new item sources.
