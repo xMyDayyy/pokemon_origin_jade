@@ -480,12 +480,18 @@ Common_EventScript_ShipMenuPushVermilion::
 	subvar VAR_0x8009, 2
 	return
 
-@ Kampfzone and Birth Island from both ports once the M.S. Aqua sails every day.
+@ Kampfzone and Birth Island from both ports once the M.S. Aqua sails every day; the Kampfzone
+@ only after the Hoenn title (D-030).
 Common_EventScript_ShipMenuPushIslands::
 	goto_if_lt VAR_SSAQUA_STATE, 7, Common_EventScript_NopReturn
-	dynmultipush gText_BattleFrontier, SHIP_DEST_BATTLE_FRONTIER
+	call_if_set FLAG_IS_HOENN_CHAMPION, Common_EventScript_ShipMenuPushBattleFrontier
 	dynmultipush gText_BirthIsland, SHIP_DEST_BIRTH_ISLAND
-	subvar VAR_0x8009, 4
+	subvar VAR_0x8009, 2
+	return
+
+Common_EventScript_ShipMenuPushBattleFrontier::
+	dynmultipush gText_BattleFrontier, SHIP_DEST_BATTLE_FRONTIER
+	subvar VAR_0x8009, 2
 	return
 
 Common_EventScript_ShipMenuPushHoenn::

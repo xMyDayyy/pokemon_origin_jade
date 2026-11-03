@@ -83,7 +83,9 @@ OlivinePort_EventScript_ChoseBirthIsland::
 	release
 	end
 
+@ The Kampfzone only after the Hoenn title (D-030); checked again like the Hoenn trips.
 OlivinePort_EventScript_ChoseBattleFrontier::
+	goto_if_unset FLAG_IS_HOENN_CHAMPION, Common_EventScript_ShipMenuCancel
 	closemessage
 	delay 20
 	call OlivinePort_EventScript_EnterShip

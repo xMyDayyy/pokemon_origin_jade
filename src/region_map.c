@@ -1999,7 +1999,8 @@ static u8 GetMapsecType(mapsec_u16_t mapSecId)
     case MAPSEC_EVER_GRANDE_CITY:
         return FlagGet(FLAG_VISITED_EVER_GRANDE_CITY) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
     case MAPSEC_BATTLE_FRONTIER:
-        return FlagGet(FLAG_LANDMARK_BATTLE_FRONTIER) ? MAPSECTYPE_BATTLE_FRONTIER : MAPSECTYPE_NONE;
+        // Origin Jade: Fly to the Kampfzone only after the Hoenn title, also for saves that visited it earlier (D-030).
+        return (FlagGet(FLAG_LANDMARK_BATTLE_FRONTIER) && FlagGet(FLAG_IS_HOENN_CHAMPION)) ? MAPSECTYPE_BATTLE_FRONTIER : MAPSECTYPE_NONE;
 #if IS_HNS
     case MAPSEC_NEW_SINJOH:
         return FlagGet(FLAG_VISITED_NEW_SINJOH) ? MAPSECTYPE_BATTLE_FRONTIER : MAPSECTYPE_NONE;
@@ -3157,7 +3158,8 @@ static void TryCreateRedOutlineFlyDestIcons(void)
 
     for (i = 0; sRedOutlineFlyDestinations[i][1] != MAPSEC_NONE; i++)
     {
-        if (FlagGet(sRedOutlineFlyDestinations[i][0]))
+        // Origin Jade: no icon while the destination is not flyable (Kampfzone before the Hoenn title, D-030).
+        if (FlagGet(sRedOutlineFlyDestinations[i][0]) && GetMapsecType(sRedOutlineFlyDestinations[i][1]) != MAPSECTYPE_NONE)
         {
             mapSecId = sRedOutlineFlyDestinations[i][1];
             GetMapSecDimensions(mapSecId, &x, &y, &width, &height);

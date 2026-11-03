@@ -77,7 +77,8 @@ ITEMS, the owner's (2026-11-02): everything the finished regions give.
     added only while that flag is clear.
   - the generator's reading: not counted are link-only sources
     (VAR_GIFT_SKIP), decorations, held items of wild Pokemon, Pickup, and
-    the Kampfzone with everything bought with Battle Points (O-060);
+    the Kampfzone with everything bought with Battle Points (the Kampfzone
+    opens only after the Hoenn title, D-030; the courtyard tents' BP, O-060);
   - a pocket keeps POCKET_RESERVE free slots for the next region; what does
     not fit goes into the PC's item storage, purchases first.
 

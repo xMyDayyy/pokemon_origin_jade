@@ -809,7 +809,8 @@ dated 2026-10-10 or later were decided directly.
 - **Status:** Active (2026-10-15, ships changed 2026-10-20, Hoenn trips
   changed 2026-10-30, changed 2026-10-31: Hoenn entries of the ship menus,
   D-047; Aurora Ticket, D-049; changed 2026-11-02: Birch's greeting only
-  after the first trip, D-047)
+  after the first trip, D-047; changed 2026-11-03: Kampfzone only after the
+  Hoenn title, D-030)
 - **Decision:**
   - Kanto has one way into Johto: the gatehouse (D-009). Flying between the
     regions opens with the first Johto visit.
@@ -821,9 +822,12 @@ dated 2026-10-10 or later were decided directly.
     is gone.
   - After the first Johto title the M.S. Aqua sails. Its first trip is the
     maiden voyage from Olivine to Vermilion; afterwards both ports offer the
-    other port, the Kampfzone and Entstehungsinsel (with the Aurora
-    Ticket). The M.S. Aqua sails every day from both ports. The Hoenn
-    entries of the menus follow D-047.
+    other port and Entstehungsinsel (with the Aurora Ticket), and the
+    Kampfzone only after the Hoenn title (`FLAG_IS_HOENN_CHAMPION`, D-030;
+    owner 2026-11-03; before: from the maiden voyage on). The M.S. Aqua
+    sails every day from both ports. The Hoenn entries of the menus follow
+    D-047. Without the Kampfzone entry a menu still has the other port,
+    Entstehungsinsel and "Zurück".
   - The sailors at the Kampfzone and on Birth Island sail to Olivine and
     Vermilion, and to Hoenn like the ports (D-047).
   - Only the first Hoenn trip (`VAR_HOENN_ARRIVAL_STATE` 0) sets the end
@@ -842,19 +846,33 @@ dated 2026-10-10 or later were decided directly.
     Johto title), so Deoxys comes after Hoenn is unlocked (D-049).
   - Faraway Island and Southern Island are not offered.
 - **Evidence:** decision 2026-10-15 (O-003); daily ship, return trips to
-  Hoenn and Aurora Ticket 2026-10-20.
+  Hoenn and Aurora Ticket 2026-10-20; owner decision 2026-11-03 (Kampfzone
+  only after the Hoenn title).
 
 ### D-030 One Battle Frontier: the HnS Kampfzone
 - **Status:** Active (2026-10-15; changed 2026-11-02: Scott's hint, D-051;
   changed 2026-11-02: Emerald's battle tents retired; changed 2026-11-03:
-  Scott's gift counts 11 meetings)
+  Scott's gift counts 11 meetings; changed 2026-11-03: Kampfzone only after
+  the Hoenn title)
 - **Decision:** The Emerald frontier (47 maps, 36 layouts) is retired
-  (`frontier_em_retired`). The HnS Kampfzone is reached by ship (D-029) and,
-  after the Hoenn title, from Slateport and Lilycove: the S.S. Tidal lists
-  it once the player has met Scott on board (`FLAG_MET_SCOTT_ON_SS_TIDAL`,
-  his scene at the first boarding); his call after the first Hoenn title
-  points there (D-051, owner 2026-10-31). It is only on the
-  Johto/Kanto region map. The Artisan Cave is bound to the HnS Kampfzone and
+  (`frontier_em_retired`). The HnS Kampfzone is post-game content: it opens
+  only after the Hoenn title (`FLAG_IS_HOENN_CHAMPION`, set after the
+  champion battle in Ever Grande; owner 2026-11-03, as S-02 already said).
+  Then the M.S. Aqua lists it in Vermilion and Olivine (D-029), and the
+  S.S. Tidal in Slateport and Lilycove once the player has met Scott on
+  board (`FLAG_MET_SCOTT_ON_SS_TIDAL`, his scene at the first boarding);
+  his call after the first Hoenn title points there (D-051, owner
+  2026-10-31). Until 2026-11-03 the M.S. Aqua listed it from its maiden
+  voyage on, after the first Johto title. Fly to the Kampfzone needs the
+  visit (`FLAG_LANDMARK_BATTLE_FRONTIER`, set in its reception gate) and
+  the Hoenn title, so a save that visited it earlier cannot fly there
+  before the title either (`GetMapsecType`, `src/region_map.c`); its red
+  Fly icon follows the same check (`TryCreateRedOutlineFlyDestIcons`), so
+  before the title the Fly map shows no Kampfzone box. No warp
+  of another map leads there; Dig and Escape Rope stay inside it, Teleport
+  and whiteouts lead to its Pokemon Center only if the player last healed
+  there (possible only in a save from before 2026-11-03; the sailor takes
+  the player back). It is only on the Johto/Kanto region map. The Artisan Cave is bound to the HnS Kampfzone and
   counts as part of it (`MAPSEC_BATTLE_FRONTIER`); unlike HnS its door in the
   Kampfzone is open (ledge corner at (29,9), the Engineer beside the path;
   owner confirmed 2026-10-26).
@@ -871,14 +889,17 @@ dated 2026-10-10 or later were decided directly.
   meetings that remain (`VAR_SCOTT_STATE`: Petalburg, Rustboro twice,
   Slateport twice, Mauville, Route 119 and his call after the Fortree gym,
   Lilycove, Mossdeep, Ever Grande): 4 Battle Points from 11 on (Emerald:
-  13), 3 from 9 on, 2 from 6 on, else 1. The M.S. Aqua reaches the
-  Kampfzone long before Hoenn, so Scott gives his welcome and the gift
-  only after the Hoenn title (`FLAG_IS_HOENN_CHAMPION`), when all
+  13), 3 from 9 on, 2 from 6 on, else 1. Scott gives his welcome and the
+  gift only after the Hoenn title (`FLAG_IS_HOENN_CHAMPION`), when all
   meetings are over; before that he only has his usual remarks and the
-  prizes for the frontier symbols and his shields.
+  prizes for the frontier symbols and his shields. The check dates from
+  the time the M.S. Aqua reached the Kampfzone long before Hoenn; since
+  the Kampfzone opens only with the title it is redundant, but it stays
+  (harmless, and it covers saves that were in the Kampfzone before).
 - **Evidence:** decision 2026-10-15 (O-006); owner answer 2026-10-31
   (S-02); owner answers 2026-11-02 (S-04); owner answer 2026-11-03
-  (O-073).
+  (O-073); owner decision 2026-11-03 (Kampfzone only after the Hoenn
+  title, O-060).
 
 ### D-031 Level scaling after a region's title
 - **Status:** Active (2026-10-15, Johto statics changed 2026-10-27, D-039,
@@ -1204,7 +1225,9 @@ dated 2026-10-10 or later were decided directly.
     - the red Gyarados, Lake of Rage (about 6 badges, corridor 50-58):
       55 (30);
     - the Rocket Hideout's three Electrode (corridor 50-58): 60 (30);
-    - the Kampfzone's Sudowoodo (after the Johto title): 65 (40).
+    - the Kampfzone's Sudowoodo: 65 (40), set when the Kampfzone opened
+      with the Johto title; since 2026-11-03 it opens only after the
+      Hoenn title (D-030), the level stays.
     Route 41's four Tentacruel stay at 100: they guard the Whirl Islands
     (unwinnable, healed after the battle), they are not an encounter: not
     catchable, never shiny (`FLAG_NO_WILD_CATCHING` with
@@ -1847,10 +1870,12 @@ dated 2026-10-10 or later were decided directly.
     News, Berry Powder), decorations (not bag items), held items of wild
     Pokemon and Pickup (random finds), and the Kampfzone with everything
     bought with Battle Points (its BP exchange and that of the Trainer
-    Hill's courtyard). Battle Points come only from the Kampfzone's
-    facilities; the M.S. Aqua reaches the Kampfzone after the maiden
-    voyage (D-029), but the states leave it untouched and
-    `GetCurrentRegion` counts it as Hoenn (D-049). Open: O-060.
+    Hill's courtyard). Battle Points come from the Kampfzone's
+    facilities, which open only after the Hoenn title (D-030), and from
+    the three HnS battle tents in the courtyard of the Route 40 Trainer
+    Hill (10 BP per won challenge, reachable before the Johto title),
+    whose exchange sells the vitamin, hold and power items; the states
+    hold none of these items (O-060).
   - PC levels (owner): a level evolution at its evolution level (Pidgeot
     36); stone, trade, friendship, item and other evolutions at the
     pre-evolution's level + 2; single stages and legendaries at their
@@ -2937,19 +2962,24 @@ dated 2026-10-10 or later were decided directly.
   every list and in the region rule and dex counts (D-049), the locked
   content of O-009 comes back into play; several days with tests.
   Proposal: (a) for the beta.
-- **O-060** Kampfzone items in the Hoenn Test (D-050): the M.S. Aqua
-  reaches the Kampfzone after its maiden voyage, so after the Johto title
-  (D-029), and Battle Points then buy 32 items the Hoenn Test does not
-  hold (Power items, Choice Scarf, Focus Sash, Assault Vest, Eviolite,
-  Rocky Helmet, Ability Capsule and Patch, Dive, Repeat and Timer Ball
-  ..., at the BP exchange of the Kampfzone and of the Trainer Hill's
-  courtyard). The generator leaves the Kampfzone out because the states
-  leave it untouched and `GetCurrentRegion` counts it as Hoenn. The owner's
-  answer to S-02 ("Kampfzone erst ab Hoenn-Titel") was given on the Hoenn
-  ferries. Options: (a) the Hoenn Test adds the BP items once; (b) they
-  stay out, the Kampfzone counts as Hoenn; (c) the Kampfzone opens only
-  after the Hoenn title everywhere (the M.S. Aqua entry,
-  `Common_EventScript_ShipMenuPushIslands`), then (b) follows.
+- **O-060** Kampfzone items in the Hoenn Test (D-050). Kampfzone part
+  resolved 2026-11-03 by D-030 (option c): the Kampfzone opens only after
+  the Hoenn title everywhere (D-029, D-030; owner 2026-11-03), after both
+  states, which leave it untouched. Before, the M.S. Aqua reached the
+  Kampfzone after its maiden voyage, so after the Johto title, and Battle
+  Points bought 32 items the Hoenn Test does not hold (Power items, Choice
+  Scarf, Focus Sash, Assault Vest, Eviolite, Rocky Helmet, Ability
+  Capsule and Patch, Dive, Repeat and Timer Ball ..., at the BP exchange
+  of the Kampfzone and of the Trainer Hill's courtyard). Still open: the
+  three HnS battle tents in the courtyard of the Route 40 Trainer Hill
+  give 10 BP per won challenge before the Johto title, and the
+  courtyard's exchange sells the vitamin, hold and power items
+  (`CreateBPVitaminShop`, `CreateBPHoldItemShop`, `CreateBPHoldItemShop2`,
+  `CreateBPPowerShop`: Ability Capsule and Patch, Exp. Candy, Choice
+  items, Focus Sash, Assault Vest, Eviolite, Rocky Helmet, Power items
+  ...) the Hoenn Test does not hold. Options: (a) the Hoenn Test adds the
+  courtyard BP items once; (b) they stay out; (d) the tents and the
+  courtyard exchange also open only after the Hoenn title.
 - **O-063** Resolved 2026-11-02: Hoenn's Pokeblock Case comes from the
   little girl in Slateport's contest lobby (D-058). The desk on Route 121
   has a line of its own naming Slateport's contest hall
