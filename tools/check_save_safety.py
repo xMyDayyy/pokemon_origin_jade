@@ -12,7 +12,8 @@ Checks:
               removeitem before a gift).
   pockets     Distinct obtainable items per bag pocket against the pocket
               size (BAG_*_COUNT), without and with the item randomizer
-              (its whitelist adds items).
+              (its whitelist adds items); key items that are never held
+              together (EXCLUSIVE_KEY_ITEMS) take one slot.
   newgame     Game state stored in ChallengeSettings: NewGameInitData keeps
               ChallengeSettings across ClearSav3, so such state must be
               cleared on the way into a new game (new game speech).
@@ -79,6 +80,10 @@ RESULT_WRITERS = {"yesnobox", "multichoice", "multichoicedefault", "multichoiceg
                   "dofieldeffect"}
 
 GIFT_OPS = {"giveitem", "giveitem_norandom", "giveitem_unless_owned", "giveitem_msg", "additem"}
+
+# Key items a player never holds at the same time; each group takes one slot.
+# Mach and Acro Bike: Rydel swaps them (MauvilleCity_BikeShop, removeitem before giveitem).
+EXCLUSIVE_KEY_ITEMS = [("ITEM_MACH_BIKE", "ITEM_ACRO_BIKE")]
 SILENT_GIFT_OPS = {"giveitem_msg", "additem"}
 
 
@@ -587,6 +592,15 @@ def check_gifts(repo, ctx):
 
 # ----------------------------------------------------------- check: pockets
 
+def held_at_once(pocket, items):
+    """Most items of the set a player can hold at once in the pocket."""
+    count = len(items)
+    if pocket == "POCKET_KEY_ITEMS":
+        for group in EXCLUSIVE_KEY_ITEMS:
+            count -= max(0, len(items & set(group)) - 1)
+    return count
+
+
 def check_pockets(repo, ctx):
     findings = []
     pockets = ctx["pockets"]
@@ -611,17 +625,23 @@ def check_pockets(repo, ctx):
     lines = []
     for pocket in sorted(sizes):
         items = by_pocket.get(pocket, set())
-        lines.append("%s: %d erhältlich, %d Plätze" % (pocket, len(items), sizes[pocket]))
-        if len(items) > sizes[pocket]:
+        held = held_at_once(pocket, items)
+        if held != len(items):
+            lines.append("%s: %d erhältlich, höchstens %d gleichzeitig, %d Plätze"
+                         % (pocket, len(items), held, sizes[pocket]))
+        else:
+            lines.append("%s: %d erhältlich, %d Plätze" % (pocket, len(items), sizes[pocket]))
+        if held > sizes[pocket]:
             findings.append(Finding(
                 "pockets", "verdacht", "klein",
                 "Fach %s kann voll werden" % pocket,
                 "include/constants/global.h (BAG_*_COUNT); %d verschiedene Items" % len(items),
-                "Im Spiel gibt es %d verschiedene Items für %s, das Fach hat %d Plätze. Ein Spieler, "
-                "der alles sammelt, füllt es; Geschenke ohne Prüfung (Prüfung gifts) gehen dann "
-                "verloren, Fundbälle bleiben liegen." % (len(items), pocket, sizes[pocket])))
-    ctx["pocket_fits"] = {p: len(by_pocket.get(p, ())) for p in sizes
-                          if len(by_pocket.get(p, ())) <= sizes[p]}
+                "Im Spiel gibt es %d verschiedene Items für %s (höchstens %d gleichzeitig), das Fach "
+                "hat %d Plätze. Ein Spieler, der alles sammelt, füllt es; Geschenke ohne Prüfung "
+                "(Prüfung gifts) gehen dann verloren, Fundbälle bleiben liegen."
+                % (len(items), pocket, held, sizes[pocket])))
+    ctx["pocket_fits"] = {p: held_at_once(p, by_pocket.get(p, set())) for p in sizes
+                          if held_at_once(p, by_pocket.get(p, set())) <= sizes[p]}
     # The item randomizer turns found and given items into whitelist items.
     whitelist = set()
     rel = "src/data/randomizer/item_whitelist.h"
@@ -633,7 +653,7 @@ def check_pockets(repo, ctx):
                  if combined_pocket(pocket_of(ctx["aliases"].get(i, i), pockets), combined) == pocket}
         total = len(by_pocket.get(pocket, set()) | extra)
         if pocket in ("POCKET_KEY_ITEMS", "POCKET_TM_HM"):
-            total = len(by_pocket.get(pocket, set()))  # key items and TMs stay in kind
+            total = held_at_once(pocket, by_pocket.get(pocket, set()))  # key items and TMs stay in kind
         lines.append("%s mit Item-Randomizer: bis %d verschiedene" % (pocket, total))
         if total <= sizes[pocket]:
             ctx["pocket_fits_random"][pocket] = total
@@ -648,13 +668,14 @@ def check_pockets(repo, ctx):
                 % (len(by_pocket.get(pocket, ())), pocket, total, sizes[pocket])))
     key = by_pocket.get("POCKET_KEY_ITEMS", set())
     kept = sorted(key - removed)
-    margin = sizes.get("POCKET_KEY_ITEMS", 0) - len(key)
+    margin = sizes.get("POCKET_KEY_ITEMS", 0) - held_at_once("POCKET_KEY_ITEMS", key)
     if 0 <= margin < 10:
         findings.append(Finding(
             "pockets", "vorschlag", "optional",
             "Basis-Fach: nur %d Plätze Reserve" % margin,
-            "include/constants/global.h BAG_KEYITEMS_COUNT %d; %d Basis-Items erhältlich"
-            % (sizes["POCKET_KEY_ITEMS"], len(key)),
+            "include/constants/global.h BAG_KEYITEMS_COUNT %d; %d Basis-Items erhältlich, "
+            "höchstens %d gleichzeitig (EXCLUSIVE_KEY_ITEMS)"
+            % (sizes["POCKET_KEY_ITEMS"], len(key), held_at_once("POCKET_KEY_ITEMS", key)),
             "Drei Regionen geben %d verschiedene Basis-Items aus, %d davon behält der Spieler für "
             "immer. Neue Basis-Items (z. B. weitere Regionen-Tickets) sollten das Fach im Blick "
             "behalten; die Zählung sieht nur Skripte und AddBagItem im C-Code." % (len(key), len(kept))))
