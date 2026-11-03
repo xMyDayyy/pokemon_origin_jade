@@ -1412,14 +1412,11 @@ NewBarkTown_Lab_Text_ElmGiveTicket1:
 NewBarkTown_Lab_Text_ElmGiveTicket2:
 #if GERMAN
 	.string "Lind: Die M.S. Aqua fährt nach\n"
-	.string "Orania City und in die Kampfzone,\l"
-	.string "wo starke Trainer auf dich warten.\p"
+	.string "Orania City.\p"
 	.string "Grüße Professor Eich von mir, wenn\n"
 	.string "du wieder in Alabastia bist!$"
 #else
-	.string "It sails to VERMILION CITY and to\n"
-	.string "the BATTLE FRONTIER, where tough\l"
-	.string "trainers await you.\p"
+	.string "It sails to VERMILION CITY.\p"
 	.string "Say hello to PROF.OAK for me when\n"
 	.string "you're back in PALLET TOWN!$"
 #endif

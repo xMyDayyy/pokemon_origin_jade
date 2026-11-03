@@ -827,7 +827,10 @@ dated 2026-10-10 or later were decided directly.
     owner 2026-11-03; before: from the maiden voyage on). The M.S. Aqua
     sails every day from both ports. The Hoenn entries of the menus follow
     D-047. Without the Kampfzone entry a menu still has the other port,
-    Entstehungsinsel and "Zurück".
+    Entstehungsinsel and "Zurück". Elm's news in his lab after the first
+    Johto title names only Vermilion as the ship's destination
+    (`NewBarkTown_Lab_Text_ElmGiveTicket2`; until 2026-11-03 also the
+    Kampfzone).
   - The sailors at the Kampfzone and on Birth Island sail to Olivine and
     Vermilion, and to Hoenn like the ports (D-047).
   - Only the first Hoenn trip (`VAR_HOENN_ARRIVAL_STATE` 0) sets the end
