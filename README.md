@@ -22,6 +22,11 @@ English.
 - **No trading needed.** Kanto and Hoenn are designed so that their
   Pokédex can be completed without trading; all nine starters are also
   wild.
+- **Contests as in Ruby and Sapphire.** One rank per contest hall:
+  Verdanturf Town (Normal, with the Contest Pass), Fallarbor Town
+  (Super), Slateport City (Hyper) and Lilycove City (Master). The endgame
+  facilities are Heart & Soul's: its Battle Frontier (Kampfzone) and the
+  Trainer Hill by Route 40.
 - **Challenges**, chosen in the challenge menu of a new game: Nuzlocke
   (with nickname rule and hardcore mode), randomizer (starters, wild,
   fixed and trainer Pokémon, evolutions, moves, items), level caps, item
@@ -54,12 +59,13 @@ In [`docs/origin_jade/`](docs/origin_jade/):
 - [`DECISIONS.md`](docs/origin_jade/DECISIONS.md): design decisions
   (`D-`), planned work (`P-`) and open questions (`O-`). Read the entry
   before changing what it covers.
-- [`CHANGELOG.md`](docs/origin_jade/CHANGELOG.md): changes of the current
-  round for players and testers.
+- [`CHANGELOG.md`](docs/origin_jade/CHANGELOG.md): changes of the audit
+  round, the story packages and rounds 2 and 3 (2026-10-30 to
+  2026-11-03) for players and testers.
 - [`BETA_READINESS.md`](docs/origin_jade/BETA_READINESS.md): beta
   criteria, open points, owner decisions, risks.
 - [`PATCHES.md`](docs/origin_jade/PATCHES.md): the patch series of the
-  audit round and the story packages of 2026-10-31, its order,
+  audit round, the story packages and rounds 2 and 3, its order,
   verification and how to apply it.
 - [`TESTS.md`](docs/origin_jade/TESTS.md): test suite and check tools.
 
@@ -73,8 +79,10 @@ belongs to pokeemerald-expansion.
 Beta preparation. Kanto, Johto and Hoenn can be played to their titles
 without a known blocker: after the first Johto title Troy hands over the
 Hoenn Ticket in Prof. Oak's lab. This is checked statically and with the
-check tools, not yet in an emulator. English texts remain in parts of
-Johto and in shared scripts. Details and the open list:
+check tools, not yet in an emulator. Every text the German build shows
+on the story path is German; English is left only in debug texts, in
+unused texts and in trainer names that no active script shows; some of
+the new German texts are still drafts. Details and the open list:
 [`docs/origin_jade/BETA_READINESS.md`](docs/origin_jade/BETA_READINESS.md).
 
 Until the release the save layout may still change, and older saves are
