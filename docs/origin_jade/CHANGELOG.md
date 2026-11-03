@@ -1,18 +1,19 @@
 # Origin Jade - changelog
 
 Changes of the audit round of 2026-10-30/31, of the story packages that
-followed it on 2026-10-31 and of round 2 on 2026-11-02 (the owner's answers
-of 2026-10-31 and 2026-11-02), for players and testers. The upstream
+followed it on 2026-10-31, of round 2 on 2026-11-02 (the owner's answers
+of 2026-10-31 and 2026-11-02) and of round 3 on 2026-11-02/03 (contests as
+in Ruby and Sapphire), for players and testers. The upstream
 `CHANGELOG.md` in the repository root belongs to pokeemerald-expansion and
 is not about Origin Jade.
 
 - Base: `3525d22e71` (branch `balancing`). The commit ids below are those of
   the integration branch `audit` (`balancing` up to `2f284d83b9`) and, for
-  round 2, of the branch `runde2` on `2f284d83b9` with the German rest
-  commits on top (on top of the owner's map commits `ad4a8db368` they get
-  new ids with the same subjects); `docs/origin_jade/PATCHES.md` lists
-  every commit, including documentation and tool-only ones that change
-  nothing in the game.
+  rounds 2 and 3, of the branch `runde23` on top of the owner's map
+  commits `06ea236bdb` and `ad4a8db368` (round 2 was rebased onto them;
+  its ids before the rebase are no longer used);
+  `docs/origin_jade/PATCHES.md` lists every commit, including
+  documentation and tool-only ones that change nothing in the game.
 - Names: English names first, the German in-game name in parentheses where
   it differs and a tester needs it to find the place.
 - Every change was checked statically (source read, built, `check_flags`)
@@ -20,7 +21,82 @@ is not about Origin Jade.
   `docs/origin_jade/BETA_READINESS.md`.
 - Saves made before this round are not migrated and were not tested; start
   a new game (owner decision 2026-10-30). Randomizer seeds changed as well.
-  Round 2 changes the save layout again (separate Day Cares, D-052).
+  Round 2 changes the save layout again (separate Day Cares, D-052);
+  round 3 adds four flags and leaves the layout as it is.
+
+## Round 3: contests as in Ruby and Sapphire
+
+The owner's answers of 2026-10-31 and 2026-11-02 retire Emerald's battle
+tents and the Trainer Hill on Route 111 (S-04, S-05: HnS's endgame
+counts) and bring the contests back "ganz wie Rubin/Saphir", in four
+halls (D-058). On `balancing` the owner drew the hall buildings in place
+of the tents and removed the hill from Route 111 (`06ea236bdb`, tilesets
+`ad4a8db368`; the tileset commit also changes a few shared tiles on
+Routes 110, 111 and 118 and in Mauville and Slateport, see the risks in
+`BETA_READINESS.md`); rounds 2 and 3 sit on top of those commits. The
+new texts come from the German Ruby and Sapphire or the owner's texts;
+Scott's line in Slateport (O-070) and the last sentence of the Route 121
+Safari Zone desk are new, for the owner's text round.
+
+### Contests (D-058)
+
+- One rank per hall, as in Ruby and Sapphire: Verdanturf Town
+  (Wiesenflur) Normal Rank, Fallarbor Town (Laubwechselfeld) Super,
+  Slateport City (Graphitport City) Hyper, Lilycove City (Seegrasulb City)
+  Master and, as before, the link contests. The owner's note names the
+  towns of Normal and Super the other way round (O-068, open).
+  `d969de7b0b`
+- Verdanturf, Fallarbor and Slateport have Ruby and Sapphire's contest
+  lobby with its people, behind the doors the owner drew in place of the
+  tents. The receptionist names the hall's rank and offers to enter, info
+  and exit, without a rank menu; every hall and Lilycove's link counter
+  ask for the Contest Pass (Wettbewerbskarte), which Verdanturf issues; a
+  higher rank needs the ribbon of the rank below in the same category.
+  After a contest the player comes back to the lobby of the hall that held
+  it, where the reporter of the Bravo Trainer interview may wait.
+  `d969de7b0b`
+- Pokeblock Case (Pokériegelbox): the little girl in Slateport's lobby
+  gives it, a case from Baoba counts; Lilycove's receptionist no longer
+  does, and the girl in Lilycove's lobby only gives her tip on making
+  Pokeblocks. Each new lobby has a link Berry Blender and one with people;
+  the old man gives a Pecha Berry once a day to a player without berries.
+  Fallarbor's sketch artist hangs up a sketch after a win there; the girl
+  in Verdanturf's lobby gives TM Attract (TM Anziehung) with a flag of her
+  own. `d969de7b0b`
+- A door in each new lobby leads to Ruby and Sapphire's audience hall with
+  its stage and people. Its texts are the hall texts Emerald left unused
+  in the corridors of its tents; the last two English ones and the three
+  stage signs are German now (O-065). The sailor in Slateport's hall gives
+  TM Torment (TM Folterknecht). `ebc78f0ec9`
+- Towns: the signs at the hall doors name the rank (Lilycove's the Master
+  Rank), and the people who spoke of the battle tents speak of contests
+  again: in Verdanturf the camper, the old man in the Pokemon Center and
+  the old lady in the mart; in Slateport the boy, a man by the market and
+  the girl in the house near it, who asks for the Contest Pass. Scott
+  still comes out of Slateport's hall after the museum scene, now with a
+  new line (O-070). `bddcd1dc75`
+- Safari Zone on Route 121: without a Pokeblock Case the desk sends the
+  player to Slateport's contest hall instead of to "the boy over there",
+  who is not in Hoenn (O-063). `eb5d7173a1`
+
+### Retired: battle tents and the Route 111 Trainer Hill (D-030, D-044)
+
+- Emerald's battle tents in Verdanturf, Fallarbor and Slateport are
+  retired (9 maps, 4 layouts); no door leads there any more. The HnS
+  copies in the courtyard of the Route 40 Trainer Hill stay, without
+  Scott: his two tent meetings are gone, so he gives at most 3 instead of
+  4 Battle Points in the Kampfzone (open question O-073). The girl in the
+  Verdanturf copy gives TM Safeguard with the old flag, Verdanturf's
+  contest girl TM Attract with her own (O-067). `c0a6f90aba`
+- Emerald's Trainer Hill on Route 111 is retired (7 maps, 7 layouts): the
+  owner removed its building, warp and sign; Route 111 no longer resets
+  the hill's state, and the Hoenn map of the PokeNav no longer shows a
+  Trainer Hill on Route 111, also after a visit to the hill by Route 40
+  (O-024). Its code and its records stay unused; the save layout does not
+  change. The map checker's two critical findings (the hill's entrance
+  warps to the removed Route 111 warp) are gone. `61ac7e277d`
+- Four new flags (the reporters of Verdanturf and Fallarbor, TM Attract,
+  TM Torment), no new var, no change to the save layout.
 
 ## Round 2: owner answers of 2026-10-31 and 2026-11-02
 
@@ -40,30 +116,30 @@ are drafts for the owner's text round.
   Aqua's submarine scene in its harbour. Before, "Hoenn" went away with
   Prof. Birch's welcome, so a player without a flyer in Kanto or Johto
   (Nuzlocke) had no way back until Slateport was visited. Birch's greeting
-  at the pier comes only after the first trip. `23661ee2e3` (O-032)
+  at the pier comes only after the first trip. `8a436c258b` (O-032)
 - Hoenn's calls ring only in Hoenn: Wally's (Heiko's) call after Mauville
   City, Roxanne's (Felizia's) registration call, Scott's calls after the
   Fortree badge and after the first Hoenn title and the rival's call after
   the Space Center count their steps only on Hoenn maps and come after the
-  return. `647a0d1054` (S-07)
+  return. `4a168b28b9` (S-07)
 - After the first Hoenn title Scott calls in Littleroot Town (Wurzelheim):
   he is aboard the S.S. Tidal and invites the player to the ferry
   (Emerald's call, kept as the hint the owner asked for); whoever meets him
-  on board first does not get the call afterwards. `cd421bc8a8` (S-02)
+  on board first does not get the call afterwards. `d84bc3c745` (S-02)
 - Elm's (Lind's) call after the first Johto title comes on the first step
   out of the house in Pallet Town (Alabastia), as HnS's came at home in
   New Bark Town; before, only on the next visit to New Bark Town.
-  `2366a7faef` (O-036)
+  `f0b3e86bee` (O-036)
 - Pallet Town bedroom: dolls and cushions placed at the bedroom PC stay in
   the room. After a title (Kanto, every Johto title, Red) the game
   continues in front of the stairs at (9,3) instead of next to the bed,
   where three dolls could box the player in for good; a new game still
-  starts next to the bed. `15003b77fa` (O-029, open: O-041)
+  starts next to the bed. `e40a94553b` (O-029, open: O-041)
 - Troy keeps Emerald's sprite everywhere (already built, recorded).
-  `3a229e49c0` (O-031)
+  `9ddb662b5d` (O-031)
 - Littleroot Town: the always hidden objects of Emerald's player family
   (Dad, Mom) are removed from the maps; the function behind "Birk sagt
-  immer…" no longer has Dad in its name. `2241a44b1e`, `fe29e7cec3`
+  immer…" no longer has Dad in its name. `5b3acc2d2f`, `c6f9c36648`
   (O-030)
 
 ### Hoenn and Pokemon (D-026, D-037, D-040, D-049)
@@ -71,94 +147,94 @@ are drafts for the owner's text round.
 - Lilycove City (Seegrasulb City) department store: Hoenn has its own
   daily lottery ticket, one a day there and one in Goldenrod's Radio
   Tower, with different draws; an unclaimed prize stays in its region.
-  `ba63ca78b9` (S-03)
+  `43354ff84b` (S-03)
 - Jirachi has a source again: HnS's event from its retired Mt. Moon
   outside map is on Route 4 by the Mt. Moon Pokemon Center (the small
   white rock at (7,4), at night, once, after the first trip to Hoenn);
-  Jirachi at level 80 follows the legendary rules. `36a20c443a` (S-12,
+  Jirachi at level 80 follows the legendary rules. `4c8c287df6` (S-12,
   A69)
 - Mauville City's (Malvenfroh City's) mart and the left clerk on Lilycove
   department store 2F sell Water, Leaf, Moon, Thunder, Shiny and Dawn
   Stone for the Hoenn families; Lilycove also the Reaper Cloth, Deep Sea
-  Tooth and Deep Sea Scale. `2cc7c3a70b` (S-10, A67)
+  Tooth and Deep Sea Scale. `dc016bbc28` (S-10, A67)
 - Recorded without a code change: Wallace (Wassili) gives no substitute
   if HM Waterfall came from Johto (S-06); Milotic only through beauty, no
   Prism Scale (S-11); Sinjoh and Alola stay locked (S-15); mythicals do
   not count for Pokedex completion; Bloodmoon Ursaluna as in HnS (S-13);
   every regional form that is an evolution is tied to a region, so all
   stay off and the owner decides case by case (S-14, O-045).
-  `9daf2269e5`, `e6120b14d0`
+  `37ce3d37a5`, `f8e03c9a14`
 - Region rule: off with any randomizer option, trainers or items alone
   included (Day Care eggs, the seen rule); the modifiers alone keep it.
-  `ad371f51b9` (O-033, option b)
+  `6d8d9bcdfc` (O-033, option b)
 - Recorded without a code change: the Pokedex's evolution page keeps
   naming later evolutions and babies, as a help (owner 2026-11-02, O-034).
 - The nurse's Gold Card greeting and the Frontier Pass colour count the
-  trainer card's stars (titles and Red). `901b96b798` (O-039, option a)
+  trainer card's stars (titles and Red). `1d8e2f2b80` (O-039, option a)
 
 ### Day Cares and Bill's PC (D-052)
 
 - Kanto (Route 5), Johto (Route 34) and Hoenn (Route 117) each have their
   own Day Care: Pokemon and eggs left in one region stay there, and every
   step counts in all three. Save layout: SaveBlock3 grows from 1008 to
-  1584 of 1624 bytes. `bc06eb8f8e` (S-16, O-020)
+  1584 of 1624 bytes. `f1b7342466` (S-16, O-020)
 - The storage is "Bills PC" from the start and in every region; "Jemandes
-  PC" and Lanette's name no longer appear. `2f7ccdd058` (S-16, O-021)
+  PC" and Lanette's name no longer appear. `4fb0881c9a` (S-16, O-021)
 
 ### Battle and balance (D-053)
 
 - Fixed, strong movesets for the scaled level of every boss: Johto (60
   bosses, 360 Pokemon), Hoenn (96 bosses, 498 Pokemon) and Kanto's league
   rematch teams after the Kanto title (38 Pokemon); in double and 2-vs-2
-  battles no move that also hits the partner. `525145feff`, `9814c8cc06`,
-  `b0516cb308` (B-01, A20)
+  battles no move that also hits the partner. `ad0c38ec25`, `4255412581`,
+  `7e20415d95` (B-01, A20)
 - Every trainer Pokemon knows only moves it can learn in this game: 244
-  moves of 156 Pokemon replaced by similar learnable ones. `076468daf3`
+  moves of 156 Pokemon replaced by similar learnable ones. `0d034edead`
   (B-02, A111)
-- May (Maike) and Wally count as bosses (+1 on the ace). `4cd02e34e1`
+- May (Maike) and Wally count as bosses (+1 on the ace). `293e135449`
   (B-06)
 - Troy at Meteor Falls and Red on Mt. Silver are the last bosses of the
-  story: six Pokemon each at level 100 with fixed movesets. `ba9263431e`
+  story: six Pokemon each at level 100 with fixed movesets. `36760edbec`
   (B-10)
 - Johto league: the levels rise from Will (Willi) to Lance (Siegfried) as
   in HGSS; for an average team Will 62, Koga 63, Bruno 64, Karen (Melanie)
-  65 and Lance 67 instead of all at 65. `f453e1cd12` (B-05, A110)
+  65 and Lance 67 instead of all at 65. `0e19260900` (B-05, A110)
 - Badge counters count the badges of the current region: phone rematches,
   the battle requests of Hoenn's trainers, the Gen 9 catch malus, the
   challenge's trainer IV/EV tables and the continue window. In Johto and
   Hoenn the catch malus applies only above the map's corridor (mainly
   Raikou, Entei and Celebi before the eighth Johto badge, O-050).
-  `c76a60fd47` (B-08)
+  `3c8ec60228` (B-08)
 - Four Johto trainers with fewer than three Pokemon are filled up (two
   collectors in the Radio Tower, the expert on the M.S. Aqua, Kimono Girl
-  Zuki). `94ef1dfa9c` (B-12)
+  Zuki). `c1574fd6ce` (B-12)
 - Kept and recorded: Kanto leaders' evolutions below their evolution
   level, legendaries in the scaling anchor, boss IVs, hard Hoenn
   corridors, Ariana's six entries in the 2-vs-2 battle, spread moves as in
   Gen 3, 50 % per target in doubles (B-03, B-04, B-07, B-09, B-11, B-13).
-  `e7d55de9d6`
+  `7e577dda7d`
 
 ### Nuzlocke, challenges and randomizer as in HnS (D-054)
 
 - "Keine EVs" ends with the Nuzlocke at the first Hoenn title, as HnS ends
-  both at its credits; the menu text says so. `25d9748af9` (N-03)
+  both at its credits; the menu text says so. `a7d130039b` (N-03)
 - Pokemon Center challenge: the beds of the S.S. Tidal and of the Weather
-  Institute on Route 119 no longer heal either. `d4dc31a1fc` (N-04)
+  Institute on Route 119 no longer heal either. `26a2666739` (N-04)
 - Item randomizer: exchange menus give the item chosen (Cerulean's Berry
   Powder man, Route 113's Glass Workshop, Route 124's treasure hunter,
   Captain Stern's Scanner trade in Slateport's harbour); with a full bag
-  Route 124 gives the shard back. `116c058ec8` (N-07)
+  Route 124 gives the shard back. `a8d021c844` (N-07)
 - "Starter: Zufall" changes Elm's and Birch's starters too; when the
   preview shows another species than the ball's, Oak, Elm and Birch ask
-  with its name. `514e40f424`, `03a46c603f` (N-08)
+  with its name. `953333a642`, `40ae485a0f` (N-08)
 - Battles with an AI partner (Lance in the Rocket Hideout, Troy in the
   Space Center): as in HnS a Pokemon that faints there dies only if it is
   not healed before the end of the next battle; this takes back
-  `d05aa4864f`. `cd270e41d1`
+  `d05aa4864f`. `b1f3d2734d`
 - Recorded without a code change: no deaths in the Trainer Hills (O-028),
   Route 41's Tentacruel, hardcore, the dialogue around randomized gifts,
   no move reminder in Kanto, one Hall of Fame list; new open questions
-  O-055 to O-058. `7899ace9a1` (N-01, N-02, N-05, N-06, N-09, N-10)
+  O-055 to O-058. `67f25ca805` (N-01, N-02, N-05, N-06, N-09, N-10)
 
 ### Debug menu (D-050, D-055, beta build only)
 
@@ -169,11 +245,11 @@ are drafts for the owner's text round.
   the Hoenn Test the Route 40 Trainer Hill's prizes); Goldenrod's mints
   only while the mints option sells them; what does not fit into a pocket
   goes into the PC's item storage (D-050, O-035). Items bought with Battle
-  Points are open (O-060). `22b6c4d130`
+  Points are open (O-060). `8eb46fd987`
 - "Even Wild Slots" (overworld debug menu, "Flags & Vars"): while it is
   on, every slot of the current encounter table is equally likely (land,
   water, Rock Smash and Headbutt, each rod); off after a reset, nothing in
-  the save (D-055). `19983480f5`
+  the save (D-055). `a1509bd992`
 
 ### German texts (D-056, D-057)
 
@@ -188,24 +264,25 @@ are drafts for the owner's text round.
   Pokedex move list, the battle tents (shown by the HnS copies at the
   Route 40 Trainer Hill), the Lilycove ladies, Cycling Road results and
   Fan Club ratings, party menu messages, the Dragon's Den answer, the easy
-  chat keyboard and English words in German branches. `267e045499` to
-  `84105d9593`, `d6af502fa7`
+  chat keyboard and English words in German branches. `6ccc8f8ca8` to
+  `66e606c02b`, `f1f2e8ff0c`
 - Map texts: Mahogany Town (Mahagonia City, also Elm's call about the
   Radio Tower), the Radio Tower's top floor, the Goldenrod Underground
   switch room, the Safari Zone gate entrance, Union Cave 1F, the Moomoo
   Farm barn, the Mt. Silver Pokemon Center, the Day Care's party limit
   message, the "Raumfähre" sign in Pewter City's museum, the Poochyena on
   Route 114 and the HnS copy of Slateport's tent lobby at Route 40.
-  `af909b894e`, `b310ef0fad`, `c76fe0e14c`, `3c955f5419`, `0c3c46987e`,
-  `a39d3e0ffa`, `6d8abd351d`
+  `4ff756809d`, `01bbabf2ab`, `9a16d641a5`, `4efc5b011a`, `0b573ed13e`,
+  `a3cbf5b4c2`, `04009d06e5`
 - Five German map texts that wrote money with "$" were cut off there
   ("$" ends a string): Route 32, the Moomoo Farm, the Route 4 Pokemon
   Center, Pewter City's mart and the Route 34 Day Care. They use "¥" now,
-  which the font shows as the Pokedollar sign. `f2ff040f0c`
+  which the font shows as the Pokedollar sign. `102d5ed683`
 - Left in English on purpose or unreachable: debug texts, strings marked
   unused, credits names, two unreferenced texts in Emerald's Slateport
-  tent corridor (O-065) and 28 trainer names in upstream capitals that no
-  active script shows (O-066). `124a45487b`, `161ec0942e`
+  tent corridor (O-065; German since round 3, in Slateport's contest
+  hall) and 28 trainer names in upstream capitals that no active script
+  shows (O-066). `edae0ce493`, `b8391f20bb`
 
 ### Tests and tools
 
@@ -215,12 +292,12 @@ are drafts for the owner's text round.
   in `level_scaling.c` (Hoenn rival, Johto league rooms, corridor ceiling),
   `region_rule.c` (any randomizer option, modifiers alone) and
   `debug_states.c` (one item per purchase source, Goldenrod's mints).
-  5148 tests, 0 new and 0 changed failures. `bc06eb8f8e`, `19983480f5`,
-  `c76a60fd47`, `4cd02e34e1`, `f453e1cd12`, `ad371f51b9`, `22b6c4d130`
+  5148 tests, 0 new and 0 changed failures. `f1b7342466`, `a1509bd992`,
+  `3c8ec60228`, `293e135449`, `0e19260900`, `6d8d9bcdfc`, `8eb46fd987`
 - `tools/make_debug_states.py` puts every purchase and repeatable item of
   the finished regions into the debug states and checks the pocket sizes;
   `tools/check_regions.py` knows Jirachi on Route 4 as an exception.
-  `22b6c4d130`, `36a20c443a`
+  `8eb46fd987`, `4c8c287df6`
 
 ## Story packages of 2026-10-31
 
@@ -256,7 +333,7 @@ states (D-050). All new German texts are drafts for the owner to review.
   welcome once the town was visited. The Hoenn ferry leaves both ports at
   once, also before the M.S. Aqua's maiden voyage. The way back from Hoenn
   is Fly. `a18797946a` (changed in round 2: "Hoenn" stays until
-  "Graphitport City" can be offered, `23661ee2e3`)
+  "Graphitport City" can be offered, `8a436c258b`)
 - Olivine City port: Prof. Oak no longer waits there to see the player off,
   and Elm's (Lind's) text after the Johto title no longer sends the player
   there. `e8c6cc9b93`
@@ -312,7 +389,7 @@ states (D-050). All new German texts are drafts for the owner to review.
   first unlocked stage (Pikachu instead of Pichu in Kanto, Marill instead
   of Azurill in Johto); not with a randomizer option that changes the
   player's species (O-033; since round 2 with any randomizer option,
-  `ad371f51b9`). `8fcbb1acc0`
+  `6d8d9bcdfc`). `8fcbb1acc0`
 - Pokedex: a Pokemon of a locked region that a trainer sends out is
   registered as seen only once the region is unlocked or the species was
   caught, so the National Pokedex list no longer jumps into a later block.
@@ -327,7 +404,7 @@ states (D-050). All new German texts are drafts for the owner to review.
   card's stars count titles and Red, not the Pokedex (D-049 corrected).
   `58f244eade`, `2f4f6ccede`; the English rating text ends correctly
   (not shown in the German build) `e6466779e5`. Since round 2 the Gold
-  Card greeting counts the trainer card's stars (`901b96b798`).
+  Card greeting counts the trainer card's stars (`1d8e2f2b80`).
 
 ### Debug states (D-050, beta build only)
 
@@ -464,7 +541,7 @@ above).
   later trips docked in Slateport City's harbor on their own once it was
   visited (`ffa85af6e0`, `2c6403fa2d`). Since round 2 "Hoenn" stays until
   "Graphitport City" is offered, and later "Hoenn" trips land at the pier
-  without Birch's greeting (`23661ee2e3`).
+  without Birch's greeting (`8a436c258b`).
 - Every trip sets the respawn point in Hoenn; Prof. Birch's welcome is
   caught up in his lab if the player left the beach before it.
   `84a564e935`
@@ -475,7 +552,8 @@ above).
 - Flying to the Pokemon League lands in front of the league building in
   Ever Grande City (Prachtpolis City). `638ad542b2`
 - Lilycove City contest lobby: the girl recognizes the Pokeblock Case.
-  `3c4a70b8d1`
+  `3c4a70b8d1` (since round 3 she only gives her Pokeblock tip, and the
+  case comes from Slateport's contest lobby, D-058)
 - Johto progress no longer changes Hoenn dialogs: Wally's parents (Surf),
   the Rock Smash man, the fossil maniac and the Strength flag of the Rusturf
   Tunnel have Hoenn flags of their own; Johto's HMs Strength and Flash stay
@@ -483,8 +561,8 @@ above).
 - Hoenn Safari Zone: own state; time up, no balls left or quitting lead back
   to the entrance on Route 121. `df79e21ae3`
 - Trainer Hill on Route 111 works with Emerald's trainers and floors (it had
-  empty floors), with records of its own. `0b265d9f0f` (the owner decided
-  on 2026-11-02 that it goes with Emerald's battle tents, P-006)
+  empty floors), with records of its own. `0b265d9f0f` (retired in round
+  3 by the owner's decision, `61ac7e277d`, D-044)
 - Meditite (Mt. Chimney) and Medicham (Victory Road) are wild again.
   `548c6a1eb1`
 - Treecko, Torchic and Mudkip are wild at 5 % instead of 1 %. `dc7c95072c`
@@ -591,8 +669,9 @@ above).
 - One CI workflow for Jade (build, release build, checks) replaces the
   upstream jobs. `c64f0a28dd`
 - Save layout: SaveBlock3 grows from 992 to 1008 bytes (records of the Route
-  111 Trainer Hill); build-time guards for the save layout and the trainer
-  flag window. `0b265d9f0f`, `78aa81bd8e`, `ed9d3eaf11`
+  111 Trainer Hill, unused since round 3, the layout stays); build-time
+  guards for the save layout and the trainer flag window. `0b265d9f0f`,
+  `78aa81bd8e`, `ed9d3eaf11`
 
 ## Tools and tests
 
@@ -640,22 +719,20 @@ above).
 with evidence and the owner decisions it needs. The most important:
 
 - The new German texts are drafts for the owner's text round: the scenes
-  of the story packages (D-047, D-048) and the translations of round 2
-  that are not from an official German game (D-056, D-057).
+  of the story packages (D-047, D-048), the translations of round 2 that
+  are not from an official German game (D-056, D-057) and the new lines
+  of round 3 (Scott in Slateport, O-070; the Route 121 Safari Zone desk).
 - Open questions of round 2: the continue point in the bedroom (O-041),
   regional forms case by case (O-045), the catch malus levels in Johto
   and Hoenn (O-050), Nuzlocke rules that differ from HnS (O-055), move
   tutors in Kanto (O-056), item randomizer leftovers (O-057), the
   randomizer species pool (O-058), Battle Point items in the Hoenn Test
-  (O-060), the Safari Zone desk on Route 121 (O-063), two texts of
-  Slateport's tent corridor (O-065), trainer names in upstream capitals
-  (O-066) and the TM flag both Verdanturf tent lobbies share (O-067,
-  `ae42426ece`). Older ones still open: O-022, O-024, O-025, O-037,
-  O-038, O-040.
-- Emerald's battle tents and the Route 111 Trainer Hill go, and contest
-  halls as in Ruby and Sapphire come in their place (P-006). The owner has
-  already removed the buildings on `balancing` (`06ea236bdb`,
-  `ad4a8db368`); still to do: round 2 on top of those commits,
-  `check_maps.py`, the clean-up of what is left and the contest halls.
-- Nothing of this round was played in an emulator; `BETA_READINESS.md`
-  lists what to test first.
+  (O-060) and trainer names in upstream capitals (O-066). Round 3 resolved
+  O-024, O-063, O-065 and O-067. Older ones still open: O-022, O-025,
+  O-037, O-038, O-040.
+- Open questions of round 3: the rank per contest hall (O-068), paintings
+  per rank (O-069), Scott's new line in Slateport (O-070), Scott's two
+  tent meetings that went with the tents (O-073) and 21 TMs of HnS's old
+  Kanto without a source (O-074).
+- Nothing of rounds 2 and 3 was played in an emulator; `BETA_READINESS.md`
+  lists what to test first, among it one pass through each contest hall.
