@@ -160,6 +160,16 @@ CUT_LABELS_POST_TITLE = {
     "FuchsiaCity_Gym_EventScript_JanineLeader",
     "FuchsiaCity_Gym_EventScript_JanineRematch",
     "FuchsiaCity_Gym_EventScript_JanineGiveTM",
+    # TM Explosion for a Rage Candy Bar from Mahogany Town (D-059).
+    "UndergroundPath_NorthSouthTunnel_EventScript_BaldingManCandyBar",
+    # Rewards after the Kanto title or its rematch tier (D-034, D-059).
+    "PewterCity_Gym_EventScript_TryGiveTMRockSlide",
+    "Route13_EventScript_RobertGiveTMStoneEdge",
+    "Route14_EventScript_BennyGiveTMWillOWisp",
+    "Route15_EventScript_GraceGiveTMEnergyBall",
+    "ViridianForest_EventScript_RickGiveTMXScissor",
+    "Route25_SeaCottage_EventScript_BillTryGiveBoxLink",
+    "Route25_SeaCottage_EventScript_GrandpaAfterTitle",
     "ViridianCity_Gym_EventScript_BlueLeader",
     "ViridianCity_Gym_EventScript_BlueRematch",
     # Oak after the title: National Dex scene, GS Ball handover.
@@ -232,6 +242,8 @@ MANUAL_FLAGS = {
     "FLAG_HIDE_HELIX_FOSSIL": 1, "FLAG_HIDE_LIFT_KEY": 1, "FLAG_HIDE_SILPH_SCOPE": 1,
     # Oak waits in his lab with the GS Ball.
     "FLAG_HIDE_OAK_IN_HIS_LAB": 0,
+    # Carter's VS Seeker rematch won (set in C, CB2_EndRematchBattle): TM73 (D-034).
+    "FLAG_DEFEATED_CARTER_REMATCH": 1,
     "FLAG_HIDE_PEWTER_CITY_GYM_GUIDE": 1, "FLAG_HIDE_PEWTER_MUSEUM_GUIDE": 0,
     # Hidden on the next Vermilion visit after talking to Oak's aide.
     "FLAG_HIDE_VERMILION_CITY_OAKS_AIDE": 1,
@@ -340,6 +352,7 @@ C_WRITERS = {
     "FLAG_HIDE_SAFFRON_FAN_CLUB_BEAUTY": "Script_UpdateTrainerFanClubGameClear (src/trainer_fan_club.c)",
     "VAR_LEGENDARY_FLEE_KANTO": "RecordLegendaryBattleOutcome, UpdateLegendaryFleeCooldowns (src/legendaries_oj.c)",
     "FLAG_JOHTO_UNLOCKED": "TryUnlockJohtoOnMapLoad (src/region_rule_oj.c)",
+    "FLAG_DEFEATED_CARTER_REMATCH": "CB2_EndRematchBattle (src/battle_setup.c)",
 }
 
 # Flags reset on every day change, never part of the state.
@@ -646,6 +659,7 @@ MANUAL_VARS_B = {
     "VAR_TRIGGER_ELM_ROCKET_CALL": 2,
     "VAR_VIOLET_CITY_KIMONO_GIRL": 2,
     "VAR_VIOLET_CITY_STATE": 5,
+    "VAR_SEA_COTTAGE_GRANDPA": 2,                      # Meowth shown; next is Hoenn's Zigzagoon (D-059)
     # Ho-Oh chosen on Route 39 (2; 1 Lugia); both caught (D-026).
     "VAR_LUGIA_OR_HOOH": 2, "VAR_COMPLETED_HO_OH": 3, "VAR_COMPLETED_LUGIA": 3,
 }

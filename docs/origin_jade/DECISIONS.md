@@ -1760,7 +1760,8 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-050 Debug states "Johto Test" and "Hoenn Test"
 - **Status:** Active (2026-10-31, owner requirements; changed 2026-11-02:
-  every obtainable item, O-035 answered)
+  every obtainable item, O-035 answered; changed 2026-11-03: the new
+  items of D-059)
 - **Decision:** The overworld debug menu (D-046) sets two test states on a
   new game (before the first Pokemon); `tools/make_debug_states.py`
   generates both from the game data.
@@ -1807,9 +1808,16 @@ dated 2026-10-10 or later were decided directly.
     Goldenrod's mints and Mirror Herb only while the mints option sells
     them (`FLAG_MINTS_DISABLED` clear). Each pocket keeps 20 free slots for
     the next region; what does not fit goes into the PC's item storage
-    (none so far: the Johto Test has 187 items, the Hoenn Test 297, the
-    fullest pocket holds 107 of 236 slots). Money stays as without
-    purchases.
+    (the Johto Test has 220 items, the Hoenn Test 379; four berries of
+    the Hoenn Test go to the PC, the fullest other pocket holds 132 of 236
+    slots). Money stays as without purchases. Kanto's rewards after the
+    title or its rematch tier (D-034, D-059: Brock's Rock Slide, the TMs of
+    Robert, Benny and Grace, Rick's X-Scissor, Bill's Pokemon Box Link,
+    the first step of Bill's grandfather) are not in the Johto Test; they
+    come with the Hoenn Test, whose run includes Kanto after its title.
+    The rematch teams themselves stay unbeaten in both states. Carter's
+    TM Thunder Wave (a VS Seeker rematch before the title) is in the Johto
+    Test.
   - Items left out, the generator's reading: link-only rewards (Wonder
     News, Berry Powder), decorations (not bag items), held items of wild
     Pokemon and Pickup (random finds), and the Kampfzone with everything
