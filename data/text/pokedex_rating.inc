@@ -269,8 +269,8 @@ PokedexRating_Text_HowIsPokedexComingAlong::
 PokedexRating_Text_SeenXOwnedY::
 #if GERMAN
 	.string "In deinem Pokédex steht:\p"
-	.string "Gesehen: {STR_VAR_1} Pokémon Besitz:\n"
-	.string "{STR_VAR_2} Pokémon\p"
+	.string "Gesehen: {STR_VAR_1} Pokémon\n"
+	.string "  Besitz: {STR_VAR_2} Pokémon\p"
 	.string "Prof. Eichs Bewertung:$"
 #else
 	.string "The amount of progress you've made\n"
@@ -446,8 +446,8 @@ PokedexRating_Text_NationalDexSeenXOwnedY::
 #if GERMAN
 	.string "In deinem Nationalen Pokédex\n"
 	.string "steht:\p"
-	.string "Gesehen: {STR_VAR_1} Pokémon Besitz:\n"
-	.string "{STR_VAR_2} Pokémon.$"
+	.string "Gesehen: {STR_VAR_1} Pokémon\n"
+	.string "Besitz: {STR_VAR_2} Pokémon.$"
 #else
 	.string "And your NATIONAL POKéDEX is:\p"
 	.string "{STR_VAR_1} POKéMON seen and\n"
@@ -478,7 +478,11 @@ PokedexRating_Text_YouveCompletedDex::
 #endif
 
 PokedexRating_Text_Wroooaaarrr::
+#if GERMAN
+	.string "Woahhh!$"
+#else
 	.string "Wroooooooaaaaaarrrr!$"
+#endif
 
 PokedexRating_Text_ThankYouMadeDreamReality::
 #if GERMAN
@@ -546,16 +550,16 @@ gElmDexRatingText_AreYouCuriousNational::
 
 gJohtoDexRatingText_LessThan10::
 #if GERMAN
-	.string "Du solltest mehr ins hohe Gras gehen\n"
-	.string "und mehr auf Pokémon achten.$"
+	.string "Suche in hohem Gras nach Pokémon!$"
 #else
 	.string "Look for POKéMON in grassy areas!$"
 #endif
 
 gJohtoDexRatingText_LessThan20::
 #if GERMAN
-	.string "So langsam bekommst du den Bogen raus.\n"
-	.string "Aber es wird immer schwieriger werden!$"
+	.string "Gut.\n"
+	.string "Ich sehe, du kannst mit\l"
+	.string "Pokébällen umgehen!$"
 #else
 	.string "Good. I see you understand how to\n"
 	.string "use Poké Balls.$"
@@ -563,9 +567,8 @@ gJohtoDexRatingText_LessThan20::
 
 gJohtoDexRatingText_LessThan35::
 #if GERMAN
-	.string "Einige Pokémon tauchen nur in\n"
-	.string "bestimmten Regionen auf.\l"
-	.string "Hab nur Geduld.$"
+	.string "Du wirst immer besser, hast aber\n"
+	.string "noch einen langen Weg vor dir.$"
 #else
 	.string "You're getting good at this,\n"
 	.string "but you have a long way to go.$"
@@ -573,8 +576,8 @@ gJohtoDexRatingText_LessThan35::
 
 gJohtoDexRatingText_LessThan50::
 #if GERMAN
-	.string "Das läuft doch wunderbar.\n"
-	.string "Mach weiter so.$"
+	.string "Ich sehe, du hast deinen Rhythmus\n"
+	.string "gefunden!$"
 #else
 	.string "Hmm, you're catching POKéMON at a\n"
 	.string "decent pace!$"
@@ -582,8 +585,8 @@ gJohtoDexRatingText_LessThan50::
 
 gJohtoDexRatingText_LessThan65::
 #if GERMAN
-	.string "Verwendest du irgendwelche Angeln?\n"
-	.string "Hier gibt es viele Pokémon im Meer.$"
+	.string "Du gibst dir Mühe!\n"
+	.string "Dein Pokédex wird immer besser!$"
 #else
 	.string "You're trying--I can see that.\n"
 	.string "Your POKéDEX is coming together.$"
@@ -591,8 +594,8 @@ gJohtoDexRatingText_LessThan65::
 
 gJohtoDexRatingText_LessThan80::
 #if GERMAN
-	.string "Der Pokédex wird einfach fantastisch.\n"
-	.string "Das habe ich im Gefühl…$"
+	.string "Es gibt auch Pokémon, die sich durch die\n"
+	.string "übliche Pflege allein nicht entwickeln!$"
 #else
 	.string "You're training them well. You know\n"
 	.string "some POKéMON don't evolve just by\p"
@@ -601,8 +604,9 @@ gJohtoDexRatingText_LessThan80::
 
 gJohtoDexRatingText_LessThan95::
 #if GERMAN
-	.string "Du hast so viele gefangen…\n"
-	.string "Du hast ein außergewöhnliches Talent!$"
+	.string "Hast du eine Angel?\n"
+	.string "Es gibt Pokémon, die du nur auf eine Art\l"
+	.string "fangen kannst: Du musst sie angeln!$"
 #else
 	.string "Do you have a Fishing Rod?\n"
 	.string "There are some POKéMON that can\p"
@@ -611,8 +615,9 @@ gJohtoDexRatingText_LessThan95::
 
 gJohtoDexRatingText_LessThan110::
 #if GERMAN
-	.string "Du hast die 100er-Marke überschritten!\p"
-	.string "Das ist ein beeindruckender Pokédex!$"
+	.string "Ausgezeichnet!\n"
+	.string "Du scheinst eine Begabung fürs\l"
+	.string "Sammeln zu haben!$"
 #else
 	.string "Excellent! You seem to be good at\n"
 	.string "collecting things!$"
@@ -630,8 +635,8 @@ gJohtoDexRatingText_LessThan125::
 gJohtoDexRatingText_LessThan140::
 #if GERMAN
 	.string "Die Zahl deiner registrierten Pokémon\n"
-	.string "ist ja ziemlich gewachsen! Mach weiter\l"
-	.string "so!$"
+	.string "ist ja ziemlich gewachsen!\l"
+	.string "Mach weiter so!$"
 #else
 	.string "Your POKéDEX is really filling up.\n"
 	.string "Keep up the good work!$"
@@ -694,7 +699,10 @@ gJohtoDexRatingText_LessThan215::
 @ Taken from Platinum
 gJohtoDexRatingText_LessThan230::
 #if GERMAN
-	.string "Schon über 225, weiter so.$"
+	.string "Du hast dich würdig erwiesen.\n"
+	.string "Also mach dir keine Sorgen.\p"
+	.string "Fang weiter Pokémon, so wie du\n"
+	.string "das bislang auch getan hast.$"
 #else
 	.string "You've proven yourself capable.\n"
     .string "There's nothing to worry about.\p"
@@ -705,7 +713,10 @@ gJohtoDexRatingText_LessThan230::
 @ Taken from Platinum
 gJohtoDexRatingText_LessThan245::
 #if GERMAN
-	.string "Schon über 240, weiter so.$"
+	.string "Dein Pokédex ist auf dem besten Wege,\n"
+	.string "vervollständigt zu werden.\p"
+	.string "Dieser Pokédex kann als ein Tagebuch\n"
+	.string "deiner Abenteuer betrachtet werden.$"
 #else
 	.string "Your POKéDEX is well on the way to\n"
 	.string "being filled up.\p"
@@ -751,7 +762,12 @@ gJohtoDexRatingText_Complete::
 	.string "Das ist wirklich eine außergewöhnliche\l"
 	.string "Leistung!$"
 #else
-	.string "Wow!$"
+	.string "Wow!\n"
+	.string "That is a complete Johto POKéDEX!\p"
+	.string "Thanks to you, {PLAYER}, the Johto\n"
+	.string "POKéDEX is complete!\p"
+	.string "Wow...\n"
+	.string "You've done an incredible job!$"
 #endif
 
 gNationalDexRatingText_LessThan100::
@@ -765,8 +781,9 @@ gNationalDexRatingText_LessThan100::
 
 gNationalDexRatingText_LessThan150::
 #if GERMAN
-	.string "Unter 150.\n"
-	.string "Weiter so!$"
+	.string "Vergiss nicht, dass du manchen Pokémon\n"
+	.string "nur zu gewissen Tageszeiten begegnen\l"
+	.string "kannst!$"
 #else
 	.string "Don't forget, some POKéMON only\n"
 	.string "appear at certain times of the day!$"
@@ -774,8 +791,9 @@ gNationalDexRatingText_LessThan150::
 
 gNationalDexRatingText_LessThan200::
 #if GERMAN
-	.string "Unter 200.\n"
-	.string "Weiter so!$"
+	.string "Wenn du einen Fels entzweischlägst,\n"
+	.string "begegnet dir manchmal ein Pokémon,\l"
+	.string "das sich darunter versteckt hat!$"
 #else
 	.string "If you break rocks, some POKéMON\n"
 	.string "that were hiding there might come\p"
@@ -784,8 +802,9 @@ gNationalDexRatingText_LessThan200::
 
 gNationalDexRatingText_LessThan250::
 #if GERMAN
-	.string "Unter 250.\n"
-	.string "Weiter so!$"
+	.string "Gute Arbeit bislang!\n"
+	.string "Aber dein Weg ist noch lang…\l"
+	.string "Gib dein Bestes!$"
 #else
 	.string "That's wonderful you've been able\n"
 	.string "to gather this many POKéMON!\p"
@@ -795,8 +814,8 @@ gNationalDexRatingText_LessThan250::
 
 gNationalDexRatingText_LessThan300::
 #if GERMAN
-	.string "Unter 300.\n"
-	.string "Weiter so!$"
+	.string "Wenn man Bäume mit Kopfnuss schüttelt,\n"
+	.string "fällt manchmal ein Pokémon herunter!$"
 #else
 	.string "If you Headbutt a tree, sometimes\n"
 	.string "a POKéMON might fall out!$"
@@ -804,24 +823,30 @@ gNationalDexRatingText_LessThan300::
 
 gNationalDexRatingText_LessThan350::
 #if GERMAN
-	.string "Unter 350.\n"
-	.string "Weiter so!$"
+	.string "In der Safari-Zone begegnet man vielen\n"
+	.string "Pokémon, die es so in Johto nicht gibt!$"
 #else
 	.string "A lot of POKéMON not found in the\n"
 	.string "Johto region like to congregate\p"
-	.string "at the Safari Zone$"
+	.string "at the Safari Zone.$"
 #endif
 
+@ Taken from Platinum (radio music lures nothing here)
 gNationalDexRatingText_LessThan400::
-@	.string "Musik im Radio könnte\n"
-@	.string "Pokémon herauslocken$"
-	.string "Es gibt überall versteckte\n"
-	.string "Orte, überall auf der Welt.$"
+#if GERMAN
+	.string "Sei hartnäckig, wenn du nach Pokémon\n"
+	.string "suchst, die nur an bestimmten Orten\l"
+	.string "zu finden sind.$"
+#else
+	.string "Be persistent when you're searching\n"
+	.string "for POKéMON that appear only in\l"
+	.string "certain places.$"
+#endif
 
 gNationalDexRatingText_LessThan435::
 #if GERMAN
-	.string "Unter 435.\n"
-	.string "Weiter so!$"
+	.string "Hm, du hast es weit gebracht!\n"
+	.string "Du beeindruckst mich wirklich!$"
 #else
 	.string "Wow, you've gotten so far...!\n"
 	.string "I'm actually a little surprised!$"
@@ -829,8 +854,8 @@ gNationalDexRatingText_LessThan435::
 
 gNationalDexRatingText_LessThan465::
 #if GERMAN
-	.string "Unter 465.\n"
-	.string "Weiter so!$"
+	.string "Jetzt kommt der Moment der Wahrheit!\n"
+	.string "Lass dich nicht entmutigen!$"
 #else
 	.string "This is a critical moment!\n"
 	.string "You can't become discouraged!$"
@@ -838,8 +863,8 @@ gNationalDexRatingText_LessThan465::
 
 gNationalDexRatingText_LessThan475::
 #if GERMAN
-	.string "Unter 475.\n"
-	.string "Weiter so!$"
+	.string "Bald hast du es geschafft!\n"
+	.string "Ich glaube an dich!$"
 #else
 	.string "Just a little more!\n"
 	.string "I've got high expectations for you!$"

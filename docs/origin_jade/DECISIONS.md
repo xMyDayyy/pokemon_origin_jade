@@ -2760,9 +2760,21 @@ dated 2026-10-10 or later were decided directly.
   word for word (title case, "Mama:" as in the other Pallet Town texts);
   `gText_HadQuiteAnExperienceTakeRest` before it keeps Emerald's
   capitals, FRLG's text of it waits for the owner.
-- **O-038** The German National dex rating texts are placeholders ("Unter
-  300. / Weiter so!"); through Elm's call after the completed Johto dex
-  they are now reachable before Hoenn. Needs owner text.
+- **O-038** Resolved 2026-11-03 (owner: official English means official
+  German too): every German Pokedex rating text in
+  `data/text/pokedex_rating.inc` whose English is an official line now has
+  the official German of that line word for word (title case, line breaks
+  re-set where needed): Elm's Johto ratings below 110 (HGSS; they held
+  Birch's Emerald texts), the eight National placeholders ("Unter 300. /
+  Weiter so!", HGSS), the two Johto ratings from Platinum (230, 245) and
+  Oak's cry at the completed dex (FRLG "Woahhh!"). Oak's seen/owned lines
+  and the Johto rating below 140 have FRLG's and HGSS's line breaks back.
+  The National rating below 400 is Platinum's "Be persistent..." pair in
+  both languages: HGSS's line there (radio music lures Pokemon) does not
+  hold in Origin Jade (Hoenn Sound off, O-017), which is why HnS had put an
+  own line there. Elm's text for the completed Johto dex has HGSS's full
+  English now (it ended after "Wow!"). Birch's ratings (Emerald) and Oak's
+  other ratings (FRLG) already matched.
 - **O-039** Resolved 2026-11-02 (owner, option a): the nurse's Gold Card
   greeting and the Frontier Pass colour count the trainer card's stars
   (three titles and Red, D-049).
