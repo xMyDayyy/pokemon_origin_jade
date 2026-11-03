@@ -735,7 +735,7 @@ static void DrawPokeblockMenuTitleText(void)
 
 #if GERMAN
     PrintOnPokeblockWindow(WIN_SPICY,  COMPOUND_STRING("Scharf"), 0);
-    PrintOnPokeblockWindow(WIN_DRY,    COMPOUND_STRING("Trock."), 0);
+    PrintOnPokeblockWindow(WIN_DRY,    COMPOUND_STRING("Trck."), 0);
     PrintOnPokeblockWindow(WIN_SWEET,  COMPOUND_STRING("Süß"),    0);
     PrintOnPokeblockWindow(WIN_BITTER, COMPOUND_STRING("Bitter"), 0);
     PrintOnPokeblockWindow(WIN_SOUR,   COMPOUND_STRING("Sauer"),  0);

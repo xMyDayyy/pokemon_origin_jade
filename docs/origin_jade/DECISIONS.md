@@ -2270,8 +2270,8 @@ dated 2026-10-10 or later were decided directly.
     change messages of the party menu; the elder's quiz answer "Freund"
     in the Dragon's Den; the list of banned species at the Battle
     Frontier and tent desks; the easy chat keyboard; English words in
-    existing German branches ("Wesen/" when feeding Pokeblocks, "Typ/",
-    the move relearner's "Level-Attacken").
+    existing German branches ("Wesen/" when feeding Pokeblocks, "Typ:"
+    as in German Emerald, the move relearner's "Level-Attacken").
   - Stays English on purpose: debug texts (D-020: `data/scripts/debug.inc`,
     `data/scripts/config.inc`, `src/debug.c`, the sprite visualizer);
     strings marked unused (`src/data/union_room.h`, the 16 battle tent

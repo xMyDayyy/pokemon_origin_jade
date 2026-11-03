@@ -222,7 +222,7 @@ static const u8 sText_TheWorst[] = _("The worst");
 #endif
 
 #if GERMAN
-static const u8 sText_Slots[] = _("Automaten");
+static const u8 sText_Slots[] = _("Einarmigen Banditen");
 static const u8 sText_Roulette[] = _("Roulette");
 static const u8 sText_Jackpot[] = _("Jackpot");
 #else

@@ -157,7 +157,7 @@ const u8 gText_Girl[] = _("Mädel");
 const u8 gText_Girl[] = _("GIRL");
 #endif
 #if GERMAN
-const u8 gText_ThisIsAPokemon[] = _("Dies ist ein sogenanntes\n“Pokémon.”{PAUSE 96}\p");
+const u8 gText_ThisIsAPokemon[] = _("Dies ist ein so genanntes\n“Pokémon”.{PAUSE 96}\p");
 #else
 const u8 gText_ThisIsAPokemon[] = _("This is what we call a “POKéMON.”{PAUSE 96}\p");
 #endif
@@ -1214,7 +1214,7 @@ const u8 gText_PkmnGotOverInfatuation[] = _("{STR_VAR_1} fühlt sich nicht\nmehr
 const u8 gText_PkmnGotOverInfatuation[] = _("{STR_VAR_1} got over its\ninfatuation.{PAUSE_UNTIL_PRESS}");
 #endif
 #if GERMAN
-const u8 gText_PkmnTransformed[] = _("{STR_VAR_1} hat sich verwandelt!{PAUSE_UNTIL_PRESS}");
+const u8 gText_PkmnTransformed[] = _("{STR_VAR_1}\nverwandelt sich!{PAUSE_UNTIL_PRESS}");
 #else
 const u8 gText_PkmnTransformed[] = _("{STR_VAR_1} transformed!{PAUSE_UNTIL_PRESS}");
 #endif
@@ -1997,12 +1997,12 @@ const u8 gText_Mom[] = _("Mama");
 const u8 gText_Mom[] = _("MOM");
 #endif
 #if GERMAN
-const u8 gText_MomHowMuchDeposit[] = _("Wieviel möchtest du\nbei Mama einzahlen?");
+const u8 gText_MomHowMuchDeposit[] = _("Wie viel möchtest du\nbei Mama einzahlen?");
 #else
 const u8 gText_MomHowMuchDeposit[] = _("How much would you like to\ndeposit with your MOM?");
 #endif
 #if GERMAN
-const u8 gText_MomHowMuchWithdraw[] = _("Wieviel möchtest du\nbei Mama entnehmen?");
+const u8 gText_MomHowMuchWithdraw[] = _("Wie viel möchtest du\nbei Mama entnehmen?");
 #else
 const u8 gText_MomHowMuchWithdraw[] = _("How much would you like to\nwithdraw from your MOM?");
 #endif
@@ -5313,7 +5313,7 @@ const u8 gText_MoveRelearnerContestMovesTitle[] = _("Wett.-Attacken");
 const u8 gText_MoveRelearnerContestMovesTitle[] = _("CONTEST MOVES");
 #endif
 #if GERMAN
-const u8 gText_MoveRelearnerType[] = _("Typ/");
+const u8 gText_MoveRelearnerType[] = _("Typ:");
 #else
 const u8 gText_MoveRelearnerType[] = _("TYPE/");
 #endif // Unused
