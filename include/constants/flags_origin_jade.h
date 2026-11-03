@@ -70,6 +70,9 @@
 #define FLAG_DEFEATED_CARTER_REMATCH                         (OJ_FLAGS_KANTO + 23)
 #define FLAG_GOT_TM_THUNDER_WAVE_FROM_CARTER                 (OJ_FLAGS_KANTO + 24)
 #define FLAG_GOT_TM_X_SCISSOR_FROM_RICK                      (OJ_FLAGS_KANTO + 25)
+// TMs of HnS's Kanto from NPCs (D-059).
+#define FLAG_GOT_TM_EXPLOSION_UNDERGROUND_PATH               (OJ_FLAGS_KANTO + 26)
+#define FLAG_GOT_TM_SLEEP_TALK_CELADON_ROOF                  (OJ_FLAGS_KANTO + 27)
 
 // ---------------------------------------------------------------------
 // Johto (OJ_FLAGS_JOHTO + 0 to + 159)
