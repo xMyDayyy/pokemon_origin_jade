@@ -127,7 +127,7 @@ FREQUENT_COMMON = {
 }
 
 # Source texts shown in their own windows, not in a message box; their
-# widths are not checked against --limit (test/text.c covers several).
+# widths are not checked against --limit.
 SRC_OWN_WINDOW = ("src/data/pokemon/", "src/data/items.h", "src/data/moves_info.h",
                   "src/data/abilities.h", "src/data/decoration/", "src/berry.c",
                   "src/data/text/ribbon_descriptions.h", "src/data/credits",

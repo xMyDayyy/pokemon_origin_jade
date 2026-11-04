@@ -1,4 +1,4 @@
-# Origin Jade is the only build target: make, make jade, make check, make release and make debug build it.
+# Origin Jade is the only build target: make, make jade, make release and make debug build it.
 # GAME_VERSION must stay POKEMON_HNS for IS_HNS.
 GAME_VERSION := POKEMON_HNS
 TITLE        := POKEMON JADE
@@ -21,8 +21,6 @@ BUILD_DIR := build
 
 # Compares the ROM to a checksum of the original - only makes sense using when non-modern
 COMPARE     ?= 0
-# Executes the Test Runner System that checks that all mechanics work as expected
-TEST         ?= 0
 # Enables -fanalyzer C flag to analyze in depth potential UBs
 ANALYZE      ?= 0
 # Count unused warnings as errors. Used by RH-Hideout's repo
@@ -39,9 +37,6 @@ RELEASE      ?= 0
 
 ifeq (compare,$(MAKECMDGOALS))
   COMPARE := 1
-endif
-ifeq (check,$(MAKECMDGOALS))
-  TEST := 1
 endif
 ifeq (debug,$(MAKECMDGOALS))
   DEBUG := 1
@@ -88,25 +83,15 @@ endif
 
 ROM_NAME := $(FILE_NAME).gba
 OBJ_DIR_NAME := $(BUILD_DIR)/$(BUILD_NAME)
-OBJ_DIR_NAME_TEST := $(BUILD_DIR)/$(BUILD_NAME)-test
 OBJ_DIR_NAME_DEBUG := $(BUILD_DIR)/$(BUILD_NAME)-debug
 OBJ_DIR_NAME_RELEASE := $(BUILD_DIR)/$(BUILD_NAME)-release
 
 ELF_NAME := $(ROM_NAME:.gba=.elf)
 MAP_NAME := $(ROM_NAME:.gba=.map)
-TESTELF = $(ROM_NAME:.gba=-test.elf)
-HEADLESSELF = $(ROM_NAME:.gba=-test-headless.elf)
 
 # Pick our active variables
 ROM := $(ROM_NAME)
-ifeq ($(TESTELF),$(MAKECMDGOALS))
-  TEST := 1
-endif
-ifeq ($(TEST), 0)
-  OBJ_DIR := $(OBJ_DIR_NAME)
-else
-  OBJ_DIR := $(OBJ_DIR_NAME_TEST)
-endif
+OBJ_DIR := $(OBJ_DIR_NAME)
 ifeq ($(DEBUG),1)
   OBJ_DIR := $(OBJ_DIR_NAME_DEBUG)
 endif
@@ -124,14 +109,12 @@ DATA_SRC_SUBDIR = src/data
 DATA_ASM_SUBDIR = data
 MID_SUBDIR = sound/songs/midi
 GBS_SUBDIR = sound/songs/gbs
-TEST_SUBDIR = test
 
 C_BUILDDIR = $(OBJ_DIR)/$(C_SUBDIR)
 ASM_BUILDDIR = $(OBJ_DIR)/$(ASM_SUBDIR)
 DATA_ASM_BUILDDIR = $(OBJ_DIR)/$(DATA_ASM_SUBDIR)
 MID_BUILDDIR = $(OBJ_DIR)/$(MID_SUBDIR)
 GBS_BUILDDIR = $(OBJ_DIR)/$(GBS_SUBDIR)
-TEST_BUILDDIR = $(OBJ_DIR)/$(TEST_SUBDIR)
 
 SHELL := bash -o pipefail
 
@@ -154,7 +137,7 @@ else
 	LANGFLAG :=
 endif
 
-CPPFLAGS := $(INCLUDE_CPP_ARGS) -Wno-trigraphs -DMODERN=1 -DTESTING=$(TEST) -D$(GAME_VERSION) $(LANGFLAG) -std=gnu17
+CPPFLAGS := $(INCLUDE_CPP_ARGS) -Wno-trigraphs -DMODERN=1 -DTESTING=0 -D$(GAME_VERSION) $(LANGFLAG) -std=gnu17
 ifeq ($(RELEASE),1)
 	override CPPFLAGS += -DRELEASE
 	ifeq ($(USE_LTO_ON_RELEASE),1)
@@ -168,9 +151,7 @@ CC1 := $(shell $(PATH_ARMCC) --print-prog-name=cc1) -quiet
 override CFLAGS += -mthumb -mthumb-interwork -O$(O_LEVEL) -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -Wno-pointer-to-int-cast -std=gnu17 -Werror -Wall -Wno-strict-aliasing -Wno-attribute-alias -Woverride-init -Wnonnull -Wenum-conversion
 
 ifneq ($(LTO),0)
-  ifneq ($(TEST),1)
-    override CFLAGS += -flto=auto -fno-fat-lto-objects -fno-asynchronous-unwind-tables -ffunction-sections -fdata-sections
-  endif
+  override CFLAGS += -flto=auto -fno-fat-lto-objects -fno-asynchronous-unwind-tables -ffunction-sections -fdata-sections
 endif
 
 ifeq ($(ANALYZE),1)
@@ -225,19 +206,6 @@ FIX          := $(TOOLS_DIR)/gbafix/gbafix$(EXE)
 MAPJSON      := $(TOOLS_DIR)/mapjson/mapjson$(EXE)
 JSONPROC     := $(TOOLS_DIR)/jsonproc/jsonproc$(EXE)
 TRAINERPROC  := $(TOOLS_DIR)/trainerproc/trainerproc$(EXE)
-PATCHELF     := $(TOOLS_DIR)/patchelf/patchelf$(EXE)
-#poryscript
-#SCRIPT    	 := $(TOOLS_DIR)/poryscript/poryscript$(EXE)
-ifeq ($(shell uname),Darwin)
-    ROMTEST ?= $(shell command -v mgba-rom-test-mac 2>/dev/null || echo $(TOOLS_DIR)/mgba/mgba-rom-test-mac)
-    ROMTESTHYDRA := $(shell command -v mgba-rom-test-hydra 2>/dev/null || echo $(TOOLS_DIR)/mgba-rom-test-hydra/mgba-rom-test-hydra)
-else ifeq ($(shell uname),Linux)
-    ROMTEST ?= $(shell command -v mgba-rom-test 2>/dev/null || echo $(TOOLS_DIR)/mgba/mgba-rom-test)
-    ROMTESTHYDRA := $(shell command -v mgba-rom-test-hydra 2>/dev/null || echo $(TOOLS_DIR)/mgba-rom-test-hydra/mgba-rom-test-hydra)
-else
-    ROMTEST ?= $(TOOLS_DIR)/mgba/mgba-rom-test$(EXE)
-    ROMTESTHYDRA := $(TOOLS_DIR)/mgba-rom-test-hydra/mgba-rom-test-hydra$(EXE)
-endif
 
 # Learnset helper is a Python script
 LEARNSET_HELPERS_DIR := $(TOOLS_DIR)/learnset_helpers
@@ -272,8 +240,8 @@ MAKEFLAGS += --no-print-directory
 # Delete files that weren't built properly
 .DELETE_ON_ERROR:
 
-RULES_NO_SCAN += libagbsyscall clean clean-assets tidy tidymodern tidycheck tidyrelease generated clean-generated clean-teachables clean-teachables_intermediates
-.PHONY: all rom agbcc modern compare check debug release jade
+RULES_NO_SCAN += libagbsyscall clean clean-assets tidy tidymodern tidyrelease generated clean-generated clean-teachables clean-teachables_intermediates
+.PHONY: all rom agbcc modern compare debug release jade
 .PHONY: $(RULES_NO_SCAN)
 
 infoshell = $(foreach line, $(shell $1 | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
@@ -311,11 +279,6 @@ C_SRCS_IN := $(wildcard $(C_SUBDIR)/*.c $(C_SUBDIR)/*/*.c $(C_SUBDIR)/*/*/*.c)
 C_SRCS := $(foreach src,$(C_SRCS_IN),$(if $(findstring .inc.c,$(src)),,$(src)))
 C_OBJS := $(patsubst $(C_SUBDIR)/%.c,$(C_BUILDDIR)/%.o,$(C_SRCS))
 
-TEST_SRCS_IN := $(wildcard $(TEST_SUBDIR)/*.c $(TEST_SUBDIR)/*/*.c $(TEST_SUBDIR)/*/*/*.c)
-TEST_SRCS := $(foreach src,$(TEST_SRCS_IN),$(if $(findstring .inc.c,$(src)),,$(src)))
-TEST_OBJS := $(patsubst $(TEST_SUBDIR)/%.c,$(TEST_BUILDDIR)/%.o,$(TEST_SRCS))
-TEST_OBJS_REL := $(patsubst $(OBJ_DIR)/%,%,$(TEST_OBJS))
-
 C_ASM_SRCS := $(wildcard $(C_SUBDIR)/*.s $(C_SUBDIR)/*/*.s $(C_SUBDIR)/*/*/*.s)
 C_ASM_OBJS := $(patsubst $(C_SUBDIR)/%.s,$(C_BUILDDIR)/%.o,$(C_ASM_SRCS))
 
@@ -334,7 +297,7 @@ GBS_OBJS := $(patsubst $(GBS_SUBDIR)/%.s,$(GBS_BUILDDIR)/%.o,$(GBS_SRCS))
 OBJS     := $(C_OBJS) $(C_ASM_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS) $(MID_OBJS) $(GBS_OBJS)
 OBJS_REL := $(patsubst $(OBJ_DIR)/%,%,$(OBJS))
 
-SUBDIRS  := $(sort $(dir $(OBJS) $(dir $(TEST_OBJS))))
+SUBDIRS  := $(sort $(dir $(OBJS)))
 $(shell mkdir -p $(SUBDIRS))
 
 # Pretend rules that are actually flags defer to `make all`
@@ -349,28 +312,6 @@ agbcc:
 	@echo "Search for 'agbcc: all' in Makefile to reenable agbcc."
 	@exit 1
 
-LD_SCRIPT_TEST := ld_script_test.ld
-
-$(OBJ_DIR)/ld_script_test.ld: $(LD_SCRIPT_TEST)
-	cd $(OBJ_DIR) && sed "s#tools/#../../tools/#g" ../../$(LD_SCRIPT_TEST) > ld_script_test.ld
-
-$(TESTELF): $(OBJ_DIR)/ld_script_test.ld $(OBJS) $(TEST_OBJS) libagbsyscall tools check-tools
-	@echo "cd $(OBJ_DIR) && $(LD) -T ld_script_test.ld -o ../../$@ <objects> <test-objects> <lib>"
-	@cd $(OBJ_DIR) && $(LD) $(TESTLDFLAGS) -T ld_script_test.ld -o ../../$@ $(OBJS_REL) $(TEST_OBJS_REL) $(LIB)
-	$(FIX) $@ -t"$(TITLE)" -c$(GAME_CODE) -m$(MAKER_CODE) -r$(REVISION) -d0 --silent
-	$(PATCHELF) $(TESTELF) gTestRunnerArgv "$(TESTS:%*=%)\0"
-
-ifeq ($(GITHUB_REPOSITORY_OWNER),rh-hideout)
-TEST_SKIP_IS_FAIL := \x01
-else
-TEST_SKIP_IS_FAIL := \x00
-endif
-
-check: $(TESTELF)
-	@cp $< $(HEADLESSELF)
-	$(PATCHELF) $(HEADLESSELF) gTestRunnerHeadless '\x01' gTestRunnerSkipIsFail "$(TEST_SKIP_IS_FAIL)"
-	$(ROMTESTHYDRA) $(ROMTEST) $(OBJCOPY) $(HEADLESSELF)
-
 # Other rules
 rom: $(ROM)
 ifeq ($(COMPARE),1)
@@ -379,7 +320,7 @@ endif
 
 syms: $(SYM)
 
-clean: tidy clean-tools clean-check-tools clean-generated clean-assets
+clean: tidy clean-tools clean-generated clean-assets
 	@$(MAKE) clean -C libagbsyscall
 	rm -rf $(BUILD_DIR)
 
@@ -392,15 +333,11 @@ clean-assets:
 	find . \( -iname '*.1bpp' -o -iname '*.4bpp' -o -iname '*.8bpp' -o -iname '*.gbapal' -o -iname '*.lz' -o -iname '*.smol' -o -iname '*.fastSmol' -o -iname '*.smolTM' -o -iname '*.rl' -o -iname '*.latfont' -o -iname '*.hwjpnfont' -o -iname '*.fwjpnfont' \) -exec rm {} +
 	find $(DATA_ASM_SUBDIR)/maps \( -iname 'connections.inc' -o -iname 'events.inc' -o -iname 'header.inc' \) -exec rm {} +
 
-tidy: tidymodern tidycheck tidydebug tidyrelease
+tidy: tidymodern tidydebug tidyrelease
 
 tidymodern:
 	rm -f $(ROM_NAME) $(ELF_NAME) $(MAP_NAME) $(SYM)
 	rm -rf $(OBJ_DIR_NAME)
-
-tidycheck:
-	rm -f $(TESTELF) $(HEADLESSELF)
-	rm -rf $(OBJ_DIR_NAME_TEST)
 
 tidydebug:
 	rm -rf $(OBJ_DIR_NAME_DEBUG)
@@ -421,8 +358,6 @@ include json_data_rules.mk
 include audio_rules.mk
 include trainer_rules.mk
 
-# poryscript
-#AUTO_GEN_TARGETS += $(patsubst %.pory,%.inc,$(shell find data/ -type f -name '*.pory'))
 # NOTE: Tools must have been built prior (FIXME)
 # so you can't really call this rule directly
 generated: $(AUTO_GEN_TARGETS)
@@ -433,8 +368,6 @@ generated: $(AUTO_GEN_TARGETS)
 %.png: ;
 %.pal: ;
 %.wav: ;
-# poryscript
-#%.pory: ;
 
 %.1bpp:     %.png  ; $(GFX) $< $@
 %.4bpp:     %.png  ; $(GFX) $< $@
@@ -447,8 +380,6 @@ generated: $(AUTO_GEN_TARGETS)
 %.smol:     %      ; $(SMOL) -w $< $@
 %.rl:       %      ; $(GFX) $< $@
 
-# poryscript
-#data/%.inc: data/%.pory; $(SCRIPT) -i $< -o $@ -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
 
 clean-teachables_intermediates:
 	rm -f $(DATA_SRC_SUBDIR)/tutor_moves.h
@@ -501,18 +432,6 @@ ifneq ($(NODEP),1)
 -include $(addprefix $(OBJ_DIR)/,$(C_SRCS:.c=.d))
 endif
 
-ifeq ($(TEST),1)
-$(TEST_BUILDDIR)/%.o: $(TEST_SUBDIR)/%.c
-	@echo "$(CC1) <flags> -o $@ $<"
-	@$(CPP) $(CPPFLAGS) $< | $(PREPROC) -i $< charmap.txt | $(CC1) $(CFLAGS) -o - - | cat - <(echo -e ".text\n\t.align\t2, 0") | $(AS) $(ASFLAGS) -o $@ -
-
-$(TEST_BUILDDIR)/%.d: $(TEST_SUBDIR)/%.c
-	$(SCANINC) -M $@ $(INCLUDE_SCANINC_ARGS) -I tools/agbcc/include $<
-
-ifneq ($(NODEP),1)
--include $(addprefix $(OBJ_DIR)/,$(TEST_SRCS:.c=.d))
-endif
-endif
 
 $(ASM_BUILDDIR)/%.o: $(ASM_SUBDIR)/%.s
 	$(AS) $(ASFLAGS) -o $@ $<

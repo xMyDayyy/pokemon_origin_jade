@@ -102,7 +102,7 @@ STATIC_ASSERT(sizeof(struct PokemonStorage) <= SECTOR_DATA_SIZE * (SECTOR_ID_PKM
 #if IS_HNS
 // Pinned offsets of the Origin Jade fields in SaveBlock3. A config switch
 // (followers, item descriptions, DexNav, apricorn trees) or a field placed
-// before them moves them; change only on purpose, together with test/save.c.
+// before them moves them; change only on purpose.
 // See docs/origin_jade/DECISIONS.md, D-017.
 STATIC_ASSERT(offsetof(struct SaveBlock3, challengeSettings) == 16, SaveBlock3ChallengeSettingsPinned);
 STATIC_ASSERT(offsetof(struct SaveBlock3, nuzlockeEncounterFlagsHoenn) == 50, SaveBlock3NuzlockeHoennPinned);

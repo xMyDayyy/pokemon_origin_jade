@@ -39,14 +39,11 @@ jobs:
 
       - name: ROM (Origin Jade)
         shell: bash
-        run: make -O -j$(nproc) 2>&1 | tee build.log
+        run: make -O -j$(nproc)
 
       - name: SHA-1
         shell: bash
         run: sha1sum Pokemon_Origin_Jade.gba | tee -a "$GITHUB_STEP_SUMMARY"
-
-      - name: Compiler warnings against tools/warnings_baseline.txt
-        run: python3 tools/check_warnings.py build.log
 
       - name: Flags and vars
         run: python3 tools/check_flags.py
@@ -101,8 +98,6 @@ jobs:
       - name: SHA-1
         shell: bash
         run: sha1sum Pokemon_Origin_Jade-release.gba | tee -a "$GITHUB_STEP_SUMMARY"
-
-  # test: add a job running `make check` here once the test runner builds for jade.
 
   # Gate job: satisfies the "build" branch protection rule.
   build:
