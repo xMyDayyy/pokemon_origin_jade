@@ -1650,12 +1650,14 @@ gText_SelectWithoutRegisteredHoldItem::
 	.string "SELECT in die Schnellauswahl.$"
 
 gText_PokemonTrainerSchoolEmail::
-	.string "Eine e-mail von der POKéMON TRAINER\n"
-	.string "SCHULE.\p"
+	.string "Da ist eine E-Mail von der Pokémon\n"
+	.string "Trainerschule.\p"
 	.string "… … … … … …\p"
-	.string "Ein POKéMON vier Attacken lernen.\p"
-	.string "Die Kompetenz eines Trainers wird\n"
-	.string "an den Attacken des POKéMON bemessen.\p"
+	.string "Ein Pokémon kann bis zu vier Attacken\n"
+	.string "lernen.\p"
+	.string "Die Fähigkeiten eines Trainers werden\n"
+	.string "durch die Attacken, die er seinen\l"
+	.string "Pokémon beibringt, erprobt.\p"
 	.string "… … … … … …$"
 
 gText_PlayerHouseBootPC::

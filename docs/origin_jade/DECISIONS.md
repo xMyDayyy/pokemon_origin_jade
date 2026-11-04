@@ -2913,7 +2913,13 @@ dated 2026-10-10 or later were decided directly.
   text round: trainer school e-mail (`gText_PokemonTrainerSchoolEmail`, now
   at three PCs), "mit Pokécenter challenge!" (`players_house.inc`), Birch's
   league text paragraph break mid-sentence, Lilycove game designer `\l`
-  before `\p` and "Aner- kennung".
+  before `\p` and "Aner- kennung". Partly resolved 2026-11-04 (owner): the
+  trainer school e-mail (the PCs in both Littleroot Town bedrooms and in
+  the New Bark Town house) is German Emerald's text word for word, in
+  title case ("Da ist eine E-Mail von der Pokémon Trainerschule. ... Ein
+  Pokémon kann bis zu vier Attacken lernen. Die Fähigkeiten eines
+  Trainers werden durch die Attacken, die er seinen Pokémon beibringt,
+  erprobt.").
 - **O-041** Continue point in the Pallet Town bedroom (D-048, O-029):
   placed dolls and cushions now stay in the room, and the bedroom PC puts
   them on any decoration tile, also around the bed. At the old continue
