@@ -1145,8 +1145,10 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-038 Suicune: HnS's sightings, Crystal's Route 36, the Glockenturm
 - **Status:** Active (2026-10-27; changed 2026-11-03: Route 42's trigger on
-  the main path, armed by the Burned Tower release). Supersedes D-027 in the
-  waiting condition and Eusine's hint; D-027's tower access stays.
+  the main path, armed by the Burned Tower release; changed 2026-11-04:
+  triggers at both ends of Route 42, safety net on Route 36). Supersedes
+  D-027 in the waiting condition and Eusine's hint; D-027's tower access
+  stays.
 - **Decision:** Suicune's story follows HnS up to Route 42 and Crystal after
   that. It stays in Johto; HnS's Kanto chain stays retired.
   - Burned Tower release and Eusine: HnS; the release also arms Route 42
@@ -1171,12 +1173,40 @@ dated 2026-10-10 or later were decided directly.
     `FLAG_HIDE_ROUTE42_SUICUNE` (no Suicune, trigger off), and
     `BurnedTower_B1F_hns` clears it with the release. This also covers
     saves made between Ecruteak's first visit and the release.
-    Open (owner): Mahogany can be reached through Mt. Mortar before the
-    release. A player who did that and afterwards only flies to Mahogany,
-    never walking from the Ecruteak gate into Route 42, misses the sighting,
-    and Route 36 never arms. A second trigger set on the east chokepoint
-    (x=92, rows 10-13) with a mirrored scene would cover players who enter
-    Route 42 from Mahogany; not built.
+    Changed 2026-11-04 (owner: "Wenn wir den Auslöser selber gemacht haben,
+    sollte er undodgeable sein"): a second line on (89,11), (89,12) and
+    (89,13), the narrowest place of the path from Mahogany (the Route 42
+    sign at (89,10) above, a wall below). A walk over Route 42's passable
+    tiles (collision bits, elevation, ledges, Surf, both map seams, every
+    Mt. Mortar door) shows: with the six line tiles taken out, the gate,
+    Ecruteak and Mahogany side reach no Mt. Mortar door, and no door
+    reaches the gate or Mahogany. Mt. Mortar has no other way in or out,
+    and Route 42 is no Fly target. So every way onto Route 42 after the
+    release crosses a line, from either town or out of Mt. Mortar. The line
+    tiles are plain ground, no ledge jumps over them, and neither trainer
+    on Route 42 (Shane, Ben) sees them, so no battle can take the step
+    first. The east scene mirrors the west one with the same texts and
+    flags: it starts on (89,11) (rows 12 and 13 walk up), Suicune waits at
+    (86,13) facing east (Route 42's OnTransition puts it there when the
+    player arrives in the Mahogany half, x 47 and up), bounds to (88,11),
+    leaps over the player's tile while the player hops back to (91,11), and
+    runs off west along row 13; Eusine comes out of Mt. Mortar's east
+    entrance (80,10). Each scene puts Suicune and Eusine on its own tiles
+    first, so the scene also looks right after coming out of a Mt. Mortar
+    door or with a save made on Route 42 with an older build. Both trigger
+    scripts also check `FLAG_RELEASED_BEASTS`: a save made on Route 42
+    with a build before round 6, between Ecruteak's first visit and the
+    release, loads with the lines armed (OnTransition does not run on
+    Continue), so before the release a line only switches the lines off
+    until the next map load, without a scene.
+    Safety net: a player who walked through Mt. Mortar to Mahogany before
+    the release and only flies there afterwards never enters Route 42 again.
+    So Route 36's OnTransition, at `VAR_SUICUNE_ENCOUNTERS` 2 (Cianwood
+    done, Route 42 not), sets 3 and `FLAG_HIDE_ROUTE42_SUICUNE` once
+    `FLAG_DEFEATED_MAHOGANY_TOWN_GYM` is set: Route 36 arms and Route 42's
+    sighting is dropped, so it cannot come after the tower. Pryce's win
+    marks the Mahogany stage as done, so Route 42 lies behind the player;
+    `FLAG_BADGE07_GET` would not do, Cinnabar's Kanto badge sets it too.
   - Route 36 (Crystal): once both sightings are done Suicune stands in the
     path from Route 37 (35,16). The coord event on (39,18), the one tile
     between that path and the rest of Route 36, starts the scene: Suicune
@@ -1193,7 +1223,7 @@ dated 2026-10-10 or later were decided directly.
     - 1: Cianwood armed (Olivine's first visit);
     - 2: Cianwood done, Route 42 not yet;
     - 3: both Johto sightings done, Route 36 armed (set by whichever of
-      Cianwood and Route 42 comes second);
+      Cianwood and Route 42 comes second, or by Route 36's safety net);
     - 4: Route 36 done, Suicune waits on Glockenturm 1F;
     - 5-7: unused (HnS's retired Kanto steps);
     - 8: first knockout or catch at the Glockenturm, Eusine's scene played.
@@ -1201,9 +1231,11 @@ dated 2026-10-10 or later were decided directly.
     before this change get the Route 36 scene; the tower shows Suicune
     from 4.
   - Code: `Route36_hns` (`LOCALID_ROUTE36_SUICUNE`/`_EUSINE` with
-    `FLAG_TEMP_2`/`FLAG_TEMP_3`, coord event at value 3), `TinTower_1F_hns`,
-    `Route42_hns`, `BurnedTower_B1F_hns`, `CianwoodCity_hns`.
-- **Evidence:** decision 2026-10-27.
+    `FLAG_TEMP_2`/`FLAG_TEMP_3`, coord event at value 3, safety net),
+    `TinTower_1F_hns`, `Route42_hns`, `BurnedTower_B1F_hns`,
+    `CianwoodCity_hns`.
+- **Evidence:** decision 2026-10-27; owner decision 2026-11-04 (both ends,
+  no dead end).
 
 ### D-039 Johto's static and legendary levels fit the scaling
 - **Status:** Active (2026-10-27, event and player levels 2026-10-29;

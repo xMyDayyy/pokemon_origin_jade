@@ -7,6 +7,7 @@ Route36_OnTransition:
 	callnative SetTimeBasedEncounters
 	special GetWeekday
 	call_if_ne VAR_RESULT, WEEKDAY_THU, Route36_EventScript_HideArthur
+	call_if_eq VAR_SUICUNE_ENCOUNTERS, 2, Route36_EventScript_SuicuneWithoutRoute42
 	call_if_ne VAR_SUICUNE_ENCOUNTERS, 3, Route36_EventScript_HideSuicune
 	setflag FLAG_TEMP_3
 	end
@@ -22,6 +23,15 @@ Route36_EventScript_HideArthur:
 @ See docs/origin_jade/DECISIONS.md, D-038.
 Route36_EventScript_HideSuicune:
 	setflag FLAG_TEMP_2
+	return
+
+@ Safety net: Cianwood done, Route 42's sighting missed (Mahogany reached through
+@ Mt. Mortar before the Burned Tower release, only flown to since). Once Pryce is
+@ beaten, Route 36 arms anyway and Route 42's sighting is dropped (D-038).
+Route36_EventScript_SuicuneWithoutRoute42:
+	goto_if_unset FLAG_DEFEATED_MAHOGANY_TOWN_GYM, Common_EventScript_NopReturn
+	setflag FLAG_HIDE_ROUTE42_SUICUNE
+	setvar VAR_SUICUNE_ENCOUNTERS, 3
 	return
 
 Route36_EventScript_RockSmashGuy::
