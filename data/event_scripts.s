@@ -852,8 +852,6 @@ gStdScripts_End::
 	.include "data/maps/Route10_PokemonCenter_2F_Frlg/scripts.inc"
 	.include "data/maps/Route11_EastEntrance_1F_Frlg/scripts.inc"
 	.include "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
-	.include "data/maps/Route12_NorthEntrance_1F_Frlg/scripts.inc"
-	.include "data/maps/Route12_NorthEntrance_2F_Frlg/scripts.inc"
 	.include "data/maps/Route12_FishingHouse_Frlg/scripts.inc"
 	.include "data/maps/Route15_WestEntrance_1F_Frlg/scripts.inc"
 	.include "data/maps/Route15_WestEntrance_2F_Frlg/scripts.inc"

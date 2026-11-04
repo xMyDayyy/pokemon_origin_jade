@@ -7100,20 +7100,6 @@
       "layout_version": "frlg"
     },
     {
-      "id": "LAYOUT_ROUTE12_NORTH_ENTRANCE_1F",
-      "name": "Route12_NorthEntrance_1F_Layout",
-      "width": 11,
-      "height": 13,
-      "primary_tileset": "gTileset_BuildingFrlg",
-      "secondary_tileset": "gTileset_GenericBuilding2",
-      "border_filepath": "data/layouts/Route12_NorthEntrance_1F_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/Route12_NorthEntrance_1F_Frlg/map.bin",
-      "border_height": 2,
-      "border_width": 2,
-      "game_version": "hns",
-      "layout_version": "frlg"
-    },
-    {
       "id": "LAYOUT_SSANNE_ROOM1",
       "name": "SSAnne_Room1_Layout",
       "width": 6,
