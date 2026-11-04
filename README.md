@@ -36,43 +36,16 @@ English.
   the battle debug menu (Select) are on in the build made by `make` and
   off in `make release`.
 
-The design decisions behind all of this are in
-[`docs/origin_jade/DECISIONS.md`](docs/origin_jade/DECISIONS.md).
-
 ## Building
 
-Set up the toolchain as described in [`INSTALL.md`](INSTALL.md), then:
+Install `gcc-arm-none-eabi`, `binutils-arm-none-eabi`,
+`libnewlib-arm-none-eabi`, `libpng-dev` and Python 3, then:
 
     make -j$(nproc)              # Pokemon_Origin_Jade.gba (beta build, debug menus on)
     make release                 # Pokemon_Origin_Jade-release.gba (debug menus off)
-    make check                   # test ELF and the whole test suite in one run
-    python3 tools/run_tests.py   # test suite against the list of known failures
 
-`make` builds only Origin Jade; `make jade` is an alias. The checks to run
-after a change are listed in
-[`docs/origin_jade/TESTS.md`](docs/origin_jade/TESTS.md).
-
-## Documentation
-
-In [`docs/origin_jade/`](docs/origin_jade/):
-
-- [`DECISIONS.md`](docs/origin_jade/DECISIONS.md): design decisions
-  (`D-`), planned work (`P-`) and open questions (`O-`). Read the entry
-  before changing what it covers.
-- [`CHANGELOG.md`](docs/origin_jade/CHANGELOG.md): changes of the audit
-  round, the story packages and rounds 2 to 6 (2026-10-30 to
-  2026-11-04) for players and testers.
-- [`BETA_READINESS.md`](docs/origin_jade/BETA_READINESS.md): beta
-  criteria, open points, owner decisions, risks.
-- [`PATCHES.md`](docs/origin_jade/PATCHES.md): the patch series of the
-  audit round, the story packages and rounds 2 to 6, its order,
-  verification and how to apply it.
-- [`TESTS.md`](docs/origin_jade/TESTS.md): test suite and check tools.
-
-[`FEATURES.md`](FEATURES.md) (Heart & Soul) and
-[`AVAILABLE_FEATURES.md`](AVAILABLE_FEATURES.md) (pokeemerald-expansion)
-describe the upstream features; the root [`CHANGELOG.md`](CHANGELOG.md)
-belongs to pokeemerald-expansion.
+`make` builds only Origin Jade; `make jade` is an alias. Check tools and
+rules for changes: [`ENTWICKLER.md`](ENTWICKLER.md) (German).
 
 ## Current state
 
@@ -82,8 +55,7 @@ Hoenn Ticket in Prof. Oak's lab. This is checked statically and with the
 check tools, not yet in an emulator. Every text the German build shows
 on the story path is German; English is left only in debug texts, in
 unused texts and in trainer names that no active script shows; some of
-the new German texts are still drafts. Details and the open list:
-[`docs/origin_jade/BETA_READINESS.md`](docs/origin_jade/BETA_READINESS.md).
+the new German texts are still drafts.
 
 Until the release the save layout may still change, and older saves are
 not migrated.
