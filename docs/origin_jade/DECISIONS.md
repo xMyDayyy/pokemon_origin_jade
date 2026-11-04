@@ -856,7 +856,7 @@ dated 2026-10-10 or later were decided directly.
 - **Status:** Active (2026-10-15; changed 2026-11-02: Scott's hint, D-051;
   changed 2026-11-02: Emerald's battle tents retired; changed 2026-11-03:
   Scott's gift counts 11 meetings; changed 2026-11-03: Kampfzone only after
-  the Hoenn title)
+  the Hoenn title; changed 2026-11-04: no Sudowoodo)
 - **Decision:** The Emerald frontier (47 maps, 36 layouts) is retired
   (`frontier_em_retired`). The HnS Kampfzone is post-game content: it opens
   only after the Hoenn title (`FLAG_IS_HOENN_CHAMPION`, set after the
@@ -879,7 +879,10 @@ dated 2026-10-10 or later were decided directly.
   counts as part of it (`MAPSEC_BATTLE_FRONTIER`); unlike HnS its door in the
   Kampfzone is open (ledge corner at (29,9), the Engineer beside the path;
   owner confirmed 2026-10-26).
-  A whiteout there leads to the Kampfzone's nurse.
+  A whiteout there leads to the Kampfzone's nurse. Emerald's Sudowoodo (in
+  Emerald it blocks the way to the Artisan Cave until the Wailmer Pail
+  wakes it) is not in the Kampfzone (owner 2026-11-04, D-039): the cave is
+  open from the first visit, without any item.
   Emerald's battle tents in Verdanturf, Fallarbor and Slateport are retired
   as well (9 maps and 4 layouts with game_version `em_tents_retired`; owner
   2026-11-02, S-04: HnS's endgame counts). Their buildings are contest
@@ -902,7 +905,8 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-15 (O-006); owner answer 2026-10-31
   (S-02); owner answers 2026-11-02 (S-04); owner answer 2026-11-03
   (O-073); owner decision 2026-11-03 (Kampfzone only after the Hoenn
-  title, O-060).
+  title, O-060); owner decision 2026-11-04 (no Sudowoodo in the
+  Kampfzone).
 
 ### D-031 Level scaling after a region's title
 - **Status:** Active (2026-10-15, Johto statics changed 2026-10-27, D-039,
@@ -1241,8 +1245,9 @@ dated 2026-10-10 or later were decided directly.
 - **Status:** Active (2026-10-27, event and player levels 2026-10-29;
   legendaries in the anchor confirmed 2026-11-02, D-053;
   changed 2026-10-30: roamer example corrected; changed 2026-10-31:
-  Deoxys after the first trip to Hoenn). Replaces the fixed levels
-  of D-026 and D-031 for Johto.
+  Deoxys after the first trip to Hoenn; changed 2026-11-04: no Sudowoodo
+  in the Kampfzone). Replaces the fixed levels of D-026 and D-031 for
+  Johto.
 - **Decision:** Johto's legendaries sit at 75-80 by story point; the other
   strong statics fit the corridor (D-012) where they can first be met. None
   of them falls below the top of the map's wild band afterwards.
@@ -1259,14 +1264,21 @@ dated 2026-10-10 or later were decided directly.
     - Union Cave's Lapras (Surf, after Morty): 55 (20);
     - the red Gyarados, Lake of Rage (about 6 badges, corridor 50-58):
       55 (30);
-    - the Rocket Hideout's three Electrode (corridor 50-58): 60 (30);
-    - the Kampfzone's Sudowoodo: 65 (40), set when the Kampfzone opened
-      with the Johto title; since 2026-11-03 it opens only after the
-      Hoenn title (D-030), the level stays.
+    - the Rocket Hideout's three Electrode (corridor 50-58): 60 (30).
     Route 41's four Tentacruel stay at 100: they guard the Whirl Islands
     (unwinnable, healed after the battle), they are not an encounter: not
     catchable, never shiny (`FLAG_NO_WILD_CATCHING` with
     `P_ONLY_OBTAINABLE_SHINIES`).
+  - No Sudowoodo in the Kampfzone (owner 2026-11-04). Emerald's second
+    Sudowoodo (in Emerald it blocks the way to the Artisan Cave and wakes
+    with the Wailmer Pail; Origin Jade had it at 65 (40) on a dead end of
+    `BattleFrontier_OutsideEast_hns` and woke it with the Squirtbottle)
+    never appears: the map sets `FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO` on
+    every entry. Its object stays in map.json so the local ids do not move;
+    the map also hides it on resume and its script only removes it, for a
+    save made beside it (like Moltres, D-022). There is no battle any more
+    and `FLAG_DEFEATED_SUDOWOODO` is no longer set or read. Sudowoodo stays
+    on Route 36 (story, HnS/HGSS).
   - The average player's anchor (highest level in brackets): arrival from
     Kanto 46 (49), after Whitney 52 (57), after Morty 53 (57), Lake of Rage
     57-58 (62-63), eight badges 63-64 (68), first Johto title 65 (70);
@@ -1296,7 +1308,8 @@ dated 2026-10-10 or later were decided directly.
     floor, moves up at its next encounter and keeps its share of HP
     (`TryRaiseRoamerLevel`, `src/roamer.c`).
   - Kanto: D-011, Hoenn: D-043.
-- **Evidence:** decision 2026-10-27.
+- **Evidence:** decision 2026-10-27; owner decision 2026-11-04 (no
+  Sudowoodo in the Kampfzone).
 
 ### D-040 Hoenn keeps its own state where a finished Kanto would leak into it
 - **Status:** Active (2026-10-29, Johto leaks changed 2026-10-30, Strength
@@ -1471,8 +1484,8 @@ dated 2026-10-10 or later were decided directly.
   - Shiny clause ("Shiny-Klausel"): a shiny can always be caught, and
     meeting one never uses up the area.
   - Static encounters: scripted battles (`setwildbattle` with
-    `dowildbattle`: Snorlax on Routes 12 and 16, Sudowoodo on Route 36 and
-    at the Battle Frontier, Union Cave's Lapras, the Electrode of the Power
+    `dowildbattle`: Snorlax on Routes 12 and 16, Sudowoodo on Route 36,
+    Union Cave's Lapras, the Electrode of the Power
     Plant, the Rocket Hideout and the Aqua Hideout, New Mauville's Voltorb,
     Kecleon on Routes 119 and 120) can always be caught, without the area,
     species or dupes check, and use up nothing (`NuzlockeIsStaticEncounter`,
@@ -3189,3 +3202,4 @@ dated 2026-10-10 or later were decided directly.
 | Scaled bosses keep the moves of their original level; Johto's league aces all at the corridor's 65 | HnS / Emerald, D-012 | D-053 (2026-11-02) |
 | Emerald's Trainer Hill on Route 111 works with its own trainers, prizes and records | D-044 (2026-10-30) | D-044 (2026-11-02) |
 | Battle tents in Verdanturf, Fallarbor and Slateport; Lilycove's contest hall holds every rank and its reception gives the Pokeblock Case | Emerald | D-030, D-058 (2026-11-02) |
+| A second Sudowoodo in the Kampfzone (Emerald; level 65, woken with the Squirtbottle) | D-039 (2026-10-27, Squirtbottle 2026-10-30) | D-039 (2026-11-04, removed) |

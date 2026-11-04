@@ -3,25 +3,18 @@ BattleFrontier_OutsideEast_hns_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_OutsideEast_OnTransition_hns
 	.byte 0
 
+@ Continue restores objects from old saves without ON_TRANSITION; hide the Sudowoodo there too (D-039).
 BattleFrontier_OutsideEast_OnResume_hns:
-	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, BattleFrontier_OutsideEast_EventScript_TryRemoveSudowoodo_hns
+	setflag FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO
+	removeobject LOCALID_FRONTIER_SUDOWOODO
 	end
-
-BattleFrontier_OutsideEast_EventScript_TryRemoveSudowoodo_hns::
-	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn
-	removeobject VAR_LAST_TALKED
-	return
 
 BattleFrontier_OutsideEast_OnTransition_hns:
 	setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON, 0
 	setflag FLAG_HIDE_BATTLE_TOWER_REPORTER
-	call_if_unset FLAG_DEFEATED_SUDOWOODO, BattleFrontier_OutsideEast_EventScript_ShowSudowoodo_hns
+	@ Origin Jade: no Sudowoodo in the Kampfzone (D-039).
+	setflag FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO
 	end
-
-BattleFrontier_OutsideEast_EventScript_ShowSudowoodo_hns::
-	clearflag FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO
-	return
 
 BattleFrontier_OutsideEast_EventScript_BattleTowerSign_hns::
 	msgbox BattleFrontier_OutsideEast_Text_BattleTowerSign_hns, MSGBOX_SIGN
@@ -101,75 +94,11 @@ BattleFrontier_OutsideEast_EventScript_TriathleteM_hns::
 	msgbox BattleFrontier_OutsideEast_Text_DidScottBringYouHere_hns, MSGBOX_NPC
 	end
 
+@ Origin Jade: this Sudowoodo never spawns (D-039); the object stays for the local ids.
 BattleFrontier_OutsideEast_EventScript_Sudowoodo_hns::
-	lock
-	faceplayer
-	waitse
-	playse SE_SUDOWOODO_SHAKE
-	applymovement LOCALID_FRONTIER_SUDOWOODO, BattleFrontier_OutsideEast_Movement_SudowoodoShake_hns
-	waitmovement 0
-	checkitem ITEM_SQUIRT_BOTTLE
-	goto_if_eq VAR_RESULT, TRUE, BattleFrontier_OutsideEast_EventScript_SudowoodoChoice_hns
-	release
+	setflag FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO
+	removeobject LOCALID_FRONTIER_SUDOWOODO
 	end
-
-@ Woken with the Squirtbottle like the one on Route 36 (D-039).
-BattleFrontier_OutsideEast_EventScript_SudowoodoChoice_hns::
-	msgbox Route36_Text_UseSquirtbottle, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, TRUE, BattleFrontier_OutsideEast_EventScript_WaterSudowoodo_hns
-	closemessage
-	release
-	end
-
-BattleFrontier_OutsideEast_EventScript_WaterSudowoodo_hns::
-	msgbox Route36_Text_UsedSquirtbottle, MSGBOX_DEFAULT
-	playse SE_DOWNPOUR
-	waitse
-	closemessage
-	playse SE_SUDOWOODO_SHAKE
-	applymovement LOCALID_FRONTIER_SUDOWOODO, BattleFrontier_OutsideEast_Movement_SudowoodoShake_hns
-	waitmovement 0
-	msgbox Route36_Text_SudowoodoAttacked, MSGBOX_DEFAULT
-	closemessage
-	waitse
-	playmoncry SPECIES_SUDOWOODO, CRY_MODE_ENCOUNTER
-	delay 40
-	waitmoncry
-	setvar VAR_LAST_TALKED, LOCALID_FRONTIER_SUDOWOODO
-	setwildbattle SPECIES_SUDOWOODO, 65
-	setflag FLAG_SYS_CTRL_OBJ_DELETE
-	dowildbattle
-	clearflag FLAG_SYS_CTRL_OBJ_DELETE
-	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, BattleFrontier_OutsideEast_EventScript_DefeatedSudowoodo_hns
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, BattleFrontier_OutsideEast_EventScript_DefeatedSudowoodo_hns
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, BattleFrontier_OutsideEast_EventScript_DefeatedSudowoodo_hns
-	setflag FLAG_DEFEATED_SUDOWOODO
-	release
-	end
-
-BattleFrontier_OutsideEast_EventScript_DefeatedSudowoodo_hns::
-	setflag FLAG_DEFEATED_SUDOWOODO
-	goto Common_EventScript_RemoveStaticPokemon
-	end
-
-BattleFrontier_OutsideEast_Movement_SudowoodoShake_hns:
-	face_right
-	delay_8
-	face_down
-	delay_8
-	face_left
-	delay_8
-	face_down
-	delay_8
-	face_right
-	delay_8
-	face_down
-	delay_8
-	face_left
-	delay_8
-	face_down
-	step_end
 
 BattleFrontier_OutsideEast_EventScript_Maniac1_hns::
 	msgbox BattleFrontier_OutsideEast_Text_HeardPrettyGirlAtBattleArena_hns, MSGBOX_NPC
@@ -223,15 +152,10 @@ BattleFrontier_OutsideEast_EventScript_Gentleman_hns::
 	msgbox BattleFrontier_OutsideEast_Text_FrontierNotExclusivelyForToughTrainers_hns, MSGBOX_NPC
 	end
 
+@ Not placed on the map. No Sudowoodo here (D-039), so only the "tree is gone" line.
 BattleFrontier_OutsideEast_EventScript_OldWoman_hns::
 	lock
 	faceplayer
-	goto_if_set FLAG_DEFEATED_SUDOWOODO, BattleFrontier_OutsideEast_EventScript_OldWoman_hnsSudowoodoGone_hns
-	msgbox BattleFrontier_OutsideEast_Text_OddTreeHereSeemsToWiggle_hns, MSGBOX_DEFAULT
-	release
-	end
-
-BattleFrontier_OutsideEast_EventScript_OldWoman_hnsSudowoodoGone_hns::
 	msgbox BattleFrontier_OutsideEast_Text_OnceAnOddTreePastHere_hns, MSGBOX_DEFAULT
 	release
 	end
@@ -653,20 +577,6 @@ BattleFrontier_OutsideEast_Text_FrontierNotExclusivelyForToughTrainers_hns:
 	.string "That man SCOTT…\p"
 	.string "He may have built this place to serve\n"
 	.string "a bigger objective…$"
-#endif
-
-BattleFrontier_OutsideEast_Text_OddTreeHereSeemsToWiggle_hns:
-#if GERMAN
-	.string "Entschuldige! Du bist jung! Deine\n"
-	.string "Augen sind bestimmt hervorragend?!?\p"
-	.string "Da vorne ist ein komischer Baum, und\n"
-	.string "meine müden Augen scheinen zu sehen,\l"
-	.string "dass er sich bewegt.$"
-#else
-	.string "Excuse me, young one.\n"
-	.string "Have you good eyesight?\p"
-	.string "There is an odd tree past here, and to\n"
-	.string "my tired eyes it seems to wiggle.$"
 #endif
 
 BattleFrontier_OutsideEast_Text_OnceAnOddTreePastHere_hns:
