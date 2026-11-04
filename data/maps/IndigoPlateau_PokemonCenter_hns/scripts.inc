@@ -44,8 +44,18 @@ IndigoPlateau_EventScript_SetupSilverFinalDone:
 
 
 IndigoPlateau_EventScript_Cooltrainer::
-	msgbox IndigoPlateau_Text_CooltrainerM, MSGBOX_NPC
+	lock
+	faceplayer
+	msgbox IndigoPlateau_Text_CooltrainerM, MSGBOX_DEFAULT
+	call PokemonLeague_EventScript_CheckLeagueChanged
+	call_if_eq VAR_RESULT, TRUE, IndigoPlateau_EventScript_CooltrainerLeagueChanged
+	release
 	end
+
+@ Announces the league change (D-010).
+IndigoPlateau_EventScript_CooltrainerLeagueChanged::
+	msgbox IndigoPlateau_Text_CooltrainerLeagueChanged, MSGBOX_DEFAULT
+	return
 
 IndigoPlateau_EventScript_BlackBelt::
 	msgbox IndigoPlateau_Text_Blackbelt, MSGBOX_NPC
@@ -97,6 +107,16 @@ IndigoPlateau_Text_CooltrainerM:
     .string "tested by the ELITE FOUR.\p"
     .string "You have to beat them all. If you\n"
     .string "lose, you have to start all over!$"
+#endif
+
+IndigoPlateau_Text_CooltrainerLeagueChanged:
+#if GERMAN
+	.string "Übrigens: Die Liga hat sich neu\n"
+	.string "aufgestellt. Mach dich auf eine\l"
+	.string "neue Herausforderung gefasst!$"
+#else
+	.string "By the way, the LEAGUE has a new lineup.\n"
+	.string "Get ready for a new challenge!$"
 #endif
 
 IndigoPlateau_EventScript_Silver::

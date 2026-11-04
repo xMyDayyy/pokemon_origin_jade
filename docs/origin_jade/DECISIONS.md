@@ -199,7 +199,7 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-010 The league changes after the eighth Johto badge and the legendary event
 - **Status:** Active (2026-10-10, 2026-10-11, 2026-10-12, theater state
-  changed 2026-10-30).
+  changed 2026-10-30, announcement 2026-11-04).
 - **Decision:** There is one way to the league: the gatehouse north exit,
   Kanto's Route 23 and Victory Road (Moltres), Kanto's Indigo Plateau. The
   league changes once the player holds all eight Johto badges and has
@@ -217,8 +217,16 @@ dated 2026-10-10 or later were decided directly.
   - Johto's center leads out onto Kanto's plateau; `IndigoPlateau_hns` is
     only reached by Teleport and connects south to Kanto's Route 23.
 - **Story:** the league has changed, as in Gold/Silver: Lance is champion,
-  Koga has joined the Elite Four, Lorelei and Agatha are gone. The in-game
-  announcement is still to be written.
+  Koga has joined the Elite Four, Lorelei and Agatha are gone. The Ace
+  Trainer in Johto's league center announces it (owner 2026-11-04, own
+  text): after his usual text he adds a box "Übrigens: Die Liga hat sich
+  neu aufgestellt. Mach dich auf eine neue Herausforderung gefasst!"
+  (English: "By the way, the LEAGUE has a new lineup. Get ready for a new
+  challenge!"), only after the change (the same check as the door,
+  `IndigoPlateau_Text_CooltrainerLeagueChanged`). The owner wrote the two
+  sentences without a break; a full stop and "Mach" in capitals were
+  added. The girl in Fuchsia City says that Koga is in the Elite Four now
+  (D-032).
 - **Rules / code:** `PokemonLeague_EventScript_CheckLeagueChanged`
   (`data/scripts/pokemon_league.inc`) is the one condition; the plateau door
   warp is `MAP_DYNAMIC` (`IndigoPlateau_Exterior_EventScript_SetDoorWarp`).
