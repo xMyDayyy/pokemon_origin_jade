@@ -1417,16 +1417,6 @@ static u32 LoopedTask_ExitRadio(s32 state)
     return LT_FINISH;
 }
 
-void CheckRadioStation(void)
-{
-    u16 music = GetCurrentMapMusic();
-
-    if (music == MUS_HG_RADIO_POKE_FLUTE)
-        gSpecialVar_Result = 1;
-    else
-        gSpecialVar_Result = 0;
-}
-
 // ========================================
 // Buena's Password Show — NPC specials
 // ========================================
@@ -1519,12 +1509,4 @@ void Special_BuenaRollReward(void)
     CopyItemName(ITEM_GREAT_BALL, gStringVar1);
 }
 
-#else // !IS_HNS
-
-#include "event_data.h"
-
-void CheckRadioStation(void)
-{
-    gSpecialVar_Result = 0;
-}
 #endif // IS_HNS

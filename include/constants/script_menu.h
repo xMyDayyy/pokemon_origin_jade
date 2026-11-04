@@ -177,32 +177,14 @@
 #define MULTI_ELDERQUIIZ3                  166
 #define MULTI_ELDERQUIIZ4                  167
 #define MULTI_ELDERQUIIZ5                  168
-#define MULTI_OLIVINE_HARBOR               169
-#define MULTI_VERMILION_HARBOR             170
-#define MULTI_HOENN_STARTERS               171
-#define MULTI_5FLOORS                      172
 #define MULTI_MOM_MENU                     173
 #define MULTI_LINK_SERVICES_HNS            174
 #define MULTI_BATTLE_MODE_HNS              175
 #define MULTI_FOSSIL_HNS                   176
 #define MULTI_GAME_CORNER_DOLLS2           177
-#define MULTI_SSAQUA_RETURN                178
-#define MULTI_SSAQUA_RETURN_PORTS          179
+// Free ids: 169-172, 178, 179 (removed menus).
 
 #define MULTI_NONE 255
-
-// Choices of MULTI_OLIVINE_HARBOR and MULTI_VERMILION_HARBOR
-#define SS_AQUA_SELECTION_OTHER_PORT       0
-#define SS_AQUA_SELECTION_BATTLE_FRONTIER  1
-#define SS_AQUA_SELECTION_BIRTH_ISLAND     2
-#define SS_AQUA_SELECTION_HOENN            3
-#define SS_AQUA_SELECTION_EXIT             4
-
-// Choices of MULTI_SSAQUA_RETURN; MULTI_SSAQUA_RETURN_PORTS has only the two ports, then Exit
-#define SS_AQUA_RETURN_OLIVINE             0
-#define SS_AQUA_RETURN_VERMILION           1
-#define SS_AQUA_RETURN_HOENN               2
-#define SS_AQUA_RETURN_EXIT                3
 
 // Destinations of the dynamic ship menu (Common_EventScript_ShipMenu, D-047)
 #define SHIP_DEST_OLIVINE                  0

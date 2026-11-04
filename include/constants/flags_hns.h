@@ -115,7 +115,7 @@
 #define FLAG_HIDE_TIN_TOWER_KIMONO_GIRLS            0x07E
 #define FLAG_HIDE_BELLCHIME_MORTY                   0x07F
 #define FLAG_HIDE_OLIVINE_CITY_GYM_JASMINE          0x080
-#define FLAG_HIDE_OLIVINE_PORT_OAK                  0x081
+// 0x081 is free.
 #define FLAG_HIDE_OLIVINE_SABRINA                   0x082
 #define FLAG_HIDE_OLIVINE_SILVER                    0x083
 #define FLAG_HIDE_LIGHTHOUSE_JASMINE                0x084

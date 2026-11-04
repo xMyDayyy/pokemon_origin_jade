@@ -5730,18 +5730,3 @@ const u8 gText_Both[] = _("Beides");
 #else
 const u8 gText_Both[] = _("Both");
 #endif
-#if GERMAN
-const u8 gText_GreenStone[] = _("Grüner Stein");
-#else
-const u8 gText_GreenStone[] = _("GREEN STONE");
-#endif
-#if GERMAN
-const u8 gText_RedStone[] = _("Roter Stein");
-#else
-const u8 gText_RedStone[] = _("RED STONE");
-#endif
-#if GERMAN
-const u8 gText_BlueStone[] = _("Blauer Stein");
-#else
-const u8 gText_BlueStone[] = _("BLUE STONE");
-#endif

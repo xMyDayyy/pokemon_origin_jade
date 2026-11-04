@@ -1280,46 +1280,6 @@ static const struct MenuAction MultichoiceList_KurtsBalls[] =
     {gText_Exit},
 };
 
-// M.S. Aqua destinations, see docs/origin_jade/DECISIONS.md, D-029.
-// Order must match SS_AQUA_SELECTION_* and SS_AQUA_RETURN_* in include/constants/script_menu.h.
-#if GERMAN
-static const u8 sText_HarborOlivine[] = _("Oliviana City");
-static const u8 sText_HarborVermilion[] = _("Orania City");
-#else
-static const u8 sText_HarborOlivine[] = _("OLIVINE");
-static const u8 sText_HarborVermilion[] = _("VERMILION");
-#endif
-
-static const struct MenuAction MultichoiceList_OlivineHarbor[] =
-{
-    {sText_HarborVermilion},
-    {gText_BattleFrontier},
-    {gText_BirthIsland},
-    {gText_HoennRegion},
-    {gText_Exit},
-};
-static const struct MenuAction MultichoiceList_VermilionHarbor[] =
-{
-    {sText_HarborOlivine},
-    {gText_BattleFrontier},
-    {gText_BirthIsland},
-    {gText_HoennRegion},
-    {gText_Exit},
-};
-static const struct MenuAction MultichoiceList_SSAquaReturn[] =
-{
-    {sText_HarborOlivine},
-    {sText_HarborVermilion},
-    {gText_HoennRegion},
-    {gText_Exit},
-};
-static const struct MenuAction MultichoiceList_SSAquaReturnPorts[] =
-{
-    {sText_HarborOlivine},
-    {sText_HarborVermilion},
-    {gText_Exit},
-};
-
 static const struct MenuAction MultichoiceList_7Floors[] = 
 {
     {gText_Floor6},
@@ -1330,16 +1290,6 @@ static const struct MenuAction MultichoiceList_7Floors[] =
     {gText_Floor1},
     {gText_Floor0},
     {gText_Exit},
-};
-
-static const struct MenuAction MultichoiceList_5Floors[] = 
-{
-    {gText_Floor5},
-    {gText_Floor4},
-    {gText_Floor3},
-    {gText_Floor2},
-    {gText_Floor1},
-    {gText_Exit},   
 };
 
 static const struct MenuAction MultichoiceList_GoldSilver[] = 
@@ -1379,12 +1329,6 @@ static const struct MenuAction MultichoiceList_ElderQuiz5[] =
     {gText_Tough3},
     {gText_Weak},
     {gText_Both},
-};
-static const struct MenuAction MultichoiceList_HoennStarters[] = 
-{
-    {gText_GreenStone},
-    {gText_RedStone},
-    {gText_BlueStone},
 };
 
 static const struct MenuAction MultichoiceList_MomMenu[] =
@@ -1587,22 +1531,16 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_PRIZE_MONS]                  = MULTICHOICE(MultichoiceList_PrizeMons),
     [MULTI_7FLOORS]                  = MULTICHOICE(MultichoiceList_7Floors),
     [MULTI_GOLDSILVER]                 = MULTICHOICE(MultichoiceList_GoldSilver),
-    [MULTI_OLIVINE_HARBOR]              = MULTICHOICE(MultichoiceList_OlivineHarbor),
-    [MULTI_VERMILION_HARBOR]              = MULTICHOICE(MultichoiceList_VermilionHarbor),
     [MULTI_ELDERQUIIZ1]                 = MULTICHOICE(MultichoiceList_ElderQuiz1),
     [MULTI_ELDERQUIIZ2]                 = MULTICHOICE(MultichoiceList_ElderQuiz2),
     [MULTI_ELDERQUIIZ3]                 = MULTICHOICE(MultichoiceList_ElderQuiz3),
     [MULTI_ELDERQUIIZ4]                 = MULTICHOICE(MultichoiceList_ElderQuiz4),
     [MULTI_ELDERQUIIZ5]                 = MULTICHOICE(MultichoiceList_ElderQuiz5),
-    [MULTI_HOENN_STARTERS]              = MULTICHOICE(MultichoiceList_HoennStarters),
-    [MULTI_5FLOORS]                    = MULTICHOICE(MultichoiceList_5Floors),
     [MULTI_MOM_MENU]                   = MULTICHOICE(MultichoiceList_MomMenu),
     [MULTI_LINK_SERVICES_HNS]          = MULTICHOICE(MultichoiceList_LinkServicesHns),
     [MULTI_BATTLE_MODE_HNS]            = MULTICHOICE(MultichoiceList_BattleModeHns),
     [MULTI_FOSSIL_HNS]                = MULTICHOICE(MultichoiceList_FossilHns),
     [MULTI_GAME_CORNER_DOLLS2]         = MULTICHOICE(MultichoiceList_GameCornerDolls2),
-    [MULTI_SSAQUA_RETURN]              = MULTICHOICE(MultichoiceList_SSAquaReturn),
-    [MULTI_SSAQUA_RETURN_PORTS]        = MULTICHOICE(MultichoiceList_SSAquaReturnPorts),
 };
 
 const u8 *const gStdStrings[] =

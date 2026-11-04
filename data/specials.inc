@@ -661,13 +661,11 @@ gSpecials::
 	def_special JudgeBugContestMon
 	def_special RemoveSportBalls
 	def_special ShowBugContestChosenMon
-	def_special SwitchMonAbility
 	def_special NameRival
 	def_special IsNuzlockeNicknamingActive
 	def_special IsRandomMovesActivated
 	def_special IsPokecenterChallengeActivated
 	def_special IsOneTypeChallengeActive
-	def_special CheckRadioStation
 	def_special Special_BuenaPasswordShowMultichoice
 	def_special Special_BuenaCheckAnswer
 	def_special Special_BuenaRollReward
@@ -677,9 +675,6 @@ gSpecials::
 	def_special GetPaldeaCatchProgress
 	def_special HasAllJohotoMons
 	def_special HasAllRegionalMons
-	def_special CheckPartyForSpecies
-	def_special GetRegionalFormSpecies
-	def_special ConvertToRegionalForm
 	def_special Special_ViewVoltorbFlip
 	def_special Special_MomEnableSaving
 	def_special Special_MomDisableSaving

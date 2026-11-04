@@ -43,19 +43,6 @@ const struct HelpWindow gHelpWindowInfo[] =
         .descFont = FONT_SMALL,
         .headerColor = {0, 4, 5},
     },
-    [HELP_TELEPORTER_WINDOW] =
-    {
-        .header = COMPOUND_STRING("Optionaler Bonus-Inhalt: Teleporter"),
-        .desc = COMPOUND_STRING("Der Teleporter verwandelt Pokémon\n"
-                                "dauerhaft in ihre Galar-Formen.\n"
-                                "Galar-Formen werden weder für die\n"
-                                "Story noch für die Vervollständigung\n"
-                                "des Nationalen Pokédex benötigt.\n"
-                            ),
-        .headerFont = FONT_NORMAL,
-        .descFont = FONT_NORMAL,
-        .headerColor = {0, 8, 3},
-    },
     [HELP_SINJOH_WINDOW] =
     {
         .header = COMPOUND_STRING("Optionaler Bonus-Inhalt: Sinjoh"),

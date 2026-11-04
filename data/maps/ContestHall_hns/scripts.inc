@@ -433,18 +433,3 @@ ContestHall_EventScript_SetExitWarpLinkContest_hns::
 	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY, 15, 4
 	waitstate
 	end
-
-LilycoveCity_ContestLobby_EventScript_SetPlayerGfx_hns::
-	checkplayergender
-	goto_if_eq VAR_RESULT, MALE, LilycoveCity_ContestLobby_EventScript_SetPlayerGfxBrendan_hns
-	goto_if_eq VAR_RESULT, FEMALE, LilycoveCity_ContestLobby_EventScript_SetPlayerGfxMay_hns
-	return
-
-LilycoveCity_ContestLobby_EventScript_SetPlayerGfxBrendan_hns::
-	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_GOLD_NORMAL_HNS
-	return
-
-LilycoveCity_ContestLobby_EventScript_SetPlayerGfxMay_hns::
-	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_KRIS_NORMAL_HNS
-	return
-

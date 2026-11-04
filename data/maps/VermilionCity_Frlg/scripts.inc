@@ -232,17 +232,6 @@ VermilionCity_EventScript_OldMan2::
 	msgbox VermilionCity_Text_BuildingOnThisLand, MSGBOX_NPC
 	end
 
-VermilionCity_EventScript_Machop::
-	lock
-	faceplayer
-	waitse
-	playmoncry SPECIES_MACHOP, CRY_MODE_NORMAL
-	msgbox VermilionCity_Text_Machop
-	waitmoncry
-	msgbox VermilionCity_Text_MachopStompingLandFlat
-	release
-	end
-
 VermilionCity_EventScript_CitySign::
 	msgbox VermilionCity_Text_CitySign, MSGBOX_SIGN
 	end
@@ -307,20 +296,6 @@ VermilionCity_Text_BuildingOnThisLand::
 	.string "plot of land. I own it all.\p"
 	.string "My POKéMON is tamping the land\n"
 	.string "to lay the foundation.$"
-#endif
-
-VermilionCity_Text_Machop::
-#if GERMAN
-	.string "Machollo: Macho! Machollo!$"
-#else
-	.string "MACHOP: Guoh! Gogogoh!$"
-#endif
-
-VermilionCity_Text_MachopStompingLandFlat::
-#if GERMAN
-	.string "Ein Machollo ebnet das Land!$"
-#else
-	.string "A MACHOP is stomping the land flat.$"
 #endif
 
 VermilionCity_Text_SSAnneVisitsOnceAYear::

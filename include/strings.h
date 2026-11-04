@@ -2473,8 +2473,5 @@ extern const u8 gText_Knowledge[];
 extern const u8 gText_Tough3[];
 extern const u8 gText_Weak[];
 extern const u8 gText_Both[];
-extern const u8 gText_GreenStone[];
-extern const u8 gText_RedStone[];
-extern const u8 gText_BlueStone[];
 
 #endif // GUARD_STRINGS_H
