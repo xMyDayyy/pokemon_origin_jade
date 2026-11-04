@@ -1898,42 +1898,6 @@
       "layout_version": "emerald"
     },
     {
-      "id": "LAYOUT_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1",
-      "name": "CaveOfOrigin_UnusedRubySapphireMap1_Layout",
-      "width": 23,
-      "height": 23,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
-      "border_filepath": "data/layouts/CaveOfOrigin_UnusedRubySapphireMap1/border.bin",
-      "blockdata_filepath": "data/layouts/CaveOfOrigin_UnusedRubySapphireMap1/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2",
-      "name": "CaveOfOrigin_UnusedRubySapphireMap2_Layout",
-      "width": 21,
-      "height": 21,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
-      "border_filepath": "data/layouts/CaveOfOrigin_UnusedRubySapphireMap2/border.bin",
-      "blockdata_filepath": "data/layouts/CaveOfOrigin_UnusedRubySapphireMap2/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP3",
-      "name": "CaveOfOrigin_UnusedRubySapphireMap3_Layout",
-      "width": 19,
-      "height": 21,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
-      "border_filepath": "data/layouts/CaveOfOrigin_UnusedRubySapphireMap3/border.bin",
-      "blockdata_filepath": "data/layouts/CaveOfOrigin_UnusedRubySapphireMap3/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
       "id": "LAYOUT_CAVE_OF_ORIGIN_B1F",
       "name": "CaveOfOrigin_B1F_Layout",
       "width": 19,
@@ -2726,78 +2690,6 @@
       "layout_version": "emerald"
     },
     {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL1",
-      "name": "UnusedContestHall1_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall1/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall1/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL2",
-      "name": "UnusedContestHall2_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall2/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall2/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL3",
-      "name": "UnusedContestHall3_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall3/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall3/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL4",
-      "name": "UnusedContestHall4_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall4/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall4/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL5",
-      "name": "UnusedContestHall5_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall5/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall5/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL6",
-      "name": "UnusedContestHall6_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall6/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall6/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
       "id": "LAYOUT_CONTEST_HALL_BEAUTY",
       "name": "ContestHallBeauty_Layout",
       "width": 15,
@@ -3458,18 +3350,6 @@
       "layout_version": "emerald"
     },
     {
-      "id": "LAYOUT_ROUTE104_PROTOTYPE",
-      "name": "Route104_Prototype_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
-      "border_filepath": "data/layouts/Route104_Prototype/border.bin",
-      "blockdata_filepath": "data/layouts/Route104_Prototype/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
       "id": "LAYOUT_GRANITE_CAVE_STEVENS_ROOM",
       "name": "GraniteCave_StevensRoom_Layout",
       "width": 15,
@@ -3802,42 +3682,6 @@
       "secondary_tileset": "gTileset_EliteFour",
       "border_filepath": "data/layouts/EverGrandeCity_Hall4/border.bin",
       "blockdata_filepath": "data/layouts/EverGrandeCity_Hall4/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_AQUA_HIDEOUT_UNUSED_RUBY_MAP1",
-      "name": "AquaHideout_UnusedRubyMap1_Layout",
-      "width": 28,
-      "height": 30,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Facility",
-      "border_filepath": "data/layouts/AquaHideout_UnusedRubyMap1/border.bin",
-      "blockdata_filepath": "data/layouts/AquaHideout_UnusedRubyMap1/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_AQUA_HIDEOUT_UNUSED_RUBY_MAP2",
-      "name": "AquaHideout_UnusedRubyMap2_Layout",
-      "width": 62,
-      "height": 24,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Facility",
-      "border_filepath": "data/layouts/AquaHideout_UnusedRubyMap2/border.bin",
-      "blockdata_filepath": "data/layouts/AquaHideout_UnusedRubyMap2/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_AQUA_HIDEOUT_UNUSED_RUBY_MAP3",
-      "name": "AquaHideout_UnusedRubyMap3_Layout",
-      "width": 34,
-      "height": 24,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Facility",
-      "border_filepath": "data/layouts/AquaHideout_UnusedRubyMap3/border.bin",
-      "blockdata_filepath": "data/layouts/AquaHideout_UnusedRubyMap3/map.bin",
       "game_version": "hns",
       "layout_version": "emerald"
     },
@@ -6052,20 +5896,6 @@
       "layout_version": "frlg"
     },
     {
-      "id": "LAYOUT_SAFFRON_CITY_CONNECTION",
-      "name": "SaffronCity_Connection_Layout",
-      "width": 48,
-      "height": 40,
-      "primary_tileset": "gTileset_General_Frlg",
-      "secondary_tileset": "gTileset_SaffronCity",
-      "border_filepath": "data/layouts/SaffronCity_Connection_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/SaffronCity_Connection_Frlg/map.bin",
-      "border_height": 2,
-      "border_width": 2,
-      "game_version": "hns",
-      "layout_version": "frlg"
-    },
-    {
       "id": "LAYOUT_ROUTE1",
       "name": "Route1_Layout",
       "width": 24,
@@ -7348,20 +7178,6 @@
       "secondary_tileset": "gTileset_Museum",
       "border_filepath": "data/layouts/PewterCity_Museum_2F_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/PewterCity_Museum_2F_Frlg/map.bin",
-      "border_height": 2,
-      "border_width": 2,
-      "game_version": "hns",
-      "layout_version": "frlg"
-    },
-    {
-      "id": "LAYOUT_CERULEAN_CITY_HOUSE2",
-      "name": "CeruleanCity_House2_Layout",
-      "width": 10,
-      "height": 9,
-      "primary_tileset": "gTileset_BuildingFrlg",
-      "secondary_tileset": "gTileset_BurgledHouse",
-      "border_filepath": "data/layouts/CeruleanCity_House2_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/CeruleanCity_House2_Frlg/map.bin",
       "border_height": 2,
       "border_width": 2,
       "game_version": "hns",
@@ -10182,30 +9998,6 @@
       "layout_version": "frlg"
     },
     {
-      "id": "LAYOUT_TEST_MAP2_HNS",
-      "name": "TestMap2_hns_Layout",
-      "width": 80,
-      "height": 30,
-      "primary_tileset": "gTileset_MtSilver_Exp_Hns",
-      "secondary_tileset": "gTileset_MtSilver_Ancient_Hns",
-      "border_filepath": "data/layouts/TestMap2_hns/border.bin",
-      "blockdata_filepath": "data/layouts/TestMap2_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_TEST_MAP1_HNS",
-      "name": "TestMap1_hns_Layout",
-      "width": 80,
-      "height": 30,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Ecruteak_City_Hns",
-      "border_filepath": "data/layouts/TestMap1_hns/border.bin",
-      "blockdata_filepath": "data/layouts/TestMap1_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
       "id": "LAYOUT_UNION_ROOM_HNS",
       "name": "UnionRoom_hns_Layout",
       "width": 15,
@@ -12462,42 +12254,6 @@
       "layout_version": "hns"
     },
     {
-      "id": "LAYOUT_SAFARI_ZONE1_HNS",
-      "name": "SafariZone1_hns_Layout",
-      "width": 51,
-      "height": 36,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_SafariZoneJohto_Hns",
-      "border_filepath": "data/layouts/SafariZone1_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SafariZone1_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFARI_ZONE2_HNS",
-      "name": "SafariZone2_hns_Layout",
-      "width": 54,
-      "height": 35,
-      "primary_tileset": "gTileset_Johto_NorthEast_Hns",
-      "secondary_tileset": "gTileset_SafariZoneJohto_Hns",
-      "border_filepath": "data/layouts/SafariZone2_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SafariZone2_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFARI_ZONE3_HNS",
-      "name": "SafariZone3_hns_Layout",
-      "width": 48,
-      "height": 36,
-      "primary_tileset": "gTileset_Johto_NorthEast_Hns",
-      "secondary_tileset": "gTileset_SafariZoneJohto_Hns",
-      "border_filepath": "data/layouts/SafariZone3_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SafariZone3_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
       "id": "LAYOUT_SAFARI_ZONE_ENTERANCE_HNS",
       "name": "SafariZone_Enterance_hns_Layout",
       "width": 36,
@@ -12542,18 +12298,6 @@
       "secondary_tileset": "gTileset_SafariZone_Entrance_Hns",
       "border_filepath": "data/layouts/SafariZoneGate_SafariZoneEntrance_hns/border.bin",
       "blockdata_filepath": "data/layouts/SafariZoneGate_SafariZoneEntrance_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFARI_ZONE_INDOOR_HNS",
-      "name": "SafariZoneIndoor_hns_Layout",
-      "width": 13,
-      "height": 11,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_SafariZone_Entrance_Hns",
-      "border_filepath": "data/layouts/SafariZoneIndoor_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SafariZoneIndoor_hns/map.bin",
       "game_version": "hns",
       "layout_version": "hns"
     },
@@ -13060,18 +12804,6 @@
       "blockdata_filepath": "data/layouts/TrainerHill_Roof_hns/map.bin",
       "game_version": "hns",
       "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_TREES_HNS",
-      "name": "Trees_hns_Layout",
-      "width": 20,
-      "height": 20,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Route38_Farmland_Hns",
-      "border_filepath": "data/layouts/Trees_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Trees_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
     },
     {
       "id": "LAYOUT_UNION_CAVE_1F_HNS",
@@ -14542,78 +14274,6 @@
       "secondary_tileset": "gTileset_Contest",
       "border_filepath": "data/layouts/ContestHallTough_hns/border.bin",
       "blockdata_filepath": "data/layouts/ContestHallTough_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL1_HNS",
-      "name": "UnusedContestHall1_hns_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall1_hns/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall1_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL2_HNS",
-      "name": "UnusedContestHall2_hns_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall2_hns/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall2_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL3_HNS",
-      "name": "UnusedContestHall3_hns_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall3_hns/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall3_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL4_HNS",
-      "name": "UnusedContestHall4_hns_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall4_hns/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall4_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL5_HNS",
-      "name": "UnusedContestHall5_hns_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall5_hns/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall5_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL6_HNS",
-      "name": "UnusedContestHall6_hns_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall6_hns/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall6_hns/map.bin",
       "game_version": "hns",
       "layout_version": "emerald"
     },

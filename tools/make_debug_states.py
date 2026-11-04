@@ -140,12 +140,11 @@ KANTO_COMPLETE_PARTY = [
 ]
 
 # Active FRLG maps a run up to the first Hall of Fame never enters: post-title
-# content, link rooms, unused houses.
+# content, link rooms.
 KANTO_POST_TITLE_MAPS = {"CeruleanCave_1F_Frlg", "CeruleanCave_2F_Frlg", "CeruleanCave_B1F_Frlg"}
 KANTO_NEVER_MAPS = {
     "BattleColosseum_2P_Frlg", "BattleColosseum_4P_Frlg", "RecordCorner_Frlg",
     "TradeCenter_Frlg", "UnionRoom_Frlg",
-    "Route19_UnusedHouse_Frlg", "Route6_UnusedHouse_Frlg", "SaffronCity_Connection_Frlg",
 }
 EXCLUDED_MAPS = KANTO_POST_TITLE_MAPS | KANTO_NEVER_MAPS
 

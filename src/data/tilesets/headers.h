@@ -1421,17 +1421,6 @@ const struct Tileset gTileset_Condominiums =
     .callback = NULL,
 };
 
-const struct Tileset gTileset_BurgledHouse =
-{
-    .isCompressed = TRUE,
-    .isSecondary = TRUE,
-    .tiles = gTilesetTiles_BurgledHouse,
-    .palettes = gTilesetPalettes_BurgledHouse,
-    .metatiles = gMetatiles_BurgledHouse,
-    .metatileAttributes = gMetatileAttributes_BurgledHouse,
-    .callback = NULL,
-};
-
 const struct Tileset gTileset_MtEmber =
 {
     .isCompressed = TRUE,

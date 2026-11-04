@@ -2761,28 +2761,6 @@ const u16 gTilesetPalettes_FanClubDaycare[][16] =
     INCBIN_U16("data/tilesets/secondary/fan_club_daycare_frlg/palettes/15.gbapal"),
 };
 
-const u32 gTilesetTiles_BurgledHouse[] = INCBIN_U32("data/tilesets/secondary/burgled_house_frlg/tiles.4bpp.fastSmol");
-
-const u16 gTilesetPalettes_BurgledHouse[][16] =
-{
-    INCBIN_U16("data/tilesets/secondary/burgled_house_frlg/palettes/00.gbapal"),
-    INCBIN_U16("data/tilesets/secondary/burgled_house_frlg/palettes/01.gbapal"),
-    INCBIN_U16("data/tilesets/secondary/burgled_house_frlg/palettes/02.gbapal"),
-    INCBIN_U16("data/tilesets/secondary/burgled_house_frlg/palettes/03.gbapal"),
-    INCBIN_U16("data/tilesets/secondary/burgled_house_frlg/palettes/04.gbapal"),
-    INCBIN_U16("data/tilesets/secondary/burgled_house_frlg/palettes/05.gbapal"),
-    INCBIN_U16("data/tilesets/secondary/burgled_house_frlg/palettes/06.gbapal"),
-    INCBIN_U16("data/tilesets/secondary/burgled_house_frlg/palettes/07.gbapal"),
-    INCBIN_U16("data/tilesets/secondary/burgled_house_frlg/palettes/08.gbapal"),
-    INCBIN_U16("data/tilesets/secondary/burgled_house_frlg/palettes/09.gbapal"),
-    INCBIN_U16("data/tilesets/secondary/burgled_house_frlg/palettes/10.gbapal"),
-    INCBIN_U16("data/tilesets/secondary/burgled_house_frlg/palettes/11.gbapal"),
-    INCBIN_U16("data/tilesets/secondary/burgled_house_frlg/palettes/12.gbapal"),
-    INCBIN_U16("data/tilesets/secondary/burgled_house_frlg/palettes/13.gbapal"),
-    INCBIN_U16("data/tilesets/secondary/burgled_house_frlg/palettes/14.gbapal"),
-    INCBIN_U16("data/tilesets/secondary/burgled_house_frlg/palettes/15.gbapal"),
-};
-
 const u32 gTilesetTiles_BerryForest[] = INCBIN_U32("data/tilesets/secondary/berry_forest_frlg/tiles.4bpp.fastSmol");
 
 const u16 gTilesetPalettes_BerryForest[][16] =
