@@ -1,7 +1,6 @@
 {
   "id": "MAP_MAUVILLE_CITY",
   "name": "MauvilleCity",
-  "game_version": "hns",
   "layout": "LAYOUT_MAUVILLE_CITY",
   "music": "MUS_RUSTBORO",
   "region_map_section": "MAPSEC_MAUVILLE_CITY",
@@ -300,5 +299,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "MauvilleCity_EventScript_GameCornerSign"
     }
-  ]
+  ],
+  "game_version": "hns"
 }
