@@ -7408,6 +7408,10 @@ static inline uq4_12_t GetTargetDamageModifier(struct BattleContext *ctx)
 {
     if (IsDoubleBattle())
     {
+        // Gen 3: only a move that hits both foes is halved. A move that hits the whole
+        // field (Earthquake, Surf, Explosion ...) never is, also with one battler missing.
+        if (B_MULTIPLE_TARGETS_DMG < GEN_4 && GetBattlerMoveTargetType(ctx->battlerAtk, ctx->move) == TARGET_FOES_AND_ALLY)
+            return UQ_4_12(1.0);
         if (GetMoveTargetCount(ctx) == 2)
             return B_MULTIPLE_TARGETS_DMG >= GEN_4 ? UQ_4_12(0.75) : UQ_4_12(0.5);
         else if (GetMoveTargetCount(ctx) >= 3)
