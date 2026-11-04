@@ -17,10 +17,11 @@ BlackthornCity_PokemonCenter_EventScript_Twin::
 
 BlackthornCity_PokemonCenter1FGentlemanText:
 #if GERMAN
-	.string "Tief im Inneren des fernen Indigo\n"
-	.string "Plateaus befindet sich die Pokémon Liga.\p"
-	.string "Die fähigsten Trainer des ganzen Landes\n"
-	.string "kommen dort zusammen!$"
+	.string "Tief im Inneren des fernen\n"
+	.string "Indigo Plateaus befindet sich die\l"
+	.string "Pokémon Liga.\p"
+	.string "Die fähigsten Trainer des ganzen\n"
+	.string "Landes kommen dort zusammen!$"
 #else
 	.string "Deep inside far-off INDIGO\n"
 	.string "PLATEAU is the POKéMON LEAGUE.\p"

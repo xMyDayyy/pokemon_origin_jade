@@ -2814,6 +2814,14 @@ dated 2026-10-10 or later were decided directly.
   Crystal, the own texts and a few older system texts that differ from
   the official ones are on the owner's approval list of that round. The
   built ROM still has the same 35 exact lines over 208 px.
+  On 2026-11-04 (owner: new line breaks by the rules, words unchanged)
+  these 35 lines were re-wrapped (28 Johto, 1 Kanto, 6 English lines on
+  the locked Sinjoh and Alola maps), and two lines with a placeholder that
+  `tools/check_game_text.py` measures exactly as well (Slateport's Berry
+  Powder exchange, 227 px with "Energiestaub"; a locked Sinjoh text);
+  `check_text_width.py --list` names no line over 208 px now. Battle
+  messages are unchanged in this round ("von das gegnerische ..." is an
+  open point for the owner).
 - **O-013** Resolved 2026-10-15 (D-028).
 - **O-014** Resolved 2026-10-15: Silver's daily battle (D-028), gym rematches
   and Janina in Fuchsia (D-032). The signposts and the Dojo VIP room stay off.

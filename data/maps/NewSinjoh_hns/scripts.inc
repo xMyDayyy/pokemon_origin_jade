@@ -95,8 +95,8 @@ NewSinjoh_MilkMan_text_BuyMilk:
 	.string "¥500.$"
 
 NewSinjoh_MilkMan_GotMilk:
-	.string "Here ya go!\n"
-	.string "It's fortified with what the world wants.$"
+	.string "Here ya go! It's fortified with what\n"
+	.string "the world wants.$"
 
 NewSinjoh_MilkMan_NoMoney:
 	.string "Sorry.\n"

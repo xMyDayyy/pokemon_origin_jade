@@ -1291,9 +1291,10 @@ NewBarkTown_Lab_Text_ElmGiveMasterBall1:
 NewBarkTown_Lab_Text_ElmGiveMasterBall2:
 #if GERMAN
 	.string "Das ist ein Meisterball!\p"
-	.string "Egal, mit welchem Pokémon du es auch zu\n"
-	.string "tun hast, mit diesem wertvollen Pokéball\l"
-	.string "gelingt es dir garantiert, es zu fangen!\p"
+	.string "Egal, mit welchem Pokémon du es auch\n"
+	.string "zu tun hast, mit diesem wertvollen\l"
+	.string "Pokéball gelingt es dir garantiert,\l"
+	.string "es zu fangen!\p"
 	.string "Meisterbälle werden angeblich exklusiv\n"
 	.string "für herausragende Leistungen im Feld\l"
 	.string "der Pokémon-Forschung ausgegeben…\p"

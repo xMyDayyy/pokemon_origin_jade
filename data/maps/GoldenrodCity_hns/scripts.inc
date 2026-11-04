@@ -384,7 +384,8 @@ GoldenrodCity_Text_Youngster1:
 GoldenrodCity_Text_CooltrainerF1:
 #if GERMAN
 	.string "Hat sich dieser Mann in Schwarz etwa\n"
-	.string "als Mitglied von Team Rocket verkleidet?\l"
+	.string "als Mitglied von Team Rocket\l"
+	.string "verkleidet?\l"
 	.string "Was ist das denn für ein Widerling?$"
 #else
 	.string "Is that man in black dressed up\n"

@@ -42,9 +42,9 @@ Route47_EventScript_Camper::
 
 Route47_Text_CamperSeen::
 #if GERMAN
-	.string "Wir haben’s nicht so mit Menschenmengen\n"
-	.string "und zelten daher lieber im Freien.\l"
-	.string "Geht es dir etwa genauso?$"
+	.string "Wir haben’s nicht so mit\n"
+	.string "Menschenmengen und zelten daher lieber\l"
+	.string "im Freien. Geht es dir etwa genauso?$"
 #else
 	.string "I'm not good with large crowds, so\n"
 	.string "I'm camping out here with my\l"

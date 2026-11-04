@@ -110,8 +110,8 @@ MountMortar4_Text_KiyoGotTyrogue:
 	.string "Zieht man es auf, entwickelt es sich\n"
 	.string "angeblich zu einem mächtigen Pokémon!\p"
 	.string "Also hergehört! Streng dich an!\n"
-	.string "Ich setze jetzt auch mein Training fort.\l"
-	.string "Hau rein!$"
+	.string "Ich setze jetzt auch mein Training\l"
+	.string "fort. Hau rein!$"
 #else
 	.string "TYROGUE is a FIGHTING-type.\p"
 	.string "It evolves into a tougher\n"

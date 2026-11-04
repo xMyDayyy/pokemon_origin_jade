@@ -1170,8 +1170,8 @@ SinjohRuins_Lab_Text_PlayFlute:
 
 SinjohRuins_Lab_Text_DropedItem:
 #if GERMAN
-	.string "Das Königliche {STR_VAR_1} ließ ein Item\n"
-	.string "fallen…$"
+	.string "Das Königliche {STR_VAR_1} ließ\n"
+	.string "ein Item fallen…$"
 #else
 	.string "The NOBLE {STR_VAR_1} dropped\n"
 	.string "an item...$"

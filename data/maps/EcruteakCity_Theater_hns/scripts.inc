@@ -534,8 +534,8 @@ EcruteakCity_Theater_Text_SurfGuyAfter:
 	.string "herausragende Pokémon-Trainer!\p"
 	.string "Sie stellen ihre Kampffähigkeiten bloß\n"
 	.string "nicht so oft zur Schau…\p"
-	.string "Aber wenn die Kimono-Girls richtig Ernst\n"
-	.string "machen, bleibt kein Auge trocken!\p"
+	.string "Aber wenn die Kimono-Girls richtig\n"
+	.string "Ernst machen, bleibt kein Auge trocken!\p"
 	.string "Du wirst auch deine Probleme damit\n"
 	.string "haben, sie zu besiegen…$"
 #else
@@ -1175,8 +1175,9 @@ EcruteakCity_Theater_Text_ZukiSeen:
 	.string "nicht zum Sieg!\p"
 	.string "Ihr müsst auch genau wissen, wie Ihr\n"
 	.string "Euer Pokémon-Team anzupacken habt!\p"
-	.string "Und nun lasst mich bitte überprüfen, ob\n"
-	.string "Ihr diese Fähigkeit tatsächlich besitzt!\p"
+	.string "Und nun lasst mich bitte\n"
+	.string "überprüfen, ob Ihr diese Fähigkeit\l"
+	.string "tatsächlich besitzt!\p"
 	.string "Seid Ihr bereit?$"
 #else
 	.string "Welcome. My name is ZUKI.\n"
@@ -1198,8 +1199,9 @@ EcruteakCity_Theater_Text_ZukiSeenAgain:
 #if GERMAN
 	.string "Ihr müsst genau wissen, wie Ihr Euer\n"
 	.string "Pokémon-Team anzupacken habt!\p"
-	.string "Und nun lasst mich bitte überprüfen, ob\n"
-	.string "Ihr diese Fähigkeit tatsächlich besitzt!\p"
+	.string "Und nun lasst mich bitte\n"
+	.string "überprüfen, ob Ihr diese Fähigkeit\l"
+	.string "tatsächlich besitzt!\p"
 	.string "Seid Ihr bereit?$"
 #else
 	.string "I will test you to see if you are\n"
@@ -1323,8 +1325,8 @@ EcruteakCity_Theater_Text_ZukiDone:
 EcruteakCity_Theater_Text_GirlHooh:
 #if GERMAN
 	.string "Hört mir alle zu!\p"
-	.string "Der Schatten eines riesigen Pokémon ist\n"
-	.string "über dem Glockenturm erschienen!\p"
+	.string "Der Schatten eines riesigen Pokémon\n"
+	.string "ist über dem Glockenturm erschienen!\p"
 	.string "Könnte das etwa…$"
 #else
 	.string "Big sisters! I just saw the\n"

@@ -212,8 +212,9 @@ VioletCity_PokeCenter_Text_BooksAreGreat:
 
 VioletCity_PokeCenter_Text_MobileAdapter:
 #if GERMAN
-	.string "Ich habe eben gegen einen Freund in\n"
-	.string "Anemonia City gekämpft, über Fernkampf.\p"
+	.string "Ich habe eben gegen einen Freund\n"
+	.string "in Anemonia City gekämpft,\l"
+	.string "über Fernkampf.\p"
 	.string "Mit der richtigen Verbindung erreichst\n"
 	.string "du jemanden noch so weit weg.$"
 #else

@@ -572,8 +572,8 @@ Alola_Melemele_SamsonOakVilla_Dialogue_Text_0:
 	.string "but you should take it.$"
 
 Alola_Melemele_SamsonOakVilla_Dialogue_Text_1:
-	.string "The ALOLA ISLES must truly be special if\n"
-	.string "the Guardians themselves visited!$"
+	.string "The ALOLA ISLES must truly be special\n"
+	.string "if the Guardians themselves visited!$"
 
 Alola_Melemele_SamsonOakVilla_Dialogue_Text_2:
 	.string "Thanks for your help with my research,\n"
@@ -610,8 +610,8 @@ Alola_Melemele_SamsonOakVilla_Dialogue_Text_6:
 	.string "ISLES and the ALOLA region…\p"
 	.string "It seems the Tapu Guardians themselves\n"
 	.string "have been visiting the ISLES.\p"
-	.string "If you see them fly over the ISLES, head\n"
-	.string "to the totems… They may be there \l"
+	.string "If you see them fly over the ISLES,\n"
+	.string "head to the totems… They may be there\l"
 	.string "waiting for you!$"
 
 Alola_Melemele_SamsonOakVilla_Dialogue_Text_7:
@@ -764,8 +764,8 @@ Alola_Melemele_SamsonOakVilla_Dialogue_Text_30:
 	.string "just yet.\p"
 	.string "I've heard ULA'ULA ISLE has {COLOR RED}6 {COLOR DARK_GRAY}Alolan\n"
 	.string "variants for you to find…\p"
-	.string "{COLOR RED}VULPIX{COLOR DARK_GRAY}, {COLOR RED}NINETALES{COLOR DARK_GRAY}, {COLOR RED}SANDSHREW{COLOR DARK_GRAY}, {COLOR RED}SANDSLASH{COLOR DARK_GRAY},\n"
-	.string "{COLOR RED}GRIMER{COLOR DARK_GRAY}, and {COLOR RED}MUK{COLOR DARK_GRAY}.\p"
+	.string "{COLOR RED}VULPIX{COLOR DARK_GRAY}, {COLOR RED}NINETALES{COLOR DARK_GRAY}, {COLOR RED}SANDSHREW{COLOR DARK_GRAY},\n"
+	.string "{COLOR RED}SANDSLASH{COLOR DARK_GRAY}, {COLOR RED}GRIMER{COLOR DARK_GRAY}, and {COLOR RED}MUK{COLOR DARK_GRAY}.\p"
 	.string "Keep on searching and come back when\n"
 	.string "you've caught them all!$"
 

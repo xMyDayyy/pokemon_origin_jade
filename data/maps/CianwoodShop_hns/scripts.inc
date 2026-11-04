@@ -29,9 +29,9 @@ CianwoodCity_EventScript_PharmacistAfter::
 CianwoodCity_Text_PharmacistGivePotion:
 #if GERMAN
 	.string "Hm? Medizin willst du von mir?\p"
-	.string "Dein Pkmn-Team wirkt jetzt nicht gerade\n"
-	.string "schwerverletzt oder krank auf mich…\l"
-	.string "Wo drückt denn der Schuh?\p"
+	.string "Dein Pkmn-Team wirkt jetzt nicht\n"
+	.string "gerade schwerverletzt oder krank auf\l"
+	.string "mich… Wo drückt denn der Schuh?\p"
 	.string "… … …\p"
 	.string "Ach so, dann geht es hier also um das\n"
 	.string "Pokémon vom Leuchtturm! Na klar!\p"

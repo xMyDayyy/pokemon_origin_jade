@@ -1743,8 +1743,8 @@ SlateportCity_Text_ExchangeWhatWithIt:
 
 SlateportCity_Text_ExchangeBerryPowderForItem:
 #if GERMAN
-	.string "Gut, ich gebe dir {STR_VAR_1} im Austausch\n"
-	.string "für deinen\lBeerenpuder!$"
+	.string "Gut, ich gebe dir {STR_VAR_1}\n"
+	.string "im Austausch für deinen Beerenpuder!$"
 #else
 	.string "Okay, you want to exchange your\n"
 	.string "BERRY POWDER for one {STR_VAR_1}?$"

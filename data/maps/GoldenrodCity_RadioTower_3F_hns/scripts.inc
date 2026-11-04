@@ -238,9 +238,9 @@ GoldenrodCity_RadioTower_3F_Text_CooltrainerFHeroGift:
 
 GoldenrodCity_RadioTower_3F_Text_CooltrainerFSunnyDay:
 #if GERMAN
-	.string "Diese TM enthält die Attacke Sonnentag.\n"
-	.string "Mit ihr kannst du temporär Attacken\l"
-	.string "vom Typ Feuer verstärken.$"
+	.string "Diese TM enthält die Attacke\n"
+	.string "Sonnentag. Mit ihr kannst du temporär\l"
+	.string "Attacken vom Typ Feuer verstärken.$"
 #else
 	.string "It's SUNNY DAY.\p"
 	.string "It powers up fire-type moves\n"
@@ -299,8 +299,8 @@ GoldenrodCity_RadioTower_3F_Text_GruntM8Beaten:
 
 GoldenrodCity_RadioTower_3F_Text_GruntM8After:
 #if GERMAN
-	.string "Verlieren dagegen ist ein mieses Gefühl!\n"
-	.string "Ach, verflixt!\l"
+	.string "Verlieren dagegen ist ein mieses\n"
+	.string "Gefühl! Ach, verflixt!\l"
 	.string "Ich hasse unfähige Pokémon!$"
 #else
 	.string "I feel lousy over losing!\p"
@@ -309,8 +309,8 @@ GoldenrodCity_RadioTower_3F_Text_GruntM8After:
 
 GoldenrodCity_RadioTower_3F_Text_GruntM9Seen:
 #if GERMAN
-	.string "Wieso steht die Tür offen? Was geht hier\n"
-	.string "vor? Hast du was damit zu tun?$"
+	.string "Wieso steht die Tür offen? Was geht\n"
+	.string "hier vor? Hast du was damit zu tun?$"
 #else
 	.string "Why did the shutter open? Did you\n"
 	.string "have something to do with this?$"

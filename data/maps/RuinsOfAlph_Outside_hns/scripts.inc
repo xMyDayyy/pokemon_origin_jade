@@ -91,17 +91,18 @@ RuinsOfAlph_Outside_EventScript_Sign3::
 
 RuinsOfAlph_Outside_Text_Scientist:
 #if GERMAN
-	.string "Hm?\n"
-	.string "Oh, ist das etwa ein Pokédex?\l"
-	.string "Dürfte ich da mal einen Blick reinwerfen?\p"
+	.string "Hm? Oh, ist das etwa ein Pokédex?\n"
+	.string "Dürfte ich da mal einen Blick\l"
+	.string "reinwerfen?\p"
 	.string "Ist ja ein Ding. \n"
 	.string "So viele unterschiedliche Pokémon…\p"
 	.string "Unglaublich!\p"
 	.string "Was ist das denn für ein Pokémon?\p"
 	.string "Es sieht aus wie die merkwürdigen\n"
 	.string "Zeichen an den Wänden der Ruinen.\p"
-	.string "Falls diese Zeichen tatsächlich Pokémon\n"
-	.string "sind, dann gibt es noch viel mehr davon.\p"
+	.string "Falls diese Zeichen tatsächlich\n"
+	.string "Pokémon sind, dann gibt es noch\l"
+	.string "viel mehr davon.\p"
 	.string "Ich weiß!\n"
 	.string "Lass mich deinen Pokédex erweitern.\l"
 	.string "Mir nach!$"

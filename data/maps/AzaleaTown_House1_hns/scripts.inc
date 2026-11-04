@@ -114,9 +114,9 @@ CharcoalKiln_Text_Boss3:
 
 CharcoalKiln_Text_Boss4:
 #if GERMAN
-	.string "Du hast Team Rocket vertrieben und bist\n"
-	.string "alleine in den Steineichenwald gegangen.\l"
-	.string "Du hast Mumm! Das gefällt mir!\p"
+	.string "Du hast Team Rocket vertrieben und\n"
+	.string "bist alleine in den Steineichenwald\l"
+	.string "gegangen. Du hast Mumm! Das gefällt mir!\p"
 	.string "Was sagst du, würdest du nicht gerne\n"
 	.string "bei mir in die Lehre gehen?$"
 #else

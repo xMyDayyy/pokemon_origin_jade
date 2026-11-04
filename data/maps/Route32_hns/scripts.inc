@@ -396,8 +396,9 @@ Route32_Text_CooltrainerM_VioletGym:
 Route32_Text_CooltrainerM_HaveThisSeed:
 #if GERMAN
 	.string "Du hast einige gute Pokémon dabei.\n"
-	.string "Sie sind bestimmt deshalb so gut, weil du\l"
-	.string "sie in Viola City so hart trainiert hast.\p"
+	.string "Sie sind bestimmt deshalb so gut,\l"
+	.string "weil du sie in Viola City so hart\l"
+	.string "trainiert hast.\p"
 	.string "Die Pokémon-Arena war sicher ganz\n"
 	.string "besonders gutes Training für sie.\p"
 	.string "Hier, das ist für dich. Als kleines\n"
