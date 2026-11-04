@@ -518,6 +518,11 @@ CUT_LABELS_B = CUT_LABELS_ALWAYS | {
     "MtSilver_1F_WaterfallRoom_Scientist_Scene",
     # The Aurora Ticket comes after the first trip to Hoenn.
     "OlivineCity_EventScript_EonTicketWomanChamp",
+    # Baoba's quest wants Hoenn Pokemon; his call in Rustboro City starts it.
+    "SafariZoneGate_SafariZoneEntrance_EventScript_BaobaBeach",
+    "SafariZoneGate_SafariZoneEntrance_EventScript_BaobaBrush",
+    "SafariZoneGate_SafariZoneEntrance_EventScript_BaobaMountain",
+    "SafariZoneGate_SafariZoneEntrance_EventScript_BaobaCave",
 }
 # Items state B's run finds that a finished run no longer has: item -> reason.
 SKIP_ITEMS_B = {
@@ -680,7 +685,6 @@ UNTOUCHED_B = dict(UNTOUCHED, **{
     "VAR_TOHJO_FALLS_GIOVANNI_STATE": "Celebi's scene at Tohjo Falls, reset on every visit without Celebi",
     "VAR_WHICH_FOSSIL_REVIVED": "only read while a fossil is being revived",
     "FLAG_MINTS_DISABLED": "challenge option tx_Mode_Mints; the flower shop clears it only after the Hoenn title",
-    "VAR_BAOBA_QUEST_STATE": "Baoba's Safari Zone quest started only in FuchsiaCity_hns, a removed map",
 })
 
 DROP_FLAGS_B = dict(DROP_FLAGS)

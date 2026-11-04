@@ -26,6 +26,9 @@ RustboroCity_EventScript_HideMapNamePopup::
 
 RustboroCity_OnFrame:
 	map_script_2 VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_ScientistAddMatchCall
+#if IS_HNS
+	map_script_2 VAR_BAOBA_QUEST_STATE, 0, RustboroCity_EventScript_BaobaQuestCall
+#endif
 	.2byte 0
 
 RustboroCity_EventScript_ScientistAddMatchCall::
@@ -79,6 +82,52 @@ RustboroCity_EventScript_SkipScientistAddMatchCall::
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	releaseall
 	end
+
+@ Origin Jade: starts Baoba's quest (HnS: his call near Fuchsia City). The Pokemon he
+@ wants to see live only in Hoenn; he checks them at Johto's Safari Zone gate.
+RustboroCity_EventScript_BaobaQuestCall::
+	lock
+	setspeaker OlivineCity_Text_BaobaName
+	pokenavcall RustboroCity_Text_BaobaQuestCall
+	waitmessage
+	delay 30
+	setvar VAR_BAOBA_QUEST_STATE, 1
+	release
+	end
+
+RustboroCity_Text_BaobaQuestCall:
+#if GERMAN
+	.string "Hallo, {PLAYER}! Ich bin’s,\n"
+	.string "Baoba!\p"
+	.string "Etwas Schreckliches ist passiert!\n"
+	.string "Devon plant in Hoenn eine eigene\l"
+	.string "Safari-Zone!\p"
+	.string "Und anscheinend gibt es dort neue,\n"
+	.string "exotische Pokémon!\p"
+	.string "Das schadet meinem Geschäft!\p"
+	.string "{PLAYER}, fang in Hoenn ein paar\n"
+	.string "Pokémon und zeig sie mir in\l"
+	.string "meiner Safari-Zone.\p"
+	.string "Ich muss über diese “exotischen”\n"
+	.string "Pokémon Bescheid wissen.\p"
+	.string "Bitte {PLAYER}, mein Geschäft\n"
+	.string "hängt von dir ab!$"
+#else
+	.string "{PLAYER}!\p"
+	.string "This is WARDEN BAOBA.\p"
+	.string "Something awful has happened!\n"
+	.string "DEVON is planning a SAFARI ZONE\l"
+	.string "of its own in HOENN!\p"
+	.string "And apparently it has exotic new\n"
+	.string "POKéMON!\p"
+	.string "It's hurting my business!\p"
+	.string "{PLAYER}, catch some POKéMON in\n"
+	.string "HOENN and show them to me at my\l"
+	.string "SAFARI ZONE. I must know about\l"
+	.string "these 'exotic' POKéMON.\p"
+	.string "Please {PLAYER}, my business\n"
+	.string "depends on you!$"
+#endif
 #endif
 
 RustboroCity_EventScript_PleaseSelectPokenav::

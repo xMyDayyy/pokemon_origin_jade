@@ -153,6 +153,10 @@ SafariZoneGate_SafariZoneEntrance_EventScript_BaobaCave::
 	closemessage
 	hidemoneybox
 	setvar VAR_BAOBA_QUEST_STATE, 5
+	@ Origin Jade: the quest opens the expansion (HnS: Baoba's call on Route 27).
+	setflag FLAG_SAFARI_ZONE_WEST_EXPANSION
+	msgbox SafariZoneGate_SafariZoneEntrance_Text_BaobaExpansion, MSGBOX_DEFAULT
+	closemessage
 	release
 	end
 
@@ -185,14 +189,13 @@ SafariZoneGate_SafariZoneEntrance_Text_BaobaBeachDone:
 	.string "Danke, {PLAYER}!\n"
 	.string "Hier, nimm dieses Geld für ein\l"
 	.string "höheres Safari-Level und zeig mir\l"
-	.string "als Nächstes ein exotisches Pokémon\l"
-	.string "aus dem Buschgebiet!$"
+	.string "als Nächstes ein Tropius, Absol\l"
+	.string "oder Formeo!$"
 #else
 	.string "Thank you, {PLAYER}!\n"
 	.string "Here, take this money to upgrade\l"
-	.string "your SAFARI LEVEL and show me an\l"
-	.string "exotic POKéMON from the BRUSH area\l"
-	.string "next!$"
+	.string "your SAFARI LEVEL and show me a\l"
+	.string "TROPIUS, ABSOL or CASTFORM next!$"
 #endif
 	
 SafariZoneGate_SafariZoneEntrance_Text_BaobaBrushDone:
@@ -200,14 +203,13 @@ SafariZoneGate_SafariZoneEntrance_Text_BaobaBrushDone:
 	.string "Danke, {PLAYER}!\n"
 	.string "Hier, nimm dieses Geld für ein\l"
 	.string "höheres Safari-Level und zeig mir\l"
-	.string "als Nächstes ein exotisches Pokémon\l"
-	.string "aus dem Berggebiet!$"
+	.string "als Nächstes ein Camaub, Puppance\l"
+	.string "oder Schmerbe!$"
 #else
 	.string "Thank you, {PLAYER}!\n"
 	.string "Here, take this money to upgrade\l"
-	.string "your SAFARI LEVEL and show me an\l"
-	.string "exotic POKéMON from the MOUNTAIN\l"
-	.string "area next!$"
+	.string "your SAFARI LEVEL and show me a\l"
+	.string "NUMEL, BALTOY or BARBOACH next!$"
 #endif
 
 SafariZoneGate_SafariZoneEntrance_Text_BaobaMountainDone:
@@ -215,14 +217,13 @@ SafariZoneGate_SafariZoneEntrance_Text_BaobaMountainDone:
 	.string "Danke, {PLAYER}!\n"
 	.string "Hier, nimm dieses Geld für ein\l"
 	.string "höheres Safari-Level und zeig mir\l"
-	.string "als Nächstes ein exotisches Pokémon\l"
-	.string "aus dem Höhlengebiet!$"
+	.string "als Nächstes ein Flurmel, Nasgnet\l"
+	.string "oder Kindwurm!$"
 #else
 	.string "Thank you, {PLAYER}!\n"
 	.string "Here, take this money to upgrade\l"
-	.string "your SAFARI LEVEL and show me an\l"
-	.string "exotic POKéMON from the CAVE area\l"
-	.string "next!$"
+	.string "your SAFARI LEVEL and show me a\l"
+	.string "WHISMUR, NOSEPASS or BAGON next!$"
 #endif
 
 SafariZoneGate_SafariZoneEntrance_Text_BaobaCaveDone:
@@ -242,6 +243,19 @@ SafariZoneGate_SafariZoneEntrance_Text_BaobaCaveDone:
 	.string "reward for your troubles.$"
 #endif
 
+SafariZoneGate_SafariZoneEntrance_Text_BaobaExpansion:
+#if GERMAN
+	.string "Ach ja! Dank dir konnte ich die\n"
+	.string "Safari-Zone vergrößern!\p"
+	.string "Die Bauarbeiten sind abgeschlossen.\n"
+	.string "Schau dich ruhig um!$"
+#else
+	.string "Oh, right! Thanks to you, I could\n"
+	.string "expand the SAFARI ZONE!\p"
+	.string "The construction work is done.\n"
+	.string "Go have a look around!$"
+#endif
+
 SafariZoneGate_SafariZoneEntrance_Text_BaobaWrong:
 #if GERMAN
 	.string "Das kann nicht stimmen!$"
@@ -253,52 +267,52 @@ SafariZoneGate_SafariZoneEntrance_Text_BaobaBeach:
 #if GERMAN
 	.string "Ah, {PLAYER}!\p"
 	.string "Hast du mir ein exotisches Pokémon\n"
-	.string "aus dem Strandgebiet der Safari-Zone\l"
-	.string "von Fuchsania City mitgebracht?$"
+	.string "aus Hoenn mitgebracht? Etwa ein\l"
+	.string "Loturzel, Makuhita oder Tuska?$"
 #else
 	.string "Ah, {PLAYER}!\p"
 	.string "Did you bring an exotic POKéMON\n"
-	.string "from the BEACH area of the FUCHSIA\l"
-	.string "SAFARI ZONE to show me?$"
+	.string "from HOENN to show me? Maybe a\l"
+	.string "LOTAD, MAKUHITA or CACNEA?$"
 #endif
 
 SafariZoneGate_SafariZoneEntrance_Text_BaobaBrush:
 #if GERMAN
 	.string "Ah, {PLAYER}!\p"
 	.string "Hast du mir ein exotisches Pokémon\n"
-	.string "aus dem Buschgebiet der Safari-Zone\l"
-	.string "von Fuchsania City mitgebracht?$"
+	.string "aus Hoenn mitgebracht? Etwa ein\l"
+	.string "Tropius, Absol oder Formeo?$"
 #else
 	.string "Ah, {PLAYER}!\p"
 	.string "Did you bring an exotic POKéMON\n"
-	.string "from the BRUSH area of the FUCHSIA\l"
-	.string "SAFARI ZONE to show me?$"
+	.string "from HOENN to show me? Maybe a\l"
+	.string "TROPIUS, ABSOL or CASTFORM?$"
 #endif
 
 SafariZoneGate_SafariZoneEntrance_Text_BaobaMountain:
 #if GERMAN
 	.string "Ah, {PLAYER}!\p"
 	.string "Hast du mir ein exotisches Pokémon\n"
-	.string "aus dem Berggebiet der Safari-Zone\l"
-	.string "von Fuchsania City mitgebracht?$"
+	.string "aus Hoenn mitgebracht? Etwa ein\l"
+	.string "Camaub, Puppance oder Schmerbe?$"
 #else
 	.string "Ah, {PLAYER}!\p"
 	.string "Did you bring an exotic POKéMON\n"
-	.string "from the MOUNTAIN area of the\l"
-	.string "FUCHSIA SAFARI ZONE to show me?$"
+	.string "from HOENN to show me? Maybe a\l"
+	.string "NUMEL, BALTOY or BARBOACH?$"
 #endif
 
 SafariZoneGate_SafariZoneEntrance_Text_BaobaCave:
 #if GERMAN
 	.string "Ah, {PLAYER}!\p"
 	.string "Hast du mir ein exotisches Pokémon\n"
-	.string "aus dem Höhlengebiet der Safari-Zone\l"
-	.string "von Fuchsania City mitgebracht?$"
+	.string "aus Hoenn mitgebracht? Etwa ein\l"
+	.string "Flurmel, Nasgnet oder Kindwurm?$"
 #else
 	.string "Ah, {PLAYER}!\p"
 	.string "Did you bring an exotic POKéMON\n"
-	.string "from the CAVE area of the FUCHSIA\l"
-	.string "SAFARI ZONE to show me?$"
+	.string "from HOENN to show me? Maybe a\l"
+	.string "WHISMUR, NOSEPASS or BAGON?$"
 #endif
 
 SafariZoneGate_SafariZoneEntrance_Text_BaobaDeclined:
