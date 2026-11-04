@@ -385,10 +385,6 @@ PetalburgCity_EventScript_ShowGymToPlayer::
 	closemessage
 	applymovement LOCALID_GYM_BOY, PetalburgCity_Movement_BoyWalkAway
 	waitmovement 0
-#if IS_HNS
-	@ Origin Jade: 1 = gym boy led the player to the gym; the scene runs once.
-	setvar VAR_PETALBURG_CITY_STATE, 1
-#endif
 	fadedefaultbgm
 	releaseall
 	end
