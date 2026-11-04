@@ -31,4 +31,4 @@ Aufruf mit `python3 -I tools/<name>`:
 - **Karten:** Bearbeitung in Porymap. Stillgelegte Karten (`game_version` mit `_retired`: Sevii-Inseln, Smaragd-Kampfzone, Kampfzelte, Smaragd-Trainerberg) bleiben im Repo, weil der Code sie braucht. Sinjoh und Alola sind gesperrt.
 - **Commits:** klein und auf Deutsch.
 
-Die alte Doku (Entscheidungslog, Audit, Testsuite) liegt auf dem Branch `vor-aufraeumen`.
+Die alte Doku (Entscheidungslog, Audit, Testsuite) liegt auf dem Branch `alt`.
