@@ -1,6 +1,6 @@
 # Origin Jade - beta readiness
 
-State of 2026-11-03: rounds 2 and 3 on top of the owner's map commits
+State of 2026-11-04: rounds 2 and 3 on top of the owner's map commits
 `06ea236bdb` and `ad4a8db368` (on `balancing` since 2026-11-02, after the
 198 commits of the first round): the branch `runde23` with round 2 (62
 commits: the seven packages that implement the owner's answers of
@@ -14,7 +14,16 @@ item can be obtained, D-059; the owner's answers of 2026-11-03; tip of
 the code `851aa886e2`) and its documentation commit; then round 5 on
 top of `r4-items` (`d865587460`): the branch `r5-text` with 10 commits
 (official German texts word for word, owner rule 2026-11-03; 8 text
-commits, one Battle Frontier text fix and one documentation commit). The sources are the
+commits, one Battle Frontier text fix and one documentation commit); then
+round 6 on top of `r5-text` (`37fa894c9a`): the branch `r6c` with 10
+commits (the owner's requests of 2026-11-03: the Kampfzone only after the
+Hoenn title, official Pokedex ratings, Suicune on Route 42's main path,
+Slateport's Berry Powder man without the item randomizer and the debug
+switch "Instant Tr. Win"; his decisions of 2026-11-04: the Route 42
+sighting at both ends of the route and a safety net on Route 36, and no
+Sudowoodo in the Kampfzone; 7 commits of three packages, the two
+follow-ups and one documentation commit; tip of the code `a9cc1fed6f`).
+The sources are the
 audit's finding list (297 findings, each with a status; checked again
 against rounds 2 and 3: 149 fixed, 78 open or partly fixed), the owner's
 answers, the reports of the packages, the per-commit build log
@@ -25,9 +34,18 @@ on the documentation tip; for round 4 the per-commit log `percommit_r4`
 (15 of 15), the checks on its tip, a build from scratch, the test run
 `tests_r4` and the audit's item check (`check_items.py`, outside the
 repository); for round 5 the per-commit log `percommit_r5` (9 of 9) and
-the text checks on its tip. The state of round 4 alone, of rounds 2 and
-3 alone, of round 2 before the rebase and of 2026-10-31 (`b022af5623`) is
-in `TESTS.md`.
+the text checks on its tip; for round 6 the per-commit log
+`percommit_r6` (8 of 8), the end checks on `9734e9f5ca` against
+`r5-text`, a build from scratch, a release build and the test run
+`tests_r6`, and for the Route 42 follow-up the per-commit log
+`percommit_r6b` (2 of 2), its checks against `r6`, a walk over Route
+42's passable tiles and the test run `tests_r6b`, and for the Sudowoodo
+follow-up the per-commit log `percommit_r6c` (3 of 3 after
+`9734e9f5ca`), the end checks on `a9cc1fed6f` against `0d4d8968ad`, a
+build from scratch, a release build and the test run `tests_r6c`. The
+state of round 5
+alone, of round 4 alone, of rounds 2 and 3 alone, of round 2 before the
+rebase and of 2026-10-31 (`b022af5623`) is in `TESTS.md`.
 `docs/origin_jade/CHANGELOG.md` lists what changed,
 `docs/origin_jade/PATCHES.md` how the series was made and verified.
 
@@ -96,9 +114,25 @@ in `TESTS.md`.
   show's line breaks, a broken word, a Union Cave line). Round 2's
   smoothings are reverted. 21 deviations and 135 own texts wait for the
   owner's approval. Texts only; no code, flag or save change.
+- **Round 6** builds the owner's requests of 2026-11-03: the Kampfzone is
+  post-game content, reachable only after the Hoenn title (ship menus,
+  Fly and its icon, Elm's line; D-029, D-030); every Pokedex rating text
+  whose English is an official line has the official German (O-038);
+  Suicune's Route 42 sighting sits on the path from the Ecruteak gate
+  and (since 2026-11-04) on the way from Mahogany, so every way onto the
+  route crosses it, armed by the Burned Tower release; after Pryce,
+  Route 36 arms even without it (A54, D-038); the Kampfzone's
+  Sudowoodo is gone (owner 2026-11-04, D-039: no SquirtBottle, no
+  battle; the Artisan Cave stays open without any item, and a save made
+  beside the tree with an older build loses it on Continue); Slateport's
+  Berry Powder man skips the item randomizer (O-057); the debug switch
+  "Instant Tr. Win" wins trainer battles at once with the normal EXP and
+  the texts before and after the battle (D-055). No save layout change,
+  no new flag or var. The three HnS battle tents in the Route 40
+  courtyard still give Battle Points before the Johto title (O-060).
 - **Nothing was played.** Every fix is checked statically or by tool; the
   emulator test of the three test steps (play A to Z, balancing, reach
-  everything), of the story packages and of rounds 2 to 5 (list below)
+  everything), of the story packages and of rounds 2 to 6 (list below)
   is still to do.
 - So the build fits a **closed beta in German** (the owner's plan: German
   first, English during the beta; release planned for Sunday 2026-11-15)
@@ -113,18 +147,18 @@ in `TESTS.md`.
 
 | # | Criterion | Verdict | Evidence |
 |---:|---|---|---|
-| 1 | Build is reproducible | met (build from scratch of `851aa886e2`) | Round 5: 10 of 10 commits of `r5-text` built with their final ids (`make` ok, `check_flags` 0, both debug headers up to date, `percommit_r5`); texts only. 2026-11-03, round 4: `make -j2` of the code tip `851aa886e2` in a new worktree compiles all 398 C files, exit 0, ROM SHA-1 `8fe887d805f3db1d350df34391a5d4488830873c`, the same as the incremental build of the per-commit run; 15 of 15 commits of round 4 built with their final ids (`make` ok, `check_flags` 0, `percommit_r4`). Rounds 2 and 3: `make` of `61ac7e277d` after removing `build/jade` compiles all 398 C files, exit 0, ROM SHA-1 `6346a2591693e2c99c3f1748b676d0f207afdbef`, the same as the incremental build of the integration run (`integ_r23`). Every commit after the owner's `ad4a8db368` was built with its final id: 73 of 73 (62 of round 2, 5 documentation, 6 of round 3; `make` ok, `check_flags` 0, both debug headers up to date, `percommit_r23`). Before the rebase round 2 had been built the same way on `2f284d83b9` (`percommit_r2`, `r2derest_final`; ROM `9d8271bc…` at the rest tip, without the owner's map commits); round 3 also on its package branch. Earlier states: `b022af5623` `11bec7d4cba038d647668f2f86c68ef3a29eee1f` (also from scratch), `b62f22e381` `5c1c08ae7685bf6073ea20c7f87df981d6488c2a`. Toolchain arm-none-eabi-gcc 13.2.1. |
-| 2 | Release build, debug menus off | met (statically, `851aa886e2`) | Round 4: `make release` of `851aa886e2`, 2026-11-03: exit 0, SHA-1 `a4bb57818d0471f0d805d680541a76d1214f969e`, 111 warnings as before; the debug menu, the debug states and "Even Wild Slots" are not in the release ELF (they are in the beta ELF). Rounds 2 and 3: `make release` of `61ac7e277d`, 2026-11-03: exit 0, SHA-1 `10174fe5187327f5e3cb4bcfe39d7392bb493031`, 111 warnings as before (N-build_tools-4). The overworld debug menu (`Debug_ShowMainMenu`), the debug states (`Debug_SetJohtoTestState`, `Debug_SetHoennTestState`, D-050) and the switch "Even Wild Slots" (`gDebugEvenWildSlots`, D-055) are not in the release ELF (they are in the beta ELF); the battle debug menu's only trigger (Select, `src/battle_controller_player.c`) is compiled out. The sprite visualizer has no caller in the HnS summary screen and is linked in neither build. The release ROM was not started. Earlier: round 2 before the rebase `18eedc2ebb50f9165aaf65ade559a1281e9bd625`, `b022af5623` `34e173bde2dc2b804e1132a60a5675f928dd33b4`. |
-| 3 | No known blocker on the story path Kanto -> Johto title | met (by tool) | `simulate_progress.py` on `851aa886e2` (round 4): Kanto title in wave 50, GS Ball 51, Johto badges 55-91, Johto title 105; `--diff` against the round before its review fixes: no milestone, stop, map, item ball, hidden item, trainer or gift changed. On `61ac7e277d` (`integ_r23`): Kanto title in wave 50, GS Ball 51, Johto badges 55-91, Johto title 105; no stop on the main path, the same waves as on round 2 and on `b022af5623`. `check_maps.py`: 0 findings from "important" up, 88 minor (1125 active maps by its count, see criterion 4; base: 3 critical, 10 important). The two critical findings of the owner's map work (the Trainer Hill entrance's warps to the removed Route 111 warp) are gone with round 3. Base: the simulator stopped in Kanto at the Celadon Game Corner (A01). Story traps A02, A03, A13, A57, A102 and the deep review's state bugs are fixed in the source (statically). |
-| 4 | No known blocker on the story path Johto -> Hoenn title | met (by tool) | Round 4 (`851aa886e2`): Hoenn Ticket in wave 106, Hoenn reached in 108, Hoenn badges 109-127, Hoenn title 137, exit 0; 195 of 1115 active maps unreachable, as before. D-047: the first Johto title sets `VAR_HOENN_TICKET_STATE` 1, Troy hands over the Hoenn Ticket in Oak's lab, both ports sail to Hoenn; since round 2 "Hoenn" stays in the menus until "Graphitport City" can be offered (O-032), so no player is cut off from Hoenn. `simulate_progress.py` without `--hoenn-ticket` on `61ac7e277d` (`integ_r23`): Hoenn Ticket in wave 106, Hoenn reached in 108, Hoenn badges 109-127, Hoenn title 137, exit 0; the Contest Pass now in wave 112 (Verdanturf, before 121 in Lilycove). Unreachable active maps: 195 of 1115 (1125 before round 3: 16 retired, 6 new), all off the story path (Alola, Sinjoh, event islands, secret bases, facility rooms, unused maps). The simulator and `check_maps.py` count active maps differently: the simulator takes every map folder of the build without the 13 link maps (Union Room, Trade Center, Battle Colosseum, Record Corner), `check_maps.py` (1125 in criterion 3, 1135 before round 3) the maps listed in `map_groups.json` with the link maps, which leaves out 3 unused houses; with round 3 both lose the same 16 retired maps and gain the same 6 new ones. None of the scenes ran in an emulator. |
-| 5 | Saves are safe | met (statically), with risks | Round 4 (`851aa886e2`): `check_budget.py` SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1584/1624, PokemonStorage 34144/35712, as before (EWRAM 95.28 %, ROM 77.19 %); 44 flags and one var more in free ids, layout unchanged; `check_save_safety.py` 76 findings (1 important, 3 minor, 72 optional) as before, after the tool learnt that the Mach and Acro Bike are never held together: 61 different key items, at most 60 at a time, for 60 slots (D-059). Rounds 2 and 3: `check_budget.py` on `61ac7e277d`: every save block within its flash space (SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1584/1624 with 40 free since the Day Cares of Kanto and Johto, D-052, PokemonStorage 34144/35712). `STATIC_ASSERT`s pin the layout; `test/save.c` (4 tests) passes. `check_save_safety.py` on the documentation tip: no blocker or critical finding; 1 important (no running clock, mitigated by `5e1b5f870d`, which the tool does not model), 3 minor (one is a false alarm on the Hall of Fame size, two concern the item randomizer's bag pockets), 72 optional, as before rounds 2 and 3; the Key Items pocket holds 58 obtainable key items in 60 slots. New games clear the Nuzlocke area flags. Round 2 changes the layout (SaveBlock3 +576 bytes for two Day Cares); round 3 adds four flags and keeps the layout (the retired Route 111 hill's records stay in SaveBlock3, unused). Saving and loading never ran in an emulator; old saves are out of scope (owner decision). |
-| 6 | No English text on the story path | met (by tool, owner reading open) | Round 5 (`b050d8febc`): `check_game_text.py --english` and `--list` the same as on round 4 apart from line numbers; every changed line sits in a `#if GERMAN` branch except Mom's heal tip in `data/event_scripts.s`, which has no English branch in either build (as before). The tool does not count official English words that German Emerald and FRLG keep ("Bow! Bowwow!" on Route 114, "Space Shuttle" in Pewter's museum); both are on the owner's approval list. Round 4 (`851aa886e2`): `check_game_text.py --english`: Hoenn 0, Johto 23, Kanto 5, shared 97, `src` 11, locked 290, retired 3, the same as before round 4; every new line of round 4 has a German branch (Bill's grandfather's texts, English only in HnS, are new German texts; Brock's line after the Kanto title is new). `check_game_text.py --english` on `61ac7e277d` (`integ_r23`): Hoenn 0, Johto 23 and Kanto 5 (trainer names in upstream capitals that no active script shows, O-066), shared 97 (83 debug texts and 14 battle tent texts marked unused), `src` 11 (5 debug, 4 unused union room texts, 2 credits names); the locked Sinjoh and Alola maps 290, the retired maps 3. Round 2 before round 3: Hoenn 2 (two unreferenced texts in the corridor of Emerald's Slateport tent, German since they moved into Slateport's contest hall, O-065); before round 2: Johto 125, shared 252, Hoenn 7, Kanto 5. Every active map text without a German branch was also read by hand (D-057). The translations that are not from an official German game and the new lines of round 3 (Scott in Slateport, O-070; the Route 121 Safari Zone desk) are drafts for the owner's text round. |
-| 7 | Text fits the message box (208 px) | not met (minor) | Round 5 (`b050d8febc`): `check_text_width.py --list` 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6), as before; every official text taken over fits after new line breaks (at most 208 px, calls 192 px); the Game Corner TV show uses Emerald's own line breaks, so "Einarmigen Banditen" fits without a shortening. Round 4 (`851aa886e2`): `check_text_width.py --list`: 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6), as before; the new lines of round 4 at most 208 px (Brock's new line 162 px). `check_text_width.py --list` on the ROM of `61ac7e277d` (`integ_r23`): 35 exact lines over 208 px (Johto 28, Kanto 1, locked maps 6), the same as before rounds 2 and 3; none over the 216 px window outside locked maps. The new German lines of rounds 2 and 3 are at most 208 px (PokeCom lines at most 192 px). 364 lines with placeholders are estimates. |
-| 8 | Static checks green | met | Round 5: `check_flags.py` 0 problems and both debug headers up to date at each of the 10 commits. On `851aa886e2` (round 4): `check_flags.py` 0 problems (3479 flags, 696 vars: 44 flags and one var more than round 3), also at each of the 15 commits; `check_merge.py` 0 errors (8 known, 205 warnings, 273 hints); `check_maps.py` 88 minor, nothing from "important" up; `check_regions.py` 0 problems; `make_debug_states.py --check`: both headers up to date (from `6f39278fee` on, which regenerates them for the round's new items); `check_warnings.py` 105 warnings on the log of the build from scratch, as in the baseline (release 111, as before). On `61ac7e277d` (`integ_r23`): `check_flags.py` 0 problems (3435 flags, 695 vars: the four flags of round 3 more), also at each of the 73 commits (`percommit_r23`); `check_merge.py` 0 errors (8 known with a reason, 205 warnings and 273 hints as in the baseline); `check_maps.py` 0 findings from "important" up (88 minor); `check_regions.py` 0 problems (known exceptions listed, Jirachi on Route 4 among them); `make_debug_states.py --check`: both debug headers up to date, also at each of the 73 commits; `check_budget.py` exit 0. `check_warnings.py` on the log of the build from scratch: 105 warnings, as in the baseline. |
-| 9 | Test suite without new failures | met (regression check) | Round 4 (`851aa886e2`, `tests_r4`): 5148 tests in 951 files, 2355 ok, 629 todo, 2164 failures, all known, 0 new, 0 changed; Origin Jade tests level scaling 11/11, flag/var routing 7/7, save sizes 4/4, region rule 14/14, debug states 3/3, Day Cares 2/2, even wild slots 2/2, region badges 1/1 (no test covers the new item sources). `tools/run_tests.py` on `61ac7e277d` (`tests_r23`): 5148 tests in 951 files, 2355 ok, 629 todo, 2164 failures, all known, 0 new, 0 changed (the same on round 2 before the rebase; on `b022af5623`: 5140 tests). Origin Jade tests: level scaling 11/11, flag/var routing 7/7, save sizes 4/4, region rule 14/14, debug states 3/3, Day Cares 2/2, even wild slots 2/2, region badges 1/1. Limit: about 2100 upstream tests cannot check anything because battle texts are German, and 24 failures are not triaged (A32, `N-tests-1`); no test covers the contests. |
-| 10 | Every Pokedex species obtainable without trading | met (by tool) | Round 4 changes no wild table, trainer party or Pokemon gift; `check_regions.py` 0 problems on `851aa886e2`. Items (D-059): the audit's item check finds none of the 903 items of the build without a regular source; 20 come only by luck (O-078), 335 are not meant (listed in D-059). The catch list generated on round 2 before the rebase (`make_fangliste.py`, outside the repository): after Kanto all 151 Kanto species (with evolutions), after Johto all 129 Johto species (with breeding), after Hoenn all 422 species with evolutions and breeding (300 caught or received directly); nothing missing at any stage. Jirachi has a source again: Route 4 after the first trip to Hoenn (S-12, A69). The owner's map commits and round 3 change no wild table, trainer party or Pokemon gift; `check_regions.py` on `61ac7e277d` finds no wild table, overworld Pokemon, gift or static battle of a later region. |
+| 1 | Build is reproducible | met (build from scratch of `a9cc1fed6f`) | Round 6 with the Sudowoodo follow-up (`r6c`): 3 of 3 commits after `9734e9f5ca` built with their final ids (`make` ok, `check_flags` 0, both debug headers up to date, `percommit_r6c`), ROM SHA-1 `38923c5c5a9d3246f8e8fdb501c7ec218246eb9d` at `0d4d8968ad` and `424b9391dadcadd3738a29f19fb2265f1afb2cd4` at the follow-up `a9cc1fed6f` and the documentation commit; `a9cc1fed6f` built from scratch in a new worktree gives the same SHA-1, `check_warnings.py` 105 as in the baseline. Round 6: 7 of 7 commits of `r6` built with their final ids (`make` ok, `check_flags` 0, both debug headers up to date, `percommit_r6`); the code tip `9734e9f5ca` built from scratch in a new worktree gives the same ROM SHA-1 `a946d0fb8ab92b5443252401f7dc9a98265659c7` as the per-commit run, `check_warnings.py` 105 as in the baseline. The Route 42 follow-up `0d4d8968ad` and the documentation commit on `r6b`: 2 of 2 built with their final ids (`make` ok, `check_flags` 0, both debug headers up to date, `percommit_r6b`), ROM SHA-1 `38923c5c5a9d3246f8e8fdb501c7ec218246eb9d`, the same from scratch in an export of the tree of `0d4d8968ad`. Round 5: 10 of 10 commits of `r5-text` built with their final ids (`make` ok, `check_flags` 0, both debug headers up to date, `percommit_r5`); texts only. 2026-11-03, round 4: `make -j2` of the code tip `851aa886e2` in a new worktree compiles all 398 C files, exit 0, ROM SHA-1 `8fe887d805f3db1d350df34391a5d4488830873c`, the same as the incremental build of the per-commit run; 15 of 15 commits of round 4 built with their final ids (`make` ok, `check_flags` 0, `percommit_r4`). Rounds 2 and 3: `make` of `61ac7e277d` after removing `build/jade` compiles all 398 C files, exit 0, ROM SHA-1 `6346a2591693e2c99c3f1748b676d0f207afdbef`, the same as the incremental build of the integration run (`integ_r23`). Every commit after the owner's `ad4a8db368` was built with its final id: 73 of 73 (62 of round 2, 5 documentation, 6 of round 3; `make` ok, `check_flags` 0, both debug headers up to date, `percommit_r23`). Before the rebase round 2 had been built the same way on `2f284d83b9` (`percommit_r2`, `r2derest_final`; ROM `9d8271bc…` at the rest tip, without the owner's map commits); round 3 also on its package branch. Earlier states: `b022af5623` `11bec7d4cba038d647668f2f86c68ef3a29eee1f` (also from scratch), `b62f22e381` `5c1c08ae7685bf6073ea20c7f87df981d6488c2a`. Toolchain arm-none-eabi-gcc 13.2.1. |
+| 2 | Release build, debug menus off | met (statically, `a9cc1fed6f`) | Round 6 with the Sudowoodo follow-up: `make release` of `a9cc1fed6f`: exit 0, SHA-1 `c3bd9bb9f507d0a7c306199b152074373f5477dd`, 111 warnings as before; the debug menu's actions, "Even Wild Slots" and "Instant Tr. Win" are not in the release ELF; `make` afterwards gives the beta ROM `424b9391dadcadd3738a29f19fb2265f1afb2cd4` again. Round 6: `make release` of `9734e9f5ca`: exit 0, SHA-1 `a70c074b8d306277339afae47a1826d96ab96ef9`, 111 warnings as before; the switch "Instant Tr. Win" (`gDebugInstantTrainerWin`, `HandleDebugInstantTrainerWin_*`), the debug menu's actions and "Even Wild Slots" are not in the release ELF (they are in the beta ELF); only the unreferenced 13-byte battle script label `BattleScript_DebugInstantTrainerWinFaint` stays. Round 4: `make release` of `851aa886e2`, 2026-11-03: exit 0, SHA-1 `a4bb57818d0471f0d805d680541a76d1214f969e`, 111 warnings as before; the debug menu, the debug states and "Even Wild Slots" are not in the release ELF (they are in the beta ELF). Rounds 2 and 3: `make release` of `61ac7e277d`, 2026-11-03: exit 0, SHA-1 `10174fe5187327f5e3cb4bcfe39d7392bb493031`, 111 warnings as before (N-build_tools-4). The overworld debug menu (`Debug_ShowMainMenu`), the debug states (`Debug_SetJohtoTestState`, `Debug_SetHoennTestState`, D-050) and the switch "Even Wild Slots" (`gDebugEvenWildSlots`, D-055) are not in the release ELF (they are in the beta ELF); the battle debug menu's only trigger (Select, `src/battle_controller_player.c`) is compiled out. The sprite visualizer has no caller in the HnS summary screen and is linked in neither build. The release ROM was not started. Earlier: round 2 before the rebase `18eedc2ebb50f9165aaf65ade559a1281e9bd625`, `b022af5623` `34e173bde2dc2b804e1132a60a5675f928dd33b4`. |
+| 3 | No known blocker on the story path Kanto -> Johto title | met (by tool) | Round 6 (`9734e9f5ca`): Kanto title in wave 50, Johto title 106 (one wave later than before: the simulator treats Route 42's new trigger, on the only way east from the Ecruteak gate, as a stop for the wave in which it first reaches the route, because it runs map scripts only after that wave; without the trigger it is 105 again; in the game the trigger is off before the Burned Tower release and plays once after it); no milestone, stop, map, item ball, hidden item, trainer or gift gained or lost; `check_maps.py --compare r5-text`: nothing new. The Route 42 follow-up (`r6b`): the same waves 50, 106 and 138 as on `r6`, nothing gained or lost, no map in another stretch, every step of the Suicune chain in the same wave; `check_maps.py --compare r6`: nothing new. The Sudowoodo follow-up (`r6c`, `a9cc1fed6f` against `0d4d8968ad`): Kanto title in wave 50, Johto 106, Hoenn 138 as before; no milestone, stop, map, item ball, hidden item, trainer, gift or never-run static encounter gained or lost, no map in another stretch; `check_maps.py --compare 0d4d8968ad`: nothing fixed, nothing new. `simulate_progress.py` on `851aa886e2` (round 4): Kanto title in wave 50, GS Ball 51, Johto badges 55-91, Johto title 105; `--diff` against the round before its review fixes: no milestone, stop, map, item ball, hidden item, trainer or gift changed. On `61ac7e277d` (`integ_r23`): Kanto title in wave 50, GS Ball 51, Johto badges 55-91, Johto title 105; no stop on the main path, the same waves as on round 2 and on `b022af5623`. `check_maps.py`: 0 findings from "important" up, 88 minor (1125 active maps by its count, see criterion 4; base: 3 critical, 10 important). The two critical findings of the owner's map work (the Trainer Hill entrance's warps to the removed Route 111 warp) are gone with round 3. Base: the simulator stopped in Kanto at the Celadon Game Corner (A01). Story traps A02, A03, A13, A57, A102 and the deep review's state bugs are fixed in the source (statically). |
+| 4 | No known blocker on the story path Johto -> Hoenn title | met (by tool) | Round 6 (`9734e9f5ca`): Hoenn Ticket in wave 107, Hoenn reached in 109, Hoenn title 138 (each one wave later, see criterion 3), exit 0; 195 of 1115 active maps unreachable, as before; the 38 maps of the Kampfzone and the two floors of the Artisan Cave are first reached in waves 140-145, after the Hoenn title (before: 108-113). The Sudowoodo follow-up (`a9cc1fed6f`): the same waves; the Artisan Cave's two floors in wave 140 with the Kampfzone's east side, as before (the tree stood on a dead end, not in the way). Round 4 (`851aa886e2`): Hoenn Ticket in wave 106, Hoenn reached in 108, Hoenn badges 109-127, Hoenn title 137, exit 0; 195 of 1115 active maps unreachable, as before. D-047: the first Johto title sets `VAR_HOENN_TICKET_STATE` 1, Troy hands over the Hoenn Ticket in Oak's lab, both ports sail to Hoenn; since round 2 "Hoenn" stays in the menus until "Graphitport City" can be offered (O-032), so no player is cut off from Hoenn. `simulate_progress.py` without `--hoenn-ticket` on `61ac7e277d` (`integ_r23`): Hoenn Ticket in wave 106, Hoenn reached in 108, Hoenn badges 109-127, Hoenn title 137, exit 0; the Contest Pass now in wave 112 (Verdanturf, before 121 in Lilycove). Unreachable active maps: 195 of 1115 (1125 before round 3: 16 retired, 6 new), all off the story path (Alola, Sinjoh, event islands, secret bases, facility rooms, unused maps). The simulator and `check_maps.py` count active maps differently: the simulator takes every map folder of the build without the 13 link maps (Union Room, Trade Center, Battle Colosseum, Record Corner), `check_maps.py` (1125 in criterion 3, 1135 before round 3) the maps listed in `map_groups.json` with the link maps, which leaves out 3 unused houses; with round 3 both lose the same 16 retired maps and gain the same 6 new ones. None of the scenes ran in an emulator. |
+| 5 | Saves are safe | met (statically), with risks | The Sudowoodo follow-up (`a9cc1fed6f`): no new flag or var, layout unchanged; `check_budget.py` SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1584/1624 as before (ROM 400 bytes less); `check_save_safety.py` 76 findings as before; `FLAG_DEFEATED_SUDOWOODO` stays defined and is no longer used; the map sets `FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO` on every entry and on Continue (ON_RESUME), so a save made beside the tree with an older build no longer shows it (not played). Round 6 (`9734e9f5ca`): no change to the save layout, no new flag or var (3479 flags, 696 vars); `check_budget.py` SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1584/1624, as before (EWRAM 8 bytes more for the switch, which lives in RAM only); `check_save_safety.py` 76 findings as before. Round 4 (`851aa886e2`): `check_budget.py` SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1584/1624, PokemonStorage 34144/35712, as before (EWRAM 95.28 %, ROM 77.19 %); 44 flags and one var more in free ids, layout unchanged; `check_save_safety.py` 76 findings (1 important, 3 minor, 72 optional) as before, after the tool learnt that the Mach and Acro Bike are never held together: 61 different key items, at most 60 at a time, for 60 slots (D-059). Rounds 2 and 3: `check_budget.py` on `61ac7e277d`: every save block within its flash space (SaveBlock1 15868/15872, SaveBlock2 3892/3968, SaveBlock3 1584/1624 with 40 free since the Day Cares of Kanto and Johto, D-052, PokemonStorage 34144/35712). `STATIC_ASSERT`s pin the layout; `test/save.c` (4 tests) passes. `check_save_safety.py` on the documentation tip: no blocker or critical finding; 1 important (no running clock, mitigated by `5e1b5f870d`, which the tool does not model), 3 minor (one is a false alarm on the Hall of Fame size, two concern the item randomizer's bag pockets), 72 optional, as before rounds 2 and 3; the Key Items pocket holds 58 obtainable key items in 60 slots. New games clear the Nuzlocke area flags. Round 2 changes the layout (SaveBlock3 +576 bytes for two Day Cares); round 3 adds four flags and keeps the layout (the retired Route 111 hill's records stay in SaveBlock3, unused). Saving and loading never ran in an emulator; old saves are out of scope (owner decision). |
+| 6 | No English text on the story path | met (by tool, owner reading open) | The Sudowoodo follow-up (`a9cc1fed6f`): `check_game_text.py --english` and `--list` the same as on `0d4d8968ad`; one text fewer (the old woman's line about the wiggling tree, which no map shows). Round 6 (`9734e9f5ca`): `check_game_text.py --english` and `--list` the same as on round 5 apart from line numbers; the changed rating texts and Elm's line sit in `#if GERMAN` branches (the National rating below 400 and Oak's "Woahhh!" got one), the new debug label "Instant Tr. Win" is English like the other debug texts (D-020). Round 5 (`b050d8febc`): `check_game_text.py --english` and `--list` the same as on round 4 apart from line numbers; every changed line sits in a `#if GERMAN` branch except Mom's heal tip in `data/event_scripts.s`, which has no English branch in either build (as before). The tool does not count official English words that German Emerald and FRLG keep ("Bow! Bowwow!" on Route 114, "Space Shuttle" in Pewter's museum); both are on the owner's approval list. Round 4 (`851aa886e2`): `check_game_text.py --english`: Hoenn 0, Johto 23, Kanto 5, shared 97, `src` 11, locked 290, retired 3, the same as before round 4; every new line of round 4 has a German branch (Bill's grandfather's texts, English only in HnS, are new German texts; Brock's line after the Kanto title is new). `check_game_text.py --english` on `61ac7e277d` (`integ_r23`): Hoenn 0, Johto 23 and Kanto 5 (trainer names in upstream capitals that no active script shows, O-066), shared 97 (83 debug texts and 14 battle tent texts marked unused), `src` 11 (5 debug, 4 unused union room texts, 2 credits names); the locked Sinjoh and Alola maps 290, the retired maps 3. Round 2 before round 3: Hoenn 2 (two unreferenced texts in the corridor of Emerald's Slateport tent, German since they moved into Slateport's contest hall, O-065); before round 2: Johto 125, shared 252, Hoenn 7, Kanto 5. Every active map text without a German branch was also read by hand (D-057). The translations that are not from an official German game and the new lines of round 3 (Scott in Slateport, O-070; the Route 121 Safari Zone desk) are drafts for the owner's text round. |
+| 7 | Text fits the message box (208 px) | not met (minor) | The Sudowoodo follow-up (`a9cc1fed6f`): `check_text_width.py --list` the same 35 exact lines over 208 px as on `0d4d8968ad`, no new line. Round 6 (`9734e9f5ca`): `check_text_width.py --list` 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6), as before; the new German lines at most 207 px. Round 5 (`b050d8febc`): `check_text_width.py --list` 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6), as before; every official text taken over fits after new line breaks (at most 208 px, calls 192 px); the Game Corner TV show uses Emerald's own line breaks, so "Einarmigen Banditen" fits without a shortening. Round 4 (`851aa886e2`): `check_text_width.py --list`: 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6), as before; the new lines of round 4 at most 208 px (Brock's new line 162 px). `check_text_width.py --list` on the ROM of `61ac7e277d` (`integ_r23`): 35 exact lines over 208 px (Johto 28, Kanto 1, locked maps 6), the same as before rounds 2 and 3; none over the 216 px window outside locked maps. The new German lines of rounds 2 and 3 are at most 208 px (PokeCom lines at most 192 px). 364 lines with placeholders are estimates. |
+| 8 | Static checks green | met | The Sudowoodo follow-up (`r6c`): `check_flags.py` 0 problems (3479 flags, 696 vars) and both debug headers up to date at each of the 3 commits after `9734e9f5ca`; on `a9cc1fed6f` `check_regions.py` 0 problems, `check_merge.py` 0 errors (8 known, 205 warnings, 273 hints), `check_maps.py` 88 minor (nothing fixed or new against `0d4d8968ad`), `check_warnings.py` 105 (release 111). Round 6: `check_flags.py` 0 problems and both debug headers up to date at each of the 7 commits; on `9734e9f5ca` `check_regions.py` 0 problems, `check_merge.py` 0 errors (8 known, 205 warnings, 273 hints), `check_maps.py` 88 minor (nothing new against `r5-text`), `check_warnings.py` 105 (release 111). Round 5: `check_flags.py` 0 problems and both debug headers up to date at each of the 10 commits. On `851aa886e2` (round 4): `check_flags.py` 0 problems (3479 flags, 696 vars: 44 flags and one var more than round 3), also at each of the 15 commits; `check_merge.py` 0 errors (8 known, 205 warnings, 273 hints); `check_maps.py` 88 minor, nothing from "important" up; `check_regions.py` 0 problems; `make_debug_states.py --check`: both headers up to date (from `6f39278fee` on, which regenerates them for the round's new items); `check_warnings.py` 105 warnings on the log of the build from scratch, as in the baseline (release 111, as before). On `61ac7e277d` (`integ_r23`): `check_flags.py` 0 problems (3435 flags, 695 vars: the four flags of round 3 more), also at each of the 73 commits (`percommit_r23`); `check_merge.py` 0 errors (8 known with a reason, 205 warnings and 273 hints as in the baseline); `check_maps.py` 0 findings from "important" up (88 minor); `check_regions.py` 0 problems (known exceptions listed, Jirachi on Route 4 among them); `make_debug_states.py --check`: both debug headers up to date, also at each of the 73 commits; `check_budget.py` exit 0. `check_warnings.py` on the log of the build from scratch: 105 warnings, as in the baseline. |
+| 9 | Test suite without new failures | met (regression check) | Round 6 with the Sudowoodo follow-up (`a9cc1fed6f`, `tests_r6c`): the same 5158 tests with the same results (2365 ok, 629 todo, 2164 known failures, 0 new, 0 changed; the Origin Jade tests as before). Round 6 with the Route 42 follow-up (`0d4d8968ad`, `tests_r6b`): the same 5158 tests with the same results. Round 6 (`9734e9f5ca`, `tests_r6`): 5158 tests in 952 files, 2365 ok, 629 todo, 2164 failures, all known, 0 new, 0 changed; the new `test/origin_jade/instant_trainer_win.c` 10/10 (battles only, no overworld script); the other Origin Jade tests as before. Round 4 (`851aa886e2`, `tests_r4`): 5148 tests in 951 files, 2355 ok, 629 todo, 2164 failures, all known, 0 new, 0 changed; Origin Jade tests level scaling 11/11, flag/var routing 7/7, save sizes 4/4, region rule 14/14, debug states 3/3, Day Cares 2/2, even wild slots 2/2, region badges 1/1 (no test covers the new item sources). `tools/run_tests.py` on `61ac7e277d` (`tests_r23`): 5148 tests in 951 files, 2355 ok, 629 todo, 2164 failures, all known, 0 new, 0 changed (the same on round 2 before the rebase; on `b022af5623`: 5140 tests). Origin Jade tests: level scaling 11/11, flag/var routing 7/7, save sizes 4/4, region rule 14/14, debug states 3/3, Day Cares 2/2, even wild slots 2/2, region badges 1/1. Limit: about 2100 upstream tests cannot check anything because battle texts are German, and 24 failures are not triaged (A32, `N-tests-1`); no test covers the contests. |
+| 10 | Every Pokedex species obtainable without trading | met (by tool) | Round 6 changes no wild table, trainer party or Pokemon gift; `check_regions.py` 0 problems on `9734e9f5ca` and on `a9cc1fed6f`; the Kampfzone's Sudowoodo first came after the Hoenn title and is gone since `a9cc1fed6f` (D-039); Sudowoodo stays on Route 36. Round 4 changes no wild table, trainer party or Pokemon gift; `check_regions.py` 0 problems on `851aa886e2`. Items (D-059): the audit's item check finds none of the 903 items of the build without a regular source; 20 come only by luck (O-078), 335 are not meant (listed in D-059). The catch list generated on round 2 before the rebase (`make_fangliste.py`, outside the repository): after Kanto all 151 Kanto species (with evolutions), after Johto all 129 Johto species (with breeding), after Hoenn all 422 species with evolutions and breeding (300 caught or received directly); nothing missing at any stage. Jirachi has a source again: Route 4 after the first trip to Hoenn (S-12, A69). The owner's map commits and round 3 change no wild table, trainer party or Pokemon gift; `check_regions.py` on `61ac7e277d` finds no wild table, overworld Pokemon, gift or static battle of a later region. |
 | 11 | Played through in an emulator | **not met** | No emulator test. The checklists for the three test steps are in the audit's test matrix; "Emulator test list" and "What was not verified" below name what to test first and the gaps. |
-| 12 | Owner decisions taken | **not met** | Most points were answered on 2026-10-31, 2026-11-02 and 2026-11-03 and are built (rounds 2 to 4); the rest is in "Owner decisions still needed", among them the questions of round 3 (O-068 to O-070) and of round 4 (O-075 to O-078). |
+| 12 | Owner decisions taken | **not met** | Most points were answered on 2026-10-31, 2026-11-02, 2026-11-03 and 2026-11-04 and are built (rounds 2 to 6); the rest is in "Owner decisions still needed", among them the questions of round 3 (O-068 to O-070), of round 4 (O-075 to O-078) and of round 6 (the Route 40 courtyard's Battle Points, O-060; Jirachi on Route 4). Route 42 for a player who only flies to Mahogany and the Kampfzone's Sudowoodo (gone, D-039) were decided on 2026-11-04 and are built. |
 
 ## Open findings by priority
 
@@ -298,7 +332,7 @@ S-05, `61ac7e277d`, D-044; O-024 resolved). Still open:
 | N-nuzlocke-1* | shared | With "Feste PKMN: Zufall" the received message of Kanto gifts names the original species | open | buffer the species after randomizing | static |
 | N-nuzlocke-3* | shared | Nuzlocke deaths do not count in the Trainer Hills (O-028) | decided | kept exempt, as in HnS; O-028 resolved (D-054, D-045) | static |
 | N-randomizer-1* | shared | Item randomizer: follow-up dialogs name the original item (e.g. Brock and TM39) | decided | kept, as in HnS (D-054) | static |
-| N-randomizer-2* | shared | Item randomizer: trades (Berry Powder, glass workshop, Mom's savings, lottery) give other items | partly fixed | as in HnS, exchange menus give the chosen item (`giveitem_norandom`; D-023, D-054); Mom's savings and the lotteries stay randomized; Slateport's Berry Powder man waits for the owner's map (O-057) | static |
+| N-randomizer-2* | shared | Item randomizer: trades (Berry Powder, glass workshop, Mom's savings, lottery) give other items | partly fixed | as in HnS, exchange menus give the chosen item (`giveitem_norandom`; D-023, D-054); Mom's savings and the lotteries stay randomized; Slateport's Berry Powder man too since round 6 (`5e73be326c`, O-057) | static |
 | N-w3_nuzlocke-2* | shared | `Common_EventScript_PartyIsFull` ends without `release` although Bill, the Elder, Kenya and Shuckie called `lock` | open | check for a freeze in the game; add `release` | not checked |
 | T-legend_endgame-6 | shared | Challenge "Keine EVs" ends at Red, before Hoenn | fixed | ends with the Nuzlocke at the first Hoenn title, as HnS ends both at its credits (D-054) | static |
 | W-core_save-3 | shared | With the item randomizer the Items pocket (up to 307 items, 236 slots) and Berries pocket (68, 66 slots) can fill up | open | limit the whitelist or secure gifts (W-core_save-4) | not checked (tool suspicion) |
@@ -315,7 +349,7 @@ S-05, `61ac7e277d`, D-044; O-024 resolved). Still open:
 | A68 | Hoenn | Prism Scale has no source | decided | no Prism Scale; Milotic through beauty as in Gen 3 (owner S-11, D-037) | static |
 | N-facilities-2* | Hoenn | Emerald Trainer Hill maps do not set `FLAG_TEMP_HIDE_FOLLOWER` (HnS maps do) | decided | the Emerald hill is retired (owner S-05, `61ac7e277d`, D-044); nothing to check | static |
 | N-w3_hoenn-2* | Hoenn | Wally's, Scott's (two) and Roxanne's calls count steps in Johto and Kanto too | fixed | the calls count steps only on Hoenn maps, like Norman's call; the rival's call after the Space Center too (D-051, owner S-07) | static |
-| A54 | Johto | Suicune sighting on Route 42 in a pocket behind a Cut tree | owner | move the trigger, add a hint, or record it in D-038 | static |
+| A54 | Johto | Suicune sighting on Route 42 in a pocket behind a Cut tree | fixed | the trigger spans the path from the Ecruteak gate, armed by the Burned Tower release (owner 2026-11-03, `35ab4e7d67`, D-038); since 2026-11-04 a second line on the way from Mahogany, so every way onto Route 42 crosses one, and after Pryce Route 36 arms without the sighting (`0d4d8968ad`) | by tool (walk over the passable tiles, simulator) |
 | A75 | Johto | A caught legendary (level 75) lifts the Johto anchor to 67 or more | decided | kept: legendaries in the party count for the anchor (D-039, D-053) | static |
 | N-balance-1* | Johto | Four Johto trainers with fewer than 3 Pokemon (Marc, Rich, Shirley, Zuki) | fixed | filled up to three Pokemon (D-053) | by tool (audit script) |
 | N-johto_story-1* | Johto | Celebi is no longer caught with the GS Ball (key item, not throwable); level 75, normal balls | decided | stays: no guaranteed catch, as in the original (owner S-09) | static |
@@ -368,12 +402,12 @@ S-05, `61ac7e277d`, D-044; O-024 resolved). Still open:
 | W-progress_sim-17 | Hoenn | Dead script code from design decisions (e.g. Brendan's teams, D-003) | partly fixed | Brendan's Go-Goggles handover in Lavaridge Town is no longer built (`fe370081c1`, D-048); the rest is clean-up |
 | A105 | Johto | Dead states, never-set flags and test warps in Johto (New Bark Town 4-7, Ecruteak City 4/5/14) | owner | |
 | A110 | Johto | League ceiling 65: Elite Four, Silver and Lance equally strong | fixed | league rooms rise from Will to Lance (D-012, D-053) |
-| N-johto_story-3* | Johto | The Wailmer Pail does not wake the Battle Frontier Sudowoodo (only the SquirtBottle does) | open | |
+| N-johto_story-3* | Johto | The Wailmer Pail does not wake the Battle Frontier Sudowoodo (only the SquirtBottle does) | decided | obsolete: no Sudowoodo in the Kampfzone (owner 2026-11-04, D-039, `a9cc1fed6f`); the Artisan Cave is open without any item |
 | N-johto_story-4* | Johto | The new gate text has an English `#else` branch for non-German builds | decided | English branches stay, so the language can be chosen (owner, text group) |
 | N-w3_nuzlocke-3* | Johto | Johto starter: the nickname question in the Nuzlocke branch has no YES/NO | open | works |
 | N-w3_nuzlocke-4* | Johto | Dead code in the Goldenrod Game Corner prize room | open | |
 | T-johto_b-5 | Johto | Kimono Girls' dance repeats until the legendary battle | partly fixed | once per visit (`b702b50666`); after a map change or whiteout it restarts as in HnS |
-| T-johto_b-6 | Johto | Route 40 Trainer Hill courtyard open before the Johto title | owner | bind to `FLAG_IS_JOHTO_CHAMPION` or keep |
+| T-johto_b-6 | Johto | Route 40 Trainer Hill courtyard open before the Johto title | owner | bind to `FLAG_IS_JOHTO_CHAMPION` or keep; since round 6 its three tents are the only Battle Points before the Hoenn title (O-060, option d: open them after the Hoenn title) |
 | T-johto_b-7 | Johto | Johto Safari Zone: west extension locked, Baoba's quest dead (P-004) | open | builder texts English |
 | T-legend_endgame-4 | Johto | "... flew away!" after knocking out Deoxys | partly fixed | Lugia and Ho-Oh fixed (`ffe4fc5792`); Deoxys on Birth Island still shows it; the island is reached with the Aurora Ticket from Olivine City, since `d0f6521cf6` only after the first Hoenn trip |
 | W-map_checker-11 | Johto | Route 41: the Tentacruel barrier (D-026) blocks nothing | owner | move it in front of an island entrance or drop it |
@@ -407,8 +441,9 @@ S-05, `61ac7e277d`, D-044; O-024 resolved). Still open:
 
 ## Owner decisions still needed
 
-The owner answered most open points on 2026-10-31, 2026-11-02 and
-2026-11-03; rounds 2 to 5 built the answers (D-051 to D-059). Still open:
+The owner answered most open points on 2026-10-31, 2026-11-02,
+2026-11-03 and 2026-11-04; rounds 2 to 6 built the answers (D-051 to
+D-059, D-038). Still open:
 
 **Story and content**
 - Text round: the owner reads every German text he did not write: the
@@ -425,8 +460,9 @@ The owner answered most open points on 2026-10-31, 2026-11-02 and
   the three new signs "Pokémon Wettbewerbe"; the owner may make them
   alike. Also the position of "¥"
   in money texts (D-057), Mom's heal texts after a whiteout at home
-  (O-037), placeholder National Pokedex ratings (O-038), old text defects
-  (O-040) and the line widths (O-012). Round 5 compared the texts of
+  (O-037), old text defects (O-040) and the line widths (O-012); the
+  Pokedex ratings carry the official wording since round 6 (O-038
+  resolved). Round 5 compared the texts of
   rounds 1 to 4 with the official games: the approval list asks for each
   deviation (names, obedience levels, story changes, close official lines
   of the same scene), Origin Jade's names inside official texts, three
@@ -437,7 +473,12 @@ The owner answered most open points on 2026-10-31, 2026-11-02 and
   sentences next to the own rest; older texts outside these rounds were
   not compared, a few of them (fly map title, bag menu, Pokedex
   description, Mom's menu) differ from the official games. Mom's heal tip
-  is FRLG's now, the line before it still Emerald's (O-037).
+  is FRLG's now, the line before it still Emerald's (O-037). Round 6:
+  Elm's line about the M.S. Aqua after the first Johto title, shortened
+  to "Lind: Die M.S. Aqua fährt nach Orania City." (own text, no official
+  line for this scene), and the National rating below 400, which shows
+  Platinum's official line instead of HGSS's radio line (radio music
+  lures no Pokemon in Origin Jade, O-017); both are his call.
 - Continue point after a title in front of the bedroom stairs (O-041):
   keep (9,3), or the spot next to the bed with a PC that refuses dolls
   that would box the player in.
@@ -463,9 +504,9 @@ The owner answered most open points on 2026-10-31, 2026-11-02 and
   Route 12 (A48), `Route22_hns` (A50, O-022), S.S. Anne deck
   (W-map_checker-12), orphaned maps (W-progress_sim-16), test warps
   (A105), Pallet Town door tiles (N-kanto_maps-1).
-- Suicune sighting on Route 42 (A54), Route 40 hill courtyard before the
-  title (T-johto_b-6), Fuchsia girl and Koga (T-kanto_b-3), Berry Powder
-  only by link (N-w3_kanto-1).
+- Route 40 hill courtyard before the title (T-johto_b-6, with O-060),
+  Fuchsia girl and Koga (T-kanto_b-3), Berry Powder only by link
+  (N-w3_kanto-1).
 - Owner text for the Petalburg gym boy after beating Wally in Mauville
   first (T-hoenn_a-4), for Clair in state 3 (T-johto_b-1) and for a
   Nuzlocke whiteout without a living Pokemon (A79).
@@ -487,7 +528,18 @@ The owner answered most open points on 2026-10-31, 2026-11-02 and
   obtained, the 21 TMs of HnS's old Kanto first (O-074).
 - Still open: regional forms case by case (A19, O-045); overworld Pokemon
   that cannot be caught (A66); the Battle Point items in the Hoenn Test
-  (O-060). Round 4: the Catching Charm, EXP. Charm and Pokemon Box Link,
+  (O-060: since round 6 the Kampfzone opens only after the Hoenn title,
+  so only the three tents and the exchange in the Route 40 courtyard
+  remain, reachable before the Johto title: (a) the Hoenn Test adds their
+  items once, (b) they stay out, (d) the tents and the exchange also open
+  only after the Hoenn title). Round 6: Jirachi on Route 4 (the owner
+  asked on 2026-11-03 how it gets there
+  and whether that is too early: the white rock by Mt. Moon's Pokemon
+  Center answers only after the first trip to Hoenn, at night, with a
+  level 80 Jirachi, D-037; another place or a later condition is his
+  call). The level of the Kampfzone's Sudowoodo (65) is settled: the
+  owner removed it on 2026-11-04 (D-039). Round 4: the Catching Charm,
+  EXP. Charm and Pokemon Box Link,
   which HnS never gave (O-075, proposal keep); the prices of the new goods
   (berries 20, Battle Point prices) and the items of HnS's Kanto that now
   come in chapter one (TM Giga Impact for 3000, TM Flash Cannon on Route
@@ -564,20 +616,22 @@ The owner answered most open points on 2026-10-31, 2026-11-02 and
   visit (T-johto_b-5).
 
 Open questions that stay open in `DECISIONS.md`: O-012 (partly), O-022,
-O-025, O-037, O-038, O-040, O-041, O-045, O-050, O-055 to O-058, O-060,
-O-066, from round 3 O-068 to O-070 and, new in round 4, O-075 to O-078.
-Resolved by the owner's answers of round 2: O-009, O-020, O-021, O-023,
-O-028 to O-036 and O-039 (earlier: O-002 by D-047); by round 3: O-024,
-O-063, O-065 and O-067; by round 4: O-073 and O-074. The O- numbers
-missing in this range were reserved by work packages and not used
-(round 3: O-071 and O-072); they are never assigned later. Planned
-items: P-001 to P-004 (P-005 and P-006 are done).
+O-025, O-037, O-040, O-041, O-045, O-050, O-055 to O-058 (O-057 without
+Slateport since round 6), O-060 (only the Route 40 courtyard since round
+6), O-066, from round 3 O-068 to O-070 and, new in round 4, O-075 to
+O-078. Resolved by the owner's answers of round 2: O-009, O-020, O-021,
+O-023, O-028 to O-036 and O-039 (earlier: O-002 by D-047); by round 3:
+O-024, O-063, O-065 and O-067; by round 4: O-073 and O-074; by round 6:
+O-038. The O- numbers missing in this range were reserved by work packages
+and not used (round 3: O-071 and O-072); they are never assigned later.
+Planned items: P-001 to P-004 (P-005 and P-006 are done).
 
 ## Emulator test list
 
 The story packages (D-047 to D-050), round 2 (D-051 to D-057), round 3
-(D-058), round 4 (D-059) and round 5 (texts, D-056, D-057) were checked
-statically, with the simulator
+(D-058), round 4 (D-059), round 5 (texts, D-056, D-057) and round 6
+(D-029, D-030, D-038, D-039, D-055, O-038) were checked statically, with the
+simulator
 and with the C tests; none of their scenes ran. Test these first, in the
 beta build (the debug states reach them quickly; "Even Wild Slots"
 shortens the search for wild Pokemon).
@@ -854,6 +908,68 @@ shortens the search for wild Pokemon).
     record mix), the Dynamic Punch, Double-Edge, Explosion and Headbutt
     tutors, the Blend Master and Drake.
 
+### Round 6 (owner requests of 2026-11-03 and 2026-11-04: D-029, D-030, D-038, D-039, D-055, O-038)
+
+49. **"Instant Tr. Win" (D-055):** switch it on in "Flags & Vars"
+    (green) and fight a route trainer, a gym leader, a double battle, a
+    VS Seeker rematch and an Elite Four member: the text before the
+    battle and the send-outs come as usual, then the opponents faint one
+    after the other with HP bar and faint message, the Pokemon that took
+    part get EXP (level-ups, a move to learn, an evolution after the
+    battle), with the battle style "Shift" the switch question comes
+    before each next opponent; then the defeat text, the prize money, the
+    badge or title script, and the after-battle text when the trainer is
+    talked to again. The player's HP never drop. Wild battles and the
+    Route 40 tents stay normal; after a reset the switch is off.
+50. **Kampfzone only after the Hoenn title (D-029, D-030):** before the
+    title the sailors in Vermilion City and Olivine City offer no
+    "Kampfzone" (the other port, Birth Island with the Aurora Ticket, the
+    Hoenn entries and "Zurück" stay), the Fly map of Johto and Kanto
+    shows no Kampfzone box, also with the debug menu's fly flags, and
+    Elm's news after the first Johto title names only Vermilion City.
+    After Wallace: "Kampfzone" in both ship menus, the trip there and
+    back, Fly after the first visit, the S.S. Tidal from Slateport and
+    Lilycove after meeting Scott on board, Scott's call.
+51. **Route 42 (D-038), from both sides:** after the first visit to
+    Ecruteak City and before the Burned Tower: leave the gate east on
+    rows 14, 15 and 16, and walk west from Mahogany Town over (89,11) to
+    (89,13) below the Route 42 sign; no Suicune, no scene. After the
+    release, from the gate: the scene on each of the three rows
+    (Suicune's jumps, the player's hop back onto the gate tile, Eusine
+    from Mt. Mortar's west entrance, his text). From Mahogany (a save
+    that went through Mt. Mortar before the release, then Fly to
+    Mahogany): Suicune waits at (86,13) facing east, the scene on each of
+    the three rows (the player walks up to row 11, Suicune's jumps over
+    the player's tile, the hop back east, Eusine from the east entrance
+    (80,10), the same texts, he runs off west). Once per game: no second
+    scene at the other end or when the route is entered again. A save
+    of an older build inside Mt. Mortar before the sighting: out of any
+    door to either end of the route also crosses a line, with Suicune at
+    that line. A save made on Route 42 with a build before round 6,
+    after Ecruteak's first visit and before the release: walking onto
+    either line gives no scene; after the release the scene comes once.
+    Then Cianwood and Route 36 as before. Safety net:
+    Cianwood done, Route 42 never walked after the release, Pryce
+    beaten: Suicune stands on Route 36 (its scene, then the
+    Glockenturm), and Route 42 has no Suicune afterwards; before Pryce
+    Route 36 has no Suicune.
+52. **Pokedex ratings (O-038) and Slateport:** Elm's Johto rating at a few
+    counts below 110, at 230 and 245, his National rating at a few counts
+    (below 150 to below 475, also below 400), Oak's rating in Kanto with
+    the seen/owned lines and his "Woahhh!" at a complete Pokedex: one or
+    two boxes each, nothing cut off. Slateport's Berry Powder man with
+    "Items: Zufall" gives the chosen item.
+53. **Kampfzone east without Sudowoodo (D-039):** after the Hoenn title,
+    on the Kampfzone's east side (`BattleFrontier_OutsideEast_hns`): no
+    Sudowoodo on the dead end where it stood, also after leaving the map
+    and coming back; the way into the Artisan Cave (Höhlenatelier) and
+    both of its floors can be reached without any item. "Continue" on an
+    old save: with a build before this change, stand next to the
+    Sudowoodo (do not wake it) and save, then load that save with this
+    build: no Sudowoodo after loading, nothing to talk to on its tile,
+    the cave still reachable. Route 36's Sudowoodo still blocks the way
+    and wakes with the SquirtBottle as before.
+
 ## Risks
 
 - **No playtest.** Scenes with movement scripts, puzzles (Silph Co.
@@ -918,14 +1034,32 @@ shortens the search for wild Pokemon).
 - **CI** never ran on GitHub; the release build has 6 more warnings than
   the baseline the CI checks (LTO and newlib stubs).
 - **Link features** are reachable and untested.
+- **Round 6:** "Instant Tr. Win" ran only in the battle test framework,
+  which runs no overworld scripts; the win itself is the normal path after
+  the battle, but badges, titles, rematch tiers and level-ups with a move
+  to learn or an evolution were not seen with it. The Route 42 scenes put
+  Suicune and Eusine on their tiles themselves, also for a save made on
+  Route 42 with an older build, and both lines check the release
+  themselves, so such a save made before the release sees no early
+  sighting (not played). A save from before round 6 whose last heal was in
+  the Kampfzone still returns there after a whiteout or Teleport before
+  the Hoenn title (D-030; old saves are out of scope). The Kampfzone's
+  Sudowoodo: Continue does not run the map's entry script, so for a save
+  made beside the tree with an older build only the map's ON_RESUME
+  script removes it (and its own script, if it is talked to); not
+  played.
 
 ## What was not verified
 
 - Any play in an emulator or on hardware: story scenes, puzzle dungeons,
   menus, battles at runtime, graphics, sound, saving and loading. The
   release ROM was built and inspected, not started.
-- The scenes and rules of the story packages and of rounds 2 and 3 at
-  runtime (the list above); the debug states only ran in
+- The scenes and rules of the story packages and of rounds 2, 3 and 6 at
+  runtime (the list above; round 6: the ship menus before and after the
+  Hoenn title, Route 42 from both ends and Route 36's safety net, the
+  ratings, "Instant Tr. Win" outside the battle tests, the Kampfzone's
+  east side without Sudowoodo, also on Continue of an old save); the
+  debug states only ran in
   `test/origin_jade/debug_states.c` on a fresh save, the Day Cares only in
   `test/origin_jade/daycares.c`, never in the game.
 - The checklists of the three test steps (play A to Z, balancing, reach

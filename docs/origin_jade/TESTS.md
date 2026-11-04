@@ -54,7 +54,13 @@ in 951 files, 2355 ok, 629 todo, 2164 known failures; the 8 new tests
 (`daycares.c` 2, `even_wild_slots.c` 2, `region_badges.c` 1, two more in
 `level_scaling.c`, one more in `debug_states.c`) pass, and no known
 failure changed. State of 2026-11-03 at `61ac7e277d` (rounds 2 and 3 on
-the owner's map commits): the same 5148 tests with the same results. The
+the owner's map commits): the same 5148 tests with the same results.
+State of 2026-11-03 at `9734e9f5ca` (round 6): 5158 tests in 952 files,
+2365 ok, 629 todo, 2164 known failures; the 10 new tests
+(`instant_trainer_win.c`) pass, and no known failure changed. State of
+2026-11-04 at `0d4d8968ad` (round 6 with the Route 42 follow-up): the
+same 5158 tests with the same results. State of 2026-11-04 at
+`a9cc1fed6f` (round 6 with the Sudowoodo follow-up): the same 5158 tests with the same results. The
 causes:
 
 - 1969 "Unmatched MESSAGE": the tests expect English battle texts. Battle
@@ -140,6 +146,15 @@ var number without storage (D-016).
 - `test/origin_jade/even_wild_slots.c`: the debug toggle "Even Wild Slots"
   (D-055): every land, water and Rock Smash slot comes up about equally
   often while it is on; off, the last land slot keeps its 1 %.
+- `test/origin_jade/instant_trainer_win.c` (10 tests): the debug switch
+  "Instant Tr. Win" (D-055): with it on, a single trainer battle ends
+  with every opposing Pokemon fainted, EXP for the player's Pokemon, the
+  player's HP unchanged and more money; the trainer slides before the
+  first turn and at the last switch-in still show; double, two-trainer
+  (1 vs 2), multi with a partner and partner (2 vs 1) battles; with it
+  off, and in a wild and a recorded link battle with it on, the battle
+  runs as usual. The test runner resets the switch after every battle
+  test (`test/test_runner_battle.c`).
 - `test/origin_jade/region_badges.c`: the badge readers count the region
   of a map: Kanto's badge flags, `VAR_JOHTO_BADGES` and `VAR_HOENN_BADGES`
   (`GetRegionBadgeCount`, D-007, D-053).
@@ -196,8 +211,11 @@ plays the game. Run them from the repository root; the ones marked
   stops, unreachable maps, items, trainers, gifts). Without a switch it
   follows the story through Troy's scene in Oak's lab (D-047) and the
   ferry; `--hoenn-ticket` starts with the Hoenn Ticket already received
-  (what-if), `--diff OLD NEW` compares two reports. Exit 0 only if the
-  Hoenn title is reachable.
+  (what-if), `--diff OLD NEW` compares two reports. Since round 6 the
+  report has the first wave of each map (`map_waves`), and `--compare`
+  and `--diff` also list the maps whose first wave moves to another
+  stretch (up to the Kanto, Johto or Hoenn title, or after it). Exit 0
+  only if the Hoenn title is reachable.
 - `tools/oj_world.py`: shared data layer of the static tools (maps,
   layouts, metatile behaviours, map sections, items, event scripts);
   imported with `sys.path.insert(0, "tools"); import oj_world`, no command
@@ -230,7 +248,51 @@ Also after every change to flags, vars, trainers or Kanto content:
 tables, overworld Pokemon, gifts or the Pokedex order:
 `python3 -I tools/check_regions.py` (D-049).
 
-## Test matrix (2026-11-03, round 5: `r5-text`)
+## Test matrix (2026-11-04, round 6: `r6c`)
+
+State: round 6 on top of `r5-text` (`37fa894c9a`): the branch `r6c` with
+7 commits of three packages (the owner's requests of 2026-11-03: the
+Pokedex ratings `b91decb332`, Route 42 `35ab4e7d67`, Slateport's Berry
+Powder man `5e73be326c`, the simulator's report per map `ca8bdc6064`, the
+Kampfzone after the Hoenn title `02fbf2e93c`, Elm's line `c7c57abb9a`,
+the debug switch "Instant Tr. Win" `9734e9f5ca`), the Route 42
+follow-up of the owner's decision of 2026-11-04 (`0d4d8968ad`: the
+sighting also at the Mahogany end, the safety net on Route 36), the
+Sudowoodo follow-up of his second decision of 2026-11-04 (`a9cc1fed6f`:
+no Sudowoodo in the Kampfzone) and its documentation commit (no code
+change). No change to the save layout, no new flag or var. Results from
+the per-commit run `percommit_r6` (`r6/integ` in the audit workspace)
+and the end checks on `9734e9f5ca`, each compared with the same check on
+`r5-text` (`37fa894c9a`); for the Route 42 follow-up the rows marked
+`r6b` (`r6b` in the audit workspace), each compared with `r6`; for the
+Sudowoodo follow-up the rows marked `r6c` (`r6c` in the audit
+workspace), each compared with `0d4d8968ad` (the code of `r6b`).
+Nothing was checked in an emulator.
+
+| Area | Check | Result |
+|---|---|---|
+| Build | `make -j4` per commit (`percommit_r6`, committer date = author date) | 7 of 7 commits after `37fa894c9a` `make=ok` with their final ids; `check_flags` 0 and `make_debug_states.py --check` (both headers up to date) at each; ROM SHA-1 of the tip `a946d0fb8ab92b5443252401f7dc9a98265659c7` (`r5-text`: `369526d0c3f75df465e426fc2779560a460cbe90`) |
+| Build | build from scratch in a new worktree, `make release`, then `make` again | the same SHA-1 `a946d0fb8ab92b5443252401f7dc9a98265659c7`; `check_warnings.py` 105 warnings, as in the baseline; release exit 0, SHA-1 `a70c074b8d306277339afae47a1826d96ab96ef9`, 111 warnings as before; the release ELF has no `gDebugInstantTrainerWin`, `HandleDebugInstantTrainerWin_*`, `DebugAction_*` or `gDebugEvenWildSlots`, only the unreferenced 13-byte label `BattleScript_DebugInstantTrainerWinFaint`; `make` after the release build gives the same SHA-1 again |
+| Tests | `tools/run_tests.py -j3` | 5158 tests in 952 files: 2365 ok, 629 todo, 2164 failing (2164 known, 0 new, 0 changed); `r5-text`: 5148 in 951; the new `test/origin_jade/instant_trainer_win.c` 10 of 10; the other Origin Jade tests as before (level scaling 11, flag/var routing 7, save sizes 4, region rule 14, debug states 3, Day Cares 2, even wild slots 2, region badges 1, all ok) |
+| Progress | `simulate_progress.py --compare` against `r5-text` (run with the new simulator) | 0 milestones gained or lost, 0 new stops, the same unreachable maps (195 of 1115), item balls, hidden items, trainers, gifts and static encounters; 40 maps change their stretch: the 38 maps of the Kampfzone and the Artisan Cave's two floors from "up to the Hoenn title" (first wave 108-113) to "after the Hoenn title" (140-145). Kanto title in wave 50, Johto 106, Hoenn 138 (`r5-text`: 50, 105, 137): every milestone from Mt. Mortar on (wave 73 -> 74) comes one wave later. Cause: the three new coord events on Route 42 sit on the only way east from the Ecruteak gate, and in the wave in which the simulator first reaches a map it has not run that map's scripts yet, so it treats a coord event that may fire there as a stop for one wave. The game runs the map script before the player moves (before the Burned Tower release the trigger is off; after it the scene plays once and the player walks on). Without the three coord events the titles are in waves 105 and 137 again; Eusine back at the middle door of Mt. Mortar or the trigger switched off directly before the release change nothing (what-if runs) |
+| Checks | `check_flags.py`, `make_debug_states.py --check`, `check_regions.py`, `check_budget.py`, `check_save_safety.py`, `check_maps.py --compare r5-text`, `check_merge.py` | 0 problems (3479 flags, 696 vars, as before); both headers up to date; 0 problems; SaveBlock1 15868, SaveBlock2 3892, SaveBlock3 1584 bytes as on `r5-text` (EWRAM 8 bytes more for the switch, ROM 1284 bytes more); 76 findings as on `r5-text`; 88 minor on 1125 active maps, fixed 0, new 0; 0 errors (8 known, 205 warnings, 273 hints) |
+| Texts | `check_text_width.py --list`, `check_game_text.py`, `--english`, `--list` | 35 exact lines over 208 px (Johto 28, Kanto 1, locked 6) and the same counts of exact and estimated lines over 208 px and of English texts per area as on `r5-text` (shared 97, locked 290, Johto 23, Kanto 5, `src` 11, retired 3, Hoenn 0); the lists differ only in line numbers, so no new line is over 208 px; the packages measured the new German lines (Pokedex ratings, Elm) at most 207 px |
+| Texts | Poké-Corpus | every changed German rating text matches its HGSS, Platinum or FRLG line word for word (checked by the package, its review and again by hand for 16 lines); the National rating below 400 has Platinum's words with a scroll instead of Platinum's new box before the last line; Elm's shortened line is an own text (no official line for this scene) |
+| Build (`r6b`) | `make -j2` per commit (`percommit_r6b`, committer date = author date) | 2 of 2 commits after `9734e9f5ca` `make=ok` with their final ids (the same ROM from scratch in an export of the tree of `0d4d8968ad`); `check_flags` 0 and `make_debug_states.py --check` (both headers up to date; the debug states already have the whole Suicune chain done, `VAR_SUICUNE_ENCOUNTERS` 8) at each; ROM SHA-1 `38923c5c5a9d3246f8e8fdb501c7ec218246eb9d` at both |
+| Route 42 (`r6b`) | walk over Route 42's passable tiles with the movement rules of `check_maps.py` (collision, elevation, ledges, Surf, both map seams, step and door warps), every warp and heal spot of Ecruteak City and Mahogany Town and every seam tile as start | with the six trigger tiles (10,14)-(10,16) and (89,11)-(89,13) blocked: 230 tiles from the outside (gate, both towns, the pockets at the seams), none of them a Mt. Mortar door; 524 tiles from the four Mt. Mortar doors, none of them the gate warp or a seam; without the triggers both sides reach each other (sanity); no ledge jumps over a trigger tile, all six are plain ground (`MB_NORMAL`), neither trainer (Shane, Ben) sees one; Mt. Mortar's four maps have no warp, connection, script warp or heal spot to or from anything but each other and Route 42's doors; Route 42 is no Fly target (`MAPSECTYPE_ROUTE`) |
+| Progress (`r6b`) | `simulate_progress.py --compare` against `r6` | Kanto title in wave 50, Johto 106, Hoenn 138 as on `r6`; 0 milestones, stops, maps, item balls, hidden items, trainers, gifts or static encounters gained or lost, 0 maps in another stretch; the Suicune chain reaches every step in the same waves as on `r6` (`VAR_SUICUNE_ENCOUNTERS` 1 in wave 74, 2 and 3 in 77, 4 in 78, 8 in 99; the Burned Tower release in 75, Pryce in 90) |
+| Checks (`r6b`) | `check_flags.py`, `make_debug_states.py --check`, `check_maps.py --compare r6` | 0 problems (3479 flags, 696 vars); both headers up to date; 88 minor, fixed 0, new 0 |
+| Texts (`r6b`) | `check_text_width.py`, `--list`, `check_game_text.py`, `--english`, `--list` | the same as on `r6`; the outputs differ only in the repository path (no new text) |
+| Tests (`r6b`) | `tools/run_tests.py -j3` on `0d4d8968ad` | 5158 tests in 952 files: 2365 ok, 629 todo, 2164 failing (2164 known, 0 new, 0 changed), the same as on `r6` |
+| Build (`r6c`) | `make -j3` per commit (`percommit_r6c`, committer date = author date) | 3 of 3 commits after `9734e9f5ca` `make=ok` with their final ids; `check_flags` 0 and `make_debug_states.py --check` (both headers up to date) at each; ROM SHA-1 `38923c5c5a9d3246f8e8fdb501c7ec218246eb9d` at `0d4d8968ad` (as on `r6b`), `424b9391dadcadd3738a29f19fb2265f1afb2cd4` at `a9cc1fed6f` and at the documentation commit |
+| Build (`r6c`) | build from scratch in a new worktree of `a9cc1fed6f`, `make release`, then `make` again | the same SHA-1 `424b9391dadcadd3738a29f19fb2265f1afb2cd4`; `check_warnings.py` 105 warnings, as in the baseline; release exit 0, SHA-1 `c3bd9bb9f507d0a7c306199b152074373f5477dd`, 111 warnings as before, no `DebugAction_*`, `gDebugEvenWildSlots`, `gDebugInstantTrainerWin` or `HandleDebugInstantTrainerWin_*` in the release ELF; `make` after the release build gives the same SHA-1 again |
+| Checks (`r6c`) | `check_flags.py`, `make_debug_states.py --check`, `check_regions.py`, `check_budget.py`, `check_save_safety.py`, `check_maps.py --compare 0d4d8968ad`, `check_merge.py` | 0 problems (3479 flags, 696 vars); both headers up to date; 0 problems (93 script commands of active maps instead of 94: the Kampfzone's Sudowoodo battle is gone); SaveBlock1 15868, SaveBlock2 3892, SaveBlock3 1584 bytes as on `0d4d8968ad` (ROM 400 bytes less); 76 findings as before; 88 minor, fixed 0, new 0; 0 errors (8 known, 205 warnings, 273 hints) |
+| Texts (`r6c`) | `check_text_width.py`, `--list`, `check_game_text.py`, `--english`, `--list` | the same lines over 208 px (35 exact: Johto 28, Kanto 1, locked 6) and the same English texts per area as on `0d4d8968ad`, so no new line over 208 px and no new English; one text fewer (the old woman's line about the wiggling tree, 5 lines, shown by no map) |
+| Progress (`r6c`) | `simulate_progress.py --compare` against `0d4d8968ad` (run on the tree of `r6b`) | Kanto title in wave 50, Johto 106, Hoenn 138 as before; 0 milestones, stops, unreachable maps (195 of 1115), item balls, hidden items, trainers, gifts or never-run static encounters gained or lost, 0 maps in another stretch; the Kampfzone's east side and both floors of the Artisan Cave first in wave 140, as before |
+| Tests (`r6c`) | `tools/run_tests.py -j3` on `a9cc1fed6f` | 5158 tests in 952 files: 2365 ok, 629 todo, 2164 failing (2164 known, 0 new, 0 changed), the same as on `0d4d8968ad`; the Origin Jade tests as before (level scaling 11, flag/var routing 7, save sizes 4, region rule 14, debug states 3, Day Cares 2, even wild slots 2, region badges 1, instant trainer win 10, all ok); no test runs the Kampfzone's map scripts |
+| Not checked | - | play in an emulator (`BETA_READINESS.md`, steps 49 to 53), the after-battle part of "Instant Tr. Win" (the battle tests run no overworld scripts), level-ups and evolutions with the switch, both Route 42 scenes and the Route 36 safety net in the game, the Kampfzone's east side without Sudowoodo and Continue on a save made beside the tree with an older build |
+
+### Earlier state: round 5 (`r5-text`, 2026-11-03)
 
 State: round 5 on top of `r4-items` (`d865587460`): the branch `r5-text`
 with 8 text commits (official German texts word for word, owner rule

@@ -5,8 +5,12 @@ of the story packages that followed it on 2026-10-31, of round 2 on
 2026-11-02 (the owner's answers of 2026-10-31 and 2026-11-02), of round
 3 on 2026-11-02/03 (contests as in Ruby and Sapphire, battle tents and the
 Route 111 Trainer Hill retired), of round 4 on 2026-11-03 (every item
-can be obtained) and of round 5 on 2026-11-03 (official German texts word
-for word): how it was made, which commits depend on
+can be obtained), of round 5 on 2026-11-03 (official German texts word
+for word) and of round 6 on 2026-11-03/04 (the owner's requests of
+2026-11-03: the Kampfzone after the Hoenn title, official Pokedex
+ratings, Route 42, a debug switch; his decisions of 2026-11-04 on Route
+42 and on the Kampfzone's Sudowoodo): how it was made, which commits
+depend on
 each other, how each commit was verified and how to apply it. What changed
 for players is in `docs/origin_jade/CHANGELOG.md`, what is still open in
 `docs/origin_jade/BETA_READINESS.md`.
@@ -26,15 +30,23 @@ for players is in `docs/origin_jade/CHANGELOG.md`, what is still open in
   sits on `r23-docs`: `74c47e7e1b..851aa886e2`, 15 commits, and one
   documentation commit on top, 293 in all (`r4-items`, `d865587460`).
   Round 5 sits on `r4-items`: `d865587460..035c5ef512`, 8 text commits and
-  one Battle Frontier text fix, and one documentation commit on top (this
-  file is part of it), 303 in all (`r5-text`). Nothing of rounds 2 to 5 is committed on `balancing`
-  before the owner's approval.
+  one Battle Frontier text fix, and one documentation commit on top, 303
+  in all (`r5-text`, `37fa894c9a`). Round 6 sits on `r5-text`:
+  `37fa894c9a..a9cc1fed6f`, 7 commits of three packages and two
+  follow-ups of the owner's decisions of 2026-11-04 (Route 42, no
+  Sudowoodo in the Kampfzone), and one documentation commit on top (this
+  file is part of it), 313 in all (`r6c`). Nothing of rounds 2 to 6 is
+  committed on `balancing` before the owner's approval.
 - **Commit ids:** the ids (shas) of commits 1-198 are those of the
   integration branch `audit`, now also on `balancing`. The ids of commits
   199-271 are those of the integration branch `runde23` and the ids of
   272-277 those of `r23-docs` on top of it, the ids of 278-293 those of
-  `r4-items` on top of `r23-docs` and the ids of 294-303 those of
-  `r5-text` on top of `r4-items`. Round 2 was first built on
+  `r4-items` on top of `r23-docs`, the ids of 294-303 those of
+  `r5-text` on top of `r4-items` and the ids of 304-313 those of `r6c` on
+  top of `r5-text` (304-310 are the same on `r6`, the integration branch
+  of round 6, which has the documentation commit without 311 and 312;
+  304-311 are the same on `r6b`, which has it without 312). Round 2
+  was first built on
   `2f284d83b9` (branches `runde2`, `r2-derest`, `r2-docs`) and then rebased
   onto `ad4a8db368`, which gave every commit a new id with the same
   subject; this file lists only the new ids. Applying the series with
@@ -66,7 +78,17 @@ for players is in `docs/origin_jade/CHANGELOG.md`, what is still open in
   marks what its review added. Round 5 implements the owner's text rule
   of 2026-11-03 (`text rule`: only verified official German, word for
   word; free translations, smoothings and shortenings need his approval);
-  `review` marks what its two reviews added.
+  `review` marks what its two reviews added. Round 6 implements the
+  owner's requests of 2026-11-03 (`owner`: the Kampfzone only after the
+  game, Pokedex rating texts with the official wording, a test aid that
+  wins trainer battles at once) and his answer on Suicune's sighting
+  (`Route 42`, A54: "Die Route 42 macht das so") and his decision of
+  2026-11-04 (`owner`, Route 42: "Wenn wir den Auslöser selber gemacht
+  haben, sollte er undodgeable sein") and on the Kampfzone's Sudowoodo
+  (`owner`, D-039: it goes, Route 36 keeps its Sudowoodo), and resolves
+  O-038, Slateport's part of O-057 and the Kampfzone part of O-060 and
+  makes N-johto_story-3 obsolete; `review` marks what its reviews
+  added.
 
 ## How the series was made
 
@@ -183,6 +205,35 @@ for players is in `docs/origin_jade/CHANGELOG.md`, what is still open in
 20. **Documentation (1 commit).** `CHANGELOG.md`, `BETA_READINESS.md`,
     `TESTS.md`, `README.md`, this file and O-012 in `DECISIONS.md` for
     round 5 (D-056 and D-057 changed in the commits of round 5).
+21. **Round 6 (9 commits).** Three packages, each in its own worktree on
+    `r5-text` and reviewed: `r6-texte` (the Pokedex rating texts compared
+    with the Poké-Corpus label by label, Route 42, Slateport's Berry
+    Powder man), `r6-kampfzone` (the simulator's report per map, the
+    Kampfzone gate, Elm's line) and `r6-testhilfe` (the debug switch with
+    its battle tests). The review fixes were folded into their commits
+    (autosquash: Route 42 armed by the Burned Tower release, the red Fly
+    icon, the courtyard tents' Battle Points in D-050 and O-060). The
+    integration branch `r6` took the final commits in this order onto
+    `r5-text` by cherry-pick, without conflicts (git merged the three
+    packages' edits of `DECISIONS.md`), set every committer date to the
+    author date and built every commit again with its final id
+    (`percommit_r6`). After the owner's decision of 2026-11-04 the
+    follow-up on Route 42 (311, `0d4d8968ad`: triggers at both ends, the
+    safety net on Route 36) was made on `r6b`, a new branch from 310, and
+    the documentation commit was taken over onto it by cherry-pick and
+    updated; both were built with their final ids (`percommit_r6b`).
+    After the owner's second decision of 2026-11-04 the follow-up on the
+    Kampfzone's Sudowoodo (312, `a9cc1fed6f`: no Sudowoodo, the Artisan
+    Cave open as before, a guard for old saves on Continue) was made on
+    `r6-mogel`, a branch from 310, and reviewed; `r6c`, a new branch
+    from 311, took it by cherry-pick (git merged its edits of
+    `DECISIONS.md` with those of 311 without conflicts) and the
+    documentation commit of `r6b` by cherry-pick, which was then updated;
+    every committer date was set to the author date and the three
+    commits after 310 were built with their final ids (`percommit_r6c`).
+22. **Documentation (1 commit).** `CHANGELOG.md`, `BETA_READINESS.md`,
+    `TESTS.md`, `README.md` and this file for round 6 (`DECISIONS.md`
+    changed in the commits of round 6).
 
 Rules every commit follows: one finding (or a tight group of the same
 kind) per commit; `DECISIONS.md` changes in the same commit as the
@@ -426,8 +477,14 @@ commits 272-277 change no code. Every commit of round 4 (278-292) was
 built with its final id on `r23-docs` (`percommit_r4`, 15 of 15); the
 documentation commit 293 changes no code. Every commit of round 5
 (294-302) was built with its final id on `r4-items` (`percommit_r5`, 10 of
-10 with the documentation commit 303, which changes no code). The logs are kept in the audit
-workspace, not in the repository.
+10 with the documentation commit 303, which changes no code). Every
+commit of round 6 (304-310) was built with its final id on `r6`
+(`percommit_r6`, 8 of 8 with the documentation commit of `r6`, which
+changes no code), the follow-up 311 with the documentation commit of
+`r6b`, which changes no code, on `r6b` (`percommit_r6b`, 2 of 2), and
+311, the follow-up 312 and the documentation commit 313, which changes
+no code, on `r6c` (`percommit_r6c`, 3 of 3). The logs are kept in the
+audit workspace, not in the repository.
 
 | Part | Commits | Per-commit build and `check_flags` | Logs |
 |---|---:|---|---|
@@ -451,6 +508,10 @@ workspace, not in the repository.
 | Tip `851aa886e2` | 292 | `make` 0 at the end of the per-commit run and from scratch in a new worktree (398 C files), both ROM SHA-1 `8fe887d805f3db1d350df34391a5d4488830873c`; `make release` 0 (SHA-1 `a4bb57818d0471f0d805d680541a76d1214f969e`, no debug menu, debug states or "Even Wild Slots" in the ELF); `check_warnings.py` 105 (release 111); `check_flags` 0 (3479 flags, 696 vars); `make_debug_states.py --check` (both headers up to date); `check_regions.py` 0 problems; `check_text_width.py` 35 exact lines as before; `check_game_text.py --english` (Hoenn 0, Johto 23, Kanto 5, shared 97, `src` 11); `check_maps.py` 88 minor on 1125 active maps; `check_merge.py` 0 errors (8 known, 205 warnings, 273 hints); simulator without `--hoenn-ticket`: Kanto title in wave 50, Johto 105, Hoenn 137, nothing changed against the round before its review fixes; `check_budget.py` (SaveBlock3 1584/1624, as before); `check_save_safety.py` 76 findings as before; test suite with `tools/run_tests.py`: 5148 tests, 0 new and 0 changed failures; the audit's item check: no item without a regular source | `r4rev/end/`, `r4rev/full_r4rev.log`, `r4rev/tests_r4.log` |
 | Documentation (5) | 1 | documentation only, not built (the tip build above has the same code); `check_flags` 0; this list and the commit ids of the five files checked against `git log` by a script (see the end of the list) | - |
 | Round 5 | 10 | on `r5-text` after the second review, with the final ids: 10 of 10 `make -j3` 0 (the frontier fix `035c5ef512` built and checked on its own after the second review), `check_flags` 0, `make_debug_states.py --check` both headers up to date; ROM SHA-1 of `b050d8febc` `123ca23a06e7a992bfd70883ff072dd192aa7b07`; the frontier fix `035c5ef512` and the documentation commit give `369526d0c3f75df465e426fc2779560a460cbe90` (the same after a build from scratch; test suite 5148 tests, 0 new and 0 changed failures). On the ROM of `b050d8febc`: `check_text_width.py --list` 35 exact lines over 208 px as on `r4-items`; `check_game_text.py` the same counts of exact lines over 208 px and of English texts per area as on `r4-items` (only the estimates of the Game Corner TV show changed with its line breaks) | `r5int/percommit.log`, `r5int/tw_now*.txt`, `r5int/gt_now*.txt` |
+| Round 6 | 10 | on `r6` after the integration (cherry-pick of the three reviewed packages onto `r5-text`, committer date = author date), with the final ids: 7 of 7 `make -j4` 0 (8 of 8 with the documentation commit of `r6`), `check_flags` 0, `make_debug_states.py --check` both headers up to date; ROM SHA-1 of `9734e9f5ca` `a946d0fb8ab92b5443252401f7dc9a98265659c7`. On `r6b` the follow-up `0d4d8968ad` and the documentation commit of `r6b`: 2 of 2 `make -j2` 0, `check_flags` 0, `make_debug_states.py --check` both headers up to date, ROM SHA-1 `38923c5c5a9d3246f8e8fdb501c7ec218246eb9d` at both. On `r6c` `0d4d8968ad`, the Sudowoodo follow-up `a9cc1fed6f` and the documentation commit 313: 3 of 3 `make -j3` 0, `check_flags` 0, `make_debug_states.py --check` both headers up to date, ROM SHA-1 `38923c5c5a9d3246f8e8fdb501c7ec218246eb9d` at `0d4d8968ad` and `424b9391dadcadd3738a29f19fb2265f1afb2cd4` at the other two | `r6/integ/percommit.log`, `r6b/percommit.log`, `r6c/pc/percommit.log` |
+| Tip `9734e9f5ca` | 310 | `make` 0 at the end of the per-commit run and from scratch in a new worktree, both ROM SHA-1 `a946d0fb8ab92b5443252401f7dc9a98265659c7`; `make release` 0 (SHA-1 `a70c074b8d306277339afae47a1826d96ab96ef9`, no debug menu, debug states, "Even Wild Slots" or "Instant Tr. Win" in the ELF), then `make` again with the same SHA-1; `check_warnings.py` 105 (release 111); `check_flags` 0 (3479 flags, 696 vars); `make_debug_states.py --check` (both headers up to date); `check_regions.py` 0 problems; `check_text_width.py` 35 exact lines as before; `check_game_text.py --english` the same counts as on `r5-text`; `check_maps.py --compare r5-text` 88 minor, nothing new; `check_merge.py` 0 errors (8 known, 205 warnings, 273 hints); simulator against `r5-text`: Kanto title in wave 50, Johto 106, Hoenn 138 (one wave later from Mt. Mortar on: the new Route 42 trigger stops the model for one wave at the first visit; without it 105 and 137), no milestone or stop gained or lost, the Kampfzone and the Artisan Cave only after the Hoenn title; `check_budget.py` (save blocks as before); `check_save_safety.py` 76 findings as before; test suite with `tools/run_tests.py`: 5158 tests, 0 new and 0 changed failures | `r6/integ/end/`, `r6/integ/whatif/` |
+| Tip `0d4d8968ad` | 311 | `make -j2` 0 (in the worktree of `r6b`, and from scratch in an export of the tree with the same result), ROM SHA-1 `38923c5c5a9d3246f8e8fdb501c7ec218246eb9d`; `check_flags` 0 (3479 flags, 696 vars); `make_debug_states.py --check` (both headers up to date, no new state needed); `check_maps.py --compare r6` 88 minor, nothing fixed, nothing new; a walk over Route 42's passable tiles (collision, elevation, ledges, Surf, both map seams, all four Mt. Mortar doors): without the six trigger tiles no door is reachable from the gate, Ecruteak or Mahogany and no exit from a door, no ledge jumps over a trigger tile, no trainer sees one, Mt. Mortar has no other entrance; simulator against `r6`: Kanto title in wave 50, Johto 106, Hoenn 138 as before, no milestone, stop, map, item, trainer, gift or static encounter gained or lost, no map changes its stretch, the Suicune chain (`VAR_SUICUNE_ENCOUNTERS` 1, 2, 3, 4 and 8) reachable in the same waves; `check_text_width.py` and `check_game_text.py` (also `--english`, `--list`) the same as on `r6`; test suite with `tools/run_tests.py`: 5158 tests, 0 new and 0 changed failures, as on `r6` | `r6b/` |
+| Tip `a9cc1fed6f` | 312 | `make -j3` 0 at the end of the per-commit run and from scratch in a new worktree, both ROM SHA-1 `424b9391dadcadd3738a29f19fb2265f1afb2cd4`; `make release` 0 (SHA-1 `c3bd9bb9f507d0a7c306199b152074373f5477dd`, no debug menu, "Even Wild Slots" or "Instant Tr. Win" in the ELF), then `make` again with the same SHA-1; `check_warnings.py` 105 (release 111); `check_flags` 0 (3479 flags, 696 vars); `make_debug_states.py --check` (both headers up to date); `check_regions.py` 0 problems; `check_budget.py` SaveBlock1 15868, SaveBlock2 3892, SaveBlock3 1584 as on `0d4d8968ad` (ROM 400 bytes less); `check_save_safety.py` 76 findings as before; `check_text_width.py --list` and `check_game_text.py` (also `--english`, `--list`) the same lines over 208 px and the same English texts as on `0d4d8968ad` (one text fewer, shown by no map); `check_maps.py --compare 0d4d8968ad` 88 minor, nothing fixed, nothing new; `check_merge.py` 0 errors (8 known, 205 warnings, 273 hints); simulator against `0d4d8968ad` (run on the tree of `r6b`): Kanto title in wave 50, Johto 106, Hoenn 138 as before, no milestone, stop, map, item ball, hidden item, trainer, gift or never-run static encounter gained or lost, no map in another stretch, the Kampfzone's east side and both floors of the Artisan Cave in wave 140 as before; test suite with `tools/run_tests.py`: 5158 tests, 0 new and 0 changed failures, as on `0d4d8968ad` | `r6c/end/`, `r6c/base/` |
 
 On 2026-10-31 the audit tip `b62f22e381` and the tip `b022af5623` were
 also built from scratch in a separate worktree (all 397 C files
@@ -467,15 +528,16 @@ Commits 1-198 are on `balancing` since 2026-10-31 (fast-forward to
 Karten" and `ad4a8db368` "Tilesets für Änderungen nachgeladen" since
 2026-11-02. Rounds 2 and 3 with their documentation (commits 199-277)
 sit on `ad4a8db368`, round 4 with its documentation (278-293) on
-`r23-docs`, round 5 with its documentation (294-303) on `r4-items`. As
-long as `balancing` is still at `ad4a8db368`, a fast-forward applies them
-and keeps the ids of this file:
+`r23-docs`, round 5 with its documentation (294-303) on `r4-items`,
+round 6 with its documentation (304-313) on `r5-text` (`r6c`). As
+long as `balancing` is still at `ad4a8db368`, a fast-forward applies
+them and keeps the ids of this file:
 
 **Fast-forward** (in the target repository, with the integration clone as
-a remote or after fetching `r5-text`):
+a remote or after fetching `r6c`):
 
-    git checkout balancing        # at ad4a8db368 (or at r23-docs, r4-items)
-    git merge --ff-only r5-text
+    git checkout balancing        # at ad4a8db368 (or a later round's tip)
+    git merge --ff-only r6c
 
 **Patches** (`git am`, also when `balancing` has moved on):
 
@@ -483,11 +545,13 @@ a remote or after fetching `r5-text`):
     git format-patch ad4a8db368..r23-docs -o patches/runde23/
     git format-patch r23-docs..r4-items -o patches/runde4/
     git format-patch r4-items..r5-text -o patches/runde5/
+    git format-patch r5-text..r6c -o patches/runde6/
     # in the target repository
     git checkout balancing
     git am --3way patches/runde23/*.patch
     git am --3way patches/runde4/*.patch
     git am --3way patches/runde5/*.patch
+    git am --3way patches/runde6/*.patch
 
 With `git am` on a moved `balancing` every commit gets a new id with the
 same subject; the ids in this file, `CHANGELOG.md`, `BETA_READINESS.md`
@@ -508,7 +572,10 @@ export of the whole branch as above. `patches/r4_items/` holds round 4
 and its documentation commit as they are on `r4-items`
 (`r23-docs..r4-items`, the same as `patches/runde4/` above);
 `patches/r5_text/` holds round 5 and its documentation commit as they are
-on `r5-text` (`r4-items..r5-text`, the same as `patches/runde5/` above).
+on `r5-text` (`r4-items..r5-text`, the same as `patches/runde5/` above);
+`patches/r6/` holds round 6 with both follow-ups and its documentation
+commit as they are on `r6c` (`r5-text..r6c`, the same as
+`patches/runde6/` above).
 
 After applying, run:
 
@@ -1108,19 +1175,61 @@ transparent pixels from the original tiles is offered to him
 
 | # | Commit | Title | Findings |
 |---:|---|---|---|
-| 303 | this commit | Doku: Runde 5 in O-012, CHANGELOG, BETA_READINESS, TESTS, PATCHES und README | review |
+| 303 | `37fa894c9a` | Doku: Runde 5 in O-012, CHANGELOG, BETA_READINESS, TESTS, PATCHES und README | review |
 
-The id of commit 303 is in `git log`; a commit cannot name its own id.
+### Round 6 (owner requests of 2026-11-03 and 2026-11-04)
+
+#### `r6-texte`: Pokedex ratings, Route 42 and Slateport (O-038, D-038, O-057)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 304 | `b91decb332` | Pokédex-Bewertungen: offizieller deutscher Wortlaut | owner, O-038 |
+| 305 | `35ab4e7d67` | Route 42: Suicune-Sichtung auf dem Hauptweg | Route 42, A54, review |
+| 306 | `5e73be326c` | Graphitport City: Beerenpulver-Tausch ohne Item-Zufall | O-057 |
+
+#### `r6-kampfzone`: the Kampfzone only after the Hoenn title (D-029, D-030, O-060)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 307 | `ca8bdc6064` | Simulator: erste Welle je Karte im Bericht, Vergleich nach Titel-Abschnitten | owner (tool) |
+| 308 | `02fbf2e93c` | Kampfzone erst nach dem Hoenn-Titel erreichbar | owner, O-060, review |
+| 309 | `c7c57abb9a` | Lind: M.S. Aqua fährt nach Orania City, ohne Kampfzone | owner |
+
+#### `r6-testhilfe`: the debug switch "Instant Tr. Win" (D-055)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 310 | `9734e9f5ca` | Debug-Menü: Schalter „Instant Tr. Win“ gewinnt Trainerkämpfe sofort | owner |
+
+#### Follow-up of 2026-11-04: Route 42 from both ends (D-038, A54)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 311 | `0d4d8968ad` | Route 42: Suicune-Sichtung auch vom Ostausgang, Kette ohne Sackgasse | owner, Route 42, A54 |
+
+#### Follow-up of 2026-11-04: no Sudowoodo in the Kampfzone (D-039, D-030)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 312 | `a9cc1fed6f` | Kampfzone: kein Mogelbaum mehr | owner, N-johto_story-3, review |
+
+### Documentation (7)
+
+| # | Commit | Title | Findings |
+|---:|---|---|---|
+| 313 | this commit | Doku: Runde 6 in CHANGELOG, BETA_READINESS, TESTS und PATCHES | - |
+
+The id of commit 313 is in `git log`; a commit cannot name its own id.
 The ids of commits 199 to 271 are those of `runde23`, 272 to 277 of
-`r23-docs`, 278 to 293 of `r4-items`, 294 to 303 of `r5-text`. Applied
-with `git am` on a `balancing` that has moved on, they get new ones (see
-"How to apply").
+`r23-docs`, 278 to 293 of `r4-items`, 294 to 303 of `r5-text`, 304 to
+313 of `r6c`. Applied with `git am` on a `balancing` that has moved on,
+they get new ones (see "How to apply").
 
 A script compared this list with `git log --reverse --first-parent
-3525d22e71..r5-text`: rows 1 to 303 are its commits in this order
-without the owner's two, with the same ids and titles, and the two owner
-rows are the owner's commits. Every commit id in this file,
-`CHANGELOG.md`, `BETA_READINESS.md`, `TESTS.md`, `DECISIONS.md` and
-`README.md` is a commit in the history of `r5-text`; the ids round 2
-had before the rebase and the ids the commits of rounds 4 and 5 had
-before their review fixes appear nowhere.
+3525d22e71..r6c`: rows 1 to 313 are its commits in this order without the
+owner's two, with the same ids and titles, and the two owner rows are the
+owner's commits. Every commit id in this file, `CHANGELOG.md`,
+`BETA_READINESS.md`, `TESTS.md`, `DECISIONS.md` and `README.md` is a
+commit in the history of `r6c`; the ids round 2 had before the rebase and
+the ids the commits of rounds 4 to 6 had before their review fixes or
+their integration appear nowhere.

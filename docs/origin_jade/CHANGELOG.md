@@ -4,8 +4,10 @@ Changes of the audit round of 2026-10-30/31, of the story packages that
 followed it on 2026-10-31, of round 2 on 2026-11-02 (the owner's answers
 of 2026-10-31 and 2026-11-02), of round 3 on 2026-11-02/03 (contests as
 in Ruby and Sapphire), of round 4 on 2026-11-03 (every item can be
-obtained) and of round 5 on 2026-11-03 (official German texts word for
-word), for players and testers. The upstream
+obtained), of round 5 on 2026-11-03 (official German texts word for
+word) and of round 6 on 2026-11-03/04 (the Kampfzone after the Hoenn
+title and without Sudowoodo, official Pokedex ratings, Route 42, a debug
+switch), for players and testers. The upstream
 `CHANGELOG.md` in the repository root belongs to pokeemerald-expansion and
 is not about Origin Jade.
 
@@ -15,7 +17,8 @@ is not about Origin Jade.
   commits `06ea236bdb` and `ad4a8db368` (round 2 was rebased onto them;
   its ids before the rebase are no longer used); for round 4 those of the
   branch `r4-items` on top of `r23-docs` (`74c47e7e1b`); for round 5 those
-  of the branch `r5-text` on top of `r4-items` (`d865587460`);
+  of the branch `r5-text` on top of `r4-items` (`d865587460`); for round
+  6 those of the branch `r6c` on top of `r5-text` (`37fa894c9a`);
   `docs/origin_jade/PATCHES.md` lists every commit, including
   documentation and tool-only ones that change nothing in the game.
 - Names: English names first, the German in-game name in parentheses where
@@ -28,7 +31,107 @@ is not about Origin Jade.
   Round 2 changes the save layout again (separate Day Cares, D-052);
   round 3 adds four flags and leaves the layout as it is; round 4 adds 44
   flags and one var in free ids of the Origin Jade blocks and leaves the
-  layout as it is; round 5 changes only texts.
+  layout as it is; round 5 changes only texts; round 6 adds no flag or
+  var and leaves the layout as it is.
+
+## Round 6: Kampfzone after the Hoenn title and without Sudowoodo, Pokedex ratings, Route 42, test aid
+
+The owner's requests of 2026-11-03: the Kampfzone is content for after
+the game and must not be reachable before the Hoenn title; Pokedex
+rating texts whose English is an official line get the official German
+word for word; Suicune's sighting on Route 42 on the main path (A54),
+and on 2026-11-04 at both ends of the route, so that it cannot be
+avoided and the Suicune chain cannot stall; a debug switch that wins
+trainer battles at once, with the texts before and after the battle and
+the normal EXP. His decision of 2026-11-04: no Sudowoodo in the
+Kampfzone. Slateport's Berry Powder man now skips the item randomizer
+(O-057). No change to the save layout, no new flag or var.
+
+- Kampfzone (D-029, D-030): the M.S. Aqua in Vermilion City and Olivine
+  City lists the Kampfzone only after the Hoenn title (after Wallace,
+  `FLAG_IS_HOENN_CHAMPION`); before, it was listed from the maiden voyage
+  on, after the first Johto title. Until the title the menus offer the
+  other port, Birth Island (with the Aurora Ticket), the Hoenn entries and
+  "Zurück". Fly to the Kampfzone and its red Fly icon also wait for the
+  title, in saves that visited it before as well. Elm's news after the
+  first Johto title names only Vermilion City as the ship's destination.
+  After the title nothing changes (the M.S. Aqua, the S.S. Tidal from
+  Slateport and Lilycove once the player has met Scott on board, Scott's
+  call, Fly). With it Battle Points, the Kampfzone's exchange, Scott's
+  house and the Artisan Cave come after the Hoenn title (the Kampfzone's
+  Sudowoodo is gone, see below). The three HnS battle tents in the
+  courtyard of the Route 40 Trainer Hill still give Battle Points before
+  the Johto title, and the courtyard's exchange still sells its items
+  (O-060).
+  `02fbf2e93c`, `c7c57abb9a`; the simulator now reports the first wave
+  of each map and compares the stretches between the titles
+  (`ca8bdc6064`).
+- Pokedex ratings (O-038): Elm's Johto ratings below 110 (they showed
+  Birch's Emerald lines), the eight National placeholders ("Unter 300. /
+  Weiter so!"), the Johto ratings 230 and 245 and the National rating
+  below 400 now show the official German of HGSS or Platinum word for
+  word; Oak's cry at a complete Pokedex is FRLG's "Woahhh!" in German
+  (it was the English "Wroooooooaaaaaarrrr!"); Oak's seen/owned lines and
+  the Johto rating below 140 have the official line breaks back. In
+  English, Elm's text for the complete Johto Pokedex is whole again and
+  the National rating below 350 has its full stop. `b91decb332`
+- Route 42 (D-038, A54): Suicune's sighting starts on the three tiles
+  right outside the gate from Ecruteak City instead of in a pocket behind
+  a Cut tree that needed Surf, and (since 2026-11-04) also on the three
+  tiles of the narrowest place of the way from Mahogany Town, below the
+  Route 42 sign. Every way onto Route 42 crosses one of the two lines,
+  also out of Mt. Mortar (checked by a walk over the route's passable
+  tiles). Suicune bounds towards the player and over him; Eusine comes
+  out of Mt. Mortar's west entrance, or its east entrance at the Mahogany
+  end. The sighting comes once per game, from the Burned Tower release
+  on; before the release Route 42 has no Suicune and no sighting, also
+  with a save made on the route with an older build. A player who walked
+  through Mt. Mortar to Mahogany before the release and only flies there
+  afterwards no longer gets stuck: once Pryce is beaten and Cianwood's
+  sighting is done, Suicune waits on Route 36 without the Route 42
+  sighting, which then no longer comes. Texts and the rest of the
+  Suicune chain are unchanged. `35ab4e7d67`, `0d4d8968ad`
+- Slateport's Berry Powder man gives the chosen item also with the item
+  randomizer on, like Cerulean's (D-023, D-054). `5e73be326c`
+- Debug menu (D-055, beta build only): "Instant Tr. Win" in "Flags &
+  Vars" (green = on). While it is on, a trainer battle starts as usual
+  (text, send-out, switch-in effects), then the opposing Pokemon faint
+  one after the other instead of the action selection: the Pokemon that
+  took part get the normal EXP (Exp. Share, level caps and scaling as
+  usual), the shift question comes before the next opponent, then the
+  defeat text, the prize money and the trainer's after-battle text when
+  talked to again; rematches count. The player's Pokemon lose no HP.
+  Single, double, two-trainer and multi battles; wild, link, Battle
+  Frontier and battle tent and Trainer Hill battles stay normal. Off
+  after a reset, nothing in the save; not in `make release`. New test
+  `test/origin_jade/instant_trainer_win.c`. `9734e9f5ca`
+- No Sudowoodo in the Kampfzone (D-039, D-030; owner 2026-11-04).
+  Before: Emerald's second Sudowoodo stood on a dead end of the
+  Kampfzone's east side (`BattleFrontier_OutsideEast_hns`, the part with
+  the way to the Artisan Cave); talked to, it shook, and with the
+  SquirtBottle it could be fought or caught at level 65 (since round 6
+  only after the Hoenn title). Now: it never appears. The map hides it on
+  every entry; there is no SquirtBottle question, no battle and no shaking
+  any more. The Artisan Cave (Höhlenatelier) stays open from the first
+  visit without any item, as before (the tree never stood in its way in
+  Origin Jade). Old saves: Continue does not run the map's entry script,
+  so a save made next to the tree with an older build could show it once
+  more; the map's ON_RESUME script hides and removes it then as well, and
+  if it is talked to anyway, its script only removes it. The Sudowoodo on
+  Route 36 (story) stays. No new text, flag or var;
+  `FLAG_DEFEATED_SUDOWOODO` stays defined and is no longer used. The old
+  woman's line about the wiggling tree is gone; she stands on no map, so
+  no text in the game changes. `a9cc1fed6f`
+- For testers: the Kampfzone entry of the M.S. Aqua before and after the
+  Hoenn title, the Fly map in Johto and Kanto before the title, Route 42
+  from the Ecruteak gate and from Mahogany Town before and after the
+  Burned Tower, Route 36 after Pryce without the Route 42 sighting, the
+  Pokedex ratings of Elm (Johto and National) and Oak, Slateport's Berry
+  Powder man with "Items: Zufall", "Instant Tr. Win" on a route
+  trainer, a gym leader, a double battle and a rematch, and the
+  Kampfzone's east side without Sudowoodo with the way into the Artisan
+  Cave, also after "Continue" on a save made there with an older build.
+  Nothing of round 6 was played.
 
 ## Round 5: official German texts word for word (D-056, D-057)
 
@@ -410,11 +513,13 @@ are drafts for the owner's text round.
   the Hoenn Test the Route 40 Trainer Hill's prizes); Goldenrod's mints
   only while the mints option sells them; what does not fit into a pocket
   goes into the PC's item storage (D-050, O-035). Items bought with Battle
-  Points are open (O-060). `8eb46fd987`
+  Points are open (O-060; since round 6 only those of the Route 40
+  courtyard). `8eb46fd987`
 - "Even Wild Slots" (overworld debug menu, "Flags & Vars"): while it is
   on, every slot of the current encounter table is equally likely (land,
   water, Rock Smash and Headbutt, each rod); off after a reset, nothing in
-  the save (D-055). `a1509bd992`
+  the save (D-055). `a1509bd992` Round 6 adds "Instant Tr. Win" (see
+  there).
 
 ### German texts (D-056, D-057)
 
@@ -656,6 +761,8 @@ states (D-050). All new German texts are drafts for the owner to review.
   `35b99a0b2a`
 - Battle Frontier (Kampfzone): Sudowoodo stands on a reachable tile and can
   be woken with the SquirtBottle (level 65). `bf713b3067`, `c16463afb7`
+  (gone since round 6: no Sudowoodo in the Kampfzone, owner 2026-11-04,
+  D-039)
 - Route 36: the SquirtBottle question fits the text box. `89d8e2c60d`
 - Rematch tiers, Red on Mt. Silver and the Pyramid King carry German names.
   `030660c91d`
@@ -895,7 +1002,8 @@ with evidence and the owner decisions it needs. The most important:
   randomizer species pool (O-058), Battle Point items in the Hoenn Test
   (O-060) and trainer names in upstream capitals (O-066). Round 3 resolved
   O-024, O-063, O-065 and O-067. Older ones still open: O-022, O-025,
-  O-037, O-038, O-040.
+  O-037, O-040 (round 6 resolved O-038, Slateport's part of O-057 and the
+  Kampfzone part of O-060).
 - Open questions of round 3: the rank per contest hall (O-068), paintings
   per rank (O-069) and Scott's new line in Slateport (O-070). Round 4
   resolved O-073 (Scott's gift counts the 11 meetings that are left) and
@@ -913,6 +1021,16 @@ with evidence and the owner decisions it needs. The most important:
   official texts, 135 own texts, 32 of them with official sentences, and
   a few older system texts that differ from the official ones); Mom's
   line before the heal tip (O-037).
-- Nothing of rounds 2 to 5 was played in an emulator; `BETA_READINESS.md`
-  lists what to test first, among it one pass through each contest hall
-  and the new item sources.
+- Round 6: whether the three battle tents and the exchange in the Route
+  40 courtyard also wait for the Hoenn title (O-060, T-johto_b-6); the
+  National rating below 400 from Platinum instead of HGSS's
+  radio line; Elm's shortened line about the M.S. Aqua (own text); and
+  Jirachi on Route 4 (the owner's question of 2026-11-03: today after the
+  first trip to Hoenn, at night, level 80, D-037). The Route 42 sighting
+  for a player who reached Mahogany through Mt. Mortar before the Burned
+  Tower is settled (owner 2026-11-04, D-038), and so is the level of the
+  Kampfzone's Sudowoodo: it is gone (owner 2026-11-04, D-039; the
+  Wailmer Pail question N-johto_story-3 is obsolete with it).
+- Nothing of rounds 2 to 6 was played in an emulator; `BETA_READINESS.md`
+  lists what to test first, among it one pass through each contest hall,
+  the new item sources and the scenes of round 6.
