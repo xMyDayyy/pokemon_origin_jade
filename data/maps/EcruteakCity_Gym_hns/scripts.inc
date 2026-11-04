@@ -62,7 +62,7 @@ EcruteakCity_Gym_EventScript_Morty::
 	release
 	end
 
-@ Rematch after the Johto title, see docs/origin_jade/DECISIONS.md, D-032.
+@ Rematch after the Johto title.
 EcruteakCity_Gym_EventScript_Morty_Rematch::
 	msgbox MortyRematchText, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined

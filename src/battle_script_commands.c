@@ -10908,7 +10908,7 @@ static const u8 sBadgeLevel[] = {
 #if IS_HNS
 // Origin Jade: levels above which the malus starts in Johto and Hoenn, by the
 // region's badge count: the corridor ceiling of the next gym's tier
-// (include/config/johto_scaling.h, hoenn_scaling.h), see D-053.
+// (include/config/johto_scaling.h, hoenn_scaling.h).
 static const u8 sBadgeLevelJohto[ARRAY_COUNT(sBadgeLevel)] = { 50, 50, 53, 53, 55, 55, 58, 64, 100 };
 static const u8 sBadgeLevelHoenn[ARRAY_COUNT(sBadgeLevel)] = { 85, 85, 90, 95, 95, 95, 100, 100, 100 };
 #endif
@@ -10944,7 +10944,7 @@ static u32 ComputeCaptureOdds(u32 wildMonBattler, u32 playerBattler)
     const u8 *badgeLevel = sBadgeLevel;
     u32 malusFreeLevel = 0;
 #if IS_HNS
-    // Origin Jade: badges and levels of the region the player stands in (D-053).
+    // Origin Jade: badges and levels of the region the player stands in.
     badgeCount = GetCurrentRegionBadgeCount();
     if (GetCurrentRegion() == REGION_JOHTO)
         badgeLevel = sBadgeLevelJohto;
@@ -11269,7 +11269,7 @@ static void Cmd_givecaughtmon(void)
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SOMEONES_BOX_FULL;
             }
 
-            // Change to B_MSG_SENT_LANETTES_PC or B_MSG_LANETTES_BOX_FULL (Origin Jade: always, D-052)
+            // Change to B_MSG_SENT_LANETTES_PC or B_MSG_LANETTES_BOX_FULL (Origin Jade: always)
             if (IS_HNS || FlagGet(FLAG_SYS_PC_LANETTE))
                 gBattleCommunication[MULTISTRING_CHOOSER]++;
         }

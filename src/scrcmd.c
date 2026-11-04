@@ -1697,7 +1697,7 @@ bool8 ScrCmd_setwildbattleshiny(struct ScriptContext *ctx)
     u8 level = ScriptReadByte(ctx);
     u16 item = ScriptReadHalfword(ctx);
 
-    // Johto and Hoenn floor, see docs/origin_jade/DECISIONS.md, D-039.
+    // Johto and Hoenn floor.
     CreateShinyScriptedMon(species, ScaleStaticMonLevel(level), item);
     return FALSE;
 }
@@ -2647,7 +2647,7 @@ static bool32 IsCurrentMap(u16 mapId)
 
 // Ball (0-2) of a starter preview, or -1 if this showmonpic is no starter choice:
 // Oak's lab (no Pokemon yet), Elm's lab (Johto starter) and Birch's lab (Johto
-// starter after the Hoenn dex). See docs/origin_jade/DECISIONS.md, D-035.
+// starter after the Hoenn dex).
 static s32 GetStarterPreviewBall(u16 species)
 {
     u32 ball;
@@ -2693,7 +2693,7 @@ bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
 
     // Starter preview: one shiny roll per ball and map visit (temp flags); the lab
     // script gives the starter with the same FLAG_SHINY_STARTER_x, so preview and
-    // starter match. See docs/origin_jade/DECISIONS.md, D-035.
+    // starter match.
     if (starter >= 0)
     {
         u32 flagPreviewChecked = 0;
@@ -2758,7 +2758,7 @@ bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
         #endif
     }
 
-    // Every lab's preview: "Starter: Zufall" changes the species (see docs/origin_jade/DECISIONS.md, D-054).
+    // Every lab's preview: "Starter: Zufall" changes the species.
     #if RANDOMIZER_AVAILABLE
     if (starter >= 0 && RandomizerFeatureEnabled(RANDOMIZE_STARTER_AND_GIFT_MON))
     {
@@ -3403,7 +3403,7 @@ bool8 ScrCmd_setwildbattle(struct ScriptContext *ctx)
 
     Script_RequestEffects(SCREFF_V1);
 
-    // Johto and Hoenn floor, see docs/origin_jade/DECISIONS.md, D-039.
+    // Johto and Hoenn floor.
     level = ScaleStaticMonLevel(level);
     if (species2 == SPECIES_NONE)
     {

@@ -12,22 +12,20 @@ Route36_OnTransition:
 	setflag FLAG_TEMP_3
 	end
 
-@ Arthur of the weekday siblings is only here on Thursday, see
-@ docs/origin_jade/DECISIONS.md, D-033.
+@ Arthur of the weekday siblings is only here on Thursday.
 Route36_EventScript_HideArthur:
 	setflag FLAG_TEMP_1
 	return
 
 @ Suicune stands here only at VAR_SUICUNE_ENCOUNTERS 3 (both other Johto sightings
 @ done); FLAG_TEMP_2 hides Suicune, FLAG_TEMP_3 hides Eusine.
-@ See docs/origin_jade/DECISIONS.md, D-038.
 Route36_EventScript_HideSuicune:
 	setflag FLAG_TEMP_2
 	return
 
 @ Safety net: Cianwood done, Route 42's sighting missed (Mahogany reached through
 @ Mt. Mortar before the Burned Tower release, only flown to since). Once Pryce is
-@ beaten, Route 36 arms anyway and Route 42's sighting is dropped (D-038).
+@ beaten, Route 36 arms anyway and Route 42's sighting is dropped.
 Route36_EventScript_SuicuneWithoutRoute42:
 	goto_if_unset FLAG_DEFEATED_MAHOGANY_TOWN_GYM, Common_EventScript_NopReturn
 	setflag FLAG_HIDE_ROUTE42_SUICUNE

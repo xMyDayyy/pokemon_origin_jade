@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Region rule check for the jade build (docs/origin_jade/DECISIONS.md, D-049).
+"""Region rule check for the jade build.
 
 No wild table of an active map offers a species of a later region: Kanto
 maps only Kanto species, Johto maps Kanto and Johto species. Hoenn maps and
 maps outside the three regions are not limited. Also checks the overworld
-Pokemon that show what a map offers (D-013): objects without a script that
+Pokemon that show what a map offers: objects without a script that
 use a species sprite (OBJ_EVENT_GFX_MON_BASE+SPECIES_*), and the gifts and
 static battles in the map scripts of active maps (givemon, giveegg,
 setwildbattle, setwildbattleshiny, seteventmon). Scripts outside the maps
@@ -24,7 +24,7 @@ from the species info (.natDexNum) and include/constants/pokedex.h.
 
 Tables: src/data/wild_encounters.json, day and night, all encounter types,
 without the LeafGreen tables (the jade build does not compile them). Active
-maps are those with game_version "hns" (D-018); map regions as in
+maps are those with game_version "hns"; map regions as in
 tools/oj_world.py (MapSections.region).
 
 Usage:
@@ -55,9 +55,9 @@ ALLOWED = {
 
 # Known exceptions: map id or (map id, species) -> reason. They are listed but do not fail.
 KNOWN = {
-    ("MAP_RUINS_OF_ALPH_LAB_HNS", "SPECIES_LILEEP"): "belebt das Wurzelfossil, das es nur in Hoenn gibt (D-023)",
-    ("MAP_RUINS_OF_ALPH_LAB_HNS", "SPECIES_ANORITH"): "belebt das Klauenfossil, das es nur in Hoenn gibt (D-023)",
-    ("MAP_ROUTE4", "SPECIES_JIRACHI"): "erst nach der ersten Fahrt nach Hoenn (D-037, D-049)",
+    ("MAP_RUINS_OF_ALPH_LAB_HNS", "SPECIES_LILEEP"): "belebt das Wurzelfossil, das es nur in Hoenn gibt",
+    ("MAP_RUINS_OF_ALPH_LAB_HNS", "SPECIES_ANORITH"): "belebt das Klauenfossil, das es nur in Hoenn gibt",
+    ("MAP_ROUTE4", "SPECIES_JIRACHI"): "erst nach der ersten Fahrt nach Hoenn",
     ("MAP_SAFARI_ZONE_GATE_SAFARI_ZONE_ENTRANCE_HNS", "SPECIES_BELDUM"): "Testskript ohne Aufruf",
     ("MAP_SAFARI_ZONE_GATE_SAFARI_ZONE_ENTRANCE_HNS", "SPECIES_CASTFORM"): "Testskript ohne Aufruf",
     ("MAP_SAFARI_ZONE_GATE_SAFARI_ZONE_ENTRANCE_HNS", "SPECIES_MEDICHAM"): "Testskript ohne Aufruf",
@@ -306,7 +306,7 @@ def main():
             findings.append(("Pokédex-Reihenfolge: %s auf Platz %d ist eine %s-Art hinter dem %s-Block (%d-%d)"
                              % (name, position, sp_region, sp_region, first, last), None))
 
-    print("Regionenregel (D-049): %d Wildtabellen und %d Skriptbefehle aktiver Karten, %d Einträge der "
+    print("Regionenregel: %d Wildtabellen und %d Skriptbefehle aktiver Karten, %d Einträge der "
           "Pokédex-Reihenfolge geprüft" % (checked_tables, checked_commands, len(entries)))
     if args.dex_gaps:
         for r in REGIONS[:-1]:

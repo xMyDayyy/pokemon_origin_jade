@@ -18,14 +18,14 @@ Checks:
               ChallengeSettings across ClearSav3, so such state must be
               cleared on the way into a new game (new game speech).
   migrations  Origin Jade save migrations in LoadGameSave: each flag lies in
-              the Origin Jade block and is set by new games (D-017).
+              the Origin Jade block and is set by new games.
   hof         Hall of Fame team limits of all implementations and the title
               scripts (setrespawn before the Hall of Fame special, nothing
               but waitstate/release/end after it).
   rtc         Content that needs a running RTC and the default RTC type.
   link        Link, Union Room and Mystery Gift features on active maps.
 
-Active maps are those with game_version "hns" in map.json (D-018). Maps of
+Active maps are those with game_version "hns" in map.json. Maps of
 locked content (LOCKED_MAPSECS) and, with --maps-json, maps the map checker
 cannot reach are left out of gifts and pockets.
 
@@ -764,13 +764,13 @@ def check_migrations(repo, ctx):
         if not re.search(r"#define\s+%s\b" % flag, oj):
             findings.append(Finding("migrations", "nachgewiesen", "wichtig",
                                     "Migrations-Flag %s nicht im Origin-Jade-Block" % flag,
-                                    "src/save.c", "D-017 verlangt ein Flag aus flags_origin_jade.h."))
+                                    "src/save.c", "Migrations-Flags gehören in flags_origin_jade.h."))
         if not re.search(r"setflag\s+%s\b" % flag, new_game):
             findings.append(Finding("migrations", "nachgewiesen", "wichtig",
                                     "Neues Spiel setzt %s nicht" % flag,
                                     "data/scripts/new_game.inc",
                                     "Ohne das Flag läuft die Migration beim ersten Laden eines neuen "
-                                    "Spielstands und verändert frischen Zustand (D-017)."))
+                                    "Spielstands und verändert frischen Zustand."))
     ctx["notes"].append("migrations: %d Migrations-Flags geprüft (%s)" % (len(flags), ", ".join(flags)))
     return findings
 

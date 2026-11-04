@@ -339,7 +339,7 @@ SlateportCity_Harbor_EventScript_AskToTradeScanner::
 	goto SlateportCity_Harbor_EventScript_ChooseScannerTrade
 	end
 
-@ Scanner trades: no item randomizer (see docs/origin_jade/DECISIONS.md, D-054).
+@ Scanner trades: no item randomizer.
 SlateportCity_Harbor_EventScript_ChooseScannerTrade::
 	multichoice 0, 0, MULTI_STERN_DEEPSEA, FALSE
 	switch VAR_RESULT

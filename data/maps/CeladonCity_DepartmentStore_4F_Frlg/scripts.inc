@@ -34,7 +34,7 @@ CeladonCity_DepartmentStore_4F_Items::
 	.2byte ITEM_THUNDER_STONE
 	.2byte ITEM_WATER_STONE
 	.2byte ITEM_LEAF_STONE
-	@ Evolution items no active Kanto map holds, see docs/origin_jade/DECISIONS.md, D-013.
+	@ Evolution items no active Kanto map holds.
 	.2byte ITEM_ICE_STONE
 	.2byte ITEM_SHINY_STONE
 	.2byte ITEM_SUN_STONE

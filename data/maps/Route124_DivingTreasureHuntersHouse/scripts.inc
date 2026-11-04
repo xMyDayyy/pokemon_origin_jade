@@ -251,7 +251,7 @@ Route124_DivingTreasureHuntersHouse_EventScript_TryTradeShard::
 
 Route124_DivingTreasureHuntersHouse_EventScript_TradeShard::
 	removeitem VAR_0x8008
-	@ Paid with a shard: no item randomizer (see docs/origin_jade/DECISIONS.md, D-054).
+	@ Paid with a shard: no item randomizer.
 	giveitem_norandom VAR_0x8009
 	goto_if_eq VAR_RESULT, FALSE, Route124_DivingTreasureHuntersHouse_EventScript_ReturnShard
 	msgbox Route124_DivingTreasureHuntersHouse_Text_ItsADeal, MSGBOX_DEFAULT

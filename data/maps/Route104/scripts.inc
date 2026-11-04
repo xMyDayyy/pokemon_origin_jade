@@ -5,7 +5,7 @@ Route104_MapScripts::
 
 Route104_OnFrame:
 	map_script_2 VAR_BOARD_BRINEY_BOAT_STATE, 1, Route104_EventScript_StartSailToDewford
-	@ Origin Jade: Hoenn ship trip on to Birch's lab (hoenn_arrival.inc, D-047).
+	@ Origin Jade: Hoenn ship trip on to Birch's lab (hoenn_arrival.inc).
 	map_script_2 VAR_TEMP_C, 1, Route104_EventScript_HoennShipToLab
 	.2byte 0
 

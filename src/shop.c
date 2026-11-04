@@ -971,7 +971,7 @@ static void SetShopMenuCallback(void (*callback)(void))
 
 #if IS_HNS
 // Origin Jade: only Johto marts use the badge list (Violet City, the Trainer
-// Hill by Route 40, whose mapsec counts as Hoenn), so they count Johto badges (D-007).
+// Hill by Route 40, whose mapsec counts as Hoenn), so they count Johto badges.
 static u8 GetNumberOfBadges(void)
 {
     return GetJohtoBadgeCount();

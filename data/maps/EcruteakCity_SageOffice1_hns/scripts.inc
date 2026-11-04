@@ -31,7 +31,7 @@ EcruteakCity_SageOffice2_EventScript_SageA::
 	goto_if_set FLAG_HIDE_TINTOWER_GUARD, EcruteakCity_SageOffice2_EventScript_SageA4
 	checkitem ITEM_CLEAR_BELL
 	goto_if_eq VAR_RESULT, TRUE, EcruteakCity_SageOffice2_EventScript_SageA2
-	@ The Tidal Bell (Lugia path) opens the tower too, for Suicune on 1F. See docs/origin_jade/DECISIONS.md, D-027.
+	@ The Tidal Bell (Lugia path) opens the tower too, for Suicune on 1F.
 	checkitem ITEM_TIDAL_BELL
 	goto_if_eq VAR_RESULT, TRUE, EcruteakCity_SageOffice2_EventScript_SageTidalBell
 	msgbox EcruteakTinTowerEntrance_Text_SageNoBadge, MSGBOX_DEFAULT

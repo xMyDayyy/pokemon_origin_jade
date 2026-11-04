@@ -3,7 +3,7 @@
 
 u8 GetCurrentBadgeCount(void);
 // Badges (0-8) of the region of mapSecId: Kanto FLAG_BADGE01-08, Johto
-// VAR_JOHTO_BADGES, Hoenn VAR_HOENN_BADGES (docs/origin_jade/DECISIONS.md, D-007).
+// VAR_JOHTO_BADGES, Hoenn VAR_HOENN_BADGES.
 u32 GetRegionBadgeCount(u32 mapSecId);
 // GetRegionBadgeCount for the map the player stands on.
 u32 GetCurrentRegionBadgeCount(void);

@@ -613,7 +613,7 @@ PalletTown_ProfessorOaksLab_EventScript_GsBallReminder::
 	release
 	end
 
-@ Troy waits next to Oak while VAR_HOENN_TICKET_STATE is 1 or 2. See docs/origin_jade/DECISIONS.md, D-047.
+@ Troy waits next to Oak while VAR_HOENN_TICKET_STATE is 1 or 2.
 PalletTown_ProfessorOaksLab_EventScript_SetupTroy::
 	call_if_set FLAG_IS_JOHTO_CHAMPION, PalletTown_ProfessorOaksLab_EventScript_TryArmTroyScene
 	setflag FLAG_HIDE_OAKS_LAB_TROY
@@ -625,7 +625,7 @@ PalletTown_ProfessorOaksLab_EventScript_SetupTroy::
 	setobjectmovementtype LOCALID_OAKS_LAB_TROY, MOVEMENT_TYPE_FACE_LEFT
 	return
 
-@ Catch-up (D-005): saves past the first Johto title that have not been to Hoenn arm the scene here.
+@ Catch-up: saves past the first Johto title that have not been to Hoenn arm the scene here.
 PalletTown_ProfessorOaksLab_EventScript_TryArmTroyScene::
 	goto_if_ne VAR_HOENN_TICKET_STATE, 0, Common_EventScript_NopReturn
 	goto_if_ne VAR_HOENN_ARRIVAL_STATE, 0, Common_EventScript_NopReturn

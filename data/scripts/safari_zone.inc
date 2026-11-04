@@ -61,7 +61,6 @@ SafariZone_EventScript_ExitKanto::
 
 #if IS_HNS
 @ Origin Jade: leave Hoenn's Safari Zone through the Route 121 entrance.
-@ See docs/origin_jade/DECISIONS.md, D-040.
 SafariZone_EventScript_ExitHoennMidBattle::
 	setvar VAR_HOENN_SAFARI_ZONE_STATE, 1
 	special ExitSafariMode

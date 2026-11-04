@@ -409,7 +409,7 @@ ContestHall_EventScript_SetExitWarp::
 	case CONTEST_TYPE_LINK, ContestHall_EventScript_SetExitWarpLinkContest
 	return
 
-@ Each NPC contest rank returns to the lobby of its own hall (D-058).
+@ Each NPC contest rank returns to the lobby of its own hall.
 ContestHall_EventScript_SetExitWarpNormalContest::
 #if IS_HNS
 	warp MAP_VERDANTURF_TOWN_CONTEST_LOBBY, 5, 4

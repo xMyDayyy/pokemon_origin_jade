@@ -9,7 +9,7 @@ Debug_ShowFieldMessageStringVar4::
 	goto Debug_MessageEnd
 
 @ Debug: the Kanto Hall of Fame's flags and vars, then from the door into Oak's lab,
-@ where Troy's scene starts (D-047, D-050).
+@ where Troy's scene starts.
 Debug_EventScript_HoennTestWarpLab::
 	call EventScript_SetDefeatedEliteFourFlagsVars
 	setrespawn HEAL_LOCATION_PALLET_TOWN_PLAYERS_ROOM

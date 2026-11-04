@@ -34,14 +34,13 @@
 #define HOENN_SCALING_MIN_LEVEL      5     // absolute lower bound
 #define HOENN_SCALING_MAX_LEVEL      100   // absolute upper bound
 
-// Ceiling of every corridor once FLAG_IS_HOENN_CHAMPION is set (floors stay),
-// see docs/origin_jade/DECISIONS.md, D-031.
+// Ceiling of every corridor once FLAG_IS_HOENN_CHAMPION is set (floors stay).
 #define HOENN_SCALING_TITLE_CEILING  100
 
 // Corridor per area: {map section, floor, ceiling}. Areas without an entry
 // use HOENN_SCALING_DEFAULT_FLOOR/CEILING. The tiers follow the player's
 // anchor in Hoenn (arrival after the Johto title about 65, league about
-// 92), see docs/origin_jade/DECISIONS.md, D-012.
+// 92).
 #define HOENN_SCALING_DEFAULT_FLOOR    40
 #define HOENN_SCALING_DEFAULT_CEILING  100
 

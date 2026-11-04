@@ -59,7 +59,7 @@ const u8 *GetPokedexRatingText(u32 count)
     {
         j = RegionalToNationalOrder(i + 1);
         k = NationalPokedexNumToSpecies(j);
-        // Origin Jade: Johto's Hoenn species (Azurill, Wynaut) are not needed (D-049).
+        // Origin Jade: Johto's Hoenn species (Azurill, Wynaut) are not needed.
         if (GetSpeciesRegion(k) == REGION_HOENN)
         {
             if (GetSetPokedexFlag(j, FLAG_GET_CAUGHT))
@@ -324,7 +324,7 @@ static const u8 *GetProfOaksRatingMessageByCount(u16 count)
         return PokedexRating_Text_LessThan140;
 
 #if IS_HNS
-    // Origin Jade: complete with the 151 but Mew (D-049).
+    // Origin Jade: complete with the 151 but Mew.
     if (count < NATIONAL_DEX_MEW - 1)
 #else
     if (count < KANTO_DEX_COUNT - 1)

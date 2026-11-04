@@ -220,7 +220,7 @@ LilycoveCity_ContestLobby_EventScript_TryShowContestReporter::
 	switch VAR_CONTEST_TYPE
 	case 0, LilycoveCity_ContestLobby_EventScript_DontShowContestReporter
 #if IS_HNS
-	@ The reporter waits in the lobby of the hall that held the contest (D-058).
+	@ The reporter waits in the lobby of the hall that held the contest.
 	case CONTEST_TYPE_NPC_NORMAL, ContestLobby_EventScript_ShowVerdanturfContestReporter
 	case CONTEST_TYPE_NPC_SUPER, ContestLobby_EventScript_ShowFallarborContestReporter
 	case CONTEST_TYPE_NPC_HYPER, ContestLobby_EventScript_ShowSlateportContestReporter

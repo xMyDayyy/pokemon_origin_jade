@@ -7,7 +7,7 @@ BattleFrontier_OutsideWest_OnTransition_hns:
 	setflag FLAG_HIDE_BATTLE_TOWER_REPORTER
 	end
 
-@ M.S. Aqua to Olivine, Vermilion or Hoenn (see docs/origin_jade/DECISIONS.md, D-029).
+@ M.S. Aqua to Olivine, Vermilion or Hoenn.
 BattleFrontier_OutsideWest_EventScript_EventScript_Sailor_hns::
 	lock
 	faceplayer

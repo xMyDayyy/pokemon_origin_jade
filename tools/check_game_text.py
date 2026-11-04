@@ -34,7 +34,7 @@ a text reached from a trigger or map script, or from a script that gives a
 badge, an HM or a starter or fights a boss, counts as story path. A debug
 text or a text of a locked or retired map that an active map shows counts
 for that map. Scripts reached only through a jump on VAR_SINJOH_STORYLINE
-count as locked (Sinjoh, D-019).
+count as locked (Sinjoh).
 English text is found with a word list heuristic (English and German
 function words); texts of locked and retired maps are listed apart. A
 trainer name still in upstream capitals counts as English; it is rated by
@@ -153,7 +153,7 @@ PARTY_REGION = {"trainers_hns.party": "johto", "trainers_frlg.party": "kanto",
 CAPS_NAME_RE = re.compile(r"[A-Z][A-Z0-9 .&'-]*[A-Z]")
 ACTIVE_REGIONS = ("kanto", "johto", "hoenn")
 INACTIVE_REGIONS = ("gesperrt", "stillgelegt")
-# Script conditions on locked content (D-019); a jump on them leads to locked content.
+# Script conditions on locked content; a jump on them leads to locked content.
 LOCKED_GATE_RE = re.compile(r"\bVAR_SINJOH_STORYLINE\b")
 LOCKED_VIS = "gesperrt (Sinjoh-Bedingung)"
 

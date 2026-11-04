@@ -473,7 +473,7 @@ static inline bool32 ShouldRandomizeItem(u16 itemId)
     return !(IsItemHM(itemId) || IsKeyItem(itemId) || itemId == ITEM_GS_BALL || itemId == ITEM_NONE);
 }
 
-// Fossils and evolution items keep their place (see docs/origin_jade/DECISIONS.md, D-023).
+// Fossils and evolution items keep their place.
 static inline bool32 IsItemKeptInPlace(u16 itemId)
 {
     switch (gItemsInfo[itemId].sortType)
@@ -1142,7 +1142,7 @@ u16 RandomizeFixedEncounterMon(u16 species, u8 mapNum, u8 mapGroup, u8 localId)
 
 #if IS_HNS
 // Maps whose script gifts keep their species with "Feste PKMN": the starter labs,
-// the casino prize counters and Cianwood's Tentacool (see docs/origin_jade/DECISIONS.md, D-023).
+// the casino prize counters and Cianwood's Tentacool.
 static const u16 sFixedMonExceptionMaps[] =
 {
     MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB,

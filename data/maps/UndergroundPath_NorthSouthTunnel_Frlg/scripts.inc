@@ -6,7 +6,7 @@ UndergroundPath_NorthSouthTunnel_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_UNDERGROUND_PATH_NORTH_SOUTH_TUNNEL
 	end
 
-@ Origin Jade: HnS's Rage Candy Bar trade for TM Explosion (D-059).
+@ Origin Jade: HnS's Rage Candy Bar trade for TM Explosion.
 UndergroundPath_NorthSouthTunnel_EventScript_BaldingMan::
 	lock
 	faceplayer

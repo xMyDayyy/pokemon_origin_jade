@@ -1,5 +1,5 @@
 // Kanto VS Seeker rematches: FireRed/LeafGreen's rematch table without the
-// Sevii Islands (D-019), see docs/origin_jade/DECISIONS.md, D-034.
+// Sevii Islands.
 // Column = progress tier (GetKantoRematchTier in src/vs_seeker.c). SKIP: no new
 // team at that tier, the team of the tier below stays. A row may end early;
 // {X, X} rematches the first team. Comments name the map of the trainer.

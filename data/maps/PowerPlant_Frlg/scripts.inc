@@ -15,7 +15,7 @@ PowerPlant_EventScript_TryRemoveStaticMon::
 
 PowerPlant_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_POWER_PLANT
-	@ Zapdos: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+	@ Zapdos: legendary rules.
 	setflag FLAG_HIDE_ZAPDOS
 	setvar VAR_0x8004, LEGENDARY_ZAPDOS
 	specialvar VAR_RESULT, IsLegendaryAvailable

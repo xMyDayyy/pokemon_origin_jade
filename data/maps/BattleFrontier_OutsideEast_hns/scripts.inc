@@ -3,7 +3,7 @@ BattleFrontier_OutsideEast_hns_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_OutsideEast_OnTransition_hns
 	.byte 0
 
-@ Continue restores objects from old saves without ON_TRANSITION; hide the Sudowoodo there too (D-039).
+@ Continue restores objects from old saves without ON_TRANSITION; hide the Sudowoodo there too.
 BattleFrontier_OutsideEast_OnResume_hns:
 	setflag FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO
 	removeobject LOCALID_FRONTIER_SUDOWOODO
@@ -12,7 +12,7 @@ BattleFrontier_OutsideEast_OnResume_hns:
 BattleFrontier_OutsideEast_OnTransition_hns:
 	setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON, 0
 	setflag FLAG_HIDE_BATTLE_TOWER_REPORTER
-	@ Origin Jade: no Sudowoodo in the Kampfzone (D-039).
+	@ Origin Jade: no Sudowoodo in the Kampfzone.
 	setflag FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO
 	end
 
@@ -94,7 +94,7 @@ BattleFrontier_OutsideEast_EventScript_TriathleteM_hns::
 	msgbox BattleFrontier_OutsideEast_Text_DidScottBringYouHere_hns, MSGBOX_NPC
 	end
 
-@ Origin Jade: this Sudowoodo never spawns (D-039); the object stays for the local ids.
+@ Origin Jade: this Sudowoodo never spawns; the object stays for the local ids.
 BattleFrontier_OutsideEast_EventScript_Sudowoodo_hns::
 	setflag FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO
 	removeobject LOCALID_FRONTIER_SUDOWOODO
@@ -152,7 +152,7 @@ BattleFrontier_OutsideEast_EventScript_Gentleman_hns::
 	msgbox BattleFrontier_OutsideEast_Text_FrontierNotExclusivelyForToughTrainers_hns, MSGBOX_NPC
 	end
 
-@ Not placed on the map. No Sudowoodo here (D-039), so only the "tree is gone" line.
+@ Not placed on the map. No Sudowoodo here, so only the "tree is gone" line.
 BattleFrontier_OutsideEast_EventScript_OldWoman_hns::
 	lock
 	faceplayer

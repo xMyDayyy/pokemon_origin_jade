@@ -94,7 +94,7 @@ Route121_SafariZoneEntrance_EventScript_HasRoomForPokemon::
 
 Route121_SafariZoneEntrance_EventScript_NoPokeblockCase::
 #if IS_HNS
-	@ Hoenn's case comes from Slateport's contest hall (D-058).
+	@ Hoenn's case comes from Slateport's contest hall.
 	msgbox Route121_SafariZoneEntrance_Text_YouNeedPokeblockCaseSlateport, MSGBOX_DEFAULT
 #else
 	msgbox Route121_SafariZoneEntrance_Text_YouNeedPokeblockCase, MSGBOX_DEFAULT

@@ -301,7 +301,7 @@ NewBarkTown_Lab_EventScript_StarterToBox::
 	end
 
 @ The starter keeps the shininess of its preview (showmonpic rolls FLAG_SHINY_STARTER_1-3
-@ per ball from VAR_JOHTO_STARTER_MON). See docs/origin_jade/DECISIONS.md, D-035.
+@ per ball from VAR_JOHTO_STARTER_MON).
 NewBarkTown_Lab_EventScript_GiveStarter_Chikorita::
 	call_if_unset FLAG_SHINY_STARTER_1, NewBarkTown_Lab_EventScript_GiveStarter_NotShiny
 	call_if_set FLAG_SHINY_STARTER_1, NewBarkTown_Lab_EventScript_GiveStarter_Shiny
@@ -490,7 +490,7 @@ NewBarkTown_Lab_EventScript_ElmMasterBall::
 	release
 	end
 
-@ The theater state only moves forward: the league change needs it at 8 (D-010).
+@ The theater state only moves forward: the league change needs it at 8.
 NewBarkTown_Lab_EventScript_SetTheaterKimonos::
 	setvar VAR_ECRUTEAK_CITY_THEATER, 4
 	return
@@ -512,7 +512,7 @@ NewBarkTown_Lab_EventScript_ElmLeague::
 	end
 
 @ Origin Jade: after the first Johto title Elm tells about the M.S. Aqua; the player already has
-@ Bill's Bootsticket from Kanto. See docs/origin_jade/DECISIONS.md, D-029.
+@ Bill's Bootsticket from Kanto.
 NewBarkTown_Lab_EventScript_ElmSSTicket::
 	msgbox NewBarkTown_Lab_Text_ElmGiveTicket1, MSGBOX_DEFAULT
 	msgbox NewBarkTown_Lab_Text_ElmGiveTicket2, MSGBOX_DEFAULT

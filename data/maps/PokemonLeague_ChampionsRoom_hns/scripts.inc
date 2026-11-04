@@ -141,7 +141,6 @@ PokemonLeague_WillsRoom_EventScript_LanceOnDefeatJohto::
 	end
 
 @ Title defence: short scene without Mary and Oak, then the Hall of Fame.
-@ See docs/origin_jade/DECISIONS.md, D-028.
 PokemonLeague_WillsRoom_EventScript_LanceOnDefeatKanto::
 	clearflag FLAG_TEMP_5
 	msgbox PokemonLeague_ChampionsRoom_Text_RematchFollowMe, MSGBOX_DEFAULT

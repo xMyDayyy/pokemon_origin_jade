@@ -50,9 +50,9 @@
 // VS Seeker used: trainers in view want a rematch until it has recharged
 // (I_VS_SEEKER_CHARGING, src/vs_seeker.c).
 #define FLAG_VS_SEEKER_CHARGING                              (OJ_FLAGS_KANTO + 9)
-// Hides Troy in Oak's lab; set again on every entry unless he waits there (D-047).
+// Hides Troy in Oak's lab; set again on every entry unless he waits there.
 #define FLAG_HIDE_OAKS_LAB_TROY                              (OJ_FLAGS_KANTO + 10)
-// Item balls with the TMs of HnS's Kanto (D-059).
+// Item balls with the TMs of HnS's Kanto.
 #define FLAG_HIDE_ROUTE6_TM_SILVER_WIND                      (OJ_FLAGS_KANTO + 11)
 #define FLAG_HIDE_ROUTE9_TM_FLASH_CANNON                     (OJ_FLAGS_KANTO + 12)
 #define FLAG_HIDE_ROUTE10_TM_ROCK_POLISH                     (OJ_FLAGS_KANTO + 13)
@@ -61,7 +61,7 @@
 #define FLAG_HIDE_ROCK_TUNNEL_B1F_TM_FLING                   (OJ_FLAGS_KANTO + 16)
 #define FLAG_HIDE_CELADON_CITY_TM_RECYCLE                    (OJ_FLAGS_KANTO + 17)
 #define FLAG_HIDE_VIRIDIAN_FOREST_TM_PSYCH_UP                (OJ_FLAGS_KANTO + 18)
-// TMs of HnS's Kanto given by FRLG trainers (D-059).
+// TMs of HnS's Kanto given by FRLG trainers.
 #define FLAG_GOT_TM_ROCK_SLIDE_FROM_BROCK                    (OJ_FLAGS_KANTO + 19)
 #define FLAG_GOT_TM_STONE_EDGE_FROM_ROBERT                   (OJ_FLAGS_KANTO + 20)
 #define FLAG_GOT_TM_WILL_O_WISP_FROM_BENNY                   (OJ_FLAGS_KANTO + 21)
@@ -70,10 +70,10 @@
 #define FLAG_DEFEATED_CARTER_REMATCH                         (OJ_FLAGS_KANTO + 23)
 #define FLAG_GOT_TM_THUNDER_WAVE_FROM_CARTER                 (OJ_FLAGS_KANTO + 24)
 #define FLAG_GOT_TM_X_SCISSOR_FROM_RICK                      (OJ_FLAGS_KANTO + 25)
-// TMs of HnS's Kanto from NPCs (D-059).
+// TMs of HnS's Kanto from NPCs.
 #define FLAG_GOT_TM_EXPLOSION_UNDERGROUND_PATH               (OJ_FLAGS_KANTO + 26)
 #define FLAG_GOT_TM_SLEEP_TALK_CELADON_ROOF                  (OJ_FLAGS_KANTO + 27)
-// Hidden items and item balls with items that had no other source (D-059).
+// Hidden items and item balls with items that had no other source.
 #define FLAG_HIDDEN_ITEM_VERMILION_CITY_PEARL_STRING_FRLG    (OJ_FLAGS_KANTO + 28)
 #define FLAG_HIDDEN_ITEM_CERULEAN_CAVE_B1F_ODD_INCENSE_FRLG  (OJ_FLAGS_KANTO + 29)
 #define FLAG_HIDDEN_ITEM_ROUTE15_ROSE_INCENSE_FRLG           (OJ_FLAGS_KANTO + 30)
@@ -81,9 +81,9 @@
 #define FLAG_HIDDEN_ITEM_CERULEAN_CITY_BERSERK_GENE          (OJ_FLAGS_KANTO + 32)
 #define FLAG_HIDDEN_ITEM_ROUTE8_FAIRY_GEM_FRLG               (OJ_FLAGS_KANTO + 33)
 #define FLAG_HIDE_MT_MOON_1F_FAIRY_FEATHER                   (OJ_FLAGS_KANTO + 34)
-// Bill gave the Pokemon Box Link after the Kanto title (D-059).
+// Bill gave the Pokemon Box Link after the Kanto title.
 #define FLAG_RECEIVED_POKEMON_BOX_LINK                       (OJ_FLAGS_KANTO + 35)
-// Celadon's game designer gave the Catching Charm with the Kanto diploma (D-059).
+// Celadon's game designer gave the Catching Charm with the Kanto diploma.
 #define FLAG_RECEIVED_CATCHING_CHARM                         (OJ_FLAGS_KANTO + 36)
 
 // ---------------------------------------------------------------------
@@ -117,15 +117,15 @@
 #define FLAG_RECEIVED_OVAL_CHARM                     (OJ_FLAGS_JOHTO + 14)
 // The Violet City gift egg hatched, whatever its species (Elm's lab).
 #define FLAG_HATCHED_TOGEPI_EGG                      (OJ_FLAGS_JOHTO + 15)
-// Items without another source (D-059).
+// Items without another source.
 #define FLAG_HIDE_MT_SILVER_ITEM_ROOM_TM_ROCK_CLIMB  (OJ_FLAGS_JOHTO + 16)
 #define FLAG_HIDE_ICE_PATH_1F_ICY_ROCK               (OJ_FLAGS_JOHTO + 17)
 #define FLAG_HIDDEN_ITEM_ILEX_BIG_BAMBOO_SHOOT       (OJ_FLAGS_JOHTO + 18)
 #define FLAG_HIDDEN_ITEM_ILEX_TINY_BAMBOO_SHOOT      (OJ_FLAGS_JOHTO + 19)
 #define FLAG_HIDDEN_ITEM_ECRUTEAK_POKESHI_DOLL       (OJ_FLAGS_JOHTO + 20)
-// Lilycove's game designer gave the EXP. Charm with the Johto diploma (D-059).
+// Lilycove's game designer gave the EXP. Charm with the Johto diploma.
 #define FLAG_RECEIVED_EXP_CHARM                      (OJ_FLAGS_JOHTO + 21)
-// Hoenn hidden items (D-059); hidden-item flags must lie below FLAG_HIDDEN_ITEMS_START + 8192.
+// Hoenn hidden items; hidden-item flags must lie below FLAG_HIDDEN_ITEMS_START + 8192.
 #define FLAG_HIDDEN_ITEM_ROUTE111_RARE_BONE          (OJ_FLAGS_JOHTO + 22)
 #define FLAG_HIDDEN_ITEM_ROUTE111_SMOOTH_ROCK        (OJ_FLAGS_JOHTO + 23)
 #define FLAG_HIDDEN_ITEM_FIERY_PATH_HEAT_ROCK        (OJ_FLAGS_JOHTO + 24)
@@ -220,14 +220,14 @@
 // ---------------------------------------------------------------------
 // Cross-region (OJ_FLAGS_GLOBAL + 0 to + 63)
 // ---------------------------------------------------------------------
-// Johto species unlocked: first Johto map after the Kanto title (D-049).
+// Johto species unlocked: first Johto map after the Kanto title.
 #define FLAG_JOHTO_UNLOCKED                          (OJ_FLAGS_GLOBAL + 0)
-// Contest reporters in the Verdanturf and Fallarbor contest lobbies (D-058).
+// Contest reporters in the Verdanturf and Fallarbor contest lobbies.
 #define FLAG_HIDE_VERDANTURF_TOWN_CONTEST_REPORTER   (OJ_FLAGS_GLOBAL + 1)
 #define FLAG_HIDE_FALLARBOR_TOWN_CONTEST_REPORTER    (OJ_FLAGS_GLOBAL + 2)
-// TM Attract from the girl in Verdanturf's contest lobby (D-058).
+// TM Attract from the girl in Verdanturf's contest lobby.
 #define FLAG_HOENN_RECEIVED_TM_ATTRACT               (OJ_FLAGS_GLOBAL + 3)
-// TM Torment from the sailor in Slateport's contest hall (D-058).
+// TM Torment from the sailor in Slateport's contest hall.
 #define FLAG_HOENN_RECEIVED_TM_TORMENT               (OJ_FLAGS_GLOBAL + 4)
 
 // ---------------------------------------------------------------------
@@ -235,7 +235,7 @@
 // and kept across warps. HnS uses SPECIAL_FLAGS_START + 0x00 to + 0x05;
 // append from + 0x06 on, up to SPECIAL_FLAGS_END.
 // ---------------------------------------------------------------------
-// Hoenn ship trip that goes on from the Route 104 pier to Birch's lab (D-047).
+// Hoenn ship trip that goes on from the Route 104 pier to Birch's lab.
 #define FLAG_HOENN_SHIP_TO_BIRCHS_LAB                (SPECIAL_FLAGS_START + 0x06)
 
 #endif // GUARD_CONSTANTS_FLAGS_ORIGIN_JADE_H

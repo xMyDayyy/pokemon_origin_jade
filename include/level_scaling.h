@@ -12,7 +12,6 @@ struct Trainer;
 
 // Anchor of all regions: mean of the three highest party levels (eggs excluded;
 // fewer Pokemon: their mean), rounded, but at most this far below the highest level.
-// See docs/origin_jade/DECISIONS.md, D-012.
 #define SCALING_ANCHOR_MAX_DROP 8
 
 bool32 LevelScalingActive(void);

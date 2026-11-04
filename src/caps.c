@@ -47,7 +47,7 @@ u32 GetCurrentRegionBadgeCount(void)
     return GetRegionBadgeCount(gMapHeader.regionMapSectionId);
 }
 
-// Kanto badges (D-011 ladder): the next leader's ace, after eight badges the champion's.
+// Kanto badges (Kanto level ladder): the next leader's ace, after eight badges the champion's.
 static const u8 sLevelCapTable_Normal[] =
 {
     [0] = 10,  // no badges

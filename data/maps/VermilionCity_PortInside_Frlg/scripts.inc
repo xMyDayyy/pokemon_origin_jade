@@ -3,7 +3,7 @@ VermilionCity_PortInside_Frlg_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, VermilionPortFrlg_OnFrame
 	.byte 0
 
-@ The M.S. Aqua lies here once her maiden voyage from Olivine is done, see docs/origin_jade/DECISIONS.md, D-029.
+@ The M.S. Aqua lies here once her maiden voyage from Olivine is done.
 VermilionPortFrlg_OnTransition::
 	setflag FLAG_HIDE_VERMILION_SS_AQUA
 	call_if_ge VAR_SSAQUA_STATE, 7, VermilionPortFrlg_EventScript_ShowSSAqua
@@ -142,9 +142,9 @@ VermilionPortFrlg_EventScript_Sailor::
 	goto_if_unset FLAG_HIDE_SS_ANNE, VermilionPortFrlg_EventScript_SSAnnePresent
 	@ Phase 3: no ship until the first Johto title
 	goto_if_unset FLAG_IS_JOHTO_CHAMPION, VermilionPortFrlg_EventScript_NoShipInPort
-	@ Phase 4: M.S. Aqua, every day (see docs/origin_jade/DECISIONS.md, D-029)
+	@ Phase 4: M.S. Aqua, every day
 	goto_if_ge VAR_SSAQUA_STATE, 7, VermilionPortFrlg_EventScript_Sailor_AfterKanto
-	@ Before the maiden voyage only the Hoenn ferry leaves here (D-047).
+	@ Before the maiden voyage only the Hoenn ferry leaves here.
 	call Common_EventScript_CheckHoennFerry
 	goto_if_eq VAR_RESULT, FALSE, VermilionPortFrlg_EventScript_FirstTripFromOlivine
 	msgbox VermilionPortFrlg_Text_OnlyHoennFerry, MSGBOX_DEFAULT
@@ -199,7 +199,7 @@ VermilionPortFrlg_EventScript_ChoseBirthIsland::
 	release
 	end
 
-@ The Kampfzone only after the Hoenn title (D-030); checked again like the Hoenn trips.
+@ The Kampfzone only after the Hoenn title; checked again like the Hoenn trips.
 VermilionPortFrlg_EventScript_ChoseBattleFrontier::
 	goto_if_unset FLAG_IS_HOENN_CHAMPION, Common_EventScript_ShipMenuCancel
 	closemessage

@@ -6,7 +6,7 @@ MtSilver_1F_ItemRoom_OnResume::
 	setescapewarp MAP_MT_SILVER_OUTSIDE_HNS, 17, 8
 	end
 
-@ Origin Jade: HnS had it only on Route 49 in Sinjoh (locked, D-019).
+@ Origin Jade: HnS had it only on Route 49 in Sinjoh (locked).
 MtSilver_1F_ItemRoom_EventScript_ItemTMRockClimb::
 	finditem ITEM_TM_ROCK_CLIMB
 	end

@@ -44,7 +44,7 @@ void FillPartnerParty(u16 trainerId)
         for (i = 0; i < 3; i++)
             ZeroMonData(&gPlayerParty[i + 3]);
 
-        // Level scaling (D-012): levels and species before the partner's Pokemon join the party.
+        // Level scaling: levels and species before the partner's Pokemon join the party.
         for (i = 0; i < 3 && i < partner->partySize; i++)
         {
             if (partner->party[i].lvl > partyMaxLevel)

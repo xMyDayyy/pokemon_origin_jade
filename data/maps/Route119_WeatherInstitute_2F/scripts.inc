@@ -126,7 +126,7 @@ Route119_WeatherInstitute_2F_EventScript_ScientistMentionWeather::
 	end
 
 Route119_WeatherInstitute_2F_EventScript_TryStartAbnormalWeather::
-	@ Counts Kyogre and Groudon that cannot be met now (see docs/origin_jade/DECISIONS.md, D-026).
+	@ Counts Kyogre and Groudon that cannot be met now.
 	setvar VAR_0x8005, 0
 	setvar VAR_0x8004, LEGENDARY_KYOGRE
 	specialvar VAR_RESULT, IsLegendaryAvailable

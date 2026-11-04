@@ -55,7 +55,7 @@ BattleFrontier_ExchangeServiceCorner_EventScript_HoldItemClerk2_hns::
 	release
 	end
 
-@ Origin Jade: gems, seeds and newer hold items (D-059).
+@ Origin Jade: gems, seeds and newer hold items.
 BattleFrontier_ExchangeServiceCorner_EventScript_HoldItemClerk3_hns::
 	lock
 	faceplayer

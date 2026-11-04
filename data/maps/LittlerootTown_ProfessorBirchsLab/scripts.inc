@@ -472,7 +472,6 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedChikorita::
 
 @ Gives the Johto starter in VAR_TEMP_TRANSFERRED_SPECIES with the shininess of its preview
 @ (FLAG_SHINY_STARTER_1-3 = Chikorita, Cyndaquil, Totodile, rolled by showmonpic).
-@ See docs/origin_jade/DECISIONS.md, D-035.
 LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterNotShiny::
 	givemon VAR_TEMP_TRANSFERRED_SPECIES, 5, ITEM_NONE, BALL_POKE, NATURE_RANDOM, NUM_ABILITY_PERSONALITY, MON_GENDER_RANDOM, 0, 0, 0, 0, 0, 0, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT, SHINY_MODE_NEVER
 	return

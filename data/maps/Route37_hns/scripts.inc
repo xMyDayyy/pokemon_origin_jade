@@ -9,8 +9,7 @@ Route37_OnTransition:
 	call_if_ne VAR_RESULT, WEEKDAY_SUN, Route37_EventScript_HideSunny
 	end
 
-@ Sunny of the weekday siblings is only here on Sunday, see
-@ docs/origin_jade/DECISIONS.md, D-033.
+@ Sunny of the weekday siblings is only here on Sunday.
 Route37_EventScript_HideSunny:
 	setflag FLAG_TEMP_1
 	return

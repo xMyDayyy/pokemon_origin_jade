@@ -524,8 +524,7 @@ PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV::
 	call_if_eq VAR_0x8008, MALE, PlayersHouse_1F_EventScript_MomApproachPlayerAfterTVMale
 	call_if_eq VAR_0x8008, FEMALE, PlayersHouse_1F_EventScript_MomApproachPlayerAfterTVFemale
 #if IS_HNS
-	@ Latias and Latios both roam Hoenn after the Hoenn title (ReviveDefeatedLegendaries),
-	@ see docs/origin_jade/DECISIONS.md, D-026.
+	@ Latias and Latios both roam Hoenn after the Hoenn title (ReviveDefeatedLegendaries).
 #else
 	msgbox PlayersHouse_1F_Text_WhatColorDidTheySay, MSGBOX_DEFAULT
 	multichoice 22, 8, MULTI_TV_LATI, TRUE

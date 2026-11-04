@@ -91,7 +91,7 @@ static const struct BPShopEntry sBPHoldItemShopEntries2[] = {
     { ITEM_NONE,           0 },
 };
 
-// Gems, seeds and newer hold items that have no other source (D-059).
+// Gems, seeds and newer hold items that have no other source.
 static const struct BPShopEntry UNUSED sBPHoldItemShopEntries3[] = {
     { ITEM_NORMAL_GEM,       16 },
     { ITEM_FIRE_GEM,         16 },

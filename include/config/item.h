@@ -38,8 +38,7 @@
 
 // Vs. Seeker
 // Origin Jade: the VS Seeker works on Kanto's FRLG maps with its own rematch table and
-// state; Match Call, phone and gym rematches keep working everywhere, see
-// docs/origin_jade/DECISIONS.md, D-034.
+// state; Match Call, phone and gym rematches keep working everywhere.
 #define I_VS_SEEKER_CHARGING        FLAG_VS_SEEKER_CHARGING // If this flag is assigned, the Vs Seeker functionality will be enabled. Documentation for the Vs. Seeker can be found in docs/tutorials/vs_seeker.md.
 #define I_SHOW_NO_ID_TRAINER        DISABLED_ON_RELEASE   // If TRUE, object events with a trainer type but no visible trainer id will be shown with a question mark. You may want to add vsseeker_rematchid TRAINER_ID as the top of the script to let the VS seeker know what reaction it's supposed to show.
 

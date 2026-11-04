@@ -2,8 +2,8 @@ WhirlIslands_LugiaChamber_hns_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, WhirlIslands_LugiaChamber_OnTransition
 	.byte 0
 
-@ Lugia: story battle at VAR_COMPLETED_LUGIA 2; afterwards the legendary rules decide
-@ (see docs/origin_jade/DECISIONS.md, D-026). The Lugia not chosen on Route 39 waits
+@ Lugia: story battle at VAR_COMPLETED_LUGIA 2; afterwards the legendary rules decide.
+@ The Lugia not chosen on Route 39 waits
 @ after the first Johto title once Ho-Oh is caught.
 WhirlIslands_LugiaChamber_OnTransition:
 	goto_if_eq VAR_COMPLETED_LUGIA, 2, WhirlIslands_LugiaChamber_MapScript_LugiaStory

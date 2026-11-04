@@ -2,7 +2,7 @@ EverGrandeCity_HallOfFame_EventScript_SetGameClearFlags::
 	special SetChampionSaveWarp
 	setflag FLAG_IS_CHAMPION
 #if IS_HNS
-	@ Knocked-out legendaries return after every title, see docs/origin_jade/DECISIONS.md, D-026.
+	@ Knocked-out legendaries return after every title.
 	call Common_EventScript_ReviveDefeatedLegendaries
 #else
 	call EverGrandeCity_HallOfFame_EventScript_ResetDefeatedEventLegendaries
@@ -23,7 +23,7 @@ EverGrandeCity_HallOfFame_EventScript_SetGameClearFlags::
 	setflag FLAG_HIDE_LILYCOVE_CITY_RIVAL
 	special UpdateTrainerFanClubGameClear
 #if IS_HNS
-	@ Origin Jade: no S.S. Ticket and Lati TV scene in Littleroot's houses (D-002, D-026).
+	@ Origin Jade: no S.S. Ticket and Lati TV scene in Littleroot's houses.
 #else
 	call_if_unset FLAG_RECEIVED_SS_TICKET, EverGrandeCity_HallOfFame_EventScript_ReadyReceiveSSTicketEvent
 #endif
@@ -67,7 +67,6 @@ EverGrandeCity_HallOfFame_EventScript_ReadyDexUpgradeEvent::
 
 #if IS_HNS
 @ Origin Jade: skips Birch's National Mode scene; sets the state after it and Scott's S.S. Tidal call.
-@ See docs/origin_jade/DECISIONS.md, D-028.
 EverGrandeCity_HallOfFame_EventScript_SkipDexUpgradeEvent::
 	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3
 	setvar VAR_SCOTT_BF_CALL_STEP_COUNTER, 0

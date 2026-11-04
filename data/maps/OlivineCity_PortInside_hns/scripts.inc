@@ -20,7 +20,6 @@ OlivinePort_EventScript_Youngster::
 
 @ Origin Jade: the M.S. Aqua sails every day from the first Johto title on; the first trip is the
 @ maiden voyage to Vermilion. The Hoenn ferry needs no maiden voyage.
-@ See docs/origin_jade/DECISIONS.md, D-029 and D-047.
 OlivinePort_EventScript_Sailor::
 	lock
 	faceplayer
@@ -83,7 +82,7 @@ OlivinePort_EventScript_ChoseBirthIsland::
 	release
 	end
 
-@ The Kampfzone only after the Hoenn title (D-030); checked again like the Hoenn trips.
+@ The Kampfzone only after the Hoenn title; checked again like the Hoenn trips.
 OlivinePort_EventScript_ChoseBattleFrontier::
 	goto_if_unset FLAG_IS_HOENN_CHAMPION, Common_EventScript_ShipMenuCancel
 	closemessage

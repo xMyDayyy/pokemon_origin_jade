@@ -1,7 +1,7 @@
 FallarborTown_ContestHall_MapScripts::
 	.byte 0
 
-@ Audience hall behind Fallarbor's contest lobby, as in Ruby/Sapphire (D-058).
+@ Audience hall behind Fallarbor's contest lobby, as in Ruby/Sapphire.
 
 FallarborTown_ContestHall_EventScript_Man::
 	msgbox FallarborTown_ContestHall_Text_DoAllRightInPreliminary, MSGBOX_NPC

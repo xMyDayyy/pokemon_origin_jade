@@ -4263,7 +4263,7 @@ void BattleTurnPassed(void)
         gBattleMainFunc = HandleDebugInstantTrainerWin_KnockOut;
 }
 
-// Debug menu "Instant Tr. Win" (D-055): ordinary trainer battles; not link,
+// Debug menu "Instant Tr. Win": ordinary trainer battles; not link,
 // recorded, Frontier, tents, Trainer Hill, e-Reader, secret base or Pokedude battles.
 // The AI battle tests drive the player with BATTLE_TYPE_RECORDED.
 static bool32 UseDebugInstantTrainerWin(void)
@@ -5965,7 +5965,7 @@ static void HandleEndTurn_FinishBattle(void)
 
                 for (u32 partySlot = 0; partySlot < PARTY_SIZE; partySlot++)
                 {
-                    // Origin Jade: species of a region not unlocked yet stay unseen (D-049).
+                    // Origin Jade: species of a region not unlocked yet stay unseen.
                     if (gBattleStruct->partyState[side][partySlot].sentOut
                      && CanRegisterSeenSpecies(GetMonData(&party[partySlot], MON_DATA_SPECIES)))
                         HandleSetPokedexFlagFromMon(&party[partySlot], FLAG_SET_SEEN);
@@ -6196,7 +6196,7 @@ static void ReturnFromBattleToOverworld(void)
         if ((gBattleOutcome == B_OUTCOME_WON) || gBattleOutcome == B_OUTCOME_CAUGHT) // Bug: When Roar is used by roamer, gBattleOutcome is B_OUTCOME_PLAYER_TELEPORTED (5).
 #endif                                                                               // & with B_OUTCOME_WON (1) will return TRUE and deactivates the roamer.
             SetRoamerInactive(gEncounteredRoamerIndex);
-        // A caught roamer never comes back, see docs/origin_jade/DECISIONS.md, D-026.
+        // A caught roamer never comes back.
         if (gBattleOutcome == B_OUTCOME_CAUGHT)
             RecordRoamerCaught(gSaveBlock1Ptr->roamer[gEncounteredRoamerIndex].species);
     }

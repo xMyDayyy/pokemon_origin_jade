@@ -240,7 +240,7 @@ BlackthornGym_EventScript_ClairAfterLeague::
 	release
 	end
 
-@ Rematch after the Johto title, see docs/origin_jade/DECISIONS.md, D-032.
+@ Rematch after the Johto title.
 BlackthornGym_EventScript_ClairRematch::
 	msgbox BlackthornGym_Text_ClairRematchText, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined

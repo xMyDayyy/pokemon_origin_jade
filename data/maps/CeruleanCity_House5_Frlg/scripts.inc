@@ -145,7 +145,7 @@ CeruleanCity_House5_EventScript_ExchangePowderForItem::
 	copyvar VAR_0x8004, VAR_0x8009
 	specialvar VAR_RESULT, HasEnoughBerryPowder
 	goto_if_eq VAR_RESULT, FALSE, CeruleanCity_House5_EventScript_NotEnoughBerryPowder
-	@ Bought with Berry Powder: no item randomizer (see docs/origin_jade/DECISIONS.md, D-054).
+	@ Bought with Berry Powder: no item randomizer.
 	giveitem_norandom VAR_0x8008
 	goto_if_eq VAR_RESULT, FALSE, CeruleanCity_House5_EventScript_BagIsFull
 	copyvar VAR_0x8004, VAR_0x8009

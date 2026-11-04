@@ -37,8 +37,7 @@ BugContest_EventScript_WrongChoiceMon::
 	end
 
 @ Only a judged contest uses up the day; retiring without a catch or
-@ whiting out lets the player enter again, see
-@ docs/origin_jade/DECISIONS.md, D-033.
+@ whiting out lets the player enter again.
 BugContestEventScript_Judging::
 	setflag FLAG_DAILY_BUG_CONTEST_COMPLETED
 	msgbox BugContest_Text_Judging1, MSGBOX_DEFAULT

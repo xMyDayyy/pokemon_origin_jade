@@ -757,7 +757,7 @@ static UNUSED void DisplaySentToPCMessage(void)
         stringToDisplay = 2;
     }
 
-    // Origin Jade: always Bill's PC (D-052).
+    // Origin Jade: always Bill's PC.
     if (IS_HNS || FlagGet(FLAG_SYS_PC_LANETTE))
         stringToDisplay++;
 

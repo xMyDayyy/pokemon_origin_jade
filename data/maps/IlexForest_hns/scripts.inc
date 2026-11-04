@@ -20,8 +20,8 @@ IlexForest_EventScript_ReenterDuringCutScene::
 	setobjectxyperm LOCALID_ILEX_FOREST_FARFETCHD_1, 28, 42
 	return
 
-@ After the shrine event Celebi waits at the shrine again unless the legendary rules hide it
-@ (see docs/origin_jade/DECISIONS.md, D-026). Uses the second Celebi object: FLAG_HIDE_CELEBI is also Kurt's flag.
+@ After the shrine event Celebi waits at the shrine again unless the legendary rules hide it.
+@ Uses the second Celebi object: FLAG_HIDE_CELEBI is also Kurt's flag.
 IlexForest_EventScript_SetCelebiVisibility::
 	setflag FLAG_HIDE_ILEX_FOREST_SECOND_CELEBI
 	goto_if_lt VAR_AZALEA_TOWN_STATE, 10, Common_EventScript_NopReturn
@@ -309,7 +309,7 @@ IlexForest_EventScript_Shrine_Cancel::
 	end
 
 
-@ Celebi back at the shrine after a knockout or a flight (legendary rules, D-026).
+@ Celebi back at the shrine after a knockout or a flight (legendary rules).
 IlexForest_EventScript_SecondCelebi::
 	lock
 	faceplayer

@@ -2,8 +2,8 @@ TinTower_RoofDay_hns_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, TinTower_RoofDay_OnTransition
 	.byte 0
 
-@ Ho-Oh: story battle at VAR_COMPLETED_HO_OH 2; afterwards the legendary rules decide
-@ (see docs/origin_jade/DECISIONS.md, D-026). The Ho-Oh not chosen on Route 39 waits
+@ Ho-Oh: story battle at VAR_COMPLETED_HO_OH 2; afterwards the legendary rules decide.
+@ The Ho-Oh not chosen on Route 39 waits
 @ after the first Johto title once Lugia is caught.
 TinTower_RoofDay_OnTransition:
 	call_if_set FLAG_DAY_POKEMON, TinTower_RoofDay_EventScript_SetNight

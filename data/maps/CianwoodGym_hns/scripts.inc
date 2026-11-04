@@ -106,7 +106,7 @@ CianwoodGym_Text_ChuckGotoDojo:
 	.string "the FIGHTING DOJO in SAFFRON CITY!$"
 #endif
 
-@ Rematch after the Johto title, see docs/origin_jade/DECISIONS.md, D-032.
+@ Rematch after the Johto title.
 CianwoodGym_EventScript_Chuck_Rematch::
 	msgbox CianwoodGym_Text_ChuckRematch, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined

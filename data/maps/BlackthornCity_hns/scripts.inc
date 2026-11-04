@@ -39,8 +39,7 @@ BlackthornCity_EventScript_CityEnter::
 	call_if_ne VAR_RESULT, WEEKDAY_SAT, BlackthornCity_EventScript_HideSantos
 	end
 
-@ Santos of the weekday siblings is only here on Saturday, see
-@ docs/origin_jade/DECISIONS.md, D-033.
+@ Santos of the weekday siblings is only here on Saturday.
 BlackthornCity_EventScript_HideSantos:
 	setflag FLAG_TEMP_1
 	return

@@ -2,15 +2,15 @@
 #define GUARD_CONFIG_KANTO_SCALING_H
 
 // =====================================================================
-// Kanto level scaling (FRLG Kanto maps), see docs/origin_jade/DECISIONS.md, D-031.
+// Kanto level scaling (FRLG Kanto maps).
 //
 // Off until FLAG_IS_KANTO_CHAMPION: the first run keeps the hand-set
-// levels (D-011). After the title, trainers (rematches included) and wild
+// levels. After the title, trainers (rematches included) and wild
 // Pokemon follow the player's anchor (include/level_scaling.h) up to
 // KANTO_SCALING_MAX_LEVEL. Scaling only raises levels: the hand-set level is
 // the floor. Kanto has no corridors.
 // Before the title only VS Seeker rematch teams move up, to their tier's
-// level floor (sKantoRematchLevelFloors in src/vs_seeker.c, D-034).
+// level floor (sKantoRematchLevelFloors in src/vs_seeker.c).
 // Johto's league maps (Kanto mapsec, HnS map groups) use config/johto_scaling.h.
 // =====================================================================
 

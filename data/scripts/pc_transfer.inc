@@ -18,7 +18,7 @@ Common_EventScript_TransferredToPC::
 	bufferboxname STR_VAR_1, VAR_PC_BOX_TO_SEND_MON
 	bufferspeciesname STR_VAR_2, VAR_TEMP_TRANSFERRED_SPECIES
 #if IS_HNS
-	@ Origin Jade: always Bill's PC (D-052).
+	@ Origin Jade: always Bill's PC.
 	call EventScript_TransferredLanettesPC
 #else
 	call_if_unset FLAG_SYS_PC_LANETTE, EventScript_TransferredSomeonesPC

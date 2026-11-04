@@ -72,7 +72,7 @@ ViridianCity_EventScript_GymSign::
 	msgbox ViridianCity_Text_GymSign, MSGBOX_SIGN
 	end
 
-@ Blue leads the gym after the league change, see docs/origin_jade/DECISIONS.md, D-032.
+@ Blue leads the gym after the league change.
 ViridianCity_EventScript_GymSignBlue::
 	msgbox ViridianCity_Text_GymSignBlue, MSGBOX_SIGN
 	end

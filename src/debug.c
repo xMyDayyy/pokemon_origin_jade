@@ -2057,8 +2057,7 @@ void Debug_SetJohtoTestState(void)
     SetDebugStateHallOfFame(1);
 }
 
-// State of a completionist after the first Johto Hall of Fame (tools/make_debug_states.py),
-// see docs/origin_jade/DECISIONS.md, D-050.
+// State of a completionist after the first Johto Hall of Fame (tools/make_debug_states.py).
 void Debug_SetHoennTestState(void)
 {
     ResetForDebugState();

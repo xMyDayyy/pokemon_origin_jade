@@ -8,7 +8,7 @@
 #include "constants/maps.h"
 #include "constants/pokedex.h"
 
-// Region rule, see docs/origin_jade/DECISIONS.md, D-049.
+// Region rule.
 
 #if IS_HNS
 

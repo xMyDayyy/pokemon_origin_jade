@@ -2245,7 +2245,7 @@ const u8 gText_Treasures[] = _("TREASURES");
 #endif
 #endif
 #if IS_HNS
-// Origin Jade: gText_LanettesPC names Bill's PC, always (D-052).
+// Origin Jade: gText_LanettesPC names Bill's PC, always.
 #if GERMAN
 const u8 gText_SomeonesPC[] = _("Jemandes PC");
 const u8 gText_LanettesPC[] = _("Bills PC");

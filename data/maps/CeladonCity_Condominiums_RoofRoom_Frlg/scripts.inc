@@ -2,7 +2,7 @@ CeladonCity_Condominiums_RoofRoom_Frlg_MapScripts::
 	.byte 0
 
 CeladonCity_Condominiums_RoofRoom_EventScript_BlackBelt::
-	@ Origin Jade: HnS's scary tale at night with TM Sleep Talk (D-059).
+	@ Origin Jade: HnS's scary tale at night with TM Sleep Talk.
 	lock
 	faceplayer
 	goto_if_set FLAG_GOT_TM_SLEEP_TALK_CELADON_ROOF, CeladonCity_Condominiums_RoofRoom_EventScript_BlackBeltAfter

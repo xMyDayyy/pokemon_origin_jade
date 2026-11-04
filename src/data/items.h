@@ -14974,7 +14974,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_OldKey,
     },
 
-    // Key item: Troy's ticket for the ferry to Hoenn (D-047).
+    // Key item: Troy's ticket for the ferry to Hoenn.
     [ITEM_HOENN_TICKET] =
     {
         .name = ITEM_NAME("Hoennticket"),
@@ -16521,7 +16521,7 @@ const struct ItemInfo gItemsInfo[] =
 
 // HnS Items
 
-    // Key item: Oak's parcel for Elm (D-004), opens Celebi's shrine (D-026).
+    // Key item: Oak's parcel for Elm, opens Celebi's shrine.
     [ITEM_GS_BALL] =
     {
         .name = ITEM_NAME("GS-Ball"),

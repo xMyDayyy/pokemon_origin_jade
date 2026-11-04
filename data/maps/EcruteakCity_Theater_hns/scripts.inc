@@ -170,7 +170,7 @@ EcruteakCity_Theater_EventScript_Rocket::
 	release
 	end
 
-@ The theater state only moves forward: the league change needs it at 8 (D-010).
+@ The theater state only moves forward: the league change needs it at 8.
 EcruteakCity_Theater_EventScript_SetRocketBeaten::
 	setvar VAR_ECRUTEAK_CITY_THEATER, 2
 	return
@@ -346,7 +346,7 @@ EcruteakCity_Theater_EventScript_SurfGuy_GiveSurf::
 	release
 	end
 
-@ Surf's HM, or Mystic Water for a player who still has it from Kanto (D-014).
+@ Surf's HM, or Mystic Water for a player who still has it from Kanto.
 EcruteakCity_Theater_EventScript_SurfGuyReward::
 	checkitem ITEM_HM_SURF
 	goto_if_eq VAR_RESULT, TRUE, EcruteakCity_Theater_EventScript_SurfGuyHasSurf

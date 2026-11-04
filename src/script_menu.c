@@ -796,7 +796,7 @@ static void CreatePCMultichoice(void)
         AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_LogOff, x, 49, TEXT_SKIP_DRAW, NULL);
     }
 
-    // Change PC name if player has met Lanette; Origin Jade: always Bill's PC (D-052)
+    // Change PC name if player has met Lanette; Origin Jade: always Bill's PC
     if (IS_HNS || FlagGet(FLAG_SYS_PC_LANETTE))
     {
         if (IS_FRLG || IS_HNS)
@@ -868,7 +868,7 @@ static void CreateLilycoveSSTidalMultichoice(void)
     }
 
 #if !IS_HNS
-    // No event-ticket islands from Lilycove: each legendary exists once (see docs/origin_jade/DECISIONS.md, D-026).
+    // No event-ticket islands from Lilycove: each legendary exists once.
     if (CheckBagHasItem(ITEM_EON_TICKET, 1) == TRUE && FlagGet(FLAG_ENABLE_SHIP_SOUTHERN_ISLAND) == TRUE)
     {
         if (gSpecialVar_0x8004 == 0)

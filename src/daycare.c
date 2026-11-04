@@ -149,7 +149,7 @@ static struct DayCare *GetRegionDaycare(enum Region region)
 }
 #endif
 
-// The Day Care of the current map's region (see docs/origin_jade/DECISIONS.md, D-052).
+// The Day Care of the current map's region.
 struct DayCare *GetCurrentDaycare(void)
 {
 #if IS_HNS
@@ -1121,7 +1121,7 @@ static u16 DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u8 *parent
         eggSpecies = SPECIES_TOGEDEMARU;
 
 #if IS_HNS
-    // Origin Jade: no egg of a region not unlocked yet (D-049).
+    // Origin Jade: no egg of a region not unlocked yet.
     eggSpecies = GetUnlockedEggSpecies(eggSpecies, species[parentSlots[0]]);
 #endif
 

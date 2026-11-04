@@ -4025,7 +4025,7 @@ BattleScript_GiveExp::
 	getexp BS_TARGET
 	end2
 
-@ Debug menu "Instant Tr. Win" (D-055): the opponent faints like from turn damage
+@ Debug menu "Instant Tr. Win": the opponent faints like from turn damage
 BattleScript_DebugInstantTrainerWinFaint::
 	healthbarupdate BS_ATTACKER, PASSIVE_HP_UPDATE
 	datahpupdate BS_ATTACKER, PASSIVE_HP_UPDATE

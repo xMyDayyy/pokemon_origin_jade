@@ -44,7 +44,7 @@ ViridianForest_EventScript_Rick::
 	goto_if_set FLAG_IS_KANTO_CHAMPION, ViridianForest_EventScript_RickGiveTMXScissor
 	end
 
-@ Origin Jade: TM X-Scissor after the Kanto title (D-059).
+@ Origin Jade: TM X-Scissor after the Kanto title.
 ViridianForest_EventScript_RickGiveTMXScissor::
 	goto_if_set FLAG_GOT_TM_X_SCISSOR_FROM_RICK, Common_EventScript_NoOp
 	lock

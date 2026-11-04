@@ -14,7 +14,7 @@ CeruleanCave_B1F_EventScript_TryRemoveMewtwo::
 	return
 
 CeruleanCave_B1F_OnTransition::
-	@ Mewtwo: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+	@ Mewtwo: legendary rules.
 	setflag FLAG_HIDE_MEWTWO
 	setvar VAR_0x8004, LEGENDARY_MEWTWO
 	specialvar VAR_RESULT, IsLegendaryAvailable

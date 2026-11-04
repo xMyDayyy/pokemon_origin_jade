@@ -2,7 +2,7 @@ FallarborTown_ContestLobby_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, FallarborTown_ContestLobby_OnTransition
 	.byte 0
 
-@ Super Rank contest hall, as in Ruby/Sapphire (D-058). Shared scripts are in data/scripts/contest_hall.inc.
+@ Super Rank contest hall, as in Ruby/Sapphire. Shared scripts are in data/scripts/contest_hall.inc.
 
 FallarborTown_ContestLobby_OnTransition:
 	call LilycoveCity_ContestLobby_EventScript_TryShowContestReporter

@@ -1,4 +1,4 @@
-@ Legendary rules (see docs/origin_jade/DECISIONS.md, D-026).
+@ Legendary rules.
 @ Ids: include/constants/legendaries_oj.h, state: src/legendaries_oj.c.
 
 @ Every league victory: knocked-out legendaries return, released roamers roam again.

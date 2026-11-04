@@ -1291,7 +1291,7 @@ SootopolisCity_EventScript_Wallace::
 
 SootopolisCity_EventScript_GiveWaterfall::
 #if IS_HNS
-	@ HnS: the HM only if it is not in the bag (D-014), the Rain Badge grants the Waterfall license.
+	@ HnS: the HM only if it is not in the bag, the Rain Badge grants the Waterfall license.
 	checkitem ITEM_HM_WATERFALL
 	goto_if_eq VAR_RESULT, TRUE, SootopolisCity_EventScript_HnsWaterfallOwned
 #endif

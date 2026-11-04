@@ -2421,7 +2421,7 @@ static u8 GetChallengesBadgeCount(void)
 {
     u8 badgeCount = 0;
 #if IS_HNS
-    // Origin Jade: badges of the region the player stands in (D-053).
+    // Origin Jade: badges of the region the player stands in.
     badgeCount = GetCurrentRegionBadgeCount();
 #else
     u16 i;

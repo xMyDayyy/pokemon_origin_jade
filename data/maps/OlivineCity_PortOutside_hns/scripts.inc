@@ -27,7 +27,7 @@ OlivineCity_PortOutside_Text_Sabrina:
 	.string "DOJO.$"
 #endif
 
-@ The M.S. Aqua sails every day after her maiden voyage, see docs/origin_jade/DECISIONS.md, D-029.
+@ The M.S. Aqua sails every day after her maiden voyage.
 OlivineCity_PortOutside_EventScript_Fisherman1::
 	lock
 	faceplayer

@@ -186,7 +186,7 @@
 
 #define MULTI_NONE 255
 
-// Destinations of the dynamic ship menu (Common_EventScript_ShipMenu, D-047)
+// Destinations of the dynamic ship menu (Common_EventScript_ShipMenu)
 #define SHIP_DEST_OLIVINE                  0
 #define SHIP_DEST_VERMILION                1
 #define SHIP_DEST_BATTLE_FRONTIER          2

@@ -7,8 +7,7 @@
 #include "constants/legendaries_oj.h"
 #include "constants/species.h"
 
-// One-time encounters (legendaries, Union Cave Lapras, red Gyarados), see
-// docs/origin_jade/DECISIONS.md, D-026:
+// One-time encounters (legendaries, Union Cave Lapras, red Gyarados):
 //  - caught: never again;
 //  - knocked out: back after every league victory (Kanto, Johto, Hoenn);
 //  - fled: back after FLEE_COOLDOWN_DAYS RTC day changes; roamers just keep roaming.

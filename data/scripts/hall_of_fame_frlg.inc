@@ -8,7 +8,7 @@ EventScript_SetDefeatedEliteFourFlagsVars::
 	specialvar VAR_RESULT, IsNationalPokedexEnabled
 	call_if_eq VAR_RESULT, FALSE, EventScript_SetReadyTryGiveNationalDexScene
 #if IS_HNS
-	@ Knocked-out legendaries return after every title, see docs/origin_jade/DECISIONS.md, D-026.
+	@ Knocked-out legendaries return after every title.
 	call Common_EventScript_ReviveDefeatedLegendaries
 	@ Armed before the Hall of Fame save, so a reset there keeps Oak's GS Ball handover.
 	call_if_eq VAR_JOHTO_HANDOVER, 0, EventScript_ArmJohtoHandover

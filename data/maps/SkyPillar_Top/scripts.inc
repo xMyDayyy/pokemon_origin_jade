@@ -25,7 +25,7 @@ SkyPillar_Top_EventScript_SetCleanLayout::
 	return
 
 SkyPillar_Top_EventScript_TryShowRayquaza::
-	@ Rayquaza: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+	@ Rayquaza: legendary rules.
 	setflag FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL
 	setvar VAR_0x8004, LEGENDARY_RAYQUAZA
 	specialvar VAR_RESULT, IsLegendaryAvailable

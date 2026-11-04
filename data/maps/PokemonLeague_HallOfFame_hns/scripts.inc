@@ -47,9 +47,8 @@ PokemonLeague_HallOfFame_EventScript_CutsceneKantoChamp::
 	setvar VAR_LEAGUE_STATE, 1
 	goto PokemonLeague_HallOfFame_EventScript_GameClear
 
-@ Every Johto title: knocked-out legendaries return (D-026), the Hall of Fame screen saves, then the
+@ Every Johto title: knocked-out legendaries return, the Hall of Fame screen saves, then the
 @ player wakes up in their room in Pallet Town, without credits.
-@ See docs/origin_jade/DECISIONS.md, D-028.
 PokemonLeague_HallOfFame_EventScript_GameClear:
 	call Common_EventScript_ReviveDefeatedLegendaries
 	setrespawn HEAL_LOCATION_PALLET_TOWN_PLAYERS_ROOM
@@ -68,13 +67,13 @@ PokemonLeague_HallOfFame_EventScript_SetFirstGameClearFlags::
 	setflag FLAG_HIDE_BATTLEFRONTIER_ENGINEER
 	setvar VAR_LEAGUE_STATE, 1
 	setvar VAR_NEWBARK_TOWN_STATE, 6
-	@ Troy waits in Oak's lab (D-047); set before the Hall of Fame saves.
+	@ Troy waits in Oak's lab; set before the Hall of Fame saves.
 	goto_if_ne VAR_HOENN_TICKET_STATE, 0, Common_EventScript_NopReturn
 	setvar VAR_HOENN_TICKET_STATE, 1
 	return
 
 @ First Johto title: Oak and Troy come in after the record. Troy only talks to Oak, then Oak
-@ asks the player to his lab. See docs/origin_jade/DECISIONS.md, D-047.
+@ asks the player to his lab.
 PokemonLeague_HallOfFame_EventScript_OakAndTroy::
 	addobject LOCALID_HALLOFFAME_OAK
 	addobject LOCALID_HALLOFFAME_TROY

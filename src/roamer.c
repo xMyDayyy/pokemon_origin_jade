@@ -285,7 +285,7 @@ bool8 TryAddRoamer(u16 species, u8 level, u8 locationTableId)
 #if IS_HNS
 // Releases Entei and Raikou (Burned Tower, before FLAG_RELEASED_BEASTS is set).
 // Later calls, e.g. Emerald's Lati news flash on the Littleroot TV, change nothing;
-// returns after that follow the legendary rules (see docs/origin_jade/DECISIONS.md, D-026).
+// returns after that follow the legendary rules.
 void InitRoamer(void)
 {
     if (FlagGet(FLAG_RELEASED_BEASTS))
@@ -393,7 +393,6 @@ bool8 IsRoamerAt(u32 roamerIndex, u8 mapGroup, u8 mapNum)
 #if IS_HNS
 // Raises a roamer to its level in the legendary table and, on Johto and Hoenn maps, to
 // the map's floor (ScaleStaticMonLevel), keeping its share of HP.
-// See docs/origin_jade/DECISIONS.md, D-039.
 static void TryRaiseRoamerLevel(u32 roamerIndex)
 {
     struct Pokemon *mon = &gEnemyParty[0];

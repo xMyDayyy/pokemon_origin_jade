@@ -19,7 +19,7 @@ BattleFrontier_ScottsHouse_EventScript_CheckGiveSymbolPrizes_hns::
 	end
 
 @ Origin Jade: welcome and Battle Point gift only after the Hoenn title,
-@ when the meetings VAR_SCOTT_STATE counts are over (D-030).
+@ when the meetings VAR_SCOTT_STATE counts are over.
 BattleFrontier_ScottsHouse_EventScript_TryWelcome_hns::
 	goto_if_set FLAG_IS_HOENN_CHAMPION, BattleFrontier_ScottsHouse_EventScript_WelcomeToFrontier_hns
 	goto BattleFrontier_ScottsHouse_EventScript_CheckGiveSymbolPrizes_hns

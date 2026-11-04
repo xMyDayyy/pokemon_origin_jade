@@ -32,7 +32,7 @@ FuchsiaCity_EventScript_Lass::
 	release
 	end
 
-@ Koga is in Johto's Elite Four after the league change (D-010, D-032).
+@ Koga is in Johto's Elite Four after the league change.
 FuchsiaCity_EventScript_LassLeagueChanged::
 	msgbox FuchsiaCity_Text_MyFatherIsEliteFour
 	release
@@ -68,7 +68,7 @@ FuchsiaCity_EventScript_GymSign::
 	releaseall
 	end
 
-@ Janina leads the gym after the league change, see docs/origin_jade/DECISIONS.md, D-032.
+@ Janina leads the gym after the league change.
 FuchsiaCity_EventScript_GymSignJanine::
 	msgbox FuchsiaCity_Text_GymSignJanine
 	releaseall

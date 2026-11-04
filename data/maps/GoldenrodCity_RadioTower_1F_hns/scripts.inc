@@ -141,7 +141,7 @@ RadioTower1F_EventScript_ReceptionQuiz5::
 	release
 	end
 
-@ Origin Jade: the quiz prize is the Magnet Train pass, see docs/origin_jade/DECISIONS.md, D-029.
+@ Origin Jade: the quiz prize is the Magnet Train pass.
 RadioTower1F_EventScript_ReceptionGivePrize::
 	msgbox RadioTower1F_Text_QuizWin, MSGBOX_DEFAULT
 	giveitem ITEM_PASS

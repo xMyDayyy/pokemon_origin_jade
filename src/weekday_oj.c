@@ -3,8 +3,7 @@
 #include "rtc.h"
 #include "weekday_oj.h"
 
-// Scripts compare the result with WEEKDAY_* from include/constants/siirtc.h,
-// see docs/origin_jade/DECISIONS.md, D-033.
+// Scripts compare the result with WEEKDAY_* from include/constants/siirtc.h.
 void GetWeekday(void)
 {
     gSpecialVar_Result = GetDayOfWeek();

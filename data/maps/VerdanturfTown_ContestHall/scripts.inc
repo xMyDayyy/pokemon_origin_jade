@@ -1,7 +1,7 @@
 VerdanturfTown_ContestHall_MapScripts::
 	.byte 0
 
-@ Audience hall behind Verdanturf's contest lobby, as in Ruby/Sapphire (D-058).
+@ Audience hall behind Verdanturf's contest lobby, as in Ruby/Sapphire.
 
 VerdanturfTown_ContestHall_EventScript_Boy1::
 	msgbox VerdanturfTown_ContestHall_Text_MyMonRules, MSGBOX_NPC

@@ -61,7 +61,6 @@ VioletCity_Gym_EventScript_Falkner_Defeated::
 	end
 
 @ Johto gym leader rematch after the Johto title: unlimited, money only.
-@ See docs/origin_jade/DECISIONS.md, D-032.
 VioletCity_Gym_EventScript_Falkner_Rematch::
 	msgbox VioletGym_Text_Falkner_Rematch, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined

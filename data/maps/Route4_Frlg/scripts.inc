@@ -8,8 +8,7 @@ Route4_OnTransition::
 	call Route4_EventScript_TryShowJirachi
 	end
 
-@ Jirachi: shown once summoned at the white rock; legendary rules, see
-@ docs/origin_jade/DECISIONS.md, D-026 and D-037.
+@ Jirachi: shown once summoned at the white rock; legendary rules.
 Route4_EventScript_TryShowJirachi::
 	setflag FLAG_HIDE_MTMOON_JIRACHI
 	goto_if_unset FLAG_SUMMONED_MTMOON_JIRACHI, Common_EventScript_NopReturn
@@ -19,7 +18,7 @@ Route4_EventScript_TryShowJirachi::
 	clearflag FLAG_HIDE_MTMOON_JIRACHI
 	return
 
-@ White rock: summons Jirachi once, at night, after the first trip to Hoenn (D-049).
+@ White rock: summons Jirachi once, at night, after the first trip to Hoenn.
 Route4_EventScript_WhiteRock::
 	lock
 	msgbox Route4_Text_WhiteRockTouchIt, MSGBOX_YESNO

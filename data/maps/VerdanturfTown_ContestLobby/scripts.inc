@@ -2,7 +2,7 @@ VerdanturfTown_ContestLobby_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, VerdanturfTown_ContestLobby_OnTransition
 	.byte 0
 
-@ Normal Rank contest hall, as in Ruby/Sapphire (D-058). Shared scripts are in data/scripts/contest_hall.inc.
+@ Normal Rank contest hall, as in Ruby/Sapphire. Shared scripts are in data/scripts/contest_hall.inc.
 
 VerdanturfTown_ContestLobby_OnTransition:
 	call LilycoveCity_ContestLobby_EventScript_TryShowContestReporter

@@ -98,7 +98,7 @@ GoldenrodCity_Gym_EventScript_WhitneyDefeated::
 	release
 	end
 
-@ Rematch after the Johto title, see docs/origin_jade/DECISIONS.md, D-032.
+@ Rematch after the Johto title.
 GoldenrodCity_Gym_EventScript_WhitneyRematch::
 	msgbox GoldenrodCity_Gym_Text_WhitneyRematch, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined

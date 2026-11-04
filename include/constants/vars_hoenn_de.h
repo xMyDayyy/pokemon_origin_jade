@@ -193,7 +193,7 @@
 #define VAR_HOENN_BADGES 0x415A
 // HM licenses as a bitmask (LIC_* in include/constants/hoenn_licenses.h), Hoenn only.
 #define VAR_HOENN_LICENSES 0x415B
-// Hoenn Ticket from Troy (D-047): 0 = nothing, 1 = Troy waits in Oak's lab
+// Hoenn Ticket from Troy: 0 = nothing, 1 = Troy waits in Oak's lab
 // (from the first Johto title on), 2 = lab scene seen, ticket still due
 // (bag was full), 3 = Hoenn Ticket received.
 #define VAR_HOENN_TICKET_STATE 0x415C

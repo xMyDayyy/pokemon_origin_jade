@@ -14,7 +14,7 @@ TerraCave_End_EventScript_TryRemoveGroudon::
 	return
 
 TerraCave_End_OnTransition:
-	@ Groudon: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+	@ Groudon: legendary rules.
 	setflag FLAG_HIDE_TERRA_CAVE_GROUDON
 	setvar VAR_0x8004, LEGENDARY_GROUDON
 	specialvar VAR_RESULT, IsLegendaryAvailable

@@ -2,7 +2,7 @@ SlateportCity_ContestLobby_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, SlateportCity_ContestLobby_OnTransition
 	.byte 0
 
-@ Hyper Rank contest hall, as in Ruby/Sapphire (D-058). Shared scripts are in data/scripts/contest_hall.inc.
+@ Hyper Rank contest hall, as in Ruby/Sapphire. Shared scripts are in data/scripts/contest_hall.inc.
 
 SlateportCity_ContestLobby_OnTransition:
 	call LilycoveCity_ContestLobby_EventScript_TryShowContestReporter
@@ -21,7 +21,7 @@ SlateportCity_ContestLobby_EventScript_BerryBlender::
 	goto ContestLobby_EventScript_BerryBlender
 	end
 
-@ Hands out the Pokeblock Case to players without one (D-058).
+@ Hands out the Pokeblock Case to players without one.
 SlateportCity_ContestLobby_EventScript_LittleGirl::
 	lock
 	faceplayer

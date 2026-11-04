@@ -4,7 +4,6 @@
 
 @ Called from the ports and islands as soon as the player picks Hoenn. Every trip lands on the
 @ Route 104 pier. Only the first trip sets the intro's end state and arms Birch's greeting.
-@ See docs/origin_jade/DECISIONS.md, D-029 and D-047.
 Common_EventScript_SailToHoenn::
 	goto_if_lt VAR_HOENN_TICKET_STATE, 3, Common_EventScript_HoennNoTicket
 	call Common_EventScript_CheckShipToHoenn
@@ -473,7 +472,7 @@ Common_Movement_HoennFaceRight:
 @ ------------------------------------------------------------
 @ In: VAR_0x8008 = SHIP_PORT_*. Out: VAR_RESULT = SHIP_DEST_* or MULTI_B_PRESSED.
 @ Lists only what can be sailed to now; VAR_0x8009 counts the rows so that the menu ends above
-@ the message box. See docs/origin_jade/DECISIONS.md, D-047.
+@ the message box.
 Common_EventScript_ShipMenu::
 	setvar VAR_0x8009, 12
 	call_if_ne VAR_0x8008, SHIP_PORT_OLIVINE, Common_EventScript_ShipMenuPushOlivine
@@ -508,7 +507,7 @@ Common_EventScript_ShipMenuPushVermilion::
 	return
 
 @ Kampfzone and Birth Island from both ports once the M.S. Aqua sails every day; the Kampfzone
-@ only after the Hoenn title (D-030).
+@ only after the Hoenn title.
 Common_EventScript_ShipMenuPushIslands::
 	goto_if_lt VAR_SSAQUA_STATE, 7, Common_EventScript_NopReturn
 	call_if_set FLAG_IS_HOENN_CHAMPION, Common_EventScript_ShipMenuPushBattleFrontier

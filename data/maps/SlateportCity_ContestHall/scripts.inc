@@ -1,7 +1,7 @@
 SlateportCity_ContestHall_MapScripts::
 	.byte 0
 
-@ Audience hall behind Slateport's contest lobby, as in Ruby/Sapphire (D-058).
+@ Audience hall behind Slateport's contest lobby, as in Ruby/Sapphire.
 
 SlateportCity_ContestHall_EventScript_FatMan1::
 	msgbox SlateportCity_ContestHall_Text_AdviceForContests, MSGBOX_NPC

@@ -19,7 +19,7 @@ SSTidalRooms_EventScript_ExplainSnatch::
 	end
 
 SSTidalRooms_EventScript_Bed::
-	@ Pokemon Center challenge: no rest and no heal (see docs/origin_jade/DECISIONS.md, D-054).
+	@ Pokemon Center challenge: no rest and no heal.
 	specialvar VAR_RESULT, IsPokecenterChallengeActivated
 	goto_if_eq VAR_RESULT, TRUE, SSTidalRooms_EventScript_Bed_PokecenterChallenge
 	lockall

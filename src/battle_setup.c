@@ -1627,7 +1627,7 @@ bool32 GetRematchFromScriptPointer(const u8 *data, u32 objectEventId)
      && GetMonsStateToDoubles_2() != PLAYER_HAS_TWO_USABLE_MONS)
         return FALSE;
     // Only a Kanto trainer whose object answered the VS Seeker walks up to the
-    // player; Match Call and phone rematches wait to be talked to (D-034).
+    // player; Match Call and phone rematches wait to be talked to.
     return DoesKantoObjectWantRematch(temp->params.opponentA, objectEventId);
 #endif
 }
@@ -1900,7 +1900,7 @@ static void CB2_EndRematchBattle(void)
     else
     {
 #if IS_HNS
-        // Carter's TM after a won VS Seeker rematch (D-034).
+        // Carter's TM after a won VS Seeker rematch.
         if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_BIRD_KEEPER_CARTER)
             FlagSet(FLAG_DEFEATED_CARTER_REMATCH);
 #endif
@@ -2221,7 +2221,7 @@ static bool32 UpdateRandomTrainerRematches(const struct RematchTrainer *table, u
     s32 i;
 
     // The VS Seeker has its own Kanto table and state: Match Call rematches go on
-    // with it in the bag, see docs/origin_jade/DECISIONS.md, D-034.
+    // with it in the bag.
     for (i = 0; i < REMATCH_SPECIAL_TRAINER_START; i++)
     {
         if (!DoesCurrentMapMatchRematchTrainerMap(i,table,mapGroup,mapNum) || IsRematchForbidden(i))
@@ -2338,7 +2338,7 @@ static const u8 sRematchLevelCeilingByBadges[NUM_BADGES + 1] =
     [16] = MAX_LEVEL,
 };
 
-// Origin Jade: badges (0-8) of the region the trainer stands in (D-007).
+// Origin Jade: badges (0-8) of the region the trainer stands in.
 static u32 GetRematchBadgeCount(void)
 {
     return GetCurrentRegionBadgeCount();
@@ -2459,7 +2459,7 @@ static void ClearTrainerWantRematchState(const struct RematchTrainer *table, u16
 }
 
 // Only Kanto's VS Seeker state; the Match Call state is cleared by
-// HandleRematchVarsOnBattleEnd (D-034).
+// HandleRematchVarsOnBattleEnd.
 void ClearCurrentTrainerWantRematchVsSeeker(void)
 {
     if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && IsKantoRematchTrainer(TRAINER_BATTLE_PARAM.opponentA))
@@ -2507,7 +2507,7 @@ static bool8 WasSecondRematchWon(const struct RematchTrainer *table, u16 firstBa
 bool32 HasEnoughBadgesForRematch(void)
 {
 #if IS_HNS
-    // Origin Jade: badges of the region the player stands in (D-053).
+    // Origin Jade: badges of the region the player stands in.
     return GetCurrentRegionBadgeCount() >= OW_REMATCH_BADGE_COUNT;
 #else
     s32 i, count;
@@ -2534,7 +2534,7 @@ void IncrementRematchStepCounter(void)
     if (!HasEnoughBadgesForRematch())
         return;
 
-    // The VS Seeker counts its steps in VAR_VS_SEEKER_STEPS (D-034).
+    // The VS Seeker counts its steps in VAR_VS_SEEKER_STEPS.
     if (gSaveBlock1Ptr->trainerRematchStepCounter >= STEP_COUNTER_MAX)
         gSaveBlock1Ptr->trainerRematchStepCounter = STEP_COUNTER_MAX;
     else
@@ -2569,7 +2569,7 @@ bool32 IsRematchTrainerIn(u16 mapGroup, u16 mapNum)
 }
 
 #if FREE_MATCH_CALL == FALSE
-// Kanto trainers use the VS Seeker table, all others gRematchTable (D-034).
+// Kanto trainers use the VS Seeker table, all others gRematchTable.
 static u16 GetRematchTrainerId(u16 trainerId)
 {
     if (IsKantoRematchTrainer(trainerId))
@@ -2591,7 +2591,7 @@ bool8 ShouldTryRematchBattle(void)
 
 bool8 ShouldTryRematchBattleForTrainerId(u16 trainerId)
 {
-    // Kanto: the VS Seeker decides (D-034).
+    // Kanto: the VS Seeker decides.
     if (IsKantoRematchTrainer(trainerId))
         return ShouldTryKantoRematch(trainerId);
 

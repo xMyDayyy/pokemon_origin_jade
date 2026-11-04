@@ -20,14 +20,12 @@ IndigoPlateau_PokemonCenter_Enter::
 IndigoPlateau_Pokecenter_OnTransition::
 	setrespawn HEAL_LOCATION_INDIGO_PLATEAU_HNS
 	@ The Black Belt never blocks the Elite Four door; Johto's league can be repeated.
-	@ See docs/origin_jade/DECISIONS.md, D-028.
 	setflag FLAG_HIDE_LEAGUE_BLACKBELT
 	call IndigoPlateau_EventScript_SetupSilverFinal
 	call_if_set FLAG_IS_JOHTO_CHAMPION, IndigoPlateau_EventScript_ShowSilverDaily
 	end
 
 @ After the Johto title Silver waits here for a daily battle (IndigoPlateau_EventScript_Silver).
-@ See docs/origin_jade/DECISIONS.md, D-032.
 IndigoPlateau_EventScript_ShowSilverDaily::
 	clearflag FLAG_HIDE_INDIGO_PLATEAU_SILVER
 	return
@@ -52,7 +50,7 @@ IndigoPlateau_EventScript_Cooltrainer::
 	release
 	end
 
-@ Announces the league change (D-010).
+@ Announces the league change.
 IndigoPlateau_EventScript_CooltrainerLeagueChanged::
 	msgbox IndigoPlateau_Text_CooltrainerLeagueChanged, MSGBOX_DEFAULT
 	return

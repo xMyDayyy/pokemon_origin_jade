@@ -37,7 +37,7 @@ LilycoveCity_CoveLilyMotel_2F_EventScript_ShowDiploma::
 	end
 
 #if IS_HNS
-@ EXP. Charm with the Johto diploma (D-059). FLAG_TEMP_3: the diploma text is answered.
+@ EXP. Charm with the Johto diploma. FLAG_TEMP_3: the diploma text is answered.
 LilycoveCity_CoveLilyMotel_2F_EventScript_GiveExpCharm:
 	waitbuttonpress
 	setflag FLAG_TEMP_3
@@ -50,7 +50,6 @@ LilycoveCity_CoveLilyMotel_2F_EventScript_GiveExpCharm:
 
 @ Shiny Charm for the completed National Pokedex after the first Hoenn title.
 @ Keep the call before Special_ShowDiploma: commands after it never run.
-@ See docs/origin_jade/DECISIONS.md, D-036.
 LilycoveCity_CoveLilyMotel_2F_EventScript_TryGiveShinyCharm:
 	goto_if_unset FLAG_IS_HOENN_CHAMPION, Common_EventScript_NopReturn
 	specialvar VAR_RESULT, HasAllMons

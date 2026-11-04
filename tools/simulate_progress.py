@@ -17,7 +17,7 @@ Usage:
 Options:
     --hoenn-ticket       start with the Hoenn Ticket received (ITEM_HOENN_TICKET,
                          VAR_HOENN_TICKET_STATE 3); not needed for the main path,
-                         Troy hands it over in Oak's lab (D-047)
+                         Troy hands it over in Oak's lab
     --force-warp M:N     warp N of map M triggers from its tile or any neighbour
                          (what-if test for broken warp tiles, no data change)
     --give-item ITEM     start with ITEM (what-if)
@@ -53,7 +53,7 @@ Model (an upper bound of what a player can reach):
     or goes to a setdynamicwarp target), setmetatile from scripts,
     setmaplayoutindex (every layout a script may set counts as possible;
     each tile takes its most permissive variant).
-  * Field moves follow D-008 (src/field_move.c): Kanto badge flags on Kanto
+  * Field moves follow src/field_move.c: Kanto badge flags on Kanto
     map sections, Johto permits (VAR_JOHTO_PERMITS) on Johto sections
     except Routes 26/27 and Tohjo Falls, Hoenn licenses (VAR_HOENN_LICENSES)
     on Hoenn sections, HnS badge thresholds elsewhere. A party member that
@@ -184,7 +184,7 @@ STEP_CALLBACK_VARS = {
 HOENN_TRAINER_HILL_LAYOUTS = {"LAYOUT_TRAINER_HILL_ENTRANCE", "LAYOUT_TRAINER_HILL_1F", "LAYOUT_TRAINER_HILL_2F",
                               "LAYOUT_TRAINER_HILL_3F", "LAYOUT_TRAINER_HILL_4F", "LAYOUT_TRAINER_HILL_ROOF"}
 
-# Field moves: HM item, rule tables (D-008, src/field_move.c).
+# Field moves: HM item, rule tables (src/field_move.c).
 FIELD_MOVES = {
     "cut": ("ITEM_HM_CUT", 2, 2, 0, 0),
     "flash": ("ITEM_HM_FLASH", 1, 1, None, None),
@@ -3154,7 +3154,7 @@ def init_state(sim):
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--hoenn-ticket", action="store_true",
-                        help="start with the Hoenn Ticket received (what-if, D-047)")
+                        help="start with the Hoenn Ticket received (what-if)")
     parser.add_argument("--force-warp", action="append", metavar="MAP:N", help="warp N of MAP always triggers")
     parser.add_argument("--give-item", action="append", metavar="ITEM", help="start with ITEM")
     parser.add_argument("--set-flag", action="append", metavar="FLAG", help="start with FLAG set")

@@ -20,9 +20,8 @@
 // Hoenn: every mapsec where IsHoennMapsec is TRUE, unlisted ones use the
 // default corridor. Johto: only the mapsecs in its corridor table.
 // Kanto: FRLG maps (IsFrlgKantoMap), only after the Kanto title; before it
-// only VS Seeker rematch teams move up to a floor (D-034).
-// After a region's title its corridors lose their ceiling, see
-// docs/origin_jade/DECISIONS.md, D-031.
+// only VS Seeker rematch teams move up to a floor.
+// After a region's title its corridors lose their ceiling.
 // =====================================================================
 
 #if defined(POKEMON_HNS)
@@ -247,8 +246,8 @@ static const struct ScalingRules *GetScalingRules(void)
 {
     u16 mapsec = gMapHeader.regionMapSectionId;
 
-    // Kanto's first run keeps the hand-set levels (D-011); scaling starts with
-    // the Kanto title (D-031).
+    // Kanto's first run keeps the hand-set levels; scaling starts with
+    // the Kanto title.
     if (IsFrlgKantoMap())
     {
 #if KANTO_LEVEL_SCALING == TRUE
@@ -276,7 +275,6 @@ bool32 LevelScalingActive(void)
 // Anchor: mean of the three highest party levels (fewer Pokemon: their mean), rounded,
 // but at least the highest level - SCALING_ANCHOR_MAX_DROP. Eggs excluded (0 = no Pokemon).
 // Only the first partySlots party slots count.
-// See docs/origin_jade/DECISIONS.md, D-012.
 static u8 GetScalingAnchor(u32 partySlots)
 {
     u8 top[3] = {0}; // highest first
@@ -337,7 +335,7 @@ static void GetCorridor(const struct ScalingRules *rules, const struct ScalingRo
     {
         FindCorridor(rules, gMapHeader.regionMapSectionId, floor, ceiling);
     }
-    // After the region's title only the floor stays (D-031).
+    // After the region's title only the floor stays.
     if (FlagGet(rules->titleFlag) && *ceiling < rules->titleCeiling)
         *ceiling = rules->titleCeiling;
 }
@@ -390,7 +388,7 @@ u8 GetScalingCeiling(void)
 }
 
 // Static and scripted encounters and roamers on maps with Johto's or Hoenn's rules: at
-// least the top of the map's wild band, see docs/origin_jade/DECISIONS.md, D-039.
+// least the top of the map's wild band.
 // Pass-through elsewhere (Kanto keeps its levels).
 u8 ScaleStaticMonLevel(u8 level)
 {
@@ -468,7 +466,7 @@ static u32 TrainerEvoHash(u16 trainerId, u8 partyIndex, u8 step)
 
 // Trainer Pokemon only: evolves up to two steps if the scaled level allows it.
 // Level evolutions at their level; stone, trade and level-0 (condition-only) ones
-// at GetTrainerEvoLevel, see docs/origin_jade/DECISIONS.md, D-012.
+// at GetTrainerEvoLevel.
 // Each step is skipped with evoSkipPercent, which also ends the evolution.
 // Skips and branches come from TrainerEvoHash.
 // Call right after ScaleTrainerMonLevel or ScalePartnerMonLevel for the same Pokemon.
@@ -570,8 +568,7 @@ static bool32 IsBossTrainer(const struct Trainer *trainer)
 
 // Kanto VS Seeker rematch before the Kanto title: if the team's highest level is
 // below the tier's floor (GetKantoRematchLevelFloor), the ace goes to the floor and
-// the others keep their distance to it. Never lowers, at most MAX_LEVEL, see
-// docs/origin_jade/DECISIONS.md, D-034.
+// the others keep their distance to it. Never lowers, at most MAX_LEVEL.
 static u8 RaiseToKantoRematchFloor(const struct Trainer *trainer, u8 level, u8 partyMaxLevel)
 {
     s32 top = GetKantoRematchLevelFloor(trainer);

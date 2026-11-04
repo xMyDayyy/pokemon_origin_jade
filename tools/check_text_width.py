@@ -9,7 +9,7 @@ text switches fonts, glyph widths from src/fonts.c indexed by glyph id.
 
 Lines with {PLAYER}, {RIVAL}, {STR_VAR_x} or icons are estimates (names 7,
 buffers 10 characters of 6 px). Texts of retired maps are not in the ROM;
-maps in LOCKED_MAPSECS (Sinjoh and Alola, D-019) are counted separately.
+maps in LOCKED_MAPSECS (Sinjoh and Alola) are counted separately.
 
 Usage (after make):
     python3 tools/check_text_width.py              # summary per area

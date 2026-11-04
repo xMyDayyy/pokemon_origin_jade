@@ -3,7 +3,7 @@
 
 #include "constants/regions.h"
 
-// Region rule, see docs/origin_jade/DECISIONS.md, D-049.
+// Region rule.
 
 // Region of a species: national numbers 1-151 Kanto, 152-251 Johto, 252-386 Hoenn;
 // babies and later evolutions count to their line's region (Kanto lines to Johto).

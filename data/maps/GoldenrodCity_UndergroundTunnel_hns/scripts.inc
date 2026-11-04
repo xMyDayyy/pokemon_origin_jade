@@ -4,8 +4,7 @@ GoldenrodCity_UndergroundTunnel_hns_MapScripts::
 	.byte 0
 
 @ Haircut brothers by weekday: older Tue/Thu/Sat (FLAG_TEMP_1 hides him),
-@ younger Sun/Wed/Fri (FLAG_TEMP_2 hides him), Monday nobody,
-@ see docs/origin_jade/DECISIONS.md, D-033.
+@ younger Sun/Wed/Fri (FLAG_TEMP_2 hides him), Monday nobody.
 GoldenrodCity_UndergroundTunnel_OnTransition:
 	setflag FLAG_TEMP_1
 	setflag FLAG_TEMP_2

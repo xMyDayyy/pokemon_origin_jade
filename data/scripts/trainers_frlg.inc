@@ -995,7 +995,7 @@ Route13_EventScript_RobertRematch::
 	goto_if_defeated TRAINER_BIRD_KEEPER_ROBERT_3, Route13_EventScript_RobertGiveTMStoneEdge
 	end
 
-@ Origin Jade: TM Stone Edge once his last rematch team is beaten (D-059).
+@ Origin Jade: TM Stone Edge once his last rematch team is beaten.
 Route13_EventScript_RobertGiveTMStoneEdge::
 	goto_if_set FLAG_GOT_TM_STONE_EDGE_FROM_ROBERT, Common_EventScript_NoOp
 	lock
@@ -1126,7 +1126,7 @@ Route14_EventScript_BennyRematch::
 	goto_if_defeated TRAINER_BIRD_KEEPER_BENNY_3, Route14_EventScript_BennyGiveTMWillOWisp
 	end
 
-@ Origin Jade: TM Will-O-Wisp once his last rematch team is beaten (D-059).
+@ Origin Jade: TM Will-O-Wisp once his last rematch team is beaten.
 Route14_EventScript_BennyGiveTMWillOWisp::
 	goto_if_set FLAG_GOT_TM_WILL_O_WISP_FROM_BENNY, Common_EventScript_NoOp
 	lock
@@ -1149,7 +1149,7 @@ Route14_EventScript_CarterRematch::
 	goto_if_set FLAG_DEFEATED_CARTER_REMATCH, Route14_EventScript_CarterGiveTMThunderWave
 	end
 
-@ Origin Jade: TM Thunder Wave once a VS Seeker rematch against him is won (D-059).
+@ Origin Jade: TM Thunder Wave once a VS Seeker rematch against him is won.
 Route14_EventScript_CarterGiveTMThunderWave::
 	goto_if_set FLAG_GOT_TM_THUNDER_WAVE_FROM_CARTER, Common_EventScript_NoOp
 	lock
@@ -1256,7 +1256,7 @@ Route15_EventScript_GraceRematch::
 	goto_if_defeated TRAINER_BEAUTY_GRACE_2, Route15_EventScript_GraceGiveTMEnergyBall
 	end
 
-@ Origin Jade: TM Energy Ball once her last rematch team is beaten (D-059).
+@ Origin Jade: TM Energy Ball once her last rematch team is beaten.
 Route15_EventScript_GraceGiveTMEnergyBall::
 	goto_if_set FLAG_GOT_TM_ENERGY_BALL_FROM_GRACE, Common_EventScript_NoOp
 	lock

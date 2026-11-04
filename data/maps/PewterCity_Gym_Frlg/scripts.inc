@@ -34,7 +34,7 @@ PewterCity_Gym_EventScript_GiveTM39::
 	release
 	end
 
-@ Origin Jade: TM Rock Slide after the Kanto title, as in HnS's Pewter Gym (D-059).
+@ Origin Jade: TM Rock Slide after the Kanto title, as in HnS's Pewter Gym.
 PewterCity_Gym_EventScript_TryGiveTMRockSlide::
 	goto_if_set FLAG_GOT_TM_ROCK_SLIDE_FROM_BROCK, Common_EventScript_NopReturn
 	msgbox PewterCity_Gym_Text_ChampionTakeRockSlide

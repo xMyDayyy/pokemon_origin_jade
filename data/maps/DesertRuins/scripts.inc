@@ -29,7 +29,7 @@ DesertRuins_EventScript_HideRegiEntrance::
 
 DesertRuins_OnTransition:
 	setflag FLAG_LANDMARK_DESERT_RUINS
-	@ Regirock: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+	@ Regirock: legendary rules.
 	setflag FLAG_HIDE_REGIROCK
 	setvar VAR_0x8004, LEGENDARY_REGIROCK
 	specialvar VAR_RESULT, IsLegendaryAvailable

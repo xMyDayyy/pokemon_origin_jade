@@ -2,7 +2,7 @@ MtMoon_Cave_Frlg_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, MtMoonCave_OnTransition
 	.byte 0
 
-@ Mew: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+@ Mew: legendary rules.
 MtMoonCave_OnTransition::
 	setflag FLAG_HIDE_MEW_KANTO
 	setvar VAR_0x8004, LEGENDARY_MEW

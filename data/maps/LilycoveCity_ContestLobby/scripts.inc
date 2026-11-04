@@ -312,7 +312,7 @@ LilycoveCity_ContestLobby_Movement_LinkArtistReturnToPlayer:
 LilycoveCity_ContestLobby_EventScript_ContestReceptionist::
 	special ClearLinkContestFlags
 #if IS_HNS
-	@ Lilycove holds the Master Rank only (D-058).
+	@ Lilycove holds the Master Rank only.
 	setvar VAR_CONTEST_RANK, CONTEST_RANK_MASTER
 #endif
 	specialvar VAR_RESULT, IsContestDebugActive  @ Always FALSE
@@ -986,7 +986,7 @@ LilycoveCity_ContestLobby_EventScript_LittleGirl::
 	lock
 	faceplayer
 #if IS_HNS
-	@ Origin Jade: only her tip on the case (D-058).
+	@ Origin Jade: only her tip on the case.
 	goto LilycoveCity_ContestLobby_EventScript_LittleGirlHaveCase
 #else
 	goto_if_set FLAG_RECEIVED_POKEBLOCK_CASE, LilycoveCity_ContestLobby_EventScript_LittleGirlHaveCase

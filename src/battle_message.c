@@ -4064,7 +4064,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                 StringGet_Nickname(text);
                 toCpy = text;
                 break;
-            case B_TXT_PC_CREATOR_NAME: // lanette pc; Origin Jade: always Bill's (D-052)
+            case B_TXT_PC_CREATOR_NAME: // lanette pc; Origin Jade: always Bill's
                 if (IS_HNS || FlagGet(FLAG_SYS_PC_LANETTE))
                     toCpy = (IS_FRLG || IS_HNS) ? sText_Bills : sText_Lanettes;
                 else

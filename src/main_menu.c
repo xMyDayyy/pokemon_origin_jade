@@ -2294,7 +2294,7 @@ static void MainMenu_FormatSavegameBadges(void)
     u8 badgeCount = 0;
 
 #if IS_HNS
-    // Origin Jade: badges of the region the save was made in (D-053).
+    // Origin Jade: badges of the region the save was made in.
     badgeCount = GetRegionBadgeCount(Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->location.mapGroup,
                                                                         gSaveBlock1Ptr->location.mapNum)->regionMapSectionId);
 #else

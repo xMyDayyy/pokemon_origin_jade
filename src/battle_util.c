@@ -5730,7 +5730,7 @@ enum Obedience GetAttackerObedienceForAction(void)
     if (B_OBEDIENCE_MECHANICS < GEN_8 && !IsOtherTrainer(gBattleMons[gBattlerAttacker].otId, gBattleMons[gBattlerAttacker].otName))
         return OBEYS;
 #if IS_HNS
-    // After the Johto title every Pokémon obeys (Johto badge limits: docs/origin_jade/DECISIONS.md, P-003).
+    // After the Johto title every Pokémon obeys (Johto badge limits are planned, not built).
     if (FlagGet(FLAG_IS_JOHTO_CHAMPION))
         return OBEYS;
 #endif

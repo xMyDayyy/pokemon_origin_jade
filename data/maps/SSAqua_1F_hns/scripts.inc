@@ -227,9 +227,9 @@ SSAqua_1F_Text_SailorDoorArrived:
     .string "Would you like to disembark?$"
 #endif
 
-@ M.S. Aqua return trips from the Kampfzone and Birth Island, see docs/origin_jade/DECISIONS.md, D-029.
+@ M.S. Aqua return trips from the Kampfzone and Birth Island.
 @ Jump here after lock/faceplayer and the sailor's question; VAR_0x8004 holds the local id of the ship.
-@ The Hoenn entries follow the port menus and use their scripts (D-047).
+@ The Hoenn entries follow the port menus and use their scripts.
 SSAqua_EventScript_ChooseReturnPort::
 	setvar VAR_0x8008, SHIP_PORT_ISLAND
 	call Common_EventScript_ShipMenu

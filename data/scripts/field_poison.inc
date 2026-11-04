@@ -30,7 +30,7 @@ EventScript_FrontierFieldWhiteOut::
 	waitbuttonpress
 	pike_inchallenge
 #if IS_HNS
-	@ Only the HnS Kampfzone is active (see docs/origin_jade/DECISIONS.md, D-030).
+	@ Only the HnS Kampfzone is active.
 	goto_if_eq VAR_RESULT, TRUE, BattleFrontier_BattlePike_EventScript_Retire_hns
 	pyramid_getlocation
 	goto_if_eq VAR_RESULT, PYRAMID_LOCATION_FLOOR, BattleFrontier_BattlePyramid_EventScript_WarpToLobby_hnsLost_hns

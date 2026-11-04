@@ -125,7 +125,7 @@ Route25_SeaCottage_EventScript_BillGoLookAtPC::
 	release
 	end
 
-@ Origin Jade: the Pokemon Box Link after the Kanto title (D-059).
+@ Origin Jade: the Pokemon Box Link after the Kanto title.
 Route25_SeaCottage_EventScript_BillTryGiveBoxLink::
 	goto_if_set FLAG_RECEIVED_POKEMON_BOX_LINK, Common_EventScript_NopReturn
 	msgbox Route25_SeaCottage_Text_ChampionTakeBoxLink
@@ -542,7 +542,7 @@ Route25_SeaCottage_Text_ChampionTakeBoxLink::
 #endif
 
 @ Origin Jade: Bill's grandfather from HnS's Bill's house. After the Kanto
-@ title he asks to see four Pokemon in turn and gives EXP Candies L (D-059).
+@ title he asks to see four Pokemon in turn and gives EXP Candies L.
 Route25_SeaCottage_EventScript_Grandpa::
 	lock
 	faceplayer

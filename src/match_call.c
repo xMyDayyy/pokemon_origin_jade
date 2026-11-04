@@ -2232,7 +2232,7 @@ static void PopulateBattleFrontierStreak(int matchCallId, u8 *destStr)
 static int GetNumOwnedBadges(void)
 {
 #if IS_HNS
-    // Origin Jade: badges of the region the player stands in (D-053).
+    // Origin Jade: badges of the region the player stands in.
     return GetCurrentRegionBadgeCount();
 #else
     u32 i;

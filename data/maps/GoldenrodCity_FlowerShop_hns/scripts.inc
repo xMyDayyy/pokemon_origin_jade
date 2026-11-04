@@ -254,7 +254,7 @@ GoldenrodCity_FlowerShop_EventScript_AlreadyReceivedBerry::
 	end
 
 @ Origin Jade: berries and herbal goods that HnS sold only in New Sinjoh
-@ (locked, D-019) or nowhere (D-059).
+@ (locked) or nowhere.
 GoldenrodCity_FlowerShop_EventScript_BerryClerk::
 	lock
 	faceplayer

@@ -29,7 +29,7 @@ from array import array
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CPP_DEFINES = ["-DPOKEMON_HNS", "-DMODERN=1", "-DTESTING=0"]
 
-# Map game_version of the maps the jade build uses (D-018).
+# Map game_version of the maps the jade build uses.
 ACTIVE_GAME_VERSION = "hns"
 
 

@@ -16,7 +16,7 @@ SaffronStationFrlg_EventScript_Teacher::
 	msgbox SaffronMagnetTrainStationFrlg_Text_Teacher, MSGBOX_NPC
 	end
 
-@ The train only needs the pass (radio quiz prize), see docs/origin_jade/DECISIONS.md, D-029.
+@ The train only needs the pass (radio quiz prize).
 SaffronStationFrlg_EventScript_Attendant::
 	lock
 	faceplayer

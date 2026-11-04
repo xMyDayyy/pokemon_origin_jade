@@ -41,7 +41,7 @@
 // rematch table (src/data/vs_seeker_kanto.h). Its state lives in Origin Jade vars
 // (VAR_VS_SEEKER_STEPS, VAR_VS_SEEKER_REMATCH_LO/HI) and FLAG_VS_SEEKER_CHARGING, never
 // in the Match Call data, so Match Call, phone and gym rematches keep working
-// everywhere, see docs/origin_jade/DECISIONS.md, D-034.
+// everywhere.
 
 enum
 {
@@ -110,8 +110,7 @@ enum
 
 // Level floor per tier before the Kanto title: a rematch team whose highest level
 // is lower moves up as a whole until it reaches the floor (src/level_scaling.c).
-// 0 = no floor. From the Kanto title on the teams scale instead, see
-// docs/origin_jade/DECISIONS.md, D-031 and D-034.
+// 0 = no floor. From the Kanto title on the teams scale instead.
 // Keep each floor below the ace of the tier's next gym leader. A rematch team
 // below its own first team is raised in src/data/trainers_frlg.party instead.
 static const u8 sKantoRematchLevelFloors[KANTO_REMATCH_TIERS] =
@@ -201,7 +200,7 @@ static const u8 sFaceDirectionMovementTypeByFacingDirection[] = {
 };
 
 // ---------------------------------------------------------------------------
-// Kanto rematch state (D-034)
+// Kanto rematch state
 // ---------------------------------------------------------------------------
 
 // FRLG Kanto map: a Kanto mapsec outside HnS's map groups, as in src/level_scaling.c.

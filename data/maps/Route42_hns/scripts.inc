@@ -37,7 +37,7 @@ Route42_EventScript_SuicuneEast::
 	setobjectmovementtype LOCALID_ROUTE42_SUICUNE, MOVEMENT_TYPE_WALK_IN_PLACE_RIGHT
 	return
 
-@ Lines at both ends of Route 42 (D-038): every way in after the Burned Tower release
+@ Lines at both ends of Route 42: every way in after the Burned Tower release
 @ crosses one, also from Mt. Mortar's doors. Same scene mirrored, once per game.
 @ Triggers on (10,14)-(10,16), the path from the Ecruteak gate; the scene starts on (10,15).
 Route42_EventScript_Suicune_Trigger::

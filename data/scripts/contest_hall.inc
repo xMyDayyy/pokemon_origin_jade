@@ -4,7 +4,7 @@ LilycoveCity_ContestLobby_EventScript_SpeakToContestReceptionist::
 	faceplayer
 #if IS_HNS
 	@ Ruby/Sapphire reception: VAR_CONTEST_RANK is the rank of this hall, set by
-	@ its receptionist script. Entries need the Contest Pass (D-058).
+	@ its receptionist script. Entries need the Contest Pass.
 	checkitem ITEM_CONTEST_PASS
 	call_if_eq VAR_RESULT, FALSE, ContestLobby_EventScript_ClearGreeted
 	goto_if_ne VAR_CONTEST_PRIZE_PICKUP_HNS, 0, LilycoveCity_ContestLobby_EventScript_PickUpPrize
@@ -211,7 +211,7 @@ LilycoveCity_ContestLobby_EventScript_EnterMon::
 	setvar VAR_CONTEST_HALL_STATE, 1
 	return
 
-@ Ruby/Sapphire contest halls in Verdanturf, Fallarbor and Slateport (D-058).
+@ Ruby/Sapphire contest halls in Verdanturf, Fallarbor and Slateport.
 @ The receptionist script of each hall sets VAR_CONTEST_RANK and goes here.
 ContestLobby_EventScript_ContestReceptionist::
 	special ClearLinkContestFlags
@@ -1201,7 +1201,7 @@ ContestHall_EventScript_CheckRankIsMaster::
 ContestHall_EventScript_DontSkipPrize::
 	return
 
-@ Read by the sketch artist in Fallarbor's contest lobby (D-058)
+@ Read by the sketch artist in Fallarbor's contest lobby
 ContestHall_EventScript_SetSketchFlag::
 	setflag FLAG_CONTEST_SKETCH_CREATED
 	return

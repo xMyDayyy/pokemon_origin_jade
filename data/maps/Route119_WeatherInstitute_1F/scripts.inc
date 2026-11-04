@@ -51,7 +51,7 @@ Route119_WeatherInstitute_1F_EventScript_InstituteWorker2::
 	end
 
 Route119_WeatherInstitute_1F_EventScript_Bed::
-	@ Pokemon Center challenge: no rest and no heal (see docs/origin_jade/DECISIONS.md, D-054).
+	@ Pokemon Center challenge: no rest and no heal.
 	specialvar VAR_RESULT, IsPokecenterChallengeActivated
 	goto_if_eq VAR_RESULT, TRUE, Route119_WeatherInstitute_1F_EventScript_Bed_PokecenterChallenge
 	lockall

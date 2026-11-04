@@ -11,7 +11,7 @@ void MapResetTrainerRematches(u16 mapGroup, u16 mapNum);
 void ClearRematchMovementByTrainerId(void);
 void NativeVsSeekerRematchId(struct ScriptContext *ctx);
 
-// Kanto rematches through the VS Seeker, see docs/origin_jade/DECISIONS.md, D-034.
+// Kanto rematches through the VS Seeker.
 bool32 IsKantoRematchTrainer(u16 trainerId);
 u16 GetKantoRematchTrainerId(u16 trainerId);
 bool32 ShouldTryKantoRematch(u16 trainerId);

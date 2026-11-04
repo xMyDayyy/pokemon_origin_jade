@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""Generates the debug menu's test states (src/debug.c), see
-docs/origin_jade/DECISIONS.md, D-050.
+"""Generates the debug menu's test states (src/debug.c).
 
 State A, src/data/debug_kanto_complete.h ("Johto Test"): Kanto complete,
 right after the first Kanto Hall of Fame. Every Kanto trainer beaten, every
@@ -48,13 +47,13 @@ LEVEL RULES of the PC, the owner's (2026-10-31):
   - other evolution (stone, trade, friendship, item, move, place): the
     pre-evolution's level + 2;
   - single stage or legendary: its catch level in this game.
-The generator's reading of them (O-035; owner 2026-11-02: the states need
-not be perfect):
+The generator's reading of them (owner 2026-11-02: the states need not be
+perfect):
   - catch level, also of a first stage below a later one: in Kanto the
     highest level in Kanto's wild tables, else the level of the gift or
     static battle; in Johto the top of the wild band of an average player
-    where the species first appears (corridor floor + 2, D-012), else the
-    gift or static level (D-039); eggs and trades of Johto the band of
+    where the species first appears (corridor floor + 2), else the
+    gift or static level; eggs and trades of Johto the band of
     their map;
   - a baby that only hatches from an egg does not count as a
     pre-evolution when the next stage can be caught;
@@ -78,7 +77,7 @@ ITEMS, the owner's (2026-11-02): everything the finished regions give.
   - the generator's reading: not counted are link-only sources
     (VAR_GIFT_SKIP), decorations, held items of wild Pokemon, Pickup, and
     the Kampfzone with everything bought with Battle Points (the Kampfzone
-    opens only after the Hoenn title, D-030; the courtyard tents' BP, O-060);
+    opens only after the Hoenn title; the courtyard tents' BP);
   - a pocket keeps POCKET_RESERVE free slots for the next region; what does
     not fit goes into the PC's item storage, purchases first.
 
@@ -86,7 +85,7 @@ Usage (needs arm-none-eabi-cpp, a host C compiler, cc or $CC, and the
 generated src/data/pokemon/teachable_learnsets.h of a build):
   python3 tools/make_debug_states.py            # writes both headers
   python3 tools/make_debug_states.py --check    # exit 1 if a header is stale or a
-                                                # rule of D-050 fails (a flag or var
+                                                # rule of the states fails (a flag or var
                                                 # neither in the state nor in UNTOUCHED,
                                                 # a pickup not collected, an item source
                                                 # not resolved, a full pocket, ...)
@@ -129,7 +128,7 @@ PC_SIZE = 14 * 30
 # (0 Bulbasaur, 1 Squirtle, 2 Charmander).
 KANTO_COMPLETE_STARTER = 2
 KANTO_COMPLETE_PARTY_STARTER_FINAL = ["SPECIES_VENUSAUR", "SPECIES_BLASTOISE", "SPECIES_CHARIZARD"]
-# Levels of an average player after the champion (Gen 5 experience, D-011).
+# Levels of an average player after the champion (Gen 5 experience).
 KANTO_COMPLETE_PARTY_STARTER_LEVEL = 49
 KANTO_COMPLETE_PARTY = [
     ("SPECIES_PIDGEOT", 43),
@@ -160,9 +159,9 @@ CUT_LABELS_POST_TITLE = {
     "FuchsiaCity_Gym_EventScript_JanineLeader",
     "FuchsiaCity_Gym_EventScript_JanineRematch",
     "FuchsiaCity_Gym_EventScript_JanineGiveTM",
-    # TM Explosion for a Rage Candy Bar from Mahogany Town (D-059).
+    # TM Explosion for a Rage Candy Bar from Mahogany Town.
     "UndergroundPath_NorthSouthTunnel_EventScript_BaldingManCandyBar",
-    # Rewards after the Kanto title or its rematch tier (D-034, D-059).
+    # Rewards after the Kanto title or its rematch tier.
     "PewterCity_Gym_EventScript_TryGiveTMRockSlide",
     "Route13_EventScript_RobertGiveTMStoneEdge",
     "Route14_EventScript_BennyGiveTMWillOWisp",
@@ -192,13 +191,13 @@ CUT_LABELS_ALWAYS = {
     "CinnabarIsland_EventScript_BillScene",
     "CinnabarIsland_PokemonCenter_1F_EventScript_Bill",
     "IndigoPlateau_PokemonCenter_1F_EventScript_SeviiIslandComplete",
-    # Elm's call after the first Johto title, also in Pallet Town (D-051).
+    # Elm's call after the first Johto title, also in Pallet Town.
     "NewBarkTown_EventScript_ElmCallAfterLeague",
-    # Troy hands over the Hoenn Ticket after the first Johto title (D-047);
+    # Troy hands over the Hoenn Ticket after the first Johto title;
     # in state B the scene runs after the warp into Oak's lab.
     "PalletTown_ProfessorOaksLab_EventScript_TroyScene",
     "PalletTown_ProfessorOaksLab_EventScript_Troy",
-    # Jirachi on Route 4 comes after the first trip to Hoenn (D-037, D-049).
+    # Jirachi on Route 4 comes after the first trip to Hoenn.
     "Route4_EventScript_TryShowJirachi",
     "Route4_EventScript_WhiteRock",
     "Route4_EventScript_Jirachi",
@@ -242,7 +241,7 @@ MANUAL_FLAGS = {
     "FLAG_HIDE_HELIX_FOSSIL": 1, "FLAG_HIDE_LIFT_KEY": 1, "FLAG_HIDE_SILPH_SCOPE": 1,
     # Oak waits in his lab with the GS Ball.
     "FLAG_HIDE_OAK_IN_HIS_LAB": 0,
-    # Carter's VS Seeker rematch won (set in C, CB2_EndRematchBattle): TM73 (D-034).
+    # Carter's VS Seeker rematch won (set in C, CB2_EndRematchBattle): TM73.
     "FLAG_DEFEATED_CARTER_REMATCH": 1,
     "FLAG_HIDE_PEWTER_CITY_GYM_GUIDE": 1, "FLAG_HIDE_PEWTER_MUSEUM_GUIDE": 0,
     # Hidden on the next Vermilion visit after talking to Oak's aide.
@@ -314,10 +313,10 @@ SET_BY_DEBUG_C = {
 # at their new game value on purpose: name -> reason.
 UNTOUCHED = {
     "FLAG_HIDE_OAKS_LAB_TROY": "Troy waits in Oak's lab only after the first Johto title; "
-                               "the lab sets it on every visit (D-047)",
-    "VAR_HOENN_TICKET_STATE": "0 until the first Johto title (D-047)",
+                               "the lab sets it on every visit",
+    "VAR_HOENN_TICKET_STATE": "0 until the first Johto title",
     "VAR_SECRET_BASE_INITIALIZED": "bedroom decorations, set on every visit of the player's room in Pallet Town "
-                                   "and of New Bark's house (D-048)",
+                                   "and of New Bark's house",
     # C writes of specials the scripts call.
     "FLAG_HIDE_FANCLUB_BOY": "Emerald's fan club (Lilycove), not the jade build's Script_UpdateTrainerFanClubGameClear",
     "FLAG_HIDE_FANCLUB_LADY": "Emerald's fan club (Lilycove), not the jade build's Script_UpdateTrainerFanClubGameClear",
@@ -390,7 +389,7 @@ C_ITEM_SOURCES = {
 # opens one -> (prize arrays as (file, name pattern), mart lists of its
 # clerks). The facility's own flags and records stay untouched.
 FACILITY_ITEMS = {
-    # Route 40 Trainer Hill (D-041); GetPrizeItemId picks from these lists.
+    # Route 40 Trainer Hill; GetPrizeItemId picks from these lists.
     "FLAG_IS_JOHTO_CHAMPION": ([("src/trainer_hill.c", re.compile(r"^sPrizeList\w+_Hns$"))],
                                ["TrainerHill_Entrance_hns_Pokemart_Basic"]),
 }
@@ -451,50 +450,50 @@ SHARED_ON_PURPOSE = {
     "FLAG_SYS_POKEMON_GET": "start menu entry, whole game",
     "FLAG_SYS_POKEDEX_GET": "start menu entry, whole game",
     "FLAG_SYS_POKENAV_GET": "PokeCom from Mom in Pallet Town, whole game",
-    "FLAG_HAS_MATCH_CALL@johto": "PokeCom; Johto's arrival sets it again (D-005)",
-    "FLAG_RECEIVED_POKENAV@johto": "PokeCom; Johto's arrival sets it again (D-005)",
-    "FLAG_ADDED_MATCH_CALL_TO_POKENAV@johto": "PokeCom; Johto's arrival sets it again (D-005)",
+    "FLAG_HAS_MATCH_CALL@johto": "PokeCom; Johto's arrival sets it again",
+    "FLAG_RECEIVED_POKENAV@johto": "PokeCom; Johto's arrival sets it again",
+    "FLAG_ADDED_MATCH_CALL_TO_POKENAV@johto": "PokeCom; Johto's arrival sets it again",
     "FLAG_ADVENTURE_STARTED": "game start; Johto and Hoenn treat the adventure as started",
-    "VAR_TRAIN": "Magnet Train ride, Saffron and Goldenrod stations (D-029)",
+    "VAR_TRAIN": "Magnet Train ride, Saffron and Goldenrod stations",
     "FLAG_SYS_B_DASH": "Running Shoes, whole game",
-    "FLAG_RECEIVED_RUNNING_SHOES": "Running Shoes from Mom in Pallet Town (D-002)",
+    "FLAG_RECEIVED_RUNNING_SHOES": "Running Shoes from Mom in Pallet Town",
     "FLAG_SYS_NATIONAL_DEX": "National Pokedex from Oak in Kanto, whole game",
     "VAR_NATIONAL_DEX": "National Pokedex from Oak in Kanto, whole game",
     "FLAG_SYS_RIBBON_GET": "ribbon flag, whole game",
     "FLAG_SYS_PC_LANETTE": "PC storage name flag, whole game",
-    "FLAG_SET_WALL_CLOCK": "wall clock set at home in Pallet Town (D-002)",
-    "FLAG_START_NUZLOCKE": "Nuzlocke starts at Oak's Pokedex handover (D-004)",
-    "FLAG_BADGE01_GET": "Kanto badges; Johto and Hoenn count their own (D-007)",
-    "FLAG_BADGE02_GET": "Kanto badges; Johto and Hoenn count their own (D-007)",
-    "FLAG_BADGE03_GET": "Kanto badges; Johto and Hoenn count their own (D-007)",
-    "FLAG_BADGE04_GET": "Kanto badges; Johto and Hoenn count their own (D-007)",
-    "FLAG_BADGE05_GET": "Kanto badges; Johto and Hoenn count their own (D-007)",
-    "FLAG_BADGE06_GET": "Kanto badges; Johto and Hoenn count their own (D-007)",
-    "FLAG_BADGE07_GET": "Kanto badges; Johto and Hoenn count their own (D-007)",
-    "FLAG_BADGE08_GET": "Kanto badges; Johto and Hoenn count their own (D-007)",
-    "FLAG_IS_KANTO_CHAMPION@johto": "Kanto title, read by Johto's league and Red (D-007, D-015)",
-    "FLAG_SYS_GAME_CLEAR@johto": "first set by the Kanto league, opens the way to Johto (D-007, D-009)",
-    "VAR_JOHTO_HANDOVER@johto": "Oak's GS Ball handover, Kanto to Johto (D-004)",
-    "FLAG_CAUGHT_MEW": "one Mew, caught means gone for good (D-026)",
-    "FLAG_DEFEATED_MEW": "one Mew, caught means gone for good (D-026)",
-    "FLAG_RECEIVED_OVAL_CHARM": "one Oval Charm from the first Day Care egg (D-036)",
+    "FLAG_SET_WALL_CLOCK": "wall clock set at home in Pallet Town",
+    "FLAG_START_NUZLOCKE": "Nuzlocke starts at Oak's Pokedex handover",
+    "FLAG_BADGE01_GET": "Kanto badges; Johto and Hoenn count their own",
+    "FLAG_BADGE02_GET": "Kanto badges; Johto and Hoenn count their own",
+    "FLAG_BADGE03_GET": "Kanto badges; Johto and Hoenn count their own",
+    "FLAG_BADGE04_GET": "Kanto badges; Johto and Hoenn count their own",
+    "FLAG_BADGE05_GET": "Kanto badges; Johto and Hoenn count their own",
+    "FLAG_BADGE06_GET": "Kanto badges; Johto and Hoenn count their own",
+    "FLAG_BADGE07_GET": "Kanto badges; Johto and Hoenn count their own",
+    "FLAG_BADGE08_GET": "Kanto badges; Johto and Hoenn count their own",
+    "FLAG_IS_KANTO_CHAMPION@johto": "Kanto title, read by Johto's league and Red",
+    "FLAG_SYS_GAME_CLEAR@johto": "first set by the Kanto league, opens the way to Johto",
+    "VAR_JOHTO_HANDOVER@johto": "Oak's GS Ball handover, Kanto to Johto",
+    "FLAG_CAUGHT_MEW": "one Mew, caught means gone for good",
+    "FLAG_DEFEATED_MEW": "one Mew, caught means gone for good",
+    "FLAG_RECEIVED_OVAL_CHARM": "one Oval Charm from the first Day Care egg",
     "FLAG_DONT_TRANSITION_MUSIC": "engine flag around warps",
     "FLAG_SYS_ON_CYCLING_ROAD@alias": "FLAG_SYS_CYCLING_ROAD, Emerald name of the same flag",
-    "FLAG_HAS_MATCH_CALL@hoenn": "one PokeCom with Match Call from Pallet Town; Hoenn registers trainers on it (D-005)",
-    "FLAG_ADDED_MATCH_CALL_TO_POKENAV@hoenn": "one PokeCom; Rustboro's Match Call tutorial is skipped (D-005)",
-    "FLAG_ENABLE_MOM_MATCH_CALL": "one Mom (Pallet Town) in the PokeCom, whole game (D-002)",
-    "FLAG_GOT_BICYCLE@johto": "one Bicycle; Goldenrod's shop gives none if Kanto's is in the bag (D-041)",
-    "FLAG_GOT_COIN_CASE@johto": "one Coin Case; Goldenrod's ball holds a Nugget if it is in the bag (D-041)",
-    "FLAG_REGISTER_RIVAL_POKENAV@johto": "rival in the PokeCom; Hoenn uses FLAG_HOENN_REGISTER_RIVAL_POKENAV (D-040)",
-    "FLAG_SYS_GAME_CLEAR@hoenn": "a league was won: global uses only; Hoenn post-game checks the Hoenn title (D-040)",
-    "VAR_STARTER_MON": "Kanto's starter; Johto uses VAR_JOHTO_STARTER_MON, Hoenn's readers are cut by IS_HNS (D-040)",
+    "FLAG_HAS_MATCH_CALL@hoenn": "one PokeCom with Match Call from Pallet Town; Hoenn registers trainers on it",
+    "FLAG_ADDED_MATCH_CALL_TO_POKENAV@hoenn": "one PokeCom; Rustboro's Match Call tutorial is skipped",
+    "FLAG_ENABLE_MOM_MATCH_CALL": "one Mom (Pallet Town) in the PokeCom, whole game",
+    "FLAG_GOT_BICYCLE@johto": "one Bicycle; Goldenrod's shop gives none if Kanto's is in the bag",
+    "FLAG_GOT_COIN_CASE@johto": "one Coin Case; Goldenrod's ball holds a Nugget if it is in the bag",
+    "FLAG_REGISTER_RIVAL_POKENAV@johto": "rival in the PokeCom; Hoenn uses FLAG_HOENN_REGISTER_RIVAL_POKENAV",
+    "FLAG_SYS_GAME_CLEAR@hoenn": "a league was won: global uses only; Hoenn post-game checks the Hoenn title",
+    "VAR_STARTER_MON": "Kanto's starter; Johto uses VAR_JOHTO_STARTER_MON, Hoenn's readers are cut by IS_HNS",
 }
 
 
 # ---------------------------------------------------------------------------
 # Configuration, state B: Kanto and Johto complete, on top of state A
 
-# Party right after the Johto league (D-012: about 70/63/63/62/60/60), no
+# Party right after the Johto league (about 70/63/63/62/60/60), no
 # legendary. Johto starter index: VAR_JOHTO_STARTER_MON (0 Chikorita,
 # 1 Cyndaquil, 2 Totodile).
 JOHTO_COMPLETE_JOHTO_STARTER = 0
@@ -513,18 +512,18 @@ JOHTO_EXCLUDED_MAPS = set()
 
 # Script labels of state B's walk that stay cut: battle facilities, link,
 # Hoenn, the Sevii Islands, rematches, Troy's ticket, Sinjoh (locked by
-# SINJOH_CONTENT_AVAILABLE, D-019).
+# SINJOH_CONTENT_AVAILABLE).
 CUT_LABELS_B = CUT_LABELS_ALWAYS | {
     "MtSilver_PokemonCenter_EventScript_Meara_BonusContentPrompt",
     "MtSilver_1F_WaterfallRoom_Scientist_Scene",
-    # The Aurora Ticket comes after the first trip to Hoenn (D-029, D-049).
+    # The Aurora Ticket comes after the first trip to Hoenn.
     "OlivineCity_EventScript_EonTicketWomanChamp",
 }
 # Items state B's run finds that a finished run no longer has: item -> reason.
 SKIP_ITEMS_B = {
     "ITEM_SPORT_BALL": "Bug-Catching Contest balls, taken back after the contest",
-    "ITEM_GS_BALL": "used up at Ilex Forest's shrine (D-026)",
-    "ITEM_AZURE_FLUTE": "Sinjoh, locked (SINJOH_CONTENT_AVAILABLE, D-019); its item ball stays hidden",
+    "ITEM_GS_BALL": "used up at Ilex Forest's shrine",
+    "ITEM_AZURE_FLUTE": "Sinjoh, locked (SINJOH_CONTENT_AVAILABLE); its item ball stays hidden",
     "ITEM_TIDAL_BELL": "Lugia's path; state B chose Ho-Oh (VAR_LUGIA_OR_HOOH 2)",
     "ITEM_SILVER_WING": "Lugia's path; state B chose Ho-Oh (VAR_LUGIA_OR_HOOH 2)",
 }
@@ -555,8 +554,8 @@ INIT_LABELS_B = {
 # unless listed here.
 MANUAL_FLAGS_B = {
     "FLAG_HIDE_VERMILION_SS_AQUA": 1,                  # Vermilion's port sets it on every visit
-    "FLAG_HIDE_OAKS_LAB_TROY": 0,                      # Troy waits in Oak's lab (D-047)
-    "FLAG_JOHTO_UNLOCKED": 1,                          # first Johto map after the Kanto title (D-049)
+    "FLAG_HIDE_OAKS_LAB_TROY": 0,                      # Troy waits in Oak's lab
+    "FLAG_JOHTO_UNLOCKED": 1,                          # first Johto map after the Kanto title
     # Bug-Catching Contest over, Safari Zone left, Route 41's Tentacruel fought.
     "FLAG_DISABLE_EXP_GAIN": 0, "FLAG_HIDE_BUG_CONTEST_ATTENDANT_SIDE": 1, "FLAG_GOOD_LUCK_SAFARI_ZONE": 1,
     "FLAG_NO_SHINY": 0, "FLAG_NO_WILD_CATCHING": 0,
@@ -597,7 +596,7 @@ MANUAL_FLAGS_B = {
     # One-time encounters caught (the maps set these on every visit as well).
     "FLAG_HIDE_HO_OH": 1, "FLAG_HIDE_LUGIA": 1, "FLAG_HIDE_LAKE_OF_RAGE_GYARADOS": 1, "FLAG_HIDE_MEWTWO": 1,
     "FLAG_HIDE_UNION_CAVE_LAPRAS": 1,
-    # Silver waits in Johto's league center after the title (D-028).
+    # Silver waits in Johto's league center after the title.
     "FLAG_HIDE_INDIGO_PLATEAU_SILVER": 0,
     # Lake of Rage and Mahogany done.
     "FLAG_HIDE_LAKE_OF_RAGE_LANCE": 1, "FLAG_HIDE_MAHOGANY_TOWN_SHOP_NPCS": 1,
@@ -621,10 +620,10 @@ MANUAL_FLAGS_B = {
 
 # State B: vars, as MANUAL_VARS.
 MANUAL_VARS_B = {
-    "VAR_HOENN_TICKET_STATE": 1,                       # Troy waits in Oak's lab (D-047)
-    "VAR_JOHTO_HANDOVER": 3,                           # GS Ball delivered to Elm (D-004)
-    "VAR_JOHTO_BADGES": "0xFF",                        # SetJohtoBadge, all eight (D-007)
-    "VAR_JOHTO_PERMITS": "(1 << PERM_COUNT) - 1",      # SetJohtoPermit, every permit (D-008)
+    "VAR_HOENN_TICKET_STATE": 1,                       # Troy waits in Oak's lab
+    "VAR_JOHTO_HANDOVER": 3,                           # GS Ball delivered to Elm
+    "VAR_JOHTO_BADGES": "0xFF",                        # SetJohtoBadge, all eight
+    "VAR_JOHTO_PERMITS": "(1 << PERM_COUNT) - 1",      # SetJohtoPermit, every permit
     "VAR_NUM_BADGES": 8,                               # HnS's badge count, the eight Johto gyms
     # Story vars of Johto: the last stage.
     "VAR_AZALEA_TOWN_STATE": 10,
@@ -655,13 +654,13 @@ MANUAL_VARS_B = {
     "VAR_SAFARI_ZONE_GATE_STATE": 4,
     "VAR_SAFARI_ZONE_STATE": 1,
     "VAR_SHUCKIE": 3,
-    "VAR_SSAQUA_STATE": 7,                             # maiden voyage done (D-029)
-    "VAR_SUICUNE_ENCOUNTERS": 8,                       # Suicune caught in the Glockenturm (D-038)
+    "VAR_SSAQUA_STATE": 7,                             # maiden voyage done
+    "VAR_SUICUNE_ENCOUNTERS": 8,                       # Suicune caught in the Glockenturm
     "VAR_TRIGGER_ELM_ROCKET_CALL": 2,
     "VAR_VIOLET_CITY_KIMONO_GIRL": 2,
     "VAR_VIOLET_CITY_STATE": 5,
-    "VAR_SEA_COTTAGE_GRANDPA": 2,                      # Meowth shown; next is Hoenn's Zigzagoon (D-059)
-    # Ho-Oh chosen on Route 39 (2; 1 Lugia); both caught (D-026).
+    "VAR_SEA_COTTAGE_GRANDPA": 2,                      # Meowth shown; next is Hoenn's Zigzagoon
+    # Ho-Oh chosen on Route 39 (2; 1 Lugia); both caught.
     "VAR_LUGIA_OR_HOOH": 2, "VAR_COMPLETED_HO_OH": 3, "VAR_COMPLETED_LUGIA": 3,
 }
 
@@ -681,12 +680,12 @@ UNTOUCHED_B = dict(UNTOUCHED, **{
     "VAR_TOHJO_FALLS_GIOVANNI_STATE": "Celebi's scene at Tohjo Falls, reset on every visit without Celebi",
     "VAR_WHICH_FOSSIL_REVIVED": "only read while a fossil is being revived",
     "FLAG_MINTS_DISABLED": "challenge option tx_Mode_Mints; the flower shop clears it only after the Hoenn title",
-    "VAR_BAOBA_QUEST_STATE": "Baoba's Safari Zone quest started only in FuchsiaCity_hns, a removed map (P-004)",
+    "VAR_BAOBA_QUEST_STATE": "Baoba's Safari Zone quest started only in FuchsiaCity_hns, a removed map",
 })
 
 DROP_FLAGS_B = dict(DROP_FLAGS)
 
-# Rematch and title defence teams after the titles (D-015, D-028, D-032).
+# Rematch and title defence teams after the titles.
 TRAINER_SKIP_RE_B = re.compile(r"^TRAINER_(ELITE_FOUR_\w+_2|CHAMPION_REMATCH_\w+|\w+_POSTOBC_HNS|"
                                r"(FALKNER|BUGSY|WHITNEY|MORTY|CHUCK|JASMINE|PRYCE|CLAIR|WILL|KOGA|BRUNO|KAREN|LANCE)"
                                r"_[2-9]_HNS)$")
@@ -698,7 +697,7 @@ JOHTO_RIVALS = {
 }
 
 # Catch levels that differ from the highest level of a species' sources:
-# the chosen one of Lugia and Ho-Oh at its story level (D-039).
+# the chosen one of Lugia and Ho-Oh at its story level.
 LEVEL_OVERRIDES_B = {
     "SPECIES_HO_OH": 78,
 }
@@ -2337,11 +2336,11 @@ class States:
         flags_a = {n for n, v in self.a.flags.items() if v}
         for f in ("FLAG_JOHTO_UNLOCKED", "FLAG_JOHTO_ARRIVAL_DONE"):
             if f in flags_a:
-                out.append("state A: %s set; Johto stays locked (D-049)" % f)
+                out.append("state A: %s set; Johto stays locked" % f)
         if int(self.a.vars.get("VAR_JOHTO_HANDOVER", "0"), 0) >= 3:
-            out.append("state A: VAR_JOHTO_HANDOVER 3 unlocks Johto (D-049)")
+            out.append("state A: VAR_JOHTO_HANDOVER 3 unlocks Johto")
         if int(self.a.vars.get("VAR_HOENN_ARRIVAL_STATE", "0"), 0) != 0:
-            out.append("state A: VAR_HOENN_ARRIVAL_STATE unlocks Hoenn (D-049)")
+            out.append("state A: VAR_HOENN_ARRIVAL_STATE unlocks Hoenn")
         for f in load_fly_flags():
             if f.startswith("FLAG_WORLD_MAP_") and f not in flags_a:
                 out.append("state A: fly destination %s not set" % f)
@@ -2353,17 +2352,17 @@ class States:
         flags_ab = {n for n, v in dict(self.a.flags, **self.flags_b).items() if v}
         vars_ab = dict(self.a.vars, **self.vars_b)
         if int(vars_ab.get("VAR_HOENN_ARRIVAL_STATE", "0"), 0) != 0:
-            out.append("state B: VAR_HOENN_ARRIVAL_STATE unlocks Hoenn (D-049)")
+            out.append("state B: VAR_HOENN_ARRIVAL_STATE unlocks Hoenn")
         if vars_ab.get("VAR_HOENN_TICKET_STATE") != "1":
-            out.append("state B: VAR_HOENN_TICKET_STATE must be 1, Troy waits in Oak's lab (D-047)")
+            out.append("state B: VAR_HOENN_TICKET_STATE must be 1, Troy waits in Oak's lab")
         if "ITEM_HOENN_TICKET" in self.b.bag:
             out.append("state B: the Hoenn Ticket is in the bag before Troy's scene")
         if "FLAG_JOHTO_UNLOCKED" not in flags_ab:
-            out.append("state B: FLAG_JOHTO_UNLOCKED not set (D-049)")
+            out.append("state B: FLAG_JOHTO_UNLOCKED not set")
         for f in sorted(flags_ab):
             m = re.match(r"FLAG_BADGE(\d\d)_GET$", f)
             if m and int(m.group(1)) > 8:
-                out.append("state B: %s set; Johto counts its badges in VAR_JOHTO_BADGES (D-007)" % f)
+                out.append("state B: %s set; Johto counts its badges in VAR_JOHTO_BADGES" % f)
         for f in load_fly_flags():
             if f not in flags_ab:
                 out.append("state B: fly destination %s not set" % f)

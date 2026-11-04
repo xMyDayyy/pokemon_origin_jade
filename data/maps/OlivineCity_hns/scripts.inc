@@ -278,7 +278,7 @@ OlivineCity_EventScript_Item_ChargeBeam::
 	finditem ITEM_TM_CHARGE_BEAM
 	end
 
-@ Aurora Ticket (Birth Island) after the first trip to Hoenn, see docs/origin_jade/DECISIONS.md, D-029, D-049.
+@ Aurora Ticket (Birth Island) after the first trip to Hoenn.
 OlivineCity_EventScript_EonTicketWoman::
 	lock
 	faceplayer

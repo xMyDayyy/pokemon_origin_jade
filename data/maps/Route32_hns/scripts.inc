@@ -9,8 +9,7 @@ Route32_OnTransition:
 	call_if_ne VAR_RESULT, WEEKDAY_FRI, Route32_EventScript_HideFrieda
 	end
 
-@ Frieda of the weekday siblings is only here on Friday, see
-@ docs/origin_jade/DECISIONS.md, D-033.
+@ Frieda of the weekday siblings is only here on Friday.
 Route32_EventScript_HideFrieda:
 	setflag FLAG_TEMP_4
 	return

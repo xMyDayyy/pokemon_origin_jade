@@ -9,7 +9,7 @@ Route41_MapScript_OnTransition::
 	end
 
 @ Ho-Oh path: the Tentacruel leave once the Lugia not chosen can be met
-@ (after the first Johto title, Ho-Oh caught; see docs/origin_jade/DECISIONS.md, D-026).
+@ (after the first Johto title, Ho-Oh caught).
 Route41_EventScript_TryOpenWhirlIslands::
 	goto_if_ne VAR_LUGIA_OR_HOOH, 2, Common_EventScript_NopReturn
 	goto_if_unset FLAG_IS_JOHTO_CHAMPION, Common_EventScript_NopReturn

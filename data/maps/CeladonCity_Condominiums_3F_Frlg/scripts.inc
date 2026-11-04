@@ -36,7 +36,7 @@ CeladonCity_Condominiums_3F_EventScript_ShowDiploma::
 	release
 	end
 
-@ Origin Jade: the Catching Charm with the Kanto diploma (D-059).
+@ Origin Jade: the Catching Charm with the Kanto diploma.
 @ Keep the call before Special_ShowDiploma: commands after it never run.
 CeladonCity_Condominiums_3F_EventScript_GiveCatchingCharm::
 	waitbuttonpress

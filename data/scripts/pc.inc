@@ -113,7 +113,7 @@ EventScript_AccessPlayersFakePC::
 EventScript_AccessPokemonStorage::
 	playse SE_PC_LOGIN
 #if IS_HNS
-	@ Origin Jade: always Bill's PC (D-052).
+	@ Origin Jade: always Bill's PC.
 	call EventScript_AccessLanettesPC
 #else
 	call_if_unset FLAG_SYS_PC_LANETTE, EventScript_AccessSomeonesPC
@@ -128,7 +128,7 @@ EventScript_AccessPokemonStorage::
 EventScript_AccessFakePokemonStorage::
 	playse SE_PC_LOGIN
 #if IS_HNS
-	@ Origin Jade: always Bill's PC (D-052).
+	@ Origin Jade: always Bill's PC.
 	call EventScript_AccessLanettesPC
 #else
 	call_if_unset FLAG_SYS_PC_LANETTE, EventScript_AccessSomeonesPC

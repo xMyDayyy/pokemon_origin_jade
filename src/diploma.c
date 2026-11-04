@@ -138,7 +138,7 @@ static void DisplayDiplomaText(void)
     {
         SetGpuReg(REG_OFFSET_BG1HOFS, 0);
 #if IS_HNS
-        // Celadon's designer checks the Kanto dex, Lilycove's the Johto dex (D-049).
+        // Celadon's designer checks the Kanto dex, Lilycove's the Johto dex.
         if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_CELADON_CITY_CONDOMINIUMS_3F)
          && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_CELADON_CITY_CONDOMINIUMS_3F))
             StringCopy(gStringVar1, gText_Kanto);

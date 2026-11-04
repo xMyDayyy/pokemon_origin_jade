@@ -168,7 +168,7 @@ EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF::
 
 #if IS_HNS
 @ Repeat Hoenn titles: Wallace leads the player straight to the Hall of Fame, without the rival
-@ and Prof. Birch. The first title sets the flags above. See docs/origin_jade/DECISIONS.md, D-028.
+@ and Prof. Birch. The first title sets the flags above.
 EverGrandeCity_ChampionsRoom_EventScript_TitleDefenceExitForHoF:
 	applymovement LOCALID_CHAMPIONS_ROOM_WALLACE, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0

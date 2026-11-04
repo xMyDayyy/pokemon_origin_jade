@@ -129,7 +129,7 @@ ReceptionGate_EventScript_BlockJohto::
 	release
 	end
 
-@ After the Kanto title the way south waits until Oak has handed over the GS Ball (D-004).
+@ After the Kanto title the way south waits until Oak has handed over the GS Ball.
 ReceptionGate_EventScript_CheckGsBall::
 	goto_if_ne VAR_JOHTO_HANDOVER, 1, ReceptionGate_EventScript_PassJohto
 	applymovement LOCALID_INDIGOJUNCTION_POLICEMAN, Common_Movement_ExclamationMark

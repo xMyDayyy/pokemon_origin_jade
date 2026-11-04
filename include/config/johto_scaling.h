@@ -34,15 +34,14 @@
 #define JOHTO_SCALING_MIN_LEVEL      5     // absolute lower bound
 #define JOHTO_SCALING_MAX_LEVEL      100   // absolute upper bound
 
-// Ceiling of every corridor once FLAG_IS_JOHTO_CHAMPION is set (floors stay),
-// see docs/origin_jade/DECISIONS.md, D-031.
+// Ceiling of every corridor once FLAG_IS_JOHTO_CHAMPION is set (floors stay).
 #define JOHTO_SCALING_TITLE_CEILING  100
 
 // No effect: Johto only scales areas listed in JOHTO_SCALING_CORRIDORS.
 #define JOHTO_SCALING_DEFAULT_FLOOR    40
 #define JOHTO_SCALING_DEFAULT_CEILING  80
 
-// Ceilings: the bosses' levels for the average player (D-012); stronger teams
+// Ceilings: the bosses' levels for the average player; stronger teams
 // meet capped levels. Floors: about 6 below that player's anchor at the tier's start.
 #define JOHTO_SCALING_CORRIDORS \
     /* Way in from Kanto, also the way to the Johto League (40-80) */ \
@@ -123,7 +122,7 @@
 // room's floor and ceiling (instead of the league corridor). The Elite Four's
 // ceilings stay within the league corridor (65), the champion's is 2 above it.
 // After the Johto title the ceilings become JOHTO_SCALING_TITLE_CEILING, the
-// floors stay. See docs/origin_jade/DECISIONS.md, D-053.
+// floors stay.
 #define JOHTO_SCALING_ROOMS \
     { MAP_POKEMON_LEAGUE_WILLS_ROOM_HNS,     -1, 58, 62 }, \
     { MAP_POKEMON_LEAGUE_KOGAS_ROOM_HNS,      1, 59, 63 }, \

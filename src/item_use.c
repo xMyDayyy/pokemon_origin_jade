@@ -246,8 +246,7 @@ static void Task_PartyMenuItemUseFromField(u8 taskId)
 }
 
 // Cannot-use text of the current map: Oak on FRLG Kanto maps, Birch in Hoenn, Elm in
-// Johto (HnS maps and the Kampfzone with its Artisan Cave, see
-// docs/origin_jade/DECISIONS.md, D-030 and D-048).
+// Johto (HnS maps and the Kampfzone with its Artisan Cave.
 static const u8 *GetCannotUseItemText(void)
 {
 #if IS_HNS

@@ -45,7 +45,7 @@ MtSilver_SummitDay_EventScript_RedPostOBC::
 MtSilver_SummitDay_EventScript_RedOnDefeat::
 	playse SE_M_BLIZZARD
 	@ Origin Jade: after Red the player wakes up in their room in Pallet Town, without credits,
-	@ as after every Johto title. See docs/origin_jade/DECISIONS.md, D-028.
+	@ as after every Johto title.
 	setrespawn HEAL_LOCATION_PALLET_TOWN_PLAYERS_ROOM
 	msgbox MtSilver_SummitDay_Text_Red, MSGBOX_DEFAULT
 	special GivePartyMonLandRibbon

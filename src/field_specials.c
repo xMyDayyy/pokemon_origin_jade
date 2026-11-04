@@ -3738,7 +3738,7 @@ void CreateAbnormalWeatherEvent(void)
     VarSet(VAR_ABNORMAL_WEATHER_STEP_COUNTER, 0);
 
 #if IS_HNS
-    // Only for Kyogre or Groudon that can be met now (see docs/origin_jade/DECISIONS.md, D-026).
+    // Only for Kyogre or Groudon that can be met now.
     if (!IsLegendaryIdAvailable(LEGENDARY_KYOGRE))
 #else
     if (FlagGet(FLAG_DEFEATED_KYOGRE) == TRUE)

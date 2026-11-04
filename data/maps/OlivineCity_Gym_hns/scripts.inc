@@ -341,7 +341,6 @@ OlivineCity_Gym_EventScript_Jasmine_Defeated::
 
 @ After the Johto title: Jasmine offers her Steelix once per visit until the
 @ trade is done (FLAG_TEMP_1 = offered this visit), otherwise the rematch.
-@ See docs/origin_jade/DECISIONS.md, D-032.
 OlivineCity_Gym_EventScript_Jasmine_PostTitle::
 	goto_if_set FLAG_OLIVINE_GYM_NPC_TRADE_COMPLETED, OlivineCity_Gym_EventScript_Jasmine_Rematch
 	goto_if_unset FLAG_TEMP_1, OlivineCity_Gym_EventScript_Jasmine_Trade

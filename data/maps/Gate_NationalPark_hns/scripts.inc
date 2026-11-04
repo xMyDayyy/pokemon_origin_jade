@@ -101,8 +101,7 @@ Gate_NationalPark_EventScript_AttendantNoContest::
 	releaseall
 	end
 
-@ The contest runs on Tuesday, Thursday and Saturday, see
-@ docs/origin_jade/DECISIONS.md, D-033. Returns TRUE/FALSE in VAR_RESULT.
+@ The contest runs on Tuesday, Thursday and Saturday. Returns TRUE/FALSE in VAR_RESULT.
 Gate_NationalPark_EventScript_IsContestDay::
 	special GetWeekday
 	goto_if_eq VAR_RESULT, WEEKDAY_TUE, Gate_NationalPark_EventScript_ContestDay

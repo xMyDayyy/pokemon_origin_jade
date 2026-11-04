@@ -2,7 +2,7 @@ UnionCave_B2F_hns_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, UnionCave_B2F_OnTransition
 	.byte 0
 
-@ Lapras follows the legendary rules (see docs/origin_jade/DECISIONS.md, D-026).
+@ Lapras follows the legendary rules.
 UnionCave_B2F_OnTransition::
 	setflag FLAG_HIDE_UNION_CAVE_LAPRAS
 	setvar VAR_0x8004, LEGENDARY_LAPRAS

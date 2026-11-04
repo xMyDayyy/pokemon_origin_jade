@@ -1,7 +1,7 @@
 #ifndef GUARD_CONSTANTS_LEGENDARIES_OJ_H
 #define GUARD_CONSTANTS_LEGENDARIES_OJ_H
 
-// One-time encounters that follow the legendary rules (see docs/origin_jade/DECISIONS.md, D-026).
+// One-time encounters that follow the legendary rules.
 // Scripts pass the id in VAR_0x8004. Ids index sLegendaries in src/legendaries_oj.c and are
 // not saved; add new ones before LEGENDARY_COUNT.
 
