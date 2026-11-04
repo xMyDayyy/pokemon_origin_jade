@@ -206,8 +206,7 @@ SootopolisCity_Gym_1F_Text_GymGuideAdvice:
 	.string "Arenaleiter Juan in Xeneroville\n"
 	.string "ist der Meister der Wasser-Pokémon.\p"
 	.string "Und auf dem Weg zu ihm wirst du auf\n"
-	.string "gefrorenem Boden ins Rutschen kommen.\l"
-	.string "\p"
+	.string "gefrorenem Boden ins Rutschen kommen.\p"
 	.string "Tut mir Leid, aber mehr kann ich dir\n"
 	.string "dazu auch nicht sagen.\p"
 	.string "Den Rest des Weges musst du alleine\n"
@@ -349,8 +348,7 @@ SootopolisCity_Gym_1F_Text_ExplainWaterPulse:
 #if GERMAN
 	.string "Diese TM enthält Aquawelle.\p"
 	.string "Damit kann das gegnerische Pokémon\n"
-	.string "mit Ultraschallwellen verwirrt werden.\l"
-	.string "\p"
+	.string "mit Ultraschallwellen verwirrt werden.\p"
 	.string "… … … … … …$"
 #else
 	.string "The TECHNICAL MACHINE I handed you\n"

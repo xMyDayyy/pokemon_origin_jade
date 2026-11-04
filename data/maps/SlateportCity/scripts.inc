@@ -1050,8 +1050,7 @@ SlateportCity_Text_SlateportWonderfulPlace:
 SlateportCity_Text_BuyBricksSoDecorWontGetDirty:
 #if GERMAN
 	.string "Wenn du Puppen oder Kissen einfach auf\n"
-	.string "den Boden legst, werden sie schmutzig.\l"
-	.string "\p"
+	.string "den Boden legst, werden sie schmutzig.\p"
 	.string "Ich kaufe mir einige Backsteine, auf die\n"
 	.string "ich meine Puppen und Kissen lege.\l"
 	.string "So bleiben sie schön sauber.$"
@@ -1082,8 +1081,7 @@ SlateportCity_Text_BushedHikingFromMauville:
 #if GERMAN
 	.string "Puuuh… Ich bin fix und fertig…\p"
 	.string "Ich komme aus Malvenfroh City. Diese\n"
-	.string "Stadt ist vielleicht groß! Riesengroß!\l"
-	.string "\p"
+	.string "Stadt ist vielleicht groß! Riesengroß!\p"
 	.string "Hätte ich das gewusst, wäre ich mit\n"
 	.string "dem Rad gekommen.$"
 #else
@@ -1161,8 +1159,7 @@ SlateportCity_Text_BossIsBrilliant:
 
 SlateportCity_Text_WhatsNewSchemeIWonder:
 #if GERMAN
-	.string "Was hat diese neue Masche zu bedeuten?\n"
-	.string "\p"
+	.string "Was hat diese neue Masche zu bedeuten?\p"
 	.string "Unser Boss ist richtig Furcht ein-\n"
 	.string "flößend, wenn er so abgedreht ist. Ich\l"
 	.string "halte lieber Abstand und frage nicht…$"
@@ -1321,8 +1318,7 @@ SlateportCity_Text_GetNameRaterToHelpYou:
 SlateportCity_Text_CantChangeTradeMonName:
 #if GERMAN
 	.string "Erhältst du ein Pokémon durch Tausch,\n"
-	.string "kannst du den Kosenamen nicht ändern.\l"
-	.string "\p"
+	.string "kannst du den Kosenamen nicht ändern.\p"
 	.string "Die Liebe des ursprünglichen Trainers\n"
 	.string "drückt sich in dem Kosenamen aus.$"
 #else

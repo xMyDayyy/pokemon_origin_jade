@@ -853,10 +853,8 @@ PetalburgCity_Text_ThisIsGymSign:
 
 PetalburgCity_Text_WaterReflection:
 #if GERMAN
-	.string "Mein Gesicht spiegelt sich im Wasser…\n"
-	.string "\p"
-	.string "Ein schimmerndes Lächeln der Hoffnung.\n"
-	.string "\p"
+	.string "Mein Gesicht spiegelt sich im Wasser…\p"
+	.string "Ein schimmerndes Lächeln der Hoffnung.\p"
 	.string "Oder ist es der Ausdruck düsterer\n"
 	.string "Stille, an dem die Angst nagt…\p"
 	.string "Was siehst du in deinem Spiegelbild?$"

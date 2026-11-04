@@ -661,8 +661,7 @@ LilycoveCity_Text_BrendanDefeat:
 LilycoveCity_Text_BrendanGoingBackToLittleroot:
 #if GERMAN
 	.string "Maike: Ich…\n"
-	.string "Ich gehe nach Hause, nach Wurzelheim.\l"
-	.string "\p"
+	.string "Ich gehe nach Hause, nach Wurzelheim.\p"
 	.string "Weißt du, ich helfe meinem Vater bei dem\n"
 	.string "Pokédex. Es geht ganz anständig voran\l"
 	.string "und ich sollte ihm das mal zeigen.$"
@@ -679,8 +678,7 @@ LilycoveCity_Text_BrendanYouGoingToCollectBadges:
 	.string "Und, {PLAYER}, was wirst du tun?\p"
 	.string "Wirst du alle Orden der Arenen sammeln\n"
 	.string "und die Pokémon Liga herausfordern?\p"
-	.string "Vielleicht werde ich das auch machen…\n"
-	.string "\p"
+	.string "Vielleicht werde ich das auch machen…\p"
 	.string "Gut, bleib am Ball!$"
 #else
 	.string "{PLAYER}, what are you going to do?\p"

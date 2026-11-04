@@ -565,8 +565,7 @@ BattleFrontier_BattlePyramidLobby_Text_ExplainBattlePyramid_hns:
 #if GERMAN
 	.string "In der Kampfforschung musst du die\n"
 	.string "Kampfpyramide erforschen und\l"
-	.string "versuchen, bis nach oben zu gelangen.\l"
-	.string "\p"
+	.string "versuchen, bis nach oben zu gelangen.\p"
 	.string "Kämpfe dich durch sieben Etagen, die\n"
 	.string "wie Irrgärten angelegt sind. Trainer\l"
 	.string "und auch wilde Pokémon warten auf dich.\p"
@@ -777,8 +776,7 @@ BattleFrontier_BattlePyramidLobby_Text_YouveConqueredPyramid_hns:
 
 BattleFrontier_BattlePyramidLobby_Text_MonHoldingItemCannotTake_hns:
 #if GERMAN
-	.string "Äh, wir haben da ein kleines Problem.\n"
-	.string "\p"
+	.string "Äh, wir haben da ein kleines Problem.\p"
 	.string "Eines deiner Pokémon hält ein Item.\n"
 	.string "Bedauerlicherweise können Items, die\p"
 	.string "du in der Kampfpyramide erhalten hast,\n"
@@ -1024,8 +1022,7 @@ BattleFrontier_BattlePyramidLobby_Text_HintLevitate_hns:
 
 BattleFrontier_BattlePyramidLobby_Text_HintTrapAbility_hns:
 #if GERMAN
-	.string "Ich sehe Energie vom Grund aufsteigen…\n"
-	.string "\p"
+	.string "Ich sehe Energie vom Grund aufsteigen…\p"
 	.string "Und ich sehe deine Pokémon in der\n"
 	.string "Umklammerung dieser Energie…$"
 #else
@@ -1346,8 +1343,7 @@ BattleFrontier_BattlePyramidLobby_Text_ExplainBagRules_hns:
 	.string "Beutel.\p"
 	.string "Es gibt zwei verschiedene Pyrabeutel:\n"
 	.string "Einen für das Abenteuer Level 50 und\l"
-	.string "einen für das Abenteuer Offene Kämpfe.\l"
-	.string "\p"
+	.string "einen für das Abenteuer Offene Kämpfe.\p"
 	.string "In ihnen kannst du 10 Items in einer\n"
 	.string "maximalen Anzahl von 99 Stück pro Item\l"
 	.string "verstauen.\p"

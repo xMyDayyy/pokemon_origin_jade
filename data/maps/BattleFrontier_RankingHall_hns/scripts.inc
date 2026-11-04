@@ -152,8 +152,7 @@ BattleFrontier_RankingHall_Text_WowThatsSuper_hns:
 BattleFrontier_RankingHall_Text_WorkHarderIfYouSawFriendsName_hns:
 #if GERMAN
 	.string "Wirklich?\n"
-	.string "Wenn du die Namen deiner Freunde hier\l"
-	.string "\p"
+	.string "Wenn du die Namen deiner Freunde hier\p"
 	.string "siehst, strengst du dich bestimmt noch\n"
 	.string "mehr an.$"
 #else

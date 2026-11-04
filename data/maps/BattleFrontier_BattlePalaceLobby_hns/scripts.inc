@@ -649,11 +649,9 @@ BattleFrontier_BattlePalaceLobby_Text_ReceivedPrize_hns:
 BattleFrontier_BattlePalaceLobby_Text_LadyCanTellWhatMonsThink_hns:
 #if GERMAN
 	.string "Für so einen kräftigen Burschen wie\n"
-	.string "mich sind kräftige Pokémon das Wahre!\l"
-	.string "\p"
+	.string "mich sind kräftige Pokémon das Wahre!\p"
 	.string "Angriff ist die beste Verteidigung!\n"
-	.string "Eine rücksichtslose Attacke das Beste!\l"
-	.string "\p"
+	.string "Eine rücksichtslose Attacke das Beste!\p"
 	.string "Aber darüber wollte ich jetzt\n"
 	.string "eigentlich gar nicht reden.\p"
 	.string "Manchmal kommt hier eine niedliche\n"
@@ -882,8 +880,7 @@ BattleFrontier_BattlePalaceLobby_Text_ExplainRulesNature_hns:
 	.string "Ein anderes wird sich vielleicht seinem\n"
 	.string "Wesen entsprechend unter allen\p"
 	.string "Umständen schützen wollen. Ein anderes\n"
-	.string "irritiert oder verwirrt seinen Gegner.\l"
-	.string "\p"
+	.string "irritiert oder verwirrt seinen Gegner.\p"
 	.string "Abhängig von seinem Wesen wird ein\n"
 	.string "Pokémon Lieblingsattacken haben, die\l"
 	.string "es hervorragend beherrscht.\p"

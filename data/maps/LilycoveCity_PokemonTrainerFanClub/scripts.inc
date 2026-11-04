@@ -744,8 +744,7 @@ LilycoveCity_PokemonTrainerFanClub_Text_YouveSurpassedYourFather:
 LilycoveCity_PokemonTrainerFanClub_Text_YourFatherNeverGaveUpSoKeepOnBattling:
 #if GERMAN
 	.string "Selbst in scheinbar aussichtslosen\n"
-	.string "Situationen gibt Norman nicht auf.\l"
-	.string "\p"
+	.string "Situationen gibt Norman nicht auf.\p"
 	.string "Ich weiß, dass das stimmt!\p"
 	.string "Und du verhältst dich genauso.\n"
 	.string "Also, kämpfe fleißig weiter.$"

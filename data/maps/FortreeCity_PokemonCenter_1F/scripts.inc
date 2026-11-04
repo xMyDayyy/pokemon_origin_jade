@@ -48,8 +48,7 @@ FortreeCity_PokemonCenter_1F_Text_RecordCornerIsNeat:
 	.string "Sehr nützliche Einrichtung! Die\n"
 	.string "Erfolge\l"
 	.string "eines jeden Trainers werden dort ge-\l"
-	.string "speichert und miteinander verglichen.\l"
-	.string "\p"
+	.string "speichert und miteinander verglichen.\p"
 	.string "Ich weiß zwar nicht, wie das passiert,\n"
 	.string "aber es ist einfach irre. Und aufregend!$"
 #else

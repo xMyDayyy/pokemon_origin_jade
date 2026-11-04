@@ -612,8 +612,7 @@ Route111_Text_VictoriaIntro:
 #if GERMAN
 	.string "Oh, du meine Güte! Bist du jung!\p"
 	.string "Du musst ein sehr guter Trainer sein,\n"
-	.string "wenn du meinen Mann besiegen konntest.\l"
-	.string "\p"
+	.string "wenn du meinen Mann besiegen konntest.\p"
 	.string "Nun bin ich an der Reihe.$"
 #else
 	.string "Oh, my goodness! Aren't you young?\p"
@@ -785,8 +784,7 @@ Route111_Text_TrainerTipsSpAtkSpDef:
 Route111_Text_ShouldBeMirageTowerAroundHere:
 #if GERMAN
 	.string "Hier in der Nähe sollte eigentlich ein\n"
-	.string "Turm sein, der ganz aus Sand besteht.\l"
-	.string "\p"
+	.string "Turm sein, der ganz aus Sand besteht.\p"
 	.string "Aber aus irgendeinem Grund ist er\n"
 	.string "nur manchmal sichtbar.\p"
 	.string "Deshalb nenne ich ihn Wunderturm.$"
@@ -805,8 +803,7 @@ Route111_Text_MirageTowerClearlyVisible:
 	.string "Der Sandturm, den sie ein Wunder\n"
 	.string "nennen, zeigt sich!\p"
 	.string "Aber er sieht sehr brüchig aus…\n"
-	.string "Er kann jeden Moment zusammenbrechen…\l"
-	.string "\p"
+	.string "Er kann jeden Moment zusammenbrechen…\p"
 	.string "Ich würde gerne mal hineingehen, aber\n"
 	.string "so mutig bin ich dann doch nicht…$"
 #else

@@ -35,8 +35,7 @@ MtPyre_3F_EventScript_RematchGabrielle::
 MtPyre_3F_Text_WilliamIntro:
 #if GERMAN
 	.string "Die unglaubliche Atmosphäre der Berge\n"
-	.string "hat meine psychischen Kräfte gestärkt!\l"
-	.string "\p"
+	.string "hat meine psychischen Kräfte gestärkt!\p"
 	.string "Ein kleines Kind wie du…\n"
 	.string "Du willst gewinnen? Träum weiter!$"
 #else

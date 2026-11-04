@@ -121,8 +121,7 @@ EcruteakCity_PokemonCenter1F_Text_Bill2:
 	.string "in Johto und Kanto.\p"
 	.string "Ich muss schnell zurück nach\n"
 	.string "Dukatia City und meine Leute sehen.\l"
-	.string "Du kannst aber jederzeit vorbeikommen!\l"
-	.string "\p"
+	.string "Du kannst aber jederzeit vorbeikommen!\p"
 	.string "Tschüss!$"
 #else
 	.string "I just finished adjustments on my\n"

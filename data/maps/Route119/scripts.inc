@@ -568,8 +568,7 @@ Route119_Text_BrendanDefeat:
 Route119_Text_BrendanIllGiveYouThis:
 #if GERMAN
 	.string "Maike: Ich sage, du bist so gut, dass\n"
-	.string "du überall nach Pokémon suchen kannst.\l"
-	.string "\p"
+	.string "du überall nach Pokémon suchen kannst.\p"
 	.string "Hier, das ist für dich.\n"
 	.string "Probier es aus.$"
 #else

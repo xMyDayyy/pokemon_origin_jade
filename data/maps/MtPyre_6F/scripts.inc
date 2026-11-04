@@ -112,8 +112,7 @@ MtPyre_6F_Text_CedricPostBattle:
 	.string "Mein Gefühl sagte mir, dass ein\n"
 	.string "Trainer,\l"
 	.string "der sich verlaufen hat, panisch\l"
-	.string "reagiert und leichter zu besiegen ist.\l"
-	.string "\p"
+	.string "reagiert und leichter zu besiegen ist.\p"
 	.string "Das war ein schmutziger Versuch…$"
 #else
 	.string "I had this feeling that a lost TRAINER\n"

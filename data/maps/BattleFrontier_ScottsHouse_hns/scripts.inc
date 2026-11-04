@@ -316,8 +316,7 @@ BattleFrontier_ScottsHouse_Text_ExpectingGreatThings_hns:
 BattleFrontier_ScottsHouse_Text_WhyIGoSeekingTrainers_hns:
 #if GERMAN
 	.string "Scott: Jeder Trainer ist ein\n"
-	.string "Individuum. Sie leben alle ihr Leben.\l"
-	.string "\p"
+	.string "Individuum. Sie leben alle ihr Leben.\p"
 	.string "Aber in Kämpfen ist es völlig egal,\n"
 	.string "wer oder was sie sind.\p"
 	.string "Sie sind alle gleich!\p"
@@ -493,8 +492,7 @@ BattleFrontier_ScottsHouse_Text_Beat100TrainersInARow_hns:
 #if GERMAN
 	.string "Scott: Ich habe schon von dir gehört!\n"
 	.string "Wie du den Duellturm bezwungen hast!\l"
-	.string "Du hast 100 Trainer in Folge besiegt!\l"
-	.string "\p"
+	.string "Du hast 100 Trainer in Folge besiegt!\p"
 	.string "Das ist einfach spektakulär!\n"
 	.string "Ich muss dir dies einfach schenken!$"
 #else

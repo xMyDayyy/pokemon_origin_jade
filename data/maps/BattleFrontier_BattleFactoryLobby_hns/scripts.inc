@@ -361,8 +361,7 @@ BattleFrontier_BattleFactoryLobby_Text_ExplainSinglesChallenge_hns:
 	.string "sieben Mal in Folge gewinnst, erhältst\l"
 	.string "du Gewinnpunkte.\p"
 	.string "Wenn du die Herausforderung unter-\n"
-	.string "brechen willst, speichere dein Spiel.\l"
-	.string "\p"
+	.string "brechen willst, speichere dein Spiel.\p"
 	.string "Speicherst du nicht, wirst du\n"
 	.string "disqualifiziert.$"
 #else
@@ -563,8 +562,7 @@ BattleFrontier_BattleFactoryLobby_Text_ExplainDoublesChallenge_hns:
 	.string "sieben Mal in Folge gewinnst, erhältst\l"
 	.string "du Gewinnpunkte.\p"
 	.string "Wenn du die Herausforderung unter-\n"
-	.string "brechen willst, speichere dein Spiel.\l"
-	.string "\p"
+	.string "brechen willst, speichere dein Spiel.\p"
 	.string "Speicherst du nicht, wirst du\n"
 	.string "disqualifiziert.$"
 #else

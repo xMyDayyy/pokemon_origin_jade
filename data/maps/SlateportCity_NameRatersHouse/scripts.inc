@@ -86,8 +86,7 @@ SlateportCity_NameRatersHouse_Text_CritiqueWhichMonNickname:
 SlateportCity_NameRatersHouse_Text_FineNameSuggestBetterOne:
 #if GERMAN
 	.string "Hmmm… {STR_VAR_1}, nicht wahr? Da hast\n"
-	.string "du aber einen schönen Namen verliehen.\l"
-	.string "\p"
+	.string "du aber einen schönen Namen verliehen.\p"
 	.string "Aber! Was hältst du davon, wenn ich\n"
 	.string "ihm einen etwas besseren Namen gebe?$"
 #else

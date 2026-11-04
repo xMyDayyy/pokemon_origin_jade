@@ -357,8 +357,7 @@ Route119_WeatherInstitute_2F_Text_TeamMagmaJustPassedBy:
 Route119_WeatherInstitute_2F_Text_WeHaveToHurryToMtPyre:
 #if GERMAN
 	.string "Was?!?\n"
-	.string "Dann lasst uns von hier verschwinden!\l"
-	.string "\p"
+	.string "Dann lasst uns von hier verschwinden!\p"
 	.string "Und zwar schnell! Wir müssen so\n"
 	.string "schnell wie möglich zum Pyroberg!\p"
 	.string "Ahahahahahaha!\n"
@@ -461,8 +460,7 @@ Route119_WeatherInstitute_2F_Text_KyogreWeather:
 Route119_WeatherInstitute_2F_Text_NoAbnormalWeather:
 #if GERMAN
 	.string "Das Wetter hat sich beruhigt. Es gibt\n"
-	.string "keine außergewöhnlichen Vorkommnisse.\l"
-	.string "\p"
+	.string "keine außergewöhnlichen Vorkommnisse.\p"
 	.string "Der gelegentliche Regen ist ein Segen,\n"
 	.string "wirklich.$"
 #else

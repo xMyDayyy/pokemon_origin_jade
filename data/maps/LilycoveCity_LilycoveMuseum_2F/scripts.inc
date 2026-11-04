@@ -234,8 +234,7 @@ LilycoveCity_LilycoveMuseum_2F_Text_ExplainExhibitHall:
 	.string "Gemälde der so genannten Klassiker\l"
 	.string "ausstellen.\p"
 	.string "Hier soll Kunst zu sehen sein, die\n"
-	.string "weit von den Klassikern entfernt ist.\l"
-	.string "\p"
+	.string "weit von den Klassikern entfernt ist.\p"
 	.string "Kunst ist doch nicht nur auf alte,\n"
 	.string "berühmte Werke begrenzt!\p"
 	.string "In diesem Ausstellungsraum will ich…\p"
@@ -359,8 +358,7 @@ LilycoveCity_LilycoveMuseum_2F_Text_HonorToHaveYouVisit:
 #if GERMAN
 	.string "Ah, schön, dich zu sehen, {PLAYER}!\p"
 	.string "Es ist eine Ehre für uns, dass du uns\n"
-	.string "trotz deiner vielen Aufgaben besuchst.\l"
-	.string "\p"
+	.string "trotz deiner vielen Aufgaben besuchst.\p"
 	.string "Bitte, entspanne dich und genieße\n"
 	.string "deinen Besuch bei uns.$"
 #else

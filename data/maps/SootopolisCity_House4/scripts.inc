@@ -21,8 +21,7 @@ SootopolisCity_House4_EventScript_Azumarill::
 
 SootopolisCity_House4_Text_AncientTreasuresWaitingInSea:
 #if GERMAN
-	.string "Hör mir zu und ich verrate dir etwas.\n"
-	.string "\p"
+	.string "Hör mir zu und ich verrate dir etwas.\p"
 	.string "Unter Wasser soll sich eine antike\n"
 	.string "Ruine befinden.\p"
 	.string "Da gibt es bestimmt Schätze, die nur\n"

@@ -127,11 +127,10 @@ LilycoveCity_CoveLilyMotel_2F_Text_FilledPokedexGiveYouThis:
 	.string "Wow! Das ist beeindruckend!\n"
 	.string "Wirklich äußerst beeindruckend!\p"
 	.string "Dein Pokédex ist absolut vollständig!\n"
-	.string "Du musst die Pokémon wirklich lieben!\l"
-	.string "\p"
+	.string "Du musst die Pokémon wirklich lieben!\p"
 	.string "Ich bin echt beeindruckt!\p"
 	.string "Ich möchte dir als Zeichen meiner\n"
-	.string "Aner- kennung gerne etwas schenken!$"
+	.string "Anerkennung gerne etwas schenken!$"
 #else
 	.string "Wow! That's awesome!\n"
 	.string "Yep, it's totally awesome!\p"
@@ -206,8 +205,7 @@ LilycoveCity_CoveLilyMotel_2F_Text_GirlsAreCute:
 #if GERMAN
 	.string "Die Mädchen mit den Schwimmreifen\n"
 	.string "sind total niedlich, meinst du nicht?\l"
-	.string "Ein Kampf gegen so niedliche Mädchen…\l"
-	.string "\p"
+	.string "Ein Kampf gegen so niedliche Mädchen…\p"
 	.string "Huuh, das ist vielleicht ein Spaß!\p"
 	.string "Und die Zwillinge erst! Sind die süß!?!\n"
 	.string "Ein 2-gegen-2-Kampf mit Zwillingen…\p"

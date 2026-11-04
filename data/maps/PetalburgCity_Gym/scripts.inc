@@ -1799,8 +1799,7 @@ PetalburgCity_Gym_Text_ParkerPostBadge:
 PetalburgCity_Gym_Text_GeorgeIntro:
 #if GERMAN
 	.string "Immer, wenn du den Sieg in greifbarer\n"
-	.string "Nähe siehst, füllt dein Gegner KP auf…\l"
-	.string "\p"
+	.string "Nähe siehst, füllt dein Gegner KP auf…\p"
 	.string "Kannst du dir vorstellen, wie man sich\n"
 	.string "in so einer Situation fühlt?\p"
 	.string "Ich werde dir so eine Situation\n"

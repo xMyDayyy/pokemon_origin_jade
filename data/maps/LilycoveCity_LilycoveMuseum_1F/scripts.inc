@@ -288,8 +288,7 @@ LilycoveCity_LilycoveMuseum_1F_Text_PaintingOfGrassPokemon:
 
 LilycoveCity_LilycoveMuseum_1F_Text_PaintingOfBerries:
 #if GERMAN
-	.string "Beeren. Sie sehen äußerst delikat aus.\n"
-	.string "\p"
+	.string "Beeren. Sie sehen äußerst delikat aus.\p"
 	.string "Das Bild kann einen hungrig machen!$"
 #else
 	.string "It's a delicious-looking painting\n"
@@ -299,8 +298,7 @@ LilycoveCity_LilycoveMuseum_1F_Text_PaintingOfBerries:
 
 LilycoveCity_LilycoveMuseum_Text_BirdPokemonSculptureReplica:
 #if GERMAN
-	.string "Ein Replikat einer berühmten Skulptur.\n"
-	.string "\p"
+	.string "Ein Replikat einer berühmten Skulptur.\p"
 	.string "Es zeigt ein antikes Vogel-Pokémon.$"
 #else
 	.string "It's a replica of a famous sculpture.\p"
@@ -359,8 +357,7 @@ LilycoveCity_LilycoveMuseum_1F_Text_ThisMuseumIsInspiration:
 #if GERMAN
 	.string "Dieses Kunstmuseum… Hier bekommst du\n"
 	.string "viele fantastische Gemälde zu sehen.\p"
-	.string "Und der Kurator ist einfach wunderbar.\n"
-	.string "\p"
+	.string "Und der Kurator ist einfach wunderbar.\p"
 	.string "Unter Künstlern wie mir ist dieses\n"
 	.string "Museum einfach eine Inspiration.$"
 #else
@@ -434,8 +431,7 @@ LilycoveCity_LilycoveMuseum_1F_Text_AimToSeeGreatPaintings:
 LilycoveCity_LilycoveMuseum_1F_Text_MuseumTouristDestination:
 #if GERMAN
 	.string "Das Kunstmuseum ist zu einem\n"
-	.string "beliebten Ziel für Touristen geworden.\l"
-	.string "\p"
+	.string "beliebten Ziel für Touristen geworden.\p"
 	.string "Das ist großartig für Seegrasulb City.\n"
 	.string "Nein, großartig für die ganze\l"
 	.string "Hoenn-Region!\p"

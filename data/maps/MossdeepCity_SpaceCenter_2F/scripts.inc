@@ -379,8 +379,7 @@ MossdeepCity_SpaceCenter_2F_Text_WouldveLikedToBeAstronaut:
 MossdeepCity_SpaceCenter_2F_Text_MagmaCantGetAwayWithThis:
 #if GERMAN
 	.string "Wenn Team Magma den Raketentreibstoff\n"
-	.string "nimmt, kann ich nicht ins All fliegen!\l"
-	.string "\p"
+	.string "nimmt, kann ich nicht ins All fliegen!\p"
 	.string "Sie dürfen mit so einer Schandtat\n"
 	.string "einfach nicht davonkommen.$"
 #else
@@ -553,8 +552,7 @@ MossdeepCity_SpaceCenter_2F_Text_MaxieUseFuelToEruptVolcano:
 	.string "Nun, wo Groudon weg ist, hat dieser\n"
 	.string "Berg keinen Nutzen mehr für uns!\p"
 	.string "Daher werden wir den Vulkan mit Hilfe\n"
-	.string "des Treibstoffs zum Ausbruch bringen.\l"
-	.string "\p"
+	.string "des Treibstoffs zum Ausbruch bringen.\p"
 	.string "Das wird wild!$"
 #else
 	.string "MAXIE: Fufufu… Since you're so\n"
@@ -645,8 +643,7 @@ MossdeepCity_SpaceCenter_2F_Text_MaxieWeFailedIsAquaAlsoMisguided:
 MossdeepCity_SpaceCenter_2F_Text_MaxieWeWillGiveUp:
 #if GERMAN
 	.string "Marc: Gut…\n"
-	.string "Wir werden den Treibstoff hier lassen…\l"
-	.string "\p"
+	.string "Wir werden den Treibstoff hier lassen…\p"
 	.string "Es gibt wichtigere Dinge, um die ich\n"
 	.string "mich kümmern muss…$"
 #else

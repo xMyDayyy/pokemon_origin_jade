@@ -306,8 +306,7 @@ MossdeepCity_Movement_ScottExitEast:
 MossdeepCity_Text_WantKingsRockStevenGaveMe:
 #if GERMAN
 	.string "Ich habe das von Troy bekommen, weiß\n"
-	.string "aber nicht, was ich damit machen soll.\l"
-	.string "\p"
+	.string "aber nicht, was ich damit machen soll.\p"
 	.string "Ich glaube, es heißt King-Stein.\n"
 	.string "Möchtest du das haben?$"
 #else
@@ -389,8 +388,8 @@ MossdeepCity_Text_SpaceCenterLaunchingRockets:
 MossdeepCity_Text_MossdeepTargetedByMagma:
 #if GERMAN
 	.string "Ich habe von einem Freund, einem\n"
-	.string "Matrosen, gehört, dass Team Aqua sich\l"
-	.string "\pin Seegrasulb City aufgehalten\p"
+	.string "Matrosen, gehört, dass Team Aqua sich\p"
+	.string "in Seegrasulb City aufgehalten\p"
 	.string "haben soll.\p"
 	.string "Aber dann ist jemand gekommen und hat\n"
 	.string "sie aufgemischt.\p"
@@ -459,8 +458,7 @@ MossdeepCity_Text_LifeNeedsSeaToLive:
 
 MossdeepCity_Text_SurfExhilarating:
 #if GERMAN
-	.string "Eine Reise auf einem Schiff ist toll.\n"
-	.string "\p"
+	.string "Eine Reise auf einem Schiff ist toll.\p"
 	.string "Aber das Meer auf einem Pokémon zu\n"
 	.string "überqueren, das Surfer einsetzt…\p"
 	.string "Das ist wirklich eine aufregende\n"

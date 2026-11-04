@@ -390,7 +390,7 @@ Route120_Text_StevenIllWaitHere:
 #if GERMAN
 	.string "Troy: Nein?\p"
 	.string "Ich warte hier, dann kannst du sie\n"
-	.string "vor- bereiten.$"
+	.string "vorbereiten.$"
 #else
 	.string "STEVEN: No?\p"
 	.string "I'll wait here, so you can get ready.$"
@@ -472,8 +472,7 @@ Kecleon_Text_SomethingUnseeable:
 
 Kecleon_Text_WantToUseDevonScope:
 #if GERMAN
-	.string "Etwas Unsichtbares blockiert den Weg.\n"
-	.string "\p"
+	.string "Etwas Unsichtbares blockiert den Weg.\p"
 	.string "Willst du das Devon-Scope einsetzen?$"
 #else
 	.string "Something unseeable is in the way.\p"

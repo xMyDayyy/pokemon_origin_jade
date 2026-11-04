@@ -600,8 +600,7 @@ RusturfTunnel_Text_ExplainStrength:
 RusturfTunnel_Text_WandaReunion:
 #if GERMAN
 	.string "Heike!\n"
-	.string "Nun kann ich dich jederzeit besuchen!\l"
-	.string "\p"
+	.string "Nun kann ich dich jederzeit besuchen!\p"
 	.string "Heike: Das ist… wunderbar.\p"
 	.string "Bitte, ruh dich ein bisschen in meinem\n"
 	.string "Haus aus.$"

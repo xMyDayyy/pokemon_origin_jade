@@ -1181,8 +1181,7 @@ BattleFrontier_BattleDomeBattleRoom_Text_FormerToughnessReturned:
 BattleFrontier_BattleDomeBattleRoom_Text_WillDoExpectedAdvanceToFinals:
 #if GERMAN
 	.string "Wird dieser Trainer den Erwartungen\n"
-	.string "entsprechen und das Finale erreichen?\l"
-	.string "\p"
+	.string "entsprechen und das Finale erreichen?\p"
 	.string "$"
 #else
 	.string "Will this TRAINER do as expected\n"
@@ -1337,8 +1336,7 @@ BattleFrontier_BattleDomeBattleRoom_Text_LegendHasReturnedDomeAceTucker:
 	.string "Meine Damen! Meine Herren!\n"
 	.string "Liebe Mädchen, Jungen und Pokémon!\p"
 	.string "Endlich!\n"
-	.string "Endlich ist die Legende zurückgekehrt!\l"
-	.string "\p"
+	.string "Endlich ist die Legende zurückgekehrt!\p"
 	.string "Und der Name dieser Legende?\n"
 	.string "Stadionstar! Unser Stadionstar!\l"
 	.string "Niemand anderer als Tasso!$"

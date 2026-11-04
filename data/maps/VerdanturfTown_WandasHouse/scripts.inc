@@ -85,8 +85,7 @@ VerdanturfTown_WandasHouse_EventScript_WallysAuntEverGrande::
 VerdanturfTown_WandasHouse_Text_StrongerSpeech:
 #if GERMAN
 	.string "Heiko: Ich habe gegen dich verloren,\n"
-	.string "{PLAYER}. Aber das betrübt mich nicht.\l"
-	.string "\p"
+	.string "{PLAYER}. Aber das betrübt mich nicht.\p"
 	.string "Ich habe ein neues Ziel in meinem Leben.\n"
 	.string "Zusammen mit meinem Pokémon mache\p"
 	.string "ich mich auf, die Arenen\n"
@@ -112,8 +111,7 @@ VerdanturfTown_WandasHouse_Text_StrongerSpeech:
 VerdanturfTown_WandasHouse_Text_StrongerSpeechShort:
 #if GERMAN
 	.string "Heiko: Behalte mich ruhig im Auge,\n"
-	.string "{PLAYER}. Bald bin ich stärker als du!\l"
-	.string "\p"
+	.string "{PLAYER}. Bald bin ich stärker als du!\p"
 	.string "Und dann werde ich dich zu einem neuen\n"
 	.string "Kampf herausfordern.$"
 #else

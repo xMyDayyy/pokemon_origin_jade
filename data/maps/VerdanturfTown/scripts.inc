@@ -152,8 +152,7 @@ VerdanturfTown_Text_GuyTryingToBustThroughCave:
 VerdanturfTown_Text_EasyToGetToRustboroNow:
 #if GERMAN
 	.string "Die Höhle neben dem Pkmn-Supermarkt\n"
-	.string "ist nun ein Tunnel zur anderen Seite.\l"
-	.string "\p"
+	.string "ist nun ein Tunnel zur anderen Seite.\p"
 	.string "Das ist toll! Jetzt kommt man ganz\n"
 	.string "einfach nach Metarost City, um\l"
 	.string "Devon-waren zu kaufen.$"

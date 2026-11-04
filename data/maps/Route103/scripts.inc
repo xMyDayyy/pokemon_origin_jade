@@ -529,8 +529,7 @@ Route103_Text_BrendanTimeToHeadBack:
 	.string "Du hast dein Pokémon noch nicht lange,\n"
 	.string "und doch mag es dich schon.\p"
 	.string "{PLAYER}, ich glaube, du kannst mit\n"
-	.string "jedem Pokémon Freundschaft schließen.\l"
-	.string "\p"
+	.string "jedem Pokémon Freundschaft schließen.\p"
 	.string "Wir sollten nun zurück zum Labor\n"
 	.string "gehen.$"
 #else

@@ -2928,7 +2928,20 @@ dated 2026-10-10 or later were decided directly.
   title case ("Da ist eine E-Mail von der Pokémon Trainerschule. ... Ein
   Pokémon kann bis zu vier Attacken lernen. Die Fähigkeiten eines
   Trainers werden durch die Attacken, die er seinen Pokémon beibringt,
-  erprobt.").
+  erprobt."). Also resolved 2026-11-04 (owner): every German branch of the
+  map scripts lost the line break (`\l` or `\n`) right before a new box
+  (`\p`), which left a half-empty box that waited twice or showed the
+  arrow on an empty line: 216 places (170 `\l`, 46 `\n`) in 197 texts and
+  121 files. In the jade build 166 are on active maps (164 Hoenn, among
+  them the Lilycove game designer, 2 Johto) and 38 on retired maps; 12
+  are in code the jade build leaves out (11 in the Emerald-only
+  `#if !IS_HNS` blocks of the Littleroot Town scripts, 1 on the retired
+  Celadon department store roof, whose script is not built). No word
+  changed. The three words split inside a line are whole again:
+  "Anerkennung" (Lilycove game designer),
+  "Gleichklang" (Expert Shelby on Mt. Chimney after the rematch),
+  "vorbereiten" (Troy on Route 120). Left open: "mit Pokécenter
+  challenge!" and Birch's league text.
 - **O-041** Continue point in the Pallet Town bedroom (D-048, O-029):
   placed dolls and cushions now stay in the room, and the bedroom PC puts
   them on any decoration tile, also around the bed. At the old continue

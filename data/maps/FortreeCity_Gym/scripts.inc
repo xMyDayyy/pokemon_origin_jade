@@ -310,8 +310,7 @@ FortreeCity_Gym_Text_HumbertoIntro:
 #if GERMAN
 	.string "Wibkes Gesicht strahlt eine\n"
 	.string "Entschlossenheit aus, wenn sie in den\l"
-	.string "Kampf geht. Sie ist dann wunderhübsch!\l"
-	.string "\p"
+	.string "Kampf geht. Sie ist dann wunderhübsch!\p"
 	.string "Ich werde dir dieses hübsche Gesicht\n"
 	.string "zeigen!$"
 #else

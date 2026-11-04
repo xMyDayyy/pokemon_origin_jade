@@ -936,11 +936,9 @@ LittlerootTown_EventScript_GiveRunningShoes::
 
 LittlerootTown_Text_OurNewHomeLetsGoInside:
 #if GERMAN
-	.string "Mutter: {PLAYER}, wir sind da, Schatz!\n"
-	.string "\p"
+	.string "Mutter: {PLAYER}, wir sind da, Schatz!\p"
 	.string "Die Fahrt im Umzugswagen zwischen all\n"
-	.string "unseren Sachen war bestimmt ermüdend.\l"
-	.string "\p"
+	.string "unseren Sachen war bestimmt ermüdend.\p"
 	.string "Nun, wir sind in Wurzelheim.\p"
 	.string "Wie gefällt es dir?\n"
 	.string "Dies ist unser neues Zuhause!\p"
@@ -973,8 +971,7 @@ LittlerootTown_Text_WearTheseRunningShoes:
 	.string "Mutter: {PLAYER}! Hast du dich schon\n"
 	.string "Prof. Birk vorgestellt?\p"
 	.string "Oh! Was für ein hübsches Pokémon! Du\n"
-	.string "hast es von Prof. Birk erhalten? Toll!\l"
-	.string "\p"
+	.string "hast es von Prof. Birk erhalten? Toll!\p"
 	.string "Du bist das Kind deines Vaters!\n"
 	.string "Wunderbar. Du siehst gut aus mit deinem\l"
 	.string "Pokémon!\p"

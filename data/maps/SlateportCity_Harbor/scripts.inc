@@ -474,8 +474,7 @@ SlateportCity_Harbor_Text_WhereWouldYouLikeToGo:
 SlateportCity_Harbor_Text_LoveToGoDeepUnderwaterSomeday:
 #if GERMAN
 	.string "Eine Reise zum Meeresboden…\n"
-	.string "Ich frage mich, wie es dort wohl ist?\l"
-	.string "\p"
+	.string "Ich frage mich, wie es dort wohl ist?\p"
 	.string "Eines Tages möchte ich auch einmal so\n"
 	.string "tief unter Wasser reisen.$"
 #else
@@ -512,8 +511,7 @@ SlateportCity_Harbor_Text_SubTooSmallForMe:
 #if GERMAN
 	.string "Ich wäre gerne mit Kapt. Brigg auf die\n"
 	.string "Expedition zum Meeresboden gegangen.\p"
-	.string "Aber das U-Boot ist zu klein für mich.\n"
-	.string "\p"
+	.string "Aber das U-Boot ist zu klein für mich.\p"
 	.string "Ich könnte mich ja reinquetschen, aber\n"
 	.string "dann hätte der Kapitän keinen Platz\l"
 	.string "mehr…$"
@@ -655,8 +653,7 @@ SlateportCity_Harbor_Text_FinishedMakingFerry:
 	.string "Wir haben die Fähre MS Tide endlich\n"
 	.string "fertig gestellt.\p"
 	.string "Ohne die Hilfe deines Freundes Mr.\n"
-	.string "Brack hätten wir das nicht geschafft.\l"
-	.string "\p"
+	.string "Brack hätten wir das nicht geschafft.\p"
 	.string "Bitte nimm an einer kurzen Fahrt teil!$"
 #else
 	.string "CAPT. STERN: {PLAYER}{KUN}!\p"
@@ -673,8 +670,7 @@ SlateportCity_Harbor_Text_WouldYouTradeScanner:
 	.string "{PLAYER}{KUN}, das Item, das du da\l"
 	.string "hast… \p"
 	.string "Das ist ein Scanner! Der würde uns\n"
-	.string "sicher bei unseren Forschungen helfen.\l"
-	.string "\p"
+	.string "sicher bei unseren Forschungen helfen.\p"
 	.string "{PLAYER}{KUN}, würdest du ihn gegen\n"
 	.string "etwas anderes eintauschen?\p"
 	.string "Zum Beispiel gegen einen Abysszahn\n"

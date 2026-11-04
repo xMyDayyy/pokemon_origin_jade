@@ -454,8 +454,7 @@ PlayersHouse_1F_Text_GotDadsBadgeHeresSomethingFromMom:
 PlayersHouse_1F_Text_DontPushYourselfTooHard:
 #if GERMAN
 	.string "Überanstreng dich nicht, Liebes.\n"
-	.string "Du kannst jederzeit nach Hause kommen.\l"
-	.string "\p"
+	.string "Du kannst jederzeit nach Hause kommen.\p"
 	.string "Und jetzt nichts wie los, Schatz!$"
 #else
 	.string "Don't push yourself too hard, dear.\n"
@@ -563,8 +562,7 @@ PlayersHouse_1F_Text_TicketFromBrineyCameForYou:
 
 PlayersHouse_1F_Text_PortsInSlateportLilycove:
 #if GERMAN
-	.string "Vater: Hm, ein Ticket für eine Fähre?\n"
-	.string "\p"
+	.string "Vater: Hm, ein Ticket für eine Fähre?\p"
 	.string "Ich weiß, dass es in Graphitport City\n"
 	.string "und Seegrasulb City Anlegestellen für\l"
 	.string "Fähren gibt.$"

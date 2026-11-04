@@ -53,8 +53,7 @@ GraniteCave_1F_Text_GetsDarkAheadHereYouGo:
 #if GERMAN
 	.string "Hey, du!\n"
 	.string "Hier ist es schrecklich dunkel.\l"
-	.string "Eine Erforschung wird damit schwierig.\l"
-	.string "\p"
+	.string "Eine Erforschung wird damit schwierig.\p"
 	.string "Der Typ, der vorher schon mal hier\n"
 	.string "war… Troy heißt er, glaube ich…\p"
 	.string "Der weiß, wie man Blitz einsetzt, daher\n"

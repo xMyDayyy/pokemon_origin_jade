@@ -532,13 +532,11 @@ SlateportCity_OceanicMuseum_1F_Text_OceanicMinifact3:
 
 SlateportCity_OceanicMuseum_1F_Text_FossilDisplay:
 #if GERMAN
-	.string "Das ist ein Fossil mit vielen Furchen.\n"
-	.string "\p"
+	.string "Das ist ein Fossil mit vielen Furchen.\p"
 	.string "“Das Erdreich des Meeresbodens wird\n"
 	.string "durch die Gezeiten abgetragen.\p"
 	.string "Die Bewegungen des Wassers zeichnen\n"
-	.string "Rillen und Wellen in den Meeresboden.\l"
-	.string "\p"
+	.string "Rillen und Wellen in den Meeresboden.\p"
 	.string "Wenn der Meeresboden versteinert, wird\n"
 	.string "ein Bodenrelief sichtbar.”$"
 #else

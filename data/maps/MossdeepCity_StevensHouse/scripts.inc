@@ -254,8 +254,7 @@ MossdeepCity_StevensHouse_Text_LetterFromSteven:
 	.string "Er enthält mein Lieblings-Pokémon\n"
 	.string "Tanhel.\p"
 	.string "Ich verlasse mich auf dich.\p"
-	.string "Mögen wir uns eines Tages wiedersehen.\n"
-	.string "\p"
+	.string "Mögen wir uns eines Tages wiedersehen.\p"
 	.string "Troy Trumm$"
 #else
 	.string "It's a letter.\p"

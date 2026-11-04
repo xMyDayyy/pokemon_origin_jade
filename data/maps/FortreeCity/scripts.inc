@@ -191,8 +191,7 @@ FortreeCity_Text_SomethingUnseeable:
 
 FortreeCity_Text_UnseeableUseDevonScope:
 #if GERMAN
-	.string "Etwas Unsichtbares blockiert den Weg.\n"
-	.string "\p"
+	.string "Etwas Unsichtbares blockiert den Weg.\p"
 	.string "Willst du das Devon-Scope einsetzen?$"
 #else
 	.string "Something unseeable is in the way.\p"

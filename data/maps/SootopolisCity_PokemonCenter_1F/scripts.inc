@@ -46,8 +46,7 @@ SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries::
 SootopolisCity_PokemonCenter_1F_Text_WallaceToughestInHoenn:
 #if GERMAN
 	.string "Wassili, der ehemalige Arenaleiter\n"
-	.string "dieses Ortes, ist ein starker Trainer.\l"
-	.string "\p"
+	.string "dieses Ortes, ist ein starker Trainer.\p"
 	.string "Man sagt, er sei der beste Trainer der\n"
 	.string "ganzen Hoenn-Region.\p"
 	.string "Der Leiter dieser Arena ist der\n"
@@ -69,8 +68,7 @@ SootopolisCity_PokemonCenter_1F_Text_WallaceToughestInHoenn:
 SootopolisCity_PokemonCenter_1F_Text_EveryoneTakenRefuge:
 #if GERMAN
 	.string "Jeder im Ort hat sich in sein Haus\n"
-	.string "zurückgezogen und kommt nicht heraus.\l"
-	.string "\p"
+	.string "zurückgezogen und kommt nicht heraus.\p"
 	.string "Ich würde es auch nicht wagen, nach\n"
 	.string "draußen zu gehen.$"
 #else

@@ -428,8 +428,7 @@ RustboroCity_DevonCorp_2F_Text_HandedFossilToResearcher:
 RustboroCity_DevonCorp_2F_Text_FossilRegeneratorTakesTime:
 #if GERMAN
 	.string "Der Fossil-Regenerator, den ich ent-\n"
-	.string "wickelt habe, ist einfach unglaublich.\l"
-	.string "\p"
+	.string "wickelt habe, ist einfach unglaublich.\p"
 	.string "Aber einen Nachteil gibt es: Es dauert\n"
 	.string "eine Weile, bis der Prozess\l"
 	.string "abgeschlossen ist.\p"

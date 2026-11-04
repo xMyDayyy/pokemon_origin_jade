@@ -376,8 +376,7 @@ Route110_TrickHouseEnd_Text_FountainOfIdeasRunDry:
 Route110_TrickHouseEnd_Text_DefeatedMePreferWhichTent:
 #if GERMAN
 	.string "Ich hasse es, zuzugeben, dass ich be-\n"
-	.string "siegt wurde. Du hast mich geschlagen!\l"
-	.string "\p"
+	.string "siegt wurde. Du hast mich geschlagen!\p"
 	.string "Mein Charisma muss dich gefangen\n"
 	.string "genommen haben, da du immer wieder\l"
 	.string "herkommst. Ja, so muss es sein!\p"
@@ -451,8 +450,7 @@ Route110_TrickHouseEnd_Text_YouHaveEarnedThisReward:
 Route110_TrickHouseEnd_Text_NoRoomForThis:
 #if GERMAN
 	.string "Was? Du hast keinen Platz dafür?\n"
-	.string "Wie viele Items schleppst du denn mit?\l"
-	.string "\p"
+	.string "Wie viele Items schleppst du denn mit?\p"
 	.string "Aber du kannst dir deine Belohnung\n"
 	.string "auch später bei mir abholen.$"
 #else

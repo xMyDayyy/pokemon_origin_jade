@@ -59,8 +59,7 @@ CeladonDeptStore6F_Text_VendingNoSpace:
 
 CeladonDeptStore6F_Text_SuperNerd:
 #if GERMAN
-	.string "Ein Verkaufsautomat mit Preisroulette…\n"
-	.string "\p"
+	.string "Ein Verkaufsautomat mit Preisroulette…\p"
 	.string "Solche sieht man heute kaum noch.$"
 #else
 	.string "A vending machine with a prize\n"

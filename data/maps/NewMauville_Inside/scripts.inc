@@ -268,8 +268,7 @@ NewMauville_Inside_Text_GeneratorQuietedDown:
 
 NewMauville_Inside_Text_SteppedOnSwitchGeneratorStopped:
 #if GERMAN
-	.string "{PLAYER} stellt sich auf den Schalter.\n"
-	.string "\p"
+	.string "{PLAYER} stellt sich auf den Schalter.\p"
 	.string "Klick.\p"
 	.string "… … … … … … … …\n"
 	.string "… … … … … … … …\p"

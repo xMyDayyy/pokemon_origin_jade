@@ -529,8 +529,7 @@ MauvilleCity_Text_WallyWillYouBattleMe:
 #if GERMAN
 	.string "Heiko: Oh! Hi {PLAYER}!\p"
 	.string "Seit wir uns das letzte Mal gesehen\n"
-	.string "haben, bin ich viel stärker geworden.\l"
-	.string "\p"
+	.string "haben, bin ich viel stärker geworden.\p"
 	.string "{PLAYER}, ich möchte von dir und auch\n"
 	.string "von meinem Onkel verstanden werden.\p"
 	.string "{PLAYER}, bitte, würdest du gegen mich\n"
@@ -561,8 +560,7 @@ MauvilleCity_Text_UncleCanYouBattleWally:
 #if GERMAN
 	.string "Onkel: {PLAYER}{KUN}, richtig?\n"
 	.string "Darf ich dich um Heikos Willen bitten,\l"
-	.string "dieses eine Mal gegen ihn zu kämpfen?\l"
-	.string "\p"
+	.string "dieses eine Mal gegen ihn zu kämpfen?\p"
 	.string "Ich glaube nicht, dass er mir im\n"
 	.string "Moment überhaupt zuhören will…$"
 #else
@@ -736,8 +734,7 @@ MauvilleCity_Text_WattsonNeedFavorTakeKey:
 	.string "jetzt da hinunter, damit du den\l"
 	.string "Generator ausschaltest.\p"
 	.string "Der Generator ist kurz davor, \n"
-	.string "heißzulaufen. Das ist sehr gefährlich.\l"
-	.string "\p"
+	.string "heißzulaufen. Das ist sehr gefährlich.\p"
 	.string "Hier hast du den Schlüssel für\n"
 	.string "Neu Malvenfroh.$"
 #else
@@ -821,8 +818,7 @@ MauvilleCity_Text_NurseHurtMonBackToHealth:
 MauvilleCity_Text_AllSortsOfPeopleComeThrough:
 #if GERMAN
 	.string "Die Straßen dieses Ortes führen nach\n"
-	.string "Norden, Süden, nach Westen und Osten.\l"
-	.string "\p"
+	.string "Norden, Süden, nach Westen und Osten.\p"
 	.string "Daher reisen hier auch so viele ver-\n"
 	.string "schiedene Leute durch.$"
 #else
@@ -901,8 +897,7 @@ MauvilleCity_Text_ExplainTV:
 	.string "ich meine Freunde im Fernsehen gesehen.\p"
 	.string "Und manchmal, da zeigen sie dich im\n"
 	.string "Fernsehen und du weißt es gar nicht.\p"
-	.string "Ich möchte auch mal im Fernsehen sein.\n"
-	.string "\p"
+	.string "Ich möchte auch mal im Fernsehen sein.\p"
 	.string "Du solltest immer mal wieder den\n"
 	.string "Fernseher einschalten…$"
 #else

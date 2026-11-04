@@ -322,8 +322,7 @@ MossdeepCity_SpaceCenter_1F_Text_RocketLaunchDemandsPerfection:
 	.string "Jeder Raketenstart verlangt\n"
 	.string "sorgfältige Vorbereitungen. Die\l"
 	.string "Fehler-\l"
-	.string "quote darf nicht einmal 1 % betragen.\l"
-	.string "\p"
+	.string "quote darf nicht einmal 1 % betragen.\p"
 	.string "Selbst wenn 99 % perfekt sind, kann 1\n"
 	.string "% schon für ein Misslingen sorgen.\p"
 	.string "Trotzdem versuchen wir es immer wieder.\n"
@@ -422,8 +421,7 @@ MossdeepCity_SpaceCenter_1F_Text_AquaShouldBeatMagma:
 MossdeepCity_SpaceCenter_1F_Text_RocketsBoggleMyMind:
 #if GERMAN
 	.string "Ein gigantischer Brocken Metall durch-\n"
-	.string "bricht den Himmel und fliegt ins All…\l"
-	.string "\p"
+	.string "bricht den Himmel und fliegt ins All…\p"
 	.string "Das übersteigt jede Vorstellungskraft.$"
 #else
 	.string "A giant chunk of metal bursts through\n"
@@ -434,8 +432,7 @@ MossdeepCity_SpaceCenter_1F_Text_RocketsBoggleMyMind:
 MossdeepCity_SpaceCenter_1F_Text_MagmaWantsToSpoilMyDream:
 #if GERMAN
 	.string "Ein gigantischer Brocken Metall durch-\n"
-	.string "bricht den Himmel und fliegt ins All…\l"
-	.string "\p"
+	.string "bricht den Himmel und fliegt ins All…\p"
 	.string "Aber Team Magma will meinen Traum\n"
 	.string "vernichten!\p"
 	.string "Ich versteh das nicht.$"
@@ -580,8 +577,7 @@ MossdeepCity_SpaceCenter_1F_Text_Grunt2Defeat:
 MossdeepCity_SpaceCenter_1F_Text_Grunt2PostBattle:
 #if GERMAN
 	.string "Bitte, sag unserem Boss, dass ich\n"
-	.string "meinen Posten niemals verlassen habe!\l"
-	.string "\p"
+	.string "meinen Posten niemals verlassen habe!\p"
 	.string "Ich habe ihn bis zum bitteren Ende\n"
 	.string "gehalten…$"
 #else

@@ -853,8 +853,7 @@ LittlerootTown_ProfessorBirchsLab_Text_BirchRivalGoneHome:
 
 LittlerootTown_ProfessorBirchsLab_Text_HeardYouBeatRivalTakePokedex:
 #if GERMAN
-	.string "Prof. Birk: Oh, hallo, {PLAYER}{KUN}!\n"
-	.string "\p"
+	.string "Prof. Birk: Oh, hallo, {PLAYER}{KUN}!\p"
 	.string "Ich habe gehört, du hast {RIVAL} \n"
 	.string "besiegt! Super! Das war dein erster\l"
 	.string "Kampf gegen einen Trainer!\p"
@@ -1244,8 +1243,7 @@ LittlerootTown_ProfessorBirchsLab_Text_YoullTakeCyndaquil:
 LittlerootTown_ProfessorBirchsLab_Text_YoullTakeTotodile:
 #if GERMAN
 	.string "Prof. Birk: Das Wasser-Pokémon\n"
-	.string "Karnimani hat dein Interesse geweckt?\l"
-	.string "\p"
+	.string "Karnimani hat dein Interesse geweckt?\p"
 	.string "Eine gute Wahl!\p"
 	.string "Du möchtest Karnimani haben?$"
 #else

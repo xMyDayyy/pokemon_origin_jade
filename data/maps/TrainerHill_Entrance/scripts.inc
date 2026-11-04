@@ -518,8 +518,7 @@ TrainerHill_Roof_Text_FullUpBeBackLaterForThis:
 TrainerHill_Roof_Text_GotHereMarvelouslyQuickly:
 #if GERMAN
 	.string "Hey, warte mal! Bist du wirklich so\n"
-	.string "fantastisch schnell hierher gekommen?\l"
-	.string "\p"
+	.string "fantastisch schnell hierher gekommen?\p"
 	.string "Ausgezeichnet! Dabei hättest du dich\n"
 	.string "doch nicht so beeilen müssen, nur um\p"
 	.string "mich zu treffen! Trotzdem! Ich habe\n"

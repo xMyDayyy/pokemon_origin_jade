@@ -324,8 +324,7 @@ PlayersHouse_2F_Text_Notebook:
 	.string "Regel NR. 1 Für Abenteurer\n"
 	.string "Öffne das Menü mit Start.\p"
 	.string "Regel NR. 2 Für Abenteurer\n"
-	.string "Speichere den Fortschritt mit Sichern.\l"
-	.string "\p"
+	.string "Speichere den Fortschritt mit Sichern.\p"
 	.string "Die übrigen Seiten sind leer.$"
 #else
 	.string "{PLAYER} flipped open the notebook.\p"

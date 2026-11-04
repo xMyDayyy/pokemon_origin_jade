@@ -632,8 +632,7 @@ LavaridgeTown_Gym_1F_Text_FlanneryRematchDefeat:
 LavaridgeTown_Gym_1F_Text_FlanneryPostRematch:
 #if GERMAN
 	.string "Flavia: Ich habe den Kampf zwar\n"
-	.string "verloren, bin aber dennoch zufrieden.\l"
-	.string "\p"
+	.string "verloren, bin aber dennoch zufrieden.\p"
 	.string "Ich habe nicht oft die Gelegenheit,\n"
 	.string "einen so heißen Kampf zu genießen.\p"
 	.string "Das müssen wir unbedingt wiederholen!\n"
@@ -655,8 +654,7 @@ LavaridgeTown_Gym_1F_Text_FlanneryRematchNeedTwoMons:
 	.string "Ich liebe Kämpfe.\l"
 	.string "Und… Ich liebe diese Arena!\p"
 	.string "Lass uns einen ultraheißen Kampf\n"
-	.string "austragen! Die Funken sollen fliegen.\l"
-	.string "\p"
+	.string "austragen! Die Funken sollen fliegen.\p"
 	.string "Moment! Warte mal! Du hast ja nur ein\n"
 	.string "Pokémon, das kämpfen kann, dabei!\p"
 	.string "Bring das nächste Mal mindestens zwei\n"

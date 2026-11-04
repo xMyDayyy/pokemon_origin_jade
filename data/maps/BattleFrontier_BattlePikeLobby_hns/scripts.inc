@@ -299,8 +299,7 @@ BattleFrontier_BattlePikeLobby_Text_ExplainBattlePike_hns:
 #if GERMAN
 	.string "Wir bieten hier eine besondere Heraus-\n"
 	.string "forderung an: Die Kampfbahn!\p"
-	.string "Die Regeln sind wirklich sehr einfach…\n"
-	.string "\p"
+	.string "Die Regeln sind wirklich sehr einfach…\p"
 	.string "Wähle einen von drei möglichen Wegen\n"
 	.string "und schlag dich zu deinem Ziel durch,\l"
 	.string "das am Ende der Kampfipitis liegt…\p"

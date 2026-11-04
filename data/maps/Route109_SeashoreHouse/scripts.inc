@@ -224,8 +224,7 @@ Route109_SeashoreHouse_Text_DwaynePostBattle:
 
 Route109_SeashoreHouse_Text_JohannaIntro:
 #if GERMAN
-	.string "Langweilige Kämpfe lohnen sich nicht.\n"
-	.string "\p"
+	.string "Langweilige Kämpfe lohnen sich nicht.\p"
 	.string "Feurig heiße Kämpfe aber stählen\n"
 	.string "Trainer und Pokémon.$"
 #else

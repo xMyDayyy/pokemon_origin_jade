@@ -200,8 +200,7 @@ MauvilleCity_BikeShop_Text_RydelGreeting:
 MauvilleCity_BikeShop_Text_DidYouComeFromFarAway:
 #if GERMAN
 	.string "Radla: Deine Turbotreter…\n"
-	.string "Die sehen ja wirklich schmuddelig aus…\l"
-	.string "\p"
+	.string "Die sehen ja wirklich schmuddelig aus…\p"
 	.string "Kommst du von weit her?$"
 #else
 	.string "RYDEL: Your RUNNING SHOES…\n"
@@ -405,8 +404,7 @@ MauvilleCity_BikeShop_Text_HowToTurnMachBike:
 	.string "nicht schnell gestoppt werden.\p"
 	.string "Das Kurvenfahren ist sehr schwierig.\p"
 	.string "Lasse das + Steuerkreuz kurz los und\n"
-	.string "bremse, bevor du an eine Kurve kommst.\l"
-	.string "\p"
+	.string "bremse, bevor du an eine Kurve kommst.\p"
 	.string "Eine andere Seite lesen?$"
 #else
 	.string "A MACH BIKE is speedy, but it can't\n"
