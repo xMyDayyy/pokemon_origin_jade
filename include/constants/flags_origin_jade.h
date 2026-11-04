@@ -230,4 +230,12 @@
 // TM Torment from the sailor in Slateport's contest hall (D-058).
 #define FLAG_HOENN_RECEIVED_TM_TORMENT               (OJ_FLAGS_GLOBAL + 4)
 
+// ---------------------------------------------------------------------
+// Not saved: special flags (RAM, src/event_data.c), cleared by a new game
+// and kept across warps. HnS uses SPECIAL_FLAGS_START + 0x00 to + 0x05;
+// append from + 0x06 on, up to SPECIAL_FLAGS_END.
+// ---------------------------------------------------------------------
+// Hoenn ship trip that goes on from the Route 104 pier to Birch's lab (D-047).
+#define FLAG_HOENN_SHIP_TO_BIRCHS_LAB                (SPECIAL_FLAGS_START + 0x06)
+
 #endif // GUARD_CONSTANTS_FLAGS_ORIGIN_JADE_H

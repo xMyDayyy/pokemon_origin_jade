@@ -2,8 +2,8 @@
 @ Crossing to Hoenn and arrival at Professor Birch's
 @ ============================================================
 
-@ Called from the ports and islands as soon as the player picks Hoenn. Only the first trip sets
-@ the intro's end state and arms Birch's greeting; every trip lands on the Route 104 pier.
+@ Called from the ports and islands as soon as the player picks Hoenn. Every trip lands on the
+@ Route 104 pier. Only the first trip sets the intro's end state and arms Birch's greeting.
 @ See docs/origin_jade/DECISIONS.md, D-029 and D-047.
 Common_EventScript_SailToHoenn::
 	goto_if_lt VAR_HOENN_TICKET_STATE, 3, Common_EventScript_HoennNoTicket
@@ -14,7 +14,7 @@ Common_EventScript_SailToHoenn::
 	msgbox Common_Text_HoennSetSail, MSGBOX_DEFAULT
 	closemessage
 	fadescreen FADE_TO_BLACK
-	goto_if_ne VAR_HOENN_ARRIVAL_STATE, 0, Common_EventScript_SailToRoute104Pier
+	goto_if_ne VAR_HOENN_ARRIVAL_STATE, 0, Common_EventScript_SailToHoennAgain
 	call Common_EventScript_HoennSkipIntro
 	setflag FLAG_HIDE_ROUTE104_HOENN_BIRCH
 	setvar VAR_HOENN_ARRIVAL_STATE, 1
@@ -24,6 +24,15 @@ Common_EventScript_SailToRoute104Pier::
 	waitstate
 	release
 	end
+
+@ State 1: Birch's greeting still waits behind the pier. From state 2 until Wally's catching
+@ tutorial is done (VAR_PETALBURG_CITY_STATE 3 or more, also set by his battle in Mauville)
+@ Route 104 sends the player on to the lab, so the ship does not skip Petalburg City.
+Common_EventScript_SailToHoennAgain::
+	goto_if_lt VAR_HOENN_ARRIVAL_STATE, 2, Common_EventScript_SailToRoute104Pier
+	goto_if_ge VAR_PETALBURG_CITY_STATE, 3, Common_EventScript_SailToRoute104Pier
+	setflag FLAG_HOENN_SHIP_TO_BIRCHS_LAB
+	goto Common_EventScript_SailToRoute104Pier
 
 @ Later trips go to Slateport's or Lilycove's harbour and change no Hoenn state.
 Common_EventScript_SailToSlateport::
@@ -343,6 +352,24 @@ Route104_EventScript_HoennArrivalTalk::
 	fadescreen FADE_TO_BLACK
 	removeobject LOCALID_HOENN_BIRCH
 	setvar VAR_HOENN_ARRIVAL_STATE, 2
+	warpsilent MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB, 6, 5
+	waitstate
+	releaseall
+	end
+
+@ Ship arrival with FLAG_HOENN_SHIP_TO_BIRCHS_LAB (Common_EventScript_SailToHoennAgain):
+@ Route104_OnTransition arms VAR_TEMP_C, Route104_OnFrame warps from the pier into the lab.
+@ Never armed by walking onto Route 104. Same lab tile as Birch's greeting.
+Route104_EventScript_HoennArmShipToLab::
+	clearflag FLAG_HOENN_SHIP_TO_BIRCHS_LAB
+	setvar VAR_TEMP_C, 1
+	return
+
+Route104_EventScript_HoennShipToLab::
+	lockall
+	setvar VAR_TEMP_C, 0
+	delay 30
+	fadescreen FADE_TO_BLACK
 	warpsilent MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB, 6, 5
 	waitstate
 	releaseall

@@ -818,7 +818,8 @@ dated 2026-10-10 or later were decided directly.
   changed 2026-10-30, changed 2026-10-31: Hoenn entries of the ship menus,
   D-047; Aurora Ticket, D-049; changed 2026-11-02: Birch's greeting only
   after the first trip, D-047; changed 2026-11-03: Kampfzone only after the
-  Hoenn title, D-030)
+  Hoenn title, D-030; changed 2026-11-04: three arrival states of the
+  "Hoenn" trip, D-047)
 - **Decision:**
   - Kanto has one way into Johto: the gatehouse (D-009). Flying between the
     regions opens with the first Johto visit.
@@ -843,12 +844,16 @@ dated 2026-10-10 or later were decided directly.
     Vermilion, and to Hoenn like the ports (D-047).
   - Only the first Hoenn trip (`VAR_HOENN_ARRIVAL_STATE` 0) sets the end
     state of Emerald's intro (`Common_EventScript_HoennSkipIntro`); every
-    trip with the "Hoenn" entry lands on the Route 104 pier, where only
-    the first trip starts Birch's arrival scene; later "Hoenn" trips land
-    there without an event (D-047). The trips to Slateport and Lilycove
-    (D-047) change no Hoenn state, so a trip never opens a town early or
-    lands in a scene. The ticket is not used up. Every trip sets the
-    respawn: in front of Birch's lab for the pier, the Pokemon Center of
+    trip with the "Hoenn" entry lands on the Route 104 pier. What follows
+    depends on Birch's greeting and Wally's catching tutorial (three
+    arrival states, owner 2026-11-04, D-047): before the greeting the
+    player cannot get past Birch's scene on the beach; after it and before
+    Wally's tutorial the player is warped on from the pier into Birch's
+    lab; after Wally's tutorial the trip ends on the pier. The trips to
+    Slateport and Lilycove (D-047) change no Hoenn state, so a trip never
+    opens a town early or lands in a scene. The ticket is not used up.
+    Every trip sets the respawn: in front of Birch's lab for the pier
+    (also when the trip goes on into the lab), the Pokemon Center of
     Slateport or Lilycove for their harbours. Whoever leaves the beach
     before Birch's greeting (Fly, Teleport, Dig) gets the welcome
     (Pokedex, badge case, Birch's contact) on entering the lab (D-005).
@@ -858,7 +863,8 @@ dated 2026-10-10 or later were decided directly.
   - Faraway Island and Southern Island are not offered.
 - **Evidence:** decision 2026-10-15 (O-003); daily ship, return trips to
   Hoenn and Aurora Ticket 2026-10-20; owner decision 2026-11-03 (Kampfzone
-  only after the Hoenn title).
+  only after the Hoenn title); owner decision 2026-11-04 (three arrival
+  states, D-047).
 
 ### D-030 One Battle Frontier: the HnS Kampfzone
 - **Status:** Active (2026-10-15; changed 2026-11-02: Scott's hint, D-051;
@@ -1578,7 +1584,8 @@ dated 2026-10-10 or later were decided directly.
 
 ### D-047 Hoenn Ticket story and ports
 - **Status:** Active (2026-10-31; changed 2026-11-02: "Hoenn" stays until
-  Slateport's harbour can be sailed to, O-032; Troy's sprite, O-031).
+  Slateport's harbour can be sailed to, O-032; Troy's sprite, O-031;
+  changed 2026-11-04: three arrival states of the "Hoenn" trip).
   Resolves O-002.
 - **Decision:**
   - At the first Johto title Oak and an unknown man ("???", Troy) come
@@ -1612,10 +1619,28 @@ dated 2026-10-10 or later were decided directly.
     sailed to now:
     - "Hoenn" from the Hoenn Ticket (`VAR_HOENN_TICKET_STATE` 3) as long
       as "Graphitport City" is not offered; every trip with it lands on the
-      Route 104 pier (D-029). Only the first trip arms Birch's greeting
-      there (`VAR_HOENN_ARRIVAL_STATE` 1); later trips land without an
-      event. So a player without a flyer always has a way back to Hoenn
-      (O-032).
+      Route 104 pier (D-029), in one of three arrival states (owner
+      2026-11-04):
+      1. Birch's greeting not triggered yet (`VAR_HOENN_ARRIVAL_STATE` 0
+         or 1): the first trip arms it (state 1). The only way off the pier
+         on foot crosses its trigger tiles at x=15, so the player cannot
+         get past the scene on the beach.
+      2. Greeting triggered (state 2 or more), Wally's catching tutorial in
+         Petalburg City not done (`VAR_PETALBURG_CITY_STATE` below 3): the
+         ship lands on the pier and the player is warped on at once into
+         Birch's lab, onto the tile of the greeting's warp (6,5), where a
+         pending welcome (state 2) runs as after the greeting. Petalburg
+         City's way west to Route 104 stays closed until Wally is talked to
+         (the gym boy leads the player to him), so the ship no longer leads
+         around his scene through Petalburg Woods. The trip
+         sets `FLAG_HOENN_SHIP_TO_BIRCHS_LAB` (a special flag, not saved);
+         `Route104_OnTransition` takes it back and arms `VAR_TEMP_C` for the
+         frame script, so walking onto Route 104 from Petalburg City or
+         Petalburg Woods never warps.
+      3. Wally's tutorial done (`VAR_PETALBURG_CITY_STATE` 3 or more: after
+         the tutorial, after his battle in Mauville if that came first, 5
+         after Norman): the trip ends on the pier without an event.
+      So a player without a flyer always has a way back to Hoenn (O-032).
     - "Graphitport City" replaces "Hoenn" after Birch's welcome
       (`VAR_HOENN_ARRIVAL_STATE` 3) once Slateport was visited and while
       its harbour can be used: it is open from the first visit and closed
@@ -1657,9 +1682,17 @@ dated 2026-10-10 or later were decided directly.
   scripts in `data/scripts/hoenn_arrival.inc`, `SHIP_DEST_*` and
   `SHIP_PORT_*` in `include/constants/script_menu.h`;
   `VAR_HOENN_TICKET_STATE` in `include/constants/vars_hoenn_de.h`;
-  `ITEM_HOENN_TICKET` in `src/data/items.h`.
+  `ITEM_HOENN_TICKET` in `src/data/items.h`. Arrival states:
+  `Common_EventScript_SailToHoennAgain`,
+  `Route104_EventScript_HoennArmShipToLab` and
+  `Route104_EventScript_HoennShipToLab` (`hoenn_arrival.inc`, hooked into
+  `Route104_OnTransition` and `Route104_OnFrame`);
+  `FLAG_HOENN_SHIP_TO_BIRCHS_LAB` in
+  `include/constants/flags_origin_jade.h`.
 - **Evidence:** owner decisions 2026-10-31 (plan part A, Hoenn Ticket
-  story); owner answers 2026-11-02 (O-031, O-032).
+  story); owner answers 2026-11-02 (O-031, O-032); owner decision
+  2026-11-04 (three arrival states; Wally's scene cannot be skipped,
+  because Petalburg City's way west stays closed until he is talked to).
 
 ### D-048 Hoenn: an unknown trainer, Norman is not the father
 - **Status:** Active (2026-10-31; changed 2026-11-02: decorations in
@@ -3250,3 +3283,4 @@ dated 2026-10-10 or later were decided directly.
 | Emerald's Trainer Hill on Route 111 works with its own trainers, prizes and records | D-044 (2026-10-30) | D-044 (2026-11-02) |
 | Battle tents in Verdanturf, Fallarbor and Slateport; Lilycove's contest hall holds every rank and its reception gives the Pokeblock Case | Emerald | D-030, D-058 (2026-11-02) |
 | A second Sudowoodo in the Kampfzone (Emerald; level 65, woken with the Squirtbottle) | D-039 (2026-10-27, Squirtbottle 2026-10-30) | D-039 (2026-11-04, removed) |
+| Every "Hoenn" trip after Birch's greeting lands on the Route 104 pier without an event | D-047 / D-029 (2026-11-02, O-032) | D-047 / D-029 (2026-11-04, three arrival states) |
