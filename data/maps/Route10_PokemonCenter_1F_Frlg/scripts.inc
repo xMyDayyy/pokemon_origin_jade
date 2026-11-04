@@ -75,7 +75,7 @@ Route10_PokemonCenter_1F_Text_EveryTypeStrongerThanOthers::
 Route10_PokemonCenter_1F_Text_NuggetUselessSoldFor5000::
 #if GERMAN
 	.string "Ich habe für ein nutzloses Nugget\n"
-	.string "5000¥ bekommen!$"
+	.string "¥5000 bekommen!$"
 #else
 	.string "A NUGGET is totally useless.\n"
 	.string "So I sold it for ¥5000.$"

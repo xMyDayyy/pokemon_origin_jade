@@ -253,7 +253,7 @@ MahoganyTown_Text_RageCandyBarMerchantTryOne:
 	.string "Wenn du schon mal in Mahagonia City\n"
 	.string "bist, solltest du unbedingt\l"
 	.string "einen Wutkeks kaufen!\p"
-	.string "Ich hätte einen für 300 ¥ für\n"
+	.string "Ich hätte einen für ¥300 für\n"
 	.string "dich im Angebot. Na, was sagst du?$"
 #else
 	.string "Hiya, kid!\p"

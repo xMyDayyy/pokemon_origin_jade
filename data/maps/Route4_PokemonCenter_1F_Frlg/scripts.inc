@@ -192,7 +192,7 @@ Route4_PokemonCenter_1F_Text_LaddieBuyMagikarpForJust500::
 	.string "Mann: Hallo! Möchtest du ein Geschäft\n"
 	.string "machen?\p"
 	.string "Ich gebe dir ein exzellentes Karpador\n"
-	.string "für läppische 500¥!\p"
+	.string "für läppische ¥500!\p"
 	.string "Interessiert?$"
 #else
 	.string "MAN: Hello there, laddie!\n"
@@ -207,7 +207,7 @@ Route4_PokemonCenter_1F_Text_SweetieBuyMagikarpForJust500::
 	.string "Mann: Hallo! Möchtest du ein Geschäft\n"
 	.string "machen?\p"
 	.string "Ich gebe dir ein exzellentes Karpador\n"
-	.string "für läppische 500¥!\p"
+	.string "für läppische ¥500!\p"
 	.string "Interessiert?$"
 #else
 	.string "MAN: Hello there, sweetie pie!\n"
@@ -220,7 +220,7 @@ Route4_PokemonCenter_1F_Text_SweetieBuyMagikarpForJust500::
 Route4_PokemonCenter_1F_Text_PaidOutrageouslyForMagikarp::
 #if GERMAN
 	.string "{PLAYER} bezahlte den Wucherpreis\n"
-	.string "von 500¥ für ein Karpador…$"
+	.string "von ¥500 für ein Karpador…$"
 #else
 	.string "{PLAYER} paid an outrageous ¥500\n"
 	.string "and bought the MAGIKARP…$"

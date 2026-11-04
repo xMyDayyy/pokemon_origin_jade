@@ -4,7 +4,7 @@ CeladonCity_GameCorner_Text_TryPokemonPrinter::
 	.string "Damit kannst du ein Bild deiner Pokémon\n"
 	.string "auf die Rückseite deines Trainerpasses\l"
 	.string "drucken.\l"
-	.string "Für nur 50¥!\l"
+	.string "Für nur ¥50!\l"
 	.string "Möchtest du es ausprobieren?$"
 #else
 	.string "It's a POKéMON PRINTER!\p"

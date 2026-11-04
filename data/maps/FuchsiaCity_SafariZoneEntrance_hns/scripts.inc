@@ -339,7 +339,7 @@ FuchsiaCity_SafariZoneEntrance_Text_Level1:
 #if GERMAN
 	.string "Hallo {PLAYER}, möchtest du dein\n"
 	.string "Safari-Level auf 2 erhöhen?\l"
-	.string "Das kostet 200.000 ¥.$"
+	.string "Das kostet ¥200.000.$"
 #else
 	.string "Hello {PLAYER}, would you\n"
 	.string "like to increase your SAFARI LEVEL\l"
@@ -350,7 +350,7 @@ FuchsiaCity_SafariZoneEntrance_Text_Level2:
 #if GERMAN
 	.string "Hallo {PLAYER}, möchtest du dein\n"
 	.string "Safari-Level auf 3 erhöhen?\l"
-	.string "Das kostet 300.000 ¥.$"
+	.string "Das kostet ¥300.000.$"
 #else
 	.string "Hello {PLAYER}, would you\n"
 	.string "like to increase your SAFARI LEVEL\l"
@@ -361,7 +361,7 @@ FuchsiaCity_SafariZoneEntrance_Text_Level3:
 #if GERMAN
 	.string "Hallo {PLAYER}, möchtest du dein\n"
 	.string "Safari-Level auf 4 erhöhen?\l"
-	.string "Das kostet 400.000 ¥.$"
+	.string "Das kostet ¥400.000.$"
 #else
 	.string "Hello {PLAYER}, would you\n"
 	.string "like to increase your SAFARI LEVEL\l"

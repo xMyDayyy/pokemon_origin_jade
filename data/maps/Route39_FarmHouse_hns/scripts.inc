@@ -105,7 +105,7 @@ Route39_Text_FarmerMBuyMilk:
 	.string "berühmten Milch der Kuhmuh-Farm?\p"
 	.string "Wenn du sie deinen Pokémon zu trinken\n"
 	.string "gibst, werden ihre KP aufgefrischt!\p"
-	.string "Eine Flasche macht nur 500 ¥!$"
+	.string "Eine Flasche macht nur ¥500!$"
 #else
 	.string "How'd you like my MOOMOO MILK?\p"
 	.string "It's my pride and joy, there.\p"

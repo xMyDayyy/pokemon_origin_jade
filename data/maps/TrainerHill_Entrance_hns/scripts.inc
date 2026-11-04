@@ -302,7 +302,7 @@ TrainerHill_Entrance_hns_Text_Money:
 	.string "Jedes Mal, wenn du den Gipfel\n"
 	.string "erreichst, bekommst du Geld.\p"
 	.string "Unter zehn Minuten kannst du\n"
-	.string "bis zu 1.000.000¥ gewinnen!\p"
+	.string "bis zu ¥1.000.000 gewinnen!\p"
 	.string "Dauert es länger, fällt die Belohnung\n"
 	.string "geringer aus…$"
 #else

@@ -2435,7 +2435,7 @@ dated 2026-10-10 or later were decided directly.
 ### D-057 German completion of the map texts
 - **Status:** Active (2026-11-02, owner: the beta comes out in German
   first, everything that is not German gets translated, both languages
-  stay selectable; changed 2026-11-03)
+  stay selectable; changed 2026-11-03 and 2026-11-04)
 - **Decision:**
   - Every text in `data/maps/*/scripts.inc` that the German build shows
     on a Kanto, Johto or Hoenn map has a German branch under `#if GERMAN`;
@@ -2490,10 +2490,19 @@ dated 2026-10-10 or later were decided directly.
   - "$" ends a string (`charmap.txt`) and must never stand in a text.
     Five German texts that used it for money were cut off there (Route 32,
     Moomoo Farm, Route 4 Pokemon Center, Pewter mart, Route 34 Day Care);
-    they use "¥" now, which the font shows as the Pokedollar sign, in the
-    place and spacing their own wording had ("500 ¥", "500¥"). The order
-    is not settled: the owner's texts use both "500 ¥" and "¥300"; he
-    decides the style in the text round.
+    they use "¥" now, which the font shows as the Pokedollar sign.
+  - Money format (owner decision 2026-11-04): every German text writes an
+    amount in one format, the sign before the number without a space
+    ("¥500", "¥{STR_VAR_2}"), as the shops, menus, the money box and
+    Emerald and Crystal do. This deviates on purpose from German FRLG
+    ("500¥") and German HGSS ("500 ¥"); 20 lines in 14 files followed
+    those (FRLG maps: Fuchsia Safari Zone entrance, Pewter museum and
+    mart, Route 4 and Route 10 Pokemon Centers, the Celadon Pokemon
+    printer; HnS maps: Route 43 toll, Mahogany's Rage Candy Bar, Route 32
+    Slowpoke tail, Route 39 Moomoo Milk, Route 34 Day Care, the Safari
+    Zone levels, the Route 40 Trainer Hill; Route 117 Day Care) and now
+    use "¥" first. The digits and their separators stay as each text had
+    them. English branches stay as they are.
 - **Not covered:** trainer names in the party files (O-066), locked and
   retired maps (D-019; the tool counts 290 and 3 texts there),
   unreferenced Japanese FRLG texts, common texts (D-056).
