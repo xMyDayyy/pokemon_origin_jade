@@ -288,6 +288,16 @@
       "flag": "FLAG_HIDDEN_ITEM_ROUTE9_CHESTO_BERRY",
       "quantity": 1,
       "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 44,
+      "y": 54,
+      "elevation": 0,
+      "item": "ITEM_LIGHT_CLAY",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE9_LIGHT_CLAY",
+      "quantity": 1,
+      "underfoot": false
     }
   ],
   "floor_number": 0,

@@ -138,6 +138,8 @@
 #define FLAG_HIDDEN_ITEM_UNDERWATER_126_RELIC_BAND   (OJ_FLAGS_JOHTO + 31)
 #define FLAG_HIDDEN_ITEM_UNDERWATER_128_RELIC_STATUE (OJ_FLAGS_JOHTO + 32)
 #define FLAG_HIDDEN_ITEM_UNDERWATER_128_RELIC_CROWN  (OJ_FLAGS_JOHTO + 33)
+// Snowball in Ice Path; HnS had it only in New Sinjoh (locked).
+#define FLAG_HIDDEN_ITEM_ICE_PATH_B3F_SNOWBALL       (OJ_FLAGS_JOHTO + 34)
 
 // ---------------------------------------------------------------------
 // Hoenn (OJ_FLAGS_HOENN + 0 to + 95)

@@ -147,7 +147,18 @@
     }
   ],
   "coord_events": [],
-  "bg_events": [],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 16,
+      "y": 19,
+      "elevation": 0,
+      "item": "ITEM_GRIP_CLAW",
+      "flag": "FLAG_HIDDEN_ITEM_SEAFOAM_ISLANDS_B1F_GRIP_CLAW",
+      "quantity": 1,
+      "underfoot": false
+    }
+  ],
   "floor_number": 0,
   "game_version": "hns",
   "region": "REGION_KANTO"
