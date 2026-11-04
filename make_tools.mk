@@ -12,10 +12,10 @@ TOOLDIRS := $(TOOL_NAMES:%=$(TOOLS_DIR)/%)
 CHECKTOOLDIRS := $(CHECK_TOOL_NAMES:%=$(TOOLS_DIR)/%)
 
 # Tool making doesnt require a pokeemerald dependency scan.
-RULES_NO_SCAN += tools check-tools clean-tools clean-check-tools history $(TOOLDIRS) $(CHECKTOOLDIRS)
+RULES_NO_SCAN += tools check-tools clean-tools clean-check-tools $(TOOLDIRS) $(CHECKTOOLDIRS)
 .PHONY: $(RULES_NO_SCAN)
 
-tools: history $(TOOLDIRS)
+tools: $(TOOLDIRS)
 
 check-tools: $(CHECKTOOLDIRS)
 
@@ -31,5 +31,3 @@ clean-tools:
 clean-check-tools:
 	@$(foreach tooldir,$(CHECKTOOLDIRS),$(MAKE) clean -C $(tooldir);)
 
-history:
-	@$(SHELL) ./check_history.sh

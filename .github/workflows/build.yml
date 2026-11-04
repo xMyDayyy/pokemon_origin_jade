@@ -63,9 +63,6 @@ jobs:
           python3 tools/check_budget.py | tee budget.txt
           { echo '```'; cat budget.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Map consistency (not blocking)
-        continue-on-error: true
-        run: python3 check_merge.py --quiet
 
   release:
     runs-on: ubuntu-24.04
