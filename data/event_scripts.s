@@ -1693,12 +1693,11 @@ gText_MonsHealed::
 	.string "Wir wünschen dir viel Erfolg!$"
 
 gText_HadQuiteAnExperienceTakeRest::
-	.string "MAMA: {PLAYER}!\n"
-	.string "Willkommen zu Hause.\p"
-	.string "Es klingt, als hättest du eine\n"
-	.string "große Erfahrung gemacht.\p"
-	.string "Vielleicht solltest du dich kurz\n"
-	.string "ausruhen.$"
+	.string "Mama: {PLAYER}!\p"
+	.string "Das hört sich an, als hättest du\n"
+	.string "eine Menge erlebt!\p"
+	.string "Du solltest eine\n"
+	.string "kurze Pause einlegen.$"
 
 gText_MomExplainHPGetPotions::
 	.string "Mama: Sehr gut! Du und deine\n"

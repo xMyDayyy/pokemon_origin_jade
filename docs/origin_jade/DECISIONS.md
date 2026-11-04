@@ -2882,17 +2882,15 @@ dated 2026-10-10 or later were decided directly.
 - **O-036** Resolved 2026-11-02 (owner: as in HnS): Elm's call comes on
   the first step out of the house in Pallet Town after the first Johto
   title, as HnS's came in New Bark Town (D-051).
-- **O-037** Mom's heal texts after a whiteout at home
-  (`gText_HadQuiteAnExperienceTakeRest`, `gText_MomExplainHPGetPotions`):
-  capitals "MAMA"/"POKéMON", a beginner tutorial; reachable from the start
-  of a new game (whiteout before the first Pokemon Center heal, respawn
-  `HEAL_LOCATION_PALLET_TOWN` from `new_game.inc`), after the Kanto title,
-  and now also after a Johto title or Red (room respawn). Proposal: owner
-  text; tutorial only before the first badge. Since 2026-11-03
-  `gText_MomExplainHPGetPotions` is German FRLG's text of the same scene
-  word for word (title case, "Mama:" as in the other Pallet Town texts);
-  `gText_HadQuiteAnExperienceTakeRest` before it keeps Emerald's
-  capitals, FRLG's text of it waits for the owner.
+- **O-037** Resolved 2026-11-04 (owner: as FRLG, word for word): Mom's
+  heal texts after a whiteout at home (`gText_HadQuiteAnExperienceTakeRest`,
+  `gText_MomExplainHPGetPotions`, reachable from the start of a new game,
+  after the Kanto title and after a Johto title or Red) are both German
+  FRLG's text of the same scene word for word, in title case and with
+  "Mama:" as in the other Pallet Town texts ("Mama: {PLAYER}! / Das hört
+  sich an, als hättest du eine Menge erlebt! / Du solltest eine kurze
+  Pause einlegen."; FRLG writes "MUTTER:"). Both texts still follow every
+  whiteout at home.
 - **O-038** Resolved 2026-11-03 (owner: official English means official
   German too): every German Pokedex rating text in
   `data/text/pokedex_rating.inc` whose English is an official line now has
