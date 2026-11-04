@@ -26,7 +26,15 @@ FuchsiaCity_EventScript_Lass::
 	lock
 	faceplayer
 	famechecker FAMECHECKER_KOGA, 3
+	call PokemonLeague_EventScript_CheckLeagueChanged
+	goto_if_eq VAR_RESULT, TRUE, FuchsiaCity_EventScript_LassLeagueChanged
 	msgbox FuchsiaCity_Text_MyFatherIsGymLeader
+	release
+	end
+
+@ Koga is in Johto's Elite Four after the league change (D-010, D-032).
+FuchsiaCity_EventScript_LassLeagueChanged::
+	msgbox FuchsiaCity_Text_MyFatherIsEliteFour
 	release
 	end
 
@@ -377,6 +385,19 @@ FuchsiaCity_Text_MyFatherIsGymLeader::
 #else
 	.string "My father is the GYM LEADER of\n"
 	.string "this town.\p"
+	.string "I'm training to use POISON POKéMON\n"
+	.string "as well as my father.$"
+#endif
+
+FuchsiaCity_Text_MyFatherIsEliteFour::
+#if GERMAN
+	.string "Mein Vater ist jetzt einer der\n"
+	.string "Top Vier der Pokémon Liga.\p"
+	.string "Ich trainiere mit Gift-Pokémon,\n"
+	.string "genau wie mein Vater.$"
+#else
+	.string "My father is now one of the\n"
+	.string "ELITE FOUR of the POKéMON LEAGUE.\p"
 	.string "I'm training to use POISON POKéMON\n"
 	.string "as well as my father.$"
 #endif

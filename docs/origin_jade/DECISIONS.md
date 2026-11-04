@@ -931,7 +931,8 @@ dated 2026-10-10 or later were decided directly.
 - **Evidence:** decision 2026-10-15; Steven: 876c3d4c19.
 
 ### D-032 Johto content after the title, Janina in Fuchsia, Blue in Viridian
-- **Status:** Active (2026-10-15, Blue added 2026-10-20)
+- **Status:** Active (2026-10-15, Blue added 2026-10-20, Fuchsia girl's
+  text 2026-11-04)
 - **Decision:**
   - The eight Johto gym leaders accept rematches in their gyms after the
     Johto title, without limit, with their `_2` teams (money only).
@@ -939,7 +940,11 @@ dated 2026-10-10 or later were decided directly.
     the trade is done.
   - After the league change (D-010) Koga is only in Johto's Elite Four:
     Janina leads the FRLG Fuchsia gym (`TRAINER_JANINE_HNS`, TM Gifthieb
-    once, rematches, no badge).
+    once, rematches, no badge). The girl in Fuchsia City who trains Poison
+    Pokemon like her father says from then on "Mein Vater ist jetzt einer
+    der Top Vier der Pokémon Liga." instead of "Mein Vater ist der
+    Arenaleiter dieser Stadt." (own text, owner 2026-11-04;
+    `FuchsiaCity_Text_MyFatherIsEliteFour`, English branch as well).
   - After the league change Blue leads the FRLG Viridian gym
     (`TRAINER_BLUE_HNS`, HnS's Viridian team, TM Bizarroraum once via
     `FLAG_GOT_TM_TRICK_ROOM_FROM_BLUE`, rematches without limit, money only,
