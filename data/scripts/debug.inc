@@ -386,7 +386,6 @@ Debug_EventScript_Script_4::
 	end
 
 Debug_EventScript_Script_5::
-	special InitKantoRoamers
 	release
 	end
 

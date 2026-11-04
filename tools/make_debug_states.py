@@ -509,8 +509,8 @@ JOHTO_COMPLETE_PARTY = [
 ]
 
 # HnS maps of state B besides Johto's map sections: Johto's league on the
-# Indigo Plateau. Route22_hns cannot be entered (O-022).
-JOHTO_EXCLUDED_MAPS = {"Route22_hns"}
+# Indigo Plateau. None is excluded.
+JOHTO_EXCLUDED_MAPS = set()
 
 # Script labels of state B's walk that stay cut: battle facilities, link,
 # Hoenn, the Sevii Islands, rematches, Troy's ticket, Sinjoh (locked by
@@ -682,7 +682,7 @@ UNTOUCHED_B = dict(UNTOUCHED, **{
     "VAR_TOHJO_FALLS_GIOVANNI_STATE": "Celebi's scene at Tohjo Falls, reset on every visit without Celebi",
     "VAR_WHICH_FOSSIL_REVIVED": "only read while a fossil is being revived",
     "FLAG_MINTS_DISABLED": "challenge option tx_Mode_Mints; the flower shop clears it only after the Hoenn title",
-    "VAR_BAOBA_QUEST_STATE": "Baoba's Safari Zone quest starts only in FuchsiaCity_hns, a retired map (P-004)",
+    "VAR_BAOBA_QUEST_STATE": "Baoba's Safari Zone quest started only in FuchsiaCity_hns, a removed map (P-004)",
 })
 
 DROP_FLAGS_B = dict(DROP_FLAGS)

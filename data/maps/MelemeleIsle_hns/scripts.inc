@@ -115,7 +115,7 @@ Alola_Melemele_TravelToKanto_4:
 	delay 90
 	fadescreenswapbuffers FADE_TO_BLACK
 	special RemoveCameraObject
-	warp MAP_ROUTE13_HNS, 77, 26
+	warp MAP_ROUTE13, 77, 26
 	waitstate
 	end
 

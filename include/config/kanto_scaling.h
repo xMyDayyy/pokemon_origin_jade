@@ -11,8 +11,7 @@
 // the floor. Kanto has no corridors.
 // Before the title only VS Seeker rematch teams move up, to their tier's
 // level floor (sKantoRematchLevelFloors in src/vs_seeker.c, D-034).
-// Johto's league maps (Kanto mapsec, HnS map groups) use config/johto_scaling.h;
-// Route22_hns is not scaled.
+// Johto's league maps (Kanto mapsec, HnS map groups) use config/johto_scaling.h.
 // =====================================================================
 
 #define KANTO_LEVEL_SCALING          TRUE  // master switch

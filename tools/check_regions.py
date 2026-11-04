@@ -55,7 +55,6 @@ ALLOWED = {
 
 # Known exceptions: map id or (map id, species) -> reason. They are listed but do not fail.
 KNOWN = {
-    "MAP_ROUTE22_HNS": "nicht betretbar: kein Warp, keine begehbare Verbindung (O-022)",
     ("MAP_RUINS_OF_ALPH_LAB_HNS", "SPECIES_LILEEP"): "belebt das Wurzelfossil, das es nur in Hoenn gibt (D-023)",
     ("MAP_RUINS_OF_ALPH_LAB_HNS", "SPECIES_ANORITH"): "belebt das Klauenfossil, das es nur in Hoenn gibt (D-023)",
     ("MAP_ROUTE4", "SPECIES_JIRACHI"): "erst nach der ersten Fahrt nach Hoenn (D-037, D-049)",

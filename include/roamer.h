@@ -2,15 +2,15 @@
 #define GUARD_ROAMER_H
 
 // Location tables for TryAddRoamer. The id is saved in struct Roamer: only append.
+// Id 1 was the HnS Kanto table (removed with its maps).
 #if IS_HNS
-enum { ROAMER_LOC_TABLE_JOHTO, ROAMER_LOC_TABLE_KANTO, ROAMER_LOC_TABLE_HOENN, ROAMER_LOC_TABLE_COUNT };
+enum { ROAMER_LOC_TABLE_JOHTO, ROAMER_LOC_TABLE_HOENN = 2, ROAMER_LOC_TABLE_COUNT };
 #else
 enum { ROAMER_LOC_TABLE_HOENN, ROAMER_LOC_TABLE_COUNT };
 #endif
 
 void DeactivateAllRoamers(void);
 void InitRoamer(void);
-void InitKantoRoamers(void);
 void UpdateLocationHistoryForRoamer(void);
 void RoamerMoveToOtherLocationSet(u32 roamerIndex);
 void RoamerMove(u32 roamerIndex);

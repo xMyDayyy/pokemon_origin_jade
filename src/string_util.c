@@ -483,12 +483,9 @@ static const u8 *ExpandPlaceholder_KunChan(void)
 }
 
 #if IS_HNS
-// Johto maps that use a Kanto mapsec: Route22_hns and Johto's league (center, Elite Four, Hall of Fame).
+// Johto maps that use a Kanto mapsec: Johto's league (center, Elite Four, Hall of Fame).
 static bool32 IsJohtoMapWithKantoMapsec(void)
 {
-    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_ROUTE22_HNS)
-     && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ROUTE22_HNS))
-        return TRUE;
     // gMapGroup_IndoorIndigo_Hns holds only Johto's league maps.
     return gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_INDIGO_PLATEAU_POKEMON_CENTER_HNS);
 }

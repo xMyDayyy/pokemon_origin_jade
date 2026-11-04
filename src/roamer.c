@@ -66,36 +66,6 @@ static const u8 sRoamerLocationsJohto[][6] =
     { ___, ___, ___, ___, ___, ___ },
 };
 
-static const u8 sRoamerLocationsKanto[][6] =
-{
-    { MAP_NUM(MAP_ROUTE1_HNS),  MAP_NUM(MAP_ROUTE2_HNS),  MAP_NUM(MAP_ROUTE22_HNS), ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE2_HNS),  MAP_NUM(MAP_ROUTE1_HNS),  MAP_NUM(MAP_ROUTE3_HNS),  ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE3_HNS),  MAP_NUM(MAP_ROUTE2_HNS),  MAP_NUM(MAP_ROUTE4_HNS),  ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE4_HNS),  MAP_NUM(MAP_ROUTE3_HNS),  MAP_NUM(MAP_ROUTE5_HNS),  MAP_NUM(MAP_ROUTE24_HNS), ___, ___ },
-    { MAP_NUM(MAP_ROUTE5_HNS),  MAP_NUM(MAP_ROUTE4_HNS),  MAP_NUM(MAP_ROUTE6_HNS),  MAP_NUM(MAP_ROUTE9_HNS),  ___, ___ },
-    { MAP_NUM(MAP_ROUTE6_HNS),  MAP_NUM(MAP_ROUTE5_HNS),  MAP_NUM(MAP_ROUTE7_HNS),  MAP_NUM(MAP_ROUTE11_HNS), ___, ___ },
-    { MAP_NUM(MAP_ROUTE7_HNS),  MAP_NUM(MAP_ROUTE6_HNS),  MAP_NUM(MAP_ROUTE8_HNS),  MAP_NUM(MAP_ROUTE16_HNS), ___, ___ },
-    { MAP_NUM(MAP_ROUTE8_HNS),  MAP_NUM(MAP_ROUTE7_HNS),  MAP_NUM(MAP_ROUTE9_HNS),  MAP_NUM(MAP_ROUTE10_HNS), ___, ___ },
-    { MAP_NUM(MAP_ROUTE9_HNS),  MAP_NUM(MAP_ROUTE5_HNS),  MAP_NUM(MAP_ROUTE8_HNS),  MAP_NUM(MAP_ROUTE10_HNS), ___, ___ },
-    { MAP_NUM(MAP_ROUTE10_HNS), MAP_NUM(MAP_ROUTE8_HNS),  MAP_NUM(MAP_ROUTE9_HNS),  ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE11_HNS), MAP_NUM(MAP_ROUTE6_HNS),  MAP_NUM(MAP_ROUTE12_HNS), ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE12_HNS), MAP_NUM(MAP_ROUTE11_HNS), MAP_NUM(MAP_ROUTE13_HNS), ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE13_HNS), MAP_NUM(MAP_ROUTE12_HNS), MAP_NUM(MAP_ROUTE14_HNS), ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE14_HNS), MAP_NUM(MAP_ROUTE13_HNS), MAP_NUM(MAP_ROUTE15_HNS), ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE15_HNS), MAP_NUM(MAP_ROUTE14_HNS), MAP_NUM(MAP_ROUTE18_HNS), ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE16_HNS), MAP_NUM(MAP_ROUTE7_HNS),  MAP_NUM(MAP_ROUTE17_HNS), ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE17_HNS), MAP_NUM(MAP_ROUTE16_HNS), MAP_NUM(MAP_ROUTE18_HNS), ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE18_HNS), MAP_NUM(MAP_ROUTE17_HNS), MAP_NUM(MAP_ROUTE15_HNS), ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE19_HNS), MAP_NUM(MAP_ROUTE20_HNS), MAP_NUM(MAP_ROUTE21_HNS), ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE20_HNS), MAP_NUM(MAP_ROUTE19_HNS), MAP_NUM(MAP_ROUTE21_HNS), ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE21_HNS), MAP_NUM(MAP_ROUTE19_HNS), MAP_NUM(MAP_ROUTE20_HNS), ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE22_HNS), MAP_NUM(MAP_ROUTE1_HNS),  MAP_NUM(MAP_ROUTE23_HNS), ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE23_HNS), MAP_NUM(MAP_ROUTE22_HNS), MAP_NUM(MAP_ROUTE1_HNS),  ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE24_HNS), MAP_NUM(MAP_ROUTE4_HNS),  MAP_NUM(MAP_ROUTE25_HNS), ___, ___, ___ },
-    { MAP_NUM(MAP_ROUTE25_HNS), MAP_NUM(MAP_ROUTE24_HNS), MAP_NUM(MAP_ROUTE4_HNS),  ___, ___, ___ },
-    { ___, ___, ___, ___, ___, ___ },
-};
-
 #endif
 
 // Hoenn routes. In the HnS build Latias and Latios roam here after the Hoenn title.
@@ -135,7 +105,6 @@ static const struct RoamerLocationTable sRoamerLocationTables[ROAMER_LOC_TABLE_C
 {
 #if IS_HNS
     [ROAMER_LOC_TABLE_JOHTO] = { sRoamerLocationsJohto, ARRAY_COUNT(sRoamerLocationsJohto) - 1, MAP_GROUP(MAP_ROUTE29_HNS) },
-    [ROAMER_LOC_TABLE_KANTO] = { sRoamerLocationsKanto, ARRAY_COUNT(sRoamerLocationsKanto) - 1, MAP_GROUP(MAP_ROUTE1_HNS) },
 #endif
     [ROAMER_LOC_TABLE_HOENN] = { sRoamerLocationsHoenn, ARRAY_COUNT(sRoamerLocationsHoenn) - 1, MAP_GROUP(MAP_ROUTE110) },
 };
@@ -328,21 +297,6 @@ void InitRoamer(void)
     TryAddRoamer(SPECIES_RAIKOU, GetLegendaryRoamerLevel(SPECIES_RAIKOU), ROAMER_LOC_TABLE_JOHTO);
     TryAddRoamer(SPECIES_ENTEI, GetLegendaryRoamerLevel(SPECIES_ENTEI), ROAMER_LOC_TABLE_JOHTO);
 }
-
-void InitKantoRoamers(void)
-{
-    DeactivateRoamersByLocationTable(ROAMER_LOC_TABLE_KANTO);
-    if (gSpecialVar_0x8004 == 0)
-    {
-        GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_LATIAS), FLAG_SET_SEEN);
-        TryAddRoamer(SPECIES_LATIAS, 60, ROAMER_LOC_TABLE_KANTO);
-    }
-    else
-    {
-        GetSetPokedexFlag(SpeciesToNationalPokedexNum(SPECIES_LATIOS), FLAG_SET_SEEN);
-        TryAddRoamer(SPECIES_LATIOS, 60, ROAMER_LOC_TABLE_KANTO);
-    }
-}
 #else
 // gSpecialVar_0x8004 here corresponds to the options in the multichoice MULTI_TV_LATI (0 for 'Red', 1 for 'Blue')
 void InitRoamer(void)
@@ -351,10 +305,6 @@ void InitRoamer(void)
         TryAddRoamer(SPECIES_LATIAS, 40, ROAMER_LOC_TABLE_HOENN);
     else
         TryAddRoamer(SPECIES_LATIOS, 40, ROAMER_LOC_TABLE_HOENN);
-}
-
-void InitKantoRoamers(void)
-{
 }
 #endif
 

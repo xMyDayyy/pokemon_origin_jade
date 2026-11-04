@@ -1416,8 +1416,6 @@ static void TilesetAnim_CeladonCity_Hns(u16);
 static void QueueAnimTiles_CeladonCity_Hns_Fountain(u16);
 static void TilesetAnim_CeruleanCity_Hns(u16);
 static void QueueAnimTiles_CeruleanCity_Hns_Fountain(u16);
-static void TilesetAnim_SilphCo_Hns(u16);
-static void QueueAnimTiles_SilphCo_Hns_Fountain(u16);
 static void TilesetAnim_BlackthornGym(u16);
 static void QueueAnimTiles_BlackthornGym_Lava(u16);
 static void TilesetAnim_MtSilverExp(u16);
@@ -1590,20 +1588,6 @@ static const u16 *const sCeruleanCityHns_Fountain[] = {
     sCeruleanCityHns_Fountain_Frame4
 };
 
-// SilphCo HnS secondary tileset frame data
-
-static const u16 sSilphCoHns_Fountain_Frame0[] = INCBIN_U16("data/tilesets/secondary/silph_co_hns/anim/fountain/0.4bpp");
-static const u16 sSilphCoHns_Fountain_Frame1[] = INCBIN_U16("data/tilesets/secondary/silph_co_hns/anim/fountain/1.4bpp");
-static const u16 sSilphCoHns_Fountain_Frame2[] = INCBIN_U16("data/tilesets/secondary/silph_co_hns/anim/fountain/2.4bpp");
-static const u16 sSilphCoHns_Fountain_Frame3[] = INCBIN_U16("data/tilesets/secondary/silph_co_hns/anim/fountain/3.4bpp");
-
-static const u16 *const sSilphCoHns_Fountain[] = {
-    sSilphCoHns_Fountain_Frame0,
-    sSilphCoHns_Fountain_Frame1,
-    sSilphCoHns_Fountain_Frame2,
-    sSilphCoHns_Fountain_Frame3
-};
-
 // Johto General primary tileset callbacks
 
 void InitTilesetAnim_JohtoGeneral(void)
@@ -1769,26 +1753,6 @@ static void TilesetAnim_CeruleanCity_Hns(u16 timer)
 static void QueueAnimTiles_CeruleanCity_Hns_Fountain(u16 timer)
 {
     AppendTilesetAnimToBuffer(sCeruleanCityHns_Fountain[timer % ARRAY_COUNT(sCeruleanCityHns_Fountain)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(840)), 8 * TILE_SIZE_4BPP);
-}
-
-// SilphCo HnS secondary tileset callbacks
-
-void InitTilesetAnim_SilphCo_Hns(void)
-{
-    sSecondaryTilesetAnimCounter = 0;
-    sSecondaryTilesetAnimCounterMax = 160;
-    sSecondaryTilesetAnimCallback = TilesetAnim_SilphCo_Hns;
-}
-
-static void TilesetAnim_SilphCo_Hns(u16 timer)
-{
-    if (timer % 10 == 0)
-        QueueAnimTiles_SilphCo_Hns_Fountain(timer / 10);
-}
-
-static void QueueAnimTiles_SilphCo_Hns_Fountain(u16 timer)
-{
-    AppendTilesetAnimToBuffer(sSilphCoHns_Fountain[timer % ARRAY_COUNT(sSilphCoHns_Fountain)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(976)), 8 * TILE_SIZE_4BPP);
 }
 
 // Blackthorn Gym -- lava and steam reusing existing Lavaridge/Cave frame data

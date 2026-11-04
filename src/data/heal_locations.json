@@ -433,86 +433,6 @@
       "respawn_npc": "0"
     },
     {
-      "id": "HEAL_LOCATION_PALLET_TOWN_HNS",
-      "map": "MAP_PALLET_TOWN_HNS",
-      "x": 11,
-      "y": 9,
-      "respawn_map": "MAP_PALLET_TOWN_REDS_HOUSE_1F_HNS",
-      "respawn_npc": "0"
-    },
-    {
-      "id": "HEAL_LOCATION_VIRIDIAN_CITY_HNS",
-      "map": "MAP_VIRIDIAN_CITY_HNS",
-      "x": 30,
-      "y": 37,
-      "respawn_map": "MAP_VIRIDIAN_CITY_POKEMON_CENTER_HNS",
-      "respawn_npc": "0"
-    },
-    {
-      "id": "HEAL_LOCATION_PEWTER_CITY_HNS",
-      "map": "MAP_PEWTER_CITY_HNS",
-      "x": 19,
-      "y": 30,
-      "respawn_map": "MAP_PEWTER_CITY_POKEMON_CENTER_HNS",
-      "respawn_npc": "0"
-    },
-    {
-      "id": "HEAL_LOCATION_CERULEAN_CITY_HNS",
-      "map": "MAP_CERULEAN_CITY_HNS",
-      "x": 25,
-      "y": 30,
-      "respawn_map": "MAP_CERULEAN_CITY_POKEMON_CENTER_HNS",
-      "respawn_npc": "0"
-    },
-    {
-      "id": "HEAL_LOCATION_VERMILION_CITY_HNS",
-      "map": "MAP_VERMILION_CITY_HNS",
-      "x": 22,
-      "y": 5,
-      "respawn_map": "MAP_VERMILION_CITY_POKEMON_CENTER_HNS",
-      "respawn_npc": "0"
-    },
-    {
-      "id": "HEAL_LOCATION_LAVENDER_TOWN_HNS",
-      "map": "MAP_LAVENDER_TOWN_HNS",
-      "x": 9,
-      "y": 7,
-      "respawn_map": "MAP_LAVENDER_TOWN_POKEMON_CENTER_HNS",
-      "respawn_npc": "0"
-    },
-    {
-      "id": "HEAL_LOCATION_CELADON_CITY_HNS",
-      "map": "MAP_CELADON_CITY_HNS",
-      "x": 48,
-      "y": 12,
-      "respawn_map": "MAP_CELADON_CITY_POKEMON_CENTER_HNS",
-      "respawn_npc": "0"
-    },
-    {
-      "id": "HEAL_LOCATION_SAFFRON_CITY_HNS",
-      "map": "MAP_SAFFRON_CITY_HNS",
-      "x": 18,
-      "y": 39,
-      "respawn_map": "MAP_SAFFRON_CITY_POKEMON_CENTER_HNS",
-      "respawn_npc": "0"
-    },
-    {
-      "id": "HEAL_LOCATION_FUCHSIA_CITY_HNS",
-      "map": "MAP_FUCHSIA_CITY_HNS",
-      "x": 25,
-      "y": 32,
-      "respawn_map": "MAP_FUCHSIA_CITY_POKEMON_CENTER_HNS",
-      "respawn_npc": "0"
-    },
-    {
-      "id": "HEAL_LOCATION_CINNABAR_ISLAND_HNS",
-      "map": "MAP_CINNABAR_ISLAND_HNS",
-      "x": 45,
-      "y": 30,
-      "respawn_map": "MAP_CINNABAR_ISLAND_POKEMON_CENTER_HNS",
-      "respawn_npc": "0"
-    },
-    {
       "id": "HEAL_LOCATION_MT_SILVER_HNS",
       "map": "MAP_MT_SILVER_OUTSIDE_HNS",
       "x": 25,
@@ -583,18 +503,6 @@
       "map": "MAP_LITTLEROOT_TOWN",
       "x": 7,
       "y": 17
-    },
-    {
-      "id": "HEAL_LOCATION_ROUTE10_HNS",
-      "map": "MAP_ROUTE10_HNS",
-      "x": 16,
-      "y": 36
-    },
-    {
-      "id": "HEAL_LOCATION_ROUTE4_HNS",
-      "map": "MAP_ROUTE4_HNS",
-      "x": 12,
-      "y": 6
     },
     {
       "id": "HEAL_LOCATION_NEW_BARK_TOWN_LAB_HNS",

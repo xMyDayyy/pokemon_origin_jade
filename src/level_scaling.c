@@ -208,7 +208,7 @@ static EWRAM_DATA const struct ScalingRules *sRematchFloorRules = NULL;
 
 // FRLG Kanto map: a Kanto mapsec outside HnS's map groups, which come first in
 // data/maps/map_groups.json (before Emerald's, MAP_LITTLEROOT_TOWN). Johto's league
-// maps (Kanto mapsec) keep the Johto rules; Route22_hns has no corridor and is not scaled.
+// maps (Kanto mapsec) keep the Johto rules.
 static bool32 IsFrlgKantoMap(void)
 {
     u32 mapsec = gMapHeader.regionMapSectionId;
