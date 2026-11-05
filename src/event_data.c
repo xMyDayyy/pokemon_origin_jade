@@ -39,8 +39,9 @@ EWRAM_DATA static u16 sTestVars[TEST_VARS_SIZE] = {0};
 
 extern u16 *const gSpecialVars[];
 
-// Tests: a flag or var id without storage makes the test INVALID.
-#if TESTING
+// A flag or var id without storage shows the assertf crash screen in the
+// beta build (START resumes as before); off in make release.
+#ifndef RELEASE
 #define ASSERT_STORAGE(cond, kind, id) assertf(cond, kind " 0x%x has no storage", id)
 #else
 #define ASSERT_STORAGE(cond, kind, id)

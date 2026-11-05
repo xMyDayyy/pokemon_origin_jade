@@ -2260,6 +2260,8 @@ void PutAwayDecorationIteration(void)
     else if (gDecorations[sDecorationContext.items[sDecorRearrangementDataBuffer[gSpecialVar_0x8004].idx]].permission == DECORPERM_SPRITE)
     {
         gSpecialVar_0x8005 = sDecorRearrangementDataBuffer[gSpecialVar_0x8004].flagId;
+        // Hide the sprite decoration here; the script cannot setflag a var.
+        FlagSet(gSpecialVar_0x8005);
         ClearDecorationContextIndex(sDecorRearrangementDataBuffer[gSpecialVar_0x8004].idx);
         for (i = 0; i < gMapHeader.events->objectEventCount; i++)
         {

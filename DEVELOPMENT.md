@@ -9,6 +9,17 @@ Needs `gcc-arm-none-eabi`, `binutils-arm-none-eabi`, `libnewlib-arm-none-eabi`, 
 
 Only Origin Jade is built (`IS_HNS`, map version `hns`).
 
+The beta build shows its version (`OJ_BETA_VERSION` in `include/config/version.h`) on the main menu and stops with a crash screen when a flag or var without save space is used (START continues). `make release` has neither.
+
+## Beta patch
+
+1. Set `OJ_BETA_VERSION` and build with `make` (the beta is the build with debug menus).
+2. Create the patch with Floating IPS against a clean Pokémon Emerald (USA/Europe), SHA-1 `f3ae088181bf583e55daf962a92bb46f4f1d07b7`:
+   `flips --create --bps <clean Emerald .gba> Pokemon_Origin_Jade.gba OriginJade_Beta1.bps`
+3. Take the SHA-1 of the patched ROM: `sha1sum Pokemon_Origin_Jade.gba`.
+4. Publish a GitHub release on `master` with the `.bps` file and that SHA-1 in the notes.
+5. Never upload ROM files, neither the clean nor the patched one.
+
 ## Check tools
 
 Run with `python3 -I tools/<name>`:
