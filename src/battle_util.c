@@ -6,6 +6,7 @@
 #include "battle_pyramid.h"
 #include "battle_util.h"
 #include "caps.h"
+#include "johto_badges.h"
 #include "battle_controllers.h"
 #include "battle_interface.h"
 #include "battle_setup.h"
@@ -5709,6 +5710,44 @@ u32 GetBattleMoveTarget(enum Move move, enum MoveTarget moveTarget)
     return targetBattler;
 }
 
+// Origin Jade: highest level that obeys. Before the Kanto title by Kanto
+// badges; from the Kanto title to the Johto title by Johto badges
+// (VAR_JOHTO_BADGES), on Kanto maps too. Gym leader texts name these
+// levels: keep them in sync.
+static u8 GetObedienceLevel(void)
+{
+    // No badges: 10, then five more per badge (texts: 20 to 50).
+    static const u8 sKantoObedienceLevels[NUM_BADGES_CAPPED + 1] =
+    {
+        10, 15, 20, 25, 30, 35, 40, 45, 50
+    };
+    u32 badgeCount;
+
+#if IS_HNS
+    // From Kanto's 50 on: each step covers the corridor ceiling of the gyms
+    // that can come next (config/johto_scaling.h), rounded up to a multiple
+    // of 5; eight badges cover the league (Lance 67). Texts: Bugsy 55,
+    // Morty 60, Rising Badge 70; one step per two badges (owner). The step at
+    // six badges has no text: Chuck, Jasmine and Pryce come in any order.
+    static const u8 sJohtoObedienceLevels[NUM_BADGES_CAPPED + 1] =
+    {
+        50, 50, 55, 55, 60, 60, 65, 65, 70
+    };
+
+    if (FlagGet(FLAG_IS_KANTO_CHAMPION))
+    {
+        badgeCount = GetJohtoBadgeCount();
+        if (badgeCount > NUM_BADGES_CAPPED)
+            badgeCount = NUM_BADGES_CAPPED;
+        return sJohtoObedienceLevels[badgeCount];
+    }
+#endif
+    badgeCount = GetCurrentBadgeCount();
+    if (badgeCount > NUM_BADGES_CAPPED)
+        badgeCount = NUM_BADGES_CAPPED;
+    return sKantoObedienceLevels[badgeCount];
+}
+
 enum Obedience GetAttackerObedienceForAction(void)
 {
     s32 rnd;
@@ -5727,29 +5766,17 @@ enum Obedience GetAttackerObedienceForAction(void)
         return OBEYS;
     if (gBattleTypeFlags & BATTLE_TYPE_RECORDED)
         return OBEYS;
+    // Origin Jade: who can disobey. With GEN_7 only outsiders (traded, in-game
+    // trades, another OT), own Pokémon always obey; with GEN_8 own Pokémon
+    // too, by level met. The switch is B_OBEDIENCE_MECHANICS in config/battle.h.
     if (B_OBEDIENCE_MECHANICS < GEN_8 && !IsOtherTrainer(gBattleMons[gBattlerAttacker].otId, gBattleMons[gBattlerAttacker].otName))
         return OBEYS;
 #if IS_HNS
-    // After the Johto title every Pokémon obeys (Johto badge limits are planned, not built).
+    // After the Johto title every Pokémon obeys (Hoenn comes after it).
     if (FlagGet(FLAG_IS_JOHTO_CHAMPION))
         return OBEYS;
 #endif
-    // Origin Jade: obedience level by number of Kanto badges (Johto badges in
-    // VAR_JOHTO_BADGES do not count). Gym leader texts name 25, 40 and 50:
-    // keep them in sync.
-    {
-        // No badges: 10, then five more per badge.
-        static const u8 sObedienceLevelByBadges[NUM_BADGES_CAPPED + 1] =
-        {
-            10, 15, 20, 25, 30, 35, 40, 45, 50
-        };
-        u8 badgeCount = GetCurrentBadgeCount();
-
-        if (badgeCount > NUM_BADGES_CAPPED)
-            badgeCount = NUM_BADGES_CAPPED;
-
-        obedienceLevel = sObedienceLevelByBadges[badgeCount];
-    }
+    obedienceLevel = GetObedienceLevel();
 
     if (B_OBEDIENCE_MECHANICS >= GEN_8
      && !IsOtherTrainer(gBattleMons[gBattlerAttacker].otId, gBattleMons[gBattlerAttacker].otName))

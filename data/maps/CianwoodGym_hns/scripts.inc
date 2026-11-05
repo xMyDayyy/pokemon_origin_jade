@@ -227,16 +227,12 @@ CianwoodGym_Text_GetStormBadge:
 
 CianwoodGym_Text_ChuckBadgeSpeech:
 #if GERMAN
-	.string "Der Faustorden sorgt dafür, dass dir\n"
-	.string "alle Pokémon bis L70 gehorchen, auch\l"
-	.string "getauschte.\p"
-	.string "Außerdem können deine Pokémon Fliegen\n"
-	.string "auch außerhalb von Kämpfen einsetzen.\p"
+	.string "Mit dem Faustorden können deine\n"
+	.string "Pokémon Fliegen auch außerhalb von\l"
+	.string "Kämpfen einsetzen.\p"
 	.string "Hier, nimm das auch noch!$"
 #else
-	.string "STORMBADGE makes all POKéMON up to\n"
-	.string "L70 obey, even traded ones.\p"
-	.string "It also lets your POKéMON use FLY\n"
+	.string "STORMBADGE lets your POKéMON use FLY\n"
 	.string "when you're not in a battle.\p"
 	.string "Here, take this too!$"
 #endif

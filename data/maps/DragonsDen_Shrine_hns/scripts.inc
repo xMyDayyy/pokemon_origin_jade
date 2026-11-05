@@ -479,16 +479,16 @@ DragonsDen_Shrine_Text_RisingBadgeExplanation:
 	.string "Mit dem Drachenorden in deinem Besitz\n"
 	.string "können deine Pokémon mit der Attacke\p"
 	.string "Kaskade jeden Wasserfall erklimmen…\p"
-	.string "Ferner werden dich alle Pokémon als\n"
-	.string "Trainer anerkennen und dir\l"
-	.string "bedingungslos gehorchen.$"
+	.string "Ferner werden dich alle Pokémon bis\n"
+	.string "Level 70 als Trainer anerkennen und\l"
+	.string "dir bedingungslos gehorchen.$"
 #else
     .string "RISINGBADGE will enable your\n"
     .string "POKéMON to use the move for\l"
     .string "climbing waterfalls.\p"
-    .string "Also, all POKéMON will recognize\n"
-    .string "you as a trainer and obey your\l"
-    .string "every command without question.$"
+    .string "Also, all POKéMON up to Lv. 70 will\n"
+    .string "recognize you as a trainer and obey\l"
+    .string "your every command without question.$"
 #endif
 
 DragonsDen_Shrine_Text_ElderScoldsClair:
