@@ -1,68 +1,54 @@
 # Pokémon Origin Jade
 
-Pokémon Origin Jade is a German ROM hack for the Game Boy Advance: one
-journey through three regions, Kanto first, then Johto, then Hoenn. Kanto
-uses the FireRed/LeafGreen maps, Johto comes from Pokémon Heart & Soul
-2.0.5, Hoenn from Emerald. The game is built on pokemonHnS-expansion
-(Heart & Soul) and RHH's pokeemerald-expansion.
+![Pokémon Origin Jade](logo.png)
 
-The game text is German. Code comments and the project documentation are
-English.
+Pokémon Origin Jade is a ROM hack for the Game Boy Advance: one journey
+through three regions, Kanto first, then Johto, then Hoenn. Kanto uses the
+FireRed/LeafGreen maps, Johto comes from Pokémon Heart & Soul 2.0.5, Hoenn
+from Emerald. It is built on pokemonHnS-expansion (Heart & Soul) and RHH's
+pokeemerald-expansion.
+
+The game is in German for now; an English version is planned during the
+beta.
 
 ## Features
 
-- **Three regions in order.** The game starts in Pallet Town; Kanto is
-  chapter one, then Johto and Hoenn, each with its own badges, league and
-  title. Field moves follow the region's rules (Kanto badges, Johto
-  permits, Hoenn licenses). The credits come at the end of the whole
-  journey.
-- **Level design.** Kanto has a hand-set level ladder up to the champion
-  at 45-47. Johto and Hoenn scale trainers and wild Pokémon to the
-  player's team, within level corridors per area.
-- **No trading needed.** Kanto and Hoenn are designed so that their
-  Pokédex can be completed without trading; all nine starters are also
-  wild.
-- **Contests as in Ruby and Sapphire.** One rank per contest hall:
-  Verdanturf Town (Normal, with the Contest Pass), Fallarbor Town
-  (Super), Slateport City (Hyper) and Lilycove City (Master). The endgame
-  facilities are Heart & Soul's: its Battle Frontier (Kampfzone) and the
-  Trainer Hill by Route 40.
-- **Challenges**, chosen in the challenge menu of a new game: Nuzlocke
-  (with nickname rule and hardcore mode), randomizer (starters, wild,
-  fixed and trainer Pokémon, evolutions, moves, items), level caps, item
-  prices, fewer escapes, EXP multiplier, no EVs, maximum IVs, no Pokémon
-  Center, one-type challenge, clock type.
-- **Debug menus in beta builds.** The overworld debug menu (R + Start) and
-  the battle debug menu (Select) are on in the build made by `make` and
-  off in `make release`.
+- **Three regions in a row**, each with its own badges, league and title.
+  Field moves follow the region's rules (Kanto badges, Johto permits,
+  Hoenn licenses). The credits roll at the end of the whole journey.
+- **Kanto in the FireRed/LeafGreen style**, with a hand-set level curve up
+  to the champion.
+- **Level scaling in Johto and Hoenn**: trainers and wild Pokémon follow
+  your team within level corridors per area.
+- **Region rule**: Pokémon of a region show up once the story reaches it.
+- **Troy's story**: after the Johto title Troy brings the Hoenn Ticket.
+- **Contests as in Ruby and Sapphire**, one rank per contest hall.
+- **Battle Frontier and Trainer Hill** from Heart & Soul.
+- **No trading needed**: every species and every item can be obtained in
+  one game.
+- **Challenges** for a new game: Nuzlocke, randomizer, level caps and more.
+
+## Playing
+
+Apply the BPS patch to a clean Pokémon Emerald ROM (USA/Europe,
+SHA-1 `f3ae088181bf583e55daf962a92bb46f4f1d07b7`), for example with
+[Rom Patcher JS](https://www.marcrobledo.com/RomPatcher.js/) or Floating
+IPS. Patches are published with each beta release.
+
+The beta is still in progress: saves may not carry over between beta
+versions. Trades and link battles come from Heart & Soul and were not
+tested; linking with the official games or other ROM hacks is not
+supported.
 
 ## Building
 
 Install `gcc-arm-none-eabi`, `binutils-arm-none-eabi`,
 `libnewlib-arm-none-eabi`, `libpng-dev` and Python 3, then:
 
-    make -j$(nproc)              # Pokemon_Origin_Jade.gba (beta build, debug menus on)
-    make release                 # Pokemon_Origin_Jade-release.gba (debug menus off)
+    make -j$(nproc)    # Pokemon_Origin_Jade.gba (beta build, debug menus on)
+    make release       # Pokemon_Origin_Jade-release.gba (debug menus off)
 
-`make` builds only Origin Jade; `make jade` is an alias. Check tools and
-rules for changes: [`ENTWICKLER.md`](ENTWICKLER.md) (German).
-
-## Current state
-
-Beta preparation. Kanto, Johto and Hoenn can be played to their titles
-without a known blocker: after the first Johto title Troy hands over the
-Hoenn Ticket in Prof. Oak's lab. This is checked statically and with the
-check tools, not yet in an emulator. Every text the German build shows
-on the story path is German; English is left only in debug texts, in
-unused texts and in trainer names that no active script shows; some of
-the new German texts are still drafts.
-
-Until the release the save layout may still change, and older saves are
-not migrated.
-
-Trades and link battles come from Heart & Soul and were not tested in
-Origin Jade. Linking with the official games or other ROM hacks is not
-supported.
+Check tools and rules for changes: [`DEVELOPMENT.md`](DEVELOPMENT.md).
 
 ## Credits
 
