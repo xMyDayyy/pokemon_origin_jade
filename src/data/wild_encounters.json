@@ -60240,7 +60240,7 @@
               {
                 "min_level": 14,
                 "max_level": 14,
-                "species": "SPECIES_VENONAT"
+                "species": "SPECIES_LEDYBA"
               },
               {
                 "min_level": 16,
@@ -60265,12 +60265,81 @@
               {
                 "min_level": 16,
                 "max_level": 16,
+                "species": "SPECIES_YANMA"
+              },
+              {
+                "min_level": 16,
+                "max_level": 16,
+                "species": "SPECIES_HERACROSS"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_NATIONAL_PARK_BUG_CONTEST_HNS",
+          "base_label": "gNationalPark_BugContest_hns_Night",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 14,
+                "max_level": 14,
+                "species": "SPECIES_SPINARAK"
+              },
+              {
+                "min_level": 14,
+                "max_level": 14,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 12,
+                "max_level": 15,
+                "species": "SPECIES_METAPOD"
+              },
+              {
+                "min_level": 17,
+                "max_level": 17,
+                "species": "SPECIES_KAKUNA"
+              },
+              {
+                "min_level": 12,
+                "max_level": 17,
+                "species": "SPECIES_PARAS"
+              },
+              {
+                "min_level": 14,
+                "max_level": 14,
+                "species": "SPECIES_PINECO"
+              },
+              {
+                "min_level": 16,
+                "max_level": 16,
+                "species": "SPECIES_ARIADOS"
+              },
+              {
+                "min_level": 16,
+                "max_level": 16,
+                "species": "SPECIES_LEDIAN"
+              },
+              {
+                "min_level": 16,
+                "max_level": 16,
                 "species": "SPECIES_SCYTHER"
               },
               {
                 "min_level": 16,
                 "max_level": 16,
                 "species": "SPECIES_PINSIR"
+              },
+              {
+                "min_level": 16,
+                "max_level": 16,
+                "species": "SPECIES_SHUCKLE"
+              },
+              {
+                "min_level": 16,
+                "max_level": 16,
+                "species": "SPECIES_HERACROSS"
               }
             ]
           }

@@ -238,6 +238,31 @@ u32 ChooseWildMonIndex_Land(void)
     return wildMonIndex;
 }
 
+// Chance of one land slot; all slots add up to GetLandMonChanceTotal().
+u32 GetLandMonSlotChance(u32 slot)
+{
+    static const u16 sCumulative[LAND_WILD_COUNT] =
+    {
+        ENCOUNTER_CHANCE_LAND_MONS_SLOT_0, ENCOUNTER_CHANCE_LAND_MONS_SLOT_1,
+        ENCOUNTER_CHANCE_LAND_MONS_SLOT_2, ENCOUNTER_CHANCE_LAND_MONS_SLOT_3,
+        ENCOUNTER_CHANCE_LAND_MONS_SLOT_4, ENCOUNTER_CHANCE_LAND_MONS_SLOT_5,
+        ENCOUNTER_CHANCE_LAND_MONS_SLOT_6, ENCOUNTER_CHANCE_LAND_MONS_SLOT_7,
+        ENCOUNTER_CHANCE_LAND_MONS_SLOT_8, ENCOUNTER_CHANCE_LAND_MONS_SLOT_9,
+        ENCOUNTER_CHANCE_LAND_MONS_SLOT_10, ENCOUNTER_CHANCE_LAND_MONS_SLOT_11,
+    };
+
+    if (slot >= LAND_WILD_COUNT)
+        return 0;
+    if (slot == 0)
+        return sCumulative[0];
+    return sCumulative[slot] - sCumulative[slot - 1];
+}
+
+u32 GetLandMonChanceTotal(void)
+{
+    return ENCOUNTER_CHANCE_LAND_MONS_TOTAL;
+}
+
 // WATER_WILD_COUNT
 u32 ChooseWildMonIndex_Water(void)
 {

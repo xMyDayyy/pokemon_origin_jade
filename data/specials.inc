@@ -660,7 +660,7 @@ gSpecials::
 	def_special TransferBugContestMon
 	def_special JudgeBugContestMon
 	def_special RemoveSportBalls
-	def_special ShowBugContestChosenMon
+	def_special PrepareBugContestJudging
 	def_special NameRival
 	def_special IsNuzlockeNicknamingActive
 	def_special IsRandomMovesActivated
@@ -727,3 +727,4 @@ gSpecials::
 	def_special ClearCreditsSceneState
 	def_special RetrieveHoennLotteryNumber
 	def_special CreateBPHoldItemShop3
+	def_special BufferBugContestResult
