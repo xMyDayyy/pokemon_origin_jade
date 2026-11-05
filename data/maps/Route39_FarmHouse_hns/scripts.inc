@@ -37,6 +37,7 @@ Route39_FarmHouse_EventScript_FarmerM::
 	msgbox Route39_Text_FarmerMNoSale, MSGBOX_DEFAULT
 	hidemoneybox
 	closemessage
+	release
 	end
 
 Route39_FarmHouse_EventScript_FarmerMBuyMilk::

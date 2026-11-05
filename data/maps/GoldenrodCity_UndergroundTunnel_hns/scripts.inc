@@ -194,6 +194,7 @@ GoldenrodUnderground_EventScript_Brother_Haircut1::
 	msgbox GoldenrodUnderground_Text_OlderBrotherThatsAShame, MSGBOX_DEFAULT
 	hidemoneybox
 	closemessage
+	release
 	end
 
 GoldenrodUnderground_EventScript_Haircut1::
@@ -256,6 +257,7 @@ GoldenrodUnderground_EventScript_Brother_Haircut2::
 	msgbox GoldenrodUnderground_Text_YoungerBrotherDisappointed, MSGBOX_DEFAULT
 	hidemoneybox
 	closemessage
+	release
 	end
 
 GoldenrodUnderground_EventScript_Haircut2::

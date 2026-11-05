@@ -27,9 +27,13 @@ GoldenrodCity_UndergroundSwitches_InDoorAntiLock::
 	lock
 	msgbox GoldenrodCity_UndergroundSwitches_EventScript_AntiSoftLock_Text, MSGBOX_YESNO
 	closemessage
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NoOp
+	goto_if_eq VAR_RESULT, FALSE, GoldenrodCity_UndergroundSwitches_EventScript_AntiLockStay
 	warp MAP_GOLDENROD_CITY_UNDERGROUND_SWITCHES_HNS, 2, 25, 5
 	waitstate
+	release
+	end
+
+GoldenrodCity_UndergroundSwitches_EventScript_AntiLockStay::
 	release
 	end
 

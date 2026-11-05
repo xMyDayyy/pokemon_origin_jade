@@ -21,6 +21,7 @@ SlowpokeWell_B1F_EventScript_Kurt::
 	lock
 	msgbox SlowpokeWell_B1F_Text_KurtIntro, MSGBOX_DEFAULT
 	closemessage
+	release
 	end
 
 SlowpokeWell_B1F_EventScript_Grunt21::
