@@ -38,8 +38,8 @@ Sources (all in the repository):
   - src/legendaries_oj.c for the caught flags of one-time encounters;
   - the item lists of marts, the C arrays of VAR_GIFT_TABLES, C_ITEM_SOURCES
     and FACILITY_ITEMS, src/match_call.c's phone gifts and src/shop.c's badge
-    mart, the berry trees of new_game.inc and the held items of
-    src/data/trade.h.
+    mart and Battle Point shops (BP_EXCHANGES), the berry trees of
+    new_game.inc and the held items of src/data/trade.h.
 Values the scripts leave open come from the configuration below.
 
 LEVEL RULES of the PC, the owner's (2026-10-31):
@@ -70,14 +70,16 @@ ITEMS, the owner's (2026-11-02): everything the finished regions give.
     vending machines, merchants), gifts through a var (the script's own
     setvar values, VAR_GIFT_TABLES, phone trainers, random picks),
     C_ITEM_SOURCES (Mom's savings), FACILITY_ITEMS (the Route 40 Trainer
-    Hill's prizes and shop once the state opens it), berry trees, Rock Smash
-    finds, held items of in-game trades. Items only a clerk sells whose flag
-    the state leaves untouched (a challenge option: Goldenrod's mints) are
-    added only while that flag is clear.
+    Hill's prizes and shop once the state opens it), BP_EXCHANGES (the
+    Battle Point wares of the Trainer Hill's courtyard by Route 40, whose
+    tents pay Battle Points before the Johto title; O-060 (a)), berry
+    trees, Rock Smash finds, held items of in-game trades. Items only a
+    clerk sells whose flag the state leaves untouched (a challenge option:
+    Goldenrod's mints) are added only while that flag is clear.
   - the generator's reading: not counted are link-only sources
     (VAR_GIFT_SKIP), decorations, held items of wild Pokemon, Pickup, and
-    the Kampfzone with everything bought with Battle Points (the Kampfzone
-    opens only after the Hoenn title; the courtyard tents' BP);
+    the Kampfzone with its Battle Point exchange (it opens only after the
+    Hoenn title);
   - a pocket keeps POCKET_RESERVE free slots for the next region; what does
     not fit goes into the PC's item storage, purchases first.
 
@@ -393,6 +395,25 @@ FACILITY_ITEMS = {
     "FLAG_IS_JOHTO_CHAMPION": ([("src/trainer_hill.c", re.compile(r"^sPrizeList\w+_Hns$"))],
                                ["TrainerHill_Entrance_hns_Pokemart_Basic"]),
 }
+# Battle Point exchanges of facility maps the walk leaves out, whose wares
+# count once (owner, O-060 (a)): exchange map -> the state map it opens
+# from. Its clerks' CreateBP*Shop specials name the ware arrays (src/shop.c);
+# decoration shops are left out. The Kampfzone's exchange opens only after
+# the Hoenn title and is not listed.
+BP_EXCHANGES = {
+    # Route 40 Trainer Hill's courtyard; its three tents pay Battle Points
+    # before the Johto title.
+    "TrainerHill_Courtyard_hns": "Route40_hns",
+}
+# Gifts on facility maps the walk leaves out that a player gets before the
+# state's title: map -> the labels kept (the rest of the map stays cut).
+FACILITY_GIFTS_B = {
+    # Route 40 courtyard tent: the girl with TM Safeguard (FLAG_RECEIVED_TM_ATTRACT).
+    "VerdanturfTown_BattleTentLobby_hns": ("VerdanturfTown_BattleTentLobby_hns_EventScript_AttractGiver",
+                                           "VerdanturfTown_BattleTentLobby_hns_EventScript_ReceivedAttract"),
+}
+BP_SHOP_FILE = "src/shop.c"
+BP_SHOP_DATA = "src/data/battle_frontier/battle_frontier_exchange_corner.h"
 # src/shop.c adds one per ten balls bought in a mart (I_PREMIER_BALL_BONUS).
 PREMIER_BALL_BONUS = "ITEM_PREMIER_BALL"
 # Gifts through a var a single player cannot get: label -> reason.
@@ -1215,6 +1236,15 @@ def c_array_names(cond, path, pattern):
     return sorted(n for n in re.findall(r"\b(\w+)\s*\[\s*\w*\s*\]\s*=\s*\{", text) if pattern.match(n))
 
 
+def load_bp_shops(cond):
+    """Special -> (mart type, BPShopEntry array) of src/shop.c's CreateBP*Shop
+    functions."""
+    text = "\n".join(l for _, l in cond.lines(BP_SHOP_FILE))
+    return {f: (t, arr) for f, t, arr in re.findall(
+        r"\bvoid\s+(CreateBP\w+)\s*\(\s*void\s*\)\s*\{\s*CreateBPShopCommon\(\s*(\w+)\s*,\s*(\w+)\s*\)\s*;\s*\}",
+        text)}
+
+
 def load_match_call_gifts(cond):
     """Item var -> array of the phone trainers' gifts (HNS_MC_ITEM entries)."""
     text = "\n".join(l for _, l in cond.lines(MATCH_CALL_FILE))
@@ -1383,6 +1413,7 @@ class World:
         self.bag_limits = load_bag_limits(self.cond)
         self.item_values, self.item_by_value = load_item_values()
         self.match_call_gifts = load_match_call_gifts(self.cond)
+        self.bp_shops = load_bp_shops(self.cond)
         self.berry_tree_ids, self.berry_trees = load_berry_trees(self.cond)
         self.class_money = load_class_money()
         self.parties = {}
@@ -1831,6 +1862,18 @@ class Run:
                     for arr in c_array_names(w.cond, p, pattern):
                         for i in c_item_array(w.cond, p, arr):
                             once[self.item(i)].add(arr)
+        state_maps = {d["_dir"] for d in self.maps}
+        for mdir, entry in sorted(BP_EXCHANGES.items()):
+            if entry not in state_maps:
+                continue
+            wares = self.bp_wares(mdir)
+            if not wares:
+                problems.append("BP exchange %s (BP_EXCHANGES): no clerk opens a Battle Point shop" % mdir)
+            for arr, items in wares:
+                if not items:
+                    problems.append("BP exchange %s: no items in %s of %s" % (mdir, arr, BP_SHOP_DATA))
+                for i in items:
+                    once[self.item(i)].add(arr)
         for d in self.maps:
             for o in d.get("object_events") or []:
                 if o.get("script") != "BerryTreeScript":
@@ -1851,6 +1894,19 @@ class Run:
         self.once = once
         self.once_gates = gates
         self.once_problems = problems
+
+    def bp_wares(self, mdir):
+        """(array, items) of each Battle Point shop the clerks of an exchange
+        map open; decoration shops hold no bag items."""
+        d = self.w.maps.by_dir.get(mdir)
+        out = {}
+        for name in sorted(self.scripts.walk(Maps.entries(d)) if d else ()):
+            for _, cmd, args in self.scripts.labels[name]["cmds"]:
+                if cmd == "special" and args and args[0] in self.w.bp_shops:
+                    mtype, arr = self.w.bp_shops[args[0]]
+                    if mtype != "MART_TYPE_BP_DECOR" and arr not in out:
+                        out[arr] = c_item_array(self.w.cond, BP_SHOP_DATA, arr)
+        return sorted(out.items())
 
     def _clerk_flag(self, labels):
         """The flag that hides the clerk of a mart, if the state leaves it at
@@ -2150,7 +2206,8 @@ def config_a(world):
 
 
 def config_b(world):
-    kanto_johto = {d["_dir"] for d in world.maps.kanto_all} | {d["_dir"] for d in world.maps.johto}
+    extra = [world.maps.by_dir[d] for d in sorted(FACILITY_GIFTS_B)]
+    kanto_johto = {d["_dir"] for d in world.maps.kanto_all + world.maps.johto + extra}
 
     def cut(name):
         if name in CUT_LABELS_B or name.startswith(CUT_PREFIXES_B):
@@ -2159,9 +2216,11 @@ def config_b(world):
         if CUT_FILES_B.match(f):
             return True
         mdir = map_dir_of(f)
+        if mdir in FACILITY_GIFTS_B:
+            return name not in FACILITY_GIFTS_B[mdir]
         return bool(mdir) and mdir not in kanto_johto
     return {
-        "name": "B", "maps": world.maps.kanto_all + world.maps.johto, "cut": cut,
+        "name": "B", "maps": world.maps.kanto_all + world.maps.johto + extra, "cut": cut,
         "drop_flags": DROP_FLAGS_B, "manual_flags": dict(MANUAL_FLAGS, **MANUAL_FLAGS_B),
         "manual_vars": dict(MANUAL_VARS, **MANUAL_VARS_B),
         "untouched": {n: r for n, r in UNTOUCHED_B.items() if n not in MANUAL_FLAGS_B and n not in MANUAL_VARS_B},
@@ -2402,6 +2461,20 @@ class States:
                 if not any(c_item_array(self.world.cond, p, arr)
                            for arr in c_array_names(self.world.cond, p, pattern)):
                     out.append("%s: no prize arrays %s in %s (FACILITY_ITEMS)" % (flag, pattern.pattern, p))
+        maps_b = {d["_dir"] for d in self.b.maps}
+        for mdir, entry in sorted(BP_EXCHANGES.items()):
+            d = self.world.maps.by_dir.get(mdir)
+            if not d:
+                out.append("%s: listed in BP_EXCHANGES, but no active map" % mdir)
+                continue
+            if entry not in maps_b:
+                out.append("%s: listed in BP_EXCHANGES, but state B has no map %s" % (mdir, entry))
+            entry_id = self.world.maps.by_dir.get(entry, {}).get("id")
+            linked = ({c.get("map") for c in d.get("connections") or []}
+                      | {e.get("dest_map") for e in d.get("warp_events") or []})
+            if entry_id not in linked:
+                out.append("%s: BP_EXCHANGES opens it from %s, but no connection or warp leads there"
+                           % (mdir, entry))
         return out
 
     def _check_items(self, name, run, bag, pc):
