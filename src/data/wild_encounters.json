@@ -60730,12 +60730,17 @@
               {
                 "min_level": 35,
                 "max_level": 40,
-                "species": "SPECIES_WOOPER"
+                "species": "SPECIES_DUNSPARCE"
               },
               {
                 "min_level": 35,
                 "max_level": 40,
-                "species": "SPECIES_WOOPER"
+                "species": "SPECIES_KECLEON"
+              },
+              {
+                "min_level": 35,
+                "max_level": 40,
+                "species": "SPECIES_RALTS"
               },
               {
                 "min_level": 35,
@@ -60745,27 +60750,7 @@
               {
                 "min_level": 35,
                 "max_level": 40,
-                "species": "SPECIES_DRATINI"
-              },
-              {
-                "min_level": 35,
-                "max_level": 40,
-                "species": "SPECIES_DRAGONAIR"
-              },
-              {
-                "min_level": 35,
-                "max_level": 40,
-                "species": "SPECIES_DUNSPARCE"
-              },
-              {
-                "min_level": 35,
-                "max_level": 40,
-                "species": "SPECIES_DRATINI"
-              },
-              {
-                "min_level": 35,
-                "max_level": 40,
-                "species": "SPECIES_PILOSWINE"
+                "species": "SPECIES_SNORUNT"
               },
               {
                 "min_level": 35,
@@ -60775,12 +60760,27 @@
               {
                 "min_level": 35,
                 "max_level": 40,
-                "species": "SPECIES_DUNSPARCE"
+                "species": "SPECIES_MAWILE"
               },
               {
                 "min_level": 35,
                 "max_level": 40,
-                "species": "SPECIES_SNEASEL"
+                "species": "SPECIES_DRATINI"
+              },
+              {
+                "min_level": 35,
+                "max_level": 40,
+                "species": "SPECIES_ABSOL"
+              },
+              {
+                "min_level": 35,
+                "max_level": 40,
+                "species": "SPECIES_BAGON"
+              },
+              {
+                "min_level": 35,
+                "max_level": 40,
+                "species": "SPECIES_CHIMECHO"
               },
               {
                 "min_level": 35,
@@ -60795,27 +60795,27 @@
               {
                 "min_level": 35,
                 "max_level": 40,
-                "species": "SPECIES_WOOPER"
+                "species": "SPECIES_CLAMPERL"
               },
               {
                 "min_level": 35,
                 "max_level": 40,
-                "species": "SPECIES_GOLDUCK"
+                "species": "SPECIES_DRATINI"
               },
               {
                 "min_level": 35,
                 "max_level": 40,
-                "species": "SPECIES_GOLDUCK"
+                "species": "SPECIES_RELICANTH"
               },
               {
                 "min_level": 35,
                 "max_level": 40,
-                "species": "SPECIES_QUAGSIRE"
+                "species": "SPECIES_DRAGONAIR"
               },
               {
                 "min_level": 35,
                 "max_level": 40,
-                "species": "SPECIES_QUAGSIRE"
+                "species": "SPECIES_AZURILL"
               }
             ]
           },
@@ -60830,12 +60830,17 @@
               {
                 "min_level": 35,
                 "max_level": 40,
-                "species": "SPECIES_MAGIKARP"
+                "species": "SPECIES_FEEBAS"
               },
               {
                 "min_level": 35,
                 "max_level": 40,
                 "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 35,
+                "max_level": 40,
+                "species": "SPECIES_FEEBAS"
               },
               {
                 "min_level": 35,
@@ -60850,12 +60855,7 @@
               {
                 "min_level": 35,
                 "max_level": 40,
-                "species": "SPECIES_QUAGSIRE"
-              },
-              {
-                "min_level": 35,
-                "max_level": 40,
-                "species": "SPECIES_QUAGSIRE"
+                "species": "SPECIES_FEEBAS"
               },
               {
                 "min_level": 35,
@@ -60865,7 +60865,7 @@
               {
                 "min_level": 35,
                 "max_level": 40,
-                "species": "SPECIES_DRAGONAIR"
+                "species": "SPECIES_RELICANTH"
               },
               {
                 "min_level": 35,
