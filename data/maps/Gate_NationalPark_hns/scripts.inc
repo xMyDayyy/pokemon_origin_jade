@@ -4,6 +4,7 @@ Gate_NationalPark_hns_MapScripts::
 Gate_NationalPark_EventScript_Attendant::
 	lockall
 	faceplayer
+	goto_if_ge VAR_BUG_CONTEST_STATE, BUG_CONTEST_PRIZE_HELD, Gate_NationalPark_EventScript_GiveHeldPrize
 	goto_if_set FLAG_DAILY_BUG_CONTEST_COMPLETED, Gate_NationalPark_EventScript_AttendantAlreadyPlayed
 	call Gate_NationalPark_EventScript_IsContestDay
 	goto_if_eq VAR_RESULT, FALSE, Gate_NationalPark_EventScript_AttendantNoContest
@@ -30,7 +31,8 @@ Gate_NationalPark_EventScript_AttendantStart::
 	closemessage
 	msgbox Route35NationalParkGate_Text_OfficerGiveSportBalls, MSGBOX_DEFAULT
 	closemessage
-	giveitem ITEM_SPORT_BALL, 30
+	@ Contest equipment: no item randomizer.
+	giveitem_norandom ITEM_SPORT_BALL, 30
 	closemessage
 	msgbox Route35NationalParkGate_Text_OfficerExplainRules, MSGBOX_DEFAULT
 	closemessage
@@ -49,7 +51,8 @@ Gate_NationalPark_EventScript_OnlyOneMon::
 	special SavePlayerParty
 	msgbox Route35NationalParkGate_Text_OfficerGiveSportBalls, MSGBOX_DEFAULT
 	closemessage
-	giveitem ITEM_SPORT_BALL, 30
+	@ Contest equipment: no item randomizer.
+	giveitem_norandom ITEM_SPORT_BALL, 30
 	closemessage
 	msgbox Route35NationalParkGate_Text_OfficerExplainRules, MSGBOX_DEFAULT
 	closemessage
@@ -86,6 +89,22 @@ Gate_NationalPark_EventScript_AttendantCancel::
 	msgbox Route35NationalParkGate_Text_TakePartInFuture, MSGBOX_DEFAULT
 	closemessage
 	fadedefaultbgm
+	releaseall
+	end
+
+@ Prize the bag had no room for at the judging (BugContest_EventScript_HoldPrize).
+Gate_NationalPark_EventScript_GiveHeldPrize::
+	msgbox Route35NationalParkGate_Text_HeresThePrizeWeWereHolding, MSGBOX_DEFAULT
+	copyvar VAR_0x8005, VAR_BUG_CONTEST_STATE
+	subvar VAR_0x8005, BUG_CONTEST_PRIZE_HELD
+	giveitem_norandom VAR_0x8005
+	goto_if_eq VAR_RESULT, FALSE, Gate_NationalPark_EventScript_StillNoRoomForPrize
+	setvar VAR_BUG_CONTEST_STATE, 0
+	releaseall
+	end
+
+Gate_NationalPark_EventScript_StillNoRoomForPrize::
+	msgbox BugContest_Text_BagFullHoldPrize, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -135,6 +154,7 @@ Gate_NationalPark_Movement_Player_EnterParkBot:
 Gate_NationalPark_EventScript_BAttendant::
 	lockall
 	faceplayer
+	goto_if_ge VAR_BUG_CONTEST_STATE, BUG_CONTEST_PRIZE_HELD, Gate_NationalPark_EventScript_GiveHeldPrize
 	goto_if_set FLAG_DAILY_BUG_CONTEST_COMPLETED, Gate_NationalPark_EventScript_AttendantAlreadyPlayed
 	call Gate_NationalPark_EventScript_IsContestDay
 	goto_if_eq VAR_RESULT, FALSE, Gate_NationalPark_EventScript_AttendantNoContest
@@ -161,7 +181,8 @@ Gate_NationalPark_EventScript_BAttendantStart::
 	closemessage
 	msgbox Route35NationalParkGate_Text_OfficerGiveSportBalls, MSGBOX_DEFAULT
 	closemessage
-	giveitem ITEM_SPORT_BALL, 30
+	@ Contest equipment: no item randomizer.
+	giveitem_norandom ITEM_SPORT_BALL, 30
 	closemessage
 	msgbox Route35NationalParkGate_Text_OfficerExplainRules, MSGBOX_DEFAULT
 	closemessage
@@ -180,7 +201,8 @@ Gate_NationalPark_EventScript_OnlyOneMonB::
 	special SavePlayerParty
 	msgbox Route35NationalParkGate_Text_OfficerGiveSportBalls, MSGBOX_DEFAULT
 	closemessage
-	giveitem ITEM_SPORT_BALL, 30
+	@ Contest equipment: no item randomizer.
+	giveitem_norandom ITEM_SPORT_BALL, 30
 	closemessage
 	msgbox Route35NationalParkGate_Text_OfficerExplainRules, MSGBOX_DEFAULT
 	closemessage
@@ -340,6 +362,17 @@ Route35NationalParkGate_Text_FirstMonCantBattle:
 	.string "party can't battle.\p"
 	.string "Please switch it with the POKéMON\n"
 	.string "you want to use, then come see me.$"
+#endif
+
+Route35NationalParkGate_Text_HeresThePrizeWeWereHolding:
+#if GERMAN
+	.string "Bist du {PLAYER}?\p"
+	.string "Hier ist der Preis, den wir für dich\n"
+	.string "aufbewahrt haben.$"
+#else
+	.string "{PLAYER}?\p"
+	.string "Here's the prize we were holding\n"
+	.string "for you.$"
 #endif
 
 Route35NationalParkGate_Text_ContestIsOver:

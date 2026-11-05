@@ -140,6 +140,8 @@
 #define FLAG_HIDDEN_ITEM_UNDERWATER_128_RELIC_CROWN  (OJ_FLAGS_JOHTO + 33)
 // Snowball in Ice Path; HnS had it only in New Sinjoh (locked).
 #define FLAG_HIDDEN_ITEM_ICE_PATH_B3F_SNOWBALL       (OJ_FLAGS_JOHTO + 34)
+// The S.S. Aqua grandpa still owes the Metal Coat: the bag was full at the reunion.
+#define FLAG_SSAQUA_METAL_COAT_PENDING               (OJ_FLAGS_JOHTO + 35)
 
 // ---------------------------------------------------------------------
 // Hoenn (OJ_FLAGS_HOENN + 0 to + 95)

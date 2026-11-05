@@ -1530,9 +1530,11 @@ Common_EventScript_RecieveMonPartyNamed::
 	waitfanfare
 	return
 
+@ Ends the gift script: givenamedmon only fills the party.
 Common_EventScript_PartyIsFull::
 	msgbox Common_Text_PartyIsFull, MSGBOX_DEFAULT
 	closemessage
+	release
 	end
 
 Common_Text_ReceivedMon:

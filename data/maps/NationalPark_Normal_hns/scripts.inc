@@ -46,7 +46,7 @@ NationalPark_Normal_EventScript_TeacherQuickclaw::
 	goto_if_set FLAG_GOT_QUICK_CLAW, NationalPark_Normal_EventScript_TeacherQuickclaw2
 	msgbox NationalPark_Normal_Text_Teacher1, MSGBOX_DEFAULT
 	giveitem ITEM_QUICK_CLAW
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_GOT_QUICK_CLAW
 NationalPark_Normal_EventScript_TeacherQuickclaw2::
 	msgbox NationalPark_Normal_Text_Teacher1_QuickClaw, MSGBOX_DEFAULT

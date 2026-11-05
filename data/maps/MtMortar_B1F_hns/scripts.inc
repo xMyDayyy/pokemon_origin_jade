@@ -41,6 +41,7 @@ MountMortar4_EventScript_KiyoTryGiveTyrogue::
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TYROGUE
 	bufferspeciesname STR_VAR_1, SPECIES_TYROGUE
 	givemon SPECIES_TYROGUE, 25
+	goto_if_eq VAR_RESULT, MON_CANT_GIVE, Common_EventScript_NoMoreRoomForPokemon
 	call Common_EventScript_GiftMon
 	setflag FLAG_GOT_TYROGUE
 MountMortar4_EventScript_KiyoAfter::

@@ -31,6 +31,10 @@
 #define VAR_BLACKTHORN_CITY_STATE                        0x4056
 #define VAR_BLACKTHORN_GYM_STATE                         0x4057
 #define VAR_BUG_CONTEST_STATE                            0x4058
+// Origin Jade: from this value on, VAR_BUG_CONTEST_STATE holds a prize the bag had
+// no room for (item id + BUG_CONTEST_PRIZE_HELD), see bug_contest.inc. Must stay
+// below VARS_START: scripts read 0x4000-0x40FF and 0x8000-0x80FF as var ids.
+#define BUG_CONTEST_PRIZE_HELD                           0x1000
 #define VAR_CERULEAN_CITY_STATE                          0x4059
 #define VAR_CHERRYGROVE_CITY_STATE                       0x405A
 #define VAR_CIANWOOD_CITY_STATE                          0x405B

@@ -56,8 +56,11 @@ VioletCity_PokemonCenter_EventScript_Aide_GiveEgg::
 	goto_if_eq VAR_RESULT, MON_CANT_GIVE, Common_EventScript_NoMoreRoomForPokemon @ party limit of 1 and every BOX full
 	call_if_eq VAR_RESULT, MON_GIVEN_TO_PC, VioletCity_PokemonCenter_EventScript_Aide_EggSentToPC
 	setflag FLAG_RECEIVED_TOGEPI_EGG
+@ Bag full: the aide stays until the player takes the Exp. Share.
+VioletCity_PokemonCenter_EventScript_Aide_GiveItem::
 	msgbox VioletCity_PokeCenter_Text_ElmsAideGiveItem, MSGBOX_DEFAULT
 	giveitem ITEM_EXP_SHARE_SMALL
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_HIDE_VIOLET_CITY_AIDE
 	setvar VAR_VIOLET_CITY_KIMONO_GIRL, 1
 	clearflag FLAG_HIDE_VIOLET_CITY_KIMONO_GIRL
@@ -71,6 +74,7 @@ VioletCity_PokemonCenter_EventScript_Aide_EggSentToPC::
 	return
 
 VioletCity_PokemonCenter_EventScript_Aide_Received::
+	goto_if_unset FLAG_HIDE_VIOLET_CITY_AIDE, VioletCity_PokemonCenter_EventScript_Aide_GiveItem
 	msgbox VioletCity_PokeCenter_Text_ElmsAideGiveEgg, MSGBOX_DEFAULT
 	closemessage
 	release

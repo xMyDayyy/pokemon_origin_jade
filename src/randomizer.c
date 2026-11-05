@@ -473,7 +473,7 @@ static inline bool32 ShouldRandomizeItem(u16 itemId)
     return !(IsItemHM(itemId) || IsKeyItem(itemId) || itemId == ITEM_GS_BALL || itemId == ITEM_NONE);
 }
 
-// Fossils and evolution items keep their place.
+// Fossils, evolution items and the Shell Bell's Shoal Salt and Shoal Shell keep their place.
 static inline bool32 IsItemKeptInPlace(u16 itemId)
 {
     switch (gItemsInfo[itemId].sortType)
@@ -495,6 +495,9 @@ static inline bool32 IsItemKeptInPlace(u16 itemId)
     case ITEM_DEEP_SEA_SCALE:
     case ITEM_RAZOR_CLAW:
     case ITEM_RAZOR_FANG:
+    // Shoal Cave: four of each are traded for the Shell Bell.
+    case ITEM_SHOAL_SALT:
+    case ITEM_SHOAL_SHELL:
         return TRUE;
     default:
         return FALSE;
@@ -564,15 +567,20 @@ void FindHiddenItemRandomize_NativeCall(struct ScriptContext *ctx)
 
 // Items handed over by NPCs (the `giveitem` macro / STD_OBTAIN_ITEM). These have no
 // object event of their own, so seed off the current map plus the NPC being talked to.
+// VAR_0x8001 is the amount: a rolled item without room in the bag falls back to the
+// original gift, so a checkitemspace on the original item still holds.
 void ObtainItemRandomize_NativeCall(struct ScriptContext *ctx)
 {
     if (RandomizerFeatureEnabled(RANDOMIZE_FIELD_ITEMS))
     {
-        gSpecialVar_0x8000 = RandomizeFoundItem(
+        u16 item = RandomizeFoundItem(
             gSpecialVar_0x8000,
             gSaveBlock1Ptr->location.mapNum,
             gSaveBlock1Ptr->location.mapGroup,
             gSpecialVar_LastTalked);
+
+        if (CheckBagHasSpace(item, gSpecialVar_0x8001) || !CheckBagHasSpace(gSpecialVar_0x8000, gSpecialVar_0x8001))
+            gSpecialVar_0x8000 = item;
     }
 }
 

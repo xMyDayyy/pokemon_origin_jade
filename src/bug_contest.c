@@ -20,6 +20,8 @@
 #include "constants/event_objects.h"
 
 #if IS_HNS
+// Held contest prize: item id + BUG_CONTEST_PRIZE_HELD must stay a plain number.
+STATIC_ASSERT(ITEMS_COUNT + BUG_CONTEST_PRIZE_HELD <= VARS_START, BugContestPrizeHeldEncoding);
 
 // Judging like HGSS: score = rarity points + level + IV points + HP points.
 #define BUG_CONTEST_NPC_COUNT        4

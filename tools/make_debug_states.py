@@ -375,6 +375,9 @@ VAR_GIFT_TABLES = {
     "BugContestEventScript_Judging": [("src/bug_contest.c", "sFirstPlaceRewards"),
                                       ("src/bug_contest.c", "sSecondPlaceRewards"),
                                       ("src/bug_contest.c", "sThirdPlaceRewards")],
+    "Gate_NationalPark_EventScript_GiveHeldPrize": [("src/bug_contest.c", "sFirstPlaceRewards"),
+                                                    ("src/bug_contest.c", "sSecondPlaceRewards"),
+                                                    ("src/bug_contest.c", "sThirdPlaceRewards")],
     "GoldenrodCity_RadioTower_1F_EventScript_LotteryClerk": [("src/lottery_corner.c", "sLotteryPrizes")],
     "GoldenrodCity_RadioTower_1F_EventScript_GivePrizeFromEarlier": [("src/lottery_corner.c", "sLotteryPrizes")],
     "GoldenrodCity_RadioTower_2F_EventScript_BuenaCorrect": [("src/pokenav_radio.c", "sBuenaRewardTable")],
@@ -557,6 +560,9 @@ SKIP_ITEMS_B = {
 # the same item: label -> reason.
 EXCLUSIVE_GIFTS_B = {
     "IcePath_B3F_EventScript_Swinub": "Delibird or Swinub gives TM72, FLAG_ITEM_ICEPATH4_TM_AVALANCHE allows one",
+    # Second try of a gift the bag had no room for.
+    "CianwoodCity_EventScript_ChucksWifeGiveSharpBeak": "Sharp Beak of the Fly scene (VAR_GETFLY 3)",
+    "SSAqua_RoomSSE_EventScript_GiveMetalCoat": "Metal Coat of the reunion (FLAG_SSAQUA_METAL_COAT_PENDING)",
 }
 CUT_PREFIXES_B = CUT_PREFIXES + (
     "BattleFrontier_", "TrainerHill_", "ArtisanCave_",
@@ -641,6 +647,7 @@ MANUAL_FLAGS_B = {
     # The M.S. Aqua's maiden voyage done: the granddaughter found.
     "FLAG_HIDE_SSAQUA_1F_GRANDPA": 1, "FLAG_HIDE_SSAQUA_CAPTAINS_ROOM_GRANDDAUGHTER": 1,
     "FLAG_HIDE_SSAQUA_ROOM_SSE_GRANDDAUGHTER": 0, "FLAG_HIDE_SSAQUA_SAILOR": 0,
+    "FLAG_SSAQUA_METAL_COAT_PENDING": 0,               # Metal Coat handed over at the reunion
     "FLAG_HIDE_TOHJO_GIOVANNI": 1,                     # Celebi's scene at Tohjo Falls
 }
 

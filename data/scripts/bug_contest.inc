@@ -70,6 +70,7 @@ BugContestEventScript_Judging::
 	special TransferBugContestMon
 	delay 20
 	giveitem VAR_0x8005
+	call_if_eq VAR_RESULT, FALSE, BugContest_EventScript_HoldPrize
 	msgbox BugContest_Text_TransferAndReturn, MSGBOX_DEFAULT
 	playse SE_SUCCESS
 	waitse
@@ -77,6 +78,14 @@ BugContestEventScript_Judging::
 	closemessage
 	goto BugContest_EventScript_End
 	end
+
+@ Bag full: the gate attendant keeps the prize (VAR_0x8000, the item after the
+@ randomizer) in VAR_BUG_CONTEST_STATE until the player has room, like HGSS.
+BugContest_EventScript_HoldPrize::
+	msgbox BugContest_Text_BagFullHoldPrize, MSGBOX_DEFAULT
+	copyvar VAR_BUG_CONTEST_STATE, VAR_0x8000
+	addvar VAR_BUG_CONTEST_STATE, BUG_CONTEST_PRIZE_HELD
+	return
 
 @ Not among the first three: the consolation prize.
 BugContest_EventScript_Consolation::
@@ -98,13 +107,17 @@ BugContest_EventScript_End::
 	special LoadPlayerParty
 	special ExitBugContestMode
 	clearflag FLAG_DISABLE_EXP_GAIN
-	setvar VAR_BUG_CONTEST_STATE, 0
+	call_if_lt VAR_BUG_CONTEST_STATE, BUG_CONTEST_PRIZE_HELD, BugContest_EventScript_ClearState
 	special RemoveSportBalls
 	goto_if_eq VAR_TEMP_1, 1, BugContest_EventScript_SideEnd
 	warp MAP_GATE_NATIONAL_PARK_HNS, 7, 2
 	waitstate
 	releaseall
 	end
+
+BugContest_EventScript_ClearState::
+	setvar VAR_BUG_CONTEST_STATE, 0
+	return
 
 BugContest_EventScript_SideEnd::
 	warp MAP_GATE_NATIONAL_PARK_HNS, 35, 7
@@ -276,6 +289,20 @@ BugContest_Text_TakePartInFuture:
 	.string "Thank you for participating!\n"
 	.string "We hope you'll take part in the\l"
 	.string "future.$"
+#endif
+
+BugContest_Text_BagFullHoldPrize::
+#if GERMAN
+	.string "Oh, oh…\p"
+	.string "Sieht so aus, als wäre dein Beutel voll.\p"
+	.string "Dann bewahren wir deinen Preis noch\n"
+	.string "etwas länger auf. Schaffe bitte\l"
+	.string "Platz und komme dann wieder.$"
+#else
+	.string "Uh-oh…\n"
+	.string "Your BAG is full, {PLAYER}.\p"
+	.string "We'll hold on to your prize.\n"
+	.string "Please make room, then come see me.$"
 #endif
 
 BugContest_Text_TransferAndReturn:

@@ -205,12 +205,14 @@ IlexForest_EventScript_Trigger::
 	checkitem ITEM_HM_CUT
 	goto_if_eq VAR_RESULT, TRUE, IlexForest_EventScript_HasCut
 	giveitem ITEM_HM_CUT
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	goto IlexForest_EventScript_CutDone
 
+@ Bag full: nothing is set, the trigger runs again.
 IlexForest_EventScript_HasCut::
 	msgbox IlexForest_Text_CharcoalMasterHasCut, MSGBOX_DEFAULT
 	giveitem ITEM_MIRACLE_SEED
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 
 IlexForest_EventScript_CutDone::
 	msgbox IlexForest_Text_CharcoalMasterOutro, MSGBOX_DEFAULT

@@ -179,6 +179,10 @@ EcruteakCity_Theater_EventScript_SetSurfGiven::
 	setvar VAR_ECRUTEAK_CITY_THEATER, 3
 	return
 
+EcruteakCity_Theater_EventScript_SetSurfReceived::
+	setflag FLAG_RECEIVED_HM_SURF
+	return
+
 EcruteakCity_Theater_EventScript_PostRocketLeft::
 	applymovement LOCALID_ECRUTEAK_ZUKI, Common_Movement_WalkLeft1
 	waitmovement 0
@@ -339,6 +343,7 @@ EcruteakCity_Theater_EventScript_SurfGuy::
 
 EcruteakCity_Theater_EventScript_SurfGuy_GiveSurf::
 	call EcruteakCity_Theater_EventScript_SurfGuyReward
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_HM_SURF
 	closemessage
 	setflag FLAG_RECEIVED_HM_SURF
@@ -347,6 +352,7 @@ EcruteakCity_Theater_EventScript_SurfGuy_GiveSurf::
 	end
 
 @ Surf's HM, or Mystic Water for a player who still has it from Kanto.
+@ VAR_RESULT: FALSE if the bag had no room.
 EcruteakCity_Theater_EventScript_SurfGuyReward::
 	checkitem ITEM_HM_SURF
 	goto_if_eq VAR_RESULT, TRUE, EcruteakCity_Theater_EventScript_SurfGuyHasSurf
@@ -373,9 +379,10 @@ EcruteakCity_Theater_EventScript_TriggerSurfGuy::
 	waitmovement 0
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
 	call EcruteakCity_Theater_EventScript_SurfGuyReward
-	setflag FLAG_RECEIVED_HM_SURF
+	@ Bag full: the trigger ends, talking to him gives the Mystic Water later.
+	call_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+	call_if_eq VAR_RESULT, TRUE, EcruteakCity_Theater_EventScript_SetSurfReceived
 	closemessage
-	setflag FLAG_RECEIVED_HM_SURF
 	call_if_lt VAR_ECRUTEAK_CITY_THEATER, 3, EcruteakCity_Theater_EventScript_SetSurfGiven
 	applymovement LOCALID_SURF_GUY, EcruteakCity_Theater_Movement_SurfGuy2
 	waitmovement 0

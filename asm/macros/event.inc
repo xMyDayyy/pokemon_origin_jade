@@ -2938,6 +2938,7 @@ HnsItemDone_\@:
 	.macro giveitem_msg msg:req, item:req, amount=1, fanfare=MUS_LEVEL_UP
 	setorcopyvar VAR_0x8000, \item
 #if RANDOMIZER_AVAILABLE
+	setorcopyvar VAR_0x8001, \amount
 	callnative ObtainItemRandomize_NativeCall
 	goto_if_ne VAR_0x8000, \item, GiveItemMsgRandomized_\@
 #endif

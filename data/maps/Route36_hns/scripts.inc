@@ -57,6 +57,7 @@ Route36_EventScript_RockSmashGuy3::
 Route36_EventScript_RockSmashGuyHasHM::
 	msgbox Route36_Text_RockSmashGuyHasHM, MSGBOX_DEFAULT
 	giveitem ITEM_HARD_STONE
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_HM_ROCK_SMASH
 	closemessage
 	release
