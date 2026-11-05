@@ -4906,13 +4906,12 @@ enum TrainerClassID GetUnionRoomTrainerClass(void)
 void CreateEnemyEventMon(void)
 {
     s32 species = gSpecialVar_0x8004;
-    // Johto floor, see docs/origin_jade/DECISIONS.md, D-039.
+    // Johto and Hoenn floor.
     s32 level = ScaleStaticMonLevel(gSpecialVar_0x8005);
     s32 itemId = gSpecialVar_0x8006;
 
     #if RANDOMIZER_AVAILABLE
-    if (RandomizerFeatureEnabled(RANDOMIZE_FIXED_MON))
-        species = RandomizeMon(RANDOMIZER_REASON_FIXED_ENCOUNTER, GetRandomizerOption(RANDOMIZER_OPTION_SPECIES_MODE), Random32(), species);
+    species = RandomizeScriptedFixedMon(species);
     #endif
 
     ZeroEnemyPartyMons();
@@ -9039,8 +9038,8 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
     u8 bonus;
     u32 currentEVCap = GetCurrentEVCap();
 
-    // No EVs challenge is lifted once Red is defeated, matching the EV item check in ItemUseCB_Medicine
-    if (gSaveBlock3Ptr->challengeSettings.tx_Challenges_NoEVs && !FlagGet(FLAG_DEFEATED_RED))
+    // No EVs challenge ends together with the Nuzlocke, matching the EV item check in ItemUseCB_Medicine
+    if (gSaveBlock3Ptr->challengeSettings.tx_Challenges_NoEVs && !FlagGet(FLAG_END_NUZLOCKE))
         return;
 
     heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);

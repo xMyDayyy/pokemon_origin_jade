@@ -29,6 +29,7 @@ PewterCity_Mart_Items::
 	.2byte ITEM_BURN_HEAL
 	.2byte ITEM_ESCAPE_ROPE
 	.2byte ITEM_REPEL
+	.2byte ITEM_PEWTER_CRUNCHIES
 	.2byte ITEM_NONE
 	release
 	end
@@ -38,7 +39,7 @@ PewterCity_Mart_Text_BoughtWeirdFishFromShadyGuy::
 	.string "Ein zwielichtiger, alter Mann hat\n"
 	.string "mir dieses seltsame Pkmn angedreht!\p"
 	.string "Es ist vollkommen schwach und hat\n"
-	.string "500$ gekostet!$"
+	.string "¥500 gekostet!$"
 #else
 	.string "A shady old guy sucked me into\n"
 	.string "buying this weird fish POKéMON!\p"

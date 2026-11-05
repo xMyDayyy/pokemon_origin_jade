@@ -85,6 +85,14 @@ Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move
 
+Kabutops
+Level: 36
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Aerodactyl
+Level: 36
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
 Omastar
 Level: 37
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
@@ -97,6 +105,18 @@ Gender: Male
 Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move
+
+Smeargle
+Level: 39
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Spore
+- Fake Out
+- Shadow Ball
+- Thunderbolt
+
+Ditto
+Level: 39
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Porygon
 Level: 40
@@ -3314,6 +3334,10 @@ AI: Check Bad Move
 
 Jigglypuff
 Level: 61
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Granbull
+Level: 62
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Wigglytuff
@@ -7687,7 +7711,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Name: Umeko
 Class: Kimono Girl Hns
 Pic: Kimono Girl Hns
-Gender: Male
+Gender: Female
 Music: Hg Kimono Girl
 Double Battle: No
 AI: Basic Trainer
@@ -7713,7 +7737,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Name: Sakura
 Class: Kimono Girl Hns
 Pic: Kimono Girl Hns
-Gender: Male
+Gender: Female
 Music: Hg Kimono Girl
 Double Battle: No
 AI: Basic Trainer
@@ -7739,11 +7763,19 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Name: Tamao
 Class: Kimono Girl Hns
 Pic: Kimono Girl Hns
-Gender: Male
+Gender: Female
 Music: Hg Kimono Girl
 Double Battle: No
 AI: Basic Trainer
 Mugshot: Purple
+
+Umbreon
+Level: 48
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+
+Umbreon
+Level: 48
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 Umbreon
 Level: 48
@@ -7757,7 +7789,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Name: Komomo
 Class: Kimono Girl Hns
 Pic: Kimono Girl Hns
-Gender: Male
+Gender: Female
 Music: Hg Kimono Girl
 Double Battle: No
 AI: Basic Trainer
@@ -7783,7 +7815,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Name: Satsuki
 Class: Kimono Girl Hns
 Pic: Kimono Girl Hns
-Gender: Male
+Gender: Female
 Music: Hg Kimono Girl
 Double Battle: No
 AI: Basic Trainer
@@ -8099,48 +8131,50 @@ Mugshot: Light Blue
 Pidgey
 Level: 8
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
-- Sand Attack
-- Quick Attack
+- Double Edge
+- Brave Bird
+- Steel Wing
+- Roost
 
 Spearow
 Level: 9
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Peck
-- Leer
-- Fury Attack
-- Aerial Ace
+- Double Edge
+- Drill Peck
+- Drill Run
+- Roost
 
 Noctowl @ Sitrus Berry
 Level: 9
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
-- Mud Slap
-- Peck
+- Hyper Voice
+- Hurricane
+- Moonblast
+- Calm Mind
 
 Farfetchd
 Level: 10
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Peck
-- Fury Cutter
-- Aerial Ace
+- Double Edge
+- Brave Bird
+- Leaf Blade
 - Swords Dance
 
 Xatu
 Level: 10
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Psychic
-- Confuse Ray
-- Night Shade
-- Aerial Ace
+- Air Slash
+- Shadow Ball
+- Calm Mind
 
 Murkrow
 Level: 11
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Wing Attack
-- Astonish
-- Taunt
-- Aerial Ace
+- Brave Bird
+- Foul Play
+- Thunder Wave
+- Roost
 
 === TRAINER_FALKNER_2_HNS ===
 Name: Falk
@@ -8156,50 +8190,50 @@ Items: Full Restore / Full Restore
 Noctowl @ Sitrus Berry
 Level: 64
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Psychic
+- Hyper Voice
 - Air Slash
-- Hypnosis
-- Dream Eater
+- Moonblast
+- Calm Mind
 
 Skarmory
 Level: 63
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Stealth Rock
-- Drill Peck
-- Metal Sound
+- Brave Bird
 - Steel Wing
+- Swords Dance
+- Roost
 
 Swellow @ Focus Band
 Level: 63
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Endeavor
-- Double Team
+- Double Edge
 - Brave Bird
 - Steel Wing
+- Roost
 
 Honchkrow
 Level: 64
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Mimic
-- Dark Pulse
-- Air Slash
-- Nasty Plot
+- Brave Bird
+- Foul Play
+- Roost
+- Thunder Wave
 
 Pidgeot
 Level: 65
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- TailWind
-- Aerial Ace
-- Extreme Speed
-- Sand Attack
+- Double Edge
+- Brave Bird
+- Steel Wing
+- Roost
 
 Pelipper
 Level: 68
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Roost
-- Brine
-- Steel Wing
+- Surf
 - Hurricane
+- Ice Beam
+- Roost
 
 === TRAINER_BUGSY_1_HNS ===
 Name: Kai
@@ -8215,50 +8249,50 @@ Items: Potion / Potion
 Pineco
 Level: 15
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Pin Missile
-- Headbutt
-- Rollout
-- Harden
+- Smart Strike
+- Steamroller
+- Earthquake
+- Thunder Wave
 
 Ledian
 Level: 15
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Thunder Punch
-- Comet Punch
-- Supersonic
-- Reflect
+- Bug Buzz
+- Air Slash
+- Roost
+- Agility
 
 Spinarak
 Level: 15
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Poison Sting
-- String Shot
-- Night Shade
-- Scary Face
+- Megahorn
+- Poison Jab
+- Night Slash
+- Swords Dance
 
 Scyther @ Berry Juice
 Level: 16
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Quick Attack
-- Fury Cutter
-- U Turn 
-- Pursuit
+- Iron Head
+- X Scissor
+- Brick Break
+- Swords Dance
 
 Ariados
 Level: 16
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Poison Sting
-- Night Shade
-- Fury Swipes
-- Agility
+- Megahorn
+- Poison Jab
+- Night Slash
+- Swords Dance
 
 Heracross
 Level: 16
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Horn Attack
-- Brick Break
-- Aerial Ace
-- Endure
+- Close Combat
+- Megahorn
+- Earthquake
+- Swords Dance
 
 === TRAINER_BUGSY_2_HNS ===
 Name: Kai
@@ -8274,56 +8308,56 @@ Items: Full Restore / Full Restore
 Ledian @ Focus Band
 Level: 64
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Drain Punch
-- Swords Dance
 - Bug Buzz
-- Baton Pass
+- Air Slash
+- Roost
+- Agility
 
 Forretress
 Level: 63
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Iron Defense
-- Rapid Spin
-- Gyro Ball
+- Smart Strike
+- Steamroller
 - Earthquake
+- Thunder Wave
 
 Yanmega @ Berry Juice
 Level: 63
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Bug Buzz
 - Air Slash
-- Screech
-- U Turn
-- Night Slash
+- Psychic
+- Roost
 
 Scizor
 Level: 64
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Bullet Punch
-- X Scissor
 - Iron Head
+- X Scissor
+- Brick Break
 - Swords Dance
 
 Shedinja
 Level: 65
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Phantom Force
-- Bug Buzz
-- Grudge
-- Sand Attack
+- Shadow Claw
+- Leech Life
+- Shadow Sneak
+- Toxic
 
 Scyther @ Scope Lens
 Level: 65
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Slash
+- Iron Head
 - X Scissor
-- Air Slash
-- Roost
+- Brick Break
+- Swords Dance
 
 === TRAINER_WHITNEY_1_HNS ===
 Name: Bianka
 Class: Leader Hns
 Pic: Leader Whitney Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -8333,56 +8367,56 @@ Items: Super Potion / Potion
 Clefairy
 Level: 20
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Headbutt
-- Charm
-- Sweet Kiss
-- Metronome
+- Moonblast
+- Fire Blast
+- Psychic
+- Calm Mind
 
 Aipom
 Level: 20
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Scratch
-- Sand Attack
-- Baton Pass
-- Fury Swipes
+- Double Edge
+- Shadow Claw
+- Thunder Wave
+- Agility
 
 Teddiursa
 Level: 20
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Fury Swipes
-- Fake Tears
-- Lick
-- Mud Slap
+- Double Edge
+- Close Combat
+- Crunch
+- Swords Dance
 
 Furret
 Level: 21
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Quick Attack
-- Headbutt
-- Defense Curl
-- Dig
+- Double Edge
+- Shadow Claw
+- Coil
+- Toxic
 
 Miltank @ Sitrus Berry
 Level: 21
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Rollout
-- Attract
-- Stomp
+- Double Edge
+- Earthquake
 - Milk Drink
+- Thunder Wave
 
 Granbull
 Level: 21
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Bite
-- Headbutt
-- Scary Face
-- Take Down
+- Play Rough
+- Close Combat
+- Earthquake
+- Bulk Up
 
 === TRAINER_WHITNEY_2_HNS ===
 Name: Bianka
 Class: Leader Hns
 Pic: Leader Whitney Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -8392,50 +8426,50 @@ Items: Full Restore / Full Restore
 Clefable
 Level: 63
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- MoonBlast
-- Meteor Mash
-- Healing Wish
-- Encore
+- Moonblast
+- Fire Blast
+- Psychic
+- Calm Mind
 
 Delcatty @ Chesto Berry
 Level: 64
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Double Edge
-- Fake Out
-- Attract
-- Play Rough
+- Iron Tail
+- Thunder Wave
+- Toxic
 
 Blissey
 Level: 63
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Sing
-- Light Screen
-- Attract
+- Ice Beam
+- Focus Blast
 - Soft Boiled
+- Calm Mind
 
 Tauros
 Level: 64
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Thrash
-- Work Up
-- Rage
-- Giga Impact
+- Double Edge
+- Earthquake
+- Rock Slide
+- Zen Headbutt
 
 Miltank @ Silk Scarf
 Level: 65
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Iron Tail
-- Attract
+- Double Edge
+- Earthquake
 - Milk Drink
-- Zen Headbutt
+- Thunder Wave
 
 Lickilicky @ Silk Scarf
 Level: 65
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Defense Curl
-- Rollout
-- Gyro Ball
-- Supersonic
+- Double Edge
+- Earthquake
+- Shadow Ball
+- Swords Dance
 
 === TRAINER_MORTY_1_HNS ===
 Name: Jens
@@ -8451,52 +8485,52 @@ Items: Super Potion / Super Potion
 Gastly
 Level: 23
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Lick
-- Confuse Ray
-- Night Shade
+- Sludge Wave
+- Shadow Ball
+- Psychic
 - Hypnosis
 
 Haunter
 Ability: Levitate
 Level: 23
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Sludge Wave
+- Shadow Ball
+- Focus Blast
 - Hypnosis
-- Nightmare
-- Curse
-- Night Shade
 
 Stantler
 Level: 24
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Swift
+- Double Edge
+- Earthquake
+- Shadow Ball
 - Hypnosis
-- Nightmare
-- Leer
 
 Misdreavus
 Level: 24
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Shadow Ball
-- Pain Split
-- Perish Song
-- Psywave
+- Thunderbolt
+- Dazzling Gleam
+- Nasty Plot
 
-Duskull
+Misdreavus
 Level: 25
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Astonish
-- Night Shade
-- Disable
-- Confuse Ray
+- Shadow Ball
+- Thunderbolt
+- Dazzling Gleam
+- Nasty Plot
 
 Gengar @ Sitrus Berry
 Ability: Levitate
 Level: 25
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Hypnosis
+- Sludge Wave
 - Shadow Ball
-- Mean Look
-- Dream Eater
+- Focus Blast
+- Hypnosis
 
 === TRAINER_MORTY_2_HNS ===
 Name: Jens
@@ -8512,52 +8546,52 @@ Items: Full Restore / Full Restore
 Sableye
 Level: 64
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Quash
 - Foul Play
-- Shadow Claw
-- Power Gem
+- Poison Jab
+- Bulk Up
+- Recover
 
 Wyrdeer @ Silk Scarf
 Level: 63
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Jump Kick
-- Psyshield Bash
+- Double Edge
+- Psychic
+- Earthquake
 - Hypnosis
-- Headbutt
 
 Gengar @ Spell Tag
 Ability: Levitate
 Level: 64
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Shadow Ball
-- Dark Pulse
 - Sludge Bomb
-- Psychic
+- Shadow Ball
+- Focus Blast
+- Thunder Wave
 
 Mismagius
 Level: 63
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Shadow Ball
-- Magical Leaf
-- Pain Split
-- Perish Song
+- Dazzling Gleam
+- Power Gem
+- Nasty Plot
 
 Gengar @ Sitrus Berry
 Ability: Levitate
 Level: 65
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Sludge Wave
 - Shadow Ball
+- Focus Blast
 - Hypnosis
-- Thunderbolt
-- Dream Eater
 
 Dusknoir
 Level: 65
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Shadow Punch
-- Fire Punch
+- Shadow Sneak
+- Earthquake
+- Ice Punch
 - Will O Wisp
-- Dark Pulse
 
 === TRAINER_PRYCE_1_HNS ===
 Name: Norbert
@@ -8573,50 +8607,50 @@ Items: Super Potion / Super Potion
 Swinub
 Level: 31
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Icy Wind
-- Mud Slap
-- Endure
-- Take Down
+- Earthquake
+- Icicle Crash
+- Curse
+- Stealth Rock
 
 Dewgong
 Level: 31
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Aqua Ring
-- Aurora Beam
-- Rain Dance
-- Aqua Jet
+- Surf
+- Ice Beam
+- Toxic
+- Encore
 
 Delibird
 Level: 32
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Icy Wind
-- Aerial Ace
-- Quick Attack
-- Fury Attack
+- Ice Beam
+- Drill Peck
+- Brick Break
+- Toxic
 
 Sneasel
 Level: 32
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Faint Attack
-- Metal Claw
-- Hone Claws
-- Avalanche
+- Throat Chop
+- Icicle Crash
+- Brick Break
+- Swords Dance
 
 Jynx
 Level: 33
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Ice Punch
+- Ice Beam
 - Psychic
-- Rain Dance
-- Lovely Kiss
+- Focus Blast
+- Nasty Plot
 
 Piloswine @ Sitrus Berry
 Level: 33
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Headbutt
 - Earthquake
-- Ancient Power
-- Ice Fang
+- Icicle Crash
+- Curse
+- Stealth Rock
 
 === TRAINER_PRYCE_2_HNS ===
 Name: Norbert
@@ -8632,50 +8666,50 @@ Items: Full Restore / Full Restore
 Weavile
 Level: 64
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Night Slash
-- Metal Claw
-- Beat Up
-- Blizzard
+- Throat Chop
+- Icicle Crash
+- Brick Break
+- Swords Dance
 
 Dewgong @ Sitrus Berry
 Level: 63
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Aqua Tail
 - Ice Beam
-- Rest
-- Aqua Ring
+- Surf
+- Toxic
+- Encore
 
 Jynx
 Level: 63
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Ice Beam
 - Psychic
-- Shadow Ball
-- Lovely Kiss
+- Focus Blast
+- Nasty Plot
 
 Froslass
 Level: 64
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Ice Beam
 - Shadow Ball
-- Blizzard
+- Psychic
 - Will O Wisp
-- Destiny Bond
 
 Mamoswine @ Soft Sand
 Level: 65
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Strength
 - Earthquake
-- Thrash
-- Ice Fang
+- Icicle Crash
+- Stealth Rock
+- Curse
 
 Glalie
 Level: 65
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Sheer Cold
+- Ice Beam
+- Earthquake
 - Crunch
-- Dark Pulse
-- Blizzard
+- Toxic
 
 === TRAINER_PRYCE_1_2_HNS ===
 Name: Norbert
@@ -8691,46 +8725,50 @@ Items: Full Restore / Full Restore
 Cloyster
 Level: 33
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Surf
-- Spikes
-- Aurora Beam
-- Rain Dance
+- Waterfall
+- Icicle Crash
+- Poison Jab
+- Shell Smash
 
 Sneasel
 Level: 33
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Faint Attack
-- Metal Claw
-- Reflect
+- Throat Chop
 - Ice Punch
+- Brick Break
+- Swords Dance
 
 Jynx
 Level: 34
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Ice Punch
+- Ice Beam
 - Psychic
-- Rain Dance
-- Lovely Kiss
+- Focus Blast
+- Nasty Plot
 
 Dewgong
 Level: 34
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Brine
-- Aurora Beam
-- Snore
-- Rest
+- Surf
+- Ice Beam
+- Toxic
+- Encore
 
 Poliwrath
 Level: 35
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Waterfall
+- Drain Punch
+- Earthquake
+- Belly Drum
 
 Piloswine @ Sitrus Berry
 Level: 35
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Headbutt
 - Earthquake
-- Ancient Power
-- Ice Fang
+- Icicle Crash
+- Curse
+- Stealth Rock
 
 === TRAINER_PRYCE_1_3_HNS ===
 Name: Norbert
@@ -8746,52 +8784,56 @@ Items: Full Restore / Full Restore
 Cloyster
 Level: 37
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Surf
-- Spikes
-- Aurora Beam
-- Rain Dance
+- Waterfall
+- Icicle Crash
+- Poison Jab
+- Shell Smash
 
 Sneasel
 Level: 37
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Faint Attack
-- Metal Claw
-- Reflect
-- Blizzard
+- Throat Chop
+- Icicle Crash
+- Brick Break
+- Swords Dance
 
 Jynx
 Level: 37
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Ice Punch
+- Ice Beam
 - Psychic
-- Shadow Ball
-- Lovely Kiss
+- Focus Blast
+- Nasty Plot
 
 Dewgong
 Level: 38
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Aqua Tail
-- Aurora Beam
-- Snore
-- Rest
+- Ice Beam
+- Surf
+- Toxic
+- Encore
 
 Poliwrath
 Level: 38
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Waterfall
+- Drain Punch
+- Earthquake
+- Belly Drum
 
 Mamoswine @ Sitrus Berry
 Level: 38
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Take Down
 - Earthquake
-- Ancient Power
-- Ice Fang
+- Icicle Crash
+- Stealth Rock
+- Curse
 
 === TRAINER_JASMINE_1_HNS ===
 Name: Jasmin
 Class: Leader Hns
 Pic: Leader Jasmine Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -8801,56 +8843,56 @@ Items: Super Potion / Super Potion
 Skarmory
 Level: 35
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Spikes
-- Drill Peck
-- Swagger
+- Brave Bird
 - Steel Wing
+- Swords Dance
+- Roost
 
 Corsola
 Level: 35
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Rain Dance
-- Brine
+- Surf
+- Head Smash
+- Calm Mind
 - Recover
-- Ancient Power
 
 Magneton
 Level: 35
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Thunderbolt
-- Tri Attack
-- Rain Dance
-- Thunder
+- Discharge
+- Flash Cannon
+- Thunder Wave
 
 Forretress
 Level: 36
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Rapid Spin
-- Take Down
-- Protect
-- Swift
+- Smart Strike
+- Steamroller
+- Earthquake
+- Thunder Wave
 
 Scizor @ Focus Band
 Level: 36
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Bullet Punch
-- Metal Claw
-- Agility
+- Iron Head
+- X Scissor
+- Brick Break
 - Swords Dance
 
 Steelix @ Quick Claw
 Level: 36
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Crunch
 - Earthquake
-- Rock Slide
-- Iron Tail
+- Iron Head
+- Stone Edge
+- Curse
 
 === TRAINER_JASMINE_2_HNS ===
 Name: Jasmin
 Class: Leader Hns
 Pic: Leader Jasmine Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -8860,56 +8902,56 @@ Items: Full Restore / Full Restore
 Skarmory
 Level: 63
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Stealth Rock
-- Drill Peck
-- Swagger
+- Brave Bird
 - Steel Wing
+- Swords Dance
+- Roost
 
 Mawile
 Level: 65
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Flash Cannon
-- Iron Defense
-- Baton Pass
+- Iron Head
 - Play Rough
+- Brick Break
+- Swords Dance
 
 Corsola
 Level: 63
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rain Dance
 - Surf
-- Aqua Ring
 - Power Gem
+- Calm Mind
+- Recover
 
 Magnezone
 Level: 64
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Gyro Ball
+- Thunderbolt
 - Flash Cannon
-- Rain Dance
-- Thunder
+- Thunder Wave
+- Toxic
 
 Aggron @ Hard Stone
 Level: 65
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rock Slide
-- Metal Burst
-- Swords Dance
-- Earthquake
+- Head Smash
+- Iron Head
+- Superpower
+- Curse
 
 Steelix @ Quick Claw
 Level: 65
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Crunch
 - Earthquake
-- Rock Slide
-- Iron Tail
+- Iron Head
+- Stone Edge
+- Curse
 
 === TRAINER_JASMINE_1_2_HNS ===
 Name: Jasmin
 Class: Leader Hns
 Pic: Leader Jasmine Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -8919,52 +8961,56 @@ Items: Full Restore / Full Restore
 Skarmory
 Level: 35
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Spikes
-- Drill Peck
-- Swagger
+- Brave Bird
 - Steel Wing
+- Swords Dance
+- Roost
 
 Corsola
 Level: 35
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Rain Dance
-- Brine
-- Aqua Ring
-- Ancient Power
+- Surf
+- Head Smash
+- Calm Mind
+- Recover
 
 Magneton
 Level: 35
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Thunderbolt
-- Tri Attack
-- Rain Dance
-- Thunder
+- Discharge
+- Flash Cannon
+- Thunder Wave
 
 Scizor @ Focus Band
 Level: 36
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Bullet Punch
-- Metal Claw
-- Agility
+- Iron Head
+- X Scissor
+- Brick Break
 - Swords Dance
 
 Poliwrath
 Level: 36
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Waterfall
+- Drain Punch
+- Earthquake
+- Belly Drum
 
 Steelix @ Quick Claw
 Level: 36
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Crunch
 - Earthquake
-- Rock Slide
-- Iron Tail
+- Iron Head
+- Stone Edge
+- Curse
 
 === TRAINER_JASMINE_1_3_HNS ===
 Name: Jasmin
 Class: Leader Hns
 Pic: Leader Jasmine Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -8974,46 +9020,50 @@ Items: Full Restore / Full Restore
 Skarmory
 Level: 37
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Spikes
-- Drill Peck
-- Swagger
+- Brave Bird
 - Steel Wing
+- Swords Dance
+- Roost
 
 Corsola
 Level: 37
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rain Dance
 - Surf
-- Aqua Ring
-- Ancient Power
+- Head Smash
+- Calm Mind
+- Recover
 
 Magnezone
 Level: 37
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Thunderbolt
-- Tri Attack
-- Rain Dance
-- Gyro Ball
+- Flash Cannon
+- Thunder Wave
+- Toxic
 
 Scizor @ Focus Band
 Level: 38
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Iron Head
 - X Scissor
-- Metal Claw
-- Agility
+- Brick Break
 - Swords Dance
 
 Poliwrath
 Level: 38
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Waterfall
+- Drain Punch
+- Earthquake
+- Belly Drum
 
 Steelix @ Quick Claw
 Level: 38
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Crunch
 - Earthquake
-- Rock Slide
-- Iron Tail
+- Iron Head
+- Stone Edge
+- Curse
 
 === TRAINER_CHUCK_1_HNS ===
 Name: Hartwig
@@ -9029,50 +9079,50 @@ Items: Super Potion / Super Potion
 Machoke
 Level: 29
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Karate Chop
-- Seismic Toss
-- Foresight
-- Vital Throw
+- Close Combat
+- Earthquake
+- Rock Slide
+- Bulk Up
 
 Hitmontop
 Level: 29
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Triple Kick
-- Rolling Kick
-- Dig
-- Pursuit
+- Hi Jump Kick
+- Earthquake
+- Rock Slide
+- Bulk Up
 
 Hitmonchan
 Level: 30
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Mach Punch
-- Thunder Punch
-- Ice Punch
-- Fire Punch
+- Hi Jump Kick
+- Earthquake
+- Rock Slide
+- Swords Dance
 
 Primeape
 Level: 30
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Low Kick
-- Karate Chop
-- Ice Punch
-- Rage
+- Close Combat
+- Outrage
+- Earthquake
+- Bulk Up
 
 Sudowoodo
 Level: 31
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Rock Slide
+- Head Smash
 - Wood Hammer
-- Low Kick
-- Faint Attack
+- Earthquake
+- Curse
 
 Poliwrath @ Black Belt
 Level: 31
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Hypnosis
-- Mind Reader
-- Surf
-- Dynamic Punch
+- Waterfall
+- Drain Punch
+- Earthquake
+- Belly Drum
 
 === TRAINER_CHUCK_2_HNS ===
 Name: Hartwig
@@ -9088,50 +9138,50 @@ Items: Full Restore / Full Restore
 Hitmonchan @ Scope Lens
 Level: 64
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Fire Punch
-- Sky Uppercut
-- Thunder Punch
-- Mach Punch
+- Hi Jump Kick
+- Earthquake
+- Rock Slide
+- Swords Dance
 
 Medicham
 Level: 63
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Detect
 - Hi Jump Kick
-- Acupressure
 - Zen Headbutt
+- Bulk Up
+- Recover
 
 Annihilape
 Level: 64
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Cross Chop
-- Rage Fist
-- Rock Slide
-- Stomping Tantrum
+- Close Combat
+- Shadow Claw
+- Earthquake
+- Bulk Up
 
 Hitmonlee
 Level: 63
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Mega Kick
-- Blaze Kick
 - Hi Jump Kick
-- Rolling Kick
+- Earthquake
+- Rock Slide
+- Swords Dance
 
 Breloom
 Level: 65
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Mach Punch
 - Seed Bomb
-- Sky Uppercut
 - Drain Punch
+- Rock Slide
+- Swords Dance
 
 Poliwrath @ Sitrus Berry
 Level: 65
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Surf
-- Submission
+- Waterfall
+- Drain Punch
+- Earthquake
 - Belly Drum
-- Body Slam
 
 === TRAINER_CHUCK_1_2_HNS ===
 Name: Hartwig
@@ -9147,46 +9197,50 @@ Items: Full Restore / Full Restore
 Hitmontop
 Level: 34
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Triple Kick
-- Rolling Kick
-- Dig
-- Pursuit
+- Hi Jump Kick
+- Earthquake
+- Rock Slide
+- Bulk Up
 
 Sudowoodo
 Level: 34
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Rock Slide
+- Head Smash
 - Wood Hammer
-- Low Kick
-- Faint Attack
+- Earthquake
+- Curse
 
 Primeape
 Level: 35
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Low Kick
-- Karate Chop
-- Ice Punch
-- Rage Fist
+- Close Combat
+- Outrage
+- Earthquake
+- Bulk Up
 
 Pinsir
 Level: 35
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Brick Break
 - X Scissor
-- Vice Grip
-- Harden
+- Superpower
+- Earthquake
+- Swords Dance
 
 Scizor
 Level: 36
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Iron Head
+- X Scissor
+- Brick Break
+- Swords Dance
 
 Poliwrath @ Black Belt
 Level: 36
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Hypnosis
-- Mind Reader
-- Surf
-- Dynamic Punch
+- Waterfall
+- Drain Punch
+- Earthquake
+- Belly Drum
 
 === TRAINER_CHUCK_1_3_HNS ===
 Name: Hartwig
@@ -9202,52 +9256,56 @@ Items: Full Restore / Full Restore
 Hitmontop
 Level: 37
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Triple Kick
-- Rolling Kick
-- Dig
-- Pursuit
+- Hi Jump Kick
+- Earthquake
+- Rock Slide
+- Bulk Up
 
 Sudowoodo
 Level: 37
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rock Slide
+- Head Smash
 - Wood Hammer
-- Low Kick
-- Faint Attack
+- Earthquake
+- Curse
 
 Annihilape
 Level: 37
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Shadow Punch
-- Brick Break
-- Ice Punch
-- Rage Fist
+- Close Combat
+- Shadow Claw
+- Earthquake
+- Bulk Up
 
 Pinsir
 Level: 38
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Submission
 - X Scissor
-- Strength
+- Superpower
+- Earthquake
 - Swords Dance
 
 Scizor
 Level: 38
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Iron Head
+- X Scissor
+- Brick Break
+- Swords Dance
 
 Poliwrath @ Black Belt
 Level: 38
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Ice Punch
-- Hypnosis
 - Waterfall
-- Dynamic Punch
+- Drain Punch
+- Earthquake
+- Belly Drum
 
 === TRAINER_CLAIR_1_HNS ===
 Name: Sandra
 Class: Leader Hns
 Pic: Leader Clair Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -9257,56 +9315,56 @@ Items: Full Restore / Full Restore
 Dragonair
 Level: 42
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Thunder Wave
-- Thunderbolt
-- Flamethrower
-- Dragon Tail
+- Outrage
+- Earthquake
+- Fire Punch
+- Dragon Dance
 
 Dragonair
 Level: 43
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Thunder Wave
-- Thunderbolt
-- Flamethrower
-- Dragon Tail
+- Outrage
+- Earthquake
+- Fire Punch
+- Dragon Dance
 
 Gyarados @ Focus Band
 Level: 43
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Bite
 - Waterfall
-- Fly
-- Ice Fang
+- Earthquake
+- Crunch
+- Dragon Dance
 
 Lapras @ Chesto Berry
 Level: 44
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Brine
+- Surf
 - Ice Beam
-- Body Slam
-- Rest
+- Earthquake
+- Toxic
 
 Dudunsparce @ Sitrus Berry
 Level: 44
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Double Edge
+- Earthquake
+- Curse
 - Glare
-- Ancient Power
-- Rest
-- Poison Jab
 
 Kingdra @ Leftovers
 Level: 45
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Agility
 - Surf
-- Hyper Beam
 - Dragon Pulse
+- Ice Beam
+- Agility
 
 === TRAINER_CLAIR_2_HNS ===
 Name: Sandra
 Class: Leader Hns
 Pic: Leader Clair Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -9316,50 +9374,50 @@ Items: Full Restore / Full Restore
 Dragonair @ Metal Coat
 Level: 64
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Thunder Wave
-- Thunderbolt
-- Aqua Tail
-- Dragon Rush
+- Outrage
+- Earthquake
+- Fire Punch
+- Dragon Dance
 
 Gyarados @ Focus Band
 Level: 63
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Aqua Tail
+- Earthquake
 - Crunch
-- Surf
-- Fly
 - Dragon Dance
 
 Dudunsparce
 Level: 63
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Yawn
+- Double Edge
+- Earthquake
+- Curse
 - Glare
-- Poison Jab
-- Hyper Drill
 
 Shelgon @ Sitrus Berry
 Level: 64
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Thunder Wave
-- Zen Headbutt
-- Flamethrower
 - Dragon Claw
+- Earthquake
+- Aerial Ace
+- Dragon Dance
 
 Dragonite
 Level: 65
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Agility
-- Thunder
-- Dragon Pulse
-- Hyper Beam
+- Outrage
+- Earthquake
+- Fire Punch
+- Dragon Dance
 
 Kingdra @ Leftovers
 Level: 65
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Dragon Dance
-- Hydro Pump
-- Ice Beam
+- Surf
 - Dragon Pulse
+- Ice Beam
+- Agility
 
 === TRAINER_BROCK_HNS ===
 Name: BROCK
@@ -9384,7 +9442,7 @@ Aerodactyl @ Hard Stone
 Level: 66
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Ancient Power
-- Sky Attack
+- Fly
 - Earthquake
 - Fire Fang
 
@@ -9409,8 +9467,8 @@ Level: 66
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Hydro Pump
 - Rock Slide
-- Curse
-- Thunderbolt
+- Harden
+- Surf
 
 Kleavor @ Quick Claw
 Level: 66
@@ -9424,7 +9482,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 Name: MISTY
 Class: Leader Kanto Hns
 Pic: Leader Misty Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -9528,7 +9586,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Thunderbolt
 - Fire Punch
 - Ice Punch
-- Submission
+- Brick Break
 
 Raichu @ Magnet
 Level: 60
@@ -9542,7 +9600,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 Name: ERIKA
 Class: Leader Kanto Hns
 Pic: Leader Erika Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -9601,7 +9659,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 Name: SABRINA
 Class: Leader Kanto Hns
 Pic: Leader Sabrina Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -9629,7 +9687,7 @@ Level: 64
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Rest
 - Sleep Talk
-- Submission
+- Drain Punch
 - Surf
 
 Wobbuffet @ Leftovers
@@ -9646,7 +9704,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Psychic
 - Morning Sun
 - Future Sight
-- Power Gem
+- Shadow Ball
 
 Alakazam @ Twisted Spoon
 Level: 66
@@ -9660,7 +9718,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 Name: Janina
 Class: Leader Kanto Hns
 Pic: Leader Janine Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -9672,48 +9730,48 @@ Level: 63
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Sludge Bomb
 - Flamethrower
-- Belch
-- Amnesia
+- Dark Pulse
+- Toxic
 
 Muk
 Level: 62
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Minimize
 - Gunk Shot
-- Toxic
-- Acid Armor
+- Drain Punch
+- Ice Punch
+- Curse
 
 Swalot
 Level: 61
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Swallow
-- Stockpile
-- Amnesia
-- Spit Up
+- Gunk Shot
+- Earthquake
+- Swords Dance
+- Thunder Wave
 
 Nidoqueen @ Quick Claw
 Level: 62
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Earthquake
-- Cross Poison
-- Thunder
+- Poison Jab
 - Superpower
+- Stealth Rock
 
 Crobat
 Level: 63
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Air Slash
-- Venoshock
-- Toxic
-- Confuse Ray
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 Venomoth @ Bright Powder
 Level: 64
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Signal Beam
-- Poison Fang
-- Toxic
-- Double Team
+- Sludge Wave
+- Bug Buzz
+- Psychic
+- Quiver Dance
 
 === TRAINER_BLAINE_HNS ===
 Name: BLAINE
@@ -9756,7 +9814,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Flamethrower
 - Recover
 - Amnesia
-- Hypnosis
+- Yawn
 
 Torkoal @ White Herb
 Level: 67
@@ -9788,50 +9846,50 @@ Items: Full Restore / Full Restore
 Rhyperior @ Sitrus Berry
 Level: 69
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Drill Run
+- Earthquake
 - Stone Edge
-- Rest
-- Toxic
+- Megahorn
+- Swords Dance
 
 Pidgeot @ Sharp Beak
 Level: 68
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Hurricane
-- Giga Impact
-- Air Slash
-- Feather Dance
+- Double Edge
+- Brave Bird
+- Steel Wing
+- Roost
 
 Machamp @ Scope Lens
 Level: 67
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Cross Chop
-- Rock Slide
+- Close Combat
 - Earthquake
-- Dual Chop
+- Rock Slide
+- Bulk Up
 
 Exeggutor @ Leftovers
 Level: 68
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Leech Seed
-- Trick Room
+- Leaf Storm
 - Psychic
-- Seed Bomb
+- Sludge Bomb
+- Calm Mind
 
 Tyranitar @ Focus Band
 Level: 68
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Stone Edge
-- Payback
 - Crunch
-- Thunder Fang
+- Earthquake
+- Dragon Dance
 
 Arcanine @ Silk Scarf
 Level: 69
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Flamethrower
-- Curse
-- Crunch
-- Extreme Speed
+- Flare Blitz
+- Close Combat
+- Wild Charge
+- Morning Sun
 
 === TRAINER_BLUE_2_HNS ===
 Name: BLUE
@@ -9848,14 +9906,14 @@ Articuno @ Sitrus Berry
 Level: 69
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Ice Beam
-- Sky Attack
+- Fly
 - Rest
 - Toxic
 
 Alakazam @ Twisted Spoon
 Level: 68
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Thunderbolt
+- Shock Wave
 - Recover
 - Psychic
 - Shadow Ball
@@ -9882,13 +9940,13 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Hydro Pump
 - Double Team
 - Body Slam
-- Reversal
+- Rock Smash
 
 Arcanine @ Silk Scarf
 Level: 69
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Flamethrower
-- Curse
+- Agility
 - Crunch
 - Extreme Speed
 
@@ -9906,46 +9964,50 @@ Items: Full Restore / Full Restore
 Girafarig
 Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Zen Headbutt
+- Double Edge
+- Psychic
+- Earthquake
 - Nasty Plot
-- Agility
-- Baton Pass
 
 Slowking
 Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Amnesia
-- Fire Punch
 - Surf
 - Psychic
+- Fire Blast
+- Nasty Plot
 
 Espeon
 Level: 49
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psychic
+- Dazzling Gleam
 - Shadow Ball
-- Reflect
-- Headbutt
+- Calm Mind
 
 Slowbro @ Quick Claw
 Level: 49
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Curse
-- Rock Smash
-- Body Slam
-- Zen Headbutt
+- Surf
+- Psychic
+- Fire Blast
+- Calm Mind
 
 Honchkrow
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Brave Bird
+- Foul Play
+- Roost
+- Thunder Wave
 
 Xatu @ Twisted Spoon
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Air Slash
-- Recover
-- Confuse Ray
 - Psychic
+- Air Slash
+- Shadow Ball
+- Calm Mind
 
 === TRAINER_WILL_2_HNS ===
 Name: Willi
@@ -9961,50 +10023,50 @@ Items: Full Restore / Full Restore
 Gardevoir
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Psychic
-- Hyper Voice
 - Moonblast
-- Reflect
+- Psychic
+- Focus Blast
+- Calm Mind
 
 Jynx
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Blizzard
+- Ice Beam
 - Psychic
-- Perish Song
-- Sing
+- Focus Blast
+- Nasty Plot
 
 Exeggutor @ Sitrus Berry
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Ancient Power
-- Sleep Powder
-- Dream Eater
-- Soft Boiled
+- Leaf Storm
+- Psychic
+- Sludge Bomb
+- Calm Mind
 
 Grumpig
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Teeter Dance
-- Power Gem
-- Snore
-- Rest
+- Psychic
+- Focus Blast
+- Shadow Ball
+- Calm Mind
 
 Slowbro @ Quick Claw
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Fire Punch
-- Curse
-- Earthquake
-- Zen Headbutt
+- Surf
+- Psychic
+- Fire Blast
+- Calm Mind
 
 Xatu @ Leftovers
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Future Sight
+- Psychic
 - Air Slash
-- Confuse Ray
-- Protect
+- Shadow Ball
+- Calm Mind
 
 === TRAINER_BRUNO_1_HNS ===
 Name: Bruno
@@ -10020,46 +10082,50 @@ Items: Full Restore / Full Restore
 Hitmonchan @ Scope Lens
 Level: 52
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Close Combat
-- Pursuit
-- Dizzy Punch
-- Thunder Punch
+- Hi Jump Kick
+- Earthquake
+- Rock Slide
+- Swords Dance
 
 Heracross
 Level: 52
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Close Combat
 - Megahorn
-- Take Down
 - Earthquake
+- Swords Dance
 
 Hitmonlee @ Silk Scarf
 Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Blaze Kick
-- Meditate
-- Reversal
 - Hi Jump Kick
+- Earthquake
+- Rock Slide
+- Swords Dance
 
 Steelix
 Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Crunch
 - Earthquake
+- Iron Head
 - Stone Edge
-- Iron Tail
+- Curse
 
 Venomoth
 Level: 54
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sludge Wave
+- Bug Buzz
+- Psychic
+- Quiver Dance
 
 Machamp @ Black Belt
 Level: 54
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Close Combat
+- Earthquake
 - Rock Slide
-- Fire Punch
-- Vital Throw
-- Cross Chop
+- Bulk Up
 
 === TRAINER_BRUNO_2_HNS ===
 Name: Bruno
@@ -10075,56 +10141,56 @@ Items: Full Restore / Full Restore
 Steelix @ Quick Claw
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Crunch
 - Earthquake
-- Explosion
-- Iron Tail
+- Iron Head
+- Stone Edge
+- Curse
 
 Poliwrath @ Scope Lens
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Submission
-- Blizzard
-- Hydro Pump
-- Psychic
+- Waterfall
+- Drain Punch
+- Earthquake
+- Belly Drum
 
 Heracross @ Quick Claw
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Close Combat
 - Megahorn
-- Reversal
 - Earthquake
+- Swords Dance
 
 Hariyama
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Close Combat
+- Earthquake
+- Rock Slide
 - Belly Drum
-- SmellingSalt
-- Focus Punch
-- Seismic Toss
 
 Hitmontop @ Scope Lens
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Triple Kick
-- Double Kick
-- Dig
-- Pursuit
+- Hi Jump Kick
+- Earthquake
+- Rock Slide
+- Bulk Up
 
 Machamp @ Leftovers
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rock Slide
+- Close Combat
 - Earthquake
-- Body Slam
-- Cross Chop
+- Rock Slide
+- Bulk Up
 
 === TRAINER_KAREN_1_HNS ===
 Name: Melanie
 Class: Elite Four Hns
 Pic: Elite Four Karen Hns
-Gender: Male
+Gender: Female
 Music: Hg Elite Four
 Double Battle: No
 AI: Basic Trainer
@@ -10134,52 +10200,56 @@ Items: Full Restore / Full Restore
 Umbreon @ Sitrus Berry
 Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Faint Attack
-- Double Team
-- Baton Pass
+- Dark Pulse
+- Iron Tail
+- Calm Mind
 - Moonlight
 
 Gengar
 Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sludge Wave
 - Shadow Ball
+- Focus Blast
 - Hypnosis
-- Dream Eater
-- Confuse Ray
 
 Vileplume @ Leftovers
 Level: 54
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sleep Powder
+- Sludge Wave
 - Giga Drain
-- Leech Seed
-- Substitute
+- Moonblast
+- Sleep Powder
 
 Honchkrow @ Sharp Beak
 Level: 54
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Air Slash
-- Faint Attack
-- Steel Wing
-- Haze
+- Brave Bird
+- Foul Play
+- Roost
+- Thunder Wave
 
 Xatu
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Psychic
+- Air Slash
+- Shadow Ball
+- Calm Mind
 
 Houndoom @ Black Glasses
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Flamethrower
-- Crunch
-- Iron Tail
-- Reversal
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
 === TRAINER_KAREN_2_HNS ===
 Name: Melanie
 Class: Elite Four Hns
 Pic: Elite Four Karen Hns
-Gender: Male
+Gender: Female
 Music: Hg Elite Four
 Double Battle: No
 AI: Basic Trainer
@@ -10189,50 +10259,50 @@ Items: Full Restore / Full Restore
 Umbreon @ Sitrus Berry
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Growth
-- Shadow Ball
-- Hidden Power
-- Baton Pass
+- Dark Pulse
+- Iron Tail
+- Calm Mind
+- Moonlight
 
 Weavile
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hone Claws
-- Metal Claw
-- Night Slash
-- Avalanche
+- Throat Chop
+- Icicle Crash
+- Brick Break
+- Swords Dance
 
 Persian @ Scope Lens
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Slash
-- Assurance
-- Iron Tail
-- Play Rough
+- Double Edge
+- Foul Play
+- Thunder Wave
+- Toxic
 
 Honchkrow @ Sharp Beak
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Air Slash
-- Dark Pulse
-- Swagger
-- Nasty Plot
+- Brave Bird
+- Foul Play
+- Roost
+- Thunder Wave
 
 Absol @ Leftovers
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Psycho Cut
-- Shadow Claw
-- Perish Song
-- Slash
+- Night Slash
+- Megahorn
+- Iron Tail
+- Swords Dance
 
 Houndoom @ Charcoal
 Level: 69
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Flamethrower
-- Crunch
-- Iron Tail
-- Hidden Power
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
 === TRAINER_KOGA_1_HNS ===
 Name: Koga
@@ -10249,45 +10319,49 @@ Ariados @ Kings Rock
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Megahorn
-- Giga Drain
-- Double Team
-- Toxic
+- Poison Jab
+- Night Slash
+- Swords Dance
 
 Qwilfish
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Aqua Tail
-- Toxic
-- Protect
 - Poison Jab
+- Aqua Tail
+- Swords Dance
+- Thunder Wave
 
 Muk @ Leftovers
 Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Minimize
-- Fire Blast
 - Gunk Shot
-- Toxic
+- Drain Punch
+- Ice Punch
+- Curse
 
 Venomoth
 Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Leech Life
+- Sludge Wave
+- Bug Buzz
 - Psychic
-- Poison Fang
-- Sleep Powder
+- Quiver Dance
 
 Slowbro
 Level: 52
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Surf
+- Psychic
+- Fire Blast
+- Calm Mind
 
 Crobat @ Bright Powder
 Level: 52
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Double Team
-- Toxic
-- Bite
-- Confuse Ray
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 === TRAINER_KOGA_2_HNS ===
 Name: Koga
@@ -10303,50 +10377,50 @@ Items: Full Restore / Full Restore
 Tentacruel @ Chesto Berry
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Waterfall
-- Blizzard
 - Sludge Wave
-- Rest
+- Surf
+- Ice Beam
+- Toxic
 
 Muk @ Leftovers
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Minimize
-- Fire Blast
 - Gunk Shot
-- Toxic
+- Drain Punch
+- Ice Punch
+- Curse
 
 Swalot
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Swallow
-- Stockpile
-- Amnesia
-- Spit Up
+- Gunk Shot
+- Earthquake
+- Swords Dance
+- Thunder Wave
 
 Nidoking @ Quick Claw
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Lovely Kiss
-- Fire Blast
-- Surf
 - Earthquake
+- Poison Jab
+- Head Smash
+- Stealth Rock
 
 Venomoth @ Bright Powder
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Silver Wind
-- Signal Beam
+- Sludge Wave
+- Bug Buzz
 - Psychic
-- Supersonic
+- Quiver Dance
 
 Crobat @ Leftovers
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Brave Bird
 - Cross Poison
-- Air Slash
-- Toxic
-- Confuse Ray
+- Steel Wing
+- Roost
 
 === TRAINER_LANCE_1_HNS ===
 Name: Siegfried
@@ -10363,49 +10437,49 @@ Gyarados @ Leftovers
 Level: 54
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Waterfall
-- Dragon Dance
-- Hyper Beam
 - Earthquake
+- Crunch
+- Dragon Dance
 
 Dragonite @ Sitrus Berry
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Blizzard
-- Fire Blast
-- Thunder
-- Extreme Speed
+- Outrage
+- Earthquake
+- Fire Punch
+- Dragon Dance
 
 Charizard @ Charcoal
 Level: 54
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Flamethrower
-- Wing Attack
-- Double Team
-- Steel Wing
+- Overheat
+- Air Slash
+- Focus Blast
+- Roost
 
 Dragonite
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Bounce
-- Dragon Claw
-- Waterfall
+- Outrage
+- Earthquake
+- Fire Punch
 - Dragon Dance
 
 Aerodactyl @ Silk Scarf
 Level: 54
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Aerial Ace
 - Rock Slide
-- Hyper Beam
 - Earthquake
+- Aerial Ace
+- Roost
 
 Dragonite @ Sitrus Berry
 Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder
-- Safeguard
 - Outrage
-- Hyper Beam
+- Earthquake
+- Fire Punch
+- Dragon Dance
 
 === TRAINER_LANCE_2_HNS ===
 Name: Siegfried
@@ -10422,49 +10496,49 @@ Salamence
 Level: 69
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Dragon Claw
-- Air Slash
-- Double Edge
-- Thunderbolt
+- Earthquake
+- Aerial Ace
+- Dragon Dance
 
 Dragonite @ Sitrus Berry
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Iron Tail
-- Ice Punch
-- Dragon Rush
+- Outrage
+- Earthquake
+- Fire Punch
 - Dragon Dance
 
 Gyarados @ Quick Claw
 Level: 69
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Waterfall
-- Hyper Beam
-- Crunch
 - Earthquake
+- Crunch
+- Dragon Dance
 
 Charizard @ Leftovers
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Fire Blast
-- Crunch
-- Earthquake
-- Swords Dance
+- Overheat
+- Air Slash
+- Focus Blast
+- Roost
 
 Aerodactyl @ Scope Lens
 Level: 69
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sky Attack
 - Rock Slide
 - Earthquake
-- Iron Tail
+- Wing Attack
+- Roost
 
 Altaria @ Silk Scarf
 Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dragon Claw
+- Earthquake
 - Dragon Dance
-- MoonBlast
-- Dragon Pulse
-- Hurricane
+- Roost
 
 === TRAINER_LANCE_3_HNS ===
 Name: Siegfried
@@ -10482,7 +10556,7 @@ Level: 68
 - Waterfall
 - Earthquake
 - Dragon Dance
-- Dragon Rush
+- Dragon Pulse
 
 Charizard @ Leftovers
 Level: 68
@@ -10502,7 +10576,7 @@ Level: 75
 Name: Sandra
 Class: Leader Hns
 Pic: Leader Clair Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Basic Trainer
@@ -10543,26 +10617,50 @@ Mugshot: Dark Red
 Exeggcute
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Psychic
+- Sludge Bomb
+- Calm Mind
 
 Ledyba
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Bug Buzz
+- Air Slash
+- Roost
+- Agility
 
 Pineco
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Smart Strike
+- Steamroller
+- Earthquake
+- Thunder Wave
 
 Spinarak
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Megahorn
+- Poison Jab
+- Toxic
+- Agility
 
 Exeggcute
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Psychic
+- Sludge Bomb
+- Calm Mind
 
 Chikorita
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Petal Blizzard
+- Earthquake
+- Swords Dance
+- Synthesis
 
 === TRAINER_RIVAL_CHIKORITA_2_HNS ===
 Name: {B_RIVAL_NAME}
@@ -10578,38 +10676,50 @@ Items: Potion
 Zubat
 Level: 15
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Absorb
-- Supersonic
-- Poison Sting
-- Astonish
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 Larvitar
 Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bite
-- Rock Throw
-- Screech
-- Sandstorm
+- Earthquake
+- Outrage
+- Rock Slide
+- Dragon Dance
 
 Spinarak
 Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Megahorn
+- Poison Jab
+- Night Slash
+- Swords Dance
 
 Aipom
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Double Edge
+- Shadow Claw
+- Thunder Wave
+- Agility
 
 Pineco
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Smart Strike
+- Steamroller
+- Earthquake
+- Thunder Wave
 
 Bayleef
 Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Razor Leaf
-- Reflect
-- Poison Powder
-- Tackle
+- Petal Blizzard
+- Earthquake
+- Swords Dance
+- Synthesis
 
 === TRAINER_RIVAL_CHIKORITA_3_HNS ===
 Name: {B_RIVAL_NAME}
@@ -10625,42 +10735,50 @@ Items: Super Potion
 Larvitar
 Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bite
-- Rock Throw
-- Screech
-- Sandstorm
+- Earthquake
+- Outrage
+- Rock Slide
+- Dragon Dance
 
 Remoraid
 Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bubble Beam
-- Aurora Beam
-- Psybeam
-- Lock On
+- Surf
+- Ice Beam
+- Thunder Wave
+- Toxic
 
 Golbat
 Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bite
-- Confuse Ray
-- Poison Sting
-- Air Cutter
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 Zubat
 Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 Koffing
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Sludge Wave
+- Fire Blast
+- Dark Pulse
+- Toxic
 
 Bayleef
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Mega Drain
-- Magical Leaf
-- Tackle
-- Leech Seed
+- Petal Blizzard
+- Earthquake
+- Swords Dance
+- Synthesis
 
 === TRAINER_RIVAL_CHIKORITA_4_HNS ===
 Name: {B_RIVAL_NAME}
@@ -10676,46 +10794,50 @@ Items: Hyper Potion
 Pupitar
 Level: 38
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Thrash
-- Rock Slide
-- Screech
-- Bite
+- Earthquake
+- Stone Edge
+- Outrage
+- Dragon Dance
 
 Houndoom
 Level: 38
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Flamethrower
-- Iron Tail
-- Bite
+- Overheat
+- Dark Pulse
+- Sludge Bomb
 - Nasty Plot
 
 Octillery
 Level: 39
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Octazooka
-- Psybeam
-- Aurora Beam
-- Signal Beam
+- Surf
+- Fire Blast
+- Ice Beam
+- Thunder Wave
 
 Golbat
 Level: 39
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Poison Fang
-- Double Team
-- Confuse Ray
-- Air Cutter
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 Tyranitar
 Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Crunch
+- Rock Slide
+- Earthquake
+- Dragon Dance
 
 Meganium
 Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Petal Blizzard
+- Earthquake
+- Swords Dance
 - Synthesis
-- Magical Leaf
-- Sunny Day
-- Body Slam
 
 === TRAINER_RIVAL_CHIKORITA_5_HNS ===
 Name: {B_RIVAL_NAME}
@@ -10731,50 +10853,50 @@ Items: Hyper Potion
 Ursaring @ Chesto Berry
 Level: 45
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Slash
-- Faint Attack
-- Rock Smash
-- Rest
+- Double Edge
+- Close Combat
+- Crunch
+- Swords Dance
 
 Golbat
 Level: 45
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Venoshock
-- Aerial Ace
-- Double Team
-- Confuse Ray
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 Octillery @ Quick Claw
 Level: 46
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Surf
+- Fire Blast
 - Ice Beam
-- Psybeam
-- Signal Beam
+- Thunder Wave
 
 Houndoom
 Level: 46
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Flamethrower
-- Iron Tail
-- Crunch
-- Sunny Day
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
 Meganium @ Miracle Seed
 Level: 47
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Play Rough
-- Petal Dance
 - Petal Blizzard
-- Poison Powder
+- Earthquake
+- Swords Dance
+- Synthesis
 
 Tyranitar
 Level: 48
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Crunch
-- Earthquake
 - Rock Slide
-- Fire Fang
+- Earthquake
+- Dragon Dance
 
 === TRAINER_RIVAL_CHIKORITA_6_HNS ===
 Name: {B_RIVAL_NAME}
@@ -10792,7 +10914,7 @@ Level: 64
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hammer Arm
 - Moonblast
-- Ancient Power
+- Rock Tomb
 - Rest
 
 Crobat @ Leftovers
@@ -10849,50 +10971,50 @@ Items: Full Restore / Full Restore
 Ursaluna Bloodmoon @ Chesto Berry
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hammer Arm
-- Moonblast
-- Ancient Power
-- Rest
+- Blood Moon
+- Earth Power
+- Calm Mind
+- Toxic
 
 Crobat @ Leftovers
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Air Slash
-- Venoshock
-- Dark Pulse
-- Facade
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 Octillery @ Never Melt Ice
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Surf
+- Fire Blast
 - Ice Beam
-- Psybeam
-- Signal Beam
+- Thunder Wave
 
 Houndoom @ Charcoal
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Fire Blast
-- Iron Tail
-- Crunch
-- Sunny Day
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
 Meganium @ Miracle Seed
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Reflect
-- Giga Drain
-- Solar Beam
-- Body Slam
+- Petal Blizzard
+- Earthquake
+- Swords Dance
+- Synthesis
 
 Tyranitar @ Quick Claw
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Stone Edge
 - Crunch
 - Earthquake
-- Stone Edge
-- Fire Fang
+- Dragon Dance
 
 === TRAINER_RIVAL_CYNDAQUIL_1_HNS ===
 Name: ???
@@ -10907,26 +11029,50 @@ Mugshot: Dark Red
 Spinarak
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Megahorn
+- Poison Jab
+- Toxic
+- Agility
 
 Ledyba
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Bug Buzz
+- Air Slash
+- Roost
+- Agility
 
 Pineco
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Smart Strike
+- Steamroller
+- Earthquake
+- Thunder Wave
 
 Exeggcute
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Psychic
+- Sludge Bomb
+- Calm Mind
 
 Spinarak
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Megahorn
+- Poison Jab
+- Night Slash
+- Swords Dance
 
 Cyndaquil
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Fire Blast
+- Focus Blast
+- Shadow Ball
+- Work Up
 
 === TRAINER_RIVAL_CYNDAQUIL_2_HNS ===
 Name: {B_RIVAL_NAME}
@@ -10942,38 +11088,50 @@ Items: Potion
 Zubat
 Level: 15
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Absorb
-- Supersonic
-- Poison Sting
-- Astonish
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 Larvitar
 Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bite
-- Rock Throw
-- Screech
-- Sandstorm
+- Earthquake
+- Outrage
+- Rock Slide
+- Dragon Dance
 
 Spinarak
 Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Megahorn
+- Poison Jab
+- Night Slash
+- Swords Dance
 
 Aipom
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Double Edge
+- Shadow Claw
+- Thunder Wave
+- Agility
 
 Pineco
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Smart Strike
+- Steamroller
+- Earthquake
+- Thunder Wave
 
 Quilava
 Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Leer
-- Smokescreen
-- Ember
-- Tackle
+- Fire Blast
+- Focus Blast
+- Shadow Ball
+- Work Up
 
 === TRAINER_RIVAL_CYNDAQUIL_3_HNS ===
 Name: {B_RIVAL_NAME}
@@ -10989,42 +11147,50 @@ Items: Super Potion
 Larvitar
 Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bite
-- Rock Throw
-- Screech
-- Sandstorm
+- Earthquake
+- Outrage
+- Rock Slide
+- Dragon Dance
 
 Weepinbell
 Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Razor Leaf
-- Growth
-- Sleep Powder
-- Stun Spore
+- Power Whip
+- Sludge Wave
+- Double Edge
+- Swords Dance
 
 Golbat
 Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bite
-- Confuse Ray
-- Poison Sting
-- Air Cutter
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 Zubat
 Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 Slugma
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Quilava
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Flame Wheel
-- Dig
-- Quick Attack
-- Smokescreen
+- Fire Blast
+- Focus Blast
+- Shadow Ball
+- Work Up
 
 === TRAINER_RIVAL_CYNDAQUIL_4_HNS ===
 Name: {B_RIVAL_NAME}
@@ -11040,46 +11206,50 @@ Items: Super Potion
 Pupitar
 Level: 38
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Thrash
-- Rock Slide
-- Screech
-- Bite
+- Earthquake
+- Stone Edge
+- Outrage
+- Dragon Dance
 
 Victreebel
 Level: 38
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Sludge
-- Razor Leaf
-- Sleep Powder
-- Growth
+- Power Whip
+- Sludge Wave
+- Double Edge
+- Swords Dance
 
 Octillery
 Level: 39
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Octazooka
-- Psybeam
-- Aurora Beam
-- Signal Beam
+- Surf
+- Fire Blast
+- Ice Beam
+- Thunder Wave
 
 Golbat
 Level: 39
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Poison Fang
-- Double Team
-- Confuse Ray
-- Air Cutter
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 Tyranitar
 Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Crunch
+- Rock Slide
+- Earthquake
+- Dragon Dance
 
 Typhlosion
 Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Thunder Punch
-- Flamethrower
-- Quick Attack
-- Iron Tail
+- Fire Blast
+- Focus Blast
+- Shadow Ball
+- Work Up
 
 === TRAINER_RIVAL_CYNDAQUIL_5_HNS ===
 Name: {B_RIVAL_NAME}
@@ -11095,50 +11265,50 @@ Items: Hyper Potion
 Ursaring @ Chesto Berry
 Level: 45
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Slash
-- Faint Attack
-- Rock Smash
-- Rest
+- Double Edge
+- Close Combat
+- Crunch
+- Swords Dance
 
 Golbat
 Level: 45
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Venoshock
-- Aerial Ace
-- Double Team
-- Confuse Ray
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 Octillery @ Quick Claw
 Level: 46
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Surf
+- Fire Blast
 - Ice Beam
-- Psybeam
-- Signal Beam
+- Thunder Wave
 
 Victreebel
 Level: 46
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Power Whip
 - Sludge Bomb
-- Giga Drain
-- Sleep Powder
-- Growth
+- Double Edge
+- Swords Dance
 
 Typhlosion @ Charcoal
 Level: 47
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Flamethrower
-- Quick Attack
-- Iron Tail
-- Thunder Punch
+- Fire Blast
+- Focus Blast
+- Shadow Ball
+- Work Up
 
 Tyranitar
 Level: 48
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Crunch
-- Earthquake
 - Rock Slide
-- Fire Fang
+- Earthquake
+- Dragon Dance
 
 === TRAINER_RIVAL_CYNDAQUIL_6_HNS ===
 Name: {B_RIVAL_NAME}
@@ -11156,7 +11326,7 @@ Level: 64
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hammer Arm
 - Moonblast
-- Ancient Power
+- Rock Tomb
 - Rest
 
 Crobat @ Leftovers
@@ -11213,50 +11383,50 @@ Items: Full Restore / Full Restore
 Ursaluna Bloodmoon @ Chesto Berry
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hammer Arm
-- Moonblast
-- Ancient Power
-- Rest
+- Blood Moon
+- Earth Power
+- Calm Mind
+- Toxic
 
 Crobat @ Leftovers
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Air Slash
-- Venoshock
-- Dark Pulse
-- Facade
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 Octillery @ Never Melt Ice
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Surf
+- Fire Blast
 - Ice Beam
-- Psybeam
-- Signal Beam
+- Thunder Wave
 
 Victreebel @ Scope Lens
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Leaf Blade
+- Power Whip
 - Sludge Bomb
-- Sleep Powder
-- Growth
+- Double Edge
+- Swords Dance
 
 Typhlosion @ Charcoal
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Fire Blast
-- Earthquake
-- Iron Tail
-- Thunder Punch
+- Focus Blast
+- Shadow Ball
+- Work Up
 
 Tyranitar @ Quick Claw
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Stone Edge
 - Crunch
 - Earthquake
-- Stone Edge
-- Fire Fang
+- Dragon Dance
 
 === TRAINER_RIVAL_TOTODILE_1_HNS ===
 Name: ???
@@ -11271,26 +11441,50 @@ Mugshot: Dark Red
 Pineco
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Smart Strike
+- Steamroller
+- Earthquake
+- Thunder Wave
 
 Exeggcute
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Psychic
+- Sleep Powder
+- Synthesis
 
 Spinarak
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Megahorn
+- Poison Jab
+- Night Slash
+- Swords Dance
 
 Ledyba
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Bug Buzz
+- Air Slash
+- Roost
+- Agility
 
 Pineco
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Smart Strike
+- Steamroller
+- Earthquake
+- Thunder Wave
 
 Totodile
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Aqua Tail
+- Superpower
+- Earthquake
+- Swords Dance
 
 === TRAINER_RIVAL_TOTODILE_2_HNS ===
 Name: {B_RIVAL_NAME}
@@ -11306,38 +11500,50 @@ Items: Potion
 Zubat
 Level: 15
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Absorb
-- Supersonic
-- Poison Sting
-- Astonish
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 Larvitar
 Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bite
-- Rock Throw
-- Screech
-- Sandstorm
+- Earthquake
+- Outrage
+- Rock Slide
+- Dragon Dance
 
 Spinarak
 Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Megahorn
+- Poison Jab
+- Night Slash
+- Swords Dance
 
 Aipom
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Double Edge
+- Shadow Claw
+- Thunder Wave
+- Agility
 
 Pineco
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Smart Strike
+- Steamroller
+- Earthquake
+- Thunder Wave
 
 Croconaw
 Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Scratch
-- Rage
-- Bubble Beam
-- Leer
+- Aqua Tail
+- Superpower
+- Earthquake
+- Swords Dance
 
 === TRAINER_RIVAL_TOTODILE_3_HNS ===
 Name: {B_RIVAL_NAME}
@@ -11353,42 +11559,50 @@ Items: Super Potion
 Larvitar
 Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bite
-- Rock Throw
-- Screech
-- Sandstorm
+- Earthquake
+- Outrage
+- Rock Slide
+- Dragon Dance
 
 Houndour
 Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Ember
-- Bite
-- Smog
-- Roar
+- Overheat
+- Foul Play
+- Sludge Bomb
+- Nasty Plot
 
 Golbat
 Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bite
-- Confuse Ray
-- Poison Sting
-- Air Cutter
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 Zubat
 Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 Slugma
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Croconaw
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bite
-- Ice Punch
-- Bubble Beam
-- Mud Slap
+- Aqua Tail
+- Superpower
+- Earthquake
+- Swords Dance
 
 === TRAINER_RIVAL_TOTODILE_4_HNS ===
 Name: {B_RIVAL_NAME}
@@ -11404,46 +11618,50 @@ Items: Super Potion
 Pupitar
 Level: 38
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Thrash
-- Rock Slide
-- Screech
-- Bite
+- Earthquake
+- Stone Edge
+- Outrage
+- Dragon Dance
 
 Victreebel
 Level: 38
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Sludge
-- Razor Leaf
-- Sleep Powder
-- Growth
+- Power Whip
+- Sludge Wave
+- Double Edge
+- Swords Dance
 
 Houndoom
 Level: 39
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Flamethrower
-- Iron Tail
-- Bite
+- Overheat
+- Dark Pulse
+- Sludge Bomb
 - Nasty Plot
 
 Golbat
 Level: 39
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Poison Fang
-- Double Team
-- Confuse Ray
-- Air Cutter
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 Tyranitar
 Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Crunch
+- Rock Slide
+- Earthquake
+- Dragon Dance
 
 Feraligatr
 Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Ice Punch
-- Surf
-- Slash
-- Bite
+- Aqua Tail
+- Superpower
+- Earthquake
+- Swords Dance
 
 === TRAINER_RIVAL_TOTODILE_5_HNS ===
 Name: {B_RIVAL_NAME}
@@ -11459,50 +11677,50 @@ Items: Hyper Potion
 Ursaring @ Chesto Berry
 Level: 45
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Slash
-- Faint Attack
-- Rock Smash
-- Rest
+- Double Edge
+- Close Combat
+- Crunch
+- Swords Dance
 
 Golbat
 Level: 45
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Venoshock
-- Aerial Ace
-- Double Team
-- Confuse Ray
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 Victreebel @ Quick Claw
 Level: 46
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Power Whip
 - Sludge Bomb
-- Giga Drain
-- Sleep Powder
-- Growth
+- Double Edge
+- Swords Dance
 
 Houndoom
 Level: 46
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Flamethrower
-- Iron Tail
-- Crunch
-- Double Team
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
 Feraligatr @ Mystic Water
 Level: 47
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Ice Punch
-- Surf
-- Slash
-- Bite
+- Aqua Tail
+- Superpower
+- Earthquake
+- Swords Dance
 
 Tyranitar
 Level: 48
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Crunch
-- Earthquake
 - Rock Slide
-- Fire Fang
+- Earthquake
+- Dragon Dance
 
 === TRAINER_RIVAL_TOTODILE_6_HNS ===
 Name: {B_RIVAL_NAME}
@@ -11520,7 +11738,7 @@ Level: 64
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hammer Arm
 - Moonblast
-- Ancient Power
+- Rock Tomb
 - Rest
 
 Crobat @ Leftovers
@@ -11577,53 +11795,53 @@ Items: Full Restore / Full Restore
 Ursaluna Bloodmoon @ Chesto Berry
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hammer Arm
-- Moonblast
-- Ancient Power
-- Rest
+- Blood Moon
+- Earth Power
+- Calm Mind
+- Toxic
 
 Crobat @ Leftovers
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Air Slash
-- Venoshock
-- Dark Pulse
-- Facade
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 Victreebel @ Scope Lens
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Leaf Blade
+- Power Whip
 - Sludge Bomb
-- Sleep Powder
-- Growth
+- Double Edge
+- Swords Dance
 
 Houndoom @ Charcoal
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Fire Blast
-- Iron Tail
-- Crunch
-- Double Team
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
 Feraligatr @ Scope Lens
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Ice Beam
-- Surf
-- Slash
+- Aqua Tail
+- Superpower
 - Earthquake
+- Swords Dance
 
 Tyranitar @ Quick Claw
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Stone Edge
 - Crunch
 - Earthquake
-- Stone Edge
-- Fire Fang
+- Dragon Dance
 
 === TRAINER_RED_HNS ===
-Name: RED
+Name: Rot
 Class: Pkmn Trainer 1 Hns
 Pic: Red Hns
 Gender: Male
@@ -11633,51 +11851,51 @@ AI: Basic Trainer
 Items: Full Restore / Full Restore
 
 Pikachu-Starter @ Light Ball
-Level: 93
+Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunderbolt
+- Volt Tackle
 - Surf
 - Iron Tail
-- Double Team
+- Brick Break
 
 Snorlax @ Leftovers
-Level: 77
+Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Belly Drum
 - Curse
-- Heavy Slam
+- Body Slam
 - Earthquake
+- Crunch
 
 Charizard @ Charcoal
-Level: 79
+Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Fire Blast
-- Aerial Ace
-- Outrage
-- Steel Wing
+- Air Slash
+- Dragon Pulse
+- Focus Blast
 
 Venusaur @ Miracle Seed
-Level: 79
+Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Petal Blizzard
-- Double Edge
+- Giga Drain
+- Sludge Bomb
 - Sleep Powder
-- Leech Seed
+- Synthesis
 
 Blastoise @ Quick Claw
-Level: 79
+Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Ice Beam
 - Hydro Pump
-- Skull Bash
-- Earthquake
+- Ice Beam
+- Dark Pulse
+- Focus Blast
 
 Espeon @ Sitrus Berry
-Level: 80
+Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Calm Mind
 - Psychic
 - Shadow Ball
-- Hidden Power
 - Morning Sun
 
 === TRAINER_EUSINE_HNS ===
@@ -11712,7 +11930,7 @@ Level: 27
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 - Thunder Wave
 - Sonic Boom
-- Body Slam
+- Headbutt
 - Thunderbolt
 
 === TRAINER_GIOVANNI_HNS ===
@@ -11729,50 +11947,50 @@ Items: Full Restore / Full Restore
 Kangaskhan
 Level: 60
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Dizzy Punch
-- Fire Punch
-- Safeguard
-- Mega Punch
+- Double Edge
+- Earthquake
+- Crunch
+- Toxic
 
 Honchkrow
 Level: 61
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Dark Pulse
-- Air Slash
-- Thief
-- Double Team
+- Brave Bird
+- Foul Play
+- Roost
+- Thunder Wave
 
 Nidoqueen
 Level: 61
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Ice Punch
-- Cross Poison
-- Bulldoze
-- Body Slam
+- Earthquake
+- Poison Jab
+- Superpower
+- Stealth Rock
 
 Persian
 Level: 61
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Faint Attack
-- Swagger
-- Screech
-- Slash
+- Double Edge
+- Foul Play
+- Thunder Wave
+- Toxic
 
 Ursaluna
 Level: 60
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Headlong Rush
-- Sandstorm
-- Play Rough
 - Double Edge
+- Headlong Rush
+- Close Combat
+- Swords Dance
 
 Nidoking
 Level: 62
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder Punch
 - Earthquake
-- Rock Slide
-- Thrash
+- Poison Jab
+- Head Smash
+- Stealth Rock
 
 === TRAINER_PROTON_1_HNS ===
 Name: Lance
@@ -11787,26 +12005,50 @@ Mugshot: Dark Red
 Koffing
 Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Sludge Wave
+- Fire Blast
+- Dark Pulse
+- Toxic
 
 Slowpoke
 Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Psychic
+- Fire Blast
+- Calm Mind
 
 Zubat
 Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 Zubat
 Level: 14
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 Zubat
 Level: 14
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 Houndour
 Level: 15
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
 === TRAINER_PROTON_2_HNS ===
 Name: Lance
@@ -11822,46 +12064,50 @@ Items: Full Restore / Full Restore
 Muk
 Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sludge Wave
-- Mud Bomb
-- Acid Armor
-- Minimize
+- Gunk Shot
+- Drain Punch
+- Ice Punch
+- Curse
 
 Nidoqueen
 Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Cross Poison
-- Double Kick
-- Thunder Punch
-- Body Slam
+- Earthquake
+- Poison Jab
+- Superpower
+- Stealth Rock
 
 Weezing
 Level: 37
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Sludge Bomb
-- Self Destruct
-- Haze
-- Gyro Ball
+- Fire Blast
+- Dark Pulse
+- Toxic
 
 Nidoking
 Level: 37
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Cross Poison
-- Double Kick
-- Ice Punch
-- Thrash
+- Earthquake
+- Poison Jab
+- Head Smash
+- Stealth Rock
 
 Nidoqueen
 Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Earthquake
+- Poison Jab
+- Superpower
+- Stealth Rock
 
 Rhydon
 Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Earthquake
-- Drill Run
-- Fissure
-- Rock Slide
+- Stone Edge
+- Megahorn
+- Swords Dance
 
 === TRAINER_ARCHER_HNS ===
 Name: Atlas
@@ -11878,45 +12124,49 @@ Porygon Z
 Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Tri Attack
-- Zap Cannon
-- Flamethrower
 - Ice Beam
+- Dark Pulse
+- Nasty Plot
 
 Tauros
 Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Headbutt
+- Double Edge
 - Earthquake
-- Pursuit
-- Frustration
+- Rock Slide
+- Zen Headbutt
 
 Gyarados
 Level: 39
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Crunch
-- Bounce
-- Twister
 - Aqua Tail
+- Earthquake
+- Crunch
+- Dragon Dance
 
 Houndoom
 Level: 39
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Crunch
-- Smog
-- Roar
-- Flamethrower
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
 Houndoom
 Level: 40
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
 Slowbro
 Level: 40
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Zen Headbutt
-- Curse
-- Amnesia
-- Waterfall
+- Surf
+- Psychic
+- Fire Blast
+- Calm Mind
 
 === TRAINER_ARCHER_1_HNS ===
 Name: Atlas
@@ -11969,7 +12219,7 @@ Level: 39
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Tri Attack
 - Zap Cannon
-- Flamethrower
+- Thunderbolt
 - Ice Beam
 
 Tauros
@@ -11985,7 +12235,7 @@ Level: 39
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Bite
 - Strength
-- Gust
+- Whirlpool
 - Surf
 
 Houndoom
@@ -12020,7 +12270,7 @@ Level: 39
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Tri Attack
 - Zap Cannon
-- Flamethrower
+- Thunderbolt
 - Ice Beam
 
 Tauros
@@ -12036,7 +12286,7 @@ Level: 39
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Bite
 - Strength
-- Gust
+- Whirlpool
 - Surf
 
 Houndoom
@@ -12069,42 +12319,50 @@ Items: Full Restore / Full Restore
 Pineco
 Level: 30
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Pin Missile
-- Explosion
-- Spikes
-- Spike Cannon
+- Smart Strike
+- Steamroller
+- Earthquake
+- Thunder Wave
 
 Larvitar
 Level: 30
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Earthquake
+- Outrage
 - Rock Slide
-- Screech
-- Bite
-- Thrash
+- Dragon Dance
 
 Magcargo
 Level: 30
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Smog
-- Flamethrower
+- Overheat
 - Ancient Power
-- Curse
+- Earth Power
+- Shell Smash
 
 Houndoom
 Level: 30
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
 Gyarados
 Level: 30
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Aqua Tail
+- Earthquake
+- Crunch
+- Dragon Dance
 
 Cloyster
 Level: 30
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Ice Beam
-- Clamp
-- Spike Cannon
-- Surf
+- Waterfall
+- Icicle Crash
+- Poison Jab
+- Shell Smash
 
 === TRAINER_PETREL_2_HNS ===
 Name: Lambda
@@ -12120,48 +12378,56 @@ Items: Full Restore / Full Restore
 Forretress
 Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Pin Missile
-- Explosion
-- Spikes
-- Spike Cannon
+- Smart Strike
+- Steamroller
+- Earthquake
+- Thunder Wave
 
 Pupitar
 Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rock Slide
-- Screech
-- Bite
-- Thrash
+- Earthquake
+- Stone Edge
+- Outrage
+- Dragon Dance
 
 Magcargo
 Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Smog
-- Flamethrower
+- Overheat
 - Ancient Power
-- Curse
+- Earth Power
+- Shell Smash
 
 Gyarados
 Level: 39
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Aqua Tail
+- Earthquake
+- Crunch
+- Dragon Dance
 
 Houndoom
 Level: 39
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
 Cloyster
 Level: 39
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Ice Beam
-- Clamp
-- Spike Cannon
-- Surf
+- Waterfall
+- Icicle Crash
+- Poison Jab
+- Shell Smash
 
 === TRAINER_ARIANA_1_HNS ===
 Name: Athena
 Class: Rocket Admin Hns
 Pic: Ariana Hns
-Gender: Male
+Gender: Female
 Music: Rocket
 Double Battle: No
 AI: Basic Trainer
@@ -12171,44 +12437,56 @@ Items: Full Restore / Full Restore
 Arbok
 Level: 30
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Leer
-- Poison Fang
-- Bite
-- Wrap
+- Gunk Shot
+- Crunch
+- Iron Tail
+- Coil
 
 Persian
 Level: 30
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Faint Attack
-- Pay Day
-- Mud Slap
-- Slash
+- Double Edge
+- Foul Play
+- Thunder Wave
+- Toxic
 
 Vileplume
 Level: 30
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sludge Bomb
+- Giga Drain
+- Moonblast
+- Sleep Powder
 
 Arbok
 Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Gunk Shot
+- Crunch
+- Iron Tail
+- Coil
 
 Vileplume
 Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-
-Vileplume
-Level: 31
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sweet Scent
-- Sleep Powder
 - Sludge Bomb
 - Giga Drain
+- Moonblast
+- Sleep Powder
+
+Vileplume
+Level: 31
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sludge Bomb
+- Giga Drain
+- Moonblast
+- Sleep Powder
 
 === TRAINER_ARIANA_2_HNS ===
 Name: Athena
 Class: Rocket Admin Hns
 Pic: Ariana Hns
-Gender: Male
+Gender: Female
 Music: Rocket
 Double Battle: No
 AI: Basic Trainer
@@ -12218,46 +12496,50 @@ Items: Full Restore / Full Restore
 Arbok
 Level: 39
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Screech
+- Gunk Shot
+- Earthquake
 - Crunch
-- Glare
-- Poison Fang
+- Coil
 
 Persian
 Level: 39
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Bite
-- Screech
-- Charm
-- Slash
+- Double Edge
+- Foul Play
+- Thunder Wave
+- Toxic
 
 Vileplume
 Level: 39
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sleep Powder
-- Sludge Bomb
-- Stun Spore
+- Sludge Wave
 - Giga Drain
+- Moonblast
+- Sleep Powder
 
 Gyarados
 Level: 40
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Strength
-- Twister
-- Bounce
-- Surf
+- Aqua Tail
+- Earthquake
+- Crunch
+- Dragon Dance
 
 Vileplume
 Level: 40
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sludge Wave
+- Giga Drain
+- Moonblast
+- Sleep Powder
 
 Murkrow
 Level: 40
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Pursuit
-- Toxic
-- Faint Attack
-- Air Slash
+- Brave Bird
+- Foul Play
+- Thunder Wave
+- Roost
 
 === TRAINER_ANABEL_BF_BRAIN_HNS ===
 Name: Anabel
@@ -12346,7 +12628,7 @@ Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BRANDON_BF_BRAIN_HNS ===
-Name: BRANDON
+Name: Brian
 Class: Pyramid King Hns
 Pic: Pyramid King Brandon
 Gender: Male
@@ -12367,6 +12649,12 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
+Hoothoot
+Level: 27
+
+Pidgey
+Level: 27
+
 Rattata @ Silk Scarf
 Level: 27
 - Quick Attack
@@ -12382,6 +12670,12 @@ Gender: Male
 Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Pidgey
+Level: 30
+
+Hoothoot
+Level: 30
 
 Rattata @ Silk Scarf
 Level: 30
@@ -12399,6 +12693,12 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
+Hoothoot
+Level: 40
+
+Pidgey
+Level: 40
+
 Rattata @ Silk Scarf
 Level: 40
 - Body Slam
@@ -12414,6 +12714,12 @@ Gender: Male
 Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Pidgey
+Level: 65
+
+Hoothoot
+Level: 65
 
 Rattata @ Silk Scarf
 Level: 65
@@ -12432,6 +12738,9 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Beedrill
+Level: 20
+
+Spinarak
 Level: 20
 
 Pineco
@@ -12509,6 +12818,12 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
+Magikarp
+Level: 24
+
+Quagsire
+Level: 24
+
 Goldeen
 Level: 24
 
@@ -12522,6 +12837,9 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Qwilfish
+Level: 28
+
+Tentacruel
 Level: 28
 
 Seaking
@@ -12548,13 +12866,13 @@ Level: 48
 - Waterfall
 - Megahorn
 - Rain Dance
-- Drill Peck
+- Poison Jab
 
 Tentacruel
 Level: 45
 - Sludge Bomb
 - Surf
-- Acid Armor
+- Barrier
 - Ice Beam
 
 === TRAINER_RALPH_5_HNS ===
@@ -12578,13 +12896,13 @@ Level: 58
 - Waterfall
 - Megahorn
 - Rain Dance
-- Drill Peck
+- Poison Jab
 
 Tentacruel
 Level: 55
 - Sludge Bomb
 - Surf
-- Acid Armor
+- Barrier
 - Ice Beam
 
 === TRAINER_LIZ_2_HNS ===
@@ -12597,6 +12915,9 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Weepinbell
+Level: 24
+
+Bellsprout
 Level: 24
 
 Nidorina
@@ -12676,6 +12997,9 @@ Gender: Male
 Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Geodude
+Level: 11
 
 Geodude
 Level: 11
@@ -12912,7 +13236,7 @@ Level: 55
 - Mud-Slap
 
 === TRAINER_IRWIN_2_HNS ===
-Name: IRWIN
+Name: Erich
 Class: Juggler Hns
 Pic: Juggler Hns
 Gender: Male
@@ -12931,7 +13255,7 @@ Level: 27
 
 
 === TRAINER_IRWIN_3_HNS ===
-Name: IRWIN
+Name: Erich
 Class: Juggler Hns
 Pic: Juggler Hns
 Gender: Male
@@ -12950,7 +13274,7 @@ Level: 35
 
 
 === TRAINER_IRWIN_4_HNS ===
-Name: IRWIN
+Name: Erich
 Class: Juggler Hns
 Pic: Juggler Hns
 Gender: Male
@@ -12969,7 +13293,7 @@ Level: 45
 
 
 === TRAINER_IRWIN_5_HNS ===
-Name: IRWIN
+Name: Erich
 Class: Juggler Hns
 Pic: Juggler Hns
 Gender: Male
@@ -13009,6 +13333,9 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Yanma
+Level: 28
+
+Ledyba
 Level: 28
 
 Venonat
@@ -13084,6 +13411,9 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Tangela
+Level: 24
+
+Exeggcute
 Level: 24
 
 Growlithe
@@ -13168,6 +13498,9 @@ Level: 25
 - Thunder Shock
 - Thunder Wave
 
+Magnemite
+Level: 25
+
 Psyduck
 Level: 25
 - Scratch
@@ -13190,6 +13523,9 @@ Level: 37
 - Disable
 - Confusion
 - Screech
+
+Magnemite
+Level: 37
 
 Ampharos
 Level: 37
@@ -13214,6 +13550,9 @@ Level: 44
 - Psychic
 - Screech
 
+Magnemite
+Level: 44
+
 Ampharos
 Level: 45
 - Headbutt
@@ -13237,6 +13576,9 @@ Level: 54
 - Psychic
 - Screech
 
+Magnemite
+Level: 54
+
 Ampharos
 Level: 55
 - Headbutt
@@ -13256,6 +13598,9 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Mr. Mime
 Level: 28
 
+Noctowl
+Level: 27
+
 Magnemite
 Level: 26
 
@@ -13271,6 +13616,9 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Mr. Mime
 Level: 37
 
+Magnemite
+Level: 36
+
 Magneton
 Level: 35
 
@@ -13285,6 +13633,9 @@ AI: Check Bad Move / Try To Faint / Check Viability
 
 Mr. Mime
 Level: 46
+
+Magnemite
+Level: 45
 
 Magneton
 Level: 44
@@ -13305,6 +13656,9 @@ Level: 54
 - Reflect
 - Encore
 
+Magnemite
+Level: 56
+
 Magneton
 Level: 58
 - Thunder
@@ -13313,7 +13667,7 @@ Level: 58
 - Tri Attack
 
 === TRAINER_DEREK_2_HNS ===
-Name: DEREK
+Name: Söncke
 Class: Pokefan Hns
 Pic: Pokefan M
 Gender: Male
@@ -13324,12 +13678,15 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Pikachu
 Level: 25
 
+Magnemite
+Level: 26
+
 Ponyta
 Level: 27
 
 
 === TRAINER_DEREK_3_HNS ===
-Name: DEREK
+Name: Söncke
 Class: Pokefan Hns
 Pic: Pokefan M
 Gender: Male
@@ -13340,12 +13697,15 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Pikachu
 Level: 36
 
+Magnemite
+Level: 35
+
 Ponyta
 Level: 35
 
 
 === TRAINER_DEREK_4_HNS ===
-Name: DEREK
+Name: Söncke
 Class: Pokefan Hns
 Pic: Pokefan M
 Gender: Male
@@ -13356,12 +13716,15 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Pikachu
 Level: 45
 
+Magnemite
+Level: 45
+
 Rapidash
 Level: 46
 
 
 === TRAINER_DEREK_5_HNS ===
-Name: DEREK
+Name: Söncke
 Class: Pokefan Hns
 Pic: Pokefan M
 Gender: Male
@@ -13375,6 +13738,9 @@ Level: 55
 - Iron Tail
 - Quick Attack
 - Thunder Wave
+
+Ponyta
+Level: 55
 
 Rapidash
 Level: 56
@@ -13392,6 +13758,12 @@ Gender: Male
 Music: Hg Suspicious 2
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Remoraid
+Level: 24
+
+Goldeen
+Level: 24
 
 Qwilfish
 Level: 24
@@ -13441,6 +13813,12 @@ Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
+Girafarig
+Level: 33
+
+Raticate
+Level: 33
+
 Kangaskhan
 Level: 33
 
@@ -13452,6 +13830,12 @@ Gender: Male
 Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Raticate
+Level: 46
+
+Furret
+Level: 46
 
 Porygon
 Level: 46
@@ -13469,6 +13853,12 @@ Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
+Furret
+Level: 53
+
+Farfetchd
+Level: 53
+
 Chansey
 Level: 53
 - Rollout
@@ -13485,6 +13875,12 @@ Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
+Venonat
+Level: 37
+
+Flaaffy
+Level: 37
+
 Clefairy
 Level: 37
 - Encore
@@ -13500,6 +13896,12 @@ Gender: Male
 Music: Hg Girl 2
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Flaaffy
+Level: 29
+
+Girafarig
+Level: 29
 
 Clefable
 Level: 29
@@ -13523,6 +13925,9 @@ Level: 53
 - Encore
 - Moonlight
 - Minimize
+
+Girafarig
+Level: 53
 
 Wigglytuff
 Level: 54
@@ -13764,6 +14169,9 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Sunflora
 Level: 24
 
+Sunkern
+Level: 23
+
 Voltorb
 Level: 23
 
@@ -13778,6 +14186,9 @@ AI: Check Bad Move / Try To Faint / Check Viability
 
 Gloom
 Level: 28
+
+Weedle
+Level: 30
 
 Electrode
 Level: 31
@@ -13831,52 +14242,76 @@ Level: 37
 - Moonlight
 
 === TRAINER_BEVERLY_2_HNS ===
-Name: BEVERLY
+Name: Irmgard
 Class: Parasol Lady Hns
 Pic: Parasol Lady
 Gender: Male
 Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Psyduck
+Level: 27
+
+Psyduck
+Level: 27
 
 Snubbull
 Level: 27
 
 
 === TRAINER_BEVERLY_3_HNS ===
-Name: BEVERLY
+Name: Irmgard
 Class: Parasol Lady Hns
 Pic: Parasol Lady
 Gender: Male
 Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Psyduck
+Level: 36
+
+Psyduck
+Level: 36
 
 Granbull
 Level: 36
 
 
 === TRAINER_BEVERLY_4_HNS ===
-Name: BEVERLY
+Name: Irmgard
 Class: Parasol Lady Hns
 Pic: Parasol Lady
 Gender: Male
 Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Psyduck
+Level: 46
+
+Psyduck
+Level: 46
 
 Granbull
 Level: 46
 
 
 === TRAINER_BEVERLY_5_HNS ===
-Name: BEVERLY
+Name: Irmgard
 Class: Parasol Lady Hns
 Pic: Parasol Lady
 Gender: Male
 Music: Hg Girl 1
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
+
+Psyduck
+Level: 56
+
+Psyduck
+Level: 56
 
 Granbull @ Sitrus Berry
 Level: 56
@@ -13901,6 +14336,9 @@ Level: 28
 Poliwhirl
 Level: 28
 
+Poliwhirl
+Level: 28
+
 === TRAINER_HUEY_3_HNS ===
 Name: Nepomuk
 Class: Sailor Hns
@@ -13911,6 +14349,9 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Poliwhirl
+Level: 34
+
+Poliwrath
 Level: 34
 
 Poliwrath
@@ -13931,6 +14372,9 @@ Level: 38
 - Rain Dance
 - Body Slam
 - Perish Song
+
+Poliwrath
+Level: 38
 
 Poliwrath
 Level: 38
@@ -14819,7 +15263,7 @@ Ability: Drizzle
 Level: 63   
 Bold Nature  
 IVs: 0 Atk  
-- Weather Ball  
+- Swift
 - Icy Wind  
 - Whirlpool  
 - Perish Song  
@@ -14829,7 +15273,7 @@ Ability: Swift Swim
 Level: 63    
 Modest Nature  
 IVs: 0 Atk  
-- Hurricane  
+- Air Slash
 - Water Pulse  
 - Signal Beam  
 - Aqua Ring  
@@ -14862,22 +15306,22 @@ Level: 63
 IVs: 0 Atk  
 - Surf  
 - Ice Beam  
-- Feather Dance  
+- Growl
 - Shock Wave  
 
 Poliwrath @ Life Orb  
 Ability: Water Absorb  
 Level: 63  
-- Darkest Lariat  
+- Thief
 - Drain Punch  
-- Liquidation  
-- Power-Up Punch  
+- Waterfall
+- Rock Smash
 
 Huntail @ White Herb  
 Ability: Water Veil  
 Level: 68  
 - Shell Smash  
-- Super Fang  
+- Facade
 - Waterfall  
 - Scary Face  
 
@@ -14898,15 +15342,15 @@ EVs: 140 HP / 204 Atk / 104 Def / 60 SpD
 Adamant Nature  
 - Dive  
 - Avalanche  
-- Curse  
+- Harden
 - Recover  
 
 Seaking @ King's Rock  
 Ability: Lightning Rod  
 Level: 67    
-- Drill Run  
-- Acupressure  
-- Scale Shot  
+- Waterfall
+- Supersonic
+- Peck
 - Tail Whip  
 
 Golduck @ Scope Lens  
@@ -14937,7 +15381,7 @@ IVs: 0 Spe
 - Liquidation  
 - Head Smash  
 - Recover  
-- Sucker Punch  
+- Flail
 
 Octillery @ Leftovers  
 Ability: Moody  
@@ -14952,9 +15396,9 @@ Ability: Water Absorb
 Level: 66      
 Careful Nature  
 - Mirror Coat  
-- Seed Bomb  
-- Aqua Tail  
-- Rock Blast  
+- Bounce
+- Waterfall
+- Rock Tomb
 
 === TRAINER_AKALA_SWIMMER_3_HNS ===
 Name: Geoff
@@ -14968,8 +15412,8 @@ AI: Check Bad Move
 Tentacruel  
 Ability: Liquid Ooze  
 Level: 64
-- Gunk Shot  
-- Flip Turn  
+- Poison Jab
+- Water Pulse
 - Toxic Spikes  
 - Rapid Spin  
 
@@ -14978,7 +15422,7 @@ Ability: Moxie
 Level: 64 
 - Crunch  
 - Earthquake  
-- Rage  
+- Tackle
 - Scary Face  
 
 Kingdra @ Scope Lens  
@@ -15008,7 +15452,7 @@ EVs: 252 Def / 248 Spe
 Timid Nature  
 - Scald  
 - Draining Kiss  
-- Bind  
+- Facade
 - Confuse Ray  
 
 Luvdisc  
@@ -15018,8 +15462,8 @@ EVs: 252 Spe
 Jolly Nature  
 - Charm  
 - Captivate  
-- Flip Turn  
-- Wish  
+- Water Pulse
+- Aqua Ring
 
 Milotic (F)  
 Ability: Cute Charm  
@@ -15067,7 +15511,7 @@ Ability: Sheer Force
 Level: 65 
 EVs: 8 HP / 248 Atk / 252 SpD  
 - Crabhammer  
-- Hone Claws  
+- Harden
 - Dig  
 - Guillotine  
 
@@ -15087,7 +15531,7 @@ Ability: Levitate
 Level: 63   
 IVs: 0 Atk  
 - Cosmic Power  
-- Stored Power  
+- Confusion
 - Calm Mind  
 - Power Gem  
 
@@ -15096,8 +15540,8 @@ Ability: Levitate
 Level: 63   
 IVs: 0 Atk  
 - Sunny Day  
-- Weather Ball  
-- Morning Sun  
+- Swift
+- Rest
 - Solar Beam  
 
 Magmar @ Eviolite  
@@ -15125,7 +15569,7 @@ Level: 64
 IVs: 0 Atk  
 - Venoshock  
 - Toxic  
-- Iron Defense  
+- Harden
 - Quiver Dance  
 
 Pinsir @ Life Orb  
@@ -15134,15 +15578,15 @@ Level: 61
 - Storm Throw  
 - X-Scissor  
 - Guillotine  
-- Curse  
+- Swords Dance
 
 Ludicolo  
 Ability: Rain Dish  
 Level: 63
 - Teeter Dance  
 - Scald  
-- Trailblaze  
-- Encore  
+- Razor Leaf
+- Growl
 
 
 
@@ -15161,14 +15605,14 @@ Level: 63
 - Boomburst  
 - Brave Bird  
 - Roost  
-- Tailwind  
+- Growl
 
 Beedrill @ Scope Lens  
 Ability: Sniper  
 Level: 65  
 - Poison Jab  
-- Drill Run  
-- Outrage  
+- X Scissor
+- Double Edge
 - Fell Stinger  
 
 Dustox  
@@ -15196,16 +15640,16 @@ Ability: Hyper Cutter
 Level: 61  
 - Close Combat  
 - Double-Edge  
-- Outrage  
+- Thrash
 - Rock Slide  
 
 Scyther @ Eviolite  
 Ability: Technician  
 Level: 63 
-- Psycho Cut  
+- Slash
 - Steel Wing  
 - Roost  
-- Bug Bite  
+- X Scissor
 
 
 
@@ -15222,9 +15666,9 @@ Butterfree @ Bright Powder
 Ability: Compound Eyes  
 Level: 64   
 IVs: 0 Atk  
-- Hurricane  
+- Air Slash
 - Quiver Dance  
-- Signal Beam  
+- Silver Wind
 - Sleep Powder  
 
 Heracross @ Flame Orb  
@@ -15232,7 +15676,7 @@ Ability: Guts
 Level: 61  
 - Facade  
 - Close Combat  
-- Throat Chop  
+- Night Slash
 - Megahorn  
 
 
@@ -15267,7 +15711,7 @@ Ability: Harvest
 Level: 62   
 - Dragon Dance  
 - Dragon Hammer  
-- Petal Blizzard  
+- Leaf Blade
 - Safeguard  
 
 
@@ -15285,7 +15729,7 @@ Primeape
 Ability: Anger Point  
 Level: 61  
 - Cross Chop  
-- Curse  
+- Work Up
 - Rage Fist  
 - Ice Punch  
 
@@ -15321,14 +15765,14 @@ Ability: Scrappy
 Level: 62  
 Happiness: 254  
 - Return  
-- Power-Up Punch  
-- Beat Up  
+- Rock Smash
+- Bite
 - Disable  
 
 Solrock  
 Ability: Levitate  
 Level: 64  
-- Ancient Power  
+- Rock Throw
 - Acrobatics  
 - Flamethrower  
 - Reflect  
@@ -15353,9 +15797,9 @@ Swellow
 Ability: Scrappy  
 Level: 61  
 IVs: 0 Atk  
-- Heat Wave  
-- Air Cutter  
-- Feather Dance  
+- Air Slash
+- Wing Attack
+- Growl
 - Supersonic  
 
 Tangela @ Eviolite  
@@ -15370,7 +15814,7 @@ IVs: 0 Atk
 Miltank  
 Ability: Thick Fat  
 Level: 61  
-- Retaliate  
+- Stomp
 - Earthquake  
 - Heal Bell  
 - Milk Drink  
@@ -15400,7 +15844,7 @@ Level: 61
 - Brutal Swing  
 - Bullet Punch  
 - Swords Dance  
-- Sand Tomb  
+- Double Hit
 
 Leafeon @ Sitrus Berry  
 Ability: Leaf Guard  
@@ -15427,7 +15871,7 @@ Level: 62
 - Ice Fang  
 - Play Rough  
 - Stealth Rock  
-- Psychic Fangs  
+- Iron Head
 
 Magmar @ Sitrus Berry  
 Ability: Flame Body  
@@ -15435,7 +15879,7 @@ Level: 63
 - Fire Punch  
 - Belly Drum  
 - Mach Punch  
-- Dual Chop  
+- Rock Smash
 
 Electivire @ Zoom Lens  
 Ability: Motor Drive  
@@ -15444,7 +15888,7 @@ Brave Nature
 IVs: 0 Spe  
 - Thunder Punch  
 - Dynamic Punch  
-- Charge  
+- Thunder Wave
 - Barrier  
 
 
@@ -15461,7 +15905,7 @@ AI: Check Bad Move
 Skarmory  
 Ability: Keen Eye  
 Level: 61 
-- Iron Defense  
+- Agility
 - Autotomize  
 - Drill Peck  
 - Rock Slide  
@@ -15472,7 +15916,7 @@ Level: 64
 Happiness: 0  
 - Frustration  
 - Close Combat  
-- Lash Out  
+- Assurance
 - Taunt  
 
 Tauros @ Life Orb  
@@ -15480,8 +15924,8 @@ Ability: Sheer Force
 Level: 63 
 - Wild Charge  
 - Bulldoze  
-- Raging Bull  
-- Focus Energy  
+- Take Down
+- Work Up
 
 
 
@@ -15502,7 +15946,7 @@ IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 156 HP / 0 Atk / 100 Def / 0 SpA / 252 SpD / 0 Spe
 - Milk Drink
 - Curse
-- Body Press 
+- Wake Up Slap
 - Protect
 
 Miltank @ Charcoal
@@ -15512,7 +15956,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 0 Def / 0 SpA / 4 SpD / 0 Spe
 - Milk Drink
 - Fire Punch
-- Iron Head
+- Gyro Ball
 - Stealth Rock
 
 Miltank @ Leftovers
@@ -15532,7 +15976,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 4 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 - Milk Drink
 - Defense Curl
-- Body Press 
+- Wake Up Slap
 - RollOut
 
 Miltank @ Lagging Tail
@@ -15553,7 +15997,7 @@ EVs: 4 HP / 252 Atk / 0 Def / 0 SpA / 0 SpD / 252 Spe
 - Milk Drink
 - Double-Edge
 - Play Rough 
-- Power-Up Punch
+- Rock Smash
 
 === TRAINER_MIHARU_HNS ===
 Name: Miharu
@@ -15593,7 +16037,7 @@ Modest Nature
 IVs: 0 Atk  
 - Synchronoise
 - Blizzard  
-- Chilling Water  
+- Water Pulse
 - Shadow Ball 
 
 === TRAINER_SHIZUKO_HNS ===
@@ -15612,10 +16056,10 @@ Level: 70
 Happiness: 254   
 EVs: 124 HP / 252 Atk / 132 Def  
 Adamant Nature  
-- Skull Bash  
+- Double Edge
 - Iron Tail  
 - Curse  
-- Sing  
+- Toxic
 
 === TRAINER_STEVEN_HNS ===
 Name: Troy
@@ -15635,7 +16079,7 @@ EVs: 8 HP / 252 Atk / 248 Def
 Adamant Nature  
 - Autotomize  
 - Brave Bird  
-- Iron Head  
+- Steel Wing
 - Spikes  
 
 Omastar @ Sitrus Berry  
@@ -15645,7 +16089,7 @@ EVs: 128 Def / 40 SpA / 252 SpD
 Relaxed Nature  
 IVs: 0 Atk  
 - Hydro Pump  
-- Meteor Beam  
+- Stone Edge
 - Brine  
 - Toxic Spikes  
 
@@ -15657,7 +16101,7 @@ Modest Nature
 IVs: 0 Atk  
 - Light Screen  
 - Reflect  
-- Expanding Force  
+- Extrasensory
 - Earth Power  
 
 Aggron @ Rocky Helmet  
@@ -15666,7 +16110,7 @@ Level: 77
 EVs: 4 HP / 248 Atk / 252 Def / 4 SpD  
 Adamant Nature  
 - Heavy Slam  
-- Body Press  
+- Brick Break
 - Curse  
 - Rock Slide  
 
@@ -15677,7 +16121,7 @@ EVs: 124 Atk / 132 Def / 252 Spe
 Adamant Nature  
 - Stone Axe  
 - X-Scissor  
-- Cross Poison  
+- Slash
 - Double Team  
 
 Metagross @ Metal Coat  
@@ -15687,8 +16131,8 @@ EVs: 128 HP / 120 Atk / 4 Def / 252 SpD
 Brave Nature  
 - Bullet Punch  
 - Meteor Mash  
-- Psychic Fangs  
-- Cosmic Power 
+- Zen Headbutt
+- Agility
 
 === TRAINER_FINLEY_HNS ===
 Name: Finley
@@ -15705,10 +16149,10 @@ Level: 70
 EVs: 252 SpA / 252 Spe  
 Modest Nature  
 IVs: 0 Atk  
-- Dragon Cheer  
-- Alluring Voice  
-- Heat Wave  
-- Scorching Sands  
+- Dragon Dance
+- Earth Power
+- Flamethrower
+- Mud Shot
 
 Salamence @ Draco Plate
 Ability: Intimidate  
@@ -15718,7 +16162,7 @@ Adamant Nature
 - Dragon Dance  
 - Dragon Rush  
 - Crunch  
-- Temper Flare  
+- Fire Fang
 
 Kingdra @ Scope Lens  
 Ability: Sniper  
@@ -15754,7 +16198,7 @@ Level: 70
 EVs: 116 HP / 140 SpA / 252 SpD  
 Sassy Nature  
 IVs: 0 Atk  
-- Weather Ball  
+- Swift
 - Earth Power  
 - Seismic Toss  
 - Ice Beam  
@@ -15764,10 +16208,10 @@ Level: 70
 EVs: 252 HP / 92 Def / 72 SpA / 92 SpD  
 Quiet Nature  
 IVs: 0 Atk  
-- Clear Smog  
+- Water Pulse
 - Scald  
 - Earth Power
-- Recover  
+- Rest
 
 Lanturn @ Assault Vest  
 Ability: Volt Absorb  
@@ -15810,7 +16254,7 @@ IVs: 0 Atk
 - Hurricane  
 - Hydro Pump  
 - Tailwind  
-- Feather Dance  
+- Growl
 
 === TRAINER_WESSEL_HNS ===
 Name: Wessel
@@ -15836,9 +16280,9 @@ Level: 70
 EVs: 252 HP / 252 SpD  
 Sassy Nature  
 IVs: 0 Spe  
-- Head Smash  
+- Stone Edge
 - Gyro Ball  
-- Psychic Fangs  
+- Slam
 - Fire Fang  
 
 Scizor @ Covert Cloak  
@@ -15846,10 +16290,10 @@ Ability: Technician
 Level: 70  
 EVs: 172 HP / 124 Atk / 88 Def / 124 SpD  
 Adamant Nature  
-- Pounce  
-- Dual Wingbeat  
+- X Scissor
+- Wing Attack
 - Iron Head  
-- Curse  
+- Swords Dance
 
 Aggron @ Loaded Dice  
 Ability: Heavy Metal  
@@ -15857,9 +16301,9 @@ Level: 70
 EVs: 108 HP / 252 Atk / 28 Def / 120 SpD  
 Relaxed Nature  
 - Heavy Slam  
-- Body Press  
+- Brick Break
 - Iron Defense  
-- Rock Blast  
+- Rock Tomb
 
 Perrserker @ Iron Plate  
 Ability: Steely Spirit  
@@ -15885,17 +16329,17 @@ Ability: Technician
 Level: 70
 EVs: 4 HP / 252 Atk / 252 Spe  
 Hasty Nature  
-- Dual Wingbeat  
-- Close Combat  
-- Lunge  
-- Psycho Cut  
+- Wing Attack
+- Brick Break
+- X Scissor
+- Slash
 
 Gliscor @ Toxic Orb  
 Ability: Poison Heal  
 Level: 70 
 EVs: 124 Atk / 252 Def / 132 SpD  
 Adamant Nature  
-- Tailwind  
+- Swords Dance
 - Fling  
 - Acrobatics  
 - Earthquake  
@@ -15918,7 +16362,7 @@ Adamant Nature
 - Facade  
 - Roost  
 - Steel Wing  
-- Tailwind  
+- Growl
 
 Fearow @ Scope Lens  
 Ability: Sniper  
@@ -15977,7 +16421,7 @@ Level: 69
 Pidgeot  
 Ability: Keen Eye  
 Level: 69  
-- Extreme Speed  
+- Quick Attack
 - Fly  
 - Tailwind  
 - Sand Attack  
@@ -15988,7 +16432,7 @@ Level: 69
 IVs: 0 Atk  
 - Hurricane  
 - Brine  
-- Feather Dance  
+- Growl
 - Roost  
 
 === TRAINER_BUGSY_POSTOBC_HNS ===
@@ -16042,14 +16486,14 @@ Ability: Wonder Guard
 Level: 71 
 - Phantom Force  
 - X-Scissor  
-- Hone Claws  
+- Harden
 - Sand Attack  
 
 Scizor @ Scope Lens  
 Ability: Technician  
 Level: 69  
 - Bullet Punch  
-- Bug Bite  
+- X Scissor
 - Swords Dance  
 - Roost  
 
@@ -16057,7 +16501,7 @@ Level: 69
 Name: WHITNEY
 Class: Leader Hns
 Pic: Leader Whitney Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Smart Trainer / Prediction
@@ -16069,7 +16513,7 @@ Ability: Cute Charm
 Level: 70   
 IVs: 0 Atk  
 - Moonblast  
-- Meteor Beam  
+- Solar Beam
 - Healing Wish  
 - Encore  
 
@@ -16085,7 +16529,7 @@ Ambipom @ Loaded Dice
 Ability: Technician  
 Level: 70 
 - Tail Slap  
-- Knock Off  
+- Thief
 - Tail Whip  
 - Aerial Ace  
 
@@ -16094,7 +16538,7 @@ Ability: Mind's Eye
 Level: 69  
 IVs: 0 Atk  
 - Blood Moon  
-- Lunar Blessing  
+- Rest
 - Earth Power  
 - Calm Mind  
 
@@ -16104,7 +16548,7 @@ Level: 70
 - Milk Drink  
 - Defense Curl  
 - Rollout  
-- Iron Head  
+- Gyro Ball
 
 Obstagoon  
 Ability: Reckless  
@@ -16201,7 +16645,7 @@ Medicham
 Ability: Pure Power  
 Level: 70 
 - Acupressure  
-- Stored Power  
+- Confusion
 - High Jump Kick  
 - Detect  
 
@@ -16232,16 +16676,16 @@ Level: 70
 Poliwrath @ Sitrus Berry  
 Ability: Water Absorb  
 Level: 71  
-- Liquidation  
+- Waterfall
 - Submission  
 - Belly Drum  
-- Skull Bash  
+- Mega Kick
 
 === TRAINER_JASMINE_POSTOBC_HNS ===
 Name: JASMINE
 Class: Leader Hns
 Pic: Leader Jasmine Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Smart Trainer / Prediction
@@ -16295,9 +16739,9 @@ IVs: 0 Spe
 Steelix @ Quick Claw  
 Ability: Rock Head  
 Level: 70
-- Head Smash  
+- Stone Edge
 - Earthquake  
-- Dragon Dance  
+- Rock Polish
 - Heavy Slam  
 
 === TRAINER_PRYCE_POSTOBC_HNS ===
@@ -16341,8 +16785,8 @@ Slowking
 Ability: Regenerator  
 Level: 70  
 IVs: 0 Atk  
-- Chilly Reception  
-- Hydro Pump  
+- Yawn
+- Surf
 - Reflect  
 - Safeguard  
 
@@ -16361,13 +16805,13 @@ IVs: 0 Atk
 - Shadow Ball  
 - Blizzard  
 - Will-O-Wisp  
-- Pain Split  
+- Protect
 
 === TRAINER_CLAIR_POSTOBC_HNS ===
 Name: CLAIR
 Class: Leader Hns
 Pic: Leader Clair Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Smart Trainer / Prediction
@@ -16388,7 +16832,7 @@ Level: 69
 - Charge Beam  
 - Boomburst  
 - Poison Jab  
-- Tailwind  
+- Roost
 
 Exeggutor-Alola @ Sitrus Berry  
 Ability: Harvest  
@@ -16403,7 +16847,7 @@ Ability: Moxie
 Level: 71
 - Dragon Dance  
 - Dragon Rush  
-- Iron Head  
+- Steel Wing
 - Flamethrower  
 
 Kingdra @ Scope Lens  
@@ -16445,18 +16889,18 @@ Level: 72
 Gliscor @ Toxic Orb  
 Ability: Poison Heal  
 Level: 71 
-- Spikes  
+- Sand Attack
 - Protect  
-- Crabhammer  
+- Stone Edge
 - Earthquake  
 
 Aerodactyl  
 Ability: Unnerve  
 Level: 72
 - Fire Fang  
-- Sky Attack  
+- Fly
 - Earthquake  
-- Dragon Dance  
+- Agility
 
 Omastar  
 Ability: Swift Swim  
@@ -16470,10 +16914,10 @@ IVs: 0 Atk
 Relicanth @ Hard Stone  
 Ability: Rock Head  
 Level: 70 
-- Wave Crash  
+- Hydro Pump
 - Head Smash  
 - Calm Mind  
-- Thunderbolt  
+- Surf
 
 Golem-Alola @ Magnet  
 Ability: Galvanize  
@@ -16487,7 +16931,7 @@ Level: 72
 Name: MISTY
 Class: Leader Kanto Hns
 Pic: Leader Misty Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Smart Trainer / Prediction
@@ -16497,7 +16941,7 @@ Items: Full Restore / Full Restore
 Politoed @ Damp Rock  
 Ability: Drizzle  
 Level: 71 
-- Weather Ball  
+- Swift
 - Seismic Toss  
 - Metronome  
 - Hypnosis  
@@ -16508,7 +16952,7 @@ Level: 71
 - Rain Dance  
 - Barrier  
 - Earthquake  
-- Liquidation  
+- Waterfall
 
 Vaporeon @ Leftovers  
 Ability: Water Absorb  
@@ -16569,7 +17013,7 @@ Jolteon
 Ability: Volt Absorb  
 Level: 69   
 IVs: 0 Atk  
-- Electric Terrain  
+- Thunder Wave
 - Thunder  
 - Rain Dance  
 - Reflect  
@@ -16612,7 +17056,7 @@ IVs: 0 Atk
 Name: ERIKA
 Class: Leader Kanto Hns
 Pic: Leader Erika Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Smart Trainer / Prediction
@@ -16676,7 +17120,7 @@ IVs: 0 Atk
 Name: JANINE
 Class: Leader Kanto Hns
 Pic: Leader Janine Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Smart Trainer / Prediction
@@ -16687,7 +17131,7 @@ Swalot
 Ability: Liquid Ooze  
 IVs: 0 Atk  
 Level: 70
-- Toxic Spikes  
+- Toxic
 - Stockpile  
 - Swallow  
 - Spit Up  
@@ -16738,7 +17182,7 @@ IVs: 0 Atk
 Name: SABRINA
 Class: Leader Kanto Hns
 Pic: Leader Sabrina Hns
-Gender: Male
+Gender: Female
 Music: Hg Boy 1
 Double Battle: No
 AI: Smart Trainer / Prediction
@@ -16768,8 +17212,8 @@ Level: 70
 IVs: 0 Atk  
 - Psychic  
 - Morning Sun  
-- Psychic Terrain  
-- Power Gem  
+- Tail Whip
+- Shadow Ball
 
 Rapidash-Galar  
 Ability: Pastel Veil  
@@ -16795,7 +17239,7 @@ IVs: 0 Atk
 - Psyshock  
 - Shadow Ball  
 - Calm Mind  
-- Tri Attack  
+- Swift
 
 === TRAINER_BLAINE_POSTOBC_HNS ===
 Name: BLAINE
@@ -16830,7 +17274,7 @@ Blaziken @ Scope Lens
 Ability: Speed Boost  
 Level: 70 
 - Blaze Kick  
-- Power-Up Punch  
+- Double Kick
 - Thunder Punch  
 - Protect  
 
@@ -16918,7 +17362,7 @@ IVs: 0 Atk
 - Scald  
 - Dark Pulse  
 - Water Spout  
-- Shell Smash  
+- Withdraw
 
 === TRAINER_WILL_POSTOBC_HNS ===
 Name: WILL
@@ -16938,7 +17382,7 @@ IVs: 0 Atk
 - Psyshock  
 - Moonblast  
 - Reflect  
-- Vacuum Wave  
+- Disarming Voice
 
 Jynx @ Never-Melt Ice  
 Ability: Dry Skin  
@@ -16970,7 +17414,7 @@ IVs: 0 Atk
 Slowbro  
 Ability: Oblivious  
 Level: 77  
-- Fire Punch  
+- Flamethrower
 - Curse  
 - Earthquake  
 - Zen Headbutt  
@@ -17028,7 +17472,7 @@ IVs: 0 Atk
 - Fire Blast  
 - Ice Beam  
 - Earth Power  
-- Noble Roar  
+- Leer
 
 Venomoth @ Bright Powder  
 Ability: Shield Dust  
@@ -17066,7 +17510,7 @@ Sassy Nature
 - Heavy Slam  
 - Earthquake  
 - Crunch  
-- Aqua Tail  
+- Stone Edge
 
 Tauros-Paldea-Blaze  
 Ability: Intimidate  
@@ -17082,7 +17526,7 @@ Level: 76
 - Pin Missile  
 - Close Combat  
 - Earthquake  
-- Knock Off  
+- Night Slash
 
 Hariyama @ Sitrus Berry  
 Ability: Thick Fat  
@@ -17096,7 +17540,7 @@ Hitmontop @ Expert Belt
 Ability: Technician  
 Level: 77 
 - Triple Kick  
-- Victory Dance  
+- Agility
 - Bullet Punch  
 - Pursuit  
 
@@ -17112,7 +17556,7 @@ Level: 79
 Name: KAREN
 Class: Elite Four Hns
 Pic: Elite Four Karen Hns
-Gender: Male
+Gender: Female
 Music: Hg Elite Four
 Double Battle: No
 AI: Smart Trainer / Prediction
@@ -17123,8 +17567,8 @@ Umbreon @ Black Glasses
 Ability: Synchronize  
 Level: 74  
 IVs: 0 Atk  
-- Lunar Blessing  
-- Foul Play  
+- Tail Whip
+- Feint Attack
 - Shadow Ball  
 - Calm Mind  
 
@@ -17134,7 +17578,7 @@ Level: 75
 - Hone Claws  
 - Night Slash  
 - Icicle Crash  
-- Low Kick  
+- Revenge
 
 Persian-Alola @ Charcoal  
 Ability: Fur Coat  
@@ -17182,8 +17626,8 @@ Mugshot: Blue
 Salamence @ Assault Vest  
 Ability: Intimidate  
 Level: 77 
-- Draco Meteor  
-- Iron Head  
+- Dragon Pulse
+- Steel Wing
 - Double-Edge  
 - Fly  
 
@@ -17217,19 +17661,19 @@ Ability: Rock Head
 Level: 79
 - Rock Slide  
 - Earthquake  
-- Sky Attack  
-- Dragon Dance  
+- Fly
+- Agility
 
 Dragonite @ Leftovers  
 Ability: Multiscale  
 Level: 79 
-- Iron Head  
+- Steel Wing
 - Fire Punch  
 - Dragon Rush  
 - Dragon Dance  
 
 === TRAINER_RED_POSTOBC_HNS ===
-Name: RED
+Name: Rot
 Class: Pkmn Trainer 1 Hns
 Pic: Red Hns
 Gender: Male
@@ -17270,7 +17714,7 @@ EVs: 252 Spe
 IVs: 0 Atk  
 - Sunny Day  
 - Solar Beam  
-- Earth Power  
+- Earthquake
 - Sleep Powder 
 
 Blastoise @ Leftovers  

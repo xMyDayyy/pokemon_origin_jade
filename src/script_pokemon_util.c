@@ -86,6 +86,9 @@ u8 ScriptGiveEgg(u16 species)
     struct Pokemon mon;
     u8 isEgg;
 
+#if RANDOMIZER_AVAILABLE
+    species = RandomizeGiftEggMon(species);
+#endif
     CreateEgg(&mon, species, TRUE);
     isEgg = TRUE;
     SetMonData(&mon, MON_DATA_IS_EGG, &isEgg);
@@ -147,8 +150,7 @@ void CreateScriptedWildMon(u16 species, u8 level, enum Item item)
     u8 heldItem[2];
 
     #if RANDOMIZER_AVAILABLE
-    if (RandomizerFeatureEnabled(RANDOMIZE_FIXED_MON))
-        species = RandomizeMon(RANDOMIZER_REASON_FIXED_ENCOUNTER, GetRandomizerOption(RANDOMIZER_OPTION_SPECIES_MODE), Random32(), species);
+    species = RandomizeScriptedFixedMon(species);
     #endif
 
     ZeroEnemyPartyMons();
@@ -179,8 +181,7 @@ void CreateShinyScriptedMon(u16 species, u8 level, enum Item item)
     u8 heldItem[2];
 
     #if RANDOMIZER_AVAILABLE
-    if (RandomizerFeatureEnabled(RANDOMIZE_FIXED_MON))
-        species = RandomizeMon(RANDOMIZER_REASON_FIXED_ENCOUNTER, GetRandomizerOption(RANDOMIZER_OPTION_SPECIES_MODE), Random32(), species);
+    species = RandomizeScriptedFixedMon(species);
     #endif
 
     // TODO: item randomization (HnS randomized the held item under tx_Random_Items)
@@ -645,13 +646,13 @@ u32 ScriptGiveMon(u16 species, u8 level, enum Item item)
 #if RANDOMIZER_AVAILABLE
     if (!FlagGet(FLAG_SYS_POKEMON_GET))
     {
+        // Same seed as the starter preview in ScrCmd_showmonpic.
         if (RandomizerFeatureEnabled(RANDOMIZE_STARTER_AND_GIFT_MON))
-            species = RandomizeMon(RANDOMIZER_REASON_STARTER_AND_GIFT_MON, GetRandomizerOption(RANDOMIZER_OPTION_SPECIES_MODE), Random32(), species);
+            species = RandomizeMon(RANDOMIZER_REASON_STARTER_AND_GIFT_MON, GetRandomizerOption(RANDOMIZER_OPTION_SPECIES_MODE), GetRandomizerSeed() ^ species, species);
     }
     else
     {
-        if (RandomizerFeatureEnabled(RANDOMIZE_FIXED_MON))
-            species = RandomizeMon(RANDOMIZER_REASON_FIXED_ENCOUNTER, GetRandomizerOption(RANDOMIZER_OPTION_SPECIES_MODE), Random32(), species);
+        species = RandomizeScriptedFixedMon(species);
     }
 #endif
     if (IsOneTypeChallengeActive() && !FlagGet(FLAG_SYS_POKEMON_GET))
@@ -785,10 +786,7 @@ void ScrCmd_createmon(struct ScriptContext *ctx)
 
 #if RANDOMIZER_AVAILABLE
     if (FlagGet(FLAG_SYS_POKEMON_GET))
-    {
-        if (RandomizerFeatureEnabled(RANDOMIZE_FIXED_MON))
-            species = RandomizeMon(RANDOMIZER_REASON_FIXED_ENCOUNTER, GetRandomizerOption(RANDOMIZER_OPTION_SPECIES_MODE), Random32(), species);
-    }
+        species = RandomizeScriptedFixedMon(species);
 #endif
 
     if (gender == MON_GENDER_MAY_CUTE_CHARM)

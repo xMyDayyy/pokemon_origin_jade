@@ -1166,8 +1166,7 @@ BattleFrontier_BattleTowerLobby_Text_CanLeaveUntilLossOrSevenWins_hns:
 	.string "Sobald du den Duellturm offiziell be-\n"
 	.string "treten hast, kannst du ihn nicht eher\l"
 	.string "verlassen, bis du gegen 7 Trainer\l"
-	.string "entweder verloren oder gewonnen hast.\l"
-	.string "\p"
+	.string "entweder verloren oder gewonnen hast.\p"
 	.string "Überlege also gut, bevor du als\n"
 	.string "Herausforderer antrittst.$"
 #else
@@ -1280,7 +1279,7 @@ BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLv50_hns:
 	.string "Pokémon von Level 50 oder weniger.\p"
 	.string "Jedes muss außerdem ein anderes Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du bereit bist.$"
 #else
 	.string "Excuse me!\p"
@@ -1309,7 +1308,7 @@ BattleFrontier_BattleTowerLobby_Text_NotEnoughValidMonsLvOpen_hns:
 	.string "Pokémon.\p"
 	.string "Jedes muss außerdem ein anderes Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du bereit bist.$"
 #else
 	.string "Excuse me!\p"
@@ -1900,8 +1899,7 @@ BattleFrontier_BattleTowerLobby_Text_ExplainTowerRules_hns:
 BattleFrontier_BattleTowerLobby_Text_ExplainMonRules_hns:
 #if GERMAN
 	.string "Je nach Kampfraum darfst du nur eine\n"
-	.string "bestimmte Anzahl an Pokémon mitnehmen.\l"
-	.string "\p"
+	.string "bestimmte Anzahl an Pokémon mitnehmen.\p"
 	.string "Im Einzelkampf stehen dir drei\n"
 	.string "Pokémon zur Verfügung.\p"
 	.string "Im Doppelkampf brauchst du vier\n"

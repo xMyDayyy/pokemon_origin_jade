@@ -359,7 +359,6 @@ EventScript_ResetAllMapFlagsHnS::
 	setflag FLAG_HIDE_DOJO_BLAINE
 	setflag FLAG_HIDE_DOJO_BLUE
 	setflag FLAG_HIDE_ILEX_FOREST_SECOND_CELEBI
-	setflag FLAG_HIDE_OLIVINE_PORT_OAK
 	setflag FLAG_HIDE_ROUTE22_GIOVANNI_SILVER
 	setflag FLAG_HIDE_MTMOON_JIRACHI
 	setflag FLAG_HIDE_VIRIDIAN_FOREST_SPIKY_EARED_PICHU
@@ -470,6 +469,8 @@ EventScript_ResetAllMapFlagsFrlg::
 	@ Origin Jade: Daisy starts in the player's house.
 	setflag FLAG_HIDE_RIVALS_HOUSE_DAISY
 	setflag FLAG_HIDE_OAK_IN_HIS_LAB
+	@ Origin Jade: Troy waits in Oak's lab only from the first Johto title on.
+	setflag FLAG_HIDE_OAKS_LAB_TROY
 	setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
 	setflag FLAG_HIDE_BILL_HUMAN_SEA_COTTAGE
 	setflag FLAG_HIDE_PEWTER_CITY_RUNNING_SHOES_GUY

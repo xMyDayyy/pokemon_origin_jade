@@ -108,17 +108,17 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeMon::
 	end
 
 CeladonCity_GameCorner_PrizeRoom_EventScript_GiveAbra::
-	givemon VAR_TEMP_1, 9
+	givemon VAR_TEMP_1, 25
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
 	end
 
 CeladonCity_GameCorner_PrizeRoom_EventScript_GiveClefairy::
-	givemon VAR_TEMP_1, 8
+	givemon VAR_TEMP_1, 25
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
 	end
 
 CeladonCity_GameCorner_PrizeRoom_EventScript_GiveDratini::
-	givemon VAR_TEMP_1, 18
+	givemon VAR_TEMP_1, 25
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
 	end
 
@@ -128,17 +128,17 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_GiveScyther::
 	end
 
 CeladonCity_GameCorner_PrizeRoom_EventScript_GivePorygon::
-	givemon VAR_TEMP_1, 26
+	givemon VAR_TEMP_1, 25
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
 	end
 
 CeladonCity_GameCorner_PrizeRoom_EventScript_GivePinsir::
-	givemon VAR_TEMP_1, 18
+	givemon VAR_TEMP_1, 25
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
 	end
 
 CeladonCity_GameCorner_PrizeRoom_EventScript_GivePrizeMon::
-	givemon VAR_TEMP_1, 20
+	givemon VAR_TEMP_1, 25
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_CheckReceivedMon
 	end
 
@@ -153,14 +153,6 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_PartyFull::
 	msgbox gText_NoMoreRoomForPokemon
 	hidecoinsbox 0, 0
 	release
-	end
-
-CeladonCity_GameCorner_PrizeRoom_EventScript_NicknamePartyMon::
-	getpartysize
-	subvar VAR_RESULT, 1
-	copyvar VAR_0x8004, VAR_RESULT
-	call Common_EventScript_NameReceivedPartyMon
-	goto CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
 	end
 
 CeladonCity_GameCorner_PrizeRoom_EventScript_NeedCoinCase::
@@ -182,8 +174,7 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_ReceivedMonParty::
 	message gText_PlayerObtainedTheMon
 	waitmessage
 	waitfanfare
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, CeladonCity_GameCorner_PrizeRoom_EventScript_NicknamePartyMon
+	call Common_EventScript_AskNicknameGiftPartyMon
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
 	end
 
@@ -195,9 +186,7 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_ReceivedMonPC::
 	message gText_PlayerObtainedTheMon
 	waitmessage
 	waitfanfare
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, CeladonCity_GameCorner_PrizeRoom_EventScript_TransferredToPC
-	call Common_EventScript_NameReceivedBoxMon
+	call Common_EventScript_AskNicknameGiftBoxMon
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_TransferredToPC
 	end
 
@@ -285,7 +274,8 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_TryGivePrize::
 	goto_if_eq VAR_RESULT, FALSE, CeladonCity_GameCorner_PrizeRoom_EventScript_BagFull
 	removecoins VAR_TEMP_2
 	updatecoinsbox 0, 5
-	giveitem VAR_TEMP_1
+	@ Origin Jade: coin prizes bypass the item randomizer.
+	giveitem_norandom VAR_TEMP_1
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
 	end
 

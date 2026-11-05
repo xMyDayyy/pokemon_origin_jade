@@ -227,24 +227,18 @@ SSAqua_1F_Text_SailorDoorArrived:
     .string "Would you like to disembark?$"
 #endif
 
-@ M.S. Aqua return trips from the Kampfzone and Birth Island, see docs/origin_jade/DECISIONS.md, D-029.
+@ M.S. Aqua return trips from the Kampfzone and Birth Island.
 @ Jump here after lock/faceplayer and the sailor's question; VAR_0x8004 holds the local id of the ship.
-@ Hoenn is offered when the port menus offer it (Johto title, maiden voyage done) and uses their script.
+@ The Hoenn entries follow the port menus and use their scripts.
 SSAqua_EventScript_ChooseReturnPort::
-	goto_if_unset FLAG_IS_JOHTO_CHAMPION, SSAqua_EventScript_ChooseReturnPortNoHoenn
-	goto_if_lt VAR_SSAQUA_STATE, 7, SSAqua_EventScript_ChooseReturnPortNoHoenn
-	multichoice 28, 4, MULTI_SSAQUA_RETURN, FALSE
+	setvar VAR_0x8008, SHIP_PORT_ISLAND
+	call Common_EventScript_ShipMenu
 	switch VAR_RESULT
-	case SS_AQUA_RETURN_OLIVINE, SSAqua_EventScript_ReturnToOlivine
-	case SS_AQUA_RETURN_VERMILION, SSAqua_EventScript_ReturnToVermilion
-	case SS_AQUA_RETURN_HOENN, Common_EventScript_SailToHoenn
-	goto SSAqua_EventScript_ReturnRefused
-
-SSAqua_EventScript_ChooseReturnPortNoHoenn::
-	multichoice 28, 6, MULTI_SSAQUA_RETURN_PORTS, FALSE
-	switch VAR_RESULT
-	case SS_AQUA_RETURN_OLIVINE, SSAqua_EventScript_ReturnToOlivine
-	case SS_AQUA_RETURN_VERMILION, SSAqua_EventScript_ReturnToVermilion
+	case SHIP_DEST_OLIVINE, SSAqua_EventScript_ReturnToOlivine
+	case SHIP_DEST_VERMILION, SSAqua_EventScript_ReturnToVermilion
+	case SHIP_DEST_HOENN, Common_EventScript_SailToHoenn
+	case SHIP_DEST_SLATEPORT, Common_EventScript_SailToSlateport
+	case SHIP_DEST_LILYCOVE, Common_EventScript_SailToLilycove
 	goto SSAqua_EventScript_ReturnRefused
 
 SSAqua_EventScript_ReturnRefused::
@@ -254,7 +248,6 @@ SSAqua_EventScript_ReturnRefused::
 
 SSAqua_EventScript_ReturnToOlivine::
 	call SSAqua_EventScript_ReturnDepart
-	@ 8,15: Oak may still stand at 8,16 in front of the sailor.
 	warpsilent MAP_OLIVINE_CITY_PORT_INSIDE_HNS, 8, 15
 	waitstate
 	release

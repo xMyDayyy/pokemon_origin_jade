@@ -367,8 +367,7 @@ OldaleTown_Text_SavingMyProgress:
 OldaleTown_Text_IWorkAtPokemonMart:
 #if GERMAN
 	.string "Hi!\n"
-	.string "Ich arbeite in einem Pkmn-Supermarkt.\l"
-	.string "\p"
+	.string "Ich arbeite in einem Pkmn-Supermarkt.\p"
 	.string "Kommst du bitte einmal mit mir?$"
 #else
 	.string "Hi!\n"

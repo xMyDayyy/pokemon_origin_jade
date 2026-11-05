@@ -193,9 +193,9 @@
 #define VAR_HOENN_BADGES 0x415A
 // HM licenses as a bitmask (LIC_* in include/constants/hoenn_licenses.h), Hoenn only.
 #define VAR_HOENN_LICENSES 0x415B
-// Progress of Steven's (Troy's) ticket chain: 0 = nothing, 1 = promise
-// given in Vermilion, 2 = called after the Kanto league (Steven waits in
-// Silph Co.), 3 = Hoenn Ticket handed over.
+// Hoenn Ticket from Troy: 0 = nothing, 1 = Troy waits in Oak's lab
+// (from the first Johto title on), 2 = lab scene seen, ticket still due
+// (bag was full), 3 = Hoenn Ticket received.
 #define VAR_HOENN_TICKET_STATE 0x415C
 // Step counter for Norman's call after a badge handover.
 #define VAR_HNS_NORMAN_CALL_STEPS 0x415D

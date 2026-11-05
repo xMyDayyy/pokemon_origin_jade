@@ -54,8 +54,10 @@ EverGrandeCity_HallOfFame_EventScript_EnterHallOfFame::
 
 #if IS_HNS
 @ Origin Jade: every Hoenn title ends in Littleroot Town in front of Birch's lab. Only the first
-@ one rolls the credits, the end of the game. See docs/origin_jade/DECISIONS.md, D-028.
+@ one rolls the credits, the end of the game.
 EverGrandeCity_HallOfFame_EventScript_GameClearOriginJade:
+	@ The Nuzlocke ends with the first Hoenn title.
+	setflag FLAG_END_NUZLOCKE
 	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_LAB
 	fadescreenspeed FADE_TO_BLACK, 24
 	goto_if_set FLAG_ROLLED_ENDING_CREDITS, EverGrandeCity_HallOfFame_EventScript_GameClearNoCredits

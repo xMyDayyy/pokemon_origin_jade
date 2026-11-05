@@ -1180,7 +1180,7 @@ static void Task_FadeAndCloseBagMenuIfMulch(u8 taskId)
         Task_FadeAndCloseBagMenu(taskId);
         return;
     }
-    DisplayDadsAdviceCannotUseItemMessage(taskId, FALSE);
+    DisplayAdviceCannotUseItemMessage(taskId, FALSE);
 }
 
 static void Task_CloseBagMenu(u8 taskId)

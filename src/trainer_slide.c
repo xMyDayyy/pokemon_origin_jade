@@ -70,6 +70,7 @@ static const u8* const sFrontierTrainerSlides[DIFFICULTY_COUNT][FRONTIER_TRAINER
     },
 };
 
+#if TESTING
 #define TRAINER_RED_TEST    1
 #define TRAINER_LEAF_TEST   2
 #define PARTNER_STEVEN_TEST 1
@@ -78,6 +79,7 @@ static const u8* const sTestTrainerSlides[DIFFICULTY_COUNT][TRAINER_PARTNER(PART
 {
 #include "../test/battle/trainer_slides.h"
 };
+#endif // TESTING
 
 static u32 BattlerHPPercentage(enum BattlerId battler, u32 operation, u32 threshold)
 {

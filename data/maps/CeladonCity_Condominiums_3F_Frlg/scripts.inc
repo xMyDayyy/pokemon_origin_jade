@@ -30,10 +30,22 @@ CeladonCity_Condominiums_3F_EventScript_ShowDiploma::
 	message CeladonCity_Condominiums_3F_Text_CompletedPokedexCongratulations
 	waitmessage
 	delay 60
+	call_if_unset FLAG_RECEIVED_CATCHING_CHARM, CeladonCity_Condominiums_3F_EventScript_GiveCatchingCharm
 	special Special_ShowDiploma
 	waitstate
 	release
 	end
+
+@ Origin Jade: the Catching Charm with the Kanto diploma.
+@ Keep the call before Special_ShowDiploma: commands after it never run.
+CeladonCity_Condominiums_3F_EventScript_GiveCatchingCharm::
+	waitbuttonpress
+	msgbox CeladonCity_Condominiums_3F_Text_TakeThisToo, MSGBOX_DEFAULT
+	giveitem ITEM_CATCHING_CHARM
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn
+	setflag FLAG_RECEIVED_CATCHING_CHARM
+	msgbox CeladonCity_Condominiums_3F_Text_ExplainCatchingCharm, MSGBOX_DEFAULT
+	return
 
 CeladonCity_Condominiums_3F_EventScript_DevelopmentRoomSign::
 	msgbox CeladonCity_Condominiums_3F_Text_GameFreakDevelopmentRoom, MSGBOX_SIGN
@@ -144,3 +156,19 @@ CeladonCity_Condominiums_3F_Text_GameFreakDevelopmentRoom::
 	.string "GAME FREAK Development Room$"
 #endif
 
+
+CeladonCity_Condominiums_3F_Text_TakeThisToo::
+#if GERMAN
+	.string "Dafür bekommst du noch das hier!$"
+#else
+	.string "Please take this as well!$"
+#endif
+
+CeladonCity_Condominiums_3F_Text_ExplainCatchingCharm::
+#if GERMAN
+	.string "Mit dem Superfangpin gelingen dir\n"
+	.string "öfter kritische Fänge.$"
+#else
+	.string "With the CATCHING CHARM, critical\n"
+	.string "captures happen more often.$"
+#endif

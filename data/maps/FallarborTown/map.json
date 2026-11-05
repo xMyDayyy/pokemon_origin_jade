@@ -1,7 +1,6 @@
 {
   "id": "MAP_FALLARBOR_TOWN",
   "name": "FallarborTown",
-  "game_version": "hns",
   "layout": "LAYOUT_FALLARBOR_TOWN",
   "music": "MUS_FALLARBOR",
   "region_map_section": "MAPSEC_FALLARBOR_TOWN",
@@ -91,7 +90,7 @@
       "x": 8,
       "y": 7,
       "elevation": 0,
-      "dest_map": "MAP_FALLARBOR_TOWN_BATTLE_TENT_LOBBY",
+      "dest_map": "MAP_FALLARBOR_TOWN_CONTEST_LOBBY",
       "dest_warp_id": "0"
     },
     {
@@ -140,7 +139,7 @@
       "y": 8,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "FallarborTown_EventScript_BattleTentSign"
+      "script": "FallarborTown_EventScript_ContestHallSign"
     },
     {
       "type": "sign",
@@ -182,5 +181,6 @@
       "item": "ITEM_NUGGET",
       "flag": "FLAG_HIDDEN_ITEM_FALLARBOR_TOWN_NUGGET"
     }
-  ]
+  ],
+  "game_version": "hns"
 }

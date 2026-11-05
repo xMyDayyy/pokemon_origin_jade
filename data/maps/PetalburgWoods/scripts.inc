@@ -460,8 +460,7 @@ PetalburgWoods_Text_YoureLoadedWithItems:
 
 PetalburgWoods_Text_GoBugPokemonTeam:
 #if GERMAN
-	.string "Ich habe eine Menge Pokémon gefangen!\n"
-	.string "\p"
+	.string "Ich habe eine Menge Pokémon gefangen!\p"
 	.string "Los, los, los!\n"
 	.string "Mein Käfer-Pokémon-Team!$"
 #else

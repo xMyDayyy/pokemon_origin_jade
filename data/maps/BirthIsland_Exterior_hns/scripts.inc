@@ -14,7 +14,7 @@ BirthIsland_Exterior_hns_OnTransition:
 	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_GOLD_NORMAL_HNS
 	setvar VAR_DEOXYS_ROCK_STEP_COUNT, 0
 	setvar VAR_DEOXYS_ROCK_LEVEL, 0
-	@ Deoxys: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+	@ Deoxys: legendary rules.
 	setflag FLAG_HIDE_DEOXYS
 	setflag FLAG_HIDE_BIRTH_ISLAND_DEOXYS_TRIANGLE
 	setvar VAR_0x8004, LEGENDARY_DEOXYS

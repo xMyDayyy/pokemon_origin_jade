@@ -409,18 +409,31 @@ ContestHall_EventScript_SetExitWarp::
 	case CONTEST_TYPE_LINK, ContestHall_EventScript_SetExitWarpLinkContest
 	return
 
+@ Each NPC contest rank returns to the lobby of its own hall.
 ContestHall_EventScript_SetExitWarpNormalContest::
+#if IS_HNS
+	warp MAP_VERDANTURF_TOWN_CONTEST_LOBBY, 5, 4
+#else
 	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY, 14, 4
+#endif
 	waitstate
 	end
 
 ContestHall_EventScript_SetExitWarpSuperContest::
+#if IS_HNS
+	warp MAP_FALLARBOR_TOWN_CONTEST_LOBBY, 5, 4
+#else
 	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY, 14, 4
+#endif
 	waitstate
 	end
 
 ContestHall_EventScript_SetExitWarpHyperContest::
+#if IS_HNS
+	warp MAP_SLATEPORT_CITY_CONTEST_LOBBY, 5, 4
+#else
 	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY, 14, 4
+#endif
 	waitstate
 	end
 

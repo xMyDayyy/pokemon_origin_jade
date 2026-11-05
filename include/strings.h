@@ -655,6 +655,7 @@ extern const u8 gText_MoveRelearnerAppeal[];
 extern const u8 gText_MoveRelearnerJam[];
 
 extern const u8 gText_DadsAdvice[];
+extern const u8 gText_BirchsAdvice[];
 extern const u8 gText_ElmsAdvice[];
 extern const u8 gText_OaksAdvice[];
 extern const u8 gText_PlayerUsedVar2[];
@@ -1733,6 +1734,7 @@ extern const u8 MatchCall_Text_Norman6[];
 extern const u8 MatchCall_Text_Norman7[];
 extern const u8 MatchCall_Text_Norman8[];
 extern const u8 MatchCall_Text_Norman9[];
+extern const u8 MatchCall_Text_NormanAfterBadge[];
 extern const u8 MatchCall_Text_Mom1[];
 extern const u8 MatchCall_Text_Mom2[];
 extern const u8 MatchCall_Text_Mom3[];
@@ -2471,8 +2473,5 @@ extern const u8 gText_Knowledge[];
 extern const u8 gText_Tough3[];
 extern const u8 gText_Weak[];
 extern const u8 gText_Both[];
-extern const u8 gText_GreenStone[];
-extern const u8 gText_RedStone[];
-extern const u8 gText_BlueStone[];
 
 #endif // GUARD_STRINGS_H

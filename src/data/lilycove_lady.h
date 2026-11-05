@@ -38,36 +38,61 @@ static const struct LilycoveContestLadyValues sContestLadyValues[] =
     [CONTEST_CATEGORY_COOL] = {
         .monGfxId = OBJ_EVENT_GFX_ZIGZAGOON_1,
         .monSpecies = SPECIES_ZIGZAGOON,
+#if GERMAN
+        .monName = COMPOUND_STRING("Hübsch"),
+        .categoryName = COMPOUND_STRING("Coolness"),
+#else
         .monName = COMPOUND_STRING("HANDSOME"),
         .categoryName = COMPOUND_STRING("coolness"),
+#endif
         .contestName = gText_CoolnessContest,
     },
     [CONTEST_CATEGORY_BEAUTY] = {
         .monGfxId = OBJ_EVENT_GFX_SKITTY,
         .monSpecies = SPECIES_SKITTY,
+#if GERMAN
+        .monName = COMPOUND_STRING("Winnie"),
+        .categoryName = COMPOUND_STRING("Schönheit"),
+#else
         .monName = COMPOUND_STRING("VINNY"),
         .categoryName = COMPOUND_STRING("beauty"),
+#endif
         .contestName = gText_BeautyContest,
     },
     [CONTEST_CATEGORY_CUTE] = {
         .monGfxId = OBJ_EVENT_GFX_POOCHYENA,
         .monSpecies = SPECIES_POOCHYENA,
+#if GERMAN
+        .monName = COMPOUND_STRING("Sascha"),
+        .categoryName = COMPOUND_STRING("Anmut"),
+#else
         .monName = COMPOUND_STRING("MOREME"),
         .categoryName = COMPOUND_STRING("cuteness"),
+#endif
         .contestName = gText_CutenessContest,
     },
     [CONTEST_CATEGORY_SMART] = {
         .monGfxId = OBJ_EVENT_GFX_KECLEON,
         .monSpecies = SPECIES_KECLEON,
+#if GERMAN
+        .monName = COMPOUND_STRING("Eisenhart"),
+        .categoryName = COMPOUND_STRING("Klugheit"),
+#else
         .monName = COMPOUND_STRING("IRONHARD"),
         .categoryName = COMPOUND_STRING("smartness"),
+#endif
         .contestName = gText_SmartnessContest,
     },
     [CONTEST_CATEGORY_TOUGH] = {
         .monGfxId = OBJ_EVENT_GFX_PIKACHU,
         .monSpecies = SPECIES_PIKACHU,
+#if GERMAN
+        .monName = COMPOUND_STRING("Arnie"),
+        .categoryName = COMPOUND_STRING("Stärke"),
+#else
         .monName = COMPOUND_STRING("MUSCLE"),
         .categoryName = COMPOUND_STRING("toughness"),
+#endif
         .contestName = gText_ToughnessContest,
     },
 };
@@ -416,10 +441,19 @@ static const u16 sFavorLadyAcceptedItems_Pointy[] =
 
 static const struct LilycoveFavorLady sFavorLady[] =
 {
+#if GERMAN
+    {.request = COMPOUND_STRING("rutschig"),   .acceptedItems = sFavorLadyAcceptedItems_Slippery, .prize = ITEM_LUXURY_BALL},
+    {.request = COMPOUND_STRING("rundlich"),   .acceptedItems = sFavorLadyAcceptedItems_Roundish, .prize = ITEM_NUGGET},
+    {.request = COMPOUND_STRING("beschlagen"), .acceptedItems = sFavorLadyAcceptedItems_Whamish,  .prize = ITEM_PROTEIN},
+    {.request = COMPOUND_STRING("funkelnd"),   .acceptedItems = sFavorLadyAcceptedItems_Shiny,    .prize = ITEM_HEART_SCALE},
+    {.request = COMPOUND_STRING("klebrig"),    .acceptedItems = sFavorLadyAcceptedItems_Sticky,   .prize = ITEM_RARE_CANDY},
+    {.request = COMPOUND_STRING("spitz"),      .acceptedItems = sFavorLadyAcceptedItems_Pointy,   .prize = ITEM_PP_MAX},
+#else
     {.request = COMPOUND_STRING("slippery"), .acceptedItems = sFavorLadyAcceptedItems_Slippery, .prize = ITEM_LUXURY_BALL},
     {.request = COMPOUND_STRING("roundish"), .acceptedItems = sFavorLadyAcceptedItems_Roundish, .prize = ITEM_NUGGET},
     {.request = COMPOUND_STRING("wham-ish"), .acceptedItems = sFavorLadyAcceptedItems_Whamish,  .prize = ITEM_PROTEIN},
     {.request = COMPOUND_STRING("shiny"),    .acceptedItems = sFavorLadyAcceptedItems_Shiny,    .prize = ITEM_HEART_SCALE},
     {.request = COMPOUND_STRING("sticky"),   .acceptedItems = sFavorLadyAcceptedItems_Sticky,   .prize = ITEM_RARE_CANDY},
     {.request = COMPOUND_STRING("pointy"),   .acceptedItems = sFavorLadyAcceptedItems_Pointy,   .prize = ITEM_PP_MAX},
+#endif
 };

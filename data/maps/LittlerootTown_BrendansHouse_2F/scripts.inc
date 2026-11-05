@@ -42,17 +42,24 @@ LittlerootTown_BrendansHouse_2F_OnWarp:
 	.2byte 0
 
 LittlerootTown_BrendansHouse_2F_EventScript_CheckInitDecor::
+#if IS_HNS
+	@ Origin Jade: Norman's son's room, no player decorations.
+	end
+#endif
 	checkplayergender
 	goto_if_eq VAR_RESULT, MALE, SecretBase_EventScript_InitDecorations
 	end
 
 LittlerootTown_BrendansHouse_2F_EventScript_RivalsPokeBall::
 	lockall
+#if !IS_HNS
 	goto_if_eq VAR_LITTLEROOT_RIVAL_STATE, 2, LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendan
+#endif
 	msgbox RivalsHouse_2F_Text_ItsRivalsPokeBall, MSGBOX_DEFAULT
 	releaseall
 	end
 
+#if !IS_HNS
 LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendan::
 	delay 10
 	addobject LOCALID_RIVALS_HOUSE_2F_RIVAL
@@ -232,11 +239,13 @@ LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanEast:
 	delay_16
 	walk_in_place_faster_left
 	step_end
+#endif
 
 LittlerootTown_BrendansHouse_2F_EventScript_PC::
 	lockall
 #if IS_HNS
-	goto LittlerootTown_BrendansHouse_2F_EventScript_CheckPlayersPC
+	@ Origin Jade: the PC of Norman's son shows an e-mail.
+	goto LittlerootTown_BrendansHouse_2F_EventScript_CheckRivalsPC
 #endif
 	checkplayergender
 	goto_if_eq VAR_RESULT, MALE, LittlerootTown_BrendansHouse_2F_EventScript_CheckPlayersPC
@@ -284,6 +293,7 @@ PlayersHouse_2F_Text_ClockIsStopped:
 	.string "Better set it and start it!$"
 #endif
 
+#if !IS_HNS
 PlayersHouse_2F_Text_HowDoYouLikeYourRoom:
 #if GERMAN
 	.string "Mutter: {PLAYER}, wie gefällt dir dein\n"
@@ -306,6 +316,7 @@ PlayersHouse_2F_Text_HowDoYouLikeYourRoom:
 	.string "Oh, you should make sure that\n"
 	.string "everything's all there on your desk.$"
 #endif
+#endif
 
 PlayersHouse_2F_Text_Notebook:
 #if GERMAN
@@ -313,8 +324,7 @@ PlayersHouse_2F_Text_Notebook:
 	.string "Regel NR. 1 Für Abenteurer\n"
 	.string "Öffne das Menü mit Start.\p"
 	.string "Regel NR. 2 Für Abenteurer\n"
-	.string "Speichere den Fortschritt mit Sichern.\l"
-	.string "\p"
+	.string "Speichere den Fortschritt mit Sichern.\p"
 	.string "Die übrigen Seiten sind leer.$"
 #else
 	.string "{PLAYER} flipped open the notebook.\p"

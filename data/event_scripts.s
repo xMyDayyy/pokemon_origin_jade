@@ -219,6 +219,8 @@ gStdScripts_End::
 	.include "data/maps/FallarborTown_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/FallarborTown_CozmosHouse/scripts.inc"
 	.include "data/maps/FallarborTown_MoveRelearnersHouse/scripts.inc"
+	.include "data/maps/FallarborTown_ContestLobby/scripts.inc"
+	.include "data/maps/FallarborTown_ContestHall/scripts.inc"
 	.include "data/maps/VerdanturfTown_BattleTentLobby/scripts.inc"
 	.include "data/maps/VerdanturfTown_BattleTentCorridor/scripts.inc"
 	.include "data/maps/VerdanturfTown_BattleTentBattleRoom/scripts.inc"
@@ -228,6 +230,8 @@ gStdScripts_End::
 	.include "data/maps/VerdanturfTown_WandasHouse/scripts.inc"
 	.include "data/maps/VerdanturfTown_FriendshipRatersHouse/scripts.inc"
 	.include "data/maps/VerdanturfTown_House/scripts.inc"
+	.include "data/maps/VerdanturfTown_ContestLobby/scripts.inc"
+	.include "data/maps/VerdanturfTown_ContestHall/scripts.inc"
 	.include "data/maps/PacifidlogTown_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/PacifidlogTown_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/PacifidlogTown_House1/scripts.inc"
@@ -247,6 +251,8 @@ gStdScripts_End::
 	.include "data/maps/SlateportCity_BattleTentLobby/scripts.inc"
 	.include "data/maps/SlateportCity_BattleTentCorridor/scripts.inc"
 	.include "data/maps/SlateportCity_BattleTentBattleRoom/scripts.inc"
+	.include "data/maps/SlateportCity_ContestLobby/scripts.inc"
+	.include "data/maps/SlateportCity_ContestHall/scripts.inc"
 	.include "data/maps/SlateportCity_NameRatersHouse/scripts.inc"
 	.include "data/maps/SlateportCity_PokemonFanClub/scripts.inc"
 	.include "data/maps/SlateportCity_OceanicMuseum_1F/scripts.inc"
@@ -299,7 +305,6 @@ gStdScripts_End::
 	.include "data/maps/LilycoveCity_ContestHall/scripts.inc"
 	.include "data/maps/LilycoveCity_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/LilycoveCity_PokemonCenter_2F/scripts.inc"
-	.include "data/maps/LilycoveCity_UnusedMart/scripts.inc"
 	.include "data/maps/LilycoveCity_PokemonTrainerFanClub/scripts.inc"
 	.include "data/maps/LilycoveCity_Harbor/scripts.inc"
 	.include "data/maps/LilycoveCity_MoveDeletersHouse/scripts.inc"
@@ -408,9 +413,6 @@ gStdScripts_End::
 	.include "data/maps/SeafloorCavern_Room9/scripts.inc"
 	.include "data/maps/CaveOfOrigin_Entrance/scripts.inc"
 	.include "data/maps/CaveOfOrigin_1F/scripts.inc"
-	.include "data/maps/CaveOfOrigin_UnusedRubySapphireMap1/scripts.inc"
-	.include "data/maps/CaveOfOrigin_UnusedRubySapphireMap2/scripts.inc"
-	.include "data/maps/CaveOfOrigin_UnusedRubySapphireMap3/scripts.inc"
 	.include "data/maps/CaveOfOrigin_B1F/scripts.inc"
 	.include "data/maps/VictoryRoad_1F/scripts.inc"
 	.include "data/maps/VictoryRoad_B1F/scripts.inc"
@@ -443,9 +445,6 @@ gStdScripts_End::
 	.include "data/maps/SealedChamber_OuterRoom/scripts.inc"
 	.include "data/maps/SealedChamber_InnerRoom/scripts.inc"
 	.include "data/maps/ScorchedSlab/scripts.inc"
-	.include "data/maps/AquaHideout_UnusedRubyMap1/scripts.inc"
-	.include "data/maps/AquaHideout_UnusedRubyMap2/scripts.inc"
-	.include "data/maps/AquaHideout_UnusedRubyMap3/scripts.inc"
 	.include "data/maps/SkyPillar_Entrance/scripts.inc"
 	.include "data/maps/SkyPillar_Outside/scripts.inc"
 	.include "data/maps/SkyPillar_1F/scripts.inc"
@@ -580,8 +579,6 @@ gStdScripts_End::
 	.include "data/maps/NavelRock_Down11/scripts.inc"
 	.include "data/maps/NavelRock_Bottom/scripts.inc"
 	.include "data/maps/TrainerHill_Elevator/scripts.inc"
-	.include "data/maps/Route104_Prototype/scripts.inc"
-	.include "data/maps/Route104_PrototypePrettyPetalFlowerShop/scripts.inc"
 	.include "data/maps/Route109_SeashoreHouse/scripts.inc"
 	.include "data/maps/Route110_TrickHouseEntrance/scripts.inc"
 	.include "data/maps/Route110_TrickHouseEnd/scripts.inc"
@@ -617,7 +614,6 @@ gStdScripts_End::
 	.include "data/maps/MtMoon_B2F_Frlg/scripts.inc"
 	.include "data/maps/MtMoon_B3F_Frlg/scripts.inc"
 	.include "data/maps/MtMoon_Cave_Frlg/scripts.inc"
-	.include "data/maps/SSAnne_Exterior_Frlg/scripts.inc"
 	.include "data/maps/SSAnne_1F_Corridor_Frlg/scripts.inc"
 	.include "data/maps/SSAnne_2F_Corridor_Frlg/scripts.inc"
 	.include "data/maps/SSAnne_3F_Corridor_Frlg/scripts.inc"
@@ -721,7 +717,6 @@ gStdScripts_End::
 	.include "data/maps/CinnabarIsland_Frlg/scripts.inc"
 	.include "data/maps/IndigoPlateau_Exterior_Frlg/scripts.inc"
 	.include "data/maps/SaffronCity_Frlg/scripts.inc"
-	.include "data/maps/SaffronCity_Connection_Frlg/scripts.inc"
 	.include "data/maps/Route1_Frlg/scripts.inc"
 	.include "data/maps/Route2_Frlg/scripts.inc"
 	.include "data/maps/Route3_Frlg/scripts.inc"
@@ -767,7 +762,6 @@ gStdScripts_End::
 	.include "data/maps/PewterCity_PokemonCenter_2F_Frlg/scripts.inc"
 	.include "data/maps/PewterCity_House2_Frlg/scripts.inc"
 	.include "data/maps/CeruleanCity_House1_Frlg/scripts.inc"
-	.include "data/maps/CeruleanCity_House2_Frlg/scripts.inc"
 	.include "data/maps/CeruleanCity_House3_Frlg/scripts.inc"
 	.include "data/maps/CeruleanCity_PokemonCenter_1F_Frlg/scripts.inc"
 	.include "data/maps/CeruleanCity_PokemonCenter_2F_Frlg/scripts.inc"
@@ -851,15 +845,12 @@ gStdScripts_End::
 	.include "data/maps/Route5_PokemonDayCare_Frlg/scripts.inc"
 	.include "data/maps/Route5_SouthEntrance_Frlg/scripts.inc"
 	.include "data/maps/Route6_NorthEntrance_Frlg/scripts.inc"
-	.include "data/maps/Route6_UnusedHouse_Frlg/scripts.inc"
 	.include "data/maps/Route7_EastEntrance_Frlg/scripts.inc"
 	.include "data/maps/Route8_WestEntrance_Frlg/scripts.inc"
 	.include "data/maps/Route10_PokemonCenter_1F_Frlg/scripts.inc"
 	.include "data/maps/Route10_PokemonCenter_2F_Frlg/scripts.inc"
 	.include "data/maps/Route11_EastEntrance_1F_Frlg/scripts.inc"
 	.include "data/maps/Route11_EastEntrance_2F_Frlg/scripts.inc"
-	.include "data/maps/Route12_NorthEntrance_1F_Frlg/scripts.inc"
-	.include "data/maps/Route12_NorthEntrance_2F_Frlg/scripts.inc"
 	.include "data/maps/Route12_FishingHouse_Frlg/scripts.inc"
 	.include "data/maps/Route15_WestEntrance_1F_Frlg/scripts.inc"
 	.include "data/maps/Route15_WestEntrance_2F_Frlg/scripts.inc"
@@ -1499,6 +1490,22 @@ Common_EventScript_ForceNameReceivedBoxMon::
 	call Common_EventScript_NameReceivedBoxMon
 	call Common_EventScript_TransferredToPC
 	return
+
+@ Nickname step for gifts with their own "received" message: asks, or names right away
+@ under the Nuzlocke nickname rule.
+Common_EventScript_AskNicknameGiftPartyMon::
+	specialvar VAR_RESULT, IsNuzlockeNicknamingActive
+	goto_if_eq VAR_RESULT, TRUE, Common_EventScript_NameReceivedPartyMonFull
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, Common_EventScript_NameReceivedPartyMonFull
+	return
+
+Common_EventScript_AskNicknameGiftBoxMon::
+	specialvar VAR_RESULT, IsNuzlockeNicknamingActive
+	goto_if_eq VAR_RESULT, TRUE, Common_EventScript_NameReceivedBoxMon
+	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, Common_EventScript_NameReceivedBoxMon
+	return
 	
 Common_EventScript_NameReceivedPartyMonFull::
 	call Common_EventScript_GetGiftMonPartySlot
@@ -1523,9 +1530,11 @@ Common_EventScript_RecieveMonPartyNamed::
 	waitfanfare
 	return
 
+@ Ends the gift script: givenamedmon only fills the party.
 Common_EventScript_PartyIsFull::
 	msgbox Common_Text_PartyIsFull, MSGBOX_DEFAULT
 	closemessage
+	release
 	end
 
 Common_Text_ReceivedMon:
@@ -1628,12 +1637,14 @@ gText_SelectWithoutRegisteredHoldItem::
 	.string "SELECT in die Schnellauswahl.$"
 
 gText_PokemonTrainerSchoolEmail::
-	.string "Eine e-mail von der POKéMON TRAINER\n"
-	.string "SCHULE.\p"
+	.string "Da ist eine E-Mail von der Pokémon\n"
+	.string "Trainerschule.\p"
 	.string "… … … … … …\p"
-	.string "Ein POKéMON vier Attacken lernen.\p"
-	.string "Die Kompetenz eines Trainers wird\n"
-	.string "an den Attacken des POKéMON bemessen.\p"
+	.string "Ein Pokémon kann bis zu vier Attacken\n"
+	.string "lernen.\p"
+	.string "Die Fähigkeiten eines Trainers werden\n"
+	.string "durch die Attacken, die er seinen\l"
+	.string "Pokémon beibringt, erprobt.\p"
 	.string "… … … … … …$"
 
 gText_PlayerHouseBootPC::
@@ -1671,28 +1682,28 @@ gText_MonsHealed::
 	.string "Wir wünschen dir viel Erfolg!$"
 
 gText_HadQuiteAnExperienceTakeRest::
-	.string "MAMA: {PLAYER}!\n"
-	.string "Willkommen zu Hause.\p"
-	.string "Es klingt, als hättest du eine\n"
-	.string "große Erfahrung gemacht.\p"
-	.string "Vielleicht solltest du dich kurz\n"
-	.string "ausruhen.$"
+	.string "Mama: {PLAYER}!\p"
+	.string "Das hört sich an, als hättest du\n"
+	.string "eine Menge erlebt!\p"
+	.string "Du solltest eine\n"
+	.string "kurze Pause einlegen.$"
 
 gText_MomExplainHPGetPotions::
-	.string "MAMA: Oh, schön! Du und deine\n"
-	.string "POKéMON seht großartig aus.\p"
-	.string "Ich habe gerade von PROF. BIRK\n"
-	.string "gehört.\p"
-	.string "Er sagte, die Energie der POKéMON\n"
-	.string "wird in KP gemessen.\p"
-	.string "Verlieren deine POKéMON KP,\n"
-	.string "kannst du sie in jedem\l"
-	.string "POKéMON-CENTER heilen.\p"
-	.string "Wenn du weit reisen willst,\n"
-	.string "legt sich ein kluger TRAINER\l"
-	.string "TRÄNKE im POKéMON-MARKT zu.\p"
-	.string "Mach mich stolz, Schatz!\p"
-	.string "Pass gut auf dich auf!$"
+	.string "Mama: Sehr gut! Du und deine\n"
+	.string "Pokémon sehen großartig aus!\p"
+	.string "Prof. Eich hat sich soeben\n"
+	.string "bei mir gemeldet.\p"
+	.string "Er erklärte mir, dass die Energie\n"
+	.string "der Pokémon in KP gemessen wird.\p"
+	.string "Falls deine Pokémon ihre KP\n"
+	.string "verlieren, kannst du sie in einem\l"
+	.string "Pokémon-Center auffüllen lassen.\l"
+	.string "Falls du dich auf lange Reisen\l"
+	.string "begibst, solltest du deinen Vorrat\l"
+	.string "mit Tränken vom Pokémon-\l"
+	.string "Supermarkt auffüllen.\p"
+	.string "Lass mich stolz auf dich sein!\p"
+	.string "Achte auf dich!$"
 
 #if IS_HNS
 gText_RegisteredTrainerinPokeNav::
@@ -2014,9 +2025,7 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 .if IS_HNS
 
 @ HnS scripts
-	.include "data/maps/TestMap2_hns/scripts.inc"
 
-	.include "data/maps/TestMap1_hns/scripts.inc"
 
 	.include "data/maps/NewBarkTown_hns/scripts.inc"
 	.include "data/maps/CherrygroveCity_hns/scripts.inc"
@@ -2050,8 +2059,6 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/Route47_hns/scripts.inc"
 	.include "data/maps/Route48_hns/scripts.inc"
 	.include "data/scripts/kanto_shared_hns.inc"
-	.include "data/maps/Route22_hns/scripts.inc"
-	.include "data/maps/Route23_hns/scripts.inc"
 	.include "data/maps/IndigoPlateau_hns/scripts.inc"
 	.include "data/maps/IndigoPlateau_PokemonCenter_hns/scripts.inc"
 	.include "data/maps/PokemonLeague_BrunosRoom_hns/scripts.inc"
@@ -2249,9 +2256,6 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/TinTower_RoofNight_hns/scripts.inc"
 	.include "data/maps/TohjoFalls_Cavern_hns/scripts.inc"
 	.include "data/maps/TohjoFalls_GiovanniRoom_hns/scripts.inc"
-	.include "data/maps/VictoryRoadKanto_B2F_hns/scripts.inc"
-	.include "data/maps/VictoryRoadKanto_B1F_hns/scripts.inc"
-	.include "data/maps/VictoryRoadKanto_1F_hns/scripts.inc"
 	.include "data/maps/MtSilver_Outside_hns/scripts.inc"
 	.include "data/maps/MtSilver_1F_ItemRoom_hns/scripts.inc"
 	.include "data/maps/MtSilver_1F_WaterfallRoom_hns/scripts.inc"
@@ -2292,12 +2296,6 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/SafariZone_Low_Right_hns/scripts.inc"
 	.include "data/maps/SafariZone_Top_Mid_hns/scripts.inc"
 	.include "data/maps/SafariZone_Top_Right_hns/scripts.inc"
-	.include "data/maps/Trees_hns/scripts.inc"
-	.include "data/maps/SafariZone1_hns/scripts.inc"
-	.include "data/maps/SafariZone2_hns/scripts.inc"
-	.include "data/maps/SafariZone3_hns/scripts.inc"
-	.include "data/maps/SafariZoneIndoor_hns/scripts.inc"
-	.include "data/maps/Saffron_Temp_hns/scripts.inc"
 	.include "data/maps/SouthernIsland_Exterior_hns/scripts.inc"
 	.include "data/maps/SouthernIsland_Interior_hns/scripts.inc"
 	.include "data/maps/FarawayIsland_Entrance_hns/scripts.inc"

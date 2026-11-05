@@ -279,8 +279,7 @@ SeafloorCavern_Room9_Text_ArchieWithThisRedOrb:
 	.string "Ich empfehle mich. Ich muss sagen, du\n"
 	.string "bist wirklich sehr talentiert.\p"
 	.string "Aber!\n"
-	.string "Ich habe dieses hier in meinem Besitz!\l"
-	.string "\p"
+	.string "Ich habe dieses hier in meinem Besitz!\p"
 	.string "Mit dieser roten Kugel kann ich\n"
 	.string "Kyogre…$"
 #else
@@ -396,8 +395,7 @@ SeafloorCavern_Room9_Text_MaxieWhatHaveYouWrought:
 SeafloorCavern_Room9_Text_ArchieDontGetAllHighAndMighty:
 #if GERMAN
 	.string "Adrian: Was?!?\n"
-	.string "Behandle mich nicht so von oben herab!\l"
-	.string "\p"
+	.string "Behandle mich nicht so von oben herab!\p"
 	.string "Wart ihr es nicht, Team Magma, die\n"
 	.string "Groudon erzürnt habt?\p"
 	.string "Solange ich die rote Kugel habe, habe\n"

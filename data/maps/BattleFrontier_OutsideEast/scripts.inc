@@ -350,8 +350,7 @@ BattleFrontier_OutsideEast_Text_PutTogetherUltimateTeam:
 	.string "Es hat mich eine Woche Schlaf gekostet,\n"
 	.string "aber jetzt habe ich es zusammen… Das\p"
 	.string "ultimative Team!!! Ich sehe mich als\n"
-	.string "Sieger, und nur als Sieger, kein Witz!\l"
-	.string "\p"
+	.string "Sieger, und nur als Sieger, kein Witz!\p"
 	.string "Wir werden den Kampfring wie ein\n"
 	.string "Orkan durchfegen und gewinnen!$"
 #else
@@ -474,8 +473,7 @@ BattleFrontier_OutsideEast_Text_HeardPrettyGirlAtBattleArena:
 #if GERMAN
 	.string "Ich wusste, der Weg hierher ist sehr\n"
 	.string "schwierig zu meistern. Aber ich hatte\l"
-	.string "gehört, dass hier ein umwerfend süßes\l"
-	.string "\p"
+	.string "gehört, dass hier ein umwerfend süßes\p"
 	.string "Mädchen im Kampfring sein soll.\n"
 	.string "Und weißt du, auf wen ich getroffen bin,\l"
 	.string "als ich dann endlich hier ankam?!?\p"

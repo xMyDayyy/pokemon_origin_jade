@@ -5,6 +5,8 @@ Std_ObtainItem::
 #if RANDOMIZER_AVAILABLE
 	callnative ObtainItemRandomize_NativeCall
 #endif
+@ Origin Jade: entry for giveitem_norandom, gives ITEMID as it is.
+EventScript_ObtainItemNoRandomizer::
 	copyvar VAR_0x8006, ITEMID
 	additem ITEMID, AMOUNT
 	copyvar VAR_0x8007, VAR_RESULT

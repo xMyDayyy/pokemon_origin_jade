@@ -2,7 +2,28 @@ CeladonCity_Condominiums_RoofRoom_Frlg_MapScripts::
 	.byte 0
 
 CeladonCity_Condominiums_RoofRoom_EventScript_BlackBelt::
-	msgbox CeladonCity_Condominiums_RoofRoom_Text_TheresNothingIDontKnow, MSGBOX_NPC
+	@ Origin Jade: HnS's scary tale at night with TM Sleep Talk.
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_TM_SLEEP_TALK_CELADON_ROOF, CeladonCity_Condominiums_RoofRoom_EventScript_BlackBeltAfter
+	msgbox CeladonCity_Condominiums_RoofRoom_Text_ScaryTaleIntro, MSGBOX_DEFAULT
+	goto_if_set FLAG_NIGHT_POKEMON, CeladonCity_Condominiums_RoofRoom_EventScript_BlackBeltNotNight
+	msgbox CeladonCity_Condominiums_RoofRoom_Text_ScaryTale, MSGBOX_DEFAULT
+	giveitem ITEM_TM_SLEEP_TALK
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	setflag FLAG_GOT_TM_SLEEP_TALK_CELADON_ROOF
+	msgbox CeladonCity_Condominiums_RoofRoom_Text_ExplainSleepTalk, MSGBOX_DEFAULT
+	release
+	end
+
+CeladonCity_Condominiums_RoofRoom_EventScript_BlackBeltNotNight::
+	msgbox CeladonCity_Condominiums_RoofRoom_Text_ComeBackAfterSunset, MSGBOX_DEFAULT
+	release
+	end
+
+CeladonCity_Condominiums_RoofRoom_EventScript_BlackBeltAfter::
+	msgbox CeladonCity_Condominiums_RoofRoom_Text_TheresNothingIDontKnow, MSGBOX_DEFAULT
+	release
 	end
 
 CeladonCity_Condominiums_RoofRoom_EventScript_EeveeBall::
@@ -23,10 +44,7 @@ CeladonCity_Condominiums_RoofRoom_EventScript_GetEeveeParty::
 	waitmessage
 	waitfanfare
 	bufferspeciesname STR_VAR_1, SPECIES_EEVEE
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, CeladonCity_Condominiums_RoofRoom_EventScript_SetGotEevee
-	call Common_EventScript_GetGiftMonPartySlot
-	call Common_EventScript_NameReceivedPartyMon
+	call Common_EventScript_AskNicknameGiftPartyMon
 	goto CeladonCity_Condominiums_RoofRoom_EventScript_SetGotEevee
 	end
 
@@ -37,9 +55,7 @@ CeladonCity_Condominiums_RoofRoom_EventScript_GetEeveePC::
 	waitmessage
 	waitfanfare
 	bufferspeciesname STR_VAR_1, SPECIES_EEVEE
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, CeladonCity_Condominiums_RoofRoom_EventScript_TransferEeveeToPC
-	call Common_EventScript_NameReceivedBoxMon
+	call Common_EventScript_AskNicknameGiftBoxMon
 	goto CeladonCity_Condominiums_RoofRoom_EventScript_TransferEeveeToPC
 	end
 
@@ -211,3 +227,93 @@ CeladonCity_Condominiums_RoofRoom_Text_PamphletOnTMs::
 	.string "SILPH CO.$"
 #endif
 
+
+CeladonCity_Condominiums_RoofRoom_Text_ScaryTaleIntro:
+#if GERMAN
+	.string "Ich kenne eine gruuuselige Geschichte,\n"
+	.string "die ich dir erzählen will…$"
+#else
+	.string "Let me recount a terrifying tale…$"
+#endif
+
+CeladonCity_Condominiums_RoofRoom_Text_ComeBackAfterSunset:
+#if GERMAN
+	.string "…Aber halt! Solange es noch hell ist,\n"
+	.string "hält sich der Gruselfaktor in Grenzen.\l"
+	.string "So macht das einfach keinen Spaß.\p"
+	.string "Komm nach Sonnenuntergang wieder!$"
+#else
+	.string "Then again, it's not as scary\n"
+	.string "while it's still light outside.\p"
+	.string "Come back after sunset, OK?$"
+#endif
+
+CeladonCity_Condominiums_RoofRoom_Text_ScaryTale:
+#if GERMAN
+	.string "Es war einmal ein Junge, der gerade ein\n"
+	.string "brandneues Fahrrad bekommen hatte…\p"
+	.string "Er war so froh darüber, dass er es\n"
+	.string "sofort mit auf eine Spritztour nahm…\p"
+	.string "Doch bevor er sich versah, hatte die\n"
+	.string "Nacht den Tag verdrängt und ihren\l"
+	.string "pechschwarzen Mantel um ihn gelegt…\p"
+	.string "Doch da! Auf einmal verlor sein Fahrrad\n"
+	.string "an Geschwindigkeit, und es wurde immer\l"
+	.string "schwieriger, in die Pedale zu treten.\p"
+	.string "Es war fast so, als würde sein Fahrrad\n"
+	.string "von einer unbekannten Macht rückwärts\l"
+	.string "über den Asphalt geschleift.\p"
+	.string "Er geriet in Panik! Versuchte dieses\n"
+	.string "dämonische Fahrrad etwa, ihn mit sich\l"
+	.string "ins Reich der Finsternis zu schleppen?\p"
+	.string "… … …\p"
+	.string "Aber kreeeiiisch!\p"
+	.string "… … …\n"
+	.string "… … …\p"
+	.string "Endlich merkte er, dass er den Radweg\n"
+	.string "bergauf gefahren war! Das war zu viel!\p"
+	.string "…Ende!\n"
+	.string "Verstehst du die Pointe?\p"
+	.string "Danke fürs Zuhören! Als Belohnung habe\n"
+	.string "ich hier die TM82 für dich!$"
+#else
+	.string "Once upon a time, there was a\n"
+	.string "little boy who was given a new\l"
+	.string "BICYCLE…\p"
+	.string "He wanted to try it right away…\p"
+	.string "He was having so much fun that\n"
+	.string "he didn't notice the sun had set…\p"
+	.string "While riding home in the pitch-\n"
+	.string "black night, the bike suddenly\l"
+	.string "slowed!\p"
+	.string "The pedals became heavy!\p"
+	.string "When he stopped pedaling, the\n"
+	.string "bike began slipping backwards!\p"
+	.string "It was as if the bike were cursed\n"
+	.string "and trying to drag him into\l"
+	.string "oblivion!\p"
+	.string "…\p"
+	.string "…\p"
+	.string "SHRIEEEEK!\p"
+	.string "The boy had been riding uphill on\n"
+	.string "CYCLING ROAD!\p"
+	.string "…\n"
+	.string "Ba-dum ba-dum!\p"
+	.string "For listening so patiently, you\n"
+	.string "may take this--TM82!$"
+#endif
+
+CeladonCity_Condominiums_RoofRoom_Text_ExplainSleepTalk:
+#if GERMAN
+	.string "TM82 enthält Schlafrede.\p"
+	.string "Damit setzt dein Pokémon auch im\n"
+	.string "Schlaf noch Attacken ein.\p"
+	.string "Aber viel Glück beim Einschlafen nach\n"
+	.string "dieser furchterregenden Geschichte!$"
+#else
+	.string "TM82 is SLEEP TALK.\p"
+	.string "It will allow your POKéMON to use\n"
+	.string "a random move while asleep.\p"
+	.string "But good luck sleeping after that\n"
+	.string "terrifying tale!$"
+#endif

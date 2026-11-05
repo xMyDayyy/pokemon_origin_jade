@@ -34,7 +34,9 @@ PetalburgCity_OnFrame:
 PetalburgCity_EventScript_WallyGymClosed::
 	lock
 	faceplayer
-	msgbox PetalburgCity_Text_WallyGymClosed, MSGBOX_DEFAULT
+	call_if_lt VAR_PETALBURG_GYM_STATE, 6, PetalburgCity_EventScript_WallySayGymClosed
+	call_if_ge VAR_PETALBURG_GYM_STATE, 6, PetalburgCity_EventScript_WallySayGymOpen
+	msgbox PetalburgCity_Text_WallyAskForHelp, MSGBOX_DEFAULT
 	closemessage
 	setflag FLAG_DONT_TRANSITION_MUSIC
 	playbgm MUS_FOLLOW_ME, FALSE
@@ -44,10 +46,34 @@ PetalburgCity_EventScript_WallyGymClosed::
 	release
 	end
 
+PetalburgCity_EventScript_WallySayGymClosed::
+	msgbox PetalburgCity_Text_WallyGymClosed, MSGBOX_DEFAULT
+	return
+
+PetalburgCity_EventScript_WallySayGymOpen::
+	msgbox PetalburgCity_Text_WallyGymOpen, MSGBOX_DEFAULT
+	return
+
 PetalburgCity_Text_WallyGymClosed:
 #if GERMAN
 	.string "Heiko: Äh… Entschuldige!\n"
-	.string "Die Arena ist leider geschlossen.\p"
+	.string "Die Arena ist leider geschlossen.$"
+#else
+	.string "WALLY: Um… Excuse me!\n"
+	.string "The GYM is closed, I'm afraid.$"
+#endif
+
+PetalburgCity_Text_WallyGymOpen:
+#if GERMAN
+	.string "Heiko: Äh… Entschuldige!\n"
+	.string "Ich traue mich nicht in die Arena.$"
+#else
+	.string "WALLY: Um… Excuse me!\n"
+	.string "I don't dare to go into the GYM.$"
+#endif
+
+PetalburgCity_Text_WallyAskForHelp:
+#if GERMAN
 	.string "Oh! Dein Pokémon… es läuft dir\n"
 	.string "einfach so hinterher!\p"
 	.string "Du musst ein richtig guter Trainer sein…\p"
@@ -57,8 +83,6 @@ PetalburgCity_Text_WallyGymClosed:
 	.string "Kannst du mir zeigen, wie man das\n"
 	.string "macht?$"
 #else
-	.string "WALLY: Um… Excuse me!\n"
-	.string "The GYM is closed, I'm afraid.\p"
 	.string "Oh! Your POKéMON… it just\n"
 	.string "follows you around!\p"
 	.string "You must be a really good\n"
@@ -150,7 +174,12 @@ PetalburgCity_EventScript_WallysMom::
 #if IS_HNS
 	@ 3 = catching tutorial done.
 	goto_if_ge VAR_PETALBURG_CITY_STATE, 3, PetalburgCity_EventScript_WallysMomGone
+	goto_if_ge VAR_PETALBURG_GYM_STATE, 6, PetalburgCity_EventScript_WallysMomGymOpen
 	msgbox PetalburgCity_Text_WallysMomWaiting, MSGBOX_NPC
+	end
+
+PetalburgCity_EventScript_WallysMomGymOpen::
+	msgbox PetalburgCity_Text_WallysMomWaitingGymOpen, MSGBOX_NPC
 	end
 
 PetalburgCity_EventScript_WallysMomGone::
@@ -291,7 +320,14 @@ PetalburgCity_EventScript_CitySign::
 	end
 
 PetalburgCity_EventScript_Gentleman::
+#if IS_HNS
+	goto_if_ge VAR_PETALBURG_GYM_STATE, 6, PetalburgCity_EventScript_GentlemanGymOpen
+#endif
 	msgbox PetalburgCity_Text_FullPartyExplanation, MSGBOX_NPC
+	end
+
+PetalburgCity_EventScript_GentlemanGymOpen::
+	msgbox PetalburgCity_Text_MoreTrainersSinceGymOpened, MSGBOX_NPC
 	end
 
 PetalburgCity_EventScript_WallyHouseSign::
@@ -813,10 +849,8 @@ PetalburgCity_Text_ThisIsGymSign:
 
 PetalburgCity_Text_WaterReflection:
 #if GERMAN
-	.string "Mein Gesicht spiegelt sich im Wasser…\n"
-	.string "\p"
-	.string "Ein schimmerndes Lächeln der Hoffnung.\n"
-	.string "\p"
+	.string "Mein Gesicht spiegelt sich im Wasser…\p"
+	.string "Ein schimmerndes Lächeln der Hoffnung.\p"
 	.string "Oder ist es der Ausdruck düsterer\n"
 	.string "Stille, an dem die Angst nagt…\p"
 	.string "Was siehst du in deinem Spiegelbild?$"
@@ -841,6 +875,20 @@ PetalburgCity_Text_FullPartyExplanation:
 	.string "More TRAINERS used to come through.\n"
 	.string "Since the GYM closed it has gotten\l"
 	.string "quiet.$"
+#endif
+
+PetalburgCity_Text_MoreTrainersSinceGymOpened:
+#if GERMAN
+	.string "Ich sitze hier jeden Tag und sehe den\n"
+	.string "Leuten beim Vorbeigehen zu.\p"
+	.string "Seit die Arena wieder offen ist,\n"
+	.string "kommen auch wieder mehr Trainer\l"
+	.string "durch.$"
+#else
+	.string "I sit here every day and watch the\n"
+	.string "people go by.\p"
+	.string "Since the GYM opened again, more\n"
+	.string "TRAINERS are coming through again.$"
 #endif
 
 PetalburgCity_Text_GymSign:
@@ -936,6 +984,19 @@ PetalburgCity_Text_WallysMomWaiting:
 	.string "show him how to catch POKéMON.\p"
 	.string "But the GYM is closed…\n"
 	.string "Where has that boy got to?$"
+#endif
+
+PetalburgCity_Text_WallysMomWaitingGymOpen:
+#if GERMAN
+	.string "Mein Heiko wollte sich vom Arenaleiter\n"
+	.string "zeigen lassen, wie man Pokémon fängt.\p"
+	.string "Die Arena ist jetzt offen…\n"
+	.string "Aber wo steckt der Junge nur?$"
+#else
+	.string "My WALLY wanted the GYM LEADER to\n"
+	.string "show him how to catch POKéMON.\p"
+	.string "The GYM is open now…\n"
+	.string "But where has that boy got to?$"
 #endif
 
 PetalburgCity_Text_WallysMomGone:

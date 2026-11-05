@@ -211,8 +211,7 @@ SootopolisCity_MysteryEventsHouse_1F_Text_YouWontBattle:
 SootopolisCity_MysteryEventsHouse_1F_Text_KeepItTo3On3:
 #if GERMAN
 	.string "Oh, sehr gut!\p"
-	.string "Aber mein Haus ist nicht sehr stabil.\n"
-	.string "\p"
+	.string "Aber mein Haus ist nicht sehr stabil.\p"
 	.string "Könntet ihr einen 3-gegen-3-Kampf\n"
 	.string "ausfechten?$"
 #else

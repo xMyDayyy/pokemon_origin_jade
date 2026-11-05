@@ -22,11 +22,6 @@
       "map": "MAP_ROUTE28_HNS",
       "offset": -29,
       "direction": "left"
-    },
-    {
-      "map": "MAP_ROUTE22_HNS",
-      "offset": -28,
-      "direction": "right"
     }
   ],
   "object_events": [
@@ -57,7 +52,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_SQUIRTLE",
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_NOCTOWL",
       "x": 11,
       "y": 22,
       "elevation": 0,
@@ -70,7 +65,7 @@
       "flag": "FLAG_NIGHT_POKEMON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_BULBASAUR",
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_QUAGSIRE",
       "x": 23,
       "y": 17,
       "elevation": 0,
@@ -83,7 +78,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_CHARMANDER",
+      "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_DODRIO",
       "x": 20,
       "y": 11,
       "elevation": 0,

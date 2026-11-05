@@ -6,7 +6,7 @@ AzaleaTown_House1_EventScript_Boss::
 	faceplayer
 	goto_if_eq VAR_AZALEA_TOWN_STATE, 5, AzaleaTown_House1_EventScript_Boss3
 	goto_if_eq VAR_AZALEA_TOWN_STATE, 6, AzaleaTown_House1_EventScript_Boss3
-	goto_if_eq VAR_AZALEA_TOWN_STATE, 7, AzaleaTown_House1_EventScript_Boss4
+	goto_if_ge VAR_ILEX_FOREST_FARFETCHD, 3, AzaleaTown_House1_EventScript_Boss4
 	goto_if_set FLAG_HIDE_AZALEA_TOWN_ROCKETS, AzaleaTown_House1_EventScript_Boss2
 	msgbox CharcoalKiln_Text_Boss1, MSGBOX_DEFAULT
 	closemessage
@@ -51,6 +51,7 @@ AzaleaTown_House1_EventScript_Apprentice3::
 	goto_if_set FLAG_GOT_CHARCOAL, AzaleaTown_House1_EventScript_Apprentice4
 	msgbox CharcoalKiln_Text_Apprentice3, MSGBOX_DEFAULT
 	giveitem ITEM_CHARCOAL
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_GOT_CHARCOAL
 	closemessage
 	release
@@ -114,9 +115,9 @@ CharcoalKiln_Text_Boss3:
 
 CharcoalKiln_Text_Boss4:
 #if GERMAN
-	.string "Du hast Team Rocket vertrieben und bist\n"
-	.string "alleine in den Steineichenwald gegangen.\l"
-	.string "Du hast Mumm! Das gefällt mir!\p"
+	.string "Du hast Team Rocket vertrieben und\n"
+	.string "bist alleine in den Steineichenwald\l"
+	.string "gegangen. Du hast Mumm! Das gefällt mir!\p"
 	.string "Was sagst du, würdest du nicht gerne\n"
 	.string "bei mir in die Lehre gehen?$"
 #else

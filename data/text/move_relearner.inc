@@ -9,28 +9,28 @@ MoveRelearner_Text_WouldLearnNewMoves:
 
 MoveRelearner_Text_LevelUpMoves:
 #if GERMAN
-	.string "Level Up Attacken$"
+	.string "Level-Attacken$"
 #else
 	.string "Level Up Moves$"
 #endif
 
 MoveRelearner_Text_EggMoves:
 #if GERMAN
-	.string "Ei Attacken$"
+	.string "Ei-Attacken$"
 #else
 	.string "Egg Moves$"
 #endif
 
 MoveRelearner_Text_TMMoves:
 #if GERMAN
-	.string "TM Attacken$"
+	.string "TM-Attacken$"
 #else
 	.string "TM Moves$"
 #endif
 
 MoveRelearner_Text_TutormoveMoves:
 #if GERMAN
-	.string "Lehrer Attacken$"
+	.string "Lehrer-Attacken$"
 #else
 	.string "Tutor Moves$"
 #endif
@@ -86,35 +86,35 @@ MoveRelearner_Text_CantTeachMoveToPkmn:
 
 MoveRelearner_Text_LevelUpMoveLWR::
 #if GERMAN
-	.string "level up attacke$"
+	.string "Level-Attacke$"
 #else
 	.string "level up move$"
 #endif
 
 MoveRelearner_Text_EggMoveLWR::
 #if GERMAN
-	.string "ei attacke$"
+	.string "Ei-Attacke$"
 #else
 	.string "egg move$"
 #endif
 
 MoveRelearner_Text_TMMoveLWR::
 #if GERMAN
-	.string "TM attacke$"
+	.string "TM-Attacke$"
 #else
 	.string "TM move$"
 #endif
 
 MoveRelearner_Text_TutorMoveLWR::
 #if GERMAN
-	.string "lehrer attacke$"
+	.string "Lehrer-Attacke$"
 #else
 	.string "tutor move$"
 #endif
 
 MoveRelearner_Text_MoveLWR::
 #if GERMAN
-	.string "attacke$"
+	.string "Attacke$"
 #else
 	.string "move$"
 #endif

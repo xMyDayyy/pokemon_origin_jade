@@ -2,6 +2,11 @@
 #define GUARD_CAPS_H
 
 u8 GetCurrentBadgeCount(void);
+// Badges (0-8) of the region of mapSecId: Kanto FLAG_BADGE01-08, Johto
+// VAR_JOHTO_BADGES, Hoenn VAR_HOENN_BADGES.
+u32 GetRegionBadgeCount(u32 mapSecId);
+// GetRegionBadgeCount for the map the player stands on.
+u32 GetCurrentRegionBadgeCount(void);
 
 #if B_EXP_CAP_TYPE != EXP_CAP_NONE && B_EXP_CAP_TYPE != EXP_CAP_HARD && B_EXP_CAP_TYPE != EXP_CAP_SOFT
 #error "Invalid choice for B_EXP_CAP_TYPE, must be of [EXP_CAP_NONE, EXP_CAP_HARD, EXP_CAP_SOFT]"

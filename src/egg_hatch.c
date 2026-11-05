@@ -38,7 +38,6 @@
 #include "battle.h" // to get rid of later
 #include "constants/rgb.h"
 #include "party_menu.h"
-#include "randomizer.h"
 #include "nuzlocke.h"
 
 #define GFXTAG_EGG       12345
@@ -319,11 +318,6 @@ static void CreateHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
 
     species = GetMonData(egg, MON_DATA_SPECIES);
 
-    #if RANDOMIZER_AVAILABLE == TRUE
-    if (RandomizerFeatureEnabled(RANDOMIZE_EGG_MON))
-        species = RandomizeMon(RANDOMIZER_REASON_EGG, GetRandomizerOption(RANDOMIZER_OPTION_SPECIES_MODE), GetRandomizerSeed() ^ species, species);
-    #endif
-
     for (i = 0; i < MAX_MON_MOVES; i++)
         moves[i] = GetMonData(egg, MON_DATA_MOVE1 + i);
 
@@ -372,6 +366,12 @@ static void AddHatchedMonToParty(u8 id)
     u16 metLevel;
     metloc_u8_t metLocation;
     struct Pokemon *mon = &gPlayerParty[id];
+
+#if IS_HNS
+    // A gift egg hatched after the Violet City egg was received counts for Elm's lab.
+    if (FlagGet(FLAG_RECEIVED_TOGEPI_EGG) && GetMonData(mon, MON_DATA_MET_LOCATION) == METLOC_SPECIAL_EGG)
+        FlagSet(FLAG_HATCHED_TOGEPI_EGG);
+#endif
 
     CreateHatchedMon(mon, &gEnemyParty[0]);
     SetMonData(mon, MON_DATA_IS_EGG, &isEgg);
@@ -422,7 +422,7 @@ static bool8 _CheckDaycareMonReceivedMail(struct DayCare *daycare, u8 daycareId)
 
 bool8 CheckDaycareMonReceivedMail(void)
 {
-    return _CheckDaycareMonReceivedMail(&gSaveBlock1Ptr->daycare, gSpecialVar_0x8004);
+    return _CheckDaycareMonReceivedMail(GetCurrentDaycare(), gSpecialVar_0x8004);
 }
 
 static u8 EggHatchCreateMonSprite(u8 useAlt, u8 state, u8 partyId, u16 *speciesLoc)
@@ -477,8 +477,6 @@ static void VBlankCB_EggHatch(void)
 
 void EggHatch(void)
 {
-    if (IsNuzlockeActive() && !IsNuzlockeCaptureSuspended())
-        NuzlockeFlagSet(NuzlockeGetCurrentRegionMapSectionId());
     LockPlayerFieldControls();
     CreateTask(Task_EggHatch, 10);
     FadeScreen(FADE_TO_BLACK, 0);

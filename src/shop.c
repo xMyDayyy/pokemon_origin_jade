@@ -971,7 +971,7 @@ static void SetShopMenuCallback(void (*callback)(void))
 
 #if IS_HNS
 // Origin Jade: only Johto marts use the badge list (Violet City, the Trainer
-// Hill by Route 40, whose mapsec counts as Hoenn), so they count Johto badges (D-007).
+// Hill by Route 40, whose mapsec counts as Hoenn), so they count Johto badges.
 static u8 GetNumberOfBadges(void)
 {
     return GetJohtoBadgeCount();
@@ -2281,6 +2281,7 @@ void CreateBPDecorShop2(void)   { CreateBPShopCommon(MART_TYPE_BP_DECOR, sBPDeco
 void CreateBPPokeBallShop(void) { CreateBPShopCommon(MART_TYPE_BP,      sBPPokeBallShopEntries); }
 void CreateBPHoldItemShop2(void) { CreateBPShopCommon(MART_TYPE_BP_ITEM, sBPHoldItemShopEntries2); }
 void CreateBPPowerShop(void)    { CreateBPShopCommon(MART_TYPE_BP_ITEM, sBPPowerShopEntries);     }
+void CreateBPHoldItemShop3(void) { CreateBPShopCommon(MART_TYPE_BP_ITEM, sBPHoldItemShopEntries3); }
 
 static const u16 sKurtBallShopItems[] =
 {

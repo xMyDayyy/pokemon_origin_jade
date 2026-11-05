@@ -20,8 +20,8 @@ IlexForest_EventScript_ReenterDuringCutScene::
 	setobjectxyperm LOCALID_ILEX_FOREST_FARFETCHD_1, 28, 42
 	return
 
-@ After the shrine event Celebi waits at the shrine again unless the legendary rules hide it
-@ (see docs/origin_jade/DECISIONS.md, D-026). Uses the second Celebi object: FLAG_HIDE_CELEBI is also Kurt's flag.
+@ After the shrine event Celebi waits at the shrine again unless the legendary rules hide it.
+@ Uses the second Celebi object: FLAG_HIDE_CELEBI is also Kurt's flag.
 IlexForest_EventScript_SetCelebiVisibility::
 	setflag FLAG_HIDE_ILEX_FOREST_SECOND_CELEBI
 	goto_if_lt VAR_AZALEA_TOWN_STATE, 10, Common_EventScript_NopReturn
@@ -205,12 +205,14 @@ IlexForest_EventScript_Trigger::
 	checkitem ITEM_HM_CUT
 	goto_if_eq VAR_RESULT, TRUE, IlexForest_EventScript_HasCut
 	giveitem ITEM_HM_CUT
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	goto IlexForest_EventScript_CutDone
 
+@ Bag full: nothing is set, the trigger runs again.
 IlexForest_EventScript_HasCut::
 	msgbox IlexForest_Text_CharcoalMasterHasCut, MSGBOX_DEFAULT
 	giveitem ITEM_MIRACLE_SEED
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 
 IlexForest_EventScript_CutDone::
 	msgbox IlexForest_Text_CharcoalMasterOutro, MSGBOX_DEFAULT
@@ -219,12 +221,17 @@ IlexForest_EventScript_CutDone::
 	setflag FLAG_HIDE_ILEX_FOREST_APPRENTICE
 	setflag FLAG_HIDE_ILEX_FOREST_FARFETCHD_1
 	setvar VAR_ILEX_FOREST_FARFETCHD, 3
-	setvar VAR_AZALEA_TOWN_STATE, 7
+	call_if_lt VAR_AZALEA_TOWN_STATE, 7, IlexForest_EventScript_SetAzaleaState7
 	clearflag FLAG_HIDE_AZALEA_TOWN_FARFETCHD
 	clearflag FLAG_HIDE_AZALEA_TOWN_CUT_MASTER
 	closemessage
 	release
 	end
+
+@ Raises Azalea's state to 7; the GS Ball states 8-10 stay.
+IlexForest_EventScript_SetAzaleaState7::
+	setvar VAR_AZALEA_TOWN_STATE, 7
+	return
 
 IlexForest_EventScript_Picnicker::
 	lock
@@ -241,7 +248,10 @@ IlexForest_EventScript_BugcatcherWayne::
 
 IlexForest_EventScript_Shrine::
 	lock
-	goto_if_eq VAR_AZALEA_TOWN_STATE, 9, IlexForest_EventScript_Celebi_Event
+	goto_if_ne VAR_AZALEA_TOWN_STATE, 9, IlexForest_EventScript_ShrineText
+	checkitem ITEM_GS_BALL
+	goto_if_eq VAR_RESULT, TRUE, IlexForest_EventScript_Celebi_Event
+IlexForest_EventScript_ShrineText::
 	msgbox IlexForest_Text_Shrine, MSGBOX_DEFAULT
 	closemessage
 	release
@@ -251,7 +261,7 @@ IlexForest_EventScript_Celebi_Event::
 	msgbox IlexForest_Text_ShrineCelebiEvent, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, FALSE, IlexForest_EventScript_Shrine_Cancel
 	msgbox IlexForest_Text_InsertGSBall, MSGBOX_DEFAULT
-	clearflag FLAG_HIDE_CELEBI
+	@ addobject shows Celebi for this scene; FLAG_HIDE_CELEBI stays set.
 	addobject LOCALID_ILEX_FOREST_CELEBI
 	playse SE_M_PETAL_DANCE
 	applymovement LOCALID_ILEX_FOREST_CELEBI, IlexForest_Movement_Celebi1
@@ -301,7 +311,7 @@ IlexForest_EventScript_Shrine_Cancel::
 	end
 
 
-@ Celebi back at the shrine after a knockout or a flight (legendary rules, D-026).
+@ Celebi back at the shrine after a knockout or a flight (legendary rules).
 IlexForest_EventScript_SecondCelebi::
 	lock
 	faceplayer

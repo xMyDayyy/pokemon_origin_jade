@@ -93,8 +93,7 @@ RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead:
 RustboroCity_Mart_Text_GettingEscapeRopeJustInCase:
 #if GERMAN
 	.string "Ich habe ein Fluchtseil besorgt, falls\n"
-	.string "ich mich mal in einer Höhle verlaufe.\l"
-	.string "\p"
+	.string "ich mich mal in einer Höhle verlaufe.\p"
 	.string "Damit kann ich zurück zum Eingang der\n"
 	.string "Höhle gelangen.$"
 #else

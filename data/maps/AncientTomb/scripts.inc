@@ -16,7 +16,7 @@ AncientTomb_EventScript_TryRemoveRegisteel::
 
 AncientTomb_OnTransition:
 	setflag FLAG_LANDMARK_ANCIENT_TOMB
-	@ Registeel: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+	@ Registeel: legendary rules.
 	setflag FLAG_HIDE_REGISTEEL
 	setvar VAR_0x8004, LEGENDARY_REGISTEEL
 	specialvar VAR_RESULT, IsLegendaryAvailable
@@ -65,7 +65,7 @@ AncientTomb_EventScript_Registeel::
 	playmoncry SPECIES_REGISTEEL, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	setwildbattle SPECIES_REGISTEEL, 40
+	setwildbattle SPECIES_REGISTEEL, 100
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special StartRegiBattle
 	waitstate

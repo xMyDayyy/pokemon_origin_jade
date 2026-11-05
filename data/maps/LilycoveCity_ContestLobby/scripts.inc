@@ -311,6 +311,10 @@ LilycoveCity_ContestLobby_Movement_LinkArtistReturnToPlayer:
 @ EventScript_SpeakToContestReceptionist either ends or returns after a contest entry is submitted
 LilycoveCity_ContestLobby_EventScript_ContestReceptionist::
 	special ClearLinkContestFlags
+#if IS_HNS
+	@ Lilycove holds the Master Rank only.
+	setvar VAR_CONTEST_RANK, CONTEST_RANK_MASTER
+#endif
 	specialvar VAR_RESULT, IsContestDebugActive  @ Always FALSE
 	goto_if_eq VAR_RESULT, TRUE, LilycoveCity_ContestLobby_EventScript_SetDebug
 	call LilycoveCity_ContestLobby_EventScript_SpeakToContestReceptionist
@@ -619,9 +623,20 @@ LilycoveCity_ContestLobby_EventScript_LinkContestReceptionist::
 	special ClearLinkContestFlags
 	lock
 	faceplayer
+#if IS_HNS
+	checkitem ITEM_CONTEST_PASS
+	goto_if_eq VAR_RESULT, FALSE, LilycoveCity_ContestLobby_EventScript_LinkNeedsContestPass
+#endif
 	msgbox LilycoveCity_ContestLobby_Text_LinkContestReception, MSGBOX_DEFAULT
 	goto LilycoveCity_ContestLobby_EventScript_AskEnterLinkContest
 	end
+
+#if IS_HNS
+LilycoveCity_ContestLobby_EventScript_LinkNeedsContestPass::
+	msgbox LilycoveCity_ContestLobby_Text_RegistrationsFromFourNeedContestPass, MSGBOX_DEFAULT
+	release
+	end
+#endif
 
 LilycoveCity_ContestLobby_EventScript_AskEnterLinkContest::
 	message LilycoveCity_ContestLobby_Text_EnterContest3
@@ -970,10 +985,15 @@ LilycoveCity_ContestLobby_Movement_LinkReceptionistFacePlayer:
 LilycoveCity_ContestLobby_EventScript_LittleGirl::
 	lock
 	faceplayer
+#if IS_HNS
+	@ Origin Jade: only her tip on the case.
+	goto LilycoveCity_ContestLobby_EventScript_LittleGirlHaveCase
+#else
 	goto_if_set FLAG_RECEIVED_POKEBLOCK_CASE, LilycoveCity_ContestLobby_EventScript_LittleGirlHaveCase
 	msgbox LilycoveCity_ContestLobby_Text_LadyGaveMePokeblockCase, MSGBOX_DEFAULT
 	release
 	end
+#endif
 
 LilycoveCity_ContestLobby_EventScript_LittleGirlHaveCase::
 	msgbox LilycoveCity_ContestLobby_Text_MakePokeblocksDifferentBerries, MSGBOX_DEFAULT

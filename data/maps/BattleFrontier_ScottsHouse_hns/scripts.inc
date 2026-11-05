@@ -11,10 +11,18 @@ BattleFrontier_ScottsHouse_EventScript_Scott_hns::
 	end
 
 BattleFrontier_ScottsHouse_EventScript_CheckGiveItems_hns::
-	goto_if_unset FLAG_SCOTT_GIVES_BATTLE_POINTS, BattleFrontier_ScottsHouse_EventScript_WelcomeToFrontier_hns
+	goto_if_unset FLAG_SCOTT_GIVES_BATTLE_POINTS, BattleFrontier_ScottsHouse_EventScript_TryWelcome_hns
+BattleFrontier_ScottsHouse_EventScript_CheckGiveSymbolPrizes_hns::
 	goto_if_unset FLAG_COLLECTED_ALL_SILVER_SYMBOLS, BattleFrontier_ScottsHouse_EventScript_CheckSilverSymbols_hns
 	goto_if_unset FLAG_COLLECTED_ALL_GOLD_SYMBOLS, BattleFrontier_ScottsHouse_EventScript_CheckGoldSymbols_hns
 	goto BattleFrontier_ScottsHouse_EventScript_CheckGiveShield_hns
+	end
+
+@ Origin Jade: welcome and Battle Point gift only after the Hoenn title,
+@ when the meetings VAR_SCOTT_STATE counts are over.
+BattleFrontier_ScottsHouse_EventScript_TryWelcome_hns::
+	goto_if_set FLAG_IS_HOENN_CHAMPION, BattleFrontier_ScottsHouse_EventScript_WelcomeToFrontier_hns
+	goto BattleFrontier_ScottsHouse_EventScript_CheckGiveSymbolPrizes_hns
 	end
 
 BattleFrontier_ScottsHouse_EventScript_CheckGiveShield_hns::
@@ -150,7 +158,7 @@ BattleFrontier_ScottsHouse_EventScript_WelcomeToFrontier_hns::
 	applymovement LOCALID_SCOTTS_HOUSE_SCOTT, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox BattleFrontier_ScottsHouse_Text_HaveThisAsMementoOfOurPathsCrossing_hns, MSGBOX_DEFAULT
-	goto_if_eq VAR_SCOTT_STATE, 13, BattleFrontier_ScottsHouse_EventScript_Give4BattlePoints_hns
+	goto_if_ge VAR_SCOTT_STATE, 11, BattleFrontier_ScottsHouse_EventScript_Give4BattlePoints_hns
 	goto_if_ge VAR_SCOTT_STATE, 9, BattleFrontier_ScottsHouse_EventScript_Give3BattlePoints_hns
 	goto_if_ge VAR_SCOTT_STATE, 6, BattleFrontier_ScottsHouse_EventScript_Give2BattlePoints_hns
 	goto BattleFrontier_ScottsHouse_EventScript_Give1BattlePoint_hns
@@ -308,8 +316,7 @@ BattleFrontier_ScottsHouse_Text_ExpectingGreatThings_hns:
 BattleFrontier_ScottsHouse_Text_WhyIGoSeekingTrainers_hns:
 #if GERMAN
 	.string "Scott: Jeder Trainer ist ein\n"
-	.string "Individuum. Sie leben alle ihr Leben.\l"
-	.string "\p"
+	.string "Individuum. Sie leben alle ihr Leben.\p"
 	.string "Aber in Kämpfen ist es völlig egal,\n"
 	.string "wer oder was sie sind.\p"
 	.string "Sie sind alle gleich!\p"
@@ -485,8 +492,7 @@ BattleFrontier_ScottsHouse_Text_Beat100TrainersInARow_hns:
 #if GERMAN
 	.string "Scott: Ich habe schon von dir gehört!\n"
 	.string "Wie du den Duellturm bezwungen hast!\l"
-	.string "Du hast 100 Trainer in Folge besiegt!\l"
-	.string "\p"
+	.string "Du hast 100 Trainer in Folge besiegt!\p"
 	.string "Das ist einfach spektakulär!\n"
 	.string "Ich muss dir dies einfach schenken!$"
 #else

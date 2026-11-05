@@ -2,9 +2,8 @@ ViridianCity_Gym_Frlg_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, ViridianCity_Gym_OnTransition
 	.byte 0
 
-@ After the league change (D-010) Blue leads this gym. FLAG_TEMP_1 hides Blue
+@ After the league change Blue leads this gym. FLAG_TEMP_1 hides Blue
 @ before it; afterwards Giovanni is hidden once he has handed over HM06.
-@ See docs/origin_jade/DECISIONS.md, D-032.
 ViridianCity_Gym_OnTransition::
 	call PokemonLeague_EventScript_CheckLeagueChanged
 	goto_if_eq VAR_RESULT, TRUE, ViridianCity_Gym_EventScript_SetBlueLeader
@@ -19,7 +18,7 @@ ViridianCity_Gym_EventScript_HideGiovanni::
 	setflag FLAG_HIDE_VIRIDIAN_GIOVANNI
 	return
 
-@ Blue: battle as often as the player likes, TM Trick Room once, no badge (D-007).
+@ Blue: battle as often as the player likes, TM Trick Room once, no badge.
 ViridianCity_Gym_EventScript_BlueLeader::
 	lock
 	faceplayer
@@ -140,7 +139,7 @@ ViridianCity_Gym_EventScript_GymGuy::
 	release
 	end
 
-@ Blue leads the gym after the league change, see docs/origin_jade/DECISIONS.md, D-032.
+@ Blue leads the gym after the league change.
 ViridianCity_Gym_EventScript_GymGuyBlue::
 	goto_if_defeated TRAINER_BLUE_HNS, ViridianCity_Gym_EventScript_GymGuyBlueDefeated
 	msgbox ViridianCity_Gym_Text_GymGuyBlue

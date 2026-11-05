@@ -216,7 +216,7 @@ FuchsiaCity_SafariZone_Entrance_Text_WelcomeToSafariZone::
 
 FuchsiaCity_SafariZone_Entrance_Text_PlaySafariGameFor500::
 #if GERMAN
-	.string "Für nur 500¥ darfst du im Park so viele\n"
+	.string "Für nur ¥500 darfst du im Park so viele\n"
 	.string "Pokémon fangen, wie du möchtest!\p"
 	.string "Möchtest du auf die Jagd gehen?$"
 #else
@@ -229,7 +229,7 @@ FuchsiaCity_SafariZone_Entrance_Text_PlaySafariGameFor500::
 
 FuchsiaCity_SafariZone_Entrance_Text_ThatllBe500WeOnlyUseSpecialBalls::
 #if GERMAN
-	.string "Das kostet 500¥!\p"
+	.string "Das kostet ¥500!\p"
 	.string "Wir verwenden hier spezielle Pokébälle.$"
 #else
 	.string "That'll be ¥500, please!\p"

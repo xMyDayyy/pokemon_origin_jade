@@ -99,8 +99,11 @@ PetalburgCity_Gym_EventScript_TurnPlayerNorth::
 	end
 
 PetalburgCity_Gym_OnFrame:
-	@ HnS: state 2 = gym closed until the 4th Hoenn badge.
+	@ HnS: states 2-5 = gym closed until the 4th Hoenn badge (each badge adds 1).
 	map_script_2 VAR_PETALBURG_GYM_STATE, 2, PetalburgCity_Gym_EventScript_ClosedEject
+	map_script_2 VAR_PETALBURG_GYM_STATE, 3, PetalburgCity_Gym_EventScript_ClosedEject
+	map_script_2 VAR_PETALBURG_GYM_STATE, 4, PetalburgCity_Gym_EventScript_ClosedEject
+	map_script_2 VAR_PETALBURG_GYM_STATE, 5, PetalburgCity_Gym_EventScript_ClosedEject
 	map_script_2 VAR_PETALBURG_GYM_STATE, 1, PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial
 	.2byte 0
 
@@ -505,6 +508,7 @@ PetalburgCity_Gym_EventScript_NormanBattle::
 	closemessage
 #if IS_HNS
 	@ HnS: skip the scene with Wally's father (state 5 = Surf handover done).
+	setflag FLAG_HOENN_RECEIVED_HM_SURF
 	setvar VAR_PETALBURG_CITY_STATE, 5
 	releaseall
 	end
@@ -1581,7 +1585,7 @@ PetalburgCity_Gym_Text_ExplainFacade:
 	.string "aussichtslose Situation vielleicht\l"
 	.string "gerettet werden.$"
 #else
-	.string "DAD: TM42 contains FACADE.\p"
+	.string "TM42 contains FACADE.\p"
 	.string "It doubles the power of moves if\n"
 	.string "the POKéMON is poisoned, paralyzed,\l"
 	.string "or burned.\p"
@@ -1795,8 +1799,7 @@ PetalburgCity_Gym_Text_ParkerPostBadge:
 PetalburgCity_Gym_Text_GeorgeIntro:
 #if GERMAN
 	.string "Immer, wenn du den Sieg in greifbarer\n"
-	.string "Nähe siehst, füllt dein Gegner KP auf…\l"
-	.string "\p"
+	.string "Nähe siehst, füllt dein Gegner KP auf…\p"
 	.string "Kannst du dir vorstellen, wie man sich\n"
 	.string "in so einer Situation fühlt?\p"
 	.string "Ich werde dir so eine Situation\n"

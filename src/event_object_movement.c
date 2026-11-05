@@ -6,6 +6,7 @@
 #include "berry.h"
 #include "data.h"
 #include "debug.h"
+#include "daycare.h"
 #include "decoration.h"
 #include "decompress.h"
 #include "event_data.h"
@@ -2868,13 +2869,6 @@ void GetFollowerAction(struct ScriptContext *ctx) // Essentially a big switch fo
         default:
             multi = NUMBER_OF_MON_TYPES;
         }
-#if IS_HNS
-        // The Fighting Dojo shares Saffron City's map section with Sabrina's gym, but holds
-        // EV-training NPCs rather than trainer battles, so there's no type to hint at.
-        if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_SAFFRON_CITY_FIGHTING_DOJO_HNS)
-         && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_SAFFRON_CITY_FIGHTING_DOJO_HNS))
-            multi = NUMBER_OF_MON_TYPES;
-#endif
         if (multi < NUMBER_OF_MON_TYPES)
         {
             multi = GetOverworldTypeEffectiveness(mon, multi);
@@ -11855,7 +11849,7 @@ void GetDaycareGraphics(struct ScriptContext *ctx)
 
     for (i = 0; i < 2; i++)
     {
-        GetMonInfo((struct Pokemon *) &gSaveBlock1Ptr->daycare.mons[i].mon, &specGfx, &shiny, &female);
+        GetMonInfo((struct Pokemon *) &GetCurrentDaycare()->mons[i].mon, &specGfx, &shiny, &female);
         if (specGfx == SPECIES_NONE)
             break;
         // Assemble gfx ID like FollowerSetGraphics

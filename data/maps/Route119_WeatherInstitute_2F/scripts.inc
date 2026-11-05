@@ -90,18 +90,13 @@ Route119_WeatherInstitute_2F_EventScript_ReceiveCastform::
 
 Route119_WeatherInstitute_2F_EventScript_ReceiveCastformParty::
 	call Route119_WeatherInstitute_2F_EventScript_ReceivedCastformFanfare
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, Route119_WeatherInstitute_2F_EventScript_ExplainCastform
-	call Common_EventScript_GetGiftMonPartySlot
-	call Common_EventScript_NameReceivedPartyMon
+	call Common_EventScript_AskNicknameGiftPartyMon
 	goto Route119_WeatherInstitute_2F_EventScript_ExplainCastform
 	end
 
 Route119_WeatherInstitute_2F_EventScript_ReceiveCastformPC::
 	call Route119_WeatherInstitute_2F_EventScript_ReceivedCastformFanfare
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, Route119_WeatherInstitute_2F_EventScript_SendCastformToPC
-	call Common_EventScript_NameReceivedBoxMon
+	call Common_EventScript_AskNicknameGiftBoxMon
 	goto Route119_WeatherInstitute_2F_EventScript_SendCastformToPC
 	end
 
@@ -131,7 +126,7 @@ Route119_WeatherInstitute_2F_EventScript_ScientistMentionWeather::
 	end
 
 Route119_WeatherInstitute_2F_EventScript_TryStartAbnormalWeather::
-	@ Counts Kyogre and Groudon that cannot be met now (see docs/origin_jade/DECISIONS.md, D-026).
+	@ Counts Kyogre and Groudon that cannot be met now.
 	setvar VAR_0x8005, 0
 	setvar VAR_0x8004, LEGENDARY_KYOGRE
 	specialvar VAR_RESULT, IsLegendaryAvailable
@@ -362,8 +357,7 @@ Route119_WeatherInstitute_2F_Text_TeamMagmaJustPassedBy:
 Route119_WeatherInstitute_2F_Text_WeHaveToHurryToMtPyre:
 #if GERMAN
 	.string "Was?!?\n"
-	.string "Dann lasst uns von hier verschwinden!\l"
-	.string "\p"
+	.string "Dann lasst uns von hier verschwinden!\p"
 	.string "Und zwar schnell! Wir müssen so\n"
 	.string "schnell wie möglich zum Pyroberg!\p"
 	.string "Ahahahahahaha!\n"
@@ -466,8 +460,7 @@ Route119_WeatherInstitute_2F_Text_KyogreWeather:
 Route119_WeatherInstitute_2F_Text_NoAbnormalWeather:
 #if GERMAN
 	.string "Das Wetter hat sich beruhigt. Es gibt\n"
-	.string "keine außergewöhnlichen Vorkommnisse.\l"
-	.string "\p"
+	.string "keine außergewöhnlichen Vorkommnisse.\p"
 	.string "Der gelegentliche Regen ist ein Segen,\n"
 	.string "wirklich.$"
 #else

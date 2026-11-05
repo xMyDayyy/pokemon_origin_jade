@@ -971,7 +971,7 @@ MauvilleCity_GameCorner_Text_NeedCoinCaseForCoins:
 MauvilleCity_GameCorner_Text_WereYouLookingForCoins:
 #if GERMAN
 	.string "Suchst du nach Münzen?\p"
-	.string "Das macht ¥1000 für 50 Münzen.\n"
+	.string "Das macht ¥500 für 50 Münzen.\n"
 	.string "Möchtest du welche haben?$"
 #else
 	.string "Were you looking for COINS?\p"

@@ -368,7 +368,7 @@ PalletTown_PlayersHouse_1F_EventScript_TVScreenFemale::
 
 PalletTown_PlayersHouse_1F_Text_AllBoysLeaveOakLookingForYou::
 #if GERMAN
-	.string "Mutter: Richtig. Irgendwann gehen alle\n"
+	.string "Mama: Richtig. Irgendwann gehen alle\n"
 	.string "Kinder fort, um ein Abenteuer zu\l"
 	.string "erleben!\p"
 	.string "Prof. Eich von nebenan hat nach\n"
@@ -383,7 +383,7 @@ PalletTown_PlayersHouse_1F_Text_AllBoysLeaveOakLookingForYou::
 
 PalletTown_PlayersHouse_1F_Text_AllGirlsLeaveOakLookingForYou::
 #if GERMAN
-	.string "Mutter: … genau!\n"
+	.string "Mama: … genau!\n"
 	.string "Jedes Mädchen träumt vom Reisen.\l"
 	.string "Das sieht man im Fernsehen.\p"
 	.string "Oh, ja, Prof. Eich von nebenan\n"
@@ -398,7 +398,7 @@ PalletTown_PlayersHouse_1F_Text_AllGirlsLeaveOakLookingForYou::
 
 PalletTown_PlayersHouse_1F_Text_YouShouldTakeQuickRest::
 #if GERMAN
-	.string "Mutter: {PLAYER}! Du solltest eine\n"
+	.string "Mama: {PLAYER}! Du solltest eine\n"
 	.string "kurze Pause einlegen.$"
 #else
 	.string "MOM: {PLAYER}!\n"
@@ -407,7 +407,7 @@ PalletTown_PlayersHouse_1F_Text_YouShouldTakeQuickRest::
 
 PalletTown_PlayersHouse_1F_Text_LookingGreatTakeCare::
 #if GERMAN
-	.string "Mutter: Sehr gut! Du und deine Pokémon\n"
+	.string "Mama: Sehr gut! Du und deine Pokémon\n"
 	.string "sehen großartig aus!\l"
 	.string "Achte auf dich!$"
 #else
@@ -582,7 +582,7 @@ PalletTown_PlayersHouse_1F_EventScript_ExitAllowed::
 
 PalletTown_PlayersHouse_1F_Text_MomWaitAMoment:
 #if GERMAN
-	.string "Mutter: Warte kurz, {PLAYER}!\p"
+	.string "Mama: Warte kurz, {PLAYER}!\p"
 	.string "Ich muss dir noch etwas mitgeben,\n"
 	.string "bevor du losziehst.$"
 #else

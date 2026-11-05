@@ -420,8 +420,8 @@ Route39_Text_PsychicNormanAfter:
 #if GERMAN
 	.string "Jedes Pokémon hat unterschiedliche\n"
 	.string "Fähigkeiten.\p"
-	.string "Bei Menschen ist das ganz ähnlich. Jeder\n"
-	.string "hat unterschiedliche Talente.$"
+	.string "Bei Menschen ist das ganz ähnlich.\n"
+	.string "Jeder hat unterschiedliche Talente.$"
 #else
 	.string "You know how POKéMON have\n"
 	.string "different abilities?\p"

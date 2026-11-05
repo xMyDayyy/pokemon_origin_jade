@@ -49,7 +49,7 @@ void CopyBoxMonAt(u8 boxId, u8 boxPosition, struct BoxPokemon *dst);
 void ZeroBoxMonAt(u8 boxId, u8 boxPosition);
 void PurgeMonOrBoxMon(u8 boxId, u8 position);
 u16 GetFirstAliveBoxPokemon(void);
-void MoveFirstBoxPokemonToParty(void);
+void MoveFirstBoxPokemonToParty(u32 partySlot);
 void BoxMonAtToMon(u8 boxId, u8 boxPosition, struct Pokemon *dst);
 struct BoxPokemon *GetBoxedMonPtr(u8 boxId, u8 boxPosition);
 u8 *GetBoxNamePtr(u8 boxId);

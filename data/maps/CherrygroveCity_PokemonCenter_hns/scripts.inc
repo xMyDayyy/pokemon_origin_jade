@@ -38,6 +38,7 @@ CherryGrove_Pokecenter_Chansey::
 	delay 40
 	waitmoncry
 	closemessage
+	release
 	end
 
 CherryGrove_Pokecenter_Text_Fisher:

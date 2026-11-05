@@ -17,7 +17,7 @@ Route12_EventScript_Snorlax::
 	msgbox Text_WantToUsePokeFlute, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route12_EventScript_DontUsePokeFlute
 	call EventScript_AwakenSnorlax
-	setwildbattle SPECIES_SNORLAX, 24
+	setwildbattle SPECIES_SNORLAX, 30
 	waitse
 	playmoncry SPECIES_SNORLAX, CRY_MODE_ENCOUNTER
 	delay 40
@@ -372,4 +372,93 @@ Route12_Text_GiaNotEnoughMons::
 	.string "GIA: I can't bear to battle\n"
 	.string "without my JES!\p"
 	.string "Don't you have one more POKéMON?$"
+#endif
+
+@ Origin Jade: the TM27 girl stands on Route 12 (the north gate is not used).
+Route12_EventScript_TM27Lass::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_TM27, Route12_EventScript_ExplainTM27
+	checkplayergender
+	call_if_eq VAR_RESULT, MALE, Route12_EventScript_TakeTMMale
+	call_if_eq VAR_RESULT, FEMALE, Route12_EventScript_TakeTMFemale
+	checkitemspace ITEM_TM27
+	goto_if_eq VAR_RESULT, FALSE, Route12_EventScript_NoRoomForTM27
+	giveitem_msg Route12_Text_ReceivedTM27FromLittleGirl, ITEM_TM27
+	msgbox Route12_Text_ExplainTM27
+	setflag FLAG_GOT_TM27
+	release
+	end
+
+Route12_EventScript_TakeTMMale::
+	msgbox Route12_Text_TakeTMDontNeedAnymoreMale
+	return
+
+Route12_EventScript_TakeTMFemale::
+	msgbox Route12_Text_TakeTMDontNeedAnymoreFemale
+	return
+
+Route12_EventScript_NoRoomForTM27::
+	msgbox Route12_Text_DontHaveRoomForThis
+	release
+	end
+
+Route12_EventScript_ExplainTM27::
+	msgbox Route12_Text_ExplainTM27
+	release
+	end
+
+@ Male and female text identical, differ (presumably) in JP
+Route12_Text_TakeTMDontNeedAnymoreMale::
+#if GERMAN
+	.string "Meine Pokémon wurden im Pokémon-\n"
+	.string "turm zur letzten Ruhe gebettet.\p"
+	.string "Ich gebe dir diese TM. Ich benötige sie\n"
+	.string "nicht länger...$"
+#else
+	.string "My POKéMON's ashes are stored in\n"
+	.string "POKéMON TOWER.\p"
+	.string "You can have this TM.\n"
+	.string "I don't need it anymore…$"
+#endif
+
+Route12_Text_TakeTMDontNeedAnymoreFemale::
+#if GERMAN
+	.string "Meine Pokémon wurden im Pokémon-\n"
+	.string "turm zur letzten Ruhe gebettet.\p"
+	.string "Ich gebe dir diese TM. Ich benötige sie\n"
+	.string "nicht länger...$"
+#else
+	.string "My POKéMON's ashes are stored in\n"
+	.string "POKéMON TOWER.\p"
+	.string "You can have this TM.\n"
+	.string "I don't need it anymore…$"
+#endif
+
+Route12_Text_ReceivedTM27FromLittleGirl::
+#if GERMAN
+	.string "{PLAYER} erhält TM27!$"
+#else
+	.string "{PLAYER} received TM27\n"
+	.string "from the little girl.$"
+#endif
+
+Route12_Text_ExplainTM27::
+#if GERMAN
+	.string "TM27 ist Rückkehr.\p"
+	.string "Behandelst du deine Pokémon gut, geben\n"
+	.string "sie Liebe zurück, indem sie sich im\l"
+	.string "Kampf besonders anstrengen.$"
+#else
+	.string "TM27 is a move called RETURN…\p"
+	.string "If you treat your POKéMON good,\n"
+	.string "it will return your love by working\l"
+	.string "its hardest in battle.$"
+#endif
+
+Route12_Text_DontHaveRoomForThis::
+#if GERMAN
+	.string "Du kannst nichts mehr tragen!$"
+#else
+	.string "You don't have room for this.$"
 #endif

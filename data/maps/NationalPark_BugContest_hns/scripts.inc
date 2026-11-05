@@ -5,6 +5,12 @@ NationalPark_BugContest_hns_MapScripts::
 
 NationalPark_BugContest_OnTransition::
 	goto_if_eq VAR_BUG_CONTEST_STATE, 3, NationalPark_BugContest_EventScript_JudgeScene
+	@ Bugs of the judging scene, outside the park until then.
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(WEEDLE)
+	setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SPECIES(PINSIR)
+	setvar VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_SPECIES(BUTTERFREE)
+	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_SPECIES(METAPOD)
+	setvar VAR_OBJ_GFX_ID_4, OBJ_EVENT_GFX_SPECIES(CATERPIE)
 	end
 
 NationalPark_BugContest_OnFrame::
@@ -74,9 +80,11 @@ NationalPark_BugContest_EventScript_Trash::
 	release
 	end
 
+@ PrepareBugContestJudging scores all entrants and sets VAR_OBJ_GFX_ID_0 to _4
+@ (the NPCs' bugs, then the player's) before the objects appear.
 NationalPark_BugContest_EventScript_JudgeScene::
-	special ShowBugContestChosenMon
-	setobjectxyperm VAR_RESULT, 20, 29
+	special PrepareBugContestJudging
+	setobjectxyperm LOCALID_BUGCONTEST_PLAYER_MON, 20, 29
 	setobjectxyperm LOCALID_BUGCONTEST_BUG1, 24, 29
 	setobjectxyperm LOCALID_BUGCONTEST_BUG2, 22, 29
 	setobjectxyperm LOCALID_BUGCONTEST_BUG3, 18, 29

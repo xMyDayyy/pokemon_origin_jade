@@ -167,3 +167,8 @@ IcePath_1F_Text_Thanks:
     .string "You really are kind.\n"
     .string "Thank you so much!$"
 #endif
+
+@ Origin Jade: HnS had it only in Sinjoh's Snowswept Cavern (locked).
+IcePath_1F_EventScript_ItemIcyRock::
+	finditem ITEM_ICY_ROCK
+	end

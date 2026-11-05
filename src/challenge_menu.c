@@ -1,5 +1,6 @@
 #include "global.h"
 #include "bg.h"
+#include "caps.h"
 #include "event_data.h"
 #include "gpu_regs.h"
 #include "international_string_util.h"
@@ -411,7 +412,7 @@ static const u8 *const sDesc_InfiniteTMs[] = {
 };
 static const u8 *const sDesc_Mints[] = {
     COMPOUND_STRING("Minzen erst nach dem Durchspielen\nverfügbar."),
-    COMPOUND_STRING("Minzen im Blumenladen nach\ndem 3. Orden kaufbar."),
+    COMPOUND_STRING("Minzen im Blumenladen nach\ndem 3. Johto-Orden kaufbar."),
 };
 static const u8 *const sDesc_SurvivePoison[] = {
     COMPOUND_STRING("Deine {PKMN} werden bei\nVergiftung besiegt."),
@@ -616,9 +617,9 @@ static const u8 *const sChoices_TrainerEVs[] = {
 };
 
 static const u8 *const sChoices_PlayerIVs[] = {
-    COMPOUND_STRING("Ja"),
-    COMPOUND_STRING("Nein"),
-    COMPOUND_STRING("Nein (KR)"),
+    COMPOUND_STRING("Normal"),
+    COMPOUND_STRING("Max"),
+    COMPOUND_STRING("Max (KR)"),
 };
 
 static const u8 *const sChoices_PkmnCenter[] = {
@@ -658,7 +659,7 @@ static const u8 *const sDesc_RtcSpeed[] = {
 
 static const u8 *const sDesc_RtcType[] = {
     COMPOUND_STRING("Normale Echtzeit-Uhr verwenden."),
-    COMPOUND_STRING("Gefälschte Echtzeit-Uhr.\n1h echt = 1 Tag im Spiel."),
+    COMPOUND_STRING("Gefälschte Echtzeit-Uhr.\nTempo unter Uhr-Tempo wählbar."),
 };
 static const u8 *const sDesc_ShinyChance[] = {
     COMPOUND_STRING("Sehr geringe Chance auf Shiny.\nStandard aus Generation III."),
@@ -757,7 +758,7 @@ static const u8 *const sDesc_RandomStatic[] = {
     COMPOUND_STRING("Benannte, Casino- und Streuner-{PKMN}\nsowie Sonderfälle bleiben gleich."),
 };
 static const u8 *const sDesc_RandomSimilar[] = {
-    COMPOUND_STRING("{PKMN} durch ähnlich starke ersetzt.\nDerzeit nach Entwicklungsstufe."),
+    COMPOUND_STRING("{PKMN} nach Entwicklungsstufe ersetzt,\nLegendäre nur durch Legendäre."),
     COMPOUND_STRING("Verteilung der {PKMN} ist nicht nach\nihrer Stärke ausbalanciert!"),
 };
 static const u8 *const sDesc_RandomLegendaries[] = {
@@ -913,7 +914,7 @@ static const u8 *const sDesc_Nuzlocke[] = {
     COMPOUND_STRING("Nuzlocke-Modus ist deaktiviert."),
     COMPOUND_STRING("Besiegte {PKMN} unbenutzbar.\nKeine weiteren Regeln gelten."),
     COMPOUND_STRING("Ein Fang pro Route! Besiegte {PKMN}\nsind nicht mehr verwendbar."),
-    COMPOUND_STRING("Wie Normal, aber löscht auch\nbei Kampfverlust den Spielstand!"),
+    COMPOUND_STRING("Wie Normal, aber löscht bei jeder\nNiederlage den Spielstand!"),
 };
 static const u8 *const sDesc_SpeciesClause[] = {
     COMPOUND_STRING("Nur nicht gefangene {PKMN} zählen\nals erste Begegnung. Empfohlen!"),
@@ -1003,10 +1004,10 @@ static const u8 *const sDesc_LevelCap[] = {
     COMPOUND_STRING("Max. Level basiert auf dem niedrigsten\n{PKMN}-Level der nächsten Arena."),
 };
 static const u8 *const sDesc_ExpMult[] = {
-    COMPOUND_STRING("{PKMN} erhalten normale EP.\nStapelt mit Schwer-Modus-EP."),
-    COMPOUND_STRING("{PKMN} erhalten 50% mehr EP.\nStapelt mit Schwer-Modus-EP."),
-    COMPOUND_STRING("{PKMN} erhalten doppelte EP!\nStapelt mit Schwer-Modus-EP."),
-    COMPOUND_STRING("{PKMN} erhalten keine EP!!!\nGilt auch für Schwer-Modus-EP."),
+    COMPOUND_STRING("{PKMN} erhalten normale EP."),
+    COMPOUND_STRING("{PKMN} erhalten 50% mehr EP."),
+    COMPOUND_STRING("{PKMN} erhalten doppelte EP!"),
+    COMPOUND_STRING("{PKMN} erhalten keine EP!!!"),
 };
 static const u8 *const sDesc_ItemPlayer[] = {
     COMPOUND_STRING("Spieler kann Kampfitems nutzen."),
@@ -1018,7 +1019,11 @@ static const u8 *const sDesc_ItemTrainer[] = {
 };
 static const u8 *const sDesc_NoEVs[] = {
     COMPOUND_STRING("Deine {PKMN} erhalten wie erwartet\nFleiß-Punkte."),
-    COMPOUND_STRING("Deine {PKMN} erhalten keine\nFleiß-Punkte!"),
+#if GERMAN
+    COMPOUND_STRING("Deine {PKMN} erhalten bis zum Sieg in\nder Hoenn-Liga keine Fleiß-Punkte!"),
+#else
+    COMPOUND_STRING("The player's {PKMN} gain no effort\nvalues until the Hoenn League is won!"),
+#endif
 };
 static const u8 *const sDesc_ScalingIVs[] = {
     COMPOUND_STRING("{PKMN} gegnerischer Trainer haben\nerwartete IV."),
@@ -1129,7 +1134,7 @@ static const struct ChallengeMenuItem sTabItems_Difficulty[] = {
 
 static const u8 *const sDesc_Pokecenter[] = {
     COMPOUND_STRING("Spieler kann in {PKMN}-Centern\nund anderen Orten heilen."),
-    COMPOUND_STRING("Spieler kann keine {PKMN}-Center\noder Orte zum Heilen nutzen."),
+    COMPOUND_STRING("Keine Heilung in {PKMN}-Centern,\nbei Mama und in Betten."),
 };
 static const u8 *const sDesc_Expensive[] = {
     COMPOUND_STRING("Alles hat den üblichen Preis."),
@@ -1143,7 +1148,6 @@ static const u8 *const sDesc_EvoLimit[] = {
     COMPOUND_STRING("{PKMN} können sich gar nicht entwickeln!"),
 };
 #define NUM_ONE_TYPE_CHOICES 20
-#define ONE_TYPE_OFF 31
 #define EVO_LINE_TYPE_SEARCH_DEPTH 4 // deepest evolution chain worth walking
 
 #if GERMAN
@@ -1346,7 +1350,8 @@ static bool8 CheckConditions(u8 tab, u8 itemIndex)
         case ITEM_RANDOM_SIMILAR:
             return masterOn && anyPkmn && !(*GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_CHAOS));
         case ITEM_RANDOM_LEGENDARIES:
-            return masterOn && anyPkmn;
+            // Only with balancing off (1 = Aus); with balancing GetRandomizerOption ignores it.
+            return masterOn && anyPkmn && *GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_SIMILAR) == 1;
         case ITEM_RANDOM_CHAOS:
             return masterOn && (anyPkmn
                 || *GetSelectionPtr(TAB_RANDOMIZER, ITEM_RANDOM_TYPE)
@@ -1991,7 +1996,9 @@ static void Task_ConfirmSaveYes(u8 taskId)
     struct ChallengeSettings *cs = &gSaveBlock3Ptr->challengeSettings;
 
 #if IS_HNS
-    SeedRngAndSetTrainerId();
+    // New game only: seeds the RNG and the trainer id from the timers the naming screen started.
+    if (sIsInitialSetup)
+        SeedRngAndSetTrainerId();
 #endif
 
     // Mode tab
@@ -2382,8 +2389,13 @@ bool32 HMsOverwriteOptionActive(void)
             || cs->tx_Nuzlocke_EasyMode
             || cs->tx_Challenges_Mirror
             || cs->tx_Random_Moves
+            || cs->tx_Random_Starter
+            || cs->tx_Random_WildPokemon
+            || cs->tx_Random_Static
+            || cs->tx_Random_Evolutions
+            || cs->tx_Random_EvolutionMethods
             || cs->tx_Challenges_PartyLimit != 0
-            || cs->tx_Challenges_OneTypeChallenge != ONE_TYPE_OFF);
+            || IsOneTypeChallengeActive());
 }
 
 u8 GetMaxPartySize(void)
@@ -2407,13 +2419,18 @@ u32 GetBaseStatEqualizerValue(void)
 
 static u8 GetChallengesBadgeCount(void)
 {
-    u16 i;
     u8 badgeCount = 0;
+#if IS_HNS
+    // Origin Jade: badges of the region the player stands in.
+    badgeCount = GetCurrentRegionBadgeCount();
+#else
+    u16 i;
     for (i = FLAG_BADGE01_GET; i < FLAG_BADGE01_GET + NUM_BADGES; i++)
     {
         if (FlagGet(i))
             badgeCount++;
     }
+#endif
     if (badgeCount > 8)
         badgeCount = 8;
     return badgeCount;
@@ -2472,7 +2489,10 @@ bool8 IsPokecenterChallengeActivated(void)
 
 bool8 IsOneTypeChallengeActive(void)
 {
-    return gSaveBlock3Ptr->challengeSettings.tx_Challenges_OneTypeChallenge != ONE_TYPE_OFF;
+    u8 type = gSaveBlock3Ptr->challengeSettings.tx_Challenges_OneTypeChallenge;
+
+    // TYPE_NONE (zeroed SaveBlock3) counts as off, as in the menu.
+    return type != ONE_TYPE_OFF && type != TYPE_NONE;
 }
 
 // Returns TRUE if the species has the given type, or if any species it can

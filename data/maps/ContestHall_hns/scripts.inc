@@ -410,41 +410,26 @@ ContestHall_EventScript_SetExitWarp_hns::
 	return
 
 ContestHall_EventScript_SetExitWarpNormalContest_hns::
-	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY_HNS, 14, 4
+	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY, 14, 4
 	waitstate
 	end
 
 ContestHall_EventScript_SetExitWarpSuperContest_hns::
-	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY_HNS, 14, 4
+	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY, 14, 4
 	waitstate
 	end
 
 ContestHall_EventScript_SetExitWarpHyperContest_hns::
-	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY_HNS, 14, 4
+	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY, 14, 4
 	waitstate
 	end
 
 ContestHall_EventScript_SetExitWarpMasterContest_hns::
-	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY_HNS, 14, 4
+	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY, 14, 4
 	waitstate
 	end
 
 ContestHall_EventScript_SetExitWarpLinkContest_hns::
-	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY_HNS, 15, 4
+	warp MAP_LILYCOVE_CITY_CONTEST_LOBBY, 15, 4
 	waitstate
 	end
-
-LilycoveCity_ContestLobby_EventScript_SetPlayerGfx_hns::
-	checkplayergender
-	goto_if_eq VAR_RESULT, MALE, LilycoveCity_ContestLobby_EventScript_SetPlayerGfxBrendan_hns
-	goto_if_eq VAR_RESULT, FEMALE, LilycoveCity_ContestLobby_EventScript_SetPlayerGfxMay_hns
-	return
-
-LilycoveCity_ContestLobby_EventScript_SetPlayerGfxBrendan_hns::
-	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_GOLD_NORMAL_HNS
-	return
-
-LilycoveCity_ContestLobby_EventScript_SetPlayerGfxMay_hns::
-	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_KRIS_NORMAL_HNS
-	return
-

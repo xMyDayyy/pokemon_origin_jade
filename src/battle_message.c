@@ -660,7 +660,7 @@ const u8 *const gBattleStringsTable[STRINGID_COUNT] =
     [STRINGID_PKMNCAUSEDUPROAR]                     = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} verursacht\nAufruhr!"),
     [STRINGID_PKMNMAKINGUPROAR]                     = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} macht\neinen Aufruhr!"),
     [STRINGID_PKMNCALMEDDOWN]                       = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX}\nberuhigt sich."),
-    [STRINGID_PKMNSTOCKPILED]                       = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} Hortet\n{B_BUFF1}!"),
+    [STRINGID_PKMNSTOCKPILED]                       = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} hortet\n{B_BUFF1}!"),
     [STRINGID_PKMNCANTSLEEPINUPROAR2]               = COMPOUND_STRING("{B_DEF_NAME_WITH_PREFIX} kann bei dem\nAufruhr nicht schlafen!"),
     [STRINGID_UPROARKEPTPKMNAWAKE]                  = COMPOUND_STRING("Aber der Aufruhr hält\n{B_DEF_NAME_WITH_PREFIX2} wach!"),
     [STRINGID_PKMNSTAYEDAWAKEUSING]                 = COMPOUND_STRING("{B_DEF_NAME_WITH_PREFIX} hält sich mit\n{B_DEF_ABILITY} wach!"), //not in gen 5+, ability popup
@@ -4064,8 +4064,8 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                 StringGet_Nickname(text);
                 toCpy = text;
                 break;
-            case B_TXT_PC_CREATOR_NAME: // lanette pc
-                if (FlagGet(FLAG_SYS_PC_LANETTE))
+            case B_TXT_PC_CREATOR_NAME: // lanette pc; Origin Jade: always Bill's
+                if (IS_HNS || FlagGet(FLAG_SYS_PC_LANETTE))
                     toCpy = (IS_FRLG || IS_HNS) ? sText_Bills : sText_Lanettes;
                 else
                     toCpy = sText_Someones;

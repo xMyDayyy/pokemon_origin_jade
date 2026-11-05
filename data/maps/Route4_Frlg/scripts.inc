@@ -5,7 +5,120 @@ Route4_Frlg_MapScripts::
 @ Unlock the fly point on entering the route.
 Route4_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_ROUTE4_POKEMON_CENTER_1F
+	call Route4_EventScript_TryShowJirachi
 	end
+
+@ Jirachi: shown once summoned at the white rock; legendary rules.
+Route4_EventScript_TryShowJirachi::
+	setflag FLAG_HIDE_MTMOON_JIRACHI
+	goto_if_unset FLAG_SUMMONED_MTMOON_JIRACHI, Common_EventScript_NopReturn
+	setvar VAR_0x8004, LEGENDARY_JIRACHI
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn
+	clearflag FLAG_HIDE_MTMOON_JIRACHI
+	return
+
+@ White rock: summons Jirachi once, at night, after the first trip to Hoenn.
+Route4_EventScript_WhiteRock::
+	lock
+	msgbox Route4_Text_WhiteRockTouchIt, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Route4_EventScript_WhiteRockRelease
+	goto_if_lt VAR_HOENN_ARRIVAL_STATE, 1, Route4_EventScript_WhiteRockNoReaction
+	goto_if_set FLAG_SUMMONED_MTMOON_JIRACHI, Route4_EventScript_WhiteRockNoReaction
+	goto_if_set FLAG_NIGHT_POKEMON, Route4_EventScript_WhiteRockNoReaction
+	msgbox Route4_Text_WhiteRockTouchNight, MSGBOX_DEFAULT
+	playse SE_M_SELF_DESTRUCT
+	waitse
+	closemessage
+	playse SE_PIN
+	applymovement2 OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
+	waitmovement OBJ_EVENT_ID_PLAYER
+	playse SE_M_GUST
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
+	delay 30
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
+	delay 60
+	playse SE_PIN
+	applymovement2 OBJ_EVENT_ID_PLAYER, Common_Movement_QuestionMark
+	waitmovement OBJ_EVENT_ID_PLAYER
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
+	delay 30
+	setvar VAR_0x8004, 1  @ vertical pan
+	setvar VAR_0x8005, 1  @ horizontal pan
+	setvar VAR_0x8006, 5  @ num shakes
+	setvar VAR_0x8007, 6  @ shake delay
+	special ShakeCamera
+	waitstate
+	playse SE_M_GUST2
+	waitse
+	playse SE_M_EXPLOSION
+	fadescreenswapbuffers FADE_TO_WHITE
+	clearflag FLAG_HIDE_MTMOON_JIRACHI
+	setflag FLAG_SUMMONED_MTMOON_JIRACHI
+	addobject LOCALID_ROUTE4_JIRACHI
+	waitse
+	delay 70
+	fadescreenswapbuffers FADE_FROM_WHITE
+	special SpawnCameraObject
+	applymovement2 OBJ_EVENT_ID_CAMERA, Route4_Movement_CameraPanDown
+	waitmovement 0
+	applymovement2 LOCALID_ROUTE4_JIRACHI, Route4_Movement_Jirachi
+	playse SE_LEDGE
+	waitse
+	playse SE_LEDGE
+	waitmovement 0
+	playmoncry SPECIES_JIRACHI, CRY_MODE_NORMAL
+	applymovement2 OBJ_EVENT_ID_CAMERA, Route4_Movement_CameraPanUp
+	waitmovement 0
+	special RemoveCameraObject
+	release
+	end
+
+Route4_EventScript_WhiteRockNoReaction::
+	msgbox Route4_Text_WhiteRockTouchDay, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+Route4_EventScript_WhiteRockRelease::
+	release
+	end
+
+Route4_EventScript_Jirachi::
+	lock
+	faceplayer
+	playmoncry SPECIES_JIRACHI, CRY_MODE_ENCOUNTER
+	msgbox Route4_Text_Jirachi, MSGBOX_DEFAULT
+	delay 40
+	waitmoncry
+	seteventmon SPECIES_JIRACHI, 80
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	setvar VAR_0x8004, LEGENDARY_JIRACHI
+	special RecordLegendaryBattleOutcome
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Common_EventScript_RemoveStaticPokemon
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_RemoveStaticPokemon
+	setvar VAR_0x8004, SPECIES_JIRACHI
+	goto Common_EventScript_LegendaryFlewAway
+	end
+
+Route4_Movement_CameraPanDown:
+	walk_down
+	walk_down
+	step_end
+
+Route4_Movement_CameraPanUp:
+	walk_up
+	walk_up
+	step_end
+
+Route4_Movement_Jirachi:
+	jump_in_place_down
+	jump_in_place_down
+	step_end
 
 Route4_EventScript_Unused::
 	end
@@ -74,6 +187,48 @@ Route4_Text_RouteSign::
 #else
 	.string "ROUTE 4\n"
 	.string "MT. MOON - CERULEAN CITY$"
+#endif
+
+Route4_Text_WhiteRockTouchIt:
+#if GERMAN
+	.string "Ein seltsamer, weißer Stein.\n"
+	.string "Die Farbe erinnert an den Mond.\p"
+	.string "Berühren?$"
+#else
+	.string "An unusual white rock.\n"
+	.string "The color reminds you of the moon.\p"
+	.string "Touch it?$"
+#endif
+
+Route4_Text_WhiteRockTouchDay:
+#if GERMAN
+	.string "{PLAYER} berührt den seltsamen Stein.\n"
+	.string "..........................\l"
+	.string "..........................\l"
+	.string "Nichts geschieht!$"
+#else
+	.string "{PLAYER} touched the unusual rock.\n"
+	.string "..........................\l"
+	.string "..........................\l"
+	.string "But nothing happened.$"
+#endif
+
+Route4_Text_WhiteRockTouchNight:
+#if GERMAN
+	.string "{PLAYER} berührt den seltsamen Stein.\n"
+	.string "..........................\l"
+	.string "..........................$"
+#else
+	.string "{PLAYER} touched the unusual rock.\n"
+	.string "..........................\l"
+	.string "..........................$"
+#endif
+
+Route4_Text_Jirachi:
+#if GERMAN
+	.string "Jirachi: Chi!$"
+#else
+	.string "JIRACHI: Chi!$"
 #endif
 
 Text_MegaPunchTeach::

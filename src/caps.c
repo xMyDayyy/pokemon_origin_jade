@@ -2,7 +2,10 @@
 #include "battle.h"
 #include "event_data.h"
 #include "caps.h"
+#include "hoenn_badges.h"
+#include "johto_badges.h"
 #include "pokemon.h"
+#include "regions.h"
 
 u8 GetCurrentBadgeCount(void)
 {
@@ -16,30 +19,60 @@ u8 GetCurrentBadgeCount(void)
     return badgeCount;
 }
 
+u32 GetRegionBadgeCount(u32 mapSecId)
+{
+    u32 i, count = 0;
+
+#if IS_HNS
+    switch (GetRegionForSectionId(mapSecId))
+    {
+    case REGION_JOHTO:
+        return GetJohtoBadgeCount();
+    case REGION_HOENN:
+        return GetHoennBadgeCount();
+    default:
+        break;
+    }
+#endif
+    for (i = FLAG_BADGE01_GET; i <= FLAG_BADGE08_GET; i++)
+    {
+        if (FlagGet(i))
+            count++;
+    }
+    return count;
+}
+
+u32 GetCurrentRegionBadgeCount(void)
+{
+    return GetRegionBadgeCount(gMapHeader.regionMapSectionId);
+}
+
+// Kanto badges (Kanto level ladder): the next leader's ace, after eight badges the champion's.
 static const u8 sLevelCapTable_Normal[] =
 {
-    [0] = 11,  // no badges
-    [1] = 16,  // badge 1
+    [0] = 10,  // no badges
+    [1] = 17,  // badge 1
     [2] = 21,  // badge 2
-    [3] = 25,  // badge 3
-    [4] = 31,  // badge 4
-    [5] = 36,  // badge 5
-    [6] = 38,  // badge 6
-    [7] = 45,  // badge 7
-    [8] = 56,  // badge 8
+    [3] = 28,  // badge 3
+    [4] = 36,  // badge 4
+    [5] = 39,  // badge 5
+    [6] = 42,  // badge 6
+    [7] = 42,  // badge 7
+    [8] = 47,  // badge 8
 };
 
+// The next leader's lowest level, after eight badges the champion's.
 static const u8 sLevelCapTable_Hard[] =
 {
-    [0] = 8,
-    [1] = 15,
-    [2] = 20,
-    [3] = 23,
-    [4] = 29,
-    [5] = 33,
-    [6] = 37,
-    [7] = 42,
-    [8] = 54,
+    [0] = 9,
+    [1] = 16,
+    [2] = 19,
+    [3] = 26,
+    [4] = 34,
+    [5] = 37,
+    [6] = 40,
+    [7] = 40,
+    [8] = 45,
 };
 
 // Post-league caps as in HnS, in Origin Jade's order: the first title (Kanto)

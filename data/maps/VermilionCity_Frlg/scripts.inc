@@ -23,7 +23,7 @@ VermilionCity_Movement_ExitSSAnne::
 VermilionCity_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_VERMILION_CITY
 	call_if_set FLAG_TALKED_TO_OAKS_AIDE_IN_VERMILION, VermilionCity_EventScript_HideOaksAide
-	@ Origin Jade: no dock ferry, ships leave from the port building (see docs/origin_jade/DECISIONS.md, D-029).
+	@ Origin Jade: no dock ferry, ships leave from the port building.
 	@ FLAG_TEMP_1 hides LOCALID_VERMILION_FERRY_SAILOR.
 	setflag FLAG_TEMP_1
 	end
@@ -232,17 +232,6 @@ VermilionCity_EventScript_OldMan2::
 	msgbox VermilionCity_Text_BuildingOnThisLand, MSGBOX_NPC
 	end
 
-VermilionCity_EventScript_Machop::
-	lock
-	faceplayer
-	waitse
-	playmoncry SPECIES_MACHOP, CRY_MODE_NORMAL
-	msgbox VermilionCity_Text_Machop
-	waitmoncry
-	msgbox VermilionCity_Text_MachopStompingLandFlat
-	release
-	end
-
 VermilionCity_EventScript_CitySign::
 	msgbox VermilionCity_Text_CitySign, MSGBOX_SIGN
 	end
@@ -307,20 +296,6 @@ VermilionCity_Text_BuildingOnThisLand::
 	.string "plot of land. I own it all.\p"
 	.string "My POKéMON is tamping the land\n"
 	.string "to lay the foundation.$"
-#endif
-
-VermilionCity_Text_Machop::
-#if GERMAN
-	.string "Machollo: Macho! Machollo!$"
-#else
-	.string "MACHOP: Guoh! Gogogoh!$"
-#endif
-
-VermilionCity_Text_MachopStompingLandFlat::
-#if GERMAN
-	.string "Ein Machollo ebnet das Land!$"
-#else
-	.string "A MACHOP is stomping the land flat.$"
 #endif
 
 VermilionCity_Text_SSAnneVisitsOnceAYear::

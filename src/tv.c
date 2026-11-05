@@ -221,9 +221,15 @@ static const u8 sText_TheWorst[] = _("Ganz mies");
 static const u8 sText_TheWorst[] = _("The worst");
 #endif
 
+#if GERMAN
+static const u8 sText_Slots[] = _("Einarmigen Banditen");
+static const u8 sText_Roulette[] = _("Roulette");
+static const u8 sText_Jackpot[] = _("Jackpot");
+#else
 static const u8 sText_Slots[] = _("SLOTS");
 static const u8 sText_Roulette[] = _("ROULETTE");
 static const u8 sText_Jackpot[] = _("jackpot");
+#endif
 
 static const struct {
     u16 species;

@@ -187,6 +187,7 @@ NewBarkTown_Lab_EventScript_ChikoritaBall_Choice::
 	playmoncry PLAYER_STARTER_SPECIES, CRY_MODE_NORMAL
 	bufferspeciesname STR_VAR_1, PLAYER_STARTER_SPECIES
 	buffermoncategory STR_VAR_2, PLAYER_STARTER_SPECIES
+	goto_if_ne PLAYER_STARTER_SPECIES, SPECIES_CHIKORITA, NewBarkTown_Lab_EventScript_ConfirmOtherStarter
 	msgbox NewBarkTown_Lab_Text_ChooseChikorita, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, NewBarkTown_Lab_EventScript_ChoseStarter
 	goto_if_eq VAR_RESULT, NO, NewBarkTown_Lab_EventScript_DeclinedStarter
@@ -209,6 +210,7 @@ NewBarkTown_Lab_EventScript_CyndaquilBall_Choice::
 	playmoncry PLAYER_STARTER_SPECIES, CRY_MODE_NORMAL
 	bufferspeciesname STR_VAR_1, PLAYER_STARTER_SPECIES
 	buffermoncategory STR_VAR_2, PLAYER_STARTER_SPECIES
+	goto_if_ne PLAYER_STARTER_SPECIES, SPECIES_CYNDAQUIL, NewBarkTown_Lab_EventScript_ConfirmOtherStarter
 	msgbox NewBarkTown_Lab_Text_ChooseCyndaquil, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, NewBarkTown_Lab_EventScript_ChoseStarter
 	goto_if_eq VAR_RESULT, NO, NewBarkTown_Lab_EventScript_DeclinedStarter
@@ -231,7 +233,15 @@ NewBarkTown_Lab_EventScript_TotodileBall_Choice::
 	playmoncry PLAYER_STARTER_SPECIES, CRY_MODE_NORMAL
 	bufferspeciesname STR_VAR_1, PLAYER_STARTER_SPECIES
 	buffermoncategory STR_VAR_2, PLAYER_STARTER_SPECIES
+	goto_if_ne PLAYER_STARTER_SPECIES, SPECIES_TOTODILE, NewBarkTown_Lab_EventScript_ConfirmOtherStarter
 	msgbox NewBarkTown_Lab_Text_ChooseTotodile, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, NewBarkTown_Lab_EventScript_ChoseStarter
+	goto_if_eq VAR_RESULT, NO, NewBarkTown_Lab_EventScript_DeclinedStarter
+	end
+
+@ The preview shows another species than the ball's (randomizer).
+NewBarkTown_Lab_EventScript_ConfirmOtherStarter::
+	msgbox NewBarkTown_Lab_Text_ChooseOtherStarter, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, NewBarkTown_Lab_EventScript_ChoseStarter
 	goto_if_eq VAR_RESULT, NO, NewBarkTown_Lab_EventScript_DeclinedStarter
 	end
@@ -284,13 +294,14 @@ NewBarkTown_Lab_EventScript_RoomForStarter:
 	end
 
 NewBarkTown_Lab_EventScript_StarterToBox::
+	call_if_eq VAR_TEMP_3, MON_GIVEN_TO_PC, Common_EventScript_AskNicknameGiftBoxMon
 	msgbox NewBarkTown_Lab_Text_StarterToBox, MSGBOX_DEFAULT
 	closemessage
 	release
 	end
 
 @ The starter keeps the shininess of its preview (showmonpic rolls FLAG_SHINY_STARTER_1-3
-@ per ball from VAR_JOHTO_STARTER_MON). See docs/origin_jade/DECISIONS.md, D-035.
+@ per ball from VAR_JOHTO_STARTER_MON).
 NewBarkTown_Lab_EventScript_GiveStarter_Chikorita::
 	call_if_unset FLAG_SHINY_STARTER_1, NewBarkTown_Lab_EventScript_GiveStarter_NotShiny
 	call_if_set FLAG_SHINY_STARTER_1, NewBarkTown_Lab_EventScript_GiveStarter_Shiny
@@ -354,6 +365,7 @@ NewBarkTown_Lab_EventScript_MrPokemonMovementSafe::
 	clearflag FLAG_RECEIVED_FIRST_BALLS
 	clearflag FLAG_RECEIVED_FIRST_POTION
 	setvar VAR_NEWBARK_TOWN_STATE, 3
+	setflag FLAG_ENABLE_CONDITION
 	release
 	end
 
@@ -470,12 +482,18 @@ NewBarkTown_Lab_EventScript_ElmMasterBall::
 	msgbox NewBarkTown_Lab_Text_KimonoGirls, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_NEWBARKTOWN_LABSTATE, 8
-	setvar VAR_ECRUTEAK_CITY_THEATER, 4
+	call_if_lt VAR_ECRUTEAK_CITY_THEATER, 4, NewBarkTown_Lab_EventScript_SetTheaterKimonos
 	setflag FLAG_HIDE_ECRUTEAK_SILVER
 	setflag FLAG_HIDE_ECRUTEAK_CITY_THEATER_NPCS
+	setflag FLAG_HIDE_ECRUTEAK_ROCKET
 	clearflag FLAG_HIDE_ECRUTEAK_CITY_THEATER_KIMONOS
 	release
 	end
+
+@ The theater state only moves forward: the league change needs it at 8.
+NewBarkTown_Lab_EventScript_SetTheaterKimonos::
+	setvar VAR_ECRUTEAK_CITY_THEATER, 4
+	return
 
 NewBarkTown_Lab_EventScript_ElmKimono::
 	lock
@@ -494,14 +512,13 @@ NewBarkTown_Lab_EventScript_ElmLeague::
 	end
 
 @ Origin Jade: after the first Johto title Elm tells about the M.S. Aqua; the player already has
-@ Bill's Bootsticket from Kanto. See docs/origin_jade/DECISIONS.md, D-029.
+@ Bill's Bootsticket from Kanto.
 NewBarkTown_Lab_EventScript_ElmSSTicket::
 	msgbox NewBarkTown_Lab_Text_ElmGiveTicket1, MSGBOX_DEFAULT
 	msgbox NewBarkTown_Lab_Text_ElmGiveTicket2, MSGBOX_DEFAULT
 	closemessage
 	clearflag FLAG_HIDE_SSAQUA_1F_GRANDPA
 	setvar VAR_NEWBARKTOWN_LABSTATE, 11
-	clearflag FLAG_HIDE_OLIVINE_PORT_OAK
 	release
 	end
 
@@ -518,6 +535,8 @@ NewBarkTown_Lab_EventScript_Elm_Check_WhereIsEgg::
 	end
 
 NewBarkTown_Lab_EventScript_Elm_Check_Togepi::
+	@ The hatched Violet City egg counts whatever its species and wherever it is.
+	goto_if_set FLAG_HATCHED_TOGEPI_EGG, NewBarkTown_Lab_EventScript_Elm_Togepi_Seen
 	checkspecies SPECIES_TOGEPI
 	goto_if_eq VAR_RESULT, TRUE, NewBarkTown_Lab_EventScript_Elm_Togepi_Seen
 	checkspecies SPECIES_TOGETIC
@@ -865,6 +884,16 @@ NewBarkTown_Lab_Text_ChooseTotodile:
 	.string "Wasser-Pokémon?$"
 #else
 	.string "ELM: Do you want {STR_VAR_1},\n"
+	.string "the {STR_VAR_2} POKéMON?$"
+#endif
+
+NewBarkTown_Lab_Text_ChooseOtherStarter:
+#if GERMAN
+	.string "Lind: Entscheidest du dich für\n"
+	.string "{STR_VAR_1}, das\l"
+	.string "{STR_VAR_2}-Pokémon?$"
+#else
+	.string "ELM: So, you like {STR_VAR_1},\n"
 	.string "the {STR_VAR_2} POKéMON?$"
 #endif
 
@@ -1262,9 +1291,10 @@ NewBarkTown_Lab_Text_ElmGiveMasterBall1:
 NewBarkTown_Lab_Text_ElmGiveMasterBall2:
 #if GERMAN
 	.string "Das ist ein Meisterball!\p"
-	.string "Egal, mit welchem Pokémon du es auch zu\n"
-	.string "tun hast, mit diesem wertvollen Pokéball\l"
-	.string "gelingt es dir garantiert, es zu fangen!\p"
+	.string "Egal, mit welchem Pokémon du es auch\n"
+	.string "zu tun hast, mit diesem wertvollen\l"
+	.string "Pokéball gelingt es dir garantiert,\l"
+	.string "es zu fangen!\p"
 	.string "Meisterbälle werden angeblich exklusiv\n"
 	.string "für herausragende Leistungen im Feld\l"
 	.string "der Pokémon-Forschung ausgegeben…\p"
@@ -1383,18 +1413,13 @@ NewBarkTown_Lab_Text_ElmGiveTicket1:
 NewBarkTown_Lab_Text_ElmGiveTicket2:
 #if GERMAN
 	.string "Lind: Die M.S. Aqua fährt nach\n"
-	.string "Orania City und in die Kampfzone,\l"
-	.string "wo starke Trainer auf dich warten.\p"
-	.string "Professor Eich wartet übrigens im\n"
-	.string "Hafen von Oliviana City auf dich.\p"
-	.string "Grüße ihn bitte von mir!$"
+	.string "Orania City.\p"
+	.string "Grüße Professor Eich von mir, wenn\n"
+	.string "du wieder in Alabastia bist!$"
 #else
-	.string "It sails to VERMILION CITY and to\n"
-	.string "the BATTLE FRONTIER, where tough\l"
-	.string "trainers await you.\p"
-	.string "By the way, PROF.OAK is waiting for\n"
-	.string "you at the OLIVINE port.\p"
-	.string "Give him my regards!$"
+	.string "It sails to VERMILION CITY.\p"
+	.string "Say hello to PROF.OAK for me when\n"
+	.string "you're back in PALLET TOWN!$"
 #endif
 
 NewBarkTown_Lab_Text_LabMonEgg:

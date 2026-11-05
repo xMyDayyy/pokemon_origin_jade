@@ -4,17 +4,7 @@ FuchsiaCity_Frlg_MapScripts::
 
 FuchsiaCity_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_FUCHSIA_CITY
-	call_if_set FLAG_GOT_DOME_FOSSIL, FuchsiaCity_EventScript_SetOmanyteGfx
-	call_if_unset FLAG_GOT_DOME_FOSSIL, FuchsiaCity_EventScript_SetKabutoGfx
 	end
-
-FuchsiaCity_EventScript_SetOmanyteGfx::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_OMANYTE
-	return
-
-FuchsiaCity_EventScript_SetKabutoGfx::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_KABUTO
-	return
 
 FuchsiaCity_EventScript_LittleBoy::
 	msgbox FuchsiaCity_Text_DidYouTrySafariGame, MSGBOX_NPC
@@ -36,7 +26,15 @@ FuchsiaCity_EventScript_Lass::
 	lock
 	faceplayer
 	famechecker FAMECHECKER_KOGA, 3
+	call PokemonLeague_EventScript_CheckLeagueChanged
+	goto_if_eq VAR_RESULT, TRUE, FuchsiaCity_EventScript_LassLeagueChanged
 	msgbox FuchsiaCity_Text_MyFatherIsGymLeader
+	release
+	end
+
+@ Koga is in Johto's Elite Four after the league change.
+FuchsiaCity_EventScript_LassLeagueChanged::
+	msgbox FuchsiaCity_Text_MyFatherIsEliteFour
 	release
 	end
 
@@ -70,7 +68,7 @@ FuchsiaCity_EventScript_GymSign::
 	releaseall
 	end
 
-@ Janina leads the gym after the league change, see docs/origin_jade/DECISIONS.md, D-032.
+@ Janina leads the gym after the league change.
 FuchsiaCity_EventScript_GymSignJanine::
 	msgbox FuchsiaCity_Text_GymSignJanine
 	releaseall
@@ -126,18 +124,9 @@ FuchsiaCity_EventScript_LaprasSign::
 	releaseall
 	end
 
+@ Origin Jade: Omanyte, like the zoo's fixed sprite.
 FuchsiaCity_EventScript_FossilMonSign::
 	lockall
-	goto_if_set FLAG_GOT_DOME_FOSSIL, FuchsiaCity_EventScript_OmanyteSign
-	setvar VAR_0x8004, SPECIES_KABUTO
-	special SetSeenMon
-	showmonpic SPECIES_KABUTO, 10, 3
-	msgbox FuchsiaCity_Text_KabutoSign
-	hidemonpic
-	releaseall
-	end
-
-FuchsiaCity_EventScript_OmanyteSign::
 	setvar VAR_0x8004, SPECIES_OMANYTE
 	special SetSeenMon
 	showmonpic SPECIES_OMANYTE, 10, 3
@@ -318,6 +307,7 @@ FuchsiaCity_Text_OmanyteSign::
 	.string "regenerated from a fossil.$"
 #endif
 
+@ Unused
 FuchsiaCity_Text_KabutoSign::
 #if GERMAN
 	.string "Name: Kabuto\p"
@@ -395,6 +385,19 @@ FuchsiaCity_Text_MyFatherIsGymLeader::
 #else
 	.string "My father is the GYM LEADER of\n"
 	.string "this town.\p"
+	.string "I'm training to use POISON POKéMON\n"
+	.string "as well as my father.$"
+#endif
+
+FuchsiaCity_Text_MyFatherIsEliteFour::
+#if GERMAN
+	.string "Mein Vater ist jetzt einer der\n"
+	.string "Top Vier der Pokémon Liga.\p"
+	.string "Ich trainiere mit Gift-Pokémon,\n"
+	.string "genau wie mein Vater.$"
+#else
+	.string "My father is now one of the\n"
+	.string "ELITE FOUR of the POKéMON LEAGUE.\p"
 	.string "I'm training to use POISON POKéMON\n"
 	.string "as well as my father.$"
 #endif

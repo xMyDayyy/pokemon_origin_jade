@@ -287,7 +287,6 @@ Route34_EventScript_DaycareEggWaiting::
 	msgbox Route34_Text_IWillKeepDoYouWantIt, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, Route34_EventScript_DaycareAcceptEgg
 	msgbox Route34_Text_IllKeepIt, MSGBOX_DEFAULT
-	clearflag FLAG_PENDING_DAYCARE_EGG
 	special RejectEggFromDayCare
 	release
 	end
@@ -307,7 +306,6 @@ Route34_EventScript_DaycareReceiveEgg::
 	waitbuttonpress
 	msgbox Route34_Text_TakeGoodCareOfIt, MSGBOX_DEFAULT
 	special GiveEggFromDaycare
-	clearflag FLAG_PENDING_DAYCARE_EGG
 	call_if_unset FLAG_RECEIVED_OVAL_CHARM, DayCare_EventScript_GiveOvalCharm
 	release
 	end
@@ -400,9 +398,15 @@ Route34_DayCare_EventScript_ClosedForChallenge::
 	end
 
 Route34_DayCare_Text_ClosedForChallenge:
+#if GERMAN
+	.string "Tut mir leid, aber während einer\n"
+	.string "Teamlimit-Herausforderung können wir\l"
+	.string "deine Pokémon nicht aufnehmen!$"
+#else
 	.string "Sorry, we can't look after your\n"
 	.string "POKéMON during a party limit\l"
 	.string "challenge!$"
+#endif
 
 Route34_DayCare_EventScript_OnlyOneMon::
 	msgbox Route34_DayCare_Text_YouHaveJustOneMon, MSGBOX_DEFAULT
@@ -778,7 +782,7 @@ Route34_DayCare_Text_TakeBackWhichMon:
 Route34_DayCare_Text_ItWillCostX:
 #if GERMAN
 	.string "Wenn du dein {STR_VAR_1} mitnehmen\n"
-	.string "willst, kostet das {STR_VAR_2} $.$"
+	.string "willst, kostet das ¥{STR_VAR_2}.$"
 #else
 	.string "If you want your {STR_VAR_1} back,\n"
 	.string "it will cost ¥{STR_VAR_2}.$"

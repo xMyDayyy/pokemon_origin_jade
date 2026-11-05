@@ -994,9 +994,10 @@ bool32 ItemHasVolatileFlag(enum Item itemId, enum Volatile _volatile)
     }
 }
 
+// From the base price: the challenge menu's price multiplier only applies to buying.
 u32 GetItemSellPrice(enum Item itemId)
 {
-    return GetItemPrice(itemId) / ITEM_SELL_FACTOR;
+    return gItemsInfo[SanitizeItemId(itemId)].price / ITEM_SELL_FACTOR;
 }
 
 bool32 IsHoldEffectChoice(enum HoldEffect holdEffect)

@@ -43,6 +43,16 @@ void RetrieveLotteryNumber(void)
     gSpecialVar_Result = lottoNumber;
 }
 
+// Lilycove's number: the upper half of the daily lottery number (Goldenrod's is the lower half).
+void RetrieveHoennLotteryNumber(void)
+{
+#if IS_HNS
+    gSpecialVar_Result = GetLotteryNumber() >> 16;
+#else
+    RetrieveLotteryNumber();
+#endif
+}
+
 void PickLotteryCornerTicket(void)
 {
     u16 i;

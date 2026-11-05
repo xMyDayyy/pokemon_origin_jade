@@ -578,16 +578,14 @@ MtChimney_Text_MaxieIntro:
 	.string "Lebewesen das Land, um zu wachsen und\l"
 	.string "zu gedeihen.\p"
 	.string "Daher ist das Land wichtiger als alles\n"
-	.string "andere! Es ist die Wiege allen Lebens.\l"
-	.string "\p"
+	.string "andere! Es ist die Wiege allen Lebens.\p"
 	.string "Daher widmet sich Team Magma der Auf-\n"
 	.string "gabe, die Landmassen zu vergrößern.\p"
 	.string "So entsteht mehr Raum für Menschen\n"
 	.string "und Pokémon.\p"
 	.string "Für unsere Pläne brauchen wir das, was\n"
 	.string "im Inneren dieses Berges schläft…\p"
-	.string "Nun, mehr brauchst du nicht zu wissen.\n"
-	.string "\p"
+	.string "Nun, mehr brauchst du nicht zu wissen.\p"
 	.string "Ich kann einem sturen Kind wie dir nicht\n"
 	.string "erlauben, sich uns in den Weg zu\p"
 	.string "stellen. \p"
@@ -635,8 +633,7 @@ MtChimney_Text_MaxieDefeat:
 MtChimney_Text_MaxieYouHaventSeenLastOfMagma:
 #if GERMAN
 	.string "Marc: Genug.\n"
-	.string "Ich ziehe mich für den Moment zurück.\l"
-	.string "\p"
+	.string "Ich ziehe mich für den Moment zurück.\p"
 	.string "Aber das ist nicht das letzte Mal, dass\n"
 	.string "du Team Magma zu Gesicht bekommen\l"
 	.string "hast.\p"
@@ -1080,7 +1077,7 @@ MtChimney_Text_ShelbyRematchDefeat:
 MtChimney_Text_ShelbyPostRematch:
 #if GERMAN
 	.string "Vielleicht schlägt dein Herz im\n"
-	.string "Gleich- klang mit den Pokémon.$"
+	.string "Gleichklang mit den Pokémon.$"
 #else
 	.string "Perhaps your heart has become one\n"
 	.string "with the hearts of your POKéMON.$"

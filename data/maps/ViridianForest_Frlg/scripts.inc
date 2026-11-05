@@ -41,6 +41,17 @@ ViridianForest_EventScript_ExitSign::
 ViridianForest_EventScript_Rick::
 	trainerbattle_single TRAINER_BUG_CATCHER_RICK, ViridianForest_Text_RickIntro, ViridianForest_Text_RickDefeat
 	msgbox ViridianForest_Text_RickPostBattle, MSGBOX_AUTOCLOSE
+	goto_if_set FLAG_IS_KANTO_CHAMPION, ViridianForest_EventScript_RickGiveTMXScissor
+	end
+
+@ Origin Jade: TM X-Scissor after the Kanto title.
+ViridianForest_EventScript_RickGiveTMXScissor::
+	goto_if_set FLAG_GOT_TM_X_SCISSOR_FROM_RICK, Common_EventScript_NoOp
+	lock
+	giveitem ITEM_TM_X_SCISSOR
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	setflag FLAG_GOT_TM_X_SCISSOR_FROM_RICK
+	release
 	end
 
 ViridianForest_EventScript_Doug::

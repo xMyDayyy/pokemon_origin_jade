@@ -198,10 +198,17 @@ static const u8 sText_Daughter[] = _("Tochter");
 #else
 static const u8 sText_Daughter[] = _("daughter");
 #endif
+#if GERMAN
+static const u8 sText_99TimesPlus[] = _("99-mal +");
+static const u8 sText_1MinutePlus[] = _("1 Minute +");
+static const u8 sText_SpaceSeconds[] = _(" Sekunden");
+static const u8 sText_SpaceTimes[] = _("-mal");
+#else
 static const u8 sText_99TimesPlus[] = _("99 times +");
 static const u8 sText_1MinutePlus[] = _("1 minute +");
 static const u8 sText_SpaceSeconds[] = _(" seconds");
 static const u8 sText_SpaceTimes[] = _(" time(s)");
+#endif
 
 #if GERMAN
 static const u8 sText_Wallace[] = _("Wassili");
@@ -454,8 +461,17 @@ enum SSTidalLocation GetSSTidalLocation(s8 *mapGroup, s8 *mapNum, s16 *x, s16 *y
     return SS_TIDAL_LOCATION_CURRENTS;
 }
 
+#if IS_HNS
+// Hoenn's calls only count steps on Hoenn maps; elsewhere they wait.
+#define HOENN_CALL_WAITS() (!IsHoennMapsec(gMapHeader.regionMapSectionId))
+#else
+#define HOENN_CALL_WAITS() FALSE
+#endif
+
 bool32 ShouldDoWallyCall(void)
 {
+    if (HOENN_CALL_WAITS())
+        return FALSE;
     if (FlagGet(FLAG_ENABLE_FIRST_WALLY_POKENAV_CALL))
     {
         switch (gMapHeader.mapType)
@@ -481,6 +497,8 @@ bool32 ShouldDoWallyCall(void)
 
 bool32 ShouldDoScottFortreeCall(void)
 {
+    if (HOENN_CALL_WAITS())
+        return FALSE;
     if (FlagGet(FLAG_SCOTT_CALL_FORTREE_GYM))
     {
         switch (gMapHeader.mapType)
@@ -506,6 +524,8 @@ bool32 ShouldDoScottFortreeCall(void)
 
 bool32 ShouldDoScottBattleFrontierCall(void)
 {
+    if (HOENN_CALL_WAITS())
+        return FALSE;
     if (FlagGet(FLAG_SCOTT_CALL_BATTLE_FRONTIER))
     {
         switch (gMapHeader.mapType)
@@ -531,6 +551,8 @@ bool32 ShouldDoScottBattleFrontierCall(void)
 
 bool32 ShouldDoRoxanneCall(void)
 {
+    if (HOENN_CALL_WAITS())
+        return FALSE;
     if (FlagGet(FLAG_ENABLE_ROXANNE_FIRST_CALL))
     {
         switch (gMapHeader.mapType)
@@ -560,6 +582,9 @@ bool32 ShouldDoRoxanneCall(void)
 bool32 ShouldDoNormanCall(void)
 {
     if (!FlagGet(FLAG_HNS_NORMAN_CALL_PENDING))
+        return FALSE;
+    // Only Hoenn steps count; outside Hoenn the call waits.
+    if (!IsHoennMapsec(gMapHeader.regionMapSectionId))
         return FALSE;
 
     switch (gMapHeader.mapType)
@@ -604,6 +629,8 @@ bool32 ShouldDoMomCall(void)
 
 bool32 ShouldDoRivalRayquazaCall(void)
 {
+    if (HOENN_CALL_WAITS())
+        return FALSE;
     if (FlagGet(FLAG_DEFEATED_MAGMA_SPACE_CENTER))
     {
         switch (gMapHeader.mapType)
@@ -2665,6 +2692,19 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
     },
     [SCROLL_MULTI_POKEMON_FAN_CLUB_RATER] =
     {
+#if GERMAN
+        COMPOUND_STRING("0 Pkt."),
+        COMPOUND_STRING("10 Pkt."),
+        COMPOUND_STRING("20 Pkt."),
+        COMPOUND_STRING("30 Pkt."),
+        COMPOUND_STRING("40 Pkt."),
+        COMPOUND_STRING("50 Pkt."),
+        COMPOUND_STRING("60 Pkt."),
+        COMPOUND_STRING("70 Pkt."),
+        COMPOUND_STRING("80 Pkt."),
+        COMPOUND_STRING("90 Pkt."),
+        COMPOUND_STRING("100 Pkt."),
+#else
         COMPOUND_STRING("0 pts"),
         COMPOUND_STRING("10 pts"),
         COMPOUND_STRING("20 pts"),
@@ -2676,6 +2716,7 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
         COMPOUND_STRING("80 pts"),
         COMPOUND_STRING("90 pts"),
         COMPOUND_STRING("100 pts"),
+#endif
         COMPOUND_STRING("?")
     },
     [SCROLL_MULTI_BF_EXCHANGE_CORNER_DECOR_VENDOR_1] =
@@ -3697,7 +3738,7 @@ void CreateAbnormalWeatherEvent(void)
     VarSet(VAR_ABNORMAL_WEATHER_STEP_COUNTER, 0);
 
 #if IS_HNS
-    // Only for Kyogre or Groudon that can be met now (see docs/origin_jade/DECISIONS.md, D-026).
+    // Only for Kyogre or Groudon that can be met now.
     if (!IsLegendaryIdAvailable(LEGENDARY_KYOGRE))
 #else
     if (FlagGet(FLAG_DEFEATED_KYOGRE) == TRUE)
@@ -3750,7 +3791,19 @@ bool32 GetAbnormalWeatherMapNameAndType(void)
 
     u16 abnormalWeather = VarGet(VAR_ABNORMAL_WEATHER_LOCATION);
 
+#if IS_HNS
+    // No forecast left: start a new one before reading the table.
+    if (abnormalWeather == ABNORMAL_WEATHER_NONE)
+    {
+        CreateAbnormalWeatherEvent();
+        abnormalWeather = VarGet(VAR_ABNORMAL_WEATHER_LOCATION);
+    }
+    // GetMapName needs the map section of the route, not its map number.
+    GetMapName(gStringVar1, Overworld_GetMapHeaderByGroupAndId(MAP_GROUP(MAP_ROUTE114),
+               sAbnormalWeatherMapNumbers[abnormalWeather - 1])->regionMapSectionId, 0);
+#else
     GetMapName(gStringVar1, sAbnormalWeatherMapNumbers[abnormalWeather - 1], 0);
+#endif
 
     if (abnormalWeather < MARINE_CAVE_LOCATIONS_START)
         return FALSE;
@@ -3822,7 +3875,7 @@ bool8 AbnormalWeatherHasExpired(void)
         }
 
         if (gSaveBlock1Ptr->location.mapNum == sAbnormalWeatherMapNumbers[abnormalWeather - 1] &&
-            gSaveBlock1Ptr->location.mapGroup == 0)
+            gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_ROUTE114))
         {
             return TRUE;
         }
@@ -5990,98 +6043,6 @@ void HaircutBrother1(void)
 void HaircutBrother2(void)
 {
     AdjustFriendship(&gPlayerParty[gSpecialVar_0x8004], FRIENDSHIP_EVENT_HAIRCUT2);
-}
-
-void SwitchMonAbility(void)
-{
-    u16 species = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES, NULL);
-    u8 currentAbilityNum = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_ABILITY_NUM, NULL);
-
-    if (gSpeciesInfo[species].abilities[1] != 0 && gSpeciesInfo[species].abilities[0] != gSpeciesInfo[species].abilities[1])
-    {
-        u8 newAbilityNum = !currentAbilityNum;
-        SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_ABILITY_NUM, &newAbilityNum);
-        gSpecialVar_Result = TRUE;
-    }
-    else
-    {
-        gSpecialVar_Result = FALSE;
-    }
-}
-
-void CheckPartyForSpecies(void)
-{
-    u16 species = gSpecialVar_0x8004;
-    u8 i;
-
-    for (i = 0; i < gPlayerPartyCount; i++)
-    {
-        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == species)
-        {
-            gSpecialVar_Result = TRUE;
-            return;
-        }
-    }
-    gSpecialVar_Result = FALSE;
-}
-
-static const struct {
-    u16 src;
-    u16 dst;
-} sRegionalFormTable[] = {
-    { SPECIES_MEOWTH,     SPECIES_MEOWTH_GALAR },
-    { SPECIES_PONYTA,     SPECIES_PONYTA_GALAR },
-    { SPECIES_RAPIDASH,   SPECIES_RAPIDASH_GALAR },
-    { SPECIES_SLOWPOKE,   SPECIES_SLOWPOKE_GALAR },
-    { SPECIES_SLOWBRO,    SPECIES_SLOWBRO_GALAR },
-    { SPECIES_SLOWKING,   SPECIES_SLOWKING_GALAR },
-    { SPECIES_FARFETCHD,  SPECIES_FARFETCHD_GALAR },
-    { SPECIES_WEEZING,    SPECIES_WEEZING_GALAR },
-    { SPECIES_MR_MIME,    SPECIES_MR_MIME_GALAR },
-    { SPECIES_ARTICUNO,   SPECIES_ARTICUNO_GALAR },
-    { SPECIES_ZAPDOS,     SPECIES_ZAPDOS_GALAR },
-    { SPECIES_MOLTRES,    SPECIES_MOLTRES_GALAR },
-    { SPECIES_CORSOLA,    SPECIES_CORSOLA_GALAR },
-    { SPECIES_ZIGZAGOON,  SPECIES_ZIGZAGOON_GALAR },
-    { SPECIES_LINOONE,    SPECIES_LINOONE_GALAR },
-};
-
-void GetRegionalFormSpecies(void)
-{
-    u16 species = VarGet(VAR_TEMP_0);
-    u32 i;
-
-    for (i = 0; i < ARRAY_COUNT(sRegionalFormTable); i++)
-    {
-        if (sRegionalFormTable[i].src == species)
-        {
-            gSpecialVar_Result = sRegionalFormTable[i].dst;
-            return;
-        }
-    }
-    gSpecialVar_Result = species;
-}
-
-void ConvertToRegionalForm(void)
-{
-    u16 oldSpecies = VarGet(VAR_TEMP_0);
-    u16 newSpecies = VarGet(VAR_TEMP_1);
-    u8 i;
-
-    for (i = 0; i < gPlayerPartyCount; i++)
-    {
-        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == oldSpecies)
-        {
-            SetMonData(&gPlayerParty[i], MON_DATA_SPECIES, &newSpecies);
-            CalculateMonStats(&gPlayerParty[i]);
-            EvolutionRenameMon(&gPlayerParty[i], oldSpecies, newSpecies);
-            GetSetPokedexFlag(SpeciesToNationalPokedexNum(newSpecies), FLAG_SET_SEEN);
-            GetSetPokedexFlag(SpeciesToNationalPokedexNum(newSpecies), FLAG_SET_CAUGHT);
-            gSpecialVar_Result = TRUE;
-            return;
-        }
-    }
-    gSpecialVar_Result = FALSE;
 }
 
 bool8 PartyMonHasSkyRibbon(void)

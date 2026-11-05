@@ -4,6 +4,7 @@
 void ResetLotteryCorner(void);
 void SetRandomLotteryNumber(u16 i);
 void RetrieveLotteryNumber(void);
+void RetrieveHoennLotteryNumber(void);
 void PickLotteryCornerTicket(void);
 void SetLotteryNumber(u32 lotteryNum);
 u32 GetLotteryNumber(void);

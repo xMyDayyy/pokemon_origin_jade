@@ -29,8 +29,7 @@ PetalburgCity_House1_Text_GoOnAdventure:
 	.string "Steile, zerklüftete Berge erklimmen…\p"
 	.string "Das tosende Meer überqueren…\n"
 	.string "Dunkle Höhlen erforschen…\p"
-	.string "Und manchmal ein wenig Heimweh haben…\n"
-	.string "\p"
+	.string "Und manchmal ein wenig Heimweh haben…\p"
 	.string "Reisen muss einfach toll sein!$"
 #else
 	.string "Sigh…\p"

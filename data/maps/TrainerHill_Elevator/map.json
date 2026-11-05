@@ -1,7 +1,7 @@
 {
   "id": "MAP_TRAINER_HILL_ELEVATOR",
   "name": "TrainerHill_Elevator",
-  "game_version": "hns",
+  "game_version": "em_trainer_hill_retired",
   "layout": "LAYOUT_BATTLE_ELEVATOR",
   "music": "MUS_B_TOWER_RS",
   "region_map_section": "MAPSEC_TRAINER_HILL",

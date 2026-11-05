@@ -301,7 +301,7 @@ VictoryRoad_3F_EventScript_Moltres::
 	special BattleSetup_StartLegendaryBattle
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
-	@ Legendary rules, see docs/origin_jade/DECISIONS.md, D-026. Visibility: VictoryRoad_4F_Frlg.
+	@ Legendary rules. Visibility: VictoryRoad_4F_Frlg.
 	setvar VAR_0x8004, LEGENDARY_MOLTRES
 	special RecordLegendaryBattleOutcome
 	specialvar VAR_RESULT, GetBattleOutcome

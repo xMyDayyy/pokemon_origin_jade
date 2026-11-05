@@ -634,7 +634,8 @@ LilycoveCity_PokemonCenter_1F_Text_IllTryToCherishIt:
 LilycoveCity_PokemonCenter_1F_Text_IWillCherishThis:
 #if GERMAN
 	.string "Oh…\p"
-	.string "{STR_VAR_2} ist schon ganz {STR_VAR_1}…\p"
+	.string "{STR_VAR_2} ist schon ganz\n"
+	.string "{STR_VAR_1}…\p"
 	.string "Ist das nicht toll?\n"
 	.string "Einfach traumhaft…\p"
 	.string "Vielen Dank…\n"

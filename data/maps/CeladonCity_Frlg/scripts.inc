@@ -244,8 +244,9 @@ CeladonCity_Text_GuardSpecProtectsFromStatus::
 	.string "Tipps für Trainer\p"
 	.string "Megablock schützt Pokémon fünf Runden\n"
 	.string "lang vor Statusveränderungen im Kampf.\p"
-	.string "Besorgen kannst du dir dieses hilfreiche\n"
-	.string "Item im Prismania Einkaufszentrum!$"
+	.string "Besorgen kannst du dir dieses\n"
+	.string "hilfreiche Item im Prismania\l"
+	.string "Einkaufszentrum!$"
 #else
 	.string "TRAINER TIPS\p"
 	.string "GUARD SPEC. protects POKéMON\n"

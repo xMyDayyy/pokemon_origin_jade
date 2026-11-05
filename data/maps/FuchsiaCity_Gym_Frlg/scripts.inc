@@ -2,9 +2,8 @@ FuchsiaCity_Gym_Frlg_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, FuchsiaCity_Gym_OnTransition
 	.byte 0
 
-@ After the league change (D-010) Koga is in the Johto Elite Four and Janina
+@ After the league change Koga is in the Johto Elite Four and Janina
 @ leads this gym. FLAG_TEMP_1 hides Koga, FLAG_TEMP_2 hides Janina.
-@ See docs/origin_jade/DECISIONS.md, D-032.
 FuchsiaCity_Gym_OnTransition::
 	call PokemonLeague_EventScript_CheckLeagueChanged
 	goto_if_eq VAR_RESULT, TRUE, FuchsiaCity_Gym_EventScript_SetJanineLeader
@@ -15,7 +14,7 @@ FuchsiaCity_Gym_EventScript_SetJanineLeader::
 	setflag FLAG_TEMP_1
 	end
 
-@ Janina: battle as often as the player likes, TM Poison Jab once, no badge (D-007).
+@ Janina: battle as often as the player likes, TM Poison Jab once, no badge.
 FuchsiaCity_Gym_EventScript_JanineLeader::
 	lock
 	faceplayer

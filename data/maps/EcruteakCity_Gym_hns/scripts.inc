@@ -62,7 +62,7 @@ EcruteakCity_Gym_EventScript_Morty::
 	release
 	end
 
-@ Rematch after the Johto title, see docs/origin_jade/DECISIONS.md, D-032.
+@ Rematch after the Johto title.
 EcruteakCity_Gym_EventScript_Morty_Rematch::
 	msgbox MortyRematchText, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
@@ -167,13 +167,13 @@ Text_ReceivedFogBadge:
 MortyText_FogBadgeSpeech:
 #if GERMAN
 	.string "Mit dem Phantomorden gehorchen dir\n"
-	.string "Pokémon bis Level 50.\p"
+	.string "Pokémon bis Level 60.\p"
 	.string "Außerdem können Pokémon, die Surfer\n"
 	.string "beherrschen, es jederzeit einsetzen.\p"
 	.string "Nimm auch das hier.$"
 #else
 	.string "With the FOGBADGE, POKéMON up\n"
-	.string "to Level 50 will obey you.\p"
+	.string "to Level 60 will obey you.\p"
 	.string "Also, any POKéMON that knows\n"
 	.string "SURF will be able to use it\l"
 	.string "anytime.\p"

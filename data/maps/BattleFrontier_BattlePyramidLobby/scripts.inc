@@ -565,8 +565,7 @@ BattleFrontier_BattlePyramidLobby_Text_ExplainBattlePyramid:
 #if GERMAN
 	.string "In der Kampfforschung musst du die\n"
 	.string "Kampfpyramide erforschen und\l"
-	.string "versuchen, bis nach oben zu gelangen.\l"
-	.string "\p"
+	.string "versuchen, bis nach oben zu gelangen.\p"
 	.string "Kämpfe dich durch sieben Etagen, die\n"
 	.string "wie Irrgärten angelegt sind. Trainer\l"
 	.string "und auch wilde Pokémon warten auf dich.\p"
@@ -632,7 +631,7 @@ BattleFrontier_BattlePyramidLobby_Text_NotEnoughValidMonsLvOpen:
 	.string "teilnahmeberechtigt.\p"
 	.string "Keines von ihnen darf ein Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du so weit\n"
 	.string "bist.$"
 #else
@@ -653,7 +652,7 @@ BattleFrontier_BattlePyramidLobby_Text_NotEnoughValidMonsLv50:
 	.string "oder weniger.\p"
 	.string "Keines von ihnen darf ein Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du so weit\n"
 	.string "bist.$"
 #else
@@ -770,8 +769,7 @@ BattleFrontier_BattlePyramidLobby_Text_YouveConqueredPyramid:
 
 BattleFrontier_BattlePyramidLobby_Text_MonHoldingItemCannotTake:
 #if GERMAN
-	.string "Äh, wir haben da ein kleines Problem.\n"
-	.string "\p"
+	.string "Äh, wir haben da ein kleines Problem.\p"
 	.string "Eines deiner Pokémon hält ein Item.\n"
 	.string "Bedauerlicherweise können Items, die\p"
 	.string "du in der Kampfpyramide erhalten hast,\n"
@@ -1017,8 +1015,7 @@ BattleFrontier_BattlePyramidLobby_Text_HintLevitate:
 
 BattleFrontier_BattlePyramidLobby_Text_HintTrapAbility:
 #if GERMAN
-	.string "Ich sehe Energie vom Grund aufsteigen…\n"
-	.string "\p"
+	.string "Ich sehe Energie vom Grund aufsteigen…\p"
 	.string "Und ich sehe deine Pokémon in der\n"
 	.string "Umklammerung dieser Energie…$"
 #else
@@ -1338,8 +1335,7 @@ BattleFrontier_BattlePyramidLobby_Text_ExplainBagRules:
 	.string "Beutel.\p"
 	.string "Es gibt zwei verschiedene Pyrabeutel:\n"
 	.string "Einen für das Abenteuer Level 50 und\l"
-	.string "einen für das Abenteuer Offene Kämpfe.\l"
-	.string "\p"
+	.string "einen für das Abenteuer Offene Kämpfe.\p"
 	.string "In ihnen kannst du 10 Items in einer\n"
 	.string "maximalen Anzahl von 99 Stück pro Item\l"
 	.string "verstauen.\p"

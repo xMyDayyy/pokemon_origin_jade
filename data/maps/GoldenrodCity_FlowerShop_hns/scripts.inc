@@ -1,5 +1,13 @@
 GoldenrodCity_FlowerShop_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, GoldenrodCity_FlowerShop_OnTransition
 	.byte 0
+
+@ Mints switched off in the challenge menu: the clerk sells them from the first Hoenn title on.
+GoldenrodCity_FlowerShop_OnTransition:
+	goto_if_unset FLAG_IS_HOENN_CHAMPION, GoldenrodCity_FlowerShop_OnTransition_End
+	clearflag FLAG_MINTS_DISABLED
+GoldenrodCity_FlowerShop_OnTransition_End:
+	end
 
 
 GoldenrodCity_FlowerShop_EventScript_MintClerk::
@@ -23,8 +31,13 @@ GoldenrodCity_FlowerShop_EventScript_MintClerkNotReady::
 	end
 
 GoldenrodCity_FlowerShop_Text_MintClerkNotReady:
+#if GERMAN
+	.string "Leider ist gerade alles ausverkauft.\p"
+	.string "Bitte komm später wieder.$"
+#else
 	.string "We are currently out of stock.\p"
 	.string "Please come back later.$"
+#endif
 
 	.align 2
 GoldenrodCity_FlowerShop_Mints:
@@ -239,3 +252,47 @@ GoldenrodCity_FlowerShop_EventScript_AlreadyReceivedBerry::
 	msgbox Route104_PrettyPetalFlowerShop_Text_MachineMixesBerries, MSGBOX_DEFAULT
 	release
 	end
+
+@ Origin Jade: berries and herbal goods that HnS sold only in New Sinjoh
+@ (locked) or nowhere.
+GoldenrodCity_FlowerShop_EventScript_BerryClerk::
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	pokemart GoldenrodCity_FlowerShop_Berries
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+GoldenrodCity_FlowerShop_Berries:
+	.2byte ITEM_OCCA_BERRY
+	.2byte ITEM_PASSHO_BERRY
+	.2byte ITEM_WACAN_BERRY
+	.2byte ITEM_RINDO_BERRY
+	.2byte ITEM_YACHE_BERRY
+	.2byte ITEM_CHOPLE_BERRY
+	.2byte ITEM_KEBIA_BERRY
+	.2byte ITEM_SHUCA_BERRY
+	.2byte ITEM_COBA_BERRY
+	.2byte ITEM_PAYAPA_BERRY
+	.2byte ITEM_TANGA_BERRY
+	.2byte ITEM_CHARTI_BERRY
+	.2byte ITEM_KASIB_BERRY
+	.2byte ITEM_HABAN_BERRY
+	.2byte ITEM_COLBUR_BERRY
+	.2byte ITEM_BABIRI_BERRY
+	.2byte ITEM_CHILAN_BERRY
+	.2byte ITEM_ROSELI_BERRY
+	.2byte ITEM_MICLE_BERRY
+	.2byte ITEM_CUSTAP_BERRY
+	.2byte ITEM_JABOCA_BERRY
+	.2byte ITEM_ROWAP_BERRY
+	.2byte ITEM_KEE_BERRY
+	.2byte ITEM_MARANGA_BERRY
+	.2byte ITEM_ENIGMA_BERRY
+	.2byte ITEM_BIG_ROOT
+	.2byte ITEM_ROCK_INCENSE
+	.2byte ITEM_LUCK_INCENSE
+	pokemartlistend

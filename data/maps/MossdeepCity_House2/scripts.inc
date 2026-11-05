@@ -67,8 +67,7 @@ MossdeepCity_House2_Text_PokemonCarriesMailBackAndForth:
 #if GERMAN
 	.string "Auch wenn ich meinen Freund in\n"
 	.string "Baumhausen City nicht sehen kann…\l"
-	.string "Mein Pokémon bringt uns unsere Briefe.\l"
-	.string "\p"
+	.string "Mein Pokémon bringt uns unsere Briefe.\p"
 	.string "Ich bin nicht einsam, auch wenn wir\n"
 	.string "getrennt sind.$"
 #else

@@ -6,7 +6,6 @@ GraniteCave_1F_EventScript_Hiker::
 	faceplayer
 #if IS_HNS
 	@ HnS: no HM Flash in Hoenn, the hiker only talks.
-	setflag FLAG_RECEIVED_HM_FLASH
 	msgbox GraniteCave_1F_Text_HnsHikerDark, MSGBOX_DEFAULT
 	release
 	end
@@ -54,8 +53,7 @@ GraniteCave_1F_Text_GetsDarkAheadHereYouGo:
 #if GERMAN
 	.string "Hey, du!\n"
 	.string "Hier ist es schrecklich dunkel.\l"
-	.string "Eine Erforschung wird damit schwierig.\l"
-	.string "\p"
+	.string "Eine Erforschung wird damit schwierig.\p"
 	.string "Der Typ, der vorher schon mal hier\n"
 	.string "war… Troy heißt er, glaube ich…\p"
 	.string "Der weiß, wie man Blitz einsetzt, daher\n"

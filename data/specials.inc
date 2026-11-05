@@ -315,7 +315,6 @@ gSpecials::
 	def_special Script_FacePlayer
 	def_special Script_ClearHeldMovement
 	def_special InitRoamer
-	def_special InitKantoRoamers
 	def_special TryUpdateRusturfTunnelState
 	def_special IsGrassTypeInParty
 	def_special DoContestHallWarp
@@ -661,14 +660,12 @@ gSpecials::
 	def_special TransferBugContestMon
 	def_special JudgeBugContestMon
 	def_special RemoveSportBalls
-	def_special ShowBugContestChosenMon
-	def_special SwitchMonAbility
+	def_special PrepareBugContestJudging
 	def_special NameRival
 	def_special IsNuzlockeNicknamingActive
 	def_special IsRandomMovesActivated
 	def_special IsPokecenterChallengeActivated
 	def_special IsOneTypeChallengeActive
-	def_special CheckRadioStation
 	def_special Special_BuenaPasswordShowMultichoice
 	def_special Special_BuenaCheckAnswer
 	def_special Special_BuenaRollReward
@@ -678,9 +675,6 @@ gSpecials::
 	def_special GetPaldeaCatchProgress
 	def_special HasAllJohotoMons
 	def_special HasAllRegionalMons
-	def_special CheckPartyForSpecies
-	def_special GetRegionalFormSpecies
-	def_special ConvertToRegionalForm
 	def_special Special_ViewVoltorbFlip
 	def_special Special_MomEnableSaving
 	def_special Special_MomDisableSaving
@@ -731,3 +725,6 @@ gSpecials::
 	def_special GameClearNoCredits
 	def_special GetWeekday
 	def_special ClearCreditsSceneState
+	def_special RetrieveHoennLotteryNumber
+	def_special CreateBPHoldItemShop3
+	def_special BufferBugContestResult

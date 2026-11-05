@@ -49,7 +49,14 @@ PetalburgCity_Mart_Pokemart_Expanded:
 	pokemartlistend
 
 PetalburgCity_Mart_EventScript_Woman::
+#if IS_HNS
+	goto_if_ge VAR_PETALBURG_GYM_STATE, 6, PetalburgCity_Mart_EventScript_WomanGymOpen
+#endif
 	msgbox PetalburgCity_Mart_Text_WeakWillGrowStronger, MSGBOX_NPC
+	end
+
+PetalburgCity_Mart_EventScript_WomanGymOpen::
+	msgbox PetalburgCity_Mart_Text_GymLeaderShopsHere, MSGBOX_NPC
 	end
 
 PetalburgCity_Mart_EventScript_Boy::
@@ -71,6 +78,19 @@ PetalburgCity_Mart_Text_WeakWillGrowStronger:
 	.string "recently.\p"
 	.string "I haven't laid eyes on him yet - the\n"
 	.string "GYM is being rebuilt, after all.$"
+#endif
+
+PetalburgCity_Mart_Text_GymLeaderShopsHere:
+#if GERMAN
+	.string "Der Arenaleiter ist erst vor Kurzem\n"
+	.string "hergezogen.\p"
+	.string "Seit die Arena offen ist, kauft er\n"
+	.string "sogar bei uns ein. Ein netter Mann!$"
+#else
+	.string "The GYM LEADER only moved here\n"
+	.string "recently.\p"
+	.string "Since the GYM opened, he even shops\n"
+	.string "here. Such a nice man!$"
 #endif
 
 PetalburgCity_Mart_Text_RepelIsUseful:

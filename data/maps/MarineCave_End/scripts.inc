@@ -14,7 +14,7 @@ MarineCave_End_EventScript_TryRemoveKyogre::
 	return
 
 MarineCave_End_OnTransition:
-	@ Kyogre: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+	@ Kyogre: legendary rules.
 	setflag FLAG_HIDE_MARINE_CAVE_KYOGRE
 	setvar VAR_0x8004, LEGENDARY_KYOGRE
 	specialvar VAR_RESULT, IsLegendaryAvailable
@@ -37,7 +37,7 @@ MarineCave_End_EventScript_Kyogre::
 	delay 40
 	waitmoncry
 	setvar VAR_LAST_TALKED, LOCALID_MARINE_CAVE_KYOGRE
-	setwildbattle SPECIES_KYOGRE, 70
+	setwildbattle SPECIES_KYOGRE, 100
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special BattleSetup_StartLegendaryBattle
 	waitstate

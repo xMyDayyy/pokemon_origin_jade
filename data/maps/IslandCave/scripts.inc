@@ -30,7 +30,7 @@ IslandCave_EventScript_HideRegiEntrance::
 IslandCave_OnTransition:
 	setflag FLAG_LANDMARK_ISLAND_CAVE
 	call IslandCave_EventScript_ClearSteps
-	@ Regice: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+	@ Regice: legendary rules.
 	setflag FLAG_HIDE_REGICE
 	setvar VAR_0x8004, LEGENDARY_REGICE
 	specialvar VAR_RESULT, IsLegendaryAvailable
@@ -98,7 +98,7 @@ IslandCave_EventScript_Regice::
 	playmoncry SPECIES_REGICE, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	setwildbattle SPECIES_REGICE, 40
+	setwildbattle SPECIES_REGICE, 100
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special StartRegiBattle
 	waitstate

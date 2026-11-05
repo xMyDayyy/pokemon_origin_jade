@@ -29,14 +29,12 @@ LakeOfRage_EventScript_HideLois::
 	setflag FLAG_TEMP_1
 	return
 
-@ Wesley of the weekday siblings is only here on Wednesday, see
-@ docs/origin_jade/DECISIONS.md, D-033.
+@ Wesley of the weekday siblings is only here on Wednesday.
 LakeOfRage_EventScript_HideWesley:
 	setflag FLAG_TEMP_2
 	return
 
-@ Red Gyarados: story battle until VAR_MAHOGANY_TOWN_STATE 2, then the legendary rules
-@ (see docs/origin_jade/DECISIONS.md, D-026).
+@ Red Gyarados: story battle until VAR_MAHOGANY_TOWN_STATE 2, then the legendary rules.
 LakeOfRage_EventScript_SetGyaradosVisibility::
 	goto_if_lt VAR_MAHOGANY_TOWN_STATE, 2, Common_EventScript_NopReturn
 	setflag FLAG_HIDE_LAKE_OF_RAGE_GYARADOS
@@ -121,7 +119,7 @@ LakeOfRage_EventScript_Gyarados::
 	playmoncry SPECIES_GYARADOS, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	setwildbattleshiny SPECIES_GYARADOS, 70
+	setwildbattleshiny SPECIES_GYARADOS, 55
 	dowildbattle
 	setvar VAR_0x8004, LEGENDARY_RED_GYARADOS
 	special RecordLegendaryBattleOutcome

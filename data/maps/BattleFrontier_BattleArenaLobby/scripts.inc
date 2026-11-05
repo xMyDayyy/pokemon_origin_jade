@@ -469,7 +469,7 @@ BattleFrontier_BattleArenaLobby_Text_NotEnoughValidMonsLvOpen:
 	.string "Pokémon.\p"
 	.string "Jedes muss außerdem ein anderes Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du bereit\n"
 	.string "bist.$"
 #else
@@ -494,7 +494,7 @@ BattleFrontier_BattleArenaLobby_Text_NotEnoughValidMonsLv50:
 	.string "Pokémon von Level 50 oder weniger.\p"
 	.string "Jedes muss außerdem ein anderes Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du bereit\n"
 	.string "bist.$"
 #else
@@ -525,8 +525,7 @@ BattleFrontier_BattleArenaLobby_Text_DidntSaveBeforeShuttingDown:
 	.string "Du hast, bevor du die Herausforderung\n"
 	.string "abgebrochen hast, nicht gespeichert.\p"
 	.string "Daher wirst du für diese Herausforde-\n"
-	.string "rung disqualifiziert. Schade! Du hast\l"
-	.string "\p"
+	.string "rung disqualifiziert. Schade! Du hast\p"
 	.string "natürlich die Möglichkeit, dich einer\n"
 	.string "neuen Herausforderung zu stellen.$"
 #else
@@ -793,8 +792,7 @@ BattleFrontier_BattleArenaLobby_Text_ExplainBodyRules:
 #if GERMAN
 	.string "Der dritte Faktor bei der Beurteilung\n"
 	.string "ist der “Körper”. Die am\l"
-	.string "Ende verbleibenden KP sind ausschlag-\l"
-	.string "\p"
+	.string "Ende verbleibenden KP sind ausschlag-\p"
 	.string "gebend. Die Anzahl der KP, mit der ein\n"
 	.string "Pkmn in den Kampf geht, wird mit der am\l"
 	.string "Ende des Kampfes verglichen.$"
@@ -810,8 +808,7 @@ BattleFrontier_BattleArenaLobby_Text_ExplainBodyRules:
 BattleFrontier_BattleArenaLobby_Text_CongratsOnDefeatingTycoon:
 #if GERMAN
 	.string "Ein Sieg über den Ringmeister und ein\n"
-	.string "siebenfacher Sieg über sieben Trainer!\l"
-	.string "\p"
+	.string "siebenfacher Sieg über sieben Trainer!\p"
 	.string "Wir gratulieren dir zu deiner\n"
 	.string "herausragenden Leistung!$"
 #else

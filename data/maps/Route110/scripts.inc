@@ -843,12 +843,12 @@ Route110_Text_MayDefeated:
 Route110_Text_MayTakeThis:
 #if GERMAN
 	.string "Maike: Du hast doch bestimmt noch\n"
-	.string "deinen Itemradar aus Johto dabei?\p"
+	.string "deinen Itemradar dabei?\p"
 	.string "Gut. Ich will dich in Bestform, wenn\n"
 	.string "ich dich endlich schlage.$"
 #else
-	.string "MAY: You still carry your ITEMFINDER\n"
-	.string "from JOHTO, right?\p"
+	.string "MAY: You still carry your ITEMFINDER,\n"
+	.string "right?\p"
 	.string "Good. I want you at your best when\n"
 	.string "I finally beat you.$"
 #endif
@@ -1015,8 +1015,7 @@ Route110_Text_WhichShouldIChoose:
 #if GERMAN
 	.string "Was soll ich tun?\p"
 	.string "Schnurstracks über den Radweg nach\n"
-	.string "Malvenfroh City fahren oder die untere\l"
-	.string "\p"
+	.string "Malvenfroh City fahren oder die untere\p"
 	.string "Straße nehmen und nach Pokémon\n"
 	.string "suchen?$"
 #else
@@ -1136,8 +1135,7 @@ Route110_Text_AcroBikesDoNotQualify:
 #if GERMAN
 	.string "Auf diesem Radweg werden die, die\n"
 	.string "Eilräder fahren, nach ihren Zu-\l"
-	.string "sammenstößen und ihrer Zeit bewertet.\l"
-	.string "\p"
+	.string "sammenstößen und ihrer Zeit bewertet.\p"
 	.string "Kunsträder nehmen nicht am Wettkampf\n"
 	.string "teil. Sie sind zu einfach zu lenken.$"
 #else
@@ -1242,8 +1240,7 @@ Route110_Text_TrickHouseSign:
 Route110_Text_BestRecord:
 #if GERMAN
 	.string "Das Beste Ergebnis…\p"
-	.string "Anzahl der Zusammenstöße: {STR_VAR_1}\n"
-	.string "\p"
+	.string "Anzahl der Zusammenstöße: {STR_VAR_1}\p"
 	.string "Zeit: {STR_VAR_2}$"
 #else
 	.string "THE BEST RECORD TO DATE…\p"

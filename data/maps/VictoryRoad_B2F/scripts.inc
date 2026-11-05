@@ -54,8 +54,7 @@ VictoryRoad_B2F_Text_VitoDefeat:
 VictoryRoad_B2F_Text_VitoPostBattle:
 #if GERMAN
 	.string "Ich war besser als jeder andere aus\n"
-	.string "meiner Familie. Ich habe nie verloren!\l"
-	.string "\p"
+	.string "meiner Familie. Ich habe nie verloren!\p"
 	.string "Ich habe mein Selbstvertrauen ver-\n"
 	.string "loren. Ich gehe nach Hause…$"
 #else

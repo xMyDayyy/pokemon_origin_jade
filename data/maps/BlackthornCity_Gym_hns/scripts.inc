@@ -202,7 +202,8 @@ BlackthornGym_EventScript_Clair::
 	faceplayer
 	goto_if_set FLAG_IS_JOHTO_CHAMPION, BlackthornGym_EventScript_ClairRematch
 	goto_if_ge VAR_BLACKTHORN_CITY_STATE, 4, BlackthornGym_EventScript_Clair_Defeated
-	goto_if_eq VAR_BLACKTHORN_CITY_STATE, 2, BlackthornGym_EventScript_ClairDuringChallenge
+	goto_if_ge VAR_BLACKTHORN_CITY_STATE, 3, BlackthornGym_EventScript_ClairAfterShrine
+	goto_if_ge VAR_BLACKTHORN_CITY_STATE, 2, BlackthornGym_EventScript_ClairDuringChallenge
 	msgbox BlackthornGym_Text_ClairIntroText, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_CLAIR_1_HNS, BlackthornGym_Text_ClairWinText
 	msgbox BlackthornGym_Text_ClairText_GoToDragonsDen, MSGBOX_DEFAULT
@@ -220,6 +221,13 @@ BlackthornGym_EventScript_ClairDuringChallenge::
 	release
 	end
 
+@ Shrine test passed, the badge waits in Dragon's Den (state 3).
+BlackthornGym_EventScript_ClairAfterShrine::
+	msgbox BlackthornGym_Text_ClairText_GoBackToDragonsDen, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
 BlackthornGym_EventScript_Clair_Defeated::
 	msgbox BlackthornGym_Text_ClairText_League, MSGBOX_DEFAULT
 	closemessage
@@ -232,7 +240,7 @@ BlackthornGym_EventScript_ClairAfterLeague::
 	release
 	end
 
-@ Rematch after the Johto title, see docs/origin_jade/DECISIONS.md, D-032.
+@ Rematch after the Johto title.
 BlackthornGym_EventScript_ClairRematch::
 	msgbox BlackthornGym_Text_ClairRematchText, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
@@ -312,6 +320,17 @@ BlackthornGym_Text_ClairText_TooMuchToExpect:
 #else
     .string "What's the matter?\p"
     .string "Is it too much to expect of you?$"
+#endif
+
+BlackthornGym_Text_ClairText_GoBackToDragonsDen:
+#if GERMAN
+	.string "Was ist los?\p"
+	.string "Geh zurück in die Drachenhöhle.\n"
+	.string "Dort bekommst du deinen Orden.$"
+#else
+    .string "What's the matter?\p"
+    .string "Go back to DRAGON'S DEN.\n"
+    .string "You will get your BADGE there.$"
 #endif
 
 BlackthornGym_Text_ClairText_YouKeptMeWaiting:

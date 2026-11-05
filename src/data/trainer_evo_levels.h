@@ -4,7 +4,6 @@
 // later stage) such that, among all their Pokemon at L or higher, it outnumbers its
 // pre-evolution (else the lowest level they field it). The comment gives those counts and
 // the lowest level any HnS trainer fields the species or a later stage.
-// Regenerate (overwrites edits): python3 -I tools/make_trainer_evo_levels.py --header > src/data/trainer_evo_levels.h
 static const struct TrainerEvoLevel sTrainerEvoLevels[] =
 {
     {SPECIES_PIKACHU,                    15}, // majority from 15: 20 Pikachu/Raichu vs 0 Pichu at >= 15; lowest 15 William (Raichu)

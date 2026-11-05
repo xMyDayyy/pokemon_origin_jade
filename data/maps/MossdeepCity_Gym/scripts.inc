@@ -985,8 +985,7 @@ MossdeepCity_Gym_Text_TateAndLizaRematchDefeat:
 MossdeepCity_Gym_Text_TateAndLizaPostRematch:
 #if GERMAN
 	.string "Ben: Du magst uns besiegen, aber wir\n"
-	.string "werden nicht am Boden liegen bleiben!\l"
-	.string "\p"
+	.string "werden nicht am Boden liegen bleiben!\p"
 	.string "Svenja: Denn wir beide werden immer\n"
 	.string "füreinander da sein!$"
 #else

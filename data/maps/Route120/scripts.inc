@@ -190,7 +190,7 @@ Route120_EventScript_StevenBattleKecleon::
 	playmoncry SPECIES_KECLEON, CRY_MODE_ENCOUNTER
 	delay 40
 	waitmoncry
-	setwildbattle SPECIES_KECLEON, 30
+	setwildbattle SPECIES_KECLEON, 80
 	setvar VAR_0x8009, 0
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	dowildbattle
@@ -390,7 +390,7 @@ Route120_Text_StevenIllWaitHere:
 #if GERMAN
 	.string "Troy: Nein?\p"
 	.string "Ich warte hier, dann kannst du sie\n"
-	.string "vor- bereiten.$"
+	.string "vorbereiten.$"
 #else
 	.string "STEVEN: No?\p"
 	.string "I'll wait here, so you can get ready.$"
@@ -472,8 +472,7 @@ Kecleon_Text_SomethingUnseeable:
 
 Kecleon_Text_WantToUseDevonScope:
 #if GERMAN
-	.string "Etwas Unsichtbares blockiert den Weg.\n"
-	.string "\p"
+	.string "Etwas Unsichtbares blockiert den Weg.\p"
 	.string "Willst du das Devon-Scope einsetzen?$"
 #else
 	.string "Something unseeable is in the way.\p"

@@ -63,9 +63,14 @@ EverGrandeCity_ChampionsRoom_EventScript_Defeated::
 	goto_if_set FLAG_IS_HOENN_CHAMPION, EverGrandeCity_ChampionsRoom_EventScript_TitleDefenceExitForHoF
 #endif
 	playse SE_DOOR
+#if IS_HNS
+	@ Origin Jade: the Hoenn rival is always May.
+	call EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic
+#else
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic
 	call_if_eq VAR_RESULT, FEMALE, EverGrandeCity_ChampionsRoom_EventScript_PlayBrendanMusic
+#endif
 	addobject LOCALID_CHAMPIONS_ROOM_RIVAL
 	call EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer
 #if IS_HNS
@@ -163,7 +168,7 @@ EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF::
 
 #if IS_HNS
 @ Repeat Hoenn titles: Wallace leads the player straight to the Hall of Fame, without the rival
-@ and Prof. Birch. The first title sets the flags above. See docs/origin_jade/DECISIONS.md, D-028.
+@ and Prof. Birch. The first title sets the flags above.
 EverGrandeCity_ChampionsRoom_EventScript_TitleDefenceExitForHoF:
 	applymovement LOCALID_CHAMPIONS_ROOM_WALLACE, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
@@ -276,8 +281,7 @@ EverGrandeCity_ChampionsRoom_Text_IntroSpeech:
 	.string "die Krise dort beendet hast!\p"
 	.string "Hups!\p"
 	.string "Es wäre aber nicht fair zu behaupten,\n"
-	.string "du hättest allein für Ordnung gesorgt.\l"
-	.string "\p"
+	.string "du hättest allein für Ordnung gesorgt.\p"
 	.string "Du hast die Situation gemeistert, weil\n"
 	.string "du mit deinen Pokémon\l"
 	.string "zusammengearbeitet hast.\p"
@@ -415,7 +419,7 @@ EverGrandeCity_ChampionsRoom_Text_BirchArriveRatePokedex:
 	.string "Sorgen um {PLAYER}{KUN} zu machen!\p"
 	.string "… … … … … … … …\n"
 	.string "{PLAYER}{KUN}, du hast es geschafft.\p"
-	.string "Als ich hörte, dass du deinen Vater in\n"
+	.string "Als ich hörte, dass du Norman in\n"
 	.string "der Arena von Blütenburg City\p"
 	.string "besiegt hast, wusste ich, dass du eine\n"
 	.string "Chance hast…\p"
@@ -431,8 +435,8 @@ EverGrandeCity_ChampionsRoom_Text_BirchArriveRatePokedex:
 	.string "to worry about {PLAYER}{KUN}?\p"
 	.string "… … … … … … … …\n"
 	.string "{PLAYER}{KUN}, you've finally done it.\p"
-	.string "When I heard that you defeated your\n"
-	.string "own father at the PETALBURG GYM,\l"
+	.string "When I heard that you defeated\n"
+	.string "NORMAN at the PETALBURG GYM,\l"
 	.string "I thought perhaps you had a chance…\p"
 	.string "But to think you've actually become\n"
 	.string "the CHAMPION!\p"

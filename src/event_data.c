@@ -39,6 +39,14 @@ EWRAM_DATA static u16 sTestVars[TEST_VARS_SIZE] = {0};
 
 extern u16 *const gSpecialVars[];
 
+// A flag or var id without storage shows the assertf crash screen in the
+// beta build (START resumes as before); off in make release.
+#ifndef RELEASE
+#define ASSERT_STORAGE(cond, kind, id) assertf(cond, kind " 0x%x has no storage", id)
+#else
+#define ASSERT_STORAGE(cond, kind, id)
+#endif
+
 // Capped at 8: every consumer indexes 8-entry tables with the count this yields.
 const u16 gBadgeFlags[NUM_BADGES_CAPPED] =
 {
@@ -80,6 +88,7 @@ void ClearDailyFlags(void)
     u16 i;
     for (i = DAILY_FLAGS_START; i <= DAILY_FLAGS_END; i++)
         FlagClear(i);
+    FlagClear(FLAG_HOENN_PICKED_LOTO_TICKET);
 #else
     memset(&gSaveBlock1Ptr->flags[DAILY_FLAGS_START / 8], 0, DAILY_FLAGS_SIZE);
 #endif
@@ -204,13 +213,19 @@ u16 *GetVarPointer(u16 id)
     else if (id >= OJ_VARS_START && id <= OJ_VARS_END)
         return &gSaveBlock3Ptr->varsOj[id - OJ_VARS_START];
     else if (id < SPECIAL_VARS_START)
+    {
+        ASSERT_STORAGE(id <= VARS_END, "var", id);
         return &gSaveBlock1Ptr->vars[id - VARS_START];
+    }
 #if TESTING
     else if (id >= TESTING_VARS_START)
         return &sTestVars[id - TESTING_VARS_START];
 #endif // TESTING
     else
+    {
+        ASSERT_STORAGE(id <= SPECIAL_VARS_END, "var", id);
         return gSpecialVars[id - SPECIAL_VARS_START];
+    }
 }
 
 u16 VarGet(u16 id)
@@ -258,8 +273,14 @@ STATIC_ASSERT(HNS_REMATCH_TIER_FLAGS_END < SPECIAL_FLAGS_START, sRematchTierFlag
 STATIC_ASSERT((FRLG_TRAINER_FLAGS_START & 7) == ((0x500 + FRLG_TRAINER_OFFSET + 1) & 7), sFrlgTrainerFlagsBitAligned);
 STATIC_ASSERT((HNS_REMATCH_TIER_FLAGS_START & 7) == ((0x500 + HNS_REMATCH_TIERS_START) & 7), sRematchTierFlagsBitAligned);
 
+// HnS and Hoenn trainers (ids below the FRLG block) use TRAINER_FLAGS_START + id in SaveBlock1.
+// Name the last ids of opponents.h and opponents_hns.h here.
+STATIC_ASSERT(TRAINER_MAY_PLACEHOLDER < TRAINERS_COUNT_HNS && TRAINER_WALLACE_2 < TRAINERS_COUNT_HNS, sHnsTrainersCountAboveLastIds);
+STATIC_ASSERT(TRAINER_FLAGS_START + TRAINERS_COUNT_HNS - 1 <= TRAINER_FLAGS_END, sHnsTrainerFlagsFitSaveBlock1);
+STATIC_ASSERT(TRAINERS_COUNT_HNS <= FRLG_TRAINER_OFFSET + 1, sHnsTrainersBelowFrlgTrainers);
+
 STATIC_ASSERT(OJ_TRAINER_FLAGS_HOENN_END < OJ_FLAGS_HOENN + OJ_FLAGS_HOENN_SIZE, sOjTrainerFlagsFitHoennSection);
-STATIC_ASSERT(FLAG_HOENN_REGISTER_RIVAL_POKENAV < OJ_FLAGS_HOENN + OJ_FLAGS_HOENN_SIZE, sOjHoennFlagsFitHoennSection);
+STATIC_ASSERT(FLAG_HOENN_RECEIVED_HM_STRENGTH < OJ_FLAGS_HOENN + OJ_FLAGS_HOENN_SIZE, sOjHoennFlagsFitHoennSection);
 #endif
 
 u8 *GetFlagPointer(u16 id)
@@ -278,13 +299,19 @@ u8 *GetFlagPointer(u16 id)
     else if (id >= OJ_FLAGS_START && id <= OJ_FLAGS_END)
         return &gSaveBlock3Ptr->flagsOj[(id - OJ_FLAGS_START) / 8];
     else if (id < SPECIAL_FLAGS_START)
+    {
+        ASSERT_STORAGE(id < FLAGS_COUNT, "flag", id);
         return &gSaveBlock1Ptr->flags[id / 8];
+    }
 #if TESTING
     else if (id >= TESTING_FLAGS_START)
         return &sTestFlags[(id - TESTING_FLAGS_START) / 8];
 #endif // TESTING
     else
+    {
+        ASSERT_STORAGE(id <= SPECIAL_FLAGS_END, "flag", id);
         return &sSpecialFlags[(id - SPECIAL_FLAGS_START) / 8];
+    }
 }
 
 u8 FlagSet(u16 id)

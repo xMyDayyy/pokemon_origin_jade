@@ -47,9 +47,14 @@ LavaridgeTown_EventScript_RivalGiveGoGoggles::
 	call_if_eq VAR_0x8008, 9, LavaridgeTown_EventScript_RivalNoticePlayer
 	call_if_ne VAR_0x8008, 9, LavaridgeTown_EventScript_RivalExitHerbShop
 	delay 20
+#if IS_HNS
+	@ Origin Jade: the Hoenn rival is always May.
+	call LavaridgeTown_EventScript_PlayMayMusic
+#else
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, LavaridgeTown_EventScript_PlayMayMusic
 	call_if_eq VAR_RESULT, FEMALE, LavaridgeTown_EventScript_PlayBrendanMusic
+#endif
 	call_if_eq VAR_0x8008, 9, LavaridgeTown_EventScript_RivalApproachPlayer1
 	call_if_ne VAR_0x8008, 9, LavaridgeTown_EventScript_RivalApproachPlayer2
 #if IS_HNS
@@ -70,6 +75,7 @@ LavaridgeTown_EventScript_MayGiveGoGoggles::
 	goto LavaridgeTown_EventScript_RivalExit
 	end
 
+#if !IS_HNS
 LavaridgeTown_EventScript_BrendanGiveGoGoggles::
 	msgbox LavaridgeTown_Text_BrendanNiceBadgesTakeThis, MSGBOX_DEFAULT
 	giveitem ITEM_GO_GOGGLES
@@ -77,6 +83,7 @@ LavaridgeTown_EventScript_BrendanGiveGoGoggles::
 	msgbox LavaridgeTown_Text_BrendanExplainGoGogglesChallengeDad, MSGBOX_DEFAULT
 	goto LavaridgeTown_EventScript_RivalExit
 	end
+#endif
 
 LavaridgeTown_EventScript_RivalExit::
 	closemessage
@@ -343,6 +350,7 @@ LavaridgeTown_Text_BrendanNiceBadgesTakeThis:
 	.string "You may as well have this.$"
 #endif
 
+#if !IS_HNS
 LavaridgeTown_Text_BrendanExplainGoGogglesChallengeDad:
 #if GERMAN
 	.string "Maike: Nimm das mit, wenn du in die Wüste\n"
@@ -370,6 +378,7 @@ LavaridgeTown_Text_BrendanExplainGoGogglesChallengeDad:
 	.string "he really is tough.\p"
 	.string "See you around!$"
 #endif
+#endif
 
 LavaridgeTown_Text_HaveEggWillYouTakeIt:
 #if GERMAN
@@ -381,8 +390,7 @@ LavaridgeTown_Text_HaveEggWillYouTakeIt:
 	.string "Jemand erzählte mir, dass man es\n"
 	.string "zusammen mit den Pokémon tragen soll.\p"
 	.string "Du bist ein Trainer, nicht wahr? Und\n"
-	.string "deine Pokémon strahlen Vitalität aus.\l"
-	.string "\p"
+	.string "deine Pokémon strahlen Vitalität aus.\p"
 	.string "So, was meinst du? Wirst du das Ei\n"
 	.string "mitnehmen und zum Ausschlüpfen\l"
 	.string "bringen?$"
@@ -472,8 +480,7 @@ LavaridgeTown_Text_PokemonNippedBackside:
 #if GERMAN
 	.string "Hier im heißen Sand vergraben zu sein,\n"
 	.string "ist…  Seufz…\p"
-	.string "So warm und einfach himmlisch… Seufz…\n"
-	.string "\p"
+	.string "So warm und einfach himmlisch… Seufz…\p"
 	.string "Äh? Gyaah! Aua!\p"
 	.string "Ein Pokémon hat meinen Rücken ange-\n"
 	.string "knabbert!$"

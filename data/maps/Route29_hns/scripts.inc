@@ -9,8 +9,7 @@ Route29_OnTransition:
 	call_if_ne VAR_RESULT, WEEKDAY_TUE, Route29_EventScript_HideTuscany
 	end
 
-@ Tuscany of the weekday siblings is only here on Tuesday, see
-@ docs/origin_jade/DECISIONS.md, D-033.
+@ Tuscany of the weekday siblings is only here on Tuesday.
 Route29_EventScript_HideTuscany:
 	setflag FLAG_TEMP_2
 	return

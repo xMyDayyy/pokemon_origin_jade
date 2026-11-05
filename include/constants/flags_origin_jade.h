@@ -50,6 +50,41 @@
 // VS Seeker used: trainers in view want a rematch until it has recharged
 // (I_VS_SEEKER_CHARGING, src/vs_seeker.c).
 #define FLAG_VS_SEEKER_CHARGING                              (OJ_FLAGS_KANTO + 9)
+// Hides Troy in Oak's lab; set again on every entry unless he waits there.
+#define FLAG_HIDE_OAKS_LAB_TROY                              (OJ_FLAGS_KANTO + 10)
+// Item balls with the TMs of HnS's Kanto.
+#define FLAG_HIDE_ROUTE6_TM_SILVER_WIND                      (OJ_FLAGS_KANTO + 11)
+#define FLAG_HIDE_ROUTE9_TM_FLASH_CANNON                     (OJ_FLAGS_KANTO + 12)
+#define FLAG_HIDE_ROUTE10_TM_ROCK_POLISH                     (OJ_FLAGS_KANTO + 13)
+#define FLAG_HIDE_ROUTE11_TM_GRASS_KNOT                      (OJ_FLAGS_KANTO + 14)
+#define FLAG_HIDE_ROUTE19_TM_BRINE                           (OJ_FLAGS_KANTO + 15)
+#define FLAG_HIDE_ROCK_TUNNEL_B1F_TM_FLING                   (OJ_FLAGS_KANTO + 16)
+#define FLAG_HIDE_CELADON_CITY_TM_RECYCLE                    (OJ_FLAGS_KANTO + 17)
+#define FLAG_HIDE_VIRIDIAN_FOREST_TM_PSYCH_UP                (OJ_FLAGS_KANTO + 18)
+// TMs of HnS's Kanto given by FRLG trainers.
+#define FLAG_GOT_TM_ROCK_SLIDE_FROM_BROCK                    (OJ_FLAGS_KANTO + 19)
+#define FLAG_GOT_TM_STONE_EDGE_FROM_ROBERT                   (OJ_FLAGS_KANTO + 20)
+#define FLAG_GOT_TM_WILL_O_WISP_FROM_BENNY                   (OJ_FLAGS_KANTO + 21)
+#define FLAG_GOT_TM_ENERGY_BALL_FROM_GRACE                   (OJ_FLAGS_KANTO + 22)
+// The player won a VS Seeker rematch against Carter (Route 14), set in CB2_EndRematchBattle.
+#define FLAG_DEFEATED_CARTER_REMATCH                         (OJ_FLAGS_KANTO + 23)
+#define FLAG_GOT_TM_THUNDER_WAVE_FROM_CARTER                 (OJ_FLAGS_KANTO + 24)
+#define FLAG_GOT_TM_X_SCISSOR_FROM_RICK                      (OJ_FLAGS_KANTO + 25)
+// TMs of HnS's Kanto from NPCs.
+#define FLAG_GOT_TM_EXPLOSION_UNDERGROUND_PATH               (OJ_FLAGS_KANTO + 26)
+#define FLAG_GOT_TM_SLEEP_TALK_CELADON_ROOF                  (OJ_FLAGS_KANTO + 27)
+// Hidden items and item balls with items that had no other source.
+#define FLAG_HIDDEN_ITEM_VERMILION_CITY_PEARL_STRING_FRLG    (OJ_FLAGS_KANTO + 28)
+#define FLAG_HIDDEN_ITEM_CERULEAN_CAVE_B1F_ODD_INCENSE_FRLG  (OJ_FLAGS_KANTO + 29)
+#define FLAG_HIDDEN_ITEM_ROUTE15_ROSE_INCENSE_FRLG           (OJ_FLAGS_KANTO + 30)
+#define FLAG_HIDDEN_ITEM_MT_MOON_B2F_COMET_SHARD             (OJ_FLAGS_KANTO + 31)
+#define FLAG_HIDDEN_ITEM_CERULEAN_CITY_BERSERK_GENE          (OJ_FLAGS_KANTO + 32)
+#define FLAG_HIDDEN_ITEM_ROUTE8_FAIRY_GEM_FRLG               (OJ_FLAGS_KANTO + 33)
+#define FLAG_HIDE_MT_MOON_1F_FAIRY_FEATHER                   (OJ_FLAGS_KANTO + 34)
+// Bill gave the Pokemon Box Link after the Kanto title.
+#define FLAG_RECEIVED_POKEMON_BOX_LINK                       (OJ_FLAGS_KANTO + 35)
+// Celadon's game designer gave the Catching Charm with the Kanto diploma.
+#define FLAG_RECEIVED_CATCHING_CHARM                         (OJ_FLAGS_KANTO + 36)
 
 // ---------------------------------------------------------------------
 // Johto (OJ_FLAGS_JOHTO + 0 to + 159)
@@ -80,6 +115,33 @@
 #define FLAG_DEFEATED_RED_GYARADOS                   (OJ_FLAGS_JOHTO + 13)
 // A Day Care man gave the Oval Charm with the first egg.
 #define FLAG_RECEIVED_OVAL_CHARM                     (OJ_FLAGS_JOHTO + 14)
+// The Violet City gift egg hatched, whatever its species (Elm's lab).
+#define FLAG_HATCHED_TOGEPI_EGG                      (OJ_FLAGS_JOHTO + 15)
+// Items without another source.
+#define FLAG_HIDE_MT_SILVER_ITEM_ROOM_TM_ROCK_CLIMB  (OJ_FLAGS_JOHTO + 16)
+#define FLAG_HIDE_ICE_PATH_1F_ICY_ROCK               (OJ_FLAGS_JOHTO + 17)
+#define FLAG_HIDDEN_ITEM_ILEX_BIG_BAMBOO_SHOOT       (OJ_FLAGS_JOHTO + 18)
+#define FLAG_HIDDEN_ITEM_ILEX_TINY_BAMBOO_SHOOT      (OJ_FLAGS_JOHTO + 19)
+#define FLAG_HIDDEN_ITEM_ECRUTEAK_POKESHI_DOLL       (OJ_FLAGS_JOHTO + 20)
+// Lilycove's game designer gave the EXP. Charm with the Johto diploma.
+#define FLAG_RECEIVED_EXP_CHARM                      (OJ_FLAGS_JOHTO + 21)
+// Hoenn hidden items; hidden-item flags must lie below FLAG_HIDDEN_ITEMS_START + 8192.
+#define FLAG_HIDDEN_ITEM_ROUTE111_RARE_BONE          (OJ_FLAGS_JOHTO + 22)
+#define FLAG_HIDDEN_ITEM_ROUTE111_SMOOTH_ROCK        (OJ_FLAGS_JOHTO + 23)
+#define FLAG_HIDDEN_ITEM_FIERY_PATH_HEAT_ROCK        (OJ_FLAGS_JOHTO + 24)
+#define FLAG_HIDDEN_ITEM_ROUTE119_DAMP_ROCK          (OJ_FLAGS_JOHTO + 25)
+#define FLAG_HIDDEN_ITEM_SKY_PILLAR_OUTSIDE_SOUL_DEW (OJ_FLAGS_JOHTO + 26)
+#define FLAG_HIDDEN_ITEM_UNDERWATER_124_RELIC_COPPER (OJ_FLAGS_JOHTO + 27)
+#define FLAG_HIDDEN_ITEM_UNDERWATER_124_RELIC_SILVER (OJ_FLAGS_JOHTO + 28)
+#define FLAG_HIDDEN_ITEM_UNDERWATER_124_RELIC_GOLD   (OJ_FLAGS_JOHTO + 29)
+#define FLAG_HIDDEN_ITEM_UNDERWATER_126_RELIC_VASE   (OJ_FLAGS_JOHTO + 30)
+#define FLAG_HIDDEN_ITEM_UNDERWATER_126_RELIC_BAND   (OJ_FLAGS_JOHTO + 31)
+#define FLAG_HIDDEN_ITEM_UNDERWATER_128_RELIC_STATUE (OJ_FLAGS_JOHTO + 32)
+#define FLAG_HIDDEN_ITEM_UNDERWATER_128_RELIC_CROWN  (OJ_FLAGS_JOHTO + 33)
+// Snowball in Ice Path; HnS had it only in New Sinjoh (locked).
+#define FLAG_HIDDEN_ITEM_ICE_PATH_B3F_SNOWBALL       (OJ_FLAGS_JOHTO + 34)
+// The S.S. Aqua grandpa still owes the Metal Coat: the bag was full at the reunion.
+#define FLAG_SSAQUA_METAL_COAT_PENDING               (OJ_FLAGS_JOHTO + 35)
 
 // ---------------------------------------------------------------------
 // Hoenn (OJ_FLAGS_HOENN + 0 to + 95)
@@ -144,10 +206,40 @@
 #define FLAG_HOENN_RECEIVED_POKENAV                          (OJ_TRAINER_FLAGS_HOENN_END + 12)
 // May registered on Route 104; she waits there until Rustboro or Dewford.
 #define FLAG_HOENN_REGISTER_RIVAL_POKENAV                    (OJ_TRAINER_FLAGS_HOENN_END + 13)
+// Norman's Surf license given; Wally's parents talk about Wally having left.
+#define FLAG_HOENN_RECEIVED_HM_SURF                          (OJ_TRAINER_FLAGS_HOENN_END + 14)
+// Talked to Mauville's Rock Smash man; hides the hint man on Route 111.
+#define FLAG_HOENN_RECEIVED_HM_ROCK_SMASH                    (OJ_TRAINER_FLAGS_HOENN_END + 15)
+// Devon revived a fossil; read by the Fossil Maniac on Route 114.
+#define FLAG_HOENN_RECEIVED_REVIVED_FOSSIL_MON               (OJ_TRAINER_FLAGS_HOENN_END + 16)
+// Rusturf Tunnel cleared; read by the PokeNav calls of Mr. Stone and the rival.
+#define FLAG_HOENN_RECEIVED_HM_STRENGTH                      (OJ_TRAINER_FLAGS_HOENN_END + 17)
+// Lilycove's lottery ticket drawn today; cleared by ClearDailyFlags.
+#define FLAG_HOENN_PICKED_LOTO_TICKET                        (OJ_TRAINER_FLAGS_HOENN_END + 18)
+// Jirachi on Route 4, see constants/legendaries_oj.h. CAUGHT: never back;
+// DEFEATED: caught or knocked out, cleared after a league victory unless caught.
+#define FLAG_CAUGHT_JIRACHI                                  (OJ_TRAINER_FLAGS_HOENN_END + 19)
+#define FLAG_DEFEATED_JIRACHI                                (OJ_TRAINER_FLAGS_HOENN_END + 20)
 
 // ---------------------------------------------------------------------
 // Cross-region (OJ_FLAGS_GLOBAL + 0 to + 63)
 // ---------------------------------------------------------------------
-// no entries yet
+// Johto species unlocked: first Johto map after the Kanto title.
+#define FLAG_JOHTO_UNLOCKED                          (OJ_FLAGS_GLOBAL + 0)
+// Contest reporters in the Verdanturf and Fallarbor contest lobbies.
+#define FLAG_HIDE_VERDANTURF_TOWN_CONTEST_REPORTER   (OJ_FLAGS_GLOBAL + 1)
+#define FLAG_HIDE_FALLARBOR_TOWN_CONTEST_REPORTER    (OJ_FLAGS_GLOBAL + 2)
+// TM Attract from the girl in Verdanturf's contest lobby.
+#define FLAG_HOENN_RECEIVED_TM_ATTRACT               (OJ_FLAGS_GLOBAL + 3)
+// TM Torment from the sailor in Slateport's contest hall.
+#define FLAG_HOENN_RECEIVED_TM_TORMENT               (OJ_FLAGS_GLOBAL + 4)
+
+// ---------------------------------------------------------------------
+// Not saved: special flags (RAM, src/event_data.c), cleared by a new game
+// and kept across warps. HnS uses SPECIAL_FLAGS_START + 0x00 to + 0x05;
+// append from + 0x06 on, up to SPECIAL_FLAGS_END.
+// ---------------------------------------------------------------------
+// Hoenn ship trip that goes on from the Route 104 pier to Birch's lab.
+#define FLAG_HOENN_SHIP_TO_BIRCHS_LAB                (SPECIAL_FLAGS_START + 0x06)
 
 #endif // GUARD_CONSTANTS_FLAGS_ORIGIN_JADE_H

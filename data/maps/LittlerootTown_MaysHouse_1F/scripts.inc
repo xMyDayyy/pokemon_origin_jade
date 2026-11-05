@@ -24,11 +24,14 @@ LittlerootTown_MaysHouse_1F_EventScript_ShowRunningShoesManual::
 	return
 
 LittlerootTown_MaysHouse_1F_OnTransition:
+#if !IS_HNS
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_MaysHouse_1F_EventScript_MoveMomToDoor
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_MaysHouse_1F_EventScript_MoveMomToStairs
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_MaysHouse_1F_EventScript_MoveMomToTV
+#endif
 	end
 
+#if !IS_HNS
 LittlerootTown_MaysHouse_1F_EventScript_MoveMomToStairs::
 	setobjectxyperm LOCALID_PLAYERS_HOUSE_1F_MOM, 2, 4
 	setobjectmovementtype LOCALID_PLAYERS_HOUSE_1F_MOM, MOVEMENT_TYPE_FACE_UP
@@ -43,16 +46,20 @@ LittlerootTown_MaysHouse_1F_EventScript_MoveMomToDoor::
 	setobjectxyperm LOCALID_PLAYERS_HOUSE_1F_MOM, 1, 8
 	setobjectmovementtype LOCALID_PLAYERS_HOUSE_1F_MOM, MOVEMENT_TYPE_FACE_UP
 	return
+#endif
 
 @ Many of the below scripts have no gender check because they assume youre in the correct house
 LittlerootTown_MaysHouse_1F_OnFrame:
+#if !IS_HNS
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_MaysHouse_1F_EventScript_EnterHouseMovingIn
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_MaysHouse_1F_EventScript_GoUpstairsToSetClock
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_MaysHouse_1F_EventScript_PetalburgGymReport
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 1, LittlerootTown_MaysHouse_1F_EventScript_YoureNewNeighbor
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
+#endif
 	.2byte 0
 
+#if !IS_HNS
 LittlerootTown_MaysHouse_1F_EventScript_GoUpstairsToSetClock::
 	lockall
 	msgbox PlayersHouse_1F_Text_GoSetTheClock, MSGBOX_DEFAULT
@@ -82,7 +89,9 @@ LittlerootTown_MaysHouse_1F_EventScript_PetalburgGymReport::
 	setvar VAR_0x8005, LOCALID_PLAYERS_HOUSE_1F_MOM
 	goto PlayersHouse_1F_EventScript_PetalburgGymReportFemale
 	end
+#endif
 
+#if !IS_HNS
 LittlerootTown_MaysHouse_1F_EventScript_YoureNewNeighbor::
 	lockall
 	playse SE_PIN
@@ -108,6 +117,7 @@ LittlerootTown_MaysHouse_1F_Movement_RivalMomApproach:
 	walk_left
 	walk_left
 	step_end
+#endif
 
 RivalsHouse_1F_EventScript_RivalMom::
 	lock
@@ -143,6 +153,7 @@ RivalsHouse_1F_EventScript_RivalSibling::
 	release
 	end
 
+#if !IS_HNS
 LittlerootTown_MaysHouse_1F_EventScript_GoSeeRoom::
 	lockall
 	setvar VAR_0x8004, LOCALID_PLAYERS_HOUSE_1F_MOM
@@ -151,7 +162,12 @@ LittlerootTown_MaysHouse_1F_EventScript_GoSeeRoom::
 	waitmovement 0
 	goto PlayersHouse_1F_EventScript_MomGoSeeRoom
 	end
+#else
+LittlerootTown_MaysHouse_1F_EventScript_GoSeeRoom::
+	end
+#endif
 
+#if !IS_HNS
 LittlerootTown_MaysHouse_1F_EventScript_MeetRival0::
 	lockall
 	setvar VAR_0x8008, 0
@@ -315,7 +331,18 @@ LittlerootTown_MaysHouse_1F_Movement_MayGoUpstairs2:
 	walk_up
 	walk_up
 	step_end
+#else
+LittlerootTown_MaysHouse_1F_EventScript_MeetRival0::
+	end
 
+LittlerootTown_MaysHouse_1F_EventScript_MeetRival1::
+	end
+
+LittlerootTown_MaysHouse_1F_EventScript_MeetRival2::
+	end
+#endif
+
+#if !IS_HNS
 RivalsHouse_1F_Text_OhYoureTheNewNeighbor:
 #if GERMAN
 	.string "Oh, hallo. Wer bist du?\p"
@@ -339,6 +366,7 @@ RivalsHouse_1F_Text_OhYoureTheNewNeighbor:
 	.string "kitchen. What a day!\p"
 	.string "My child is out there somewhere too.\n"
 	.string "Maybe you will run into each other.$"
+#endif
 #endif
 
 RivalsHouse_1F_Text_LikeChildLikeFather:
@@ -404,6 +432,7 @@ RivalsHouse_1F_Text_ShouldGoHomeEverySoOften:
 	.string "worries about you, {PLAYER}{KUN}.$"
 #endif
 
+#if !IS_HNS
 RivalsHouse_1F_Text_MayWhoAreYou:
 #if GERMAN
 	.string "Was? Wer… Wer bist du denn?\p"
@@ -420,11 +449,9 @@ RivalsHouse_1F_Text_MayWhoAreYou:
 	.string "Mein Vater, Prof. Birk, hat mir von dir\l"
 	.string "erzählt.\p"
 	.string "Ich habe gehofft, dass du nett bist,\n"
-	.string "{PLAYER}{KUN}, und wir Freunde werden.\l"
-	.string "\p"
+	.string "{PLAYER}{KUN}, und wir Freunde werden.\p"
 	.string "Ist das nicht albern? Ich… Ich habe\n"
-	.string "dich doch gerade erst kennen gelernt.\l"
-	.string "\p"
+	.string "dich doch gerade erst kennen gelernt.\p"
 	.string "Hihihihi…\p"
 	.string "Oh, nein! Das habe ich ja total\n"
 	.string "vergessen!\p"
@@ -461,8 +488,7 @@ RivalsHouse_1F_Text_BrendanWhoAreYou:
 	.string "Hey! Du…\p"
 	.string "Wer bist du denn?\p"
 	.string "Ach ja, du bist {PLAYER}, richtig?\n"
-	.string "Du bist nebenan eingezogen, stimmt’s?\l"
-	.string "\p"
+	.string "Du bist nebenan eingezogen, stimmt’s?\p"
 	.string "Ich wusste nicht, dass du ein Mädchen\n"
 	.string "bist.\p"
 	.string "Vater, Prof. Birk, hat mir erzählt, dass\n"
@@ -497,6 +523,7 @@ RivalsHouse_1F_Text_BrendanWhoAreYou:
 	.string "I'm supposed to go help my dad catch\n"
 	.string "some wild POKéMON.\p"
 	.string "Some other time, okay?$"
+#endif
 #endif
 
 RivalsHouse_1F_Text_DoYouHavePokemon:
@@ -540,11 +567,13 @@ LittlerootTown_MaysHouse_1F_Text_BirksKind:
 #if GERMAN
 	.string "Meine große Schwester Maike ist\n"
 	.string "Pokémon-Trainerin!\p"
-	.string "Papa sagt, du bist ein Champion.\n"
+	.string "Papa sagt, du kommst vom Festland\n"
+	.string "und bist richtig stark.\p"
 	.string "Stimmt das wirklich?$"
 #else
 	.string "My big sister MAY is a POKéMON\n"
 	.string "TRAINER!\p"
-	.string "Dad says you're a CHAMPION.\n"
+	.string "Dad says you came from the mainland\n"
+	.string "and you're really strong.\p"
 	.string "Is that really true?$"
 #endif

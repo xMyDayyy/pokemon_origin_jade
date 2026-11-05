@@ -120,9 +120,19 @@ Route25_SeaCottage_EventScript_NoRoomForSSTicket::
 	end
 
 Route25_SeaCottage_EventScript_BillGoLookAtPC::
+	call_if_set FLAG_IS_KANTO_CHAMPION, Route25_SeaCottage_EventScript_BillTryGiveBoxLink
 	msgbox Route25_SeaCottage_Text_CheckOutRareMonsOnPC
 	release
 	end
+
+@ Origin Jade: the Pokemon Box Link after the Kanto title.
+Route25_SeaCottage_EventScript_BillTryGiveBoxLink::
+	goto_if_set FLAG_RECEIVED_POKEMON_BOX_LINK, Common_EventScript_NopReturn
+	msgbox Route25_SeaCottage_Text_ChampionTakeBoxLink
+	giveitem ITEM_POKEMON_BOX_LINK
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn
+	setflag FLAG_RECEIVED_POKEMON_BOX_LINK
+	return
 
 Route25_SeaCottage_Movement_BillWalkToTeleporter::
 	walk_up
@@ -515,3 +525,270 @@ Route25_SeaCottage_Text_SeeWhichMon::
 	.string "Which POKéMON do you want to see?$"
 #endif
 
+
+Route25_SeaCottage_Text_ChampionTakeBoxLink::
+#if GERMAN
+	.string "Bill: Du hast die Liga besiegt?\n"
+	.string "Wahnsinn!\p"
+	.string "Dann nimm das hier. Mit der\n"
+	.string "Pokémon-Box kommst du überall an\l"
+	.string "die Boxen meines PCs!$"
+#else
+	.string "BILL: You beat the POKéMON LEAGUE?\n"
+	.string "Amazing!\p"
+	.string "Then take this. With the POKéMON\n"
+	.string "BOX LINK, you can reach the BOXES\l"
+	.string "of my PC from anywhere!$"
+#endif
+
+@ Origin Jade: Bill's grandfather from HnS's Bill's house. After the Kanto
+@ title he asks to see four Pokemon in turn and gives EXP Candies L.
+Route25_SeaCottage_EventScript_Grandpa::
+	lock
+	faceplayer
+	goto_if_set FLAG_IS_KANTO_CHAMPION, Route25_SeaCottage_EventScript_GrandpaAfterTitle
+	msgbox Route25_SeaCottage_Text_GrandpaIntro, MSGBOX_DEFAULT
+	release
+	end
+
+Route25_SeaCottage_EventScript_GrandpaAfterTitle::
+	goto_if_ge VAR_SEA_COTTAGE_GRANDPA, 5, Route25_SeaCottage_EventScript_GrandpaShownAll
+	goto_if_ne VAR_SEA_COTTAGE_GRANDPA, 0, Route25_SeaCottage_EventScript_GrandpaAsk
+	msgbox Route25_SeaCottage_Text_GrandpaIntro, MSGBOX_DEFAULT
+	setvar VAR_SEA_COTTAGE_GRANDPA, 1
+Route25_SeaCottage_EventScript_GrandpaAsk::
+	call_if_eq VAR_SEA_COTTAGE_GRANDPA, 1, Route25_SeaCottage_EventScript_GrandpaHintMeowth
+	call_if_eq VAR_SEA_COTTAGE_GRANDPA, 2, Route25_SeaCottage_EventScript_GrandpaHintZigzagoon
+	call_if_eq VAR_SEA_COTTAGE_GRANDPA, 3, Route25_SeaCottage_EventScript_GrandpaHintPonyta
+	call_if_eq VAR_SEA_COTTAGE_GRANDPA, 4, Route25_SeaCottage_EventScript_GrandpaHintFarfetchd
+	msgbox Route25_SeaCottage_Text_GrandpaAskToSeeMon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Route25_SeaCottage_EventScript_GrandpaDeclined
+	msgbox Route25_SeaCottage_Text_GrandpaExcitedToSee, MSGBOX_DEFAULT
+	special ChoosePartyMon
+	waitstate
+	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, Route25_SeaCottage_EventScript_GrandpaDeclined
+	copyvar VAR_0x8005, VAR_0x8004
+	specialvar VAR_RESULT, GetTradeSpecies
+	goto_if_eq VAR_SEA_COTTAGE_GRANDPA, 1, Route25_SeaCottage_EventScript_GrandpaCheckMeowth
+	goto_if_eq VAR_SEA_COTTAGE_GRANDPA, 2, Route25_SeaCottage_EventScript_GrandpaCheckZigzagoon
+	goto_if_eq VAR_SEA_COTTAGE_GRANDPA, 3, Route25_SeaCottage_EventScript_GrandpaCheckPonyta
+	goto_if_eq VAR_SEA_COTTAGE_GRANDPA, 4, Route25_SeaCottage_EventScript_GrandpaCheckFarfetchd
+	release
+	end
+
+Route25_SeaCottage_EventScript_GrandpaHintMeowth::
+	msgbox Route25_SeaCottage_Text_GrandpaMeowth, MSGBOX_DEFAULT
+	return
+
+Route25_SeaCottage_EventScript_GrandpaHintZigzagoon::
+	msgbox Route25_SeaCottage_Text_GrandpaZigzagoon, MSGBOX_DEFAULT
+	return
+
+Route25_SeaCottage_EventScript_GrandpaHintPonyta::
+	msgbox Route25_SeaCottage_Text_GrandpaPonyta, MSGBOX_DEFAULT
+	return
+
+Route25_SeaCottage_EventScript_GrandpaHintFarfetchd::
+	msgbox Route25_SeaCottage_Text_GrandpaFarfetchd, MSGBOX_DEFAULT
+	return
+
+Route25_SeaCottage_EventScript_GrandpaCheckMeowth::
+	goto_if_ne VAR_RESULT, SPECIES_MEOWTH, Route25_SeaCottage_EventScript_GrandpaWrongMon
+	bufferspeciesname STR_VAR_1, SPECIES_MEOWTH
+	setvar VAR_0x8006, 1
+	goto Route25_SeaCottage_EventScript_GrandpaReward
+	end
+
+Route25_SeaCottage_EventScript_GrandpaCheckZigzagoon::
+	goto_if_ne VAR_RESULT, SPECIES_ZIGZAGOON, Route25_SeaCottage_EventScript_GrandpaWrongMon
+	bufferspeciesname STR_VAR_1, SPECIES_ZIGZAGOON
+	setvar VAR_0x8006, 3
+	goto Route25_SeaCottage_EventScript_GrandpaReward
+	end
+
+Route25_SeaCottage_EventScript_GrandpaCheckPonyta::
+	goto_if_eq VAR_RESULT, SPECIES_RAPIDASH, Route25_SeaCottage_EventScript_GrandpaRightPonyta
+	goto_if_ne VAR_RESULT, SPECIES_PONYTA, Route25_SeaCottage_EventScript_GrandpaWrongMon
+Route25_SeaCottage_EventScript_GrandpaRightPonyta::
+	bufferspeciesname STR_VAR_1, SPECIES_PONYTA
+	setvar VAR_0x8006, 5
+	goto Route25_SeaCottage_EventScript_GrandpaReward
+	end
+
+Route25_SeaCottage_EventScript_GrandpaCheckFarfetchd::
+	goto_if_ne VAR_RESULT, SPECIES_FARFETCHD, Route25_SeaCottage_EventScript_GrandpaWrongMon
+	bufferspeciesname STR_VAR_1, SPECIES_FARFETCHD
+	setvar VAR_0x8006, 7
+	goto Route25_SeaCottage_EventScript_GrandpaReward
+	end
+
+Route25_SeaCottage_EventScript_GrandpaReward::
+	msgbox Route25_SeaCottage_Text_GrandpaShownPokemon, MSGBOX_DEFAULT
+	msgbox Route25_SeaCottage_Text_GrandpaThanks, MSGBOX_DEFAULT
+	giveitem ITEM_EXP_CANDY_L, VAR_0x8006
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	addvar VAR_SEA_COTTAGE_GRANDPA, 1
+	msgbox Route25_SeaCottage_Text_GrandpaComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+Route25_SeaCottage_EventScript_GrandpaDeclined::
+	msgbox Route25_SeaCottage_Text_GrandpaYouDontHaveIt, MSGBOX_DEFAULT
+	release
+	end
+
+Route25_SeaCottage_EventScript_GrandpaWrongMon::
+	msgbox Route25_SeaCottage_Text_GrandpaWrongPokemon, MSGBOX_DEFAULT
+	release
+	end
+
+Route25_SeaCottage_EventScript_GrandpaShownAll::
+	msgbox Route25_SeaCottage_Text_GrandpaShownAll, MSGBOX_DEFAULT
+	release
+	end
+
+Route25_SeaCottage_Text_GrandpaIntro::
+#if GERMAN
+	.string "Hm? Kennst du Bill? Er ist mein\n"
+	.string "Enkel.\p"
+	.string "Er tüftelt ständig an seinen PCs,\n"
+	.string "also schaue ich ab und zu nach ihm.$"
+#else
+	.string "Hm? You know BILL? He's my\n"
+	.string "grandson.\p"
+	.string "He's always tinkering with his\n"
+	.string "PCs, so I look in on him now and\l"
+	.string "then.$"
+#endif
+
+Route25_SeaCottage_Text_GrandpaMeowth::
+#if GERMAN
+	.string "Mein Enkel Bill hat mir von einem\n"
+	.string "Pokémon mit scharfen Krallen und\l"
+	.string "einem Talisman auf der Stirn erzählt.\p"
+	.string "Es soll Glück bringen.$"
+#else
+	.string "My grandson BILL told me about\n"
+	.string "a POKéMON that has sharp claws,\l"
+	.string "a charm on its head, and is\p"
+	.string "said to bring good fortune.$"
+#endif
+
+Route25_SeaCottage_Text_GrandpaZigzagoon::
+#if GERMAN
+	.string "Bill hat ein Pokémon erwähnt, das im\n"
+	.string "Zickzack herumläuft.\p"
+	.string "Es soll ein richtiger kleiner\n"
+	.string "Sammler sein.$"
+#else
+	.string "BILL mentioned a POKéMON that\n"
+	.string "runs around in a zigzag\l"
+	.string "pattern.\p"
+	.string "It's quite the little\n"
+	.string "scavenger, I hear.$"
+#endif
+
+Route25_SeaCottage_Text_GrandpaPonyta::
+#if GERMAN
+	.string "Kennst du ein Pokémon mit einer\n"
+	.string "feurigen Mähne?\p"
+	.string "Es soll schneller laufen als die\n"
+	.string "meisten Züge.$"
+#else
+	.string "Do you know of a POKéMON with\n"
+	.string "a fiery mane?\p"
+	.string "I hear it can run faster than\n"
+	.string "most trains.$"
+#endif
+
+Route25_SeaCottage_Text_GrandpaFarfetchd::
+#if GERMAN
+	.string "Bill hat mir von einem Pokémon\n"
+	.string "erzählt, das immer eine Lauchstange\l"
+	.string "bei sich trägt.\p"
+	.string "Ein seltsames Geschöpf.$"
+#else
+	.string "BILL told me about a POKéMON\n"
+	.string "that always carries a stalk\l"
+	.string "of leek with it.\p"
+	.string "Quite the peculiar creature.$"
+#endif
+
+Route25_SeaCottage_Text_GrandpaAskToSeeMon::
+#if GERMAN
+	.string "Hast du so ein Pokémon? Wenn ja,\n"
+	.string "dann würde ich es gerne sehen…$"
+#else
+	.string "If you have that POKéMON, may I\n"
+	.string "see it, please?$"
+#endif
+
+Route25_SeaCottage_Text_GrandpaExcitedToSee::
+#if GERMAN
+	.string "Oh, du willst mir echt eins zeigen?\n"
+	.string "Wie lieb von dir!$"
+#else
+	.string "You will show me? How good of\n"
+	.string "you!$"
+#endif
+
+Route25_SeaCottage_Text_GrandpaYouDontHaveIt::
+#if GERMAN
+	.string "Ach so, schade…$"
+#else
+	.string "You don't have it?\n"
+	.string "That's too bad…$"
+#endif
+
+Route25_SeaCottage_Text_GrandpaShownPokemon::
+#if GERMAN
+	.string "Ah, das ist {STR_VAR_1}?\p"
+	.string "Ist das nicht niedlich! Das ist nett\n"
+	.string "von dir.$"
+#else
+	.string "Ah, so that is {STR_VAR_1}?\p"
+	.string "Isn't it cute! That's so kind\n"
+	.string "of you.$"
+#endif
+
+Route25_SeaCottage_Text_GrandpaThanks::
+#if GERMAN
+	.string "Danke!\p"
+	.string "Das ist ein Zeichen meiner\n"
+	.string "Anerkennung.$"
+#else
+	.string "Thanks!\p"
+	.string "This is a token of my\n"
+	.string "appreciation.$"
+#endif
+
+Route25_SeaCottage_Text_GrandpaComeAgain::
+#if GERMAN
+	.string "Besuche mich bitte mal wieder!$"
+#else
+	.string "Come visit again sometime.$"
+#endif
+
+Route25_SeaCottage_Text_GrandpaShownAll::
+#if GERMAN
+	.string "Danke, dass du mir so viele niedliche\n"
+	.string "Pokémon gezeigt hast!\l"
+	.string "Ich habe mich wirklich gut amüsiert.\p"
+	.string "Das verleiht mir richtig Lebensenergie!$"
+#else
+	.string "Thanks for showing me so many\n"
+	.string "cute POKéMON.\p"
+	.string "I really enjoyed myself. I'm\n"
+	.string "glad I've lived such a long life.$"
+#endif
+
+Route25_SeaCottage_Text_GrandpaWrongPokemon::
+#if GERMAN
+	.string "Hm…\p"
+	.string "Ich glaube, das ist nicht das Pokémon,\n"
+	.string "von dem ich gehört habe…$"
+#else
+	.string "Hm?\p"
+	.string "That's not the POKéMON that I\n"
+	.string "was told about.$"
+#endif

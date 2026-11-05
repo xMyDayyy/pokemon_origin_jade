@@ -17,7 +17,14 @@ PetalburgCity_PokemonCenter_1F_EventScript_Nurse::
 	end
 
 PetalburgCity_PokemonCenter_1F_EventScript_FatMan::
+#if IS_HNS
+	goto_if_ge VAR_PETALBURG_GYM_STATE, 6, PetalburgCity_PokemonCenter_1F_EventScript_FatManGymOpen
+#endif
 	msgbox PetalburgCity_PokemonCenter_1F_Text_PCStorageSystem, MSGBOX_NPC
+	end
+
+PetalburgCity_PokemonCenter_1F_EventScript_FatManGymOpen::
+	msgbox PetalburgCity_PokemonCenter_1F_Text_GymRebuildingDone, MSGBOX_NPC
 	end
 
 PetalburgCity_PokemonCenter_1F_EventScript_Youngster::
@@ -66,6 +73,19 @@ PetalburgCity_PokemonCenter_1F_Text_PCStorageSystem:
 	.string "dragging on.\p"
 	.string "My neighbour says the new LEADER\n"
 	.string "has hardly left his house.$"
+#endif
+
+PetalburgCity_PokemonCenter_1F_Text_GymRebuildingDone:
+#if GERMAN
+	.string "Der Umbau der Arena ist endlich\n"
+	.string "fertig.\p"
+	.string "Meine Nachbarin sagt, der neue Leiter\n"
+	.string "trainiert jetzt von früh bis spät.$"
+#else
+	.string "The rebuilding of the GYM is\n"
+	.string "finally done.\p"
+	.string "My neighbour says the new LEADER\n"
+	.string "now trains from dawn till dusk.$"
 #endif
 
 PetalburgCity_PokemonCenter_1F_Text_OranBerryRegainedHP:

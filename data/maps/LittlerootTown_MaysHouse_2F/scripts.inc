@@ -41,17 +41,24 @@ LittlerootTown_MaysHouse_2F_OnWarp:
 	.2byte 0
 
 LittlerootTown_MaysHouse_2F_EventScript_CheckInitDecor::
+#if IS_HNS
+	@ Origin Jade: May's room, no player decorations.
+	end
+#endif
 	checkplayergender
 	goto_if_eq VAR_RESULT, FEMALE, SecretBase_EventScript_InitDecorations
 	end
 
 LittlerootTown_MaysHouse_2F_EventScript_RivalsPokeBall::
 	lockall
+#if !IS_HNS
 	goto_if_eq VAR_LITTLEROOT_RIVAL_STATE, 2, LittlerootTown_MaysHouse_2F_EventScript_MeetMay
+#endif
 	msgbox RivalsHouse_2F_Text_ItsRivalsPokeBall, MSGBOX_DEFAULT
 	releaseall
 	end
 
+#if !IS_HNS
 LittlerootTown_MaysHouse_2F_EventScript_MeetMay::
 	delay 10
 	addobject LOCALID_RIVALS_HOUSE_2F_RIVAL
@@ -232,6 +239,7 @@ LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMayEast:
 	delay_16
 	walk_in_place_faster_right
 	step_end
+#endif
 
 RivalsHouse_2F_EventScript_Rival::
 	lockall
@@ -317,6 +325,7 @@ LittlerootTown_MaysHouse_2F_EventScript_TurnOffPlayerPC::
 	releaseall
 	end
 
+#if !IS_HNS
 RivalsHouse_2F_Text_MayWhoAreYou:
 #if GERMAN
 	.string "Was? Wer… Wer bist du denn?\p"
@@ -333,11 +342,9 @@ RivalsHouse_2F_Text_MayWhoAreYou:
 	.string "Mein Vater, Prof. Birk, hat mir von dir\l"
 	.string "erzählt.\p"
 	.string "Ich habe gehofft, dass du nett bist,\n"
-	.string "{PLAYER}{KUN}, und wir Freunde werden.\l"
-	.string "\p"
+	.string "{PLAYER}{KUN}, und wir Freunde werden.\p"
 	.string "Ist das nicht albern? Ich… Ich habe\n"
-	.string "dich doch gerade erst kennen gelernt.\l"
-	.string "\p"
+	.string "dich doch gerade erst kennen gelernt.\p"
 	.string "Hihihihi…\p"
 	.string "Oh, nein! Das habe ich ja total\n"
 	.string "vergessen!\p"
@@ -368,6 +375,7 @@ RivalsHouse_2F_Text_MayWhoAreYou:
 	.string "some wild POKéMON!\p"
 	.string "{PLAYER}{KUN}, I'll catch you later!$"
 #endif
+#endif
 
 RivalsHouse_2F_Text_MayGettingReady:
 #if GERMAN
@@ -378,13 +386,13 @@ RivalsHouse_2F_Text_MayGettingReady:
 	.string "Items ready, and…$"
 #endif
 
+#if !IS_HNS
 RivalsHouse_2F_Text_BrendanWhoAreYou:
 #if GERMAN
 	.string "Hey! Du…\p"
 	.string "Wer bist du denn?\p"
 	.string "Ach ja, du bist {PLAYER}, richtig?\n"
-	.string "Du bist nebenan eingezogen, stimmt’s?\l"
-	.string "\p"
+	.string "Du bist nebenan eingezogen, stimmt’s?\p"
 	.string "Ich wusste nicht, dass du ein Mädchen\n"
 	.string "bist.\p"
 	.string "Vater, Prof. Birk, hat mir erzählt, dass\n"
@@ -419,6 +427,7 @@ RivalsHouse_2F_Text_BrendanWhoAreYou:
 	.string "I'm supposed to go help my dad catch\n"
 	.string "some wild POKéMON.\p"
 	.string "Some other time, okay?$"
+#endif
 #endif
 
 RivalsHouse_2F_Text_BrendanGettingReady:

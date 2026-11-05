@@ -18,7 +18,8 @@ Ecruteak_Text_ItemfinderAdventure:
 
 Ecruteak_Text_ItemfinderTrueSpirit:
 #if GERMAN
-	.string "Aha! Du weißt offensichtlich ganz genau,\n"
+	.string "Aha!\n"
+	.string "Du weißt offensichtlich ganz genau,\l"
 	.string "was Männerherzen höher schlagen lässt!\p"
 	.string "Du gefällst mir! Hier, nimm das mit.$"
 #else

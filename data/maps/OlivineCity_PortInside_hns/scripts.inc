@@ -2,90 +2,6 @@ OlivineCity_PortInside_hns_MapScripts::
 	.byte 0
 
 
-OlivineCity_PortInside_EventScript_Oak::
-	lock
-	playbgm MUS_HG_OAK, FALSE
-	playse SE_PIN
-	applymovement2 LOCALID_OLIVINEPORT_OAK, Common_Movement_ExclamationMark
-	delay 55
-	waitmovement LOCALID_OLIVINEPORT_OAK
-	turnobject LOCALID_OLIVINEPORT_OAK, DIR_NORTH
-	@ Origin Jade: the Pokedex is national from the start, Oak only sees the champion off.
-	msgbox OlivineCity_PortInside_Text_Nationaldex1, MSGBOX_DEFAULT
-	closemessage
-	delay 30
-	playse SE_PIN
-	applymovement2 LOCALID_OLIVINEPORT_OAK, Common_Movement_ExclamationMark
-	delay 55
-	waitmovement LOCALID_OLIVINEPORT_OAK
-	msgbox OlivineCity_PortInside_Text_Nationaldex4, MSGBOX_DEFAULT
-	closemessage
-	applymovement OBJ_EVENT_ID_PLAYER, OlivineCity_PortInside_Movement_PlayerMoveOver
-	waitmovement 0
-	applymovement LOCALID_OLIVINEPORT_OAK, OlivineCity_PortInside_Movement_OakLeave
-	waitmovement 0
-	setflag FLAG_HIDE_OLIVINE_PORT_OAK
-	playse SE_EXIT
-	removeobject LOCALID_OLIVINEPORT_OAK
-	fadedefaultbgm
-	waitse
-	release
-	end
-
-OlivineCity_PortInside_Movement_PlayerMoveOver:
-	walk_up
-	walk_left
-	face_right
-	step_end
-
-OlivineCity_PortInside_Movement_OakLeave:
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	step_end
-
-OlivineCity_PortInside_Text_Nationaldex1:
-#if GERMAN
-	.string "Eich: Oh, {PLAYER}!\p"
-	.string "Jetzt bist du Champion von Kanto\n"
-	.string "und Johto!\p"
-	.string "Ich bin wirklich stolz auf dich!$"
-#else
-	.string "PROF.OAK: Oh, {PLAYER}!\p"
-	.string "Now you're the CHAMPION of both\n"
-	.string "KANTO and JOHTO!\p"
-	.string "I'm really proud of you!$"
-#endif
-OlivineCity_PortInside_Text_Nationaldex4:
-#if GERMAN
-	.string "Hoppla! Schon so spät!\p"
-	.string "Im Radiosender von Dukatia City\n"
-	.string "wird gleich meine Sendung\l"
-	.string "aufgezeichnet!\p"
-	.string "Mit der M.S. Aqua kannst du jetzt\n"
-	.string "nach Orania City oder in die\l"
-	.string "Kampfzone fahren.\p"
-	.string "Mit dem richtigen Ticket sogar bis\n"
-	.string "zur Entstehungsinsel!\p"
-	.string "Und vielleicht eines Tages bis nach\n"
-	.string "Hoenn… Gute Reise, {PLAYER}!$"
-#else
-	.string "Oops! Look at the time!\p"
-	.string "I have to record my radio show in\n"
-	.string "GOLDENROD CITY!\p"
-	.string "The S.S.AQUA can take you to\n"
-	.string "VERMILION CITY and the BATTLE\l"
-	.string "FRONTIER now.\p"
-	.string "With the right ticket, even to\n"
-	.string "BIRTH ISLAND!\p"
-	.string "And maybe to HOENN someday…\n"
-	.string "Have a good trip, {PLAYER}!$"
-#endif
-
 OlivinePort_EventScript_CooltrainerF::
 	msgbox OlivinePort_Text_CooltrainerF, MSGBOX_NPC
 	end
@@ -103,12 +19,14 @@ OlivinePort_EventScript_Youngster::
 	end
 
 @ Origin Jade: the M.S. Aqua sails every day from the first Johto title on; the first trip is the
-@ maiden voyage to Vermilion. See docs/origin_jade/DECISIONS.md, D-029.
+@ maiden voyage to Vermilion. The Hoenn ferry needs no maiden voyage.
 OlivinePort_EventScript_Sailor::
 	lock
 	faceplayer
 	goto_if_unset FLAG_IS_JOHTO_CHAMPION, OlivinePort_EventScript_SailorNotYet
 	goto_if_ge VAR_SSAQUA_STATE, 7, OlivinePort_EventScript_Sailor_AfterKanto
+	call Common_EventScript_CheckHoennFerry
+	goto_if_eq VAR_RESULT, TRUE, OlivinePort_EventScript_Sailor_AfterKanto
 	msgbox OlivinePort_Text_AskBoard, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, FALSE, OlivinePort_EventScript_Sailor_Refused
 	checkitem ITEM_SS_TICKET
@@ -127,12 +45,15 @@ OlivinePort_EventScript_SailorNotYet::
 OlivinePort_EventScript_Sailor_AfterKanto::
 	message OlivinePort_Text_WhereSail
 	waitmessage
-	multichoice 28, 2, MULTI_OLIVINE_HARBOR, FALSE
+	setvar VAR_0x8008, SHIP_PORT_OLIVINE
+	call Common_EventScript_ShipMenu
 	switch VAR_RESULT
-	case SS_AQUA_SELECTION_OTHER_PORT, OlivinePort_EventScript_ChoseVermilion
-	case SS_AQUA_SELECTION_BATTLE_FRONTIER, OlivinePort_EventScript_ChoseBattleFrontier
-	case SS_AQUA_SELECTION_BIRTH_ISLAND, OlivinePort_EventScript_ChoseBirthIsland
-	case SS_AQUA_SELECTION_HOENN, Common_EventScript_SailToHoenn
+	case SHIP_DEST_VERMILION, OlivinePort_EventScript_ChoseVermilion
+	case SHIP_DEST_BATTLE_FRONTIER, OlivinePort_EventScript_ChoseBattleFrontier
+	case SHIP_DEST_BIRTH_ISLAND, OlivinePort_EventScript_ChoseBirthIsland
+	case SHIP_DEST_HOENN, Common_EventScript_SailToHoenn
+	case SHIP_DEST_SLATEPORT, Common_EventScript_SailToSlateport
+	case SHIP_DEST_LILYCOVE, Common_EventScript_SailToLilycove
 	goto OlivinePort_EventScript_Sailor_Refused
 
 OlivinePort_EventScript_ChoseVermilion::
@@ -141,6 +62,7 @@ OlivinePort_EventScript_ChoseVermilion::
 	checkitem ITEM_SS_TICKET
 	bufferitemname STR_VAR_1, ITEM_SS_TICKET
 	goto_if_eq VAR_RESULT, FALSE, OlivinePort_EventScript_Sailor_NoCredentials
+	goto_if_lt VAR_SSAQUA_STATE, 7, OlivinePort_EventScript_Sailor_MaidenVoyage
 	call OlivinePort_EventScript_EnterShip
 	@ Origin Jade: lands in Vermilion's port building, in front of the sailor.
 	warpsilent MAP_VERMILION_CITY_PORT_INSIDE_FRLG, 8, 9
@@ -160,7 +82,9 @@ OlivinePort_EventScript_ChoseBirthIsland::
 	release
 	end
 
+@ The Kampfzone only after the Hoenn title; checked again like the Hoenn trips.
 OlivinePort_EventScript_ChoseBattleFrontier::
+	goto_if_unset FLAG_IS_HOENN_CHAMPION, Common_EventScript_ShipMenuCancel
 	closemessage
 	delay 20
 	call OlivinePort_EventScript_EnterShip

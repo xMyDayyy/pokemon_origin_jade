@@ -338,6 +338,11 @@
 // Saffron's Trainer Fan Club shares the vanilla vars.
 #define VAR_SAFFRON_FANCLUB_FAN_COUNTER         VAR_FANCLUB_FAN_COUNTER
 #define VAR_SAFFRON_FANCLUB_LOSE_FAN_TIMER      VAR_FANCLUB_LOSE_FAN_TIMER
+// Hoenn's Safari Zone uses the vanilla var.
+#define VAR_HOENN_SAFARI_ZONE_STATE             VAR_SAFARI_ZONE_STATE
+// Lilycove's lottery shares the vanilla prize vars.
+#define VAR_HOENN_POKELOT_PRIZE_ITEM            VAR_POKELOT_PRIZE_ITEM
+#define VAR_HOENN_POKELOT_PRIZE_PLACE           VAR_POKELOT_PRIZE_PLACE
 #endif
 
 #if TESTING

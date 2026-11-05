@@ -1,5 +1,6 @@
 #include "global.h"
 #include "level_scaling.h"
+#include "battle.h"
 #include "data.h"
 #include "overworld.h"
 #include "pokemon.h"
@@ -19,9 +20,8 @@
 // Hoenn: every mapsec where IsHoennMapsec is TRUE, unlisted ones use the
 // default corridor. Johto: only the mapsecs in its corridor table.
 // Kanto: FRLG maps (IsFrlgKantoMap), only after the Kanto title; before it
-// only VS Seeker rematch teams move up to a floor (D-034).
-// After a region's title its corridors lose their ceiling, see
-// docs/origin_jade/DECISIONS.md, D-031.
+// only VS Seeker rematch teams move up to a floor.
+// After a region's title its corridors lose their ceiling.
 // =====================================================================
 
 #if defined(POKEMON_HNS)
@@ -55,12 +55,27 @@ struct ScalingCorridor
     u16 mapsec;
     u8 floor;
     u8 ceiling;
+    // Optional: storyCeiling replaces ceiling while var storyVar is below storyValue.
+    u8 storyCeiling;
+    u16 storyVar;
+    u16 storyValue;
+};
+
+// A map whose trainers have their own band top and corridor (Johto league rooms).
+struct ScalingRoom
+{
+    u16 map;
+    s8 extra;
+    u8 floor;
+    u8 ceiling;
 };
 
 struct ScalingRules
 {
     const struct ScalingCorridor *corridors;
     u16 corridorCount;
+    const struct ScalingRoom *rooms;
+    u16 roomCount;
     u8 trainerBelow;
     u8 trainerAbove;
     u8 wildBelow;
@@ -79,6 +94,9 @@ struct ScalingRules
     bool8 corridorListIsRegion;
     // TRUE: never below the level from the party/encounter data (Kanto).
     bool8 originalLevelIsFloor;
+    // TRUE: static and scripted encounters and roamers are at least the top of
+    // the wild band (ScaleStaticMonLevel; Johto, Hoenn).
+    bool8 staticFloor;
     // Once this title flag is set, titleCeiling replaces every ceiling.
     u16 titleFlag;
     u8 titleCeiling;
@@ -109,6 +127,7 @@ static const struct ScalingRules sHoennRules =
     .trainerEvolve       = HOENN_SCALING_TRAINER_EVOLVE,
     .corridorListIsRegion = FALSE,
     .originalLevelIsFloor = FALSE,
+    .staticFloor         = TRUE,
     .titleFlag           = FLAG_IS_HOENN_CHAMPION,
     .titleCeiling        = HOENN_SCALING_TITLE_CEILING,
 };
@@ -120,10 +139,17 @@ static const struct ScalingCorridor sJohtoCorridors[] =
     JOHTO_SCALING_CORRIDORS
 };
 
+static const struct ScalingRoom sJohtoRooms[] =
+{
+    JOHTO_SCALING_ROOMS
+};
+
 static const struct ScalingRules sJohtoRules =
 {
     .corridors           = sJohtoCorridors,
     .corridorCount       = ARRAY_COUNT(sJohtoCorridors),
+    .rooms               = sJohtoRooms,
+    .roomCount           = ARRAY_COUNT(sJohtoRooms),
     .trainerBelow        = JOHTO_SCALING_TRAINER_BELOW,
     .trainerAbove        = JOHTO_SCALING_TRAINER_ABOVE,
     .wildBelow           = JOHTO_SCALING_WILD_BELOW,
@@ -139,6 +165,7 @@ static const struct ScalingRules sJohtoRules =
     .trainerEvolve       = JOHTO_SCALING_TRAINER_EVOLVE,
     .corridorListIsRegion = TRUE,
     .originalLevelIsFloor = FALSE,
+    .staticFloor         = TRUE,
     .titleFlag           = FLAG_IS_JOHTO_CHAMPION,
     .titleCeiling        = JOHTO_SCALING_TITLE_CEILING,
 };
@@ -165,6 +192,7 @@ static const struct ScalingRules sKantoRules =
     .trainerEvolve       = KANTO_SCALING_TRAINER_EVOLVE,
     .corridorListIsRegion = FALSE,
     .originalLevelIsFloor = TRUE,
+    .staticFloor         = FALSE,
     .titleFlag           = FLAG_IS_KANTO_CHAMPION,
     .titleCeiling        = KANTO_SCALING_MAX_LEVEL,
 };
@@ -179,7 +207,7 @@ static EWRAM_DATA const struct ScalingRules *sRematchFloorRules = NULL;
 
 // FRLG Kanto map: a Kanto mapsec outside HnS's map groups, which come first in
 // data/maps/map_groups.json (before Emerald's, MAP_LITTLEROOT_TOWN). Johto's league
-// maps (Kanto mapsec) keep the Johto rules; Route22_hns has no corridor and is not scaled.
+// maps (Kanto mapsec) keep the Johto rules.
 static bool32 IsFrlgKantoMap(void)
 {
     u32 mapsec = gMapHeader.regionMapSectionId;
@@ -201,7 +229,12 @@ static bool32 FindCorridor(const struct ScalingRules *rules, u16 mapsec, u8 *flo
             if (floor != NULL)
                 *floor = rules->corridors[i].floor;
             if (ceiling != NULL)
+            {
                 *ceiling = rules->corridors[i].ceiling;
+                if (rules->corridors[i].storyVar != 0
+                 && VarGet(rules->corridors[i].storyVar) < rules->corridors[i].storyValue)
+                    *ceiling = rules->corridors[i].storyCeiling;
+            }
             return TRUE;
         }
     }
@@ -213,8 +246,8 @@ static const struct ScalingRules *GetScalingRules(void)
 {
     u16 mapsec = gMapHeader.regionMapSectionId;
 
-    // Kanto's first run keeps the hand-set levels (D-011); scaling starts with
-    // the Kanto title (D-031).
+    // Kanto's first run keeps the hand-set levels; scaling starts with
+    // the Kanto title.
     if (IsFrlgKantoMap())
     {
 #if KANTO_LEVEL_SCALING == TRUE
@@ -239,30 +272,70 @@ bool32 LevelScalingActive(void)
     return GetScalingRules() != NULL;
 }
 
-// Anchor: highest level in the party, eggs excluded (0 = no Pokemon).
-static u8 GetScalingAnchor(void)
+// Anchor: mean of the three highest party levels (fewer Pokemon: their mean), rounded,
+// but at least the highest level - SCALING_ANCHOR_MAX_DROP. Eggs excluded (0 = no Pokemon).
+// Only the first partySlots party slots count.
+static u8 GetScalingAnchor(u32 partySlots)
 {
-    u32 i;
-    u8 best = 0;
+    u8 top[3] = {0}; // highest first
+    u32 i, j, count = 0, sum = 0, anchor;
 
-    for (i = 0; i < PARTY_SIZE; i++)
+    for (i = 0; i < partySlots; i++)
     {
+        u8 level, temp;
+
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE)
             continue;
         if (GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG, NULL))
             continue;
-        if (GetMonData(&gPlayerParty[i], MON_DATA_LEVEL, NULL) > best)
-            best = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL, NULL);
+        level = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL, NULL);
+        for (j = 0; j < ARRAY_COUNT(top); j++)
+        {
+            if (level > top[j])
+                SWAP(level, top[j], temp);
+        }
+        if (count < ARRAY_COUNT(top))
+            count++;
     }
-    return best;
+    if (count == 0)
+        return 0;
+    for (i = 0; i < count; i++)
+        sum += top[i];
+    anchor = (sum + count / 2) / count;
+    if (anchor + SCALING_ANCHOR_MAX_DROP < top[0])
+        anchor = top[0] - SCALING_ANCHOR_MAX_DROP;
+    return anchor;
 }
 
-static void GetCorridor(const struct ScalingRules *rules, u8 *floor, u8 *ceiling)
+// Room of the current map, NULL if it has none.
+static const struct ScalingRoom *FindScalingRoom(const struct ScalingRules *rules)
+{
+    u32 i;
+    u16 map = gSaveBlock1Ptr->location.mapNum | (gSaveBlock1Ptr->location.mapGroup << 8);
+
+    for (i = 0; i < rules->roomCount; i++)
+    {
+        if (rules->rooms[i].map == map)
+            return &rules->rooms[i];
+    }
+    return NULL;
+}
+
+// room: replaces the corridor of the map section (trainers only), may be NULL.
+static void GetCorridor(const struct ScalingRules *rules, const struct ScalingRoom *room, u8 *floor, u8 *ceiling)
 {
     *floor = rules->defaultFloor;
     *ceiling = rules->defaultCeiling;
-    FindCorridor(rules, gMapHeader.regionMapSectionId, floor, ceiling);
-    // After the region's title only the floor stays (D-031).
+    if (room != NULL)
+    {
+        *floor = room->floor;
+        *ceiling = room->ceiling;
+    }
+    else
+    {
+        FindCorridor(rules, gMapHeader.regionMapSectionId, floor, ceiling);
+    }
+    // After the region's title only the floor stays.
     if (FlagGet(rules->titleFlag) && *ceiling < rules->titleCeiling)
         *ceiling = rules->titleCeiling;
 }
@@ -288,7 +361,7 @@ u8 ScaleWildMonLevel(u8 level)
 
     if (rules == NULL)
         return level;
-    anchor = GetScalingAnchor();
+    anchor = GetScalingAnchor(PARTY_SIZE);
     if (anchor == 0)
         return level;
 
@@ -296,32 +369,42 @@ u8 ScaleWildMonLevel(u8 level)
     width = rules->wildBelow - rules->wildAbove + 1;
     scaled = anchor - rules->wildBelow + (s32)(Random() % width);
 
-    GetCorridor(rules, &floor, &ceiling);
+    GetCorridor(rules, NULL, &floor, &ceiling);
     scaled = ClampScaledLevel(rules, scaled, floor, ceiling);
     if (rules->originalLevelIsFloor && scaled < level)
         scaled = level;
     return scaled;
 }
 
-// Static and scripted encounters and roamers on Johto maps: at least the top of the
-// map's wild band, see docs/origin_jade/DECISIONS.md, D-039. Pass-through elsewhere.
+u8 GetScalingCeiling(void)
+{
+    const struct ScalingRules *rules = GetScalingRules();
+    u8 floor, ceiling;
+
+    if (rules == NULL)
+        return 0;
+    GetCorridor(rules, NULL, &floor, &ceiling);
+    return ceiling;
+}
+
+// Static and scripted encounters and roamers on maps with Johto's or Hoenn's rules: at
+// least the top of the map's wild band.
+// Pass-through elsewhere (Kanto keeps its levels).
 u8 ScaleStaticMonLevel(u8 level)
 {
-#if JOHTO_LEVEL_SCALING == TRUE
     const struct ScalingRules *rules = GetScalingRules();
     s32 anchor;
     u8 floor, ceiling, top;
 
-    if (rules != &sJohtoRules)
+    if (rules == NULL || !rules->staticFloor)
         return level;
-    anchor = GetScalingAnchor();
+    anchor = GetScalingAnchor(PARTY_SIZE);
     if (anchor == 0)
         return level;
-    GetCorridor(rules, &floor, &ceiling);
+    GetCorridor(rules, NULL, &floor, &ceiling);
     top = ClampScaledLevel(rules, anchor - rules->wildAbove, floor, ceiling);
     if (top > level)
         return top;
-#endif
     return level;
 }
 
@@ -383,11 +466,11 @@ static u32 TrainerEvoHash(u16 trainerId, u8 partyIndex, u8 step)
 
 // Trainer Pokemon only: evolves up to two steps if the scaled level allows it.
 // Level evolutions at their level; stone, trade and level-0 (condition-only) ones
-// at GetTrainerEvoLevel, see docs/origin_jade/DECISIONS.md, D-012.
+// at GetTrainerEvoLevel.
 // Each step is skipped with evoSkipPercent, which also ends the evolution.
 // Skips and branches come from TrainerEvoHash.
-// Call right after ScaleTrainerMonLevel for the same Pokemon. partyIndex: its index
-// in the trainer's party data.
+// Call right after ScaleTrainerMonLevel or ScalePartnerMonLevel for the same Pokemon.
+// partyIndex: its index in the trainer's party data.
 u16 ScaleTrainerMonSpecies(u16 species, u8 scaledLevel, u16 trainerId, u8 partyIndex)
 {
     const struct ScalingRules *rules = GetScalingRules();
@@ -463,6 +546,7 @@ static bool32 IsBossTrainer(const struct Trainer *trainer)
     case TRAINER_CLASS_MAGMA_ADMIN:
     case TRAINER_CLASS_AQUA_LEADER:
     case TRAINER_CLASS_AQUA_ADMIN:
+    case TRAINER_CLASS_RIVAL: // May and Wally
     // Johto
     case TRAINER_CLASS_LEADER_HNS:
     case TRAINER_CLASS_LEADER_KANTO_HNS:
@@ -484,8 +568,7 @@ static bool32 IsBossTrainer(const struct Trainer *trainer)
 
 // Kanto VS Seeker rematch before the Kanto title: if the team's highest level is
 // below the tier's floor (GetKantoRematchLevelFloor), the ace goes to the floor and
-// the others keep their distance to it. Never lowers, at most MAX_LEVEL, see
-// docs/origin_jade/DECISIONS.md, D-034.
+// the others keep their distance to it. Never lowers, at most MAX_LEVEL.
 static u8 RaiseToKantoRematchFloor(const struct Trainer *trainer, u8 level, u8 partyMaxLevel)
 {
     s32 top = GetKantoRematchLevelFloor(trainer);
@@ -500,36 +583,62 @@ static u8 RaiseToKantoRematchFloor(const struct Trainer *trainer, u8 level, u8 p
     return raised;
 }
 
-// partyMaxLevel: highest original level in the trainer's party.
-u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel)
+// Trainer band of rules. partyMaxLevel: highest original level in the party.
+// In a battle with an in-game partner the anchor counts only the player's own
+// slots (the partner's team fills the last MULTI_PARTY_SIZE).
+// room: own band top and corridor of the map (opponents only), may be NULL.
+static u8 ScaleToTrainerBand(const struct ScalingRules *rules, u8 level, u8 partyMaxLevel, bool32 isBoss, const struct ScalingRoom *room)
 {
-    const struct ScalingRules *rules = GetScalingRules();
     s32 anchor, top, scaled;
     u8 floor, ceiling;
 
-    sRematchFloorRules = NULL;
-    if (rules == NULL)
-        return RaiseToKantoRematchFloor(trainer, level, partyMaxLevel);
     if (partyMaxLevel >= rules->fixedMinLevel)
         return level;
 
-    anchor = GetScalingAnchor();
+    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
+        anchor = GetScalingAnchor(PARTY_SIZE - MULTI_PARTY_SIZE);
+    else
+        anchor = GetScalingAnchor(PARTY_SIZE);
     if (anchor == 0 || partyMaxLevel == 0)
         return level;
 
     // The ace goes to the top of the band, the others keep their distance to it.
     top = anchor + rules->trainerAbove;
-    if (IsBossTrainer(trainer))
+    if (room != NULL)
+        top += room->extra;
+    else if (isBoss)
         top += rules->bossExtra;
     scaled = top - (s32)(partyMaxLevel - level);
     if (scaled < anchor - rules->trainerBelow)
         scaled = anchor - rules->trainerBelow;
 
-    GetCorridor(rules, &floor, &ceiling);
+    GetCorridor(rules, room, &floor, &ceiling);
     scaled = ClampScaledLevel(rules, scaled, floor, ceiling);
     if (rules->originalLevelIsFloor && scaled < level)
         scaled = level;
     return scaled;
+}
+
+// partyMaxLevel: highest original level in the trainer's party.
+u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel)
+{
+    const struct ScalingRules *rules = GetScalingRules();
+
+    sRematchFloorRules = NULL;
+    if (rules == NULL)
+        return RaiseToKantoRematchFloor(trainer, level, partyMaxLevel);
+    return ScaleToTrainerBand(rules, level, partyMaxLevel, IsBossTrainer(trainer), FindScalingRoom(rules));
+}
+
+// partyMaxLevel: highest original level in the partner's party.
+u8 ScalePartnerMonLevel(u8 level, u8 partyMaxLevel)
+{
+    const struct ScalingRules *rules = GetScalingRules();
+
+    sRematchFloorRules = NULL;
+    if (rules == NULL)
+        return level;
+    return ScaleToTrainerBand(rules, level, partyMaxLevel, FALSE, NULL);
 }
 
 #else // Pass-through without scaling (Emerald/FRLG build or switched off)
@@ -549,7 +658,17 @@ u8 ScaleStaticMonLevel(u8 level)
     return level;
 }
 
+u8 GetScalingCeiling(void)
+{
+    return 0;
+}
+
 u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel)
+{
+    return level;
+}
+
+u8 ScalePartnerMonLevel(u8 level, u8 partyMaxLevel)
 {
     return level;
 }

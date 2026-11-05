@@ -174,7 +174,7 @@ static const match_call_text_data_t sMrStoneTextScripts[] = {
     { MatchCall_Text_MrStone2,  FLAG_ENABLE_MR_STONE_POKENAV,        NO_FLAG_TO_SET },
     { MatchCall_Text_MrStone3,  FLAG_DELIVERED_STEVEN_LETTER,        NO_FLAG_TO_SET },
     { MatchCall_Text_MrStone4,  FLAG_RECEIVED_EXP_SHARE,             NO_FLAG_TO_SET },
-    { MatchCall_Text_MrStone5,  FLAG_RECEIVED_HM_STRENGTH,           NO_FLAG_TO_SET },
+    { MatchCall_Text_MrStone5,  FLAG_HOENN_RECEIVED_HM_STRENGTH,     NO_FLAG_TO_SET },
     { MatchCall_Text_MrStone6,  FLAG_DEFEATED_PETALBURG_GYM,          NO_FLAG_TO_SET },
     { MatchCall_Text_MrStone7,  FLAG_RECEIVED_CASTFORM,              NO_FLAG_TO_SET },
     { MatchCall_Text_MrStone8,  FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, NO_FLAG_TO_SET },
@@ -246,10 +246,10 @@ static const struct MatchCallBirch sProfBirkMatchCallHeader =
 };
 
 static const match_call_text_data_t sMomTextScripts[] = {
-    // Call texts by Hoenn progress.
-    { MatchCall_Text_Mom1, ALWAYS_AVAILABLE,            NO_FLAG_TO_SET },
-    { MatchCall_Text_Mom2, FLAG_DEFEATED_PETALBURG_GYM, NO_FLAG_TO_SET },
-    { MatchCall_Text_Mom3, FLAG_IS_HOENN_CHAMPION,      NO_FLAG_TO_SET },
+    // Call texts: Kanto and Johto, after the arrival in Hoenn, after the Hoenn title.
+    { MatchCall_Text_Mom2, ALWAYS_AVAILABLE,             NO_FLAG_TO_SET },
+    { MatchCall_Text_Mom1, FLAG_VISITED_LITTLEROOT_TOWN, NO_FLAG_TO_SET },
+    { MatchCall_Text_Mom3, FLAG_IS_HOENN_CHAMPION,       NO_FLAG_TO_SET },
     MATCH_CALL_TEXT_END
 };
 
@@ -304,7 +304,7 @@ static const struct MatchCallStructNPC sStevenMatchCallHeader =
 #if GERMAN
 static const u8 gText_MayBrendanMatchCallDesc[] = _("Birks Tochter");
 #else
-static const u8 gText_MayBrendanMatchCallDesc[] = _("RAD NEIGHBOR");
+static const u8 gText_MayBrendanMatchCallDesc[] = _("BIRCH's DAUGHTER");
 #endif
 
 static const match_call_text_data_t sMayTextScripts[] = {
@@ -312,7 +312,7 @@ static const match_call_text_data_t sMayTextScripts[] = {
     { MatchCall_Text_May2,  FLAG_DEFEATED_DEWFORD_GYM,      NO_FLAG_TO_SET },
     { MatchCall_Text_May3,  FLAG_DELIVERED_DEVON_GOODS,          NO_FLAG_TO_SET },
     { MatchCall_Text_May4,  FLAG_HIDE_MAUVILLE_CITY_WALLY,       NO_FLAG_TO_SET },
-    { MatchCall_Text_May5,  FLAG_RECEIVED_HM_STRENGTH,           NO_FLAG_TO_SET },
+    { MatchCall_Text_May5,  FLAG_HOENN_RECEIVED_HM_STRENGTH,     NO_FLAG_TO_SET },
     { MatchCall_Text_May6,  FLAG_DEFEATED_LAVARIDGE_GYM,     NO_FLAG_TO_SET },
     { MatchCall_Text_May7,  FLAG_DEFEATED_PETALBURG_GYM,          NO_FLAG_TO_SET },
     { MatchCall_Text_May8,  FLAG_RECEIVED_CASTFORM,              NO_FLAG_TO_SET },
@@ -341,7 +341,7 @@ static const match_call_text_data_t sBrendanTextScripts[] = {
     { MatchCall_Text_Brendan2,  FLAG_DEFEATED_DEWFORD_GYM,      NO_FLAG_TO_SET },
     { MatchCall_Text_Brendan3,  FLAG_DELIVERED_DEVON_GOODS,          NO_FLAG_TO_SET },
     { MatchCall_Text_Brendan4,  FLAG_HIDE_MAUVILLE_CITY_WALLY,       NO_FLAG_TO_SET },
-    { MatchCall_Text_Brendan5,  FLAG_RECEIVED_HM_STRENGTH,           NO_FLAG_TO_SET },
+    { MatchCall_Text_Brendan5,  FLAG_HOENN_RECEIVED_HM_STRENGTH,     NO_FLAG_TO_SET },
     { MatchCall_Text_Brendan6,  FLAG_DEFEATED_LAVARIDGE_GYM,     NO_FLAG_TO_SET },
     { MatchCall_Text_Brendan7,  FLAG_DEFEATED_PETALBURG_GYM,          NO_FLAG_TO_SET },
     { MatchCall_Text_Brendan8,  FLAG_RECEIVED_CASTFORM,              NO_FLAG_TO_SET },
@@ -1611,6 +1611,12 @@ static void MatchCall_GetMessage_Trainer(match_call_t matchCall, u8 *dest)
 {
     if (matchCall.common->type != MC_TYPE_LEADER)
         MatchCall_BufferCallMessageText(matchCall.trainer->textData, dest);
+#if IS_HNS
+    // Norman between his defeat and the Hoenn title.
+    else if (matchCall.leader->rematchTableIdx == REMATCH_NORMAN
+          && FlagGet(FLAG_DEFEATED_PETALBURG_GYM) && !FlagGet(FLAG_IS_HOENN_CHAMPION))
+        StringExpandPlaceholders(dest, MatchCall_Text_NormanAfterBadge);
+#endif
     else
         MatchCall_BufferCallMessageTextByRematchTeam(matchCall.leader->textData, matchCall.leader->rematchTableIdx, dest);
 }

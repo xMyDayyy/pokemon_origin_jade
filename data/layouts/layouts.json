@@ -1898,42 +1898,6 @@
       "layout_version": "emerald"
     },
     {
-      "id": "LAYOUT_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1",
-      "name": "CaveOfOrigin_UnusedRubySapphireMap1_Layout",
-      "width": 23,
-      "height": 23,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
-      "border_filepath": "data/layouts/CaveOfOrigin_UnusedRubySapphireMap1/border.bin",
-      "blockdata_filepath": "data/layouts/CaveOfOrigin_UnusedRubySapphireMap1/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2",
-      "name": "CaveOfOrigin_UnusedRubySapphireMap2_Layout",
-      "width": 21,
-      "height": 21,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
-      "border_filepath": "data/layouts/CaveOfOrigin_UnusedRubySapphireMap2/border.bin",
-      "blockdata_filepath": "data/layouts/CaveOfOrigin_UnusedRubySapphireMap2/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP3",
-      "name": "CaveOfOrigin_UnusedRubySapphireMap3_Layout",
-      "width": 19,
-      "height": 21,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
-      "border_filepath": "data/layouts/CaveOfOrigin_UnusedRubySapphireMap3/border.bin",
-      "blockdata_filepath": "data/layouts/CaveOfOrigin_UnusedRubySapphireMap3/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
       "id": "LAYOUT_CAVE_OF_ORIGIN_B1F",
       "name": "CaveOfOrigin_B1F_Layout",
       "width": 19,
@@ -2726,78 +2690,6 @@
       "layout_version": "emerald"
     },
     {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL1",
-      "name": "UnusedContestHall1_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall1/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall1/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL2",
-      "name": "UnusedContestHall2_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall2/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall2/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL3",
-      "name": "UnusedContestHall3_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall3/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall3/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL4",
-      "name": "UnusedContestHall4_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall4/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall4/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL5",
-      "name": "UnusedContestHall5_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall5/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall5/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL6",
-      "name": "UnusedContestHall6_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall6/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall6/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
       "id": "LAYOUT_CONTEST_HALL_BEAUTY",
       "name": "ContestHallBeauty_Layout",
       "width": 15,
@@ -3214,7 +3106,7 @@
       "secondary_tileset": "gTileset_BattleFrontier",
       "border_filepath": "data/layouts/BattleElevator/border.bin",
       "blockdata_filepath": "data/layouts/BattleElevator/map.bin",
-      "game_version": "hns",
+      "game_version": "em_trainer_hill_retired",
       "layout_version": "emerald"
     },
     {
@@ -3454,18 +3346,6 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/VictoryRoad_B2F/border.bin",
       "blockdata_filepath": "data/layouts/VictoryRoad_B2F/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_ROUTE104_PROTOTYPE",
-      "name": "Route104_Prototype_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Rustboro",
-      "border_filepath": "data/layouts/Route104_Prototype/border.bin",
-      "blockdata_filepath": "data/layouts/Route104_Prototype/map.bin",
       "game_version": "hns",
       "layout_version": "emerald"
     },
@@ -3802,42 +3682,6 @@
       "secondary_tileset": "gTileset_EliteFour",
       "border_filepath": "data/layouts/EverGrandeCity_Hall4/border.bin",
       "blockdata_filepath": "data/layouts/EverGrandeCity_Hall4/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_AQUA_HIDEOUT_UNUSED_RUBY_MAP1",
-      "name": "AquaHideout_UnusedRubyMap1_Layout",
-      "width": 28,
-      "height": 30,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Facility",
-      "border_filepath": "data/layouts/AquaHideout_UnusedRubyMap1/border.bin",
-      "blockdata_filepath": "data/layouts/AquaHideout_UnusedRubyMap1/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_AQUA_HIDEOUT_UNUSED_RUBY_MAP2",
-      "name": "AquaHideout_UnusedRubyMap2_Layout",
-      "width": 62,
-      "height": 24,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Facility",
-      "border_filepath": "data/layouts/AquaHideout_UnusedRubyMap2/border.bin",
-      "blockdata_filepath": "data/layouts/AquaHideout_UnusedRubyMap2/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_AQUA_HIDEOUT_UNUSED_RUBY_MAP3",
-      "name": "AquaHideout_UnusedRubyMap3_Layout",
-      "width": 34,
-      "height": 24,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Facility",
-      "border_filepath": "data/layouts/AquaHideout_UnusedRubyMap3/border.bin",
-      "blockdata_filepath": "data/layouts/AquaHideout_UnusedRubyMap3/map.bin",
       "game_version": "hns",
       "layout_version": "emerald"
     },
@@ -4630,7 +4474,7 @@
       "secondary_tileset": "gTileset_BattleTent",
       "border_filepath": "data/layouts/BattleTentLobby/border.bin",
       "blockdata_filepath": "data/layouts/BattleTentLobby/map.bin",
-      "game_version": "hns",
+      "game_version": "em_tents_retired",
       "layout_version": "emerald"
     },
     {
@@ -4642,7 +4486,7 @@
       "secondary_tileset": "gTileset_BattleTent",
       "border_filepath": "data/layouts/BattleTentCorridor/border.bin",
       "blockdata_filepath": "data/layouts/BattleTentCorridor/map.bin",
-      "game_version": "hns",
+      "game_version": "em_tents_retired",
       "layout_version": "emerald"
     },
     {
@@ -4654,7 +4498,7 @@
       "secondary_tileset": "gTileset_BattleTent",
       "border_filepath": "data/layouts/BattleTentBattleRoom/border.bin",
       "blockdata_filepath": "data/layouts/BattleTentBattleRoom/map.bin",
-      "game_version": "hns",
+      "game_version": "em_tents_retired",
       "layout_version": "emerald"
     },
     {
@@ -4666,7 +4510,7 @@
       "secondary_tileset": "gTileset_BattleTent",
       "border_filepath": "data/layouts/VerdanturfTown_BattleTentBattleRoom/border.bin",
       "blockdata_filepath": "data/layouts/VerdanturfTown_BattleTentBattleRoom/map.bin",
-      "game_version": "hns",
+      "game_version": "em_tents_retired",
       "layout_version": "emerald"
     },
     {
@@ -5038,7 +4882,7 @@
       "secondary_tileset": "gTileset_TrainerHill",
       "border_filepath": "data/layouts/TrainerHill_Entrance/border.bin",
       "blockdata_filepath": "data/layouts/TrainerHill_Entrance/map.bin",
-      "game_version": "hns",
+      "game_version": "em_trainer_hill_retired",
       "layout_version": "emerald"
     },
     {
@@ -5050,7 +4894,7 @@
       "secondary_tileset": "gTileset_TrainerHill",
       "border_filepath": "data/layouts/TrainerHill_1F/border.bin",
       "blockdata_filepath": "data/layouts/TrainerHill_1F/map.bin",
-      "game_version": "hns",
+      "game_version": "em_trainer_hill_retired",
       "layout_version": "emerald"
     },
     {
@@ -5062,7 +4906,7 @@
       "secondary_tileset": "gTileset_TrainerHill",
       "border_filepath": "data/layouts/TrainerHill_2F/border.bin",
       "blockdata_filepath": "data/layouts/TrainerHill_2F/map.bin",
-      "game_version": "hns",
+      "game_version": "em_trainer_hill_retired",
       "layout_version": "emerald"
     },
     {
@@ -5074,7 +4918,7 @@
       "secondary_tileset": "gTileset_TrainerHill",
       "border_filepath": "data/layouts/TrainerHill_3F/border.bin",
       "blockdata_filepath": "data/layouts/TrainerHill_3F/map.bin",
-      "game_version": "hns",
+      "game_version": "em_trainer_hill_retired",
       "layout_version": "emerald"
     },
     {
@@ -5086,7 +4930,7 @@
       "secondary_tileset": "gTileset_TrainerHill",
       "border_filepath": "data/layouts/TrainerHill_4F/border.bin",
       "blockdata_filepath": "data/layouts/TrainerHill_4F/map.bin",
-      "game_version": "hns",
+      "game_version": "em_trainer_hill_retired",
       "layout_version": "emerald"
     },
     {
@@ -5098,7 +4942,7 @@
       "secondary_tileset": "gTileset_TrainerHill",
       "border_filepath": "data/layouts/TrainerHill_Roof/border.bin",
       "blockdata_filepath": "data/layouts/TrainerHill_Roof/map.bin",
-      "game_version": "hns",
+      "game_version": "em_trainer_hill_retired",
       "layout_version": "emerald"
     },
     {
@@ -6052,20 +5896,6 @@
       "layout_version": "frlg"
     },
     {
-      "id": "LAYOUT_SAFFRON_CITY_CONNECTION",
-      "name": "SaffronCity_Connection_Layout",
-      "width": 48,
-      "height": 40,
-      "primary_tileset": "gTileset_General_Frlg",
-      "secondary_tileset": "gTileset_SaffronCity",
-      "border_filepath": "data/layouts/SaffronCity_Connection_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/SaffronCity_Connection_Frlg/map.bin",
-      "border_height": 2,
-      "border_width": 2,
-      "game_version": "hns",
-      "layout_version": "frlg"
-    },
-    {
       "id": "LAYOUT_ROUTE1",
       "name": "Route1_Layout",
       "width": 24,
@@ -6468,20 +6298,6 @@
       "blockdata_filepath": "data/layouts/ViridianForest_Frlg/map.bin",
       "border_height": 2,
       "border_width": 3,
-      "game_version": "hns",
-      "layout_version": "frlg"
-    },
-    {
-      "id": "LAYOUT_SSANNE_EXTERIOR",
-      "name": "SSAnne_Exterior_Layout",
-      "width": 70,
-      "height": 32,
-      "primary_tileset": "gTileset_General_Frlg",
-      "secondary_tileset": "gTileset_VermilionCity",
-      "border_filepath": "data/layouts/SSAnne_Exterior_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/SSAnne_Exterior_Frlg/map.bin",
-      "border_height": 2,
-      "border_width": 2,
       "game_version": "hns",
       "layout_version": "frlg"
     },
@@ -7270,20 +7086,6 @@
       "layout_version": "frlg"
     },
     {
-      "id": "LAYOUT_ROUTE12_NORTH_ENTRANCE_1F",
-      "name": "Route12_NorthEntrance_1F_Layout",
-      "width": 11,
-      "height": 13,
-      "primary_tileset": "gTileset_BuildingFrlg",
-      "secondary_tileset": "gTileset_GenericBuilding2",
-      "border_filepath": "data/layouts/Route12_NorthEntrance_1F_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/Route12_NorthEntrance_1F_Frlg/map.bin",
-      "border_height": 2,
-      "border_width": 2,
-      "game_version": "hns",
-      "layout_version": "frlg"
-    },
-    {
       "id": "LAYOUT_SSANNE_ROOM1",
       "name": "SSAnne_Room1_Layout",
       "width": 6,
@@ -7348,20 +7150,6 @@
       "secondary_tileset": "gTileset_Museum",
       "border_filepath": "data/layouts/PewterCity_Museum_2F_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/PewterCity_Museum_2F_Frlg/map.bin",
-      "border_height": 2,
-      "border_width": 2,
-      "game_version": "hns",
-      "layout_version": "frlg"
-    },
-    {
-      "id": "LAYOUT_CERULEAN_CITY_HOUSE2",
-      "name": "CeruleanCity_House2_Layout",
-      "width": 10,
-      "height": 9,
-      "primary_tileset": "gTileset_BuildingFrlg",
-      "secondary_tileset": "gTileset_BurgledHouse",
-      "border_filepath": "data/layouts/CeruleanCity_House2_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/CeruleanCity_House2_Frlg/map.bin",
       "border_height": 2,
       "border_width": 2,
       "game_version": "hns",
@@ -10182,30 +9970,6 @@
       "layout_version": "frlg"
     },
     {
-      "id": "LAYOUT_TEST_MAP2_HNS",
-      "name": "TestMap2_hns_Layout",
-      "width": 80,
-      "height": 30,
-      "primary_tileset": "gTileset_MtSilver_Exp_Hns",
-      "secondary_tileset": "gTileset_MtSilver_Ancient_Hns",
-      "border_filepath": "data/layouts/TestMap2_hns/border.bin",
-      "blockdata_filepath": "data/layouts/TestMap2_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_TEST_MAP1_HNS",
-      "name": "TestMap1_hns_Layout",
-      "width": 80,
-      "height": 30,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Ecruteak_City_Hns",
-      "border_filepath": "data/layouts/TestMap1_hns/border.bin",
-      "blockdata_filepath": "data/layouts/TestMap1_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
       "id": "LAYOUT_UNION_ROOM_HNS",
       "name": "UnionRoom_hns_Layout",
       "width": 15,
@@ -10410,126 +10174,6 @@
       "layout_version": "hns"
     },
     {
-      "id": "LAYOUT_CELADON_CITY_APARTMENTS_1F_HNS",
-      "name": "CeladonCity_Apartments_1F_hns_Layout",
-      "width": 15,
-      "height": 20,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_CeladonApartments_Hns",
-      "border_filepath": "data/layouts/CeladonCity_Apartments_1F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeladonCity_Apartments_1F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CELADON_CITY_APARTMENTS_2F_HNS",
-      "name": "CeladonCity_Apartments_2F_hns_Layout",
-      "width": 15,
-      "height": 20,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_CeladonApartments_Hns",
-      "border_filepath": "data/layouts/CeladonCity_Apartments_2F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeladonCity_Apartments_2F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CELADON_CITY_APARTMENTS_3F_HNS",
-      "name": "CeladonCity_Apartments_3F_hns_Layout",
-      "width": 16,
-      "height": 20,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_CeladonApartments_Hns",
-      "border_filepath": "data/layouts/CeladonCity_Apartments_3F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeladonCity_Apartments_3F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CELADON_CITY_APARTMENTS_ROOF_DAY_HNS",
-      "name": "CeladonCity_Apartments_RoofDay_hns_Layout",
-      "width": 14,
-      "height": 23,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_CeladonApartments_Hns",
-      "border_filepath": "data/layouts/CeladonCity_Apartments_RoofDay_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeladonCity_Apartments_RoofDay_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CELADON_CITY_APARTMENTS_ROOF_HOUSE_HNS",
-      "name": "CeladonCity_Apartments_RoofHouse_hns_Layout",
-      "width": 12,
-      "height": 12,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/CeladonCity_Apartments_RoofHouse_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeladonCity_Apartments_RoofHouse_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CELADON_CITY_APARTMENTS_ROOF_NIGHT_HNS",
-      "name": "CeladonCity_Apartments_RoofNight_hns_Layout",
-      "width": 14,
-      "height": 23,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_CeladonApartments_Hns",
-      "border_filepath": "data/layouts/CeladonCity_Apartments_RoofNight_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeladonCity_Apartments_RoofNight_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CELADON_CITY_DEPARTMENT_STORE_ROOF_DAY_HNS",
-      "name": "CeladonCity_DepartmentStore_RoofDay_hns_Layout",
-      "width": 19,
-      "height": 14,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_DepartmentStore_Hns",
-      "border_filepath": "data/layouts/CeladonCity_DepartmentStore_RoofDay_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeladonCity_DepartmentStore_RoofDay_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CELADON_CITY_DEPARTMENT_STORE_ROOF_NIGHT_HNS",
-      "name": "CeladonCity_DepartmentStore_RoofNight_hns_Layout",
-      "width": 19,
-      "height": 14,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_ShopRooftop_Hns",
-      "border_filepath": "data/layouts/CeladonCity_DepartmentStore_RoofNight_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeladonCity_DepartmentStore_RoofNight_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CELADON_CITY_HOUSE1_HNS",
-      "name": "CeladonCity_House1_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_Cafe_Hns",
-      "border_filepath": "data/layouts/CeladonCity_House1_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeladonCity_House1_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CELADON_CITY_HOUSE2_HNS",
-      "name": "CeladonCity_House2_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/CeladonCity_House2_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeladonCity_House2_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
       "id": "LAYOUT_CELADON_CITY_POKEMON_CENTER_HNS",
       "name": "CeladonCity_PokemonCenter_hns_Layout",
       "width": 15,
@@ -10539,54 +10183,6 @@
       "border_filepath": "data/layouts/CeladonCity_PokemonCenter_hns/border.bin",
       "blockdata_filepath": "data/layouts/CeladonCity_PokemonCenter_hns/map.bin",
       "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CERULEAN_CAVE_B2F_HNS",
-      "name": "CeruleanCave_B2F_hns_Layout",
-      "width": 42,
-      "height": 25,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Cave_Green_Hns",
-      "border_filepath": "data/layouts/CeruleanCave_B2F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeruleanCave_B2F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CERULEAN_CITY_HOUSE3_HNS",
-      "name": "CeruleanCity_House3_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/CeruleanCity_House3_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeruleanCity_House3_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CERULEAN_CITY_MART_HNS",
-      "name": "CeruleanCity_Mart_hns_Layout",
-      "width": 11,
-      "height": 9,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_KantoMart_Hns",
-      "border_filepath": "data/layouts/CeruleanCity_Mart_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeruleanCity_Mart_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CERULEAN_CITY_POKEMON_CENTER_HNS",
-      "name": "CeruleanCity_PokemonCenter_hns_Layout",
-      "width": 15,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_Kanto_PokemonCenter_Hns",
-      "border_filepath": "data/layouts/CeruleanCity_PokemonCenter_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeruleanCity_PokemonCenter_hns/map.bin",
-      "game_version": "hns_kanto_retired",
       "layout_version": "hns"
     },
     {
@@ -10746,18 +10342,6 @@
       "layout_version": "hns"
     },
     {
-      "id": "LAYOUT_CINNABAR_ISLAND_POKEMON_CENTER_HNS",
-      "name": "CinnabarIsland_PokemonCenter_hns_Layout",
-      "width": 15,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_Kanto_PokemonCenter_Hns",
-      "border_filepath": "data/layouts/CinnabarIsland_PokemonCenter_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CinnabarIsland_PokemonCenter_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
       "id": "LAYOUT_CLIFF_EDGE_CAVE_HNS",
       "name": "CliffEdgeCave_hns_Layout",
       "width": 44,
@@ -10803,42 +10387,6 @@
       "border_filepath": "data/layouts/DarkCave_SouthSide_hns/border.bin",
       "blockdata_filepath": "data/layouts/DarkCave_SouthSide_hns/map.bin",
       "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_DIGLETTS_CAVE_ENTRANCE_NORTH_HNS",
-      "name": "DiglettsCave_EntranceNorth_hns_Layout",
-      "width": 10,
-      "height": 8,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Cave_Sandy_Hns",
-      "border_filepath": "data/layouts/DiglettsCave_EntranceNorth_hns/border.bin",
-      "blockdata_filepath": "data/layouts/DiglettsCave_EntranceNorth_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_DIGLETTS_CAVE_ENTRANCE_SOUTH_HNS",
-      "name": "DiglettsCave_EntranceSouth_hns_Layout",
-      "width": 10,
-      "height": 8,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Cave_Sandy_Hns",
-      "border_filepath": "data/layouts/DiglettsCave_EntranceSouth_hns/border.bin",
-      "blockdata_filepath": "data/layouts/DiglettsCave_EntranceSouth_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_DIGLETTS_CAVE_TUNNEL_HNS",
-      "name": "DiglettsCave_Tunnel_hns_Layout",
-      "width": 85,
-      "height": 80,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Cave_Sandy_Hns",
-      "border_filepath": "data/layouts/DiglettsCave_Tunnel_hns/border.bin",
-      "blockdata_filepath": "data/layouts/DiglettsCave_Tunnel_hns/map.bin",
-      "game_version": "hns_kanto_retired",
       "layout_version": "hns"
     },
     {
@@ -10998,114 +10546,6 @@
       "layout_version": "hns"
     },
     {
-      "id": "LAYOUT_FUCHSIA_CITY_HOUSE1_HNS",
-      "name": "FuchsiaCity_House1_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/FuchsiaCity_House1_hns/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_House1_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_FUCHSIA_CITY_MART_HNS",
-      "name": "FuchsiaCity_Mart_hns_Layout",
-      "width": 11,
-      "height": 9,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_KantoMart_Hns",
-      "border_filepath": "data/layouts/FuchsiaCity_Mart_hns/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_Mart_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_FUCHSIA_CITY_POKEMON_CENTER_HNS",
-      "name": "FuchsiaCity_PokemonCenter_hns_Layout",
-      "width": 15,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_Kanto_PokemonCenter_Hns",
-      "border_filepath": "data/layouts/FuchsiaCity_PokemonCenter_hns/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_PokemonCenter_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_FUCHSIA_CITY_SAFARI_ZONE_BEACH_HNS",
-      "name": "Fuchsia_hns_Layout",
-      "width": 50,
-      "height": 46,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SafariZoneJohto_Hns",
-      "border_filepath": "data/layouts/FuchsiaCity_SafariZoneBeach_hns/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_SafariZoneBeach_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_FUCHSIA_CITY_SAFARI_ZONE_BRUSH_HNS",
-      "name": "FuchsiaCity_SafariZoneBrush_hns_Layout",
-      "width": 50,
-      "height": 30,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_NationalPark_Hns",
-      "border_filepath": "data/layouts/FuchsiaCity_SafariZoneBrush_hns/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_SafariZoneBrush_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_FUCHSIA_CITY_SAFARI_ZONE_CAVE_HNS",
-      "name": "FuchsiaCity_SafariZoneCave_hns_Layout",
-      "width": 50,
-      "height": 30,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_WhirlIslands_Hns",
-      "border_filepath": "data/layouts/FuchsiaCity_SafariZoneCave_hns/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_SafariZoneCave_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_FUCHSIA_CITY_SAFARI_ZONE_MOUNTAIN_HNS",
-      "name": "FuchsiaCity_SafariZoneMountain_hns_Layout",
-      "width": 68,
-      "height": 20,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_NationalPark_Hns",
-      "border_filepath": "data/layouts/FuchsiaCity_SafariZoneMountain_hns/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_SafariZoneMountain_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_FUCHSIA_ROUTE15GATE_HNS",
-      "name": "FuchsiaCity_Route15_Gate_hns_Layout",
-      "width": 13,
-      "height": 9,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_Gate_Standard_Hns",
-      "border_filepath": "data/layouts/FuchsiaCity_Route15_Gate_hns/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_Route15_Gate_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_FUCHSIA_ROUTE19GATE_HNS",
-      "name": "FuchsiaCity_Route19_Gate_hns_Layout",
-      "width": 15,
-      "height": 12,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_Gate_Standard_Hns",
-      "border_filepath": "data/layouts/FuchsiaCity_Route19_Gate_hns/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_Route19_Gate_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
       "id": "LAYOUT_GATE_AZALEA_TOWN_ILEX_FOREST_HNS",
       "name": "Gate_AzaleaTown_IlexForest_hns_Layout",
       "width": 13,
@@ -11115,18 +10555,6 @@
       "border_filepath": "data/layouts/Gate_AzaleaTown_IlexForest_hns/border.bin",
       "blockdata_filepath": "data/layouts/Gate_AzaleaTown_IlexForest_hns/map.bin",
       "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_GATE_CELADON_CITY_ROUTE16_HNS",
-      "name": "Gate_CeladonCity_Route16_hns_Layout",
-      "width": 13,
-      "height": 9,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_Gate_Standard_Hns",
-      "border_filepath": "data/layouts/Gate_CeladonCity_Route16_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Gate_CeladonCity_Route16_hns/map.bin",
-      "game_version": "hns_kanto_retired",
       "layout_version": "hns"
     },
     {
@@ -11151,18 +10579,6 @@
       "border_filepath": "data/layouts/Gate_EcruteakCity_Route42_hns/border.bin",
       "blockdata_filepath": "data/layouts/Gate_EcruteakCity_Route42_hns/map.bin",
       "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_GATE_FUCHSIA_CITY_ROUTE18_HNS",
-      "name": "Gate_FuchsiaCity_Route18_hns_Layout",
-      "width": 13,
-      "height": 9,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_Gate_Standard_Hns",
-      "border_filepath": "data/layouts/Gate_FuchsiaCity_Route18_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Gate_FuchsiaCity_Route18_hns/map.bin",
-      "game_version": "hns_kanto_retired",
       "layout_version": "hns"
     },
     {
@@ -11214,18 +10630,6 @@
       "layout_version": "hns"
     },
     {
-      "id": "LAYOUT_GATE_ROUTE2_HNS",
-      "name": "Gate_Route2_hns_Layout",
-      "width": 15,
-      "height": 12,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_Gate_Standard_Hns",
-      "border_filepath": "data/layouts/Gate_Route2_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Gate_Route2_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
       "id": "LAYOUT_GATE_ROUTE29_ROUTE46_HNS",
       "name": "Gate_Route29_Route46_hns_Layout",
       "width": 15,
@@ -11235,18 +10639,6 @@
       "border_filepath": "data/layouts/Gate_Route29_Route46_hns/border.bin",
       "blockdata_filepath": "data/layouts/Gate_Route29_Route46_hns/map.bin",
       "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_GATE_ROUTE2_VIRIDIAN_FOREST_HNS",
-      "name": "Gate_Route2_ViridianForest_hns_Layout",
-      "width": 15,
-      "height": 12,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_Gate_Standard_Hns",
-      "border_filepath": "data/layouts/Gate_Route2_ViridianForest_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Gate_Route2_ViridianForest_hns/map.bin",
-      "game_version": "hns_kanto_retired",
       "layout_version": "hns"
     },
     {
@@ -11307,66 +10699,6 @@
       "border_filepath": "data/layouts/Gate_RuinsOfAlph_Route36_hns/border.bin",
       "blockdata_filepath": "data/layouts/Gate_RuinsOfAlph_Route36_hns/map.bin",
       "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_GATE_SAFFRON_CITY_ROUTE5_HNS",
-      "name": "Gate_SaffronCity_Route5_hns_Layout",
-      "width": 15,
-      "height": 12,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_Gate_Standard_Hns",
-      "border_filepath": "data/layouts/Gate_SaffronCity_Route5_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Gate_SaffronCity_Route5_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_GATE_SAFFRON_CITY_ROUTE6_HNS",
-      "name": "Gate_SaffronCity_Route6_hns_Layout",
-      "width": 15,
-      "height": 12,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_Gate_Standard_Hns",
-      "border_filepath": "data/layouts/Gate_SaffronCity_Route6_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Gate_SaffronCity_Route6_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_GATE_SAFFRON_CITY_ROUTE7_HNS",
-      "name": "Gate_SaffronCity_Route7_hns_Layout",
-      "width": 13,
-      "height": 9,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_Gate_Standard_Hns",
-      "border_filepath": "data/layouts/Gate_SaffronCity_Route7_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Gate_SaffronCity_Route7_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_GATE_SAFFRON_CITY_ROUTE8_HNS",
-      "name": "Gate_SaffronCity_Route8_hns_Layout",
-      "width": 13,
-      "height": 9,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_Gate_Standard_Hns",
-      "border_filepath": "data/layouts/Gate_SaffronCity_Route8_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Gate_SaffronCity_Route8_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_GATE_VIRIDIAN_FOREST_ROUTE2_HNS",
-      "name": "Gate_ViridianForest_Route2_hns_Layout",
-      "width": 15,
-      "height": 12,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_Gate_Standard_Hns",
-      "border_filepath": "data/layouts/Gate_ViridianForest_Route2_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Gate_ViridianForest_Route2_hns/map.bin",
-      "game_version": "hns_kanto_retired",
       "layout_version": "hns"
     },
     {
@@ -11874,90 +11206,6 @@
       "layout_version": "hns"
     },
     {
-      "id": "LAYOUT_LAVENDER_TOWN_HOUSE1_HNS",
-      "name": "LavenderTown_House1_hns_Layout",
-      "width": 12,
-      "height": 9,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_PokemonDayCare_Hns",
-      "border_filepath": "data/layouts/LavenderTown_House1_hns/border.bin",
-      "blockdata_filepath": "data/layouts/LavenderTown_House1_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_LAVENDER_TOWN_HOUSE2_HNS",
-      "name": "LavenderTown_House2_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/LavenderTown_House2_hns/border.bin",
-      "blockdata_filepath": "data/layouts/LavenderTown_House2_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_LAVENDER_TOWN_HOUSE3_HNS",
-      "name": "LavenderTown_House3_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/LavenderTown_House3_hns/border.bin",
-      "blockdata_filepath": "data/layouts/LavenderTown_House3_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_LAVENDER_TOWN_MART_HNS",
-      "name": "LavenderTown_Mart_hns_Layout",
-      "width": 11,
-      "height": 9,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_KantoMart_Hns",
-      "border_filepath": "data/layouts/LavenderTown_Mart_hns/border.bin",
-      "blockdata_filepath": "data/layouts/LavenderTown_Mart_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_LAVENDER_TOWN_POKEMON_CENTER_HNS",
-      "name": "LavenderTown_PokemonCenter_hns_Layout",
-      "width": 15,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_Kanto_PokemonCenter_Hns",
-      "border_filepath": "data/layouts/LavenderTown_PokemonCenter_hns/border.bin",
-      "blockdata_filepath": "data/layouts/LavenderTown_PokemonCenter_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_LAVENDER_TOWN_RADIO_STATION_HNS",
-      "name": "LavenderTown_RadioStation_hns_Layout",
-      "width": 21,
-      "height": 11,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_GoldenrodUndergroundRocket_Hns",
-      "border_filepath": "data/layouts/LavenderTown_RadioStation_hns/border.bin",
-      "blockdata_filepath": "data/layouts/LavenderTown_RadioStation_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_LAVENDER_TOWN_SOUL_HOUSE_HNS",
-      "name": "LavenderTown_SoulHouse_hns_Layout",
-      "width": 24,
-      "height": 20,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_SoulHouse_Hns",
-      "border_filepath": "data/layouts/LavenderTown_SoulHouse_hns/border.bin",
-      "blockdata_filepath": "data/layouts/LavenderTown_SoulHouse_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
       "id": "LAYOUT_MAHOGANYTOWN_HNS",
       "name": "Mahoganytown_hns_Layout",
       "width": 44,
@@ -12015,42 +11263,6 @@
       "border_filepath": "data/layouts/MahoganyTown_Shop_hns/border.bin",
       "blockdata_filepath": "data/layouts/MahoganyTown_Shop_hns/map.bin",
       "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_MT_MOON_CAVE_HNS",
-      "name": "MtMoon_Cave_hns_Layout",
-      "width": 50,
-      "height": 40,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Cave_MtMoon_Hns",
-      "border_filepath": "data/layouts/MtMoon_Cave_hns/border.bin",
-      "blockdata_filepath": "data/layouts/MtMoon_Cave_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_MT_MOON_OUTSIDE_HNS",
-      "name": "MtMoon_Outside_hns_Layout",
-      "width": 49,
-      "height": 29,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_CherrygroveCity_Hns",
-      "border_filepath": "data/layouts/MtMoon_Outside_hns/border.bin",
-      "blockdata_filepath": "data/layouts/MtMoon_Outside_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_MT_MOON_SHOP_HNS",
-      "name": "MtMoon_Shop_hns_Layout",
-      "width": 10,
-      "height": 13,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_2_Hns",
-      "border_filepath": "data/layouts/MtMoon_Shop_hns/border.bin",
-      "blockdata_filepath": "data/layouts/MtMoon_Shop_hns/map.bin",
-      "game_version": "hns_kanto_retired",
       "layout_version": "hns"
     },
     {
@@ -12462,114 +11674,6 @@
       "layout_version": "hns"
     },
     {
-      "id": "LAYOUT_PALLET_TOWN_HOUSE2_HNS",
-      "name": "PalletTown_House2_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/PalletTown_House2_hns/border.bin",
-      "blockdata_filepath": "data/layouts/PalletTown_House2_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_PALLET_TOWN_HOUSE3_HNS",
-      "name": "PalletTown_House3_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/PalletTown_House3_hns/border.bin",
-      "blockdata_filepath": "data/layouts/PalletTown_House3_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_PALLET_TOWN_LAB_HNS",
-      "name": "PalletTown_Lab_hns_Layout",
-      "width": 32,
-      "height": 28,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/PalletTown_Lab_hns/border.bin",
-      "blockdata_filepath": "data/layouts/PalletTown_Lab_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_PALLET_TOWN_REDS_HOUSE_1F_HNS",
-      "name": "PalletTown_RedsHouse_1F_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/PalletTown_RedsHouse_1F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/PalletTown_RedsHouse_1F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_PALLET_TOWN_REDS_HOUSE_2F_HNS",
-      "name": "PalletTownHouseRedsHouse2_hns_Layout",
-      "width": 11,
-      "height": 9,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_PlayersHouse_Hns",
-      "border_filepath": "data/layouts/PalletTown_RedsHouse_2F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/PalletTown_RedsHouse_2F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_PEWTER_CITY_HOUSE1_HNS",
-      "name": "PewterCity_House1_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/PewterCity_House1_hns/border.bin",
-      "blockdata_filepath": "data/layouts/PewterCity_House1_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_PEWTER_CITY_HOUSE2_HNS",
-      "name": "PewterCity_House2_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/PewterCity_House2_hns/border.bin",
-      "blockdata_filepath": "data/layouts/PewterCity_House2_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_PEWTER_CITY_MART_HNS",
-      "name": "PewterCity_Mart_hns_Layout",
-      "width": 11,
-      "height": 9,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_KantoMart_Hns",
-      "border_filepath": "data/layouts/PewterCity_Mart_hns/border.bin",
-      "blockdata_filepath": "data/layouts/PewterCity_Mart_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_PEWTER_CITY_POKEMON_CENTER_HNS",
-      "name": "PewterCity_PokemonCenter_hns_Layout",
-      "width": 15,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_Kanto_PokemonCenter_Hns",
-      "border_filepath": "data/layouts/PewterCity_PokemonCenter_hns/border.bin",
-      "blockdata_filepath": "data/layouts/PewterCity_PokemonCenter_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
       "id": "LAYOUT_POKEMON_LEAGUE_KARENS_ROOM_HNS",
       "name": "PokemonLeague_KarensRoom_hns_Layout",
       "width": 28,
@@ -12615,78 +11719,6 @@
       "border_filepath": "data/layouts/ReceptionGate_hns/border.bin",
       "blockdata_filepath": "data/layouts/ReceptionGate_hns/map.bin",
       "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_ROUTE10_POWER_PLANT_BACK_ROOM_HNS",
-      "name": "Route10_PowerPlantBackRoom_hns_Layout",
-      "width": 18,
-      "height": 14,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_PowerPlant_GeneratorRoom_Hns",
-      "border_filepath": "data/layouts/Route10_PowerPlantBackRoom_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route10_PowerPlantBackRoom_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_ROUTE10_POWER_PLANT_ENTRANCE_HNS",
-      "name": "Route10_PowerPlantEntrance_hns_Layout",
-      "width": 23,
-      "height": 24,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_SilphCo_Hns",
-      "border_filepath": "data/layouts/Route10_PowerPlantEntrance_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route10_PowerPlantEntrance_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_ROUTE12_HOUSE_HNS",
-      "name": "Route12_House_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/Route12_House_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route12_House_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_ROUTE16_HOUSE_HNS",
-      "name": "Route16_House_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/Route16_House_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route16_House_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_ROUTE21_HNS",
-      "name": "Route21_hns_Layout",
-      "width": 24,
-      "height": 100,
-      "primary_tileset": "gTileset_Kanto_General_Hns",
-      "secondary_tileset": "gTileset_PalletTown_Hns",
-      "border_filepath": "data/layouts/Route21_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route21_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_ROUTE25_BILLS_HOUSE_HNS",
-      "name": "Route25_BillsHouse_hns_Layout",
-      "width": 15,
-      "height": 11,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_SeaCottage_Hns",
-      "border_filepath": "data/layouts/Route25_BillsHouse_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route25_BillsHouse_hns/map.bin",
-      "game_version": "hns_kanto_retired",
       "layout_version": "hns"
     },
     {
@@ -12795,18 +11827,6 @@
       "border_filepath": "data/layouts/Route29_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route29_hns/map.bin",
       "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_ROUTE2_HOUSE_HNS",
-      "name": "Route2_House_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/Route2_House_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route2_House_hns/map.bin",
-      "game_version": "hns_kanto_retired",
       "layout_version": "hns"
     },
     {
@@ -13110,90 +12130,6 @@
       "layout_version": "hns"
     },
     {
-      "id": "LAYOUT_ROUTE4_POKEMON_CENTER_HNS",
-      "name": "Route4_PokemonCenter_hns_Layout",
-      "width": 15,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_Kanto_PokemonCenter_Hns",
-      "border_filepath": "data/layouts/Route4_PokemonCenter_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route4_PokemonCenter_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_ROUTE5_HOUSE_HNS",
-      "name": "Route5_House_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/Route5_House_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route5_House_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_ROUTE5_TUNNEL_ENTRANCE_HNS",
-      "name": "Route5_TunnelEntrance_hns_Layout",
-      "width": 27,
-      "height": 18,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_GoldenrodUndergroundTunnel_Hns",
-      "border_filepath": "data/layouts/Route5_TunnelEntrance_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route5_TunnelEntrance_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_ROUTE6_TUNNEL_ENTRANCE_HNS",
-      "name": "Route6_TunnelEntrance_hns_Layout",
-      "width": 27,
-      "height": 18,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_GoldenrodUndergroundTunnel_Hns",
-      "border_filepath": "data/layouts/Route6_TunnelEntrance_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route6_TunnelEntrance_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_ROUTE7_TUNNEL_ENTRANCE_HNS",
-      "name": "Route7_TunnelEntrance_hns_Layout",
-      "width": 27,
-      "height": 18,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_GoldenrodUndergroundTunnel_Hns",
-      "border_filepath": "data/layouts/Route7_TunnelEntrance_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route7_TunnelEntrance_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_ROUTE8_TUNNEL_ENTRANCE_HNS",
-      "name": "Route8_TunnelEntrance_hns_Layout",
-      "width": 27,
-      "height": 18,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_GoldenrodUndergroundTunnel_Hns",
-      "border_filepath": "data/layouts/Route8_TunnelEntrance_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route8_TunnelEntrance_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_ROUTE9_POKEMON_CENTER_HNS",
-      "name": "Route9_PokemonCenter_hns_Layout",
-      "width": 16,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_Kanto_PokemonCenter_Hns",
-      "border_filepath": "data/layouts/Route9_PokemonCenter_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route9_PokemonCenter_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
       "id": "LAYOUT_RUINS_OF_ALPH_B1F_HNS",
       "name": "RuinsOfAlph_B1F_hns_Layout",
       "width": 29,
@@ -13290,42 +12226,6 @@
       "layout_version": "hns"
     },
     {
-      "id": "LAYOUT_SAFARI_ZONE1_HNS",
-      "name": "SafariZone1_hns_Layout",
-      "width": 51,
-      "height": 36,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_SafariZoneJohto_Hns",
-      "border_filepath": "data/layouts/SafariZone1_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SafariZone1_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFARI_ZONE2_HNS",
-      "name": "SafariZone2_hns_Layout",
-      "width": 54,
-      "height": 35,
-      "primary_tileset": "gTileset_Johto_NorthEast_Hns",
-      "secondary_tileset": "gTileset_SafariZoneJohto_Hns",
-      "border_filepath": "data/layouts/SafariZone2_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SafariZone2_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFARI_ZONE3_HNS",
-      "name": "SafariZone3_hns_Layout",
-      "width": 48,
-      "height": 36,
-      "primary_tileset": "gTileset_Johto_NorthEast_Hns",
-      "secondary_tileset": "gTileset_SafariZoneJohto_Hns",
-      "border_filepath": "data/layouts/SafariZone3_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SafariZone3_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
       "id": "LAYOUT_SAFARI_ZONE_ENTERANCE_HNS",
       "name": "SafariZone_Enterance_hns_Layout",
       "width": 36,
@@ -13370,18 +12270,6 @@
       "secondary_tileset": "gTileset_SafariZone_Entrance_Hns",
       "border_filepath": "data/layouts/SafariZoneGate_SafariZoneEntrance_hns/border.bin",
       "blockdata_filepath": "data/layouts/SafariZoneGate_SafariZoneEntrance_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFARI_ZONE_INDOOR_HNS",
-      "name": "SafariZoneIndoor_hns_Layout",
-      "width": 13,
-      "height": 11,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_SafariZone_Entrance_Hns",
-      "border_filepath": "data/layouts/SafariZoneIndoor_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SafariZoneIndoor_hns/map.bin",
       "game_version": "hns",
       "layout_version": "hns"
     },
@@ -13455,162 +12343,6 @@
       "border_filepath": "data/layouts/SafariZone_Top_Right_hns/border.bin",
       "blockdata_filepath": "data/layouts/SafariZone_Top_Right_hns/map.bin",
       "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFFRON_CITY_COPY_CATS_HOUSE_1F_HNS",
-      "name": "SaffronCity_CopyCatsHouse_1F_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/SaffronCity_CopyCatsHouse_1F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SaffronCity_CopyCatsHouse_1F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFFRON_CITY_COPY_CATS_HOUSE_2F_HNS",
-      "name": "SaffronCity_CopyCatsHouse_2F_hns_Layout",
-      "width": 11,
-      "height": 9,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_PlayersHouse_Hns",
-      "border_filepath": "data/layouts/SaffronCity_CopyCatsHouse_2F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SaffronCity_CopyCatsHouse_2F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFFRON_CITY_FIGHTING_DOJO_HNS",
-      "name": "SaffronCity_FightingDojo_hns_Layout",
-      "width": 29,
-      "height": 16,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_EcruteakTheater_Hns",
-      "border_filepath": "data/layouts/SaffronCity_FightingDojo_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SaffronCity_FightingDojo_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFFRON_CITY_FIGHTING_DOJO_VIP_HNS",
-      "name": "SaffronCity_FightingDojoVIP_hns_Layout",
-      "width": 45,
-      "height": 43,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_SaffronCity_FightingDojoVIP_Hns",
-      "border_filepath": "data/layouts/SaffronCity_FightingDojoVIP_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SaffronCity_FightingDojoVIP_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFFRON_CITY_HOUSE1_HNS",
-      "name": "SaffronCity_House1_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/SaffronCity_House1_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SaffronCity_House1_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFFRON_CITY_MART_HNS",
-      "name": "SaffronCity_Mart_hns_Layout",
-      "width": 11,
-      "height": 9,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_KantoMart_Hns",
-      "border_filepath": "data/layouts/SaffronCity_Mart_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SaffronCity_Mart_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFFRON_CITY_POKEMON_CENTER_HNS",
-      "name": "SaffronCity_PokemonCenter_hns_Layout",
-      "width": 15,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_Kanto_PokemonCenter_Hns",
-      "border_filepath": "data/layouts/SaffronCity_PokemonCenter_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SaffronCity_PokemonCenter_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFFRON_CITY_SILPH_CO_HNS",
-      "name": "SaffronCity_SilphCo_hns_Layout",
-      "width": 36,
-      "height": 22,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_SilphCo_Hns",
-      "border_filepath": "data/layouts/SaffronCity_SilphCo_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SaffronCity_SilphCo_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFFRON_CITY_TRAIN_STATION_HNS",
-      "name": "SaffronCity_TrainStation_hns_Layout",
-      "width": 154,
-      "height": 28,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_GoldenrodCity_TrainStation_Hns",
-      "border_filepath": "data/layouts/SaffronCity_TrainStation_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SaffronCity_TrainStation_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFFRON_CITY_TUNNEL_NS_HNS",
-      "name": "SaffronCity_Tunnel_NS_hns_Layout",
-      "width": 8,
-      "height": 41,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_GoldenrodUndergroundTunnel_Hns",
-      "border_filepath": "data/layouts/SaffronCity_Tunnel_NS_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SaffronCity_Tunnel_NS_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFFRON_CITY_TUNNEL_SW_HNS",
-      "name": "SaffronCity_Tunnel_SW_hns_Layout",
-      "width": 80,
-      "height": 7,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_GoldenrodUndergroundTunnel_Hns",
-      "border_filepath": "data/layouts/SaffronCity_Tunnel_SW_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SaffronCity_Tunnel_SW_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SAFFRON_TEMP_HNS",
-      "name": "Saffron_Temp_hns_Layout",
-      "width": 66,
-      "height": 55,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_SaffronCity_Hns",
-      "border_filepath": "data/layouts/Saffron_Temp_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Saffron_Temp_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SEAFOAM_ISLANDS_GYM_HNS",
-      "name": "SeafoamIslands_Gym_hns_Layout",
-      "width": 39,
-      "height": 39,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_BlackthornGym_Hns",
-      "border_filepath": "data/layouts/SeafoamIslands_Gym_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SeafoamIslands_Gym_hns/map.bin",
-      "game_version": "hns_kanto_retired",
       "layout_version": "hns"
     },
     {
@@ -14046,18 +12778,6 @@
       "layout_version": "emerald"
     },
     {
-      "id": "LAYOUT_TREES_HNS",
-      "name": "Trees_hns_Layout",
-      "width": 20,
-      "height": 20,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Route38_Farmland_Hns",
-      "border_filepath": "data/layouts/Trees_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Trees_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
       "id": "LAYOUT_UNION_CAVE_1F_HNS",
       "name": "UnionCave_1F_hns_Layout",
       "width": 48,
@@ -14091,138 +12811,6 @@
       "border_filepath": "data/layouts/UnionCave_B2F_hns/border.bin",
       "blockdata_filepath": "data/layouts/UnionCave_B2F_hns/map.bin",
       "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_VERMILION_CITY_FAN_CLUB_HNS",
-      "name": "VermilionCity_FanClub_hns_Layout",
-      "width": 12,
-      "height": 12,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_PokemonDayCare_Hns",
-      "border_filepath": "data/layouts/VermilionCity_FanClub_hns/border.bin",
-      "blockdata_filepath": "data/layouts/VermilionCity_FanClub_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_VERMILION_CITY_HOUSE1_HNS",
-      "name": "VermilionCity_House1_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/VermilionCity_House1_hns/border.bin",
-      "blockdata_filepath": "data/layouts/VermilionCity_House1_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_VERMILION_CITY_HOUSE2_HNS",
-      "name": "VermilionCity_House2_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/VermilionCity_House2_hns/border.bin",
-      "blockdata_filepath": "data/layouts/VermilionCity_House2_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_VERMILION_CITY_HOUSE3_HNS",
-      "name": "VermilionCity_House3_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/VermilionCity_House3_hns/border.bin",
-      "blockdata_filepath": "data/layouts/VermilionCity_House3_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_VERMILION_CITY_MART_HNS",
-      "name": "VermilionCity_Mart_hns_Layout",
-      "width": 11,
-      "height": 9,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_KantoMart_Hns",
-      "border_filepath": "data/layouts/VermilionCity_Mart_hns/border.bin",
-      "blockdata_filepath": "data/layouts/VermilionCity_Mart_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_VERMILION_CITY_POKEMON_CENTER_HNS",
-      "name": "VermilionCity_PokemonCenter_hns_Layout",
-      "width": 15,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_Kanto_PokemonCenter_Hns",
-      "border_filepath": "data/layouts/VermilionCity_PokemonCenter_hns/border.bin",
-      "blockdata_filepath": "data/layouts/VermilionCity_PokemonCenter_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_VERMILION_CITY_PORT_INSIDE_HNS",
-      "name": "VermilionCity_PortInside_hns_Layout",
-      "width": 18,
-      "height": 28,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_PortIndoor_Hns",
-      "border_filepath": "data/layouts/VermilionCity_PortInside_hns/border.bin",
-      "blockdata_filepath": "data/layouts/VermilionCity_PortInside_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_VERMILION_CITY_PORT_OUTSIDE_HNS",
-      "name": "VermilionCity_PortOutside_hns_Layout",
-      "width": 52,
-      "height": 23,
-      "primary_tileset": "gTileset_Kanto_General_Hns",
-      "secondary_tileset": "gTileset_PortIndoor_Hns",
-      "border_filepath": "data/layouts/VermilionCity_PortOutside_hns/border.bin",
-      "blockdata_filepath": "data/layouts/VermilionCity_PortOutside_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_VICTORY_ROAD_KANTO_1F_HNS",
-      "name": "VictoryRoadKanto_1F_hns_Layout",
-      "width": 50,
-      "height": 30,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Cave_Default_Hns",
-      "border_filepath": "data/layouts/VictoryRoadKanto_1F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/VictoryRoadKanto_1F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_VICTORY_ROAD_KANTO_B1F_HNS",
-      "name": "VictoryRoadKanto_B1F_hns_Layout",
-      "width": 60,
-      "height": 30,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Cave_Default_Hns",
-      "border_filepath": "data/layouts/VictoryRoadKanto_B1F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/VictoryRoadKanto_B1F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_VICTORY_ROAD_KANTO_B2F_HNS",
-      "name": "VictoryRoadKanto_B2F_hns_Layout",
-      "width": 40,
-      "height": 50,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Cave_Default_Hns",
-      "border_filepath": "data/layouts/VictoryRoadKanto_B2F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/VictoryRoadKanto_B2F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
       "layout_version": "hns"
     },
     {
@@ -14310,54 +12898,6 @@
       "layout_version": "hns"
     },
     {
-      "id": "LAYOUT_VIRIDIAN_CITY_HOUSE1_HNS",
-      "name": "ViridianCity_House1_hns_Layout",
-      "width": 17,
-      "height": 14,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/ViridianCity_House1_hns/border.bin",
-      "blockdata_filepath": "data/layouts/ViridianCity_House1_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_VIRIDIAN_CITY_HOUSE2_HNS",
-      "name": "ViridianCity_House2_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/ViridianCity_House2_hns/border.bin",
-      "blockdata_filepath": "data/layouts/ViridianCity_House2_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_VIRIDIAN_CITY_MART_HNS",
-      "name": "ViridianCity_Mart_hns_Layout",
-      "width": 11,
-      "height": 9,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_KantoMart_Hns",
-      "border_filepath": "data/layouts/ViridianCity_Mart_hns/border.bin",
-      "blockdata_filepath": "data/layouts/ViridianCity_Mart_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_VIRIDIAN_CITY_POKEMON_CENTER_HNS",
-      "name": "ViridianCity_PokemonCenter_hns_Layout",
-      "width": 15,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_Kanto_PokemonCenter_Hns",
-      "border_filepath": "data/layouts/ViridianCity_PokemonCenter_hns/border.bin",
-      "blockdata_filepath": "data/layouts/ViridianCity_PokemonCenter_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
       "id": "LAYOUT_WHIRL_ISLANDS_1F_HNS",
       "name": "WhirlIslands_1F_hns_Layout",
       "width": 60,
@@ -14442,90 +12982,6 @@
       "layout_version": "hns"
     },
     {
-      "id": "LAYOUT_CELADON_CITY_DEPARTMENT_STORE_1F_HNS",
-      "name": "CeladonCity_DepartmentStore_1F_hns_Layout",
-      "width": 13,
-      "height": 16,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_DepartmentStore_Hns",
-      "border_filepath": "data/layouts/CeladonCity_DepartmentStore_1F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeladonCity_DepartmentStore_1F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CELADON_CITY_DEPARTMENT_STORE_2F_HNS",
-      "name": "CeladonCity_DepartmentStore_2F_hns_Layout",
-      "width": 13,
-      "height": 15,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_DepartmentStore_Hns",
-      "border_filepath": "data/layouts/CeladonCity_DepartmentStore_2F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeladonCity_DepartmentStore_2F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CELADON_CITY_DEPARTMENT_STORE_3F_HNS",
-      "name": "CeladonCity_DepartmentStore_3F_hns_Layout",
-      "width": 13,
-      "height": 15,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_DepartmentStore_Hns",
-      "border_filepath": "data/layouts/CeladonCity_DepartmentStore_3F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeladonCity_DepartmentStore_3F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CELADON_CITY_DEPARTMENT_STORE_4F_HNS",
-      "name": "CeladonCity_DepartmentStore_4F_hns_Layout",
-      "width": 13,
-      "height": 15,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_DepartmentStore_Hns",
-      "border_filepath": "data/layouts/CeladonCity_DepartmentStore_4F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeladonCity_DepartmentStore_4F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CELADON_CITY_DEPARTMENT_STORE_5F_HNS",
-      "name": "CeladonCity_DepartmentStore_5F_hns_Layout",
-      "width": 13,
-      "height": 15,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_DepartmentStore_Hns",
-      "border_filepath": "data/layouts/CeladonCity_DepartmentStore_5F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeladonCity_DepartmentStore_5F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CELADON_CITY_GAME_CORNER_HNS",
-      "name": "CeladonCity_GameCorner_hns_Layout",
-      "width": 21,
-      "height": 14,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_GameCorner_Hns",
-      "border_filepath": "data/layouts/CeladonCity_GameCorner_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeladonCity_GameCorner_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CELADON_CITY_GYM_HNS",
-      "name": "CeladonCity_Gym_hns_Layout",
-      "width": 13,
-      "height": 20,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_AzaleaTown_Gym_Hns",
-      "border_filepath": "data/layouts/CeladonCity_Gym_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeladonCity_Gym_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
       "id": "LAYOUT_CELADON_CITY_HNS",
       "name": "CeladonCity_hns_Layout",
       "width": 60,
@@ -14538,78 +12994,6 @@
       "layout_version": "hns"
     },
     {
-      "id": "LAYOUT_CERULEAN_CAVE_1F_HNS",
-      "name": "CeruleanCave_1F_hns_Layout",
-      "width": 44,
-      "height": 27,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Cave_Green_Hns",
-      "border_filepath": "data/layouts/CeruleanCave_1F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeruleanCave_1F_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CERULEAN_CAVE_B1F_HNS",
-      "name": "CeruleanCave_B1F_hns_Layout",
-      "width": 42,
-      "height": 25,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Cave_Green_Hns",
-      "border_filepath": "data/layouts/CeruleanCave_B1F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeruleanCave_B1F_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CERULEAN_CITY_BIKE_SHOP_HNS",
-      "name": "CeruleanCity_BikeShop_hns_Layout",
-      "width": 11,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_BikeShop_Hns",
-      "border_filepath": "data/layouts/CeruleanCity_BikeShop_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeruleanCity_BikeShop_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CERULEAN_CITY_GYM_HNS",
-      "name": "CeruleanCity_Gym_hns_Layout",
-      "width": 17,
-      "height": 20,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_CeruleanCity_Gym_Hns",
-      "border_filepath": "data/layouts/CeruleanCity_Gym_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeruleanCity_Gym_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CERULEAN_CITY_HOUSE1_HNS",
-      "name": "CeruleanCity_House1_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/CeruleanCity_House1_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeruleanCity_House1_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CERULEAN_CITY_HOUSE2_HNS",
-      "name": "CeruleanCity_House2_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/CeruleanCity_House2_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CeruleanCity_House2_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
       "id": "LAYOUT_CERULEAN_CITY_HNS",
       "name": "CeruleanCity_hns_Layout",
       "width": 58,
@@ -14619,54 +13003,6 @@
       "border_filepath": "data/layouts/CeruleanCity_hns/border.bin",
       "blockdata_filepath": "data/layouts/CeruleanCity_hns/map.bin",
       "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_CINNABAR_ISLAND_HNS",
-      "name": "CinnabarIsland_hns_Layout",
-      "width": 72,
-      "height": 44,
-      "primary_tileset": "gTileset_Kanto_General_Hns",
-      "secondary_tileset": "gTileset_Lavaridge_Hns",
-      "border_filepath": "data/layouts/CinnabarIsland_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CinnabarIsland_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_FUCHSIA_CITY_GYM_HNS",
-      "name": "FuchsiaCity_Gym_hns_Layout",
-      "width": 15,
-      "height": 23,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_FuchsiaCity_Gym_Hns",
-      "border_filepath": "data/layouts/FuchsiaCity_Gym_hns/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_Gym_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_FUCHSIA_CITY_HOUSE2_HNS",
-      "name": "FuchsiaCity_House2_hns_Layout",
-      "width": 13,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_House_Lab_Hns",
-      "border_filepath": "data/layouts/FuchsiaCity_House2_hns/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_House2_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE_HNS",
-      "name": "FuchsiaCity_SafariZoneGate_SafariZoneGate_SafariZoneEntrance_hns_Layout",
-      "width": 15,
-      "height": 15,
-      "primary_tileset": "gTileset_Kanto_Building_Hns",
-      "secondary_tileset": "gTileset_SafariZone_Entrance_Hns",
-      "border_filepath": "data/layouts/FuchsiaCity_SafariZoneEntrance_hns/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_SafariZoneEntrance_hns/map.bin",
-      "game_version": "hns_kanto_retired",
       "layout_version": "hns"
     },
     {
@@ -14703,42 +13039,6 @@
       "border_filepath": "data/layouts/PalletTown_hns/border.bin",
       "blockdata_filepath": "data/layouts/PalletTown_hns/map.bin",
       "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_PEWTER_CITY_GYM_HNS",
-      "name": "PewterCity_Gym_hns_Layout",
-      "width": 13,
-      "height": 16,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_EcruteakTheater_Hns",
-      "border_filepath": "data/layouts/PewterCity_Gym_hns/border.bin",
-      "blockdata_filepath": "data/layouts/PewterCity_Gym_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_PEWTER_CITY_MUSEUM_1F_HNS",
-      "name": "PewterCity_Museum_1F_hns_Layout",
-      "width": 28,
-      "height": 11,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_Museum_Hns",
-      "border_filepath": "data/layouts/PewterCity_Museum_1F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/PewterCity_Museum_1F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_PEWTER_CITY_MUSEUM_2F_HNS",
-      "name": "PewterCity_Museum_2F_hns_Layout",
-      "width": 19,
-      "height": 10,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_Museum_Hns",
-      "border_filepath": "data/layouts/PewterCity_Museum_2F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/PewterCity_Museum_2F_hns/map.bin",
-      "game_version": "hns_kanto_retired",
       "layout_version": "hns"
     },
     {
@@ -14786,30 +13086,6 @@
       "secondary_tileset": "gTileset_HallOfFame_Hns",
       "border_filepath": "data/layouts/PokemonLeague_HallOfFame_hns/border.bin",
       "blockdata_filepath": "data/layouts/PokemonLeague_HallOfFame_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_ROCK_TUNNEL_1F_HNS",
-      "name": "RockTunnel_1F_hns_Layout",
-      "width": 48,
-      "height": 50,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Cave_Gray_Hns",
-      "border_filepath": "data/layouts/RockTunnel_1F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/RockTunnel_1F_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_ROCK_TUNNEL_B1F_HNS",
-      "name": "RockTunnel_B1F_hns_Layout",
-      "width": 58,
-      "height": 40,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Cave_Gray_Hns",
-      "border_filepath": "data/layouts/RockTunnel_B1F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/RockTunnel_B1F_hns/map.bin",
       "game_version": "hns",
       "layout_version": "hns"
     },
@@ -15138,18 +13414,6 @@
       "layout_version": "hns"
     },
     {
-      "id": "LAYOUT_SAFFRON_CITY_GYM_HNS",
-      "name": "SaffronCity_Gym_hns_Layout",
-      "width": 29,
-      "height": 25,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_SaffronCity_Gym_Hns",
-      "border_filepath": "data/layouts/SaffronCity_Gym_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SaffronCity_Gym_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
       "id": "LAYOUT_SAFFRON_CITY_HNS",
       "name": "SaffronCity_hns_Layout",
       "width": 66,
@@ -15162,42 +13426,6 @@
       "layout_version": "hns"
     },
     {
-      "id": "LAYOUT_SEAFOAM_ISLANDS_1F_HNS",
-      "name": "SeafoamIslands_1F_hns_Layout",
-      "width": 66,
-      "height": 56,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Cave_Ice_Hns",
-      "border_filepath": "data/layouts/SeafoamIslands_1F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SeafoamIslands_1F_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_SEAFOAM_ISLANDS_B1F_HNS",
-      "name": "SeafoamIslands_B1F_hns_Layout",
-      "width": 66,
-      "height": 56,
-      "primary_tileset": "gTileset_Johto_General_Hns",
-      "secondary_tileset": "gTileset_Cave_Ice_Hns",
-      "border_filepath": "data/layouts/SeafoamIslands_B1F_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SeafoamIslands_B1F_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_VERMILION_CITY_GYM_HNS",
-      "name": "VermilionCity_Gym_hns_Layout",
-      "width": 11,
-      "height": 21,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_VermilionCity_Gym_Hns",
-      "border_filepath": "data/layouts/VermilionCity_Gym_hns/border.bin",
-      "blockdata_filepath": "data/layouts/VermilionCity_Gym_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "hns"
-    },
-    {
       "id": "LAYOUT_VERMILION_CITY_HNS",
       "name": "VermilionCity_hns_Layout",
       "width": 71,
@@ -15207,18 +13435,6 @@
       "border_filepath": "data/layouts/VermilionCity_hns/border.bin",
       "blockdata_filepath": "data/layouts/VermilionCity_hns/map.bin",
       "game_version": "hns",
-      "layout_version": "hns"
-    },
-    {
-      "id": "LAYOUT_VIRIDIAN_CITY_GYM_HNS",
-      "name": "ViridianCity_Gym_hns_Layout",
-      "width": 11,
-      "height": 22,
-      "primary_tileset": "gTileset_Johto_Building_Hns",
-      "secondary_tileset": "gTileset_ViridianCity_Gym_Hns",
-      "border_filepath": "data/layouts/ViridianCity_Gym_hns/border.bin",
-      "blockdata_filepath": "data/layouts/ViridianCity_Gym_hns/map.bin",
-      "game_version": "hns_kanto_retired",
       "layout_version": "hns"
     },
     {
@@ -16030,102 +14246,6 @@
       "secondary_tileset": "gTileset_Contest",
       "border_filepath": "data/layouts/ContestHallTough_hns/border.bin",
       "blockdata_filepath": "data/layouts/ContestHallTough_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_LILYCOVE_CITY_CONTEST_HALL_HNS",
-      "name": "LilycoveCity_ContestHall_hns_Layout",
-      "width": 51,
-      "height": 33,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/LilycoveCity_ContestHall_hns/border.bin",
-      "blockdata_filepath": "data/layouts/LilycoveCity_ContestHall_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_LILYCOVE_CITY_CONTEST_LOBBY_HNS",
-      "name": "LilycoveCity_ContestLobby_hns_Layout",
-      "width": 31,
-      "height": 12,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/LilycoveCity_ContestLobby_hns/border.bin",
-      "blockdata_filepath": "data/layouts/LilycoveCity_ContestLobby_hns/map.bin",
-      "game_version": "hns_kanto_retired",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL1_HNS",
-      "name": "UnusedContestHall1_hns_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall1_hns/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall1_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL2_HNS",
-      "name": "UnusedContestHall2_hns_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall2_hns/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall2_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL3_HNS",
-      "name": "UnusedContestHall3_hns_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall3_hns/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall3_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL4_HNS",
-      "name": "UnusedContestHall4_hns_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall4_hns/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall4_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL5_HNS",
-      "name": "UnusedContestHall5_hns_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall5_hns/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall5_hns/map.bin",
-      "game_version": "hns",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_UNUSED_CONTEST_HALL6_HNS",
-      "name": "UnusedContestHall6_hns_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
-      "border_filepath": "data/layouts/UnusedContestHall6_hns/border.bin",
-      "blockdata_filepath": "data/layouts/UnusedContestHall6_hns/map.bin",
       "game_version": "hns",
       "layout_version": "emerald"
     },

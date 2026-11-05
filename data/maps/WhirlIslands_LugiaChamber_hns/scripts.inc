@@ -2,8 +2,8 @@ WhirlIslands_LugiaChamber_hns_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, WhirlIslands_LugiaChamber_OnTransition
 	.byte 0
 
-@ Lugia: story battle at VAR_COMPLETED_LUGIA 2; afterwards the legendary rules decide
-@ (see docs/origin_jade/DECISIONS.md, D-026). The Lugia not chosen on Route 39 waits
+@ Lugia: story battle at VAR_COMPLETED_LUGIA 2; afterwards the legendary rules decide.
+@ The Lugia not chosen on Route 39 waits
 @ after the first Johto title once Ho-Oh is caught.
 WhirlIslands_LugiaChamber_OnTransition:
 	goto_if_eq VAR_COMPLETED_LUGIA, 2, WhirlIslands_LugiaChamber_MapScript_LugiaStory
@@ -26,7 +26,9 @@ WhirlIslands_LugiaChamber_MapScript_LugiaStory::
 	clearflag FLAG_HIDE_LUGIA
 	end
 
+@ The dance runs once per visit; VAR_TEMP_1 is set at its end.
 WhirlIslands_LugiaChamber_EventScript_TalkToKimono::
+	goto_if_eq VAR_TEMP_1, 1, WhirlIslands_LugiaChamber_MapScript_End
 	lockall
 	playbgm MUS_HG_KIMONO_GIRL_DANCE, FALSE
 	msgbox WhirlIslands_LugiaChamber_Text_Kimono_Opening, MSGBOX_DEFAULT
@@ -231,6 +233,8 @@ WhirlIslands_LugiaChamber_EventScript_LugiaFlewAway::
 	doweather
 	setflag FLAG_HIDE_LUGIA
 	fadescreenswapbuffers FADE_FROM_BLACK
+	@ "Flew away" only after running or fleeing, not after a knockout.
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Common_EventScript_NopReturn
 	bufferspeciesname STR_VAR_1, SPECIES_LUGIA
 	msgbox gText_LegendaryFlewAway, MSGBOX_DEFAULT
 	return
@@ -291,8 +295,8 @@ WhirlIslands_LugiaChamber_EventScript_KuniAfter::
 WhirlIslands_LugiaChamber_Text_Kimono_AfterNotCaught:
 #if GERMAN
 	.string "Ihr habt Lugia nicht nur hierher\n"
-	.string "gerufen, sondern Ihr konntet es auch,\l"
-	.string "wie durch ein Wunder, einfangen…\p"
+	.string "gerufen, sondern Euch ihm auch im\l"
+	.string "Kampf gestellt…\p"
 	.string "Das war wahrlich eine große Heldentat.\n"
 	.string "Es gibt nun nichts mehr, was wir Euch\l"
 	.string "noch erzählen könnten.\p"

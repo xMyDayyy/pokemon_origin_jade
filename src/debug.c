@@ -106,6 +106,8 @@ enum FlagsVarsDebugMenu
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_FRONTIER_PASS,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_COLLISION,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_ENCOUNTER,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_EVEN_WILD_SLOTS,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_INSTANT_TRAINER_WIN,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE,
@@ -194,7 +196,7 @@ enum DebugTrainerSelection
 #define DEBUG_NUMBER_ICON_X 210
 #define DEBUG_NUMBER_ICON_Y 50
 
-#define DEBUG_MAX_MENU_ITEMS 20
+#define DEBUG_MAX_MENU_ITEMS 22
 #define DEBUG_MAX_SUB_MENU_LEVELS 4
 
 // *******************************
@@ -239,6 +241,8 @@ static EWRAM_DATA struct DebugMonData *sDebugMonData = NULL;
 static EWRAM_DATA struct DebugMenuListData *sDebugMenuListData = NULL;
 EWRAM_DATA bool8 gIsDebugBattle = FALSE;
 EWRAM_DATA u64 gDebugAIFlags = 0;
+EWRAM_DATA bool8 gDebugEvenWildSlots = FALSE;
+EWRAM_DATA bool8 gDebugInstantTrainerWin = FALSE;
 
 // *******************************
 // Define functions
@@ -274,7 +278,7 @@ static void DebugAction_Util_Weather(u8 taskId);
 static void DebugAction_Util_Weather_SelectId(u8 taskId);
 static void DebugAction_Util_WatchCredits(u8 taskId);
 static void DebugAction_Util_CheatStart(u8 taskId);
-static void DebugAction_Util_HnsFinishJohtoKanto(u8 taskId);
+static void DebugAction_Util_HoennTest(u8 taskId);
 static void DebugAction_Util_KantoTest(u8 taskId);
 static void DebugAction_Util_JohtoTest(u8 taskId);
 static void DebugAction_Util_KantoRepair(u8 taskId);
@@ -329,6 +333,8 @@ static void DebugAction_FlagsVars_ToggleGameClear(u8 taskId);
 static void DebugAction_FlagsVars_ToggleFrontierPass(u8 taskId);
 static void DebugAction_FlagsVars_CollisionOnOff(u8 taskId);
 static void DebugAction_FlagsVars_EncounterOnOff(u8 taskId);
+static void DebugAction_FlagsVars_EvenWildSlotsOnOff(u8 taskId);
+static void DebugAction_FlagsVars_InstantTrainerWinOnOff(u8 taskId);
 static void DebugAction_FlagsVars_TrainerSeeOnOff(u8 taskId);
 static void DebugAction_FlagsVars_BagUseOnOff(u8 taskId);
 static void DebugAction_FlagsVars_CatchingOnOff(u8 taskId);
@@ -379,7 +385,7 @@ extern const u8 Debug_FlagsNotSetBattleConfigMessage[];
 extern const u8 Debug_VarsNotSetBattleConfigMessage[];
 extern const u8 Debug_FlagsAndVarNotSetBattleConfigMessage[];
 extern const u8 Debug_EventScript_FontTest[];
-extern const u8 Debug_EventScript_HnsWarpOlivinePort[];
+extern const u8 Debug_EventScript_HoennTestWarpLab[];
 extern const u8 Debug_EventScript_JohtoTestWarpHome[];
 extern const u8 Debug_EventScript_CheckEVs[];
 extern const u8 Debug_EventScript_CheckIVs[];
@@ -589,7 +595,7 @@ static const struct DebugMenuOption sDebugMenu_Actions_Utilities[] =
     { COMPOUND_STRING("Time Functions…"),   DebugAction_OpenSubMenu, sDebugMenu_Actions_TimeMenu, },
     { COMPOUND_STRING("Watch credits…"),    DebugAction_Util_WatchCredits },
     { COMPOUND_STRING("Cheat start"),       DebugAction_Util_CheatStart },
-    { COMPOUND_STRING("Hoenn Test"), DebugAction_Util_HnsFinishJohtoKanto },
+    { COMPOUND_STRING("Hoenn Test"), DebugAction_Util_HoennTest },
     { COMPOUND_STRING("Kanto Test"), DebugAction_Util_KantoTest },
     { COMPOUND_STRING("Johto Test"), DebugAction_Util_JohtoTest },
     { COMPOUND_STRING("Kanto Flag-Reparatur"), DebugAction_Util_KantoRepair },
@@ -734,6 +740,8 @@ static const struct DebugMenuOption sDebugMenu_Actions_Flags[] =
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_FRONTIER_PASS] = { COMPOUND_STRING("Toggle {STR_VAR_1}Frontier Pass"),   DebugAction_ToggleFlag, DebugAction_FlagsVars_ToggleFrontierPass },
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_COLLISION]     = { COMPOUND_STRING("Toggle {STR_VAR_1}Collision OFF"),   DebugAction_ToggleFlag, DebugAction_FlagsVars_CollisionOnOff },
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_ENCOUNTER]     = { COMPOUND_STRING("Toggle {STR_VAR_1}Encounter OFF"),   DebugAction_ToggleFlag, DebugAction_FlagsVars_EncounterOnOff },
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_EVEN_WILD_SLOTS] = { COMPOUND_STRING("Toggle {STR_VAR_1}Even Wild Slots"), DebugAction_ToggleFlag, DebugAction_FlagsVars_EvenWildSlotsOnOff },
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_INSTANT_TRAINER_WIN] = { COMPOUND_STRING("Toggle {STR_VAR_1}Instant Tr. Win"), DebugAction_ToggleFlag, DebugAction_FlagsVars_InstantTrainerWinOnOff },
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE]   = { COMPOUND_STRING("Toggle {STR_VAR_1}Trainer See OFF"), DebugAction_ToggleFlag, DebugAction_FlagsVars_TrainerSeeOnOff },
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING]      = { COMPOUND_STRING("Toggle {STR_VAR_1}Catching OFF"),    DebugAction_ToggleFlag, DebugAction_FlagsVars_CatchingOnOff },
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE]       = { COMPOUND_STRING("Toggle {STR_VAR_1}Bag Use OFF"),     DebugAction_ToggleFlag, DebugAction_FlagsVars_BagUseOnOff },
@@ -1274,6 +1282,12 @@ static u32 Debug_CheckToggleFlags(u8 id)
         result = FlagGet(OW_FLAG_NO_ENCOUNTER);
         break;
     #endif
+    case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_EVEN_WILD_SLOTS:
+        result = gDebugEvenWildSlots;
+        break;
+    case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_INSTANT_TRAINER_WIN:
+        result = gDebugInstantTrainerWin;
+        break;
     #if OW_FLAG_NO_TRAINER_SEE != 0
     case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE:
         result = FlagGet(OW_FLAG_NO_TRAINER_SEE);
@@ -1869,102 +1883,6 @@ static void DebugAction_Util_CheatStart(u8 taskId)
 }
 
 #if IS_HNS
-// Test tool: finishes Johto and Kanto and warps to the Olivine port.
-static void DebugAction_Util_HnsFinishJohtoKanto(u8 taskId)
-{
-    static const u16 sJkVisitedFlags[] =
-    {
-        FLAG_VISITED_NEWBARK_TOWN,   FLAG_VISITED_CHERRYGROVE_CITY,
-        FLAG_VISITED_VIOLET_CITY,    FLAG_VISITED_AZALEA_TOWN,
-        FLAG_VISITED_GOLDENROD_CITY, FLAG_VISITED_ECRUTEAK_CITY,
-        FLAG_VISITED_OLIVINE_CITY,   FLAG_VISITED_CIANWOOD_CITY,
-        FLAG_VISITED_MAHOGANY_TOWN,  FLAG_VISITED_LAKE_OF_RAGE,
-        FLAG_VISITED_BLACKTHORN_CITY, FLAG_VISITED_MT_SILVER,
-        FLAG_VISITED_INDIGO_PLATEAU, FLAG_VISITED_RECEPTION_GATE,
-        FLAG_VISITED_SAFARI_ZONE_GATE,
-        FLAG_VISITED_PALLET_TOWN,    FLAG_VISITED_OAKS_LAB,
-        FLAG_VISITED_VIRIDIAN_CITY,  FLAG_VISITED_PEWTER_CITY,
-        FLAG_VISITED_CERULEAN_CITY,  FLAG_VISITED_VERMILION_CITY,
-        FLAG_VISITED_LAVENDER_TOWN,  FLAG_VISITED_CELADON_CITY,
-        FLAG_VISITED_SAFFRON_CITY,   FLAG_VISITED_FUCHSIA_CITY,
-        FLAG_VISITED_CINNABAR_ISLAND,
-    };
-    static const u16 sTeamSpecies[] =
-    {
-        SPECIES_RAYQUAZA, SPECIES_KYOGRE, SPECIES_CHARIZARD,
-        SPECIES_ZAPDOS, SPECIES_SALAMENCE, SPECIES_PROBOPASS,
-    };
-    u32 i;
-    u16 f;
-
-    // All 16 badge flags.
-    for (f = FLAG_BADGE01_GET; f <= FLAG_BADGE08_GET; f++)
-        FlagSet(f);
-    for (f = FLAG_BADGE09_GET; f <= FLAG_BADGE16_GET; f++)
-        FlagSet(f);
-    // Champion + systems
-    FlagSet(FLAG_SYS_GAME_CLEAR);
-    FlagSet(FLAG_SYS_POKEDEX_GET);
-    // Start menu entries.
-    FlagSet(FLAG_SYS_POKEMON_GET);
-    FlagSet(FLAG_SYS_POKENAV_GET);
-    // PokeGear: trainer call, radio and condition entries.
-    FlagSet(FLAG_HAS_MATCH_CALL);
-    FlagSet(FLAG_ADDED_MATCH_CALL_TO_POKENAV);
-    FlagSet(FLAG_ENABLE_RADIO);
-    FlagSet(FLAG_ENABLE_CONDITION);
-    FlagSet(FLAG_ADVENTURE_STARTED);
-    FlagSet(FLAG_RECEIVED_RUNNING_SHOES);
-    FlagSet(FLAG_SYS_B_DASH);
-    FlagSet(FLAG_VISITED_JOHTO);
-    FlagSet(FLAG_IS_CHAMPION);
-    FlagSet(FLAG_IS_KANTO_CHAMPION);
-    // Origin Jade: Johto's badges, permits and title.
-    VarSet(VAR_JOHTO_BADGES, 0xFF);
-    VarSet(VAR_JOHTO_PERMITS, (1 << PERM_COUNT) - 1);
-    FlagSet(FLAG_IS_JOHTO_CHAMPION);
-    FlagSet(FLAG_RECEIVED_PASS_BINDER);
-    // Fly points Johto and Kanto.
-    for (i = 0; i < ARRAY_COUNT(sJkVisitedFlags); i++)
-        FlagSet(sJkVisitedFlags[i]);
-    // S.S. Aqua: 7 = Hoenn route open.
-    VarSet(VAR_SSAQUA_STATE, 7);
-    // Hoenn Ticket chain done, ticket in the bag.
-    VarSet(VAR_HOENN_TICKET_STATE, 3);
-    FlagSet(FLAG_HIDE_SILPHCO_TROY);
-    AddBagItem(ITEM_HOENN_TICKET, 1);
-    AddBagItem(ITEM_RARE_CANDY, MAX_BAG_ITEM_CAPACITY);
-    ZeroPlayerPartyMons();
-    for (i = 0; i < ARRAY_COUNT(sTeamSpecies); i++)
-        ScriptGiveMon(sTeamSpecies[i], MAX_LEVEL, ITEM_NONE);
-    CalculatePlayerPartyCount();
-    SetMoney(&gSaveBlock1Ptr->money, 200000);
-    // All TMs up to the last assigned one (TM92), then all HMs.
-    for (i = ITEM_TM01; i <= ITEM_TM_TRICK_ROOM; i++)
-        AddBagItem(i, 1);
-    // By HM index: ITEM_HM09 does not follow ITEM_HM08.
-    for (i = NUM_TECHNICAL_MACHINES + 1; i <= NUM_ALL_MACHINES; i++)
-        AddBagItem(GetTMHMItemId(i), 1);
-    // Pokedex 1-251 seen and caught.
-    for (i = 1; i <= NATIONAL_DEX_CELEBI; i++)
-    {
-        GetSetPokedexFlag(i, FLAG_SET_SEEN);
-        GetSetPokedexFlag(i, FLAG_SET_CAUGHT);
-    }
-
-    PlaySE(SE_EXP_MAX);
-    Debug_DestroyMenu_Full_Script(taskId, Debug_EventScript_HnsWarpOlivinePort);
-}
-
-#else
-static void DebugAction_Util_HnsFinishJohtoKanto(u8 taskId)
-{
-    Debug_DestroyMenu_Full(taskId);
-    ScriptContext_Enable();
-}
-#endif
-
-#if IS_HNS
 // Test tool: level 100 team and all TMs/HMs, the story stays untouched.
 static void DebugAction_Util_KantoTest(u8 taskId)
 {
@@ -1994,8 +1912,9 @@ static void DebugAction_Util_KantoTest(u8 taskId)
 
 #if IS_HNS
 #include "data/debug_kanto_complete.h"
+#include "data/debug_johto_complete.h"
 
-static void GiveKantoCompleteMon(u16 species, u8 level)
+static void GiveDebugStateMon(u16 species, u8 level)
 {
     struct Pokemon mon;
 
@@ -2003,22 +1922,19 @@ static void GiveKantoCompleteMon(u16 species, u8 level)
     GiveScriptedMonToPlayer(&mon, PARTY_SIZE);
 }
 
-// Test tool: on a new game, sets the state right after the first Kanto Hall of
-// Fame (tools/make_kanto_complete.py) and warps home to Pallet Town.
-static void DebugAction_Util_JohtoTest(u8 taskId)
+// FALSE with a message once the player has a Pokémon: the debug states need a new game.
+static bool32 CanStartDebugState(u8 taskId, const u8 *message)
 {
-    u32 i;
-    u32 starter = KANTO_COMPLETE_STARTER;
-    u16 starterFinal = sKantoCompletePartyStarter[starter].species;
-    bool8 ribbon = TRUE;
+    if (!FlagGet(FLAG_SYS_POKEMON_GET))
+        return TRUE;
+    StringCopy(gStringVar4, message);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_ShowFieldMessageStringVar4);
+    return FALSE;
+}
 
-    if (FlagGet(FLAG_SYS_POKEMON_GET))
-    {
-        StringCopy(gStringVar4, COMPOUND_STRING("Johto Test needs a new game\nbefore the first Pokémon."));
-        Debug_DestroyMenu_Full_Script(taskId, Debug_ShowFieldMessageStringVar4);
-        return;
-    }
-
+// Clock, empty bag, party, PC and Pokedex; challenge settings stay as chosen.
+static void ResetForDebugState(void)
+{
     if (!FlagGet(FLAG_SYS_CLOCK_SET))
         RtcInitLocalTimeOffset(0, 0);
     InitTimeBasedEvents();
@@ -2027,6 +1943,13 @@ static void DebugAction_Util_JohtoTest(u8 taskId)
     ZeroPlayerPartyMons();
     ResetPokemonStorageSystem();
     ResetPokedex();
+}
+
+// Flags, vars, trainers, bag, PC items and money right after the first Kanto Hall of Fame.
+static void ApplyKantoCompleteStory(void)
+{
+    u32 i;
+    u32 starter = KANTO_COMPLETE_STARTER;
 
     for (i = 0; i < ARRAY_COUNT(sKantoCompleteFlagsSet); i++)
         FlagSet(sKantoCompleteFlagsSet[i]);
@@ -2041,26 +1964,75 @@ static void DebugAction_Util_JohtoTest(u8 taskId)
         SetTrainerFlag(sKantoCompleteRivalTrainers[starter][i]);
     EnableNationalPokedex();
 
-    // Party first, then the box; the starter's final stage only in the party.
-    GiveKantoCompleteMon(starterFinal, sKantoCompletePartyStarter[starter].level);
-    for (i = 0; i < ARRAY_COUNT(sKantoCompleteParty); i++)
-        GiveKantoCompleteMon(sKantoCompleteParty[i].species, sKantoCompleteParty[i].level);
-    for (i = 0; i < ARRAY_COUNT(sKantoCompleteMons); i++)
-    {
-        if (sKantoCompleteMons[i].species != starterFinal)
-            GiveKantoCompleteMon(sKantoCompleteMons[i].species, sKantoCompleteMons[i].level);
-    }
-    CalculatePlayerPartyCount();
-    for (i = 0; i < ARRAY_COUNT(sKantoCompleteSeenOnly); i++)
-        GetSetPokedexFlag(SpeciesToNationalPokedexNum(sKantoCompleteSeenOnly[i]), FLAG_SET_SEEN);
-
     for (i = 0; i < ARRAY_COUNT(sKantoCompleteBag); i++)
         AddBagItem(sKantoCompleteBag[i].item, sKantoCompleteBag[i].quantity);
+    for (i = 0; i < ARRAY_COUNT(sKantoCompletePcItems); i++)
+        AddPCItem(sKantoCompletePcItems[i].item, sKantoCompletePcItems[i].quantity);
     SetMoney(&gSaveBlock1Ptr->money, KANTO_COMPLETE_MONEY);
+}
 
-    // EnterHallOfFame and the Hall of Fame save's entry count, without the screens.
+// Changes on top of ApplyKantoCompleteStory: Kanto after its title and Johto done.
+static void ApplyJohtoCompleteStory(void)
+{
+    u32 i;
+    u32 starter = JOHTO_COMPLETE_JOHTO_STARTER;
+
+    for (i = 0; i < ARRAY_COUNT(sJohtoCompleteFlagsSet); i++)
+        FlagSet(sJohtoCompleteFlagsSet[i]);
+    for (i = 0; i < ARRAY_COUNT(sJohtoCompleteFlagsClear); i++)
+        FlagClear(sJohtoCompleteFlagsClear[i]);
+    for (i = 0; i < ARRAY_COUNT(sJohtoCompleteVars); i++)
+        VarSet(sJohtoCompleteVars[i].var, sJohtoCompleteVars[i].value);
+    VarSet(VAR_JOHTO_STARTER_MON, starter);
+    for (i = 0; i < ARRAY_COUNT(sJohtoCompleteTrainers); i++)
+        SetTrainerFlag(sJohtoCompleteTrainers[i]);
+    for (i = 0; i < ARRAY_COUNT(sJohtoCompleteRivalTrainers[starter]); i++)
+        SetTrainerFlag(sJohtoCompleteRivalTrainers[starter][i]);
+
+    for (i = 0; i < ARRAY_COUNT(sJohtoCompleteBagRemove); i++)
+        RemoveBagItem(sJohtoCompleteBagRemove[i].item, sJohtoCompleteBagRemove[i].quantity);
+    for (i = 0; i < ARRAY_COUNT(sJohtoCompleteBag); i++)
+        AddBagItem(sJohtoCompleteBag[i].item, sJohtoCompleteBag[i].quantity);
+    for (i = 0; i < ARRAY_COUNT(sJohtoCompletePcItems); i++)
+        AddPCItem(sJohtoCompletePcItems[i].item, sJohtoCompletePcItems[i].quantity);
+    if (!FlagGet(JOHTO_COMPLETE_OPTION_FLAG))
+    {
+        for (i = 0; i < ARRAY_COUNT(sJohtoCompleteOptionBag); i++)
+            AddBagItem(sJohtoCompleteOptionBag[i].item, sJohtoCompleteOptionBag[i].quantity);
+    }
+    SetMoney(&gSaveBlock1Ptr->money, JOHTO_COMPLETE_MONEY);
+}
+
+// Party first, then the PC; every species of the Pokedex list seen and caught.
+static void GiveDebugStateMons(const struct KantoCompleteMon *party, u32 partyCount,
+                               const struct KantoCompleteMon *box, u32 boxCount,
+                               const u16 *dex, u32 dexCount, const u16 *seenOnly, u32 seenOnlyCount)
+{
+    u32 i;
+
+    for (i = 0; i < partyCount; i++)
+        GiveDebugStateMon(party[i].species, party[i].level);
+    for (i = 0; i < boxCount; i++)
+        GiveDebugStateMon(box[i].species, box[i].level);
+    CalculatePlayerPartyCount();
+    for (i = 0; i < dexCount; i++)
+    {
+        GetSetPokedexFlag(SpeciesToNationalPokedexNum(dex[i]), FLAG_SET_SEEN);
+        GetSetPokedexFlag(SpeciesToNationalPokedexNum(dex[i]), FLAG_SET_CAUGHT);
+    }
+    for (i = 0; i < seenOnlyCount; i++)
+        GetSetPokedexFlag(SpeciesToNationalPokedexNum(seenOnly[i]), FLAG_SET_SEEN);
+}
+
+// EnterHallOfFame and the Hall of Fame save's entry count for each title, without the screens.
+static void SetDebugStateHallOfFame(u32 titles)
+{
+    u32 i;
+    bool8 ribbon = TRUE;
+
     FlagSet(FLAG_SYS_GAME_CLEAR);
-    IncrementGameStat(GAME_STAT_ENTERED_HOF);
+    for (i = 0; i < titles; i++)
+        IncrementGameStat(GAME_STAT_ENTERED_HOF);
     if (GetGameStat(GAME_STAT_FIRST_HOF_PLAY_TIME) == 0)
         SetGameStat(GAME_STAT_FIRST_HOF_PLAY_TIME, (gSaveBlock2Ptr->playTimeHours << 16) | (gSaveBlock2Ptr->playTimeMinutes << 8) | gSaveBlock2Ptr->playTimeSeconds);
     for (i = 0; i < PARTY_SIZE; i++)
@@ -2071,12 +2043,71 @@ static void DebugAction_Util_JohtoTest(u8 taskId)
     IncrementGameStat(GAME_STAT_RECEIVED_RIBBONS);
     FlagSet(FLAG_SYS_RIBBON_GET);
     HealPlayerParty();
+}
 
+// State right after the first Kanto Hall of Fame (tools/make_debug_states.py).
+void Debug_SetJohtoTestState(void)
+{
+    ResetForDebugState();
+    ApplyKantoCompleteStory();
+    GiveDebugStateMons(sKantoCompleteParty, ARRAY_COUNT(sKantoCompleteParty),
+                       sKantoCompleteMons, ARRAY_COUNT(sKantoCompleteMons),
+                       sKantoCompleteDex, ARRAY_COUNT(sKantoCompleteDex),
+                       sKantoCompleteSeenOnly, ARRAY_COUNT(sKantoCompleteSeenOnly));
+    SetDebugStateHallOfFame(1);
+}
+
+// State of a completionist after the first Johto Hall of Fame (tools/make_debug_states.py).
+void Debug_SetHoennTestState(void)
+{
+    ResetForDebugState();
+    ApplyKantoCompleteStory();
+    ApplyJohtoCompleteStory();
+    GiveDebugStateMons(sJohtoCompleteParty, ARRAY_COUNT(sJohtoCompleteParty),
+                       sJohtoCompleteMons, ARRAY_COUNT(sJohtoCompleteMons),
+                       sJohtoCompleteDex, ARRAY_COUNT(sJohtoCompleteDex),
+                       sJohtoCompleteSeenOnly, ARRAY_COUNT(sJohtoCompleteSeenOnly));
+    SetDebugStateHallOfFame(2);
+}
+
+// Test tool: on a new game, sets the Johto Test state and warps home to Pallet Town.
+static void DebugAction_Util_JohtoTest(u8 taskId)
+{
+    if (!CanStartDebugState(taskId, COMPOUND_STRING("Johto Test needs a new game\nbefore the first Pokémon.")))
+        return;
+
+    Debug_SetJohtoTestState();
     PlaySE(SE_EXP_MAX);
     Debug_DestroyMenu_Full_Script(taskId, Debug_EventScript_JohtoTestWarpHome);
 }
+
+// Test tool: on a new game, sets the Hoenn Test state and warps into Oak's lab,
+// where Troy waits with the Hoenn Ticket.
+static void DebugAction_Util_HoennTest(u8 taskId)
+{
+    if (!CanStartDebugState(taskId, COMPOUND_STRING("Hoenn Test needs a new game\nbefore the first Pokémon.")))
+        return;
+
+    Debug_SetHoennTestState();
+    PlaySE(SE_EXP_MAX);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_EventScript_HoennTestWarpLab);
+}
 #else
+void Debug_SetJohtoTestState(void)
+{
+}
+
+void Debug_SetHoennTestState(void)
+{
+}
+
 static void DebugAction_Util_JohtoTest(u8 taskId)
+{
+    Debug_DestroyMenu_Full(taskId);
+    ScriptContext_Enable();
+}
+
+static void DebugAction_Util_HoennTest(u8 taskId)
 {
     Debug_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
@@ -2971,6 +3002,28 @@ static void DebugAction_FlagsVars_EncounterOnOff(u8 taskId)
         PlaySE(SE_PC_LOGIN);
     FlagToggle(OW_FLAG_NO_ENCOUNTER);
 #endif
+}
+
+// Every slot of a wild encounter table equally likely (land, water, Rock Smash,
+// each rod); not saved.
+static void DebugAction_FlagsVars_EvenWildSlotsOnOff(u8 taskId)
+{
+    if (gDebugEvenWildSlots)
+        PlaySE(SE_PC_OFF);
+    else
+        PlaySE(SE_PC_LOGIN);
+    gDebugEvenWildSlots = !gDebugEvenWildSlots;
+}
+
+// Trainer battles are won right after the opening texts (src/battle_main.c);
+// not saved.
+static void DebugAction_FlagsVars_InstantTrainerWinOnOff(u8 taskId)
+{
+    if (gDebugInstantTrainerWin)
+        PlaySE(SE_PC_OFF);
+    else
+        PlaySE(SE_PC_LOGIN);
+    gDebugInstantTrainerWin = !gDebugInstantTrainerWin;
 }
 
 static void DebugAction_FlagsVars_TrainerSeeOnOff(u8 taskId)
@@ -4070,12 +4123,12 @@ static void DebugAction_Give_MaxBattlePoints(u8 taskId)
 
 static void DebugAction_Give_DayCareEgg(u8 taskId)
 {
-    s32 emptySlot = Daycare_FindEmptySpot(&gSaveBlock1Ptr->daycare);
+    s32 emptySlot = Daycare_FindEmptySpot(GetCurrentDaycare());
     if (emptySlot == 0) // no daycare mons
         Debug_DestroyMenu_Full_Script(taskId, DebugScript_ZeroDaycareMons);
     else if (emptySlot == 1) // 1 daycare mon
         Debug_DestroyMenu_Full_Script(taskId, DebugScript_OneDaycareMons);
-    else if (GetDaycareCompatibilityScore(&gSaveBlock1Ptr->daycare) == PARENTS_INCOMPATIBLE) // not compatible parents
+    else if (GetDaycareCompatibilityScore(GetCurrentDaycare()) == PARENTS_INCOMPATIBLE) // not compatible parents
         Debug_DestroyMenu_Full_Script(taskId, DebugScript_DaycareMonsNotCompatible);
     else // 2 pokemon which can have a pokemon baby together
         TriggerPendingDaycareEgg();
@@ -4233,6 +4286,8 @@ static void DebugAction_PCBag_Fill_PocketPokeBalls(u8 taskId)
 {
     for (enum PokeBall ballId = BALL_STRANGE; ballId < POKEBALL_COUNT; ballId++)
     {
+        if (gPokeBalls[ballId].itemId == ITEM_NONE)
+            continue;
         if (CheckBagHasSpace(gPokeBalls[ballId].itemId, MAX_BAG_ITEM_CAPACITY))
             AddBagItem(gPokeBalls[ballId].itemId, MAX_BAG_ITEM_CAPACITY);
     }

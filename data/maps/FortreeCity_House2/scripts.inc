@@ -96,8 +96,7 @@ FortreeCity_House2_Text_CorrectTryAgainWhichHand2:
 FortreeCity_House2_Text_YourHiddenPowerHasAwoken:
 #if GERMAN
 	.string "Oh! Hervorragend!\n"
-	.string "Deine versteckten Kräfte sind erwacht!\l"
-	.string "\p"
+	.string "Deine versteckten Kräfte sind erwacht!\p"
 	.string "Hier, das ist für dich. Wecke damit\n"
 	.string "die versteckten Kräfte deiner Pokémon.$"
 #else

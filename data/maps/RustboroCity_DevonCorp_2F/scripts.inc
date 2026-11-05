@@ -156,18 +156,13 @@ RustboroCity_DevonCorp_2F_EventScript_ReceiveLileep::
 
 RustboroCity_DevonCorp_2F_EventScript_ReceiveLileepParty::
 	call RustboroCity_DevonCorp_2F_EventScript_ReceivedLileepFanfare
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, RustboroCity_DevonCorp_2F_EventScript_FinishReceivingLileep
-	call Common_EventScript_GetGiftMonPartySlot
-	call Common_EventScript_NameReceivedPartyMon
+	call Common_EventScript_AskNicknameGiftPartyMon
 	goto RustboroCity_DevonCorp_2F_EventScript_FinishReceivingLileep
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_ReceiveLileepPC::
 	call RustboroCity_DevonCorp_2F_EventScript_ReceivedLileepFanfare
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, RustboroCity_DevonCorp_2F_EventScript_TransferLileepToPC
-	call Common_EventScript_NameReceivedBoxMon
+	call Common_EventScript_AskNicknameGiftBoxMon
 	goto RustboroCity_DevonCorp_2F_EventScript_TransferLileepToPC
 	end
 
@@ -187,7 +182,7 @@ RustboroCity_DevonCorp_2F_EventScript_ReceivedLileepFanfare::
 
 RustboroCity_DevonCorp_2F_EventScript_FinishReceivingLileep::
 	setvar VAR_HOENN_FOSSIL_RESURRECTION_STATE, 0
-	setflag FLAG_RECEIVED_REVIVED_FOSSIL_MON
+	setflag FLAG_HOENN_RECEIVED_REVIVED_FOSSIL_MON
 	release
 	end
 
@@ -201,18 +196,13 @@ RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorith::
 
 RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorithParty::
 	call RustboroCity_DevonCorp_2F_EventScript_ReceivedAnorithFanfare
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, RustboroCity_DevonCorp_2F_EventScript_FinishReceivingAnorith
-	call Common_EventScript_GetGiftMonPartySlot
-	call Common_EventScript_NameReceivedPartyMon
+	call Common_EventScript_AskNicknameGiftPartyMon
 	goto RustboroCity_DevonCorp_2F_EventScript_FinishReceivingAnorith
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorithPC::
 	call RustboroCity_DevonCorp_2F_EventScript_ReceivedAnorithFanfare
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, RustboroCity_DevonCorp_2F_EventScript_TransferAnorithToPC
-	call Common_EventScript_NameReceivedBoxMon
+	call Common_EventScript_AskNicknameGiftBoxMon
 	goto RustboroCity_DevonCorp_2F_EventScript_TransferAnorithToPC
 	end
 
@@ -232,7 +222,7 @@ RustboroCity_DevonCorp_2F_EventScript_ReceivedAnorithFanfare::
 
 RustboroCity_DevonCorp_2F_EventScript_FinishReceivingAnorith::
 	setvar VAR_HOENN_FOSSIL_RESURRECTION_STATE, 0
-	setflag FLAG_RECEIVED_REVIVED_FOSSIL_MON
+	setflag FLAG_HOENN_RECEIVED_REVIVED_FOSSIL_MON
 	release
 	end
 
@@ -438,8 +428,7 @@ RustboroCity_DevonCorp_2F_Text_HandedFossilToResearcher:
 RustboroCity_DevonCorp_2F_Text_FossilRegeneratorTakesTime:
 #if GERMAN
 	.string "Der Fossil-Regenerator, den ich ent-\n"
-	.string "wickelt habe, ist einfach unglaublich.\l"
-	.string "\p"
+	.string "wickelt habe, ist einfach unglaublich.\p"
 	.string "Aber einen Nachteil gibt es: Es dauert\n"
 	.string "eine Weile, bis der Prozess\l"
 	.string "abgeschlossen ist.\p"

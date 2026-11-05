@@ -724,22 +724,6 @@ static bool8 HasAllFrontierSymbols(void)
     return TRUE;
 }
 
-u32 CountPlayerTrainerStars(void)
-{
-    u8 stars = 0;
-
-    if (GetGameStat(GAME_STAT_ENTERED_HOF))
-        stars++;
-    if (HasAllRegionalMons())
-        stars++;
-    if (CountPlayerMuseumPaintings() >= CONTEST_CATEGORIES_COUNT)
-        stars++;
-    if (HasAllFrontierSymbols())
-        stars++;
-
-    return stars;
-}
-
 #if IS_HNS
 // One star each for the Johto, Kanto and Hoenn titles and for beating Red.
 // More stars need more entries in sHnsTrainerCardPals and sHoennTrainerCardPals.
@@ -759,6 +743,28 @@ static u8 GetHnSTrainerStars(struct TrainerCard *trainerCard)
     return stars;
 }
 #endif
+
+// Stars for the nurse's Gold Card greeting and the Frontier Pass colour.
+u32 CountPlayerTrainerStars(void)
+{
+#if IS_HNS
+    // The trainer card's stars.
+    return GetHnSTrainerStars(NULL);
+#else
+    u8 stars = 0;
+
+    if (GetGameStat(GAME_STAT_ENTERED_HOF))
+        stars++;
+    if (HasAllRegionalMons())
+        stars++;
+    if (CountPlayerMuseumPaintings() >= CONTEST_CATEGORIES_COUNT)
+        stars++;
+    if (HasAllFrontierSymbols())
+        stars++;
+
+    return stars;
+#endif
+}
 
 #if !IS_HNS
 static u8 GetRubyTrainerStars(struct TrainerCard *trainerCard)

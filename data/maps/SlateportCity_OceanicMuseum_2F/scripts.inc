@@ -404,8 +404,7 @@ SlateportCity_OceanicMuseum_2F_Text_ArchieWarning:
 	.string "Meinst du nicht auch, dass wir uns eine\n"
 	.string "großartige Aufgabe gestellt haben?\p"
 	.string "Mhm…\n"
-	.string "Du bist wahrscheinlich noch zu klein.\l"
-	.string "\p"
+	.string "Du bist wahrscheinlich noch zu klein.\p"
 	.string "Du kannst unsere Ideale einfach noch\n"
 	.string "nicht verstehen.\p"
 	.string "Aber: Wenn du dich jemals wieder gegen\n"
@@ -460,8 +459,7 @@ SlateportCity_OceanicMuseum_2F_Text_SternThankYouForSavingUs:
 SlateportCity_OceanicMuseum_2F_Text_SternIveGotToGo:
 #if GERMAN
 	.string "Kapt. Brigg: Hoppla!\n"
-	.string "Wir dürfen keine Zeit mehr verlieren!\l"
-	.string "\p"
+	.string "Wir dürfen keine Zeit mehr verlieren!\p"
 	.string "Wir müssen so schnell wie möglich zur\n"
 	.string "Expedition zum Meeresgrund\l"
 	.string "aufbrechen.\p"
@@ -538,8 +536,7 @@ SlateportCity_OceanicMuseum_2F_Text_WaterQualitySample2:
 
 SlateportCity_OceanicMuseum_2F_Text_PressureExperiment:
 #if GERMAN
-	.string "Ein Gummiball wird größer und kleiner.\n"
-	.string "\p"
+	.string "Ein Gummiball wird größer und kleiner.\p"
 	.string "“Im Meer sorgt das Gewicht des Wassers\n"
 	.string "für ständigen Druck.\p"
 	.string "In seichtem Wasser ist der Druck nicht\n"

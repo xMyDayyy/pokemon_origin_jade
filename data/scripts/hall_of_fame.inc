@@ -2,7 +2,7 @@ EverGrandeCity_HallOfFame_EventScript_SetGameClearFlags::
 	special SetChampionSaveWarp
 	setflag FLAG_IS_CHAMPION
 #if IS_HNS
-	@ Knocked-out legendaries return after every title, see docs/origin_jade/DECISIONS.md, D-026.
+	@ Knocked-out legendaries return after every title.
 	call Common_EventScript_ReviveDefeatedLegendaries
 #else
 	call EverGrandeCity_HallOfFame_EventScript_ResetDefeatedEventLegendaries
@@ -22,11 +22,19 @@ EverGrandeCity_HallOfFame_EventScript_SetGameClearFlags::
 	clearflag FLAG_HIDE_SAFARI_ZONE_SOUTH_EAST_EXPANSION
 	setflag FLAG_HIDE_LILYCOVE_CITY_RIVAL
 	special UpdateTrainerFanClubGameClear
+#if IS_HNS
+	@ Origin Jade: no S.S. Ticket and Lati TV scene in Littleroot's houses.
+#else
 	call_if_unset FLAG_RECEIVED_SS_TICKET, EverGrandeCity_HallOfFame_EventScript_ReadyReceiveSSTicketEvent
+#endif
 	call_if_unset FLAG_RECEIVED_BELDUM, EverGrandeCity_HallOfFame_EventScript_ShowStevensHouseBeldum
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
+#if IS_HNS
+	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 0, EverGrandeCity_HallOfFame_EventScript_SkipDexUpgradeEvent
+#else
 	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 0, EverGrandeCity_HallOfFame_EventScript_ReadyDexUpgradeEvent
+#endif
 	return
 
 EverGrandeCity_HallOfFame_EventScript_ResetDefeatedEventLegendaries::
@@ -45,12 +53,23 @@ EverGrandeCity_HallOfFame_EventScript_ShowStevensHouseBeldum::
 	clearflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL
 	return
 
+#if !IS_HNS
 EverGrandeCity_HallOfFame_EventScript_ReadyReceiveSSTicketEvent::
 	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 3
 	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 3
 	clearflag FLAG_HIDE_PLAYERS_HOUSE_DAD
 	return
+#endif
 
 EverGrandeCity_HallOfFame_EventScript_ReadyDexUpgradeEvent::
 	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1
 	return
+
+#if IS_HNS
+@ Origin Jade: skips Birch's National Mode scene; sets the state after it and Scott's S.S. Tidal call.
+EverGrandeCity_HallOfFame_EventScript_SkipDexUpgradeEvent::
+	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3
+	setvar VAR_SCOTT_BF_CALL_STEP_COUNTER, 0
+	setflag FLAG_SCOTT_CALL_BATTLE_FRONTIER
+	return
+#endif

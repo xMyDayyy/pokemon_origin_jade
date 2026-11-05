@@ -24,11 +24,14 @@ LittlerootTown_BrendansHouse_1F_EventScript_ShowRunningShoesManual::
 	return
 
 LittlerootTown_BrendansHouse_1F_OnTransition:
+#if !IS_HNS
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToDoor
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToStairs
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToTV
+#endif
 	end
 
+#if !IS_HNS
 LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToStairs::
 	setobjectxyperm LOCALID_PLAYERS_HOUSE_1F_MOM, 8, 4
 	setobjectmovementtype LOCALID_PLAYERS_HOUSE_1F_MOM, MOVEMENT_TYPE_FACE_UP
@@ -43,17 +46,21 @@ LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToDoor::
 	setobjectxyperm LOCALID_PLAYERS_HOUSE_1F_MOM, 9, 8
 	setobjectmovementtype LOCALID_PLAYERS_HOUSE_1F_MOM, MOVEMENT_TYPE_FACE_UP
 	return
+#endif
 
 @ Many of the below scripts have no gender check because they assume youre in the correct house
 @ The below SS Ticket script uses Mays house state by accident(?), but theyre both set identically after the intro
 LittlerootTown_BrendansHouse_1F_OnFrame:
+#if !IS_HNS
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_BrendansHouse_1F_EventScript_EnterHouseMovingIn
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_BrendansHouse_1F_EventScript_GoUpstairsToSetClock
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 1, LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
+#endif
 	.2byte 0
 
+#if !IS_HNS
 LittlerootTown_BrendansHouse_1F_EventScript_GoUpstairsToSetClock::
 	lockall
 	msgbox PlayersHouse_1F_Text_GoSetTheClock, MSGBOX_DEFAULT
@@ -83,7 +90,9 @@ LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport::
 	setvar VAR_0x8005, LOCALID_PLAYERS_HOUSE_1F_MOM
 	goto PlayersHouse_1F_EventScript_PetalburgGymReportMale
 	end
+#endif
 
+#if !IS_HNS
 LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor::
 	lockall
 	playse SE_PIN
@@ -109,7 +118,9 @@ LittlerootTown_BrendansHouse_1F_Movement_RivalMomApproach:
 	walk_right
 	walk_right
 	step_end
+#endif
 
+#if !IS_HNS
 LittlerootTown_BrendansHouse_1F_EventScript_GoSeeRoom::
 	lockall
 	setvar VAR_0x8004, LOCALID_PLAYERS_HOUSE_1F_MOM
@@ -118,7 +129,12 @@ LittlerootTown_BrendansHouse_1F_EventScript_GoSeeRoom::
 	waitmovement 0
 	goto PlayersHouse_1F_EventScript_MomGoSeeRoom
 	end
+#else
+LittlerootTown_BrendansHouse_1F_EventScript_GoSeeRoom::
+	end
+#endif
 
+#if !IS_HNS
 LittlerootTown_BrendansHouse_1F_EventScript_MeetRival0::
 	lockall
 	setvar VAR_0x8008, 0
@@ -282,7 +298,18 @@ LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs2:
 	walk_up
 	walk_up
 	step_end
+#else
+LittlerootTown_BrendansHouse_1F_EventScript_MeetRival0::
+	end
 
+LittlerootTown_BrendansHouse_1F_EventScript_MeetRival1::
+	end
+
+LittlerootTown_BrendansHouse_1F_EventScript_MeetRival2::
+	end
+#endif
+
+#if !IS_HNS
 PlayersHouse_1F_Text_IsntItNiceInHere:
 #if GERMAN
 	.string "Mutter: Siehst du, {PLAYER}?\n"
@@ -427,8 +454,7 @@ PlayersHouse_1F_Text_GotDadsBadgeHeresSomethingFromMom:
 PlayersHouse_1F_Text_DontPushYourselfTooHard:
 #if GERMAN
 	.string "Überanstreng dich nicht, Liebes.\n"
-	.string "Du kannst jederzeit nach Hause kommen.\l"
-	.string "\p"
+	.string "Du kannst jederzeit nach Hause kommen.\p"
 	.string "Und jetzt nichts wie los, Schatz!$"
 #else
 	.string "Don't push yourself too hard, dear.\n"
@@ -460,6 +486,7 @@ PlayersHouse_1F_Text_RegisteredMom:
 	.string "Registered MOM\n"
 	.string "in the POKéGEAR.$"
 #endif
+#endif
 
 PlayersHouse_1F_Text_Vigoroth1:
 	.string "Fugiiiiih!$"
@@ -467,6 +494,7 @@ PlayersHouse_1F_Text_Vigoroth1:
 PlayersHouse_1F_Text_Vigoroth2:
 	.string "Huggoh, uggo uggo…$"
 
+#if !IS_HNS
 PlayersHouse_1F_Text_ReportFromPetalburgGym:
 #if GERMAN
 	.string "Interviewer: Das war unsere Reportage\n"
@@ -474,6 +502,7 @@ PlayersHouse_1F_Text_ReportFromPetalburgGym:
 #else
 	.string "INTERVIEWER: …We brought you this\n"
 	.string "report from in front of PETALBURG GYM.$"
+#endif
 #endif
 
 PlayersHouse_1F_Text_TheresAMovieOnTV:
@@ -506,6 +535,7 @@ PlayersHouse_1F_Text_RunningShoesManual:
 	.string "the road running!”$"
 #endif
 
+#if !IS_HNS
 PlayersHouse_1F_Text_TicketFromBrineyCameForYou:
 #if GERMAN
 	.string "Vater: Hm?\p"
@@ -532,8 +562,7 @@ PlayersHouse_1F_Text_TicketFromBrineyCameForYou:
 
 PlayersHouse_1F_Text_PortsInSlateportLilycove:
 #if GERMAN
-	.string "Vater: Hm, ein Ticket für eine Fähre?\n"
-	.string "\p"
+	.string "Vater: Hm, ein Ticket für eine Fähre?\p"
 	.string "Ich weiß, dass es in Graphitport City\n"
 	.string "und Seegrasulb City Anlegestellen für\l"
 	.string "Fähren gibt.$"
@@ -578,6 +607,7 @@ PlayersHouse_1F_Text_IsThatABreakingStory:
 #else
 	.string "MOM: Is that a breaking news story?$"
 #endif
+#endif
 
 PlayersHouse_1F_Text_LatiEmergencyNewsFlash:
 #if GERMAN
@@ -601,6 +631,7 @@ PlayersHouse_1F_Text_LatiEmergencyNewsFlash:
 	.string "movie program.$"
 #endif
 
+#if !IS_HNS
 PlayersHouse_1F_Text_WhatColorDidTheySay:
 #if GERMAN
 	.string "Mutter: {PLAYER}, hast du das\n"
@@ -622,7 +653,9 @@ PlayersHouse_1F_Text_StillUnknownPokemon:
 	.string "MOM: Well, isn't that something!\n"
 	.string "There are still unknown POKéMON.$"
 #endif
+#endif
 
+#if !IS_HNS
 BrendansHouse_1F_Text_ChampionVisit:
 #if GERMAN
 	.string "Oh! Besuch?\p"
@@ -646,6 +679,7 @@ BrendansHouse_1F_Text_ChampionVisit:
 	.string "Do sit down. Oh, you'll want to be\n"
 	.string "off - you TRAINERS are always in\l"
 	.string "a hurry.$"
+#endif
 #endif
 
 @ HnS: this house belongs to Norman's family.

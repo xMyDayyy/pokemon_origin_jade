@@ -65,6 +65,9 @@ MtMoon_B2F_EventScript_MiguelGoPickFossil::
 MtMoon_B2F_EventScript_DomeFossil::
 	lock
 	faceplayer
+	@ Bag full: the fossil stays where it is.
+	checkitemspace ITEM_DOME_FOSSIL
+	goto_if_eq VAR_RESULT, FALSE, EventScript_BagIsFull
 	removeobject LOCALID_DOME_FOSSIL
 	giveitem_msg MtMoon_B2F_Text_ObtainedDomeFossil, ITEM_DOME_FOSSIL, 1, MUS_RG_OBTAIN_KEY_ITEM
 	closemessage
@@ -82,6 +85,9 @@ MtMoon_B2F_Movement_MiguelToHelixFossil::
 MtMoon_B2F_EventScript_HelixFossil::
 	lock
 	faceplayer
+	@ Bag full: the fossil stays where it is.
+	checkitemspace ITEM_HELIX_FOSSIL
+	goto_if_eq VAR_RESULT, FALSE, EventScript_BagIsFull
 	removeobject LOCALID_HELIX_FOSSIL
 	giveitem_msg MtMoon_B2F_Text_ObtainedHelixFossil, ITEM_HELIX_FOSSIL, 1, MUS_RG_OBTAIN_KEY_ITEM
 	closemessage

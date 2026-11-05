@@ -5,6 +5,9 @@ VerdanturfTown_MapScripts::
 VerdanturfTown_OnTransition:
 	setflag FLAG_VISITED_VERDANTURF_TOWN
 	setvar VAR_CONTEST_HALL_STATE, 0
+#if IS_HNS
+	setflag FLAG_HIDE_VERDANTURF_TOWN_CONTEST_REPORTER
+#endif
 	end
 
 VerdanturfTown_EventScript_Twin::
@@ -29,7 +32,7 @@ VerdanturfTown_EventScript_Man::
 	end
 
 VerdanturfTown_EventScript_Camper::
-	msgbox VerdanturfTown_Text_MakeBattleTentDebut, MSGBOX_NPC
+	msgbox VerdanturfTown_Text_MakeContestDebut, MSGBOX_NPC
 	end
 
 VerdanturfTown_EventScript_Boy::
@@ -53,8 +56,8 @@ VerdanturfTown_EventScript_WandasHouseSign::
 	msgbox VerdanturfTown_Text_WandasHouse, MSGBOX_SIGN
 	end
 
-VerdanturfTown_EventScript_BattleTentSign::
-	msgbox VerdanturfTown_Text_BattleTentSign, MSGBOX_SIGN
+VerdanturfTown_EventScript_ContestHallSign::
+	msgbox VerdanturfTown_Text_ContestHallSign, MSGBOX_SIGN
 	end
 
 VerdanturfTown_EventScript_RusturfTunnelSign::
@@ -113,17 +116,17 @@ VerdanturfTown_Text_AirCleanHere:
 	.string "frail and sickly people.$"
 #endif
 
-VerdanturfTown_Text_MakeBattleTentDebut:
+VerdanturfTown_Text_MakeContestDebut:
 #if GERMAN
-	.string "Meine Pokémon und ich haben gerade\n"
-	.string "eine Gewinnserie.\p"
-	.string "Daher werde ich nun meinen Auftritt\n"
-	.string "im Kampfcamp haben.$"
+	.string "Ich bin doch zufrieden mit der Anmut\n"
+	.string "meiner Pokémon.\p"
+	.string "Ich möchte hier zum ersten Mal an\n"
+	.string "einem Wettbewerb teilnehmen.$"
 #else
-	.string "My POKéMON and I, we've been riding\n"
-	.string "a hot winning streak.\p"
-	.string "So I decided to make my BATTLE TENT\n"
-	.string "debut in this town.$"
+	.string "I'm feeling a little confident about the\n"
+	.string "cuteness of my POKéMON.\p"
+	.string "I wanted to make its CONTEST debut,\n"
+	.string "so that's why I'm here.$"
 #endif
 
 VerdanturfTown_Text_GuyTryingToBustThroughCave:
@@ -149,8 +152,7 @@ VerdanturfTown_Text_GuyTryingToBustThroughCave:
 VerdanturfTown_Text_EasyToGetToRustboroNow:
 #if GERMAN
 	.string "Die Höhle neben dem Pkmn-Supermarkt\n"
-	.string "ist nun ein Tunnel zur anderen Seite.\l"
-	.string "\p"
+	.string "ist nun ein Tunnel zur anderen Seite.\p"
 	.string "Das ist toll! Jetzt kommt man ganz\n"
 	.string "einfach nach Metarost City, um\l"
 	.string "Devon-waren zu kaufen.$"
@@ -179,13 +181,15 @@ VerdanturfTown_Text_WandasHouse:
 	.string "WANDA'S HOUSE$"
 #endif
 
-VerdanturfTown_Text_BattleTentSign:
+VerdanturfTown_Text_ContestHallSign:
 #if GERMAN
-	.string "Kampfcamp Wiesenflur\n"
-	.string "“Wo Kämpfe Eine Augenweide Sind”$"
+	.string "Pokémon Wettbewerbe\n"
+	.string "Normal-Klasse Registrierungen\p"
+	.string "“Kommt her, all ihr Pokémon-Trainer!”$"
 #else
-	.string "BATTLE TENT VERDANTURF SITE\n"
-	.string "“Feast Your Eyes on Battles!”$"
+	.string "POKéMON CONTESTS\n"
+	.string "NORMAL RANK REGISTRATION\p"
+	.string "“Gather here, all ye POKéMON TRAINERS!”$"
 #endif
 
 VerdanturfTown_Text_RusturfTunnelSign:

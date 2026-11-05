@@ -204,6 +204,26 @@
       "flag": "FLAG_HIDDEN_ITEM_CERULEAN_CAVE_B1F_ELECTIRIZER",
       "quantity": 1,
       "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 9,
+      "y": 5,
+      "elevation": 3,
+      "item": "ITEM_ODD_INCENSE",
+      "flag": "FLAG_HIDDEN_ITEM_CERULEAN_CAVE_B1F_ODD_INCENSE_FRLG",
+      "quantity": 1,
+      "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 19,
+      "y": 17,
+      "elevation": 0,
+      "item": "ITEM_BLACK_SLUDGE",
+      "flag": "FLAG_HIDDEN_ITEM_CERULEAN_CAVE_B2F_BLACK_SLUDGE",
+      "quantity": 1,
+      "underfoot": false
     }
   ],
   "floor_number": 0,

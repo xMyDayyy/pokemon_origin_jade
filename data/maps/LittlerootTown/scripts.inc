@@ -37,9 +37,13 @@ LittlerootTown_MapScripts::
 LittlerootTown_OnTransition:
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
 	call Common_EventScript_SetupRivalGfxId
+#if !IS_HNS
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_EventScript_MoveMomToMaysDoor
+#endif
 	call_if_unset FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_SetTwinPos
+#if !IS_HNS
 	call_if_eq VAR_LITTLEROOT_TOWN_STATE, 3, LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos
+#endif
 	call_if_eq VAR_LITTLEROOT_HOUSES_STATE_MAY, 4, LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
 	call_if_eq VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4, LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
 	call_if_eq VAR_OLDALE_RIVAL_STATE, 1, LittlerootTown_EventScript_MoveRivalFromOldale
@@ -70,9 +74,11 @@ LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent::
 	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 5
 	return
 
+#if !IS_HNS
 LittlerootTown_EventScript_MoveMomToMaysDoor::
 	setobjectxyperm LOCALID_LITTLEROOT_MOM, 14, 8
 	return
+#endif
 
 LittlerootTown_EventScript_SetTwinPos::
 	goto_if_eq VAR_LITTLEROOT_TOWN_STATE, 0, LittlerootTown_EventScript_SetTwinGuardingRoutePos
@@ -85,6 +91,7 @@ LittlerootTown_EventScript_SetTwinGuardingRoutePos::
 	setobjectmovementtype LOCALID_LITTLEROOT_TWIN, MOVEMENT_TYPE_FACE_DOWN
 	return
 
+#if !IS_HNS
 LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos::
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
 	setobjectmovementtype LOCALID_LITTLEROOT_MOM, MOVEMENT_TYPE_FACE_DOWN
@@ -100,13 +107,17 @@ LittlerootTown_EventScript_SetMomInFrontOfDoorMale::
 LittlerootTown_EventScript_SetMomInFrontOfDoorFemale::
 	setobjectxyperm LOCALID_LITTLEROOT_MOM, 14, 9
 	return
+#endif
 
 LittlerootTown_OnFrame:
+#if !IS_HNS
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 1, LittlerootTown_EventScript_StepOffTruckMale
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_EventScript_StepOffTruckFemale
+#endif
 	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_EventScript_BeginDexUpgradeScene
 	.2byte 0
 
+#if !IS_HNS
 LittlerootTown_EventScript_StepOffTruckMale::
 	lockall
 	setvar VAR_0x8004, 5
@@ -201,6 +212,7 @@ LittlerootTown_Movement_PlayerStepOffTruck:
 	delay_16
 	delay_16
 	step_end
+#endif
 
 LittlerootTown_EventScript_BeginDexUpgradeScene::
 	lockall
@@ -444,6 +456,7 @@ LittlerootTown_EventScript_PlayersHouseSignFemale::
 	msgbox LittlerootTown_Text_PlayersHouse, MSGBOX_DEFAULT
 	return
 
+#if !IS_HNS
 LittlerootTown_EventScript_GiveRunningShoesTrigger0::
 	lockall
 	setvar VAR_0x8008, 0
@@ -923,11 +936,9 @@ LittlerootTown_EventScript_GiveRunningShoes::
 
 LittlerootTown_Text_OurNewHomeLetsGoInside:
 #if GERMAN
-	.string "Mutter: {PLAYER}, wir sind da, Schatz!\n"
-	.string "\p"
+	.string "Mutter: {PLAYER}, wir sind da, Schatz!\p"
 	.string "Die Fahrt im Umzugswagen zwischen all\n"
-	.string "unseren Sachen war bestimmt ermüdend.\l"
-	.string "\p"
+	.string "unseren Sachen war bestimmt ermüdend.\p"
 	.string "Nun, wir sind in Wurzelheim.\p"
 	.string "Wie gefällt es dir?\n"
 	.string "Dies ist unser neues Zuhause!\p"
@@ -960,8 +971,7 @@ LittlerootTown_Text_WearTheseRunningShoes:
 	.string "Mutter: {PLAYER}! Hast du dich schon\n"
 	.string "Prof. Birk vorgestellt?\p"
 	.string "Oh! Was für ein hübsches Pokémon! Du\n"
-	.string "hast es von Prof. Birk erhalten? Toll!\l"
-	.string "\p"
+	.string "hast es von Prof. Birk erhalten? Toll!\p"
 	.string "Du bist das Kind deines Vaters!\n"
 	.string "Wunderbar. Du siehst gut aus mit deinem\l"
 	.string "Pokémon!\p"
@@ -1027,6 +1037,25 @@ LittlerootTown_Text_ComeHomeIfAnythingHappens:
 	.string "…But please be careful.\n"
 	.string "If anything happens, you can come home.\p"
 	.string "Go on, go get them, honey!$"
+#endif
+#else
+LittlerootTown_EventScript_GiveRunningShoesTrigger0::
+	end
+
+LittlerootTown_EventScript_GiveRunningShoesTrigger1::
+	end
+
+LittlerootTown_EventScript_GiveRunningShoesTrigger2::
+	end
+
+LittlerootTown_EventScript_GiveRunningShoesTrigger3::
+	end
+
+LittlerootTown_EventScript_GiveRunningShoesTrigger4::
+	end
+
+LittlerootTown_EventScript_GiveRunningShoesTrigger5::
+	end
 #endif
 
 LittlerootTown_Text_CanUsePCToStoreItems:

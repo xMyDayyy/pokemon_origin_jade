@@ -38,7 +38,12 @@
 #include "constants/maps.h"
 #include "constants/rgb.h"
 
+#if IS_HNS
+// Keep equal to hall_of_fame_frlg.c (shared Hall of Fame save sectors).
+#define HALL_OF_FAME_MAX_TEAMS 50
+#else
 #define HALL_OF_FAME_MAX_TEAMS 30
+#endif
 #define TAG_CONFETTI 1001
 
 STATIC_ASSERT(sizeof(struct HallofFameTeam) * HALL_OF_FAME_MAX_TEAMS <= SECTOR_DATA_SIZE * NUM_HOF_SECTORS, HallOfFameFreeSpace);

@@ -84,6 +84,36 @@
       "elevation": 3,
       "item": "ITEM_HEART_SCALE",
       "flag": "FLAG_HIDDEN_ITEM_UNDERWATER_124_HEART_SCALE_2"
+    },
+    {
+      "type": "hidden_item",
+      "x": 65,
+      "y": 33,
+      "elevation": 3,
+      "item": "ITEM_RELIC_COPPER",
+      "flag": "FLAG_HIDDEN_ITEM_UNDERWATER_124_RELIC_COPPER",
+      "quantity": 1,
+      "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 62,
+      "y": 52,
+      "elevation": 3,
+      "item": "ITEM_RELIC_SILVER",
+      "flag": "FLAG_HIDDEN_ITEM_UNDERWATER_124_RELIC_SILVER",
+      "quantity": 1,
+      "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 72,
+      "y": 65,
+      "elevation": 3,
+      "item": "ITEM_RELIC_GOLD",
+      "flag": "FLAG_HIDDEN_ITEM_UNDERWATER_124_RELIC_GOLD",
+      "quantity": 1,
+      "underfoot": false
     }
   ]
 }

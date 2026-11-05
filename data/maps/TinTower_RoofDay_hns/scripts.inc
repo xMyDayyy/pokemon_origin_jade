@@ -2,8 +2,8 @@ TinTower_RoofDay_hns_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, TinTower_RoofDay_OnTransition
 	.byte 0
 
-@ Ho-Oh: story battle at VAR_COMPLETED_HO_OH 2; afterwards the legendary rules decide
-@ (see docs/origin_jade/DECISIONS.md, D-026). The Ho-Oh not chosen on Route 39 waits
+@ Ho-Oh: story battle at VAR_COMPLETED_HO_OH 2; afterwards the legendary rules decide.
+@ The Ho-Oh not chosen on Route 39 waits
 @ after the first Johto title once Lugia is caught.
 TinTower_RoofDay_OnTransition:
 	call_if_set FLAG_DAY_POKEMON, TinTower_RoofDay_EventScript_SetNight
@@ -36,7 +36,9 @@ TinTower_RoofDay_MapScript_HoohStory::
 	clearflag FLAG_HIDE_HO_OH
 	end
 
+@ The dance runs once per visit; VAR_TEMP_1 is set at its end.
 TinTower_RoofDay_EventScript_TalkToKimono::
+	goto_if_eq VAR_TEMP_1, 1, TinTower_RoofDay_MapScript_End
 	lockall
 	playbgm MUS_HG_KIMONO_GIRL_DANCE, FALSE
 	msgbox TinTower_RoofDay_Text_Kimono_Opening, MSGBOX_DEFAULT
@@ -228,6 +230,8 @@ TinTower_RoofDay_EventScript_HoohFlewAway::
 	doweather
 	setflag FLAG_HIDE_HO_OH
 	fadescreenswapbuffers FADE_FROM_BLACK
+	@ "Flew away" only after running or fleeing, not after a knockout.
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Common_EventScript_NopReturn
 	bufferspeciesname STR_VAR_1, SPECIES_HO_OH
 	msgbox gText_LegendaryFlewAway, MSGBOX_DEFAULT
 	return
@@ -288,8 +292,8 @@ TinTower_RoofDay_EventScript_KuniAfter::
 TinTower_RoofDay_Text_Kimono_AfterNotCaught:
 #if GERMAN
 	.string "Ihr habt Ho-Oh nicht nur hierher\n"
-	.string "gerufen, sondern Ihr konntet es auch\l"
-	.string "wie durch ein Wunder einfangen…\p"
+	.string "gerufen, sondern Euch ihm auch im\l"
+	.string "Kampf gestellt…\p"
 	.string "Das war wirklich eine Glanzleistung.\n"
 	.string "Es gibt nun nichts mehr, was wir Euch\l"
 	.string "noch erzählen könnten.\p"

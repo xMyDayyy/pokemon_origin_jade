@@ -40,8 +40,7 @@ DewfordTown_PokemonCenter_1F_Text_StoneCavern:
 DewfordTown_PokemonCenter_1F_Text_FaintedMonCanUseHM:
 #if GERMAN
 	.string "Auch wenn in deinem Team ein kampf-\n"
-	.string "unfähiges Pokémon ist, kann es außer-\l"
-	.string "\p"
+	.string "unfähiges Pokémon ist, kann es außer-\p"
 	.string "halb des Kampfes eine Versteckte\n"
 	.string "Maschine, eine VM, anwenden.$"
 #else

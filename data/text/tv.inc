@@ -2916,7 +2916,8 @@ gTVFindThatGamerText00::
 
 gTVFindThatGamerText01::
 #if GERMAN
-	.string "{STR_VAR_1} hat {STR_VAR_2} gespielt und\n"
+	.string "{STR_VAR_1} hat\n"
+	.string "{STR_VAR_2} gespielt und\l"
 	.string "{STR_VAR_3} Münzen gewonnen.\p"
 	.string "“Wenn {STR_VAR_1} hier ist, müssen wir\n"
 	.string "darauf achten, genug Münzen vorrätig\l"
@@ -2949,8 +2950,8 @@ gTVFindThatGamerText01::
 
 gTVFindThatGamerText02::
 #if GERMAN
-	.string "{STR_VAR_1} hat {STR_VAR_2} gespielt und\n"
-	.string "{STR_VAR_3} Münzen verloren.\p"
+	.string "{STR_VAR_1} hat {STR_VAR_2}\n"
+	.string "gespielt und {STR_VAR_3} Münzen verloren.\p"
 	.string "“Dank {STR_VAR_1} verkaufen wir viele\n"
 	.string "Münzen.”\p"
 	.string "Das sagen die Angestellten der\n"

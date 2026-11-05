@@ -5,6 +5,8 @@ Route104_MapScripts::
 
 Route104_OnFrame:
 	map_script_2 VAR_BOARD_BRINEY_BOAT_STATE, 1, Route104_EventScript_StartSailToDewford
+	@ Origin Jade: Hoenn ship trip on to Birch's lab (hoenn_arrival.inc).
+	map_script_2 VAR_TEMP_C, 1, Route104_EventScript_HoennShipToLab
 	.2byte 0
 
 Route104_EventScript_StartSailToDewford::
@@ -16,6 +18,7 @@ Route104_OnTransition:
 	call Common_EventScript_SetupRivalGfxId
 	call Route104_EventScript_TrySetRivalPos
 	call Route104_EventScript_ShowOrHideWhiteHerbFlorist
+	call_if_set FLAG_HOENN_SHIP_TO_BIRCHS_LAB, Route104_EventScript_HoennArmShipToLab
 	end
 
 Route104_EventScript_ShowOrHideWhiteHerbFlorist::
@@ -389,6 +392,7 @@ Route104_EventScript_SailToDewfordNoCall::
 	waitmovement 0
 	goto Route104_EventScript_ArriveInDewford
 
+#if !IS_HNS
 Route104_EventScript_SailToDewfordDadCalls::
 	applymovement LOCALID_ROUTE104_BOAT, Route104_Movement_SailToDewfordBeforeDadCalls
 	applymovement LOCALID_PLAYER, Route104_Movement_SailToDewfordBeforeDadCalls
@@ -407,6 +411,7 @@ Route104_EventScript_SailToDewfordDadCalls::
 	waitmovement LOCALID_ROUTE104_BOAT, MAP_ROUTE104
 	waitmovement 0
 	goto Route104_EventScript_ArriveInDewford
+#endif
 
 Route104_EventScript_ArriveInDewford::
 	delay 50

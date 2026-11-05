@@ -18,7 +18,8 @@ CliffEdgeCave_Text_Baldman:
 	.string "Aber bevor wir nicht beide Richtungen\n"
 	.string "ausprobiert haben, finden wir Menschen\l"
 	.string "einfach keine Ruhe.\p"
-	.string "Für welche Leiter entscheidest du dich?\p"
+	.string "Für welche Leiter\n"
+	.string "entscheidest du dich?\p"
 	.string "Für die, die nach oben führt, oder für\n"
 	.string "die, die nach unten führt?$"
 #else

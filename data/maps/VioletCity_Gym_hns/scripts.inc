@@ -61,7 +61,6 @@ VioletCity_Gym_EventScript_Falkner_Defeated::
 	end
 
 @ Johto gym leader rematch after the Johto title: unlimited, money only.
-@ See docs/origin_jade/DECISIONS.md, D-032.
 VioletCity_Gym_EventScript_Falkner_Rematch::
 	msgbox VioletGym_Text_Falkner_Rematch, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
@@ -80,10 +79,11 @@ VioletGym_Text_Falkner_Intro:
 #if GERMAN
 	.string "Falk: Ich bin Falk, der Arenaleiter\n"
 	.string "von Viola City!\p"
-	.string "Viele Leute sagen, mit Elektro-Attacken\n"
-	.string "könne man Pokémon vom Typ Flug\l"
-	.string "ganz leicht die Flügel stutzen und\l"
-	.string "machen sich so über mich lustig…\p"
+	.string "Viele Leute sagen, mit\n"
+	.string "Elektro-Attacken könne man Pokémon\l"
+	.string "vom Typ Flug ganz leicht die Flügel\l"
+	.string "stutzen und machen sich so über\l"
+	.string "mich lustig…\p"
 	.string "Das kann ich so nicht stehen lassen!\p"
 	.string "Wenn du erst mal siehst, wie anmutig\n"
 	.string "meine Flug-Pokémon durch die Lüfte\l"

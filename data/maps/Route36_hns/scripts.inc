@@ -7,21 +7,29 @@ Route36_OnTransition:
 	callnative SetTimeBasedEncounters
 	special GetWeekday
 	call_if_ne VAR_RESULT, WEEKDAY_THU, Route36_EventScript_HideArthur
+	call_if_eq VAR_SUICUNE_ENCOUNTERS, 2, Route36_EventScript_SuicuneWithoutRoute42
 	call_if_ne VAR_SUICUNE_ENCOUNTERS, 3, Route36_EventScript_HideSuicune
 	setflag FLAG_TEMP_3
 	end
 
-@ Arthur of the weekday siblings is only here on Thursday, see
-@ docs/origin_jade/DECISIONS.md, D-033.
+@ Arthur of the weekday siblings is only here on Thursday.
 Route36_EventScript_HideArthur:
 	setflag FLAG_TEMP_1
 	return
 
 @ Suicune stands here only at VAR_SUICUNE_ENCOUNTERS 3 (both other Johto sightings
 @ done); FLAG_TEMP_2 hides Suicune, FLAG_TEMP_3 hides Eusine.
-@ See docs/origin_jade/DECISIONS.md, D-038.
 Route36_EventScript_HideSuicune:
 	setflag FLAG_TEMP_2
+	return
+
+@ Safety net: Cianwood done, Route 42's sighting missed (Mahogany reached through
+@ Mt. Mortar before the Burned Tower release, only flown to since). Once Pryce is
+@ beaten, Route 36 arms anyway and Route 42's sighting is dropped.
+Route36_EventScript_SuicuneWithoutRoute42:
+	goto_if_unset FLAG_DEFEATED_MAHOGANY_TOWN_GYM, Common_EventScript_NopReturn
+	setflag FLAG_HIDE_ROUTE42_SUICUNE
+	setvar VAR_SUICUNE_ENCOUNTERS, 3
 	return
 
 Route36_EventScript_RockSmashGuy::
@@ -49,6 +57,7 @@ Route36_EventScript_RockSmashGuy3::
 Route36_EventScript_RockSmashGuyHasHM::
 	msgbox Route36_Text_RockSmashGuyHasHM, MSGBOX_DEFAULT
 	giveitem ITEM_HARD_STONE
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_HM_ROCK_SMASH
 	closemessage
 	release
@@ -118,7 +127,7 @@ Route36_EventScript_SudoWoodoWater::
 	delay 40
 	waitmoncry
 	setvar VAR_LAST_TALKED, LOCALID_ROUTE36_SUDOWOODO
-	setwildbattle SPECIES_SUDOWOODO, 60
+	setwildbattle SPECIES_SUDOWOODO, 50
 	@setflag FLAG_SYS_CTRL_OBJ_DELETE
 	dowildbattle
 	@clearflag FLAG_SYS_CTRL_OBJ_DELETE
@@ -238,7 +247,8 @@ Route36_Movement_SudoWoodo:
 Route36_Text_UseSquirtbottle:
 #if GERMAN
 	.string "Das ist ein merkwürdiger Baum.\n"
-	.string "Möchtest du die Schiggykanne benutzen?$"
+	.string "Möchtest du die Schiggykanne\l"
+	.string "benutzen?$"
 #else
 	.string "Use SQUIRTBOTTLE?$"
 #endif

@@ -115,7 +115,7 @@ Alola_Melemele_TravelToKanto_4:
 	delay 90
 	fadescreenswapbuffers FADE_TO_BLACK
 	special RemoveCameraObject
-	warp MAP_ROUTE13_HNS, 77, 26
+	warp MAP_ROUTE13, 77, 26
 	waitstate
 	end
 
@@ -724,8 +724,8 @@ Alola_Melemele_SamsonOak_Trigger_Beginning_Text_4:
 	.string "This is the main town on these islands.\p"
 	.string "It's eerily similar to HAU'OLI CITY in\n"
 	.string "ALOLA… {PAUSE 30}And when I think about it…\p"
-	.string "This whole island reminds me of MELEMELE\n"
-	.string "ISLAND…$"
+	.string "This whole island reminds me of\n"
+	.string "MELEMELE ISLAND…$"
 
 Alola_Melemele_SamsonOak_Trigger_Beginning_Text_5:
 	.string "Well, anyways!\p"

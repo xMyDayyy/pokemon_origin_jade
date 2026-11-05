@@ -58,9 +58,8 @@
 #include "constants/trainers.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
+#include "caps.h"
 #include "fishing.h"
-#include "hoenn_badges.h"
-#include "johto_badges.h"
 #include "nuzlocke.h"
 #include "regions.h"
 
@@ -194,18 +193,19 @@ const struct RematchTrainer gRematchTable[REMATCH_TABLE_ENTRIES] =
     [REMATCH_JACKI]        = REMATCH(TRAINER_BETH_HNS,     TRAINER_BETH_2_HNS,    TRAINER_BETH_3_HNS,    TRAINER_BETH_3_HNS,    TRAINER_BETH_3_HNS,    MAP_ROUTE26_HNS),
     [REMATCH_WALTER]       = REMATCH(TRAINER_JOSE_HNS,     TRAINER_JOSE_2_HNS,    TRAINER_JOSE_3_HNS,    TRAINER_JOSE_3_HNS,    TRAINER_JOSE_3_HNS,    MAP_ROUTE27_HNS),
     [REMATCH_KAREN]        = REMATCH(TRAINER_REENA_HNS,    TRAINER_REENA_2_HNS,   TRAINER_REENA_3_HNS,   TRAINER_REENA_3_HNS,   TRAINER_REENA_3_HNS,   MAP_ROUTE27_HNS),
-    [REMATCH_ALEX_HNS]    = REMATCH(TRAINER_ALEX_HNS,     TRAINER_ALEX_2_HNS,    TRAINER_ALEX_3_HNS,    TRAINER_ALEX_3_HNS,    TRAINER_ALEX_3_HNS,    MAP_ROUTE13_HNS),
-    [REMATCH_RILEY_HNS]   = REMATCH(TRAINER_RILEY_HNS,    TRAINER_RILEY_2_HNS,   TRAINER_RILEY_3_HNS,   TRAINER_RILEY_4_HNS,   TRAINER_RILEY_4_HNS,   MAP_ROUTE17_HNS),
-    [REMATCH_TREVOR_HNS]  = REMATCH(TRAINER_TREVOR_HNS,   TRAINER_TREVOR_2_HNS,  TRAINER_TREVOR_3_HNS,  TRAINER_TREVOR_3_HNS,  TRAINER_TREVOR_3_HNS,  MAP_ROUTE14_HNS),
-    [REMATCH_KYLE_HNS]    = REMATCH(TRAINER_KYLE_HNS,     TRAINER_KYLE_2_HNS,    TRAINER_KYLE_3_HNS,    TRAINER_KYLE_3_HNS,    TRAINER_KYLE_3_HNS,    MAP_ROUTE12_HNS),
-    [REMATCH_CARTER_HNS]  = REMATCH(TRAINER_CARTER_HNS,   TRAINER_CARTER_2_HNS,  TRAINER_CARTER_3_HNS,  TRAINER_CARTER_3_HNS,  TRAINER_CARTER_3_HNS,  MAP_ROUTE14_HNS),
-    [REMATCH_HILLARY_HNS] = REMATCH(TRAINER_HILLARY_HNS,  TRAINER_HILLARY_2_HNS, TRAINER_HILLARY_3_HNS, TRAINER_HILLARY_3_HNS, TRAINER_HILLARY_3_HNS, MAP_ROUTE15_HNS),
-    [REMATCH_ROB_HNS]     = REMATCH(TRAINER_ROB_HNS,      TRAINER_ROB_2_HNS,     TRAINER_ROB_3_HNS,     TRAINER_ROB_3_HNS,     TRAINER_ROB_3_HNS,     MAP_VIRIDIAN_FOREST_HNS),
-    [REMATCH_NICOLE_HNS]  = REMATCH(TRAINER_NICOLE_HNS,   TRAINER_NICOLE_2_HNS,  TRAINER_NICOLE_3_HNS,  TRAINER_NICOLE_3_HNS,  TRAINER_NICOLE_3_HNS,  MAP_ROUTE20_HNS),
-    [REMATCH_BILLY_HNS]   = REMATCH(TRAINER_BILLY_HNS,    TRAINER_BILLY_2_HNS,   TRAINER_BILLY_3_HNS,   TRAINER_BILLY_3_HNS,   TRAINER_BILLY_3_HNS,   MAP_ROUTE15_HNS),
-    [REMATCH_KENNY_HNS]   = REMATCH(TRAINER_KENNY_HNS,    TRAINER_KENNY_2_HNS,   TRAINER_KENNY_3_HNS,   TRAINER_KENNY_3_HNS,   TRAINER_KENNY_3_HNS,   MAP_ROUTE13_HNS),
-    [REMATCH_JOEL_HNS]    = REMATCH(TRAINER_JOEL_HNS,     TRAINER_JOEL_2_HNS,    TRAINER_JOEL_3_HNS,    TRAINER_JOEL_3_HNS,    TRAINER_JOEL_3_HNS,    MAP_ROUTE17_HNS),
-    [REMATCH_CHARLES_HNS] = REMATCH(TRAINER_CHARLES_HNS,  TRAINER_CHARLES_2_HNS, TRAINER_CHARLES_3_HNS, TRAINER_CHARLES_3_HNS, TRAINER_CHARLES_3_HNS, MAP_ROUTE17_HNS),
+    // Trainers of the removed HnS Kanto routes: ids kept, no map (never rematched).
+    [REMATCH_ALEX_HNS]    = REMATCH(TRAINER_ALEX_HNS,     TRAINER_ALEX_2_HNS,    TRAINER_ALEX_3_HNS,    TRAINER_ALEX_3_HNS,    TRAINER_ALEX_3_HNS,    MAP_UNDEFINED),
+    [REMATCH_RILEY_HNS]   = REMATCH(TRAINER_RILEY_HNS,    TRAINER_RILEY_2_HNS,   TRAINER_RILEY_3_HNS,   TRAINER_RILEY_4_HNS,   TRAINER_RILEY_4_HNS,   MAP_UNDEFINED),
+    [REMATCH_TREVOR_HNS]  = REMATCH(TRAINER_TREVOR_HNS,   TRAINER_TREVOR_2_HNS,  TRAINER_TREVOR_3_HNS,  TRAINER_TREVOR_3_HNS,  TRAINER_TREVOR_3_HNS,  MAP_UNDEFINED),
+    [REMATCH_KYLE_HNS]    = REMATCH(TRAINER_KYLE_HNS,     TRAINER_KYLE_2_HNS,    TRAINER_KYLE_3_HNS,    TRAINER_KYLE_3_HNS,    TRAINER_KYLE_3_HNS,    MAP_UNDEFINED),
+    [REMATCH_CARTER_HNS]  = REMATCH(TRAINER_CARTER_HNS,   TRAINER_CARTER_2_HNS,  TRAINER_CARTER_3_HNS,  TRAINER_CARTER_3_HNS,  TRAINER_CARTER_3_HNS,  MAP_UNDEFINED),
+    [REMATCH_HILLARY_HNS] = REMATCH(TRAINER_HILLARY_HNS,  TRAINER_HILLARY_2_HNS, TRAINER_HILLARY_3_HNS, TRAINER_HILLARY_3_HNS, TRAINER_HILLARY_3_HNS, MAP_UNDEFINED),
+    [REMATCH_ROB_HNS]     = REMATCH(TRAINER_ROB_HNS,      TRAINER_ROB_2_HNS,     TRAINER_ROB_3_HNS,     TRAINER_ROB_3_HNS,     TRAINER_ROB_3_HNS,     MAP_UNDEFINED),
+    [REMATCH_NICOLE_HNS]  = REMATCH(TRAINER_NICOLE_HNS,   TRAINER_NICOLE_2_HNS,  TRAINER_NICOLE_3_HNS,  TRAINER_NICOLE_3_HNS,  TRAINER_NICOLE_3_HNS,  MAP_UNDEFINED),
+    [REMATCH_BILLY_HNS]   = REMATCH(TRAINER_BILLY_HNS,    TRAINER_BILLY_2_HNS,   TRAINER_BILLY_3_HNS,   TRAINER_BILLY_3_HNS,   TRAINER_BILLY_3_HNS,   MAP_UNDEFINED),
+    [REMATCH_KENNY_HNS]   = REMATCH(TRAINER_KENNY_HNS,    TRAINER_KENNY_2_HNS,   TRAINER_KENNY_3_HNS,   TRAINER_KENNY_3_HNS,   TRAINER_KENNY_3_HNS,   MAP_UNDEFINED),
+    [REMATCH_JOEL_HNS]    = REMATCH(TRAINER_JOEL_HNS,     TRAINER_JOEL_2_HNS,    TRAINER_JOEL_3_HNS,    TRAINER_JOEL_3_HNS,    TRAINER_JOEL_3_HNS,    MAP_UNDEFINED),
+    [REMATCH_CHARLES_HNS] = REMATCH(TRAINER_CHARLES_HNS,  TRAINER_CHARLES_2_HNS, TRAINER_CHARLES_3_HNS, TRAINER_CHARLES_3_HNS, TRAINER_CHARLES_3_HNS, MAP_UNDEFINED),
 
     // Special trainers (from REMATCH_WALLY_VR on), same as in the Emerald table below.
     [REMATCH_WALLY_VR]      = REMATCH(TRAINER_WALLY_VR_2,        TRAINER_WALLY_VR_3,        TRAINER_WALLY_VR_4,        TRAINER_WALLY_VR_5,        TRAINER_WALLY_VR_5,        MAP_VICTORY_ROAD_1F),
@@ -661,6 +661,7 @@ void StartOldManTutorialBattle(void)
 
 void BattleSetup_StartScriptedWildBattle(void)
 {
+    NuzlockeIsStaticEncounter = IsNuzlockeActive();
     LockPlayerFieldControls();
     gMain.savedCallback = CB2_EndScriptedWildBattle;
     gBattleTypeFlags = 0;
@@ -915,10 +916,6 @@ static const struct {
     {MAP_MAHOGANYTOWN_HNS,                       BATTLE_ENVIRONMENT_MOUNTAIN},
     {MAP_MT_SILVER_OUTSIDE_HNS,                  BATTLE_ENVIRONMENT_MOUNTAIN},
     {MAP_MT_SILVER_MOUNTAIN_SIDE_HNS,            BATTLE_ENVIRONMENT_MOUNTAIN},
-    {MAP_ROUTE3_HNS,                             BATTLE_ENVIRONMENT_MOUNTAIN},
-    {MAP_ROUTE4_HNS,                             BATTLE_ENVIRONMENT_MOUNTAIN},
-    {MAP_ROUTE9_HNS,                             BATTLE_ENVIRONMENT_MOUNTAIN},
-    {MAP_ROUTE10_HNS,                            BATTLE_ENVIRONMENT_MOUNTAIN},
     {MAP_ROUTE28_HNS,                            BATTLE_ENVIRONMENT_MOUNTAIN},
     {MAP_ROUTE41_HNS,                            BATTLE_ENVIRONMENT_MOUNTAIN},
     {MAP_ROUTE42_HNS,                            BATTLE_ENVIRONMENT_MOUNTAIN},
@@ -929,9 +926,6 @@ static const struct {
     {MAP_ROUTE47_HNS,                            BATTLE_ENVIRONMENT_MOUNTAIN},
     {MAP_ROUTE48_HNS,                            BATTLE_ENVIRONMENT_MOUNTAIN},
     {MAP_RUINS_OF_ALPH_OUTSIDE_HNS,              BATTLE_ENVIRONMENT_MOUNTAIN},
-    {MAP_SAFARI_ZONE1_HNS,                       BATTLE_ENVIRONMENT_MOUNTAIN},
-    {MAP_SAFARI_ZONE2_HNS,                       BATTLE_ENVIRONMENT_MOUNTAIN},
-    {MAP_SAFARI_ZONE3_HNS,                       BATTLE_ENVIRONMENT_MOUNTAIN},
     {MAP_SAFARI_ZONE_ENTERANCE_HNS,              BATTLE_ENVIRONMENT_MOUNTAIN},
     {MAP_SAFARI_ZONE_GATE_HNS,                   BATTLE_ENVIRONMENT_MOUNTAIN},
     {MAP_SAFARI_ZONE_LOW_LEFT_HNS,               BATTLE_ENVIRONMENT_MOUNTAIN},
@@ -939,11 +933,8 @@ static const struct {
     {MAP_SAFARI_ZONE_TOP_LEFT_HNS,               BATTLE_ENVIRONMENT_MOUNTAIN},
     {MAP_SAFARI_ZONE_TOP_MID_HNS,                BATTLE_ENVIRONMENT_MOUNTAIN},
     {MAP_SAFARI_ZONE_TOP_RIGHT_HNS,              BATTLE_ENVIRONMENT_MOUNTAIN},
-    {MAP_FUCHSIA_CITY_SAFARI_ZONE_MOUNTAIN_HNS,  BATTLE_ENVIRONMENT_MOUNTAIN},
     // SAND
     {MAP_CIANWOOD_CITY_HNS,                     BATTLE_ENVIRONMENT_SAND},
-    {MAP_FUCHSIA_CITY_SAFARI_ZONE_BEACH_HNS,    BATTLE_ENVIRONMENT_SAND},
-    {MAP_CINNABAR_ISLAND_HNS,                   BATTLE_ENVIRONMENT_SAND},
     {MAP_SAFARI_ZONE_TOP_RIGHT_HNS,             BATTLE_ENVIRONMENT_SAND},
     // CAVE_WATER (brown cave, pond bg even on land)
     {MAP_EMBEDDED_TOWER_HNS,                     BATTLE_ENVIRONMENT_CAVE},
@@ -951,9 +942,6 @@ static const struct {
     {MAP_TIN_TOWER_ROOF_DAY_HNS,                 BATTLE_ENVIRONMENT_RAYQUAZA},
     {MAP_TIN_TOWER_ROOF_NIGHT_HNS,               BATTLE_ENVIRONMENT_RAYQUAZA},
     // GRAY_CAVE
-    {MAP_CERULEAN_CAVE_1F_HNS,                   BATTLE_ENVIRONMENT_GRAY_CAVE},
-    {MAP_CERULEAN_CAVE_B1F_HNS,                  BATTLE_ENVIRONMENT_GRAY_CAVE},
-    {MAP_CERULEAN_CAVE_B2F_HNS,                  BATTLE_ENVIRONMENT_GRAY_CAVE},
     {MAP_WHIRL_ISLANDS_1F_HNS,                   BATTLE_ENVIRONMENT_GRAY_CAVE},
     {MAP_WHIRL_ISLANDS_B1F_HNS,                  BATTLE_ENVIRONMENT_GRAY_CAVE},
     {MAP_WHIRL_ISLANDS_B1F_INNER_HNS,            BATTLE_ENVIRONMENT_GRAY_CAVE},
@@ -972,12 +960,9 @@ static const struct {
     {MAP_MT_MORTAR_B1F_HNS,                      BATTLE_ENVIRONMENT_GRAY_CAVE},
     {MAP_DRAGONS_DEN_ENTRANCE_HNS,               BATTLE_ENVIRONMENT_GRAY_CAVE},
     {MAP_DRAGONS_DEN_CAVERN_HNS,                 BATTLE_ENVIRONMENT_GRAY_CAVE},
-    {MAP_ROCK_TUNNEL_B1F_HNS,                    BATTLE_ENVIRONMENT_GRAY_CAVE},
-    {MAP_ROCK_TUNNEL_1F_HNS,                     BATTLE_ENVIRONMENT_GRAY_CAVE},
     {MAP_SLOWPOKE_WELL_B1F_HNS,                  BATTLE_ENVIRONMENT_GRAY_CAVE},
     {MAP_SLOWPOKE_WELL_B2F_HNS,                  BATTLE_ENVIRONMENT_GRAY_CAVE},
     {MAP_SAFARI_ZONE_LOW_RIGHT_HNS,              BATTLE_ENVIRONMENT_GRAY_CAVE},
-    {MAP_FUCHSIA_CITY_SAFARI_ZONE_CAVE_HNS,      BATTLE_ENVIRONMENT_GRAY_CAVE},
     {MAP_RUINS_OF_ALPH_B1F_HNS,                  BATTLE_ENVIRONMENT_GRAY_CAVE},
     {MAP_ULA_ULA_CAVE_2_HNS,                     BATTLE_ENVIRONMENT_GRAY_CAVE},
     // BLUE_BUILDING 
@@ -999,9 +984,6 @@ static const struct {
     {MAP_OLIVINE_CITY_LIGHTHOUSE_HNS,             BATTLE_ENVIRONMENT_BLUE_BUILDING},
     {MAP_OLIVINE_CITY_GYM_HNS,                    BATTLE_ENVIRONMENT_BLUE_BUILDING},
     {MAP_MAHOGANY_TOWN_GYM_HNS,                   BATTLE_ENVIRONMENT_BLUE_BUILDING},
-    {MAP_VIRIDIAN_CITY_GYM_HNS,                   BATTLE_ENVIRONMENT_BLUE_BUILDING},
-    {MAP_CERULEAN_CITY_GYM_HNS,                   BATTLE_ENVIRONMENT_BLUE_BUILDING},
-    {MAP_SAFFRON_CITY_GYM_HNS,                    BATTLE_ENVIRONMENT_BLUE_BUILDING},
     // ROCK_SNOW
     {MAP_MT_SILVER_SNOW_HNS,                     BATTLE_ENVIRONMENT_ROCK_SNOW},
     {MAP_ROUTE49_HNS,                            BATTLE_ENVIRONMENT_ROCK_SNOW},
@@ -1014,7 +996,6 @@ static const struct {
     {MAP_SINJOH_RUINS_ARCEUS_ROOM_HNS,           BATTLE_ENVIRONMENT_MOUNTAIN_SNOW},
     // VOLCANO_CAVE
     {MAP_BLACKTHORN_CITY_GYM_HNS,                 BATTLE_ENVIRONMENT_VOLCANO_CAVE},
-    {MAP_SEAFOAM_ISLANDS_GYM_HNS,                BATTLE_ENVIRONMENT_VOLCANO_CAVE},
     {MAP_NEWSINJOH_HOTSPRINGS_HNS,               BATTLE_ENVIRONMENT_VOLCANO_CAVE},
     {MAP_AKALA_CAVE_HNS,                         BATTLE_ENVIRONMENT_VOLCANO_CAVE},
     // SNOW_CAVE
@@ -1023,8 +1004,6 @@ static const struct {
     {MAP_ICE_PATH_B2F_HNS,                       BATTLE_ENVIRONMENT_SNOW_CAVE},
     {MAP_ICE_PATH_B3F_HNS,                       BATTLE_ENVIRONMENT_SNOW_CAVE},
     {MAP_ICE_PATH_B4F_HNS,                       BATTLE_ENVIRONMENT_SNOW_CAVE},
-    {MAP_SEAFOAM_ISLANDS_1F_HNS,                 BATTLE_ENVIRONMENT_SNOW_CAVE},
-    {MAP_SEAFOAM_ISLANDS_B1F_HNS,                BATTLE_ENVIRONMENT_SNOW_CAVE},
     {MAP_ULA_ULA_CAVE_HNS,                       BATTLE_ENVIRONMENT_SNOW_CAVE},
     {MAP_SNOWSWEPT_CAVERN_HNS,                   BATTLE_ENVIRONMENT_SNOW_CAVE},
     {MAP_SINJOH_RUINS_REGIROCK_ROOM_HNS,         BATTLE_ENVIRONMENT_SNOW_CAVE},
@@ -1648,7 +1627,7 @@ bool32 GetRematchFromScriptPointer(const u8 *data, u32 objectEventId)
      && GetMonsStateToDoubles_2() != PLAYER_HAS_TWO_USABLE_MONS)
         return FALSE;
     // Only a Kanto trainer whose object answered the VS Seeker walks up to the
-    // player; Match Call and phone rematches wait to be talked to (D-034).
+    // player; Match Call and phone rematches wait to be talked to.
     return DoesKantoObjectWantRematch(temp->params.opponentA, objectEventId);
 #endif
 }
@@ -1920,6 +1899,11 @@ static void CB2_EndRematchBattle(void)
     }
     else
     {
+#if IS_HNS
+        // Carter's TM after a won VS Seeker rematch.
+        if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_BIRD_KEEPER_CARTER)
+            FlagSet(FLAG_DEFEATED_CARTER_REMATCH);
+#endif
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
         RegisterTrainerInMatchCall();
         SetBattledTrainersFlags();
@@ -2237,7 +2221,7 @@ static bool32 UpdateRandomTrainerRematches(const struct RematchTrainer *table, u
     s32 i;
 
     // The VS Seeker has its own Kanto table and state: Match Call rematches go on
-    // with it in the bag, see docs/origin_jade/DECISIONS.md, D-034.
+    // with it in the bag.
     for (i = 0; i < REMATCH_SPECIAL_TRAINER_START; i++)
     {
         if (!DoesCurrentMapMatchRematchTrainerMap(i,table,mapGroup,mapNum) || IsRematchForbidden(i))
@@ -2354,25 +2338,10 @@ static const u8 sRematchLevelCeilingByBadges[NUM_BADGES + 1] =
     [16] = MAX_LEVEL,
 };
 
-// Origin Jade: badges (0-8) of the region the trainer stands in (D-007).
+// Origin Jade: badges (0-8) of the region the trainer stands in.
 static u32 GetRematchBadgeCount(void)
 {
-    u32 i, count = 0;
-
-    switch (GetCurrentRegion())
-    {
-    case REGION_JOHTO:
-        return GetJohtoBadgeCount();
-    case REGION_HOENN:
-        return GetHoennBadgeCount();
-    default:
-        for (i = FLAG_BADGE01_GET; i <= FLAG_BADGE08_GET; i++)
-        {
-            if (FlagGet(i))
-                count++;
-        }
-        return count;
-    }
+    return GetCurrentRegionBadgeCount();
 }
 
 // Origin Jade: title of the region the trainer stands in.
@@ -2490,7 +2459,7 @@ static void ClearTrainerWantRematchState(const struct RematchTrainer *table, u16
 }
 
 // Only Kanto's VS Seeker state; the Match Call state is cleared by
-// HandleRematchVarsOnBattleEnd (D-034).
+// HandleRematchVarsOnBattleEnd.
 void ClearCurrentTrainerWantRematchVsSeeker(void)
 {
     if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && IsKantoRematchTrainer(TRAINER_BATTLE_PARAM.opponentA))
@@ -2537,6 +2506,10 @@ static bool8 WasSecondRematchWon(const struct RematchTrainer *table, u16 firstBa
 #if FREE_MATCH_CALL == FALSE
 bool32 HasEnoughBadgesForRematch(void)
 {
+#if IS_HNS
+    // Origin Jade: badges of the region the player stands in.
+    return GetCurrentRegionBadgeCount() >= OW_REMATCH_BADGE_COUNT;
+#else
     s32 i, count;
 
     for (count = 0, i = 0; i < ARRAY_COUNT(gBadgeFlags); i++)
@@ -2549,6 +2522,7 @@ bool32 HasEnoughBadgesForRematch(void)
     }
 
     return FALSE;
+#endif
 }
 #endif //FREE_MATCH_CALL
 
@@ -2560,7 +2534,7 @@ void IncrementRematchStepCounter(void)
     if (!HasEnoughBadgesForRematch())
         return;
 
-    // The VS Seeker counts its steps in VAR_VS_SEEKER_STEPS (D-034).
+    // The VS Seeker counts its steps in VAR_VS_SEEKER_STEPS.
     if (gSaveBlock1Ptr->trainerRematchStepCounter >= STEP_COUNTER_MAX)
         gSaveBlock1Ptr->trainerRematchStepCounter = STEP_COUNTER_MAX;
     else
@@ -2595,7 +2569,7 @@ bool32 IsRematchTrainerIn(u16 mapGroup, u16 mapNum)
 }
 
 #if FREE_MATCH_CALL == FALSE
-// Kanto trainers use the VS Seeker table, all others gRematchTable (D-034).
+// Kanto trainers use the VS Seeker table, all others gRematchTable.
 static u16 GetRematchTrainerId(u16 trainerId)
 {
     if (IsKantoRematchTrainer(trainerId))
@@ -2617,7 +2591,7 @@ bool8 ShouldTryRematchBattle(void)
 
 bool8 ShouldTryRematchBattleForTrainerId(u16 trainerId)
 {
-    // Kanto: the VS Seeker decides (D-034).
+    // Kanto: the VS Seeker decides.
     if (IsKantoRematchTrainer(trainerId))
         return ShouldTryKantoRematch(trainerId);
 

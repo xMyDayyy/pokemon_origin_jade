@@ -871,8 +871,7 @@ BattleFrontier_BattleFactoryPreBattleRoom_Text_UnderstoodSirWillDo:
 BattleFrontier_BattleFactoryPreBattleRoom_Text_MessageFromHeadComeRightNow:
 #if GERMAN
 	.string "Oh je…\n"
-	.string "Tut mir Leid, dass du warten musstest.\l"
-	.string "\p"
+	.string "Tut mir Leid, dass du warten musstest.\p"
 	.string "Ich habe eine Nachricht vom\n"
 	.string "Fabrikleiter.\p"
 	.string "Er sagt: “Wir werden es in Angriff\n"

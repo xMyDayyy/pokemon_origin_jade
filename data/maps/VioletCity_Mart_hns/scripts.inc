@@ -46,8 +46,9 @@ VioletCity_Mart_Text_CooltrainerM:
 #if GERMAN
 	.string "Du kannst Pokémon auch Items wie\n"
 	.string "Trank oder Gegengift geben.\l"
-	.string "Aber offenbar wissen sie mit künstlich\l"
-	.string "hergestellten Items nichts anzufangen.$"
+	.string "Aber offenbar wissen sie mit\l"
+	.string "künstlich hergestellten Items\l"
+	.string "nichts anzufangen.$"
 #else
 	.string "POKéMON can hold items like\n"
 	.string "POTION and ANTIDOTE.\p"

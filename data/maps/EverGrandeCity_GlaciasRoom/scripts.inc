@@ -76,7 +76,7 @@ EverGrandeCity_GlaciasRoom_Text_IntroSpeech:
 	.string "Trainer mit noch lausigeren Pokémon\l"
 	.string "herausgefordert.\p"
 	.string "Doch von dir habe ich gehört…\n"
-	.string "Champion zweier Regionen.\p"
+	.string "Ein starker Trainer von weit her.\p"
 	.string "Endlich jemand, der mich zwingen\n"
 	.string "könnte, alles zu geben!$"
 #else
@@ -87,7 +87,7 @@ EverGrandeCity_GlaciasRoom_Text_IntroSpeech:
 	.string "But all I have seen are challenges by\n"
 	.string "weak TRAINERS and their POKéMON.\p"
 	.string "You, though… I have heard of you.\n"
-	.string "The CHAMPION of two regions.\p"
+	.string "A strong TRAINER from afar.\p"
 	.string "At last, someone who might force me\n"
 	.string "to go all out!$"
 #endif

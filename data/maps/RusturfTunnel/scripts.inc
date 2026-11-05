@@ -64,7 +64,7 @@ RusturfTunnel_EventScript_ClearTunnelScene::
 #if !IS_HNS
 	giveitem ITEM_HM_STRENGTH
 #endif
-	setflag FLAG_RECEIVED_HM_STRENGTH
+	setflag FLAG_HOENN_RECEIVED_HM_STRENGTH
 #if !IS_HNS
 	msgbox RusturfTunnel_Text_ExplainStrength, MSGBOX_DEFAULT
 #endif
@@ -600,8 +600,7 @@ RusturfTunnel_Text_ExplainStrength:
 RusturfTunnel_Text_WandaReunion:
 #if GERMAN
 	.string "Heike!\n"
-	.string "Nun kann ich dich jederzeit besuchen!\l"
-	.string "\p"
+	.string "Nun kann ich dich jederzeit besuchen!\p"
 	.string "Heike: Das ist… wunderbar.\p"
 	.string "Bitte, ruh dich ein bisschen in meinem\n"
 	.string "Haus aus.$"

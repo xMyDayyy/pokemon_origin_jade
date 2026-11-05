@@ -291,6 +291,10 @@ static void FillTrainerParty(u16 trainerId, u8 firstMonId, u8 monCount)
         if ((level == FRONTIER_MAX_LEVEL_50 || level == 20) && monId > FRONTIER_MONS_HIGH_TIER)
             continue;
 
+        // Skip species disabled in species_enabled.h.
+        if (!IsSpeciesEnabled(gFacilityTrainerMons[monId].species))
+            continue;
+
         // Ensure this Pokémon species isn't a duplicate.
         for (j = 0; j < i + firstMonId; j++)
         {

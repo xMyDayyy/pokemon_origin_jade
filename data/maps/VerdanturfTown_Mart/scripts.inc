@@ -31,7 +31,7 @@ VerdanturfTown_Mart_EventScript_Boy::
 	end
 
 VerdanturfTown_Mart_EventScript_ExpertF::
-	msgbox VerdanturfTown_Mart_Text_NoStrategyGuidesForBattleTent, MSGBOX_NPC
+	msgbox VerdanturfTown_Mart_Text_NoStrategyGuidesForContest, MSGBOX_NPC
 	end
 
 VerdanturfTown_Mart_EventScript_Lass::
@@ -51,17 +51,18 @@ VerdanturfTown_Mart_Text_XSpecialIsCrucial:
 	.string "even though it's only for one battle.$"
 #endif
 
-VerdanturfTown_Mart_Text_NoStrategyGuidesForBattleTent:
+VerdanturfTown_Mart_Text_NoStrategyGuidesForContest:
 #if GERMAN
-	.string "Strategie-Ratgeber für das Kampfcamp\n"
-	.string "scheinen sie hier leider nicht zu\p"
-	.string "verkaufen… Man muss sich auf sich\n"
-	.string "selbst verlassen.$"
+	.string "Sie verkaufen keine Items, mit denen\n"
+	.string "man einen Wettbewerb gewinnen kann…\p"
+	.string "Und das bedeutet, dass du deine\n"
+	.string "Pokémon mit äußerster Sorgfalt\l"
+	.string "aufziehen musst.$"
 #else
-	.string "They don't seem to sell any winning\n"
-	.string "strategy guides for the BATTLE TENT…\p"
-	.string "It seems one must rely on one's\n"
-	.string "own wits after all…$"
+	.string "They don't sell any items that will let\n"
+	.string "you win CONTESTS…\p"
+	.string "It means you have to raise POKéMON\n"
+	.string "diligently on an everyday basis.$"
 #endif
 
 VerdanturfTown_Mart_Text_NestBallOnWeakenedPokemon:

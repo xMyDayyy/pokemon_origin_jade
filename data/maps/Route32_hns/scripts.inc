@@ -9,8 +9,7 @@ Route32_OnTransition:
 	call_if_ne VAR_RESULT, WEEKDAY_FRI, Route32_EventScript_HideFrieda
 	end
 
-@ Frieda of the weekday siblings is only here on Friday, see
-@ docs/origin_jade/DECISIONS.md, D-033.
+@ Frieda of the weekday siblings is only here on Friday.
 Route32_EventScript_HideFrieda:
 	setflag FLAG_TEMP_4
 	return
@@ -396,8 +395,9 @@ Route32_Text_CooltrainerM_VioletGym:
 Route32_Text_CooltrainerM_HaveThisSeed:
 #if GERMAN
 	.string "Du hast einige gute Pokémon dabei.\n"
-	.string "Sie sind bestimmt deshalb so gut, weil du\l"
-	.string "sie in Viola City so hart trainiert hast.\p"
+	.string "Sie sind bestimmt deshalb so gut,\l"
+	.string "weil du sie in Viola City so hart\l"
+	.string "trainiert hast.\p"
 	.string "Die Pokémon-Arena war sicher ganz\n"
 	.string "besonders gutes Training für sie.\p"
 	.string "Hier, das ist für dich. Als kleines\n"
@@ -429,7 +429,7 @@ Route32_Text_SlowpokeTailOffer:
 #if GERMAN
 	.string "Wie wär’s mit einer schmackhaften und\n"
 	.string "nahrhaften Flegmon-Rute?\p"
-	.string "Für dich jetzt nur 1.000.000 $!\n"
+	.string "Für dich jetzt nur ¥1.000.000!\n"
 	.string "Na, wie sieht’s aus?$"
 #else
 	.string "How would you like to have this\n"

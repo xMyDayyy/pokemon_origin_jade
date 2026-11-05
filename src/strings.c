@@ -157,7 +157,7 @@ const u8 gText_Girl[] = _("Mädel");
 const u8 gText_Girl[] = _("GIRL");
 #endif
 #if GERMAN
-const u8 gText_ThisIsAPokemon[] = _("Dies ist ein sogenanntes\n“Pokémon.”{PAUSE 96}\p");
+const u8 gText_ThisIsAPokemon[] = _("Dies ist ein so genanntes\n“Pokémon”.{PAUSE 96}\p");
 #else
 const u8 gText_ThisIsAPokemon[] = _("This is what we call a “POKéMON.”{PAUSE 96}\p");
 #endif
@@ -646,11 +646,17 @@ const u8 gText_ConfirmTossItems[] = _("Is it okay to\nthrow away {STR_VAR_2}\n{S
 #endif
 // Cannot-use texts per region (Hoenn, Johto, Kanto), picked by GetCannotUseItemText in src/item_use.c.
 #if GERMAN
+#if !IS_HNS
 const u8 gText_DadsAdvice[] = _("Vati sagt immer……\n{PLAYER}, dies ist weder der rechte\lOrt noch der rechte Zeitpunkt dafür!{PAUSE_UNTIL_PRESS}");
+#endif
+const u8 gText_BirchsAdvice[] = _("Birk sagt immer…\n{PLAYER}, dies ist weder der rechte\lOrt noch der rechte Zeitpunkt dafür!{PAUSE_UNTIL_PRESS}");
 const u8 gText_ElmsAdvice[] = _("Lind sagt immer…\n{PLAYER}, dies ist weder der rechte\lOrt noch der rechte Zeitpunkt dafür!{PAUSE_UNTIL_PRESS}");
 const u8 gText_OaksAdvice[] = _("Eich sagt immer…\n{PLAYER}, dies ist weder der rechte\lOrt noch der rechte Zeitpunkt dafür!{PAUSE_UNTIL_PRESS}");
 #else
+#if !IS_HNS
 const u8 gText_DadsAdvice[] = _("DAD's advice…\n{PLAYER}, there's a time and place\lfor everything!{PAUSE_UNTIL_PRESS}");
+#endif
+const u8 gText_BirchsAdvice[] = _("BIRCH's advice…\n{PLAYER}, there's a time and place\lfor everything!{PAUSE_UNTIL_PRESS}");
 const u8 gText_ElmsAdvice[] = _("ELM's advice…\n{PLAYER}, there's a time and place\lfor everything!{PAUSE_UNTIL_PRESS}");
 const u8 gText_OaksAdvice[] = _("OAK's advice…\n{PLAYER}, there's a time and place\lfor everything!{PAUSE_UNTIL_PRESS}");
 #endif
@@ -1167,7 +1173,11 @@ const u8 gText_PkmnElevatedToLvVar2[] = _("{STR_VAR_1} erreicht\nLv. {STR_VAR_2}
 #else
 const u8 gText_PkmnElevatedToLvVar2[] = _("{STR_VAR_1} was elevated to\nLv. {STR_VAR_2}.");
 #endif
+#if GERMAN
+const u8 gText_PkmnGainedExp[] = _("{STR_VAR_1} erhält\n{STR_VAR_2} E.-Punkte!{PAUSE_UNTIL_PRESS}");
+#else
 const u8 gText_PkmnGainedExp[] = _("{STR_VAR_1} gained {STR_VAR_2} Exp. Points!{PAUSE_UNTIL_PRESS}");
+#endif
 #if GERMAN
 const u8 gText_PkmnGainedExpAndElevatedToLvVar3[] = _("{STR_VAR_1} erreicht\nLv. {STR_VAR_3}.");
 #else
@@ -1203,7 +1213,11 @@ const u8 gText_PkmnGotOverInfatuation[] = _("{STR_VAR_1} fühlt sich nicht\nmehr
 #else
 const u8 gText_PkmnGotOverInfatuation[] = _("{STR_VAR_1} got over its\ninfatuation.{PAUSE_UNTIL_PRESS}");
 #endif
+#if GERMAN
+const u8 gText_PkmnTransformed[] = _("{STR_VAR_1}\nverwandelt sich!{PAUSE_UNTIL_PRESS}");
+#else
 const u8 gText_PkmnTransformed[] = _("{STR_VAR_1} transformed!{PAUSE_UNTIL_PRESS}");
+#endif
 #if GERMAN
 const u8 gText_ThrowAwayItem[] = _("{STR_VAR_1}\nwegwerfen?");
 #else
@@ -1970,23 +1984,25 @@ const u8 gText_MailToBagMessageErased[] = _("Der Brief, dessen Inhalt gelöscht\
 #else
 const u8 gText_MailToBagMessageErased[] = _("The MAIL was returned to the BAG\nwith its message erased.{PAUSE_UNTIL_PRESS}");
 #endif
+#if !IS_HNS
 #if GERMAN
 const u8 gText_Dad[] = _("Vati");
 #else
 const u8 gText_Dad[] = _("DAD");
 #endif
+#endif
 #if GERMAN
-const u8 gText_Mom[] = _("Mutti");
+const u8 gText_Mom[] = _("Mama");
 #else
 const u8 gText_Mom[] = _("MOM");
 #endif
 #if GERMAN
-const u8 gText_MomHowMuchDeposit[] = _("Wieviel möchtest du\nbei Mutti einzahlen?");
+const u8 gText_MomHowMuchDeposit[] = _("Wie viel möchtest du\nbei Mama einzahlen?");
 #else
 const u8 gText_MomHowMuchDeposit[] = _("How much would you like to\ndeposit with your MOM?");
 #endif
 #if GERMAN
-const u8 gText_MomHowMuchWithdraw[] = _("Wieviel möchtest du\nbei Mutti entnehmen?");
+const u8 gText_MomHowMuchWithdraw[] = _("Wie viel möchtest du\nbei Mama entnehmen?");
 #else
 const u8 gText_MomHowMuchWithdraw[] = _("How much would you like to\nwithdraw from your MOM?");
 #endif
@@ -1996,7 +2012,7 @@ const u8 gText_MomMatchCallDesc[] = _("Ruhig & Nett");
 const u8 gText_MomMatchCallDesc[] = _("CALM & KIND");
 #endif
 #if GERMAN
-const u8 gText_MomMatchCallName[] = _("Mutti");
+const u8 gText_MomMatchCallName[] = _("Mama");
 #else
 const u8 gText_MomMatchCallName[] = _("MOM");
 #endif
@@ -2229,7 +2245,7 @@ const u8 gText_Treasures[] = _("TREASURES");
 #endif
 #endif
 #if IS_HNS
-// Origin Jade: gText_LanettesPC names Bill's PC, used once FLAG_SYS_PC_LANETTE is set.
+// Origin Jade: gText_LanettesPC names Bill's PC, always.
 #if GERMAN
 const u8 gText_SomeonesPC[] = _("Jemandes PC");
 const u8 gText_LanettesPC[] = _("Bills PC");
@@ -4087,7 +4103,11 @@ const u8 gText_4th[] = _("4. ");
 #else
 const u8 gText_4th[] = _("4th");
 #endif
+#if GERMAN
+const u8 gText_Friend[] = _("Freund");
+#else
 const u8 gText_Friend[] = _("Friend");
+#endif
 #if GERMAN
 const u8 gText_Pokemon3[] = _("Pokémon");
 #else
@@ -4284,7 +4304,11 @@ const u8 gText_FrontierFacilityTotalCaughtSpeciesBanned[] = _(" und {STR_VAR_2} 
 #else
 const u8 gText_FrontierFacilityTotalCaughtSpeciesBanned[] = _(" and {STR_VAR_2} of the POKéMON species\nyou caught are inelegible");
 #endif
+#if GERMAN
+const u8 gText_FrontierFacilityIncluding[] = _(".\pDazu gehören ");
+#else
 const u8 gText_FrontierFacilityIncluding[] = _(".\pThese include ");
+#endif
 #if GERMAN
 const u8 gText_FrontierFacilityAreInelegible[] = _(" sind nicht zugelassen");
 #else
@@ -5289,7 +5313,7 @@ const u8 gText_MoveRelearnerContestMovesTitle[] = _("Wett.-Attacken");
 const u8 gText_MoveRelearnerContestMovesTitle[] = _("CONTEST MOVES");
 #endif
 #if GERMAN
-const u8 gText_MoveRelearnerType[] = _("Type/");
+const u8 gText_MoveRelearnerType[] = _("Typ:");
 #else
 const u8 gText_MoveRelearnerType[] = _("TYPE/");
 #endif // Unused
@@ -5705,19 +5729,4 @@ const u8 gText_Weak[] = _("Weak");
 const u8 gText_Both[] = _("Beides");
 #else
 const u8 gText_Both[] = _("Both");
-#endif
-#if GERMAN
-const u8 gText_GreenStone[] = _("Grüner Stein");
-#else
-const u8 gText_GreenStone[] = _("GREEN STONE");
-#endif
-#if GERMAN
-const u8 gText_RedStone[] = _("Roter Stein");
-#else
-const u8 gText_RedStone[] = _("RED STONE");
-#endif
-#if GERMAN
-const u8 gText_BlueStone[] = _("Blauer Stein");
-#else
-const u8 gText_BlueStone[] = _("BLUE STONE");
 #endif

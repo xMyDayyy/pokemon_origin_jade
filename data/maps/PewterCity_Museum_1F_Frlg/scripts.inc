@@ -190,7 +190,7 @@ PewterCity_Museum_1F_EventScript_KabutopsFossil::
 
 PewterCity_Museum_1F_Text_Its50YForChildsTicket::
 #if GERMAN
-	.string "Für Kinder kostet der Eintritt 50¥!\p"
+	.string "Für Kinder kostet der Eintritt ¥50!\p"
 	.string "Möchtest du hinein?$"
 #else
 	.string "Yes, yes.\n"
@@ -207,7 +207,7 @@ PewterCity_Museum_1F_Text_ComeAgain::
 
 PewterCity_Museum_1F_Text_Right50YThankYou::
 #if GERMAN
-	.string "O.K., das sind 50¥!\n"
+	.string "O.K., das sind ¥50!\n"
 	.string "Vielen Dank!$"
 #else
 	.string "Right, ¥50!\n"

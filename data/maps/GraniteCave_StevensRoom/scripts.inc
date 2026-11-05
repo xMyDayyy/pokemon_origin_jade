@@ -104,8 +104,7 @@ GraniteCave_StevensRoom_Text_ThankYouTakeThis:
 #if GERMAN
 	.string "Troy: Okay, danke schön.\p"
 	.string "Du hast all die Beschwerlichkeiten auf\n"
-	.string "dich genommen, um ihn mir zu bringen.\l"
-	.string "\p"
+	.string "dich genommen, um ihn mir zu bringen.\p"
 	.string "Ich muss mich bedanken. Ehrlich.\n"
 	.string "Ich werde dir diese TM geben.\p"
 	.string "Sie enthält meine Lieblingsattacke,\n"

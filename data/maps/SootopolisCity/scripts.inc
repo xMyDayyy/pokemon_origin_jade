@@ -1291,24 +1291,30 @@ SootopolisCity_EventScript_Wallace::
 
 SootopolisCity_EventScript_GiveWaterfall::
 #if IS_HNS
-	@ HnS: no HM from Wallace, the Rain Badge grants the Waterfall license.
-	msgbox Text_HnsWallaceNoWaterfallHandover, MSGBOX_DEFAULT
-#else
+	@ HnS: the HM only if it is not in the bag, the Rain Badge grants the Waterfall license.
+	checkitem ITEM_HM_WATERFALL
+	goto_if_eq VAR_RESULT, TRUE, SootopolisCity_EventScript_HnsWaterfallOwned
+#endif
 	msgbox SootopolisCity_Text_ThankYouForHelpAcceptThis, MSGBOX_DEFAULT
 	giveitem ITEM_HM_WATERFALL
-#endif
 	setflag FLAG_RECEIVED_HM_WATERFALL
-#if IS_HNS
-	msgbox Text_HnsWallaceWaterfallGoToGym, MSGBOX_DEFAULT
-#else
 	msgbox SootopolisCity_Text_ExplainWaterfallGoToGym, MSGBOX_DEFAULT
-#endif
+SootopolisCity_EventScript_WallaceStepAside::
 	closemessage
 	call_if_eq VAR_FACING, DIR_NORTH, SootopolisCity_EventScript_WallaceMoveFromGym
 	call_if_eq VAR_FACING, DIR_EAST, SootopolisCity_EventScript_WallaceMoveFromGym
 	call_if_eq VAR_FACING, DIR_WEST, SootopolisCity_EventScript_WallaceMoveFromGymWest
 	release
 	end
+
+#if IS_HNS
+SootopolisCity_EventScript_HnsWaterfallOwned::
+	msgbox Text_HnsWallaceNoWaterfallHandover, MSGBOX_DEFAULT
+	setflag FLAG_RECEIVED_HM_WATERFALL
+	msgbox Text_HnsWallaceWaterfallGoToGym, MSGBOX_DEFAULT
+	goto SootopolisCity_EventScript_WallaceStepAside
+	end
+#endif
 
 SootopolisCity_EventScript_WallaceMoveFromGym::
 	applymovement LOCALID_SOOTOPOLIS_WALLACE, SootopolisCity_Movement_WallaceMoveFromGym
@@ -1444,8 +1450,7 @@ SootopolisCity_Text_GiantPokemonSuddenlyAppeared:
 #if GERMAN
 	.string "Auf einmal tauchten diese riesigen\n"
 	.string "Pokémon mitten im Ort auf!\p"
-	.string "Ich habe sie noch nie vorher gesehen!\n"
-	.string "\p"
+	.string "Ich habe sie noch nie vorher gesehen!\p"
 	.string "Warum greifen sie sich wohl gegenseitig\n"
 	.string "an?\p"
 	.string "Warum können diese Pokémon nicht\n"
@@ -1578,8 +1583,7 @@ SootopolisCity_Text_SeeingLegendWithOwnEyes:
 	.string "bekommen haben.\p"
 	.string "Und nun sehe ich genau das passieren.\n"
 	.string "Whoa! \l"
-	.string "Ich hätte nie gedacht, dass ich einmal\l"
-	.string "\p"
+	.string "Ich hätte nie gedacht, dass ich einmal\p"
 	.string "mit meinen eigenen Augen Zeuge eines so\n"
 	.string "bedeutenden Ereignisses werden würde!$"
 #else
@@ -1600,8 +1604,7 @@ SootopolisCity_Text_SawLegendWithOwnEyes:
 	.string "bekommen haben.\p"
 	.string "Und nun sehe ich genau das passieren.\n"
 	.string "Whoa! \l"
-	.string "Ich hätte nie gedacht, dass ich einmal\l"
-	.string "\p"
+	.string "Ich hätte nie gedacht, dass ich einmal\p"
 	.string "mit meinen eigenen Augen Zeuge eines so\n"
 	.string "bedeutenden Ereignisses werden würde!$"
 #else
@@ -1907,8 +1910,7 @@ SootopolisCity_Text_InvolvedWithCrisisComeWithMe:
 	.string "Diese uralten Pokémon sind aus einem\n"
 	.string "langen Schlaf erwacht…\p"
 	.string "Und nun treffen sie mit ihren un-\n"
-	.string "kontrollierbaren Kräften aufeinander…\l"
-	.string "\p"
+	.string "kontrollierbaren Kräften aufeinander…\p"
 	.string "{PLAYER}{KUN}…\p"
 	.string "Da du hier bist, gehe ich davon aus,\n"
 	.string "dass du bereit bist, uns in dieser Krise\l"
@@ -2052,8 +2054,7 @@ SootopolisCity_Text_ThankYouForHelpAcceptThis:
 	.string "Streich gespielt.\p"
 	.string "Dank deiner Hilfe wurde Xeneroville…\n"
 	.string "Nein! Ganz Hoenn wurde gerettet.\p"
-	.string "Im Namen aller Menschen danke ich dir.\n"
-	.string "\p"
+	.string "Im Namen aller Menschen danke ich dir.\p"
 	.string "Dies ist ein Geschenk von mir.\n"
 	.string "Bitte nimm es an.$"
 #else

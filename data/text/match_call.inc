@@ -4462,7 +4462,7 @@ MatchCall_BattlePyramidText14::
 
 MatchCall_Text_Mom1::
 #if GERMAN
-	.string "Mutter: Hoenn also.\p"
+	.string "Mama: Hoenn also.\p"
 	.string "Ich musste erst auf der Karte\n"
 	.string "nachsehen, wo das überhaupt liegt.\p"
 	.string "Iss ordentlich und ruh dich aus.\n"
@@ -4477,15 +4477,15 @@ MatchCall_Text_Mom1::
 
 MatchCall_Text_Mom2::
 #if GERMAN
-	.string "Mutter: Hallo {PLAYER}!\p"
-	.string "In Neuborkia ist es still, seit du\n"
+	.string "Mama: Hallo {PLAYER}!\p"
+	.string "In Alabastia ist es still, seit du\n"
 	.string "unterwegs bist.\p"
 	.string "Aber ich höre ja von deinen\n"
 	.string "Erfolgen - das ganze Dorf redet\l"
 	.string "darüber.$"
 #else
 	.string "MOM: Hi, {PLAYER}!\p"
-	.string "NEW BARK TOWN is quiet since you\n"
+	.string "PALLET TOWN is quiet since you\n"
 	.string "set out.\p"
 	.string "But I hear of your successes - the\n"
 	.string "whole town is talking about them.$"
@@ -4493,16 +4493,16 @@ MatchCall_Text_Mom2::
 
 MatchCall_Text_Mom3::
 #if GERMAN
-	.string "Mutter: {PLAYER}…\p"
-	.string "Zwei Ligen. In deinem Alter.\p"
-	.string "Prof. Lind hat vorhin angerufen\n"
-	.string "und wollte es gar nicht glauben.\p"
+	.string "Mama: {PLAYER}…\p"
+	.string "Drei Ligen. In deinem Alter.\p"
+	.string "Prof. Eich war vorhin hier und\n"
+	.string "wollte es gar nicht glauben.\p"
 	.string "Komm irgendwann heim und erzähl es\n"
 	.string "ihm selbst.$"
 #else
 	.string "MOM: {PLAYER}…\p"
-	.string "Two LEAGUES. At your age.\p"
-	.string "PROF. ELM called earlier and simply\n"
+	.string "Three LEAGUES. At your age.\p"
+	.string "PROF. OAK came by earlier and simply\n"
 	.string "refused to believe it.\p"
 	.string "Come home sometime and tell him\n"
 	.string "yourself.$"
@@ -5961,7 +5961,7 @@ MatchCall_Text_Scott6::
 	.string "Sobald du alle Orden von Hoenn\n"
 	.string "zusammenhast, wartet die hiesige\l"
 	.string "Pokémon Liga auf dich.\p"
-	.string "Für einen Champion wie dich ist das\n"
+	.string "Für einen Trainer wie dich ist das\n"
 	.string "doch genau das Richtige!\p"
 	.string "Aber trotzdem… Es gibt etwas, das\n"
 	.string "noch viel besser ist…\p"
@@ -5974,7 +5974,7 @@ MatchCall_Text_Scott6::
 	.string "Once you've collected all of\n"
 	.string "HOENN's GYM BADGES, this region's\l"
 	.string "POKéMON LEAGUE awaits you.\p"
-	.string "For a CHAMPION like you, that's\n"
+	.string "For a TRAINER like you, that's\n"
 	.string "exactly the right challenge!\p"
 	.string "But did you know?\n"
 	.string "There's somewhere even better.\p"
@@ -6012,6 +6012,23 @@ MatchCall_Text_Norman1::
 	.string "and I am still waiting.\p"
 	.string "I don't think much of rumours. I\n"
 	.string "prefer to see for myself.$"
+#endif
+
+MatchCall_Text_NormanAfterBadge::
+#if GERMAN
+	.string "Norman: {PLAYER}.\p"
+	.string "Mein Balanceorden ist bei dir in\n"
+	.string "guten Händen.\p"
+	.string "Von Gerüchten halte ich wenig, aber\n"
+	.string "unser Kampf hat mich überzeugt.\p"
+	.string "Zeig ganz Hoenn, was in dir steckt!$"
+#else
+	.string "NORMAN: {PLAYER}.\p"
+	.string "My BALANCE BADGE is in good\n"
+	.string "hands with you.\p"
+	.string "I don't think much of rumours, but\n"
+	.string "our battle convinced me.\p"
+	.string "Show all of HOENN what you've got!$"
 #endif
 
 MatchCall_Text_Norman2::

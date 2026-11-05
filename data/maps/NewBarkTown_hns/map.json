@@ -178,7 +178,7 @@
       "x": 16,
       "y": 7,
       "elevation": 0,
-      "dest_map": "MAP_TEST_MAP1_HNS",
+      "dest_map": "MAP_TIN_TOWER_ROOF_DAY_HNS",
       "dest_warp_id": "0"
     },
     {
@@ -194,13 +194,6 @@
       "elevation": 0,
       "dest_map": "MAP_NEW_BARK_TOWN_LAB_HNS",
       "dest_warp_id": "1"
-    },
-    {
-      "x": 3,
-      "y": 7,
-      "elevation": 0,
-      "dest_map": "MAP_TEST_MAP1_HNS",
-      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

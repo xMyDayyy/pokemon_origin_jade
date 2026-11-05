@@ -139,7 +139,7 @@ MahoganyTown_Gym_EventScript_Pryce_Defeated::
 	release
 	end
 
-@ Rematch after the Johto title, see docs/origin_jade/DECISIONS.md, D-032.
+@ Rematch after the Johto title.
 MahoganyTown_Gym_EventScript_Pryce_Rematch::
 	msgbox MahoganyTown_Gym_Text_PryceRematch, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined

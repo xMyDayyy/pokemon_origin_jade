@@ -15,6 +15,7 @@
 #include "constants/pokedex.h"
 #include "data/randomizer/ability_whitelist.h"
 #include "move.h"
+#include "constants/map_groups.h"
 
 const u16 gStarterAndGiftMonTable[STARTER_AND_GIFT_MON_COUNT] =
 {
@@ -71,7 +72,8 @@ bool32 RandomizerFeatureEnabled(enum RandomizerFeature feature)
             #ifdef FORCE_RANDOMIZE_FIELD_ITEMS
                 return FORCE_RANDOMIZE_FIELD_ITEMS;
             #else
-                return settings->tx_Random_Items && FlagGet(FLAG_RECEIVED_FIRST_BALLS);
+                // Active from the first starter on; Oak's Poke Balls bypass it.
+                return settings->tx_Random_Items && FlagGet(FLAG_SYS_POKEMON_GET);
             #endif
         case RANDOMIZE_TRAINER_MON:
             #ifdef FORCE_RANDOMIZE_TRAINER_MON
@@ -466,26 +468,57 @@ static inline bool32 IsKeyItem(u16 itemId)
 
 static inline bool32 ShouldRandomizeItem(u16 itemId)
 {
-    // ITEM_GS_BALL sits in POCKET_POKE_BALLS rather than POCKET_KEY_ITEMS, so the key-item
-    // check below doesn't cover it. It gates Kurt's Celebi chain (checkitem/removeitem in
+    // ITEM_GS_BALL gates Kurt's Celebi chain (checkitem/removeitem in
     // AzaleaTown_KurtsHouse_hns), so rolling it into something else softlocks that quest.
     return !(IsItemHM(itemId) || IsKeyItem(itemId) || itemId == ITEM_GS_BALL || itemId == ITEM_NONE);
 }
 
+// Fossils, evolution items and the Shell Bell's Shoal Salt and Shoal Shell keep their place.
+static inline bool32 IsItemKeptInPlace(u16 itemId)
+{
+    switch (gItemsInfo[itemId].sortType)
+    {
+    case ITEM_TYPE_EVOLUTION_STONE:
+    case ITEM_TYPE_EVOLUTION_ITEM:
+    case ITEM_TYPE_FOSSIL:
+        return TRUE;
+    default:
+        break;
+    }
+
+    // Held items that evolve a species but are sorted as plain held items.
+    switch (itemId)
+    {
+    case ITEM_KINGS_ROCK:
+    case ITEM_METAL_COAT:
+    case ITEM_DEEP_SEA_TOOTH:
+    case ITEM_DEEP_SEA_SCALE:
+    case ITEM_RAZOR_CLAW:
+    case ITEM_RAZOR_FANG:
+    // Shoal Cave: four of each are traded for the Shell Bell.
+    case ITEM_SHOAL_SALT:
+    case ITEM_SHOAL_SHELL:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 #include "data/randomizer/item_whitelist.h"
 
-u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u8 localId)
+// eventId: local id of the item ball or NPC, or the flag of a hidden item.
+u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u16 eventId)
 {
     struct Sfc32State state;
     u16 result;
     u32 mapSeed;
 
-    if (!ShouldRandomizeItem(itemId))
+    if (!ShouldRandomizeItem(itemId) || IsItemKeptInPlace(itemId))
         return itemId;
 
-    mapSeed = ((u32)mapGroup) << 16;
-    mapSeed |= ((u32)mapNum) << 8;
-    mapSeed |= localId;
+    mapSeed = ((u32)mapGroup) << 24;
+    mapSeed |= ((u32)mapNum) << 16;
+    mapSeed |= eventId;
 
     state = RandomizerRandSeed(RANDOMIZER_REASON_FIELD_ITEM, mapSeed, itemId);
 
@@ -507,8 +540,8 @@ static inline void RandomizeFoundItemScript(u16 *scriptVar)
         u8 objEvent = gSelectedObjectEvent;
         *scriptVar = RandomizeFoundItem(
             *scriptVar,
-            gObjectEvents[objEvent].mapGroup,
             gObjectEvents[objEvent].mapNum,
+            gObjectEvents[objEvent].mapGroup,
             gObjectEvents[objEvent].localId);
     }
 }
@@ -518,22 +551,36 @@ void FindItemRandomize_NativeCall(struct ScriptContext *ctx)
     RandomizeFoundItemScript(&gSpecialVar_0x8000);
 }
 
+// Hidden items have no object event: seed off the current map and the item's
+// hidden flag (VAR_0x8004).
 void FindHiddenItemRandomize_NativeCall(struct ScriptContext *ctx)
 {
-    RandomizeFoundItemScript(&gSpecialVar_0x8005);
+    if (RandomizerFeatureEnabled(RANDOMIZE_FIELD_ITEMS))
+    {
+        gSpecialVar_0x8005 = RandomizeFoundItem(
+            gSpecialVar_0x8005,
+            gSaveBlock1Ptr->location.mapNum,
+            gSaveBlock1Ptr->location.mapGroup,
+            gSpecialVar_0x8004);
+    }
 }
 
 // Items handed over by NPCs (the `giveitem` macro / STD_OBTAIN_ITEM). These have no
 // object event of their own, so seed off the current map plus the NPC being talked to.
+// VAR_0x8001 is the amount: a rolled item without room in the bag falls back to the
+// original gift, so a checkitemspace on the original item still holds.
 void ObtainItemRandomize_NativeCall(struct ScriptContext *ctx)
 {
     if (RandomizerFeatureEnabled(RANDOMIZE_FIELD_ITEMS))
     {
-        gSpecialVar_0x8000 = RandomizeFoundItem(
+        u16 item = RandomizeFoundItem(
             gSpecialVar_0x8000,
             gSaveBlock1Ptr->location.mapNum,
             gSaveBlock1Ptr->location.mapGroup,
             gSpecialVar_LastTalked);
+
+        if (CheckBagHasSpace(item, gSpecialVar_0x8001) || !CheckBagHasSpace(gSpecialVar_0x8000, gSpecialVar_0x8001))
+            gSpecialVar_0x8000 = item;
     }
 }
 
@@ -1096,6 +1143,65 @@ u16 RandomizeFixedEncounterMon(u16 species, u8 mapNum, u8 mapGroup, u8 localId)
         seed |= localId;
 
         return RandomizeMon(RANDOMIZER_REASON_FIXED_ENCOUNTER, GetRandomizerOption(RANDOMIZER_OPTION_SPECIES_MODE), seed, species);
+    }
+
+    return species;
+}
+
+#if IS_HNS
+// Maps whose script gifts keep their species with "Feste PKMN": the starter labs,
+// the casino prize counters and Cianwood's Tentacool.
+static const u16 sFixedMonExceptionMaps[] =
+{
+    MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB,
+    MAP_NEW_BARK_TOWN_LAB_HNS,
+    MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB,
+    MAP_GOLDENROD_CITY_GAME_CORNER_HNS,
+    MAP_CELADON_CITY_GAME_CORNER_PRIZE_ROOM,
+    MAP_CIANWOOD_POKECENTER_HNS,
+};
+#endif
+
+static bool32 IsFixedMonExceptionMap(void)
+{
+#if IS_HNS
+    u32 i;
+    u16 map = gSaveBlock1Ptr->location.mapNum | (gSaveBlock1Ptr->location.mapGroup << 8);
+
+    for (i = 0; i < ARRAY_COUNT(sFixedMonExceptionMaps); i++)
+    {
+        if (sFixedMonExceptionMaps[i] == map)
+            return TRUE;
+    }
+#endif
+    return FALSE;
+}
+
+// "Feste PKMN" for script gifts, static and event battles: seeded by the current
+// map, the object talked to and the species, so the result never changes.
+u16 RandomizeScriptedFixedMon(u16 species)
+{
+    if (IsFixedMonExceptionMap())
+        return species;
+
+    return RandomizeFixedEncounterMon(species,
+        gSaveBlock1Ptr->location.mapNum,
+        gSaveBlock1Ptr->location.mapGroup,
+        gSpecialVar_LastTalked);
+}
+
+// Gift eggs (giveegg) with "Feste PKMN", seeded like RandomizeScriptedFixedMon.
+// Day Care eggs keep their species.
+u16 RandomizeGiftEggMon(u16 species)
+{
+    if (RandomizerFeatureEnabled(RANDOMIZE_EGG_MON))
+    {
+        u32 seed;
+        seed = (u32)gSaveBlock1Ptr->location.mapNum << 16;
+        seed |= (u32)gSaveBlock1Ptr->location.mapGroup << 8;
+        seed |= (u8)gSpecialVar_LastTalked;
+
+        return RandomizeMon(RANDOMIZER_REASON_EGG, GetRandomizerOption(RANDOMIZER_OPTION_SPECIES_MODE), seed, species);
     }
 
     return species;

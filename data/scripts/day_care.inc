@@ -44,7 +44,6 @@ Route117_EventScript_DaycareReceiveEgg::
 
 #if IS_HNS
 @ Oval Charm with the first Day Care egg (Route 5, Route 34, Route 117).
-@ See docs/origin_jade/DECISIONS.md, D-036.
 DayCare_EventScript_GiveOvalCharm::
 	msgbox DayCare_Text_OvalCharmFirstEgg, MSGBOX_DEFAULT
 	giveitem ITEM_OVAL_CHARM
@@ -544,7 +543,7 @@ Route117_PokemonDayCare_Text_TakeBackWhichMon:
 Route117_PokemonDayCare_Text_ItWillCostX:
 #if GERMAN
 	.string "Wenn du dein {STR_VAR_1} mitnehmen\n"
-	.string "willst, kostet das {STR_VAR_2}¥.$"
+	.string "willst, kostet das ¥{STR_VAR_2}.$"
 #else
 	.string "If you want your {STR_VAR_1} back,\n"
 	.string "it will cost ¥{STR_VAR_2}.$"

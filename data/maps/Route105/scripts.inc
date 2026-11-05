@@ -76,6 +76,7 @@ Route105_EventScript_AndresRematch::
 	msgbox Route105_Text_AndresRematchPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+#if !IS_HNS
 Route104_Text_DadPokenavCall:
 #if GERMAN
 	.string "… … … … … … … … … … … Piep!\p"
@@ -113,4 +114,5 @@ Route104_Text_RegisteredDadInPokenav:
 #else
 	.string "Registered DAD NORMAN\n"
 	.string "in the POKéGEAR.$"
+#endif
 #endif

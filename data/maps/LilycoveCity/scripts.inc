@@ -461,8 +461,9 @@ LilycoveCity_Text_MayShoppingLetsBattle:
 	.string "Team noch gebraucht hat.\p"
 	.string "Sechs Pokémon, jedes einzelne von mir\n"
 	.string "großgezogen.\p"
-	.string "Irgendwann schlage ich einen Champion.\n"
-	.string "Und du bist der, den ich meine.$"
+	.string "Irgendwann schlage ich den stärksten\n"
+	.string "Trainer, den ich kenne.\p"
+	.string "Und das bist du!$"
 #else
 	.string "MAY: Oh, hey?\n"
 	.string "{PLAYER}{KUN}, are you shopping, too?\p"
@@ -660,8 +661,7 @@ LilycoveCity_Text_BrendanDefeat:
 LilycoveCity_Text_BrendanGoingBackToLittleroot:
 #if GERMAN
 	.string "Maike: Ich…\n"
-	.string "Ich gehe nach Hause, nach Wurzelheim.\l"
-	.string "\p"
+	.string "Ich gehe nach Hause, nach Wurzelheim.\p"
 	.string "Weißt du, ich helfe meinem Vater bei dem\n"
 	.string "Pokédex. Es geht ganz anständig voran\l"
 	.string "und ich sollte ihm das mal zeigen.$"
@@ -678,8 +678,7 @@ LilycoveCity_Text_BrendanYouGoingToCollectBadges:
 	.string "Und, {PLAYER}, was wirst du tun?\p"
 	.string "Wirst du alle Orden der Arenen sammeln\n"
 	.string "und die Pokémon Liga herausfordern?\p"
-	.string "Vielleicht werde ich das auch machen…\n"
-	.string "\p"
+	.string "Vielleicht werde ich das auch machen…\p"
 	.string "Gut, bleib am Ball!$"
 #else
 	.string "{PLAYER}, what are you going to do?\p"
@@ -1017,11 +1016,24 @@ LilycoveCity_Text_CitySign:
 
 LilycoveCity_Text_ContestHallSign:
 #if GERMAN
+#if IS_HNS
+	.string "Pokémon Wettbewerb\n"
+	.string "Master-Klasse Registrierungen\p"
+	.string "“Nimm mit deinen Freunden am\n"
+	.string "Wettbewerb teil!”$"
+#else
 	.string "Pokémon Wettbewerbshalle\n"
 	.string "“Der Treffpunkt für Trainer.”$"
+#endif
+#else
+#if IS_HNS
+	.string "POKéMON CONTESTS\n"
+	.string "MASTER RANK REGISTRATION\p"
+	.string "“Enter CONTESTS with your friends!”$"
 #else
 	.string "POKéMON CONTEST HALL\n"
 	.string "“The gathering place for TRAINERS!”$"
+#endif
 #endif
 
 LilycoveCity_Text_MotelSign:

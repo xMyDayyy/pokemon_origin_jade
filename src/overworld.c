@@ -52,6 +52,7 @@
 #include "palette.h"
 #include "play_time.h"
 #include "random.h"
+#include "region_rule_oj.h"
 #include "roamer.h"
 #include "rotating_gate.h"
 #include "rtc.h"
@@ -396,19 +397,7 @@ static void (*const sMovementStatusHandler[])(struct LinkPlayerObjectEvent *, st
 void DoWhiteOut(void)
 {
     if (IsNuzlockeActive() || IsNuzlockeEasyActive())
-    {
-        if (GetFirstAliveBoxPokemon() == IN_BOX_COUNT * TOTAL_BOXES_COUNT)
-        {
-            ZeroPlayerPartyMons();
-            CreateMon(&gPlayerParty[0], SPECIES_RATTATA, 1, 0, OTID_STRUCT_PLAYER_ID);
-            CalculateMonStats(&gPlayerParty[0]);
-            gPlayerPartyCount = 1;
-        }
-        else
-        {
-            MoveFirstBoxPokemonToParty();
-        }
-    }
+        NuzlockeRefillPartyAfterWhiteOut();
     RunScriptImmediately(EventScript_WhiteOut);
     HealPlayerParty();
     Overworld_ResetStateAfterWhiteOut();
@@ -942,6 +931,7 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
     TrySetHoennVisitedFlag();
+    TryUnlockJohtoOnMapLoad();
     InitMap();
     CopySecondaryTilesetToVramUsingHeap(gMapHeader.mapLayout);
     LoadSecondaryTilesetPalette(gMapHeader.mapLayout, TRUE); // skip copying to Faded, gamma shift will take care of it
@@ -1013,6 +1003,7 @@ static void LoadMapFromWarp(bool32 a1)
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
     TrySetHoennVisitedFlag();
+    TryUnlockJohtoOnMapLoad();
     UpdateLocationHistoryForRoamer();
     MoveAllRoamersToOtherLocationSets();
     gChainFishingDexNavStreak = 0;

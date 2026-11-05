@@ -992,6 +992,17 @@ Route13_EventScript_Robert::
 Route13_EventScript_RobertRematch::
 	trainerbattle_rematch TRAINER_BIRD_KEEPER_ROBERT, Route13_Text_RobertRematchIntro, Route13_Text_RobertDefeat
 	msgbox Route13_Text_RobertPostBattle, MSGBOX_AUTOCLOSE
+	goto_if_defeated TRAINER_BIRD_KEEPER_ROBERT_3, Route13_EventScript_RobertGiveTMStoneEdge
+	end
+
+@ Origin Jade: TM Stone Edge once his last rematch team is beaten.
+Route13_EventScript_RobertGiveTMStoneEdge::
+	goto_if_set FLAG_GOT_TM_STONE_EDGE_FROM_ROBERT, Common_EventScript_NoOp
+	lock
+	giveitem ITEM_TM_STONE_EDGE
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	setflag FLAG_GOT_TM_STONE_EDGE_FROM_ROBERT
+	release
 	end
 
 Route13_EventScript_Alma::
@@ -1112,6 +1123,17 @@ Route14_EventScript_Benny::
 Route14_EventScript_BennyRematch::
 	trainerbattle_rematch TRAINER_BIRD_KEEPER_BENNY, Route14_Text_BennyRematchIntro, Route14_Text_BennyDefeat
 	msgbox Route14_Text_BennyPostBattle, MSGBOX_AUTOCLOSE
+	goto_if_defeated TRAINER_BIRD_KEEPER_BENNY_3, Route14_EventScript_BennyGiveTMWillOWisp
+	end
+
+@ Origin Jade: TM Will-O-Wisp once his last rematch team is beaten.
+Route14_EventScript_BennyGiveTMWillOWisp::
+	goto_if_set FLAG_GOT_TM_WILL_O_WISP_FROM_BENNY, Common_EventScript_NoOp
+	lock
+	giveitem ITEM_TM_WILL_O_WISP
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	setflag FLAG_GOT_TM_WILL_O_WISP_FROM_BENNY
+	release
 	end
 
 Route14_EventScript_Carter::
@@ -1124,6 +1146,17 @@ Route14_EventScript_Carter::
 Route14_EventScript_CarterRematch::
 	trainerbattle_rematch TRAINER_BIRD_KEEPER_CARTER, Route14_Text_CarterRematchIntro, Route14_Text_CarterDefeat
 	msgbox Route14_Text_CarterPostBattle, MSGBOX_AUTOCLOSE
+	goto_if_set FLAG_DEFEATED_CARTER_REMATCH, Route14_EventScript_CarterGiveTMThunderWave
+	end
+
+@ Origin Jade: TM Thunder Wave once a VS Seeker rematch against him is won.
+Route14_EventScript_CarterGiveTMThunderWave::
+	goto_if_set FLAG_GOT_TM_THUNDER_WAVE_FROM_CARTER, Common_EventScript_NoOp
+	lock
+	giveitem ITEM_TM_THUNDER_WAVE
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	setflag FLAG_GOT_TM_THUNDER_WAVE_FROM_CARTER
+	release
 	end
 
 Route14_EventScript_Mitch::
@@ -1220,6 +1253,17 @@ Route15_EventScript_Grace::
 Route15_EventScript_GraceRematch::
 	trainerbattle_rematch TRAINER_BEAUTY_GRACE, Route15_Text_GraceRematchIntro, Route15_Text_GraceDefeat
 	msgbox Route15_Text_GracePostBattle, MSGBOX_AUTOCLOSE
+	goto_if_defeated TRAINER_BEAUTY_GRACE_2, Route15_EventScript_GraceGiveTMEnergyBall
+	end
+
+@ Origin Jade: TM Energy Ball once her last rematch team is beaten.
+Route15_EventScript_GraceGiveTMEnergyBall::
+	goto_if_set FLAG_GOT_TM_ENERGY_BALL_FROM_GRACE, Common_EventScript_NoOp
+	lock
+	giveitem ITEM_TM_ENERGY_BALL
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	setflag FLAG_GOT_TM_ENERGY_BALL_FROM_GRACE
+	release
 	end
 
 Route15_EventScript_Olivia::

@@ -137,5 +137,16 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 10,
+      "y": 34,
+      "elevation": 3,
+      "item": "ITEM_HEAT_ROCK",
+      "flag": "FLAG_HIDDEN_ITEM_FIERY_PATH_HEAT_ROCK",
+      "quantity": 1,
+      "underfoot": false
+    }
+  ]
 }

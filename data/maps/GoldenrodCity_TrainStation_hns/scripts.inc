@@ -6,7 +6,7 @@ GoldenrodCity_TrainStation_OnFrame::
 	map_script_2 VAR_TRAIN, 1, GoldenrodCity_TrainStation_EventScript_ExitTrain
 	.2byte 0
 
-@ The train only needs the pass (radio quiz prize), see docs/origin_jade/DECISIONS.md, D-029.
+@ The train only needs the pass (radio quiz prize).
 GoldenrodCity_TrainStation_EventScript_Attendant::
 	lock
 	faceplayer
@@ -90,11 +90,13 @@ GoldenrodCity_TrainStation_EventScript_Psychic::
 	release
 	end
 
+@ Ends one tile below the attendant's spot, which he walks back to.
 GoldenrodCity_TrainStation_Movement_ExitTrain:
 	walk_down
 	walk_left
 	walk_left
 	walk_left
+	walk_down
 	walk_down
 	walk_down
 	walk_down

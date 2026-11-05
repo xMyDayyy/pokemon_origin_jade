@@ -9,13 +9,25 @@ struct Trainer;
 // include/config/hoenn_scaling.h, johto_scaling.h and kanto_scaling.h.
 // Before the Kanto title ScaleTrainerMonLevel raises Kanto VS Seeker rematch teams
 // to their tier's floor (src/vs_seeker.c). Pass-throughs everywhere else.
+
+// Anchor of all regions: mean of the three highest party levels (eggs excluded;
+// fewer Pokemon: their mean), rounded, but at most this far below the highest level.
+#define SCALING_ANCHOR_MAX_DROP 8
+
 bool32 LevelScalingActive(void);
 u8 ScaleWildMonLevel(u8 level);
-// Static and scripted encounters and roamers: never below the top of the map's wild band (Johto).
+// Static and scripted encounters and roamers: never below the top of the map's wild band
+// (maps with Johto's or Hoenn's rules).
 u8 ScaleStaticMonLevel(u8 level);
 u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel);
-// Call right after ScaleTrainerMonLevel for the same Pokemon. partyIndex: its index
-// in the trainer's party data.
+// Corridor ceiling of the current map (highest scaled wild level), 0 on maps without scaling.
+u8 GetScalingCeiling(void);
+// In-game battle partners (FillPartnerParty): the current map's trainer band without the
+// boss extra and without Kanto's rematch floor. Call before the partner's Pokemon join
+// the party.
+u8 ScalePartnerMonLevel(u8 level, u8 partyMaxLevel);
+// Call right after ScaleTrainerMonLevel or ScalePartnerMonLevel for the same Pokemon.
+// partyIndex: its index in the trainer's party data.
 u16 ScaleTrainerMonSpecies(u16 species, u8 scaledLevel, u16 trainerId, u8 partyIndex);
 
 // Not tied to scaling: also used by the region map, location names and HM licenses.

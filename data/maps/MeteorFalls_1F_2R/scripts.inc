@@ -62,8 +62,7 @@ MeteorFalls_1F_2R_EventScript_RematchJay::
 
 MeteorFalls_1F_2R_Text_NicolasIntro:
 #if GERMAN
-	.string "Dort trainieren wir Drachen-besitzer…\n"
-	.string "\p"
+	.string "Dort trainieren wir Drachen-besitzer…\p"
 	.string "Auch der Champ kommt manchmal vorbei.\n"
 	.string "Verstehst du nun, dass dies ein\l"
 	.string "besonderer Ort ist?$"
@@ -174,8 +173,7 @@ MeteorFalls_1F_2R_Text_JohnPostBattle:
 
 MeteorFalls_1F_2R_Text_JohnNotEnoughMons:
 #if GERMAN
-	.string "Urs: Nun, was für ein junger Trainer!\n"
-	.string "\p"
+	.string "Urs: Nun, was für ein junger Trainer!\p"
 	.string "Möchtest du mit uns kämpfen? Wenn ja,\n"
 	.string "dann musst du dir noch mehr Pokémon\l"
 	.string "besorgen.$"
@@ -277,8 +275,7 @@ MeteorFalls_1F_2R_Text_JohnPostRematch:
 
 MeteorFalls_1F_2R_Text_JohnRematchNotEnoughMons:
 #if GERMAN
-	.string "Urs: Nun, was für ein junger Trainer!\n"
-	.string "\p"
+	.string "Urs: Nun, was für ein junger Trainer!\p"
 	.string "Möchtest du mit uns kämpfen? Wenn ja,\n"
 	.string "dann musst du dir noch mehr Pokémon\l"
 	.string "besorgen.$"

@@ -204,7 +204,7 @@
     {
       "x": 25,
       "y": 21,
-      "elevation": 3,
+      "elevation": 4,
       "dest_map": "MAP_MT_MOON_B1F",
       "dest_warp_id": "3"
     },
@@ -253,7 +253,7 @@
       "type": "hidden_item",
       "x": 20,
       "y": 16,
-      "elevation": 3,
+      "elevation": 4,
       "item": "ITEM_MOON_STONE",
       "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B2F_MOON_STONE",
       "quantity": 1,
@@ -266,6 +266,16 @@
       "elevation": 3,
       "item": "ITEM_ETHER",
       "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B2F_ETHER",
+      "quantity": 1,
+      "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 36,
+      "y": 5,
+      "elevation": 4,
+      "item": "ITEM_COMET_SHARD",
+      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B2F_COMET_SHARD",
       "quantity": 1,
       "underfoot": false
     }

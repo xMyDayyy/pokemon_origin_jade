@@ -9,8 +9,7 @@ Route40_MapScript_OnTransition::
 	goto_if_ge VAR_OLIVINE_CITY_STATE, 5, Route40_MapScript_ClearWeather
 	end
 
-@ Monica of the weekday siblings is only here on Monday, see
-@ docs/origin_jade/DECISIONS.md, D-033.
+@ Monica of the weekday siblings is only here on Monday.
 Route40_EventScript_HideMonica:
 	setflag FLAG_TEMP_5
 	return

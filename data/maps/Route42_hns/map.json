@@ -236,8 +236,8 @@
     {
       "local_id": "LOCALID_ROUTE42_SUICUNE",
       "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_SUICUNE",
-      "x": 52,
-      "y": 20,
+      "x": 15,
+      "y": 13,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_LEFT",
       "movement_range_x": 0,
@@ -263,8 +263,8 @@
     {
       "local_id": "LOCALID_ROUTE42_EUSINE",
       "graphics_id": "OBJ_EVENT_GFX_EUSINE_HNS",
-      "x": 50,
-      "y": 13,
+      "x": 22,
+      "y": 10,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -315,12 +315,57 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 46,
-      "y": 17,
+      "x": 10,
+      "y": 14,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
       "script": "Route42_EventScript_Suicune_Trigger"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 15,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "Route42_EventScript_Suicune_Trigger"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 16,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "Route42_EventScript_Suicune_Trigger"
+    },
+    {
+      "type": "trigger",
+      "x": 89,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "Route42_EventScript_SuicuneEast_Trigger"
+    },
+    {
+      "type": "trigger",
+      "x": 89,
+      "y": 12,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "Route42_EventScript_SuicuneEast_Trigger"
+    },
+    {
+      "type": "trigger",
+      "x": 89,
+      "y": 13,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "Route42_EventScript_SuicuneEast_Trigger"
     },
     {
       "type": "trigger",

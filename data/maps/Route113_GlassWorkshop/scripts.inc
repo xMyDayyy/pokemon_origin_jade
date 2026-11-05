@@ -199,7 +199,8 @@ Route113_GlassWorkshop_EventScript_MakeGlassItem::
 	end
 
 Route113_GlassWorkshop_EventScript_GiveGlassFlute::
-	giveitem VAR_0x8008
+	@ Bought with ash: no item randomizer.
+	giveitem_norandom VAR_0x8008
 	goto_if_eq VAR_RESULT, FALSE, Route113_GlassWorkshop_EventScript_NoRoomForFlute
 	return
 

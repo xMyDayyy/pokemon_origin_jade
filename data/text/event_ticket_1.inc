@@ -48,9 +48,16 @@ EventTicket_Text_ShowEonTicket:
 
 #if IS_HNS
 EventTicket_Text_SouthernIslandSailBack:
+#if GERMAN
+	.string "Aye, Maat, auf dieser gottverlassenen\n"
+	.string "Insel gibt’s nichts zu sehen und zu tun.\p"
+	.string "Sollen wir nicht nach Oliviana City\n"
+	.string "zurücksegeln?$"
+#else
 	.string "Aye, mate, there's nothing here to\n"
 	.string "see or do on this forgettable island.\p"
 	.string "What say we sail back to OLIVINE?$"
+#endif
 #else
 EventTicket_Text_SouthernIslandSailBack:
 #if GERMAN

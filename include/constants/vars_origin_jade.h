@@ -36,6 +36,8 @@
 // Saffron's Trainer Fan Club (src/trainer_fan_club.c); VAR_FANCLUB_* are Lilycove's.
 #define VAR_SAFFRON_FANCLUB_FAN_COUNTER      (OJ_VARS_KANTO + 4)
 #define VAR_SAFFRON_FANCLUB_LOSE_FAN_TIMER   (OJ_VARS_KANTO + 5)
+// Bill's grandfather in the Sea Cottage: 0 = not met, 1-4 = Pokemon he asks for next, 5 = done.
+#define VAR_SEA_COTTAGE_GRANDPA              (OJ_VARS_KANTO + 6)
 
 // ---------------------------------------------------------------------
 // Johto (OJ_VARS_JOHTO + 0 to + 39)
@@ -91,6 +93,12 @@
 #define VAR_HOENN_WHICH_FOSSIL_REVIVED          (OJ_VARS_HOENN + 16)
 // Legendary flee cooldowns, 2 bits per encounter (src/legendaries_oj.c).
 #define VAR_LEGENDARY_FLEE_HOENN                (OJ_VARS_HOENN + 17)
+// Hoenn Safari Zone (Route 121): 0 in or out, 1 exiting, 2 entering.
+// VAR_SAFARI_ZONE_STATE belongs to Johto's Safari Zone gate.
+#define VAR_HOENN_SAFARI_ZONE_STATE             (OJ_VARS_HOENN + 18)
+// Lilycove's lottery prize waiting for room in the bag (item, matched digits - 1).
+#define VAR_HOENN_POKELOT_PRIZE_ITEM            (OJ_VARS_HOENN + 19)
+#define VAR_HOENN_POKELOT_PRIZE_PLACE           (OJ_VARS_HOENN + 20)
 
 // ---------------------------------------------------------------------
 // Cross-region (OJ_VARS_GLOBAL + 0 to + 15)

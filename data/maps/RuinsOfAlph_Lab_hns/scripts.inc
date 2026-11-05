@@ -353,18 +353,13 @@ RuinsOfAlph_Lab_EventScript_ReceiveAnorith::
 
 RuinsOfAlph_Lab_EventScript_ReceiveAnorithParty::
 	call RuinsOfAlph_Lab_EventScript_ReceivedAnorithFanfare
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, RuinsOfAlph_Lab_EventScript_FinishReceivingAnorith
-	call Common_EventScript_GetGiftMonPartySlot
-	call Common_EventScript_NameReceivedPartyMon
+	call Common_EventScript_AskNicknameGiftPartyMon
 	goto RuinsOfAlph_Lab_EventScript_FinishReceivingAnorith
 	end
 
 RuinsOfAlph_Lab_EventScript_ReceiveAnorithPC::
 	call RuinsOfAlph_Lab_EventScript_ReceivedAnorithFanfare
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, RuinsOfAlph_Lab_EventScript_TransferAnorithToPC
-	call Common_EventScript_NameReceivedBoxMon
+	call Common_EventScript_AskNicknameGiftBoxMon
 	goto RuinsOfAlph_Lab_EventScript_TransferAnorithToPC
 	end
 

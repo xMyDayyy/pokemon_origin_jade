@@ -62,7 +62,8 @@ CianwoodCity_Text_OldManIntro:
 
 CianwoodCity_Text_BellTowerStory:
 #if GERMAN
-	.string "Kennst du den Glockenturm in Teak City?\p"
+	.string "Kennst du den Glockenturm\n"
+	.string "in Teak City?\p"
 	.string "An seiner Spitze gibt es ein Artefakt,\n"
 	.string "das man die Klarglocke nennt.\p"
 	.string "Aber egal, wie stark der Wind auch sein\n"

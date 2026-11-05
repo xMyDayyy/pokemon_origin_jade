@@ -336,8 +336,7 @@ VerdanturfTown_BattleTentLobby_Text_MonsReluctantToUseDislikedMoves:
 	.string "beispielsweise ungern seinen Gegner\l"
 	.string "verletzen wollen.\p"
 	.string "Wenn es sein Potenzial nicht\n"
-	.string "ausschöpfen kann, wird es beim Einsatz\l"
-	.string "\p"
+	.string "ausschöpfen kann, wird es beim Einsatz\p"
 	.string "einer ungeliebten Attacke eventuell\n"
 	.string "versagen.$"
 #else

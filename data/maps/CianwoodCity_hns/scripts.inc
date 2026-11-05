@@ -54,7 +54,14 @@ CianwoodCity_EventScript_FlytriggerDone::
 CianwoodCity_EventScript_FlytriggerHasFly::
 	msgbox CianwoodCity_Text_ChucksWifeHasFly, MSGBOX_DEFAULT
 	giveitem ITEM_SHARP_BEAK
-	goto CianwoodCity_EventScript_FlytriggerDone
+	goto_if_eq VAR_RESULT, TRUE, CianwoodCity_EventScript_FlytriggerDone
+	@ Bag full: VAR_GETFLY 3, she gives the Sharp Beak when talked to.
+	call Common_EventScript_BagIsFull
+	closemessage
+	setvar VAR_GETFLY, 3
+	goto_if_eq VAR_TRIGGER_ELM_ROCKET_CALL, 1, Mahoganytown_EventScript_RocketTrigger
+	release
+	end
 
 CianwoodCity_Movement_ChucksWife:
 	walk_left
@@ -74,6 +81,7 @@ CianwoodCity_EventScript_Test::
 CianwoodCity_EventScript_ChucksWife::
 	lock
 	faceplayer
+	goto_if_eq VAR_GETFLY, 3, CianwoodCity_EventScript_ChucksWifeGiveSharpBeak
 	checkitem ITEM_HM_FLY
 	goto_if_eq VAR_RESULT, TRUE, CianwoodCity_EventScript_ChucksWifeAlreadyHasFly
 	msgbox CianwoodCity_Text_ChucksWifeEasierToFly, MSGBOX_DEFAULT
@@ -90,6 +98,14 @@ CianwoodCity_EventScript_ChucksWifeGiveFly::
 	msgbox CianwoodCity_Text_ChucksWifeGiveHM, MSGBOX_DEFAULT
 	giveitem ITEM_HM_FLY
 	msgbox CianwoodCity_Text_ChucksWifeFlySpeech, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+CianwoodCity_EventScript_ChucksWifeGiveSharpBeak::
+	giveitem ITEM_SHARP_BEAK
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	setvar VAR_GETFLY, 2
 	closemessage
 	release
 	end

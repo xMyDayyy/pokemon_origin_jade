@@ -1,4 +1,4 @@
-@ Symbols from the retired HnS Kanto maps that Johto maps still use.
+@ Symbols from the removed HnS Kanto maps that Johto maps still use.
 
 Route7_EventScript_Door::
 	msgbox Route7_Text_LockedDoor, MSGBOX_SIGN
@@ -10,6 +10,3 @@ Route7_Text_LockedDoor:
 #else
 	.string "It's locked…$"
 #endif
-
-SeafoamIslands_B1F_Text_ArticunoBattle::
-	.string "Gyaoo!$"

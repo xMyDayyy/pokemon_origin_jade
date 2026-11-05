@@ -35,10 +35,17 @@ SSAqua_RoomSSE_EventScript_ReuinionScene::
     msgbox SSAqua_RoomSSE_Text_EntertainedGranddaughter, MSGBOX_DEFAULT
     msgbox SSAqua_RoomSSE_Text_GrandpaHaveThis, MSGBOX_DEFAULT
     giveitem ITEM_METAL_COAT
+	@ Bag full: the voyage goes on, the grandpa hands it over when talked to.
+	call_if_eq VAR_RESULT, FALSE, SSAqua_RoomSSE_EventScript_MetalCoatPending
     closemessage
 	setvar VAR_SSAQUA_STATE, 5
 	release
 	end
+
+SSAqua_RoomSSE_EventScript_MetalCoatPending::
+	call Common_EventScript_BagIsFull
+	setflag FLAG_SSAQUA_METAL_COAT_PENDING
+	return
 
 SSAqua_RoomSSE_EventScript_Grandpa::
 	lock
@@ -50,7 +57,17 @@ SSAqua_RoomSSE_EventScript_Grandpa::
 	end
 
 SSAqua_RoomSSE_EventScript_GrandpaAfter::
+	goto_if_set FLAG_SSAQUA_METAL_COAT_PENDING, SSAqua_RoomSSE_EventScript_GiveMetalCoat
 	msgbox SSAqua_RoomSSE_Text_GrandpaTravelling, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+SSAqua_RoomSSE_EventScript_GiveMetalCoat::
+	msgbox SSAqua_RoomSSE_Text_GrandpaHaveThis, MSGBOX_DEFAULT
+	giveitem ITEM_METAL_COAT
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	clearflag FLAG_SSAQUA_METAL_COAT_PENDING
 	closemessage
 	release
 	end

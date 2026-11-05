@@ -299,8 +299,7 @@ BattleFrontier_BattlePikeLobby_Text_ExplainBattlePike:
 #if GERMAN
 	.string "Wir bieten hier eine besondere Heraus-\n"
 	.string "forderung an: Die Kampfbahn!\p"
-	.string "Die Regeln sind wirklich sehr einfach…\n"
-	.string "\p"
+	.string "Die Regeln sind wirklich sehr einfach…\p"
 	.string "Wähle einen von drei möglichen Wegen\n"
 	.string "und schlag dich zu deinem Ziel durch,\l"
 	.string "das am Ende der Kampfipitis liegt…\p"
@@ -365,7 +364,7 @@ BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsLv50:
 	.string "Pokémon von Level 50 oder weniger.\p"
 	.string "Jedes muss außerdem ein anderes Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du so weit\n"
 	.string "bist…$"
 #else
@@ -391,7 +390,7 @@ BattleFrontier_BattlePikeLobby_Text_NotEnoughValidMonsLvOpen:
 	.string "Pokémon.\p"
 	.string "Jedes muss außerdem ein anderes Item\n"
 	.string "halten.\p"
-	.string "Eier{STR_VAR_1} nicht zugelassen.\p"
+	.string "Eier{STR_VAR_1}.\p"
 	.string "Bitte komm wieder, wenn du so weit\n"
 	.string "bist…$"
 #else

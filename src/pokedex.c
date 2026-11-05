@@ -18,6 +18,7 @@
 #include "pokedex_area_screen.h"
 #include "pokedex_cry_screen.h"
 #include "pokedex_plus_hgss.h"
+#include "region_rule_oj.h"
 #include "rtc.h"
 #include "scanline_effect.h"
 #include "sound.h"
@@ -4610,6 +4611,11 @@ u16 GetKantoPokedexCount(u8 caseID)
 
     for (i = 0; i < KANTO_DEX_COUNT - 1; i++)
     {
+#if IS_HNS
+        // Origin Jade: only the 151, not the babies and later evolutions.
+        if (KantoToNationalOrder(i + 1) > NATIONAL_DEX_MEW)
+            continue;
+#endif
         switch (caseID)
         {
         case FLAG_GET_SEEN:
@@ -4678,6 +4684,11 @@ bool16 HasAllKantoMons(void)
     for (i = 0; i < KANTO_DEX_COUNT - 1; i++)
     {
         j = KantoToNationalOrder(i + 1);
+#if IS_HNS
+        // Origin Jade: only the 151, not the babies and later evolutions.
+        if (j > NATIONAL_DEX_MEW)
+            continue;
+#endif
         k = NationalPokedexNumToSpecies(j);
         if (!(gSpeciesInfo[k].dexNotRequired || (gSpeciesInfo[k].isMythical && !gSpeciesInfo[k].dexForceRequired)) && !GetSetPokedexFlag(j, FLAG_GET_CAUGHT))
             return FALSE;
@@ -4693,6 +4704,11 @@ bool16 HasAllJohotoMons(void)
     {
         j = JohtoToNationalOrder(i + 1);
         k = NationalPokedexNumToSpecies(j);
+#if IS_HNS
+        // Origin Jade: Johto's Hoenn species (Azurill, Wynaut) are not needed.
+        if (GetSpeciesRegion(k) == REGION_HOENN)
+            continue;
+#endif
         if (!(gSpeciesInfo[k].dexNotRequired || (gSpeciesInfo[k].isMythical && !gSpeciesInfo[k].dexForceRequired)) && !GetSetPokedexFlag(j, FLAG_GET_CAUGHT))
             return FALSE;
     }

@@ -6,7 +6,17 @@ SlateportCity_House_EventScript_PokefanM::
 	end
 
 SlateportCity_House_EventScript_Girl::
-	msgbox SlateportCity_House_Text_MustBeGoingToBattleTent, MSGBOX_NPC
+	lock
+	faceplayer
+	checkitem ITEM_CONTEST_PASS
+	goto_if_eq VAR_RESULT, TRUE, SlateportCity_House_EventScript_HaveContestPass
+	msgbox SlateportCity_House_Text_NeedContestPass, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_House_EventScript_HaveContestPass::
+	msgbox SlateportCity_House_Text_HaveContestPass, MSGBOX_DEFAULT
+	release
 	end
 
 SlateportCity_House_Text_NatureToDoWithStatGains:
@@ -24,14 +34,26 @@ SlateportCity_House_Text_NatureToDoWithStatGains:
 	.string "do with the stat gains of POKéMON.$"
 #endif
 
-SlateportCity_House_Text_MustBeGoingToBattleTent:
+SlateportCity_House_Text_NeedContestPass:
 #if GERMAN
-	.string "Du bist doch ein Trainer, oder?\p"
-	.string "Da du schon mal in Graphitport City\n"
-	.string "bist, besuch unbedingt das Kampfcamp!$"
+	.string "Um an dem Wettbewerb teilnehmen zu\n"
+	.string "können, brauchst du eine\l"
+	.string "Wettbewerbskarte.\p"
+	.string "Die bekommst du leicht. Jeder, der ein\n"
+	.string "Pokémon hat, bekommt eine.$"
 #else
-	.string "You're a TRAINER, aren't you?\p"
-	.string "Since you came to SLATEPORT CITY,\n"
-	.string "you must be going to the BATTLE TENT.$"
+	.string "You need a CONTEST PASS to enter a\n"
+	.string "CONTEST.\p"
+	.string "It's easy to get. They give it to\n"
+	.string "anyone who has POKéMON.$"
+#endif
+
+SlateportCity_House_Text_HaveContestPass:
+#if GERMAN
+	.string "Oh, eine Wettbewerbskarte!\n"
+	.string "Bist du auch ein Bewerber?$"
+#else
+	.string "Oh, a CONTEST PASS!\n"
+	.string "You're going to be a contestant?$"
 #endif
 

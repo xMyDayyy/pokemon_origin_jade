@@ -134,9 +134,9 @@ OlivineCity_Text_CafeSailor:
 OlivineCity_Text_CafeSailorHasStrength:
 #if GERMAN
 	.string "Stärke? Die hast du schon.\p"
-	.string "Ich hab dreißig Jahre Kisten geschleppt\n"
-	.string "und du kommst hier rein und hast es\l"
-	.string "einfach.\p"
+	.string "Ich hab dreißig Jahre Kisten\n"
+	.string "geschleppt und du kommst hier rein\l"
+	.string "und hast es einfach.\p"
 	.string "Nimm das. Trink es nicht, gib es einem\n"
 	.string "deiner Pokémon.$"
 #else

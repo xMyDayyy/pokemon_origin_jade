@@ -94,8 +94,7 @@ Route35GoldenrodGate_Text_RandyThanks:
 #if GERMAN
 	.string "Das würdest du tun? Super! Vielen Dank!\p"
 	.string "Mein Freund ist\n"
-	.string "ein Flegel! Er schläft die ganze Zeit.\l"
-	.string "\p"
+	.string "ein Flegel! Er schläft die ganze Zeit.\p"
 	.string "Du wirst ihn sofort erkennen!$"
 #else
 	.string "You will? Perfect! Thanks, kid!\p"

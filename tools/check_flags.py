@@ -10,6 +10,7 @@ Checks:
   5. Item-ball and hidden-item flags are unique across all maps.
   6. Names defined by several region headers and used by maps of more than
      one region.
+  7. Reserve markers (*_RESERVE_START) lie above every name of their block.
 
 Values come from the C preprocessor (POKEMON_HNS build). Needs a host C
 compiler (cc, or $CC).
@@ -17,7 +18,7 @@ compiler (cc, or $CC).
 Usage:
     python3 tools/check_flags.py            # short report
     python3 tools/check_flags.py --verbose  # every finding with its source
-    python3 tools/check_flags.py --free     # also list free windows
+    python3 tools/check_flags.py --free     # also list free numbers with storage
 
 Run it after every HnS merge and whenever flags, vars or trainers change.
 Exit status 1 if anything was found that is not listed as a known alias.
@@ -167,7 +168,8 @@ def resolve_all():
     with tempfile.TemporaryDirectory() as workdir:
         names = macro_names(cc, workdir)
         wanted = [n for n in names
-                  if n.startswith(("FLAG_", "VAR_", "TRAINER_")) or n in EXTRA_MACROS]
+                  if n.startswith(("FLAG_", "VAR_", "TRAINER_")) or n in EXTRA_MACROS
+                  or n.endswith("_RESERVE_START")]
         # Some bounds are enum values (REMATCH_TABLE_ENTRIES), not macros.
         wanted += [n for n in EXTRA_MACROS if n not in wanted]
         return evaluate(cc, workdir, wanted)
@@ -272,6 +274,39 @@ def trainer_flag(tid, v):
     return flag
 
 
+def storage_windows(v):
+    """Flag and var numbers that GetFlagPointer/GetVarPointer back with storage."""
+    flag_windows = [
+        (1, v["FLAGS_COUNT"] - 1),
+        (v["FRLG_FLAGS_START"], v["FRLG_FLAGS_END"]),
+        (v["FRLG_TRAINER_FLAGS_START"], v["FRLG_TRAINER_FLAGS_END"]),
+        (v["HNS_REMATCH_TIER_FLAGS_START"], v["HNS_REMATCH_TIER_FLAGS_END"]),
+        (v["OJ_FLAGS_START"], v["OJ_FLAGS_END"]),
+        (v["SPECIAL_FLAGS_START"], v["SPECIAL_FLAGS_END"]),
+    ]
+    var_windows = [
+        (v["VARS_START"], v["VARS_END"]),
+        (v["FRLG_VARS_START"], v["FRLG_VARS_END"]),
+        (v["OJ_VARS_START"], v["OJ_VARS_END"]),
+        (v["SPECIAL_VARS_START"], v["SPECIAL_VARS_END"]),
+    ]
+    return flag_windows, var_windows
+
+
+def trainer_flag_numbers(v):
+    """Flags that trainers and the match call registration fill at runtime."""
+    taken = set()
+    for lo, hi in ((v["TRAINER_FLAGS_START"], v["TRAINER_FLAGS_END"]),
+                   (v["FRLG_TRAINER_FLAGS_START"], v["FRLG_TRAINER_FLAGS_END"]),
+                   (v["HNS_REMATCH_TIER_FLAGS_START"], v["HNS_REMATCH_TIER_FLAGS_END"])):
+        taken.update(range(lo, hi + 1))
+    for tid in range(v["TRAINER_FLAGS_END"] - v["TRAINER_FLAGS_START"] + 1):
+        taken.add(trainer_flag(tid, v))
+    for i in range(v["REMATCH_TABLE_ENTRIES"]):
+        taken.add(v["TRAINER_REGISTERED_FLAGS_START"] + i)
+    return taken
+
+
 def check_windows(values, flag_by_value, report):
     """Checks 2-4: computed windows and storage."""
     v = values
@@ -304,20 +339,7 @@ def check_windows(values, flag_by_value, report):
                 daily.append("0x%04X %s is cleared every day" % (flag, name))
     report.section("daily window holds only FLAG_DAILY_*", daily)
 
-    flag_windows = [
-        (1, v["FLAGS_COUNT"] - 1),
-        (v["FRLG_FLAGS_START"], v["FRLG_FLAGS_END"]),
-        (v["FRLG_TRAINER_FLAGS_START"], v["FRLG_TRAINER_FLAGS_END"]),
-        (v["HNS_REMATCH_TIER_FLAGS_START"], v["HNS_REMATCH_TIER_FLAGS_END"]),
-        (v["OJ_FLAGS_START"], v["OJ_FLAGS_END"]),
-        (v["SPECIAL_FLAGS_START"], v["SPECIAL_FLAGS_END"]),
-    ]
-    var_windows = [
-        (v["VARS_START"], v["VARS_END"]),
-        (v["FRLG_VARS_START"], v["FRLG_VARS_END"]),
-        (v["OJ_VARS_START"], v["OJ_VARS_END"]),
-        (v["SPECIAL_VARS_START"], v["SPECIAL_VARS_END"]),
-    ]
+    flag_windows, var_windows = storage_windows(v)
     storage = []
     for name, value in sorted(values.items()):
         if value <= 0 or is_alias_name(name):
@@ -382,25 +404,40 @@ def check_region_headers(refs, report):
         print("         " + item)
 
 
-def list_free(kind, prefix, values):
-    used = sorted(set(v for n, v in values.items() if n.startswith(prefix) and v > 0))
-    if not used:
-        return
-    used_set = set(used)
-    gaps, run = [], None
-    for i in range(used[0], used[-1] + 1):
-        if i not in used_set:
-            if run is None:
-                run = i
-        elif run is not None:
-            gaps.append((run, i - 1))
-            run = None
-    big = [g for g in gaps if g[1] - g[0] >= 7]
-    print("  %s: free windows of at least 8 slots: %d" % (kind, len(big)))
-    for a, b in big[:20]:
+def check_reserves(values, report):
+    """Check 7: a reserve marker must not point into named numbers."""
+    hits = []
+    for marker, start in sorted(values.items()):
+        if not marker.endswith("_RESERVE_START"):
+            continue
+        end = values.get(marker[:-len("_RESERVE_START")] + "_END")
+        if end is None:
+            continue
+        prefix = "VAR_" if "_VARS_" in marker else "FLAG_"
+        for name, value in sorted(values.items(), key=lambda x: x[1]):
+            if name.startswith(prefix) and not is_alias_name(name) and start <= value <= end:
+                hits.append("%s = 0x%04X, but %s = 0x%04X lies in the reserve" % (marker, start, name, value))
+    report.section("reserve markers lie above every name of their block", hits)
+
+
+def list_free(kind, prefix, values, windows, taken=()):
+    """Runs of at least 8 unnamed numbers inside the windows that have storage."""
+    used = set(v for n, v in values.items() if n.startswith(prefix) and v > 0)
+    used.update(taken)
+    big = []
+    for lo, hi in windows:
+        run = None
+        for i in range(lo, hi + 2):
+            if i <= hi and i not in used:
+                if run is None:
+                    run = i
+            elif run is not None:
+                if i - run >= 8:
+                    big.append((run, i - 1))
+                run = None
+    print("  %s: free windows of at least 8 slots with storage: %d" % (kind, len(big)))
+    for a, b in big:
         print("         0x%04X-0x%04X (%d)" % (a, b, b - a + 1))
-    print("         Note: windows that are filled at runtime (trainer flags,")
-    print("         match call registration) look free here.")
 
 
 def main():
@@ -419,10 +456,12 @@ def main():
     check_names("vars", "VAR_", values, refs, report)
     check_windows(values, flag_by_value, report)
     check_map_flags(values, report)
+    check_reserves(values, report)
     check_region_headers(refs, report)
     if args.free:
-        list_free("flags", "FLAG_", values)
-        list_free("vars", "VAR_", values)
+        flag_windows, var_windows = storage_windows(values)
+        list_free("flags (trainer flag windows left out)", "FLAG_", values, flag_windows, trainer_flag_numbers(values))
+        list_free("vars", "VAR_", values, var_windows)
 
     print("\n%d problem(s) found" % report.problems)
     return 1 if report.problems else 0

@@ -19,10 +19,11 @@
 EWRAM_DATA u8 NuzlockeIsCaptureBlocked = FALSE;
 EWRAM_DATA u8 NuzlockeIsSpeciesClauseActive = FALSE;
 EWRAM_DATA u8 OneTypeChallengeCaptureBlocked = FALSE;
+// Scripted static encounter (dowildbattle): catchable and does not use up the area.
+EWRAM_DATA u8 NuzlockeIsStaticEncounter = FALSE;
 
 // Zone-to-bit mapping for one-encounter-per-area tracking.
 // Only locations with wild encounters should be listed.
-// Egg hatching counts as an encounter in the hatching zone.
 // Special/gift Pokemon do NOT consume the zone's encounter.
 static const u8 sNuzlockeLUT[] =
 {
@@ -170,7 +171,7 @@ static const u8 sNuzlockeLUT[] =
     [MAPSEC_FIERY_PATH] = 0xAE,
     [MAPSEC_JAGGED_PASS] = 0xAF,
     [MAPSEC_SKY_PILLAR] = 0xB0,
-    [MAPSEC_SAFARI_ZONE] = 0xB1, // the Johto and Hoenn Safari Zones share this MAPSEC
+    [MAPSEC_SAFARI_ZONE] = 0xB1, // Hoenn's Safari Zone; Johto's uses MAPSEC_SAFARI_ZONE_GATE
     [MAPSEC_SCORCHED_SLAB] = 0xB2,
     [MAPSEC_ISLAND_CAVE] = 0xB3,
     [MAPSEC_DESERT_RUINS] = 0xB4,
@@ -466,7 +467,6 @@ void NuzlockeDeleteFaintedPartyPokemon(void)
     u8 i;
     struct Pokemon *pokemon;
     u16 item = ITEM_NONE;
-    struct ChallengeSettings *cs = &gSaveBlock3Ptr->challengeSettings;
 
     // The Bug Contest lends the player a one-mon party (SavePlayerParty on entry,
     // LoadPlayerParty on exit), so a faint there is not a real death -- the mon
@@ -497,6 +497,42 @@ void NuzlockeDeleteFaintedPartyPokemon(void)
         }
     }
     CompactPartySlots();
+}
+
+// Whiteout: fainted party members die, eggs and members that can fight stay. If none can
+// fight, the first living PC mon (else a level 1 Rattata) joins in the first free slot.
+void NuzlockeRefillPartyAfterWhiteOut(void)
+{
+    u32 i, freeSlot = PARTY_SIZE;
+    bool32 canFight = FALSE;
+
+    NuzlockeDeleteFaintedPartyPokemon();
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) == SPECIES_NONE)
+        {
+            if (freeSlot == PARTY_SIZE)
+                freeSlot = i;
+        }
+        else if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
+        {
+            canFight = TRUE;
+        }
+    }
+
+    if (!canFight && freeSlot < PARTY_SIZE)
+    {
+        if (GetFirstAliveBoxPokemon() == IN_BOX_COUNT * TOTAL_BOXES_COUNT)
+        {
+            CreateMon(&gPlayerParty[freeSlot], SPECIES_RATTATA, 1, 0, OTID_STRUCT_PLAYER_ID);
+            CalculateMonStats(&gPlayerParty[freeSlot]);
+        }
+        else
+        {
+            MoveFirstBoxPokemonToParty(freeSlot);
+        }
+    }
+    CalculatePlayerPartyCount();
 }
 
 u8 NuzlockeGetCurrentRegionMapSectionId(void)

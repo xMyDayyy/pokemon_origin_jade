@@ -10,7 +10,7 @@ LilycoveCity_Harbor_EventScript_FerryAttendant::
 	lock
 	faceplayer
 	goto_if_unset FLAG_IS_HOENN_CHAMPION, LilycoveCity_Harbor_EventScript_FerryUnavailable
-	@ No event-ticket islands from here: each legendary exists once (see docs/origin_jade/DECISIONS.md, D-026).
+	@ No event-ticket islands from here: each legendary exists once.
 	goto LilycoveCity_Harbor_EventScript_NoEventTickets
 	end
 
@@ -31,7 +31,7 @@ LilycoveCity_Harbor_EventScript_FerryRegularLocationSelect::
 	switch VAR_RESULT
 	case 0, LilycoveCity_Harbor_EventScript_GoToSlateport
 	case 1, LilycoveCity_Harbor_EventScript_GoToBattleFrontier
-	@ Island trips disabled (see docs/origin_jade/DECISIONS.md, D-026).
+	@ Island trips disabled.
 	case 2, LilycoveCity_Harbor_EventScript_ExitSailSelect
 	case 3, LilycoveCity_Harbor_EventScript_ExitSailSelect
 	case 4, LilycoveCity_Harbor_EventScript_ExitSailSelect

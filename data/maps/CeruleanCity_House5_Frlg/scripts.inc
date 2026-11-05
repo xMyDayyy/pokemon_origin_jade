@@ -7,7 +7,9 @@ CeruleanCity_House5_EventScript_BerryPowderMan::
 	goto_if_set FLAG_GOT_POWDER_JAR, CeruleanCity_House5_EventScript_AskToExchangePowder
 	msgbox CeruleanCity_House1_Text_AnyInterestInBerries, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, CeruleanCity_House5_EventScript_NoInterestInBerries
-	goto_if_unset FLAG_SYS_GOT_BERRY_POUCH, CeruleanCity_House5_EventScript_NoBerries
+	@ Needs at least one berry in the bag.
+	specialvar VAR_RESULT, PlayerHasBerries
+	goto_if_eq VAR_RESULT, FALSE, CeruleanCity_House5_EventScript_NoBerries
 	msgbox CeruleanCity_House1_Text_HaveJustTheThing
 	setflag FLAG_GOT_POWDER_JAR
 	giveitem ITEM_POWDER_JAR
@@ -143,7 +145,8 @@ CeruleanCity_House5_EventScript_ExchangePowderForItem::
 	copyvar VAR_0x8004, VAR_0x8009
 	specialvar VAR_RESULT, HasEnoughBerryPowder
 	goto_if_eq VAR_RESULT, FALSE, CeruleanCity_House5_EventScript_NotEnoughBerryPowder
-	giveitem VAR_0x8008
+	@ Bought with Berry Powder: no item randomizer.
+	giveitem_norandom VAR_0x8008
 	goto_if_eq VAR_RESULT, FALSE, CeruleanCity_House5_EventScript_BagIsFull
 	copyvar VAR_0x8004, VAR_0x8009
 	special TakeBerryPowder
@@ -273,8 +276,8 @@ CeruleanCity_House5_Text_ExchangeWithWhat::
 
 CeruleanCity_House1_Text_YoullExchangeBerryPowderForItem::
 #if GERMAN
-	.string "Gut, ich gebe dir {STR_VAR_1} im Austausch\n"
-	.string "für deinen Beerenpuder!$"
+	.string "Gut, ich gebe dir {STR_VAR_1}\n"
+	.string "im Austausch für deinen Beerenpuder!$"
 #else
 	.string "Fine, you'll exchange your BERRY\n"
 	.string "POWDER for one {STR_VAR_1}?$"

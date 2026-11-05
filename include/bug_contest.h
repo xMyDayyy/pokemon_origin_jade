@@ -14,7 +14,8 @@ bool8 TransferBugContestMon(void);
 void CB2_EndBugContestBattle(void);
 void BugContestRetirePrompt(void);
 bool8 RemoveSportBalls(void);
-bool8 ShowBugContestChosenMon(void);
+void PrepareBugContestJudging(void);
+void BufferBugContestResult(void);
 
 extern const u8 BugContest_EventScript_TimesUp[];
 extern const u8 BugContest_EventScript_WhiteOut[];

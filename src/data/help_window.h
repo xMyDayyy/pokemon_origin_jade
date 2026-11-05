@@ -43,19 +43,6 @@ const struct HelpWindow gHelpWindowInfo[] =
         .descFont = FONT_SMALL,
         .headerColor = {0, 4, 5},
     },
-    [HELP_TELEPORTER_WINDOW] =
-    {
-        .header = COMPOUND_STRING("Optionaler Bonus-Inhalt: Teleporter"),
-        .desc = COMPOUND_STRING("Der Teleporter verwandelt Pokémon\n"
-                                "dauerhaft in ihre Galar-Formen.\n"
-                                "Galar-Formen werden weder für die\n"
-                                "Story noch für die Vervollständigung\n"
-                                "des Nationalen Pokédex benötigt.\n"
-                            ),
-        .headerFont = FONT_NORMAL,
-        .descFont = FONT_NORMAL,
-        .headerColor = {0, 8, 3},
-    },
     [HELP_SINJOH_WINDOW] =
     {
         .header = COMPOUND_STRING("Optionaler Bonus-Inhalt: Sinjoh"),
@@ -134,6 +121,18 @@ const struct HelpWindow gHelpWindowInfo[] =
     },
     [HELP_POKEBLOCK_WINDOW] =
     {
+#if GERMAN
+        .header = COMPOUND_STRING("Näpfe: normale {POKEBLOCK}"),
+        .desc = COMPOUND_STRING("Die Riegelfarbe lockt perfekte IVs an:\n"
+                                "Rot: KP,Ang,Init{CLEAR_TO 104}Blau: KP,SP.A,Init\n"
+                                "Rosa: Ang,SP.A,Init{CLEAR_TO 104}Grün: KP,Ver,SP.V\n"
+                                "Gelb: KP,Ang,Ver{CLEAR_TO 104}Lila: Ang,Ver,SP.V\n"
+                                "Indigo: KP,SP.A,SP.V{CLEAR_TO 104}Braun: Ver,Init,SP.V\n"
+                                "Cyan: SP.A,Init,SP.V{CLEAR_TO 104}Oliv: Ang,Ver,Init\n"
+                                "Grau: KP,Ang,SP.A\n"
+                                "Jeder {POKEBLOCK}: versteckte Fähigkeit."
+                            ),
+#else
         .header = COMPOUND_STRING("FEEDERS: REGULAR POKéBLOCKS"),
         .desc = COMPOUND_STRING("POKéBLOCK colors attract perfect IVs:\n"
                                 "RED: HP,ATK,SPE   BLU: HP,SPA,SPE\n"
@@ -145,12 +144,24 @@ const struct HelpWindow gHelpWindowInfo[] =
                                 "Every POKéBLOCK attracts HIDDEN ABILITY."
 
                             ),
+#endif
         .headerFont = FONT_NORMAL,
         .descFont = FONT_SMALL,
         .headerColor = {0, 8, 3},
     },
     [HELP_GOLD_POKEBLOCK_WINDOW] =
     {
+#if GERMAN
+        .header = COMPOUND_STRING("Näpfe: {POKEBLOCK} Gold"),
+        .desc = COMPOUND_STRING("{POKEBLOCK} Gold lockt Pokémon mit fünf\n"
+                                "perfekten IVs an. Der Geschmack legt\n"
+                                "fest, welcher IV nicht perfekt ist:\n"
+                                "Scharf: ohne SP.A{CLEAR_TO 104}Trocken: ohne Ang\n"
+                                "Süß: ohne SP.V{CLEAR_TO 104}Bitter: ohne Init\n"
+                                "Sauer: ohne KP\n"
+                                "Jeder {POKEBLOCK}: versteckte Fähigkeit."
+                            ),
+#else
         .header = COMPOUND_STRING("FEEDERS: GOLD POKéBLOCKS"),
         .desc = COMPOUND_STRING("GOLD POKéBLOCKS attract POKéMON with\n"
                                 "5 perfect IVs. Flavor determines which\n"
@@ -160,6 +171,7 @@ const struct HelpWindow gHelpWindowInfo[] =
                                 "SOUR:  no HP\n"
                                 "Every POKéBLOCK attracts HIDDEN ABILITY."
                             ),
+#endif
         .headerFont = FONT_NORMAL,
         .descFont = FONT_SMALL,
         .headerColor = {0, 8, 3},

@@ -99,6 +99,26 @@ STATIC_ASSERT(sizeof(struct SaveBlock2) <= SECTOR_DATA_SIZE, SaveBlock2FreeSpace
 STATIC_ASSERT(sizeof(struct SaveBlock1) <= SECTOR_DATA_SIZE * (SECTOR_ID_SAVEBLOCK1_END - SECTOR_ID_SAVEBLOCK1_START + 1), SaveBlock1FreeSpace);
 STATIC_ASSERT(sizeof(struct PokemonStorage) <= SECTOR_DATA_SIZE * (SECTOR_ID_PKMN_STORAGE_END - SECTOR_ID_PKMN_STORAGE_START + 1), PokemonStorageFreeSpace);
 
+#if IS_HNS
+// Pinned offsets of the Origin Jade fields in SaveBlock3. A config switch
+// (followers, item descriptions, DexNav, apricorn trees) or a field placed
+// before them moves them; change only on purpose.
+STATIC_ASSERT(offsetof(struct SaveBlock3, challengeSettings) == 16, SaveBlock3ChallengeSettingsPinned);
+STATIC_ASSERT(offsetof(struct SaveBlock3, nuzlockeEncounterFlagsHoenn) == 50, SaveBlock3NuzlockeHoennPinned);
+STATIC_ASSERT(offsetof(struct SaveBlock3, varsFrlg) == 66, SaveBlock3VarsFrlgPinned);
+STATIC_ASSERT(offsetof(struct SaveBlock3, flagsFrlg) == 450, SaveBlock3FlagsFrlgPinned);
+STATIC_ASSERT(offsetof(struct SaveBlock3, flagsFrlgTrainers) == 578, SaveBlock3FlagsFrlgTrainersPinned);
+STATIC_ASSERT(offsetof(struct SaveBlock3, rivalNameKanto) == 656, SaveBlock3RivalNameKantoPinned);
+STATIC_ASSERT(offsetof(struct SaveBlock3, flagsHnsRematchTiers) == 664, SaveBlock3RematchTiersPinned);
+STATIC_ASSERT(offsetof(struct SaveBlock3, flagsOj) == 669, SaveBlock3FlagsOjPinned);
+STATIC_ASSERT(offsetof(struct SaveBlock3, varsOj) == 734, SaveBlock3VarsOjPinned);
+#if FREE_TRAINER_HILL == FALSE
+STATIC_ASSERT(offsetof(struct SaveBlock3, trainerHillTimesHoenn) == 992, SaveBlock3TrainerHillHoennPinned);
+STATIC_ASSERT(offsetof(struct SaveBlock3, daycareKanto) == 1008, SaveBlock3DaycareKantoPinned);
+STATIC_ASSERT(offsetof(struct SaveBlock3, daycareJohto) == 1296, SaveBlock3DaycareJohtoPinned);
+#endif
+#endif
+
 COMMON_DATA u16 gLastWrittenSector = 0;
 COMMON_DATA u32 gLastSaveCounter = 0;
 COMMON_DATA u16 gLastKnownGoodSector = 0;

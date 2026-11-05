@@ -57,22 +57,23 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilScientist::
 	goto CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_DontShowFossil
 	end
 
+@ CheckAdd*: TRUE when the player took the fossil, did not revive it here and still carries it.
 CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddHelixFossilToList::
 	goto_if_unset FLAG_GOT_HELIX_FOSSIL, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse
 	goto_if_set FLAG_REVIVED_HELIX, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse
-	setvar VAR_RESULT, TRUE
+	checkitem ITEM_HELIX_FOSSIL
 	return
 
 CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddDomeFossilToList::
 	goto_if_unset FLAG_GOT_DOME_FOSSIL, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse
 	goto_if_set FLAG_REVIVED_DOME, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse
-	setvar VAR_RESULT, TRUE
+	checkitem ITEM_DOME_FOSSIL
 	return
 
 CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddOldAmberToList::
 	goto_if_unset FLAG_GOT_OLD_AMBER, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse
 	goto_if_set FLAG_REVIVED_AMBER, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse
-	setvar VAR_RESULT, TRUE
+	checkitem ITEM_OLD_AMBER
 	return
 
 CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse::
@@ -198,7 +199,7 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveOmanyte::
 	setvar VAR_TEMP_1, SPECIES_OMANYTE
 	bufferspeciesname STR_VAR_1, SPECIES_OMANYTE
 	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife
-	givemon SPECIES_OMANYTE, 5
+	givemon SPECIES_OMANYTE, 40
 	goto_if_eq VAR_RESULT, 2, Common_EventScript_NoMoreRoomForPokemon
 	setflag FLAG_REVIVED_HELIX
 	goto_if_eq VAR_RESULT, 0, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty
@@ -209,7 +210,7 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveKabuto::
 	setvar VAR_TEMP_1, SPECIES_KABUTO
 	bufferspeciesname STR_VAR_1, SPECIES_KABUTO
 	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife
-	givemon SPECIES_KABUTO, 5
+	givemon SPECIES_KABUTO, 40
 	goto_if_eq VAR_RESULT, 2, Common_EventScript_NoMoreRoomForPokemon
 	setflag FLAG_REVIVED_DOME
 	goto_if_eq VAR_RESULT, 0, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty
@@ -220,7 +221,7 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveAerodactyl::
 	setvar VAR_TEMP_1, SPECIES_AERODACTYL
 	bufferspeciesname STR_VAR_1, SPECIES_AERODACTYL
 	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife
-	givemon SPECIES_AERODACTYL, 5
+	givemon SPECIES_AERODACTYL, 40
 	goto_if_eq VAR_RESULT, 2, Common_EventScript_NoMoreRoomForPokemon
 	setflag FLAG_REVIVED_AMBER
 	goto_if_eq VAR_RESULT, 0, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty
@@ -234,10 +235,7 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty::
 	waitmessage
 	waitfanfare
 	setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 0
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon
-	call Common_EventScript_GetGiftMonPartySlot
-	call Common_EventScript_NameReceivedPartyMon
+	call Common_EventScript_AskNicknameGiftPartyMon
 	goto CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon
 	end
 
@@ -248,9 +246,7 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC::
 	waitmessage
 	waitfanfare
 	setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 0
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_MonSentToPC
-	call Common_EventScript_NameReceivedBoxMon
+	call Common_EventScript_AskNicknameGiftBoxMon
 	goto CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_MonSentToPC
 	end
 
@@ -268,7 +264,12 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_RevivedAllFossils::
 	release
 	end
 
+@ TRUE once every Mt. Moon fossil the player took (one or both) is revived.
 CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedMtMoonFossil::
+	call CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddHelixFossilToList
+	goto_if_eq VAR_RESULT, TRUE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse
+	call CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckAddDomeFossilToList
+	goto_if_eq VAR_RESULT, TRUE, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse
 	goto_if_set FLAG_GOT_HELIX_FOSSIL, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedHelix
 	goto_if_set FLAG_GOT_DOME_FOSSIL, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_CheckRevivedDome
 	goto CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_SetResultFalse

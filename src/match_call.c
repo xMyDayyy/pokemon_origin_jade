@@ -6,6 +6,7 @@
 #include "bg.h"
 #include "birch_pc.h"
 #include "data.h"
+#include "caps.h"
 #include "event_data.h"
 #include "fake_rtc.h"
 #include "event_object_movement.h"
@@ -2230,6 +2231,10 @@ static void PopulateBattleFrontierStreak(int matchCallId, u8 *destStr)
 
 static int GetNumOwnedBadges(void)
 {
+#if IS_HNS
+    // Origin Jade: badges of the region the player stands in.
+    return GetCurrentRegionBadgeCount();
+#else
     u32 i;
 
     for (i = 0; i < ARRAY_COUNT(gBadgeFlags); i++)
@@ -2239,6 +2244,7 @@ static int GetNumOwnedBadges(void)
     }
 
     return i;
+#endif
 }
 
 // Also used under HnS: fallback for Hoenn trainers.

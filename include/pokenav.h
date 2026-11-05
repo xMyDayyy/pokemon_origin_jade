@@ -548,7 +548,6 @@ u32 IsRibbonsSummaryLoopedTaskActive(void);
 void FreeRibbonsSummaryScreen2(void);
 
 // pokenav_radio.c
-void CheckRadioStation(void);
 #if IS_HNS
 bool32 PokenavCallback_Init_Radio(void);
 u32 GetRadioCallback(void);

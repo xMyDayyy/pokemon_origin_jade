@@ -6,6 +6,8 @@
 #include "constants/trainers.h"
 #include "data.h"
 #include "decompress.h"
+#include "caps.h"
+#include "config/version.h"
 #include "event_data.h"
 #include "field_effect.h"
 #include "gpu_regs.h"
@@ -244,6 +246,7 @@ static void MainMenu_FormatSavegamePlayer(void);
 static void MainMenu_FormatSavegamePokedex(void);
 static void MainMenu_FormatSavegameTime(void);
 static void MainMenu_FormatSavegameBadges(void);
+static void MainMenu_PrintVersion(u8 windowId);
 
 // .rodata
 
@@ -873,6 +876,7 @@ static void Task_DisplayMainMenu(u8 taskId)
             FillWindowPixelBuffer(1, PIXEL_FILL(0xA));
             AddTextPrinterParameterized3(0, FONT_NORMAL, 0, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuNewGame);
             AddTextPrinterParameterized3(1, FONT_NORMAL, 0, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuOption);
+            MainMenu_PrintVersion(0);
             PutWindowTilemap(0);
             PutWindowTilemap(1);
             CopyWindowToVram(0, COPYWIN_GFX);
@@ -2247,6 +2251,18 @@ static void MainMenu_FormatSavegameText(void)
     MainMenu_FormatSavegamePokedex();
     MainMenu_FormatSavegameTime();
     MainMenu_FormatSavegameBadges();
+    MainMenu_PrintVersion(2);
+}
+
+// Origin Jade: beta version (config/version.h), right-aligned in the header
+// line of the top menu window; nothing in make release.
+static void MainMenu_PrintVersion(u8 windowId)
+{
+#ifndef RELEASE
+    static const u8 sText_Version[] = _(OJ_BETA_VERSION);
+
+    AddTextPrinterParameterized3(windowId, FONT_NORMAL, GetStringRightAlignXOffset(FONT_NORMAL, sText_Version, MENU_WIDTH * 8), 1, sTextColor_MenuInfo, TEXT_SKIP_DRAW, sText_Version);
+#endif
 }
 
 static void MainMenu_FormatSavegamePlayer(void)
@@ -2291,13 +2307,19 @@ static void MainMenu_FormatSavegameBadges(void)
 {
     u8 str[0x20];
     u8 badgeCount = 0;
-    u32 i;
 
+#if IS_HNS
+    // Origin Jade: badges of the region the save was made in.
+    badgeCount = GetRegionBadgeCount(Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->location.mapGroup,
+                                                                        gSaveBlock1Ptr->location.mapNum)->regionMapSectionId);
+#else
+    u32 i;
     for (i = FLAG_BADGE01_GET; i < FLAG_BADGE01_GET + NUM_BADGES; i++)
     {
         if (FlagGet(i))
             badgeCount++;
     }
+#endif
     StringExpandPlaceholders(gStringVar4, gText_ContinueMenuBadges);
     AddTextPrinterParameterized3(2, FONT_NORMAL, 0x6C, 33, sTextColor_MenuInfo, TEXT_SKIP_DRAW, gStringVar4);
     ConvertIntToDecimalStringN(str, badgeCount, STR_CONV_MODE_LEADING_ZEROS, 2);

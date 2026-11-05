@@ -72,7 +72,7 @@ Gate_Route43_Rocket_EventScript_Rockets::
 Gate_Route43_Rocket_Text_TollFee:
 #if GERMAN
 	.string "Halt, Kleiner!\p"
-	.string "Die Maut beträgt 500 ¥, um\n"
+	.string "Die Maut beträgt ¥500, um\n"
 	.string "durchzugehen.$"
 #else
     .string "Hold it there, kiddo!\p"

@@ -110,15 +110,15 @@ Route103_Text_MayHnsMusing:
 Route103_Text_MayHnsLetsBattle:
 #if GERMAN
 	.string "Ah, du musst {PLAYER} sein!\p"
-	.string "Mein Vater sagt, du seist Champion in\n"
-	.string "deiner Heimat.\p"
+	.string "Mein Vater sagt, du kommst vom\n"
+	.string "Festland und sollst ziemlich stark sein.\p"
 	.string "Ich bin Maike, seine Tochter.\p"
 	.string "Lass uns kämpfen - ich will wissen, wie\n"
 	.string "gut du bist!$"
 #else
 	.string "Ah, you must be {PLAYER}!\p"
-	.string "My father says you are the CHAMPION\n"
-	.string "back home.\p"
+	.string "My father says you're from the\n"
+	.string "mainland and supposed to be strong.\p"
 	.string "I'm MAY, his daughter.\p"
 	.string "Let's battle - I want to see how good\n"
 	.string "you are!$"
@@ -529,8 +529,7 @@ Route103_Text_BrendanTimeToHeadBack:
 	.string "Du hast dein Pokémon noch nicht lange,\n"
 	.string "und doch mag es dich schon.\p"
 	.string "{PLAYER}, ich glaube, du kannst mit\n"
-	.string "jedem Pokémon Freundschaft schließen.\l"
-	.string "\p"
+	.string "jedem Pokémon Freundschaft schließen.\p"
 	.string "Wir sollten nun zurück zum Labor\n"
 	.string "gehen.$"
 #else

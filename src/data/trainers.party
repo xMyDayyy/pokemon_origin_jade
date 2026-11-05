@@ -888,22 +888,42 @@ AI: Basic Trainer
 Mightyena
 Level: 34
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Carvanha
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Waterfall
+- Crunch
+- Earthquake
+- Agility
 
 Zubat
 Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 Poochyena
 Level: 30
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Golbat
 Level: 34
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 === TRAINER_ZANDER ===
 Name: Bernd
@@ -946,18 +966,34 @@ AI: Basic Trainer
 Carvanha
 Level: 28
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Waterfall
+- Crunch
+- Earthquake
+- Agility
 
 Zubat
 Level: 25
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 Poochyena
 Level: 26
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Yawn
+- Toxic
 
 Mightyena
 Level: 28
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 === TRAINER_SHELLY_SEAFLOOR_CAVERN ===
 Name: Kordula
@@ -971,22 +1007,42 @@ AI: Basic Trainer
 Sharpedo
 Level: 37
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Waterfall
+- Crunch
+- Earthquake
+- Agility
 
 Zubat
 Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 Poochyena
 Level: 35
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Carvanha
 Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Waterfall
+- Crunch
+- Earthquake
+- Agility
 
 Mightyena
 Level: 37
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 === TRAINER_ARCHIE ===
 Name: Adrian
@@ -1001,22 +1057,42 @@ AI: Basic Trainer
 Mightyena
 Level: 41
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Crobat
 Level: 41
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 Golbat
 Level: 40
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 Zubat
 Level: 41
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 Sharpedo
 Level: 43
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Waterfall
+- Crunch
+- Earthquake
+- Agility
 
 === TRAINER_LEAH ===
 Name: Kerstin
@@ -1795,9 +1871,9 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Tentacool
 Level: 13
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
-- Sand Attack
+- Supersonic
 - Headbutt
-- Tail Whip
+- Acid
 - Surf
 
 === TRAINER_SIMON ===
@@ -1862,9 +1938,9 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Tentacool
 Level: 27
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
-- Sand Attack
-- Pin Missile
-- Tail Whip
+- Supersonic
+- Acid
+- Constrict
 - Surf
 
 === TRAINER_RICKY_3 ===
@@ -1887,9 +1963,9 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Tentacool
 Level: 30
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Sand Attack
-- Pin Missile
-- Tail Whip
+- Supersonic
+- Acid
+- Constrict
 - Surf
 
 === TRAINER_RICKY_4 ===
@@ -1912,9 +1988,9 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Tentacool
 Level: 33
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
-- Sand Attack
-- Pin Missile
-- Tail Whip
+- Supersonic
+- Acid
+- Constrict
 - Surf
 
 === TRAINER_RICKY_5 ===
@@ -1937,8 +2013,8 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Azurill
 Level: 36
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
-- Sand Attack
-- Pin Missile
+- Charm
+- Bubble Beam
 - Tail Whip
 - Surf
 
@@ -6986,46 +7062,50 @@ Mugshot: Purple
 Mightyena @ Black Glasses
 Level: 46
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Roar
-- Double Edge
-- Sand Attack
 - Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Shiftry @ Black Glasses
 Level: 48
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Torment
-- Double Team
-- Swagger
-- Extrasensory
+- Foul Play
+- Leaf Blade
+- Swords Dance
+- Synthesis
 
 Cacturne @ Quick Claw
 Level: 46
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Leech Seed
-- Feint Attack
-- Needle Arm
-- Cotton Spore
+- Energy Ball
+- Dark Pulse
+- Focus Blast
+- Nasty Plot
 
 Crawdaunt @ Scope Lens
 Level: 48
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Surf
-- Swords Dance
-- Strength
-- Facade
+- Crabhammer
+- Crunch
+- Superpower
+- Dragon Dance
 
 Duskull @ Focus Band
 Level: 46
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Double Edge
+- Shadow Ball
+- Will O Wisp
+- Curse
 
 Absol @ Sitrus Berry
 Level: 49
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Aerial Ace
-- Rock Slide
+- Night Slash
+- Megahorn
+- Iron Tail
 - Swords Dance
-- Slash
 
 === TRAINER_PHOEBE ===
 Name: Antonia
@@ -7041,46 +7121,50 @@ Mugshot: Green
 Dusclops @ Spell Tag
 Level: 48
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Shadow Punch
-- Confuse Ray
-- Curse
-- Protect
+- Shadow Sneak
+- Earthquake
+- Ice Punch
+- Will O Wisp
 
 Banette @ Spell Tag
 Level: 49
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Shadow Ball
-- Grudge
+- Shadow Claw
+- Gunk Shot
+- Swords Dance
 - Will O Wisp
-- Feint Attack
 
 Sableye @ Quick Claw
 Level: 50
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Shadow Ball
-- Double Team
-- Night Shade
-- Feint Attack
+- Foul Play
+- Poison Jab
+- Bulk Up
+- Recover
 
 Banette @ Scope Lens
 Level: 49
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Shadow Ball
-- Psychic
-- Thunderbolt
-- Facade
+- Shadow Claw
+- Gunk Shot
+- Swords Dance
+- Will O Wisp
 
 Bagon @ Focus Band
 Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Dragon Claw
+- Earthquake
+- Aerial Ace
+- Dragon Dance
 
 Dusclops @ Sitrus Berry
 Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Shadow Ball
-- Ice Beam
-- Rock Slide
+- Shadow Sneak
 - Earthquake
+- Ice Punch
+- Will O Wisp
 
 === TRAINER_GLACIA ===
 Name: Frosina
@@ -7096,46 +7180,50 @@ Mugshot: Pink
 Sealeo @ Never-Melt Ice
 Level: 50
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Encore
-- Body Slam
-- Hail
-- Ice Ball
+- Ice Beam
+- Surf
+- Earthquake
+- Toxic
 
 Glalie @ Never-Melt Ice
 Level: 50
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Light Screen
-- Crunch
-- Icy Wind
 - Ice Beam
+- Earthquake
+- Crunch
+- Toxic
 
 Sealeo @ Quick Claw
 Level: 52
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Attract
-- Double Edge
-- Hail
-- Blizzard
+- Ice Beam
+- Surf
+- Earthquake
+- Toxic
 
 Glalie @ Scope Lens
 Level: 52
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Shadow Ball
-- Explosion
-- Hail
 - Ice Beam
+- Earthquake
+- Shadow Ball
+- Toxic
 
 Corphish @ Focus Band
 Level: 50
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crabhammer
+- Crunch
+- Superpower
+- Dragon Dance
 
 Walrein @ Sitrus Berry
 Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Surf
-- Body Slam
 - Ice Beam
-- Sheer Cold
+- Surf
+- Earthquake
+- Toxic
 
 === TRAINER_DRAKE ===
 Name: Dragan
@@ -7151,46 +7239,50 @@ Mugshot: Blue
 Shelgon @ Dragon Fang
 Level: 52
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Rock Tomb
 - Dragon Claw
-- Protect
-- Double Edge
+- Earthquake
+- Aerial Ace
+- Dragon Dance
 
 Altaria @ Dragon Fang
 Level: 54
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Double Edge
-- Dragon Breath
+- Dragon Claw
+- Earthquake
 - Dragon Dance
-- Aerial Ace
+- Roost
 
 Kingdra @ Quick Claw
 Level: 53
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Smokescreen
-- Dragon Dance
 - Surf
-- Body Slam
+- Dragon Pulse
+- Ice Beam
+- Agility
 
 Flygon @ Scope Lens
 Level: 53
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Flamethrower
-- Crunch
-- Dragon Breath
 - Earthquake
+- Dragon Claw
+- Superpower
+- Dragon Dance
 
 Shuppet @ Focus Band
 Level: 52
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Shadow Claw
+- Gunk Shot
+- Swords Dance
+- Will O Wisp
 
 Salamence @ Sitrus Berry
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Flamethrower
 - Dragon Claw
-- Rock Slide
-- Crunch
+- Earthquake
+- Aerial Ace
+- Dragon Dance
 
 === TRAINER_ROXANNE_1 ===
 Name: Felizia
@@ -7205,50 +7297,50 @@ AI: Basic Trainer
 Geodude @ Quick Claw
 Level: 14
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rock Throw
-- Defense Curl
-- Magnitude
-- Rollout
+- Earthquake
+- Stone Edge
+- Fire Punch
+- Curse
 
 Onix @ Hard Stone
 Level: 14
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rock Throw
-- Bind
-- Harden
-- Rock Tomb
+- Earthquake
+- Iron Head
+- Stone Edge
+- Curse
 
 Aron @ Focus Band
 Level: 15
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Metal Claw
-- Headbutt
-- Harden
-- Rock Tomb
+- Head Smash
+- Iron Head
+- Superpower
+- Curse
 
 Sableye @ Scope Lens
 Level: 15
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rock Tomb
-- Fake Out
-- Detect
-- Astonish
+- Foul Play
+- Poison Jab
+- Bulk Up
+- Recover
 
 Lairon @ Hard Stone
 Level: 16
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rock Tomb
-- Metal Claw
-- Iron Defense
-- Headbutt
+- Head Smash
+- Iron Head
+- Superpower
+- Curse
 
 Nosepass @ Sitrus Berry
 Level: 17
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Rock Slide
-- Block
-- Harden
-- Rock Tomb
+- Power Gem
+- Earth Power
+- Toxic
+- Thunder Wave
 
 
 === TRAINER_BRAWLY_1 ===
@@ -7264,49 +7356,49 @@ AI: Basic Trainer
 Machop @ Focus Band
 Level: 16
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Karate Chop
-- Low Kick
-- Seismic Toss
+- Close Combat
+- Earthquake
+- Rock Slide
 - Bulk Up
 
 Meditite @ Scope Lens
 Level: 16
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Focus Punch
-- Light Screen
-- Reflect
+- Hi Jump Kick
+- Zen Headbutt
 - Bulk Up
+- Recover
 
 Mankey @ Quick Claw
 Level: 16
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Karate Chop
-- Low Kick
-- Focus Energy
-- Fury Swipes
+- Close Combat
+- Outrage
+- Earthquake
+- Bulk Up
 
 Machoke @ Black Belt
 Level: 17
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Karate Chop
-- Vital Throw
-- Foresight
+- Close Combat
+- Earthquake
+- Rock Slide
 - Bulk Up
 
 Medicham @ Black Belt
 Level: 17
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Focus Punch
-- Confusion
-- Detect
+- Hi Jump Kick
+- Zen Headbutt
 - Bulk Up
+- Recover
 
 Makuhita @ Sitrus Berry
 Level: 19
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Arm Thrust
-- Vital Throw
-- Reversal
+- Close Combat
+- Earthquake
+- Rock Slide
 - Bulk Up
 
 === TRAINER_WATTSON_1 ===
@@ -7322,50 +7414,50 @@ AI: Basic Trainer
 Voltorb @ Focus Band
 Level: 20
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rollout
-- Spark
-- Self Destruct
-- Shock Wave
+- Thunderbolt
+- Flash Cannon
+- Thunder Wave
+- Toxic
 
 Electrike @ Magnet
 Level: 20
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Shock Wave
-- Leer
-- Quick Attack
-- Howl
+- Thunderbolt
+- Discharge
+- Overheat
+- Thunder Wave
 
 Magneton @ Scope Lens
 Level: 22
 IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
-- Supersonic
-- Shock Wave
+- Thunderbolt
+- Flash Cannon
 - Thunder Wave
-- Sonic Boom
+- Toxic
 
 Magnemite @ Magnet
 Level: 20
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Shock Wave
-- Sonic Boom
+- Thunderbolt
+- Flash Cannon
 - Thunder Wave
-- Metal Sound
+- Toxic
 
 Plusle @ Quick Claw
 Level: 22
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Shock Wave
-- Quick Attack
-- Helping Hand
-- Fake Tears
+- Thunderbolt
+- Double Edge
+- Thunder Wave
+- Agility
 
 Manectric @ Sitrus Berry
 Level: 24
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Quick Attack
+- Thunderbolt
+- Discharge
+- Overheat
 - Thunder Wave
-- Shock Wave
-- Howl
 
 === TRAINER_FLANNERY_1 ===
 Name: Flavia
@@ -7381,49 +7473,49 @@ Numel @ Charcoal
 Level: 24
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Overheat
-- Take Down
-- Magnitude
-- Sunny Day
+- Earth Power
+- Stealth Rock
+- Growth
 
 Slugma @ Focus Band
 Level: 24
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Overheat
-- Smog
-- Light Screen
-- Sunny Day
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Camerupt @ Scope Lens
 Level: 26
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Overheat
-- Tackle
-- Sunny Day
-- Attract
+- Earthquake
+- Stealth Rock
+- Growth
 
 Magcargo @ Charcoal
 Level: 26
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Overheat
-- Rock Slide
-- Harden
-- Sunny Day
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Vulpix @ Quick Claw
 Level: 26
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Flamethrower
-- Confuse Ray
-- Quick Attack
-- Sunny Day
+- Fire Blast
+- Psyshock
+- Shadow Ball
+- Nasty Plot
 
 Torkoal @ White Herb
 Level: 29
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Overheat
-- Sunny Day
-- Body Slam
-- Attract
+- Superpower
+- Earthquake
+- Shell Smash
 
 === TRAINER_NORMAN_1 ===
 Name: Norman
@@ -7438,50 +7530,50 @@ AI: Basic Trainer
 Linoone @ Silk Scarf
 Level: 29
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Slash
+- Extreme Speed
+- Double Edge
+- Shadow Claw
 - Belly Drum
-- Facade
-- Headbutt
 
 Kangaskhan @ Scope Lens
 Level: 29
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Dizzy Punch
-- Mega Punch
-- Bite
-- Facade
+- Double Edge
+- Earthquake
+- Crunch
+- Toxic
 
 Miltank @ Focus Band
 Level: 30
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Body Slam
+- Double Edge
+- Earthquake
 - Milk Drink
-- Rollout
-- Stomp
+- Thunder Wave
 
 Spinda @ Quick Claw
 Level: 30
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Facade
-- Teeter Dance
-- Dizzy Punch
-- Psybeam
+- Double Edge
+- Shadow Ball
+- Hypnosis
+- Toxic
 
 Vigoroth @ Silk Scarf
 Level: 31
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Slash
-- Facade
-- Encore
-- Focus Energy
+- Double Edge
+- Earthquake
+- Shadow Claw
+- Bulk Up
 
 Slaking @ Sitrus Berry
 Level: 33
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Counter
-- Yawn
-- Facade
-- Feint Attack
+- Double Edge
+- Earthquake
+- Shadow Claw
+- Bulk Up
 
 
 === TRAINER_WINONA_1 ===
@@ -7497,50 +7589,50 @@ AI: Basic Trainer / Risky
 Swablu @ Quick Claw
 Level: 29
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-- Perish Song
-- Mirror Move
-- Safeguard
-- Aerial Ace
+- Dragon Claw
+- Earthquake
+- Dragon Dance
+- Roost
 
 Tropius @ Sharp Beak
 Level: 29
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-- Sunny Day
-- Aerial Ace
-- Solar Beam
+- Leaf Storm
+- Air Slash
+- Calm Mind
 - Synthesis
 
 Pelipper @ Scope Lens
 Level: 30
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-- Water Gun
-- Supersonic
-- Protect
-- Aerial Ace
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Skarmory @ Sharp Beak
 Level: 31
 IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
-- Sand Attack
-- Fury Attack
+- Brave Bird
 - Steel Wing
-- Aerial Ace
+- Swords Dance
+- Roost
 
 Swellow @ Focus Band
 Level: 31
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Aerial Ace
-- Quick Attack
-- Double Team
-- Endeavor
+- Double Edge
+- Brave Bird
+- Steel Wing
+- Roost
 
 Altaria @ Sitrus Berry
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dragon Claw
 - Earthquake
-- Dragon Breath
 - Dragon Dance
-- Aerial Ace
+- Roost
 
 === TRAINER_TATE_AND_LIZA_1 ===
 Name: Ben&Svenja
@@ -7555,46 +7647,50 @@ AI: Basic Trainer
 Claydol @ Twisted Spoon
 Level: 41
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Earthquake
-- Ancient Power
+- Earth Power
 - Psychic
-- Light Screen
+- Calm Mind
+- Toxic
 
 Xatu @ Scope Lens
 Level: 41
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Psychic
-- Sunny Day
-- Confuse Ray
+- Air Slash
+- Shadow Ball
 - Calm Mind
 
 Lunatone @ Sitrus Berry
 Level: 42
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Light Screen
 - Psychic
-- Hypnosis
+- Power Gem
+- Moonblast
 - Calm Mind
 
 Slowbro @ Focus Band
 Level: 39
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Psychic
+- Scald
+- Fire Blast
+- Calm Mind
 
 Kadabra @ Twisted Spoon
 Level: 41
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Psychic
+- Focus Blast
+- Shadow Ball
 - Calm Mind
-- Reflect
-- Recover
 
 Solrock @ Sitrus Berry
 Level: 42
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Sunny Day
-- Solar Beam
-- Psychic
-- Flamethrower
+- Stone Edge
+- Flare Blitz
+- Swords Dance
+- Stealth Rock
 
 === TRAINER_JUAN_1 ===
 Name: Juan
@@ -7609,50 +7705,50 @@ AI: Basic Trainer
 Luvdisc @ Quick Claw
 Level: 41
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Water Pulse
-- Attract
-- Sweet Kiss
-- Flail
+- Surf
+- Ice Beam
+- Toxic
+- Agility
 
 Whiscash @ Mystic Water
 Level: 41
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rain Dance
-- Water Pulse
-- Amnesia
 - Earthquake
+- Surf
+- Stealth Rock
+- Toxic
 
 Sealeo @ Focus Band
 Level: 43
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Encore
-- Body Slam
-- Aurora Beam
-- Water Pulse
+- Ice Beam
+- Surf
+- Toxic
+- Yawn
 
 Crawdaunt @ Scope Lens
 Level: 43
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Water Pulse
 - Crabhammer
-- Taunt
-- Leer
+- Crunch
+- Superpower
+- Dragon Dance
 
 Milotic @ Mystic Water
 Level: 44
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Water Pulse
-- Recover
+- Surf
 - Ice Beam
-- Attract
+- Dragon Pulse
+- Recover
 
 Kingdra @ Chesto Berry
 Level: 46
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Water Pulse
-- Double Team
+- Surf
+- Dragon Pulse
 - Ice Beam
-- Rest
+- Agility
 
 === TRAINER_JERRY_1 ===
 Name: Orlando
@@ -8195,37 +8291,37 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Zigzagoon @ Oran Berry
 Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Assist
+- Tail Whip
 - Charm
-- Feint Attack
-- Heal Bell
+- Thief
+- Rest
 
 
 Whismur @ Oran Berry
 Level: 40
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Assist
-- Charm
-- Feint Attack
-- Heal Bell
+- Supersonic
+- Screech
+- Stomp
+- Rest
 
 
 Poochyena @ Oran Berry
 Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Assist
-- Charm
-- Feint Attack
-- Heal Bell
+- Howl
+- Sand Attack
+- Bite
+- Rest
 
 
 Linoone @ Oran Berry
 Level: 30
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Assist
+- Tail Whip
 - Charm
-- Feint Attack
-- Heal Bell
+- Thief
+- Rest
 
 Delcatty @ Oran Berry
 Level: 42
@@ -8914,7 +9010,7 @@ Pikachu
 Level: 17
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Headbutt
-- Sand Attack
+- Tail Whip
 - Growl
 - Thunderbolt
 
@@ -8925,10 +9021,10 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Voltorb
 Level: 17
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Amnesia
-- Sludge
-- Yawn
-- Pound
+- Charge
+- Spark
+- Screech
+- Tackle
 
 === TRAINER_QUINCY ===
 Name: Dirk
@@ -9217,50 +9313,50 @@ Mugshot: Yellow
 Wailord @ Mystic Water
 Level: 57
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rain Dance
-- Water Spout
-- Double Edge
-- Blizzard
+- Surf
+- Earthquake
+- Ice Beam
+- Toxic
 
 Tentacruel @ Mystic Water
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Toxic
-- Hydro Pump
 - Sludge Bomb
+- Surf
 - Ice Beam
+- Toxic
 
 Ludicolo @ Quick Claw
 Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Giga Drain
 - Surf
-- Leech Seed
-- Double Team
+- Giga Drain
+- Ice Beam
+- Synthesis
 
 Whiscash @ Scope Lens
 Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Earthquake
 - Surf
-- Amnesia
-- Hyper Beam
+- Stealth Rock
+- Toxic
 
 Gyarados @ Focus Band
 Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Dragon Dance
+- Aqua Tail
 - Earthquake
-- Hyper Beam
-- Surf
+- Crunch
+- Dragon Dance
 
 Milotic @ Sitrus Berry
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Recover
 - Surf
 - Ice Beam
-- Toxic
+- Dragon Pulse
+- Recover
 
 === TRAINER_ANDREW ===
 Name: Ansgar
@@ -11282,7 +11378,7 @@ Lanturn
 Level: 43
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Thunderbolt
-- Earthquake
+- Take Down
 
 === TRAINER_JANI ===
 Name: Leila
@@ -11325,18 +11421,18 @@ Gulpin
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Poison Gas
-- Tackle
+- Pound
 - Smog
-- Self Destruct
+- Explosion
 
 
 Zubat
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Poison Gas
-- Tackle
-- Sludge
-- Self Destruct
+- Toxic
+- Quick Attack
+- Venoshock
+- Wing Attack
 
 === TRAINER_LUNG ===
 Name: Arnd
@@ -11385,15 +11481,15 @@ Gulpin
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Poison Gas
-- Tackle
+- Pound
 - Sludge
-- Self Destruct
+- Explosion
 
 Zubat
 Level: 26
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Tackle
-- Sludge
+- Quick Attack
+- Venoshock
 
 === TRAINER_LAO_3 ===
 Name: Eduard
@@ -11423,14 +11519,14 @@ Gulpin
 Level: 27
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 - Poison Gas
-- Tackle
+- Pound
 - Sludge
 
 Zubat
 Level: 29
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Tackle
-- Sludge
+- Quick Attack
+- Venoshock
 
 === TRAINER_LAO_4 ===
 Name: Eduard
@@ -11458,14 +11554,14 @@ Gulpin
 Level: 30
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 - Poison Gas
-- Tackle
+- Pound
 - Sludge
 
 Zubat
 Level: 32
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
-- Tackle
-- Sludge
+- Quick Attack
+- Venoshock
 
 === TRAINER_LAO_5 ===
 Name: Eduard
@@ -11494,9 +11590,9 @@ Gulpin
 Level: 33
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 - Poison Gas
-- Tackle
+- Pound
 - Sludge
-- Self Destruct
+- Explosion
 
 Weezing @ Smoke Ball
 Level: 35
@@ -12689,10 +12785,10 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Trapinch
 Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Rollout
-- Bubble Beam
-- Tail Whip
-- Defense Curl
+- Rock Tomb
+- Bulldoze
+- Sand Attack
+- Swagger
 
 === TRAINER_CAROL ===
 Name: Natalie
@@ -12810,10 +12906,10 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Solrock
 Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Destiny Bond
+- Cosmic Power
 - Safeguard
-- Counter
-- Mirror Coat
+- Rock Slide
+- Psychic
 
 === TRAINER_IRENE ===
 Name: Irene
@@ -13692,9 +13788,9 @@ Carvanha
 Level: 34
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Bite
-- Roar
-- Thunder Wave
-- Thunderbolt
+- Swagger
+- Toxic
+- Surf
 
 === TRAINER_REYNA ===
 Name: Gilda
@@ -13843,14 +13939,26 @@ AI: Check Bad Move
 Camerupt
 Level: 36
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Overheat
+- Earth Power
+- Stealth Rock
+- Growth
 
 Mightyena
 Level: 38
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Golbat
 Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 === TRAINER_EDWIN_2 ===
 Name: Edwin
@@ -13949,46 +14057,50 @@ AI: Basic Trainer
 Altaria
 Level: 44
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Aerial Ace
-- Safeguard
-- Dragon Breath
+- Dragon Claw
+- Earthquake
 - Dragon Dance
+- Roost
 
 Delcatty
 Level: 43
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Sing
-- Assist
-- Charm
-- Feint Attack
+- Double Edge
+- Iron Tail
+- Thunder Wave
+- Toxic
 
 Roselia
 Level: 44
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Magical Leaf
-- Leech Seed
-- Giga Drain
-- Toxic
+- Leaf Storm
+- Sludge Bomb
+- Extrasensory
+- Sleep Powder
 
 Magneton
 Level: 41
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Supersonic
 - Thunderbolt
-- Tri Attack
-- Screech
+- Flash Cannon
+- Thunder Wave
+- Toxic
 
 Treecko
 Level: 42
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Dragon Pulse
+- Focus Blast
+- Earthquake
 
 Gardevoir
 Level: 45
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Double Team
-- Calm Mind
+- Moonblast
 - Psychic
-- Future Sight
+- Focus Blast
+- Calm Mind
 
 === TRAINER_BRENDAN_ROUTE_103_MUDKIP ===
 Name: Brix
@@ -14002,14 +14114,26 @@ AI: Basic Trainer
 Torchic
 Level: 3
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Flare Blitz
+- Hi Jump Kick
+- Brave Bird
+- Swords Dance
 
 Mudkip
 Level: 3
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Waterfall
+- Double Edge
+- Toxic
+- Work Up
 
 Treecko
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Dragon Pulse
+- Focus Blast
+- Earthquake
 
 === TRAINER_BRENDAN_ROUTE_110_MUDKIP ===
 Name: Brix
@@ -14023,14 +14147,26 @@ AI: Basic Trainer
 Slugma
 Level: 18
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Overheat
+- Earth Power
+- Recover
+- Stealth Rock
 
 Wingull
 Level: 18
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Grovyle
 Level: 20
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Leaf Storm
+- Dragon Pulse
+- Focus Blast
+- Earthquake
 
 === TRAINER_BRENDAN_ROUTE_119_MUDKIP ===
 Name: Brix
@@ -14044,18 +14180,34 @@ AI: Basic Trainer
 Slugma
 Level: 29
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Overheat
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Pelipper
 Level: 29
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Magnemite
 Level: 28
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Thunderbolt
+- Flash Cannon
+- Thunder Wave
+- Toxic
 
 Grovyle
 Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Leaf Storm
+- Dragon Pulse
+- Focus Blast
+- Earthquake
 
 === TRAINER_BRENDAN_ROUTE_103_TREECKO ===
 Name: Brix
@@ -14069,14 +14221,26 @@ AI: Check Bad Move / Try To Faint / Force Setup First Turn
 Slugma
 Level: 3
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Lotad
 Level: 3
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Ice Beam
+- Synthesis
+- Toxic
 
 Torchic
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Rock Slide
+- Work Up
+- Toxic
 
 === TRAINER_BRENDAN_ROUTE_110_TREECKO ===
 Name: Brix
@@ -14090,14 +14254,26 @@ AI: Basic Trainer
 Wingull
 Level: 18
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Lombre
 Level: 18
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Surf
+- Giga Drain
+- Ice Beam
+- Synthesis
 
 Combusken
 Level: 20
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Flare Blitz
+- Hi Jump Kick
+- Brave Bird
+- Swords Dance
 
 === TRAINER_BRENDAN_ROUTE_119_TREECKO ===
 Name: Brix
@@ -14111,18 +14287,34 @@ AI: Basic Trainer
 Pelipper
 Level: 29
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Lombre
 Level: 29
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Surf
+- Giga Drain
+- Ice Beam
+- Synthesis
 
 Bulbasaur
 Level: 28
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Sludge Wave
+- Giga Drain
+- Earthquake
+- Sleep Powder
 
 Combusken
 Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Flare Blitz
+- Hi Jump Kick
+- Brave Bird
+- Swords Dance
 
 === TRAINER_BRENDAN_ROUTE_103_TORCHIC ===
 Name: Brix
@@ -14136,14 +14328,26 @@ AI: Basic Trainer
 Aron
 Level: 3
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Head Smash
+- Iron Head
+- Superpower
+- Curse
 
 Cradily
 Level: 3
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Energy Ball
+- Rock Slide
+- Earthquake
+- Swords Dance
 
 Mudkip
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Earthquake
+- Waterfall
+- Ice Punch
+- Bulk Up
 
 === TRAINER_BRENDAN_ROUTE_110_TORCHIC ===
 Name: Brix
@@ -14157,14 +14361,26 @@ AI: Basic Trainer
 Lombre
 Level: 18
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Surf
+- Giga Drain
+- Ice Beam
+- Synthesis
 
 Slugma
 Level: 18
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Overheat
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Marshtomp
 Level: 20
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Earthquake
+- Waterfall
+- Ice Punch
+- Bulk Up
 
 === TRAINER_BRENDAN_ROUTE_119_TORCHIC ===
 Name: Brix
@@ -14178,18 +14394,34 @@ AI: Basic Trainer
 Lombre
 Level: 29
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Surf
+- Giga Drain
+- Ice Beam
+- Synthesis
 
 Slugma
 Level: 29
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Overheat
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Baltoy
 Level: 28
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Earthquake
+- Psychic
+- Calm Mind
+- Toxic
 
 Marshtomp
 Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Earthquake
+- Waterfall
+- Ice Punch
+- Bulk Up
 
 === TRAINER_MAY_ROUTE_103_MUDKIP ===
 Name: Maike
@@ -14203,14 +14435,26 @@ AI: Basic Trainer
 Wingull
 Level: 3
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Poochyena
 Level: 3
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Treecko
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Dragon Pulse
+- Focus Blast
+- Earthquake
 
 === TRAINER_MAY_ROUTE_110_MUDKIP ===
 Name: Maike
@@ -14224,18 +14468,34 @@ AI: Basic Trainer
 Wingull
 Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Slugma
 Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Poochyena
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Grovyle
 Level: 20
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Dragon Pulse
+- Focus Blast
+- Earthquake
 
 === TRAINER_MAY_ROUTE_119_MUDKIP ===
 Name: Maike
@@ -14249,22 +14509,42 @@ AI: Basic Trainer
 Pelipper
 Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Slugma
 Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Mightyena
 Level: 28
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Zigzagoon
 Level: 28
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Extreme Speed
+- Double Edge
+- Shadow Claw
+- Belly Drum
 
 Grovyle
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Dragon Pulse
+- Focus Blast
+- Earthquake
 
 === TRAINER_MAY_ROUTE_103_TREECKO ===
 Name: Maike
@@ -14278,14 +14558,26 @@ AI: Basic Trainer
 Wingull
 Level: 3
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Lotad
 Level: 3
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Ice Beam
+- Synthesis
+- Toxic
 
 Torchic
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Flare Blitz
+- Hi Jump Kick
+- Brave Bird
+- Swords Dance
 
 === TRAINER_MAY_ROUTE_110_TREECKO ===
 Name: Maike
@@ -14299,22 +14591,42 @@ AI: Basic Trainer
 Wingull
 Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Lombre
 Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Giga Drain
+- Ice Beam
+- Synthesis
 
 Poochyena
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Zigzagoon
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Extreme Speed
+- Double Edge
+- Shadow Claw
+- Belly Drum
 
 Combusken
 Level: 20
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Flare Blitz
+- Hi Jump Kick
+- Brave Bird
+- Swords Dance
 
 === TRAINER_MAY_ROUTE_119_TREECKO ===
 Name: Maike
@@ -14328,26 +14640,50 @@ AI: Basic Trainer
 Pelipper
 Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Lombre
 Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Giga Drain
+- Ice Beam
+- Synthesis
 
 Mightyena
 Level: 28
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Zigzagoon
 Level: 28
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Extreme Speed
+- Double Edge
+- Shadow Claw
+- Belly Drum
 
 Tropius
 Level: 28
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Air Slash
+- Calm Mind
+- Roost
 
 Combusken
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Flare Blitz
+- Hi Jump Kick
+- Brave Bird
+- Swords Dance
 
 === TRAINER_MAY_ROUTE_103_TORCHIC ===
 Name: Maike
@@ -14361,14 +14697,26 @@ AI: Basic Trainer
 Lotad
 Level: 3
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Giga Drain
+- Ice Beam
+- Synthesis
 
 Slugma
 Level: 3
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Mudkip
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Waterfall
+- Double Edge
+- Toxic
+- Work Up
 
 === TRAINER_MAY_ROUTE_110_TORCHIC ===
 Name: Maike
@@ -14382,18 +14730,34 @@ AI: Basic Trainer
 Lombre
 Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Giga Drain
+- Ice Beam
+- Synthesis
 
 Slugma
 Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Poochyena
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Marshtomp
 Level: 20
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Earthquake
+- Waterfall
+- Ice Punch
+- Bulk Up
 
 === TRAINER_MAY_ROUTE_119_TORCHIC ===
 Name: Maike
@@ -14407,22 +14771,42 @@ AI: Basic Trainer
 Lombre
 Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Ice Beam
+- Synthesis
+- Toxic
 
 Slugma
 Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Mightyena
 Level: 28
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Zigzagoon
 Level: 28
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Extreme Speed
+- Double Edge
+- Shadow Claw
+- Belly Drum
 
 Marshtomp
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Earthquake
+- Waterfall
+- Ice Punch
+- Stealth Rock
 
 === TRAINER_ISAAC_1 ===
 Name: Blasius
@@ -15928,14 +16312,26 @@ AI: Check Bad Move
 Lotad
 Level: 13
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+- Surf
+- Giga Drain
+- Ice Beam
+- Synthesis
 
 Mudkip
 Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Earthquake
+- Waterfall
+- Ice Punch
+- Bulk Up
 
 Torchic
 Level: 15
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Flare Blitz
+- Focus Blast
+- Thunder Punch
+- Swords Dance
 
 === TRAINER_BRENDAN_RUSTBORO_MUDKIP ===
 Name: Brix
@@ -15949,14 +16345,26 @@ AI: Check Bad Move
 Wingull
 Level: 13
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Torkoal
 Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Superpower
+- Earthquake
+- Shell Smash
 
 Treecko
 Level: 15
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Leaf Storm
+- Dragon Pulse
+- Focus Blast
+- Earthquake
 
 === TRAINER_PAXTON ===
 Name: Paul
@@ -16053,18 +16461,34 @@ AI: Basic Trainer
 Numel
 Level: 18
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Overheat
+- Earthquake
+- Stealth Rock
+- Growth
 
 Poochyena
 Level: 20
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Numel
 Level: 22
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Overheat
+- Earthquake
+- Stealth Rock
+- Growth
 
 Zubat
 Level: 22
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 === TRAINER_JONATHAN ===
 Name: Jonathan
@@ -16108,14 +16532,26 @@ AI: Basic Trainer
 Slugma
 Level: 13
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+- Overheat
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Tropius
 Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Air Slash
+- Calm Mind
+- Roost
 
 Mudkip
 Level: 15
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Earthquake
+- Waterfall
+- Ice Punch
+- Bulk Up
 
 === TRAINER_MAY_RUSTBORO_MUDKIP ===
 Name: Maike
@@ -16129,18 +16565,34 @@ AI: Check Bad Move / Try To Faint / Force Setup First Turn
 Wingull
 Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Poochyena
 Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Yawn
+- Toxic
 
 Treecko
 Level: 15
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Dragon Pulse
+- Focus Blast
+- Earthquake
 
 Shroomish
 Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Seed Bomb
+- Drain Punch
+- Rock Slide
+- Swords Dance
 
 
 === TRAINER_MAXIE_MAGMA_HIDEOUT ===
@@ -16156,22 +16608,42 @@ AI: Basic Trainer
 Mightyena
 Level: 37
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Crobat
 Level: 38
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 Geodude
 Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Earthquake
+- Stone Edge
+- Fire Punch
+- Curse
 
 Torkoal
 Level: 37
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Superpower
+- Earthquake
+- Shell Smash
 
 Camerupt
 Level: 39
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Overheat
+- Earthquake
+- Stealth Rock
+- Growth
 
 === TRAINER_MAXIE_MT_CHIMNEY ===
 Name: Marc
@@ -16186,18 +16658,34 @@ AI: Basic Trainer
 Mightyena
 Level: 24
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Zubat
 Level: 24
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Brave Bird
+- Steel Wing
+- Curse
+- Hypnosis
 
 Numel
 Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Earthquake
+- Stealth Rock
+- Growth
 
 Camerupt
 Level: 25
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Overheat
+- Earthquake
+- Stealth Rock
+- Growth
 
 === TRAINER_TIANA ===
 Name: Karin
@@ -17317,9 +17805,9 @@ Magcargo
 Level: 23
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Flamethrower
-- Fury Swipes
-- Feint Attack
-- Bind
+- Rock Throw
+- Ancient Power
+- Yawn
 
 Numel
 Level: 22
@@ -17341,8 +17829,8 @@ AI: Check Bad Move
 Machoke
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Bide
-- Detect
+- Low Kick
+- Protect
 - Karate Chop
 - Thunder Punch
 
@@ -17354,7 +17842,7 @@ Machoke
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Thunder Punch
-- Detect
+- Protect
 - Low Kick
 - Seismic Toss
 
@@ -17370,9 +17858,9 @@ AI: Check Bad Move
 Combusken
 Level: 23
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Bide
-- Detect
-- Confusion
+- Quick Attack
+- Protect
+- Ember
 - Fire Punch
 
 Torkoal
@@ -17546,14 +18034,26 @@ AI: Basic Trainer
 Torkoal
 Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Superpower
+- Earthquake
+- Shell Smash
 
 Skarmory
 Level: 14
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Brave Bird
+- Steel Wing
+- Swords Dance
+- Roost
 
 Ralts
 Level: 16
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+- Close Combat
+- Psycho Cut
+- Night Slash
+- Swords Dance
 
 === TRAINER_WALLY_VR_2 ===
 Name: Heiko
@@ -17568,46 +18068,50 @@ AI: Basic Trainer
 Altaria
 Level: 47
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Aerial Ace
-- Safeguard
-- Dragon Breath
+- Dragon Claw
+- Earthquake
 - Dragon Dance
+- Roost
 
 Delcatty
 Level: 46
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Sing
-- Assist
-- Charm
-- Feint Attack
+- Double Edge
+- Iron Tail
+- Thunder Wave
+- Toxic
 
 Roselia
 Level: 47
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Magical Leaf
-- Leech Seed
-- Giga Drain
-- Toxic
+- Leaf Storm
+- Sludge Bomb
+- Extrasensory
+- Sleep Powder
 
 Magneton
 Level: 44
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Supersonic
 - Thunderbolt
-- Tri Attack
-- Screech
+- Flash Cannon
+- Thunder Wave
+- Toxic
 
 Treecko
 Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Dragon Pulse
+- Focus Blast
+- Earthquake
 
 Gardevoir
 Level: 48
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Double Team
-- Calm Mind
+- Moonblast
 - Psychic
-- Future Sight
+- Focus Blast
+- Calm Mind
 
 === TRAINER_WALLY_VR_3 ===
 Name: Heiko
@@ -17622,46 +18126,50 @@ AI: Basic Trainer
 Altaria
 Level: 50
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Aerial Ace
-- Safeguard
-- Dragon Breath
+- Dragon Claw
+- Earthquake
 - Dragon Dance
+- Roost
 
 Delcatty
 Level: 49
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Sing
-- Assist
-- Charm
-- Feint Attack
+- Double Edge
+- Iron Tail
+- Thunder Wave
+- Toxic
 
 Roselia
 Level: 50
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Magical Leaf
-- Leech Seed
-- Giga Drain
-- Toxic
+- Leaf Storm
+- Sludge Bomb
+- Extrasensory
+- Sleep Powder
 
 Magneton
 Level: 47
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Supersonic
 - Thunderbolt
-- Tri Attack
-- Screech
+- Flash Cannon
+- Thunder Wave
+- Toxic
 
 Treecko
 Level: 48
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Dragon Pulse
+- Focus Blast
+- Earthquake
 
 Gardevoir
 Level: 51
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Double Team
-- Calm Mind
+- Moonblast
 - Psychic
-- Future Sight
+- Focus Blast
+- Calm Mind
 
 === TRAINER_WALLY_VR_4 ===
 Name: Heiko
@@ -17676,46 +18184,50 @@ AI: Basic Trainer
 Altaria
 Level: 53
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Aerial Ace
-- Safeguard
-- Dragon Breath
+- Dragon Claw
+- Earthquake
 - Dragon Dance
+- Roost
 
 Delcatty
 Level: 52
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Sing
-- Assist
-- Charm
-- Feint Attack
+- Double Edge
+- Iron Tail
+- Thunder Wave
+- Toxic
 
 Roselia
 Level: 53
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Magical Leaf
-- Leech Seed
-- Giga Drain
-- Toxic
+- Leaf Storm
+- Sludge Bomb
+- Extrasensory
+- Sleep Powder
 
 Magneton
 Level: 50
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Supersonic
 - Thunderbolt
-- Tri Attack
-- Screech
+- Flash Cannon
+- Thunder Wave
+- Toxic
 
 Mudkip
 Level: 51
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Earthquake
+- Waterfall
+- Ice Punch
+- Bulk Up
 
 Gardevoir
 Level: 54
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Double Team
-- Calm Mind
+- Moonblast
 - Psychic
-- Future Sight
+- Focus Blast
+- Calm Mind
 
 === TRAINER_WALLY_VR_5 ===
 Name: Heiko
@@ -17730,46 +18242,50 @@ AI: Basic Trainer
 Altaria
 Level: 56
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Aerial Ace
-- Safeguard
-- Dragon Breath
+- Dragon Claw
+- Earthquake
 - Dragon Dance
+- Roost
 
 Delcatty
 Level: 55
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Sing
-- Assist
-- Charm
-- Feint Attack
+- Double Edge
+- Iron Tail
+- Thunder Wave
+- Toxic
 
 Roselia
 Level: 56
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Magical Leaf
-- Leech Seed
-- Giga Drain
-- Toxic
+- Leaf Storm
+- Sludge Bomb
+- Extrasensory
+- Sleep Powder
 
 Magneton
 Level: 53
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Supersonic
 - Thunderbolt
-- Tri Attack
-- Screech
+- Flash Cannon
+- Thunder Wave
+- Toxic
 
 Bulbasaur
 Level: 54
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Sludge Wave
+- Giga Drain
+- Earthquake
+- Sleep Powder
 
 Gardevoir
 Level: 57
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Double Team
-- Calm Mind
+- Moonblast
 - Psychic
-- Future Sight
+- Focus Blast
+- Calm Mind
 
 === TRAINER_BRENDAN_LILYCOVE_MUDKIP ===
 Name: Brix
@@ -17783,22 +18299,42 @@ AI: Basic Trainer
 Tropius
 Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Leaf Storm
+- Air Slash
+- Calm Mind
+- Roost
 
 Slugma
 Level: 32
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Overheat
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Pelipper
 Level: 32
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Skitty
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Double Edge
+- Iron Tail
+- Thunder Wave
+- Toxic
 
 Grovyle
 Level: 34
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Leaf Storm
+- Dragon Pulse
+- Focus Blast
+- Earthquake
 
 === TRAINER_BRENDAN_LILYCOVE_TREECKO ===
 Name: Brix
@@ -17812,22 +18348,42 @@ AI: Basic Trainer
 Tropius
 Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Leaf Storm
+- Air Slash
+- Calm Mind
+- Roost
 
 Pelipper
 Level: 32
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Ludicolo
 Level: 32
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Surf
+- Giga Drain
+- Ice Beam
+- Synthesis
 
 Magnemite
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Thunderbolt
+- Discharge
+- Flash Cannon
+- Thunder Wave
 
 Combusken
 Level: 34
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Flare Blitz
+- Hi Jump Kick
+- Brave Bird
+- Swords Dance
 
 === TRAINER_BRENDAN_LILYCOVE_TORCHIC ===
 Name: Brix
@@ -17841,22 +18397,42 @@ AI: Basic Trainer
 Tropius
 Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Leaf Storm
+- Air Slash
+- Calm Mind
+- Roost
 
 Ludicolo
 Level: 32
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Surf
+- Giga Drain
+- Ice Beam
+- Synthesis
 
 Slugma
 Level: 32
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Overheat
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Ralts
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Psychic
+- Dazzling Gleam
+- Calm Mind
+- Thunder Wave
 
 Marshtomp
 Level: 34
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Earthquake
+- Waterfall
+- Ice Punch
+- Bulk Up
 
 === TRAINER_MAY_LILYCOVE_MUDKIP ===
 Name: Maike
@@ -17870,26 +18446,50 @@ AI: Basic Trainer
 Tropius
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Air Slash
+- Calm Mind
+- Roost
 
 Pelipper
 Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Slugma
 Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Mightyena
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Linoone
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Extreme Speed
+- Double Edge
+- Shadow Claw
+- Belly Drum
 
 Grovyle
 Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Dragon Pulse
+- Focus Blast
+- Earthquake
 
 === TRAINER_MAY_LILYCOVE_TREECKO ===
 Name: Maike
@@ -17903,26 +18503,50 @@ AI: Basic Trainer
 Tropius
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Air Slash
+- Calm Mind
+- Roost
 
 Pelipper
 Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Ludicolo
 Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Giga Drain
+- Ice Beam
+- Synthesis
 
 Mightyena
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Linoone
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Extreme Speed
+- Double Edge
+- Shadow Claw
+- Belly Drum
 
 Combusken
 Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Flare Blitz
+- Hi Jump Kick
+- Brave Bird
+- Swords Dance
 
 === TRAINER_MAY_LILYCOVE_TORCHIC ===
 Name: Maike
@@ -17936,26 +18560,50 @@ AI: Basic Trainer
 Tropius
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Air Slash
+- Calm Mind
+- Roost
 
 Ludicolo
 Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Giga Drain
+- Ice Beam
+- Synthesis
 
 Slugma
 Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Mightyena
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Linoone
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Extreme Speed
+- Double Edge
+- Shadow Claw
+- Belly Drum
 
 Marshtomp
 Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Earthquake
+- Waterfall
+- Ice Punch
+- Stealth Rock
 
 === TRAINER_JONAH ===
 Name: Olof
@@ -18307,9 +18955,9 @@ Slakoth
 Level: 35
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Flamethrower
-- Take Down
+- Body Slam
 - Rest
-- Earthquake
+- Shadow Claw
 
 Swablu
 Level: 33
@@ -19761,22 +20409,42 @@ AI: Check Bad Move
 Numel
 Level: 26
 IVs: 9 HP / 9 Atk / 9 Def / 9 SpA / 9 SpD / 9 Spe
+- Overheat
+- Earthquake
+- Stealth Rock
+- Growth
 
 Mightyena
 Level: 28
 IVs: 9 HP / 9 Atk / 9 Def / 9 SpA / 9 SpD / 9 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Zubat
 Level: 30
 IVs: 9 HP / 9 Atk / 9 Def / 9 SpA / 9 SpD / 9 Spe
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 Geodude
 Level: 30
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Earthquake
+- Stone Edge
+- Fire Punch
+- Curse
 
 Camerupt
 Level: 33
 IVs: 9 HP / 9 Atk / 9 Def / 9 SpA / 9 SpD / 9 Spe
+- Overheat
+- Earthquake
+- Stealth Rock
+- Growth
 
 === TRAINER_DARCY ===
 Name: Dorothea
@@ -19820,14 +20488,26 @@ AI: Basic Trainer
 Mightyena
 Level: 42
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 Crobat
 Level: 43
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 Camerupt
 Level: 44
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+- Overheat
+- Earth Power
+- Stealth Rock
+- Growth
 
 === TRAINER_PETE ===
 Name: Magnus
@@ -20629,18 +21309,34 @@ AI: Basic Trainer
 Wingull
 Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Lotad
 Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Giga Drain
+- Ice Beam
+- Synthesis
 
 Torchic
 Level: 15
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Flare Blitz
+- Hi Jump Kick
+- Brave Bird
+- Swords Dance
 
 Poochyena
 Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 
 === TRAINER_MAY_RUSTBORO_TORCHIC ===
@@ -20655,18 +21351,34 @@ AI: Basic Trainer
 Lotad
 Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Giga Drain
+- Ice Beam
+- Synthesis
 
 Slugma
 Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Mudkip
 Level: 15
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Earthquake
+- Waterfall
+- Ice Punch
+- Bulk Up
 
 Poochyena
 Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 
 === TRAINER_ROXANNE_2 ===
@@ -20682,50 +21394,50 @@ AI: Basic Trainer
 Aerodactyl @ Hard Stone
 Level: 32
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Wing Attack
-- Bite
-- Ancient Power
 - Rock Slide
+- Wing Attack
+- Crunch
+- Roost
 
 Omanyte @ Chesto Berry
 Level: 32
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Water Gun
-- Bite
-- Rock Slide
-- Protect
+- Hydro Pump
+- Ancient Power
+- Ice Beam
+- Shell Smash
 
 Golem @ Quick Claw
 Level: 32
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Protect
-- Rollout
-- Magnitude
-- Explosion
+- Stone Edge
+- Double Edge
+- Hammer Arm
+- Curse
 
 Kabuto @ Sitrus Berry
 Level: 35
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Swords Dance
-- Ice Beam
-- Surf
+- Liquidation
 - Rock Slide
+- Brick Break
+- Swords Dance
 
 Onix @ Hard Stone
 Level: 35
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Iron Tail
-- Explosion
-- Roar
-- Rock Slide
+- Iron Head
+- Stone Edge
+- Crunch
+- Curse
 
 Nosepass @ Sitrus Berry
 Level: 37
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Double Team
-- Explosion
-- Protect
-- Rock Slide
+- Power Gem
+- Earth Power
+- Toxic
+- Thunder Wave
 
 === TRAINER_ROXANNE_3 ===
 Name: Felizia
@@ -20740,50 +21452,50 @@ AI: Basic Trainer
 Aerodactyl @ Hard Stone
 Level: 37
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Wing Attack
-- Ancient Power
 - Rock Slide
-- Scary Face
+- Wing Attack
+- Crunch
+- Roost
 
 Omanyte @ Chesto Berry
 Level: 37
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Protect
+- Hydro Pump
+- Ancient Power
 - Ice Beam
-- Rock Slide
-- Surf
+- Shell Smash
 
 Golem @ Quick Claw
 Level: 37
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Protect
-- Rollout
-- Magnitude
-- Explosion
+- Stone Edge
+- Double Edge
+- Hammer Arm
+- Curse
 
 Kabutops @ Sitrus Berry
 Level: 40
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Swords Dance
-- Ice Beam
-- Surf
+- Liquidation
 - Rock Slide
+- Brick Break
+- Swords Dance
 
 Onix @ Hard Stone
 Level: 40
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Iron Tail
-- Explosion
-- Roar
-- Rock Slide
+- Iron Head
+- Stone Edge
+- Crunch
+- Curse
 
 Nosepass @ Sitrus Berry
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Double Team
-- Explosion
-- Protect
-- Rock Slide
+- Power Gem
+- Earth Power
+- Toxic
+- Thunder Wave
 
 === TRAINER_ROXANNE_4 ===
 Name: Felizia
@@ -20798,50 +21510,50 @@ AI: Basic Trainer
 Aerodactyl @ Hard Stone
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Ancient Power
 - Rock Slide
+- Wing Attack
 - Crunch
-- Double Team
+- Roost
 
 Omastar @ Chesto Berry
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Protect
+- Hydro Pump
+- Ancient Power
 - Ice Beam
-- Rock Slide
-- Surf
+- Shell Smash
 
 Golem @ Quick Claw
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Protect
-- Rollout
-- Earthquake
-- Explosion
+- Stone Edge
+- Double Edge
+- Hammer Arm
+- Curse
 
 Kabutops @ Sitrus Berry
 Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Swords Dance
-- Ice Beam
-- Surf
+- Liquidation
 - Rock Slide
+- Brick Break
+- Swords Dance
 
 Onix @ Hard Stone
 Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Iron Tail
-- Explosion
-- Roar
-- Rock Slide
+- Iron Head
+- Stone Edge
+- Crunch
+- Curse
 
 Nosepass @ Sitrus Berry
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Double Team
-- Explosion
-- Protect
-- Rock Slide
+- Power Gem
+- Earth Power
+- Toxic
+- Thunder Wave
 
 === TRAINER_ROXANNE_5 ===
 Name: Felizia
@@ -20857,49 +21569,49 @@ Aerodactyl @ Hard Stone
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rock Slide
-- Hyper Beam
-- Supersonic
-- Protect
+- Wing Attack
+- Crunch
+- Roost
 
 Golem @ Hard Stone
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Focus Punch
-- Rollout
-- Earthquake
-- Explosion
+- Stone Edge
+- Double Edge
+- Hammer Arm
+- Curse
 
 Omastar @ Quick Claw
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Protect
+- Hydro Pump
+- Ancient Power
 - Ice Beam
-- Rock Slide
-- Surf
+- Shell Smash
 
 Kabutops @ Sitrus Berry
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Swords Dance
-- Ice Beam
-- Surf
+- Liquidation
 - Rock Slide
+- Brick Break
+- Swords Dance
 
 Steelix @ Scope Lens
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Iron Tail
-- Explosion
-- Roar
-- Rock Slide
+- Iron Head
+- Stone Edge
+- Crunch
+- Curse
 
 Nosepass @ Sitrus Berry
 Level: 52
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Double Team
-- Explosion
-- Protect
-- Rock Slide
+- Power Gem
+- Earth Power
+- Toxic
+- Thunder Wave
 
 === TRAINER_BRAWLY_2 ===
 Name: Kamillo
@@ -20915,49 +21627,49 @@ Hitmonlee @ Black Belt
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hi Jump Kick
-- Meditate
-- Rolling Kick
-- Foresight
+- Poison Jab
+- Rock Slide
+- Swords Dance
 
 Hitmonchan @ Black Belt
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sky Uppercut
-- Mach Punch
-- Detect
-- Bulk Up
+- Hi Jump Kick
+- Poison Jab
+- Rock Slide
+- Swords Dance
 
 Machamp @ Sitrus Berry
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Karate Chop
+- Close Combat
 - Rock Slide
-- Focus Punch
+- Knock Off
 - Bulk Up
 
 Meditite @ Scope Lens
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Psychic
-- Light Screen
-- Reflect
-- Focus Punch
+- Hi Jump Kick
+- Zen Headbutt
+- Bulk Up
+- Recover
 
 Hitmontop @ Quick Claw
 Level: 35
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Pursuit
-- Counter
-- Protect
-- Triple Kick
+- Hi Jump Kick
+- Rock Slide
+- Bulk Up
+- Toxic
 
 Hariyama @ Sitrus Berry
 Level: 37
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Fake Out
-- Focus Punch
+- Close Combat
+- Rock Slide
+- Knock Off
 - Belly Drum
-- Earthquake
 
 === TRAINER_BRAWLY_3 ===
 Name: Kamillo
@@ -20973,49 +21685,49 @@ Hitmonlee @ Black Belt
 Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hi Jump Kick
-- Reversal
-- Rolling Kick
-- Endure
+- Poison Jab
+- Rock Slide
+- Swords Dance
 
 Hitmonchan @ Chesto Berry
 Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sky Uppercut
-- Mach Punch
-- Detect
-- Bulk Up
+- Hi Jump Kick
+- Poison Jab
+- Rock Slide
+- Swords Dance
 
 Machamp @ Sitrus Berry
 Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Karate Chop
+- Close Combat
 - Rock Slide
-- Focus Punch
+- Knock Off
 - Bulk Up
 
 Medicham @ Black Belt
 Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Psychic
-- Light Screen
-- Reflect
-- Focus Punch
+- Hi Jump Kick
+- Zen Headbutt
+- Bulk Up
+- Recover
 
 Hitmontop @ Quick Claw
 Level: 40
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Pursuit
-- Counter
-- Protect
-- Triple Kick
+- Hi Jump Kick
+- Rock Slide
+- Bulk Up
+- Toxic
 
 Hariyama @ Sitrus Berry
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Fake Out
-- Focus Punch
+- Close Combat
+- Rock Slide
+- Knock Off
 - Belly Drum
-- Earthquake
 
 === TRAINER_BRAWLY_4 ===
 Name: Kamillo
@@ -21031,49 +21743,49 @@ Hitmonlee @ Black Belt
 Level: 43
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hi Jump Kick
-- Reversal
-- Mega Kick
-- Endure
+- Poison Jab
+- Rock Slide
+- Swords Dance
 
 Hitmonchan @ Chesto Berry
 Level: 40
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sky Uppercut
-- Protect
+- Hi Jump Kick
+- Poison Jab
 - Fire Punch
-- Ice Punch
+- Swords Dance
 
 Machamp @ Sitrus Berry
 Level: 43
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Karate Chop
+- Close Combat
 - Rock Slide
-- Focus Punch
+- Knock Off
 - Bulk Up
 
 Medicham @ Black Belt
 Level: 43
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Focus Punch
-- Light Screen
-- Reflect
-- Psychic
+- Hi Jump Kick
+- Zen Headbutt
+- Bulk Up
+- Recover
 
 Hitmontop @ Quick Claw
 Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Pursuit
-- Counter
-- Protect
-- Triple Kick
+- Hi Jump Kick
+- Rock Slide
+- Bulk Up
+- Toxic
 
 Hariyama @ Sitrus Berry
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Fake Out
-- Focus Punch
+- Close Combat
+- Rock Slide
+- Knock Off
 - Belly Drum
-- Earthquake
 
 === TRAINER_BRAWLY_5 ===
 Name: Kamillo
@@ -21088,50 +21800,50 @@ AI: Basic Trainer
 Hitmonlee @ Black Belt
 Level: 46
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Mega Kick
-- Focus Punch
-- Earthquake
-- Bulk Up
+- Hi Jump Kick
+- Poison Jab
+- Rock Slide
+- Swords Dance
 
 Hitmonchan @ Chesto Berry
 Level: 46
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sky Uppercut
-- Protect
+- Hi Jump Kick
+- Poison Jab
 - Fire Punch
-- Ice Punch
+- Swords Dance
 
 Machamp @ Sitrus Berry
 Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Cross Chop
+- Close Combat
 - Rock Slide
-- Focus Punch
+- Knock Off
 - Bulk Up
 
 Medicham @ Black Belt
 Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Focus Punch
-- Light Screen
-- Reflect
-- Psychic
+- Hi Jump Kick
+- Zen Headbutt
+- Bulk Up
+- Recover
 
 Hitmontop @ Quick Claw
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Pursuit
-- Counter
-- Protect
-- Triple Kick
+- Hi Jump Kick
+- Rock Slide
+- Bulk Up
+- Toxic
 
 Hariyama @ Sitrus Berry
 Level: 52
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Fake Out
-- Focus Punch
+- Close Combat
+- Rock Slide
+- Knock Off
 - Belly Drum
-- Earthquake
 
 === TRAINER_WATTSON_2 ===
 Name: Walter
@@ -21146,50 +21858,50 @@ AI: Basic Trainer
 Electabuzz @ Magnet
 Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder Punch
-- Light Screen
-- Swift
-- Screech
+- Volt Tackle
+- Ice Punch
+- Bulk Up
+- Thunder Wave
 
 Pikachu @ Magnet
 Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Thunderbolt
-- Quick Attack
-- Double Team
+- Focus Blast
+- Nasty Plot
 - Thunder Wave
 
 Mareep @ Quick Claw
 Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder
-- Protect
+- Thunderbolt
+- Dragon Pulse
+- Focus Blast
 - Thunder Wave
-- Light Screen
 
 Electrode @ Scope Lens
 Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rollout
-- Thunder
-- Explosion
-- Rain Dance
+- Thunderbolt
+- Flash Cannon
+- Thunder Wave
+- Toxic
 
 Magneton @ Sitrus Berry
 Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Supersonic
-- Protect
-- Thunder
-- Rain Dance
+- Thunderbolt
+- Flash Cannon
+- Thunder Wave
+- Toxic
 
 Manectric @ Sitrus Berry
 Level: 40
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Bite
+- Thunderbolt
+- Overheat
 - Thunder Wave
-- Thunder
-- Protect
+- Toxic
 
 === TRAINER_WATTSON_3 ===
 Name: Walter
@@ -21204,50 +21916,50 @@ AI: Basic Trainer
 Electabuzz @ Magnet
 Level: 41
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder Punch
-- Light Screen
-- Swift
-- Screech
+- Volt Tackle
+- Ice Punch
+- Bulk Up
+- Thunder Wave
 
 Pikachu @ Magnet
 Level: 39
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder
-- Slam
-- Rain Dance
-- Shock Wave
+- Thunderbolt
+- Focus Blast
+- Nasty Plot
+- Thunder Wave
 
 Flaaffy @ Quick Claw
 Level: 41
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder
-- Protect
+- Thunderbolt
+- Dragon Pulse
+- Focus Blast
 - Thunder Wave
-- Light Screen
 
 Electrode @ Scope Lens
 Level: 41
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rollout
-- Thunder
-- Explosion
-- Rain Dance
+- Thunderbolt
+- Flash Cannon
+- Thunder Wave
+- Toxic
 
 Magneton @ Sitrus Berry
 Level: 43
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Supersonic
-- Protect
-- Thunder
-- Rain Dance
+- Thunderbolt
+- Flash Cannon
+- Thunder Wave
+- Toxic
 
 Manectric @ Sitrus Berry
 Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Bite
+- Thunderbolt
+- Overheat
 - Thunder Wave
-- Thunder
-- Protect
+- Toxic
 
 === TRAINER_WATTSON_4 ===
 Name: Walter
@@ -21262,50 +21974,50 @@ AI: Basic Trainer
 Electabuzz @ Magnet
 Level: 46
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder Punch
-- Thunderbolt
-- Light Screen
-- Screech
+- Volt Tackle
+- Ice Punch
+- Bulk Up
+- Thunder Wave
 
 Raichu @ Magnet
 Level: 44
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder
-- Slam
-- Rain Dance
-- Protect
+- Thunderbolt
+- Focus Blast
+- Nasty Plot
+- Thunder Wave
 
 Ampharos @ Quick Claw
 Level: 46
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder
-- Protect
+- Thunderbolt
+- Dragon Pulse
+- Focus Blast
 - Thunder Wave
-- Light Screen
 
 Electrode @ Scope Lens
 Level: 46
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rollout
-- Thunder
-- Explosion
-- Rain Dance
+- Thunderbolt
+- Flash Cannon
+- Thunder Wave
+- Toxic
 
 Magneton @ Sitrus Berry
 Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Supersonic
-- Protect
-- Thunder
-- Rain Dance
+- Thunderbolt
+- Flash Cannon
+- Thunder Wave
+- Toxic
 
 Manectric @ Sitrus Berry
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Bite
+- Thunderbolt
+- Overheat
 - Thunder Wave
-- Thunder
-- Protect
+- Toxic
 
 === TRAINER_WATTSON_5 ===
 Name: Walter
@@ -21320,50 +22032,50 @@ AI: Basic Trainer
 Electabuzz @ Magnet
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Swift
-- Focus Punch
-- Thunder Punch
-- Light Screen
+- Volt Tackle
+- Ice Punch
+- Bulk Up
+- Thunder Wave
 
 Raichu @ Magnet
 Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder
-- Slam
-- Rain Dance
-- Protect
+- Thunderbolt
+- Focus Blast
+- Nasty Plot
+- Thunder Wave
 
 Ampharos @ Quick Claw
 Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder
-- Protect
+- Thunderbolt
+- Dragon Pulse
+- Focus Blast
 - Thunder Wave
-- Light Screen
 
 Electrode @ Scope Lens
 Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rollout
-- Thunder
-- Explosion
-- Rain Dance
+- Thunderbolt
+- Flash Cannon
+- Thunder Wave
+- Toxic
 
 Magneton @ Sitrus Berry
 Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Supersonic
-- Protect
-- Thunder
-- Rain Dance
+- Thunderbolt
+- Flash Cannon
+- Thunder Wave
+- Toxic
 
 Manectric @ Sitrus Berry
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Bite
+- Thunderbolt
+- Overheat
 - Thunder Wave
-- Thunder
-- Protect
+- Toxic
 
 === TRAINER_FLANNERY_2 ===
 Name: Flavia
@@ -21378,50 +22090,50 @@ AI: Basic Trainer
 Growlithe @ Charcoal
 Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Flamethrower
-- Bite
-- Agility
-- Helping Hand
+- Flare Blitz
+- Close Combat
+- Wild Charge
+- Morning Sun
 
 Houndour @ Charcoal
 Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Flamethrower
-- Bite
-- Faint Attack
-- Roar
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
 Magcargo @ White Herb
 Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Overheat
-- Attract
-- Light Screen
-- Rock Slide
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Ponyta @ Quick Claw
 Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Flamethrower
-- Attract
-- Solar Beam
-- Bounce
+- Flare Blitz
+- High Horsepower
+- Wild Charge
+- Swords Dance
 
 Camerupt @ White Herb
 Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Overheat
-- Sunny Day
-- Earthquake
-- Attract
+- Earth Power
+- Stealth Rock
+- Growth
 
 Torkoal @ White Herb
 Level: 40
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Overheat
-- Sunny Day
-- Explosion
-- Attract
+- Superpower
+- Sludge Bomb
+- Shell Smash
 
 === TRAINER_FLANNERY_3 ===
 Name: Flavia
@@ -21436,50 +22148,50 @@ AI: Basic Trainer
 Houndour @ Charcoal
 Level: 41
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Flamethrower
-- Crunch
-- Faint Attack
-- Sunny Day
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
 Growlithe @ Charcoal
 Level: 41
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Helping Hand
-- Flamethrower
-- Roar
-- Sunny Day
+- Flare Blitz
+- Close Combat
+- Wild Charge
+- Morning Sun
 
 Magcargo @ White Herb
 Level: 43
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Overheat
-- Attract
-- Light Screen
-- Rock Slide
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Ponyta @ Quick Claw
 Level: 41
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Flamethrower
-- Attract
-- Solar Beam
-- Bounce
+- Flare Blitz
+- High Horsepower
+- Wild Charge
+- Swords Dance
 
 Camerupt @ White Herb
 Level: 43
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Overheat
-- Sunny Day
-- Earthquake
-- Attract
+- Earth Power
+- Stealth Rock
+- Growth
 
 Torkoal @ White Herb
 Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Overheat
-- Sunny Day
-- Explosion
-- Attract
+- Superpower
+- Sludge Bomb
+- Shell Smash
 
 === TRAINER_FLANNERY_4 ===
 Name: Flavia
@@ -21494,50 +22206,50 @@ AI: Basic Trainer
 Houndour @ Charcoal
 Level: 46
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Roar
-- Solar Beam
-- Taunt
-- Sunny Day
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
 Growlithe @ Charcoal
 Level: 46
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Helping Hand
-- Flamethrower
-- Sunny Day
-- Roar
+- Flare Blitz
+- Close Combat
+- Wild Charge
+- Morning Sun
 
 Magcargo @ White Herb
 Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Overheat
-- Attract
-- Light Screen
-- Rock Slide
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Rapidash @ Quick Claw
 Level: 46
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Flamethrower
-- Attract
-- Solar Beam
-- Bounce
+- Flare Blitz
+- High Horsepower
+- Wild Charge
+- Swords Dance
 
 Camerupt @ White Herb
 Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Overheat
-- Sunny Day
-- Earthquake
-- Attract
+- Earth Power
+- Stealth Rock
+- Growth
 
 Torkoal @ White Herb
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Overheat
-- Sunny Day
-- Explosion
-- Attract
+- Superpower
+- Sludge Bomb
+- Shell Smash
 
 === TRAINER_FLANNERY_5 ===
 Name: Flavia
@@ -21552,50 +22264,50 @@ AI: Basic Trainer
 Arcanine @ Charcoal
 Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Helping Hand
-- Flamethrower
-- Sunny Day
-- Roar
+- Flare Blitz
+- Close Combat
+- Wild Charge
+- Morning Sun
 
 Magcargo @ White Herb
 Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Overheat
-- Attract
-- Light Screen
-- Rock Slide
+- Ancient Power
+- Earth Power
+- Shell Smash
 
 Houndoom @ Charcoal
 Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Roar
-- Solar Beam
-- Taunt
-- Sunny Day
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
 Rapidash @ Quick Claw
 Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Flamethrower
-- Attract
-- Solar Beam
-- Bounce
+- Flare Blitz
+- High Horsepower
+- Wild Charge
+- Swords Dance
 
 Camerupt @ White Herb
 Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Overheat
-- Sunny Day
-- Earthquake
-- Attract
+- Earth Power
+- Stealth Rock
+- Growth
 
 Torkoal @ White Herb
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Overheat
-- Sunny Day
-- Explosion
-- Attract
+- Superpower
+- Sludge Bomb
+- Shell Smash
 
 === TRAINER_NORMAN_2 ===
 Name: Norman
@@ -21610,50 +22322,50 @@ AI: Basic Trainer
 Kangaskhan @ Scope Lens
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Dizzy Punch
-- Mega Punch
-- Bite
-- Facade
+- Double Edge
+- Hammer Arm
+- Crunch
+- Toxic
 
 Tauros @ Silk Scarf
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Take Down
-- Rest
-- Horn Attack
-- Facade
+- Double Edge
+- Iron Tail
+- Zen Headbutt
+- Rock Slide
 
 Chansey @ Silk Scarf
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Light Screen
-- Sing
-- Skill Swap
-- Focus Punch
+- Ice Beam
+- Focus Blast
+- Calm Mind
+- Soft Boiled
 
 Slaking @ Sitrus Berry
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Blizzard
-- Shadow Ball
 - Double Edge
-- Fire Blast
+- Hammer Arm
+- Shadow Claw
+- Bulk Up
 
 Spinda @ Quick Claw
 Level: 43
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Teeter Dance
-- Skill Swap
-- Facade
+- Double Edge
+- Shadow Ball
 - Hypnosis
+- Toxic
 
 Slaking @ Sitrus Berry
 Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hyper Beam
-- Flamethrower
-- Thunderbolt
-- Shadow Ball
+- Double Edge
+- Hammer Arm
+- Shadow Claw
+- Bulk Up
 
 === TRAINER_NORMAN_3 ===
 Name: Norman
@@ -21668,50 +22380,50 @@ AI: Basic Trainer
 Tauros @ Silk Scarf
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Take Down
-- Rest
-- Thrash
-- Facade
+- Double Edge
+- Iron Tail
+- Zen Headbutt
+- Rock Slide
 
 Slaking @ Sitrus Berry
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Blizzard
-- Shadow Ball
 - Double Edge
-- Fire Blast
+- Hammer Arm
+- Shadow Claw
+- Bulk Up
 
 Chansey @ Silk Scarf
 Level: 47
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Light Screen
-- Sing
-- Skill Swap
-- Focus Punch
+- Ice Beam
+- Focus Blast
+- Calm Mind
+- Soft Boiled
 
 Kangaskhan @ Scope Lens
 Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Fake Out
-- Dizzy Punch
-- Endure
-- Reversal
+- Double Edge
+- Hammer Arm
+- Crunch
+- Toxic
 
 Spinda @ Quick Claw
 Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Teeter Dance
-- Skill Swap
-- Facade
+- Double Edge
+- Shadow Ball
 - Hypnosis
+- Toxic
 
 Slaking @ Sitrus Berry
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hyper Beam
-- Flamethrower
-- Thunderbolt
-- Shadow Ball
+- Double Edge
+- Hammer Arm
+- Shadow Claw
+- Bulk Up
 
 === TRAINER_NORMAN_4 ===
 Name: Norman
@@ -21727,49 +22439,49 @@ Tauros @ Silk Scarf
 Level: 52
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Double Edge
-- Rest
-- Thrash
-- Facade
+- Iron Tail
+- Zen Headbutt
+- Rock Slide
 
 Slaking @ Sitrus Berry
 Level: 52
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Blizzard
-- Shadow Ball
 - Double Edge
-- Fire Blast
+- Hammer Arm
+- Shadow Claw
+- Bulk Up
 
 Blissey @ Silk Scarf
 Level: 52
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Light Screen
-- Sing
-- Skill Swap
-- Focus Punch
+- Ice Beam
+- Focus Blast
+- Calm Mind
+- Soft Boiled
 
 Kangaskhan @ Scope Lens
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Fake Out
-- Dizzy Punch
-- Endure
-- Reversal
+- Double Edge
+- Hammer Arm
+- Crunch
+- Toxic
 
 Spinda @ Quick Claw
 Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Teeter Dance
-- Skill Swap
-- Facade
+- Double Edge
+- Shadow Ball
 - Hypnosis
+- Toxic
 
 Slaking @ Sitrus Berry
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hyper Beam
-- Flamethrower
-- Thunderbolt
-- Shadow Ball
+- Double Edge
+- Hammer Arm
+- Shadow Claw
+- Bulk Up
 
 === TRAINER_NORMAN_5 ===
 Name: Norman
@@ -21784,50 +22496,50 @@ AI: Basic Trainer
 Slaking @ Sitrus Berry
 Level: 57
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Blizzard
-- Shadow Ball
 - Double Edge
-- Fire Blast
+- Hammer Arm
+- Shadow Claw
+- Bulk Up
 
 Blissey @ Silk Scarf
 Level: 57
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Protect
-- Sing
-- Skill Swap
-- Focus Punch
+- Ice Beam
+- Focus Blast
+- Calm Mind
+- Soft Boiled
 
 Kangaskhan @ Scope Lens
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Fake Out
-- Dizzy Punch
-- Endure
-- Reversal
+- Double Edge
+- Hammer Arm
+- Crunch
+- Toxic
 
 Tauros @ Silk Scarf
 Level: 57
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Take Down
-- Protect
-- Fire Blast
-- Earthquake
+- Double Edge
+- Iron Tail
+- Zen Headbutt
+- Rock Slide
 
 Spinda @ Quick Claw
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Teeter Dance
-- Skill Swap
-- Facade
+- Double Edge
+- Shadow Ball
 - Hypnosis
+- Toxic
 
 Slaking @ Sitrus Berry
 Level: 60
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hyper Beam
-- Flamethrower
-- Thunderbolt
-- Shadow Ball
+- Double Edge
+- Hammer Arm
+- Shadow Claw
+- Bulk Up
 
 === TRAINER_WINONA_2 ===
 Name: Wibke
@@ -21842,50 +22554,50 @@ AI: Basic Trainer / Risky
 Hoothoot @ Sharp Beak
 Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Aerial Ace
-- Hypnosis
-- Confusion
-- Reflect
+- Hyper Voice
+- Hurricane
+- Moonblast
+- Calm Mind
 
 Dratini @ Sitrus Berry
 Level: 40
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder Wave
-- Thunderbolt
-- Protect
-- Ice Beam
+- Outrage
+- Earthquake
+- Fire Punch
+- Dragon Dance
 
 Tropius @ Chesto Berry
 Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sunny Day
-- Aerial Ace
-- Solar Beam
-- Earthquake
+- Leaf Storm
+- Air Slash
+- Calm Mind
+- Roost
 
 Pelipper @ Scope Lens
 Level: 41
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Surf
-- Supersonic
-- Protect
-- Aerial Ace
+- Hydro Pump
+- Hurricane
+- Ice Beam
+- Roost
 
 Skarmory @ Sharp Beak
 Level: 43
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Whirlwind
-- Spikes
+- Brave Bird
 - Steel Wing
-- Aerial Ace
+- Swords Dance
+- Roost
 
 Altaria @ Chesto Berry
 Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Aerial Ace
-- Rest
+- Dragon Claw
+- Play Rough
 - Dragon Dance
-- Earthquake
+- Roost
 
 === TRAINER_WINONA_3 ===
 Name: Wibke
@@ -21900,50 +22612,50 @@ AI: Basic Trainer / Risky
 Hoothoot @ Sharp Beak
 Level: 43
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hypnosis
-- Psychic
-- Reflect
-- Dream Eater
+- Hyper Voice
+- Hurricane
+- Moonblast
+- Calm Mind
 
 Tropius @ Chesto Berry
 Level: 43
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sunny Day
-- Aerial Ace
-- Solar Beam
-- Earthquake
+- Leaf Storm
+- Air Slash
+- Calm Mind
+- Roost
 
 Dragonair @ Sitrus Berry
 Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder Wave
-- Thunderbolt
-- Protect
-- Ice Beam
+- Outrage
+- Earthquake
+- Fire Punch
+- Dragon Dance
 
 Pelipper @ Scope Lens
 Level: 46
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Surf
-- Supersonic
-- Protect
-- Aerial Ace
+- Hydro Pump
+- Hurricane
+- Ice Beam
+- Roost
 
 Skarmory @ Sharp Beak
 Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Whirlwind
-- Spikes
+- Brave Bird
 - Steel Wing
-- Aerial Ace
+- Swords Dance
+- Roost
 
 Altaria @ Chesto Berry
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Aerial Ace
-- Rest
+- Dragon Claw
+- Play Rough
 - Dragon Dance
-- Earthquake
+- Roost
 
 === TRAINER_WINONA_4 ===
 Name: Wibke
@@ -21958,50 +22670,50 @@ AI: Basic Trainer / Risky
 Noctowl @ Sharp Beak
 Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hypnosis
-- Psychic
-- Reflect
-- Dream Eater
+- Hyper Voice
+- Hurricane
+- Moonblast
+- Calm Mind
 
 Tropius @ Chesto Berry
 Level: 49
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sunny Day
-- Aerial Ace
-- Solar Beam
-- Earthquake
+- Leaf Storm
+- Air Slash
+- Calm Mind
+- Roost
 
 Dragonair @ Sitrus Berry
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder Wave
-- Thunderbolt
-- Protect
-- Ice Beam
+- Outrage
+- Earthquake
+- Fire Punch
+- Dragon Dance
 
 Pelipper @ Scope Lens
 Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Surf
-- Supersonic
-- Protect
-- Aerial Ace
+- Hydro Pump
+- Hurricane
+- Ice Beam
+- Roost
 
 Skarmory @ Sharp Beak
 Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Whirlwind
-- Spikes
+- Brave Bird
 - Steel Wing
-- Aerial Ace
+- Swords Dance
+- Roost
 
 Altaria @ Chesto Berry
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Aerial Ace
-- Rest
+- Dragon Claw
+- Play Rough
 - Dragon Dance
-- Earthquake
+- Roost
 
 === TRAINER_WINONA_5 ===
 Name: Wibke
@@ -22016,50 +22728,50 @@ AI: Basic Trainer / Risky
 Noctowl @ Sharp Beak
 Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hypnosis
-- Psychic
-- Reflect
-- Dream Eater
+- Hyper Voice
+- Hurricane
+- Moonblast
+- Calm Mind
 
 Tropius @ Chesto Berry
 Level: 54
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sunny Day
-- Aerial Ace
-- Solar Beam
-- Earthquake
+- Leaf Storm
+- Air Slash
+- Calm Mind
+- Roost
 
 Pelipper @ Scope Lens
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Surf
-- Supersonic
-- Protect
-- Aerial Ace
+- Hydro Pump
+- Hurricane
+- Ice Beam
+- Roost
 
 Dragonite @ Sitrus Berry
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hyper Beam
-- Thunderbolt
+- Outrage
 - Earthquake
-- Ice Beam
+- Fire Punch
+- Dragon Dance
 
 Skarmory @ Sharp Beak
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Whirlwind
-- Spikes
+- Brave Bird
 - Steel Wing
-- Aerial Ace
+- Swords Dance
+- Roost
 
 Altaria @ Chesto Berry
 Level: 60
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sky Attack
-- Rest
+- Dragon Claw
+- Play Rough
 - Dragon Dance
-- Earthquake
+- Roost
 
 === TRAINER_TATE_AND_LIZA_2 ===
 Name: Ben&Svenja
@@ -22075,49 +22787,49 @@ Drowzee @ Twisted Spoon
 Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psychic
+- Focus Blast
+- Nasty Plot
 - Hypnosis
-- Meditate
-- Light Screen
 
 Slowpoke @ Chesto Berry
 Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Yawn
 - Psychic
+- Scald
+- Fire Blast
 - Calm Mind
-- Protect
 
 Claydol @ Twisted Spoon
 Level: 49
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Earthquake
-- Ancient Power
+- Earth Power
 - Psychic
-- Light Screen
+- Calm Mind
+- Toxic
 
 Xatu @ Chesto Berry
 Level: 49
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psychic
-- Rest
-- Confuse Ray
+- Air Slash
+- Shadow Ball
 - Calm Mind
 
 Lunatone @ Chesto Berry
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Earthquake
 - Psychic
-- Rest
+- Power Gem
+- Moonblast
 - Calm Mind
 
 Solrock @ Sitrus Berry
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sunny Day
-- Solar Beam
-- Psychic
-- Flamethrower
+- Stone Edge
+- Flare Blitz
+- Swords Dance
+- Stealth Rock
 
 === TRAINER_TATE_AND_LIZA_3 ===
 Name: Ben&Svenja
@@ -22132,50 +22844,50 @@ AI: Basic Trainer
 Drowzee @ Twisted Spoon
 Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Psychic
+- Focus Blast
+- Nasty Plot
 - Hypnosis
-- Dream Eater
-- Headbutt
-- Protect
 
 Slowpoke @ Chesto Berry
 Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Yawn
 - Psychic
+- Scald
+- Fire Blast
 - Calm Mind
-- Protect
 
 Claydol @ Twisted Spoon
 Level: 54
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Earthquake
-- Explosion
+- Earth Power
 - Psychic
-- Light Screen
+- Calm Mind
+- Toxic
 
 Xatu @ Chesto Berry
 Level: 54
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psychic
-- Rest
-- Confuse Ray
+- Air Slash
+- Shadow Ball
 - Calm Mind
 
 Lunatone @ Chesto Berry
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Earthquake
 - Psychic
-- Rest
+- Power Gem
+- Moonblast
 - Calm Mind
 
 Solrock @ Sitrus Berry
 Level: 55
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sunny Day
-- Solar Beam
-- Psychic
-- Flamethrower
+- Stone Edge
+- Flare Blitz
+- Swords Dance
+- Stealth Rock
 
 === TRAINER_TATE_AND_LIZA_4 ===
 Name: Ben&Svenja
@@ -22190,50 +22902,50 @@ AI: Basic Trainer
 Hypno @ Twisted Spoon
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Psychic
+- Focus Blast
+- Nasty Plot
 - Hypnosis
-- Dream Eater
-- Headbutt
-- Protect
 
 Claydol @ Chesto Berry
 Level: 59
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Earthquake
-- Explosion
+- Earth Power
 - Psychic
-- Light Screen
+- Calm Mind
+- Toxic
 
 Slowpoke @ Twisted Spoon
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Yawn
 - Psychic
+- Scald
+- Fire Blast
 - Calm Mind
-- Protect
 
 Xatu @ Chesto Berry
 Level: 59
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psychic
-- Rest
-- Confuse Ray
+- Air Slash
+- Shadow Ball
 - Calm Mind
 
 Lunatone @ Chesto Berry
 Level: 60
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Earthquake
 - Psychic
-- Rest
+- Power Gem
+- Moonblast
 - Calm Mind
 
 Solrock @ Sitrus Berry
 Level: 60
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sunny Day
-- Solar Beam
-- Psychic
-- Flamethrower
+- Stone Edge
+- Flare Blitz
+- Swords Dance
+- Stealth Rock
 
 === TRAINER_TATE_AND_LIZA_5 ===
 Name: Ben&Svenja
@@ -22248,50 +22960,50 @@ AI: Basic Trainer
 Hypno @ Twisted Spoon
 Level: 63
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Psychic
+- Focus Blast
+- Nasty Plot
 - Hypnosis
-- Dream Eater
-- Headbutt
-- Protect
 
 Claydol @ Chesto Berry
 Level: 64
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Earthquake
-- Explosion
+- Earth Power
 - Psychic
-- Light Screen
+- Calm Mind
+- Toxic
 
 Slowking @ Twisted Spoon
 Level: 63
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Yawn
 - Psychic
+- Scald
+- Fire Blast
 - Calm Mind
-- Protect
 
 Xatu @ Chesto Berry
 Level: 64
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psychic
-- Rest
-- Confuse Ray
+- Air Slash
+- Shadow Ball
 - Calm Mind
 
 Lunatone @ Chesto Berry
 Level: 65
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Earthquake
 - Psychic
-- Rest
+- Power Gem
+- Moonblast
 - Calm Mind
 
 Solrock @ Sitrus Berry
 Level: 65
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Sunny Day
-- Solar Beam
-- Psychic
-- Flamethrower
+- Stone Edge
+- Flare Blitz
+- Swords Dance
+- Stealth Rock
 
 === TRAINER_JUAN_2 ===
 Name: Juan
@@ -22306,50 +23018,50 @@ AI: Basic Trainer
 Lapras @ Mystic Water
 Level: 46
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Surf
 - Ice Beam
-- Body Slam
-- Confuse Ray
+- Hydro Pump
+- Thunderbolt
+- Toxic
 
 Poliwag @ Sitrus Berry
 Level: 46
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hypnosis
-- Rain Dance
-- Protect
-- Hydro Pump
+- Waterfall
+- Drain Punch
+- Poison Jab
+- Belly Drum
 
 Whiscash @ Mystic Water
 Level: 46
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rain Dance
-- Water Pulse
-- Double Team
-- Fissure
+- Earth Power
+- Scald
+- Ice Beam
+- Stealth Rock
 
 Walrein @ Quick Claw
 Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Water Pulse
-- Body Slam
-- Protect
 - Ice Beam
+- Water Pulse
+- Signal Beam
+- Toxic
 
 Crawdaunt @ Chesto Berry
 Level: 48
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rest
 - Crabhammer
-- Taunt
-- Double Team
+- Crunch
+- Superpower
+- Dragon Dance
 
 Kingdra @ Chesto Berry
 Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Water Pulse
-- Double Team
+- Hydro Pump
+- Dragon Pulse
 - Ice Beam
-- Rest
+- Agility
 
 === TRAINER_JUAN_3 ===
 Name: Juan
@@ -22364,50 +23076,50 @@ AI: Basic Trainer
 Lapras @ Mystic Water
 Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Surf
 - Ice Beam
-- Body Slam
-- Rain Dance
+- Hydro Pump
+- Thunderbolt
+- Toxic
 
 Poliwhirl @ Sitrus Berry
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hypnosis
-- Rain Dance
-- Protect
-- Hydro Pump
+- Waterfall
+- Drain Punch
+- Poison Jab
+- Belly Drum
 
 Whiscash @ Mystic Water
 Level: 51
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rain Dance
-- Water Pulse
-- Double Team
-- Fissure
+- Earth Power
+- Scald
+- Ice Beam
+- Stealth Rock
 
 Walrein @ Quick Claw
 Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Water Pulse
-- Body Slam
-- Protect
 - Ice Beam
+- Water Pulse
+- Signal Beam
+- Toxic
 
 Crawdaunt @ Chesto Berry
 Level: 53
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rest
-- Guillotine
-- Taunt
-- Double Team
+- Crabhammer
+- Crunch
+- Superpower
+- Dragon Dance
 
 Kingdra @ Chesto Berry
 Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Water Pulse
-- Double Team
+- Hydro Pump
+- Dragon Pulse
 - Ice Beam
-- Rest
+- Agility
 
 === TRAINER_JUAN_4 ===
 Name: Juan
@@ -22422,50 +23134,50 @@ AI: Basic Trainer
 Lapras @ Mystic Water
 Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hydro Pump
-- Perish Song
 - Ice Beam
-- Confuse Ray
+- Hydro Pump
+- Thunderbolt
+- Toxic
 
 Whiscash @ Sitrus Berry
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rain Dance
-- Water Pulse
-- Double Team
-- Fissure
+- Earth Power
+- Scald
+- Ice Beam
+- Stealth Rock
 
 Poliwhirl @ Mystic Water
 Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Waterfall
+- Ice Punch
+- Belly Drum
 - Hypnosis
-- Rain Dance
-- Protect
-- Hydro Pump
 
 Walrein @ Quick Claw
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Water Pulse
-- Body Slam
-- Protect
 - Ice Beam
+- Water Pulse
+- Signal Beam
+- Toxic
 
 Crawdaunt @ Chesto Berry
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rest
-- Guillotine
-- Taunt
-- Double Team
+- Crabhammer
+- Crunch
+- Superpower
+- Dragon Dance
 
 Kingdra @ Chesto Berry
 Level: 61
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Water Pulse
-- Double Team
+- Hydro Pump
+- Dragon Pulse
 - Ice Beam
-- Rest
+- Agility
 
 === TRAINER_JUAN_5 ===
 Name: Juan
@@ -22480,50 +23192,50 @@ AI: Basic Trainer
 Lapras @ Mystic Water
 Level: 61
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hydro Pump
-- Perish Song
 - Ice Beam
-- Confuse Ray
+- Hydro Pump
+- Thunderbolt
+- Toxic
 
 Whiscash @ Sitrus Berry
 Level: 63
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rain Dance
-- Water Pulse
-- Double Team
-- Fissure
+- Earth Power
+- Scald
+- Ice Beam
+- Stealth Rock
 
 Politoed @ Mystic Water
 Level: 61
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Hypnosis
-- Rain Dance
 - Hydro Pump
-- Perish Song
+- Ice Beam
+- Earth Power
+- Hypnosis
 
 Walrein @ Quick Claw
 Level: 63
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Ice Beam
 - Water Pulse
-- Body Slam
-- Protect
-- Sheer Cold
+- Signal Beam
+- Toxic
 
 Crawdaunt @ Chesto Berry
 Level: 63
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Rest
-- Guillotine
-- Taunt
-- Double Team
+- Crabhammer
+- Crunch
+- Superpower
+- Dragon Dance
 
 Kingdra @ Chesto Berry
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Water Pulse
-- Double Team
+- Hydro Pump
+- Dragon Pulse
 - Ice Beam
-- Rest
+- Agility
 
 === TRAINER_ANGELO ===
 Name: Rafael
@@ -22538,8 +23250,8 @@ Magnemite
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Shock Wave
-- Quick Attack
-- Charm
+- Tackle
+- Metal Sound
 
 Voltorb
 Level: 14
@@ -22549,8 +23261,8 @@ Magneton
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Shock Wave
-- Quick Attack
-- Confuse Ray
+- Tackle
+- Supersonic
 
 === TRAINER_DARIUS ===
 Name: Raimond
@@ -22588,52 +23300,52 @@ Double Battle: No
 AI: Basic Trainer
 
 Skarmory
-Level: 77
+Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Toxic
-- Aerial Ace
 - Spikes
-- Steel Wing
+- Stealth Rock
+- Roost
+- Brave Bird
 
 Claydol
-Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Reflect
-- Light Screen
-- Ancient Power
-- Earthquake
-
-Aggron
-Level: 76
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Thunder
-- Earthquake
-- Solar Beam
-- Dragon Claw
-
-Cradily
-Level: 76
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Giga Drain
-- Ancient Power
-- Ingrain
-- Confuse Ray
-
-Armaldo
-Level: 76
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-- Water Pulse
-- Ancient Power
-- Aerial Ace
-- Slash
-
-Metagross @ Sitrus Berry
-Level: 78
+Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Earthquake
 - Psychic
-- Meteor Mash
+- Ice Beam
 - Shadow Ball
+
+Aggron
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Head Smash
+- Iron Head
+- Earthquake
+- Autotomize
+
+Cradily
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Curse
+- Recover
+- Rock Slide
+- Earthquake
+
+Armaldo
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Swords Dance
+- X-Scissor
+- Rock Blast
+- Earthquake
+
+Metagross @ Sitrus Berry
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Meteor Mash
+- Earthquake
+- Zen Headbutt
+- Bullet Punch
 
 === TRAINER_ANABEL ===
 Name: Anabel
@@ -23800,26 +24512,50 @@ Mugshot: Purple
 Houndoom @ Black Glasses
 Level: 64
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
 Shiftry @ Black Glasses
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Foul Play
+- Leaf Blade
+- Swords Dance
+- Synthesis
 
 Cacturne @ Quick Claw
 Level: 64
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Energy Ball
+- Dark Pulse
+- Focus Blast
+- Nasty Plot
 
 Crawdaunt @ Scope Lens
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Crabhammer
+- Crunch
+- Superpower
+- Dragon Dance
 
 Weavile @ Focus Band
 Level: 64
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Throat Chop
+- Icicle Crash
+- Brick Break
+- Swords Dance
 
 Absol @ Sitrus Berry
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Night Slash
+- Megahorn
+- Iron Tail
+- Swords Dance
 
 === TRAINER_PHOEBE_2 ===
 Name: Antonia
@@ -23835,26 +24571,50 @@ Mugshot: Green
 Dusclops @ Spell Tag
 Level: 64
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Shadow Sneak
+- Earthquake
+- Ice Punch
+- Will O Wisp
 
 Banette @ Spell Tag
 Level: 65
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Shadow Claw
+- Gunk Shot
+- Swords Dance
+- Will O Wisp
 
 Sableye @ Quick Claw
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Foul Play
+- Poison Jab
+- Bulk Up
+- Recover
 
 Mismagius @ Scope Lens
 Level: 65
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Shadow Ball
+- Dazzling Gleam
+- Power Gem
+- Nasty Plot
 
 Gengar @ Focus Band
 Level: 64
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sludge Wave
+- Shadow Ball
+- Focus Blast
+- Thunder Wave
 
 Dusknoir @ Sitrus Berry
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Shadow Sneak
+- Earthquake
+- Ice Punch
+- Will O Wisp
 
 === TRAINER_GLACIA_2 ===
 Name: Frosina
@@ -23870,26 +24630,50 @@ Mugshot: Pink
 Walrein @ Never-Melt Ice
 Level: 65
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Ice Beam
+- Surf
+- Earthquake
+- Toxic
 
 Froslass @ Never-Melt Ice
 Level: 65
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Ice Beam
+- Shadow Ball
+- Psychic
+- Will O Wisp
 
 Dewgong @ Quick Claw
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Surf
+- Ice Beam
+- Toxic
+- Encore
 
 Glalie @ Scope Lens
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Ice Beam
+- Earthquake
+- Crunch
+- Toxic
 
 Cloyster @ Focus Band
 Level: 65
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Waterfall
+- Icicle Crash
+- Poison Jab
+- Shell Smash
 
 Walrein @ Sitrus Berry
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Ice Beam
+- Surf
+- Earthquake
+- Toxic
 
 === TRAINER_DRAKE_2 ===
 Name: Dragan
@@ -23905,26 +24689,50 @@ Mugshot: Blue
 Salamence @ Dragon Fang
 Level: 65
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dragon Claw
+- Earthquake
+- Aerial Ace
+- Dragon Dance
 
 Altaria @ Dragon Fang
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dragon Claw
+- Earthquake
+- Dragon Dance
+- Roost
 
 Kingdra @ Quick Claw
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Surf
+- Dragon Pulse
+- Ice Beam
+- Agility
 
 Flygon @ Scope Lens
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Earthquake
+- Dragon Claw
+- Superpower
+- Dragon Dance
 
 Dragonite @ Focus Band
 Level: 65
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Outrage
+- Earthquake
+- Fire Punch
+- Dragon Dance
 
 Salamence @ Sitrus Berry
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Dragon Claw
+- Earthquake
+- Aerial Ace
+- Dragon Dance
 
 === TRAINER_WALLACE_2 ===
 Name: Wassili
@@ -23940,23 +24748,47 @@ Mugshot: Yellow
 Wailord @ Mystic Water
 Level: 68
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Surf
+- Earthquake
+- Ice Beam
+- Toxic
 
 Tentacruel @ Mystic Water
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Sludge Wave
+- Surf
+- Ice Beam
+- Toxic
 
 Ludicolo @ Quick Claw
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Surf
+- Giga Drain
+- Ice Beam
+- Synthesis
 
 Whiscash @ Scope Lens
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Earthquake
+- Surf
+- Stealth Rock
+- Toxic
 
 Gyarados @ Focus Band
 Level: 67
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Aqua Tail
+- Earthquake
+- Crunch
+- Dragon Dance
 
 Milotic @ Sitrus Berry
 Level: 69
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Surf
+- Ice Beam
+- Dragon Pulse
+- Recover

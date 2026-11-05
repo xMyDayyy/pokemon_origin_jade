@@ -4,19 +4,22 @@
 // =====================================================================
 // Johto level scaling (hns_de / modern_hns_engde)
 //
-// Trainer and wild levels in Johto follow the highest level in the
-// player's party (the anchor), clamped to the area's corridor
+// Trainer and wild levels in Johto follow the player's anchor (mean of
+// the three highest party levels, at most SCALING_ANCHOR_MAX_DROP below
+// the highest, include/level_scaling.h), clamped to the area's corridor
 // {map section, floor, ceiling} below. Areas missing there are not scaled.
+// Optional {..., lower ceiling, var, value}: the lower ceiling holds while
+// the var is below the value.
 // Levels in trainers_hns.party only set the gaps within a team.
 // =====================================================================
 
 #define JOHTO_LEVEL_SCALING          TRUE  // master switch
 
 #define JOHTO_SCALING_TRAINER_BELOW  3     // Trainer band: anchor - 3 ...
-#define JOHTO_SCALING_TRAINER_ABOVE  2     // ... up to anchor + 2
+#define JOHTO_SCALING_TRAINER_ABOVE  0     // ... up to the anchor
 #define JOHTO_SCALING_WILD_BELOW     10    // Wild band: anchor - 10 ...
 #define JOHTO_SCALING_WILD_ABOVE     4     // ... up to anchor - 4
-#define JOHTO_SCALING_BOSS_EXTRA     1     // Boss ace: anchor + 2 + 1
+#define JOHTO_SCALING_BOSS_EXTRA     1     // Boss ace: anchor + 1
 
 // Trainers with an original level of at least this are not scaled (Red on Mt. Silver).
 #define JOHTO_SCALING_FIXED_MIN_LEVEL 77
@@ -31,79 +34,100 @@
 #define JOHTO_SCALING_MIN_LEVEL      5     // absolute lower bound
 #define JOHTO_SCALING_MAX_LEVEL      100   // absolute upper bound
 
-// Ceiling of every corridor once FLAG_IS_JOHTO_CHAMPION is set (floors stay),
-// see docs/origin_jade/DECISIONS.md, D-031.
+// Ceiling of every corridor once FLAG_IS_JOHTO_CHAMPION is set (floors stay).
 #define JOHTO_SCALING_TITLE_CEILING  100
 
 // No effect: Johto only scales areas listed in JOHTO_SCALING_CORRIDORS.
-#define JOHTO_SCALING_DEFAULT_FLOOR    45
+#define JOHTO_SCALING_DEFAULT_FLOOR    40
 #define JOHTO_SCALING_DEFAULT_CEILING  80
 
+// Ceilings: the bosses' levels for the average player; stronger teams
+// meet capped levels. Floors: about 6 below that player's anchor at the tier's start.
 #define JOHTO_SCALING_CORRIDORS \
-    /* Way in from Kanto, also the way to the Johto League (45-80) */ \
-    { MAPSEC_ROUTE_26,          45,  80 }, \
-    { MAPSEC_ROUTE_27,          45,  80 }, \
-    { MAPSEC_TOHJO_FALLS,       45,  80 }, \
-    /* Tier 1: arrival up to Bugsy (45-55) */ \
-    { MAPSEC_NEW_BARK_TOWN,     45,  55 }, \
-    { MAPSEC_ROUTE_29,          45,  55 }, \
-    { MAPSEC_CHERRYGROVE_CITY,  45,  55 }, \
-    { MAPSEC_ROUTE_30,          45,  55 }, \
-    { MAPSEC_ROUTE_31,          45,  55 }, \
-    { MAPSEC_VIOLET_CITY,       45,  55 }, \
-    { MAPSEC_SPROUT_TOWER,      45,  55 }, \
-    { MAPSEC_RUINS_OF_ALPH,     45,  55 }, \
-    { MAPSEC_ROUTE_32,          45,  55 }, \
-    { MAPSEC_UNION_CAVE,        45,  55 }, \
-    { MAPSEC_ROUTE_33,          45,  55 }, \
-    { MAPSEC_AZALEA_TOWN,       45,  55 }, \
-    { MAPSEC_SLOWPOKE_WELL,     45,  55 }, \
-    { MAPSEC_ILEX_FOREST,       45,  55 }, \
-    { MAPSEC_DARK_CAVE,         45,  55 }, \
-    { MAPSEC_ROUTE_46,          45,  55 }, \
-    /* Tier 2: Whitney and Morty (50-61) */ \
-    { MAPSEC_ROUTE_34,          50,  61 }, \
-    { MAPSEC_GOLDENROD_CITY,    50,  61 }, \
-    { MAPSEC_ROUTE_35,          50,  61 }, \
-    { MAPSEC_NATIONAL_PARK,     50,  61 }, \
-    { MAPSEC_ROUTE_36,          50,  61 }, \
-    { MAPSEC_ROUTE_37,          50,  61 }, \
-    { MAPSEC_ECRUTEAK_CITY,     50,  61 }, \
-    { MAPSEC_BURNED_TOWER,      50,  61 }, \
-    { MAPSEC_TIN_TOWER,         50,  61 }, \
-    /* Tier 3: Jasmine and Chuck (55-67) */ \
-    { MAPSEC_ROUTE_38,          55,  67 }, \
-    { MAPSEC_ROUTE_39,          55,  67 }, \
-    { MAPSEC_OLIVINE_CITY,      55,  67 }, \
-    { MAPSEC_OLIVINE_LIGHTHOUSE, 55, 71 }, \
-    { MAPSEC_SS_AQUA,           55,  67 }, \
-    { MAPSEC_ROUTE_40,          55,  67 }, \
-    { MAPSEC_ROUTE_41,          55,  67 }, \
-    { MAPSEC_WHIRL_ISLANDS,     55,  67 }, \
-    { MAPSEC_CIANWOOD_CITY,     55,  67 }, \
-    { MAPSEC_ROUTE_47,          55,  67 }, \
-    { MAPSEC_ROUTE_48,          55,  67 }, \
-    { MAPSEC_CLIFF_CAVE,        55,  67 }, \
-    { MAPSEC_SAFARI_ZONE_GATE,  55,  67 }, \
-    /* Tier 4: Pryce and Clair (60-73) */ \
-    { MAPSEC_ROUTE_42,          60,  73 }, \
-    { MAPSEC_MT_MORTAR,         60,  73 }, \
-    { MAPSEC_MAHOGANY_TOWN,     60,  73 }, \
-    { MAPSEC_ROUTE_43,          60,  73 }, \
-    { MAPSEC_LAKE_OF_RAGE,      60,  73 }, \
-    { MAPSEC_ROCKET_HIDEOUT_HNS, 60, 76 }, \
-    { MAPSEC_ROUTE_44,          60,  73 }, \
-    { MAPSEC_ICE_PATH,          60,  73 }, \
-    { MAPSEC_BLACKTHORN_CITY,   60,  73 }, \
-    { MAPSEC_DRAGONS_DEN,       60,  73 }, \
-    { MAPSEC_ROUTE_45,          60,  73 }, \
-    /* Tier 5: Victory Road and League (65-80). \
+    /* Way in from Kanto, also the way to the Johto League (40-80) */ \
+    { MAPSEC_ROUTE_26,          40,  80 }, \
+    { MAPSEC_ROUTE_27,          40,  80 }, \
+    { MAPSEC_TOHJO_FALLS,       40,  80 }, \
+    /* Tier 1: arrival up to Bugsy (41-50) */ \
+    { MAPSEC_NEW_BARK_TOWN,     41,  50 }, \
+    { MAPSEC_ROUTE_29,          41,  50 }, \
+    /* Silver's first team: six Pokemon at the ace's level */ \
+    { MAPSEC_CHERRYGROVE_CITY,  41,  48 }, \
+    { MAPSEC_ROUTE_30,          41,  50 }, \
+    { MAPSEC_ROUTE_31,          41,  50 }, \
+    { MAPSEC_VIOLET_CITY,       41,  50 }, \
+    { MAPSEC_SPROUT_TOWER,      41,  50 }, \
+    { MAPSEC_RUINS_OF_ALPH,     41,  50 }, \
+    { MAPSEC_ROUTE_32,          41,  50 }, \
+    { MAPSEC_UNION_CAVE,        41,  50 }, \
+    { MAPSEC_ROUTE_33,          41,  50 }, \
+    { MAPSEC_AZALEA_TOWN,       41,  50 }, \
+    { MAPSEC_SLOWPOKE_WELL,     41,  50 }, \
+    { MAPSEC_ILEX_FOREST,       41,  50 }, \
+    { MAPSEC_DARK_CAVE,         41,  50 }, \
+    { MAPSEC_ROUTE_46,          41,  50 }, \
+    /* Tier 2: Whitney and Morty (44-53) */ \
+    { MAPSEC_ROUTE_34,          44,  53 }, \
+    /* Radio Tower after Pryce: 61 from the takeover (Elm's call) */ \
+    { MAPSEC_GOLDENROD_CITY,    44,  61, 53, VAR_MAHOGANY_TOWN_STATE, 16 }, \
+    { MAPSEC_ROUTE_35,          44,  53 }, \
+    { MAPSEC_NATIONAL_PARK,     44,  53 }, \
+    { MAPSEC_ROUTE_36,          44,  53 }, \
+    { MAPSEC_ROUTE_37,          44,  53 }, \
+    /* Theater with eight badges: 61 from Elm's Master Ball */ \
+    { MAPSEC_ECRUTEAK_CITY,     44,  61, 53, VAR_ECRUTEAK_CITY_THEATER, 4 }, \
+    { MAPSEC_BURNED_TOWER,      44,  53 }, \
+    /* Only with eight badges: tier 5 */ \
+    { MAPSEC_TIN_TOWER,         56,  64 }, \
+    /* Tier 3: Chuck and Jasmine (47-55) */ \
+    { MAPSEC_ROUTE_38,          47,  55 }, \
+    { MAPSEC_ROUTE_39,          47,  55 }, \
+    { MAPSEC_OLIVINE_CITY,      47,  55 }, \
+    { MAPSEC_OLIVINE_LIGHTHOUSE, 47, 55 }, \
+    { MAPSEC_SS_AQUA,           47,  55 }, \
+    { MAPSEC_ROUTE_40,          47,  55 }, \
+    { MAPSEC_ROUTE_41,          47,  55 }, \
+    /* Only with eight badges: tier 5 */ \
+    { MAPSEC_WHIRL_ISLANDS,     56,  64 }, \
+    { MAPSEC_CIANWOOD_CITY,     47,  55 }, \
+    { MAPSEC_ROUTE_47,          47,  55 }, \
+    { MAPSEC_ROUTE_48,          47,  55 }, \
+    { MAPSEC_CLIFF_CAVE,        47,  55 }, \
+    { MAPSEC_SAFARI_ZONE_GATE,  47,  55 }, \
+    /* Tier 4: Rocket Hideout and Pryce (50-58) */ \
+    { MAPSEC_ROUTE_42,          50,  58 }, \
+    { MAPSEC_MT_MORTAR,         50,  58 }, \
+    { MAPSEC_MAHOGANY_TOWN,     50,  58 }, \
+    { MAPSEC_ROUTE_43,          50,  58 }, \
+    { MAPSEC_LAKE_OF_RAGE,      50,  58 }, \
+    { MAPSEC_ROCKET_HIDEOUT_HNS, 50, 58 }, \
+    /* Tier 5: Clair, after the Radio Tower (56-64) */ \
+    { MAPSEC_ROUTE_44,          56,  64 }, \
+    { MAPSEC_ICE_PATH,          56,  64 }, \
+    { MAPSEC_BLACKTHORN_CITY,   56,  64 }, \
+    { MAPSEC_DRAGONS_DEN,       56,  64 }, \
+    { MAPSEC_ROUTE_45,          56,  64 }, \
+    /* Tier 6: Victory Road and League (58-65). \
        MAPSEC_INDIGO_PLATEAU here means Johto's league maps only; \
        Kanto's plateau maps use config/kanto_scaling.h. */ \
-    { MAPSEC_VICTORY_ROAD_HNS,  65,  80 }, \
-    { MAPSEC_INDIGO_PLATEAU,    65,  80 }, \
+    { MAPSEC_VICTORY_ROAD_HNS,  58,  65 }, \
+    { MAPSEC_INDIGO_PLATEAU,    58,  65 }, \
     /* Mt. Silver (70-90) */ \
     { MAPSEC_ROUTE_28,          70,  90 }, \
     { MAPSEC_MT_SILVER,         70,  90 },
+
+// Johto league rooms: levels rise from Will to Lance like HGSS (HnS's aces
+// 50, 52, 54, 55, 56). Per room {map, extra, floor, ceiling}: the trainers'
+// ace goes to anchor + extra (instead of the boss extra), clamped to the
+// room's floor and ceiling (instead of the league corridor). The Elite Four's
+// ceilings stay within the league corridor (65), the champion's is 2 above it.
+// After the Johto title the ceilings become JOHTO_SCALING_TITLE_CEILING, the
+// floors stay.
+#define JOHTO_SCALING_ROOMS \
+    { MAP_POKEMON_LEAGUE_WILLS_ROOM_HNS,     -1, 58, 62 }, \
+    { MAP_POKEMON_LEAGUE_KOGAS_ROOM_HNS,      1, 59, 63 }, \
+    { MAP_POKEMON_LEAGUE_BRUNOS_ROOM_HNS,     3, 61, 64 }, \
+    { MAP_POKEMON_LEAGUE_KARENS_ROOM_HNS,     4, 62, 65 }, \
+    { MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM_HNS,  5, 63, 67 },
 
 #endif // GUARD_CONFIG_JOHTO_SCALING_H

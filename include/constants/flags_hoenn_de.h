@@ -1777,8 +1777,7 @@
 
 // HnS: the player has met Mr. Stone in Rustboro (his PokeNav contact).
 #define FLAG_MET_MR_STONE (HNS_REMATCH_FLAGS_START + HNS_REMATCH_FLAGS_COUNT)
-// Hides Steven (Troy) in Silph Co.
-#define FLAG_HIDE_SILPHCO_TROY (HNS_REMATCH_FLAGS_START + HNS_REMATCH_FLAGS_COUNT + 1)
+// HNS_REMATCH_FLAGS_START + HNS_REMATCH_FLAGS_COUNT + 1 is free.
 // HnS: Norman's call comes after VAR_HNS_NORMAN_CALL_STEPS steps outdoors.
 #define FLAG_HNS_NORMAN_CALL_PENDING (HNS_REMATCH_FLAGS_START + HNS_REMATCH_FLAGS_COUNT + 2)
 

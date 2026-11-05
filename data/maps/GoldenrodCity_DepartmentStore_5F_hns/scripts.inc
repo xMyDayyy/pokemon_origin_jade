@@ -8,7 +8,7 @@ GoldenrodDeptStore5_OnTransition:
 	call_if_ne VAR_RESULT, WEEKDAY_SUN, GoldenrodDeptStore5_EventScript_HideReceptionist
 	end
 
-@ The TM lady is only here on Sunday, see docs/origin_jade/DECISIONS.md, D-033.
+@ The TM lady is only here on Sunday.
 GoldenrodDeptStore5_EventScript_HideReceptionist:
 	setflag FLAG_TEMP_1
 	return

@@ -381,10 +381,11 @@ const struct PokeBallSprite gPokeBalls[POKEBALL_COUNT] =
         .itemId = ITEM_CHERISH_BALL,
     },
 
+    // No item: the GS Ball is a key item and must not show up in the battle ball cycle.
     [BALL_GS]      =
     {
         POKE_BALL_SPRITE(GFX_TAG_GS_BALL, gBallGfx_GS, gBallPal_GS),
-        .itemId = ITEM_GS_BALL,
+        .itemId = ITEM_NONE,
     },
 };
 

@@ -61,7 +61,9 @@ static const struct Landmark Landmark_SkyPillar = {COMPOUND_STRING("Himmelturm")
 static const struct Landmark Landmark_MirageTower = {COMPOUND_STRING("Wunderturm"), FLAG_LANDMARK_MIRAGE_TOWER};
 static const struct Landmark Landmark_AlteringCave = {COMPOUND_STRING("Wandelhöhle"), FLAG_LANDMARK_ALTERING_CAVE};
 static const struct Landmark Landmark_DesertUnderpass = {COMPOUND_STRING("Wüstentunnel"), FLAG_LANDMARK_DESERT_UNDERPASS};
+#if !IS_HNS
 static const struct Landmark Landmark_TrainerHill = {COMPOUND_STRING("Trainerberg"), FLAG_LANDMARK_TRAINER_HILL};
+#endif
 
 static const struct Landmark *const Landmarks_Route103_2[]  =
 {
@@ -155,7 +157,9 @@ static const struct Landmark *const Landmarks_Route111_3[]  =
 
 static const struct Landmark *const Landmarks_Route111_4[]  =
 {
+#if !IS_HNS
     &Landmark_TrainerHill,
+#endif
     &Landmark_WinstrateFamily,
     &Landmark_Desert,
     NULL,

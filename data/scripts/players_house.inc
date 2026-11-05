@@ -2,6 +2,7 @@ PlayersHouse_2F_EventScript_BlockStairsUntilClockIsSet::
 	setvar VAR_LITTLEROOT_INTRO_STATE, 5
 	return
 
+#if !IS_HNS
 PlayersHouse_1F_EventScript_EnterHouseMovingIn::
 	msgbox PlayersHouse_1F_Text_IsntItNiceInHere, MSGBOX_DEFAULT
 	applymovement VAR_0x8004, Common_Movement_FacePlayer
@@ -39,6 +40,7 @@ PlayersHouse_1F_EventScript_MomGoSeeRoom::
 	waitmovement 0
 	releaseall
 	end
+#endif
 
 LittlerootTown_BrendansHouse_2F_EventScript_WallClock::
 	lockall
@@ -70,6 +72,12 @@ PlayersHouse_2F_EventScript_WallClock::
 	msgbox PlayersHouse_2F_Text_ClockIsStopped, MSGBOX_DEFAULT
 	call PlayersHouse_2F_EventScript_SetWallClock
 	delay 30
+#if IS_HNS
+	@ Origin Jade: sets the clock only, no Mom scene.
+	setflag FLAG_SET_WALL_CLOCK
+	releaseall
+	end
+#else
 	setvar VAR_LITTLEROOT_INTRO_STATE, 6
 	setflag FLAG_SET_WALL_CLOCK
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1
@@ -81,7 +89,9 @@ PlayersHouse_2F_EventScript_WallClock::
 	removeobject VAR_0x8008
 	releaseall
 	end
+#endif
 
+#if !IS_HNS
 PlayersHouse_2F_EventScript_MomComesUpstairsMale::
 	setvar VAR_0x8008, LOCALID_PLAYERS_HOUSE_2F_MOM
 	addobject VAR_0x8008
@@ -107,6 +117,7 @@ PlayersHouse_2F_EventScript_MomComesUpstairsFemale::
 	applymovement VAR_0x8008, PlayersHouse_2F_Movement_MomExitsFemale
 	waitmovement 0
 	return
+#endif
 
 PlayersHouse_2F_EventScript_CheckWallClock::
 	incrementgamestat GAME_STAT_CHECKED_CLOCK
@@ -122,6 +133,7 @@ PlayersHouse_2F_EventScript_SetWallClock::
 	waitstate
 	return
 
+#if !IS_HNS
 PlayersHouse_2F_Movement_MomEntersMale:
 	delay_8
 	walk_down
@@ -151,7 +163,9 @@ PlayersHouse_2F_Movement_MomExitsFemale:
 	walk_up
 	delay_8
 	step_end
+#endif
 
+#if !IS_HNS
 PlayersHouse_1F_EventScript_SetWatchedBroadcast::
 	setvar VAR_LITTLEROOT_INTRO_STATE, 7
 	releaseall
@@ -376,16 +390,18 @@ PlayersHouse_1F_EventScript_MomHealsParty_PokecenterChallenge::
 	msgbox PlayersHouse_1F_Text_YouShouldRestABit_PokecenterChallenge, MSGBOX_DEFAULT
 	closemessage
 	end
+#endif
 
 PlayersHouse_1F_Text_YouShouldRestABit_PokecenterChallenge:
 #if GERMAN
-	.string "Mutti: Tut mir leid, Schatz, du spielst\n"
-	.string "mit Pokécenter challenge!$"
+	.string "Mama: Tut mir leid, Schatz, du spielst\n"
+	.string "mit der Pokécenter-Challenge!$"
 #else
 	.string "MOM: Sorry honey, you are playing\n"
 	.string "with the POKéCENTER challenge!$"
 #endif
 
+#if !IS_HNS
 PlayersHouse_1F_EventScript_SeeYouHoney::
 	msgbox PlayersHouse_1F_Text_SeeYouHoney, MSGBOX_DEFAULT
 	release
@@ -403,6 +419,7 @@ PlayersHouse_1F_EventScript_DidYouMeetProfBirch::
 	msgbox PlayersHouse_1F_Text_DidYouMeetProfBirch, MSGBOX_DEFAULT
 	release
 	end
+#endif
 
 PlayersHouse_1F_EventScript_Vigoroth1::
 	lock
@@ -424,6 +441,7 @@ PlayersHouse_1F_EventScript_Vigoroth2::
 	release
 	end
 
+#if !IS_HNS
 PlayersHouse_1F_Movement_PlayerApproachTVForGymMale:
 	walk_down
 	walk_down
@@ -506,8 +524,7 @@ PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV::
 	call_if_eq VAR_0x8008, MALE, PlayersHouse_1F_EventScript_MomApproachPlayerAfterTVMale
 	call_if_eq VAR_0x8008, FEMALE, PlayersHouse_1F_EventScript_MomApproachPlayerAfterTVFemale
 #if IS_HNS
-	@ Latias and Latios both roam Hoenn after the Hoenn title (ReviveDefeatedLegendaries),
-	@ see docs/origin_jade/DECISIONS.md, D-026.
+	@ Latias and Latios both roam Hoenn after the Hoenn title (ReviveDefeatedLegendaries).
 #else
 	msgbox PlayersHouse_1F_Text_WhatColorDidTheySay, MSGBOX_DEFAULT
 	multichoice 22, 8, MULTI_TV_LATI, TRUE
@@ -711,6 +728,7 @@ PlayersHouse_1F_Movement_PlayerApproachTVForLatiFemale:
 	walk_right
 	walk_in_place_faster_up
 	step_end
+#endif
 
 EventScript_RunningShoesManual::
 	msgbox PlayersHouse_1F_Text_RunningShoesManual, MSGBOX_SIGN

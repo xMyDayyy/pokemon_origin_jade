@@ -317,8 +317,7 @@ BattleFrontier_ReceptionGate_Text_WelcomeToBattleFrontier_hns:
 BattleFrontier_ReceptionGate_Text_IssueFrontierPass_hns:
 #if GERMAN
 	.string "Jeder, der zum ersten Mal hier ist,\n"
-	.string "bekommt einen Kampfzonenpass von uns.\l"
-	.string "\p"
+	.string "bekommt einen Kampfzonenpass von uns.\p"
 	.string "Damit kannst du alle Einrichtungen der\n"
 	.string "Kampfzone besuchen.\p"
 	.string "Hier, bitte schön!$"

@@ -563,7 +563,7 @@ AzaleaTown_Gym_EventScript_Bugsy_Defeated::
 	release
 	end
 
-@ Rematch after the Johto title, see docs/origin_jade/DECISIONS.md, D-032.
+@ Rematch after the Johto title.
 AzaleaTown_Gym_EventScript_Bugsy_Rematch::
 	msgbox AzaleaTown_Gym_Text_BugsyRematch, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
@@ -746,7 +746,7 @@ AzaleaTown_Gym_Text_HiveBadgeSpeech:
 	.string "Kai: Weißt du schon, welche Vorzüge du\n"
 	.string "mit dem Insektorden genießt?\p"
 	.string "Mit ihm gehorchen dir alle Pokémon bis\n"
-	.string "zu einem Level von 30!\p"
+	.string "zu einem Level von 55!\p"
 	.string "Dazu ist es Pokémon, die mit der\n"
 	.string "Attacke Zerschneider vertraut sind,\l"
 	.string "nun möglich, diese jetzt auch außerhalb\l"
@@ -756,7 +756,7 @@ AzaleaTown_Gym_Text_HiveBadgeSpeech:
 	.string "Do you know the benefits\n"
 	.string "of HIVEBADGE?\p"
 	.string "If you have it, POKéMON up\n"
-	.string "to L30 will obey you,\l"
+	.string "to L55 will obey you,\l"
 	.string "even traded ones.\p"
 	.string "POKéMON that know CUT will be able\n"
 	.string "to use it outside of battle too.\p"

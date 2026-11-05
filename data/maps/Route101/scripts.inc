@@ -329,8 +329,7 @@ Route101_Text_YouSavedMe:
 #if GERMAN
 	.string "Prof. Birk: Puuuh…\p"
 	.string "Ich habe im hohen Gras Pokémon\n"
-	.string "studiert, als ich angesprungen wurde.\l"
-	.string "\p"
+	.string "studiert, als ich angesprungen wurde.\p"
 	.string "Du hast mich gerettet.\n"
 	.string "Vielen, vielen Dank!\p"
 	.string "Oh?\p"

@@ -24,6 +24,7 @@ extern const u8 BattleScript_PresentHealTarget[];
 extern const u8 BattleScript_MoveUsedMustRecharge[];
 extern const u8 BattleScript_FaintBattler[];
 extern const u8 BattleScript_GiveExp[];
+extern const u8 BattleScript_DebugInstantTrainerWinFaint[];
 extern const u8 BattleScript_HandleFaintedMon[];
 extern const u8 BattleScript_LocalTrainerBattleWon[];
 extern const u8 BattleScript_LocalTwoTrainersDefeated[];

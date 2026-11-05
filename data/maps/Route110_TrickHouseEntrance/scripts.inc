@@ -873,8 +873,7 @@ Route110_TrickHouseEntrance_Text_ItsAScroll:
 
 Route110_TrickHouseEntrance_Text_GoInHoleBehindScroll:
 #if GERMAN
-	.string "Hinter der Schriftrolle ist ein Loch!\n"
-	.string "\p"
+	.string "Hinter der Schriftrolle ist ein Loch!\p"
 	.string "Möchtest du hindurchgehen?$"
 #else
 	.string "There is a big hole behind the scroll!\p"

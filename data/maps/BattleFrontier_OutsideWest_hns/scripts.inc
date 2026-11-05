@@ -7,7 +7,7 @@ BattleFrontier_OutsideWest_OnTransition_hns:
 	setflag FLAG_HIDE_BATTLE_TOWER_REPORTER
 	end
 
-@ M.S. Aqua to Olivine, Vermilion or Hoenn (see docs/origin_jade/DECISIONS.md, D-029).
+@ M.S. Aqua to Olivine, Vermilion or Hoenn.
 BattleFrontier_OutsideWest_EventScript_EventScript_Sailor_hns::
 	lock
 	faceplayer
@@ -683,8 +683,7 @@ BattleFrontier_OutsideWest_Text_FansOverThereUsedToBeTrainers_hns:
 	.string "Diese Leute da, die sich gerade in den\n"
 	.string "Haaren liegen…\p"
 	.string "Es ist schwer zu glauben, aber das\n"
-	.string "waren mal Trainer. Gute Trainer sogar!\l"
-	.string "\p"
+	.string "waren mal Trainer. Gute Trainer sogar!\p"
 	.string "Sie waren stark und auch berühmt.\p"
 	.string "Aber ein bestimmter Trainer hat sie bei\n"
 	.string "einem Turnier mit Pauken und Trompeten\l"

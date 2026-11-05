@@ -537,12 +537,22 @@ BerryBlender_EventScript_TooWeakToBlend::
 	end
 
 BerryBlender_Text_TooWeakToBlend::
+#if GERMAN
+	.string "Mixmeister: Hmm! Du willst mich also\n"
+	.string "in Aktion sehen?!?\p"
+	.string "Tut mir leid, aber meine Mixkunst ist\n"
+	.string "für einen Anfänger wie dich noch viel\l"
+	.string "zu fortgeschritten.\p"
+	.string "Komm wieder, wenn du Großes\n"
+	.string "vollbracht hast.$"
+#else
 	.string "BLEND MASTER: Hmmm! So, you wish to\n"
 	.string "see my mastery in action?\p"
 	.string "Sorry, but my blending is far too\n"
 	.string "advanced for a rookie like yourself.\p"
 	.string "Come back and see me once you've\n"
 	.string "achieved greatness.$"
+#endif
 
 BerryBlender_EventScript_DeclineBlender1:
 	msgbox BerryBlender_Text_MadeOldTimerSad, MSGBOX_DEFAULT

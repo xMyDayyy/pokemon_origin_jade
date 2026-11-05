@@ -245,23 +245,22 @@ static void Task_PartyMenuItemUseFromField(u8 taskId)
     }
 }
 
-// Cannot-use text of the current map: Oak on FRLG Kanto maps, Dad in Hoenn, Elm in
-// Johto (HnS maps and the Kampfzone with its Artisan Cave, see
-// docs/origin_jade/DECISIONS.md, D-030).
+// Cannot-use text of the current map: Oak on FRLG Kanto maps, Birch in Hoenn, Elm in
+// Johto (HnS maps and the Kampfzone with its Artisan Cave.
 static const u8 *GetCannotUseItemText(void)
 {
 #if IS_HNS
     u32 mapsec = gMapHeader.regionMapSectionId;
 
     if (IsHoennMapsec(mapsec))
-        return gText_DadsAdvice;
+        return gText_BirchsAdvice;
     // Emerald and FRLG maps come after HnS's in data/maps/map_groups.json.
     if (gSaveBlock1Ptr->location.mapGroup >= MAP_GROUP(MAP_LITTLEROOT_TOWN)
      && mapsec != MAPSEC_BATTLE_FRONTIER)
     {
         if (GetCurrentRegion() == REGION_KANTO)
             return gText_OaksAdvice;
-        return gText_DadsAdvice;
+        return gText_BirchsAdvice;
     }
     return gText_ElmsAdvice;
 #else
@@ -285,7 +284,7 @@ static void DisplayCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyIte
     }
 }
 
-void DisplayDadsAdviceCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField)
+void DisplayAdviceCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField)
 {
     DisplayCannotUseItemMessage(taskId, isUsingRegisteredKeyItemOnField, GetCannotUseItemText());
 }
@@ -351,7 +350,7 @@ void ItemUseOutOfBattle_ExpShare(u8 taskId)
     }
     FlagToggle(I_EXP_SHARE_FLAG);
 #else
-    DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    DisplayAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
 #endif
 }
 
@@ -376,7 +375,7 @@ void ItemUseOutOfBattle_Bike(u8 taskId)
         }
         else
         {
-            DisplayDadsAdviceCannotUseItemMessage(taskId, tUsingRegisteredKeyItem);
+            DisplayAdviceCannotUseItemMessage(taskId, tUsingRegisteredKeyItem);
         }
     }
 }
@@ -435,7 +434,7 @@ void ItemUseOutOfBattle_Rod(u8 taskId)
     }
     else
     {
-        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+        DisplayAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
     }
 }
 
@@ -805,7 +804,7 @@ void ItemUseOutOfBattle_PokeblockCase(u8 taskId)
 {
     if (MenuHelpers_IsLinkActive() == TRUE)
     {
-        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+        DisplayAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
     }
     else if (gTasks[taskId].tUsingRegisteredKeyItem != TRUE)
     {
@@ -914,7 +913,7 @@ void ItemUseOutOfBattle_WailmerPail(u8 taskId)
     }
     else
     {
-        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+        DisplayAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
     }
 }
 
@@ -1226,7 +1225,7 @@ void ItemUseOutOfBattle_EscapeRope(u8 taskId)
     }
     else
     {
-        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+        DisplayAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
     }
 }
 
@@ -1693,7 +1692,7 @@ void ItemUseOutOfBattle_PokeBall(u8 taskId)
 
 void ItemUseOutOfBattle_CannotUse(u8 taskId)
 {
-    DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    DisplayAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
 }
 
 static void Task_UseGBPlayer(u8 taskId)
@@ -1790,7 +1789,7 @@ void FieldUseFunc_VsSeeker(u8 taskId)
         SetUpItemUseOnFieldCallback(taskId);
     }
     else
-        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+        DisplayAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
 }
 
 void Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker(u8 taskId)

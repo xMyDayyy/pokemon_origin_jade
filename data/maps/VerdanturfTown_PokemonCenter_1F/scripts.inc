@@ -21,7 +21,7 @@ VerdanturfTown_PokemonCenter_1F_EventScript_Gentleman::
 	end
 
 VerdanturfTown_PokemonCenter_1F_EventScript_ExpertM::
-	msgbox VerdanturfTown_PokemonCenter_1F_Text_VisitForBattleTent, MSGBOX_NPC
+	msgbox VerdanturfTown_PokemonCenter_1F_Text_AllContestsOriginateHere, MSGBOX_NPC
 	end
 
 VerdanturfTown_PokemonCenter_1F_Text_FaithInYourPokemon:
@@ -39,20 +39,15 @@ VerdanturfTown_PokemonCenter_1F_Text_FaithInYourPokemon:
 	.string "through to the very end.$"
 #endif
 
-VerdanturfTown_PokemonCenter_1F_Text_VisitForBattleTent:
+VerdanturfTown_PokemonCenter_1F_Text_AllContestsOriginateHere:
 #if GERMAN
-	.string "Der Grund, warum jeder Wiesenflur\n"
-	.string "besucht…\p"
-	.string "ist das Kampfcamp. Das liegt auf der\n"
-	.string "Hand.\p"
-	.string "Oder bist du aus einem anderen Grund\n"
-	.string "hier?$"
+	.string "Lass mich raten, warum du in\n"
+	.string "Wiesenflur bist… Wegen des\l"
+	.string "Wettbewerbs!\p"
+	.string "Hier ist die Wiege aller Wettbewerbe.$"
 #else
-	.string "The reason why anyone would visit\n"
-	.string "VERDANTURF…\p"
-	.string "It's the BATTLE TENT. It goes without\n"
-	.string "saying.\p"
-	.string "Or is there somebody here that you\n"
-	.string "came to see?$"
+	.string "Let me hazard a guess why you're in\n"
+	.string "VERDANTURF. The reason: CONTESTS.\p"
+	.string "All CONTEST challenges originate here.$"
 #endif
 

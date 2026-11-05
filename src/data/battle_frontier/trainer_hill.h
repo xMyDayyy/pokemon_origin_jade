@@ -353,9 +353,10 @@ static const struct TrainerHillFloor sFloors_JPDefault[] = {
 };
 
 
+// HnS data: the Trainer Hill by Route 40.
 #if IS_HNS
 
-static const struct TrainerHillChallenge sChallenge_Normal =
+static const struct TrainerHillChallenge sChallenge_Normal_Hns =
 {
     .numTrainers = NUM_TRAINER_HILL_TRAINERS,
     .unused1 = 2,
@@ -363,7 +364,7 @@ static const struct TrainerHillChallenge sChallenge_Normal =
     .checksum = 0x00051E05
 };
 
-static const struct TrainerHillFloor sFloors_Normal[] =
+static const struct TrainerHillFloor sFloors_Normal_Hns[] =
 {
     [0] =
     {
@@ -1482,7 +1483,7 @@ static const struct TrainerHillFloor sFloors_Normal[] =
     },
 };
 
-static const struct TrainerHillChallenge sChallenge_Variety =
+static const struct TrainerHillChallenge sChallenge_Variety_Hns =
 {
     .numTrainers = NUM_TRAINER_HILL_TRAINERS,
     .unused1 = 1,
@@ -1490,7 +1491,7 @@ static const struct TrainerHillChallenge sChallenge_Variety =
     .checksum = 0x00054C15
 };
 
-static const struct TrainerHillFloor sFloors_Variety[] = {
+static const struct TrainerHillFloor sFloors_Variety_Hns[] = {
     [0] =
         {
             .trainerNum1 = 41,
@@ -2623,7 +2624,7 @@ static const struct TrainerHillFloor sFloors_Variety[] = {
         },
 };
 
-static const struct TrainerHillChallenge sChallenge_Unique =
+static const struct TrainerHillChallenge sChallenge_Unique_Hns =
 {
     .numTrainers = NUM_TRAINER_HILL_TRAINERS,
     .unused1 = 3,
@@ -2631,7 +2632,7 @@ static const struct TrainerHillChallenge sChallenge_Unique =
     .checksum = 0x000652F3
 };
 
-static const struct TrainerHillFloor sFloors_Unique[] = {
+static const struct TrainerHillFloor sFloors_Unique_Hns[] = {
     [0] =
         {
             .trainerNum1 = 49,
@@ -3712,9 +3713,9 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                                         },
                                     [5] =
                                         {
-                                            .species = SPECIES_REGIELEKI,
+                                            .species = SPECIES_RAIKOU,
                                             .heldItem = ITEM_MAGNET,
-                                            .moves = {MOVE_THUNDERBOLT, MOVE_EXTREME_SPEED, MOVE_LIGHT_SCREEN, MOVE_EXPLOSION},
+                                            .moves = {MOVE_THUNDERBOLT, MOVE_EXTREME_SPEED, MOVE_LIGHT_SCREEN, MOVE_CRUNCH},
                                             .speedEV = 255,
                                             .spAttackEV = 255,
                                             .otId = TRAINER_HILL_OTID,
@@ -3726,7 +3727,7 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
                                             .spDefenseIV = 15,
                                             .abilityNum = 0,
                                             .personality = 0x6,
-                                            .nickname = _("Regieleki"),
+                                            .nickname = _("Raikou"),
                                             .friendship = MAX_FRIENDSHIP,
                                         },
                                 },
@@ -3742,7 +3743,7 @@ static const struct TrainerHillFloor sFloors_Unique[] = {
         },
 };
 
-static const struct TrainerHillChallenge sChallenge_Expert =
+static const struct TrainerHillChallenge sChallenge_Expert_Hns =
 {
     .numTrainers = NUM_TRAINER_HILL_TRAINERS,
     .unused1 = 1,
@@ -3750,7 +3751,7 @@ static const struct TrainerHillChallenge sChallenge_Expert =
     .checksum = 0x00061F3F
 };
 
-static const struct TrainerHillFloor sFloors_Expert[] = {
+static const struct TrainerHillFloor sFloors_Expert_Hns[] = {
     [0] =
         {
             .trainerNum1 = 57,
@@ -4868,8 +4869,9 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
 };
 
 
-#else
+#endif // IS_HNS
 
+// Emerald data: the Trainer Hill on Route 111.
 static const struct TrainerHillChallenge sChallenge_Normal =
 {
     .numTrainers = NUM_TRAINER_HILL_TRAINERS,
@@ -9333,8 +9335,6 @@ static const struct TrainerHillFloor sFloors_Expert[] = {
             }
         },
 };
-
-#endif
 
 #undef COORDS_XY
 #undef TRAINER_DIRS

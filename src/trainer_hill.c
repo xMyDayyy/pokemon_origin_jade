@@ -70,20 +70,31 @@ static void SetGameSaved(void);
 static void ClearGameSaved(void);
 static void GetChallengeWon(void);
 static void TrainerHillSetMode(void);
+static void GetInHoennHill(void);
 static void SetUpDataStruct(void);
 static void FreeDataStruct(void);
 static void TrainerHillDummy(void);
 #if FREE_TRAINER_HILL == FALSE
 static void SetTimerValue(u32 *dst, u32 val);
 static u32 GetTimerValue(u32 *src);
+static u32 *GetHillTimes(void);
 #endif //FREE_TRAINER_HILL
 static void SetTrainerHillMonLevel(struct Pokemon *mon, u8 level);
 #if FREE_TRAINER_HILL == FALSE
 static u16 GetPrizeItemId(void);
+#if IS_HNS
+static u32 GetPrizeMoney(s32 minutes);
+#endif
 #endif //FREE_TRAINER_HILL
 
 // const data
 #include "data/battle_frontier/trainer_hill.h"
+
+struct TrainerClassMusic
+{
+    u8 trainerClass;
+    u8 musicId;
+};
 
 #if IS_HNS
 
@@ -93,11 +104,7 @@ static u16 GetPrizeItemId(void);
 // reach; they are kept so new floors get sensible music rather than falling back to 0.
 // The TRAINER_ENCOUNTER_MUSIC_HG_* ids are only decoded inside the IS_HNS branch of
 // PlayTrainerEncounterMusic, so they must not appear in the table below this one.
-struct
-{
-    u8 trainerClass;
-    u8 musicId;
-} static const sTrainerClassesAndMusic[] =
+static const struct TrainerClassMusic sTrainerClassesAndMusic_Hns[] =
 {
     // Trainers' Eyes Meet (Suspicious Figure 2)
     {TRAINER_CLASS_POKEFAN,       TRAINER_ENCOUNTER_MUSIC_HG_SUSPICIOUS_2},
@@ -172,13 +179,9 @@ struct
     {TRAINER_CLASS_RIVAL,         TRAINER_ENCOUNTER_MUSIC_SILVER},          // Unused
 };
 
-#else // IS_HNS
+#endif // IS_HNS
 
-struct
-{
-    u8 trainerClass;
-    u8 musicId;
-} static const sTrainerClassesAndMusic[] =
+static const struct TrainerClassMusic sTrainerClassesAndMusic[] =
 {
     {TRAINER_CLASS_TEAM_AQUA, TRAINER_ENCOUNTER_MUSIC_AQUA},
     {TRAINER_CLASS_AQUA_ADMIN, TRAINER_ENCOUNTER_MUSIC_AQUA},
@@ -236,31 +239,64 @@ struct
     {TRAINER_CLASS_SCHOOL_KID, TRAINER_ENCOUNTER_MUSIC_MALE},
 };
 
+#if IS_HNS
+static const u16 sPrizeListRareCandy1_Hns[]  = {ITEM_RARE_CANDY,       ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
+static const u16 sPrizeListLuxuryBall1_Hns[] = {ITEM_LUXURY_BALL,      ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
+static const u16 sPrizeListMaxRevive1_Hns[]  = {ITEM_MAX_REVIVE,       ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
+static const u16 sPrizeListMaxEther1_Hns[]   = {ITEM_MAX_ETHER,        ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
+static const u16 sPrizeListElixir1_Hns[]     = {ITEM_PETAYA_BERRY,     ITEM_MAX_ETHER, ITEM_BIG_NUGGET, ITEM_MAX_REVIVE, ITEM_MAX_POTION, ITEM_LUXURY_BALL};
+static const u16 sPrizeListRoar_Hns[]        = {ITEM_LUXURY_BALL,      ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
+static const u16 sPrizeListSludgeBomb_Hns[]  = {ITEM_GREEN_SHARD,      ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
+static const u16 sPrizeListToxic_Hns[]       = {ITEM_RED_SHARD,        ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
+static const u16 sPrizeListSunnyDay_Hns[]    = {ITEM_APICOT_BERRY,     ITEM_MAX_ETHER, ITEM_BIG_NUGGET, ITEM_MAX_REVIVE, ITEM_MAX_POTION, ITEM_LUXURY_BALL};
+static const u16 sPrizeListEarthQuake_Hns[]  = {ITEM_YELLOW_SHARD,     ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
+
+static const u16 sPrizeListRareCandy2_Hns[]  = {ITEM_RARE_CANDY,       ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
+static const u16 sPrizeListLuxuryBall2_Hns[] = {ITEM_LUXURY_BALL,      ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
+static const u16 sPrizeListMaxRevive2_Hns[]  = {ITEM_MAX_REVIVE,       ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
+static const u16 sPrizeListMaxEther2_Hns[]   = {ITEM_MAX_ETHER,        ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
+static const u16 sPrizeListElixir2_Hns[]     = {ITEM_PETAYA_BERRY,     ITEM_MAX_ETHER, ITEM_BIG_NUGGET, ITEM_MAX_REVIVE, ITEM_MAX_POTION, ITEM_LUXURY_BALL};
+static const u16 sPrizeListBrickBreak_Hns[]  = {ITEM_GANLON_BERRY,     ITEM_MAX_ETHER, ITEM_BIG_NUGGET, ITEM_MAX_REVIVE, ITEM_MAX_POTION, ITEM_LUXURY_BALL};
+static const u16 sPrizeListTorment_Hns[]     = {ITEM_SUN_STONE,        ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
+static const u16 sPrizeListSkillSwap_Hns[]   = {ITEM_RED_SHARD,        ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
+static const u16 sPrizeListGigaDrain_Hns[]   = {ITEM_SALAC_BERRY,      ITEM_MAX_ETHER, ITEM_BIG_NUGGET, ITEM_MAX_REVIVE, ITEM_MAX_POTION, ITEM_LUXURY_BALL};
+static const u16 sPrizeListAttract_Hns[]     = {ITEM_BLUE_SHARD,       ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
+
+static const u16 *const sPrizeLists1_Hns[NUM_TRAINER_HILL_PRIZE_LISTS] =
+{
+    sPrizeListRareCandy1_Hns,
+    sPrizeListLuxuryBall1_Hns,
+    sPrizeListMaxRevive1_Hns,
+    sPrizeListMaxEther1_Hns,
+    sPrizeListElixir1_Hns,
+    sPrizeListRoar_Hns,
+    sPrizeListSludgeBomb_Hns,
+    sPrizeListToxic_Hns,
+    sPrizeListSunnyDay_Hns,
+    sPrizeListEarthQuake_Hns
+};
+
+static const u16 *const sPrizeLists2_Hns[NUM_TRAINER_HILL_PRIZE_LISTS] =
+{
+    sPrizeListRareCandy2_Hns,
+    sPrizeListLuxuryBall2_Hns,
+    sPrizeListMaxRevive2_Hns,
+    sPrizeListMaxEther2_Hns,
+    sPrizeListElixir2_Hns,
+    sPrizeListBrickBreak_Hns,
+    sPrizeListTorment_Hns,
+    sPrizeListSkillSwap_Hns,
+    sPrizeListGigaDrain_Hns,
+    sPrizeListAttract_Hns
+};
+
+static const u16 *const *const sPrizeListSets_Hns[] =
+{
+    sPrizeLists1_Hns,
+    sPrizeLists2_Hns
+};
 #endif // IS_HNS
 
-#if IS_HNS
-static const u16 sPrizeListRareCandy1[]  = {ITEM_RARE_CANDY,       ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
-static const u16 sPrizeListLuxuryBall1[] = {ITEM_LUXURY_BALL,      ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
-static const u16 sPrizeListMaxRevive1[]  = {ITEM_MAX_REVIVE,       ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
-static const u16 sPrizeListMaxEther1[]   = {ITEM_MAX_ETHER,        ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
-static const u16 sPrizeListElixir1[]     = {ITEM_PETAYA_BERRY,     ITEM_MAX_ETHER, ITEM_BIG_NUGGET, ITEM_MAX_REVIVE, ITEM_MAX_POTION, ITEM_LUXURY_BALL};
-static const u16 sPrizeListRoar[]        = {ITEM_LUXURY_BALL,      ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
-static const u16 sPrizeListSludgeBomb[]  = {ITEM_GREEN_SHARD,      ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
-static const u16 sPrizeListToxic[]       = {ITEM_RED_SHARD,        ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
-static const u16 sPrizeListSunnyDay[]    = {ITEM_APICOT_BERRY,     ITEM_MAX_ETHER, ITEM_BIG_NUGGET, ITEM_MAX_REVIVE, ITEM_MAX_POTION, ITEM_LUXURY_BALL};
-static const u16 sPrizeListEarthQuake[]  = {ITEM_YELLOW_SHARD,     ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
-
-static const u16 sPrizeListRareCandy2[]  = {ITEM_RARE_CANDY,       ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
-static const u16 sPrizeListLuxuryBall2[] = {ITEM_LUXURY_BALL,      ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
-static const u16 sPrizeListMaxRevive2[]  = {ITEM_MAX_REVIVE,       ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
-static const u16 sPrizeListMaxEther2[]   = {ITEM_MAX_ETHER,        ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
-static const u16 sPrizeListElixir2[]     = {ITEM_PETAYA_BERRY,     ITEM_MAX_ETHER, ITEM_BIG_NUGGET, ITEM_MAX_REVIVE, ITEM_MAX_POTION, ITEM_LUXURY_BALL};
-static const u16 sPrizeListBrickBreak[]  = {ITEM_GANLON_BERRY,     ITEM_MAX_ETHER, ITEM_BIG_NUGGET, ITEM_MAX_REVIVE, ITEM_MAX_POTION, ITEM_LUXURY_BALL};
-static const u16 sPrizeListTorment[]     = {ITEM_SUN_STONE,        ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
-static const u16 sPrizeListSkillSwap[]   = {ITEM_RED_SHARD,        ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
-static const u16 sPrizeListGigaDrain[]   = {ITEM_SALAC_BERRY,      ITEM_MAX_ETHER, ITEM_BIG_NUGGET, ITEM_MAX_REVIVE, ITEM_MAX_POTION, ITEM_LUXURY_BALL};
-static const u16 sPrizeListAttract[]     = {ITEM_BLUE_SHARD,       ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
-#else
 static const u16 sPrizeListRareCandy1[]  = {ITEM_RARE_CANDY,       ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
 static const u16 sPrizeListLuxuryBall1[] = {ITEM_LUXURY_BALL,      ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
 static const u16 sPrizeListMaxRevive1[]  = {ITEM_MAX_REVIVE,       ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
@@ -282,7 +318,6 @@ static const u16 sPrizeListTorment[]     = {ITEM_TM_TORMENT,       ITEM_ETHER, I
 static const u16 sPrizeListSkillSwap[]   = {ITEM_TM_SKILL_SWAP,    ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
 static const u16 sPrizeListGigaDrain[]   = {ITEM_TM_GIGA_DRAIN,    ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
 static const u16 sPrizeListAttract[]     = {ITEM_TM_ATTRACT,       ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
-#endif
 
 static const u16 *const sPrizeLists1[NUM_TRAINER_HILL_PRIZE_LISTS] =
 {
@@ -337,6 +372,24 @@ static const struct TrainerHillFloor *const sFloorData[NUM_TRAINER_HILL_MODES] =
     [HILL_MODE_EXPERT]  = &sFloors_Expert[0],
 };
 
+#if IS_HNS
+static const struct TrainerHillChallenge *const sChallengeData_Hns[NUM_TRAINER_HILL_MODES] =
+{
+    [HILL_MODE_NORMAL]  = &sChallenge_Normal_Hns,
+    [HILL_MODE_VARIETY] = &sChallenge_Variety_Hns,
+    [HILL_MODE_UNIQUE]  = &sChallenge_Unique_Hns,
+    [HILL_MODE_EXPERT]  = &sChallenge_Expert_Hns,
+};
+
+static const struct TrainerHillFloor *const sFloorData_Hns[NUM_TRAINER_HILL_MODES] =
+{
+    [HILL_MODE_NORMAL]  = &sFloors_Normal_Hns[0],
+    [HILL_MODE_VARIETY] = &sFloors_Variety_Hns[0],
+    [HILL_MODE_UNIQUE]  = &sFloors_Unique_Hns[0],
+    [HILL_MODE_EXPERT]  = &sFloors_Expert_Hns[0],
+};
+#endif // IS_HNS
+
 // Unused.
 static const u8 *const sFloorStrings[] =
 {
@@ -366,6 +419,7 @@ static void (*const sHillFunctions[])(void) =
     [TRAINER_HILL_FUNC_CLEAR_GAME_SAVED]      = ClearGameSaved,
     [TRAINER_HILL_FUNC_GET_WON]               = GetChallengeWon,
     [TRAINER_HILL_FUNC_SET_MODE]              = TrainerHillSetMode,
+    [TRAINER_HILL_FUNC_IN_HOENN_HILL]         = GetInHoennHill,
 };
 
 static const u8 *const sModeStrings[NUM_TRAINER_HILL_MODES] =
@@ -425,17 +479,45 @@ void ResetTrainerHillResults(void)
 #if FREE_TRAINER_HILL == FALSE
     gSaveBlock1Ptr->trainerHill.bestTime = 0;
     for (i = 0; i < NUM_TRAINER_HILL_MODES; i++)
+    {
         SetTimerValue(&gSaveBlock1Ptr->trainerHillTimes[i], HILL_MAX_TIME);
+#if IS_HNS
+        SetTimerValue(&gSaveBlock3Ptr->trainerHillTimesHoenn[i], HILL_MAX_TIME);
+#endif
+    }
 #endif //FREE_TRAINER_HILL
+}
+
+// TRUE selects the HnS hill by Route 40 (layouts, data, prizes, records), FALSE
+// the Emerald hill on Route 111. Only the HnS build has both; there every map
+// outside the Route 111 hill counts as HnS.
+static bool32 IsHnsTrainerHill(void)
+{
+#if IS_HNS
+    switch (gMapHeader.mapLayoutId)
+    {
+    case LAYOUT_TRAINER_HILL_ENTRANCE:
+    case LAYOUT_TRAINER_HILL_1F:
+    case LAYOUT_TRAINER_HILL_2F:
+    case LAYOUT_TRAINER_HILL_3F:
+    case LAYOUT_TRAINER_HILL_4F:
+    case LAYOUT_TRAINER_HILL_ROOF:
+        return FALSE;
+    default:
+        return TRUE;
+    }
+#else
+    return FALSE;
+#endif
 }
 
 static u8 GetFloorId(void)
 {
 #if IS_HNS
-    return gMapHeader.mapLayoutId - LAYOUT_TRAINER_HILL_1F_HNS;
-#else
-    return gMapHeader.mapLayoutId - LAYOUT_TRAINER_HILL_1F;
+    if (IsHnsTrainerHill())
+        return gMapHeader.mapLayoutId - LAYOUT_TRAINER_HILL_1F_HNS;
 #endif
+    return gMapHeader.mapLayoutId - LAYOUT_TRAINER_HILL_1F;
 }
 
 enum TrainerClassID GetTrainerHillOpponentClass(u16 trainerId)
@@ -497,12 +579,16 @@ static void SetUpDataStruct(void)
     if (sHillData != NULL) return;
 
     sHillData = AllocZeroed(sizeof(*sHillData));
-#if IS_HNS
-    sHillData->floorId = gMapHeader.mapLayoutId - LAYOUT_TRAINER_HILL_1F_HNS;
-#else
-    sHillData->floorId = gMapHeader.mapLayoutId - LAYOUT_TRAINER_HILL_1F;
-#endif
+    sHillData->floorId = GetFloorId();
 
+#if IS_HNS
+    if (IsHnsTrainerHill())
+    {
+        CpuCopy32(sChallengeData_Hns[gSaveBlock1Ptr->trainerHill.mode], &sHillData->challenge, sizeof(sHillData->challenge));
+        CpuCopy32(sFloorData_Hns[gSaveBlock1Ptr->trainerHill.mode], &sHillData->floors, sizeof(sHillData->floors));
+        return;
+    }
+#endif
     CpuCopy32(sChallengeData[gSaveBlock1Ptr->trainerHill.mode], &sHillData->challenge, sizeof(sHillData->challenge));
     CpuCopy32(sFloorData[gSaveBlock1Ptr->trainerHill.mode], &sHillData->floors, sizeof(sHillData->floors));
 #endif // FREE_TRAINER_HILL
@@ -587,6 +673,10 @@ static void GiveChallengePrize(void)
     else if (AddBagItem(itemId, 1) == TRUE)
     {
         CopyItemName(itemId, gStringVar2);
+#if IS_HNS
+        if (IsHnsTrainerHill())
+            AddMoney(&gSaveBlock1Ptr->money, GetPrizeMoney((signed)(gSaveBlock1Ptr->trainerHill.timer) / (60 * 60)));
+#endif
         gSaveBlock1Ptr->trainerHill.receivedPrize = TRUE;
         gSaveBlock2Ptr->frontier.unk_EF9 = 0;
         gSpecialVar_Result = 0;
@@ -610,7 +700,7 @@ static void CheckFinalTime(void)
     else if (GetTimerValue(&gSaveBlock1Ptr->trainerHill.bestTime) > gSaveBlock1Ptr->trainerHill.timer)
     {
         SetTimerValue(&gSaveBlock1Ptr->trainerHill.bestTime, gSaveBlock1Ptr->trainerHill.timer);
-        gSaveBlock1Ptr->trainerHillTimes[gSaveBlock1Ptr->trainerHill.mode] = gSaveBlock1Ptr->trainerHill.bestTime;
+        GetHillTimes()[gSaveBlock1Ptr->trainerHill.mode] = gSaveBlock1Ptr->trainerHill.bestTime;
         gSpecialVar_Result = 0;
     }
     else
@@ -764,7 +854,7 @@ void PrintOnTrainerHillRecordsWindow(void)
     {
         AddTextPrinterParameterized3(0, FONT_NORMAL, 0, y, sRecordWinColors, TEXT_SKIP_DRAW, sModeStrings[i]);
         y += 15;
-        total = GetTimerValue(&gSaveBlock1Ptr->trainerHillTimes[i]);
+        total = GetTimerValue(&GetHillTimes()[i]);
         minutes = total / (60 * 60);
         total %= (60 * 60);
         ConvertIntToDecimalStringN(gStringVar1, minutes, STR_CONV_MODE_RIGHT_ALIGN, 2);
@@ -796,6 +886,16 @@ static u32 GetTimerValue(u32 *src)
 static void SetTimerValue(u32 *dst, u32 val)
 {
     *dst = val;
+}
+
+// Best times of the current hill, one per mode.
+static u32 *GetHillTimes(void)
+{
+#if IS_HNS
+    if (!IsHnsTrainerHill())
+        return gSaveBlock3Ptr->trainerHillTimesHoenn;
+#endif
+    return gSaveBlock1Ptr->trainerHillTimes;
 }
 #endif //FREE_TRAINER_HILL
 
@@ -912,12 +1012,13 @@ bool32 InTrainerHill(void)
         || gMapHeader.mapLayoutId == LAYOUT_TRAINER_HILL_2F_HNS
         || gMapHeader.mapLayoutId == LAYOUT_TRAINER_HILL_3F_HNS
         || gMapHeader.mapLayoutId == LAYOUT_TRAINER_HILL_4F_HNS)
-#else
+        ret = TRUE;
+    else
+#endif
     if (gMapHeader.mapLayoutId == LAYOUT_TRAINER_HILL_1F
         || gMapHeader.mapLayoutId == LAYOUT_TRAINER_HILL_2F
         || gMapHeader.mapLayoutId == LAYOUT_TRAINER_HILL_3F
         || gMapHeader.mapLayoutId == LAYOUT_TRAINER_HILL_4F)
-#endif
         ret = TRUE;
     else
         ret = FALSE;
@@ -942,7 +1043,8 @@ u8 GetCurrentTrainerHillMapId(void)
         mapId = TRAINER_HILL_ROOF;
     else if (gMapHeader.mapLayoutId == LAYOUT_TRAINER_HILL_ENTRANCE_HNS)
         mapId = TRAINER_HILL_ENTRANCE;
-#else
+    else
+#endif
     if (gMapHeader.mapLayoutId == LAYOUT_TRAINER_HILL_1F)
         mapId = TRAINER_HILL_1F;
     else if (gMapHeader.mapLayoutId == LAYOUT_TRAINER_HILL_2F)
@@ -955,7 +1057,6 @@ u8 GetCurrentTrainerHillMapId(void)
         mapId = TRAINER_HILL_ROOF;
     else if (gMapHeader.mapLayoutId == LAYOUT_TRAINER_HILL_ENTRANCE)
         mapId = TRAINER_HILL_ENTRANCE;
-#endif
     else
         mapId = 0;
 
@@ -981,8 +1082,8 @@ static bool32 UNUSED OnTrainerHillRoof(void)
 const struct WarpEvent* SetWarpDestinationTrainerHill4F(void)
 {
     const struct MapHeader *header = Overworld_GetMapHeaderByGroupAndId(
-        IS_HNS ? MAP_GROUP(MAP_TRAINER_HILL_4F_HNS) : MAP_GROUP(MAP_TRAINER_HILL_4F),
-        IS_HNS ? MAP_NUM(MAP_TRAINER_HILL_4F_HNS)   : MAP_NUM(MAP_TRAINER_HILL_4F));
+        IsHnsTrainerHill() ? MAP_GROUP(MAP_TRAINER_HILL_4F_HNS) : MAP_GROUP(MAP_TRAINER_HILL_4F),
+        IsHnsTrainerHill() ? MAP_NUM(MAP_TRAINER_HILL_4F_HNS)   : MAP_NUM(MAP_TRAINER_HILL_4F));
 
     return &header->events->warps[1];
 }
@@ -1002,8 +1103,8 @@ const struct WarpEvent* SetWarpDestinationTrainerHillFinalFloor(u8 warpEventId)
         numFloors = NUM_TRAINER_HILL_FLOORS;
 
     header = Overworld_GetMapHeaderByGroupAndId(
-        IS_HNS ? MAP_GROUP(MAP_TRAINER_HILL_4F_HNS) : MAP_GROUP(MAP_TRAINER_HILL_4F),
-        IS_HNS ? sNextFloorMapNum_Hns[numFloors - 1] : sNextFloorMapNum[numFloors - 1]);
+        IsHnsTrainerHill() ? MAP_GROUP(MAP_TRAINER_HILL_4F_HNS) : MAP_GROUP(MAP_TRAINER_HILL_4F),
+        IsHnsTrainerHill() ? sNextFloorMapNum_Hns[numFloors - 1] : sNextFloorMapNum[numFloors - 1]);
     return &header->events->warps[0];
 }
 
@@ -1105,18 +1206,26 @@ u64 GetTrainerHillAIFlags(void)
 
 u8 GetTrainerEncounterMusicIdInTrainerHill(u16 trainerId)
 {
-    s32 i;
+    s32 i, count = ARRAY_COUNT(sTrainerClassesAndMusic);
     u8 trId, facilityClass;
+    const struct TrainerClassMusic *classesAndMusic = sTrainerClassesAndMusic;
 
     SetUpDataStruct();
     trId = trainerId - 1;
     facilityClass = sHillData->floors[sHillData->floorId].trainers[trId].facilityClass;
     FreeDataStruct();
 
-    for (i = 0; i < ARRAY_COUNT(sTrainerClassesAndMusic); i++)
+#if IS_HNS
+    if (IsHnsTrainerHill())
     {
-        if (sTrainerClassesAndMusic[i].trainerClass == gFacilityClassToTrainerClass[facilityClass])
-            return sTrainerClassesAndMusic[i].musicId;
+        classesAndMusic = sTrainerClassesAndMusic_Hns;
+        count = ARRAY_COUNT(sTrainerClassesAndMusic_Hns);
+    }
+#endif
+    for (i = 0; i < count; i++)
+    {
+        if (classesAndMusic[i].trainerClass == gFacilityClassToTrainerClass[facilityClass])
+            return classesAndMusic[i].musicId;
     }
 
     return 0;
@@ -1197,8 +1306,14 @@ static void TrainerHillSetMode(void)
 {
 #if FREE_TRAINER_HILL == FALSE
     gSaveBlock1Ptr->trainerHill.mode = gSpecialVar_0x8005;
-    gSaveBlock1Ptr->trainerHill.bestTime = gSaveBlock1Ptr->trainerHillTimes[gSpecialVar_0x8005];
+    gSaveBlock1Ptr->trainerHill.bestTime = GetHillTimes()[gSpecialVar_0x8005];
 #endif //FREE_TRAINER_HILL
+}
+
+// Sets VAR_RESULT to TRUE on the hill on Route 111 (Emerald), FALSE on the HnS one by Route 40.
+static void GetInHoennHill(void)
+{
+    gSpecialVar_Result = !IsHnsTrainerHill();
 }
 
 // Determines which prize list to use from the set of prize lists.
@@ -1228,6 +1343,27 @@ static u8 GetPrizeListId(bool8 allowTMs)
     prizeListId %= modBy;
     return prizeListId;
 }
+
+#if IS_HNS
+// Money the HnS hill pays with the prize, by challenge time.
+static u32 GetPrizeMoney(s32 minutes)
+{
+    if (minutes < 10)
+        return 1000000;
+    else if (minutes < 12)
+        return 250000;
+    else if (minutes < 13)
+        return 100000;
+    else if (minutes < 14)
+        return 50000;
+    else if (minutes < 16)
+        return 10000;
+    else if (minutes < 18)
+        return 5000;
+    else
+        return 2500;
+}
+#endif
 
 static u16 GetPrizeItemId(void)
 {
@@ -1267,6 +1403,10 @@ static u16 GetPrizeItemId(void)
     // sPrizeListSets[1][8] (Unique)
     // sPrizeListSets[1][5] (Expert)
     prizeList = sPrizeListSets[prizeListSetId][i];
+#if IS_HNS
+    if (IsHnsTrainerHill())
+        prizeList = sPrizeListSets_Hns[prizeListSetId][i];
+#endif
 
     // Which prize is given from the list depends on the time scored.
     // The prize for any time after 12 minutes is the same in every list.
@@ -1279,43 +1419,6 @@ static u16 GetPrizeItemId(void)
     // entering the Hall of Fame, there would be 1 additional prize possibility (ITEM_MAX_ETHER)
     // as Normal / Unique modes would use sPrizeListSets[0][3] / sPrizeListSets[1][3] respectively.
     minutes = (signed)(gSaveBlock1Ptr->trainerHill.timer) / (60 * 60);
-#if IS_HNS
-    if (minutes < 10)
-    {
-        AddMoney(&gSaveBlock1Ptr->money, 1000000);
-        id = 0;
-    }
-    else if (minutes < 12)
-    {
-        AddMoney(&gSaveBlock1Ptr->money, 250000);
-        id = 0;
-    }
-    else if (minutes < 13)
-    {
-        AddMoney(&gSaveBlock1Ptr->money, 100000);
-        id = 1;
-    }
-    else if (minutes < 14)
-    {
-        AddMoney(&gSaveBlock1Ptr->money, 50000);
-        id = 2;
-    }
-    else if (minutes < 16)
-    {
-        AddMoney(&gSaveBlock1Ptr->money, 10000);
-        id = 3;
-    }
-    else if (minutes < 18)
-    {
-        AddMoney(&gSaveBlock1Ptr->money, 5000);
-        id = 4;
-    }
-    else
-    {
-        AddMoney(&gSaveBlock1Ptr->money, 2500);
-        id = 5;
-    }
-#else
     if (minutes < 12)
         id = 0; // Depends on list
     else if (minutes < 13)
@@ -1328,7 +1431,6 @@ static u16 GetPrizeItemId(void)
         id = 4; // ITEM_FLUFFY_TAIL
     else
         id = 5; // ITEM_GREAT_BALL
-#endif
 
     return prizeList[id];
 }

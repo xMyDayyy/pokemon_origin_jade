@@ -235,14 +235,14 @@
     },
     {
       "x": 18,
-      "y": 41,
+      "y": 40,
       "elevation": 3,
       "dest_map": "MAP_ROUTE2_EAST_BUILDING",
       "dest_warp_id": "3"
     },
     {
       "x": 19,
-      "y": 41,
+      "y": 40,
       "elevation": 3,
       "dest_map": "MAP_ROUTE2_EAST_BUILDING",
       "dest_warp_id": "3"

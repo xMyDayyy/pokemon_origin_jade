@@ -19,7 +19,7 @@ SeafoamIslands_B4F_EventScript_TryRemoveArticuno::
 	return
 
 SeafoamIslands_B4F_OnTransition::
-	@ Articuno: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+	@ Articuno: legendary rules.
 	setflag FLAG_HIDE_ARTICUNO
 	setvar VAR_0x8004, LEGENDARY_ARTICUNO
 	specialvar VAR_RESULT, IsLegendaryAvailable

@@ -46,7 +46,7 @@ Route4_PokemonCenter_1F_EventScript_TryBuyMagikarp::
 	goto_if_eq VAR_RESULT, FALSE, Route4_PokemonCenter_1F_EventScript_NotEnoughMoney
 	textcolor NPC_TEXT_COLOR_NEUTRAL
 	setvar VAR_TEMP_1, SPECIES_MAGIKARP
-	givemon SPECIES_MAGIKARP, 5
+	givemon SPECIES_MAGIKARP, 10
 	goto_if_eq VAR_RESULT, 0, Route4_PokemonCenter_1F_EventScript_BuyMagikarpParty
 	goto_if_eq VAR_RESULT, 1, Route4_PokemonCenter_1F_EventScript_BuyMagikarpPC
 	goto_if_eq VAR_RESULT, 2, Route4_PokemonCenter_1F_EventScript_NoRoomForMagikarp
@@ -54,8 +54,14 @@ Route4_PokemonCenter_1F_EventScript_TryBuyMagikarp::
 
 Route4_PokemonCenter_1F_EventScript_BuyMagikarpParty::
 	call Route4_PokemonCenter_1F_EventScript_PayForMagikarp
+	specialvar VAR_RESULT, IsNuzlockeNicknamingActive
+	goto_if_eq VAR_RESULT, TRUE, Route4_PokemonCenter_1F_EventScript_NicknameMagikarpParty
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route4_PokemonCenter_1F_EventScript_EndPurchaseMagikarp
+	goto Route4_PokemonCenter_1F_EventScript_NicknameMagikarpParty
+	end
+
+Route4_PokemonCenter_1F_EventScript_NicknameMagikarpParty::
 	call Common_EventScript_GetGiftMonPartySlot
 	fadescreen FADE_TO_BLACK
 	hidemoneybox
@@ -66,10 +72,17 @@ Route4_PokemonCenter_1F_EventScript_BuyMagikarpParty::
 
 Route4_PokemonCenter_1F_EventScript_BuyMagikarpPC::
 	call Route4_PokemonCenter_1F_EventScript_PayForMagikarp
+	specialvar VAR_RESULT, IsNuzlockeNicknamingActive
+	goto_if_eq VAR_RESULT, TRUE, Route4_PokemonCenter_1F_EventScript_NicknameMagikarpPC
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route4_PokemonCenter_1F_EventScript_TransferMagikarpCloseMoneyBox
+	goto Route4_PokemonCenter_1F_EventScript_NicknameMagikarpPC
+	end
+
+Route4_PokemonCenter_1F_EventScript_NicknameMagikarpPC::
 	fadescreen FADE_TO_BLACK
 	hidemoneybox
+	setvar VAR_0x8004, PC_MON_CHOSEN
 	special ChangePokemonNickname
 	waitstate
 	lock
@@ -179,7 +192,7 @@ Route4_PokemonCenter_1F_Text_LaddieBuyMagikarpForJust500::
 	.string "Mann: Hallo! Möchtest du ein Geschäft\n"
 	.string "machen?\p"
 	.string "Ich gebe dir ein exzellentes Karpador\n"
-	.string "für läppische 500¥!\p"
+	.string "für läppische ¥500!\p"
 	.string "Interessiert?$"
 #else
 	.string "MAN: Hello there, laddie!\n"
@@ -194,7 +207,7 @@ Route4_PokemonCenter_1F_Text_SweetieBuyMagikarpForJust500::
 	.string "Mann: Hallo! Möchtest du ein Geschäft\n"
 	.string "machen?\p"
 	.string "Ich gebe dir ein exzellentes Karpador\n"
-	.string "für läppische 500¥!\p"
+	.string "für läppische ¥500!\p"
 	.string "Interessiert?$"
 #else
 	.string "MAN: Hello there, sweetie pie!\n"
@@ -207,7 +220,7 @@ Route4_PokemonCenter_1F_Text_SweetieBuyMagikarpForJust500::
 Route4_PokemonCenter_1F_Text_PaidOutrageouslyForMagikarp::
 #if GERMAN
 	.string "{PLAYER} bezahlte den Wucherpreis\n"
-	.string "von 500$ für ein Karpador…\l$"
+	.string "von ¥500 für ein Karpador…$"
 #else
 	.string "{PLAYER} paid an outrageous ¥500\n"
 	.string "and bought the MAGIKARP…$"

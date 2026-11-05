@@ -101,8 +101,7 @@ LilycoveCity_CoveLilyMotel_1F_Text_GuestsDoubledByMascot:
 LilycoveCity_CoveLilyMotel_1F_Text_NoGuestsWithTeamAqua:
 #if GERMAN
 	.string "Oh, tut mir Leid, tut mir Leid!\n"
-	.string "Ich habe so konzentriert ferngesehen!\l"
-	.string "\p"
+	.string "Ich habe so konzentriert ferngesehen!\p"
 	.string "Seit Team Aqua in diesem Ort ist,\n"
 	.string "bleiben die Gäste aus.$"
 #else
@@ -180,8 +179,7 @@ LilycoveCity_CoveLilyMotel_1F_Text_HouseSittingMonCaughtBurglar:
 LilycoveCity_CoveLilyMotel_1F_Text_BetterGetWorkingOnGuestsDinner:
 #if GERMAN
 	.string "Oh, tut mir Leid, tut mir Leid!\n"
-	.string "Ich habe so konzentriert ferngesehen!\l"
-	.string "\p"
+	.string "Ich habe so konzentriert ferngesehen!\p"
 	.string "Oh, ja. Eine große Gruppe von Gästen\n"
 	.string "ist vor kurzem hier eingetroffen.\p"
 	.string "Sie haben sich als Game Freak\n"

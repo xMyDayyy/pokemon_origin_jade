@@ -1102,7 +1102,11 @@ static void BagAction_UseOnField(u8 taskId)
         || ItemIsMail(gSpecialVar_ItemId) == TRUE)
     {
         CloseMenuActionWindow();
+#if IS_HNS
+        DisplayItemMessageInBattlePyramid(taskId, gText_BirchsAdvice, Task_CloseBattlePyramidBagMessage);
+#else
         DisplayItemMessageInBattlePyramid(taskId, gText_DadsAdvice, Task_CloseBattlePyramidBagMessage);
+#endif
     }
     else if (GetItemFieldFunc(gSpecialVar_ItemId) != NULL)
     {

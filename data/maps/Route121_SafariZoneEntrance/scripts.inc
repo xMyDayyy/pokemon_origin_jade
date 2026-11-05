@@ -3,14 +3,14 @@ Route121_SafariZoneEntrance_MapScripts::
 	.byte 0
 
 Route121_SafariZoneEntrance_OnFrame:
-	map_script_2 VAR_SAFARI_ZONE_STATE, 1, Route121_SafariZoneEntrance_EventScript_ExitSafariZone
+	map_script_2 VAR_HOENN_SAFARI_ZONE_STATE, 1, Route121_SafariZoneEntrance_EventScript_ExitSafariZone
 	.2byte 0
 
 Route121_SafariZoneEntrance_EventScript_ExitSafariZone::
 	lockall
 	applymovement LOCALID_PLAYER, Route121_SafariZoneEntrance_Movement_ExitSafariZone
 	waitmovement 0
-	setvar VAR_SAFARI_ZONE_STATE, 0
+	setvar VAR_HOENN_SAFARI_ZONE_STATE, 0
 	releaseall
 	end
 
@@ -74,7 +74,7 @@ Route121_SafariZoneEntrance_EventScript_TryEnterSafariZone::
 	applymovement LOCALID_PLAYER, Route121_SafariZoneEntrance_Movement_EnterSafariZone
 	waitmovement 0
 	special EnterSafariMode
-	setvar VAR_SAFARI_ZONE_STATE, 2
+	setvar VAR_HOENN_SAFARI_ZONE_STATE, 2
 	clearflag FLAG_GOOD_LUCK_SAFARI_ZONE
 	warp MAP_SAFARI_ZONE_SOUTH, 32, 33
 	waitstate
@@ -93,7 +93,12 @@ Route121_SafariZoneEntrance_EventScript_HasRoomForPokemon::
 	return
 
 Route121_SafariZoneEntrance_EventScript_NoPokeblockCase::
+#if IS_HNS
+	@ Hoenn's case comes from Slateport's contest hall.
+	msgbox Route121_SafariZoneEntrance_Text_YouNeedPokeblockCaseSlateport, MSGBOX_DEFAULT
+#else
 	msgbox Route121_SafariZoneEntrance_Text_YouNeedPokeblockCase, MSGBOX_DEFAULT
+#endif
 	goto Route121_SafariZoneEntrance_EventScript_MovePlayerBackFromCounter
 	end
 

@@ -219,16 +219,38 @@ LilycoveCity_ContestLobby_EventScript_TryShowContestReporter::
 	goto_if_eq VAR_RESULT, TRUE, LilycoveCity_ContestLobby_EventScript_DontShowContestReporter
 	switch VAR_CONTEST_TYPE
 	case 0, LilycoveCity_ContestLobby_EventScript_DontShowContestReporter
+#if IS_HNS
+	@ The reporter waits in the lobby of the hall that held the contest.
+	case CONTEST_TYPE_NPC_NORMAL, ContestLobby_EventScript_ShowVerdanturfContestReporter
+	case CONTEST_TYPE_NPC_SUPER, ContestLobby_EventScript_ShowFallarborContestReporter
+	case CONTEST_TYPE_NPC_HYPER, ContestLobby_EventScript_ShowSlateportContestReporter
+	case CONTEST_TYPE_NPC_MASTER, LilycoveCity_ContestLobby_EventScript_ShowContestReporter
+#else
 	case 2, LilycoveCity_ContestLobby_EventScript_ShowContestReporter
 	case 1, LilycoveCity_ContestLobby_EventScript_ShowContestReporter
 	case 3, LilycoveCity_ContestLobby_EventScript_ShowContestReporter
 	case 4, LilycoveCity_ContestLobby_EventScript_ShowContestReporter
+#endif
 	case 5, LilycoveCity_ContestLobby_EventScript_DontShowContestReporter
 	end
 
 LilycoveCity_ContestLobby_EventScript_ShowContestReporter::
 	clearflag FLAG_HIDE_LILYCOVE_CONTEST_HALL_REPORTER
 	return
+
+#if IS_HNS
+ContestLobby_EventScript_ShowVerdanturfContestReporter::
+	clearflag FLAG_HIDE_VERDANTURF_TOWN_CONTEST_REPORTER
+	return
+
+ContestLobby_EventScript_ShowFallarborContestReporter::
+	clearflag FLAG_HIDE_FALLARBOR_TOWN_CONTEST_REPORTER
+	return
+
+ContestLobby_EventScript_ShowSlateportContestReporter::
+	clearflag FLAG_HIDE_SLATEPORT_CITY_CONTEST_REPORTER
+	return
+#endif
 
 LilycoveCity_ContestLobby_EventScript_DontShowContestReporter::
 	return

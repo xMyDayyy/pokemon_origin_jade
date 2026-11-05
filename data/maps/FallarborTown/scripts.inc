@@ -5,6 +5,9 @@ FallarborTown_MapScripts::
 FallarborTown_OnTransition:
 	setflag FLAG_VISITED_FALLARBOR_TOWN
 	setvar VAR_CONTEST_HALL_STATE, 0
+#if IS_HNS
+	setflag FLAG_HIDE_FALLARBOR_TOWN_CONTEST_REPORTER
+#endif
 	clearflag FLAG_CONTEST_SKETCH_CREATED
 	end
 
@@ -39,8 +42,8 @@ FallarborTown_EventScript_Azurill::
 	release
 	end
 
-FallarborTown_EventScript_BattleTentSign::
-	msgbox FallarborTown_Text_BattleTentSign, MSGBOX_SIGN
+FallarborTown_EventScript_ContestHallSign::
+	msgbox FallarborTown_Text_ContestHallSign, MSGBOX_SIGN
 	end
 
 FallarborTown_EventScript_TownSign::
@@ -117,13 +120,15 @@ FallarborTown_Text_HaveYouChallengedFlannery:
 	.string "right.$"
 #endif
 
-FallarborTown_Text_BattleTentSign:
+FallarborTown_Text_ContestHallSign:
 #if GERMAN
-	.string "Kampfcamp Laubwechselfeld “Mögen Sich\n"
-	.string "Die Besten Teams Hier Treffen!”$"
+	.string "Pokémon Wettbewerbe\n"
+	.string "Super-Klasse Registrierungen\p"
+	.string "“Brecht in die Pokémon-Szene ein!”$"
 #else
-	.string "BATTLE TENT FALLARBOR SITE\n"
-	.string "“May the Greatest Teams Gather!”$"
+	.string "POKéMON CONTESTS\n"
+	.string "SUPER RANK REGISTRATION\p"
+	.string "“Burst on to the POKéMON scene!”$"
 #endif
 
 FallarborTown_Text_TownSign:

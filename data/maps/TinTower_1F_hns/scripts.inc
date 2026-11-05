@@ -9,7 +9,6 @@ TinTower_OnTransition::
 @ 1F only; TinTower_OnTransition is shared with 2F-9F.
 @ Suicune waits here once the Route 36 sighting is done (VAR_SUICUNE_ENCOUNTERS >= 4)
 @ and the legendary rules allow it. FLAG_TEMP_1 hides Suicune, FLAG_TEMP_2 hides Eusine.
-@ See docs/origin_jade/DECISIONS.md, D-026 and D-038.
 TinTower_1F_OnTransition::
 	setescapewarp MAP_BELLCHIME_TRAIL_HNS, 35, 42
 	setflag FLAG_TEMP_2
@@ -25,7 +24,7 @@ TinTower_1F_EventScript_ShowSuicune::
 	clearflag FLAG_TEMP_1
 	return
 
-@ Suicune at Lv 78, see docs/origin_jade/DECISIONS.md, D-039.
+@ Suicune at Lv 78.
 @ The LEGEND API records caught / knocked out / fled; this script only hides it for the visit.
 TinTower_1F_EventScript_Suicune::
 	lock

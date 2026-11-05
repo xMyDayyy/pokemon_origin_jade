@@ -2,6 +2,7 @@
 #include "event_data.h"
 #include "field_message_box.h"
 #include "pokedex.h"
+#include "region_rule_oj.h"
 #include "strings.h"
 
 bool16 ScriptGetPokedexInfo(void)
@@ -58,6 +59,14 @@ const u8 *GetPokedexRatingText(u32 count)
     {
         j = RegionalToNationalOrder(i + 1);
         k = NationalPokedexNumToSpecies(j);
+        // Origin Jade: Johto's Hoenn species (Azurill, Wynaut) are not needed.
+        if (GetSpeciesRegion(k) == REGION_HOENN)
+        {
+            if (GetSetPokedexFlag(j, FLAG_GET_CAUGHT))
+                count--;
+            maxDex--;
+            continue;
+        }
         if (gSpeciesInfo[k].dexNotRequired || (gSpeciesInfo[k].isMythical && !gSpeciesInfo[k].dexForceRequired))
         {
             if (GetSetPokedexFlag(j, FLAG_GET_CAUGHT))
@@ -314,7 +323,12 @@ static const u8 *GetProfOaksRatingMessageByCount(u16 count)
     if (count < 140)
         return PokedexRating_Text_LessThan140;
 
+#if IS_HNS
+    // Origin Jade: complete with the 151 but Mew.
+    if (count < NATIONAL_DEX_MEW - 1)
+#else
     if (count < KANTO_DEX_COUNT - 1)
+#endif
         return PokedexRating_Text_LessThan150;
 
     gSpecialVar_Result = TRUE;

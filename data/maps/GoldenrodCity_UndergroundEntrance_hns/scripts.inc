@@ -36,7 +36,8 @@ GoldenrodUnderground1_Text_SuperNerd:
 
 GoldenrodUnderground1_Text_Teacher:
 #if GERMAN
-	.string "Unten in der Passage gibt es Geschäfte!\p"
+	.string "Unten in der Passage\n"
+	.string "gibt es Geschäfte!\p"
 	.string "Aber da lungern so viele Trainer herum,\n"
 	.string "dass ich mich nicht hinuntertraue.$"
 #else

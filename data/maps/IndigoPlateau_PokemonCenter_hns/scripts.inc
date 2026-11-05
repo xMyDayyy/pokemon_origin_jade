@@ -20,14 +20,12 @@ IndigoPlateau_PokemonCenter_Enter::
 IndigoPlateau_Pokecenter_OnTransition::
 	setrespawn HEAL_LOCATION_INDIGO_PLATEAU_HNS
 	@ The Black Belt never blocks the Elite Four door; Johto's league can be repeated.
-	@ See docs/origin_jade/DECISIONS.md, D-028.
 	setflag FLAG_HIDE_LEAGUE_BLACKBELT
 	call IndigoPlateau_EventScript_SetupSilverFinal
 	call_if_set FLAG_IS_JOHTO_CHAMPION, IndigoPlateau_EventScript_ShowSilverDaily
 	end
 
 @ After the Johto title Silver waits here for a daily battle (IndigoPlateau_EventScript_Silver).
-@ See docs/origin_jade/DECISIONS.md, D-032.
 IndigoPlateau_EventScript_ShowSilverDaily::
 	clearflag FLAG_HIDE_INDIGO_PLATEAU_SILVER
 	return
@@ -44,8 +42,18 @@ IndigoPlateau_EventScript_SetupSilverFinalDone:
 
 
 IndigoPlateau_EventScript_Cooltrainer::
-	msgbox IndigoPlateau_Text_CooltrainerM, MSGBOX_NPC
+	lock
+	faceplayer
+	msgbox IndigoPlateau_Text_CooltrainerM, MSGBOX_DEFAULT
+	call PokemonLeague_EventScript_CheckLeagueChanged
+	call_if_eq VAR_RESULT, TRUE, IndigoPlateau_EventScript_CooltrainerLeagueChanged
+	release
 	end
+
+@ Announces the league change.
+IndigoPlateau_EventScript_CooltrainerLeagueChanged::
+	msgbox IndigoPlateau_Text_CooltrainerLeagueChanged, MSGBOX_DEFAULT
+	return
 
 IndigoPlateau_EventScript_BlackBelt::
 	msgbox IndigoPlateau_Text_Blackbelt, MSGBOX_NPC
@@ -97,6 +105,16 @@ IndigoPlateau_Text_CooltrainerM:
     .string "tested by the ELITE FOUR.\p"
     .string "You have to beat them all. If you\n"
     .string "lose, you have to start all over!$"
+#endif
+
+IndigoPlateau_Text_CooltrainerLeagueChanged:
+#if GERMAN
+	.string "Übrigens: Die Liga hat sich neu\n"
+	.string "aufgestellt. Mach dich auf eine\l"
+	.string "neue Herausforderung gefasst!$"
+#else
+	.string "By the way, the LEAGUE has a new lineup.\n"
+	.string "Get ready for a new challenge!$"
 #endif
 
 IndigoPlateau_EventScript_Silver::

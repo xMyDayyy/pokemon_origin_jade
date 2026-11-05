@@ -1,7 +1,7 @@
 BirthIsland_Harbor_hns_MapScripts::
 	.byte 0
 
-@ M.S. Aqua to Olivine, Vermilion or Hoenn (see docs/origin_jade/DECISIONS.md, D-029).
+@ M.S. Aqua to Olivine, Vermilion or Hoenn.
 BirthIsland_Harbor_hns_EventScript_Sailor::
 	lock
 	faceplayer

@@ -15,7 +15,7 @@ PowerPlant_EventScript_TryRemoveStaticMon::
 
 PowerPlant_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_POWER_PLANT
-	@ Zapdos: legendary rules, see docs/origin_jade/DECISIONS.md, D-026.
+	@ Zapdos: legendary rules.
 	setflag FLAG_HIDE_ZAPDOS
 	setvar VAR_0x8004, LEGENDARY_ZAPDOS
 	specialvar VAR_RESULT, IsLegendaryAvailable
@@ -68,7 +68,7 @@ PowerPlant_EventScript_RanFromZapdos::
 PowerPlant_EventScript_Electrode1::
 	lock
 	faceplayer
-	setwildbattle SPECIES_ELECTRODE, 26
+	setwildbattle SPECIES_ELECTRODE, 35
 	waitse
 	playmoncry SPECIES_ELECTRODE, CRY_MODE_ENCOUNTER
 	delay 40
@@ -92,7 +92,7 @@ PowerPlant_EventScript_FoughtElectrode1::
 PowerPlant_EventScript_Electrode2::
 	lock
 	faceplayer
-	setwildbattle SPECIES_ELECTRODE, 26
+	setwildbattle SPECIES_ELECTRODE, 35
 	waitse
 	playmoncry SPECIES_ELECTRODE, CRY_MODE_ENCOUNTER
 	delay 40

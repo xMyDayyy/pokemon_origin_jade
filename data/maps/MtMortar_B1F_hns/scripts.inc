@@ -41,6 +41,7 @@ MountMortar4_EventScript_KiyoTryGiveTyrogue::
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TYROGUE
 	bufferspeciesname STR_VAR_1, SPECIES_TYROGUE
 	givemon SPECIES_TYROGUE, 25
+	goto_if_eq VAR_RESULT, MON_CANT_GIVE, Common_EventScript_NoMoreRoomForPokemon
 	call Common_EventScript_GiftMon
 	setflag FLAG_GOT_TYROGUE
 MountMortar4_EventScript_KiyoAfter::
@@ -110,8 +111,8 @@ MountMortar4_Text_KiyoGotTyrogue:
 	.string "Zieht man es auf, entwickelt es sich\n"
 	.string "angeblich zu einem mächtigen Pokémon!\p"
 	.string "Also hergehört! Streng dich an!\n"
-	.string "Ich setze jetzt auch mein Training fort.\l"
-	.string "Hau rein!$"
+	.string "Ich setze jetzt auch mein Training\l"
+	.string "fort. Hau rein!$"
 #else
 	.string "TYROGUE is a FIGHTING-type.\p"
 	.string "It evolves into a tougher\n"
