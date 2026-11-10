@@ -4,10 +4,19 @@ Route26_House1_hns_MapScripts::
 Route26_House1_EventScript_HealWoman::
 	lock
 	faceplayer
+	@ Pokemon Center challenge: no rest and no heal.
+	specialvar VAR_RESULT, IsPokecenterChallengeActivated
+	goto_if_eq VAR_RESULT, TRUE, Route26_House1_EventScript_HealWoman_PokecenterChallenge
 	msgbox Route26_Text_HealHouseRest, MSGBOX_DEFAULT
 	closemessage
 	call Common_EventScript_OutOfCenterPartyHeal
 	msgbox Route26_Text_HealHouseKeepAtIt, MSGBOX_DEFAULT
+	release
+	end
+
+Route26_House1_EventScript_HealWoman_PokecenterChallenge::
+	msgbox SSAquaRooms_Text_TakeRestOnBed_PokecenterChallenge, MSGBOX_DEFAULT
+	closemessage
 	release
 	end
 

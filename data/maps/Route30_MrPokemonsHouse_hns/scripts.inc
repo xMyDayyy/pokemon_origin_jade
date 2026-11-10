@@ -28,8 +28,12 @@ MrPokemonHouse_EventScript_GiveEgg::
 	setflag FLAG_DELIVERED_EGG
 	turnobject OBJ_EVENT_ID_PLAYER DIR_NORTH
 	fadedefaultbgm
+	@ Pokemon Center challenge: no rest and no heal.
+	specialvar VAR_RESULT, IsPokecenterChallengeActivated
+	goto_if_eq VAR_RESULT, TRUE, MrPokemonHouse_EventScript_GiveEgg_PokecenterChallenge
 	msgbox MrPokemonHouse_Text_Heal, MSGBOX_DEFAULT
 	call Common_EventScript_OutOfCenterPartyHeal
+MrPokemonHouse_EventScript_GiveEgg_AfterHeal::
 	msgbox MrPokemonHouse_Text_DependingOnYou, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_MRPOKEMON, MrPokemonHouse_Movement_MrPokemon_Leave
@@ -50,6 +54,10 @@ MrPokemonHouse_EventScript_GiveEgg::
 	clearflag FLAG_HIDE_CHERRYGROVE_GUIDE_GENT_HOUSE
 	release
 	end
+
+MrPokemonHouse_EventScript_GiveEgg_PokecenterChallenge::
+	msgbox SSAquaRooms_Text_TakeRestOnBed_PokecenterChallenge, MSGBOX_DEFAULT
+	goto MrPokemonHouse_EventScript_GiveEgg_AfterHeal
 
 MrPokemonHouse_EventScript_GiveNatDexRandomizer::
 	setflag FLAG_SYS_NATIONAL_DEX

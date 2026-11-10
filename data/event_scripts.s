@@ -1098,7 +1098,7 @@ EventScript_AfterWhiteOutMomHeal::
 	applymovement LOCALID_PLAYERS_HOUSE_1F_MOM, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	msgbox gText_HadQuiteAnExperienceTakeRest
-	call Common_EventScript_OutOfCenterPartyHeal
+	call Common_EventScript_OutOfCenterPartyHealAlways
 	msgbox gText_MomExplainHPGetPotions
 	fadedefaultbgm
 	releaseall
@@ -1334,13 +1334,23 @@ Common_EventScript_PlayGymBadgeFanfare::
 	waitfanfare
 	return
 
+@ Pokemon Center challenge: nobody outside a Center heals the party.
 Common_EventScript_OutOfCenterPartyHeal::
+	specialvar VAR_RESULT, IsPokecenterChallengeActivated
+	goto_if_eq VAR_RESULT, TRUE, Common_EventScript_OutOfCenterPartyHeal_PokecenterChallenge
+@ Heals in every mode (after a whiteout).
+Common_EventScript_OutOfCenterPartyHealAlways::
 	fadescreenswapbuffers FADE_TO_BLACK
 	playfanfare MUS_HEAL
 	waitfanfare
 	special HealPlayerParty
 	callnative UpdateFollowingPokemon
 	fadescreenswapbuffers FADE_FROM_BLACK
+	return
+
+Common_EventScript_OutOfCenterPartyHeal_PokecenterChallenge::
+	msgbox SSAquaRooms_Text_TakeRestOnBed_PokecenterChallenge, MSGBOX_DEFAULT
+	closemessage
 	return
 
 Common_EventScript_ObedienceLevel40IfSixthBadge::
