@@ -7,10 +7,19 @@ PokemonTower_5F_EventScript_Channeler::
 
 PokemonTower_5F_EventScript_PurifiedZone::
 	lockall
+	@ Pokemon Center challenge: the zone does not heal.
+	specialvar VAR_RESULT, IsPokecenterChallengeActivated
+	goto_if_eq VAR_RESULT, TRUE, PokemonTower_5F_EventScript_PurifiedZone_PokecenterChallenge
 	fadescreen FADE_TO_WHITE
 	special HealPlayerParty
 	fadescreen FADE_FROM_WHITE
 	msgbox PokemonTower_5F_Text_PurifiedZoneMonsFullyHealed
+	setvar VAR_TEMP_1, 1
+	releaseall
+	end
+
+PokemonTower_5F_EventScript_PurifiedZone_PokecenterChallenge::
+	msgbox SSAquaRooms_Text_TakeRestOnBed_PokecenterChallenge, MSGBOX_DEFAULT
 	setvar VAR_TEMP_1, 1
 	releaseall
 	end
