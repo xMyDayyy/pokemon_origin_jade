@@ -3090,9 +3090,34 @@ static void MergeSort(struct BagPocket *pocket, s32 (*comparator)(enum Pocket, s
     Free(dummySlots);
 }
 
+// Maps umlauts and eszett to their base letter for sorting.
+static u8 GetSortChar(u8 c)
+{
+    switch (c)
+    {
+    case CHAR_A_DIAERESIS:
+        return CHAR_A;
+    case CHAR_O_DIAERESIS:
+        return CHAR_O;
+    case CHAR_U_DIAERESIS:
+        return CHAR_U;
+    case CHAR_a_DIAERESIS:
+        return CHAR_a;
+    case CHAR_o_DIAERESIS:
+        return CHAR_o;
+    case CHAR_u_DIAERESIS:
+        return CHAR_u;
+    case CHAR_ESZETT:
+        return CHAR_s;
+    default:
+        return c;
+    }
+}
+
 static s32 CompareItemsAlphabetically(enum Pocket pocketId, struct ItemSlot item1, struct ItemSlot item2)
 {
     const u8 *name1, *name2;
+    u32 i;
 
     if (item1.itemId == ITEM_NONE)
         return 1;
@@ -3110,7 +3135,14 @@ static s32 CompareItemsAlphabetically(enum Pocket pocketId, struct ItemSlot item
         name2 = GetItemName(item2.itemId);
     }
 
-    return StringCompare(name1, name2);
+    // Compare with umlauts folded; exact compare breaks ties.
+    for (i = 0; GetSortChar(name1[i]) == GetSortChar(name2[i]); i++)
+    {
+        if (name1[i] == EOS)
+            return StringCompare(name1, name2);
+    }
+
+    return GetSortChar(name1[i]) - GetSortChar(name2[i]);
 }
 
 static s32 CompareItemsByMost(enum Pocket pocketId, struct ItemSlot item1, struct ItemSlot item2)
