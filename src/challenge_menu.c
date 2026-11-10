@@ -1134,7 +1134,7 @@ static const struct ChallengeMenuItem sTabItems_Difficulty[] = {
 
 static const u8 *const sDesc_Pokecenter[] = {
     COMPOUND_STRING("Spieler kann in {PKMN}-Centern\nund anderen Orten heilen."),
-    COMPOUND_STRING("Keine Heilung in {PKMN}-Centern,\nbei Mama und in Betten."),
+    COMPOUND_STRING("Heilung nur mit Items. Keine\n{PKMN}-Center, Betten, Helfer."),
 };
 static const u8 *const sDesc_Expensive[] = {
     COMPOUND_STRING("Alles hat den üblichen Preis."),
