@@ -128,10 +128,8 @@ bool8 TransferBugContestMon(void)
 {
     u8 monIndex = VarGet(VAR_0x8004);
     struct Pokemon *mon = &gPlayerParty[monIndex];
-    struct BoxPokemon *boxMon = &mon->box;
-    u8 boxId, boxPos;
 
-    if (StorePokemonInBox(boxMon, &boxId, &boxPos) != -1)
+    if (CopyMonToPC(mon) != MON_CANT_GIVE) // searches every box
     {
         ZeroMonData(mon);
         CompactPartySlots();

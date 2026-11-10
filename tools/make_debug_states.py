@@ -708,6 +708,7 @@ UNTOUCHED_B = dict(UNTOUCHED, **{
     "VAR_TIME_BASED_ENCOUNTER": "follows the clock, set on every map load",
     "VAR_CABLE_CLUB_STATE": "link feature",
     "VAR_ELEVATOR": "elevator position, set on every ride",
+    "VAR_PC_BOX_TO_SEND_MON": "box the next stored Pokémon goes to; the game moves it itself",
     "VAR_POKELOT_PRIZE_ITEM": "lottery prize waiting for room in the bag; none",
     "VAR_POKELOT_PRIZE_PLACE": "lottery prize waiting for room in the bag; none",
     "VAR_TOHJO_FALLS_GIOVANNI_STATE": "Celebi's scene at Tohjo Falls, reset on every visit without Celebi",

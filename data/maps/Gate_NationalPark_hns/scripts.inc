@@ -15,6 +15,9 @@ Gate_NationalPark_EventScript_Attendant::
 	end
 
 Gate_NationalPark_EventScript_AttendantStart::
+	@ The chosen bug goes to the PC: needs a free box slot.
+	specialvar VAR_RESULT, ScriptCheckFreePokemonStorageSpace
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NoMoreRoomForPokemon
 	playbgm MUS_HG_BUG_CONTEST_PREP, FALSE
 	msgbox Route35NationalParkGate_Text_OfficerAskToUseFirstMon, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, FALSE, Gate_NationalPark_EventScript_AttendantCancel
@@ -165,6 +168,9 @@ Gate_NationalPark_EventScript_BAttendant::
 	end
 
 Gate_NationalPark_EventScript_BAttendantStart::
+	@ The chosen bug goes to the PC: needs a free box slot.
+	specialvar VAR_RESULT, ScriptCheckFreePokemonStorageSpace
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NoMoreRoomForPokemon
 	playbgm MUS_HG_BUG_CONTEST_PREP, FALSE
 	msgbox Route35NationalParkGate_Text_OfficerAskToUseFirstMon, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, FALSE, Gate_NationalPark_EventScript_AttendantCancel
