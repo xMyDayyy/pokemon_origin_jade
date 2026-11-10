@@ -261,10 +261,15 @@ SlateportCity_Harbor_EventScript_Sailor::
 	lock
 	faceplayer
 	goto_if_unset FLAG_IS_HOENN_CHAMPION, SlateportCity_Harbor_EventScript_SailorNoAbnormalWeather
-	setvar VAR_0x8004, 0
-	call_if_set FLAG_DEFEATED_KYOGRE, SlateportCity_Harbor_EventScript_CountDefeatedLegendary
-	call_if_set FLAG_DEFEATED_GROUDON, SlateportCity_Harbor_EventScript_CountDefeatedLegendary
-	goto_if_eq VAR_0x8004, 2, SlateportCity_Harbor_EventScript_SailorNoAbnormalWeather  @ Defeated both
+	@ Counts Kyogre and Groudon that cannot be met now.
+	setvar VAR_0x8005, 0
+	setvar VAR_0x8004, LEGENDARY_KYOGRE
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	call_if_ne VAR_RESULT, TRUE, SlateportCity_Harbor_EventScript_CountDefeatedLegendary
+	setvar VAR_0x8004, LEGENDARY_GROUDON
+	specialvar VAR_RESULT, IsLegendaryAvailable
+	call_if_ne VAR_RESULT, TRUE, SlateportCity_Harbor_EventScript_CountDefeatedLegendary
+	goto_if_eq VAR_0x8005, 2, SlateportCity_Harbor_EventScript_SailorNoAbnormalWeather  @ Neither can be met
 	msgbox SlateportCity_Harbor_Text_AbnormalWeather, MSGBOX_DEFAULT
 	release
 	end
@@ -275,7 +280,7 @@ SlateportCity_Harbor_EventScript_SailorNoAbnormalWeather::
 	end
 
 SlateportCity_Harbor_EventScript_CountDefeatedLegendary::
-	addvar VAR_0x8004, 1
+	addvar VAR_0x8005, 1
 	return
 
 SlateportCity_Harbor_EventScript_FatMan::
