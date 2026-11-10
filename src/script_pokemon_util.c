@@ -684,6 +684,43 @@ u32 ScriptGiveMon(u16 species, u8 level, enum Item item)
         i++;                                           \
     }
 
+// Origin Jade: species swap of the last randomized script gift, so that the
+// script's messages name the species really given.
+EWRAM_DATA static u16 sGiftSpeciesAsked = SPECIES_NONE;
+EWRAM_DATA static u16 sGiftSpeciesGiven = SPECIES_NONE;
+
+// Called when a new script starts.
+void ResetScriptGiftSpecies(void)
+{
+    sGiftSpeciesAsked = SPECIES_NONE;
+}
+
+// For bufferspeciesname after givemon.
+u16 GetScriptGiftSpecies(u16 species)
+{
+    if (species != SPECIES_NONE && species == sGiftSpeciesAsked)
+        return sGiftSpeciesGiven;
+    return species;
+}
+
+static void SetScriptGiftSpecies(u16 asked, u16 given)
+{
+    u32 i;
+    u8 *const stringVars[] = {gStringVar1, gStringVar2, gStringVar3};
+
+    sGiftSpeciesAsked = asked;
+    sGiftSpeciesGiven = given;
+    if (asked == given)
+        return;
+
+    // Names buffered before givemon.
+    for (i = 0; i < ARRAY_COUNT(stringVars); i++)
+    {
+        if (StringCompare(stringVars[i], GetSpeciesName(asked)) == 0)
+            StringCopy(stringVars[i], GetSpeciesName(given));
+    }
+}
+
 /* Give or create a mon to either player or opponent
  */
 
@@ -786,7 +823,13 @@ void ScrCmd_createmon(struct ScriptContext *ctx)
 
 #if RANDOMIZER_AVAILABLE
     if (FlagGet(FLAG_SYS_POKEMON_GET))
+    {
+        u16 askedSpecies = species;
+
         species = RandomizeScriptedFixedMon(species);
+        if (side == 0)
+            SetScriptGiftSpecies(askedSpecies, species);
+    }
 #endif
 
     if (gender == MON_GENDER_MAY_CUTE_CHARM)

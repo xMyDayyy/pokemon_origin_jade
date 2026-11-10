@@ -13,6 +13,7 @@
 #include "constants/script_commands.h"
 #include "field_message_box.h"
 #include "rtc.h"
+#include "script_pokemon_util.h"
 
 #include "dexnav.h"
 
@@ -282,6 +283,7 @@ void ScriptContext_SetupScript(const u8 *ptr)
 {
     InitScriptContext(&sGlobalScriptContext, gScriptCmdTable, gScriptCmdTableEnd);
     SetupBytecodeScript(&sGlobalScriptContext, ptr);
+    ResetScriptGiftSpecies();
     LockPlayerFieldControls();
     if (OW_FOLLOWERS_SCRIPT_MOVEMENT)
         FlagSet(FLAG_SAFE_FOLLOWER_MOVEMENT);

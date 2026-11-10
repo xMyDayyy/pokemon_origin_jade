@@ -2894,6 +2894,8 @@ bool8 ScrCmd_bufferspeciesname(struct ScriptContext *ctx)
 
     Script_RequestEffects(SCREFF_V1);
 
+    // Origin Jade: name the species a randomized gift really gave.
+    species = GetScriptGiftSpecies(species);
     StringCopy(sScriptStringVars[stringVarIndex], GetSpeciesName(species));
     return FALSE;
 }
