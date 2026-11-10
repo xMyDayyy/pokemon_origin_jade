@@ -7,7 +7,6 @@
 #include "data.h"
 #include "decompress.h"
 #include "caps.h"
-#include "config/version.h"
 #include "event_data.h"
 #include "field_effect.h"
 #include "gpu_regs.h"
@@ -246,7 +245,6 @@ static void MainMenu_FormatSavegamePlayer(void);
 static void MainMenu_FormatSavegamePokedex(void);
 static void MainMenu_FormatSavegameTime(void);
 static void MainMenu_FormatSavegameBadges(void);
-static void MainMenu_PrintVersion(u8 windowId);
 
 // .rodata
 
@@ -876,7 +874,6 @@ static void Task_DisplayMainMenu(u8 taskId)
             FillWindowPixelBuffer(1, PIXEL_FILL(0xA));
             AddTextPrinterParameterized3(0, FONT_NORMAL, 0, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuNewGame);
             AddTextPrinterParameterized3(1, FONT_NORMAL, 0, 1, sTextColor_Headers, TEXT_SKIP_DRAW, gText_MainMenuOption);
-            MainMenu_PrintVersion(0);
             PutWindowTilemap(0);
             PutWindowTilemap(1);
             CopyWindowToVram(0, COPYWIN_GFX);
@@ -2251,18 +2248,6 @@ static void MainMenu_FormatSavegameText(void)
     MainMenu_FormatSavegamePokedex();
     MainMenu_FormatSavegameTime();
     MainMenu_FormatSavegameBadges();
-    MainMenu_PrintVersion(2);
-}
-
-// Origin Jade: beta version (config/version.h), right-aligned in the header
-// line of the top menu window; nothing in make release.
-static void MainMenu_PrintVersion(u8 windowId)
-{
-#ifndef RELEASE
-    static const u8 sText_Version[] = _(OJ_BETA_VERSION);
-
-    AddTextPrinterParameterized3(windowId, FONT_NORMAL, GetStringRightAlignXOffset(FONT_NORMAL, sText_Version, MENU_WIDTH * 8), 1, sTextColor_MenuInfo, TEXT_SKIP_DRAW, sText_Version);
-#endif
 }
 
 static void MainMenu_FormatSavegamePlayer(void)
