@@ -211,8 +211,11 @@ BattleScript_TryPrintCaughtMonInfo:
 	setbyte gBattleCommunication, 0
 	displaydexinfo
 BattleScript_TryNicknameCaughtMon::
+	@ Nuzlocke nickname rule: naming screen without the question
+	jumpifnuzlockenicknaming BattleScript_NicknameCaughtMon
 	printstring STRINGID_GIVENICKNAMECAPTURED
 	waitstate
+BattleScript_NicknameCaughtMon:
 	setbyte gBattleCommunication, 0
 	trygivecaughtmonnick
 	givecaughtmon BattleScript_SuccessBallThrowEnd

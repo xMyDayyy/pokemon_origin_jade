@@ -331,8 +331,6 @@ NewBarkTown_Lab_EventScript_NicknameStarter::
 	end
 
 NewBarkTown_Lab_EventScript_ChoseStarter_NicknameStarter_Nuzlocke::
-	message NewBarkTown_Lab_Text_Nickname
-	waitmessage
 	call Common_EventScript_NameReceivedPartyMon
 	release
 	end

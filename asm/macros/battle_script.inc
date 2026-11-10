@@ -1486,6 +1486,11 @@
 	.4byte \jumpInstr
 	.endm
 
+	.macro jumpifnuzlockenicknaming jumpInstr:req
+	callnative BS_JumpIfNuzlockeNicknaming
+	.4byte \jumpInstr
+	.endm
+
 	.macro trytarshot failInstr:req
 	callnative BS_TryTarShot
 	.4byte \failInstr

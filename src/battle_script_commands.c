@@ -11448,7 +11448,6 @@ static void Cmd_trygivecaughtmonnick(void)
     switch (gBattleCommunication[MULTIUSE_STATE])
     {
     case 0:
-        HandleBattleWindow(YESNOBOX_X_Y, 0);
         if (IsNuzlockeNicknamingActive())
         {
             gBattleCommunication[MULTIUSE_STATE]++;
@@ -11456,6 +11455,7 @@ static void Cmd_trygivecaughtmonnick(void)
         }
         else
         {
+            HandleBattleWindow(YESNOBOX_X_Y, 0);
             BattlePutTextOnWindow(gText_BattleYesNoChoice, B_WIN_YESNO);
             gBattleCommunication[MULTIUSE_STATE]++;
             gBattleCommunication[CURSOR_POSITION] = 0;
@@ -11464,7 +11464,11 @@ static void Cmd_trygivecaughtmonnick(void)
         break;
     case 1:
         if (IsNuzlockeNicknamingActive())
+        {
+            // No Yes/No box: ignore input, wait for the fade
             gBattleCommunication[MULTIUSE_STATE]++;
+            break;
+        }
         if (JOY_NEW(DPAD_UP) && gBattleCommunication[CURSOR_POSITION] != 0)
         {
             PlaySE(SE_SELECT);
@@ -11528,6 +11532,17 @@ static void Cmd_trygivecaughtmonnick(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
         break;
     }
+}
+
+// Jumps when the Nuzlocke nickname rule is active.
+void BS_JumpIfNuzlockeNicknaming(void)
+{
+    NATIVE_ARGS(const u8 *jumpInstr);
+
+    if (IsNuzlockeNicknamingActive())
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 static void Cmd_sortbattlers(void)

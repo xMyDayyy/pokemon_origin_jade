@@ -135,7 +135,6 @@ GoldenrodCity_GameCorner_PrizeRoom_EventScript_NicknamePartyMon::
 	end
 
 GoldenrodCity_GameCorner_PrizeRoom_EventScript_ReceivedMonParty_Nickname_Nuzlocke::
-	message GoldenrodGamecorner_Text_GiveNicknameToThisMon
 	getpartysize
 	subvar VAR_RESULT, 1
 	copyvar VAR_0x8004, VAR_RESULT
