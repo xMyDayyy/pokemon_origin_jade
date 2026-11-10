@@ -85,6 +85,8 @@ BirthIsland_Exterior_hns_EventScript_Deoxys::
 	setvar VAR_0x8004, LEGENDARY_DEOXYS
 	special RecordLegendaryBattleOutcome
 	specialvar VAR_RESULT, GetBattleOutcome
+	@ Knocked out: remove Deoxys without the "flew away" message.
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Common_EventScript_RemoveStaticPokemon
 	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, BirthIsland_Exterior_hns_EventScript_RanFromDeoxys
 	release
 	end
