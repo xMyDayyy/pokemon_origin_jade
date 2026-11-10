@@ -2,6 +2,7 @@
 #include "event_data.h"
 #include "field_message_box.h"
 #include "pokedex.h"
+#include "randomizer.h"
 #include "region_rule_oj.h"
 #include "strings.h"
 
@@ -259,9 +260,23 @@ extern const u8 PokedexRating_Text_LessThan140[];
 extern const u8 PokedexRating_Text_LessThan150[];
 extern const u8 PokedexRating_Text_Complete[];
 
+// TRUE while a randomizer option changes the species the player can get.
+static bool32 IsSpeciesRandomizerOn(void)
+{
+#if RANDOMIZER_AVAILABLE
+    return RandomizerFeatureEnabled(RANDOMIZE_WILD_MON)
+        || RandomizerFeatureEnabled(RANDOMIZE_FIXED_MON)
+        || RandomizerFeatureEnabled(RANDOMIZE_STARTER_AND_GIFT_MON)
+        || RandomizerFeatureEnabled(RANDOMIZE_EVOLUTIONS);
+#else
+    return FALSE;
+#endif
+}
+
+// VAR_0x8004: 0 Kanto, 1 national, 2 Oak's aides (national with a species randomizer).
 u16 GetFrlgPokedexCount(void)
 {
-    if (gSpecialVar_0x8004 == 0)
+    if (gSpecialVar_0x8004 == 0 || (gSpecialVar_0x8004 == 2 && !IsSpeciesRandomizerOn()))
     {
         gSpecialVar_0x8005 = GetKantoPokedexCount(FLAG_GET_SEEN);
         gSpecialVar_0x8006 = GetKantoPokedexCount(FLAG_GET_CAUGHT);
