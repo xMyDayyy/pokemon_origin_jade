@@ -548,7 +548,7 @@ bool32 TryRunFromBattle(enum BattlerId battler)
     bool32 effect = FALSE;
     u8 holdEffect;
     u8 pyramidMultiplier;
-    u8 speedVar;
+    u32 speedVar; // u8 wrapped past 255 after a few failed tries
 
     // If this flag is set, running will never be successful under any circumstances.
     if (FlagGet(B_FLAG_NO_RUNNING))
