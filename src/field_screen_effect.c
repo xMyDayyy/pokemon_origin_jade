@@ -26,6 +26,7 @@
 #include "palette.h"
 #include "oras_dowse.h"
 #include "overworld.h"
+#include "regions.h"
 #include "scanline_effect.h"
 #include "script.h"
 #include "sound.h"
@@ -1493,7 +1494,8 @@ static void Task_RushInjuredPokemonToCenter(u8 taskId)
                     StringCopy(gStringVar1, COMPOUND_STRING("PROF. BIRCH"));
                 ScriptContext_SetupScript(EventScript_AfterWhiteOutMomHeal);
             }
-            else if (IS_FRLG)
+            // Origin Jade: Kanto nurses use the Kanto script (short text after Brock).
+            else if (IS_FRLG || (IS_HNS && GetCurrentRegion() == REGION_KANTO))
             {
                 ScriptContext_SetupScript(EventScript_AfterWhiteOutHeal_Frlg);
             }
