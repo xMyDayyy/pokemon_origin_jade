@@ -39,6 +39,8 @@ SSAqua_1F_EventScript_LeaveBoat::
 	fadescreenswapbuffers FADE_TO_BLACK
 	@ Origin Jade: without HnS's Kanto reset (flag heap); Kanto is played first.
 	setvar VAR_SSAQUA_STATE, 7
+	@ Respawn at the destination port.
+	setrespawn HEAL_LOCATION_VERMILION_CITY
 	@ Origin Jade: lands in Vermilion's port building, in front of the sailor.
 	warp MAP_VERMILION_CITY_PORT_INSIDE_FRLG, 8, 9
 	waitstate

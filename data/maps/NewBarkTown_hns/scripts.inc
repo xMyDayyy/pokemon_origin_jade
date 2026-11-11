@@ -38,6 +38,8 @@ NewBarkTown_OnTransition::
 @ Origin Jade: Johto start values that HnS sets in Mom's house.
 NewBarkTown_EventScript_JohtoArrivalSetup::
 	setflag FLAG_JOHTO_ARRIVAL_DONE
+	@ A loss before the first Johto Center leads back here, not to Pallet Town.
+	setrespawn HEAL_LOCATION_NEW_BARK_TOWN_HNS
 	call_if_eq VAR_NEWBARK_TOWN_STATE, 0, NewBarkTown_EventScript_SetArrivalState
 	setflag FLAG_HIDE_LAB_POLICEMAN
 	setflag FLAG_VISITED_NEWBARK_TOWN

@@ -182,6 +182,8 @@ VermilionPortFrlg_EventScript_ChoseOlivine::
 	bufferitemname STR_VAR_1, ITEM_SS_TICKET
 	goto_if_eq VAR_RESULT, FALSE, VermilionPortFrlg_EventScript_Sailor_NoCredentials
 	call VermilionPortFrlg_EventScript_EnterShip
+	@ Respawn at the destination port.
+	setrespawn HEAL_LOCATION_OLIVINE_CITY_HNS
 	warpsilent MAP_OLIVINE_CITY_PORT_INSIDE_HNS, 8, 15
 	waitstate
 	release

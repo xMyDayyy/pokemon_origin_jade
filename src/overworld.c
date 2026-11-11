@@ -773,7 +773,9 @@ void SetWarpDestinationToLastHealLocation(void)
 
 #if IS_HNS
     // Origin Jade: an empty respawn falls back to Pallet Town.
-    if (sWarpDestination.mapGroup == 0 && sWarpDestination.mapNum == 0)
+    // Map 0/0 is New Bark Town, so the coordinates must be empty too.
+    if (sWarpDestination.mapGroup == 0 && sWarpDestination.mapNum == 0
+     && sWarpDestination.x == 0 && sWarpDestination.y == 0)
     {
         const struct HealLocation *fallback = GetHealLocation(HEAL_LOCATION_PALLET_TOWN);
         if (fallback)

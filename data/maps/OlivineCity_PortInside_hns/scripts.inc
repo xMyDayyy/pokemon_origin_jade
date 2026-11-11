@@ -64,6 +64,8 @@ OlivinePort_EventScript_ChoseVermilion::
 	goto_if_eq VAR_RESULT, FALSE, OlivinePort_EventScript_Sailor_NoCredentials
 	goto_if_lt VAR_SSAQUA_STATE, 7, OlivinePort_EventScript_Sailor_MaidenVoyage
 	call OlivinePort_EventScript_EnterShip
+	@ Respawn at the destination port.
+	setrespawn HEAL_LOCATION_VERMILION_CITY
 	@ Origin Jade: lands in Vermilion's port building, in front of the sailor.
 	warpsilent MAP_VERMILION_CITY_PORT_INSIDE_FRLG, 8, 9
 	waitstate
