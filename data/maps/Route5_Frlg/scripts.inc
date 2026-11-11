@@ -42,8 +42,9 @@ Route5_EventScript_DaycareEggWaiting::
 	end
 
 Route5_EventScript_DaycareAcceptEgg::
+	specialvar VAR_0x8004, GetMaxPartySize @ party limit challenge
 	specialvar VAR_RESULT, CalculatePlayerPartyCount
-	goto_if_ne VAR_RESULT, PARTY_SIZE, Route5_EventScript_DaycareReceivedEgg
+	goto_if_lt VAR_RESULT, VAR_0x8004, Route5_EventScript_DaycareReceivedEgg
 	msgbox DayCare_Text_YouHaveNoRoomForIt
 	release
 	end

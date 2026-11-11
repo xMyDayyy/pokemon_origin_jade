@@ -409,6 +409,10 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
     u32 experience;
     struct Pokemon pokemon;
 
+    // Never overwrite an occupied party slot
+    if (GetMonData(&gPlayerParty[GetMaxPartySize() - 1], MON_DATA_SPECIES) != SPECIES_NONE)
+        return SPECIES_NONE;
+
     GetBoxMonNickname(&daycareMon->mon, gStringVar1);
     BoxMonToMon(&daycareMon->mon, &pokemon);
 
@@ -1144,6 +1148,10 @@ static void _GiveEggFromDaycare(struct DayCare *daycare)
     bool8 isEgg;
 
     if (GetDaycareCompatibilityScore(daycare) == PARENTS_INCOMPATIBLE)
+        return;
+
+    // Never overwrite an occupied party slot
+    if (GetMonData(&gPlayerParty[GetMaxPartySize() - 1], MON_DATA_SPECIES) != SPECIES_NONE)
         return;
 
     species = DetermineEggSpeciesAndParentSlots(daycare, parentSlots);

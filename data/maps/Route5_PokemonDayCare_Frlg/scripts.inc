@@ -84,8 +84,9 @@ Route5_PokemonDayCare_OneMonInDaycare::
 	end
 
 Route5_PokemonDayCare_TryRetrieveMon::
+	specialvar VAR_0x8004, GetMaxPartySize @ party limit challenge
 	specialvar VAR_RESULT, CalculatePlayerPartyCount
-	goto_if_eq VAR_RESULT, PARTY_SIZE, Route5_PokemonDayCare_NoRoomInParty
+	goto_if_ge VAR_RESULT, VAR_0x8004, Route5_PokemonDayCare_NoRoomInParty
 	specialvar VAR_RESULT, GetDaycareState
 	setvar VAR_0x8004, 0
 	goto_if_eq VAR_RESULT, DAYCARE_ONE_MON, Route5_PokemonDayCare_CostPrompt
