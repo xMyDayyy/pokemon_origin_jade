@@ -450,6 +450,8 @@ NewBarkTown_Lab_EventScript_PoliceYes::
 	applymovement LOCALID_ELM, NewBarkTown_Lab_Movement_ElmStepForward
 	waitmovement 0
 	msgbox NewBarkTown_Lab_Text_ElmAfterTheft4, MSGBOX_DEFAULT
+	@ Fly is unlocked in Johto from state 5 on (IsFieldMoveUnlocked_Fly).
+	msgbox NewBarkTown_Lab_Text_ElmFlyAllowed, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_NEWBARKTOWN_LABSTATE, 5
 	removeitem ITEM_MYSTERY_EGG
@@ -1135,6 +1137,15 @@ NewBarkTown_Lab_Text_ElmAfterTheft4:
 	.string "The next one is in VIOLET CITY.\p"
 	.string "I will be in touch as soon as I learn\n"
 	.string "anything about the BALL.$"
+#endif
+
+NewBarkTown_Lab_Text_ElmFlyAllowed:
+#if GERMAN
+	.string "Ach ja, eines noch: Ab sofort darfst\n"
+	.string "du in Johto auch Fliegen einsetzen.$"
+#else
+	.string "Oh, one more thing: from now on you\n"
+	.string "may use FLY in JOHTO as well.$"
 #endif
 
 NewBarkTown_Lab_Text_ElmStudyingEgg:

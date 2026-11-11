@@ -113,7 +113,12 @@ static bool32 IsFieldMoveUnlocked_Fly(void)
         return FlagGet(FLAG_BADGE03_GET);
 
     if (IS_HNS)
+    {
+        // Johto: no flying until the police scene in Elm's lab is over.
+        if (JohtoPermitsApply() && VarGet(VAR_NEWBARKTOWN_LABSTATE) < 5)
+            return FALSE;
         return FlagGet(FLAG_BADGE05_GET);
+    }
     if (IS_FRLG)
         return FlagGet(FLAG_BADGE03_GET);
 

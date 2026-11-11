@@ -1,7 +1,8 @@
 #ifndef GUARD_CONSTANTS_JOHTO_PERMITS_H
 #define GUARD_CONSTANTS_JOHTO_PERMITS_H
 
-// HM permits for Johto (bit positions in VAR_JOHTO_PERMITS). Fly and Flash need none.
+// HM permits for Johto (bit positions in VAR_JOHTO_PERMITS). Flash needs none;
+// Fly is tied to the police scene in Elm's lab (see IsFieldMoveUnlocked_Fly).
 // Keep the order in sync with LIC_* in constants/hoenn_licenses.h.
 #define PERM_CUT         0
 #define PERM_ROCK_SMASH  1
