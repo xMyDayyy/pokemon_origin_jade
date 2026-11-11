@@ -130,8 +130,8 @@ NationalPark_BugContest_EventScript_EnterSide::
 	delay 20
 	clearflag FLAG_HIDE_BUG_CONTEST_ATTENDANT_SIDE
 	addobject LOCALID_BUGCONTEST_ATTENDANT_SIDE
-	setvar VAR_TEMP_1, 1
-	setvar VAR_BUG_CONTEST_STATE, 2
+	@ 6 = contest running, entered through the east gate (2 = north gate).
+	setvar VAR_BUG_CONTEST_STATE, 6
 	msgbox NationlParkBugContest_Text_EnjoyTheContest, MSGBOX_DEFAULT
 	closemessage
 	releaseall

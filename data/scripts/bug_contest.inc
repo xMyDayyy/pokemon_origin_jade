@@ -15,6 +15,7 @@ BugContest_EventScript_TimesUp::
 	getpartysize
 	goto_if_eq VAR_RESULT, 1, BugContest_EventScript_Didntcatch
 	fadescreen FADE_TO_BLACK
+	call_if_eq VAR_BUG_CONTEST_STATE, 6, BugContest_EventScript_RememberSideGate
 	setvar VAR_BUG_CONTEST_STATE, 3
 
 	msgbox BugContest_Text_Judging0, MSGBOX_DEFAULT
@@ -107,9 +108,10 @@ BugContest_EventScript_End::
 	special LoadPlayerParty
 	special ExitBugContestMode
 	clearflag FLAG_DISABLE_EXP_GAIN
+	call_if_eq VAR_BUG_CONTEST_STATE, 6, BugContest_EventScript_RememberSideGate
 	call_if_lt VAR_BUG_CONTEST_STATE, BUG_CONTEST_PRIZE_HELD, BugContest_EventScript_ClearState
 	special RemoveSportBalls
-	goto_if_eq VAR_TEMP_1, 1, BugContest_EventScript_SideEnd
+	goto_if_set FLAG_HIDE_BUG_CONTEST_ATTENDANT_SIDE, BugContest_EventScript_SideEnd
 	warp MAP_GATE_NATIONAL_PARK_HNS, 7, 2
 	waitstate
 	releaseall
@@ -117,6 +119,13 @@ BugContest_EventScript_End::
 
 BugContest_EventScript_ClearState::
 	setvar VAR_BUG_CONTEST_STATE, 0
+	return
+
+@ Entered through the east gate (state 6): the state var is reused for the
+@ judging and a held prize, so the side attendant's hide flag carries the gate
+@ to BugContest_EventScript_End. Both gates set or clear it again on entry.
+BugContest_EventScript_RememberSideGate::
+	setflag FLAG_HIDE_BUG_CONTEST_ATTENDANT_SIDE
 	return
 
 BugContest_EventScript_SideEnd::
