@@ -223,7 +223,8 @@ u16 *GetVarPointer(u16 id)
 #endif // TESTING
     else
     {
-        ASSERT_STORAGE(id <= SPECIAL_VARS_END, "var", id);
+        // 0xFFFF is the dummy x/y of script warps without coords (formatwarp).
+        ASSERT_STORAGE(id <= SPECIAL_VARS_END || id == 0xFFFF, "var", id);
         return gSpecialVars[id - SPECIAL_VARS_START];
     }
 }
