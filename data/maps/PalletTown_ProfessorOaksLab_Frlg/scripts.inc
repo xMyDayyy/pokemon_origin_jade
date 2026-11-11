@@ -3,7 +3,8 @@
 .equ RIVAL_STARTER_SPECIES,   VAR_TEMP_3
 .equ RIVAL_STARTER_ID,        VAR_TEMP_4
 
-.equ SHOWED_OAK_COMPLETE_DEX, FLAG_TEMP_2
+@ Not FLAG_TEMP_1-6: the starter preview (showmonpic) uses those.
+.equ SHOWED_OAK_COMPLETE_DEX, FLAG_TEMP_7
 
 PalletTown_ProfessorOaksLab_Frlg_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PalletTown_ProfessorOaksLab_OnTransition
