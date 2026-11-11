@@ -330,6 +330,13 @@ Route44_Text_PsychicPhilBeaten:
 #endif
 
 Route44_Text_PsychicPhilAfter:
+#if GERMAN
+    .string "Es ist wichtig, von sich selbst\n"
+    .string "überzeugt zu sein.$"
+#else
+    .string "It's important to have conviction\n"
+    .string "on your side.$"
+#endif
 
 Route44_Text_PokemaniacZachSeen:
 #if GERMAN

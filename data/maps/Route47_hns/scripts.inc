@@ -183,6 +183,47 @@ Route47_EventScript_Sage::
 	end
 
 EmbeddedTower_Text_OldManIntro:
+#if GERMAN
+	.string "Oh, hallo!\p"
+	.string "Über diesen Eingang soll man einmal\n"
+	.string "in einen riesigen Turm gelangt sein,\l"
+	.string "der bis über die Wolken reichte.\p"
+	.string "Insbesondere seine ungewöhnliche\n"
+	.string "Form soll Aufsehen erregt haben.\p"
+	.string "Die Hälfte des Bauwerks wurde wohl\n"
+	.string "in diesen Steilhang eingearbeitet.\p"
+	.string "Der Turm ragte also nicht nur weit in\n"
+	.string "den Himmel, sondern erstreckte sich\l"
+	.string "auch bis tief unter die Erde!\p"
+	.string "Und zu guter Letzt soll er auch noch\n"
+	.string "mit dem Meer verbunden gewesen sein!\p"
+	.string "Diese Ruinen waren einmal kolossal…\p"
+	.string "Inzwischen liegt der Turm aber fast\n"
+	.string "komplett in Trümmern. Viel mehr als der\l"
+	.string "Eingang und der Mittelbau mit ein\l"
+	.string "paar merkwürdigen Abbildungen ist\l"
+	.string "nicht mehr von ihm übrig.$"
+#else
+	.string "Well, hello!\p"
+	.string "It's said that past this hole used to\n"
+	.string "be a huge tower reaching far into\l"
+	.string "the sky.\p"
+	.string "They say that it was a rather strange\n"
+	.string "tower with half of it embedded\l"
+	.string "in the cliff.\p"
+	.string "It was not just a tall tower reaching\n"
+	.string "up to the sky, but also reaching deep\l"
+	.string "down underground!\p"
+	.string "It is rumored that it even reached\n"
+	.string "the bottom of the ocean!\p"
+	.string "In short, the ruins used to connect\n"
+	.string "the sky, the land, and the sea to\l"
+	.string "each other…\p"
+	.string "Most of the tower is now crumbled,\n"
+	.string "and the only things that remain are\l"
+	.string "the entrance and its interior, where\l"
+	.string "you'll see strange patterns.$"
+#endif
 
 Route47_EventScript_Item_Pearl::
     finditem ITEM_PEARL

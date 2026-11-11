@@ -306,6 +306,17 @@ Route39_Text_SailorEugeneBeaten:
 #endif
 
 Route39_Text_SailorEugeneAfter:
+#if GERMAN
+	.string "Meine Pokémon habe ich im Ausland\n"
+	.string "gefangen und dort aufgezogen.\l"
+	.string "Sie begleiten mich auf all meinen\l"
+	.string "Reisen!$"
+#else
+	.string "My POKéMON were caught and\n"
+	.string "raised overseas.\p"
+	.string "They're my companions on\n"
+	.string "those long voyages.$"
+#endif
 
 Route39_EventScript_Derek::
 	trainerbattle_single TRAINER_DEREK_HNS, Route39_Text_PokefanMDerekSeen, Route39_Text_PokefanMDerekBeaten, Route39_EventScript_RegisterDerek
@@ -359,6 +370,16 @@ Route39_Text_PokefanMDerekBeaten:
 #endif
 
 Route39_Text_PokefanMDerekAfter:
+#if GERMAN
+	.string "Deine Prahlerei trifft bei mir auf taube\n"
+	.string "Ohren! Wir Pokéfans haben ein Credo,\l"
+	.string "das uns verbietet, Angebern zuzuhören.$"
+#else
+	.string "I'm not listening to your\n"
+	.string "bragging!\p"
+	.string "We POKé FANS have a policy\n"
+	.string "of not listening to bragging!$"
+#endif
 
 Route39_EventScript_Ruth::
 	trainerbattle_single TRAINER_RUTH_HNS, Route39_Text_PokefanFRuthSeen, Route39_Text_PokefanFRuthBeaten

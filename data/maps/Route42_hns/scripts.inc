@@ -543,6 +543,18 @@ Route42_Text_PokemaniacShaneBeaten:
 #endif
 
 Route42_Text_PokemaniacShaneAfter:
+#if GERMAN
+	.string "Du erstellst einen Pokédex?\n"
+	.string "Wow, du kennst bestimmt\l"
+	.string "einige sehr seltene Pokémon!\p"
+	.string "Darf ich mal eines sehen?$"
+#else
+	.string "You're working on a POKéDEX?\p"
+	.string "Wow, you must know some\n"
+	.string "pretty rare POKéMON!\p"
+	.string "May I please see it?\n"
+	.string "Please?$"
+#endif
 
 Route42_Text_Sign1:
 #if GERMAN
