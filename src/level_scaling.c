@@ -700,7 +700,7 @@ static const struct { u16 mapSec; u16 flag; } sHoennVisitedFlags[] =
     { MAPSEC_LILYCOVE_CITY,    FLAG_VISITED_LILYCOVE_CITY    },
     { MAPSEC_MOSSDEEP_CITY,    FLAG_VISITED_MOSSDEEP_CITY    },
     { MAPSEC_SOOTOPOLIS_CITY,  FLAG_VISITED_SOOTOPOLIS_CITY  },
-    { MAPSEC_EVER_GRANDE_CITY, FLAG_VISITED_EVER_GRANDE_CITY },
+    // Ever Grande City is left to its coord events above the waterfall.
 };
 
 void TrySetHoennVisitedFlag(void)
