@@ -48,7 +48,9 @@ EverGrandeCity_ChampionsRoom_EventScript_Wallace::
 
 EverGrandeCity_ChampionsRoom_EventScript_Rematch::
 	playbgm MUS_ENCOUNTER_CHAMPION, FALSE
-	trainerbattle_rematch TRAINER_WALLACE, EverGrandeCity_ChampionsRoom_Text_RematchIntro, EverGrandeCity_ChampionsRoom_Text_Defeat
+	@ No-intro battle with the rematch team: returns to this script after a win.
+	msgbox EverGrandeCity_ChampionsRoom_Text_RematchIntro, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_WALLACE_2, EverGrandeCity_ChampionsRoom_Text_Defeat
 	goto EverGrandeCity_ChampionsRoom_EventScript_Defeated
 	end
 

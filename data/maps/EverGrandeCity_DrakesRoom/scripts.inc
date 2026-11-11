@@ -51,7 +51,9 @@ EverGrandeCity_DrakesRoom_EventScript_Drake::
 
 EverGrandeCity_DrakesRoom_EventScript_Rematch::
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
-	trainerbattle_rematch TRAINER_DRAKE, EverGrandeCity_DrakesRoom_Text_RematchIntro, EverGrandeCity_DrakesRoom_Text_Defeat
+	@ No-intro battle with the rematch team: returns to this script after a win.
+	msgbox EverGrandeCity_DrakesRoom_Text_RematchIntro, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_DRAKE_2, EverGrandeCity_DrakesRoom_Text_Defeat
 	goto EverGrandeCity_DrakesRoom_EventScript_Defeated
 	end
 

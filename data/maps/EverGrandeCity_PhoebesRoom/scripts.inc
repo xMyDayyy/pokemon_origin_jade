@@ -50,7 +50,9 @@ EverGrandeCity_PhoebesRoom_EventScript_Phoebe::
 
 EverGrandeCity_PhoebesRoom_EventScript_Rematch::
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
-	trainerbattle_rematch TRAINER_PHOEBE, EverGrandeCity_PhoebesRoom_Text_RematchIntro, EverGrandeCity_PhoebesRoom_Text_Defeat
+	@ No-intro battle with the rematch team: returns to this script after a win.
+	msgbox EverGrandeCity_PhoebesRoom_Text_RematchIntro, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_PHOEBE_2, EverGrandeCity_PhoebesRoom_Text_Defeat
 	goto EverGrandeCity_PhoebesRoom_EventScript_Defeated
 	end
 
