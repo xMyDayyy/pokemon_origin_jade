@@ -1,8 +1,13 @@
 PokemonLeague_KarensRoom_hns_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, EliteFourRoom_OnFrame
 	map_script MAP_SCRIPT_ON_RESUME, PokemonLeague_KarensRoom_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, EliteFourRoom_OnLoad
+	map_script MAP_SCRIPT_ON_LOAD, PokemonLeague_KarensRoom_OnLoad
 	.byte 0
+
+@ Reopen the exit door after a reload once Karen is beaten.
+PokemonLeague_KarensRoom_OnLoad::
+	call_if_ge VAR_LEAGUE_STATE, 5, EliteFourRoom_OpenExit
+	goto EliteFourRoom_OnLoad
 
 PokemonLeague_KarensRoom_OnResume::
 	setvar VAR_0x8004, 3

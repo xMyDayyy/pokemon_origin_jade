@@ -1,8 +1,13 @@
 PokemonLeague_KogasRoom_hns_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, EliteFourRoom_OnFrame
 	map_script MAP_SCRIPT_ON_RESUME, PokemonLeague_KogasRoom_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, EliteFourRoom_OnLoad
+	map_script MAP_SCRIPT_ON_LOAD, PokemonLeague_KogasRoom_OnLoad
 	.byte 0
+
+@ Reopen the exit door after a reload once Koga is beaten.
+PokemonLeague_KogasRoom_OnLoad::
+	call_if_ge VAR_LEAGUE_STATE, 3, EliteFourRoom_OpenExit
+	goto EliteFourRoom_OnLoad
 
 PokemonLeague_KogasRoom_OnResume::
 	setvar VAR_0x8004, 1

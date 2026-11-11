@@ -1,8 +1,13 @@
 PokemonLeague_BrunosRoom_hns_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, EliteFourRoom_OnFrame
 	map_script MAP_SCRIPT_ON_RESUME, PokemonLeague_BrunosRoom_OnResume_Hns
-	map_script MAP_SCRIPT_ON_LOAD, EliteFourRoom_OnLoad
+	map_script MAP_SCRIPT_ON_LOAD, PokemonLeague_BrunosRoom_OnLoad_Hns
 	.byte 0
+
+@ Reopen the exit door after a reload once Bruno is beaten.
+PokemonLeague_BrunosRoom_OnLoad_Hns::
+	call_if_ge VAR_LEAGUE_STATE, 4, EliteFourRoom_OpenExit
+	goto EliteFourRoom_OnLoad
 
 PokemonLeague_BrunosRoom_OnResume_Hns::
 	setvar VAR_0x8004, 2

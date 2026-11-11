@@ -1,8 +1,18 @@
 PokemonLeague_WillsRoom_hns_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, EliteFourRoom_OnFrame
 	map_script MAP_SCRIPT_ON_RESUME, PokemonLeague_WillsRoom_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, EliteFourRoom_OnLoad
+	map_script MAP_SCRIPT_ON_LOAD, PokemonLeague_WillsRoom_OnLoad
 	.byte 0
+
+@ Reopen the exit door after a reload once Will is beaten.
+PokemonLeague_WillsRoom_OnLoad::
+	call_if_ge VAR_LEAGUE_STATE, 2, EliteFourRoom_OpenExit
+	goto EliteFourRoom_OnLoad
+
+EliteFourRoom_OpenExit::
+	setmetatile 6, 1, 0x28E, FALSE
+	setmetatile 6, 2, 0x296, FALSE
+	return
 
 EliteFourRoom_OnLoad::
 	call_if_eq VAR_TEMP_0, 1, EliteFourRoom_CreateDoor
