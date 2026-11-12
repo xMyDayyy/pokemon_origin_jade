@@ -546,10 +546,9 @@ Route39_Text_TrainerTips:
 
 Route39_Text_DerekRegister:
 #if GERMAN
-    .string "Ich höre mir deine Angeberei gar nicht\n"
-    .string "erst an!\p"
-    .string "Wir Pokémaniacs haben nämlich die\n"
-    .string "Regel, Angebereien zu ignorieren!$"
+	.string "Deine Prahlerei trifft bei mir auf taube\n"
+	.string "Ohren! Wir Pokéfans haben ein Credo,\l"
+	.string "das uns verbietet, Angebern zuzuhören.$"
 #else
 	.string "I'm not listening to your\n"
 	.string "bragging!\p"
