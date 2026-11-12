@@ -250,6 +250,8 @@ SSAqua_EventScript_ReturnRefused::
 
 SSAqua_EventScript_ReturnToOlivine::
 	call SSAqua_EventScript_ReturnDepart
+	@ Respawn at the destination port.
+	setrespawn HEAL_LOCATION_OLIVINE_CITY_HNS
 	warpsilent MAP_OLIVINE_CITY_PORT_INSIDE_HNS, 8, 15
 	waitstate
 	release
@@ -257,6 +259,8 @@ SSAqua_EventScript_ReturnToOlivine::
 
 SSAqua_EventScript_ReturnToVermilion::
 	call SSAqua_EventScript_ReturnDepart
+	@ Respawn at the destination port.
+	setrespawn HEAL_LOCATION_VERMILION_CITY
 	warpsilent MAP_VERMILION_CITY_PORT_INSIDE_FRLG, 8, 9
 	waitstate
 	release
