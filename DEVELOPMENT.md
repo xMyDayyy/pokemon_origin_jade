@@ -9,11 +9,13 @@ Needs `gcc-arm-none-eabi`, `binutils-arm-none-eabi`, `libnewlib-arm-none-eabi`, 
 
 Only Origin Jade is built (`IS_HNS`, map version `hns`).
 
-The title screen shows the version below DRÜCKE START in every build; it is drawn in `graphics/title_screen/origin_jade/press_start.png`. The beta build stops with a crash screen when a flag or var without save space is used (START continues); `make release` does not.
+The English version is built with `make GAME_LANG=ENGLISH` (`Pokemon_Origin_Jade_EN.gba`, objects in `build/jade_en`). Texts have a `#if GERMAN … #else … #endif` branch each; where `#if` cannot stand (macro bodies, `.party` files) `DE_EN(German, English)` picks the text. Graphics with text have their English original in `graphics_en/` (same path as in `graphics/`); English builds take it from there, and the files made from it are made again when the language changes.
+
+The title screen shows the version below DRÜCKE START (PRESS START in English) in every build; it is drawn in `graphics/title_screen/origin_jade/press_start.png`. The beta build stops with a crash screen when a flag or var without save space is used (START continues); `make release` does not.
 
 ## Beta patch
 
-1. Set the version digits in `graphics/title_screen/origin_jade/press_start.png` (9x7 px per digit, right-aligned at x=124) and build with `make` (the beta is the build with debug menus).
+1. Set the version digits in `graphics/title_screen/origin_jade/press_start.png` and `graphics_en/title_screen/origin_jade/press_start.png` (9x7 px per digit, right-aligned at x=124) and build with `make` (the beta is the build with debug menus).
 2. Create the patch with Floating IPS against a clean Pokémon Emerald (USA/Europe), SHA-1 `f3ae088181bf583e55daf962a92bb46f4f1d07b7`:
    `flips --create --bps <clean Emerald .gba> Pokemon_Origin_Jade.gba OriginJade_Beta1.bps`
 3. Take the SHA-1 of the patched ROM: `sha1sum Pokemon_Origin_Jade.gba`.
@@ -38,7 +40,7 @@ Run with `python3 -I tools/<name>`:
 ## Rules
 
 - **Saves:** from the beta release on, the save layout is frozen: no new or moved flags, vars, maps, heal locations or save block fields without agreement. New flags only go to free ids (`check_flags.py --free`).
-- **Texts:** German in the official wording (Poké-Corpus), every line at most 208 px. The English `#else` branches stay. Code comments are short and in English.
+- **Texts:** German in the official wording (Poké-Corpus), every line at most 208 px. Every text has an English branch in the official wording (HnS, Poké-Corpus), also at most 208 px. Code comments are short and in English.
 - **Maps:** edit in Porymap. Retired maps (`game_version` ending in `_retired`: Sevii Islands, Emerald Battle Frontier, Battle Tents, Emerald Trainer Hill) stay in the repo because the code needs them. Sinjoh and Alola are locked. Emerald-tileset maps (Hoenn, the Trainer Hill buildings) are edited with the `…_EMERALD` primary tile counts in Porymap's project settings; save each map only in its own mode.
 - **Commits:** small.
 
