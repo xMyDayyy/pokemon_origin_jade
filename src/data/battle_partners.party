@@ -1,3 +1,8 @@
+#ifdef LANG_ENGLISH
+#define DE_EN(de, en) en
+#else
+#define DE_EN(de, en) de
+#endif
 === PARTNER_NONE ===
 Name:
 Class: Pkmn Trainer 1
@@ -7,7 +12,7 @@ Music: Male
 Back Pic: Brendan
 
 === PARTNER_STEVEN ===
-Name: Troy
+Name: DE_EN(Troy, STEVEN)
 Class: Rival
 Pic: Steven
 Gender: Male
@@ -46,7 +51,7 @@ EVs: 252 Atk / 252 SpA / 6 SpD
 - Dragon Claw
 
 === PARTNER_LANCE_HNS ===
-Name: Siegfried
+Name: DE_EN(Siegfried, LANCE)
 Class: Champion Hns
 Pic: Champion Lance Hns
 Gender: Male
