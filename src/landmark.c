@@ -21,48 +21,212 @@ static const u8 LandmarkName_MagmaHideout[] = _("MAGMAs Versteck");
 static const u8 LandmarkName_MagmaHideout[] = _("MAGMA HIDEOUT");
 #endif //Unused
 
+#if GERMAN
 static const struct Landmark Landmark_FlowerShop = {COMPOUND_STRING("Blumenladen"), FLAG_LANDMARK_FLOWER_SHOP};
+#else
+static const struct Landmark Landmark_FlowerShop = {COMPOUND_STRING("FLOWER SHOP"), FLAG_LANDMARK_FLOWER_SHOP};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_PetalburgWoods = {COMPOUND_STRING("Blütenburgwald"), -1};
+#else
+static const struct Landmark Landmark_PetalburgWoods = {COMPOUND_STRING("PETALBURG WOODS"), -1};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_MrBrineysCottage = {COMPOUND_STRING("Mr. Bracks Hütte"), FLAG_LANDMARK_MR_BRINEY_HOUSE};
+#else
+static const struct Landmark Landmark_MrBrineysCottage = {COMPOUND_STRING("MR. BRINEY'S COTTAGE"), FLAG_LANDMARK_MR_BRINEY_HOUSE};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_AbandonedShip = {COMPOUND_STRING("Schiffswrack"), FLAG_LANDMARK_ABANDONED_SHIP};
+#else
+static const struct Landmark Landmark_AbandonedShip = {COMPOUND_STRING("ABANDONED SHIP"), FLAG_LANDMARK_ABANDONED_SHIP};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_SeashoreHouse = {COMPOUND_STRING("Strandhaus"), FLAG_LANDMARK_SEASHORE_HOUSE};
+#else
+static const struct Landmark Landmark_SeashoreHouse = {COMPOUND_STRING("SEASHORE HOUSE"), FLAG_LANDMARK_SEASHORE_HOUSE};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_SlateportBeach = {COMPOUND_STRING("Graphitportstrand"), -1};
+#else
+static const struct Landmark Landmark_SlateportBeach = {COMPOUND_STRING("SLATEPORT BEACH"), -1};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_CyclingRoad = {COMPOUND_STRING("Radweg"), -1};
+#else
+static const struct Landmark Landmark_CyclingRoad = {COMPOUND_STRING("CYCLING ROAD"), -1};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_NewMauville = {COMPOUND_STRING("Neu Malvenfroh"), FLAG_LANDMARK_NEW_MAUVILLE};
+#else
+static const struct Landmark Landmark_NewMauville = {COMPOUND_STRING("NEW MAUVILLE"), FLAG_LANDMARK_NEW_MAUVILLE};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_TrickHouse = {COMPOUND_STRING("Rätselhaus"), FLAG_LANDMARK_TRICK_HOUSE};
+#else
+static const struct Landmark Landmark_TrickHouse = {COMPOUND_STRING("TRICK HOUSE"), FLAG_LANDMARK_TRICK_HOUSE};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_OldLadysRestShop = {COMPOUND_STRING("Hotel der alten Dame"), FLAG_LANDMARK_OLD_LADY_REST_SHOP};
+#else
+static const struct Landmark Landmark_OldLadysRestShop = {COMPOUND_STRING("OLD LADY'S REST STOP"), FLAG_LANDMARK_OLD_LADY_REST_SHOP};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_Desert = {COMPOUND_STRING("Wüste"), -1};
+#else
+static const struct Landmark Landmark_Desert = {COMPOUND_STRING("DESERT"), -1};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_WinstrateFamily = {COMPOUND_STRING("Familie Sihgers"), FLAG_LANDMARK_WINSTRATE_FAMILY};
+#else
+static const struct Landmark Landmark_WinstrateFamily = {COMPOUND_STRING("THE WINSTRATE FAMILY"), FLAG_LANDMARK_WINSTRATE_FAMILY};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_CableCar = {COMPOUND_STRING("Seilbahn"), -1};
+#else
+static const struct Landmark Landmark_CableCar = {COMPOUND_STRING("CABLE CAR"), -1};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_GlassWorkshop = {COMPOUND_STRING("Glaswerkstatt"), FLAG_LANDMARK_GLASS_WORKSHOP};
+#else
+static const struct Landmark Landmark_GlassWorkshop = {COMPOUND_STRING("GLASS WORKSHOP"), FLAG_LANDMARK_GLASS_WORKSHOP};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_WeatherInstitute = {COMPOUND_STRING("Klima-Institut"), -1};
+#else
+static const struct Landmark Landmark_WeatherInstitute = {COMPOUND_STRING("WEATHER INSTITUTE"), -1};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_MeteorFalls = {COMPOUND_STRING("Meteorfälle"), -1};
+#else
+static const struct Landmark Landmark_MeteorFalls = {COMPOUND_STRING("METEOR FALLS"), -1};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_TunnelersRestHouse = {COMPOUND_STRING("Bergrasthaus"), FLAG_LANDMARK_TUNNELERS_REST_HOUSE};
+#else
+static const struct Landmark Landmark_TunnelersRestHouse = {COMPOUND_STRING("TUNNELER'S RESTHOUSE"), FLAG_LANDMARK_TUNNELERS_REST_HOUSE};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_RusturfTunnel = {COMPOUND_STRING("Metaflurtunnel"), -1};
+#else
+static const struct Landmark Landmark_RusturfTunnel = {COMPOUND_STRING("RUSTURF TUNNEL"), -1};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_PokemonDayCare = {COMPOUND_STRING("PokéMon-Pension"), FLAG_LANDMARK_POKEMON_DAYCARE};
+#else
+static const struct Landmark Landmark_PokemonDayCare = {COMPOUND_STRING("POKéMON DAY CARE"), FLAG_LANDMARK_POKEMON_DAYCARE};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_SafariZoneEntrance = {COMPOUND_STRING("Eingang Safari-Zone"), -1};
+#else
+static const struct Landmark Landmark_SafariZoneEntrance = {COMPOUND_STRING("SAFARI ZONE ENTRANCE"), -1};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_MtPyre = {COMPOUND_STRING("Pyroberg"), -1};
+#else
+static const struct Landmark Landmark_MtPyre = {COMPOUND_STRING("MT. PYRE"), -1};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_ShoalCave = {COMPOUND_STRING("Küstenhöhle"), -1};
+#else
+static const struct Landmark Landmark_ShoalCave = {COMPOUND_STRING("SHOAL CAVE"), -1};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_SeafloorCavern = {COMPOUND_STRING("Tiefseehöhle"), FLAG_LANDMARK_SEAFLOOR_CAVERN};
+#else
+static const struct Landmark Landmark_SeafloorCavern = {COMPOUND_STRING("SEAFLOOR CAVERN"), FLAG_LANDMARK_SEAFLOOR_CAVERN};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_GraniteCave = {COMPOUND_STRING("Granithöhle"), -1};
+#else
+static const struct Landmark Landmark_GraniteCave = {COMPOUND_STRING("GRANITE CAVE"), -1};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_OceanCurrent = {COMPOUND_STRING("Meeresströmung"), -1};
+#else
+static const struct Landmark Landmark_OceanCurrent = {COMPOUND_STRING("OCEAN CURRENT"), -1};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_LanettesHouse = {COMPOUND_STRING("Lanettes Haus"), FLAG_LANDMARK_LANETTES_HOUSE};
+#else
+static const struct Landmark Landmark_LanettesHouse = {COMPOUND_STRING("LANETTE'S HOUSE"), FLAG_LANDMARK_LANETTES_HOUSE};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_FieryPath = {COMPOUND_STRING("Feuriger Pfad"), FLAG_LANDMARK_FIERY_PATH};
+#else
+static const struct Landmark Landmark_FieryPath = {COMPOUND_STRING("FIERY PATH"), FLAG_LANDMARK_FIERY_PATH};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_JaggedPass = {COMPOUND_STRING("Steilpass"), -1};
+#else
+static const struct Landmark Landmark_JaggedPass = {COMPOUND_STRING("JAGGED PASS"), -1};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_BerryMastersHouse = {COMPOUND_STRING("Beerenmeister-Villa"), FLAG_LANDMARK_BERRY_MASTERS_HOUSE};
+#else
+static const struct Landmark Landmark_BerryMastersHouse = {COMPOUND_STRING("BERRY MASTER'S HOUSE"), FLAG_LANDMARK_BERRY_MASTERS_HOUSE};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_IslandCave = {COMPOUND_STRING("Inselhöhle"), FLAG_LANDMARK_ISLAND_CAVE};
+#else
+static const struct Landmark Landmark_IslandCave = {COMPOUND_STRING("ISLAND CAVE"), FLAG_LANDMARK_ISLAND_CAVE};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_DesertRuins = {COMPOUND_STRING("Wüstenruine"), FLAG_LANDMARK_DESERT_RUINS};
+#else
+static const struct Landmark Landmark_DesertRuins = {COMPOUND_STRING("DESERT RUINS"), FLAG_LANDMARK_DESERT_RUINS};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_ScorchedSlab = {COMPOUND_STRING("Sonnengrotte"), FLAG_LANDMARK_SCORCHED_SLAB};
+#else
+static const struct Landmark Landmark_ScorchedSlab = {COMPOUND_STRING("SCORCHED SLAB"), FLAG_LANDMARK_SCORCHED_SLAB};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_AncientTomb = {COMPOUND_STRING("Grabmal"), FLAG_LANDMARK_ANCIENT_TOMB};
+#else
+static const struct Landmark Landmark_AncientTomb = {COMPOUND_STRING("ANCIENT TOMB"), FLAG_LANDMARK_ANCIENT_TOMB};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_SealedChamber = {COMPOUND_STRING("Siegelkammer"), FLAG_LANDMARK_SEALED_CHAMBER};
+#else
+static const struct Landmark Landmark_SealedChamber = {COMPOUND_STRING("SEALED CHAMBER"), FLAG_LANDMARK_SEALED_CHAMBER};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_FossilManiacsHouse = {COMPOUND_STRING("Fossilmaniacs Haus"), FLAG_LANDMARK_FOSSIL_MANIACS_HOUSE};
+#else
+static const struct Landmark Landmark_FossilManiacsHouse = {COMPOUND_STRING("FOSSIL MANIAC'S HOUSE"), FLAG_LANDMARK_FOSSIL_MANIACS_HOUSE};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_HuntersHouse = {COMPOUND_STRING("Haus des Tauchers"), FLAG_LANDMARK_HUNTERS_HOUSE};
+#else
+static const struct Landmark Landmark_HuntersHouse = {COMPOUND_STRING("HUNTER'S HOUSE"), FLAG_LANDMARK_HUNTERS_HOUSE};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_SkyPillar = {COMPOUND_STRING("Himmelturm"), FLAG_LANDMARK_SKY_PILLAR};
+#else
+static const struct Landmark Landmark_SkyPillar = {COMPOUND_STRING("SKY PILLAR"), FLAG_LANDMARK_SKY_PILLAR};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_MirageTower = {COMPOUND_STRING("Wunderturm"), FLAG_LANDMARK_MIRAGE_TOWER};
+#else
+static const struct Landmark Landmark_MirageTower = {COMPOUND_STRING("MIRAGE TOWER"), FLAG_LANDMARK_MIRAGE_TOWER};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_AlteringCave = {COMPOUND_STRING("Wandelhöhle"), FLAG_LANDMARK_ALTERING_CAVE};
+#else
+static const struct Landmark Landmark_AlteringCave = {COMPOUND_STRING("ALTERING CAVE"), FLAG_LANDMARK_ALTERING_CAVE};
+#endif
+#if GERMAN
 static const struct Landmark Landmark_DesertUnderpass = {COMPOUND_STRING("Wüstentunnel"), FLAG_LANDMARK_DESERT_UNDERPASS};
+#else
+static const struct Landmark Landmark_DesertUnderpass = {COMPOUND_STRING("DESERT UNDERPASS"), FLAG_LANDMARK_DESERT_UNDERPASS};
+#endif
 #if !IS_HNS
+#if GERMAN
 static const struct Landmark Landmark_TrainerHill = {COMPOUND_STRING("Trainerberg"), FLAG_LANDMARK_TRAINER_HILL};
+#else
+static const struct Landmark Landmark_TrainerHill = {COMPOUND_STRING("TRAINER HILL"), FLAG_LANDMARK_TRAINER_HILL};
+#endif
 #endif
 
 static const struct Landmark *const Landmarks_Route103_2[]  =
