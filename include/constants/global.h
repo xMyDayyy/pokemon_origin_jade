@@ -88,6 +88,12 @@ enum Language
     #define ENGLISH 0
     #define GAME_LANGUAGE (LANGUAGE_GERMAN)
 #endif
+// Text of the build language, for places where #if GERMAN cannot stand (macro bodies).
+#if GERMAN
+    #define DE_EN(de, en) de
+#else
+    #define DE_EN(de, en) en
+#endif
 
 // party sizes
 #define PARTY_SIZE 6
