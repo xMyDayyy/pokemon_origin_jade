@@ -9,7 +9,7 @@ Needs `gcc-arm-none-eabi`, `binutils-arm-none-eabi`, `libnewlib-arm-none-eabi`, 
 
 Only Origin Jade is built (`IS_HNS`, map version `hns`).
 
-The title screen shows the version below PRESS START in every build; it is drawn in `graphics/title_screen/origin_jade/press_start.png`. The beta build stops with a crash screen when a flag or var without save space is used (START continues); `make release` does not.
+The title screen shows the version below DRÜCKE START in every build; it is drawn in `graphics/title_screen/origin_jade/press_start.png`. The beta build stops with a crash screen when a flag or var without save space is used (START continues); `make release` does not.
 
 ## Beta patch
 
