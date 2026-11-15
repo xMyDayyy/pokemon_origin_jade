@@ -328,10 +328,11 @@ Route36_Text_Lass1:
 	.string "nicht einkaufen gehen.\p"
 	.string "Man sollte etwas dagegen tun.$"
 #else
-	.string "Be careful at night on this route!\p"
-	.string "I saw a POKéMON that looked like\n"
-	.string "GROWLITHE, but it had a scary aura\l"
-	.string "to it.$"
+	.string "A strange tree is blocking the road\n"
+	.string "to GOLDENROD CITY.\p"
+	.string "Because of that tree, I can't go\n"
+	.string "shopping.\p"
+	.string "Someone should do something about it.$"
 #endif
 
 Route36_Text_Lass2_ClearedSudowoodo:

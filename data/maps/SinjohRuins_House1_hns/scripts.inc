@@ -360,6 +360,7 @@ SinjohRuins_Lab_Text_FinalPlateScene2:
 #else
 	.string "STEVEN: I need to see this for\n"
 	.string "myself!\p"
+	.string "Outside, {PLAYER}!$"
 #endif
 
 SinjohRuins_Lab_Movement_PlayerLeaveLab:
@@ -545,11 +546,19 @@ SinjohRuins_Lab_Text_Geologist:
 	.string "buried even deeper.$"
 #endif
 SinjohRuins_Lab_Text_GeologistDuring:
+#if GERMAN
 	.string "Die ganze Zeit habe ich meine Geräte\n"
 	.string "nach unten gerichtet, um den\l"
 	.string "Untergrund abzubilden.\p"
 	.string "Dabei hätte ich sie eindeutig nach\n"
 	.string "oben richten sollen!$"
+#else
+	.string "All this time I've directed my\n"
+	.string "equipment downward to image\l"
+	.string "the underground.\p"
+	.string "When clearly I should've pointed\n"
+	.string "it up!$"
+#endif
 SinjohRuins_Lab_Text_GeologistAfter:
 #if GERMAN
 	.string "Diese Tafeln standen mit dem\n"
@@ -588,6 +597,7 @@ SinjohRuins_Lab_Text_Linguist:
 	.string "in the HOENN region.$"
 #endif
 SinjohRuins_Lab_Text_LinguistDuring:
+#if GERMAN
 	.string "Stell dir meine Überraschung vor,\n"
 	.string "als ich das Schriftzeichen übersetzt\l"
 	.string "habe!\p"
@@ -597,6 +607,15 @@ SinjohRuins_Lab_Text_LinguistDuring:
 	.string "Ich meine, wirklich - der Gott der\n"
 	.string "Pokémon?\p"
 	.string "Es ist unglaublich.$"
+#else
+    .string "Imagine my surprise as I\n"
+	.string "translated the glyph!\p"
+	.string "I triple and quadruple checked\n"
+	.string "it before telling STEVEN!\p"
+	.string "I mean, really, the God of\n"
+	.string "POKéMON?\p"
+	.string "It's incredible.$"
+#endif
 SinjohRuins_Lab_Text_LinguistAfter:
 #if GERMAN
 	.string "Diese Expedition war eine wahre\n"
@@ -645,10 +664,18 @@ SinjohRuins_Lab_Text_Archaeologist:
 	.string "It seems far older.$"
 #endif
 SinjohRuins_Lab_Text_ArchaeologistDuring:
+#if GERMAN
 	.string "Diese Tafeln…\n"
 	.string "Die Verbindung zur Sinnoh-Region…\l"
 	.string "Diese Flöte…\l"
 	.string "Langsam ergibt alles einen Sinn.$"
+#else
+	.string "Those plates...\n"
+	.string "The connection to the SINNOH\l"
+	.string "region...\l"
+	.string "That flute....\l"
+	.string "It's all starting to make sense.$"
+#endif
 SinjohRuins_Lab_Text_ArchaeologistAfter:
 #if GERMAN
 	.string "Der historische Wert dessen, was du uns\n"
@@ -737,10 +764,17 @@ SinjohRuins_Lab_Text_Biologist:
 	.string "north through ancient SINNOH.$"
 #endif
 SinjohRuins_Lab_Text_BiologistDuring:
+#if GERMAN
 	.string "Wenn das Wesen am oberen Ende der\n"
 	.string "Treppe wirklich der Gott aller\l"
 	.string "Pokémon ist - heißt das, es ist der\l"
 	.string "erste gemeinsame Vorfahre?$"
+#else
+	.string "If the creature at the top of\n"
+	.string "those stairs really is the God\l"
+	.string "of all POKéMON, does that mean\l"
+	.string "it is the first common ancestor?$"
+#endif
 SinjohRuins_Lab_Text_BiologistAfter:
 #if GERMAN
 	.string "Auf dieser Expedition konnte ich so\n"
@@ -799,6 +833,7 @@ SinjohRuins_Lab_Text_Hiker:
 	.string "Y'know?$"
 #endif
 SinjohRuins_Lab_Text_HikerDuringAfter:
+#if GERMAN
 	.string "Sag es niemandem, {PLAYER},\n"
 	.string "aber ich habe den Tempel auf dem\l"
 	.string "Berggipfel schon gesehen, als ich\l"
@@ -808,6 +843,17 @@ SinjohRuins_Lab_Text_HikerDuringAfter:
 	.string "Ruinen ausgeplaudert.\p"
 	.string "Immerhin scheint ja alles gut\n"
 	.string "ausgegangen zu sein.$"
+#else
+   	.string "Don't tell anyone, {PLAYER},\n"
+	.string "But I saw that temple on\l"
+	.string "the mountaintop when I first\l"
+	.string "discovered this place.\p"
+	.string "I kept it to myself.\p"
+	.string "I've blabbed enough about\n"
+	.string "these ruins.\p"
+	.string "It seems like everything worked\n"
+	.string "out, at least.$"
+#endif
 
 @ENVIRONMENT
 SinjohRuins_Lab_EventScript_Notes1::
@@ -955,7 +1001,8 @@ SinjohRuins_Lab_Text_Note4:
 	.string "The architecture of the main \n"
 	.string "structure indicates it may be of the\l"
 	.string "the ancient Celestica peoples...\p"
-	.string "Our ancestors. Before they moved north.\p"
+	.string "Our ancestors.\n"
+	.string "Before they moved north.\p"
 	.string "The boss wants that temple open as\n"
 	.string "soon as possible...$"
 #endif

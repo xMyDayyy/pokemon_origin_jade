@@ -516,15 +516,28 @@ PokedexRating_Text_LoveSeeingYourPokedex::
 @ HnS (mostly directly copied from HGSS)
 
 gElmDexRatingText_GoFindMrPokemon::
+#if GERMAN
 	.string "Prof. Lind: Ah, {PLAYER}{KUN}!\p"
 	.string "Hast du Mr. Pokémons Haus schon\n"
 	.string "gefunden? Es liegt an der Route 30,\p"
 	.string "du kannst es nicht verfehlen!$"
+#else
+	.string "PROF. ELM: Ah, {PLAYER}{KUN}!\p"
+	.string "Have you found MR. POKéMON's\n"
+	.string "home yet? It is on ROUTE 30,\p"
+	.string "you can't miss it!$"
+#endif
 
 gElmDexRatingText_Robbery::
+#if GERMAN
 	.string "Prof. Lind: {PLAYER}{KUN}!\p"
 	.string "Komm schnell her! Es ist etwas\n"
 	.string "Schreckliches passiert!$"
+#else
+	.string "PROF. ELM: {PLAYER}{KUN}!\p"
+	.string "Get here quick! Something\n"
+	.string "awful has happened!$"
+#endif
 
 gElmDexRatingText_AreYouCurious::
 #if GERMAN

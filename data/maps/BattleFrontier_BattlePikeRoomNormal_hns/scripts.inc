@@ -725,8 +725,13 @@ BattleFrontier_BattlePikeRoomNormal_Text_WillRestoreMonsAsPromised_hns:
 
 @ Unused
 BattleFrontier_BattlePikeRoomNormal_Text_BestOfLuckFarewell2_hns:
+#if GERMAN
 	.string "Ich wünsche dir viel Glück.\n"
 	.string "Leb wohl.$"
+#else
+	.string "The best of luck to you.\n"
+	.string "Farewell.$"
+#endif
 
 BattleFrontier_BattlePikeRoomNormal_Text_WatchOut_hns:
 #if GERMAN

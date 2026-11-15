@@ -621,7 +621,8 @@ BlackthornGym_Text_GuideGotoDragonsDen:
     .string "She can be a bit of a sore loser,\n"
 	.string "though\p"
     .string "Sounds like you need to head to the\n"
-    .string "DRAGON'S DEN if you want that GYM BADGE!$"
+    .string "DRAGON'S DEN if you want that\l"
+    .string "GYM BADGE!$"
 #endif
 
 BlackthornGym_Text_GuideWinText:

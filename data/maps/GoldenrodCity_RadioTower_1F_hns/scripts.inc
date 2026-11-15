@@ -394,8 +394,13 @@ RadioTower1F_Text_Directory:
 #endif
 
 RadioTower1F_Text_GotRadio:
+#if GERMAN
 	.string "{PLAYER} erhält das Radio-Modul\n"
 	.string "für den PokéCom!$"
+#else
+	.string "{PLAYER} got the RADIO CARD\n"
+	.string "for the POKéGEAR!$"
+#endif
 
 GoldenrodCity_RadioTower_1F_EventScript_LotteryClerk::
 	lock

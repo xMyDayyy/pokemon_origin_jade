@@ -381,8 +381,13 @@ KurtsHouse_Text_KurtFinishedPlural:
 #endif
 
 KurtsHouse_Text_KurtObtainedPlural:
+#if GERMAN
 	.string "{PLAYER} erhält\n"
 	.string "{STR_VAR_2} {STR_VAR_1}e!$"
+#else
+	.string "{PLAYER} obtained\n"
+	.string "{STR_VAR_2} {STR_VAR_1}s!$"
+#endif
 
 KurtsHouse_Text_KurtFinishedSingular:
 #if GERMAN
@@ -397,8 +402,13 @@ KurtsHouse_Text_KurtFinishedSingular:
 #endif
 
 KurtsHouse_Text_KurtObtainedSingular:
+#if GERMAN
 	.string "{PLAYER} erhält\n"
 	.string "den {STR_VAR_1}!$"
+#else
+	.string "{PLAYER} obtained\n"
+	.string "the {STR_VAR_1}!$"
+#endif
 
 KurtsHouse_Text_KurtTurnedOutGreat:
 #if GERMAN

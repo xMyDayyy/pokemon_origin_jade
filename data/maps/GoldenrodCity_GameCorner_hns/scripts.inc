@@ -711,7 +711,8 @@ GoldenrodCity_GameCorner_Text_Woman:
 	.string "Dein Spielplatz!\p"
 	.string "Dukatia City Spielhalle$"
 #else
-    .string "I can't stop winning!$"
+	.string "Your playground!\p"
+	.string "GOLDENROD GAME CORNER$"
 #endif
 
 GoldenrodCity_GameCorner_Text_PokefanM1:
@@ -1090,8 +1091,9 @@ GoldenrodCity_GameCorner_Text_VF_HowToPlay:
 	.string "you that many Coins.\p"
 	.string "Each new number multiplies your total.\n"
 	.string "A 2 by x2 and a 3 by x3.\p"
-	.string "But if you flip a VOLTORB, it's game over.\n"
-	.string "You lose all Coins collected that round!\p"
+	.string "But if you flip a VOLTORB,\n"
+	.string "it's game over. You lose all Coins\l"
+	.string "collected that round!\p"
 	.string "QUIT the game at any time to keep\n"
 	.string "the Coins you've found so far.\p"
 	.string "Find all hidden x2 and x3 cards to clear\n"

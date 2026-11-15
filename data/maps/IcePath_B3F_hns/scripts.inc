@@ -153,7 +153,11 @@ IcePath_B3F_Text_Swinub:
 	.string "SWINUB: Swiiiiii!$"
 #endif
 IcePath_B3F_Text_SwinubBerry:
+#if GERMAN
 	.string "Willst du Quiekel eine Beere geben?$"
+#else
+	.string "Give the SWINUB a BERRY?$"
+#endif
 IcePath_B3F_Text_SwinubAteBerry:
 #if GERMAN
 	.string "Quiekel hat die Aspear-Beere genossen!$"
@@ -161,7 +165,11 @@ IcePath_B3F_Text_SwinubAteBerry:
 	.string "SWINUB enjoyed the ASPEAR BERRY!$"
 #endif
 IcePath_B3F_Text_SwinubTurnedAway:
+#if GERMAN
 	.string "Quiekel mag das nicht!$"
+#else
+	.string "SWINUB doesn't like it!$"
+#endif
 
 IcePath_B3F_Text_Delibird:
 #if GERMAN
@@ -170,7 +178,11 @@ IcePath_B3F_Text_Delibird:
 	.string "DELIBIRD: SKWAAAAA!$"
 #endif
 IcePath_B3F_Text_DelibirdBerry:
+#if GERMAN
 	.string "Willst du Botogel eine Beere geben?$"
+#else
+	.string "Give the DELIBIRD a BERRY?$"
+#endif
 IcePath_B3F_Text_DelibirdAteBerry:
 #if GERMAN
 	.string "Botogel hat die Aspear-Beere genossen!$"
@@ -178,4 +190,8 @@ IcePath_B3F_Text_DelibirdAteBerry:
 	.string "DELIBIRD enjoyed the ASPEAR BERRY!$"
 #endif
 IcePath_B3F_Text_DelibirdTurnedAway:
+#if GERMAN
 	.string "Botogel mag das nicht!$"
+#else
+	.string "DELIBIRD doesn't like it!$"
+#endif

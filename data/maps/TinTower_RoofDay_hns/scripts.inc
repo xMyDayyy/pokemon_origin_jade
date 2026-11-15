@@ -586,7 +586,11 @@ TinTower_RoofDay_Text_Zuki_Before::
 	.string "ZUKI: Go, face HO-OH. $"
 #endif
 TinTower_RoofDay_Text_Naoko_Before::
+#if GERMAN
 	.string "Umeko: Geh nun zu Ho-Oh.$"
+#else
+	.string "NAOKO: Go, face HO-OH. $"
+#endif
 TinTower_RoofDay_Text_Miki_Before::
 #if GERMAN
 	.string "Satsuki: Geh nun zu Ho-Oh.$"
@@ -594,7 +598,11 @@ TinTower_RoofDay_Text_Miki_Before::
 	.string "MIKI: Go, face HO-OH. $"
 #endif
 TinTower_RoofDay_Text_Sayo_Before::
+#if GERMAN
 	.string "Sakura: Geh nun zu Ho-Oh.$"
+#else
+	.string "SAYO: Go, face HO-OH. $"
+#endif
 TinTower_RoofDay_Text_Kuni_Before::
 #if GERMAN
 	.string "Komomo: Geh nun zu Ho-Oh.$"

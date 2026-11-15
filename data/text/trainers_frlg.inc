@@ -1363,8 +1363,8 @@ Route21_North_Text_CueBallRematchIntro::
 	.string "Auch heute bin ich wieder\n"
 	.string "zum Schwimmen hier!$"
 #else
-	.string "きょうも　およぎに\n"
-	.string "きちまったぜ$"
+	.string "I came here for a swim\n"
+	.string "again today!$"
 #endif
 
 Route21_South_Text_JackRematchIntro::

@@ -463,8 +463,13 @@ BattleFrontier_BattleFactoryLobby_Text_CongratsSevenWins_hns:
 
 @ Unused
 BattleFrontier_BattleFactoryLobby_Text_AwardBattlePointsForStreak_hns:
+#if GERMAN
 	.string "In Anerkennung deines siebenfachen\n"
 	.string "Sieges geben wir dir Gewinnpunkte.$"
+#else
+	.string "In recognition of your 7-win streak,\n"
+	.string "we award you these Battle Point(s).$"
+#endif
 
 @ Unused
 BattleFrontier_BattleFactoryLobby_Text_MaxBattlePoints_hns:

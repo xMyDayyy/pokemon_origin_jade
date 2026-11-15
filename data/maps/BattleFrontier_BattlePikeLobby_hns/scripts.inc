@@ -471,9 +471,15 @@ BattleFrontier_BattlePikeLobby_Text_ShallRecordResults_hns:
 
 @ Unused
 BattleFrontier_BattlePikeLobby_Text_AwardYouTheseBattlePoints2_hns:
+#if GERMAN
 	.string "In Anerkennung deiner bestandenen\n"
 	.string "Kampfbahn-Herausforderung erhältst\l"
 	.string "du Gewinnpunkte…$"
+#else
+	.string "To commemorate your completion of\n"
+	.string "the Battle Choice challenge, we award\l"
+	.string "you these Battle Point(s)…$"
+#endif
 
 @ Unused
 BattleFrontier_BattlePikeLobby_Text_ReachedBattlePointLimit_hns:

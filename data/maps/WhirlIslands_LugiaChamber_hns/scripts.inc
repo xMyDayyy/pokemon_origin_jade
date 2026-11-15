@@ -308,6 +308,7 @@ WhirlIslands_LugiaChamber_Text_Kimono_AfterNotCaught:
 	.string "it...\p"
 	.string "There is nothing more for us to\n"
 	.string "say. Take care of yourself in your\l"
+	.string "journey...$"
 #endif
 
 WhirlIslands_LugiaChamber_Text_Kimono_AfterCaught:
@@ -591,7 +592,11 @@ WhirlIslands_LugiaChamber_Text_Zuki_Before::
 	.string "ZUKI: Go, face LUGIA. $"
 #endif
 WhirlIslands_LugiaChamber_Text_Naoko_Before::
+#if GERMAN
 	.string "Umeko: Geh nun zu Lugia.$"
+#else
+	.string "NAOKO: Go, face LUGIA. $"
+#endif
 WhirlIslands_LugiaChamber_Text_Miki_Before::
 #if GERMAN
 	.string "Satsuki: Geh nun zu Lugia.$"
@@ -599,7 +604,11 @@ WhirlIslands_LugiaChamber_Text_Miki_Before::
 	.string "MIKI: Go, face LUGIA. $"
 #endif
 WhirlIslands_LugiaChamber_Text_Sayo_Before::
+#if GERMAN
 	.string "Sakura: Geh nun zu Lugia.$"
+#else
+	.string "SAYO: Go, face LUGIA. $"
+#endif
 WhirlIslands_LugiaChamber_Text_Kuni_Before::
 #if GERMAN
 	.string "Komono: Geh nun zu Lugia.$"

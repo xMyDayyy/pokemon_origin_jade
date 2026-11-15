@@ -111,6 +111,12 @@ gText_WeHopeToSeeYouAgain2::
 #endif
 
 gText_PkmnCenterChallenge_NoVisitsLeft:: @ tx_difficulty_challenge
+#if GERMAN
     .string "Sorry, du spielst mit\n"
     .string "der Pokécenter-Challenge!\p"
     .string "Viel Glück!{PAUSE_UNTIL_PRESS}$"
+#else
+    .string "Sorry, but you are playing with\n"
+    .string "the POKéCENTER challenge!\p"
+    .string "Good luck!{PAUSE_UNTIL_PRESS}$"
+#endif

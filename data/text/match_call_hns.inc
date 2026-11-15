@@ -2309,6 +2309,7 @@ MatchCall_HNS_Rob_General2::
 #else
 	.string "Hey, {PLAYER}!\p"
 	.string "I saw a BUG TYPE GYM\n"
+	.string "LEADER in VIRIDIAN FOREST!$"
 #endif
 
 MatchCall_HNS_Rob_Battle::

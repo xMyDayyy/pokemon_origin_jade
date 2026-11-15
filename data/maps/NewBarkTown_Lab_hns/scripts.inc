@@ -1335,6 +1335,12 @@ NewBarkTown_Lab_Text_KimonoGirls:
 	.string "A group of beautiful KIMONO\l"
 	.string "GIRLS were looking for you.\p"
 	.string "They told me they are\n"
+	.string "waiting for you at the\l"
+	.string "ECRUTEAK DANCE THEATER.\p"
+	.string "I know you've gone through many\n"
+	.string "things since that EGG got you\l"
+	.string "involved in all this...\p"
+	.string "I hope you'll carry through it.$"
 #endif
 
 NewBarkTown_Lab_Text_KimonoWaiting:
