@@ -33,12 +33,21 @@ static bool32 BerryTreeIsHoenn(struct BerryTree *tree)
 {
     return BerryTreeIdIsHoenn((u8)(tree - gSaveBlock1Ptr->berryTrees));
 }
-// HGSS growth time per stage
+// HGSS tree regrowth time in minutes: ripe again 12 in-game hours after picking.
 static u16 GetStageDurationHns(u8 berry)
 {
-    if (berry == ITEM_TO_BERRY(ITEM_LUM_BERRY) || berry == ITEM_TO_BERRY(ITEM_SITRUS_BERRY))
-        return 12 * 2;
-    return 3 * 2;
+    return 12 * 60;
+}
+
+// HGSS tree yield: 1 to 5 berries, at most the species' maxYield.
+static u8 GetRandomYieldHns(u8 berry)
+{
+    u8 cap = GetBerryInfo(berry)->maxYield;
+    if (cap > 5)
+        cap = 5;
+    if (cap < 1)
+        cap = 1;
+    return 1 + Random() % cap;
 }
 #endif
 static u8 CalcBerryYieldInternal(u16 max, u16 min, u8 water);
@@ -1862,17 +1871,9 @@ bool32 BerryTreeGrow(struct BerryTree *tree)
         case BERRY_STAGE_SPROUTED:
         case BERRY_STAGE_TALLER:
         case BERRY_STAGE_FLOWERING:
-        {
-            // Origin Jade: HGSS trees bear 1-5 berries, at most the species' maxYield.
-            u8 cap = GetBerryInfo(tree->berry)->maxYield;
-            if (cap > 5)
-                cap = 5;
-            if (cap < 1)
-                cap = 1;
-            tree->berryYield = 1 + Random() % cap;
+            tree->berryYield = GetRandomYieldHns(tree->berry);
             tree->stage = BERRY_STAGE_BERRIES;
             break;
-        }
         case BERRY_STAGE_BERRIES:
             break;
         }
@@ -2051,7 +2052,7 @@ void PlantBerryTree(u8 id, u8 berry, u8 stage, bool8 allowGrowth)
         tree->minutesUntilNextStage = GetStageDurationHns(berry);
         if (stage == BERRY_STAGE_BERRIES)
         {
-            tree->berryYield = CalcBerryYield(tree);
+            tree->berryYield = GetRandomYieldHns(berry);
             tree->minutesUntilNextStage *= 4;
         }
     }
