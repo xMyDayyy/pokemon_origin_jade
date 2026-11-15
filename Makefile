@@ -217,6 +217,12 @@ MAPJSON      := $(TOOLS_DIR)/mapjson/mapjson$(EXE)
 JSONPROC     := $(TOOLS_DIR)/jsonproc/jsonproc$(EXE)
 TRAINERPROC  := $(TOOLS_DIR)/trainerproc/trainerproc$(EXE)
 
+# English builds take the English source of a graphic from graphics_en/ when there is one.
+ifeq ($(GAME_LANG),ENGLISH)
+  GFX    := sh $(TOOLS_DIR)/lang_gfx.sh $(GFX)
+  SMOLTM := sh $(TOOLS_DIR)/lang_gfx.sh $(SMOLTM)
+endif
+
 # Learnset helper is a Python script
 LEARNSET_HELPERS_DIR := $(TOOLS_DIR)/learnset_helpers
 LEARNSET_HELPERS_DATA_DIR := $(LEARNSET_HELPERS_DIR)/porymoves_files
@@ -367,6 +373,14 @@ include spritesheet_rules.mk
 include json_data_rules.mk
 include audio_rules.mk
 include trainer_rules.mk
+
+# Files made from a graphic in graphics_en/ are made again when the language changes.
+LANG_GFX_SRC := $(patsubst graphics_en/%,graphics/%,$(shell find graphics_en -type f 2>/dev/null))
+LANG_GFX_GEN := $(foreach f,$(filter %.png,$(LANG_GFX_SRC)),$(f:.png=.1bpp) $(f:.png=.4bpp) $(f:.png=.8bpp) $(f:.png=.gbapal)) \
+                $(foreach f,$(filter %.pal,$(LANG_GFX_SRC)),$(f:.pal=.gbapal)) \
+                $(foreach f,$(filter %.bin,$(LANG_GFX_SRC)),$(f).smolTM $(f).lz) \
+                $(patsubst $(FONTGFXDIR)/latin_%.png,$(FONTGFXDIR)/%.latfont,$(filter $(FONTGFXDIR)/latin_%.png,$(LANG_GFX_SRC)))
+$(LANG_GFX_GEN): $(LANG_STAMP)
 
 # NOTE: Tools must have been built prior (FIXME)
 # so you can't really call this rule directly
