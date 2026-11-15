@@ -5224,8 +5224,13 @@ void ItemUseCB_AbilityPatch(u8 taskId, TaskFunc task)
 
 void Task_Mint(u8 taskId)
 {
+#if GERMAN
     static const u8 sText_askText[] = _("Das kann die Werte von {STR_VAR_1}\nverändern. Wirklich einsetzen?");
     static const u8 sText_doneText[] = _("Die Werte von {STR_VAR_1} wurden durch\n{STR_VAR_2} verändert!{PAUSE_UNTIL_PRESS}");
+#else
+    static const u8 sText_askText[] = _("It might affect {STR_VAR_1}'s stats.\nAre you sure you want to use it?");
+    static const u8 sText_doneText[] = _("{STR_VAR_1}'s stats may have changed due\nto the effects of the {STR_VAR_2}!{PAUSE_UNTIL_PRESS}");
+#endif
     s16 *data = gTasks[taskId].data;
 
     switch (tState)
@@ -6171,7 +6176,11 @@ static void BufferMonStatsToTaskData(struct Pokemon *mon, s16 *data)
 
 void Task_DynamaxCandy(u8 taskId)
 {
+#if GERMAN
     static const u8 sText_doneText[] = _("Das Dyna-Level von {STR_VAR_1}\nsteigt um 1!{PAUSE_UNTIL_PRESS}");
+#else
+    static const u8 sText_doneText[] = _("{STR_VAR_1}'s Dynamax Level\nincreased by 1!{PAUSE_UNTIL_PRESS}");
+#endif
     s16 *data = gTasks[taskId].data;
 
     switch (tState)
@@ -7024,7 +7033,11 @@ void ItemUseCB_PokeBall(u8 taskId, TaskFunc task)
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
     u16 currBall = GetMonData(mon, MON_DATA_POKEBALL);
     u16 newBall = ItemIdToBallId(gSpecialVar_ItemId);
+#if GERMAN
     static const u8 sText_MonBallWasChanged[] = _("{STR_VAR_1} wurde in {STR_VAR_2} gelegt.{PAUSE_UNTIL_PRESS}");
+#else
+    static const u8 sText_MonBallWasChanged[] = _("{STR_VAR_1} was put in the {STR_VAR_2}.{PAUSE_UNTIL_PRESS}");
+#endif
 
     if (currBall == newBall)
     {

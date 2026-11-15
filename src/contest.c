@@ -765,50 +765,85 @@ const struct ContestCategory gContestCategoryInfo[CONTEST_CATEGORIES_COUNT + 1] 
 {
     [CONTEST_CATEGORY_COOL] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Cool."),
         .condition = COMPOUND_STRING("Coolness"),
         .generic = COMPOUND_STRING("Coole Att."),
         .negativeTrait = COMPOUND_STRING("Scheu"),
+#else
+        .name = COMPOUND_STRING("COOL"),
+        .condition = COMPOUND_STRING("coolness"),
+        .generic = COMPOUND_STRING("COOL Move"),
+        .negativeTrait = COMPOUND_STRING("shyness"),
+#endif
         .palette = 13,
         .tile = 0x4040,
     },
 
     [CONTEST_CATEGORY_BEAUTY] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Schön."),
         .condition = COMPOUND_STRING("Schönheit"),
         .generic = COMPOUND_STRING("Schöne Att."),
         .negativeTrait = COMPOUND_STRING("Besorgnis"),
+#else
+        .name = COMPOUND_STRING("BEAUTY"),
+        .condition = COMPOUND_STRING("beauty"),
+        .generic = COMPOUND_STRING("BEAUTY Move"),
+        .negativeTrait = COMPOUND_STRING("anxiety"),
+#endif
         .palette = 14,
         .tile = 0x4045,
     },
 
     [CONTEST_CATEGORY_CUTE] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Anmut"),
         .condition = COMPOUND_STRING("Anmut"),
         .generic = COMPOUND_STRING("Anmut-Att."),
         .negativeTrait = COMPOUND_STRING("Faulheit"),
+#else
+        .name = COMPOUND_STRING("CUTE"),
+        .condition = COMPOUND_STRING("cuteness"),
+        .generic = COMPOUND_STRING("CUTE Move"),
+        .negativeTrait = COMPOUND_STRING("laziness"),
+#endif
         .palette = 14,
         .tile = 0x404A,
     },
 
     [CONTEST_CATEGORY_SMART] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Klug."),
         .condition = COMPOUND_STRING("Klugheit"),
         .generic = COMPOUND_STRING("Kluge Att."),
         .negativeTrait = COMPOUND_STRING("Zögern"),
+#else
+        .name = COMPOUND_STRING("SMART"),
+        .condition = COMPOUND_STRING("smartness"),
+        .generic = COMPOUND_STRING("SMART Move"),
+        .negativeTrait = COMPOUND_STRING("hesitancy"),
+#endif
         .palette = 15,
         .tile = 0x406A,
     },
 
     [CONTEST_CATEGORY_TOUGH] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Stärke"),
         .condition = COMPOUND_STRING("Stärke"),
         .generic = COMPOUND_STRING("Starke Att."),
         .negativeTrait = COMPOUND_STRING("Furcht"),
+#else
+        .name = COMPOUND_STRING("TOUGH"),
+        .condition = COMPOUND_STRING("toughness"),
+        .generic = COMPOUND_STRING("TOUGH Move"),
+        .negativeTrait = COMPOUND_STRING("fear"),
+#endif
         .palette = 13,
         .tile = 0x408A,
     },
@@ -822,12 +857,21 @@ const struct ContestCategory gContestCategoryInfo[CONTEST_CATEGORIES_COUNT + 1] 
 // Takes the .attentionLevel of a contestant as an index.
 static const u8 *const sRoundResultTexts[] =
 {
+#if GERMAN
     COMPOUND_STRING("{STR_VAR_1} stach\nüberhaupt nicht hervor…{PAUSE_UNTIL_PRESS}"),
     COMPOUND_STRING("{STR_VAR_1} stach nicht\nbesonders hervor…{PAUSE_UNTIL_PRESS}"),
     COMPOUND_STRING("{STR_VAR_1} erregte ein\nwenig Aufmerksamkeit.{PAUSE_UNTIL_PRESS}"),
     COMPOUND_STRING("{STR_VAR_1} erregte eine\nMenge Aufmerksamkeit.{PAUSE_UNTIL_PRESS}"),
     COMPOUND_STRING("{STR_VAR_1} erhielt die\nvolle Aufmerksamkeit.{PAUSE_UNTIL_PRESS}"),
     COMPOUND_STRING("{STR_VAR_1} konnte\nkeinen Ausdruck zeigen.{PAUSE_UNTIL_PRESS}"),
+#else
+    COMPOUND_STRING("{STR_VAR_1} failed to\nstand out at all…{PAUSE_UNTIL_PRESS}"),
+    COMPOUND_STRING("{STR_VAR_1} didn't stand\nout very much…{PAUSE_UNTIL_PRESS}"),
+    COMPOUND_STRING("{STR_VAR_1} caught a\nlittle attention.{PAUSE_UNTIL_PRESS}"),
+    COMPOUND_STRING("{STR_VAR_1} attracted a\nlot of attention.{PAUSE_UNTIL_PRESS}"),
+    COMPOUND_STRING("{STR_VAR_1} commanded\ntotal attention.{PAUSE_UNTIL_PRESS}"),
+    COMPOUND_STRING("{STR_VAR_1} hasn't made\nits appeal.{PAUSE_UNTIL_PRESS}"),
+#endif
 };
 
 static const struct BgTemplate sContestBgTemplates[] =

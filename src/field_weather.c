@@ -1195,6 +1195,7 @@ bool32 IsWeatherAlphaBlend(void)
 }
 
 static const u8 sWeatherNames[WEATHER_COUNT][24] = {
+#if GERMAN
     [WEATHER_NONE]               = _("Keins"),
     [WEATHER_SUNNY_CLOUDS]       = _("Sonnig (Wolken)"),
     [WEATHER_SUNNY]              = _("Sonnig"),
@@ -1215,6 +1216,28 @@ static const u8 sWeatherNames[WEATHER_COUNT][24] = {
     [WEATHER_ROUTE123_CYCLE]     = _("Route-123-Zyklus"),
     [WEATHER_FOG]                = _("Nebel"),
     [WEATHER_LEAVES]             = _("Laub"),
+#else
+    [WEATHER_NONE]               = _("NONE"),
+    [WEATHER_SUNNY_CLOUDS]       = _("SUNNY CLOUDS"),
+    [WEATHER_SUNNY]              = _("SUNNY"),
+    [WEATHER_RAIN]               = _("RAIN"),
+    [WEATHER_SNOW]               = _("SNOW"),
+    [WEATHER_RAIN_THUNDERSTORM]  = _("RAIN THUNDERSTORM"),
+    [WEATHER_FOG_HORIZONTAL]     = _("FOG HORIZONTAL"),
+    [WEATHER_VOLCANIC_ASH]       = _("VOLCANIC ASH"),
+    [WEATHER_SANDSTORM]          = _("SANDSTORM"),
+    [WEATHER_FOG_DIAGONAL]       = _("FOG DIAGONAL"),
+    [WEATHER_UNDERWATER]         = _("UNDERWATER"),
+    [WEATHER_SHADE]              = _("SHADE"),
+    [WEATHER_DROUGHT]            = _("DROUGHT"),
+    [WEATHER_DOWNPOUR]           = _("DOWNPOUR"),
+    [WEATHER_UNDERWATER_BUBBLES] = _("UNDERWATER BUBBLES"),
+    [WEATHER_ABNORMAL]           = _("ABNORMAL(NOT WORKING)"),
+    [WEATHER_ROUTE119_CYCLE]     = _("ROUTE119 CYCLE"),
+    [WEATHER_ROUTE123_CYCLE]     = _("ROUTE123 CYCLE"),
+    [WEATHER_FOG]                = _("FOG"),
+    [WEATHER_LEAVES]             = _("LEAVES"),
+#endif
 };
 
 #if GERMAN

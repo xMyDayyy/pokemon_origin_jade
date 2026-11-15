@@ -547,6 +547,7 @@ static const struct MenuAction sMenuActions_Gender[] = {
 };
 
 static const u8 *const sMalePresetNames[] = {
+#if GERMAN
     COMPOUND_STRING("Stefan"),
     COMPOUND_STRING("Florian"),
     COMPOUND_STRING("Jan"),
@@ -567,9 +568,32 @@ static const u8 *const sMalePresetNames[] = {
     COMPOUND_STRING("Johann"),
     COMPOUND_STRING("Dieter"),
     COMPOUND_STRING("Anselm")
+#else
+    COMPOUND_STRING("STU"),
+    COMPOUND_STRING("MILTON"),
+    COMPOUND_STRING("TOM"),
+    COMPOUND_STRING("KENNY"),
+    COMPOUND_STRING("REID"),
+    COMPOUND_STRING("JUDE"),
+    COMPOUND_STRING("JAXSON"),
+    COMPOUND_STRING("EASTON"),
+    COMPOUND_STRING("WALKER"),
+    COMPOUND_STRING("TERU"),
+    COMPOUND_STRING("JOHNNY"),
+    COMPOUND_STRING("BRETT"),
+    COMPOUND_STRING("SETH"),
+    COMPOUND_STRING("TERRY"),
+    COMPOUND_STRING("CASEY"),
+    COMPOUND_STRING("DARREN"),
+    COMPOUND_STRING("LANDON"),
+    COMPOUND_STRING("COLLIN"),
+    COMPOUND_STRING("STANLEY"),
+    COMPOUND_STRING("QUINCY")
+#endif
 };
 
 static const u8 *const sFemalePresetNames[] = {
+#if GERMAN
     COMPOUND_STRING("Tanja"),
     COMPOUND_STRING("Mirjam"),
     COMPOUND_STRING("Martina"),
@@ -590,6 +614,28 @@ static const u8 *const sFemalePresetNames[] = {
     COMPOUND_STRING("Petra"),
     COMPOUND_STRING("Gabi"),
     COMPOUND_STRING("Nadine")
+#else
+    COMPOUND_STRING("KIMMY"),
+    COMPOUND_STRING("TIARA"),
+    COMPOUND_STRING("BELLA"),
+    COMPOUND_STRING("JAYLA"),
+    COMPOUND_STRING("ALLIE"),
+    COMPOUND_STRING("LIANNA"),
+    COMPOUND_STRING("SARA"),
+    COMPOUND_STRING("MONICA"),
+    COMPOUND_STRING("CAMILA"),
+    COMPOUND_STRING("AUBREE"),
+    COMPOUND_STRING("RUTHIE"),
+    COMPOUND_STRING("HAZEL"),
+    COMPOUND_STRING("NADINE"),
+    COMPOUND_STRING("TANJA"),
+    COMPOUND_STRING("YASMIN"),
+    COMPOUND_STRING("NICOLA"),
+    COMPOUND_STRING("LILLIE"),
+    COMPOUND_STRING("TERRA"),
+    COMPOUND_STRING("LUCY"),
+    COMPOUND_STRING("HALIE")
+#endif
 };
 
 // The number of male vs. female names is assumed to be the same.

@@ -266,12 +266,21 @@ static const u8 sText_WasMade[] = _(" was made!");
 
 static const u8 *const sBlenderOpponentsNames[] =
 {
+#if GERMAN
     [BLENDER_MISTER] = COMPOUND_STRING("Opi"),
     [BLENDER_LADDIE] = COMPOUND_STRING("Kumpel"),
     [BLENDER_LASSIE] = COMPOUND_STRING("Tussi"),
     [BLENDER_MASTER] = COMPOUND_STRING("Meister"),
     [BLENDER_DUDE]   = COMPOUND_STRING("Freund"),
     [BLENDER_MISS]   = COMPOUND_STRING("Frau"),
+#else
+    [BLENDER_MISTER] = COMPOUND_STRING("MISTER"),
+    [BLENDER_LADDIE] = COMPOUND_STRING("LADDIE"),
+    [BLENDER_LASSIE] = COMPOUND_STRING("LASSIE"),
+    [BLENDER_MASTER] = COMPOUND_STRING("MASTER"),
+    [BLENDER_DUDE]   = COMPOUND_STRING("DUDE"),
+    [BLENDER_MISS]   = COMPOUND_STRING("MISS"),
+#endif
 };
 
 #if GERMAN

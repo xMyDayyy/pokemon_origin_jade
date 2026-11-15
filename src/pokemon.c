@@ -3791,7 +3791,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
 {
     [NATURE_HARDY] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Robust"),
+#else
+        .name = COMPOUND_STRING("HARDY"),
+#endif
         .statUp = STAT_ATK,
         .statDown = STAT_ATK,
         .backAnim = 0,
@@ -3803,7 +3807,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_LONELY] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Solo"),
+#else
+        .name = COMPOUND_STRING("LONELY"),
+#endif
         .statUp = STAT_ATK,
         .statDown = STAT_DEF,
         .backAnim = 2,
@@ -3815,7 +3823,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_BRAVE] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Mutig"),
+#else
+        .name = COMPOUND_STRING("BRAVE"),
+#endif
         .statUp = STAT_ATK,
         .statDown = STAT_SPEED,
         .backAnim = 0,
@@ -3827,7 +3839,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_ADAMANT] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Hart"),
+#else
+        .name = COMPOUND_STRING("ADAMANT"),
+#endif
         .statUp = STAT_ATK,
         .statDown = STAT_SPATK,
         .backAnim = 0,
@@ -3839,7 +3855,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_NAUGHTY] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Frech"),
+#else
+        .name = COMPOUND_STRING("NAUGHTY"),
+#endif
         .statUp = STAT_ATK,
         .statDown = STAT_SPDEF,
         .backAnim = 0,
@@ -3851,7 +3871,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_BOLD] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Kühn"),
+#else
+        .name = COMPOUND_STRING("BOLD"),
+#endif
         .statUp = STAT_DEF,
         .statDown = STAT_ATK,
         .backAnim = 1,
@@ -3863,7 +3887,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_DOCILE] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Sanft"),
+#else
+        .name = COMPOUND_STRING("DOCILE"),
+#endif
         .statUp = STAT_DEF,
         .statDown = STAT_DEF,
         .backAnim = 1,
@@ -3875,7 +3903,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_RELAXED] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Locker"),
+#else
+        .name = COMPOUND_STRING("RELAXED"),
+#endif
         .statUp = STAT_DEF,
         .statDown = STAT_SPEED,
         .backAnim = 1,
@@ -3887,7 +3919,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_IMPISH] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Pfiffig"),
+#else
+        .name = COMPOUND_STRING("IMPISH"),
+#endif
         .statUp = STAT_DEF,
         .statDown = STAT_SPATK,
         .backAnim = 0,
@@ -3899,7 +3935,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_LAX] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Lasch"),
+#else
+        .name = COMPOUND_STRING("LAX"),
+#endif
         .statUp = STAT_DEF,
         .statDown = STAT_SPDEF,
         .backAnim = 1,
@@ -3911,7 +3951,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_TIMID] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Scheu"),
+#else
+        .name = COMPOUND_STRING("TIMID"),
+#endif
         .statUp = STAT_SPEED,
         .statDown = STAT_ATK,
         .backAnim = 2,
@@ -3923,7 +3967,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_HASTY] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Hastig"),
+#else
+        .name = COMPOUND_STRING("HASTY"),
+#endif
         .statUp = STAT_SPEED,
         .statDown = STAT_DEF,
         .backAnim = 0,
@@ -3935,7 +3983,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_SERIOUS] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Ernst"),
+#else
+        .name = COMPOUND_STRING("SERIOUS"),
+#endif
         .statUp = STAT_SPEED,
         .statDown = STAT_SPEED,
         .backAnim = 1,
@@ -3947,7 +3999,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_JOLLY] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Froh"),
+#else
+        .name = COMPOUND_STRING("JOLLY"),
+#endif
         .statUp = STAT_SPEED,
         .statDown = STAT_SPATK,
         .backAnim = 0,
@@ -3959,7 +4015,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_NAIVE] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Naiv"),
+#else
+        .name = COMPOUND_STRING("NAIVE"),
+#endif
         .statUp = STAT_SPEED,
         .statDown = STAT_SPDEF,
         .backAnim = 0,
@@ -3971,7 +4031,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_MODEST] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Mäßig"),
+#else
+        .name = COMPOUND_STRING("MODEST"),
+#endif
         .statUp = STAT_SPATK,
         .statDown = STAT_ATK,
         .backAnim = 2,
@@ -3983,7 +4047,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_MILD] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Mild"),
+#else
+        .name = COMPOUND_STRING("MILD"),
+#endif
         .statUp = STAT_SPATK,
         .statDown = STAT_DEF,
         .backAnim = 2,
@@ -3995,7 +4063,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_QUIET] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Ruhig"),
+#else
+        .name = COMPOUND_STRING("QUIET"),
+#endif
         .statUp = STAT_SPATK,
         .statDown = STAT_SPEED,
         .backAnim = 2,
@@ -4007,7 +4079,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_BASHFUL] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Zaghaft"),
+#else
+        .name = COMPOUND_STRING("BASHFUL"),
+#endif
         .statUp = STAT_SPATK,
         .statDown = STAT_SPATK,
         .backAnim = 2,
@@ -4019,7 +4095,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_RASH] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Hitzig"),
+#else
+        .name = COMPOUND_STRING("RASH"),
+#endif
         .statUp = STAT_SPATK,
         .statDown = STAT_SPDEF,
         .backAnim = 1,
@@ -4031,7 +4111,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_CALM] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Still"),
+#else
+        .name = COMPOUND_STRING("CALM"),
+#endif
         .statUp = STAT_SPDEF,
         .statDown = STAT_ATK,
         .backAnim = 1,
@@ -4043,7 +4127,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_GENTLE] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Zart"),
+#else
+        .name = COMPOUND_STRING("GENTLE"),
+#endif
         .statUp = STAT_SPDEF,
         .statDown = STAT_DEF,
         .backAnim = 2,
@@ -4055,7 +4143,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_SASSY] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Forsch"),
+#else
+        .name = COMPOUND_STRING("SASSY"),
+#endif
         .statUp = STAT_SPDEF,
         .statDown = STAT_SPEED,
         .backAnim = 1,
@@ -4067,7 +4159,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_CAREFUL] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Sacht"),
+#else
+        .name = COMPOUND_STRING("CAREFUL"),
+#endif
         .statUp = STAT_SPDEF,
         .statDown = STAT_SPATK,
         .backAnim = 2,
@@ -4079,7 +4175,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_QUIRKY] =
     {
+#if GERMAN
         .name = COMPOUND_STRING("Kauzig"),
+#else
+        .name = COMPOUND_STRING("QUIRKY"),
+#endif
         .statUp = STAT_SPDEF,
         .statDown = STAT_SPDEF,
         .backAnim = 1,

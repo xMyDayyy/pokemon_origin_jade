@@ -339,26 +339,61 @@ static const struct WindowTemplate sOptionDescWindowTemplate =
 };
 
 #if IS_HNS
+#if GERMAN
 static const u8 *const sHnSMapPageDescriptionKanto = COMPOUND_STRING("Erforsche die Karte von Kanto");
+#else
+static const u8 *const sHnSMapPageDescriptionKanto = COMPOUND_STRING("Check the map of the KANTO region");
+#endif
+#if GERMAN
 static const u8 *const sHnSMapPageDescriptionJohto = COMPOUND_STRING("Erforsche die Karte von Johto");
+#else
+static const u8 *const sHnSMapPageDescriptionJohto = COMPOUND_STRING("Check the map of the JOHTO region");
+#endif
+#if GERMAN
 static const u8 *const sHnSMapPageDescriptionHoenn = COMPOUND_STRING("Erforsche die Karte von Hoenn");
+#else
+static const u8 *const sHnSMapPageDescriptionHoenn = COMPOUND_STRING("Check the map of the HOENN region");
+#endif
+#if GERMAN
 static const u8 *const sHnSMapPageDescriptionJohtoKanto = COMPOUND_STRING("Erforsche die komplette Karte");
+#else
+static const u8 *const sHnSMapPageDescriptionJohtoKanto = COMPOUND_STRING("Check the combined region map");
+#endif
 #endif
 
 static const u8 *const sPageDescriptions[] =
 {
+#if GERMAN
     [POKENAV_MENUITEM_MAP]                     = COMPOUND_STRING("Erforsche die Karte von Hoenn"),
     [POKENAV_MENUITEM_CONDITION]               = COMPOUND_STRING("Untersuche Pokémon im Detail."),
     [POKENAV_MENUITEM_MATCH_CALL]              = COMPOUND_STRING("Anrufe an Trainer."),
     [POKENAV_MENUITEM_RIBBONS]                 = COMPOUND_STRING("Siehe deine Auszeichnungen."),
+#else
+    [POKENAV_MENUITEM_MAP]                     = COMPOUND_STRING("Check the map of the HOENN region"),
+    [POKENAV_MENUITEM_CONDITION]               = COMPOUND_STRING("Check POKéMON in detail."),
+    [POKENAV_MENUITEM_MATCH_CALL]              = COMPOUND_STRING("Call a registered TRAINER."),
+    [POKENAV_MENUITEM_RIBBONS]                 = COMPOUND_STRING("Check obtained RIBBONS."),
+#endif
 #if IS_HNS
+#if GERMAN
     [POKENAV_MENUITEM_RADIO]                   = COMPOUND_STRING("Höre Radio."),
     [POKENAV_MENUITEM_SWITCH_OFF]              = COMPOUND_STRING("PokéCom weglegen."),
     [POKENAV_MENUITEM_CONDITION_CANCEL]        = COMPOUND_STRING("Zurück zum PokéCom-Menü."),
 #else
+    [POKENAV_MENUITEM_RADIO]                   = COMPOUND_STRING("Listen to the radio."),
+    [POKENAV_MENUITEM_SWITCH_OFF]              = COMPOUND_STRING("Put away the POKéGEAR."),
+    [POKENAV_MENUITEM_CONDITION_CANCEL]        = COMPOUND_STRING("Return to the POKéGEAR menu."),
+#endif
+#else
+#if GERMAN
     [POKENAV_MENUITEM_SWITCH_OFF]              = COMPOUND_STRING("PokéCom weglegen."),
     [POKENAV_MENUITEM_CONDITION_CANCEL]        = COMPOUND_STRING("Zurück zum PokéCom-Menü."),
+#else
+    [POKENAV_MENUITEM_SWITCH_OFF]              = COMPOUND_STRING("Put away the POKéNAV."),
+    [POKENAV_MENUITEM_CONDITION_CANCEL]        = COMPOUND_STRING("Return to the POKéNAV menu."),
 #endif
+#endif
+#if GERMAN
     [POKENAV_MENUITEM_CONDITION_PARTY]         = COMPOUND_STRING("Untersuche Pokémon im Detail."),
     [POKENAV_MENUITEM_CONDITION_SEARCH]        = COMPOUND_STRING("Untersuche alle Pokémon im Detail."),
     [POKENAV_MENUITEM_CONDITION_SEARCH_COOL]   = COMPOUND_STRING("Finde coole Pokémon."),
@@ -367,6 +402,16 @@ static const u8 *const sPageDescriptions[] =
     [POKENAV_MENUITEM_CONDITION_SEARCH_SMART]  = COMPOUND_STRING("Finde schlaue Pokémon."),
     [POKENAV_MENUITEM_CONDITION_SEARCH_TOUGH]  = COMPOUND_STRING("Finde zähe Pokémon."),
     [POKENAV_MENUITEM_CONDITION_SEARCH_CANCEL] = COMPOUND_STRING("Zurück zum Zustands-Menü.")
+#else
+    [POKENAV_MENUITEM_CONDITION_PARTY]         = COMPOUND_STRING("Check party POKéMON in detail."),
+    [POKENAV_MENUITEM_CONDITION_SEARCH]        = COMPOUND_STRING("Check all POKéMON in detail."),
+    [POKENAV_MENUITEM_CONDITION_SEARCH_COOL]   = COMPOUND_STRING("Find cool POKéMON."),
+    [POKENAV_MENUITEM_CONDITION_SEARCH_BEAUTY] = COMPOUND_STRING("Find beautiful POKéMON."),
+    [POKENAV_MENUITEM_CONDITION_SEARCH_CUTE]   = COMPOUND_STRING("Find cute POKéMON."),
+    [POKENAV_MENUITEM_CONDITION_SEARCH_SMART]  = COMPOUND_STRING("Find smart POKéMON."),
+    [POKENAV_MENUITEM_CONDITION_SEARCH_TOUGH]  = COMPOUND_STRING("Find tough POKéMON."),
+    [POKENAV_MENUITEM_CONDITION_SEARCH_CANCEL] = COMPOUND_STRING("Return to the CONDITION menu.")
+#endif
 };
 
 static const u8 sOptionDescTextColors[]  = {TEXT_COLOR_GREEN, TEXT_COLOR_BLUE, TEXT_COLOR_LIGHT_GREEN};
