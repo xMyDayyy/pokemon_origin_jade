@@ -7,5 +7,5 @@ AUTO_GEN_TARGETS += src/data/trainers_hns.h
 AUTO_GEN_TARGETS += src/data/battle_partners.h
 AUTO_GEN_TARGETS += src/data/debug_trainers.h
 
-%.h: %.party $(TRAINERPROC)
+%.h: %.party $(TRAINERPROC) $(LANG_STAMP)
 	$(CPP) $(CPPFLAGS) -traditional-cpp - < $< | $(TRAINERPROC) -o $@ -i $< -

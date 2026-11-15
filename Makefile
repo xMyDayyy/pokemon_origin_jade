@@ -6,6 +6,16 @@ GAME_CODE    := BPEE
 BUILD_NAME   := jade
 MAP_VERSION  := hns
 
+# Language: make (German) or make GAME_LANG=ENGLISH.
+# English builds use their own object directory and ROM name.
+GAME_LANG ?= GERMAN
+ifeq ($(GAME_LANG),ENGLISH)
+	LANGFLAG := -DLANG_ENGLISH
+	BUILD_NAME := jade_en
+else
+	LANGFLAG :=
+endif
+
 ifneq (,$(filter-out jade,$(BUILD)))
   $(error Only Origin Jade is built: use make or make jade, not BUILD=$(BUILD))
 endif
@@ -17,7 +27,13 @@ KEEP_TEMPS  ?= 0
 
 # `File name`.gba
 FILE_NAME := Pokemon_Origin_Jade
+ifeq ($(GAME_LANG),ENGLISH)
+  FILE_NAME := Pokemon_Origin_Jade_EN
+endif
 BUILD_DIR := build
+# Records the language of the last build; generated files that bake it in depend on it.
+LANG_STAMP := build/lang.stamp
+$(shell mkdir -p build && (test "$$(cat $(LANG_STAMP) 2>/dev/null)" = "$(GAME_LANG)" || echo $(GAME_LANG) > $(LANG_STAMP)))
 
 # Compares the ROM to a checksum of the original - only makes sense using when non-modern
 COMPARE     ?= 0
@@ -129,12 +145,6 @@ ifeq ($(DEBUG),1)
 O_LEVEL ?= g
 else
 O_LEVEL ?= 2
-endif
-GAME_LANG ?= GERMAN
-ifeq ($(GAME_LANG),ENGLISH)
-	LANGFLAG := -DLANG_ENGLISH
-else
-	LANGFLAG :=
 endif
 
 CPPFLAGS := $(INCLUDE_CPP_ARGS) -Wno-trigraphs -DMODERN=1 -DTESTING=0 -D$(GAME_VERSION) $(LANGFLAG) -std=gnu17
@@ -268,7 +278,7 @@ ifeq ($(SETUP_PREREQS),1)
     $(error Errors occurred while building tools. See error messages above for more details)
   endif
   # Oh and also generate mapjson sources before we use `SCANINC`.
-  $(foreach line, $(shell $(MAKE) MAP_VERSION=$(MAP_VERSION) generated | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
+  $(foreach line, $(shell $(MAKE) GAME_LANG=$(GAME_LANG) MAP_VERSION=$(MAP_VERSION) generated | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
   ifneq ($(.SHELLSTATUS),0)
     $(error Errors occurred while generating map-related sources. See error messages above for more details)
   endif
