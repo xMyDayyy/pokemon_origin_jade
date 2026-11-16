@@ -25,6 +25,7 @@
 #include "pokemon_summary_screen.h"
 #include "strings.h"
 #include "battle_debug.h"
+#include "bug_contest.h"
 #include "item.h"
 #include "item_icon.h"
 #include "load_save.h"
@@ -3102,6 +3103,9 @@ bool32 CanThrowLastUsedBall(void)
         return FALSE;
     if (!CheckBagHasItem(gBallToDisplay, 1))
         return FALSE;
+    // Bug-Catching Contest: only Sport Balls.
+    if (GetBugContestFlag() && gBallToDisplay != ITEM_SPORT_BALL)
+        return FALSE;
 
     return TRUE;
 }
@@ -3125,6 +3129,12 @@ void TryAddLastUsedBallItemSprites(void)
         if (firstBall > ITEM_NONE)
             gBallToDisplay = firstBall;
     }
+    // Bug-Catching Contest: offer the Sport Ball, not the last ball from before.
+    if (GetBugContestFlag() && CheckBagHasItem(ITEM_SPORT_BALL, 1))
+        gBallToDisplay = ITEM_SPORT_BALL;
+    // After the contest the Sport Balls are gone: back to the last thrown ball.
+    else if (gBallToDisplay == ITEM_SPORT_BALL && !CheckBagHasItem(ITEM_SPORT_BALL, 1) && gLastThrownBall != ITEM_NONE)
+        gBallToDisplay = gLastThrownBall;
 
     if (!CanThrowLastUsedBall())
         return;

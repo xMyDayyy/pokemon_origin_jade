@@ -7,6 +7,7 @@
 #include "berry.h"
 #include "berry_powder.h"
 #include "bike.h"
+#include "bug_contest.h"
 #include "coins.h"
 #include "data.h"
 #include "event_data.h"
@@ -1279,9 +1280,9 @@ static const u8 sText_CantThrowPokeBall_Disabled[] = _("Pokébälle können jetz
 static const u8 sText_CantThrowPokeBall_Disabled[] = _("POKé BALLS cannot be used\nright now!\p");
 #endif
 #if GERMAN
-static const u8 sText_CantThrowPokeBall_NuzlockeZone[] = _("Du hattest in diesem Gebiet\nschon deine Begegnung!\p");
+static const u8 sText_CantThrowPokeBall_NuzlockeZone[] = _("Du hast in diesem Gebiet\nbereits ein Pokémon gefangen!\p");
 #else
-static const u8 sText_CantThrowPokeBall_NuzlockeZone[] = _("You already used your\nencounter for this area!\p");
+static const u8 sText_CantThrowPokeBall_NuzlockeZone[] = _("You already caught a\nPokémon in this area!\p");
 #endif
 #if GERMAN
 static const u8 sText_CantThrowPokeBall_NuzlockeSpecies[] = _("Artenklausel: Ein Pokémon dieser\nEntwicklungsreihe wurde gefangen!\p");
@@ -1446,6 +1447,13 @@ bool32 CannotUseItemsInBattle(enum Item itemId, struct Pokemon *mon)
             cannotUse = TRUE;
         break;
     case EFFECT_ITEM_THROW_BALL:
+        // Bug-Catching Contest: only Sport Balls, like HGSS.
+        if (GetBugContestFlag() && itemId != ITEM_SPORT_BALL)
+        {
+            failStr = sText_CantThrowPokeBall_Disabled;
+            cannotUse = TRUE;
+            break;
+        }
         switch (GetBallThrowableState())
         {
         case BALL_THROW_UNABLE_TWO_MONS:
