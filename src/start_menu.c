@@ -161,11 +161,16 @@ static const struct WindowTemplate sWindowTemplate_SafariBalls = {
     .baseBlock = 0x8
 };
 
+// Wide enough for the longest weekday plus the time.
 static const struct WindowTemplate sWindowTemplate_StartClock = {
     .bg = 0,
     .tilemapLeft = 1,
     .tilemapTop = 1,
-    .width = 6,
+#if GERMAN
+    .width = 12,
+#else
+    .width = 13,
+#endif
     .height = 2,
     .paletteNum = 15,
     .baseBlock = 0x30
@@ -499,27 +504,39 @@ static void ShowPyramidFloorWindow(void)
 
 #define CLOCK_WINDOW_WIDTH 48
 
-#if GERMAN
-static const u8 sText_AM[] = _(" ");
-#else
+#if !GERMAN
 static const u8 sText_AM[] = _("AM");
-#endif
-#if GERMAN
-static const u8 sText_PM[] = _(" ");
-#else
 static const u8 sText_PM[] = _("PM");
 #endif
+
+static const u8 *const sStartClockDayNames[WEEKDAY_COUNT] =
+{
+    [WEEKDAY_SUN] = gText_Sunday,
+    [WEEKDAY_MON] = gText_Monday,
+    [WEEKDAY_TUE] = gText_Tuesday,
+    [WEEKDAY_WED] = gText_Wednesday,
+    [WEEKDAY_THU] = gText_Thursday,
+    [WEEKDAY_FRI] = gText_Friday,
+    [WEEKDAY_SAT] = gText_Saturday,
+};
 
 static void ShowTimeWindow(void)
 {
     const u8 *suffix;
     u8 *ptr;
     u8 convertedHours;
+    // Also refreshes gLocalTime, so weekday and time match.
+    enum Weekday weekday = GetDayOfWeek();
 
     sStartClockWindowId = AddWindow(&sWindowTemplate_StartClock);
     PutWindowTilemap(sStartClockWindowId);
     DrawStdWindowFrame(sStartClockWindowId, FALSE);
 
+#if GERMAN
+    // German games use the 24-hour clock.
+    convertedHours = gLocalTime.hours;
+    suffix = NULL;
+#else
     if (gLocalTime.hours < 12)
     {
         convertedHours = (gLocalTime.hours == 0) ? 12 : gLocalTime.hours;
@@ -530,15 +547,19 @@ static void ShowTimeWindow(void)
         convertedHours = (gLocalTime.hours == 12) ? 12 : gLocalTime.hours - 12;
         suffix = sText_PM;
     }
+#endif
 
-    ptr = ConvertIntToDecimalStringN(gStringVar4, convertedHours, STR_CONV_MODE_LEFT_ALIGN, 3);
-    *ptr = 0xF0;
+    ptr = StringCopy(gStringVar4, sStartClockDayNames[weekday < WEEKDAY_COUNT ? weekday : WEEKDAY_SUN]);
+    *ptr++ = CHAR_SPACE;
+    ptr = ConvertIntToDecimalStringN(ptr, convertedHours, STR_CONV_MODE_LEFT_ALIGN, 3);
+    *ptr = CHAR_COLON;
     ConvertIntToDecimalStringN(ptr + 1, gLocalTime.minutes, STR_CONV_MODE_LEADING_ZEROS, 2);
     AddTextPrinterParameterized(sStartClockWindowId, FONT_NORMAL, gStringVar4,
         0, 1, 0xFF, NULL);
 
-    AddTextPrinterParameterized(sStartClockWindowId, FONT_NORMAL, suffix,
-        GetStringWidth(FONT_NORMAL, gStringVar4, 0) + 3, 1, 0xFF, NULL);
+    if (suffix != NULL)
+        AddTextPrinterParameterized(sStartClockWindowId, FONT_NORMAL, suffix,
+            GetStringWidth(FONT_NORMAL, gStringVar4, 0) + 3, 1, 0xFF, NULL);
 
     CopyWindowToVram(sStartClockWindowId, COPYWIN_GFX);
 }
