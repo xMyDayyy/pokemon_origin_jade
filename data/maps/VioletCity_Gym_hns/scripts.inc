@@ -126,16 +126,15 @@ VioletGym_Text_Falkner_BadgeExplain:
 #if GERMAN
 	.string "Flügelorden erhöht die Attacke\n"
 	.string "deiner Pokémon.\p"
-	.string "Er erlaubt Pokémon auch Blitz\n"
-	.string "einzusetzen, wenn sie es lernen,\l"
-	.string "können.\p"
+	.string "Auch außerhalb des Kampfes kannst du\n"
+	.string "damit nun Zertrümmerer einsetzen!\p"
 	.string "Hier-nimm das auch.$"
 #else
 	.string "ZEPHYRBADGE raises the ATTACK\n"
 	.string "power of POKéMON.\p"
-	.string "It also enables POKéMON to use\n"
-	.string "FLASH, if they can learn it,\l"
-	.string "anytime.\p"
+	.string "It also enables you to use the hidden\n"
+	.string "move ROCK SMASH anytime outside\l"
+	.string "of battle.\p"
 	.string "Here--take this too.$"
 #endif
 
