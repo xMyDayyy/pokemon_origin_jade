@@ -603,12 +603,15 @@ bool32 ShouldDoNormanCall(void)
     return TRUE;
 }
 
-// Outdoor steps from getting the PokeGear to Mom's test call.
-#define HNS_MOM_CALL_STEPS 100
+// Outdoor steps after leaving Oak's lab with the first Pokemon until Mom's call.
+#define HNS_MOM_CALL_STEPS 30
 
 bool32 ShouldDoMomCall(void)
 {
     if (!FlagGet(FLAG_HNS_MOM_CALL_PENDING))
+        return FALSE;
+    // Count only once the starter is received; the lab itself is indoors.
+    if (!FlagGet(FLAG_SYS_POKEMON_GET))
         return FALSE;
 
     switch (gMapHeader.mapType)
