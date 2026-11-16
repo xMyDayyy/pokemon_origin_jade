@@ -10614,45 +10614,37 @@ Double Battle: No
 AI: Basic Trainer
 Mugshot: Dark Red
 
-Exeggcute
+Ursaring
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Leaf Storm
-- Psychic
-- Sludge Bomb
-- Calm Mind
+- Double Edge
+- Close Combat
+- Crunch
+- Swords Dance
 
-Ledyba
+Golbat
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bug Buzz
-- Air Slash
+- Brave Bird
+- Steel Wing
 - Roost
-- Agility
+- Hypnosis
 
-Pineco
+Octillery
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Smart Strike
-- Steamroller
-- Earthquake
+- Surf
+- Fire Blast
+- Ice Beam
 - Thunder Wave
 
-Spinarak
+Houndoom
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Megahorn
-- Poison Jab
-- Toxic
-- Agility
-
-Exeggcute
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Leaf Storm
-- Psychic
+- Overheat
+- Dark Pulse
 - Sludge Bomb
-- Calm Mind
+- Nasty Plot
 
 Chikorita
 Level: 5
@@ -10661,6 +10653,14 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Earthquake
 - Swords Dance
 - Synthesis
+
+Tyranitar
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Rock Slide
+- Earthquake
+- Dragon Dance
 
 === TRAINER_RIVAL_CHIKORITA_2_HNS ===
 Name: {B_RIVAL_NAME}
@@ -10673,53 +10673,53 @@ AI: Basic Trainer
 Mugshot: Dark Red
 Items: Potion
 
-Zubat
-Level: 15
+Ursaring
+Level: 18
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Double Edge
+- Close Combat
+- Crunch
+- Swords Dance
+
+Golbat
+Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Brave Bird
 - Steel Wing
 - Roost
 - Hypnosis
 
-Larvitar
-Level: 16
+Octillery
+Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Earthquake
-- Outrage
-- Rock Slide
-- Dragon Dance
-
-Spinarak
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Megahorn
-- Poison Jab
-- Night Slash
-- Swords Dance
-
-Aipom
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Double Edge
-- Shadow Claw
-- Thunder Wave
-- Agility
-
-Pineco
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Smart Strike
-- Steamroller
-- Earthquake
+- Surf
+- Fire Blast
+- Ice Beam
 - Thunder Wave
 
-Bayleef
+Houndoom
+Level: 18
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
+
+Chikorita
 Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Petal Blizzard
 - Earthquake
 - Swords Dance
 - Synthesis
+
+Tyranitar
+Level: 18
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Rock Slide
+- Earthquake
+- Dragon Dance
 
 === TRAINER_RIVAL_CHIKORITA_3_HNS ===
 Name: {B_RIVAL_NAME}
@@ -10732,53 +10732,53 @@ AI: Basic Trainer
 Mugshot: Dark Red
 Items: Super Potion
 
-Larvitar
-Level: 22
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Earthquake
-- Outrage
-- Rock Slide
-- Dragon Dance
-
-Remoraid
-Level: 22
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Surf
-- Ice Beam
-- Thunder Wave
-- Toxic
-
-Golbat
-Level: 23
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Brave Bird
-- Steel Wing
-- Roost
-- Hypnosis
-
-Zubat
-Level: 23
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Brave Bird
-- Steel Wing
-- Roost
-- Hypnosis
-
-Koffing
+Ursaring
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Sludge Wave
-- Fire Blast
-- Dark Pulse
-- Toxic
+- Double Edge
+- Close Combat
+- Crunch
+- Swords Dance
 
-Bayleef
+Golbat
+Level: 24
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
+
+Octillery
+Level: 24
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Fire Blast
+- Ice Beam
+- Thunder Wave
+
+Houndoom
+Level: 24
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
+
+Chikorita
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Petal Blizzard
 - Earthquake
 - Swords Dance
 - Synthesis
+
+Tyranitar
+Level: 24
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Rock Slide
+- Earthquake
+- Dragon Dance
 
 === TRAINER_RIVAL_CHIKORITA_4_HNS ===
 Name: {B_RIVAL_NAME}
@@ -10791,37 +10791,45 @@ AI: Basic Trainer
 Mugshot: Dark Red
 Items: Hyper Potion
 
-Pupitar
-Level: 38
+Ursaring
+Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Earthquake
-- Stone Edge
-- Outrage
-- Dragon Dance
+- Double Edge
+- Close Combat
+- Crunch
+- Swords Dance
 
-Houndoom
-Level: 38
+Golbat
+Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Overheat
-- Dark Pulse
-- Sludge Bomb
-- Nasty Plot
+- Brave Bird
+- Steel Wing
+- Roost
+- Hypnosis
 
 Octillery
-Level: 39
+Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Surf
 - Fire Blast
 - Ice Beam
 - Thunder Wave
 
-Golbat
-Level: 39
+Houndoom
+Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Brave Bird
-- Steel Wing
-- Roost
-- Hypnosis
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
+
+Chikorita
+Level: 40
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Petal Blizzard
+- Earthquake
+- Swords Dance
+- Synthesis
 
 Tyranitar
 Level: 40
@@ -10830,14 +10838,6 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Rock Slide
 - Earthquake
 - Dragon Dance
-
-Meganium
-Level: 40
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Petal Blizzard
-- Earthquake
-- Swords Dance
-- Synthesis
 
 === TRAINER_RIVAL_CHIKORITA_5_HNS ===
 Name: {B_RIVAL_NAME}
@@ -11026,44 +11026,36 @@ Double Battle: No
 AI: Basic Trainer
 Mugshot: Dark Red
 
-Spinarak
+Ursaring
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Megahorn
-- Poison Jab
-- Toxic
-- Agility
+- Double Edge
+- Close Combat
+- Crunch
+- Swords Dance
 
-Ledyba
+Golbat
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bug Buzz
-- Air Slash
+- Brave Bird
+- Cross Poison
+- Steel Wing
 - Roost
-- Agility
 
-Pineco
+Octillery
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Smart Strike
-- Steamroller
-- Earthquake
+- Surf
+- Fire Blast
+- Ice Beam
 - Thunder Wave
 
-Exeggcute
+Victreebel
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Leaf Storm
-- Psychic
+- Power Whip
 - Sludge Bomb
-- Calm Mind
-
-Spinarak
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Megahorn
-- Poison Jab
-- Night Slash
+- Double Edge
 - Swords Dance
 
 Cyndaquil
@@ -11073,6 +11065,14 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Focus Blast
 - Shadow Ball
 - Work Up
+
+Tyranitar
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Rock Slide
+- Earthquake
+- Dragon Dance
 
 === TRAINER_RIVAL_CYNDAQUIL_2_HNS ===
 Name: {B_RIVAL_NAME}
@@ -11085,53 +11085,53 @@ AI: Basic Trainer
 Mugshot: Dark Red
 Items: Potion
 
-Zubat
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Brave Bird
-- Steel Wing
-- Roost
-- Hypnosis
-
-Larvitar
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Earthquake
-- Outrage
-- Rock Slide
-- Dragon Dance
-
-Spinarak
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Megahorn
-- Poison Jab
-- Night Slash
-- Swords Dance
-
-Aipom
-Level: 17
+Ursaring
+Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Double Edge
-- Shadow Claw
-- Thunder Wave
-- Agility
+- Close Combat
+- Crunch
+- Swords Dance
 
-Pineco
-Level: 17
+Golbat
+Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Smart Strike
-- Steamroller
-- Earthquake
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
+
+Octillery
+Level: 18
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Fire Blast
+- Ice Beam
 - Thunder Wave
 
-Quilava
+Victreebel
+Level: 18
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Power Whip
+- Sludge Bomb
+- Double Edge
+- Swords Dance
+
+Cyndaquil
 Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Fire Blast
 - Focus Blast
 - Shadow Ball
 - Work Up
+
+Tyranitar
+Level: 18
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Rock Slide
+- Earthquake
+- Dragon Dance
 
 === TRAINER_RIVAL_CYNDAQUIL_3_HNS ===
 Name: {B_RIVAL_NAME}
@@ -11144,53 +11144,53 @@ AI: Basic Trainer
 Mugshot: Dark Red
 Items: Super Potion
 
-Larvitar
-Level: 22
+Ursaring
+Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Earthquake
-- Outrage
-- Rock Slide
-- Dragon Dance
-
-Weepinbell
-Level: 22
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Power Whip
-- Sludge Wave
 - Double Edge
+- Close Combat
+- Crunch
 - Swords Dance
 
 Golbat
-Level: 23
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Brave Bird
-- Steel Wing
-- Roost
-- Hypnosis
-
-Zubat
-Level: 23
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Brave Bird
-- Steel Wing
-- Roost
-- Hypnosis
-
-Slugma
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Overheat
-- Ancient Power
-- Earth Power
-- Shell Smash
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
-Quilava
+Octillery
+Level: 24
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Fire Blast
+- Ice Beam
+- Thunder Wave
+
+Victreebel
+Level: 24
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Power Whip
+- Sludge Bomb
+- Double Edge
+- Swords Dance
+
+Cyndaquil
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Fire Blast
 - Focus Blast
 - Shadow Ball
 - Work Up
+
+Tyranitar
+Level: 24
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Rock Slide
+- Earthquake
+- Dragon Dance
 
 === TRAINER_RIVAL_CYNDAQUIL_4_HNS ===
 Name: {B_RIVAL_NAME}
@@ -11203,37 +11203,45 @@ AI: Basic Trainer
 Mugshot: Dark Red
 Items: Super Potion
 
-Pupitar
-Level: 38
+Ursaring
+Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Earthquake
-- Stone Edge
-- Outrage
-- Dragon Dance
-
-Victreebel
-Level: 38
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Power Whip
-- Sludge Wave
 - Double Edge
+- Close Combat
+- Crunch
 - Swords Dance
 
+Golbat
+Level: 40
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
+
 Octillery
-Level: 39
+Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Surf
 - Fire Blast
 - Ice Beam
 - Thunder Wave
 
-Golbat
-Level: 39
+Victreebel
+Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Brave Bird
-- Steel Wing
-- Roost
-- Hypnosis
+- Power Whip
+- Sludge Bomb
+- Double Edge
+- Swords Dance
+
+Cyndaquil
+Level: 40
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Fire Blast
+- Focus Blast
+- Shadow Ball
+- Work Up
 
 Tyranitar
 Level: 40
@@ -11242,14 +11250,6 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Rock Slide
 - Earthquake
 - Dragon Dance
-
-Typhlosion
-Level: 40
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Fire Blast
-- Focus Blast
-- Shadow Ball
-- Work Up
 
 === TRAINER_RIVAL_CYNDAQUIL_5_HNS ===
 Name: {B_RIVAL_NAME}
@@ -11438,45 +11438,37 @@ Double Battle: No
 AI: Basic Trainer
 Mugshot: Dark Red
 
-Pineco
+Ursaring
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Smart Strike
-- Steamroller
-- Earthquake
-- Thunder Wave
-
-Exeggcute
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Leaf Storm
-- Psychic
-- Sleep Powder
-- Synthesis
-
-Spinarak
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Megahorn
-- Poison Jab
-- Night Slash
+- Double Edge
+- Close Combat
+- Crunch
 - Swords Dance
 
-Ledyba
+Golbat
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Bug Buzz
-- Air Slash
+- Brave Bird
+- Cross Poison
+- Steel Wing
 - Roost
-- Agility
 
-Pineco
+Victreebel
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Smart Strike
-- Steamroller
-- Earthquake
-- Thunder Wave
+- Power Whip
+- Sludge Bomb
+- Double Edge
+- Swords Dance
+
+Houndoom
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
 Totodile
 Level: 5
@@ -11485,6 +11477,14 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Superpower
 - Earthquake
 - Swords Dance
+
+Tyranitar
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Rock Slide
+- Earthquake
+- Dragon Dance
 
 === TRAINER_RIVAL_TOTODILE_2_HNS ===
 Name: {B_RIVAL_NAME}
@@ -11497,53 +11497,53 @@ AI: Basic Trainer
 Mugshot: Dark Red
 Items: Potion
 
-Zubat
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Brave Bird
-- Steel Wing
-- Roost
-- Hypnosis
-
-Larvitar
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Earthquake
-- Outrage
-- Rock Slide
-- Dragon Dance
-
-Spinarak
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Megahorn
-- Poison Jab
-- Night Slash
-- Swords Dance
-
-Aipom
-Level: 17
+Ursaring
+Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Double Edge
-- Shadow Claw
-- Thunder Wave
-- Agility
+- Close Combat
+- Crunch
+- Swords Dance
 
-Pineco
-Level: 17
+Golbat
+Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Smart Strike
-- Steamroller
-- Earthquake
-- Thunder Wave
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
-Croconaw
+Victreebel
+Level: 18
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Power Whip
+- Sludge Bomb
+- Double Edge
+- Swords Dance
+
+Houndoom
+Level: 18
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Overheat
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
+
+Totodile
 Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Aqua Tail
 - Superpower
 - Earthquake
 - Swords Dance
+
+Tyranitar
+Level: 18
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Rock Slide
+- Earthquake
+- Dragon Dance
 
 === TRAINER_RIVAL_TOTODILE_3_HNS ===
 Name: {B_RIVAL_NAME}
@@ -11556,53 +11556,53 @@ AI: Basic Trainer
 Mugshot: Dark Red
 Items: Super Potion
 
-Larvitar
-Level: 22
+Ursaring
+Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Earthquake
-- Outrage
-- Rock Slide
-- Dragon Dance
-
-Houndour
-Level: 22
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Overheat
-- Foul Play
-- Sludge Bomb
-- Nasty Plot
+- Double Edge
+- Close Combat
+- Crunch
+- Swords Dance
 
 Golbat
-Level: 23
+Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Brave Bird
+- Cross Poison
 - Steel Wing
 - Roost
-- Hypnosis
 
-Zubat
-Level: 23
+Victreebel
+Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Brave Bird
-- Steel Wing
-- Roost
-- Hypnosis
+- Power Whip
+- Sludge Bomb
+- Double Edge
+- Swords Dance
 
-Slugma
+Houndoom
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Overheat
-- Ancient Power
-- Earth Power
-- Shell Smash
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
 
-Croconaw
+Totodile
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Aqua Tail
 - Superpower
 - Earthquake
 - Swords Dance
+
+Tyranitar
+Level: 24
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Rock Slide
+- Earthquake
+- Dragon Dance
 
 === TRAINER_RIVAL_TOTODILE_4_HNS ===
 Name: {B_RIVAL_NAME}
@@ -11615,37 +11615,45 @@ AI: Basic Trainer
 Mugshot: Dark Red
 Items: Super Potion
 
-Pupitar
-Level: 38
+Ursaring
+Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Earthquake
-- Stone Edge
-- Outrage
-- Dragon Dance
+- Double Edge
+- Close Combat
+- Crunch
+- Swords Dance
+
+Golbat
+Level: 40
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Brave Bird
+- Cross Poison
+- Steel Wing
+- Roost
 
 Victreebel
-Level: 38
+Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Power Whip
-- Sludge Wave
+- Sludge Bomb
 - Double Edge
 - Swords Dance
 
 Houndoom
-Level: 39
+Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Overheat
 - Dark Pulse
 - Sludge Bomb
 - Nasty Plot
 
-Golbat
-Level: 39
+Totodile
+Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Brave Bird
-- Steel Wing
-- Roost
-- Hypnosis
+- Aqua Tail
+- Superpower
+- Earthquake
+- Swords Dance
 
 Tyranitar
 Level: 40
@@ -11654,14 +11662,6 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Rock Slide
 - Earthquake
 - Dragon Dance
-
-Feraligatr
-Level: 40
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Aqua Tail
-- Superpower
-- Earthquake
-- Swords Dance
 
 === TRAINER_RIVAL_TOTODILE_5_HNS ===
 Name: {B_RIVAL_NAME}
