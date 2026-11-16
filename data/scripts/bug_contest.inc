@@ -80,11 +80,12 @@ BugContestEventScript_Judging::
 	goto BugContest_EventScript_End
 	end
 
-@ Bag full: the gate attendant keeps the prize (VAR_0x8000, the item after the
+@ Bag full: the gate attendant keeps the prize (VAR_0x8006, the item after the
 @ randomizer) in VAR_BUG_CONTEST_STATE until the player has room, like HGSS.
+@ Not VAR_0x8000: Std_ObtainItem's pocket switch leaves the pocket id there.
 BugContest_EventScript_HoldPrize::
 	msgbox BugContest_Text_BagFullHoldPrize, MSGBOX_DEFAULT
-	copyvar VAR_BUG_CONTEST_STATE, VAR_0x8000
+	copyvar VAR_BUG_CONTEST_STATE, VAR_0x8006
 	addvar VAR_BUG_CONTEST_STATE, BUG_CONTEST_PRIZE_HELD
 	return
 

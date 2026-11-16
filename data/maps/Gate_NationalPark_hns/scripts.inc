@@ -97,11 +97,18 @@ Gate_NationalPark_EventScript_AttendantCancel::
 
 @ Prize the bag had no room for at the judging (BugContest_EventScript_HoldPrize).
 Gate_NationalPark_EventScript_GiveHeldPrize::
-	msgbox Route35NationalParkGate_Text_HeresThePrizeWeWereHolding, MSGBOX_DEFAULT
 	copyvar VAR_0x8005, VAR_BUG_CONTEST_STATE
 	subvar VAR_0x8005, BUG_CONTEST_PRIZE_HELD
+	@ Older saves held ITEM_NONE for a stone prize: drop it, it would block the contest.
+	goto_if_eq VAR_0x8005, ITEM_NONE, Gate_NationalPark_EventScript_DropEmptyHeldPrize
+	msgbox Route35NationalParkGate_Text_HeresThePrizeWeWereHolding, MSGBOX_DEFAULT
 	giveitem_norandom VAR_0x8005
 	goto_if_eq VAR_RESULT, FALSE, Gate_NationalPark_EventScript_StillNoRoomForPrize
+	setvar VAR_BUG_CONTEST_STATE, 0
+	releaseall
+	end
+
+Gate_NationalPark_EventScript_DropEmptyHeldPrize::
 	setvar VAR_BUG_CONTEST_STATE, 0
 	releaseall
 	end
