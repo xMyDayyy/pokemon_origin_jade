@@ -67,10 +67,11 @@ const u8 gText_ExpandedPlaceholder_Red[] = _("Rot");
 #else
 const u8 gText_ExpandedPlaceholder_Red[] = _("RED");
 #endif
+// Origin Jade: default name of the Kanto rival.
 #if GERMAN
-const u8 gText_ExpandedPlaceholder_Green[] = _("Grün");
+const u8 gText_ExpandedPlaceholder_Green[] = _("Jasper");
 #else
-const u8 gText_ExpandedPlaceholder_Green[] = _("GREEN");
+const u8 gText_ExpandedPlaceholder_Green[] = _("Jasper");
 #endif
 #if GERMAN
 const u8 gText_ExpandedPlaceholder_Silver[] = _("Silber");

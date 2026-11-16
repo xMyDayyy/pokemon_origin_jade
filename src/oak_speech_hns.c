@@ -205,16 +205,13 @@ static const struct MenuAction sMenuActions_Gender[] = {
     {gText_Girl, {NULL}}
 };
 
+// Origin Jade: name kept when the naming screen is confirmed empty.
 static const u8 *const sMalePresetNames[] = {
-    COMPOUND_STRING("GOLD"),
+    COMPOUND_STRING("Jade"),
 };
 
 static const u8 *const sFemalePresetNames[] = {
-#if GERMAN
-    COMPOUND_STRING("Kris"),
-#else
-    COMPOUND_STRING("KRIS"),
-#endif
+    COMPOUND_STRING("Jade"),
 };
 
 #define NUM_PRESET_NAMES min(ARRAY_COUNT(sMalePresetNames), ARRAY_COUNT(sFemalePresetNames))
