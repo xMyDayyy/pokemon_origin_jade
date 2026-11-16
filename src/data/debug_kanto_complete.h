@@ -3,7 +3,7 @@
 // Regenerate: python3 tools/make_debug_states.py (check: --check, shared state: --overlap).
 
 #define KANTO_COMPLETE_STARTER 2  // VAR_STARTER_MON: 0 Bulbasaur, 1 Squirtle, 2 Charmander
-#define KANTO_COMPLETE_MONEY 345716  // start money and every prize of the run
+#define KANTO_COMPLETE_MONEY 345732  // start money and every prize of the run
 
 struct KantoCompleteMon { u16 species; u8 level; };
 struct KantoCompleteVar { u16 var; u16 value; };
