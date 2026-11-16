@@ -18,8 +18,8 @@ PokemonTower_5F_EventScript_PurifiedZone::
 	releaseall
 	end
 
+@ No heal and no message.
 PokemonTower_5F_EventScript_PurifiedZone_PokecenterChallenge::
-	msgbox SSAquaRooms_Text_TakeRestOnBed_PokecenterChallenge, MSGBOX_DEFAULT
 	setvar VAR_TEMP_1, 1
 	releaseall
 	end

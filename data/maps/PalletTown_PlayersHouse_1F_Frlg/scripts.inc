@@ -153,8 +153,8 @@ PalletTown_PlayersHouse_1F_EventScript_MomHeal::
 	release
 	end
 
+@ Skip the rest line and the heal silently.
 PalletTown_PlayersHouse_1F_EventScript_MomPokecenterChallenge::
-	msgbox PlayersHouse_1F_Text_YouShouldRestABit_PokecenterChallenge, MSGBOX_DEFAULT
 	call PalletTown_PlayersHouse_1F_EventScript_MomSavingsMenu
 	release
 	end

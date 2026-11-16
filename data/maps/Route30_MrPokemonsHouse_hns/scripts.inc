@@ -55,8 +55,8 @@ MrPokemonHouse_EventScript_GiveEgg_AfterHeal::
 	release
 	end
 
+@ Skip the rest line and the heal silently.
 MrPokemonHouse_EventScript_GiveEgg_PokecenterChallenge::
-	msgbox SSAquaRooms_Text_TakeRestOnBed_PokecenterChallenge, MSGBOX_DEFAULT
 	goto MrPokemonHouse_EventScript_GiveEgg_AfterHeal
 
 MrPokemonHouse_EventScript_GiveNatDexRandomizer::
