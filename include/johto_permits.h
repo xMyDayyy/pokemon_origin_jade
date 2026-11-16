@@ -7,6 +7,7 @@
 
 bool32 HasJohtoPermit(u32 index);
 bool32 JohtoPermitsApply(void);     // TRUE in Johto, except on the way in from Kanto
+bool32 JohtoSurfPermitApplies(void); // As above, but also FALSE in New Bark Town
 bool32 IsJohtoMapsec(u32 mapSecId);
 void SetJohtoPermit(void);          // Special: PERM_* index in gSpecialVar_0x8004
 
