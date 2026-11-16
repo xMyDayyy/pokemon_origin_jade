@@ -75,12 +75,26 @@ NewBarkTown_PlayersHouse_2F_EventScript_PC::
 	releaseall
 	end
 
+@ The player lives in Pallet Town: this PC belongs to someone else.
+NewBarkTown_PlayersHouse_2F_EventScript_StrangersPC::
+	msgbox NewBarkTown_PlayersHouse_2F_Text_StrangersPC, MSGBOX_SIGN
+	end
+
 NewBarkTown_PlayersHouse_2F_EventScript_TurnOffPlayerPC::
 	setvar VAR_0x8004, PC_LOCATION_PLAYER_HOUSE_HNS
 	playse SE_PC_OFF
 	special DoPCTurnOffEffect
 	releaseall
 	end
+
+NewBarkTown_PlayersHouse_2F_Text_StrangersPC:
+#if GERMAN
+	.string "Du solltest nicht mit den PCs\n"
+	.string "anderer Leute herumspielen.$"
+#else
+	.string "You shouldn't mess with someone\n"
+	.string "else's PC!$"
+#endif
 
 NewBarkTown_PlayersHouse_2F_Text_NES:
 #if GERMAN

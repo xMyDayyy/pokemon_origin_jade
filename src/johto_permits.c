@@ -40,6 +40,12 @@ bool32 JohtoPermitsApply(void)
     return IsJohtoMapsec(mapSecId);
 }
 
+// New Bark Town's only water (east edge) leads to Route 27 and back to Kanto.
+bool32 JohtoSurfPermitApplies(void)
+{
+    return JohtoPermitsApply() && gMapHeader.regionMapSectionId != MAPSEC_NEW_BARK_TOWN;
+}
+
 // Special: permit index (0 - PERM_COUNT-1) in gSpecialVar_0x8004
 void SetJohtoPermit(void)
 {
@@ -52,6 +58,7 @@ void SetJohtoPermit(void)
 bool32 IsJohtoMapsec(u32 mapSecId) { return FALSE; }
 bool32 HasJohtoPermit(u32 index) { return TRUE; }
 bool32 JohtoPermitsApply(void) { return FALSE; }
+bool32 JohtoSurfPermitApplies(void) { return FALSE; }
 void SetJohtoPermit(void) {}
 
 #endif

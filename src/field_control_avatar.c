@@ -685,7 +685,7 @@ static const u8 *GetInteractedWaterScript(struct MapPosition *unused1, u8 metati
 #if IS_HNS
     // Surf possible, but the Hoenn license or Johto permit is missing: show a hint.
     if (((HoennLicensesApply() && !HasHoennLicense(LIC_SURF))
-      || (JohtoPermitsApply() && !HasJohtoPermit(PERM_SURF)))
+      || (JohtoSurfPermitApplies() && !HasJohtoPermit(PERM_SURF)))
      && PartyHasMonWithSurf() == TRUE && IsPlayerFacingSurfableFishableWater() == TRUE)
         return EventScript_NoSurfLicense;
 #endif

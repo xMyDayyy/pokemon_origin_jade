@@ -99,7 +99,7 @@ static bool32 IsFieldMoveUnlocked_Surf(void)
     {
         if (HoennLicensesApply())
             return HasHoennLicense(LIC_SURF);
-        if (JohtoPermitsApply())
+        if (JohtoSurfPermitApplies())
             return HasJohtoPermit(PERM_SURF);
         return FlagGet(FLAG_BADGE04_GET);
     }
