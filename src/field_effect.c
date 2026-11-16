@@ -1318,8 +1318,8 @@ static void PokeballGlowEffect_PlaceBalls(struct Sprite *sprite)
     {
         sprite->sTimer = 25;
         spriteId = CreateSpriteAtEnd(&sSpriteTemplate_PokeballGlow, sPokeballCoordOffsets[sprite->sCounter].x + sprite->x2, sPokeballCoordOffsets[sprite->sCounter].y + sprite->y2, 0);
-        // Origin Jade: the machine is on BG2 in Emerald centers, on BG3 in HGSS centers.
-        gSprites[spriteId].oam.priority = (gMapHeader.mapLayout->layoutVersion == LAYOUT_VERSION_EMERALD) ? 2 : 3;
+        // Origin Jade: the machine is on BG2 in Emerald and FRLG centers, on BG3 in HGSS centers.
+        gSprites[spriteId].oam.priority = (gMapHeader.mapLayout->layoutVersion == LAYOUT_VERSION_HNS) ? 3 : 2;
         gSprites[spriteId].sEffectSpriteId = sprite->sSpriteId;
         sprite->sCounter++;
         sprite->sNumMons--;
