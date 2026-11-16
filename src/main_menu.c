@@ -11,6 +11,8 @@
 #include "field_effect.h"
 #include "gpu_regs.h"
 #include "graphics.h"
+#include "hoenn_badges.h"
+#include "johto_badges.h"
 #include "international_string_util.h"
 #include "link.h"
 #include "main.h"
@@ -2340,9 +2342,15 @@ static void MainMenu_FormatSavegameBadges(void)
     u8 badgeCount = 0;
 
 #if IS_HNS
-    // Origin Jade: badges of the region the save was made in.
-    badgeCount = GetRegionBadgeCount(Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->location.mapGroup,
-                                                                        gSaveBlock1Ptr->location.mapNum)->regionMapSectionId);
+    // Origin Jade: all badges, Kanto (FLAG_BADGE01-08) plus Johto and Hoenn (max 24).
+    u32 i;
+    for (i = FLAG_BADGE01_GET; i <= FLAG_BADGE08_GET; i++)
+    {
+        if (FlagGet(i))
+            badgeCount++;
+    }
+    badgeCount += GetJohtoBadgeCount();
+    badgeCount += GetHoennBadgeCount();
 #else
     u32 i;
     for (i = FLAG_BADGE01_GET; i < FLAG_BADGE01_GET + NUM_BADGES; i++)
