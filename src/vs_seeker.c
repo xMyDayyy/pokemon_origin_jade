@@ -92,6 +92,7 @@ struct KantoRematch
     u16 trainerIds[KANTO_REMATCH_TIERS];
 };
 
+#include "config/level_remap.h"
 #include "data/vs_seeker_kanto.h"
 
 // Progress tiers = columns of sKantoRematches. FRLG's own milestones in brackets.
@@ -113,12 +114,25 @@ enum
 // 0 = no floor. From the Kanto title on the teams scale instead.
 // Keep each floor below the ace of the tier's next gym leader. A rematch team
 // below its own first team is raised in src/data/trainers_frlg.party instead.
+#if LEVEL_REMAP == TRUE
+// Fixed levels (config/level_remap.h): floors also after the titles, the title tiers
+// at Johto's middle and end.
+static const u8 sKantoRematchLevelFloors[KANTO_REMATCH_TIERS] =
+{
+    [KANTO_REMATCH_TIER_VS_SEEKER]   = 17,
+    [KANTO_REMATCH_TIER_4_BADGES]    = 30,
+    [KANTO_REMATCH_TIER_6_BADGES]    = 33,
+    [KANTO_REMATCH_TIER_KANTO_TITLE] = 60,
+    [KANTO_REMATCH_TIER_JOHTO_TITLE] = 76,
+};
+#else
 static const u8 sKantoRematchLevelFloors[KANTO_REMATCH_TIERS] =
 {
     [KANTO_REMATCH_TIER_VS_SEEKER] = 18,
     [KANTO_REMATCH_TIER_4_BADGES]  = 30,
     [KANTO_REMATCH_TIER_6_BADGES]  = 37,
 };
+#endif
 
 // Trainers that want a rematch are kept as a bit per local id in two vars.
 #define VS_SEEKER_MAX_LOCAL_ID 32

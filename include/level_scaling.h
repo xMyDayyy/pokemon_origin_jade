@@ -7,6 +7,7 @@ struct Trainer;
 
 // Level scaling for Hoenn, Johto and (after the Kanto title) Kanto, rules in
 // include/config/hoenn_scaling.h, johto_scaling.h and kanto_scaling.h.
+// With LEVEL_REMAP (include/config/level_remap.h) all levels are fixed instead.
 // Before the Kanto title ScaleTrainerMonLevel raises Kanto VS Seeker rematch teams
 // to their tier's floor (src/vs_seeker.c). Pass-throughs everywhere else.
 
@@ -29,6 +30,9 @@ u8 ScalePartnerMonLevel(u8 level, u8 partyMaxLevel);
 // Call right after ScaleTrainerMonLevel or ScalePartnerMonLevel for the same Pokemon.
 // partyIndex: its index in the trainer's party data.
 u16 ScaleTrainerMonSpecies(u16 species, u8 scaledLevel, u16 trainerId, u8 partyIndex);
+// Fixed levels (config/level_remap.h): percent of the experience a Pokemon of
+// receiverLevel gets for one of opponentLevel on the current map.
+u32 GetRemapExpPercent(u8 receiverLevel, u8 opponentLevel);
 
 // Not tied to scaling: also used by the region map, location names and HM licenses.
 bool32 IsHoennMapsec(u32 mapSecId);

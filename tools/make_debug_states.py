@@ -130,14 +130,15 @@ PC_SIZE = 14 * 30
 # (0 Bulbasaur, 1 Squirtle, 2 Charmander).
 KANTO_COMPLETE_STARTER = 2
 KANTO_COMPLETE_PARTY_STARTER_FINAL = ["SPECIES_VENUSAUR", "SPECIES_BLASTOISE", "SPECIES_CHARIZARD"]
-# Levels of an average player after the champion (Gen 5 experience).
-KANTO_COMPLETE_PARTY_STARTER_LEVEL = 49
+# Levels of an average player after the champion (fixed levels, config/level_remap.h):
+# the starter fights most, the others follow a few levels behind.
+KANTO_COMPLETE_PARTY_STARTER_LEVEL = 43
 KANTO_COMPLETE_PARTY = [
-    ("SPECIES_PIDGEOT", 43),
-    ("SPECIES_RAICHU", 44),
-    ("SPECIES_NIDOKING", 43),
-    ("SPECIES_GYARADOS", 42),
-    ("SPECIES_SNORLAX", 42),
+    ("SPECIES_PIDGEOT", 38),
+    ("SPECIES_RAICHU", 37),
+    ("SPECIES_NIDOKING", 37),
+    ("SPECIES_GYARADOS", 36),
+    ("SPECIES_SNORLAX", 35),
 ]
 
 # Active FRLG maps a run up to the first Hall of Fame never enters: post-title

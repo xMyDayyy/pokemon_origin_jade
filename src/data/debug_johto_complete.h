@@ -4,7 +4,7 @@
 // Regenerate: python3 tools/make_debug_states.py (check: --check).
 
 #define JOHTO_COMPLETE_JOHTO_STARTER 0  // VAR_JOHTO_STARTER_MON: 0 Chikorita, 1 Cyndaquil, 2 Totodile
-#define JOHTO_COMPLETE_MONEY 723480  // start money and every prize of both regions
+#define JOHTO_COMPLETE_MONEY 631536  // start money and every prize of both regions
 
 static const u16 sJohtoCompleteFlagsSet[] =
 {
@@ -1251,11 +1251,11 @@ static const struct KantoCompleteMon sJohtoCompleteMons[] =
     { SPECIES_BLASTOISE, 36 },
     { SPECIES_BUTTERFREE, 10 },
     { SPECIES_BEEDRILL, 10 },
-    { SPECIES_PIDGEOT, 43 },
+    { SPECIES_PIDGEOT, 38 },
     { SPECIES_RATICATE, 20 },
     { SPECIES_FEAROW, 20 },
     { SPECIES_ARBOK, 22 },
-    { SPECIES_RAICHU, 44 },
+    { SPECIES_RAICHU, 37 },
     { SPECIES_SANDSLASH, 22 },
     { SPECIES_NIDOQUEEN, 18 },
     { SPECIES_CLEFABLE, 32 },
@@ -1305,7 +1305,7 @@ static const struct KantoCompleteMon sJohtoCompleteMons[] =
     { SPECIES_OMASTAR, 40 },
     { SPECIES_KABUTOPS, 40 },
     { SPECIES_AERODACTYL, 40 },
-    { SPECIES_SNORLAX, 42 },
+    { SPECIES_SNORLAX, 35 },
     { SPECIES_ARTICUNO, 40 },
     { SPECIES_ZAPDOS, 40 },
     { SPECIES_MOLTRES, 40 },
