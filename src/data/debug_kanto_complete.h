@@ -1225,7 +1225,7 @@ static const struct KantoCompleteMon sKantoCompleteMons[] =
     { SPECIES_ARBOK, 22 },
     { SPECIES_SANDSLASH, 22 },
     { SPECIES_NIDOQUEEN, 18 },
-    { SPECIES_CLEFABLE, 32 },
+    { SPECIES_CLEFABLE, 11 },
     { SPECIES_NINETALES, 17 },
     { SPECIES_WIGGLYTUFF, 7 },
     { SPECIES_GOLBAT, 22 },
