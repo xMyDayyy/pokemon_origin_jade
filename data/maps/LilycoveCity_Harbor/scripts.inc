@@ -24,20 +24,13 @@ LilycoveCity_Harbor_EventScript_NoFirstTimeEventTickets::
 	end
 
 LilycoveCity_Harbor_EventScript_FerryRegularLocationSelect::
-	setvar VAR_0x8004, 0
-	special ScriptMenu_CreateLilycoveSSTidalMultichoice
-	waitstate
-	special GetLilycoveSSTidalSelection
+	setvar VAR_0x8008, SHIP_PORT_LILYCOVE
+	call Common_EventScript_TidalMenu
 	switch VAR_RESULT
-	case 0, LilycoveCity_Harbor_EventScript_GoToSlateport
-	case 1, LilycoveCity_Harbor_EventScript_GoToBattleFrontier
-	@ Island trips disabled.
-	case 2, LilycoveCity_Harbor_EventScript_ExitSailSelect
-	case 3, LilycoveCity_Harbor_EventScript_ExitSailSelect
-	case 4, LilycoveCity_Harbor_EventScript_ExitSailSelect
-	case 5, LilycoveCity_Harbor_EventScript_ExitSailSelect
-	case 6, LilycoveCity_Harbor_EventScript_ExitSailSelect
-	case MULTI_B_PRESSED, LilycoveCity_Harbor_EventScript_ExitSailSelect
+	case SHIP_DEST_SLATEPORT, LilycoveCity_Harbor_EventScript_GoToSlateport
+	case SHIP_DEST_BATTLE_FRONTIER, LilycoveCity_Harbor_EventScript_GoToBattleFrontier
+	case SHIP_DEST_BIRTH_ISLAND, LilycoveCity_Harbor_EventScript_GoToBirthIsland
+	goto LilycoveCity_Harbor_EventScript_ExitSailSelect
 	end
 
 LilycoveCity_Harbor_EventScript_GoToSouthernIsland::
@@ -55,8 +48,10 @@ LilycoveCity_Harbor_EventScript_GoToNavelRock::
 	end
 
 LilycoveCity_Harbor_EventScript_GoToBirthIsland::
+	msgbox Common_Text_TidalBirthIslandItIs, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, LilycoveCity_Harbor_EventScript_FerryDestinationChangeMind
 	call LilycoveCity_Harbor_EventScript_BoardFerry
-	warp MAP_BIRTH_ISLAND_HARBOR, 8, 4
+	warp MAP_BIRTH_ISLAND_EXTERIOR_HNS, 13, 23
 	waitstate
 	release
 	end

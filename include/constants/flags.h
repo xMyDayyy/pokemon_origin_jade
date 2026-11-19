@@ -2510,6 +2510,7 @@
 #include "constants/flags_hoenn_de.h"
 #include "constants/flags_frlg_hns.h"
 #include "constants/flags_origin_jade.h"
+#include "constants/flags_rematch.h"
 #undef FLAGS_COUNT
 #define FLAGS_COUNT (HOENN_FLAGS_END + 1)
 #else

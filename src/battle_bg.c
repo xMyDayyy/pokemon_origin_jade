@@ -983,9 +983,8 @@ static u8 GetBattleEnvironmentOverride(void)
     {
         u32 trainerClass = GetTrainerClassFromId(TRAINER_BATTLE_PARAM.opponentA);
     #if IS_HNS
-        // Clair's first battle and Blaine use the volcano cave background instead of the usual stadium.
-        if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_CLAIR_1_HNS
-         || TRAINER_BATTLE_PARAM.opponentA == TRAINER_BLAINE_HNS)
+        // Clair's first battle uses the volcano cave background instead of the usual stadium.
+        if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_CLAIR_1_HNS)
             return BATTLE_ENVIRONMENT_VOLCANO_CAVE;
     #endif
         if (trainerClass == TRAINER_CLASS_LEADER || trainerClass == TRAINER_CLASS_LEADER_FRLG || trainerClass == TRAINER_CLASS_LEADER_HNS || trainerClass == TRAINER_CLASS_LEADER_KANTO_HNS)

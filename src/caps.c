@@ -19,10 +19,20 @@ u8 GetCurrentBadgeCount(void)
     return badgeCount;
 }
 
-u32 GetRegionBadgeCount(u32 mapSecId)
+u32 GetKantoBadgeCount(void)
 {
     u32 i, count = 0;
 
+    for (i = FLAG_BADGE01_GET; i <= FLAG_BADGE08_GET; i++)
+    {
+        if (FlagGet(i))
+            count++;
+    }
+    return count;
+}
+
+u32 GetRegionBadgeCount(u32 mapSecId)
+{
 #if IS_HNS
     switch (GetRegionForSectionId(mapSecId))
     {
@@ -34,12 +44,7 @@ u32 GetRegionBadgeCount(u32 mapSecId)
         break;
     }
 #endif
-    for (i = FLAG_BADGE01_GET; i <= FLAG_BADGE08_GET; i++)
-    {
-        if (FlagGet(i))
-            count++;
-    }
-    return count;
+    return GetKantoBadgeCount();
 }
 
 u32 GetCurrentRegionBadgeCount(void)

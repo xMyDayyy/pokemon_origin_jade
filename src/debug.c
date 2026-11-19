@@ -72,7 +72,6 @@
 #include "rtc.h"
 #include "fake_rtc.h"
 #include "save.h"
-#include "vs_seeker.h"
 #include "load_save.h"
 #include "battle_partner.h"
 
@@ -311,8 +310,9 @@ static void DebugAction_Trainers_ChooseTrainer(u8 taskId, u32 selection);
 static void DebugAction_Trainers_SwitchDoublesFlag(u8 taskId);
 static void DebugAction_Trainers_SetRematch(u8 taskId);
 static void DebugAction_Trainers_SetRematchReadiness(u8 taskId);
+static void DebugAction_Trainers_RegisterAllPokeCom(u8 taskId);
+static void DebugAction_Trainers_ArmAllRematches(u8 taskId);
 static void DebugAction_Trainers_TryBattle(u8 taskId);
-static void DebugAction_Trainers_RechargeVsSeeker(u8 taskId);
 
 static void DebugAction_FlagsVars_Flags(u8 taskId);
 static void DebugAction_FlagsVars_FlagsSelect(u8 taskId);
@@ -702,7 +702,8 @@ static const struct DebugMenuOption sDebugMenu_Actions_Trainers[] =
     { COMPOUND_STRING("Matches {STR_VAR_1}/{STR_VAR_2}"), DebugAction_ToggleFlag, DebugAction_Trainers_SetRematch },
     { COMPOUND_STRING("Rematch Ready {STR_VAR_1}"), DebugAction_ToggleFlag, DebugAction_Trainers_SetRematchReadiness },
     { COMPOUND_STRING("Try Battle"), DebugAction_Trainers_TryBattle },
-    { COMPOUND_STRING("Recharge VS Seeker"), DebugAction_Trainers_RechargeVsSeeker },
+    { COMPOUND_STRING("Register all PokéCom"), DebugAction_Trainers_RegisterAllPokeCom },
+    { COMPOUND_STRING("Arm all rematches"), DebugAction_Trainers_ArmAllRematches },
     { NULL }
 };
 
@@ -1125,14 +1126,10 @@ static u8 Debug_GenerateListTrainerMenu(void)
                 noDraw = TRUE;
                 break;
             }
-            if (GetActiveTrainerRematches(rematchTableId))
+            if (IsRematchArmed(rematchTableId))
                 StringCopy(gStringVar1, COMPOUND_STRING("{COLOR GREEN} TRUE"));
             else
                 StringCopy(gStringVar1, COMPOUND_STRING("{COLOR RED} FALSE"));
-            break;
-        case 8:
-            if (FREE_MATCH_CALL || I_VS_SEEKER_CHARGING == 0)
-                noDraw = TRUE;
             break;
         }
 
@@ -2214,11 +2211,6 @@ static void ParseObjectEventScript(const u8 *script)
     {
         TrainerBattleLoadArgs(script + 1);
     }
-    else if (Script_MatchesCallNative(script, NativeVsSeekerRematchId, TRUE))
-    {
-        ctx->scriptPtr = script + 5;
-        sDebugMenuListData->data[0] = ScriptPeekHalfword(ctx);
-    }
     else if (Script_MatchesSpecial(script, SavePlayerParty) && Script_MatchesCallNative(script + 3, SetMultiTrainerBattle, FALSE))
     {
         ctx->scriptPtr = script + 8;
@@ -2511,10 +2503,53 @@ static void DebugAction_Trainers_SetRematchReadiness(u8 taskId)
 {
     if (sDebugMenuListData->data[1] == -1)
         return;
-    if (GetActiveTrainerRematches(sDebugMenuListData->data[1]))
-        SetActiveTrainerRematches(sDebugMenuListData->data[1], FALSE);
+    if (IsRematchArmed(sDebugMenuListData->data[1]))
+        ClearRematchArmed(sDebugMenuListData->data[1]);
     else
-        SetActiveTrainerRematches(sDebugMenuListData->data[1], TRUE);
+        SetRematchArmed(sDebugMenuListData->data[1]);
+}
+
+// Test tool: registers every normal phone trainer (all regions, no specials).
+static void DebugAction_Trainers_RegisterAllPokeCom(u8 taskId)
+{
+    u32 i, count = 0;
+
+    for (i = 0; i < REMATCH_SPECIAL_TRAINER_START; i++)
+    {
+        if (gRematchTable[i].trainerIds[0] == TRAINER_NONE)
+            continue;
+        SetRematchRegistered(i);
+        count++;
+    }
+    PlaySE(SE_PC_LOGIN);
+    ConvertIntToDecimalStringN(gStringVar1, count, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, COMPOUND_STRING("{STR_VAR_1} trainers registered."));
+    Debug_DestroyMenu_Full_Script(taskId, Debug_ShowFieldMessageStringVar4);
+}
+
+// Test tool: arms every normal phone trainer whose first battle is won,
+// without badge gate or step counter.
+static void DebugAction_Trainers_ArmAllRematches(u8 taskId)
+{
+    u32 i, armed = 0, notFought = 0;
+
+    for (i = 0; i < REMATCH_SPECIAL_TRAINER_START; i++)
+    {
+        if (gRematchTable[i].trainerIds[0] == TRAINER_NONE)
+            continue;
+        if (!HasTrainerBeenFought(gRematchTable[i].trainerIds[0]))
+        {
+            notFought++;
+            continue;
+        }
+        SetRematchArmed(i);
+        armed++;
+    }
+    PlaySE(SE_PC_LOGIN);
+    ConvertIntToDecimalStringN(gStringVar1, armed, STR_CONV_MODE_LEFT_ALIGN, 3);
+    ConvertIntToDecimalStringN(gStringVar2, notFought, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, COMPOUND_STRING("{STR_VAR_1} rematches armed.\n{STR_VAR_2} not fought yet."));
+    Debug_DestroyMenu_Full_Script(taskId, Debug_ShowFieldMessageStringVar4);
 }
 
 static void DebugAction_Trainers_TryBattle(u8 taskId)
@@ -2556,13 +2591,6 @@ static void DebugAction_Trainers_TryBattle(u8 taskId)
     gBattleEnvironment = BattleSetup_GetEnvironmentId();
     CalculateEnemyPartyCount();
     BattleSetup_StartTrainerBattle_Debug();
-    Debug_DestroyMenu_Full(taskId);
-}
-
-static void DebugAction_Trainers_RechargeVsSeeker(u8 taskId)
-{
-    VsSeekerSetFullyCharged();
-    ScriptContext_SetupScript(EventScript_VsSeekerChargingDone);
     Debug_DestroyMenu_Full(taskId);
 }
 

@@ -201,8 +201,8 @@
 #define FLAG_GOT_TM42_AT_MEMORIAL_PILLAR                         (FRLG_FLAGS_START+0x5D)
 #undef  FLAG_GOT_TOGEPI_EGG
 #define FLAG_GOT_TOGEPI_EGG                                      (FRLG_FLAGS_START+0x5E)
-#undef  FLAG_GOT_VS_SEEKER
-#define FLAG_GOT_VS_SEEKER                                       (FRLG_FLAGS_START+0x5F)
+// Retired (never reuse): was FLAG_GOT_VS_SEEKER.
+#define FLAG_OJ_UNUSED_FRLG_0x5F                                 (FRLG_FLAGS_START+0x5F)
 #undef  FLAG_HELPED_BILL_IN_SEA_COTTAGE
 #define FLAG_HELPED_BILL_IN_SEA_COTTAGE                          (FRLG_FLAGS_START+0x60)
 #undef  FLAG_HIDE_BILL_CLEFAIRY

@@ -150,9 +150,11 @@
 // NOTE: this header is included from constants/global.h *before* IS_HNS is
 // defined, so test the raw build define here instead.
 #ifdef POKEMON_HNS
-#define OW_REMATCH_BADGE_COUNT      3 // After Whitney
+#define OW_REMATCH_BADGE_COUNT      3 // After Whitney. Per region: the phone runs once any region has it, a trainer only asks for a rematch once his own region has it.
+#define OW_MATCH_CALL_REMATCH_CHANCE        30 // Percent: a random call from a trainer elsewhere asks for a rematch (HGSS).
+#define OW_MATCH_CALL_HOME_REGION_PERCENT   70 // Percent of random calls from contacts of the current region (the rest from the other regions).
 #else
-#define OW_REMATCH_BADGE_COUNT      5 // Number of badges necessary before the match call or vs seeker features allow rematches
+#define OW_REMATCH_BADGE_COUNT      5 // Number of badges necessary before match call allows rematches
 #endif
 
 #endif // GUARD_CONFIG_OVERWORLD_H

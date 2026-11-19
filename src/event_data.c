@@ -282,6 +282,17 @@ STATIC_ASSERT(TRAINERS_COUNT_HNS <= FRLG_TRAINER_OFFSET + 1, sHnsTrainersBelowFr
 
 STATIC_ASSERT(OJ_TRAINER_FLAGS_HOENN_END < OJ_FLAGS_HOENN + OJ_FLAGS_HOENN_SIZE, sOjTrainerFlagsFitHoennSection);
 STATIC_ASSERT(FLAG_HOENN_RECEIVED_HM_STRENGTH < OJ_FLAGS_HOENN + OJ_FLAGS_HOENN_SIZE, sOjHoennFlagsFitHoennSection);
+
+// PokeCom rematch block (constants/flags_rematch.h), in SaveBlock1 rematchFlags.
+STATIC_ASSERT(REMATCH_FLAGS_START > HNS_REMATCH_TIER_FLAGS_END, sRematchFlagsAboveTierFlags);
+STATIC_ASSERT(REMATCH_FLAGS_START > OJ_FLAGS_END && REMATCH_FLAGS_START > FRLG_TRAINER_FLAGS_END, sRematchFlagsAboveOtherWindows);
+STATIC_ASSERT(REMATCH_FLAGS_END < SPECIAL_FLAGS_START, sRematchFlagsBelowSpecial);
+STATIC_ASSERT((REMATCH_FLAGS_START & 7) == 0, sRematchFlagsByteAligned);
+STATIC_ASSERT(REMATCH_ARMED_FLAGS_START > REMATCH_REGISTERED_FLAGS_END, sRematchArmedAboveRegistered);
+STATIC_ASSERT(REMATCH_MISC_FLAGS_START > REMATCH_ARMED_FLAGS_END, sRematchMiscAboveArmed);
+#if FREE_MATCH_CALL == FALSE
+STATIC_ASSERT(offsetof(struct SaveBlock1, objectEvents) - offsetof(struct SaveBlock1, rematchStepCounter) == REMATCH_SAVE_AREA_SIZE, sRematchSaveAreaSize);
+#endif
 #endif
 
 u8 *GetFlagPointer(u16 id)
@@ -299,6 +310,15 @@ u8 *GetFlagPointer(u16 id)
     // Origin Jade block, in SaveBlock3.
     else if (id >= OJ_FLAGS_START && id <= OJ_FLAGS_END)
         return &gSaveBlock3Ptr->flagsOj[(id - OJ_FLAGS_START) / 8];
+#if IS_HNS
+    // PokeCom rematch block, in SaveBlock1.
+    else if (id >= REMATCH_FLAGS_START && id <= REMATCH_FLAGS_END)
+#if FREE_MATCH_CALL == FALSE
+        return &gSaveBlock1Ptr->rematchFlags[(id - REMATCH_FLAGS_START) / 8];
+#else
+        return NULL;
+#endif
+#endif
     else if (id < SPECIAL_FLAGS_START)
     {
         ASSERT_STORAGE(id < FLAGS_COUNT, "flag", id);

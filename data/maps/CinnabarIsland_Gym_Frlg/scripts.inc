@@ -49,7 +49,27 @@ CinnabarIsland_Gym_EventScript_Blaine::
 	famechecker FAMECHECKER_BLAINE, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
 	trainerbattle_single TRAINER_LEADER_BLAINE, CinnabarIsland_Gym_Text_BlaineIntro, CinnabarIsland_Gym_Text_BlaineDefeat, CinnabarIsland_Gym_EventScript_DefeatedBlaine, NO_MUSIC
 	goto_if_unset FLAG_GOT_TM38_FROM_BLAINE, CinnabarIsland_Gym_EventScript_GiveTM38
+	goto_if_set FLAG_IS_KANTO_CHAMPION, CinnabarIsland_Gym_EventScript_BlaineRematch
 	msgbox CinnabarIsland_Gym_Text_BlainePostBattle
+	release
+	end
+
+@ Rematch after the Kanto title: as often as the player likes, money only.
+@ After the Johto title the POSTOBC team. Level band: FLAG_TEMP_KANTO_LEADER_REMATCH.
+CinnabarIsland_Gym_EventScript_BlaineRematch::
+	msgbox CinnabarIsland_Gym_Text_BlaineRematch, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
+	closemessage
+	setflag FLAG_TEMP_KANTO_LEADER_REMATCH
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, CinnabarIsland_Gym_EventScript_BlaineRematchPostJohto
+	trainerbattle_no_intro TRAINER_BLAINE_HNS, CinnabarIsland_Gym_Text_BlaineRematchDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
+	release
+	end
+
+CinnabarIsland_Gym_EventScript_BlaineRematchPostJohto::
+	trainerbattle_no_intro TRAINER_BLAINE_POSTOBC_HNS, CinnabarIsland_Gym_Text_BlaineRematchDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
 	release
 	end
 
@@ -1130,3 +1150,25 @@ CinnabarIsland_Gym_Text_SorryBadCall::
 	.string "Bad call!$"
 #endif
 
+CinnabarIsland_Gym_Text_BlaineRematch::
+#if GERMAN
+	.string "Haha! Du bist zurück!\p"
+	.string "Meine Feuer-Pokémon brennen auf\n"
+	.string "eine Revanche!\p"
+	.string "Hast du genug Feuerheiler dabei?\p"
+	.string "Möchtest du einen Rückkampf?$"
+#else
+	.string "Hah! You're back!\p"
+	.string "My FIRE-type POKéMON are burning\n"
+	.string "to battle you again!\p"
+	.string "Got enough BURN HEAL with you?\p"
+	.string "Want to have a rematch?$"
+#endif
+
+CinnabarIsland_Gym_Text_BlaineRematchDefeat::
+#if GERMAN
+	.string "Mein Feuer ist wieder erloschen!$"
+#else
+	.string "I have burned down to nothing\n"
+	.string "again!$"
+#endif

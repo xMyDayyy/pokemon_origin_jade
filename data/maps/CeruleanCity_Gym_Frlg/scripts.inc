@@ -5,7 +5,27 @@ CeruleanCity_Gym_EventScript_Misty::
 	famechecker FAMECHECKER_MISTY, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
 	trainerbattle_single TRAINER_LEADER_MISTY, CeruleanCity_Gym_Text_MistyIntro, CeruleanCity_Gym_Text_MistyDefeat, CeruleanCity_Gym_EventScript_MistyDefeated, NO_MUSIC
 	goto_if_unset FLAG_GOT_TM03_FROM_MISTY, CeruleanCity_Gym_EventScript_GiveTM03
+	goto_if_set FLAG_IS_KANTO_CHAMPION, CeruleanCity_Gym_EventScript_MistyRematch
 	msgbox CeruleanCity_Gym_Text_ExplainTM03
+	release
+	end
+
+@ Rematch after the Kanto title: as often as the player likes, money only.
+@ After the Johto title the POSTOBC team. Level band: FLAG_TEMP_KANTO_LEADER_REMATCH.
+CeruleanCity_Gym_EventScript_MistyRematch::
+	msgbox CeruleanCity_Gym_Text_MistyRematch, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
+	closemessage
+	setflag FLAG_TEMP_KANTO_LEADER_REMATCH
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, CeruleanCity_Gym_EventScript_MistyRematchPostJohto
+	trainerbattle_no_intro TRAINER_MISTY_HNS, CeruleanCity_Gym_Text_MistyRematchDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
+	release
+	end
+
+CeruleanCity_Gym_EventScript_MistyRematchPostJohto::
+	trainerbattle_no_intro TRAINER_MISTY_POSTOBC_HNS, CeruleanCity_Gym_Text_MistyRematchDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
 	release
 	end
 
@@ -270,3 +290,26 @@ CeruleanCity_Gym_Text_GymStatuePlayerWon::
 	.string "{RIVAL}, {PLAYER}$"
 #endif
 
+CeruleanCity_Gym_Text_MistyRematch::
+#if GERMAN
+	.string "Da bist du ja wieder!\p"
+	.string "Meine Wasser-Pokémon und ich haben\n"
+	.string "unsere Offensive verbessert.\p"
+	.string "Diesmal spülen wir dich weg!\p"
+	.string "Möchtest du einen Rückkampf?$"
+#else
+	.string "Oh, it's you again!\p"
+	.string "My WATER-type POKéMON and I have\n"
+	.string "powered up our offensive.\p"
+	.string "This time, we'll wash you away!\p"
+	.string "Want to have a rematch?$"
+#endif
+
+CeruleanCity_Gym_Text_MistyRematchDefeat::
+#if GERMAN
+	.string "Na toll! Schon wieder verloren…\p"
+	.string "Aber nächstes Mal gewinne ich!$"
+#else
+	.string "Aww! I lost again…\p"
+	.string "But I'll win next time!$"
+#endif

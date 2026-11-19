@@ -47,9 +47,8 @@
 #define FLAG_GOT_TM_POISON_JAB_FROM_JANINE                   (OJ_FLAGS_KANTO + 7)
 // Blue (Viridian gym leader after the league change) gave TM Trick Room.
 #define FLAG_GOT_TM_TRICK_ROOM_FROM_BLUE                     (OJ_FLAGS_KANTO + 8)
-// VS Seeker used: trainers in view want a rematch until it has recharged
-// (I_VS_SEEKER_CHARGING, src/vs_seeker.c).
-#define FLAG_VS_SEEKER_CHARGING                              (OJ_FLAGS_KANTO + 9)
+// Retired (rule 2): was the VS Seeker's charge flag.
+#define FLAG_OJ_UNUSED_KANTO_9                               (OJ_FLAGS_KANTO + 9)
 // Hides Troy in Oak's lab; set again on every entry unless he waits there.
 #define FLAG_HIDE_OAKS_LAB_TROY                              (OJ_FLAGS_KANTO + 10)
 // Item balls with the TMs of HnS's Kanto.
@@ -66,8 +65,8 @@
 #define FLAG_GOT_TM_STONE_EDGE_FROM_ROBERT                   (OJ_FLAGS_KANTO + 20)
 #define FLAG_GOT_TM_WILL_O_WISP_FROM_BENNY                   (OJ_FLAGS_KANTO + 21)
 #define FLAG_GOT_TM_ENERGY_BALL_FROM_GRACE                   (OJ_FLAGS_KANTO + 22)
-// The player won a VS Seeker rematch against Carter (Route 14), set in CB2_EndRematchBattle.
-#define FLAG_DEFEATED_CARTER_REMATCH                         (OJ_FLAGS_KANTO + 23)
+// Retired (rule 2): was FLAG_DEFEATED_CARTER_REMATCH (now in flags_rematch.h).
+#define FLAG_OJ_UNUSED_KANTO_23                              (OJ_FLAGS_KANTO + 23)
 #define FLAG_GOT_TM_THUNDER_WAVE_FROM_CARTER                 (OJ_FLAGS_KANTO + 24)
 #define FLAG_GOT_TM_X_SCISSOR_FROM_RICK                      (OJ_FLAGS_KANTO + 25)
 // TMs of HnS's Kanto from NPCs.
@@ -83,7 +82,7 @@
 #define FLAG_HIDE_MT_MOON_1F_FAIRY_FEATHER                   (OJ_FLAGS_KANTO + 34)
 // Bill gave the Pokemon Box Link after the Kanto title.
 #define FLAG_RECEIVED_POKEMON_BOX_LINK                       (OJ_FLAGS_KANTO + 35)
-// Celadon's game designer gave the Catching Charm with the Kanto diploma.
+// Unused: the Catching Charm is no longer given.
 #define FLAG_RECEIVED_CATCHING_CHARM                         (OJ_FLAGS_KANTO + 36)
 
 // ---------------------------------------------------------------------
@@ -95,15 +94,15 @@
 #define FLAG_RECEIVED_JOHTO_STARTER                  (OJ_FLAGS_JOHTO + 1)
 // Johto start values set on the first visit to New Bark Town.
 #define FLAG_JOHTO_ARRIVAL_DONE                      (OJ_FLAGS_JOHTO + 2)
-// VAR_JOHTO_STARTER_MON save migration done (see LoadGameSave in src/save.c).
-#define FLAG_MIGRATED_JOHTO_STARTER_VAR              (OJ_FLAGS_JOHTO + 3)
+// Retired (rule 2): was FLAG_MIGRATED_JOHTO_STARTER_VAR (save migration, save version 5 and older).
+#define FLAG_OJ_UNUSED_JOHTO_3                       (OJ_FLAGS_JOHTO + 3)
 // Radio tower quiz in Goldenrod won: hides Whitney there, no new quiz, turns on
 // the Johto radio programmes.
 #define FLAG_WON_GOLDENROD_RADIO_QUIZ                (OJ_FLAGS_JOHTO + 4)
-// Goldenrod flag heap save migration done (see LoadGameSave in src/save.c).
-#define FLAG_MIGRATED_GOLDENROD_FLAG_HEAP            (OJ_FLAGS_JOHTO + 5)
-// Johto berry slot save migration done (see LoadGameSave in src/save.c).
-#define FLAG_MIGRATED_JOHTO_BERRY_SLOTS              (OJ_FLAGS_JOHTO + 6)
+// Retired (rule 2): was FLAG_MIGRATED_GOLDENROD_FLAG_HEAP (save migration).
+#define FLAG_OJ_UNUSED_JOHTO_5                       (OJ_FLAGS_JOHTO + 5)
+// Retired (rule 2): was FLAG_MIGRATED_JOHTO_BERRY_SLOTS (save migration).
+#define FLAG_OJ_UNUSED_JOHTO_6                       (OJ_FLAGS_JOHTO + 6)
 // One-time encounters, see constants/legendaries_oj.h. CAUGHT: never back;
 // DEFEATED: caught or knocked out, cleared after a league victory unless caught.
 #define FLAG_DEFEATED_CELEBI                         (OJ_FLAGS_JOHTO + 7)
@@ -123,7 +122,7 @@
 #define FLAG_HIDDEN_ITEM_ILEX_BIG_BAMBOO_SHOOT       (OJ_FLAGS_JOHTO + 18)
 #define FLAG_HIDDEN_ITEM_ILEX_TINY_BAMBOO_SHOOT      (OJ_FLAGS_JOHTO + 19)
 #define FLAG_HIDDEN_ITEM_ECRUTEAK_POKESHI_DOLL       (OJ_FLAGS_JOHTO + 20)
-// Lilycove's game designer gave the EXP. Charm with the Johto diploma.
+// Oak gave the EXP. Charm for the completed Kanto dex.
 #define FLAG_RECEIVED_EXP_CHARM                      (OJ_FLAGS_JOHTO + 21)
 // Hoenn hidden items; hidden-item flags must lie below FLAG_HIDDEN_ITEMS_START + 8192.
 #define FLAG_HIDDEN_ITEM_ROUTE111_RARE_BONE          (OJ_FLAGS_JOHTO + 22)
@@ -200,7 +199,7 @@
 #define FLAG_CAUGHT_LATIOS                                   (OJ_TRAINER_FLAGS_HOENN_END + 9)
 // First Hoenn title done: the end credits rolled. Later Hoenn titles skip them.
 #define FLAG_ROLLED_ENDING_CREDITS                           (OJ_TRAINER_FLAGS_HOENN_END + 10)
-// The game designer in Lilycove's Cove Lily Motel gave the Shiny Charm.
+// Oak gave the Shiny Charm for the completed Johto dex.
 #define FLAG_RECEIVED_SHINY_CHARM                            (OJ_TRAINER_FLAGS_HOENN_END + 11)
 // Mr. Stone's PokeNav scene at Devon done (FLAG_RECEIVED_POKENAV is Mom's PokeCom).
 #define FLAG_HOENN_RECEIVED_POKENAV                          (OJ_TRAINER_FLAGS_HOENN_END + 12)
@@ -233,6 +232,22 @@
 #define FLAG_HOENN_RECEIVED_TM_ATTRACT               (OJ_FLAGS_GLOBAL + 3)
 // TM Torment from the sailor in Slateport's contest hall.
 #define FLAG_HOENN_RECEIVED_TM_TORMENT               (OJ_FLAGS_GLOBAL + 4)
+
+// ---------------------------------------------------------------------
+// Retired ranges outside the OJ block (rule 2). Old saves used these
+// numbers; leave them empty. tools/check_flags.py reports any name in them.
+// ---------------------------------------------------------------------
+// HnS match call registration window, replaced by flags_rematch.h.
+#define OJ_HNS_REGISTERED_RETIRED_START              0x496
+#define OJ_HNS_REGISTERED_RETIRED_END                0x4EF
+// Match call registration window in the Hoenn block, FLAG_MET_MR_STONE and
+// FLAG_HNS_NORMAN_CALL_PENDING (save version 5 and older), replaced by flags_rematch.h.
+#define OJ_HOENN_REMATCH_RETIRED_START               (HOENN_FLAGS_START + 0x369)
+#define OJ_HOENN_REMATCH_RETIRED_END                 (HOENN_FLAGS_START + 0x3E1)
+// Elite Four registered flags in the Hoenn block (save version 5 and older),
+// replaced by flags_rematch.h.
+#define OJ_HOENN_E4_REGISTERED_RETIRED_START         (HOENN_FLAGS_START + 0x308)
+#define OJ_HOENN_E4_REGISTERED_RETIRED_END           (HOENN_FLAGS_START + 0x30C)
 
 // ---------------------------------------------------------------------
 // Not saved: special flags (RAM, src/event_data.c), cleared by a new game

@@ -2075,7 +2075,7 @@ static u8 CreateNPCTrainerPartyWithId(struct Pokemon *party, const struct Traine
                 otId.value = HIHALF(personalityValue) ^ LOHALF(personalityValue);
             }
             {
-                u8 scaledLvl = ScaleTrainerMonLevel(trainer, partyData[monIndex].lvl, scalingPartyMaxLvl);
+                u8 scaledLvl = ScaleTrainerMonLevel(trainer, trainerId, partyData[monIndex].lvl, scalingPartyMaxLvl);
                 u16 species = ScaleTrainerMonSpecies(partyData[monIndex].species, scaledLvl, trainerId, monIndex);
                 #if RANDOMIZER_AVAILABLE == TRUE
                 species = RandomizeTrainerMon(trainerId, i, monsCount, species);
@@ -6087,7 +6087,6 @@ static void FreeResetData_ReturnToOvOrDoEvolutions(void)
         else
             gSaveBlock3Ptr->dexNavChain = 0;
 
-        ClearCurrentTrainerWantRematchVsSeeker();
         gDexNavSpecies = SPECIES_NONE;
         ResetSpriteData();
         if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK

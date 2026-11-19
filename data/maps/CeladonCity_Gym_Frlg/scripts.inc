@@ -6,7 +6,27 @@ CeladonCity_Gym_EventScript_Erika::
 	trainerbattle_single TRAINER_LEADER_ERIKA, CeladonCity_Gym_Text_ErikaIntro, CeladonCity_Gym_Text_ErikaDefeat, CeladonCity_Gym_EventScript_DefeatedErika, NO_MUSIC
 	goto_if_unset FLAG_GOT_TM19_FROM_ERIKA, CeladonCity_Gym_EventScript_GiveTM19
 	famechecker FAMECHECKER_ERIKA, 4
+	goto_if_set FLAG_IS_KANTO_CHAMPION, CeladonCity_Gym_EventScript_ErikaRematch
 	msgbox CeladonCity_Gym_Text_ErikaPostBattle
+	release
+	end
+
+@ Rematch after the Kanto title: as often as the player likes, money only.
+@ After the Johto title the POSTOBC team. Level band: FLAG_TEMP_KANTO_LEADER_REMATCH.
+CeladonCity_Gym_EventScript_ErikaRematch::
+	msgbox CeladonCity_Gym_Text_ErikaRematch, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
+	closemessage
+	setflag FLAG_TEMP_KANTO_LEADER_REMATCH
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, CeladonCity_Gym_EventScript_ErikaRematchPostJohto
+	trainerbattle_no_intro TRAINER_ERIKA_HNS, CeladonCity_Gym_Text_ErikaRematchDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
+	release
+	end
+
+CeladonCity_Gym_EventScript_ErikaRematchPostJohto::
+	trainerbattle_no_intro TRAINER_ERIKA_POSTOBC_HNS, CeladonCity_Gym_Text_ErikaRematchDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
 	release
 	end
 
@@ -408,3 +428,26 @@ CeladonCity_Gym_Text_GymStatuePlayerWon::
 	.string "{RIVAL}, {PLAYER}$"
 #endif
 
+CeladonCity_Gym_Text_ErikaRematch::
+#if GERMAN
+	.string "Oh, du bist es…\n"
+	.string "Ich muss kurz eingenickt sein.\p"
+	.string "Meine Pflanzen-Pokémon sind\n"
+	.string "prächtig erblüht.\p"
+	.string "Möchtest du einen Rückkampf?$"
+#else
+	.string "Oh, it's you…\n"
+	.string "I must have dozed off.\p"
+	.string "My GRASS-type POKéMON are now\n"
+	.string "in full bloom.\p"
+	.string "Want to have a rematch?$"
+#endif
+
+CeladonCity_Gym_Text_ErikaRematchDefeat::
+#if GERMAN
+	.string "Ich muss meine Niederlage erneut\n"
+	.string "eingestehen. Du bist sehr stark!$"
+#else
+	.string "I must concede defeat once more.\n"
+	.string "You are truly strong.$"
+#endif

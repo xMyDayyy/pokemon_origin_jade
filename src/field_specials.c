@@ -1,4 +1,5 @@
 #include "global.h"
+#include "battle_setup.h"
 #include "debug.h"
 #include "malloc.h"
 #include "battle.h"
@@ -3937,7 +3938,7 @@ bool32 IsTrainerRegistered(void)
     int index = GetRematchIdxByTrainerIdx(gSpecialVar_0x8004);
     if (index >= 0)
     {
-        if (FlagGet(TRAINER_REGISTERED_FLAGS_START + index) == TRUE)
+        if (IsRematchRegistered(index))
             return TRUE;
     }
 #if IS_HNS

@@ -5,7 +5,27 @@ SaffronCity_Gym_EventScript_Sabrina::
 	famechecker FAMECHECKER_SABRINA, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
 	trainerbattle_single TRAINER_LEADER_SABRINA, SaffronCity_Gym_Text_SabrinaIntro, SaffronCity_Gym_Text_SabrinaDefeat, SaffronCity_Gym_EventScript_DefeatedSabrina, NO_MUSIC
 	goto_if_unset FLAG_GOT_TM04_FROM_SABRINA, SaffronCity_Gym_EventScript_GiveTM04
+	goto_if_set FLAG_IS_KANTO_CHAMPION, SaffronCity_Gym_EventScript_SabrinaRematch
 	msgbox SaffronCity_Gym_Text_ExplainTM04
+	release
+	end
+
+@ Rematch after the Kanto title: as often as the player likes, money only.
+@ After the Johto title the POSTOBC team. Level band: FLAG_TEMP_KANTO_LEADER_REMATCH.
+SaffronCity_Gym_EventScript_SabrinaRematch::
+	msgbox SaffronCity_Gym_Text_SabrinaRematch, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
+	closemessage
+	setflag FLAG_TEMP_KANTO_LEADER_REMATCH
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, SaffronCity_Gym_EventScript_SabrinaRematchPostJohto
+	trainerbattle_no_intro TRAINER_SABRINA_HNS, SaffronCity_Gym_Text_SabrinaRematchDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
+	release
+	end
+
+SaffronCity_Gym_EventScript_SabrinaRematchPostJohto::
+	trainerbattle_no_intro TRAINER_SABRINA_POSTOBC_HNS, SaffronCity_Gym_Text_SabrinaRematchDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
 	release
 	end
 
@@ -440,3 +460,24 @@ SaffronCity_Gym_Text_GymStatuePlayerWon::
 	.string "{RIVAL}, {PLAYER}$"
 #endif
 
+SaffronCity_Gym_Text_SabrinaRematch::
+#if GERMAN
+	.string "Ich habe vorhergesehen, dass du\n"
+	.string "zurückkehren würdest.\p"
+	.string "Meine Psychokinese ist seitdem\n"
+	.string "noch stärker geworden.\p"
+	.string "Möchtest du einen Rückkampf?$"
+#else
+	.string "I foresaw that you would return.\p"
+	.string "My psychic powers have grown\n"
+	.string "even stronger since then.\p"
+	.string "Want to have a rematch?$"
+#endif
+
+SaffronCity_Gym_Text_SabrinaRematchDefeat::
+#if GERMAN
+	.string "Diesen Ausgang habe ich nicht\n"
+	.string "vorhergesehen…$"
+#else
+	.string "I did not foresee this outcome…$"
+#endif

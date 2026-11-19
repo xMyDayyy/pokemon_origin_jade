@@ -1901,13 +1901,6 @@ Common_EventScript_LegendaryFlewAway::
 	release
 	end
 
-EventScript_VsSeekerChargingDone::
-	special VsSeekerFreezeObjectsAfterChargeComplete
-	waitstate
-	special VsSeekerResetObjectMovementAfterChargeComplete
-	releaseall
-	end
-
 @ FRLG scripts
 
 EventScript_SetExitingCyclingRoad::
@@ -2010,6 +2003,7 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/scripts/lilycove_lady.inc"
 	.include "data/text/match_call.inc"
 	.include "data/text/match_call_hns.inc"
+	.include "data/text/match_call_kanto.inc"
 	.include "data/scripts/mom_savings.inc"
 	.include "data/scripts/apprentice.inc"
 	.include "data/text/apprentice.inc"

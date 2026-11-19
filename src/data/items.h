@@ -14593,6 +14593,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_TownMap,
     },
 
+    // Origin Jade: not obtainable, kept so that the item ids do not shift.
     [ITEM_VS_SEEKER] =
     {
         .name = ITEM_NAME("Kampffahnder"),
@@ -14604,11 +14605,7 @@ const struct ItemInfo gItemsInfo[] =
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_FIELD,
-    #if I_VS_SEEKER_CHARGING != 0
-        .fieldUseFunc = FieldUseFunc_VsSeeker,
-    #else
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    #endif
         .iconPic = gItemIcon_VsSeeker,
         .iconPalette = gItemIconPalette_VsSeeker,
     },

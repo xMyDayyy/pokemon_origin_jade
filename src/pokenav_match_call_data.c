@@ -1481,7 +1481,7 @@ static bool32 MatchCall_IsRematchable_Trainer(match_call_t matchCall)
 #if FREE_MATCH_CALL == FALSE
     if (matchCall.trainer->rematchTableIdx >= REMATCH_ELITE_FOUR_ENTRIES)
         return FALSE;
-    return gSaveBlock1Ptr->trainerRematches[matchCall.trainer->rematchTableIdx] ? TRUE : FALSE;
+    return IsRematchArmed(matchCall.trainer->rematchTableIdx);
 #else
     return FALSE;
 #endif //FREE_MATCH_CALL
@@ -1490,7 +1490,7 @@ static bool32 MatchCall_IsRematchable_Trainer(match_call_t matchCall)
 static bool32 MatchCall_IsRematchable_Wally(match_call_t matchCall)
 {
 #if FREE_MATCH_CALL == FALSE
-    return gSaveBlock1Ptr->trainerRematches[matchCall.wally->rematchTableIdx] ? TRUE : FALSE;
+    return IsRematchArmed(matchCall.wally->rematchTableIdx);
 #else
     return FALSE;
 #endif //FREE_MATCH_CALL
@@ -1679,7 +1679,7 @@ static void MatchCall_BufferCallMessageTextByRematchTeam(const match_call_text_d
         {
             do
             {
-                if (gSaveBlock1Ptr->trainerRematches[idx])
+                if (IsRematchArmed(idx))
                     i += 2;
                 else if (CountBattledRematchTeams(idx) >= 2)
                     i += 3;
@@ -1797,7 +1797,7 @@ void SetMatchCallRegisteredFlag(void)
     int index = GetRematchIdxByTrainerIdx(gSpecialVar_0x8004);
     if (index >= 0)
     {
-        FlagSet(TRAINER_REGISTERED_FLAGS_START + index);
+        SetRematchRegistered(index);
         gSpecialVar_Result = TRUE;
     }
     else

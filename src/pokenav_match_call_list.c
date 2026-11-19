@@ -25,7 +25,8 @@ struct Pokenav_MatchCallMenu
     bool32 initFinished;
     u32 loopedTaskId;
     u32 (*callback)(struct Pokenav_MatchCallMenu *);
-    struct PokenavMatchCallEntry matchCallEntries[MAX_REMATCH_ENTRIES - 1];
+    // Every enabled header plus every registered normal row.
+    struct PokenavMatchCallEntry matchCallEntries[MC_HEADER_COUNT + REMATCH_TABLE_ENTRIES];
 };
 
 static u32 CB2_HandleMatchCallInput(struct Pokenav_MatchCallMenu *);
@@ -271,7 +272,7 @@ bool32 IsRematchEntryRegistered(int rematchIndex)
         if (gRematchTable[rematchIndex].trainerIds[0] == TRAINER_NONE)
             return FALSE;
 
-        return FlagGet(TRAINER_REGISTERED_FLAGS_START + rematchIndex);
+        return IsRematchRegistered(rematchIndex);
     }
 
     return FALSE;
@@ -335,7 +336,7 @@ bool32 ShouldDrawRematchPokeballIcon(int index)
     if (index == REMATCH_TABLE_ENTRIES)
         return FALSE;
 
-    return gSaveBlock1Ptr->trainerRematches[index] != 0;
+    return IsRematchArmed(index);
 #else
     return FALSE;
 #endif //FREE_MATCH_CALL
@@ -483,7 +484,7 @@ static bool32 UNUSED HasRematchEntry(void)
 
     for (i = 0; i < REMATCH_TABLE_ENTRIES; i++)
     {
-        if (IsRematchEntryRegistered(i) && gSaveBlock1Ptr->trainerRematches[i])
+        if (IsRematchEntryRegistered(i) && IsRematchArmed(i))
             return TRUE;
     }
 
@@ -492,7 +493,7 @@ static bool32 UNUSED HasRematchEntry(void)
         if (MatchCall_GetEnabled(i))
         {
             int index = MatchCall_GetRematchTableIdx(i);
-            if (gSaveBlock1Ptr->trainerRematches[index])
+            if (IsRematchArmed(index))
                 return TRUE;
         }
     }
@@ -510,7 +511,7 @@ static bool32 ShouldDoNearbyMessage(void)
     {
         if (GetMatchCallMapSec(selection) == gMapHeader.regionMapSectionId)
         {
-            if (!gSaveBlock1Ptr->trainerRematches[state->matchCallEntries[selection].headerId])
+            if (!IsRematchArmed(state->matchCallEntries[selection].headerId))
                 return TRUE;
         }
     }

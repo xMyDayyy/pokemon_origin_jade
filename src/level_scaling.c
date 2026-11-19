@@ -6,7 +6,10 @@
 #include "pokemon.h"
 #include "random.h"
 #include "event_data.h"
-#include "vs_seeker.h"
+#include "battle_setup.h"
+#include "caps.h"
+#include "hoenn_badges.h"
+#include "johto_badges.h"
 #include "constants/maps.h"
 #include "constants/region_map_sections.h"
 #include "constants/trainers.h"
@@ -20,8 +23,7 @@
 // and config/kanto_scaling.h.
 // Hoenn: every mapsec where IsHoennMapsec is TRUE, unlisted ones use the
 // default corridor. Johto: only the mapsecs in its corridor table.
-// Kanto: FRLG maps (IsFrlgKantoMap), only after the Kanto title; before it
-// only VS Seeker rematch teams move up to a floor.
+// Kanto: FRLG maps (IsFrlgKantoMap), only after the Kanto title.
 // After a region's title its corridors lose their ceiling.
 // =====================================================================
 
@@ -197,14 +199,7 @@ static const struct ScalingRules sKantoRules =
     .titleFlag           = FLAG_IS_KANTO_CHAMPION,
     .titleCeiling        = KANTO_SCALING_MAX_LEVEL,
 };
-#define KANTO_REMATCH_FLOOR_RULES (&sKantoRules)
-#else
-#define KANTO_REMATCH_FLOOR_RULES NULL
 #endif
-
-// Evolution rules for the Pokemon that ScaleTrainerMonLevel just raised to a Kanto
-// VS Seeker rematch floor (Kanto's rules), NULL otherwise. Read by ScaleTrainerMonSpecies.
-static EWRAM_DATA const struct ScalingRules *sRematchFloorRules = NULL;
 
 // FRLG Kanto map: a Kanto mapsec outside HnS's map groups, which come first in
 // data/maps/map_groups.json (before Emerald's, MAP_LITTLEROOT_TOWN). Johto's league
@@ -314,6 +309,72 @@ static u8 RemapLevel(enum RemapRegion region, u8 level)
         result = MAX_LEVEL;
     return result;
 }
+
+// Fixed level of a trainer Pokemon on the current map.
+static u8 RemapTrainerLevel(const struct Trainer *trainer, u8 level)
+{
+    // Kanto: the levels of trainers_frlg.party. Johto/Hoenn: fixed levels from
+    // the original ones.
+    switch (GetRemapRegion())
+    {
+    case REMAP_KANTO:
+        // HnS's Kanto leaders (Janine, Blue after the league change, the leader
+        // rematches): Johto's ladder.
+        if (trainer->trainerClass == TRAINER_CLASS_LEADER_KANTO_HNS)
+            return RemapLevel(REMAP_JOHTO, level);
+        return level;
+    case REMAP_JOHTO:
+        return RemapLevel(REMAP_JOHTO, level);
+    case REMAP_HOENN:
+        return RemapLevel(REMAP_HOENN, level);
+    default:
+        return level;
+    }
+}
+
+#if REMATCH_LEVEL_BAND == TRUE
+#define REMATCH_BAND_STEPS_PER_REGION 10 // badges 0-8, title
+
+static const u8 sRematchBandPlayerLevels[] = REMATCH_BAND_PLAYER_LEVELS;
+STATIC_ASSERT(ARRAY_COUNT(sRematchBandPlayerLevels) == 3 * REMATCH_BAND_STEPS_PER_REGION, sRematchBandPlayerLevelsCount);
+
+static u32 GetBandBadgeStep(u32 badges)
+{
+    return badges < REMATCH_BAND_STEPS_PER_REGION - 1 ? badges : REMATCH_BAND_STEPS_PER_REGION - 2;
+}
+
+// Progress step for the band, only moves forward: Kanto badges until the Kanto title,
+// then Johto badges until the Johto title, then Hoenn badges, then the Hoenn title.
+static u32 GetRematchProgressStep(void)
+{
+    if (!FlagGet(FLAG_IS_KANTO_CHAMPION))
+        return GetBandBadgeStep(GetKantoBadgeCount());
+    if (!FlagGet(FLAG_IS_JOHTO_CHAMPION))
+        return REMATCH_BAND_STEPS_PER_REGION + GetBandBadgeStep(GetJohtoBadgeCount());
+    if (!FlagGet(FLAG_IS_HOENN_CHAMPION))
+        return 2 * REMATCH_BAND_STEPS_PER_REGION + GetBandBadgeStep(GetHoennBadgeCount());
+    return 3 * REMATCH_BAND_STEPS_PER_REGION - 1;
+}
+
+// level, ace: fixed levels. The ace goes into [P + low, P + high], the others keep
+// their distance to it.
+static u8 ApplyRematchLevelBand(u8 level, u8 ace, s32 low, s32 high)
+{
+    s32 playerLevel = sRematchBandPlayerLevels[GetRematchProgressStep()];
+    s32 target = ace, result;
+
+    if (target < playerLevel + low)
+        target = playerLevel + low;
+    if (target > playerLevel + high)
+        target = playerLevel + high;
+    result = target - ((s32)ace - level);
+    if (result < 2)
+        result = 2;
+    if (result > MAX_LEVEL)
+        result = MAX_LEVEL;
+    return result;
+}
+#endif
 
 u32 GetRemapExpPercent(u8 receiverLevel, u8 opponentLevel)
 {
@@ -588,12 +649,17 @@ u16 ScaleTrainerMonSpecies(u16 species, u8 scaledLevel, u16 trainerId, u8 partyI
     u32 step, i, j;
 
 #if LEVEL_REMAP == TRUE
+    // Kanto: species as written. Phone rematches (band levels) evolve with Kanto's
+    // rules, also before the Kanto title.
     if (IsFrlgKantoMap())
-        rules = sRematchFloorRules; // Kanto: species as written unless a rematch floor raised the team
+    {
+        if (!IsNormalPhoneRematchBattle(trainerId))
+            return species;
+#if KANTO_LEVEL_SCALING == TRUE
+        rules = &sKantoRules;
 #endif
-    if (rules == NULL)
-        rules = sRematchFloorRules;
-    sRematchFloorRules = NULL;
+    }
+#endif
     if (rules == NULL || rules->trainerEvolve != TRUE)
         return species;
 
@@ -681,23 +747,6 @@ static bool32 IsBossTrainer(const struct Trainer *trainer)
     }
 }
 
-// Kanto VS Seeker rematch before the Kanto title: if the team's highest level is
-// below the tier's floor (GetKantoRematchLevelFloor), the ace goes to the floor and
-// the others keep their distance to it. Never lowers, at most MAX_LEVEL.
-static u8 RaiseToKantoRematchFloor(const struct Trainer *trainer, u8 level, u8 partyMaxLevel)
-{
-    s32 top = GetKantoRematchLevelFloor(trainer);
-    s32 raised;
-
-    if (partyMaxLevel == 0 || partyMaxLevel >= top)
-        return level;
-    raised = top - (s32)(partyMaxLevel - level);
-    if (raised > MAX_LEVEL)
-        raised = MAX_LEVEL;
-    sRematchFloorRules = KANTO_REMATCH_FLOOR_RULES;
-    return raised;
-}
-
 // Trainer band of rules. partyMaxLevel: highest original level in the party.
 // In a battle with an in-game partner the anchor counts only the player's own
 // slots (the partner's team fills the last MULTI_PARTY_SIZE).
@@ -735,31 +784,24 @@ static u8 ScaleToTrainerBand(const struct ScalingRules *rules, u8 level, u8 part
 }
 
 // partyMaxLevel: highest original level in the trainer's party.
-u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel)
+u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u16 trainerId, u8 level, u8 partyMaxLevel)
 {
     const struct ScalingRules *rules = GetScalingRules();
 
-    sRematchFloorRules = NULL;
 #if LEVEL_REMAP == TRUE
-    // Kanto: the levels of trainers_frlg.party, VS Seeker rematches at least their tier's floor.
-    // Johto/Hoenn: fixed levels from the original ones.
-    switch (GetRemapRegion())
-    {
-    case REMAP_KANTO:
-        // HnS's Kanto leaders (Janine, Blue) after the league change: Johto's ladder.
-        if (trainer->trainerClass == TRAINER_CLASS_LEADER_KANTO_HNS)
-            return RemapLevel(REMAP_JOHTO, level);
-        return RaiseToKantoRematchFloor(trainer, level, partyMaxLevel);
-    case REMAP_JOHTO:
-        return RemapLevel(REMAP_JOHTO, level);
-    case REMAP_HOENN:
-        return RemapLevel(REMAP_HOENN, level);
-    default:
-        return level;
-    }
+#if REMATCH_LEVEL_BAND == TRUE
+    // Phone rematches: just below the player. Kanto gym leader rematches: just above.
+    if (partyMaxLevel != 0 && IsNormalPhoneRematchBattle(trainerId))
+        return ApplyRematchLevelBand(RemapTrainerLevel(trainer, level), RemapTrainerLevel(trainer, partyMaxLevel),
+                                     -REMATCH_BAND_BELOW, -REMATCH_BAND_ABOVE);
+    if (partyMaxLevel != 0 && IsKantoLeaderRematchBattle(trainerId))
+        return ApplyRematchLevelBand(RemapTrainerLevel(trainer, level), RemapTrainerLevel(trainer, partyMaxLevel),
+                                     LEADER_REMATCH_BAND_LOW, LEADER_REMATCH_BAND_HIGH);
+#endif
+    return RemapTrainerLevel(trainer, level);
 #endif
     if (rules == NULL)
-        return RaiseToKantoRematchFloor(trainer, level, partyMaxLevel);
+        return level;
     return ScaleToTrainerBand(rules, level, partyMaxLevel, IsBossTrainer(trainer), FindScalingRoom(rules));
 }
 
@@ -768,7 +810,6 @@ u8 ScalePartnerMonLevel(u8 level, u8 partyMaxLevel)
 {
     const struct ScalingRules *rules = GetScalingRules();
 
-    sRematchFloorRules = NULL;
 #if LEVEL_REMAP == TRUE
     return RemapLevel(GetRemapRegion(), level);
 #endif
@@ -799,7 +840,7 @@ u8 GetScalingCeiling(void)
     return 0;
 }
 
-u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u8 level, u8 partyMaxLevel)
+u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u16 trainerId, u8 level, u8 partyMaxLevel)
 {
     return level;
 }

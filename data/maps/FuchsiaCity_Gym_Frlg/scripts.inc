@@ -21,7 +21,10 @@ FuchsiaCity_Gym_EventScript_JanineLeader::
 	goto_if_set FLAG_GOT_TM_POISON_JAB_FROM_JANINE, FuchsiaCity_Gym_EventScript_JanineRematch
 	goto_if_defeated TRAINER_JANINE_HNS, FuchsiaCity_Gym_EventScript_JanineGiveTM
 	msgbox FuchsiaCity_Gym_Text_JanineIntro, MSGBOX_DEFAULT
+	@ Level band also for the first battle, so the rematch is never weaker.
+	setflag FLAG_TEMP_KANTO_LEADER_REMATCH
 	trainerbattle_no_intro TRAINER_JANINE_HNS, FuchsiaCity_Gym_Text_JanineDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
 FuchsiaCity_Gym_EventScript_JanineGiveTM::
 	msgbox FuchsiaCity_Gym_Text_JanineGiveTM, MSGBOX_DEFAULT
 	checkitemspace ITEM_TM_POISON_JAB
@@ -37,11 +40,22 @@ FuchsiaCity_Gym_EventScript_JanineNoRoomForTM::
 	release
 	end
 
+@ Rematch: level band like the other Kanto leaders (FLAG_TEMP_KANTO_LEADER_REMATCH).
+@ After the Johto title the POSTOBC team.
 FuchsiaCity_Gym_EventScript_JanineRematch::
 	msgbox FuchsiaCity_Gym_Text_JanineRematch, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
 	closemessage
+	setflag FLAG_TEMP_KANTO_LEADER_REMATCH
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, FuchsiaCity_Gym_EventScript_JanineRematchPostJohto
 	trainerbattle_no_intro TRAINER_JANINE_HNS, FuchsiaCity_Gym_Text_JanineRematchDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
+	release
+	end
+
+FuchsiaCity_Gym_EventScript_JanineRematchPostJohto::
+	trainerbattle_no_intro TRAINER_JANINE_POSTOBC_HNS, FuchsiaCity_Gym_Text_JanineRematchDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
 	release
 	end
 

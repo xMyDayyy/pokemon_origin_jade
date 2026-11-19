@@ -9,8 +9,6 @@
 // Pokemon follow the player's anchor (include/level_scaling.h) up to
 // KANTO_SCALING_MAX_LEVEL. Scaling only raises levels: the hand-set level is
 // the floor. Kanto has no corridors.
-// Before the title only VS Seeker rematch teams move up, to their tier's
-// level floor (sKantoRematchLevelFloors in src/vs_seeker.c).
 // Johto's league maps (Kanto mapsec, HnS map groups) use config/johto_scaling.h.
 // =====================================================================
 
@@ -25,8 +23,7 @@
 // Trainers with an original level of at least this are not scaled (none in Kanto today).
 #define KANTO_SCALING_FIXED_MIN_LEVEL 77
 
-// Scaled trainer Pokemon, and those a VS Seeker rematch floor raised, evolve
-// once they reach their evolution level. Stone, trade and condition-only
+// Scaled trainer Pokemon evolve once they reach their evolution level. Stone, trade and condition-only
 // evolutions use the level in src/data/trainer_evo_levels.h. Branches and
 // skipped steps are fixed per trainer and party slot.
 #define KANTO_SCALING_TRAINER_EVOLVE TRUE
