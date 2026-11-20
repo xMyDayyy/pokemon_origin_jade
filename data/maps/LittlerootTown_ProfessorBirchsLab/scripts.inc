@@ -776,12 +776,12 @@ LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo:
 	.string "Prof. Birk studiert den Lebensraum\n"
 	.string "und die Verbreitung von Pokémon.\p"
 	.string "Der Prof freut sich über die Mitarbeit\n"
-	.string "von {RIVAL}. Da spürt man Zuneigung!$"
+	.string "von {RIVAL}. Das spornt ihn richtig an!$"
 #else
 	.string "PROF. BIRCH is studying the habitats\n"
 	.string "and distribution of POKéMON.\p"
 	.string "The PROF enjoys {RIVAL}'s help, too.\n"
-	.string "There's a lot of love there.$"
+	.string "It really spurs him on!$"
 #endif
 
 #if !IS_HNS
