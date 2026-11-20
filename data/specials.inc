@@ -726,3 +726,5 @@ gSpecials::
 	def_special RetrieveHoennLotteryNumber
 	def_special CreateBPHoldItemShop3
 	def_special BufferBugContestResult
+	def_special GetPlayerCharacter
+	def_special GetPlayerCharacterGfxId
