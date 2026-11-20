@@ -47,7 +47,6 @@ extern const u8 gText_Oak_WhatChallenge[];
 extern const u8 gText_Oak_ChallengeSelected[];
 extern const u8 gText_Oak_WhatsYourName[];
 extern const u8 gText_Oak_SoItsPlayer[];
-extern const u8 gText_Oak_RememberYou[];
 extern const u8 gText_Oak_YourePlayer[];
 extern const u8 gText_Oak_AreYouReady[];
 
@@ -114,9 +113,6 @@ static void Task_NewGameHnsSpeech_ReturnFromChallengeMenuShowTextbox(u8);
 static void Task_NewGameHnsSpeech_WaitForTextAfterChallengeMenu(u8);
 static void Task_NewGameHnsSpeech_ReturnFromNamingScreenShowTextbox(u8);
 static void Task_NewGameHnsSpeech_SoItsPlayerName(u8);
-#if OJ_CHARACTER_WHEEL
-static void Task_NewGameHnsSpeech_WaitPressAfterName(u8);
-#endif
 #if !OJ_CHARACTER_WHEEL // list only
 static void Task_NewGameHnsSpeech_CreateNameYesNo(u8);
 #endif
@@ -763,19 +759,10 @@ static void Task_NewGameHnsSpeech_StartNamingScreen(u8 taskId)
 }
 
 #if OJ_CHARACTER_WHEEL
-// The character is only the look: Oak remembers the player, no yes/no question
+// The character is only the look: no question about the name, straight on to the challenge
 static void Task_NewGameHnsSpeech_SoItsPlayerName(u8 taskId)
 {
-    NewGameHnsSpeech_ClearWindow(0);
-    StringExpandPlaceholders(gStringVar4, gText_Oak_RememberYou);
-    AddTextPrinterForMessage(TRUE);
-    gTasks[taskId].func = Task_NewGameHnsSpeech_WaitPressAfterName;
-}
-
-static void Task_NewGameHnsSpeech_WaitPressAfterName(u8 taskId)
-{
-    if (!RunTextPrintersAndIsPrinter0Active() && ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON))))
-        gTasks[taskId].func = Task_NewGameHnsSpeech_ChallengeDisclaimer;
+    gTasks[taskId].func = Task_NewGameHnsSpeech_ChallengeDisclaimer;
 }
 #else
 static void Task_NewGameHnsSpeech_SoItsPlayerName(u8 taskId)

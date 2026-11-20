@@ -104,15 +104,6 @@ gText_Oak_SoItsPlayer::
 	.string "Oh! So you're {PLAYER}{KUN}?$"
 #endif
 
-gText_Oak_RememberYou::
-#if GERMAN
-	.string "Ah, ja! Jetzt weiß ich wieder,\n"
-	.string "wer du bist!$"
-#else
-	.string "Ah, yes! Now I remember\n"
-	.string "who you are!$"
-#endif
-
 gText_Oak_YourePlayer::
 #if GERMAN
 	.string "Ah, okay!\p"
