@@ -1,4 +1,5 @@
 #include "global.h"
+#include "battle_setup.h"
 #include "malloc.h"
 #include "decompress.h"
 #include "bg.h"
@@ -496,7 +497,7 @@ static bool32 AreAnyTrainerRematchesNearby(void)
     {
         if (GetMatchTableMapSectionId(i) == gMapHeader.regionMapSectionId
             && IsRematchEntryRegistered(i)
-            && gSaveBlock1Ptr->trainerRematches[i])
+            && IsRematchArmed(i))
             return TRUE;
     }
 #endif //FREE_MATCH_CALL

@@ -4,7 +4,7 @@
 // Regenerate: python3 tools/make_debug_states.py (check: --check).
 
 #define JOHTO_COMPLETE_JOHTO_STARTER 0  // VAR_JOHTO_STARTER_MON: 0 Chikorita, 1 Cyndaquil, 2 Totodile
-#define JOHTO_COMPLETE_MONEY 723480  // start money and every prize of both regions
+#define JOHTO_COMPLETE_MONEY 631536  // start money and every prize of both regions
 
 static const u16 sJohtoCompleteFlagsSet[] =
 {
@@ -499,6 +499,7 @@ static const u16 sJohtoCompleteFlagsSet[] =
     FLAG_RECEIVED_ODD_EGG,
     FLAG_RECEIVED_POKEMON_BOX_LINK,
     FLAG_RECEIVED_REVIVED_FOSSIL_MON,
+    FLAG_RECEIVED_SHINY_CHARM,
     FLAG_RECEIVED_SQUIRTBOTTLE,
     FLAG_RECEIVED_TM_ATTRACT,
     FLAG_RECEIVED_TOGEPI_EGG,
@@ -1117,6 +1118,7 @@ static const struct KantoCompleteItem sJohtoCompleteBag[] =
     { ITEM_SEA_INCENSE, 1 },
     { ITEM_SHARP_BEAK, 2 },
     { ITEM_SHELL_BELL, 1 },
+    { ITEM_SHINY_CHARM, 1 },
     { ITEM_SHUCA_BERRY, 1 },
     { ITEM_SITRUS_BERRY, 1 },
     { ITEM_SNOWBALL, 1 },
@@ -1251,14 +1253,14 @@ static const struct KantoCompleteMon sJohtoCompleteMons[] =
     { SPECIES_BLASTOISE, 36 },
     { SPECIES_BUTTERFREE, 10 },
     { SPECIES_BEEDRILL, 10 },
-    { SPECIES_PIDGEOT, 43 },
+    { SPECIES_PIDGEOT, 38 },
     { SPECIES_RATICATE, 20 },
     { SPECIES_FEAROW, 20 },
     { SPECIES_ARBOK, 22 },
-    { SPECIES_RAICHU, 44 },
+    { SPECIES_RAICHU, 37 },
     { SPECIES_SANDSLASH, 22 },
     { SPECIES_NIDOQUEEN, 18 },
-    { SPECIES_CLEFABLE, 32 },
+    { SPECIES_CLEFABLE, 11 },
     { SPECIES_NINETALES, 17 },
     { SPECIES_WIGGLYTUFF, 7 },
     { SPECIES_VILEPLUME, 23 },
@@ -1305,7 +1307,7 @@ static const struct KantoCompleteMon sJohtoCompleteMons[] =
     { SPECIES_OMASTAR, 40 },
     { SPECIES_KABUTOPS, 40 },
     { SPECIES_AERODACTYL, 40 },
-    { SPECIES_SNORLAX, 42 },
+    { SPECIES_SNORLAX, 35 },
     { SPECIES_ARTICUNO, 40 },
     { SPECIES_ZAPDOS, 40 },
     { SPECIES_MOLTRES, 40 },
@@ -1329,7 +1331,7 @@ static const struct KantoCompleteMon sJohtoCompleteMons[] =
     { SPECIES_SUNFLORA, 48 },
     { SPECIES_QUAGSIRE, 20 },
     { SPECIES_UMBREON, 27 },
-    { SPECIES_SLOWKING, 34 },
+    { SPECIES_SLOWKING, 28 },
     { SPECIES_UNOWN, 43 },
     { SPECIES_WOBBUFFET, 43 },
     { SPECIES_FORRETRESS, 31 },

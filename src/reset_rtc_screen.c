@@ -731,7 +731,8 @@ static void Task_ResetRtcScreen(u8 taskId)
         if (!gPaletteFade.active)
         {
             if (gSaveFileStatus == SAVE_STATUS_EMPTY
-             || gSaveFileStatus == SAVE_STATUS_CORRUPT)
+             || gSaveFileStatus == SAVE_STATUS_CORRUPT
+             || gSaveFileStatus == SAVE_STATUS_OUTDATED)
             {
                 ShowMessage(gText_NoSaveFileCantSetTime);
                 tState = MAINSTATE_WAIT_EXIT;

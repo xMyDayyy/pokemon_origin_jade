@@ -3,14 +3,15 @@
 
 Checks:
   1. Numbers with more than one name referenced by scripts, maps or C code.
-  2. Trainer flags (TrainerIdToFlagId) and the match call registration window
-     must not land on a named flag.
+  2. Trainer flags (TrainerIdToFlagId) and the PokeCom rematch windows
+     (registered and armed bits) must not land on a named flag.
   3. The daily window holds only FLAG_DAILY_*.
   4. Every flag and var number has storage behind it.
   5. Item-ball and hidden-item flags are unique across all maps.
   6. Names defined by several region headers and used by maps of more than
      one region.
-  7. Reserve markers (*_RESERVE_START) lie above every name of their block.
+  7. Reserve markers (*_RESERVE_START) lie above every name of their block,
+     and retired ranges (*_RETIRED_START/_END) hold no name.
 
 Values come from the C preprocessor (POKEMON_HNS build). Needs a host C
 compiler (cc, or $CC).
@@ -87,7 +88,11 @@ EXTRA_MACROS = [
     "OJ_FLAGS_START", "OJ_FLAGS_END", "OJ_VARS_START", "OJ_VARS_END",
     "OJ_TRAINER_FLAGS_DAILY", "OJ_TRAINER_FLAGS_ENGINE",
     "DAILY_FLAGS_START", "DAILY_FLAGS_END", "ENGINE_FLAGS_START", "ENGINE_FLAGS_END",
-    "TRAINER_FLAGS_START", "TRAINER_REGISTERED_FLAGS_START", "REMATCH_TABLE_ENTRIES",
+    "TRAINER_FLAGS_START", "REMATCH_TABLE_ENTRIES",
+    "REMATCH_FLAGS_START", "REMATCH_FLAGS_END",
+    "REMATCH_REGISTERED_FLAGS_START", "REMATCH_REGISTERED_FLAGS_END",
+    "REMATCH_ARMED_FLAGS_START", "REMATCH_ARMED_FLAGS_END",
+    "REMATCH_MISC_FLAGS_START", "REMATCH_MISC_FLAGS_END",
     "FRLG_TRAINER_OFFSET", "FRLG_TRAINERS_END", "HNS_REMATCH_TIERS_START", "HNS_REMATCH_TIERS_END",
     "VARS_START", "VARS_END", "FRLG_VARS_START", "FRLG_VARS_END",
     "SPECIAL_VARS_START", "SPECIAL_VARS_END", "FLAG_HIDDEN_ITEMS_START",
@@ -169,7 +174,7 @@ def resolve_all():
         names = macro_names(cc, workdir)
         wanted = [n for n in names
                   if n.startswith(("FLAG_", "VAR_", "TRAINER_")) or n in EXTRA_MACROS
-                  or n.endswith("_RESERVE_START")]
+                  or n.endswith(("_RESERVE_START", "_RETIRED_START", "_RETIRED_END"))]
         # Some bounds are enum values (REMATCH_TABLE_ENTRIES), not macros.
         wanted += [n for n in EXTRA_MACROS if n not in wanted]
         return evaluate(cc, workdir, wanted)
@@ -282,6 +287,7 @@ def storage_windows(v):
         (v["FRLG_TRAINER_FLAGS_START"], v["FRLG_TRAINER_FLAGS_END"]),
         (v["HNS_REMATCH_TIER_FLAGS_START"], v["HNS_REMATCH_TIER_FLAGS_END"]),
         (v["OJ_FLAGS_START"], v["OJ_FLAGS_END"]),
+        (v["REMATCH_FLAGS_START"], v["REMATCH_FLAGS_END"]),
         (v["SPECIAL_FLAGS_START"], v["SPECIAL_FLAGS_END"]),
     ]
     var_windows = [
@@ -293,8 +299,14 @@ def storage_windows(v):
     return flag_windows, var_windows
 
 
+def rematch_windows(v):
+    """PokeCom rematch bits the C code writes by slot (RematchSlot, src/battle_setup.c)."""
+    return [("registered", v["REMATCH_REGISTERED_FLAGS_START"], v["REMATCH_REGISTERED_FLAGS_END"]),
+            ("armed", v["REMATCH_ARMED_FLAGS_START"], v["REMATCH_ARMED_FLAGS_END"])]
+
+
 def trainer_flag_numbers(v):
-    """Flags that trainers and the match call registration fill at runtime."""
+    """Flags that trainers and the PokeCom rematch state fill at runtime."""
     taken = set()
     for lo, hi in ((v["TRAINER_FLAGS_START"], v["TRAINER_FLAGS_END"]),
                    (v["FRLG_TRAINER_FLAGS_START"], v["FRLG_TRAINER_FLAGS_END"]),
@@ -302,8 +314,8 @@ def trainer_flag_numbers(v):
         taken.update(range(lo, hi + 1))
     for tid in range(v["TRAINER_FLAGS_END"] - v["TRAINER_FLAGS_START"] + 1):
         taken.add(trainer_flag(tid, v))
-    for i in range(v["REMATCH_TABLE_ENTRIES"]):
-        taken.add(v["TRAINER_REGISTERED_FLAGS_START"] + i)
+    for _, lo, hi in rematch_windows(v):
+        taken.update(range(lo, hi + 1))
     return taken
 
 
@@ -326,11 +338,11 @@ def check_windows(values, flag_by_value, report):
         if flag in seen and seen[flag] != tid:
             hits.append("%s and %s share trainer flag 0x%04X" % (seen[flag], name, flag))
         seen.setdefault(flag, name)
-    for i in range(v["REMATCH_TABLE_ENTRIES"]):
-        flag = v["TRAINER_REGISTERED_FLAGS_START"] + i
-        if flag in named:
-            hits.append("match call registration #%d -> 0x%04X = %s" % (i, flag, ", ".join(named[flag])))
-    report.section("flags written indirectly (trainer flags, match call window)", hits)
+    for kind, lo, hi in rematch_windows(v):
+        for flag in range(lo, hi + 1):
+            if flag in named:
+                hits.append("rematch %s slot %d -> 0x%04X = %s" % (kind, flag - lo, flag, ", ".join(named[flag])))
+    report.section("flags written indirectly (trainer flags, rematch windows)", hits)
 
     daily = []
     for flag in range(v["DAILY_FLAGS_START"], v["DAILY_FLAGS_END"] + 1):
@@ -408,6 +420,17 @@ def check_reserves(values, report):
     """Check 7: a reserve marker must not point into named numbers."""
     hits = []
     for marker, start in sorted(values.items()):
+        if not marker.endswith("_RETIRED_START"):
+            continue
+        end = values.get(marker[:-len("_START")] + "_END")
+        if end is None:
+            hits.append("%s has no matching _RETIRED_END" % marker)
+            continue
+        for name, value in sorted(values.items(), key=lambda x: x[1]):
+            if name.startswith("FLAG_") and not is_alias_name(name) and start <= value <= end:
+                hits.append("%s = 0x%04X lies in the retired range %s (0x%04X-0x%04X)"
+                            % (name, value, marker[:-len("_START")], start, end))
+    for marker, start in sorted(values.items()):
         if not marker.endswith("_RESERVE_START"):
             continue
         end = values.get(marker[:-len("_RESERVE_START")] + "_END")
@@ -417,7 +440,7 @@ def check_reserves(values, report):
         for name, value in sorted(values.items(), key=lambda x: x[1]):
             if name.startswith(prefix) and not is_alias_name(name) and start <= value <= end:
                 hits.append("%s = 0x%04X, but %s = 0x%04X lies in the reserve" % (marker, start, name, value))
-    report.section("reserve markers lie above every name of their block", hits)
+    report.section("reserve markers lie above every name of their block; retired ranges are empty", hits)
 
 
 def list_free(kind, prefix, values, windows, taken=()):
@@ -460,7 +483,12 @@ def main():
     check_region_headers(refs, report)
     if args.free:
         flag_windows, var_windows = storage_windows(values)
-        list_free("flags (trainer flag windows left out)", "FLAG_", values, flag_windows, trainer_flag_numbers(values))
+        retired = set()
+        for marker, start in values.items():
+            if marker.endswith("_RETIRED_START") and marker[:-len("_START")] + "_END" in values:
+                retired.update(range(start, values[marker[:-len("_START")] + "_END"] + 1))
+        list_free("flags (trainer flag windows and retired ranges left out)", "FLAG_", values, flag_windows,
+                  trainer_flag_numbers(values) | retired)
         list_free("vars", "VAR_", values, var_windows)
 
     print("\n%d problem(s) found" % report.problems)

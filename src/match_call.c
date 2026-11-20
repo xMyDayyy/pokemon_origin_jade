@@ -31,6 +31,7 @@
 #include "wild_encounter.h"
 #include "window.h"
 #include "field_name_box.h"
+#include "regions.h"
 #include "constants/abilities.h"
 #include "constants/battle_frontier.h"
 #include "constants/event_objects.h"
@@ -171,6 +172,13 @@ static const u16 sKenjiGiftItems[] = { ITEM_PP_UP };
     .giftItems = items, .numGiftItems = ARRAY_COUNT(items), \
     .foundItemText = MatchCall_HNS_##name##_FoundItem }
 
+// Kanto: personal Battle and General, plus two Generals shared by the class.
+#define HNS_MC_CLASS(name, trId, cls) { \
+    .trainerId = trId, \
+    .generalTexts = { MatchCall_Kanto_##name##_General, MatchCall_Kanto_Class##cls##_General1, MatchCall_Kanto_Class##cls##_General2 }, \
+    .numGeneralTexts = 3, \
+    .battleRequestText = MatchCall_Kanto_##name##_Battle }
+
 static const struct HnsMatchCallTrainerInfo sHnsMatchCallTrainers[] =
 {
     HNS_MC_ENTRY3(Joey,     TRAINER_JOEY_HNS),
@@ -202,17 +210,71 @@ static const struct HnsMatchCallTrainerInfo sHnsMatchCallTrainers[] =
     HNS_MC_ITEM3(Jose,      TRAINER_JOSE_HNS,     FLAG_JOSE_HAS_ITEM_HNS,    VAR_JOSE_ITEM_HNS,    sJoseGiftItems),
     HNS_MC_ENTRY3(Reena,    TRAINER_REENA_HNS),
     HNS_MC_ENTRY2(Alex,     TRAINER_ALEX_HNS),
-    HNS_MC_ENTRY2(Riley,    TRAINER_RILEY_HNS),
     HNS_MC_ENTRY2(Trevor,   TRAINER_TREVOR_HNS),
-    HNS_MC_ENTRY2(Kyle,     TRAINER_KYLE_HNS),
     HNS_MC_ENTRY2(Carter,   TRAINER_CARTER_HNS),
     HNS_MC_ENTRY2(Hillary,  TRAINER_HILLARY_HNS),
-    HNS_MC_ENTRY2(Rob,      TRAINER_ROB_HNS),
-    HNS_MC_ENTRY2(Nicole,   TRAINER_NICOLE_HNS),
     HNS_MC_ENTRY2(Billy,    TRAINER_BILLY_HNS),
-    HNS_MC_ENTRY2(Kenny,    TRAINER_KENNY_HNS),
-    HNS_MC_ENTRY2(Joel,     TRAINER_JOEL_HNS),
-    HNS_MC_ENTRY2(Charles,  TRAINER_CHARLES_HNS),
+    // Kanto: personal Battle and General, two class Generals.
+    HNS_MC_CLASS(Ben,      TRAINER_YOUNGSTER_BEN, Youngster),
+    HNS_MC_CLASS(Colton,   TRAINER_BUG_CATCHER_COLTON, BugCatcher),
+    HNS_MC_CLASS(Janice,   TRAINER_LASS_JANICE, Lass),
+    HNS_MC_CLASS(Crissy,   TRAINER_LASS_CRISSY, Lass),
+    HNS_MC_CLASS(Timmy,    TRAINER_YOUNGSTER_TIMMY, Youngster),
+    HNS_MC_CLASS(Reli,     TRAINER_LASS_RELI, Lass),
+    HNS_MC_CLASS(Ali,      TRAINER_LASS_ALI, Lass),
+    HNS_MC_CLASS(Chad,     TRAINER_YOUNGSTER_CHAD, Youngster),
+    HNS_MC_CLASS(Kelsey,   TRAINER_PICNICKER_KELSEY, Picnicker),
+    HNS_MC_CLASS(Franklin, TRAINER_HIKER_FRANKLIN, Hiker),
+    HNS_MC_CLASS(Nob,      TRAINER_HIKER_NOB, Hiker),
+    HNS_MC_CLASS(Ricky,    TRAINER_CAMPER_RICKY, Camper),
+    HNS_MC_CLASS(Jeff,     TRAINER_CAMPER_JEFF, Camper),
+    HNS_MC_CLASS(Isabelle, TRAINER_PICNICKER_ISABELLE, Picnicker),
+    HNS_MC_CLASS(Yasu,     TRAINER_YOUNGSTER_YASU, Youngster),
+    HNS_MC_CLASS(Bernie,   TRAINER_ENGINEER_BERNIE, Engineer),
+    HNS_MC_CLASS(Darian,   TRAINER_GAMER_DARIAN, Gamer),
+    HNS_MC_CLASS(Chris,    TRAINER_CAMPER_CHRIS, Camper),
+    HNS_MC_CLASS(Alicia,   TRAINER_PICNICKER_ALICIA, Picnicker),
+    HNS_MC_CLASS(Jeremy,   TRAINER_HIKER_JEREMY, Hiker),
+    HNS_MC_CLASS(Mark,     TRAINER_POKEMANIAC_MARK, Pokemaniac),
+    HNS_MC_CLASS(Herman,   TRAINER_POKEMANIAC_HERMAN, Pokemaniac),
+    HNS_MC_CLASS(Trent,    TRAINER_HIKER_TRENT, Hiker),
+    HNS_MC_CLASS(Megan,    TRAINER_LASS_MEGAN, Lass),
+    HNS_MC_CLASS(Glenn,    TRAINER_SUPER_NERD_GLENN, SuperNerd),
+    HNS_MC_CLASS(Rich,     TRAINER_GAMER_RICH, Gamer),
+    HNS_MC_CLASS(EliAnne,  TRAINER_TWINS_ELI_ANNE, Twins),
+    HNS_MC_CLASS(Jaren,    TRAINER_BIKER_JAREN, Biker),
+    HNS_MC_CLASS(Elliot,   TRAINER_FISHERMAN_ELLIOT, Fisherman),
+    HNS_MC_CLASS(Luca,     TRAINER_ROCKER_LUCA, Rocker),
+    HNS_MC_CLASS(GiaJes,   TRAINER_YOUNG_COUPLE_GIA_JES, YoungCouple),
+    HNS_MC_CLASS(Sheila,   TRAINER_BEAUTY_SHEILA, Beauty),
+    HNS_MC_CLASS(Robert,   TRAINER_BIRD_KEEPER_ROBERT, BirdKeeper),
+    HNS_MC_CLASS(Susie,    TRAINER_PICNICKER_SUSIE, Picnicker),
+    HNS_MC_CLASS(Lukas,    TRAINER_BIKER_LUKAS, Biker),
+    HNS_MC_CLASS(Benny,    TRAINER_BIRD_KEEPER_BENNY, BirdKeeper),
+    HNS_MC_CLASS(Carter,   TRAINER_BIRD_KEEPER_CARTER, BirdKeeper),
+    HNS_MC_CLASS(Marlon,   TRAINER_BIRD_KEEPER_MARLON, BirdKeeper),
+    HNS_MC_CLASS(Grace,    TRAINER_BEAUTY_GRACE, Beauty),
+    HNS_MC_CLASS(Chester,  TRAINER_BIRD_KEEPER_CHESTER, BirdKeeper),
+    HNS_MC_CLASS(Becky,    TRAINER_PICNICKER_BECKY, Picnicker),
+    HNS_MC_CLASS(RonMya,   TRAINER_CRUSH_KIN_RON_MYA, CrushKin),
+    HNS_MC_CLASS(Ruben,    TRAINER_BIKER_RUBEN, Biker),
+    HNS_MC_CLASS(Camron,   TRAINER_CUE_BALL_CAMRON, CueBall),
+    HNS_MC_CLASS(LeaJed,   TRAINER_YOUNG_COUPLE_LEA_JED, YoungCouple),
+    HNS_MC_CLASS(Jaxon,    TRAINER_BIKER_JAXON, Biker),
+    HNS_MC_CLASS(Isaiah,   TRAINER_CUE_BALL_ISAIAH, CueBall),
+    HNS_MC_CLASS(Corey,    TRAINER_CUE_BALL_COREY, CueBall),
+    HNS_MC_CLASS(Wilton,   TRAINER_BIRD_KEEPER_WILTON, BirdKeeper),
+    HNS_MC_CLASS(Jacob,    TRAINER_BIRD_KEEPER_JACOB, BirdKeeper),
+    HNS_MC_CLASS(Matthew,  TRAINER_SWIMMER_MALE_MATTHEW, SwimmerM),
+    HNS_MC_CLASS(Tony,     TRAINER_SWIMMER_MALE_TONY, SwimmerM),
+    HNS_MC_CLASS(Alice,    TRAINER_SWIMMER_FEMALE_ALICE, SwimmerF),
+    HNS_MC_CLASS(Darrin,   TRAINER_SWIMMER_MALE_DARRIN, SwimmerM),
+    HNS_MC_CLASS(Melissa,  TRAINER_SWIMMER_FEMALE_MELISSA, SwimmerF),
+    HNS_MC_CLASS(Missy,    TRAINER_PICNICKER_MISSY, Picnicker),
+    HNS_MC_CLASS(Wade,     TRAINER_FISHERMAN_WADE, Fisherman),
+    HNS_MC_CLASS(LilIan,   TRAINER_SIS_AND_BRO_LIL_IAN, SisAndBro),
+    HNS_MC_CLASS(Jack,     TRAINER_SWIMMER_MALE_JACK, SwimmerM),
+    HNS_MC_CLASS(Roland,   TRAINER_SWIMMER_MALE_ROLAND, SwimmerM),
 };
 
 // NULL = no call texts for this trainer.
@@ -255,10 +317,15 @@ static EWRAM_DATA struct MatchCallState sMatchCallState = {0};
 static EWRAM_DATA struct BattleFrontierStreakInfo sBattleFrontierStreakInfo = {0};
 
 static u32 GetCurrentTotalMinutes(struct Time *);
+#if !IS_HNS
 static u32 GetNumRegisteredTrainers(void);
 static u32 GetActiveMatchCallTrainerId(u32);
+#endif
 static int GetTrainerMatchCallId(int);
 static int GetTrainerMatchCallIdOrNone(int);
+#if IS_HNS
+static bool32 HasMatchCallTexts(u16 trainerId);
+#endif
 static bool32 SelectMatchCallMessage_Vanilla(int, u8 *);
 static mapsec_u16_t GetRematchTrainerLocation(int);
 static bool32 TrainerIsEligibleForRematch(int);
@@ -1166,6 +1233,9 @@ void InitMatchCallCounters(void)
 #if IS_HNS
 #define ROUTE_STEP_COUNTER_MAX 255
 
+// TRUE while an incoming call picks its message (not a call the player makes).
+static EWRAM_DATA bool8 sSelectingIncomingCallMessage = FALSE;
+
 static EWRAM_DATA u16 sRouteStepLastMap = 0;
 
 bool32 HnsUpdateRouteStepCounter(void)
@@ -1183,10 +1253,10 @@ bool32 HnsUpdateRouteStepCounter(void)
     if (curMap != sRouteStepLastMap)
     {
         sRouteStepLastMap = curMap;
-        VarSet(VAR_ROUTE_STEP_COUNTER_HNS, 0);
+        gSaveBlock1Ptr->routeCallStepCounter = 0;
     }
 
-    steps = VarGet(VAR_ROUTE_STEP_COUNTER_HNS) + 1;
+    steps = gSaveBlock1Ptr->routeCallStepCounter + 1;
 
     if (steps >= ROUTE_STEP_COUNTER_MAX)
     {
@@ -1196,17 +1266,19 @@ bool32 HnsUpdateRouteStepCounter(void)
         u32 numCandidates = 0;
         s32 i;
 
-        VarSet(VAR_ROUTE_STEP_COUNTER_HNS, 0);
+        gSaveBlock1Ptr->routeCallStepCounter = 0;
 
         for (i = 0; i < REMATCH_SPECIAL_TRAINER_START; i++)
         {
             if (gRematchTable[i].mapGroup != mapGroup || gRematchTable[i].mapNum != mapNum)
                 continue;
-            if (!TrainerIsMatchCallRegistered(i))
+            if (!IsRematchRegistered(i))
                 continue;
             if (!HasTrainerBeenFought(gRematchTable[i].trainerIds[0]))
                 continue;
-            if (HnsGetMatchCallEntry(gRematchTable[i].trainerIds[0]) == NULL)
+            if (!HasEnoughBadgesForRematchOf(i))
+                continue;
+            if (!HasMatchCallTexts(gRematchTable[i].trainerIds[0]))
                 continue;
 
             candidates[numCandidates++] = i;
@@ -1246,7 +1318,7 @@ bool32 HnsUpdateRouteStepCounter(void)
     }
     else
     {
-        VarSet(VAR_ROUTE_STEP_COUNTER_HNS, steps);
+        gSaveBlock1Ptr->routeCallStepCounter = steps;
     }
 
     return FALSE;
@@ -1337,6 +1409,77 @@ static bool32 UpdateMatchCallStepCounter(void)
     }
 }
 
+#if IS_HNS
+// HnS call texts, or the Emerald ones (Hoenn trainers).
+static bool32 HasMatchCallTexts(u16 trainerId)
+{
+    return HnsGetMatchCallEntry(trainerId) != NULL || GetTrainerMatchCallIdOrNone(trainerId) >= 0;
+}
+
+// A registered contact with call texts. On the player's mapsec only when he wants a rematch.
+static bool32 CanTrainerCallPlayer(u32 rematchIdx)
+{
+    if (!IsRematchRegistered(rematchIdx))
+        return FALSE;
+    if (!HasMatchCallTexts(gRematchTable[rematchIdx].trainerIds[0]))
+        return FALSE;
+    if (GetRematchTrainerLocation(rematchIdx) == gMapHeader.regionMapSectionId && !TrainerIsEligibleForRematch(rematchIdx))
+        return FALSE;
+    return TRUE;
+}
+
+static bool32 IsRematchTrainerInCurrentRegion(u32 rematchIdx)
+{
+    return GetRegionForSectionId(GetRematchTrainerLocation(rematchIdx)) == GetCurrentRegion();
+}
+
+// SelectMatchCallTrainer keeps rematch indices in a u8 array.
+STATIC_ASSERT(REMATCH_SPECIAL_TRAINER_START <= 0x100, sMatchCallCandidatesFitU8);
+
+// Origin Jade: the caller's region first (OW_MATCH_CALL_HOME_REGION_PERCENT the current
+// one, else the others), then a contact of it. A caller elsewhere asks for a rematch with
+// OW_MATCH_CALL_REMATCH_CHANCE (HGSS).
+static bool32 SelectMatchCallTrainer(void)
+{
+    // One pass: home callers from the front, the others from the back.
+    u8 candidates[REMATCH_SPECIAL_TRAINER_START];
+    u32 i, numHome = 0, numAway = 0;
+    bool32 fromHome;
+
+    for (i = 0; i < REMATCH_SPECIAL_TRAINER_START; i++)
+    {
+        if (!CanTrainerCallPlayer(i))
+            continue;
+        if (IsRematchTrainerInCurrentRegion(i))
+            candidates[numHome++] = i;
+        else
+            candidates[REMATCH_SPECIAL_TRAINER_START - 1 - numAway++] = i;
+    }
+    if (numHome == 0 && numAway == 0)
+        return FALSE;
+
+    if (numAway == 0)
+        fromHome = TRUE;
+    else if (numHome == 0)
+        fromHome = FALSE;
+    else
+        fromHome = (Random() % 100) < OW_MATCH_CALL_HOME_REGION_PERCENT;
+
+    if (fromHome)
+        i = candidates[Random() % numHome];
+    else
+        i = candidates[REMATCH_SPECIAL_TRAINER_START - 1 - Random() % numAway];
+
+    sMatchCallState.trainerId = gRematchTable[i].trainerIds[0];
+    sMatchCallState.triggeredFromScript = FALSE;
+
+    // Not armed means not on the player's mapsec (CanTrainerCallPlayer), so not on his map.
+    if (!TrainerIsEligibleForRematch(i) && (Random() % 100) < OW_MATCH_CALL_REMATCH_CHANCE)
+        UpdateRematchIfDefeated(i);
+
+    return TRUE;
+}
+#else
 static bool32 SelectMatchCallTrainer(void)
 {
     s32 matchCallId;
@@ -1349,29 +1492,23 @@ static bool32 SelectMatchCallTrainer(void)
     if (sMatchCallState.trainerId == REMATCH_TABLE_ENTRIES)
         return FALSE;
 
-#if IS_HNS
-    if (HnsGetMatchCallEntry(sMatchCallState.trainerId) == NULL)
-        return FALSE;
-
     matchCallId = GetRematchIdxByTrainerIdx(sMatchCallState.trainerId);
-    if (matchCallId < 0)
-        return FALSE;
-#else
-    matchCallId = GetTrainerMatchCallId(sMatchCallState.trainerId);
-#endif
+    // matchCallId is a gRematchTable index here.
     if (GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId && !TrainerIsEligibleForRematch(matchCallId))
         return FALSE;
 
     return TRUE;
 }
+#endif
 
+#if !IS_HNS
 // Ignores registrable non-trainer NPCs, and special trainers like Wally and the gym leaders.
 static u32 GetNumRegisteredTrainers(void)
 {
     u32 i, count;
     for (i = 0, count = 0; i < REMATCH_SPECIAL_TRAINER_START; i++)
     {
-        if (FlagGet(TRAINER_REGISTERED_FLAGS_START + i))
+        if (IsRematchRegistered(i))
             count++;
     }
 
@@ -1383,7 +1520,7 @@ static u32 GetActiveMatchCallTrainerId(u32 activeMatchCallId)
     u32 i;
     for (i = 0; i < REMATCH_SPECIAL_TRAINER_START; i++)
     {
-        if (FlagGet(TRAINER_REGISTERED_FLAGS_START + i))
+        if (IsRematchRegistered(i))
         {
             if (!activeMatchCallId)
                 return gRematchTable[i].trainerIds[0];
@@ -1394,6 +1531,7 @@ static u32 GetActiveMatchCallTrainerId(u32 activeMatchCallId)
 
     return REMATCH_TABLE_ENTRIES;
 }
+#endif
 
 /*
     From the function calls below, a call can only be triggered...
@@ -1597,9 +1735,13 @@ static bool32 MatchCall_PrintIntro(u8 taskId)
         // Ready the message (and the speaker's name if possible)
         if (!sMatchCallState.triggeredFromScript)
         {
-            SelectMatchCallMessage(sMatchCallState.trainerId, gStringVar4);
 #if IS_HNS
+            sSelectingIncomingCallMessage = TRUE;
+            SelectMatchCallMessage(sMatchCallState.trainerId, gStringVar4);
+            sSelectingIncomingCallMessage = FALSE;
             gSpeakerName = GetTrainerNameFromId(sMatchCallState.trainerId);
+#else
+            SelectMatchCallMessage(sMatchCallState.trainerId, gStringVar4);
 #endif
         }
 
@@ -1768,19 +1910,31 @@ static void Task_SpinPokenavIcon(u8 taskId)
 #undef tSpinStage
 #undef tTileNum
 
-static bool32 TrainerIsEligibleForRematch(int matchCallId)
+// These take a gRematchTable index. sMatchCallTrainers uses its own order:
+// translate with MatchCallIdToRematchIdx.
+static bool32 TrainerIsEligibleForRematch(int rematchIdx)
 {
 #if FREE_MATCH_CALL == FALSE
-    return gSaveBlock1Ptr->trainerRematches[matchCallId] > 0;
+    return rematchIdx >= 0 && IsRematchArmed(rematchIdx);
 #else
     return FALSE;
 #endif //FREE_MATCH_CALL
 }
 
-static mapsec_u16_t GetRematchTrainerLocation(int matchCallId)
+static mapsec_u16_t GetRematchTrainerLocation(int rematchIdx)
 {
-    const struct MapHeader *mapHeader = Overworld_GetMapHeaderByGroupAndId(gRematchTable[matchCallId].mapGroup, gRematchTable[matchCallId].mapNum);
+    const struct MapHeader *mapHeader;
+
+    if (rematchIdx < 0 || rematchIdx >= REMATCH_TABLE_ENTRIES)
+        return MAPSEC_NONE;
+    mapHeader = Overworld_GetMapHeaderByGroupAndId(gRematchTable[rematchIdx].mapGroup, gRematchTable[rematchIdx].mapNum);
     return mapHeader->regionMapSectionId;
+}
+
+// gRematchTable index of an sMatchCallTrainers entry, or -1.
+static s32 MatchCallIdToRematchIdx(int matchCallId)
+{
+    return GetRematchIdxByTrainerIdx(sMatchCallTrainers[matchCallId].trainerId);
 }
 
 static u32 GetNumRematchTrainersFought(void)
@@ -1828,7 +1982,7 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str)
     {
         if (sHnsMatchCallTrainers[i].trainerId == trainerId)
         {
-            if (rematchIdx >= 0 && gSaveBlock1Ptr->trainerRematches[rematchIdx] != 0)
+            if (rematchIdx >= 0 && IsRematchArmed(rematchIdx))
             {
                 text = sHnsMatchCallTrainers[i].battleRequestText;
                 newRematchRequest = TRUE;
@@ -1878,27 +2032,43 @@ bool32 SelectMatchCallMessage(int trainerId, u8 *str)
 static bool32 SelectMatchCallMessage_Vanilla(int trainerId, u8 *str)
 {
     u32 matchCallId;
+    s32 rematchIdx;
     const struct MatchCallText *matchCallText;
     bool32 newRematchRequest = FALSE;
 
     matchCallId = GetTrainerMatchCallId(trainerId);
+    rematchIdx = MatchCallIdToRematchIdx(matchCallId);
     sBattleFrontierStreakInfo.facilityId = 0;
 
     // If the player is on the same route as the trainer
     // and they can be rematched, they will always request a battle
-    if (TrainerIsEligibleForRematch(matchCallId)
-     && GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId)
+    if (TrainerIsEligibleForRematch(rematchIdx)
+     && GetRematchTrainerLocation(rematchIdx) == gMapHeader.regionMapSectionId)
     {
         matchCallText = GetSameRouteMatchCallText(matchCallId, str);
     }
-    // If the player is not on the same route as the trainer
-    // and they can be rematched, there is a random chance for
-    // the trainer to request a battle
-    else if (ShouldTrainerRequestBattle(matchCallId))
+#if IS_HNS
+    // Origin Jade: armed elsewhere (map visit, route or incoming call): asks for the
+    // battle and names his route, as the HnS texts do.
+    else if (TrainerIsEligibleForRematch(rematchIdx))
     {
         matchCallText = GetDifferentRouteMatchCallText(matchCallId, str);
         newRematchRequest = TRUE;
-        UpdateRematchIfDefeated(matchCallId);
+    }
+#endif
+    // If the player is not on the same route as the trainer
+    // and they can be rematched, there is a random chance for
+    // the trainer to request a battle
+#if IS_HNS
+    // Origin Jade: incoming calls already rolled in SelectMatchCallTrainer.
+    else if (!sSelectingIncomingCallMessage && rematchIdx >= 0 && ShouldTrainerRequestBattle(rematchIdx))
+#else
+    else if (rematchIdx >= 0 && ShouldTrainerRequestBattle(rematchIdx))
+#endif
+    {
+        matchCallText = GetDifferentRouteMatchCallText(matchCallId, str);
+        newRematchRequest = TRUE;
+        UpdateRematchIfDefeated(rematchIdx);
     }
     else if (Random() % 3)
     {
@@ -2087,7 +2257,7 @@ static void PopulateTrainerName(int matchCallId, u8 *destStr)
 
 static void PopulateMapName(int matchCallId, u8 *destStr)
 {
-    GetMapName(destStr, GetRematchTrainerLocation(matchCallId), 0);
+    GetMapName(destStr, GetRematchTrainerLocation(MatchCallIdToRematchIdx(matchCallId)), 0);
 }
 
 static u8 GetLandEncounterSlot(void)
@@ -2141,13 +2311,20 @@ static void PopulateSpeciesFromTrainerLocation(int matchCallId, u8 *destStr)
     u8 slot;
     int i = 0;
     enum TimeOfDay timeOfDay;
+    s32 rematchIdx = MatchCallIdToRematchIdx(matchCallId);
+
+    if (rematchIdx < 0)
+    {
+        destStr[0] = EOS;
+        return;
+    }
 
     if (gWildMonHeaders[i].mapGroup != MAP_GROUP(MAP_UNDEFINED)) // ??? This check is nonsense.
     {
         while (gWildMonHeaders[i].mapGroup != MAP_GROUP(MAP_UNDEFINED))
         {
-            if (gWildMonHeaders[i].mapGroup == gRematchTable[matchCallId].mapGroup
-             && gWildMonHeaders[i].mapNum == gRematchTable[matchCallId].mapNum)
+            if (gWildMonHeaders[i].mapGroup == gRematchTable[rematchIdx].mapGroup
+             && gWildMonHeaders[i].mapNum == gRematchTable[rematchIdx].mapNum)
                 break;
 
             i++;
@@ -2233,11 +2410,11 @@ static void PopulateBattleFrontierStreak(int matchCallId, u8 *destStr)
     ConvertIntToDecimalStringN(destStr, sBattleFrontierStreakInfo.streak, STR_CONV_MODE_LEFT_ALIGN, i);
 }
 
-static int GetNumOwnedBadges(void)
+static int GetNumOwnedBadges(int rematchIdx)
 {
 #if IS_HNS
-    // Origin Jade: badges of the region the player stands in.
-    return GetCurrentRegionBadgeCount();
+    // Origin Jade: badges of the trainer's own region.
+    return GetRegionBadgeCount(GetRematchTrainerLocation(rematchIdx));
 #else
     u32 i;
 
@@ -2252,8 +2429,9 @@ static int GetNumOwnedBadges(void)
 }
 
 // Also used under HnS: fallback for Hoenn trainers.
-// Whether or not a trainer calling the player from a different route should request a battle
-static bool32 ShouldTrainerRequestBattle(int matchCallId)
+// Whether or not a trainer calling the player from a different route should request a battle.
+// rematchIdx is a gRematchTable index.
+static bool32 ShouldTrainerRequestBattle(int rematchIdx)
 {
     int dayCount;
     int otId;
@@ -2261,7 +2439,7 @@ static bool32 ShouldTrainerRequestBattle(int matchCallId)
     int numRematchTrainersFought;
     int max, rand, n;
 
-    if (GetNumOwnedBadges() < 5)
+    if (GetNumOwnedBadges(rematchIdx) < 5)
         return FALSE;
 
     dayCount = RtcGetLocalDayCount();
@@ -2274,7 +2452,7 @@ static bool32 ShouldTrainerRequestBattle(int matchCallId)
     n = rand % max;
     if (n < numRematchTrainersFought)
     {
-        if (GetNthRematchTrainerFought(n) == matchCallId)
+        if (GetNthRematchTrainerFought(n) == rematchIdx)
             return TRUE;
     }
 
@@ -2460,7 +2638,7 @@ void DrawMatchCallTextBoxBorder(u32 windowId, u32 tileOffset, u32 paletteId)
 u32 GetTrainerRematchStepCounter(void)
 {
 #if FREE_MATCH_CALL == FALSE
-    return gSaveBlock1Ptr->trainerRematchStepCounter;
+    return gSaveBlock1Ptr->rematchStepCounter;
 #else
     return 0;
 #endif
@@ -2469,22 +2647,6 @@ u32 GetTrainerRematchStepCounter(void)
 void SetTrainerRematchStepCounter(u32 value)
 {
 #if FREE_MATCH_CALL == FALSE
-    gSaveBlock1Ptr->trainerRematchStepCounter = value;
-#endif
-}
-
-u32 GetActiveTrainerRematches(u32 matchCallId)
-{
-#if FREE_MATCH_CALL == FALSE
-    return gSaveBlock1Ptr->trainerRematches[matchCallId];
-#else
-    return 0;
-#endif
-}
-
-void SetActiveTrainerRematches(u32 matchCallId, u32 value)
-{
-#if FREE_MATCH_CALL == FALSE
-    gSaveBlock1Ptr->trainerRematches[matchCallId] = value;
+    gSaveBlock1Ptr->rematchStepCounter = value;
 #endif
 }

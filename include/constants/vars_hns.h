@@ -101,7 +101,7 @@
 #define VAR_BEVERLY_ITEM_HNS                             0x409E
 #define VAR_JOSE_ITEM_HNS                                0x409F
 #define VAR_KENJI_ITEM_HNS                               0x40A0
-#define VAR_ROUTE_STEP_COUNTER_HNS                       0x40A1
+#define VAR_UNUSED_HNS_0x40A1                            0x40A1 // Retired: route call steps, now SaveBlock1 routeCallStepCounter
 #define VAR_ROAMER_POKEMON_HNS                           0x40A2
 #define VAR_VERMILION_CITY_STEVEN                        0x40A3
 #define VAR_MOM_GIFT_QUANTITY                            0x40A5

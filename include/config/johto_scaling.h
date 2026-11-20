@@ -11,6 +11,7 @@
 // Optional {..., lower ceiling, var, value}: the lower ceiling holds while
 // the var is below the value.
 // Levels in trainers_hns.party only set the gaps within a team.
+// With LEVEL_REMAP (config/level_remap.h) they are HnS levels, remapped to fixed ones instead.
 // =====================================================================
 
 #define JOHTO_LEVEL_SCALING          TRUE  // master switch

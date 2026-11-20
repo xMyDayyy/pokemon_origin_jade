@@ -25,7 +25,10 @@ ViridianCity_Gym_EventScript_BlueLeader::
 	goto_if_set FLAG_GOT_TM_TRICK_ROOM_FROM_BLUE, ViridianCity_Gym_EventScript_BlueRematch
 	goto_if_defeated TRAINER_BLUE_HNS, ViridianCity_Gym_EventScript_BlueGiveTM
 	msgbox ViridianCity_Gym_Text_BlueIntro, MSGBOX_DEFAULT
+	@ Level band also for the first battle, so the rematch is never weaker.
+	setflag FLAG_TEMP_KANTO_LEADER_REMATCH
 	trainerbattle_no_intro TRAINER_BLUE_HNS, ViridianCity_Gym_Text_BlueDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
 	msgbox ViridianCity_Gym_Text_BluePostBattle, MSGBOX_DEFAULT
 ViridianCity_Gym_EventScript_BlueGiveTM::
 	msgbox ViridianCity_Gym_Text_BlueGiveTM, MSGBOX_DEFAULT
@@ -42,11 +45,22 @@ ViridianCity_Gym_EventScript_BlueNoRoomForTM::
 	release
 	end
 
+@ Rematch: level band like the other Kanto leaders (FLAG_TEMP_KANTO_LEADER_REMATCH).
+@ After the Johto title the POSTOBC team.
 ViridianCity_Gym_EventScript_BlueRematch::
 	msgbox ViridianCity_Gym_Text_BlueRematch, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
 	closemessage
+	setflag FLAG_TEMP_KANTO_LEADER_REMATCH
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, ViridianCity_Gym_EventScript_BlueRematchPostJohto
 	trainerbattle_no_intro TRAINER_BLUE_HNS, ViridianCity_Gym_Text_BlueRematchDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
+	release
+	end
+
+ViridianCity_Gym_EventScript_BlueRematchPostJohto::
+	trainerbattle_no_intro TRAINER_BLUE_POSTOBC_HNS, ViridianCity_Gym_Text_BlueRematchDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
 	release
 	end
 

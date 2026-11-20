@@ -6,7 +6,33 @@ PewterCity_Gym_EventScript_Brock::
 	trainerbattle_single TRAINER_LEADER_BROCK, PewterCity_Gym_Text_BrockIntro, PewterCity_Gym_Text_BrockDefeat, PewterCity_Gym_EventScript_DefeatedBrock, NO_MUSIC
 	goto_if_unset FLAG_GOT_TM39_FROM_BROCK, PewterCity_Gym_EventScript_GiveTM39
 	call_if_set FLAG_IS_KANTO_CHAMPION, PewterCity_Gym_EventScript_TryGiveTMRockSlide
+	goto_if_set FLAG_IS_KANTO_CHAMPION, PewterCity_Gym_EventScript_CheckBrockRematch
 	msgbox PewterCity_Gym_Text_BrockPostBattle
+	release
+	end
+
+@ No room for TM Rock Slide: end this talk, the TM is offered again next time.
+PewterCity_Gym_EventScript_CheckBrockRematch::
+	goto_if_set FLAG_GOT_TM_ROCK_SLIDE_FROM_BROCK, PewterCity_Gym_EventScript_BrockRematch
+	release
+	end
+
+@ Rematch after the Kanto title: as often as the player likes, money only.
+@ After the Johto title the POSTOBC team. Level band: FLAG_TEMP_KANTO_LEADER_REMATCH.
+PewterCity_Gym_EventScript_BrockRematch::
+	msgbox PewterCity_Gym_Text_BrockRematch, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
+	closemessage
+	setflag FLAG_TEMP_KANTO_LEADER_REMATCH
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, PewterCity_Gym_EventScript_BrockRematchPostJohto
+	trainerbattle_no_intro TRAINER_BROCK_HNS, PewterCity_Gym_Text_BrockRematchDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
+	release
+	end
+
+PewterCity_Gym_EventScript_BrockRematchPostJohto::
+	trainerbattle_no_intro TRAINER_BROCK_POSTOBC_HNS, PewterCity_Gym_Text_BrockRematchDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
 	release
 	end
 
@@ -380,4 +406,28 @@ PewterCity_Gym_Text_ChampionTakeRockSlide::
 	.string "You're KANTO's CHAMPION now?\n"
 	.string "Impressive!\p"
 	.string "Then take this TM, too!$"
+#endif
+
+PewterCity_Gym_Text_BrockRematch::
+#if GERMAN
+	.string "Seit deinem Sieg habe ich meine\n"
+	.string "Stein-Pokémon hart trainiert.\p"
+	.string "Ihre Verteidigung ist jetzt härter\n"
+	.string "als je zuvor!\p"
+	.string "Möchtest du einen Rückkampf?$"
+#else
+	.string "Since you beat me, I've trained my\n"
+	.string "ROCK-type POKéMON hard.\p"
+	.string "Their defense is now harder\n"
+	.string "than ever!\p"
+	.string "Want to have a rematch?$"
+#endif
+
+PewterCity_Gym_Text_BrockRematchDefeat::
+#if GERMAN
+	.string "Unglaublich! Meine steinharte\n"
+	.string "Verteidigung hält dir nicht stand!$"
+#else
+	.string "Incredible! My rock-hard defense\n"
+	.string "can't hold you back!$"
 #endif

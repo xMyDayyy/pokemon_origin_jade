@@ -455,10 +455,6 @@ EventScript_ResetAllMapFlagsHnS::
 	additem ITEM_GB_PLAYER
 	setflag FLAG_EXP_SHARE_ENABLED
 	setrespawn HEAL_LOCATION_PALLET_TOWN
-	@ Origin Jade: skips the save migrations in LoadGameSave.
-	setflag FLAG_MIGRATED_JOHTO_STARTER_VAR
-	setflag FLAG_MIGRATED_GOLDENROD_FLAG_HEAP
-	setflag FLAG_MIGRATED_JOHTO_BERRY_SLOTS
 
 	call EventScript_ResetAllBerries
 	end

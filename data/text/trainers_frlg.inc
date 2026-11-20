@@ -2255,3 +2255,844 @@ SevenIsland_TanobyRuins_Text_CliffordRematchIntro::
 	.string "Today, in addition to our lesson,\n"
 	.string "we came to see the chamber again.$"
 #endif
+
+@ PokeCom registration after the first win: the post-battle line plus one box.
+
+Route3_Text_BenRegister::
+#if GERMAN
+	.string "Du kannst Pokémon via PC in Boxen\n"
+	.string "ablegen.\p"
+	.string "Jede Box fasst 30 Pokémon!\p"
+	.string "Ich ruf dich mal an! Dann hab ich noch\n"
+	.string "mehr Tipps für dich!$"
+#else
+	.string "Are you using a POKéMON CENTER's\n"
+	.string "PC for storing your POKéMON?\p"
+	.string "Each BOX can hold up to\n"
+	.string "30 POKéMON.\p"
+	.string "I'll give you a call! I've got more tips\n"
+	.string "for you!$"
+#endif
+
+Route3_Text_ColtonRegister::
+#if GERMAN
+	.string "Neben den Pokémon hier im Wald, gibt es\n"
+	.string "noch Unmengen anderer Pokémon zu\l"
+	.string "entdecken!\p"
+	.string "Ich ruf dich an, wenn ich ein seltenes\n"
+	.string "Käfer-Pokémon finde!$"
+#else
+	.string "There are other kinds of POKéMON\n"
+	.string "than the ones you find in forests.\p"
+	.string "I'll call you if I find a rare bug\n"
+	.string "POKéMON!$"
+#endif
+
+Route3_Text_JaniceRegister::
+#if GERMAN
+	.string "Hör auf, Leute anzustarren!\n"
+	.string "Dann musst du auch nicht kämpfen!\p"
+	.string "Na gut. Ich ruf dich an, wenn ich wieder\n"
+	.string "kämpfen will. Hihi!$"
+#else
+	.string "You shouldn't be staring if you\n"
+	.string "don't want to battle!\p"
+	.string "Fine. I'll call you when I want to battle\n"
+	.string "again. Tee-hee!$"
+#endif
+
+Route4_Text_CrissyRegister::
+#if GERMAN
+	.string "Es dürfte hier keine Pilz-Pokémon\n"
+	.string "mehr geben.\p"
+	.string "Ich glaube, ich habe alle gefangen.\p"
+	.string "Wenn ich doch noch eins finde, ruf ich\n"
+	.string "dich an!$"
+#else
+	.string "There might not be any more\n"
+	.string "mushrooms here.\p"
+	.string "I think I got them all.\p"
+	.string "If I find another one, I'll call you!$"
+#endif
+
+Route24_Text_TimmyRegister::
+#if GERMAN
+	.string "Ich habe alles gegeben, ich schäme\n"
+	.string "mich nicht!\p"
+	.string "Ich ruf dich an, wenn ich wieder Nr. 3\n"
+	.string "auf der Brücke bin!$"
+#else
+	.string "I did my best. I have no regrets!\p"
+	.string "I'll call you when I'm No. 3 on the bridge\n"
+	.string "again!$"
+#endif
+
+Route24_Text_ReliRegister::
+#if GERMAN
+	.string "Ich habe alles gegeben, ich schäme\n"
+	.string "mich nicht!\p"
+	.string "Ich ruf dich mal an. Du musst ja auch mal\n"
+	.string "Pause machen!$"
+#else
+	.string "I did my best, so I've no regrets!\p"
+	.string "I'll give you a call. You need a break\n"
+	.string "sometimes too!$"
+#endif
+
+Route24_Text_AliRegister::
+#if GERMAN
+	.string "Ich habe alles gegeben, ich schäme\n"
+	.string "mich nicht!\p"
+	.string "Ich ruf dich an! Dann sagst du mir, dass\n"
+	.string "ich die Beste war!$"
+#else
+	.string "I did my best. I have no regrets!\p"
+	.string "I'll call you! Then you can tell me I was\n"
+	.string "the best!$"
+#endif
+
+Route25_Text_ChadRegister::
+#if GERMAN
+	.string "Wenn eines deiner Pokémon verwirrt\n"
+	.string "ist, wechsle es aus!\p"
+	.string "Das ist eine gute Taktik!\p"
+	.string "Ich hab so ein Gefühl… Wir kämpfen\n"
+	.string "bestimmt noch mal! Ich ruf dich an,\l"
+	.string "okay?$"
+#else
+	.string "If your POKéMON gets confused,\n"
+	.string "switch it out.\p"
+	.string "That's a good tactic.\p"
+	.string "I've got this feeling… We'll battle again\n"
+	.string "for sure! I'll call you, okay?$"
+#endif
+
+Route25_Text_KelseyRegister::
+#if GERMAN
+	.string "Ach, wäre mein Freund doch auch\n"
+	.string "so toll wie du!\p"
+	.string "Ich ruf dich mal an! Dann erzähl ich dir\n"
+	.string "alles über ihn!$"
+#else
+	.string "I wish my boyfriend was as good\n"
+	.string "as you.\p"
+	.string "I'll call you sometime! I'll tell you all\n"
+	.string "about him!$"
+#endif
+
+Route25_Text_FranklinRegister::
+#if GERMAN
+	.string "Mist!\n"
+	.string "Mich hat ein Zubat gebissen!\p"
+	.string "Wenn der Biss verheilt ist, ruf ich dich\n"
+	.string "an. Dann gibt's Revanche!$"
+#else
+	.string "Drat!\n"
+	.string "A ZUBAT bit me back in that cave.\p"
+	.string "Once the bite heals up, I'll call you.\n"
+	.string "Then it's rematch time!$"
+#endif
+
+Route25_Text_NobRegister::
+#if GERMAN
+	.string "Dieser Sammler besitzt viele seltene\n"
+	.string "Pokémon.\p"
+	.string "Wenn ich mehr über seine Sammlung weiß,\n"
+	.string "ruf ich dich an!$"
+#else
+	.string "The POKéMANIAC sure lives up to\n"
+	.string "his name.\p"
+	.string "His collection includes many rare\n"
+	.string "species of POKéMON.\p"
+	.string "When I learn more about his collection,\n"
+	.string "I'll call you!$"
+#endif
+
+Route6_Text_RickyRegister::
+#if GERMAN
+	.string "Flüster...\n"
+	.string "Tuschel...\p"
+	.string "…Na gut. Du darfst meine Nummer haben.\n"
+	.string "Aber nicht weitersagen!$"
+#else
+	.string "Whisper…\n"
+	.string "Whisper…\p"
+	.string "…Fine. You can have my number. But don't\n"
+	.string "tell anyone!$"
+#endif
+
+Route6_Text_JeffRegister::
+#if GERMAN
+	.string "Zu meiner eigenen Sicherheit sollte\n"
+	.string "ich mehr Pokémon bei mir tragen!\p"
+	.string "Wenn ich mehr Pokémon habe, ruf ich dich\n"
+	.string "an!$"
+#else
+	.string "I should bring more POKéMON with\n"
+	.string "me. I'll feel safer that way.\p"
+	.string "Once I've got more POKéMON, I'll call\n"
+	.string "you!$"
+#endif
+
+Route6_Text_IsabelleRegister::
+#if GERMAN
+	.string "Verrätst du mir dein Geheimnis?\n"
+	.string "Ich möchte auch stärker werden!\p"
+	.string "Ich ruf dich an! Vielleicht verrätst du\n"
+	.string "es mir dann!$"
+#else
+	.string "I want to get stronger.\n"
+	.string "What's your secret?\p"
+	.string "I'll call you! Maybe you'll tell me then!$"
+#endif
+
+Route11_Text_YasuRegister::
+#if GERMAN
+	.string "Aus den Bergen steigt manchmal ein\n"
+	.string "dickes Pokémon herab.\p"
+	.string "Es ist sehr stark!\n"
+	.string "Versuche es zu fangen!\p"
+	.string "Ich ruf dich an. Dann erzählst du mir, ob\n"
+	.string "du es gefangen hast!$"
+#else
+	.string "There's a fat POKéMON that comes\n"
+	.string "down from the mountains.\p"
+	.string "I bet it'd be strong if you can\n"
+	.string "catch it.\p"
+	.string "I'll call you. Then you can tell me if you\n"
+	.string "caught it!$"
+#endif
+
+Route11_Text_BernieRegister::
+#if GERMAN
+	.string "Ich mache mich besser wieder an\n"
+	.string "die Arbeit.\p"
+	.string "Aber in der Pause ruf ich dich mal an!$"
+#else
+	.string "Well, better get back to work.\p"
+	.string "But I'll give you a call on my break!$"
+#endif
+
+Route11_Text_DarianRegister::
+#if GERMAN
+	.string "Das war nichts als Glück.\n"
+	.string "Purer Zufall!\p"
+	.string "Beim nächsten Mal hab ich Glück! Ich ruf\n"
+	.string "dich an!$"
+#else
+	.string "I was unlucky, as always.\p"
+	.string "Next time, luck will be on my side! I'll\n"
+	.string "call you!$"
+#endif
+
+Route9_Text_ChrisRegister::
+#if GERMAN
+	.string "O.K., geh einfach weiter!\p"
+	.string "…Moment! Gib mir lieber deine Nummer.\n"
+	.string "Deine Pokémon will ich wiedersehen!$"
+#else
+	.string "Keep walking!\p"
+	.string "…Wait! Give me your number. I want to\n"
+	.string "see your POKéMON again!$"
+#endif
+
+Route9_Text_AliciaRegister::
+#if GERMAN
+	.string "Du benötigst eine Lichtquelle, um\n"
+	.string "den Tunnel zu durchqueren!\p"
+	.string "Ich ruf dich an! Dieses Mal bist du dran!$"
+#else
+	.string "The tunnel coming up is pitch-black\n"
+	.string "inside.\p"
+	.string "You'll need FLASH to get through\n"
+	.string "there.\p"
+	.string "I'll call you! Next time, you're mine!$"
+#endif
+
+Route9_Text_JeremyRegister::
+#if GERMAN
+	.string "Deine Knie haben ganz schön\n"
+	.string "geschlackert, oder?\p"
+	.string "Wenn mir wieder langweilig ist, ruf ich\n"
+	.string "dich an!$"
+#else
+	.string "You sure had guts standing up to\n"
+	.string "me there, eh?\p"
+	.string "When I get bored again, I'll call you, eh!$"
+#endif
+
+Route10_Text_MarkRegister::
+#if GERMAN
+	.string "Zu Hause habe ich noch mehr seltene\n"
+	.string "Pokémon!\p"
+	.string "Ich ruf dich an, wenn meine Sammlung\n"
+	.string "noch größer ist!$"
+#else
+	.string "I have more rare POKéMON at home!\p"
+	.string "I'll call you when my collection's even\n"
+	.string "bigger!$"
+#endif
+
+Route10_Text_HermanRegister::
+#if GERMAN
+	.string "Ich nehme dir übel, dass du mich\n"
+	.string "besiegt hast!\p"
+	.string "…Aber gib mir deine Nummer. Beim\n"
+	.string "nächsten Mal zeig ich's dir!$"
+#else
+	.string "I don't like you.\n"
+	.string "I don't like anyone better than me!\p"
+	.string "…But give me your number. Next time I'll\n"
+	.string "show you!$"
+#endif
+
+Route10_Text_TrentRegister::
+#if GERMAN
+	.string "Ich habe von Bergluft die Nase\n"
+	.string "gestrichen voll!\p"
+	.string "Wenn ich wieder Lust auf Berge hab, ruf\n"
+	.string "ich dich an!$"
+#else
+	.string "I feel bloated on mountain air!\p"
+	.string "When I'm in the mood for mountains\n"
+	.string "again, I'll call you!$"
+#endif
+
+Route8_Text_MeganRegister::
+#if GERMAN
+	.string "Der Wachtposten von Saffronia\n"
+	.string "City ist so gemein!\p"
+	.string "Er lässt uns nicht in die Stadt!\p"
+	.string "Ich ruf dich an, wenn er uns endlich\n"
+	.string "durchlässt!$"
+#else
+	.string "SAFFRON's gatekeeper won't let us\n"
+	.string "go through.\p"
+	.string "I know he's doing his job, but I\n"
+	.string "think he's mean.\p"
+	.string "I'll call you when he finally lets us\n"
+	.string "through!$"
+#endif
+
+Route8_Text_GlennRegister::
+#if GERMAN
+	.string "Sleima kämpft als Erstes... und...\n"
+	.string "und... dann...\p"
+	.string "Den Rest meiner Strategie erkläre ich\n"
+	.string "dir am Telefon!$"
+#else
+	.string "Go with GRIMER first…and…\n"
+	.string "…and…then…\p"
+	.string "I'll explain the rest of my strategy\n"
+	.string "over the phone!$"
+#endif
+
+Route8_Text_RichRegister::
+#if GERMAN
+	.string "Glücksspiele und Pokémon haben eines\n"
+	.string "gemeinsam: Man kann nicht damit\l"
+	.string "aufhören!\p"
+	.string "Ich ruf dich an, wenn ich wieder eine\n"
+	.string "Glückssträhne hab!$"
+#else
+	.string "Playing games and POKéMON are like\n"
+	.string "eating peanuts! I just can't stop!\p"
+	.string "I'll call you when I'm on a winning\n"
+	.string "streak again!$"
+#endif
+
+Route8_Text_EliRegister::
+#if GERMAN
+	.string "Nora: Ich habe mein Pokémon mit\n"
+	.string "Jo gefangen!\p"
+	.string "Jo: Wir rufen dich an! Zu zweit\n"
+	.string "natürlich!$"
+#else
+	.string "ELI: I caught my POKéMON with\n"
+	.string "ANNE!\p"
+	.string "ANNE: We'll call you! Both of us, of\n"
+	.string "course!$"
+#endif
+
+Route8_Text_AnneRegister::
+#if GERMAN
+	.string "Jo: Ich trainiere Pokémon mit\n"
+	.string "Nora!\p"
+	.string "Nora: Wir rufen dich an! Zu zweit\n"
+	.string "natürlich!$"
+#else
+	.string "ANNE: I'm raising POKéMON with\n"
+	.string "ELI.\p"
+	.string "ELI: We'll call you! Both of us, of\n"
+	.string "course!$"
+#endif
+
+Route8_Text_JarenRegister::
+#if GERMAN
+	.string "Denk bloß nicht, dass du etwas\n"
+	.string "Besonderes bist, nur weil du gewonnen\l"
+	.string "hast.\p"
+	.string "Gib her, ich speichere meine Nummer. Das\n"
+	.string "war noch nicht alles!$"
+#else
+	.string "Don't think you're all special and\n"
+	.string "all just because of this.\p"
+	.string "Give it here, I'll save my number. This\n"
+	.string "isn't over!$"
+#endif
+
+Route12_Text_ElliotRegister::
+#if GERMAN
+	.string "O.k., mit der Zeit gewöhnt man sich\n"
+	.string "daran, zu verlieren!\p"
+	.string "Ich hab ja eh Zeit… Ich ruf dich an,\n"
+	.string "wenn ich was Gutes geangelt hab.$"
+#else
+	.string "It's all right.\n"
+	.string "Losing doesn't bug me anymore.\p"
+	.string "I've got time anyway… I'll call you when\n"
+	.string "I catch something good.$"
+#endif
+
+Route12_Text_LucaRegister::
+#if GERMAN
+	.string "Wasser leitet Elektrizität. Greife\n"
+	.string "Wasser-Pokémon mit Elektrizität an!\p"
+	.string "Ich ruf dich an, wenn ich mehr über\n"
+	.string "Wasser-Pokémon weiß!$"
+#else
+	.string "Water conducts electricity, so you\n"
+	.string "should zap sea POKéMON.\p"
+	.string "I'll call you when I know more about sea\n"
+	.string "POKéMON!$"
+#endif
+
+Route12_Text_JesRegister::
+#if GERMAN
+	.string "Deniz: Oh, Sira, meine Liebste,\n"
+	.string "verzeih mir!\p"
+	.string "Sira: Wir rufen dich an! Beim nächsten\n"
+	.string "Mal gewinnen wir!$"
+#else
+	.string "JES: Oh, GIA, forgive me,\n"
+	.string "my love!\p"
+	.string "GIA: We'll call you! Next time we'll win!$"
+#endif
+
+Route12_Text_GiaRegister::
+#if GERMAN
+	.string "Sira: Deniz, du Dummerchen!\n"
+	.string "Du hast es vermasselt!\p"
+	.string "Deniz: Wir rufen dich an! Beim nächsten\n"
+	.string "Mal gewinnen wir!$"
+#else
+	.string "GIA: JES, you silly!\n"
+	.string "You ruined this!\p"
+	.string "JES: We'll call you! Next time we'll win!$"
+#endif
+
+Route13_Text_SheilaRegister::
+#if GERMAN
+	.string "Ich habe keine Ahnung von Pokémon.\p"
+	.string "Aber manche finde ich wirklich\n"
+	.string "cool!\p"
+	.string "Ich ruf dich an. Dann erklärst du mir\n"
+	.string "mehr über Pokémon!$"
+#else
+	.string "I don't know anything about\n"
+	.string "POKéMON actually.\p"
+	.string "The ones I use… I picked them\n"
+	.string "for their looks!\p"
+	.string "I'll call you. Then you can tell me more\n"
+	.string "about POKéMON!$"
+#endif
+
+Route13_Text_RobertRegister::
+#if GERMAN
+	.string "Ach, wenn ich doch wie Taubsi und\n"
+	.string "Tauboga fliegen könnte...\p"
+	.string "Ich ruf dich an, wenn meine Vögel noch\n"
+	.string "höher fliegen!$"
+#else
+	.string "I wish I could fly like PIDGEY and\n"
+	.string "PIDGEOTTO…\p"
+	.string "I'll call you when my birds fly even\n"
+	.string "higher!$"
+#endif
+
+Route13_Text_SusieRegister::
+#if GERMAN
+	.string "Ich werde fleißig üben, damit ich\n"
+	.string "ein guter Trainer werde!\p"
+	.string "Ich ruf dich an und zeig dir, wie gut ich\n"
+	.string "geworden bin!$"
+#else
+	.string "I want to become a good TRAINER.\n"
+	.string "I'll train hard, just watch.\p"
+	.string "I'll call you and show you how good I've\n"
+	.string "gotten!$"
+#endif
+
+Route14_Text_LukasRegister::
+#if GERMAN
+	.string "Was, was, was?\n"
+	.string "Was willst du?\p"
+	.string "…Meine Nummer? Na gut! Los, los, gib her!$"
+#else
+	.string "What, what, what?\n"
+	.string "What do you want still?\p"
+	.string "…My number? Fine! C'mon, c'mon, give it\n"
+	.string "here!$"
+#endif
+
+Route14_Text_BennyRegister::
+#if GERMAN
+	.string "Längerfristig ist es egal, ob man\n"
+	.string "gewinnt oder verliert!\p"
+	.string "Aber ein Anruf ab und zu… Warum nicht?$"
+#else
+	.string "Winning, losing… It's insignificant\n"
+	.string "under this huge sky.\p"
+	.string "But a call now and then… Why not?$"
+#endif
+
+Route14_Text_CarterRegister::
+#if GERMAN
+	.string "Eine durch eine VM erlernte Attacke\n"
+	.string "können Pokémon nicht so leicht wieder\l"
+	.string "vergessen!\p"
+	.string "Ich ruf dich an und verrate dir noch\n"
+	.string "mehr Tipps zu TMs!$"
+#else
+	.string "You have some HMs, right? POKéMON\n"
+	.string "can't forget those moves easily.\p"
+	.string "I'll call you with more tips about TMs!$"
+#endif
+
+Route14_Text_MarlonRegister::
+#if GERMAN
+	.string "Meine Leidenschaft sind Vogel-\n"
+	.string "Pokémon!\p"
+	.string "Ich ruf dich an und erzähl dir von\n"
+	.string "meinen Vögeln!$"
+#else
+	.string "Bird POKéMON are my one true love.\n"
+	.string "I don't want to raise anything else.\p"
+	.string "I'll call you and tell you about my birds!$"
+#endif
+
+Route15_Text_GraceRegister::
+#if GERMAN
+	.string "O.k., du hast mich besiegt.\n"
+	.string "Es macht mir nichts aus!\p"
+	.string "Ich ruf dich an, du kleiner Schatz! Du\n"
+	.string "bist ja so niedlich!$"
+#else
+	.string "I forgive you.\n"
+	.string "I can take it.\l"
+	.string "I'm a big girl now.\p"
+	.string "I'll call you, you little cutie! You're\n"
+	.string "just so adorable!$"
+#endif
+
+Route15_Text_ChesterRegister::
+#if GERMAN
+	.string "Wusstest du, dass manche Attacken, wie\n"
+	.string "Erdbeben, keine Wirkung auf Vögel\l"
+	.string "haben?\p"
+	.string "Ich ruf dich an, wenn ich noch mehr\n"
+	.string "Tipps für dich hab!$"
+#else
+	.string "This is so obvious, you should know\n"
+	.string "this, but…\p"
+	.string "Moves like EARTHQUAKE and FISSURE\n"
+	.string "have no effect on bird POKéMON.\p"
+	.string "I'll call you when I've got more tips for\n"
+	.string "you!$"
+#endif
+
+Route15_Text_BeckyRegister::
+#if GERMAN
+	.string "Ich habe Angst vor Bikern, sie\n"
+	.string "sind so hässlich und brutal!\p"
+	.string "Wenn mir ein Biker begegnet, ruf ich\n"
+	.string "dich an!$"
+#else
+	.string "I'm afraid of BIKERS. They look so\n"
+	.string "ugly and mean!\p"
+	.string "If I run into a BIKER, I'll call you!$"
+#endif
+
+Route15_Text_MyaRegister::
+#if GERMAN
+	.string "Eva: O.k.! Wir haben es vergeigt!\n"
+	.string "Ich füge unserem Trainingsprogramm\l"
+	.string "einige Lektionen hinzu.\p"
+	.string "Eva: Ich ruf dich an! Dann hilfst du uns\n"
+	.string "wieder beim Training!$"
+#else
+	.string "MYA: Okay, we'll turn it up.\n"
+	.string "I'll add to our training menu!\p"
+	.string "MYA: I'll call you! Then you can help us\n"
+	.string "train again!$"
+#endif
+
+Route15_Text_RonRegister::
+#if GERMAN
+	.string "Sergio: Oh, Mist…\n"
+	.string "Ich wünschte, ich hätte eine nette\l"
+	.string "Schwester…\p"
+	.string "Eva: Ich ruf dich an! Dann hilfst du uns\n"
+	.string "wieder beim Training!$"
+#else
+	.string "RON: Oh, bleah…\n"
+	.string "I wish I had a nice sister…\p"
+	.string "MYA: I'll call you! Then you can help us\n"
+	.string "train again!$"
+#endif
+
+Route16_Text_RubenRegister::
+#if GERMAN
+	.string "Ich liebe es, andere mit meinen\n"
+	.string "bissigen Pokémon zu schikanieren!\p"
+	.string "Gib her, ich speichere meine Nummer. Wir\n"
+	.string "amüsieren uns noch!$"
+#else
+	.string "I get my kicks by harassing people\n"
+	.string "with my stinking POKéMON.\p"
+	.string "They're great for startling people.\n"
+	.string "And, they bite, too.\p"
+	.string "Give it here, I'll save my number. We'll\n"
+	.string "have more fun!$"
+#endif
+
+Route16_Text_CamronRegister::
+#if GERMAN
+	.string "Ich mag wilde Pokémon!\n"
+	.string "Sie strotzen nur so vor Kraft!\p"
+	.string "Ich ruf dich an, wenn ich wieder einen\n"
+	.string "Sandsack brauche!$"
+#else
+	.string "If I'm going to have POKéMON, they\n"
+	.string "may as well be ferocious.\p"
+	.string "I'd use them to leave my enemies\n"
+	.string "in tatters.\p"
+	.string "I'll call you when I need a punching bag\n"
+	.string "again!$"
+#endif
+
+Route16_Text_JedRegister::
+#if GERMAN
+	.string "Uwe: Hör zu, Lena! Du solltest dich\n"
+	.string "weniger auf mich konzentrieren.\p"
+	.string "Lena: Wir rufen dich an! Dann erzählen\n"
+	.string "wir dir von unserer Liebe!$"
+#else
+	.string "JED: Listen, LEA.\n"
+	.string "You need to focus less on me.\p"
+	.string "LEA: We'll call you! And tell you all\n"
+	.string "about our love!$"
+#endif
+
+Route16_Text_LeaRegister::
+#if GERMAN
+	.string "Lena: Äh, es tut mir Leid.\n"
+	.string "Uwe ist so cool.\p"
+	.string "Uwe: Wir rufen dich an! Dann erzählen wir\n"
+	.string "dir von unserer Liebe!$"
+#else
+	.string "LEA: Ehehe, I'm sorry.\n"
+	.string "JED is so cool.\p"
+	.string "JED: We'll call you! And tell you all\n"
+	.string "about our love!$"
+#endif
+
+Route17_Text_JaxonRegister::
+#if GERMAN
+	.string "Das Gefälle macht das Lenken sehr\n"
+	.string "schwer!\p"
+	.string "Ich ruf dich an, wenn ich das Lenken im\n"
+	.string "Griff hab!$"
+#else
+	.string "The slope makes it hard to steer.\p"
+	.string "I'll call you once I've got the steering\n"
+	.string "down!$"
+#endif
+
+Route17_Text_IsaiahRegister::
+#if GERMAN
+	.string "Ich könnte dich mit einem\n"
+	.string "Bauchplatscher plattmachen!\p"
+	.string "Ich ruf dich an, wenn mein Team noch\n"
+	.string "stärker ist!$"
+#else
+	.string "I could belly-bump you outta\n"
+	.string "here!\p"
+	.string "I'll call you when my team's even\n"
+	.string "stronger!$"
+#endif
+
+Route17_Text_CoreyRegister::
+#if GERMAN
+	.string "Setze dich für deine Ideale ein!\p"
+	.string "Ich ruf dich an. Rebellen halten\n"
+	.string "zusammen!$"
+#else
+	.string "Be ready to fight for your beliefs!\p"
+	.string "I'll call you. Rebels stick together!$"
+#endif
+
+Route18_Text_WiltonRegister::
+#if GERMAN
+	.string "Wenn ich nur ein Fahrrad hätte!\p"
+	.string "Wenn ich eins habe, ruf ich dich an!$"
+#else
+	.string "I wish I had a BIKE!\p"
+	.string "When I get one, I'll call you!$"
+#endif
+
+Route18_Text_JacobRegister::
+#if GERMAN
+	.string "Hier habe ich sehr gerne Pokémon\n"
+	.string "gejagt!\p"
+	.string "Ich ruf dich an. Aber komm mir nicht in\n"
+	.string "mein Gebiet!$"
+#else
+	.string "This is my fave area for catching\n"
+	.string "POKéMON.\p"
+	.string "I'll call you. But stay off my turf!$"
+#endif
+
+Route19_Text_MatthewRegister::
+#if GERMAN
+	.string "Ich kann Pokémon besiegen, während\n"
+	.string "ich schwimme!\p"
+	.string "Ich ruf dich an, wenn ich noch schneller\n"
+	.string "schwimme!$"
+#else
+	.string "I can beat even marine POKéMON\n"
+	.string "at swimming.\p"
+	.string "I'll call you when I swim even faster!$"
+#endif
+
+Route19_Text_TonyRegister::
+#if GERMAN
+	.string "Ich schaue auf das Meer, um zu\n"
+	.string "vergessen!\p"
+	.string "Ich ruf dich an, wenn ich diese\n"
+	.string "Niederlage vergessen hab.$"
+#else
+	.string "I'm looking at the sea to forget\n"
+	.string "the bad thing that happened!\p"
+	.string "I'll call you once I've forgotten this\n"
+	.string "loss.$"
+#endif
+
+Route19_Text_AliceRegister::
+#if GERMAN
+	.string "Mein Freund wollte zu den\n"
+	.string "Seeschauminseln schwimmen.\p"
+	.string "Wenn er zurück ist, ruf ich dich an!$"
+#else
+	.string "My boyfriend wanted to swim to\n"
+	.string "SEAFOAM ISLANDS.\p"
+	.string "When he gets back, I'll call you!$"
+#endif
+
+Route20_Text_DarrinRegister::
+#if GERMAN
+	.string "Es dürfte Spaß machen, auf einem\n"
+	.string "Pokémon zu reiten!\p"
+	.string "Ich ruf dich an. Vielleicht lässt du mich\n"
+	.string "mal mitreiten!$"
+#else
+	.string "Riding a POKéMON sure looks fun!\p"
+	.string "I'll call you. Maybe you'll let me ride\n"
+	.string "along sometime!$"
+#endif
+
+Route20_Text_MelissaRegister::
+#if GERMAN
+	.string "Die Zinnoberinsel ist ein vulkanisches\n"
+	.string "Eiland!\p"
+	.string "Ich ruf dich an, wenn es Neuigkeiten\n"
+	.string "aus dem Pokémon-Labor gibt!$"
+#else
+	.string "CINNABAR is a volcanic island.\p"
+	.string "I heard it rose out of the sea\n"
+	.string "when a volcano erupted.\p"
+	.string "I'll call you if there's news from\n"
+	.string "the POKéMON LAB!$"
+#endif
+
+Route20_Text_MissyRegister::
+#if GERMAN
+	.string "Auf der Zinnoberinsel haben Pokémon\n"
+	.string "eine verlassene Villa besiedelt!\p"
+	.string "Ich ruf dich an, wenn ich wieder\n"
+	.string "herübergeschwommen bin!$"
+#else
+	.string "POKéMON have taken over an\n"
+	.string "abandoned mansion on CINNABAR.\p"
+	.string "They call it the POKéMON MANSION\n"
+	.string "now.\p"
+	.string "I'll call you when I've swum over again!$"
+#endif
+
+Route21_North_Text_WadeRegister::
+#if GERMAN
+	.string "Oh nein! Ich habe schon wieder\n"
+	.string "ein Karpador gefangen!\p"
+	.string "Ich ruf dich an, wenn ich mal was\n"
+	.string "anderes fange!$"
+#else
+	.string "I seem to only catch MAGIKARP!\p"
+	.string "I'll call you if I ever catch something\n"
+	.string "else!$"
+#endif
+
+Route21_North_Text_LilRegister::
+#if GERMAN
+	.string "Ewe: Ich bin müde.\n"
+	.string "Können wir nicht schon nach Hause?\p"
+	.string "Tobi: Wir rufen dich an! Meine Schwester\n"
+	.string "braucht mehr Training!$"
+#else
+	.string "LIL: I'm tired.\n"
+	.string "Can't we go home already?\p"
+	.string "IAN: We'll call you! My sis needs more\n"
+	.string "exercise!$"
+#endif
+
+Route21_North_Text_IanRegister::
+#if GERMAN
+	.string "Tobi: Komm schon, Schwesterlein!\p"
+	.string "So wirst du nie Gewicht verlieren!\p"
+	.string "Ewe: Seufz… Er ruft dich bestimmt an…$"
+#else
+	.string "IAN: Come on, Sis!\p"
+	.string "You're not going to lose weight\n"
+	.string "like this!\p"
+	.string "LIL: Sigh… He's going to call you, I just\n"
+	.string "know it…$"
+#endif
+
+Route21_South_Text_JackRegister::
+#if GERMAN
+	.string "Wo hast du deine Pokémon gefangen?\p"
+	.string "Erzähl's mir am Telefon! Ich ruf dich an!$"
+#else
+	.string "Where'd you catch your POKéMON?\p"
+	.string "Tell me over the phone! I'll call you!$"
+#endif
+
+Route21_South_Text_RolandRegister::
+#if GERMAN
+	.string "Die Sonne hat mich wie ein Hähnchen\n"
+	.string "geröstet!\p"
+	.string "Wenn mein Sonnenbrand weg ist, ruf ich\n"
+	.string "dich an!$"
+#else
+	.string "I'm sunburnt to a crisp!\p"
+	.string "Once my sunburn's gone, I'll call you!$"
+#endif

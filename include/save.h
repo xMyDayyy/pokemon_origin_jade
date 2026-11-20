@@ -16,8 +16,11 @@
 
 #define SPECIAL_SECTOR_SENTINEL 0xB39D
 
-#define SAVE_VERSION       5
+#define SAVE_VERSION       6
 #define SAVE_VERSION_MAGIC 0xE8F828BC
+// Older saves are refused (LoadGameSave reports SAVE_STATUS_OUTDATED) and
+// the game starts fresh. 6: PokeCom rematch flag block.
+#define SAVE_VERSION_MIN_SUPPORTED 6
 
 #define SECTOR_ID_SAVEBLOCK2          0
 #define SECTOR_ID_SAVEBLOCK1_START    1
@@ -37,6 +40,7 @@
 #define SAVE_STATUS_EMPTY    0
 #define SAVE_STATUS_OK       1
 #define SAVE_STATUS_CORRUPT  2
+#define SAVE_STATUS_OUTDATED 3 // older SAVE_VERSION: handled like CORRUPT, own message
 #define SAVE_STATUS_NO_FLASH 4
 #define SAVE_STATUS_ERROR    0xFF
 

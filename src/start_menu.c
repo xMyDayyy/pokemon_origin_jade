@@ -1213,6 +1213,7 @@ static u8 SaveConfirmInputCallback(void)
         {
         case SAVE_STATUS_EMPTY:
         case SAVE_STATUS_CORRUPT:
+        case SAVE_STATUS_OUTDATED:
             if (gDifferentSaveFile == FALSE && !SKIP_SAVE_CONFIRMATION)
             {
                 sSaveDialogCallback = SaveFileExistsCallback;

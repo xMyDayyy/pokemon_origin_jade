@@ -3,7 +3,7 @@
 // Regenerate: python3 tools/make_debug_states.py (check: --check, shared state: --overlap).
 
 #define KANTO_COMPLETE_STARTER 2  // VAR_STARTER_MON: 0 Bulbasaur, 1 Squirtle, 2 Charmander
-#define KANTO_COMPLETE_MONEY 345732  // start money and every prize of the run
+#define KANTO_COMPLETE_MONEY 253788  // start money and every prize of the run
 
 struct KantoCompleteMon { u16 species; u8 level; };
 struct KantoCompleteVar { u16 var; u16 value; };
@@ -125,7 +125,6 @@ static const u16 sKantoCompleteFlagsSet[] =
     FLAG_GOT_TM39_FROM_BROCK,
     FLAG_GOT_TM_SLEEP_TALK_CELADON_ROOF,
     FLAG_GOT_TM_THUNDER_WAVE_FROM_CARTER,
-    FLAG_GOT_VS_SEEKER,
     FLAG_HAS_MATCH_CALL,
     FLAG_HELPED_BILL_IN_SEA_COTTAGE,
     FLAG_HIDDEN_ITEM_CELADON_CITY_GAME_CORNER_COINS,
@@ -468,7 +467,7 @@ static const u16 sKantoCompleteFlagsSet[] =
     FLAG_OPENED_ROCKET_HIDEOUT,
     FLAG_OPENED_START_MENU,
     FLAG_PALLET_LADY_NOT_BLOCKING_SIGN,
-    FLAG_RECEIVED_CATCHING_CHARM,
+    FLAG_RECEIVED_EXP_CHARM,
     FLAG_RECEIVED_OVAL_CHARM,
     FLAG_RECEIVED_POKENAV,
     FLAG_RECEIVED_RUNNING_SHOES,
@@ -989,7 +988,6 @@ static const struct KantoCompleteItem sKantoCompleteBag[] =
     { ITEM_BURN_HEAL, 3 },
     { ITEM_CALCIUM, 4 },
     { ITEM_CARBOS, 3 },
-    { ITEM_CATCHING_CHARM, 1 },
     { ITEM_CHARCOAL, 1 },
     { ITEM_CHERI_BERRY, 2 },
     { ITEM_CHESTO_BERRY, 2 },
@@ -1007,6 +1005,7 @@ static const struct KantoCompleteItem sKantoCompleteBag[] =
     { ITEM_ESCAPE_ROPE, 6 },
     { ITEM_ETHER, 8 },
     { ITEM_EVERSTONE, 1 },
+    { ITEM_EXP_CHARM, 1 },
     { ITEM_EXP_SHARE, 1 },
     { ITEM_EXP_SHARE_SMALL, 1 },
     { ITEM_FAB_MAIL, 1 },
@@ -1183,7 +1182,6 @@ static const struct KantoCompleteItem sKantoCompleteBag[] =
     { ITEM_TM91, 1 },
     { ITEM_ULTRA_BALL, 7 },
     { ITEM_UPGRADE, 1 },
-    { ITEM_VS_SEEKER, 1 },
     { ITEM_WATER_STONE, 2 },
     { ITEM_WEPEAR_BERRY, 1 },
     { ITEM_X_ACCURACY, 1 },
@@ -1205,12 +1203,12 @@ static const struct KantoCompleteItem sKantoCompletePcItems[] =
 // Party: the chosen starter's final stage first.
 static const struct KantoCompleteMon sKantoCompleteParty[] =
 {
-    { SPECIES_CHARIZARD, 49 },
-    { SPECIES_PIDGEOT, 43 },
-    { SPECIES_RAICHU, 44 },
-    { SPECIES_NIDOKING, 43 },
-    { SPECIES_GYARADOS, 42 },
-    { SPECIES_SNORLAX, 42 },
+    { SPECIES_CHARIZARD, 43 },
+    { SPECIES_PIDGEOT, 38 },
+    { SPECIES_RAICHU, 37 },
+    { SPECIES_NIDOKING, 37 },
+    { SPECIES_GYARADOS, 36 },
+    { SPECIES_SNORLAX, 35 },
 };
 
 // PC: the other final stages of the Kanto lines (every branch).
@@ -1225,7 +1223,7 @@ static const struct KantoCompleteMon sKantoCompleteMons[] =
     { SPECIES_ARBOK, 22 },
     { SPECIES_SANDSLASH, 22 },
     { SPECIES_NIDOQUEEN, 18 },
-    { SPECIES_CLEFABLE, 32 },
+    { SPECIES_CLEFABLE, 11 },
     { SPECIES_NINETALES, 17 },
     { SPECIES_WIGGLYTUFF, 7 },
     { SPECIES_GOLBAT, 22 },

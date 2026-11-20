@@ -205,7 +205,27 @@ VermilionCity_Gym_EventScript_LtSurge::
 	famechecker FAMECHECKER_LTSURGE, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
 	trainerbattle_single TRAINER_LEADER_LT_SURGE, VermilionCity_Gym_Text_LtSurgeIntro, VermilionCity_Gym_Text_LtSurgeDefeat, VermilionCity_Gym_EventScript_DefeatedLtSurge, NO_MUSIC
 	goto_if_unset FLAG_GOT_TM34_FROM_SURGE, VermilionCity_Gym_EventScript_GiveTM34
+	goto_if_set FLAG_IS_KANTO_CHAMPION, VermilionCity_Gym_EventScript_LtSurgeRematch
 	msgbox VermilionCity_Gym_Text_LtSurgePostBattle
+	release
+	end
+
+@ Rematch after the Kanto title: as often as the player likes, money only.
+@ After the Johto title the POSTOBC team. Level band: FLAG_TEMP_KANTO_LEADER_REMATCH.
+VermilionCity_Gym_EventScript_LtSurgeRematch::
+	msgbox VermilionCity_Gym_Text_LtSurgeRematch, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoGym_EventScript_RematchDeclined
+	closemessage
+	setflag FLAG_TEMP_KANTO_LEADER_REMATCH
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, VermilionCity_Gym_EventScript_LtSurgeRematchPostJohto
+	trainerbattle_no_intro TRAINER_LTSURGE_HNS, VermilionCity_Gym_Text_LtSurgeRematchDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
+	release
+	end
+
+VermilionCity_Gym_EventScript_LtSurgeRematchPostJohto::
+	trainerbattle_no_intro TRAINER_LTSURGE_POSTOBC_HNS, VermilionCity_Gym_Text_LtSurgeRematchDefeat
+	clearflag FLAG_TEMP_KANTO_LEADER_REMATCH
 	release
 	end
 
@@ -585,4 +605,27 @@ VermilionCity_Gym_Text_ObedienceLevel20::
 	.string "obey you!\p"
 	.string "Stronger ones may ignore your\n"
 	.string "orders.$"
+#endif
+
+VermilionCity_Gym_Text_LtSurgeRematch::
+#if GERMAN
+	.string "Heh, Kiddie! Du bist wieder da!\p"
+	.string "Meine Elektro-Pokémon stehen unter\n"
+	.string "Hochspannung!\p"
+	.string "Diesmal paralysieren wir dich!\p"
+	.string "Möchtest du einen Rückkampf?$"
+#else
+	.string "Hey, kid! You're back!\p"
+	.string "My ELECTRIC-type POKéMON are\n"
+	.string "fully charged and ready to go!\p"
+	.string "This time, we'll shock you stiff!\p"
+	.string "Want to have a rematch?$"
+#endif
+
+VermilionCity_Gym_Text_LtSurgeRematchDefeat::
+#if GERMAN
+	.string "Wow! Du bist ein echter Profi,\n"
+	.string "Kiddie!$"
+#else
+	.string "Whoa! You're the real deal, kid!$"
 #endif

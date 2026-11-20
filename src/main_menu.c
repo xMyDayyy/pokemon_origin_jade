@@ -269,6 +269,12 @@ static const u8 gText_SaveFileErased[]          = _("Der Spielstand wurde gelös
 #else
 static const u8 gText_SaveFileErased[] = _("The save file has been erased\ndue to corruption or damage.");
 #endif
+// Save from an older SAVE_VERSION (LoadGameSave): not loaded, still on the flash.
+#if GERMAN
+static const u8 gText_SaveFileOutdated[]        = _("Dieser Spielstand stammt aus einer\nälteren Version des Spiels.\pEr kann nicht geladen werden und\nwird beim Speichern überschrieben.");
+#else
+static const u8 gText_SaveFileOutdated[] = _("This save file is from an older\nversion of the game.\pIt cannot be loaded and will be\noverwritten when you save.");
+#endif
 #if GERMAN
 static const u8 gJPText_No1MSubCircuit[]        = _("1Mサブきばんが ささっていません！");
 #else
@@ -785,6 +791,11 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
             break;
         case SAVE_STATUS_CORRUPT:
             CreateMainMenuErrorWindow(gText_SaveFileErased);
+            tMenuType = HAS_NO_SAVED_GAME;
+            gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;
+            break;
+        case SAVE_STATUS_OUTDATED:
+            CreateMainMenuErrorWindow(gText_SaveFileOutdated);
             tMenuType = HAS_NO_SAVED_GAME;
             gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;
             break;

@@ -170,21 +170,13 @@ SlateportCity_Harbor_EventScript_AskForTicket::
 	end
 
 SlateportCity_Harbor_EventScript_ChooseDestination::
-	goto_if_set FLAG_MET_SCOTT_ON_SS_TIDAL, SlateportCity_Harbor_EventScript_ChooseDestinationWithBattleFrontier
-	multichoicedefault 18, 8, MULTI_SSTIDAL_SLATEPORT_NO_BF, 2, FALSE
+	setvar VAR_0x8008, SHIP_PORT_SLATEPORT
+	call Common_EventScript_TidalMenu
 	switch VAR_RESULT
-	case 0, SlateportCity_Harbor_EventScript_Lilycove
-	case 1, SlateportCity_Harbor_EventScript_CancelDestinationSelect
-	case MULTI_B_PRESSED, SlateportCity_Harbor_EventScript_CancelDestinationSelect
-	end
-
-SlateportCity_Harbor_EventScript_ChooseDestinationWithBattleFrontier::
-	multichoicedefault 17, 6, MULTI_SSTIDAL_SLATEPORT_WITH_BF, 2, FALSE
-	switch VAR_RESULT
-	case 0, SlateportCity_Harbor_EventScript_Lilycove
-	case 1, SlateportCity_Harbor_EventScript_BattleFrontier
-	case 2, SlateportCity_Harbor_EventScript_CancelDestinationSelect
-	case MULTI_B_PRESSED, SlateportCity_Harbor_EventScript_CancelDestinationSelect
+	case SHIP_DEST_LILYCOVE, SlateportCity_Harbor_EventScript_Lilycove
+	case SHIP_DEST_BATTLE_FRONTIER, SlateportCity_Harbor_EventScript_BattleFrontier
+	case SHIP_DEST_BIRTH_ISLAND, SlateportCity_Harbor_EventScript_BirthIsland
+	goto SlateportCity_Harbor_EventScript_CancelDestinationSelect
 	end
 
 @ Unused. Should be impossible for player to reach Ferry without having received SS Tidal ticket
@@ -208,6 +200,15 @@ SlateportCity_Harbor_EventScript_BattleFrontier::
 	goto_if_eq VAR_RESULT, NO, SlateportCity_Harbor_EventScript_ChooseNewDestination
 	call SlateportCity_Harbor_EventScript_BoardFerry
 	warp MAP_BATTLE_FRONTIER_OUTSIDE_WEST_HNS, 20, 67
+	waitstate
+	release
+	end
+
+SlateportCity_Harbor_EventScript_BirthIsland::
+	msgbox Common_Text_TidalBirthIslandItIs, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SlateportCity_Harbor_EventScript_ChooseNewDestination
+	call SlateportCity_Harbor_EventScript_BoardFerry
+	warp MAP_BIRTH_ISLAND_EXTERIOR_HNS, 13, 23
 	waitstate
 	release
 	end

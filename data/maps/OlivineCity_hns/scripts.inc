@@ -278,27 +278,11 @@ OlivineCity_EventScript_Item_ChargeBeam::
 	finditem ITEM_TM_CHARGE_BEAM
 	end
 
-@ Aurora Ticket (Birth Island) after the first trip to Hoenn.
+@ The Aurora Ticket now comes from Oak for the completed Hoenn Pokedex.
 OlivineCity_EventScript_EonTicketWoman::
 	lock
 	faceplayer
-	checkitem ITEM_AURORA_TICKET
-	goto_if_eq VAR_RESULT, TRUE, OlivineCity_EventScript_EonTicketWomanAfter
-	goto_if_ge VAR_HOENN_ARRIVAL_STATE, 1, OlivineCity_EventScript_EonTicketWomanChamp
 	msgbox OlivineCity_Text_EonTicketWoman1, MSGBOX_DEFAULT
-	closemessage
-	release
-	end
-
-OlivineCity_EventScript_EonTicketWomanChamp::
-	msgbox OlivineCity_Text_EonTicketWoman2, MSGBOX_DEFAULT
-	giveitem ITEM_AURORA_TICKET
-	closemessage
-	release
-	end
-
-OlivineCity_EventScript_EonTicketWomanAfter::
-	msgbox OlivineCity_Text_EonTicketWoman3, MSGBOX_DEFAULT
 	closemessage
 	release
 	end
@@ -322,30 +306,6 @@ OlivineCity_Text_EonTicketWoman1:
 	.string "My name is MARY!\p"
 	.string "Just kidding, but I love MARY's\n"
 	.string "radio show!$"
-#endif
-
-OlivineCity_Text_EonTicketWoman2:
-#if GERMAN
-	.string "Du musst {PLAYER} sein!!!\p"
-	.string "Oh mein Gott! Der Champion!\p"
-	.string "Ich hörte von dir in Marys\n"
-	.string "Radiosendung!\p"
-	.string "Hier, nimm das!$"
-#else
-	.string "You must be {PLAYER}!!!\p"
-	.string "Oh my goodness! The champion!\p"
-	.string "I heard about you on MARY's\n"
-	.string "radio show!\p"
-	.string "Here, take this!$"
-#endif
-
-OlivineCity_Text_EonTicketWoman3:
-#if GERMAN
-	.string "Ich glaube es nicht!\n"
-	.string "Ich hab den Champion getroffen!!!$"
-#else
-	.string "I can't believe I met the\n"
-	.string "champion!!!$"
 #endif
 
 OlivineCity_Text_Sailor1:

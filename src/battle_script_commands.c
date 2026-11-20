@@ -9,6 +9,7 @@
 #include "battle_scripts.h"
 #include "level_scaling.h"
 #include "config/hoenn_scaling.h"
+#include "config/level_remap.h"
 #include "battle_switch_in.h"
 #include "battle_environment.h"
 #include "battle_z_move.h"
@@ -10906,11 +10907,19 @@ static const u8 sBadgeLevel[] = {
 };
 
 #if IS_HNS
+#if LEVEL_REMAP == TRUE
+// Origin Jade: levels above which the malus starts in Johto and Hoenn, by the
+// region's badge count: the fixed ace level of the next gym leader + 2
+// (include/config/level_remap.h).
+static const u8 sBadgeLevelJohto[ARRAY_COUNT(sBadgeLevel)] = { 50, 53, 56, 58, 61, 64, 65, 69, 100 };
+static const u8 sBadgeLevelHoenn[ARRAY_COUNT(sBadgeLevel)] = { 76, 79, 82, 85, 86, 87, 92, 95, 100 };
+#else
 // Origin Jade: levels above which the malus starts in Johto and Hoenn, by the
 // region's badge count: the corridor ceiling of the next gym's tier
 // (include/config/johto_scaling.h, hoenn_scaling.h).
 static const u8 sBadgeLevelJohto[ARRAY_COUNT(sBadgeLevel)] = { 50, 50, 53, 53, 55, 55, 58, 64, 100 };
 static const u8 sBadgeLevelHoenn[ARRAY_COUNT(sBadgeLevel)] = { 85, 85, 90, 95, 95, 95, 100, 100, 100 };
+#endif
 #endif
 
 static u32 ComputeCaptureOdds(u32 wildMonBattler, u32 playerBattler)
@@ -12059,8 +12068,16 @@ void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBat
     if (CheckBagHasItem(ITEM_EXP_CHARM, 1)) //is also for other exp boosting Powers if/when implemented
         *expAmount = (*expAmount * 150) / 100;
 
+#if LEVEL_REMAP == TRUE
+    // Fixed levels: experience by region and against the opponent's level (config/level_remap.h).
+    {
+        u8 expGetterLvl = GetMonData(&gPlayerParty[expGetterMonId], MON_DATA_LEVEL);
+        *expAmount = (*expAmount * (s32)GetRemapExpPercent(expGetterLvl, gBattleMons[faintedBattler].level)) / 100;
+        if (*expAmount < 1)
+            *expAmount = 1;
+    }
+#elif EXP_DAMP_ENABLED == TRUE
     // Experience damping by the receiving mon's level, set in config/hoenn_scaling.h.
-#if EXP_DAMP_ENABLED == TRUE
     {
         u8 expGetterLvl = GetMonData(&gPlayerParty[expGetterMonId], MON_DATA_LEVEL);
         if (expGetterLvl > EXP_DAMP_MID_UNTIL)

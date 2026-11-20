@@ -2029,6 +2029,9 @@ MatchCall_HNS_Reena_Battle::
 	.string "Let's battle!$"
 #endif
 
+@ Unused HnS Kanto sets (no table row). The Biker, Fisherman, Bug Catcher,
+@ Swimmer and Hiker sets were reworked into data/text/match_call_kanto.inc.
+
 @ Alex - Battle Girl, Route 13
 MatchCall_HNS_Alex_General1::
 #if GERMAN
@@ -2071,51 +2074,6 @@ MatchCall_HNS_Alex_Battle::
 	.string "It's ALEX!\p"
 	.string "My regal POKéMON are ready\n"
 	.string "for a rematch! Come to ROUTE 13!$"
-#endif
-
-@ Riley - Biker, Route 17
-MatchCall_HNS_Riley_General1::
-#if GERMAN
-	.string "Yo, {PLAYER}!\n"
-	.string "Hier ist Hannes.\p"
-	.string "Die Radstrecke ist die beste.\n"
-	.string "Nichts geht über den Wind im Gesicht.\p"
-	.string "{STR_VAR_3} liebt das Tempo auch!$"
-#else
-	.string "Yo, {PLAYER}!\n"
-	.string "RILEY here.\p"
-	.string "CYCLING ROAD is the best.\n"
-	.string "Nothing beats the wind\l"
-	.string "in your face.\p"
-	.string "{STR_VAR_3} loves the\n"
-	.string "speed too!$"
-#endif
-
-MatchCall_HNS_Riley_General2::
-#if GERMAN
-	.string "Yo, {PLAYER}!\p"
-	.string "Ihr Johto-Kids sind gar nicht so\n"
-	.string "übel. Hab euch wohl unterschätzt.\p"
-	.string "Aber lass es dir nicht zu Kopf steigen!$"
-#else
-	.string "Yo, {PLAYER}!\p"
-	.string "You JOHTO kids aren't bad.\n"
-	.string "Maybe I misjudged you.\p"
-	.string "Don't let it go to your\n"
-	.string "head though!$"
-#endif
-
-MatchCall_HNS_Riley_Battle::
-#if GERMAN
-	.string "Yo, {PLAYER}!\n"
-	.string "Hier ist Hannes.\p"
-	.string "Komm runter zur Radstrecke!\n"
-	.string "Ich will einen Rückkampf!$"
-#else
-	.string "Yo, {PLAYER}!\n"
-	.string "RILEY here.\p"
-	.string "Get down to CYCLING ROAD!\n"
-	.string "I want a rematch!$"
 #endif
 
 @ Trevor - Juggler, Route 14
@@ -2162,45 +2120,6 @@ MatchCall_HNS_Trevor_Battle::
 	.string "It's TREVOR.\p"
 	.string "My friends are ready for battle!\n"
 	.string "Come see on ROUTE 14!$"
-#endif
-
-@ Kyle - Fisherman, Route 12
-MatchCall_HNS_Kyle_General1::
-#if GERMAN
-	.string "Wer ist da dran?!\n"
-	.string "Hab ich dich angerufen?\p"
-	.string "Hier ist Alain. Vergiss das nicht!$"
-#else
-	.string "Who is this?!\n"
-	.string "I called you?\p"
-	.string "This is KYLE. Don't forget!$"
-#endif
-
-MatchCall_HNS_Kyle_General2::
-#if GERMAN
-	.string "Hey, {PLAYER}!\p"
-	.string "Erinnerst du dich?\n"
-	.string "An die Geheimnisse des Angelns?$"
-#else
-	.string "Hey, {PLAYER}!\p"
-	.string "Do you remember?\n"
-	.string "The secrets of fishing?$"
-#endif
-
-MatchCall_HNS_Kyle_Battle::
-#if GERMAN
-	.string "Hey, {PLAYER}!\n"
-	.string "Hier ist Alain.\p"
-	.string "Ich hab ein paar starke neue Pokémon\n"
-	.string "geangelt!\p"
-	.string "Komm zu Route 12 für einen Kampf!$"
-#else
-	.string "Hey, {PLAYER}!\n"
-	.string "KYLE here.\p"
-	.string "I've reeled in some tough\n"
-	.string "new POKéMON!\p"
-	.string "Come to ROUTE 12 for\n"
-	.string "a battle!$"
 #endif
 
 @ Carter - Pokefan, Route 14
@@ -2287,92 +2206,6 @@ MatchCall_HNS_Hillary_Battle::
 	.string "Come test us on ROUTE 15!$"
 #endif
 
-@ Rob - Bug Catcher, Route 2
-MatchCall_HNS_Rob_General1::
-#if GERMAN
-	.string "Hey, {PLAYER}!\n"
-	.string "Hier ist Götz!\p"
-	.string "Der Vertania-Wald ist voller cooler\n"
-	.string "Käfer!$"
-#else
-	.string "Hey, {PLAYER}!\n"
-	.string "ROB here!\p"
-	.string "VIRIDIAN FOREST is full\n"
-	.string "of cool bugs!$"
-#endif
-
-MatchCall_HNS_Rob_General2::
-#if GERMAN
-	.string "Hey, {PLAYER}!\p"
-	.string "Ich hab einen Käfer-Arenaleiter im\n"
-	.string "Vertania-Wald gesehen!$"
-#else
-	.string "Hey, {PLAYER}!\p"
-	.string "I saw a BUG TYPE GYM\n"
-	.string "LEADER in VIRIDIAN FOREST!$"
-#endif
-
-MatchCall_HNS_Rob_Battle::
-#if GERMAN
-	.string "Hey, {PLAYER}!\n"
-	.string "Hier ist Götz!\p"
-	.string "Mein Käfer-Team ist stärker als je\n"
-	.string "zuvor!\p"
-	.string "Komm zu Route 2 für einen Rückkampf!$"
-#else
-	.string "Hey, {PLAYER}!\n"
-	.string "ROB here!\p"
-	.string "My bug team is stronger\n"
-	.string "than ever!\p"
-	.string "Come to ROUTE 2 for a\n"
-	.string "rematch!$"
-#endif
-
-@ Nicole - Swimmer, Route 20
-MatchCall_HNS_Nicole_General1::
-#if GERMAN
-	.string "Hi, {PLAYER}!\n"
-	.string "Hier ist Elke!\p"
-	.string "Die Wellen sind heute toll!\n"
-	.string "Meine Pokémon schwimmen gern im\l"
-	.string "offenen Meer.\p"
-	.string "{STR_VAR_3} wird so schnell!$"
-#else
-	.string "Hi, {PLAYER}!\n"
-	.string "It's NICOLE!\p"
-	.string "The waves are great today!\n"
-	.string "My POKéMON love swimming\l"
-	.string "in the open sea.\p"
-	.string "{STR_VAR_3} is getting\n"
-	.string "so fast!$"
-#endif
-
-MatchCall_HNS_Nicole_General2::
-#if GERMAN
-	.string "Hi, {PLAYER}!\p"
-	.string "Schwimmen mit Pokémon ist die beste\n"
-	.string "Übung.$"
-#else
-	.string "Hi, {PLAYER}!\p"
-	.string "Swimming with POKéMON is\n"
-	.string "the best exercise.$"
-#endif
-
-MatchCall_HNS_Nicole_Battle::
-#if GERMAN
-	.string "Hi, {PLAYER}!\n"
-	.string "Hier ist Elke!\p"
-	.string "Meine Wasser-Pokémon wollen unbedingt\n"
-	.string "kämpfen!\p"
-	.string "Komm zu Route 20!$"
-#else
-	.string "Hi, {PLAYER}!\n"
-	.string "It's NICOLE!\p"
-	.string "My water POKéMON are\n"
-	.string "raring to battle!\p"
-	.string "Come to ROUTE 20!$"
-#endif
-
 @ Billy - School Kid, Route 15
 MatchCall_HNS_Billy_General1::
 #if GERMAN
@@ -2415,140 +2248,4 @@ MatchCall_HNS_Billy_Battle::
 	.string "It's BILLY.\p"
 	.string "I learned some new tricks!\n"
 	.string "Come to ROUTE 15!$"
-#endif
-
-@ Kenny - Hiker, Route 13
-MatchCall_HNS_Kenny_General1::
-#if GERMAN
-	.string "Hey, {PLAYER}!\n"
-	.string "Hier ist Hilmar.\p"
-	.string "Wurden wirklich alle Berge von Ozeanen\n"
-	.string "und Flüssen geformt?$"
-#else
-	.string "Hey there, {PLAYER}!\n"
-	.string "KENNY here.\p"
-	.string "Were all mountains really\n"
-	.string "shaped by oceans and rivers?$"
-#endif
-
-MatchCall_HNS_Kenny_General2::
-#if GERMAN
-	.string "Hey, {PLAYER}!\p"
-	.string "Hier ist Hilmar.\n"
-	.string "Ich war im Marmoria-Museum!\p"
-	.string "Wusstest du, dass ganz Kanto\n"
-	.string "einst unter Wasser stand?$"
-#else
-	.string "Hey, {PLAYER}!\p"
-	.string "It's KENNY here.\n"
-	.string "I visited the PEWTER museum!\p"
-	.string "Did you know the entire KANTO\n"
-	.string "region was once under water?$"
-#endif
-
-MatchCall_HNS_Kenny_Battle::
-#if GERMAN
-	.string "Hey, {PLAYER}!\n"
-	.string "Hier ist Hilmar.\p"
-	.string "Ich hab hart in den Bergen trainiert!\p"
-	.string "Komm zu Route 13 für einen Kampf!$"
-#else
-	.string "Hey there, {PLAYER}!\n"
-	.string "KENNY here.\p"
-	.string "I've trained hard in the\n"
-	.string "mountains!\p"
-	.string "Come to ROUTE 13 for\n"
-	.string "a battle!$"
-#endif
-
-@ Joel - Biker, Route 17
-MatchCall_HNS_Joel_General1::
-#if GERMAN
-	.string "Hey, {PLAYER}!\n"
-	.string "Hier ist Manuel.\p"
-	.string "Ich arbeite daran, im Kampf cool\n"
-	.string "auszusehen.\p"
-	.string "{STR_VAR_3} hat ein paar schicke neue\n"
-	.string "Attacken!$"
-#else
-	.string "Hey, {PLAYER}!\n"
-	.string "JOEL here.\p"
-	.string "I've been working on\n"
-	.string "looking cool in battle.\p"
-	.string "{STR_VAR_3} has some\n"
-	.string "flashy new moves!$"
-#endif
-
-MatchCall_HNS_Joel_General2::
-#if GERMAN
-	.string "Hey, {PLAYER}!\p"
-	.string "Hier ist Manuel.\p"
-	.string "Es gab einen Unfall auf der Radstrecke.\p"
-	.string "Sicher zu sein, ist das Coolste, was man\n"
-	.string "sein kann.$"
-#else
-	.string "Hey, {PLAYER}!\p"
-	.string "JOEL here.\p"
-	.string "There was an accident on\n"
-	.string "CYCLING ROAD.\p"
-	.string "Being safe is the coolest thing\n"
-	.string "you can be.$"
-#endif
-
-MatchCall_HNS_Joel_Battle::
-#if GERMAN
-	.string "Hey, {PLAYER}!\n"
-	.string "Hier ist Manuel.\p"
-	.string "Ich seh cool aus und kämpfe cool! Komm\n"
-	.string "zur Radstrecke!$"
-#else
-	.string "Hey, {PLAYER}!\n"
-	.string "JOEL here.\p"
-	.string "I look AND fight cool now!\n"
-	.string "Come to CYCLING ROAD!$"
-#endif
-
-@ Charles - Biker, Route 17
-MatchCall_HNS_Charles_General1::
-#if GERMAN
-	.string "Hey, {PLAYER}!\n"
-	.string "Hier ist Fridolin.\p"
-	.string "Ich war so etwas wie ein Herzensbrecher\n"
-	.string "in Einall.\p"
-	.string "Jetzt bin ich ein Highway-Star!$"
-#else
-	.string "Hey, {PLAYER}!\n"
-	.string "CHARLES here.\p"
-	.string "I was something of a\n"
-	.string "heartbreaker in UNOVA.\p"
-	.string "Now I'm a highway star!$"
-#endif
-
-MatchCall_HNS_Charles_General2::
-#if GERMAN
-	.string "Hey, {PLAYER}!\p"
-	.string "Die Radstrecke bei Nacht ist etwas\n"
-	.string "ganz Besonderes.\p"
-	.string "Die Straßenlaternen und der Wind… das\n"
-	.string "ist Freiheit!$"
-#else
-	.string "Hey, {PLAYER}!\p"
-	.string "CYCLING ROAD at night is\n"
-	.string "something else.\p"
-	.string "The streetlights and the\n"
-	.string "wind… it's freedom!$"
-#endif
-
-MatchCall_HNS_Charles_Battle::
-#if GERMAN
-	.string "Hey, {PLAYER}!\n"
-	.string "Hier ist Fridolin.\p"
-	.string "Die Highway-Stars wollen Rache! Komm\n"
-	.string "zur Radstrecke!$"
-#else
-	.string "Hey, {PLAYER}!\n"
-	.string "CHARLES here.\p"
-	.string "The highway stars want\n"
-	.string "revenge! Come to\l"
-	.string "CYCLING ROAD!$"
 #endif

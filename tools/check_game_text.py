@@ -888,8 +888,10 @@ def c_trainer_refs(repo, live):
                 refs[tid].add(file)
             m = re.search(r"\bREMATCH\(\s*(TRAINER_\w+)((?:\s*,\s*TRAINER_\w+)*)", raw)
             if m:
+                # Padded rows repeat the first trainer (Kanto: X, X, X_2, ...).
                 for tier in re.findall(r"TRAINER_\w+", m.group(2)):
-                    first_of[tier] = m.group(1)
+                    if tier != m.group(1):
+                        first_of[tier] = m.group(1)
     return refs, first_of
 
 

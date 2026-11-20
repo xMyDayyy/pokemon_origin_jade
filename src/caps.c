@@ -19,10 +19,20 @@ u8 GetCurrentBadgeCount(void)
     return badgeCount;
 }
 
-u32 GetRegionBadgeCount(u32 mapSecId)
+u32 GetKantoBadgeCount(void)
 {
     u32 i, count = 0;
 
+    for (i = FLAG_BADGE01_GET; i <= FLAG_BADGE08_GET; i++)
+    {
+        if (FlagGet(i))
+            count++;
+    }
+    return count;
+}
+
+u32 GetRegionBadgeCount(u32 mapSecId)
+{
 #if IS_HNS
     switch (GetRegionForSectionId(mapSecId))
     {
@@ -34,12 +44,7 @@ u32 GetRegionBadgeCount(u32 mapSecId)
         break;
     }
 #endif
-    for (i = FLAG_BADGE01_GET; i <= FLAG_BADGE08_GET; i++)
-    {
-        if (FlagGet(i))
-            count++;
-    }
-    return count;
+    return GetKantoBadgeCount();
 }
 
 u32 GetCurrentRegionBadgeCount(void)
@@ -50,34 +55,34 @@ u32 GetCurrentRegionBadgeCount(void)
 // Kanto badges (Kanto level ladder): the next leader's ace, after eight badges the champion's.
 static const u8 sLevelCapTable_Normal[] =
 {
-    [0] = 10,  // no badges
+    [0] = 12,  // no badges
     [1] = 17,  // badge 1
-    [2] = 21,  // badge 2
-    [3] = 28,  // badge 3
-    [4] = 36,  // badge 4
-    [5] = 39,  // badge 5
-    [6] = 42,  // badge 6
-    [7] = 42,  // badge 7
+    [2] = 19,  // badge 2
+    [3] = 22,  // badge 3
+    [4] = 33,  // badge 4
+    [5] = 33,  // badge 5
+    [6] = 35,  // badge 6
+    [7] = 38,  // badge 7
     [8] = 47,  // badge 8
 };
 
 // The next leader's lowest level, after eight badges the champion's.
 static const u8 sLevelCapTable_Hard[] =
 {
-    [0] = 9,
+    [0] = 11,
     [1] = 16,
-    [2] = 19,
-    [3] = 26,
-    [4] = 34,
-    [5] = 37,
-    [6] = 40,
-    [7] = 40,
-    [8] = 45,
+    [2] = 17,
+    [3] = 21,
+    [4] = 31,
+    [5] = 31,
+    [6] = 34,
+    [7] = 36,
+    [8] = 46,
 };
 
 // Post-league caps as in HnS, in Origin Jade's order: the first title (Kanto)
-// raises the cap to 70 for the second region (Johto), the Johto title removes it.
-#define KANTO_MAX_LEVEL 70
+// raises the cap to 75 for the second region (Johto, champion 73), the Johto title removes it.
+#define KANTO_MAX_LEVEL 75
 
 u32 GetCurrentLevelCap(void)
 {

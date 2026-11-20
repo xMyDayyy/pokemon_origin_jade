@@ -1565,16 +1565,8 @@
 #define FLAG_RECEIVED_OLD_SEA_MAP (HOENN_FLAGS_START + 0x306)
 #undef  FLAG_RECEIVED_SS_TICKET
 #define FLAG_RECEIVED_SS_TICKET (HOENN_FLAGS_START + 0x307)
-#undef  FLAG_REGISTERED_DRAKE
-#define FLAG_REGISTERED_DRAKE (HOENN_FLAGS_START + 0x308)
-#undef  FLAG_REGISTERED_GLACIA
-#define FLAG_REGISTERED_GLACIA (HOENN_FLAGS_START + 0x309)
-#undef  FLAG_REGISTERED_PHOEBE
-#define FLAG_REGISTERED_PHOEBE (HOENN_FLAGS_START + 0x30A)
-#undef  FLAG_REGISTERED_SIDNEY
-#define FLAG_REGISTERED_SIDNEY (HOENN_FLAGS_START + 0x30B)
-#undef  FLAG_REGISTERED_WALLACE
-#define FLAG_REGISTERED_WALLACE (HOENN_FLAGS_START + 0x30C)
+// HOENN_FLAGS_START + 0x308 to + 0x30C: retired (Elite Four registered flags,
+// now in flags_rematch.h), see OJ_HOENN_E4_REGISTERED_RETIRED_START.
 #undef  FLAG_SECRET_BASE_REGISTRY_ENABLED
 #define FLAG_SECRET_BASE_REGISTRY_ENABLED (HOENN_FLAGS_START + 0x30D)
 #undef  FLAG_SILPH_10F_DOOR
@@ -1764,24 +1756,12 @@
 
 #define HOENN_FLAGS_END (HOENN_FLAGS_START + 0x368)
 
-// =====================================================================
-// Match Call registration flags, one per gRematchTable entry. Raising
-// HNS_REMATCH_FLAGS_COUNT moves the flags after this block (breaks saves).
-// =====================================================================
-// Not based on HOENN_FLAGS_END, which is redefined below.
-#define HNS_REMATCH_FLAGS_START (HOENN_FLAGS_START + 0x369)
-#define HNS_REMATCH_FLAGS_COUNT 118
+// HOENN_FLAGS_START + 0x369 to + 0x3E1: retired, see OJ_HOENN_REMATCH_RETIRED_START
+// (flags_origin_jade.h). The PokeCom rematch flags, FLAG_MET_MR_STONE and
+// FLAG_HNS_NORMAN_CALL_PENDING are in flags_rematch.h.
 
-#undef  TRAINER_REGISTERED_FLAGS_START
-#define TRAINER_REGISTERED_FLAGS_START HNS_REMATCH_FLAGS_START
-
-// HnS: the player has met Mr. Stone in Rustboro (his PokeNav contact).
-#define FLAG_MET_MR_STONE (HNS_REMATCH_FLAGS_START + HNS_REMATCH_FLAGS_COUNT)
-// HNS_REMATCH_FLAGS_START + HNS_REMATCH_FLAGS_COUNT + 1 is free.
-// HnS: Norman's call comes after VAR_HNS_NORMAN_CALL_STEPS steps outdoors.
-#define FLAG_HNS_NORMAN_CALL_PENDING (HNS_REMATCH_FLAGS_START + HNS_REMATCH_FLAGS_COUNT + 2)
-
+// Fixed end: FLAGS_COUNT and the SaveBlock1 flags[] size depend on it.
 #undef  HOENN_FLAGS_END
-#define HOENN_FLAGS_END FLAG_HNS_NORMAN_CALL_PENDING
+#define HOENN_FLAGS_END (HOENN_FLAGS_START + 0x3E1)
 
 #endif // GUARD_CONSTANTS_FLAGS_HOENN_DE_H

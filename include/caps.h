@@ -2,6 +2,8 @@
 #define GUARD_CAPS_H
 
 u8 GetCurrentBadgeCount(void);
+// Kanto badges (FLAG_BADGE01-08), 0-8.
+u32 GetKantoBadgeCount(void);
 // Badges (0-8) of the region of mapSecId: Kanto FLAG_BADGE01-08, Johto
 // VAR_JOHTO_BADGES, Hoenn VAR_HOENN_BADGES.
 u32 GetRegionBadgeCount(u32 mapSecId);

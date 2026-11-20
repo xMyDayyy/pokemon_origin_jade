@@ -9425,7 +9425,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Agility
 
 === TRAINER_BROCK_HNS ===
-Name: BROCK
+Name: DE_EN(Rocko, BROCK)
 Class: Leader Kanto Hns
 Pic: Leader Brock Hns
 Gender: Male
@@ -9484,7 +9484,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Agility
 
 === TRAINER_MISTY_HNS ===
-Name: MISTY
+Name: DE_EN(Misty, MISTY)
 Class: Leader Kanto Hns
 Pic: Leader Misty Hns
 Gender: Female
@@ -9543,7 +9543,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Thunderbolt
 
 === TRAINER_LTSURGE_HNS ===
-Name: LTSURGE
+Name: DE_EN(Major Bob, LT. SURGE)
 Class: Leader Kanto Hns
 Pic: Leader Surge Hns
 Gender: Male
@@ -9602,7 +9602,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Surf
 
 === TRAINER_ERIKA_HNS ===
-Name: ERIKA
+Name: DE_EN(Erika, ERIKA)
 Class: Leader Kanto Hns
 Pic: Leader Erika Hns
 Gender: Female
@@ -9661,7 +9661,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Attract
 
 === TRAINER_SABRINA_HNS ===
-Name: SABRINA
+Name: DE_EN(Sabrina, SABRINA)
 Class: Leader Kanto Hns
 Pic: Leader Sabrina Hns
 Gender: Female
@@ -9779,7 +9779,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Quiver Dance
 
 === TRAINER_BLAINE_HNS ===
-Name: BLAINE
+Name: DE_EN(Pyro, BLAINE)
 Class: Leader Kanto Hns
 Pic: Leader Blaine Hns
 Gender: Male
@@ -9838,7 +9838,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Amnesia
 
 === TRAINER_BLUE_HNS ===
-Name: DE_EN({B_RIVAL_NAME}, BLUE)
+Name: {B_RIVAL_NAME}
 Class: Leader Kanto Hns
 Pic: Leader Blue Hns
 Gender: Male
@@ -9897,7 +9897,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Morning Sun
 
 === TRAINER_BLUE_2_HNS ===
-Name: BLUE
+Name: {B_RIVAL_NAME}
 Class: Leader Kanto Hns
 Pic: Leader Blue Hns
 Gender: Male
@@ -16380,7 +16380,7 @@ Naive Nature
 - Double-Edge  
 
 === TRAINER_FALKNER_POSTOBC_HNS ===
-Name: FALKNER
+Name: DE_EN(Falk, FALKNER)
 Class: Leader Hns
 Pic: Leader Falkner Hns
 Gender: Male
@@ -16441,7 +16441,7 @@ IVs: 0 Atk
 - Roost  
 
 === TRAINER_BUGSY_POSTOBC_HNS ===
-Name: BUGSY
+Name: DE_EN(Kai, BUGSY)
 Class: Leader Hns
 Pic: Leader Bugsy Hns
 Gender: Male
@@ -16503,7 +16503,7 @@ Level: 69
 - Roost  
 
 === TRAINER_WHITNEY_POSTOBC_HNS ===
-Name: WHITNEY
+Name: DE_EN(Bianka, WHITNEY)
 Class: Leader Hns
 Pic: Leader Whitney Hns
 Gender: Female
@@ -16564,7 +16564,7 @@ Level: 70
 - Baby-Doll Eyes  
 
 === TRAINER_MORTY_POSTOBC_HNS ===
-Name: MORTY
+Name: DE_EN(Jens, MORTY)
 Class: Leader Hns
 Pic: Leader Morty Hns
 Gender: Male
@@ -16628,7 +16628,7 @@ IVs: 0 Atk
 - Thunderbolt  
 
 === TRAINER_CHUCK_POSTOBC_HNS ===
-Name: CHUCK
+Name: DE_EN(Hartwig, CHUCK)
 Class: Leader Hns
 Pic: Leader Chuck Hns
 Gender: Male
@@ -16687,7 +16687,7 @@ Level: 71
 - Mega Kick
 
 === TRAINER_JASMINE_POSTOBC_HNS ===
-Name: JASMINE
+Name: DE_EN(Jasmin, JASMINE)
 Class: Leader Hns
 Pic: Leader Jasmine Hns
 Gender: Female
@@ -16750,7 +16750,7 @@ Level: 70
 - Heavy Slam  
 
 === TRAINER_PRYCE_POSTOBC_HNS ===
-Name: PRYCE
+Name: DE_EN(Norbert, PRYCE)
 Class: Leader Hns
 Pic: Leader Pryce Hns
 Gender: Male
@@ -16813,7 +16813,7 @@ IVs: 0 Atk
 - Protect
 
 === TRAINER_CLAIR_POSTOBC_HNS ===
-Name: CLAIR
+Name: DE_EN(Sandra, CLAIR)
 Class: Leader Hns
 Pic: Leader Clair Hns
 Gender: Female
@@ -16873,7 +16873,7 @@ Level: 70
 - Hyper Beam  
 
 === TRAINER_BROCK_POSTOBC_HNS ===
-Name: BROCK
+Name: DE_EN(Rocko, BROCK)
 Class: Leader Kanto Hns
 Pic: Leader Brock Hns
 Gender: Male
@@ -16933,7 +16933,7 @@ Level: 72
 - Charge  
 
 === TRAINER_MISTY_POSTOBC_HNS ===
-Name: MISTY
+Name: DE_EN(Misty, MISTY)
 Class: Leader Kanto Hns
 Pic: Leader Misty Hns
 Gender: Female
@@ -16997,7 +16997,7 @@ IVs: 0 Atk
 - Recover  
 
 === TRAINER_LTSURGE_POSTOBC_HNS ===
-Name: LTSURGE
+Name: DE_EN(Major Bob, LT. SURGE)
 Class: Leader Kanto Hns
 Pic: Leader Surge Hns
 Gender: Male
@@ -17058,7 +17058,7 @@ IVs: 0 Atk
 - Calm Mind  
 
 === TRAINER_ERIKA_POSTOBC_HNS ===
-Name: ERIKA
+Name: DE_EN(Erika, ERIKA)
 Class: Leader Kanto Hns
 Pic: Leader Erika Hns
 Gender: Female
@@ -17122,7 +17122,7 @@ IVs: 0 Atk
 - Double Team  
 
 === TRAINER_JANINE_POSTOBC_HNS ===
-Name: JANINE
+Name: DE_EN(Janina, JANINE)
 Class: Leader Kanto Hns
 Pic: Leader Janine Hns
 Gender: Female
@@ -17184,7 +17184,7 @@ IVs: 0 Atk
 - Toxic  
 
 === TRAINER_SABRINA_POSTOBC_HNS ===
-Name: SABRINA
+Name: DE_EN(Sabrina, SABRINA)
 Class: Leader Kanto Hns
 Pic: Leader Sabrina Hns
 Gender: Female
@@ -17247,7 +17247,7 @@ IVs: 0 Atk
 - Swift
 
 === TRAINER_BLAINE_POSTOBC_HNS ===
-Name: BLAINE
+Name: DE_EN(Pyro, BLAINE)
 Class: Leader Kanto Hns
 Pic: Leader Blaine Hns
 Gender: Male
@@ -17310,7 +17310,7 @@ IVs: 0 Atk
 - Earth Power  
 
 === TRAINER_BLUE_POSTOBC_HNS ===
-Name: BLUE
+Name: {B_RIVAL_NAME}
 Class: Leader Kanto Hns
 Pic: Leader Blue Hns
 Gender: Male
@@ -17370,7 +17370,7 @@ IVs: 0 Atk
 - Withdraw
 
 === TRAINER_WILL_POSTOBC_HNS ===
-Name: WILL
+Name: DE_EN(Willi, WILL)
 Class: Elite Four Hns
 Pic: Elite Four Will Hns
 Gender: Male
@@ -17434,7 +17434,7 @@ IVs: 0 Atk
 - Protect  
 
 === TRAINER_KOGA_POSTOBC_HNS ===
-Name: KOGA
+Name: DE_EN(Koga, KOGA)
 Class: Elite Four Hns
 Pic: Elite Four Koga Hns
 Gender: Male
@@ -17497,7 +17497,7 @@ Level: 79
 - Confuse Ray  
 
 === TRAINER_BRUNO_POSTOBC_HNS ===
-Name: BRUNO
+Name: DE_EN(Bruno, BRUNO)
 Class: Elite Four Hns
 Pic: Elite Four Bruno Hns
 Gender: Male
@@ -17558,7 +17558,7 @@ Level: 79
 - Rock Slide  
 
 === TRAINER_KAREN_POSTOBC_HNS ===
-Name: KAREN
+Name: DE_EN(Melanie, KAREN)
 Class: Elite Four Hns
 Pic: Elite Four Karen Hns
 Gender: Female
@@ -17618,7 +17618,7 @@ Level: 79
 - Destiny Bond  
 
 === TRAINER_LANCE_POSTOBC_HNS ===
-Name: LANCE
+Name: DE_EN(Siegfried, LANCE)
 Class: Champion Hns
 Pic: Champion Lance Hns
 Gender: Male

@@ -26,13 +26,10 @@
 // ---------------------------------------------------------------------
 // Legendary flee cooldowns, 2 bits per encounter (src/legendaries_oj.c).
 #define VAR_LEGENDARY_FLEE_KANTO    (OJ_VARS_KANTO + 0)
-// VS Seeker steps (src/vs_seeker.c): low byte = steps since the last use,
-// high byte = steps since trainers started to want a rematch. Up to 100 each.
-#define VAR_VS_SEEKER_STEPS         (OJ_VARS_KANTO + 1)
-// Trainers that want a VS Seeker rematch on the current map: bit n = local id n + 1
-// (LO: local ids 1-16, HI: 17-32). Cleared on every map change.
-#define VAR_VS_SEEKER_REMATCH_LO    (OJ_VARS_KANTO + 2)
-#define VAR_VS_SEEKER_REMATCH_HI    (OJ_VARS_KANTO + 3)
+// Retired (never reuse): were the VS Seeker's step counter and rematch masks.
+#define VAR_OJ_UNUSED_KANTO_1       (OJ_VARS_KANTO + 1)
+#define VAR_OJ_UNUSED_KANTO_2       (OJ_VARS_KANTO + 2)
+#define VAR_OJ_UNUSED_KANTO_3       (OJ_VARS_KANTO + 3)
 // Saffron's Trainer Fan Club (src/trainer_fan_club.c); VAR_FANCLUB_* are Lilycove's.
 #define VAR_SAFFRON_FANCLUB_FAN_COUNTER      (OJ_VARS_KANTO + 4)
 #define VAR_SAFFRON_FANCLUB_LOSE_FAN_TIMER   (OJ_VARS_KANTO + 5)

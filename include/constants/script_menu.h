@@ -200,6 +200,8 @@
 #define SHIP_PORT_OLIVINE                  0
 #define SHIP_PORT_VERMILION                1
 #define SHIP_PORT_ISLAND                   2
+#define SHIP_PORT_SLATEPORT                3
+#define SHIP_PORT_LILYCOVE                 4
 
 // Lilycove SS Tidal Multichoice Selections
 #define SSTIDAL_SELECTION_SLATEPORT        0

@@ -491,6 +491,19 @@ Common_EventScript_ShipMenuTopRow::
 	setvar VAR_0x8009, 1
 	return
 
+@ S.S. Tidal menu of Slateport's and Lilycove's harbours (after the Hoenn title).
+@ In: VAR_0x8008 = SHIP_PORT_SLATEPORT or SHIP_PORT_LILYCOVE. Out: VAR_RESULT = SHIP_DEST_* or MULTI_B_PRESSED.
+Common_EventScript_TidalMenu::
+	setvar VAR_0x8009, 12
+	call_if_eq VAR_0x8008, SHIP_PORT_SLATEPORT, Common_EventScript_ShipMenuPushLilycove
+	call_if_eq VAR_0x8008, SHIP_PORT_LILYCOVE, Common_EventScript_ShipMenuPushSlateport
+	call_if_set FLAG_MET_SCOTT_ON_SS_TIDAL, Common_EventScript_ShipMenuPushBattleFrontier
+	call Common_EventScript_ShipMenuPushBirthIsland
+	dynmultipush gText_Exit, SHIP_DEST_EXIT
+	subvar VAR_0x8009, 2
+	dynmultistack 28, VAR_0x8009, FALSE, 6, FALSE, 0, DYN_MULTICHOICE_CB_NONE
+	return
+
 @ Olivine from the islands always, from Vermilion once the M.S. Aqua sails every day.
 Common_EventScript_ShipMenuPushOlivine::
 	goto_if_eq VAR_0x8008, SHIP_PORT_ISLAND, Common_EventScript_ShipMenuPushOlivineEntry
@@ -506,11 +519,16 @@ Common_EventScript_ShipMenuPushVermilion::
 	subvar VAR_0x8009, 2
 	return
 
-@ Kampfzone and Birth Island from both ports once the M.S. Aqua sails every day; the Kampfzone
-@ only after the Hoenn title.
+@ Kampfzone from both ports once the M.S. Aqua sails every day and after the Hoenn title;
+@ Birth Island from every port with the Aurora Ticket alone.
 Common_EventScript_ShipMenuPushIslands::
-	goto_if_lt VAR_SSAQUA_STATE, 7, Common_EventScript_NopReturn
+	goto_if_lt VAR_SSAQUA_STATE, 7, Common_EventScript_ShipMenuPushBirthIsland
 	call_if_set FLAG_IS_HOENN_CHAMPION, Common_EventScript_ShipMenuPushBattleFrontier
+	goto Common_EventScript_ShipMenuPushBirthIsland
+
+Common_EventScript_ShipMenuPushBirthIsland::
+	checkitem ITEM_AURORA_TICKET
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn
 	dynmultipush gText_BirthIsland, SHIP_DEST_BIRTH_ISLAND
 	subvar VAR_0x8009, 2
 	return
@@ -623,6 +641,13 @@ Common_Text_ShipVermilion:
 	.string "Orania$"
 #else
 	.string "VERMILION$"
+#endif
+
+Common_Text_TidalBirthIslandItIs:
+#if GERMAN
+	.string "Zur Entstehungsinsel, einverstanden?$"
+#else
+	.string "BIRTH ISLAND it is, then!$"
 #endif
 
 Route104_Text_BirchGreeting:

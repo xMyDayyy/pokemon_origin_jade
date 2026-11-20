@@ -591,19 +591,9 @@ static u8 CheckTrainer(u8 objectEventId)
     }
     else if (trainerBattlePtr)
     {
+        // Beaten trainers wait to be talked to, also for a rematch.
         if (GetTrainerFlagFromScriptPointer(trainerBattlePtr))
-        {
-            //If there is a rematch, we want to trigger the approach sequence
-            if (I_VS_SEEKER_CHARGING && GetRematchFromScriptPointer(trainerBattlePtr, objectEventId))
-            {
-                trainerBattlePtr = NULL;
-                numTrainers = 0xFF;
-            }
-            else
-            {
-                 return 0;
-            }
-        }
+            return 0;
     }
     else
     {

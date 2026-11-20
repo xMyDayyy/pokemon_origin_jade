@@ -301,7 +301,7 @@ IGNORED_CMDS = {
     "increasedifficulty", "decreasedifficulty", "setdifficulty", "setstatus1", "setko",
     "setteratype", "hypertrain", "togglegigantamaxfactor", "tryspecialevo", "addelevmenuitem",
     "jump_in_place_down", "remove5mons", "deleteparty", "removegenericmon", "removenamedmon",
-    "vsseeker_rematchid", "frontier_set", "frontier_get", "applymovement_dummy", "givebp",
+    "frontier_set", "frontier_get", "applymovement_dummy", "givebp",
     "givedecoration", "adddecoration", "removedecoration", "setcaughtmon", "setseenmon",
     "setwildbattleshiny_dummy", "multi_2_vs_2", "endram", "returnram", "removeitem", "removeallitem",
     "copyobjectxytoperm", "putitemaway", "msgreceiveditem",
@@ -323,6 +323,8 @@ KNOWN_ANY_SPECIALS = {
     "GetNumLevelsGainedFromDaycare", "TakePokemonFromDaycare", "GetNumFansOfPlayerInTrainerFanClub",
     "IsFanClubMemberFanOfPlayer", "Script_IsFanClubMemberFanOfPlayer", "IsPartyLimitChallengeActive",
     "IsPokecenterChallengeActivated", "GetWeekCount", "IsLegendaryAvailable",
+    # Pokedex completion checks (Oak's and Birch's rewards, Aurora Ticket): read only.
+    "HasAllRegionalMons", "HasAllKantoMons", "HasAllJohotoMons", "HasAllHoennMons", "HasAllMons",
 }
 
 

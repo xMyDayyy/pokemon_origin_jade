@@ -101,7 +101,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_TANGELA",
       "x": 5,
-      "y": 12,
+      "y": 11,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 1,

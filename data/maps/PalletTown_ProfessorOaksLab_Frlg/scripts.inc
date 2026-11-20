@@ -611,8 +611,50 @@ PalletTown_ProfessorOaksLab_EventScript_GsBallNoRoom::
 
 PalletTown_ProfessorOaksLab_EventScript_GsBallReminder::
 	msgbox PalletTown_ProfessorOaksLab_Text_OakGsBallReminder
+	call PalletTown_ProfessorOaksLab_EventScript_TryGiveDexRewards
 	release
 	end
+
+@ Origin Jade: Oak's rewards for completed dex sections, only in person after talking to him.
+@ One label per region: tools/make_debug_states.py cuts the Johto and Hoenn ones per state.
+PalletTown_ProfessorOaksLab_EventScript_TryGiveDexRewards::
+	call PalletTown_ProfessorOaksLab_EventScript_TryGiveKantoDexReward
+	call PalletTown_ProfessorOaksLab_EventScript_TryGiveJohtoDexReward
+	call PalletTown_ProfessorOaksLab_EventScript_TryGiveHoennDexReward
+	return
+
+PalletTown_ProfessorOaksLab_EventScript_TryGiveKantoDexReward::
+	goto_if_set FLAG_RECEIVED_EXP_CHARM, Common_EventScript_NopReturn
+	specialvar VAR_RESULT, HasAllKantoMons
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn
+	msgbox PalletTown_ProfessorOaksLab_Text_OakKantoDexReward
+	giveitem ITEM_EXP_CHARM
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn
+	setflag FLAG_RECEIVED_EXP_CHARM
+	msgbox PalletTown_ProfessorOaksLab_Text_OakExplainExpCharm
+	return
+
+PalletTown_ProfessorOaksLab_EventScript_TryGiveJohtoDexReward::
+	goto_if_set FLAG_RECEIVED_SHINY_CHARM, Common_EventScript_NopReturn
+	specialvar VAR_RESULT, HasAllJohotoMons
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn
+	msgbox PalletTown_ProfessorOaksLab_Text_OakJohtoDexReward
+	giveitem ITEM_SHINY_CHARM
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn
+	setflag FLAG_RECEIVED_SHINY_CHARM
+	msgbox PalletTown_ProfessorOaksLab_Text_OakExplainShinyCharm
+	return
+
+PalletTown_ProfessorOaksLab_EventScript_TryGiveHoennDexReward::
+	goto_if_set FLAG_RECEIVED_AURORA_TICKET, Common_EventScript_NopReturn
+	specialvar VAR_RESULT, HasAllHoennMons
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn
+	msgbox PalletTown_ProfessorOaksLab_Text_OakHoennDexReward
+	giveitem ITEM_AURORA_TICKET
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_NopReturn
+	setflag FLAG_RECEIVED_AURORA_TICKET
+	msgbox PalletTown_ProfessorOaksLab_Text_OakExplainAuroraTicket
+	return
 
 @ Troy waits next to Oak while VAR_HOENN_TICKET_STATE is 1 or 2.
 PalletTown_ProfessorOaksLab_EventScript_SetupTroy::
@@ -931,6 +973,7 @@ PalletTown_ProfessorOaksLab_EventScript_RatePokedexOrTryGiveBalls::
 
 PalletTown_ProfessorOaksLab_EventScript_RatePokedex::
 	call PokedexRating_EventScript_RateInPerson
+	call PalletTown_ProfessorOaksLab_EventScript_TryGiveDexRewards
 	goto_if_set FLAG_OAK_SAW_DEX_COMPLETION, PalletTown_ProfessorOaksLab_EventScript_DexCompleted
 	release
 	end
@@ -1051,6 +1094,7 @@ PalletTown_ProfessorOaksLab_Movement_VerticalPacing:
 
 PalletTown_ProfessorOaksLab_EventScript_TryStartNationalDexScene::
 	call PokedexRating_EventScript_RateInPerson
+	call PalletTown_ProfessorOaksLab_EventScript_TryGiveDexRewards
 	closemessage
 	goto_if_lt VAR_0x8009, 60, PalletTown_ProfessorOaksLab_EventScript_DontStartNationalDexScene
 	goto_if_unset FLAG_WORLD_MAP_ONE_ISLAND, PalletTown_ProfessorOaksLab_EventScript_DontStartNationalDexScene
@@ -2462,3 +2506,68 @@ PalletTown_ProfessorOaksLab_Text_RivalIllCompleteThePokedex::
 	.string "Anyways, I'm outta here!$"
 #endif
 
+PalletTown_ProfessorOaksLab_Text_OakKantoDexReward::
+#if GERMAN
+	.string "Eich: Du hast alle Pokémon aus\n"
+	.string "Kanto gefangen!\p"
+	.string "Als Dank möchte ich dir\n"
+	.string "das hier geben.$"
+#else
+	.string "OAK: You've caught every POKéMON\n"
+	.string "from KANTO!\p"
+	.string "As thanks, I want you to\n"
+	.string "have this.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakExplainExpCharm::
+#if GERMAN
+	.string "Eich: Mit dem EP-Pin bekommen\n"
+	.string "deine Pokémon mehr Erfahrungspunkte.$"
+#else
+	.string "OAK: With the EXP. CHARM, your\n"
+	.string "POKéMON gain more EXP. POINTS.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakJohtoDexReward::
+#if GERMAN
+	.string "Eich: Auch dein Johto-Pokédex ist\n"
+	.string "vollständig! Großartig!\p"
+	.string "Nimm bitte auch das hier.$"
+#else
+	.string "OAK: Your JOHTO POKéDEX is complete,\n"
+	.string "too! Wonderful!\p"
+	.string "Please take this as well.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakExplainShinyCharm::
+#if GERMAN
+	.string "Eich: Mit dem Schillerpin findest\n"
+	.string "du öfter schillernde Pokémon.$"
+#else
+	.string "OAK: With the SHINY CHARM, you will\n"
+	.string "find shiny POKéMON more often.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakHoennDexReward::
+#if GERMAN
+	.string "Eich: Sogar alle Pokémon aus Hoenn!\p"
+	.string "Dann ist das hier genau das\n"
+	.string "Richtige für dich.$"
+#else
+	.string "OAK: Even every POKéMON from HOENN!\p"
+	.string "Then this is just the thing\n"
+	.string "for you.$"
+#endif
+
+PalletTown_ProfessorOaksLab_Text_OakExplainAuroraTicket::
+#if GERMAN
+	.string "Eich: Mit dem Auroraticket kannst\n"
+	.string "du zur Entstehungsinsel fahren.\p"
+	.string "Frag einfach am Hafen\n"
+	.string "deiner Wahl.$"
+#else
+	.string "OAK: With the AURORA TICKET, you\n"
+	.string "can sail to BIRTH ISLAND.\p"
+	.string "Just ask at the port\n"
+	.string "of your choice.$"
+#endif

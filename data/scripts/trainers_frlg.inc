@@ -1,5 +1,5 @@
 Route3_EventScript_Ben::
-	trainerbattle_single TRAINER_YOUNGSTER_BEN, Route3_Text_BenIntro, Route3_Text_BenDefeat
+	trainerbattle_single TRAINER_YOUNGSTER_BEN, Route3_Text_BenIntro, Route3_Text_BenDefeat, Route3_EventScript_Ben_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route3_EventScript_BenRematch
 	msgbox Route3_Text_BenPostBattle, MSGBOX_AUTOCLOSE
@@ -7,7 +7,19 @@ Route3_EventScript_Ben::
 
 Route3_EventScript_BenRematch::
 	trainerbattle_rematch TRAINER_YOUNGSTER_BEN, Route3_Text_BenRematchIntro, Route3_Text_BenDefeat
+	setvar VAR_0x8004, TRAINER_YOUNGSTER_BEN
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route3_EventScript_Ben_RegisterMsg
 	msgbox Route3_Text_BenPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route3_EventScript_Ben_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route3_EventScript_Ben_RegisterMsg::
+	msgbox Route3_Text_BenRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_YOUNGSTER_BEN
+	release
 	end
 
 Route3_EventScript_Calvin::
@@ -23,7 +35,7 @@ Route3_EventScript_CalvinRematch::
 	end
 
 Route3_EventScript_Colton::
-	trainerbattle_single TRAINER_BUG_CATCHER_COLTON, Route3_Text_ColtonIntro, Route3_Text_ColtonDefeat
+	trainerbattle_single TRAINER_BUG_CATCHER_COLTON, Route3_Text_ColtonIntro, Route3_Text_ColtonDefeat, Route3_EventScript_Colton_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route3_EventScript_ColtonRematch
 	msgbox Route3_Text_ColtonPostBattle, MSGBOX_AUTOCLOSE
@@ -31,7 +43,19 @@ Route3_EventScript_Colton::
 
 Route3_EventScript_ColtonRematch::
 	trainerbattle_rematch TRAINER_BUG_CATCHER_COLTON, Route3_Text_ColtonRematchIntro, Route3_Text_ColtonDefeat
+	setvar VAR_0x8004, TRAINER_BUG_CATCHER_COLTON
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route3_EventScript_Colton_RegisterMsg
 	msgbox Route3_Text_ColtonPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route3_EventScript_Colton_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route3_EventScript_Colton_RegisterMsg::
+	msgbox Route3_Text_ColtonRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_BUG_CATCHER_COLTON
+	release
 	end
 
 Route3_EventScript_Greg::
@@ -59,7 +83,7 @@ Route3_EventScript_JamesRematch::
 	end
 
 Route3_EventScript_Janice::
-	trainerbattle_single TRAINER_LASS_JANICE, Route3_Text_JaniceIntro, Route3_Text_JaniceDefeat
+	trainerbattle_single TRAINER_LASS_JANICE, Route3_Text_JaniceIntro, Route3_Text_JaniceDefeat, Route3_EventScript_Janice_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route3_EventScript_JaniceRematch
 	msgbox Route3_Text_JanicePostBattle, MSGBOX_AUTOCLOSE
@@ -67,7 +91,19 @@ Route3_EventScript_Janice::
 
 Route3_EventScript_JaniceRematch::
 	trainerbattle_rematch TRAINER_LASS_JANICE, Route3_Text_JaniceRematchIntro, Route3_Text_JaniceDefeat
+	setvar VAR_0x8004, TRAINER_LASS_JANICE
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route3_EventScript_Janice_RegisterMsg
 	msgbox Route3_Text_JanicePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route3_EventScript_Janice_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route3_EventScript_Janice_RegisterMsg::
+	msgbox Route3_Text_JaniceRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_LASS_JANICE
+	release
 	end
 
 Route3_EventScript_Sally::
@@ -95,7 +131,7 @@ Route3_EventScript_RobinRematch::
 	end
 
 Route4_EventScript_Crissy::
-	trainerbattle_single TRAINER_LASS_CRISSY, Route4_Text_CrissyIntro, Route4_Text_CrissyDefeat
+	trainerbattle_single TRAINER_LASS_CRISSY, Route4_Text_CrissyIntro, Route4_Text_CrissyDefeat, Route4_EventScript_Crissy_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route4_EventScript_CrissyRematch
 	msgbox Route4_Text_CrissyPostBattle, MSGBOX_AUTOCLOSE
@@ -103,11 +139,23 @@ Route4_EventScript_Crissy::
 
 Route4_EventScript_CrissyRematch::
 	trainerbattle_rematch TRAINER_LASS_CRISSY, Route4_Text_CrissyRematchIntro, Route4_Text_CrissyDefeat
+	setvar VAR_0x8004, TRAINER_LASS_CRISSY
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route4_EventScript_Crissy_RegisterMsg
 	msgbox Route4_Text_CrissyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route4_EventScript_Crissy_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route4_EventScript_Crissy_RegisterMsg::
+	msgbox Route4_Text_CrissyRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_LASS_CRISSY
+	release
+	end
+
 Route24_EventScript_Timmy::
-	trainerbattle_single TRAINER_YOUNGSTER_TIMMY, Route24_Text_TimmyIntro, Route24_Text_TimmyDefeat
+	trainerbattle_single TRAINER_YOUNGSTER_TIMMY, Route24_Text_TimmyIntro, Route24_Text_TimmyDefeat, Route24_EventScript_Timmy_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route24_EventScript_TimmyRematch
 	msgbox Route24_Text_TimmyPostBattle, MSGBOX_AUTOCLOSE
@@ -115,7 +163,19 @@ Route24_EventScript_Timmy::
 
 Route24_EventScript_TimmyRematch::
 	trainerbattle_rematch TRAINER_YOUNGSTER_TIMMY, Route24_Text_TimmyRematchIntro, Route24_Text_TimmyDefeat
+	setvar VAR_0x8004, TRAINER_YOUNGSTER_TIMMY
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route24_EventScript_Timmy_RegisterMsg
 	msgbox Route24_Text_TimmyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route24_EventScript_Timmy_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route24_EventScript_Timmy_RegisterMsg::
+	msgbox Route24_Text_TimmyRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_YOUNGSTER_TIMMY
+	release
 	end
 
 Route24_EventScript_Cale::
@@ -131,7 +191,7 @@ Route24_EventScript_CaleRematch::
 	end
 
 Route24_EventScript_Reli::
-	trainerbattle_single TRAINER_LASS_RELI, Route24_Text_ReliIntro, Route24_Text_ReliDefeat
+	trainerbattle_single TRAINER_LASS_RELI, Route24_Text_ReliIntro, Route24_Text_ReliDefeat, Route24_EventScript_Reli_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route24_EventScript_ReliRematch
 	msgbox Route24_Text_ReliPostBattle, MSGBOX_AUTOCLOSE
@@ -139,11 +199,23 @@ Route24_EventScript_Reli::
 
 Route24_EventScript_ReliRematch::
 	trainerbattle_rematch TRAINER_LASS_RELI, Route24_Text_ReliRematchIntro, Route24_Text_ReliDefeat
+	setvar VAR_0x8004, TRAINER_LASS_RELI
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route24_EventScript_Reli_RegisterMsg
 	msgbox Route24_Text_ReliPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route24_EventScript_Reli_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route24_EventScript_Reli_RegisterMsg::
+	msgbox Route24_Text_ReliRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_LASS_RELI
+	release
+	end
+
 Route24_EventScript_Ali::
-	trainerbattle_single TRAINER_LASS_ALI, Route24_Text_AliIntro, Route24_Text_AliDefeat
+	trainerbattle_single TRAINER_LASS_ALI, Route24_Text_AliIntro, Route24_Text_AliDefeat, Route24_EventScript_Ali_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route24_EventScript_AliRematch
 	msgbox Route24_Text_AliPostBattle, MSGBOX_AUTOCLOSE
@@ -151,7 +223,19 @@ Route24_EventScript_Ali::
 
 Route24_EventScript_AliRematch::
 	trainerbattle_rematch TRAINER_LASS_ALI, Route24_Text_AliRematchIntro, Route24_Text_AliDefeat
+	setvar VAR_0x8004, TRAINER_LASS_ALI
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route24_EventScript_Ali_RegisterMsg
 	msgbox Route24_Text_AliPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route24_EventScript_Ali_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route24_EventScript_Ali_RegisterMsg::
+	msgbox Route24_Text_AliRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_LASS_ALI
+	release
 	end
 
 Route24_EventScript_Shane::
@@ -203,7 +287,7 @@ Route25_EventScript_DanRematch::
 	end
 
 Route25_EventScript_Chad::
-	trainerbattle_single TRAINER_YOUNGSTER_CHAD, Route25_Text_ChadIntro, Route25_Text_ChadDefeat
+	trainerbattle_single TRAINER_YOUNGSTER_CHAD, Route25_Text_ChadIntro, Route25_Text_ChadDefeat, Route25_EventScript_Chad_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route25_EventScript_ChadRematch
 	msgbox Route25_Text_ChadPostBattle, MSGBOX_AUTOCLOSE
@@ -211,11 +295,23 @@ Route25_EventScript_Chad::
 
 Route25_EventScript_ChadRematch::
 	trainerbattle_rematch TRAINER_YOUNGSTER_CHAD, Route25_Text_ChadRematchIntro, Route25_Text_ChadDefeat
+	setvar VAR_0x8004, TRAINER_YOUNGSTER_CHAD
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route25_EventScript_Chad_RegisterMsg
 	msgbox Route25_Text_ChadPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route25_EventScript_Chad_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route25_EventScript_Chad_RegisterMsg::
+	msgbox Route25_Text_ChadRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_YOUNGSTER_CHAD
+	release
+	end
+
 Route25_EventScript_Kelsey::
-	trainerbattle_single TRAINER_PICNICKER_KELSEY, Route25_Text_KelseyIntro, Route25_Text_KelseyDefeat
+	trainerbattle_single TRAINER_PICNICKER_KELSEY, Route25_Text_KelseyIntro, Route25_Text_KelseyDefeat, Route25_EventScript_Kelsey_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route25_EventScript_KelseyRematch
 	msgbox Route25_Text_KelseyPostBattle, MSGBOX_AUTOCLOSE
@@ -223,7 +319,19 @@ Route25_EventScript_Kelsey::
 
 Route25_EventScript_KelseyRematch::
 	trainerbattle_rematch TRAINER_PICNICKER_KELSEY, Route25_Text_KelseyRematchIntro, Route25_Text_KelseyDefeat
+	setvar VAR_0x8004, TRAINER_PICNICKER_KELSEY
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route25_EventScript_Kelsey_RegisterMsg
 	msgbox Route25_Text_KelseyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route25_EventScript_Kelsey_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route25_EventScript_Kelsey_RegisterMsg::
+	msgbox Route25_Text_KelseyRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_PICNICKER_KELSEY
+	release
 	end
 
 Route25_EventScript_Haley::
@@ -239,7 +347,7 @@ Route25_EventScript_HaleyRematch::
 	end
 
 Route25_EventScript_Franklin::
-	trainerbattle_single TRAINER_HIKER_FRANKLIN, Route25_Text_FranklinIntro, Route25_Text_FranklinDefeat
+	trainerbattle_single TRAINER_HIKER_FRANKLIN, Route25_Text_FranklinIntro, Route25_Text_FranklinDefeat, Route25_EventScript_Franklin_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route25_EventScript_FranklinRematch
 	msgbox Route25_Text_FranklinPostBattle, MSGBOX_AUTOCLOSE
@@ -247,11 +355,23 @@ Route25_EventScript_Franklin::
 
 Route25_EventScript_FranklinRematch::
 	trainerbattle_rematch TRAINER_HIKER_FRANKLIN, Route25_Text_FranklinRematchIntro, Route25_Text_FranklinDefeat
+	setvar VAR_0x8004, TRAINER_HIKER_FRANKLIN
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route25_EventScript_Franklin_RegisterMsg
 	msgbox Route25_Text_FranklinPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route25_EventScript_Franklin_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route25_EventScript_Franklin_RegisterMsg::
+	msgbox Route25_Text_FranklinRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_HIKER_FRANKLIN
+	release
+	end
+
 Route25_EventScript_Nob::
-	trainerbattle_single TRAINER_HIKER_NOB, Route25_Text_NobIntro, Route25_Text_NobDefeat
+	trainerbattle_single TRAINER_HIKER_NOB, Route25_Text_NobIntro, Route25_Text_NobDefeat, Route25_EventScript_Nob_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route25_EventScript_NobRematch
 	msgbox Route25_Text_NobPostBattle, MSGBOX_AUTOCLOSE
@@ -259,7 +379,19 @@ Route25_EventScript_Nob::
 
 Route25_EventScript_NobRematch::
 	trainerbattle_rematch TRAINER_HIKER_NOB, Route25_Text_NobRematchIntro, Route25_Text_NobDefeat
+	setvar VAR_0x8004, TRAINER_HIKER_NOB
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route25_EventScript_Nob_RegisterMsg
 	msgbox Route25_Text_NobPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route25_EventScript_Nob_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route25_EventScript_Nob_RegisterMsg::
+	msgbox Route25_Text_NobRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_HIKER_NOB
+	release
 	end
 
 Route25_EventScript_Wayne::
@@ -311,7 +443,7 @@ Route6_EventScript_ElijahRematch::
 	end
 
 Route6_EventScript_Ricky::
-	trainerbattle_single TRAINER_CAMPER_RICKY, Route6_Text_RickyIntro, Route6_Text_RickyDefeat
+	trainerbattle_single TRAINER_CAMPER_RICKY, Route6_Text_RickyIntro, Route6_Text_RickyDefeat, Route6_EventScript_Ricky_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route6_EventScript_RickyRematch
 	msgbox Route6_Text_RickyPostBattle, MSGBOX_AUTOCLOSE
@@ -319,11 +451,23 @@ Route6_EventScript_Ricky::
 
 Route6_EventScript_RickyRematch::
 	trainerbattle_rematch TRAINER_CAMPER_RICKY, Route6_Text_RickyRematchIntro, Route6_Text_RickyDefeat
+	setvar VAR_0x8004, TRAINER_CAMPER_RICKY
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route6_EventScript_Ricky_RegisterMsg
 	msgbox Route6_Text_RickyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route6_EventScript_Ricky_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route6_EventScript_Ricky_RegisterMsg::
+	msgbox Route6_Text_RickyRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_CAMPER_RICKY
+	release
+	end
+
 Route6_EventScript_Jeff::
-	trainerbattle_single TRAINER_CAMPER_JEFF, Route6_Text_JeffIntro, Route6_Text_JeffDefeat
+	trainerbattle_single TRAINER_CAMPER_JEFF, Route6_Text_JeffIntro, Route6_Text_JeffDefeat, Route6_EventScript_Jeff_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route6_EventScript_JeffRematch
 	msgbox Route6_Text_JeffPostBattle, MSGBOX_AUTOCLOSE
@@ -331,7 +475,19 @@ Route6_EventScript_Jeff::
 
 Route6_EventScript_JeffRematch::
 	trainerbattle_rematch TRAINER_CAMPER_JEFF, Route6_Text_JeffRematchIntro, Route6_Text_JeffDefeat
+	setvar VAR_0x8004, TRAINER_CAMPER_JEFF
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route6_EventScript_Jeff_RegisterMsg
 	msgbox Route6_Text_JeffPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route6_EventScript_Jeff_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route6_EventScript_Jeff_RegisterMsg::
+	msgbox Route6_Text_JeffRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_CAMPER_JEFF
+	release
 	end
 
 Route6_EventScript_Nancy::
@@ -347,7 +503,7 @@ Route6_EventScript_NancyRematch::
 	end
 
 Route6_EventScript_Isabelle::
-	trainerbattle_single TRAINER_PICNICKER_ISABELLE, Route6_Text_IsabelleIntro, Route6_Text_IsabelleDefeat
+	trainerbattle_single TRAINER_PICNICKER_ISABELLE, Route6_Text_IsabelleIntro, Route6_Text_IsabelleDefeat, Route6_EventScript_Isabelle_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route6_EventScript_IsabelleRematch
 	msgbox Route6_Text_IsabellePostBattle, MSGBOX_AUTOCLOSE
@@ -355,7 +511,19 @@ Route6_EventScript_Isabelle::
 
 Route6_EventScript_IsabelleRematch::
 	trainerbattle_rematch TRAINER_PICNICKER_ISABELLE, Route6_Text_IsabelleRematchIntro, Route6_Text_IsabelleDefeat
+	setvar VAR_0x8004, TRAINER_PICNICKER_ISABELLE
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route6_EventScript_Isabelle_RegisterMsg
 	msgbox Route6_Text_IsabellePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route6_EventScript_Isabelle_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route6_EventScript_Isabelle_RegisterMsg::
+	msgbox Route6_Text_IsabelleRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_PICNICKER_ISABELLE
+	release
 	end
 
 Route11_EventScript_Eddie::
@@ -383,7 +551,7 @@ Route11_EventScript_DillonRematch::
 	end
 
 Route11_EventScript_Yasu::
-	trainerbattle_single TRAINER_YOUNGSTER_YASU, Route11_Text_YasuIntro, Route11_Text_YasuDefeat
+	trainerbattle_single TRAINER_YOUNGSTER_YASU, Route11_Text_YasuIntro, Route11_Text_YasuDefeat, Route11_EventScript_Yasu_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route11_EventScript_YasuRematch
 	msgbox Route11_Text_YasuPostBattle, MSGBOX_AUTOCLOSE
@@ -391,7 +559,19 @@ Route11_EventScript_Yasu::
 
 Route11_EventScript_YasuRematch::
 	trainerbattle_rematch TRAINER_YOUNGSTER_YASU, Route11_Text_YasuRematchIntro, Route11_Text_YasuDefeat
+	setvar VAR_0x8004, TRAINER_YOUNGSTER_YASU
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route11_EventScript_Yasu_RegisterMsg
 	msgbox Route11_Text_YasuPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route11_EventScript_Yasu_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route11_EventScript_Yasu_RegisterMsg::
+	msgbox Route11_Text_YasuRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_YOUNGSTER_YASU
+	release
 	end
 
 Route11_EventScript_Dave::
@@ -419,7 +599,7 @@ Route11_EventScript_BraxtonRematch::
 	end
 
 Route11_EventScript_Bernie::
-	trainerbattle_single TRAINER_ENGINEER_BERNIE, Route11_Text_BernieIntro, Route11_Text_BernieDefeat
+	trainerbattle_single TRAINER_ENGINEER_BERNIE, Route11_Text_BernieIntro, Route11_Text_BernieDefeat, Route11_EventScript_Bernie_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route11_EventScript_BernieRematch
 	msgbox Route11_Text_BerniePostBattle, MSGBOX_AUTOCLOSE
@@ -427,7 +607,19 @@ Route11_EventScript_Bernie::
 
 Route11_EventScript_BernieRematch::
 	trainerbattle_rematch TRAINER_ENGINEER_BERNIE, Route11_Text_BernieRematchIntro, Route11_Text_BernieDefeat
+	setvar VAR_0x8004, TRAINER_ENGINEER_BERNIE
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route11_EventScript_Bernie_RegisterMsg
 	msgbox Route11_Text_BerniePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route11_EventScript_Bernie_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route11_EventScript_Bernie_RegisterMsg::
+	msgbox Route11_Text_BernieRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_ENGINEER_BERNIE
+	release
 	end
 
 Route11_EventScript_Hugo::
@@ -467,7 +659,7 @@ Route11_EventScript_DirkRematch::
 	end
 
 Route11_EventScript_Darian::
-	trainerbattle_single TRAINER_GAMER_DARIAN, Route11_Text_DarianIntro, Route11_Text_DarianDefeat
+	trainerbattle_single TRAINER_GAMER_DARIAN, Route11_Text_DarianIntro, Route11_Text_DarianDefeat, Route11_EventScript_Darian_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route11_EventScript_DarianRematch
 	msgbox Route11_Text_DarianPostBattle, MSGBOX_AUTOCLOSE
@@ -475,7 +667,19 @@ Route11_EventScript_Darian::
 
 Route11_EventScript_DarianRematch::
 	trainerbattle_rematch TRAINER_GAMER_DARIAN, Route11_Text_DarianRematchIntro, Route11_Text_DarianDefeat
+	setvar VAR_0x8004, TRAINER_GAMER_DARIAN
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route11_EventScript_Darian_RegisterMsg
 	msgbox Route11_Text_DarianPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route11_EventScript_Darian_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route11_EventScript_Darian_RegisterMsg::
+	msgbox Route11_Text_DarianRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_GAMER_DARIAN
+	release
 	end
 
 Route9_EventScript_Brent::
@@ -503,7 +707,7 @@ Route9_EventScript_ConnerRematch::
 	end
 
 Route9_EventScript_Chris::
-	trainerbattle_single TRAINER_CAMPER_CHRIS, Route9_Text_ChrisIntro, Route9_Text_ChrisDefeat
+	trainerbattle_single TRAINER_CAMPER_CHRIS, Route9_Text_ChrisIntro, Route9_Text_ChrisDefeat, Route9_EventScript_Chris_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route9_EventScript_ChrisRematch
 	msgbox Route9_Text_ChrisPostBattle, MSGBOX_AUTOCLOSE
@@ -511,7 +715,19 @@ Route9_EventScript_Chris::
 
 Route9_EventScript_ChrisRematch::
 	trainerbattle_rematch TRAINER_CAMPER_CHRIS, Route9_Text_ChrisRematchIntro, Route9_Text_ChrisDefeat
+	setvar VAR_0x8004, TRAINER_CAMPER_CHRIS
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route9_EventScript_Chris_RegisterMsg
 	msgbox Route9_Text_ChrisPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route9_EventScript_Chris_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route9_EventScript_Chris_RegisterMsg::
+	msgbox Route9_Text_ChrisRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_CAMPER_CHRIS
+	release
 	end
 
 Route9_EventScript_Drew::
@@ -527,7 +743,7 @@ Route9_EventScript_DrewRematch::
 	end
 
 Route9_EventScript_Alicia::
-	trainerbattle_single TRAINER_PICNICKER_ALICIA, Route9_Text_AliciaIntro, Route9_Text_AliciaDefeat
+	trainerbattle_single TRAINER_PICNICKER_ALICIA, Route9_Text_AliciaIntro, Route9_Text_AliciaDefeat, Route9_EventScript_Alicia_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route9_EventScript_AliciaRematch
 	msgbox Route9_Text_AliciaPostBattle, MSGBOX_AUTOCLOSE
@@ -535,7 +751,19 @@ Route9_EventScript_Alicia::
 
 Route9_EventScript_AliciaRematch::
 	trainerbattle_rematch TRAINER_PICNICKER_ALICIA, Route9_Text_AliciaRematchIntro, Route9_Text_AliciaDefeat
+	setvar VAR_0x8004, TRAINER_PICNICKER_ALICIA
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route9_EventScript_Alicia_RegisterMsg
 	msgbox Route9_Text_AliciaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route9_EventScript_Alicia_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route9_EventScript_Alicia_RegisterMsg::
+	msgbox Route9_Text_AliciaRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_PICNICKER_ALICIA
+	release
 	end
 
 Route9_EventScript_Caitlin::
@@ -575,7 +803,7 @@ Route9_EventScript_BriceRematch::
 	end
 
 Route9_EventScript_Jeremy::
-	trainerbattle_single TRAINER_HIKER_JEREMY, Route9_Text_JeremyIntro, Route9_Text_JeremyDefeat
+	trainerbattle_single TRAINER_HIKER_JEREMY, Route9_Text_JeremyIntro, Route9_Text_JeremyDefeat, Route9_EventScript_Jeremy_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route9_EventScript_JeremyRematch
 	msgbox Route9_Text_JeremyPostBattle, MSGBOX_AUTOCLOSE
@@ -583,7 +811,19 @@ Route9_EventScript_Jeremy::
 
 Route9_EventScript_JeremyRematch::
 	trainerbattle_rematch TRAINER_HIKER_JEREMY, Route9_Text_JeremyRematchIntro, Route9_Text_JeremyDefeat
+	setvar VAR_0x8004, TRAINER_HIKER_JEREMY
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route9_EventScript_Jeremy_RegisterMsg
 	msgbox Route9_Text_JeremyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route9_EventScript_Jeremy_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route9_EventScript_Jeremy_RegisterMsg::
+	msgbox Route9_Text_JeremyRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_HIKER_JEREMY
+	release
 	end
 
 Route10_EventScript_Heidi::
@@ -611,7 +851,7 @@ Route10_EventScript_CarolRematch::
 	end
 
 Route10_EventScript_Mark::
-	trainerbattle_single TRAINER_POKEMANIAC_MARK, Route10_Text_MarkIntro, Route10_Text_MarkDefeat
+	trainerbattle_single TRAINER_POKEMANIAC_MARK, Route10_Text_MarkIntro, Route10_Text_MarkDefeat, Route10_EventScript_Mark_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route10_EventScript_MarkRematch
 	msgbox Route10_Text_MarkPostBattle, MSGBOX_AUTOCLOSE
@@ -619,11 +859,23 @@ Route10_EventScript_Mark::
 
 Route10_EventScript_MarkRematch::
 	trainerbattle_rematch TRAINER_POKEMANIAC_MARK, Route10_Text_MarkRematchIntro, Route10_Text_MarkDefeat
+	setvar VAR_0x8004, TRAINER_POKEMANIAC_MARK
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route10_EventScript_Mark_RegisterMsg
 	msgbox Route10_Text_MarkPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route10_EventScript_Mark_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route10_EventScript_Mark_RegisterMsg::
+	msgbox Route10_Text_MarkRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_POKEMANIAC_MARK
+	release
+	end
+
 Route10_EventScript_Herman::
-	trainerbattle_single TRAINER_POKEMANIAC_HERMAN, Route10_Text_HermanIntro, Route10_Text_HermanDefeat
+	trainerbattle_single TRAINER_POKEMANIAC_HERMAN, Route10_Text_HermanIntro, Route10_Text_HermanDefeat, Route10_EventScript_Herman_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route10_EventScript_HermanRematch
 	msgbox Route10_Text_HermanPostBattle, MSGBOX_AUTOCLOSE
@@ -631,7 +883,19 @@ Route10_EventScript_Herman::
 
 Route10_EventScript_HermanRematch::
 	trainerbattle_rematch TRAINER_POKEMANIAC_HERMAN, Route10_Text_HermanRematchIntro, Route10_Text_HermanDefeat
+	setvar VAR_0x8004, TRAINER_POKEMANIAC_HERMAN
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route10_EventScript_Herman_RegisterMsg
 	msgbox Route10_Text_HermanPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route10_EventScript_Herman_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route10_EventScript_Herman_RegisterMsg::
+	msgbox Route10_Text_HermanRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_POKEMANIAC_HERMAN
+	release
 	end
 
 Route10_EventScript_Clark::
@@ -647,7 +911,7 @@ Route10_EventScript_ClarkRematch::
 	end
 
 Route10_EventScript_Trent::
-	trainerbattle_single TRAINER_HIKER_TRENT, Route10_Text_TrentIntro, Route10_Text_TrentDefeat
+	trainerbattle_single TRAINER_HIKER_TRENT, Route10_Text_TrentIntro, Route10_Text_TrentDefeat, Route10_EventScript_Trent_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route10_EventScript_TrentRematch
 	msgbox Route10_Text_TrentPostBattle, MSGBOX_AUTOCLOSE
@@ -655,7 +919,19 @@ Route10_EventScript_Trent::
 
 Route10_EventScript_TrentRematch::
 	trainerbattle_rematch TRAINER_HIKER_TRENT, Route10_Text_TrentRematchIntro, Route10_Text_TrentDefeat
+	setvar VAR_0x8004, TRAINER_HIKER_TRENT
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route10_EventScript_Trent_RegisterMsg
 	msgbox Route10_Text_TrentPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route10_EventScript_Trent_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route10_EventScript_Trent_RegisterMsg::
+	msgbox Route10_Text_TrentRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_HIKER_TRENT
+	release
 	end
 
 Route8_EventScript_Paige::
@@ -683,7 +959,7 @@ Route8_EventScript_AndreaRematch::
 	end
 
 Route8_EventScript_Megan::
-	trainerbattle_single TRAINER_LASS_MEGAN, Route8_Text_MeganIntro, Route8_Text_MeganDefeat
+	trainerbattle_single TRAINER_LASS_MEGAN, Route8_Text_MeganIntro, Route8_Text_MeganDefeat, Route8_EventScript_Megan_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route8_EventScript_MeganRematch
 	msgbox Route8_Text_MeganPostBattle, MSGBOX_AUTOCLOSE
@@ -691,7 +967,19 @@ Route8_EventScript_Megan::
 
 Route8_EventScript_MeganRematch::
 	trainerbattle_rematch TRAINER_LASS_MEGAN, Route8_Text_MeganRematchIntro, Route8_Text_MeganDefeat
+	setvar VAR_0x8004, TRAINER_LASS_MEGAN
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route8_EventScript_Megan_RegisterMsg
 	msgbox Route8_Text_MeganPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route8_EventScript_Megan_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route8_EventScript_Megan_RegisterMsg::
+	msgbox Route8_Text_MeganRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_LASS_MEGAN
+	release
 	end
 
 Route8_EventScript_Julia::
@@ -719,7 +1007,7 @@ Route8_EventScript_AidanRematch::
 	end
 
 Route8_EventScript_Glenn::
-	trainerbattle_single TRAINER_SUPER_NERD_GLENN, Route8_Text_GlennIntro, Route8_Text_GlennDefeat
+	trainerbattle_single TRAINER_SUPER_NERD_GLENN, Route8_Text_GlennIntro, Route8_Text_GlennDefeat, Route8_EventScript_Glenn_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route8_EventScript_GlennRematch
 	msgbox Route8_Text_GlennPostBattle, MSGBOX_AUTOCLOSE
@@ -727,7 +1015,19 @@ Route8_EventScript_Glenn::
 
 Route8_EventScript_GlennRematch::
 	trainerbattle_rematch TRAINER_SUPER_NERD_GLENN, Route8_Text_GlennRematchIntro, Route8_Text_GlennDefeat
+	setvar VAR_0x8004, TRAINER_SUPER_NERD_GLENN
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route8_EventScript_Glenn_RegisterMsg
 	msgbox Route8_Text_GlennPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route8_EventScript_Glenn_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route8_EventScript_Glenn_RegisterMsg::
+	msgbox Route8_Text_GlennRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_SUPER_NERD_GLENN
+	release
 	end
 
 Route8_EventScript_Leslie::
@@ -755,7 +1055,7 @@ Route8_EventScript_StanRematch::
 	end
 
 Route8_EventScript_Rich::
-	trainerbattle_single TRAINER_GAMER_RICH, Route8_Text_RichIntro, Route8_Text_RichDefeat
+	trainerbattle_single TRAINER_GAMER_RICH, Route8_Text_RichIntro, Route8_Text_RichDefeat, Route8_EventScript_Rich_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route8_EventScript_RichRematch
 	msgbox Route8_Text_RichPostBattle, MSGBOX_AUTOCLOSE
@@ -763,11 +1063,23 @@ Route8_EventScript_Rich::
 
 Route8_EventScript_RichRematch::
 	trainerbattle_rematch TRAINER_GAMER_RICH, Route8_Text_RichRematchIntro, Route8_Text_RichDefeat
+	setvar VAR_0x8004, TRAINER_GAMER_RICH
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route8_EventScript_Rich_RegisterMsg
 	msgbox Route8_Text_RichPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route8_EventScript_Rich_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route8_EventScript_Rich_RegisterMsg::
+	msgbox Route8_Text_RichRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_GAMER_RICH
+	release
+	end
+
 Route8_EventScript_Eli::
-	trainerbattle_double TRAINER_TWINS_ELI_ANNE, Route8_Text_EliIntro, Route8_Text_EliDefeat, Route8_Text_EliNotEnoughMons
+	trainerbattle_double TRAINER_TWINS_ELI_ANNE, Route8_Text_EliIntro, Route8_Text_EliDefeat, Route8_Text_EliNotEnoughMons, Route8_EventScript_Eli_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route8_EventScript_EliRematch
 	msgbox Route8_Text_EliPostBattle, MSGBOX_AUTOCLOSE
@@ -775,11 +1087,23 @@ Route8_EventScript_Eli::
 
 Route8_EventScript_EliRematch::
 	trainerbattle_rematch_double TRAINER_TWINS_ELI_ANNE, Route8_Text_EliRematchIntro, Route8_Text_EliDefeat, Route8_Text_EliNotEnoughMons
+	setvar VAR_0x8004, TRAINER_TWINS_ELI_ANNE
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route8_EventScript_Eli_RegisterMsg
 	msgbox Route8_Text_EliPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route8_EventScript_Eli_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route8_EventScript_Eli_RegisterMsg::
+	msgbox Route8_Text_EliRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_TWINS_ELI_ANNE
+	release
+	end
+
 Route8_EventScript_Anne::
-	trainerbattle_double TRAINER_TWINS_ELI_ANNE, Route8_Text_AnneIntro, Route8_Text_AnneDefeat, Route8_Text_AnneNotEnoughMons
+	trainerbattle_double TRAINER_TWINS_ELI_ANNE, Route8_Text_AnneIntro, Route8_Text_AnneDefeat, Route8_Text_AnneNotEnoughMons, Route8_EventScript_Anne_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route8_EventScript_AnneRematch
 	msgbox Route8_Text_AnnePostBattle, MSGBOX_AUTOCLOSE
@@ -787,7 +1111,19 @@ Route8_EventScript_Anne::
 
 Route8_EventScript_AnneRematch::
 	trainerbattle_rematch_double TRAINER_TWINS_ELI_ANNE, Route8_Text_AnneRematchIntro, Route8_Text_AnneDefeat, Route8_Text_AnneNotEnoughMons
+	setvar VAR_0x8004, TRAINER_TWINS_ELI_ANNE
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route8_EventScript_Anne_RegisterMsg
 	msgbox Route8_Text_AnnePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route8_EventScript_Anne_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route8_EventScript_Anne_RegisterMsg::
+	msgbox Route8_Text_AnneRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_TWINS_ELI_ANNE
+	release
 	end
 
 Route8_EventScript_Ricardo::
@@ -803,7 +1139,7 @@ Route8_EventScript_RicardoRematch::
 	end
 
 Route8_EventScript_Jaren::
-	trainerbattle_single TRAINER_BIKER_JAREN, Route8_Text_JarenIntro, Route8_Text_JarenDefeat
+	trainerbattle_single TRAINER_BIKER_JAREN, Route8_Text_JarenIntro, Route8_Text_JarenDefeat, Route8_EventScript_Jaren_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route8_EventScript_JarenRematch
 	msgbox Route8_Text_JarenPostBattle, MSGBOX_AUTOCLOSE
@@ -811,7 +1147,19 @@ Route8_EventScript_Jaren::
 
 Route8_EventScript_JarenRematch::
 	trainerbattle_rematch TRAINER_BIKER_JAREN, Route8_Text_JarenRematchIntro, Route8_Text_JarenDefeat
+	setvar VAR_0x8004, TRAINER_BIKER_JAREN
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route8_EventScript_Jaren_RegisterMsg
 	msgbox Route8_Text_JarenPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route8_EventScript_Jaren_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route8_EventScript_Jaren_RegisterMsg::
+	msgbox Route8_Text_JarenRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_BIKER_JAREN
+	release
 	end
 
 Route12_EventScript_Ned::
@@ -851,7 +1199,7 @@ Route12_EventScript_HankRematch::
 	end
 
 Route12_EventScript_Elliot::
-	trainerbattle_single TRAINER_FISHERMAN_ELLIOT, Route12_Text_ElliotIntro, Route12_Text_ElliotDefeat
+	trainerbattle_single TRAINER_FISHERMAN_ELLIOT, Route12_Text_ElliotIntro, Route12_Text_ElliotDefeat, Route12_EventScript_Elliot_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route12_EventScript_ElliotRematch
 	msgbox Route12_Text_ElliotPostBattle, MSGBOX_AUTOCLOSE
@@ -859,7 +1207,19 @@ Route12_EventScript_Elliot::
 
 Route12_EventScript_ElliotRematch::
 	trainerbattle_rematch TRAINER_FISHERMAN_ELLIOT, Route12_Text_ElliotRematchIntro, Route12_Text_ElliotDefeat
+	setvar VAR_0x8004, TRAINER_FISHERMAN_ELLIOT
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route12_EventScript_Elliot_RegisterMsg
 	msgbox Route12_Text_ElliotPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route12_EventScript_Elliot_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route12_EventScript_Elliot_RegisterMsg::
+	msgbox Route12_Text_ElliotRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_FISHERMAN_ELLIOT
+	release
 	end
 
 Route12_EventScript_Andrew::
@@ -875,7 +1235,7 @@ Route12_EventScript_AndrewRematch::
 	end
 
 Route12_EventScript_Luca::
-	trainerbattle_single TRAINER_ROCKER_LUCA, Route12_Text_LucaIntro, Route12_Text_LucaDefeat
+	trainerbattle_single TRAINER_ROCKER_LUCA, Route12_Text_LucaIntro, Route12_Text_LucaDefeat, Route12_EventScript_Luca_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route12_EventScript_LucaRematch
 	msgbox Route12_Text_LucaPostBattle, MSGBOX_AUTOCLOSE
@@ -883,7 +1243,19 @@ Route12_EventScript_Luca::
 
 Route12_EventScript_LucaRematch::
 	trainerbattle_rematch TRAINER_ROCKER_LUCA, Route12_Text_LucaRematchIntro, Route12_Text_LucaDefeat
+	setvar VAR_0x8004, TRAINER_ROCKER_LUCA
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route12_EventScript_Luca_RegisterMsg
 	msgbox Route12_Text_LucaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route12_EventScript_Luca_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route12_EventScript_Luca_RegisterMsg::
+	msgbox Route12_Text_LucaRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_ROCKER_LUCA
+	release
 	end
 
 Route12_EventScript_Justin::
@@ -899,7 +1271,7 @@ Route12_EventScript_JustinRematch::
 	end
 
 Route12_EventScript_Jes::
-	trainerbattle_double TRAINER_YOUNG_COUPLE_GIA_JES, Route12_Text_JesIntro, Route12_Text_JesDefeat, Route12_Text_JesNotEnoughMons
+	trainerbattle_double TRAINER_YOUNG_COUPLE_GIA_JES, Route12_Text_JesIntro, Route12_Text_JesDefeat, Route12_Text_JesNotEnoughMons, Route12_EventScript_Jes_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route12_EventScript_JesRematch
 	msgbox Route12_Text_JesPostBattle, MSGBOX_AUTOCLOSE
@@ -907,11 +1279,23 @@ Route12_EventScript_Jes::
 
 Route12_EventScript_JesRematch::
 	trainerbattle_rematch_double TRAINER_YOUNG_COUPLE_GIA_JES, Route12_Text_JesRematchIntro, Route12_Text_JesDefeat, Route12_Text_JesNotEnoughMons
+	setvar VAR_0x8004, TRAINER_YOUNG_COUPLE_GIA_JES
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route12_EventScript_Jes_RegisterMsg
 	msgbox Route12_Text_JesPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route12_EventScript_Jes_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route12_EventScript_Jes_RegisterMsg::
+	msgbox Route12_Text_JesRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_YOUNG_COUPLE_GIA_JES
+	release
+	end
+
 Route12_EventScript_Gia::
-	trainerbattle_double TRAINER_YOUNG_COUPLE_GIA_JES, Route12_Text_GiaIntro, Route12_Text_GiaDefeat, Route12_Text_GiaNotEnoughMons
+	trainerbattle_double TRAINER_YOUNG_COUPLE_GIA_JES, Route12_Text_GiaIntro, Route12_Text_GiaDefeat, Route12_Text_GiaNotEnoughMons, Route12_EventScript_Gia_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route12_EventScript_GiaRematch
 	msgbox Route12_Text_GiaPostBattle, MSGBOX_AUTOCLOSE
@@ -919,7 +1303,19 @@ Route12_EventScript_Gia::
 
 Route12_EventScript_GiaRematch::
 	trainerbattle_rematch_double TRAINER_YOUNG_COUPLE_GIA_JES, Route12_Text_GiaRematchIntro, Route12_Text_GiaDefeat, Route12_Text_GiaNotEnoughMons
+	setvar VAR_0x8004, TRAINER_YOUNG_COUPLE_GIA_JES
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route12_EventScript_Gia_RegisterMsg
 	msgbox Route12_Text_GiaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route12_EventScript_Gia_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route12_EventScript_Gia_RegisterMsg::
+	msgbox Route12_Text_GiaRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_YOUNG_COUPLE_GIA_JES
+	release
 	end
 
 Route13_EventScript_Jared::
@@ -947,7 +1343,7 @@ Route13_EventScript_LolaRematch::
 	end
 
 Route13_EventScript_Sheila::
-	trainerbattle_single TRAINER_BEAUTY_SHEILA, Route13_Text_SheilaIntro, Route13_Text_SheilaDefeat
+	trainerbattle_single TRAINER_BEAUTY_SHEILA, Route13_Text_SheilaIntro, Route13_Text_SheilaDefeat, Route13_EventScript_Sheila_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route13_EventScript_SheilaRematch
 	msgbox Route13_Text_SheilaPostBattle, MSGBOX_AUTOCLOSE
@@ -955,7 +1351,19 @@ Route13_EventScript_Sheila::
 
 Route13_EventScript_SheilaRematch::
 	trainerbattle_rematch TRAINER_BEAUTY_SHEILA, Route13_Text_SheilaRematchIntro, Route13_Text_SheilaDefeat
+	setvar VAR_0x8004, TRAINER_BEAUTY_SHEILA
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route13_EventScript_Sheila_RegisterMsg
 	msgbox Route13_Text_SheilaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route13_EventScript_Sheila_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route13_EventScript_Sheila_RegisterMsg::
+	msgbox Route13_Text_SheilaRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_BEAUTY_SHEILA
+	release
 	end
 
 Route13_EventScript_Sebastian::
@@ -983,7 +1391,7 @@ Route13_EventScript_PerryRematch::
 	end
 
 Route13_EventScript_Robert::
-	trainerbattle_single TRAINER_BIRD_KEEPER_ROBERT, Route13_Text_RobertIntro, Route13_Text_RobertDefeat
+	trainerbattle_single TRAINER_BIRD_KEEPER_ROBERT, Route13_Text_RobertIntro, Route13_Text_RobertDefeat, Route13_EventScript_Robert_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route13_EventScript_RobertRematch
 	msgbox Route13_Text_RobertPostBattle, MSGBOX_AUTOCLOSE
@@ -991,8 +1399,20 @@ Route13_EventScript_Robert::
 
 Route13_EventScript_RobertRematch::
 	trainerbattle_rematch TRAINER_BIRD_KEEPER_ROBERT, Route13_Text_RobertRematchIntro, Route13_Text_RobertDefeat
+	setvar VAR_0x8004, TRAINER_BIRD_KEEPER_ROBERT
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route13_EventScript_Robert_RegisterMsg
 	msgbox Route13_Text_RobertPostBattle, MSGBOX_AUTOCLOSE
 	goto_if_defeated TRAINER_BIRD_KEEPER_ROBERT_3, Route13_EventScript_RobertGiveTMStoneEdge
+	end
+
+Route13_EventScript_Robert_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route13_EventScript_Robert_RegisterMsg::
+	msgbox Route13_Text_RobertRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_BIRD_KEEPER_ROBERT
+	release
 	end
 
 @ Origin Jade: TM Stone Edge once his last rematch team is beaten.
@@ -1018,7 +1438,7 @@ Route13_EventScript_AlmaRematch::
 	end
 
 Route13_EventScript_Susie::
-	trainerbattle_single TRAINER_PICNICKER_SUSIE, Route13_Text_SusieIntro, Route13_Text_SusieDefeat
+	trainerbattle_single TRAINER_PICNICKER_SUSIE, Route13_Text_SusieIntro, Route13_Text_SusieDefeat, Route13_EventScript_Susie_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route13_EventScript_SusieRematch
 	msgbox Route13_Text_SusiePostBattle, MSGBOX_AUTOCLOSE
@@ -1026,7 +1446,19 @@ Route13_EventScript_Susie::
 
 Route13_EventScript_SusieRematch::
 	trainerbattle_rematch TRAINER_PICNICKER_SUSIE, Route13_Text_SusieRematchIntro, Route13_Text_SusieDefeat
+	setvar VAR_0x8004, TRAINER_PICNICKER_SUSIE
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route13_EventScript_Susie_RegisterMsg
 	msgbox Route13_Text_SusiePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route13_EventScript_Susie_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route13_EventScript_Susie_RegisterMsg::
+	msgbox Route13_Text_SusieRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_PICNICKER_SUSIE
+	release
 	end
 
 Route13_EventScript_Valerie::
@@ -1066,7 +1498,7 @@ Route14_EventScript_MalikRematch::
 	end
 
 Route14_EventScript_Lukas::
-	trainerbattle_single TRAINER_BIKER_LUKAS, Route14_Text_LukasIntro, Route14_Text_LukasDefeat
+	trainerbattle_single TRAINER_BIKER_LUKAS, Route14_Text_LukasIntro, Route14_Text_LukasDefeat, Route14_EventScript_Lukas_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route14_EventScript_LukasRematch
 	msgbox Route14_Text_LukasPostBattle, MSGBOX_AUTOCLOSE
@@ -1074,7 +1506,19 @@ Route14_EventScript_Lukas::
 
 Route14_EventScript_LukasRematch::
 	trainerbattle_rematch TRAINER_BIKER_LUKAS, Route14_Text_LukasRematchIntro, Route14_Text_LukasDefeat
+	setvar VAR_0x8004, TRAINER_BIKER_LUKAS
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route14_EventScript_Lukas_RegisterMsg
 	msgbox Route14_Text_LukasPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route14_EventScript_Lukas_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route14_EventScript_Lukas_RegisterMsg::
+	msgbox Route14_Text_LukasRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_BIKER_LUKAS
+	release
 	end
 
 Route14_EventScript_Isaac::
@@ -1114,7 +1558,7 @@ Route14_EventScript_DonaldRematch::
 	end
 
 Route14_EventScript_Benny::
-	trainerbattle_single TRAINER_BIRD_KEEPER_BENNY, Route14_Text_BennyIntro, Route14_Text_BennyDefeat
+	trainerbattle_single TRAINER_BIRD_KEEPER_BENNY, Route14_Text_BennyIntro, Route14_Text_BennyDefeat, Route14_EventScript_Benny_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route14_EventScript_BennyRematch
 	msgbox Route14_Text_BennyPostBattle, MSGBOX_AUTOCLOSE
@@ -1122,8 +1566,20 @@ Route14_EventScript_Benny::
 
 Route14_EventScript_BennyRematch::
 	trainerbattle_rematch TRAINER_BIRD_KEEPER_BENNY, Route14_Text_BennyRematchIntro, Route14_Text_BennyDefeat
+	setvar VAR_0x8004, TRAINER_BIRD_KEEPER_BENNY
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route14_EventScript_Benny_RegisterMsg
 	msgbox Route14_Text_BennyPostBattle, MSGBOX_AUTOCLOSE
 	goto_if_defeated TRAINER_BIRD_KEEPER_BENNY_3, Route14_EventScript_BennyGiveTMWillOWisp
+	end
+
+Route14_EventScript_Benny_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route14_EventScript_Benny_RegisterMsg::
+	msgbox Route14_Text_BennyRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_BIRD_KEEPER_BENNY
+	release
 	end
 
 @ Origin Jade: TM Will-O-Wisp once his last rematch team is beaten.
@@ -1137,7 +1593,7 @@ Route14_EventScript_BennyGiveTMWillOWisp::
 	end
 
 Route14_EventScript_Carter::
-	trainerbattle_single TRAINER_BIRD_KEEPER_CARTER, Route14_Text_CarterIntro, Route14_Text_CarterDefeat
+	trainerbattle_single TRAINER_BIRD_KEEPER_CARTER, Route14_Text_CarterIntro, Route14_Text_CarterDefeat, Route14_EventScript_Carter_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route14_EventScript_CarterRematch
 	msgbox Route14_Text_CarterPostBattle, MSGBOX_AUTOCLOSE
@@ -1145,11 +1601,23 @@ Route14_EventScript_Carter::
 
 Route14_EventScript_CarterRematch::
 	trainerbattle_rematch TRAINER_BIRD_KEEPER_CARTER, Route14_Text_CarterRematchIntro, Route14_Text_CarterDefeat
+	setvar VAR_0x8004, TRAINER_BIRD_KEEPER_CARTER
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route14_EventScript_Carter_RegisterMsg
 	msgbox Route14_Text_CarterPostBattle, MSGBOX_AUTOCLOSE
 	goto_if_set FLAG_DEFEATED_CARTER_REMATCH, Route14_EventScript_CarterGiveTMThunderWave
 	end
 
-@ Origin Jade: TM Thunder Wave once a VS Seeker rematch against him is won.
+Route14_EventScript_Carter_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route14_EventScript_Carter_RegisterMsg::
+	msgbox Route14_Text_CarterRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_BIRD_KEEPER_CARTER
+	release
+	end
+
+@ Origin Jade: TM Thunder Wave once a rematch against him is won.
 Route14_EventScript_CarterGiveTMThunderWave::
 	goto_if_set FLAG_GOT_TM_THUNDER_WAVE_FROM_CARTER, Common_EventScript_NoOp
 	lock
@@ -1184,7 +1652,7 @@ Route14_EventScript_BeckRematch::
 	end
 
 Route14_EventScript_Marlon::
-	trainerbattle_single TRAINER_BIRD_KEEPER_MARLON, Route14_Text_MarlonIntro, Route14_Text_MarlonDefeat
+	trainerbattle_single TRAINER_BIRD_KEEPER_MARLON, Route14_Text_MarlonIntro, Route14_Text_MarlonDefeat, Route14_EventScript_Marlon_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route14_EventScript_MarlonRematch
 	msgbox Route14_Text_MarlonPostBattle, MSGBOX_AUTOCLOSE
@@ -1192,7 +1660,19 @@ Route14_EventScript_Marlon::
 
 Route14_EventScript_MarlonRematch::
 	trainerbattle_rematch TRAINER_BIRD_KEEPER_MARLON, Route14_Text_MarlonRematchIntro, Route14_Text_MarlonDefeat
+	setvar VAR_0x8004, TRAINER_BIRD_KEEPER_MARLON
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route14_EventScript_Marlon_RegisterMsg
 	msgbox Route14_Text_MarlonPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route14_EventScript_Marlon_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route14_EventScript_Marlon_RegisterMsg::
+	msgbox Route14_Text_MarlonRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_BIRD_KEEPER_MARLON
+	release
 	end
 
 Route14_EventScript_Kiri::
@@ -1244,7 +1724,7 @@ Route15_EventScript_AlexRematch::
 	end
 
 Route15_EventScript_Grace::
-	trainerbattle_single TRAINER_BEAUTY_GRACE, Route15_Text_GraceIntro, Route15_Text_GraceDefeat
+	trainerbattle_single TRAINER_BEAUTY_GRACE, Route15_Text_GraceIntro, Route15_Text_GraceDefeat, Route15_EventScript_Grace_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route15_EventScript_GraceRematch
 	msgbox Route15_Text_GracePostBattle, MSGBOX_AUTOCLOSE
@@ -1252,8 +1732,20 @@ Route15_EventScript_Grace::
 
 Route15_EventScript_GraceRematch::
 	trainerbattle_rematch TRAINER_BEAUTY_GRACE, Route15_Text_GraceRematchIntro, Route15_Text_GraceDefeat
+	setvar VAR_0x8004, TRAINER_BEAUTY_GRACE
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route15_EventScript_Grace_RegisterMsg
 	msgbox Route15_Text_GracePostBattle, MSGBOX_AUTOCLOSE
 	goto_if_defeated TRAINER_BEAUTY_GRACE_2, Route15_EventScript_GraceGiveTMEnergyBall
+	end
+
+Route15_EventScript_Grace_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route15_EventScript_Grace_RegisterMsg::
+	msgbox Route15_Text_GraceRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_BEAUTY_GRACE
+	release
 	end
 
 @ Origin Jade: TM Energy Ball once her last rematch team is beaten.
@@ -1291,7 +1783,7 @@ Route15_EventScript_EdwinRematch::
 	end
 
 Route15_EventScript_Chester::
-	trainerbattle_single TRAINER_BIRD_KEEPER_CHESTER, Route15_Text_ChesterIntro, Route15_Text_ChesterDefeat
+	trainerbattle_single TRAINER_BIRD_KEEPER_CHESTER, Route15_Text_ChesterIntro, Route15_Text_ChesterDefeat, Route15_EventScript_Chester_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route15_EventScript_ChesterRematch
 	msgbox Route15_Text_ChesterPostBattle, MSGBOX_AUTOCLOSE
@@ -1299,7 +1791,19 @@ Route15_EventScript_Chester::
 
 Route15_EventScript_ChesterRematch::
 	trainerbattle_rematch TRAINER_BIRD_KEEPER_CHESTER, Route15_Text_ChesterRematchIntro, Route15_Text_ChesterDefeat
+	setvar VAR_0x8004, TRAINER_BIRD_KEEPER_CHESTER
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route15_EventScript_Chester_RegisterMsg
 	msgbox Route15_Text_ChesterPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route15_EventScript_Chester_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route15_EventScript_Chester_RegisterMsg::
+	msgbox Route15_Text_ChesterRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_BIRD_KEEPER_CHESTER
+	release
 	end
 
 Route15_EventScript_Yazmin::
@@ -1327,7 +1831,7 @@ Route15_EventScript_KindraRematch::
 	end
 
 Route15_EventScript_Becky::
-	trainerbattle_single TRAINER_PICNICKER_BECKY, Route15_Text_BeckyIntro, Route15_Text_BeckyDefeat
+	trainerbattle_single TRAINER_PICNICKER_BECKY, Route15_Text_BeckyIntro, Route15_Text_BeckyDefeat, Route15_EventScript_Becky_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route15_EventScript_BeckyRematch
 	msgbox Route15_Text_BeckyPostBattle, MSGBOX_AUTOCLOSE
@@ -1335,7 +1839,19 @@ Route15_EventScript_Becky::
 
 Route15_EventScript_BeckyRematch::
 	trainerbattle_rematch TRAINER_PICNICKER_BECKY, Route15_Text_BeckyRematchIntro, Route15_Text_BeckyDefeat
+	setvar VAR_0x8004, TRAINER_PICNICKER_BECKY
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route15_EventScript_Becky_RegisterMsg
 	msgbox Route15_Text_BeckyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route15_EventScript_Becky_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route15_EventScript_Becky_RegisterMsg::
+	msgbox Route15_Text_BeckyRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_PICNICKER_BECKY
+	release
 	end
 
 Route15_EventScript_Celia::
@@ -1351,7 +1867,7 @@ Route15_EventScript_CeliaRematch::
 	end
 
 Route15_EventScript_Mya::
-	trainerbattle_double TRAINER_CRUSH_KIN_RON_MYA, Route15_Text_MyaIntro, Route15_Text_MyaDefeat, Route15_Text_MyaNotEnoughMons
+	trainerbattle_double TRAINER_CRUSH_KIN_RON_MYA, Route15_Text_MyaIntro, Route15_Text_MyaDefeat, Route15_Text_MyaNotEnoughMons, Route15_EventScript_Mya_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route15_EventScript_MyaRematch
 	msgbox Route15_Text_MyaPostBattle, MSGBOX_AUTOCLOSE
@@ -1359,11 +1875,23 @@ Route15_EventScript_Mya::
 
 Route15_EventScript_MyaRematch::
 	trainerbattle_rematch_double TRAINER_CRUSH_KIN_RON_MYA, Route15_Text_MyaRematchIntro, Route15_Text_MyaDefeat, Route15_Text_MyaNotEnoughMons
+	setvar VAR_0x8004, TRAINER_CRUSH_KIN_RON_MYA
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route15_EventScript_Mya_RegisterMsg
 	msgbox Route15_Text_MyaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route15_EventScript_Mya_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route15_EventScript_Mya_RegisterMsg::
+	msgbox Route15_Text_MyaRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_CRUSH_KIN_RON_MYA
+	release
+	end
+
 Route15_EventScript_Ron::
-	trainerbattle_double TRAINER_CRUSH_KIN_RON_MYA, Route15_Text_RonIntro, Route15_Text_RonDefeat, Route15_Text_RonNotEnoughMons
+	trainerbattle_double TRAINER_CRUSH_KIN_RON_MYA, Route15_Text_RonIntro, Route15_Text_RonDefeat, Route15_Text_RonNotEnoughMons, Route15_EventScript_Ron_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route15_EventScript_RonRematch
 	msgbox Route15_Text_RonPostBattle, MSGBOX_AUTOCLOSE
@@ -1371,7 +1899,19 @@ Route15_EventScript_Ron::
 
 Route15_EventScript_RonRematch::
 	trainerbattle_rematch_double TRAINER_CRUSH_KIN_RON_MYA, Route15_Text_RonRematchIntro, Route15_Text_RonDefeat, Route15_Text_RonNotEnoughMons
+	setvar VAR_0x8004, TRAINER_CRUSH_KIN_RON_MYA
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route15_EventScript_Ron_RegisterMsg
 	msgbox Route15_Text_RonPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route15_EventScript_Ron_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route15_EventScript_Ron_RegisterMsg::
+	msgbox Route15_Text_RonRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_CRUSH_KIN_RON_MYA
+	release
 	end
 
 Route16_EventScript_Lao::
@@ -1399,7 +1939,7 @@ Route16_EventScript_HideoRematch::
 	end
 
 Route16_EventScript_Ruben::
-	trainerbattle_single TRAINER_BIKER_RUBEN, Route16_Text_RubenIntro, Route16_Text_RubenDefeat
+	trainerbattle_single TRAINER_BIKER_RUBEN, Route16_Text_RubenIntro, Route16_Text_RubenDefeat, Route16_EventScript_Ruben_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route16_EventScript_RubenRematch
 	msgbox Route16_Text_RubenPostBattle, MSGBOX_AUTOCLOSE
@@ -1407,7 +1947,19 @@ Route16_EventScript_Ruben::
 
 Route16_EventScript_RubenRematch::
 	trainerbattle_rematch TRAINER_BIKER_RUBEN, Route16_Text_RubenRematchIntro, Route16_Text_RubenDefeat
+	setvar VAR_0x8004, TRAINER_BIKER_RUBEN
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route16_EventScript_Ruben_RegisterMsg
 	msgbox Route16_Text_RubenPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route16_EventScript_Ruben_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route16_EventScript_Ruben_RegisterMsg::
+	msgbox Route16_Text_RubenRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_BIKER_RUBEN
+	release
 	end
 
 Route16_EventScript_Koji::
@@ -1435,7 +1987,7 @@ Route16_EventScript_LukeRematch::
 	end
 
 Route16_EventScript_Camron::
-	trainerbattle_single TRAINER_CUE_BALL_CAMRON, Route16_Text_CamronIntro, Route16_Text_CamronDefeat
+	trainerbattle_single TRAINER_CUE_BALL_CAMRON, Route16_Text_CamronIntro, Route16_Text_CamronDefeat, Route16_EventScript_Camron_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route16_EventScript_CamronRematch
 	msgbox Route16_Text_CamronPostBattle, MSGBOX_AUTOCLOSE
@@ -1443,11 +1995,23 @@ Route16_EventScript_Camron::
 
 Route16_EventScript_CamronRematch::
 	trainerbattle_rematch TRAINER_CUE_BALL_CAMRON, Route16_Text_CamronRematchIntro, Route16_Text_CamronDefeat
+	setvar VAR_0x8004, TRAINER_CUE_BALL_CAMRON
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route16_EventScript_Camron_RegisterMsg
 	msgbox Route16_Text_CamronPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route16_EventScript_Camron_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route16_EventScript_Camron_RegisterMsg::
+	msgbox Route16_Text_CamronRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_CUE_BALL_CAMRON
+	release
+	end
+
 Route16_EventScript_Jed::
-	trainerbattle_double TRAINER_YOUNG_COUPLE_LEA_JED, Route16_Text_JedIntro, Route16_Text_JedDefeat, Route16_Text_JedNotEnoughMons
+	trainerbattle_double TRAINER_YOUNG_COUPLE_LEA_JED, Route16_Text_JedIntro, Route16_Text_JedDefeat, Route16_Text_JedNotEnoughMons, Route16_EventScript_Jed_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route16_EventScript_JedRematch
 	msgbox Route16_Text_JedPostBattle, MSGBOX_AUTOCLOSE
@@ -1455,11 +2019,23 @@ Route16_EventScript_Jed::
 
 Route16_EventScript_JedRematch::
 	trainerbattle_rematch_double TRAINER_YOUNG_COUPLE_LEA_JED, Route16_Text_JedRematchIntro, Route16_Text_JedDefeat, Route16_Text_JedNotEnoughMons
+	setvar VAR_0x8004, TRAINER_YOUNG_COUPLE_LEA_JED
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route16_EventScript_Jed_RegisterMsg
 	msgbox Route16_Text_JedPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route16_EventScript_Jed_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route16_EventScript_Jed_RegisterMsg::
+	msgbox Route16_Text_JedRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_YOUNG_COUPLE_LEA_JED
+	release
+	end
+
 Route16_EventScript_Lea::
-	trainerbattle_double TRAINER_YOUNG_COUPLE_LEA_JED, Route16_Text_LeaIntro, Route16_Text_LeaDefeat, Route16_Text_LeaNotEnoughMons
+	trainerbattle_double TRAINER_YOUNG_COUPLE_LEA_JED, Route16_Text_LeaIntro, Route16_Text_LeaDefeat, Route16_Text_LeaNotEnoughMons, Route16_EventScript_Lea_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route16_EventScript_LeaRematch
 	msgbox Route16_Text_LeaPostBattle, MSGBOX_AUTOCLOSE
@@ -1467,7 +2043,19 @@ Route16_EventScript_Lea::
 
 Route16_EventScript_LeaRematch::
 	trainerbattle_rematch_double TRAINER_YOUNG_COUPLE_LEA_JED, Route16_Text_LeaRematchIntro, Route16_Text_LeaDefeat, Route16_Text_LeaNotEnoughMons
+	setvar VAR_0x8004, TRAINER_YOUNG_COUPLE_LEA_JED
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route16_EventScript_Lea_RegisterMsg
 	msgbox Route16_Text_LeaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route16_EventScript_Lea_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route16_EventScript_Lea_RegisterMsg::
+	msgbox Route16_Text_LeaRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_YOUNG_COUPLE_LEA_JED
+	release
 	end
 
 Route17_EventScript_Billy::
@@ -1495,7 +2083,7 @@ Route17_EventScript_NikolasRematch::
 	end
 
 Route17_EventScript_Jaxon::
-	trainerbattle_single TRAINER_BIKER_JAXON, Route17_Text_JaxonIntro, Route17_Text_JaxonDefeat
+	trainerbattle_single TRAINER_BIKER_JAXON, Route17_Text_JaxonIntro, Route17_Text_JaxonDefeat, Route17_EventScript_Jaxon_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route17_EventScript_JaxonRematch
 	msgbox Route17_Text_JaxonPostBattle, MSGBOX_AUTOCLOSE
@@ -1503,7 +2091,19 @@ Route17_EventScript_Jaxon::
 
 Route17_EventScript_JaxonRematch::
 	trainerbattle_rematch TRAINER_BIKER_JAXON, Route17_Text_JaxonRematchIntro, Route17_Text_JaxonDefeat
+	setvar VAR_0x8004, TRAINER_BIKER_JAXON
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route17_EventScript_Jaxon_RegisterMsg
 	msgbox Route17_Text_JaxonPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route17_EventScript_Jaxon_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route17_EventScript_Jaxon_RegisterMsg::
+	msgbox Route17_Text_JaxonRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_BIKER_JAXON
+	release
 	end
 
 Route17_EventScript_William::
@@ -1531,7 +2131,7 @@ Route17_EventScript_RaulRematch::
 	end
 
 Route17_EventScript_Isaiah::
-	trainerbattle_single TRAINER_CUE_BALL_ISAIAH, Route17_Text_IsaiahIntro, Route17_Text_IsaiahDefeat
+	trainerbattle_single TRAINER_CUE_BALL_ISAIAH, Route17_Text_IsaiahIntro, Route17_Text_IsaiahDefeat, Route17_EventScript_Isaiah_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route17_EventScript_IsaiahRematch
 	msgbox Route17_Text_IsaiahPostBattle, MSGBOX_AUTOCLOSE
@@ -1539,7 +2139,19 @@ Route17_EventScript_Isaiah::
 
 Route17_EventScript_IsaiahRematch::
 	trainerbattle_rematch TRAINER_CUE_BALL_ISAIAH, Route17_Text_IsaiahRematchIntro, Route17_Text_IsaiahDefeat
+	setvar VAR_0x8004, TRAINER_CUE_BALL_ISAIAH
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route17_EventScript_Isaiah_RegisterMsg
 	msgbox Route17_Text_IsaiahPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route17_EventScript_Isaiah_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route17_EventScript_Isaiah_RegisterMsg::
+	msgbox Route17_Text_IsaiahRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_CUE_BALL_ISAIAH
+	release
 	end
 
 Route17_EventScript_Zeek::
@@ -1567,7 +2179,7 @@ Route17_EventScript_JamalRematch::
 	end
 
 Route17_EventScript_Corey::
-	trainerbattle_single TRAINER_CUE_BALL_COREY, Route17_Text_CoreyIntro, Route17_Text_CoreyDefeat
+	trainerbattle_single TRAINER_CUE_BALL_COREY, Route17_Text_CoreyIntro, Route17_Text_CoreyDefeat, Route17_EventScript_Corey_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route17_EventScript_CoreyRematch
 	msgbox Route17_Text_CoreyPostBattle, MSGBOX_AUTOCLOSE
@@ -1575,7 +2187,19 @@ Route17_EventScript_Corey::
 
 Route17_EventScript_CoreyRematch::
 	trainerbattle_rematch TRAINER_CUE_BALL_COREY, Route17_Text_CoreyRematchIntro, Route17_Text_CoreyDefeat
+	setvar VAR_0x8004, TRAINER_CUE_BALL_COREY
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route17_EventScript_Corey_RegisterMsg
 	msgbox Route17_Text_CoreyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route17_EventScript_Corey_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route17_EventScript_Corey_RegisterMsg::
+	msgbox Route17_Text_CoreyRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_CUE_BALL_COREY
+	release
 	end
 
 Route17_EventScript_Virgil::
@@ -1591,7 +2215,7 @@ Route17_EventScript_VirgilRematch::
 	end
 
 Route18_EventScript_Wilton::
-	trainerbattle_single TRAINER_BIRD_KEEPER_WILTON, Route18_Text_WiltonIntro, Route18_Text_WiltonDefeat
+	trainerbattle_single TRAINER_BIRD_KEEPER_WILTON, Route18_Text_WiltonIntro, Route18_Text_WiltonDefeat, Route18_EventScript_Wilton_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route18_EventScript_WiltonRematch
 	msgbox Route18_Text_WiltonPostBattle, MSGBOX_AUTOCLOSE
@@ -1599,7 +2223,19 @@ Route18_EventScript_Wilton::
 
 Route18_EventScript_WiltonRematch::
 	trainerbattle_rematch TRAINER_BIRD_KEEPER_WILTON, Route18_Text_WiltonRematchIntro, Route18_Text_WiltonDefeat
+	setvar VAR_0x8004, TRAINER_BIRD_KEEPER_WILTON
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route18_EventScript_Wilton_RegisterMsg
 	msgbox Route18_Text_WiltonPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route18_EventScript_Wilton_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route18_EventScript_Wilton_RegisterMsg::
+	msgbox Route18_Text_WiltonRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_BIRD_KEEPER_WILTON
+	release
 	end
 
 Route18_EventScript_Ramiro::
@@ -1615,7 +2251,7 @@ Route18_EventScript_RamiroRematch::
 	end
 
 Route18_EventScript_Jacob::
-	trainerbattle_single TRAINER_BIRD_KEEPER_JACOB, Route18_Text_JacobIntro, Route18_Text_JacobDefeat
+	trainerbattle_single TRAINER_BIRD_KEEPER_JACOB, Route18_Text_JacobIntro, Route18_Text_JacobDefeat, Route18_EventScript_Jacob_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route18_EventScript_JacobRematch
 	msgbox Route18_Text_JacobPostBattle, MSGBOX_AUTOCLOSE
@@ -1623,7 +2259,19 @@ Route18_EventScript_Jacob::
 
 Route18_EventScript_JacobRematch::
 	trainerbattle_rematch TRAINER_BIRD_KEEPER_JACOB, Route18_Text_JacobRematchIntro, Route18_Text_JacobDefeat
+	setvar VAR_0x8004, TRAINER_BIRD_KEEPER_JACOB
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route18_EventScript_Jacob_RegisterMsg
 	msgbox Route18_Text_JacobPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route18_EventScript_Jacob_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route18_EventScript_Jacob_RegisterMsg::
+	msgbox Route18_Text_JacobRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_BIRD_KEEPER_JACOB
+	release
 	end
 
 Route19_EventScript_Richard::
@@ -1651,7 +2299,7 @@ Route19_EventScript_ReeceRematch::
 	end
 
 Route19_EventScript_Matthew::
-	trainerbattle_single TRAINER_SWIMMER_MALE_MATTHEW, Route19_Text_MatthewIntro, Route19_Text_MatthewDefeat
+	trainerbattle_single TRAINER_SWIMMER_MALE_MATTHEW, Route19_Text_MatthewIntro, Route19_Text_MatthewDefeat, Route19_EventScript_Matthew_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route19_EventScript_MatthewRematch
 	msgbox Route19_Text_MatthewPostBattle, MSGBOX_AUTOCLOSE
@@ -1659,7 +2307,19 @@ Route19_EventScript_Matthew::
 
 Route19_EventScript_MatthewRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_MALE_MATTHEW, Route19_Text_MatthewRematchIntro, Route19_Text_MatthewDefeat
+	setvar VAR_0x8004, TRAINER_SWIMMER_MALE_MATTHEW
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route19_EventScript_Matthew_RegisterMsg
 	msgbox Route19_Text_MatthewPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route19_EventScript_Matthew_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route19_EventScript_Matthew_RegisterMsg::
+	msgbox Route19_Text_MatthewRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_SWIMMER_MALE_MATTHEW
+	release
 	end
 
 Route19_EventScript_Douglas::
@@ -1687,7 +2347,7 @@ Route19_EventScript_DavidRematch::
 	end
 
 Route19_EventScript_Tony::
-	trainerbattle_single TRAINER_SWIMMER_MALE_TONY, Route19_Text_TonyIntro, Route19_Text_TonyDefeat
+	trainerbattle_single TRAINER_SWIMMER_MALE_TONY, Route19_Text_TonyIntro, Route19_Text_TonyDefeat, Route19_EventScript_Tony_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route19_EventScript_TonyRematch
 	msgbox Route19_Text_TonyPostBattle, MSGBOX_AUTOCLOSE
@@ -1695,7 +2355,19 @@ Route19_EventScript_Tony::
 
 Route19_EventScript_TonyRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_MALE_TONY, Route19_Text_TonyRematchIntro, Route19_Text_TonyDefeat
+	setvar VAR_0x8004, TRAINER_SWIMMER_MALE_TONY
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route19_EventScript_Tony_RegisterMsg
 	msgbox Route19_Text_TonyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route19_EventScript_Tony_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route19_EventScript_Tony_RegisterMsg::
+	msgbox Route19_Text_TonyRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_SWIMMER_MALE_TONY
+	release
 	end
 
 Route19_EventScript_Axle::
@@ -1723,7 +2395,7 @@ Route19_EventScript_AnyaRematch::
 	end
 
 Route19_EventScript_Alice::
-	trainerbattle_single TRAINER_SWIMMER_FEMALE_ALICE, Route19_Text_AliceIntro, Route19_Text_AliceDefeat
+	trainerbattle_single TRAINER_SWIMMER_FEMALE_ALICE, Route19_Text_AliceIntro, Route19_Text_AliceDefeat, Route19_EventScript_Alice_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route19_EventScript_AliceRematch
 	msgbox Route19_Text_AlicePostBattle, MSGBOX_AUTOCLOSE
@@ -1731,7 +2403,19 @@ Route19_EventScript_Alice::
 
 Route19_EventScript_AliceRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_FEMALE_ALICE, Route19_Text_AliceRematchIntro, Route19_Text_AliceDefeat
+	setvar VAR_0x8004, TRAINER_SWIMMER_FEMALE_ALICE
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route19_EventScript_Alice_RegisterMsg
 	msgbox Route19_Text_AlicePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route19_EventScript_Alice_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route19_EventScript_Alice_RegisterMsg::
+	msgbox Route19_Text_AliceRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_SWIMMER_FEMALE_ALICE
+	release
 	end
 
 Route19_EventScript_Connie::
@@ -1795,7 +2479,7 @@ Route20_EventScript_DeanRematch::
 	end
 
 Route20_EventScript_Darrin::
-	trainerbattle_single TRAINER_SWIMMER_MALE_DARRIN, Route20_Text_DarrinIntro, Route20_Text_DarrinDefeat
+	trainerbattle_single TRAINER_SWIMMER_MALE_DARRIN, Route20_Text_DarrinIntro, Route20_Text_DarrinDefeat, Route20_EventScript_Darrin_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route20_EventScript_DarrinRematch
 	msgbox Route20_Text_DarrinPostBattle, MSGBOX_AUTOCLOSE
@@ -1803,7 +2487,19 @@ Route20_EventScript_Darrin::
 
 Route20_EventScript_DarrinRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_MALE_DARRIN, Route20_Text_DarrinRematchIntro, Route20_Text_DarrinDefeat
+	setvar VAR_0x8004, TRAINER_SWIMMER_MALE_DARRIN
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route20_EventScript_Darrin_RegisterMsg
 	msgbox Route20_Text_DarrinPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route20_EventScript_Darrin_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route20_EventScript_Darrin_RegisterMsg::
+	msgbox Route20_Text_DarrinRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_SWIMMER_MALE_DARRIN
+	release
 	end
 
 Route20_EventScript_Tiffany::
@@ -1831,7 +2527,7 @@ Route20_EventScript_NoraRematch::
 	end
 
 Route20_EventScript_Melissa::
-	trainerbattle_single TRAINER_SWIMMER_FEMALE_MELISSA, Route20_Text_MelissaIntro, Route20_Text_MelissaDefeat
+	trainerbattle_single TRAINER_SWIMMER_FEMALE_MELISSA, Route20_Text_MelissaIntro, Route20_Text_MelissaDefeat, Route20_EventScript_Melissa_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route20_EventScript_MelissaRematch
 	msgbox Route20_Text_MelissaPostBattle, MSGBOX_AUTOCLOSE
@@ -1839,7 +2535,19 @@ Route20_EventScript_Melissa::
 
 Route20_EventScript_MelissaRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_FEMALE_MELISSA, Route20_Text_MelissaRematchIntro, Route20_Text_MelissaDefeat
+	setvar VAR_0x8004, TRAINER_SWIMMER_FEMALE_MELISSA
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route20_EventScript_Melissa_RegisterMsg
 	msgbox Route20_Text_MelissaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route20_EventScript_Melissa_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route20_EventScript_Melissa_RegisterMsg::
+	msgbox Route20_Text_MelissaRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_SWIMMER_FEMALE_MELISSA
+	release
 	end
 
 Route20_EventScript_Shirley::
@@ -1867,7 +2575,7 @@ Route20_EventScript_RogerRematch::
 	end
 
 Route20_EventScript_Missy::
-	trainerbattle_single TRAINER_PICNICKER_MISSY, Route20_Text_MissyIntro, Route20_Text_MissyDefeat
+	trainerbattle_single TRAINER_PICNICKER_MISSY, Route20_Text_MissyIntro, Route20_Text_MissyDefeat, Route20_EventScript_Missy_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route20_EventScript_MissyRematch
 	msgbox Route20_Text_MissyPostBattle, MSGBOX_AUTOCLOSE
@@ -1875,7 +2583,19 @@ Route20_EventScript_Missy::
 
 Route20_EventScript_MissyRematch::
 	trainerbattle_rematch TRAINER_PICNICKER_MISSY, Route20_Text_MissyRematchIntro, Route20_Text_MissyDefeat
+	setvar VAR_0x8004, TRAINER_PICNICKER_MISSY
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route20_EventScript_Missy_RegisterMsg
 	msgbox Route20_Text_MissyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route20_EventScript_Missy_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route20_EventScript_Missy_RegisterMsg::
+	msgbox Route20_Text_MissyRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_PICNICKER_MISSY
+	release
 	end
 
 Route20_EventScript_Irene::
@@ -1915,7 +2635,7 @@ Route21_South_EventScript_ClaudeRematch::
 	end
 
 Route21_North_EventScript_Wade::
-	trainerbattle_single TRAINER_FISHERMAN_WADE, Route21_North_Text_WadeIntro, Route21_North_Text_WadeDefeat
+	trainerbattle_single TRAINER_FISHERMAN_WADE, Route21_North_Text_WadeIntro, Route21_North_Text_WadeDefeat, Route21_North_EventScript_Wade_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route21_North_EventScript_WadeRematch
 	msgbox Route21_North_Text_WadePostBattle, MSGBOX_AUTOCLOSE
@@ -1923,7 +2643,19 @@ Route21_North_EventScript_Wade::
 
 Route21_North_EventScript_WadeRematch::
 	trainerbattle_rematch TRAINER_FISHERMAN_WADE, Route21_North_Text_WadeRematchIntro, Route21_North_Text_WadeDefeat
+	setvar VAR_0x8004, TRAINER_FISHERMAN_WADE
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route21_North_EventScript_Wade_RegisterMsg
 	msgbox Route21_North_Text_WadePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route21_North_EventScript_Wade_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route21_North_EventScript_Wade_RegisterMsg::
+	msgbox Route21_North_Text_WadeRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_FISHERMAN_WADE
+	release
 	end
 
 Route21_South_EventScript_Nolan::
@@ -1951,7 +2683,7 @@ Route21_North_EventScript_SpencerRematch::
 	end
 
 Route21_South_EventScript_Jack::
-	trainerbattle_single TRAINER_SWIMMER_MALE_JACK, Route21_South_Text_JackIntro, Route21_South_Text_JackDefeat
+	trainerbattle_single TRAINER_SWIMMER_MALE_JACK, Route21_South_Text_JackIntro, Route21_South_Text_JackDefeat, Route21_South_EventScript_Jack_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route21_South_EventScript_JackRematch
 	msgbox Route21_South_Text_JackPostBattle, MSGBOX_AUTOCLOSE
@@ -1959,7 +2691,19 @@ Route21_South_EventScript_Jack::
 
 Route21_South_EventScript_JackRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_MALE_JACK, Route21_South_Text_JackRematchIntro, Route21_South_Text_JackDefeat
+	setvar VAR_0x8004, TRAINER_SWIMMER_MALE_JACK
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route21_South_EventScript_Jack_RegisterMsg
 	msgbox Route21_South_Text_JackPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route21_South_EventScript_Jack_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route21_South_EventScript_Jack_RegisterMsg::
+	msgbox Route21_South_Text_JackRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_SWIMMER_MALE_JACK
+	release
 	end
 
 Route21_South_EventScript_Jerome::
@@ -1975,7 +2719,7 @@ Route21_South_EventScript_JeromeRematch::
 	end
 
 Route21_South_EventScript_Roland::
-	trainerbattle_single TRAINER_SWIMMER_MALE_ROLAND, Route21_South_Text_RolandIntro, Route21_South_Text_RolandDefeat
+	trainerbattle_single TRAINER_SWIMMER_MALE_ROLAND, Route21_South_Text_RolandIntro, Route21_South_Text_RolandDefeat, Route21_South_EventScript_Roland_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route21_South_EventScript_RolandRematch
 	msgbox Route21_South_Text_RolandPostBattle, MSGBOX_AUTOCLOSE
@@ -1983,11 +2727,23 @@ Route21_South_EventScript_Roland::
 
 Route21_South_EventScript_RolandRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_MALE_ROLAND, Route21_South_Text_RolandRematchIntro, Route21_South_Text_RolandDefeat
+	setvar VAR_0x8004, TRAINER_SWIMMER_MALE_ROLAND
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route21_South_EventScript_Roland_RegisterMsg
 	msgbox Route21_South_Text_RolandPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route21_South_EventScript_Roland_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route21_South_EventScript_Roland_RegisterMsg::
+	msgbox Route21_South_Text_RolandRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_SWIMMER_MALE_ROLAND
+	release
+	end
+
 Route21_North_EventScript_Lil::
-	trainerbattle_double TRAINER_SIS_AND_BRO_LIL_IAN, Route21_North_Text_LilIntro, Route21_North_Text_LilDefeat, Route21_North_Text_LilNotEnoughMons
+	trainerbattle_double TRAINER_SIS_AND_BRO_LIL_IAN, Route21_North_Text_LilIntro, Route21_North_Text_LilDefeat, Route21_North_Text_LilNotEnoughMons, Route21_North_EventScript_Lil_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route21_North_EventScript_LilRematch
 	msgbox Route21_North_Text_LilPostBattle, MSGBOX_AUTOCLOSE
@@ -1995,11 +2751,23 @@ Route21_North_EventScript_Lil::
 
 Route21_North_EventScript_LilRematch::
 	trainerbattle_rematch_double TRAINER_SIS_AND_BRO_LIL_IAN, Route21_North_Text_LilRematchIntro, Route21_North_Text_LilDefeat, Route21_North_Text_LilNotEnoughMons
+	setvar VAR_0x8004, TRAINER_SIS_AND_BRO_LIL_IAN
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route21_North_EventScript_Lil_RegisterMsg
 	msgbox Route21_North_Text_LilPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+Route21_North_EventScript_Lil_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route21_North_EventScript_Lil_RegisterMsg::
+	msgbox Route21_North_Text_LilRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_SIS_AND_BRO_LIL_IAN
+	release
+	end
+
 Route21_North_EventScript_Ian::
-	trainerbattle_double TRAINER_SIS_AND_BRO_LIL_IAN, Route21_North_Text_IanIntro, Route21_North_Text_IanDefeat, Route21_North_Text_IanNotEnoughMons
+	trainerbattle_double TRAINER_SIS_AND_BRO_LIL_IAN, Route21_North_Text_IanIntro, Route21_North_Text_IanDefeat, Route21_North_Text_IanNotEnoughMons, Route21_North_EventScript_Ian_Register
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route21_North_EventScript_IanRematch
 	msgbox Route21_North_Text_IanPostBattle, MSGBOX_AUTOCLOSE
@@ -2007,7 +2775,19 @@ Route21_North_EventScript_Ian::
 
 Route21_North_EventScript_IanRematch::
 	trainerbattle_rematch_double TRAINER_SIS_AND_BRO_LIL_IAN, Route21_North_Text_IanRematchIntro, Route21_North_Text_IanDefeat, Route21_North_Text_IanNotEnoughMons
+	setvar VAR_0x8004, TRAINER_SIS_AND_BRO_LIL_IAN
+	specialvar VAR_RESULT, IsTrainerRegistered
+	goto_if_eq VAR_RESULT, FALSE, Route21_North_EventScript_Ian_RegisterMsg
 	msgbox Route21_North_Text_IanPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route21_North_EventScript_Ian_Register::
+	special PlayerFaceTrainerAfterBattle
+	waitmovement 0
+Route21_North_EventScript_Ian_RegisterMsg::
+	msgbox Route21_North_Text_IanRegister, MSGBOX_DEFAULT
+	register_matchcall TRAINER_SIS_AND_BRO_LIL_IAN
+	release
 	end
 
 OneIsland_KindleRoad_EventScript_Maria::

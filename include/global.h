@@ -1259,12 +1259,15 @@ struct SaveBlock1
 #endif //FREE_EXTRA_SEEN_FLAGS_SAVEBLOCK1
     /*0x9BC*/ u16 berryBlenderRecords[3];
     /*0x9C2*/ u32 saveVersionMagic;
-    /*0x9C6*/ u8 unused_9C6[2];
 #if FREE_MATCH_CALL == FALSE
-    /*0x9C8*/ u16 trainerRematchStepCounter;
-    /*0x9CA*/ u8 trainerRematches[MAX_REMATCH_ENTRIES];
+    // PokeCom rematch area, REMATCH_SAVE_AREA_SIZE bytes (offsets pinned in src/save.c).
+    u16 rematchStepCounter;
+    u16 routeCallStepCounter; // HnS route calls (src/match_call.c)
+    u8 rematchFlags[REMATCH_FLAG_BYTES]; // flag block REMATCH_FLAGS_START (constants/flags_rematch.h)
+    u8 rematchReserve[REMATCH_SAVE_AREA_SIZE - 4 - REMATCH_FLAG_BYTES];
+#else
+    u8 unused_9C6[2];
 #endif //FREE_MATCH_CALL
-    /*0xA2E*/ //u8 padding3[2];
     /*0xA30*/ struct ObjectEvent objectEvents[OBJECT_EVENTS_COUNT];
     /*0xC70*/ struct ObjectEventTemplate objectEventTemplates[OBJECT_EVENT_TEMPLATES_COUNT];
     /*0x1270*/ u8 flags[NUM_FLAG_BYTES];
@@ -1312,8 +1315,7 @@ struct SaveBlock1
 #endif //FREE_LINK_BATTLE_RECORDS
     /*0x31A8*/ u8 giftRibbons[GIFT_RIBBONS_COUNT];
 #if IS_HNS
-    // HnS: no GameCube link data; the space goes to the rematch table
-    // (MAX_REMATCH_ENTRIES).
+    // HnS: no GameCube link data; the space went to the rematch area.
 #else
     /*0x31B3*/ struct ExternalEventData externalEventData;
     /*0x31C7*/ struct ExternalEventFlags externalEventFlags;

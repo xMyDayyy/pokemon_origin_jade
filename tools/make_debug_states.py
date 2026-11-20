@@ -130,14 +130,15 @@ PC_SIZE = 14 * 30
 # (0 Bulbasaur, 1 Squirtle, 2 Charmander).
 KANTO_COMPLETE_STARTER = 2
 KANTO_COMPLETE_PARTY_STARTER_FINAL = ["SPECIES_VENUSAUR", "SPECIES_BLASTOISE", "SPECIES_CHARIZARD"]
-# Levels of an average player after the champion (Gen 5 experience).
-KANTO_COMPLETE_PARTY_STARTER_LEVEL = 49
+# Levels of an average player after the champion (fixed levels, config/level_remap.h):
+# the starter fights most, the others follow a few levels behind.
+KANTO_COMPLETE_PARTY_STARTER_LEVEL = 43
 KANTO_COMPLETE_PARTY = [
-    ("SPECIES_PIDGEOT", 43),
-    ("SPECIES_RAICHU", 44),
-    ("SPECIES_NIDOKING", 43),
-    ("SPECIES_GYARADOS", 42),
-    ("SPECIES_SNORLAX", 42),
+    ("SPECIES_PIDGEOT", 38),
+    ("SPECIES_RAICHU", 37),
+    ("SPECIES_NIDOKING", 37),
+    ("SPECIES_GYARADOS", 36),
+    ("SPECIES_SNORLAX", 35),
 ]
 
 # Active FRLG maps a run up to the first Hall of Fame never enters: post-title
@@ -160,6 +161,7 @@ CUT_LABELS_POST_TITLE = {
     "FuchsiaCity_Gym_EventScript_SetJanineLeader",
     "FuchsiaCity_Gym_EventScript_JanineLeader",
     "FuchsiaCity_Gym_EventScript_JanineRematch",
+    "FuchsiaCity_Gym_EventScript_JanineRematchPostJohto",
     "FuchsiaCity_Gym_EventScript_JanineGiveTM",
     # TM Explosion for a Rage Candy Bar from Mahogany Town.
     "UndergroundPath_NorthSouthTunnel_EventScript_BaldingManCandyBar",
@@ -173,11 +175,27 @@ CUT_LABELS_POST_TITLE = {
     "Route25_SeaCottage_EventScript_GrandpaAfterTitle",
     "ViridianCity_Gym_EventScript_BlueLeader",
     "ViridianCity_Gym_EventScript_BlueRematch",
+    "ViridianCity_Gym_EventScript_BlueRematchPostJohto",
+    # Gym leader rematches after the Kanto title.
+    "PewterCity_Gym_EventScript_BrockRematch",
+    "PewterCity_Gym_EventScript_BrockRematchPostJohto",
+    "CeruleanCity_Gym_EventScript_MistyRematch",
+    "CeruleanCity_Gym_EventScript_MistyRematchPostJohto",
+    "VermilionCity_Gym_EventScript_LtSurgeRematch",
+    "VermilionCity_Gym_EventScript_LtSurgeRematchPostJohto",
+    "CeladonCity_Gym_EventScript_ErikaRematch",
+    "CeladonCity_Gym_EventScript_ErikaRematchPostJohto",
+    "SaffronCity_Gym_EventScript_SabrinaRematch",
+    "SaffronCity_Gym_EventScript_SabrinaRematchPostJohto",
+    "CinnabarIsland_Gym_EventScript_BlaineRematch",
+    "CinnabarIsland_Gym_EventScript_BlaineRematchPostJohto",
     # Oak after the title: National Dex scene, GS Ball handover.
     "PalletTown_ProfessorOaksLab_EventScript_TryStartNationalDexScene",
     "PalletTown_ProfessorOaksLab_EventScript_GsBallReminder",
     "PalletTown_ProfessorOaksLab_EventScript_GiveGsBall",
     "PokedexRating_EventScript_DexComplete",
+    # Oak's Johto dex reward (Shiny Charm) needs the Johto dex.
+    "PalletTown_ProfessorOaksLab_EventScript_TryGiveJohtoDexReward",
 }
 CUT_LABELS_ALWAYS = {
     # Ships to Hoenn and the Sevii Islands.
@@ -209,6 +227,8 @@ CUT_LABELS_ALWAYS = {
     "PokemonLeague_LancesRoom_EventScript_Rematch",
     "PokemonLeague_LoreleisRoom_EventScript_Rematch",
     "PokemonLeague_ChampionsRoom_EventScript_Rematch",
+    # Oak's Hoenn dex reward (Aurora Ticket) needs the Hoenn dex.
+    "PalletTown_ProfessorOaksLab_EventScript_TryGiveHoennDexReward",
 }
 CUT_LABELS = CUT_LABELS_POST_TITLE | CUT_LABELS_ALWAYS
 # Label prefixes cut the same way: link features, Johto gyms, Hoenn arrival,
@@ -243,7 +263,7 @@ MANUAL_FLAGS = {
     "FLAG_HIDE_HELIX_FOSSIL": 1, "FLAG_HIDE_LIFT_KEY": 1, "FLAG_HIDE_SILPH_SCOPE": 1,
     # Oak waits in his lab with the GS Ball.
     "FLAG_HIDE_OAK_IN_HIS_LAB": 0,
-    # Carter's VS Seeker rematch won (set in C, CB2_EndRematchBattle): TM73.
+    # Carter's rematch won (set in C, CB2_EndRematchBattle): TM73.
     "FLAG_DEFEATED_CARTER_REMATCH": 1,
     "FLAG_HIDE_PEWTER_CITY_GYM_GUIDE": 1, "FLAG_HIDE_PEWTER_MUSEUM_GUIDE": 0,
     # Hidden on the next Vermilion visit after talking to Oak's aide.
@@ -540,8 +560,6 @@ JOHTO_EXCLUDED_MAPS = set()
 CUT_LABELS_B = CUT_LABELS_ALWAYS | {
     "MtSilver_PokemonCenter_EventScript_Meara_BonusContentPrompt",
     "MtSilver_1F_WaterfallRoom_Scientist_Scene",
-    # The Aurora Ticket comes after the first trip to Hoenn.
-    "OlivineCity_EventScript_EonTicketWomanChamp",
     # Baoba's quest wants Hoenn Pokemon; his call in Rustboro City starts it.
     "SafariZoneGate_SafariZoneEntrance_EventScript_BaobaBeach",
     "SafariZoneGate_SafariZoneEntrance_EventScript_BaobaBrush",
@@ -718,8 +736,9 @@ UNTOUCHED_B = dict(UNTOUCHED, **{
 
 DROP_FLAGS_B = dict(DROP_FLAGS)
 
-# Rematch and title defence teams after the titles.
+# Rematch and title defence teams after the titles (Kanto leaders: _HNS teams).
 TRAINER_SKIP_RE_B = re.compile(r"^TRAINER_(ELITE_FOUR_\w+_2|CHAMPION_REMATCH_\w+|\w+_POSTOBC_HNS|"
+                               r"(BROCK|MISTY|LTSURGE|ERIKA|SABRINA|BLAINE)_HNS|"
                                r"(FALKNER|BUGSY|WHITNEY|MORTY|CHUCK|JASMINE|PRYCE|CLAIR|WILL|KOGA|BRUNO|KAREN|LANCE)"
                                r"_[2-9]_HNS)$")
 JOHTO_RIVALS = {

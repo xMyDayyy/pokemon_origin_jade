@@ -39,25 +39,14 @@ void UpdateEliteFourRematch(void)
     static const u16 sEliteFourRematchIds[] = {
         REMATCH_SIDNEY, REMATCH_PHOEBE, REMATCH_GLACIA, REMATCH_DRAKE, REMATCH_WALLACE
     };
-    u32 i, j;
+    u32 i;
 
     if (!FlagGet(FLAG_IS_HOENN_CHAMPION))
         return;
 
+    // Armed only; the tier comes from the trainer flags (GetRematchTrainerIdFromTable).
     for (i = 0; i < ARRAY_COUNT(sEliteFourRematchIds); i++)
-    {
-        u16 idx = sEliteFourRematchIds[i];
-
-        for (j = 1; j < REMATCHES_COUNT; j++)
-        {
-            if (!HasTrainerBeenFought(gRematchTable[idx].trainerIds[j]))
-                break;
-        }
-        if (j >= REMATCHES_COUNT)
-            j = REMATCHES_COUNT - 1; // all tiers known -> repeat the highest
-
-        gSaveBlock1Ptr->trainerRematches[idx] = j;
-    }
+        SetRematchArmed(sEliteFourRematchIds[i]);
 #endif //FREE_MATCH_CALL
 }
 
@@ -102,7 +91,7 @@ static void UpdateGymLeaderRematchFromArray(const u16 *data, size_t size, u32 ma
 
     for (i = 0; i < size; i++)
     {
-        if (!gSaveBlock1Ptr->trainerRematches[data[i]])
+        if (!IsRematchArmed(data[i]))
         {
             rematchIndex = GetRematchIndex(data[i]);
             if (lowestRematchIndex > rematchIndex)
@@ -115,7 +104,7 @@ static void UpdateGymLeaderRematchFromArray(const u16 *data, size_t size, u32 ma
         whichLeader = 0;
         for (i = 0; i < size; i++)
         {
-            if (!gSaveBlock1Ptr->trainerRematches[data[i]])
+            if (!IsRematchArmed(data[i]))
             {
                 rematchIndex = GetRematchIndex(data[i]);
                 if (rematchIndex == lowestRematchIndex)
@@ -127,14 +116,16 @@ static void UpdateGymLeaderRematchFromArray(const u16 *data, size_t size, u32 ma
             whichLeader = Random() % whichLeader;
             for (i = 0; i < size; i++)
             {
-                if (!gSaveBlock1Ptr->trainerRematches[data[i]])
+                if (!IsRematchArmed(data[i]))
                 {
                     rematchIndex = GetRematchIndex(data[i]);
                     if (rematchIndex == lowestRematchIndex)
                     {
                         if (whichLeader == 0)
                         {
-                            gSaveBlock1Ptr->trainerRematches[data[i]] = lowestRematchIndex;
+                            // Index 0 (first battle not won) leaves it unarmed, as before.
+                            if (lowestRematchIndex != 0)
+                                SetRematchArmed(data[i]);
                             break;
                         }
                         whichLeader--;
