@@ -974,7 +974,7 @@ LittlerootTown_ProfessorBirchsLab_Text_BrendanGotPokedexTooTakeThese:
 	.string "Na, dann.\n"
 	.string "Ich gebe dir dies.$"
 #else
-	.string "BRENDAN: Huh…\n"
+	.string "MAY: Huh…\n"
 	.string "So you got a POKéDEX, too.\p"
 	.string "Well then, here.\n"
 	.string "I'll give you these.$"
@@ -989,7 +989,7 @@ LittlerootTown_ProfessorBirchsLab_Text_CatchCoolPokemonWithPokeBalls:
 	.string "Und wenn ich ein cooles Pokémon sehe,\n"
 	.string "versuche ich natürlich, es zu fangen.$"
 #else
-	.string "BRENDAN: You know it's more fun to\n"
+	.string "MAY: You know it's more fun to\n"
 	.string "have a whole bunch of POKéMON.\p"
 	.string "I'm going to explore all over the place\n"
 	.string "to find different POKéMON.\p"
@@ -1009,7 +1009,7 @@ LittlerootTown_ProfessorBirchsLab_Text_BrendanWhereShouldIGoNext:
 	.string "Maike: Und wo soll ich jetzt mal nach\n"
 	.string "Pokémon suchen?$"
 #else
-	.string "BRENDAN: Where should I look for\n"
+	.string "MAY: Where should I look for\n"
 	.string "POKéMON next…$"
 #endif
 
@@ -1104,7 +1104,7 @@ LittlerootTown_ProfessorBirchsLab_Text_BrendanYouCanThankMe:
 	.string "Ja ja, heute ist dein Glückstag,\n"
 	.string "{PLAYER}!$"
 #else
-	.string "BRENDAN: I went out all over HOENN\n"
+	.string "MAY: I went out all over HOENN\n"
 	.string "and checked out POKéMON.\p"
 	.string "You can thank me for getting\n"
 	.string "the NATIONAL Mode POKéDEX.\p"
@@ -1166,7 +1166,7 @@ LittlerootTown_ProfessorBirchsLab_Text_BrendanTakeBreakFromFieldwork:
 	.string "Ich werde dem Prof hier ein bisschen\n"
 	.string "helfen.$"
 #else
-	.string "BRENDAN: For the time being,\n"
+	.string "MAY: For the time being,\n"
 	.string "I'm taking a break from fieldwork.\p"
 	.string "I'll be helping out the PROF here\n"
 	.string "for a while.$"
@@ -1380,7 +1380,7 @@ LittlerootTown_ProfessorBirchsLab_Text_BrendanPreferCollectingSlowly:
 	.string "konzentriere ich mich lieber auf das\l"
 	.string "Aufziehen eines bestimmten Pokémon.$"
 #else
-	.string "BRENDAN: Rather than collecting\n"
+	.string "MAY: Rather than collecting\n"
 	.string "POKéMON, I prefer slowly and \l"
 	.string "steadily raising the one I chose.$"
 #endif
@@ -1400,7 +1400,7 @@ LittlerootTown_ProfessorBirchsLab_Text_BrendanHaveYouGoneToBattleFrontier:
 	.string "Maike: Hey, {PLAYER}!\n"
 	.string "Hast du schon die Kampfzone besucht?$"
 #else
-	.string "BRENDAN: Hey, {PLAYER}!\n"
+	.string "MAY: Hey, {PLAYER}!\n"
 	.string "Have you gone out to that place,\l"
 	.string "the BATTLE FRONTIER?$"
 #endif

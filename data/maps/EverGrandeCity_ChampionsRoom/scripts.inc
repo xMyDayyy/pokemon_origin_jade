@@ -514,7 +514,7 @@ EverGrandeCity_ChampionsRoom_Text_BrendanCongratulations:
 	.string "{PLAYER}, das ist dein Tag!\n"
 	.string "Herzlichen Glückwunsch!$"
 #else
-	.string "BRENDAN: Whaaaat?! … … … … …\n"
+	.string "MAY: Whaaaat?! … … … … …\n"
 	.string "… … … … … … … …\p"
 	.string "It can't be helped if that's the rule.\p"
 	.string "{PLAYER}, way to go!\n"

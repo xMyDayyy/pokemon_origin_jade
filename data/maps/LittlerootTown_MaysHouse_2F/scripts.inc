@@ -492,7 +492,7 @@ RivalsHouse_2F_Text_BrendanJustCheckingMyPokedex:
 	.string "Immer wenn ich den Pokédex betrachte,\n"
 	.string "bekomme ich Lust zu reisen.$"
 #else
-	.string "BRENDAN: Hey, it's {PLAYER}.\p"
+	.string "MAY: Hey, it's {PLAYER}.\p"
 	.string "I was just checking out my POKéDEX.\p"
 	.string "There are still many POKéMON that\n"
 	.string "I need to catch, I know, but this\l"
@@ -510,7 +510,7 @@ RivalsHouse_2F_Text_BrendanWhereShouldIGoNext:
 	.string "Suche treffe, können wir ja einen\l"
 	.string "Pokémon-Kampf austragen.$"
 #else
-	.string "BRENDAN: I'm having a hard time deciding\n"
+	.string "MAY: I'm having a hard time deciding\n"
 	.string "where I should catch POKéMON next.\p"
 	.string "Hey, {PLAYER}, if I see you while I'm out\n"
 	.string "catching POKéMON, I can pitch you a\l"
