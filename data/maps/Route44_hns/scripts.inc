@@ -138,7 +138,7 @@ Route44_Text_FisherWiltonHugePoliwag:
 
 Route44_Text_WiltonRegister:
 #if GERMAN
-    .string "Das Quaputzi, das mir entkommen ist…\n"
+    .string "Das Quapsel, das mir entkommen ist…\n"
     .string "es war riesig.\p"
     .string "Ich schwöre, es muss über 5 Meter groß\n"
     .string "gewesen sein!$"
@@ -169,7 +169,7 @@ Route44_Text_WiltonRematchDefeat:
 
 Route44_Text_WiltonPostRematch:
 #if GERMAN
-    .string "Das Quaputzi, das mir entkommen ist…\n"
+    .string "Das Quapsel, das mir entkommen ist…\n"
     .string "es war riesig.\p"
     .string "Ich schwöre, es muss über 5 Meter groß\n"
     .string "gewesen sein!$"

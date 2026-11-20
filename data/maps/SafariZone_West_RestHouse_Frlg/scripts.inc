@@ -31,9 +31,9 @@ SafariZone_West_Text_KogaPatrolsSafariEverySoOften::
 
 SafariZone_West_Text_RocksMakeMonRunButEasierCatch::
 #if GERMAN
-	.string "Wenn auf dem PC eine Pokémon-Box voll\n"
-	.string "ist, wechsle einfach zu einer anderen\l"
-	.string "Box!$"
+	.string "Wenn du Steine nach Pokémon wirfst,\n"
+	.string "lassen sie sich leichter fangen, aber\l"
+	.string "sie laufen auch eher weg!$"
 #else
 	.string "Tossing ROCKS at POKéMON might\n"
 	.string "make them run, but they'll be\l"

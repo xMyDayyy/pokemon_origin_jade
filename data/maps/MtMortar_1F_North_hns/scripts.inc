@@ -98,7 +98,7 @@ MountMortar2_Text_SupernerdMarkusBeaten:
 
 MountMortar2_Text_SupernerdMarkusAfter:
 #if GERMAN
-	.string "Ich wollte den Silberberg erkunden,\n"
+	.string "Ich wollte den Kesselberg erkunden,\n"
 	.string "aber wurde von meinem Partner\l"
 	.string "getrennt…\p"
 	.string "Bist du einem Trainer begegnet,\n"

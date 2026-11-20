@@ -229,14 +229,14 @@ Route35_Text_BirdKeeperBryanAfter:
 	.string "Wenn du hinter einem Pokémon mit hoher\n"
 	.string "Initiative her bist, wirkt Kurts\l"
 	.string "Turboball wahre Wunder!\p"
-	.string "Sobald ich eine weiße Aprikoko finde,\n"
+	.string "Sobald ich eine Wilbirbeere finde,\n"
 	.string "bringe ich sie zu Kurt. Er macht daraus\l"
 	.string "einen maßgefertigten Pokéball.$"
 #else
 	.string "Some POKéMON flee right away.\p"
 	.string "Try catching them with KURT's\n"
 	.string "FAST BALL.\p"
-	.string "Whenever I find a ASPEAR BERRY, I\n"
+	.string "Whenever I find an ASPEAR BERRY, I\n"
 	.string "take it to KURT.\p"
 	.string "He turns it into a custom BALL.$"
 #endif

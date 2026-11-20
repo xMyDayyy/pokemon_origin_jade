@@ -170,13 +170,13 @@ Route29_Text_OldMan2:
 Route29_Text_OldManExplanation:
 #if GERMAN
 	.string "Im hohen Gras sind vor allem\n"
-	.string "Rattfratz und Tannza unterwegs.\p"
+	.string "Taubsi und Wiesor unterwegs.\p"
 	.string "Nachts kommen Hoothoot dazu.\p"
 	.string "Klingt bescheiden, ich weiß.\n"
 	.string "Aber jeder fängt irgendwo an.$"
 #else
 	.string "The tall grass here is mostly\n"
-	.string "RATTATA and SENTRET.\p"
+	.string "PIDGEY and SENTRET.\p"
 	.string "At night the HOOTHOOT come out.\p"
 	.string "Modest, I know. But everyone starts\n"
 	.string "somewhere.$"

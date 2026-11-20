@@ -19,9 +19,7 @@ RuinsOfAlph_Outside_EventScript_Quagsire::
 
 RuinsOfAlph_Outside_Text_Quagsire:
 #if GERMAN
-	.string "Es gibt viele unterschiedliche\p"
-	.string "Icognito, die wir für unsere\n"
-	.string "Geheimcodes benötigen.$"
+	.string "Morlord: Mor Mor!$"
 #else
 	.string "QUAGSIRE: Quag Quag$"
 #endif

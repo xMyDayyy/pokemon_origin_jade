@@ -211,8 +211,10 @@ GoldenrodCity_PokemonCenter_EventScript_Lass::
 
 GoldenrodCity_PokemonCenter_GrannyText:
 #if GERMAN
-	.string "Ich vertausche fremde Pokebälle\n"
-	.string "und begehe Sozialbetrug.$"
+	.string "Ich liebe das Leben in der Großstadt!\p"
+	.string "Ich bin hergezogen, als ich noch\n"
+	.string "jung war und Pokémon trainiert habe,\l"
+	.string "so wie du heute!$"
 #else
     .string "I just love living in the big city!\n"
     .string "I moved here when I was a young\l"
@@ -221,10 +223,8 @@ GoldenrodCity_PokemonCenter_GrannyText:
 
 GoldenrodCity_PokemonCenter_GameboyKidText1:
 #if GERMAN
-	.string "Ich baue ein riesiges Lootmobil in\n"
-	.string "Unturned.\p"
-	.string "Es hat Schränke und Treppen.\p"
-	.string "Leider wurde mein Freund gebannt.$"
+	.string "Das ist ein besonderes Pokémon-Center.\n"
+	.string "Das Dach ist aus Gold!$"
 #else
     .string "This is a special POKéMON CENTER.\n"
     .string "The roof is made of gold!$"
@@ -232,9 +232,9 @@ GoldenrodCity_PokemonCenter_GameboyKidText1:
 
 GoldenrodCity_PokemonCenter_GameboyKidText2:
 #if GERMAN
-	.string "Die haben gar keine Beweise.\n"
-	.string "Trotzdem wird der Bann nicht\l"
-	.string "aufgehoben.$"
+	.string "Ich hab meinem Bruder erzählt, das\n"
+	.string "Dach wäre aus echtem Gold.\p"
+	.string "Der glaubt einfach alles!$"
 #else
     .string "I told my brother that the roof is\n"
     .string "made of real gold. He'll believe\l"
