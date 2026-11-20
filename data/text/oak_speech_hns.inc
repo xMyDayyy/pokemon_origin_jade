@@ -62,13 +62,13 @@ gText_Oak_AndYouAre::
 	.string "And you are?$"
 #endif
 
-gText_Oak_BoyOrGirl::
+gText_Oak_WhoAreYou::
 #if GERMAN
-	.string "Bist du ein Junge?\n"
-	.string "Oder bist du ein Mädchen?$"
+	.string "Nun sag mir:\n"
+	.string "Wer bist du?$"
 #else
-	.string "Are you a boy?\n"
-	.string "Or are you a girl?$"
+	.string "Now tell me.\n"
+	.string "Who are you?$"
 #endif
 
 gText_Oak_WhatChallenge::
