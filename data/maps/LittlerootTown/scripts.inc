@@ -1168,14 +1168,14 @@ LittlerootTown_Text_PlayersHouse:
 
 LittlerootTown_Text_NormansHouse:
 #if GERMAN
-	.string "Haus von Arenaleiter Norman$"
+	.string "Haus von Norman$"
 #else
-	.string "GYM LEADER NORMAN'S HOUSE$"
+	.string "NORMAN'S HOUSE$"
 #endif
 
 LittlerootTown_Text_ProfBirchsHouse:
 #if GERMAN
-	.string "Prof. Birks Haus$"
+	.string "Haus von Prof. Birk$"
 #else
 	.string "PROF. BIRCH'S HOUSE$"
 #endif

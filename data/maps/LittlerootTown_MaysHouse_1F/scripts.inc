@@ -537,12 +537,26 @@ RivalsHouse_1F_Text_DoYouHavePokemon:
 #endif
 
 @ HnS: Prof. Birch's wife and child.
+@ Origin Jade: the family texts name no child. When the player is May, Birch's family
+@ does not talk about a daughter (the player only looks like her).
 LittlerootTown_MaysHouse_1F_EventScript_BirksFrau::
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, LittlerootTown_MaysHouse_1F_EventScript_BirksFrauNoDaughter
 	msgbox LittlerootTown_MaysHouse_1F_Text_BirksFrau, MSGBOX_NPC
 	end
 
+LittlerootTown_MaysHouse_1F_EventScript_BirksFrauNoDaughter::
+	msgbox LittlerootTown_MaysHouse_1F_Text_BirksFrauNoDaughter, MSGBOX_NPC
+	end
+
 LittlerootTown_MaysHouse_1F_EventScript_BirksKind::
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, LittlerootTown_MaysHouse_1F_EventScript_BirksKindNoSister
 	msgbox LittlerootTown_MaysHouse_1F_Text_BirksKind, MSGBOX_NPC
+	end
+
+LittlerootTown_MaysHouse_1F_EventScript_BirksKindNoSister::
+	msgbox LittlerootTown_MaysHouse_1F_Text_BirksKindNoSister, MSGBOX_NPC
 	end
 
 LittlerootTown_MaysHouse_1F_Text_BirksFrau:
@@ -550,29 +564,55 @@ LittlerootTown_MaysHouse_1F_Text_BirksFrau:
 	.string "Mein Mann ist Prof. Birk - er steckt mal\n"
 	.string "wieder bis über beide Ohren in seiner\l"
 	.string "Forschung.\p"
-	.string "Unsere Tochter Maike ist mit ihren\n"
+	.string "Unsere Tochter ist mit ihren\n"
 	.string "Pokémon unterwegs.\p"
 	.string "Sie lässt es sich nicht anmerken,\n"
 	.string "aber ich mache mir manchmal Sorgen.$"
 #else
 	.string "My husband is PROF. BIRCH - buried\n"
 	.string "in his research again, as always.\p"
-	.string "Our daughter MAY is traveling\n"
+	.string "Our daughter is traveling\n"
 	.string "with her POKéMON.\p"
 	.string "She won't say it, but sometimes\n"
 	.string "I do worry about her.$"
 #endif
 
+LittlerootTown_MaysHouse_1F_Text_BirksFrauNoDaughter:
+#if GERMAN
+	.string "Mein Mann ist Prof. Birk - er steckt mal\n"
+	.string "wieder bis über beide Ohren in seiner\l"
+	.string "Forschung.\p"
+	.string "Meine Familie ist viel unterwegs.\n"
+	.string "Da wird es hier manchmal ganz schön\l"
+	.string "still.$"
+#else
+	.string "My husband is PROF. BIRCH - buried\n"
+	.string "in his research again, as always.\p"
+	.string "My family is out and about a lot.\n"
+	.string "It gets pretty quiet here sometimes.$"
+#endif
+
 LittlerootTown_MaysHouse_1F_Text_BirksKind:
 #if GERMAN
-	.string "Meine große Schwester Maike ist\n"
+	.string "Meine große Schwester ist\n"
 	.string "Pokémon-Trainerin!\p"
 	.string "Papa sagt, du kommst vom Festland\n"
 	.string "und bist richtig stark.\p"
 	.string "Stimmt das wirklich?$"
 #else
-	.string "My big sister MAY is a POKéMON\n"
+	.string "My big sister is a POKéMON\n"
 	.string "TRAINER!\p"
+	.string "Dad says you came from the mainland\n"
+	.string "and you're really strong.\p"
+	.string "Is that really true?$"
+#endif
+
+LittlerootTown_MaysHouse_1F_Text_BirksKindNoSister:
+#if GERMAN
+	.string "Papa sagt, du kommst vom Festland\n"
+	.string "und bist richtig stark.\p"
+	.string "Stimmt das wirklich?$"
+#else
 	.string "Dad says you came from the mainland\n"
 	.string "and you're really strong.\p"
 	.string "Is that really true?$"

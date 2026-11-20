@@ -683,9 +683,17 @@ BrendansHouse_1F_Text_ChampionVisit:
 #endif
 
 @ HnS: this house belongs to Norman's family.
+@ Origin Jade: the family texts name no child. When the player is Brendan, Norman's
+@ family does not talk about a son (the player only looks like him).
 LittlerootTown_BrendansHouse_1F_EventScript_NormansFrau::
 	goto_if_ge VAR_PETALBURG_GYM_STATE, 6, LittlerootTown_BrendansHouse_1F_EventScript_NormansFrauGymOpen
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_BRENDAN, LittlerootTown_BrendansHouse_1F_EventScript_NormansFrauNoSon
 	msgbox LittlerootTown_BrendansHouse_1F_Text_NormansFrau, MSGBOX_NPC
+	end
+
+LittlerootTown_BrendansHouse_1F_EventScript_NormansFrauNoSon::
+	msgbox LittlerootTown_BrendansHouse_1F_Text_NormansFrauNoSon, MSGBOX_NPC
 	end
 
 LittlerootTown_BrendansHouse_1F_EventScript_NormansFrauGymOpen::
@@ -693,7 +701,13 @@ LittlerootTown_BrendansHouse_1F_EventScript_NormansFrauGymOpen::
 	end
 
 LittlerootTown_BrendansHouse_1F_EventScript_NormansKind::
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_BRENDAN, LittlerootTown_BrendansHouse_1F_EventScript_NormansKindNoBrother
 	msgbox LittlerootTown_BrendansHouse_1F_Text_NormansKind, MSGBOX_NPC
+	end
+
+LittlerootTown_BrendansHouse_1F_EventScript_NormansKindNoBrother::
+	msgbox LittlerootTown_BrendansHouse_1F_Text_NormansKindNoBrother, MSGBOX_NPC
 	end
 
 LittlerootTown_BrendansHouse_1F_Text_NormansFrau:
@@ -702,15 +716,32 @@ LittlerootTown_BrendansHouse_1F_Text_NormansFrau:
 	.string "leitet die Arena in Blütenburg City.\p"
 	.string "Zurzeit ist sie geschlossen. Er baut\n"
 	.string "um und kommt kaum zur Ruhe.\p"
-	.string "Unser Sohn Brix ist auch mit seinen\n"
-	.string "Pokémon unterwegs.$"
+	.string "Unser Sohn ist auch Trainer. Er hilft\n"
+	.string "Prof. Birk bei seiner Forschung.\p"
+	.string "Er möchte in die Fußstapfen seines\n"
+	.string "Vaters treten.$"
 #else
 	.string "Ah, a visitor! My husband NORMAN\n"
 	.string "runs the GYM in PETALBURG CITY.\p"
 	.string "It's closed at the moment. He's\n"
 	.string "rebuilding it and hardly rests.\p"
-	.string "Our son BRENDAN is traveling\n"
-	.string "with his POKéMON, too.$"
+	.string "Our son is a TRAINER, too. He helps\n"
+	.string "PROF. BIRCH with his research.\p"
+	.string "He wants to follow in his father's\n"
+	.string "footsteps.$"
+#endif
+
+LittlerootTown_BrendansHouse_1F_Text_NormansFrauNoSon:
+#if GERMAN
+	.string "Ah, ein Besucher! Mein Mann Norman\n"
+	.string "leitet die Arena in Blütenburg City.\p"
+	.string "Zurzeit ist sie geschlossen. Er baut\n"
+	.string "um und kommt kaum zur Ruhe.$"
+#else
+	.string "Ah, a visitor! My husband NORMAN\n"
+	.string "runs the GYM in PETALBURG CITY.\p"
+	.string "It's closed at the moment. He's\n"
+	.string "rebuilding it and hardly rests.$"
 #endif
 
 LittlerootTown_BrendansHouse_1F_Text_NormansFrauGymOpen:
@@ -733,14 +764,27 @@ LittlerootTown_BrendansHouse_1F_Text_NormansFrauGymOpen:
 LittlerootTown_BrendansHouse_1F_Text_NormansKind:
 #if GERMAN
 	.string "Papa ist der Arenaleiter von Blütenburg\n"
-	.string "City! Und mein großer Bruder Brix ist\l"
-	.string "auch Trainer!\p"
+	.string "City! Und mein großer Bruder ist auch\l"
+	.string "Trainer!\p"
 	.string "Wenn ich groß bin, fordere ich\n"
 	.string "beide heraus - versprochen!$"
 #else
 	.string "Dad is the GYM LEADER of\n"
 	.string "PETALBURG CITY! And my big\l"
-	.string "brother BRENDAN is a TRAINER!\p"
+	.string "brother is a TRAINER, too!\p"
 	.string "When I'm big, I'll challenge\n"
 	.string "them both - promise!$"
+#endif
+
+LittlerootTown_BrendansHouse_1F_Text_NormansKindNoBrother:
+#if GERMAN
+	.string "Papa ist der Arenaleiter von Blütenburg\n"
+	.string "City!\p"
+	.string "Wenn ich groß bin, fordere ich\n"
+	.string "ihn heraus - versprochen!$"
+#else
+	.string "Dad is the GYM LEADER of\n"
+	.string "PETALBURG CITY!\p"
+	.string "When I'm big, I'll challenge\n"
+	.string "him - promise!$"
 #endif
