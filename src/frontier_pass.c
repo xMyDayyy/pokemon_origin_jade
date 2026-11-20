@@ -1,6 +1,7 @@
 #include "global.h"
 #include "gpu_regs.h"
 #include "main.h"
+#include "player_character.h"
 #include "trainer_card.h"
 #include "battle_anim.h"
 #include "event_data.h"
@@ -95,6 +96,8 @@ enum {
     TAG_MEDAL_GOLD,
     TAG_HEAD_MALE,
     TAG_HEAD_FEMALE,
+    TAG_HEAD_BRENDAN,
+    TAG_HEAD_MAY,
 };
 
 // Error return codes. Never read
@@ -180,6 +183,10 @@ static void SpriteCB_PlayerHead(struct Sprite *);
 static const u16 sMaleHead_Pal[]                 = INCBIN_U16("graphics/frontier_pass/map_heads_hns.gbapal");
 static const u16 sFemaleHead_Pal[]               = INCBIN_U16("graphics/frontier_pass/map_heads_hns.gbapal");
 static const u32 sHeads_Gfx[]                    = INCBIN_U32("graphics/frontier_pass/map_heads_hns.4bpp.smol");
+// Heads of the player characters Brendan and May
+static const u16 sBrendanHead_Pal[]              = INCBIN_U16("graphics/frontier_pass/map_heads.gbapal");
+static const u16 sMayHead_Pal[]                  = INCBIN_U16("graphics/frontier_pass/map_heads_female.gbapal");
+static const u32 sHeadsEmerald_Gfx[]             = INCBIN_U32("graphics/frontier_pass/map_heads.4bpp.smol");
 #else
 static const u16 sMaleHead_Pal[]                 = INCBIN_U16("graphics/frontier_pass/map_heads.gbapal");
 static const u16 sFemaleHead_Pal[]               = INCBIN_U16("graphics/frontier_pass/map_heads_female.gbapal");
@@ -379,6 +386,14 @@ static const struct CompressedSpriteSheet sHeadsSpriteSheet[] =
     {}
 };
 
+#if IS_HNS
+static const struct CompressedSpriteSheet sHeadsEmeraldSpriteSheet[] =
+{
+    {sHeadsEmerald_Gfx, 0x100, TAG_HEAD_MALE},
+    {}
+};
+#endif
+
 static const struct SpritePalette sSpritePalettes[] =
 {
     {gFrontierPassCursor_Pal,       TAG_CURSOR},
@@ -387,6 +402,10 @@ static const struct SpritePalette sSpritePalettes[] =
     {gFrontierPassMedalsGold_Pal,   TAG_MEDAL_GOLD},
     {sMaleHead_Pal,                 TAG_HEAD_MALE},
     {sFemaleHead_Pal,               TAG_HEAD_FEMALE},
+#if IS_HNS
+    {sBrendanHead_Pal,              TAG_HEAD_BRENDAN},
+    {sMayHead_Pal,                  TAG_HEAD_MAY},
+#endif
     {}
 };
 
@@ -1714,9 +1733,21 @@ static void InitFrontierMapSprites(void)
             }
         }
 
-        LoadCompressedSpriteSheet(sHeadsSpriteSheet);
-        sprite = sSpriteTemplate_PlayerHead;
-        sprite.paletteTag = gSaveBlock2Ptr->playerGender + TAG_HEAD_MALE; // TAG_HEAD_FEMALE if gender is FEMALE
+#if IS_HNS
+        // Brendan and May: Emerald heads; Red and Leaf have none yet and use Gold's and Kris's
+        if (GetPlayerCharacter() == PLAYER_CHARACTER_BRENDAN || GetPlayerCharacter() == PLAYER_CHARACTER_MAY)
+        {
+            LoadCompressedSpriteSheet(sHeadsEmeraldSpriteSheet);
+            sprite = sSpriteTemplate_PlayerHead;
+            sprite.paletteTag = gSaveBlock2Ptr->playerGender + TAG_HEAD_BRENDAN; // TAG_HEAD_MAY if gender is FEMALE
+        }
+        else
+#endif
+        {
+            LoadCompressedSpriteSheet(sHeadsSpriteSheet);
+            sprite = sSpriteTemplate_PlayerHead;
+            sprite.paletteTag = gSaveBlock2Ptr->playerGender + TAG_HEAD_MALE; // TAG_HEAD_FEMALE if gender is FEMALE
+        }
         if (id != 0)
         {
             spriteId = CreateSprite(&sprite, x, y, 0);

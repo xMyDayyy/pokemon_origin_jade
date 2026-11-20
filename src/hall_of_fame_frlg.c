@@ -18,6 +18,7 @@
 #include "overworld.h"
 #include "palette.h"
 #include "pc_screen_effect.h"
+#include "player_character.h"
 #include "random.h"
 #include "save.h"
 #include "scanline_effect.h"
@@ -624,7 +625,7 @@ static void Task_Hof_SpawnPlayerPic(u8 taskId)
     ShowBg(0);
     ShowBg(1);
     ShowBg(3);
-    gTasks[taskId].data[4] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender), TRUE, 0x78, 0x48, 6, 0xFFFF);
+    gTasks[taskId].data[4] = CreateTrainerPicSprite(GetPlayerCharacterFrontPicId(), TRUE, 0x78, 0x48, 6, 0xFFFF);
     AddWindow(&sWindowTemplate);
     LoadStdWindowGfx(1, 0x21D, BG_PLTT_ID(13));
     gTasks[taskId].data[3] = 120;

@@ -18,6 +18,7 @@
 #include "m4a.h"
 #include "palette.h"
 #include "party_menu.h"
+#include "player_character.h"
 #include "pokeball.h"
 #include "pokemon.h"
 #include "recorded_battle.h"
@@ -202,7 +203,7 @@ static enum TrainerPicID RecordedPartnerGetTrainerBackPicId(enum DifficultyLevel
     if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
         trainerPicId = gBattlePartners[difficulty][gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerBackPic;
     else
-        trainerPicId = gSaveBlock2Ptr->playerGender + TRAINER_BACK_PIC_PLAYER_MALE;
+        trainerPicId = GetPlayerCharacterBackPicId();
 
     return trainerPicId;
 }

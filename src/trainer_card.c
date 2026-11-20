@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle_setup.h"
+#include "player_character.h"
 #include "scanline_effect.h"
 #include "palette.h"
 #include "task.h"
@@ -2143,6 +2144,16 @@ static void CreateTrainerCardTrainerPic(void)
     if (InUnionRoom() == TRUE && gReceivedRemoteLinkPlayers == 1)
     {
         CreateTrainerCardTrainerPicSprite(FacilityClassToPicIndex(sData->trainerCard.unionRoomClass),
+                    TRUE,
+                    sTrainerPicOffset[sData->isHoenn][sData->trainerCard.gender][0],
+                    sTrainerPicOffset[sData->isHoenn][sData->trainerCard.gender][1],
+                    8,
+                    WIN_TRAINER_PIC);
+    }
+    else if (!sData->isLink)
+    {
+        // Own card: the chosen character
+        CreateTrainerCardTrainerPicSprite(GetPlayerCharacterFrontPicId(),
                     TRUE,
                     sTrainerPicOffset[sData->isHoenn][sData->trainerCard.gender][0],
                     sTrainerPicOffset[sData->isHoenn][sData->trainerCard.gender][1],

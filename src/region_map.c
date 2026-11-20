@@ -6,6 +6,7 @@
 #include "gpu_regs.h"
 #include "palette.h"
 #include "party_menu.h"
+#include "player_character.h"
 #include "trig.h"
 #include "overworld.h"
 #include "event_data.h"
@@ -154,6 +155,20 @@ static const u16 sRegionMapPlayerIcon_GoldPal[] = INCBIN_U16("graphics/pokenav/r
 static const u8 sRegionMapPlayerIcon_GoldGfx[] = INCBIN_U8("graphics/pokenav/region_map/gold_icon.4bpp");
 static const u16 sRegionMapPlayerIcon_KrisPal[] = INCBIN_U16("graphics/pokenav/region_map/kris_icon.gbapal");
 static const u8 sRegionMapPlayerIcon_KrisGfx[] = INCBIN_U8("graphics/pokenav/region_map/kris_icon.4bpp");
+
+// Map icon of each player character (PLAYER_CHARACTER_*)
+static const struct {
+    const u8 *gfx;
+    const u16 *pal;
+} sRegionMapPlayerIcons[PLAYER_CHARACTER_COUNT] =
+{
+    [PLAYER_CHARACTER_RED]     = {sRegionMapPlayerIcon_RedGfx,     sRegionMapPlayerIcon_RedPal},
+    [PLAYER_CHARACTER_LEAF]    = {sRegionMapPlayerIcon_LeafGfx,    sRegionMapPlayerIcon_LeafPal},
+    [PLAYER_CHARACTER_GOLD]    = {sRegionMapPlayerIcon_GoldGfx,    sRegionMapPlayerIcon_GoldPal},
+    [PLAYER_CHARACTER_KRIS]    = {sRegionMapPlayerIcon_KrisGfx,    sRegionMapPlayerIcon_KrisPal},
+    [PLAYER_CHARACTER_BRENDAN] = {sRegionMapPlayerIcon_BrendanGfx, sRegionMapPlayerIcon_BrendanPal},
+    [PLAYER_CHARACTER_MAY]     = {sRegionMapPlayerIcon_MayGfx,     sRegionMapPlayerIcon_MayPal},
+};
 #endif
 
 #include "data/region_map/region_map_layout.h"
@@ -2873,16 +2888,8 @@ void CreateRegionMapPlayerIcon(u16 tileTag, u16 paletteTag)
         return;
     }
     #if IS_HNS
-    if (gSaveBlock2Ptr->playerGender == FEMALE)
-    {
-        sheet.data = sRegionMapPlayerIcon_KrisGfx;
-        palette.data = sRegionMapPlayerIcon_KrisPal;
-    }
-    else
-    {
-        sheet.data = sRegionMapPlayerIcon_GoldGfx;
-        palette.data = sRegionMapPlayerIcon_GoldPal;
-    }
+    sheet.data = sRegionMapPlayerIcons[GetPlayerCharacter()].gfx;
+    palette.data = sRegionMapPlayerIcons[GetPlayerCharacter()].pal;
     #elif IS_FRLG
     if (gSaveBlock2Ptr->playerGender == FEMALE)
     {

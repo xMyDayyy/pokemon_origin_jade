@@ -13,6 +13,7 @@
 #include "m4a.h"
 #include "palette.h"
 #include "party_menu.h"
+#include "player_character.h"
 #include "pokeball.h"
 #include "pokeblock.h"
 #include "pokemon.h"
@@ -320,7 +321,7 @@ void SafariBufferExecCompleted(enum BattlerId battler)
 
 static void SafariHandleDrawTrainerPic(enum BattlerId battler)
 {
-    enum TrainerPicID trainerPicId = gSaveBlock2Ptr->playerGender == FEMALE ? TRAINER_BACK_PIC_PLAYER_FEMALE : TRAINER_BACK_PIC_PLAYER_MALE;
+    enum TrainerPicID trainerPicId = GetPlayerCharacterBackPicId();
 
     BtlController_HandleDrawTrainerPic(battler, trainerPicId, FALSE,
                                        80, 80 + 4 * (8 - gTrainerBacksprites[trainerPicId].coordinates.size),

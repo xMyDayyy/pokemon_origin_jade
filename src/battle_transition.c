@@ -13,6 +13,7 @@
 #include "malloc.h"
 #include "overworld.h"
 #include "palette.h"
+#include "player_character.h"
 #include "random.h"
 #include "scanline_effect.h"
 #include "sound.h"
@@ -2635,7 +2636,7 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
         SetOamMatrixRotationScaling(partnerSprite->oam.matrixNum, -512, 512, 0);
     }
 
-    task->tPlayerSpriteId = CreateTrainerSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender),
+    task->tPlayerSpriteId = CreateTrainerSprite(GetPlayerCharacterFrontPicId(),
                                                 DISPLAY_WIDTH + 32,
                                                 106,
                                                 0, NULL);
