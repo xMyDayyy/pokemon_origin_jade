@@ -14874,7 +14874,7 @@ const struct ItemInfo gItemsInfo[] =
         .description = COMPOUND_STRING(
 #if GERMAN
             "Item (Tragen) senkt\n"
-            "die Genauig- keit\n"
+            "die Genauigkeit\n"
             "des Gegners."),
 #else
             "A hold item that\n"
@@ -19688,7 +19688,7 @@ const struct ItemInfo gItemsInfo[] =
         .description = COMPOUND_STRING(
 #if GERMAN
             "Stiehlt die Effekte\n"
-            "der gegne- rischen\n"
+            "der gegnerischen\n"
             "Attacke."),
 #else
             "Steals the effects\n"
