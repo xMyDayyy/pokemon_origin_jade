@@ -17,8 +17,14 @@ LittlerootTown_MaysHouse_2F_EventScript_CheckShouldUpdateMayPos::
 	goto LittlerootTown_MaysHouse_2F_EventScript_TryUpdateMayPos
 
 LittlerootTown_MaysHouse_2F_EventScript_TryUpdateMayPos::
+#if IS_HNS
+	@ Origin Jade: May is the rival of every player character except May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, LittlerootTown_MaysHouse_2F_EventScript_Ret
+#else
 	checkplayergender
 	goto_if_eq VAR_RESULT, FEMALE, LittlerootTown_MaysHouse_2F_EventScript_Ret
+#endif
 	goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, LittlerootTown_MaysHouse_2F_EventScript_Ret
 	setobjectxyperm LOCALID_RIVALS_HOUSE_2F_RIVAL, 8, 2
 	setobjectmovementtype LOCALID_RIVALS_HOUSE_2F_RIVAL, MOVEMENT_TYPE_FACE_UP
@@ -270,13 +276,16 @@ RivalsHouse_2F_EventScript_RivalPostLilycove::
 	applymovement VAR_LAST_TALKED, Common_Movement_FacePlayer
 	waitmovement 0
 #if IS_HNS
-	@ Origin Jade: Brendan has his own words when he is the rival (player May).
+	@ Origin Jade: Brendan has his own words when he is the rival (player May),
+	@ every other player character meets May.
 	specialvar VAR_RESULT, GetPlayerCharacter
 	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, RivalsHouse_2F_EventScript_BrendanHnsPostLilycove
-#endif
+	call RivalsHouse_2F_EventScript_MayPostLilycove
+#else
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, RivalsHouse_2F_EventScript_MayPostLilycove
 	call_if_eq VAR_RESULT, FEMALE, RivalsHouse_2F_EventScript_BrendanPostLilycove
+#endif
 RivalsHouse_2F_EventScript_RivalPostLilycoveEnd::
 	setflag FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE
 	releaseall

@@ -629,13 +629,15 @@ LittlerootTown_ProfessorBirchsLab_EventScript_BrendanWhereShouldIGoNext::
 
 LittlerootTown_ProfessorBirchsLab_EventScript_RivalFuturePlans::
 #if IS_HNS
-	@ Origin Jade: Brendan is the rival when the player is May.
+	@ Origin Jade: Brendan is the rival when the player is May, May for everyone else.
 	specialvar VAR_RESULT, GetPlayerCharacter
 	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHnsWhatNext
-#endif
+	call LittlerootTown_ProfessorBirchsLab_EventScript_MayWhatNextImStayingHere
+#else
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, LittlerootTown_ProfessorBirchsLab_EventScript_MayWhatNextImStayingHere
 	call_if_eq VAR_RESULT, FEMALE, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanPreferCollectingSlowly
+#endif
 	release
 	end
 
@@ -649,13 +651,15 @@ LittlerootTown_ProfessorBirchsLab_EventScript_BrendanPreferCollectingSlowly:
 
 LittlerootTown_ProfessorBirchsLab_EventScript_RivalHaveYouGoneToBattleFrontier::
 #if IS_HNS
-	@ Origin Jade: Brendan is the rival when the player is May.
+	@ Origin Jade: Brendan is the rival when the player is May, May for everyone else.
 	specialvar VAR_RESULT, GetPlayerCharacter
 	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHnsHaveYouGoneToBattleFrontier
-#endif
+	call LittlerootTown_ProfessorBirchsLab_EventScript_MayHaveYouGoneToBattleFrontier
+#else
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, LittlerootTown_ProfessorBirchsLab_EventScript_MayHaveYouGoneToBattleFrontier
 	call_if_eq VAR_RESULT, FEMALE, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHaveYouGoneToBattleFrontier
+#endif
 	release
 	end
 
@@ -669,13 +673,15 @@ LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHaveYouGoneToBattleFrontier
 
 LittlerootTown_ProfessorBirchsLab_EventScript_RivalTakeBreakFromFieldwork::
 #if IS_HNS
-	@ Origin Jade: Brendan is the rival when the player is May.
+	@ Origin Jade: Brendan is the rival when the player is May, May for everyone else.
 	specialvar VAR_RESULT, GetPlayerCharacter
 	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHnsTakeBreakFromFieldwork
-#endif
+	call LittlerootTown_ProfessorBirchsLab_EventScript_MayTakeBreakFromFieldwork
+#else
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, LittlerootTown_ProfessorBirchsLab_EventScript_MayTakeBreakFromFieldwork
 	call_if_eq VAR_RESULT, FEMALE, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanTakeBreakFromFieldwork
+#endif
 	release
 	end
 

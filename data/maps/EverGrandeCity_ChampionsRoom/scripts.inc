@@ -210,13 +210,11 @@ EverGrandeCity_ChampionsRoom_EventScript_BrendanCongratulations::
 
 #if IS_HNS
 @ Origin Jade: Brendan is the rival when the player is May and has his own words.
-@ Otherwise May, as before by gender (the female player's text is May's, too).
+@ Every other player character hears May.
 EverGrandeCity_ChampionsRoom_EventScript_RivalCongratulations::
 	specialvar VAR_RESULT, GetPlayerCharacter
 	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, EverGrandeCity_ChampionsRoom_EventScript_BrendanHnsCongratulations
-	checkplayergender
-	goto_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations
-	goto EverGrandeCity_ChampionsRoom_EventScript_BrendanCongratulations
+	goto EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations
 
 EverGrandeCity_ChampionsRoom_EventScript_BrendanHnsCongratulations::
 	msgbox EverGrandeCity_ChampionsRoom_Text_BrendanHnsCongratulations, MSGBOX_DEFAULT
