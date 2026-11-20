@@ -213,6 +213,9 @@ Route31_Text_ReadingMail:
 	.string "geben!$"
 #else
 	.string "Let's see…\p"
+	.string "…DARK CAVE leads to another\n"
+	.string "road…\p"
+	.string "That's good to know.\p"
 	.string "Thanks for bringing this to\n"
 	.string "me.\p"
 	.string "My friend's a good guy, and\n"

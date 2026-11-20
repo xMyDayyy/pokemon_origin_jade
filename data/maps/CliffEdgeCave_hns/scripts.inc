@@ -27,5 +27,8 @@ CliffEdgeCave_Text_Baldman:
 	.string "inside a cave, most likely one\l"
 	.string "way is right and the other leads\l"
 	.string "to a dead end.\p"
-	.string "But people can't help trying both.$"
+	.string "But people can't help trying both.\p"
+	.string "Which ladder will you choose?\p"
+	.string "The one going up, or the one\n"
+	.string "going down?$"
 #endif

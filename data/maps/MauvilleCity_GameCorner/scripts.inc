@@ -1275,7 +1275,9 @@ MauvilleCity_GameCorner_Text_UpTo3CoinsCanBeUsed:
 	.string "höher ist deine Chance auf den Jackpot.$"
 #else
 	.string "Up to three COINS can be used to play\n"
-	.string "the SLOTS.$"
+	.string "the SLOTS.\p"
+	.string "The more COINS you bet, the better\n"
+	.string "your chance at the jackpot.$"
 #endif
 
 MauvilleCity_GameCorner_Text_DifficultToStopOn7:

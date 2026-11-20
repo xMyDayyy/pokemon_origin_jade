@@ -203,7 +203,8 @@ BurnedTowerB1FEusineText:
 	.string "{PLAYER}, wir müssen uns wieder\n"
 	.string "treffen! Leb wohl!$"
 #else
-	.string "EUSINE: I'm shocked!\p"
+	.string "EUSINE: I dug a hole here, too…\p"
+	.string "I was shocked!\p"
 	.string "SUICUNE raced by like a blur,\n"
 	.string "right in front of my eyes!\p"
 	.string "For ten years I chased\n"
