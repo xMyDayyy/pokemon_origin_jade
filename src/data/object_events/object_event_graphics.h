@@ -908,5 +908,21 @@ const u32 gObjectEventPic_KrisAcroBike_hns[] = INCBIN_U32("graphics/object_event
 const u32 gObjectEventPic_KrisFishing_hns[] = INCBIN_U32("graphics/object_events/pics/people/kris/fishing_hns.4bpp");
 const u32 gObjectEventPic_KrisWatering_hns[] = INCBIN_U32("graphics/object_events/pics/people/kris/watering_hns.4bpp");
 const u32 gObjectEventPic_KrisDecorating_hns[] = INCBIN_U32("graphics/object_events/pics/people/kris/decorating_hns.4bpp");
+
+// Red and Leaf as playable characters
+const u32 gObjectEventPic_RedPlayerNormalRunning[] = INCBIN_U32("graphics/object_events/pics/people/red/red_normal.4bpp", "graphics/object_events/pics/people/red/running.4bpp");
+const u32 gObjectEventPic_RedPlayerAcroBike[] = INCBIN_U32("graphics/object_events/pics/people/red/acro_bike.4bpp");
+const u32 gObjectEventPic_RedPlayerSurfing[] = INCBIN_U32("graphics/object_events/pics/people/red/surfing.4bpp");
+const u32 gObjectEventPic_RedPlayerUnderwater[] = INCBIN_U32("graphics/object_events/pics/people/red/underwater.4bpp");
+const u32 gObjectEventPic_RedPlayerFieldMove[] = INCBIN_U32("graphics/object_events/pics/people/red/field_move.4bpp");
+const u32 gObjectEventPic_RedPlayerWatering[] = INCBIN_U32("graphics/object_events/pics/people/red/watering.4bpp");
+const u32 gObjectEventPic_RedPlayerDecorating[] = INCBIN_U32("graphics/object_events/pics/people/red/decorating.4bpp");
+const u32 gObjectEventPic_LeafPlayerNormalRunning[] = INCBIN_U32("graphics/object_events/pics/people/leaf/green_normal.4bpp", "graphics/object_events/pics/people/leaf/running.4bpp");
+const u32 gObjectEventPic_LeafPlayerAcroBike[] = INCBIN_U32("graphics/object_events/pics/people/leaf/acro_bike.4bpp");
+const u32 gObjectEventPic_LeafPlayerSurfing[] = INCBIN_U32("graphics/object_events/pics/people/leaf/surfing.4bpp");
+const u32 gObjectEventPic_LeafPlayerUnderwater[] = INCBIN_U32("graphics/object_events/pics/people/leaf/underwater.4bpp");
+const u32 gObjectEventPic_LeafPlayerFieldMove[] = INCBIN_U32("graphics/object_events/pics/people/leaf/field_move.4bpp");
+const u32 gObjectEventPic_LeafPlayerWatering[] = INCBIN_U32("graphics/object_events/pics/people/leaf/watering.4bpp");
+const u32 gObjectEventPic_LeafPlayerDecorating[] = INCBIN_U32("graphics/object_events/pics/people/leaf/decorating.4bpp");
 const u32 gObjectEventPic_KrisUnderwater_hns[] = INCBIN_U32("graphics/object_events/pics/people/kris/underwater_hns.4bpp");
 #endif // IS_HNS

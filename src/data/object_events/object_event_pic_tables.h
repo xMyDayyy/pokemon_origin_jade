@@ -4605,5 +4605,115 @@ static const struct SpriteFrameImage sPicTable_KrisDecorating_hns[] = {
     obj_frame_tiles(gObjectEventPic_KrisDecorating_hns),
 };
 
+static const struct SpriteFrameImage sPicTable_RedPlayerNormal[] = {
+    overworld_ascending_frames(gObjectEventPic_RedPlayerNormalRunning, 2, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_RedPlayerAcroBike[] = {
+    overworld_ascending_frames(gObjectEventPic_RedPlayerAcroBike, 4, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_RedPlayerSurfing[] = {
+    overworld_frame(gObjectEventPic_RedPlayerSurfing, 4, 4, 0),
+    overworld_frame(gObjectEventPic_RedPlayerSurfing, 4, 4, 2),
+    overworld_frame(gObjectEventPic_RedPlayerSurfing, 4, 4, 4),
+    overworld_frame(gObjectEventPic_RedPlayerSurfing, 4, 4, 0),
+    overworld_frame(gObjectEventPic_RedPlayerSurfing, 4, 4, 0),
+    overworld_frame(gObjectEventPic_RedPlayerSurfing, 4, 4, 2),
+    overworld_frame(gObjectEventPic_RedPlayerSurfing, 4, 4, 2),
+    overworld_frame(gObjectEventPic_RedPlayerSurfing, 4, 4, 4),
+    overworld_frame(gObjectEventPic_RedPlayerSurfing, 4, 4, 4),
+    overworld_frame(gObjectEventPic_RedPlayerSurfing, 4, 4, 1),
+    overworld_frame(gObjectEventPic_RedPlayerSurfing, 4, 4, 3),
+    overworld_frame(gObjectEventPic_RedPlayerSurfing, 4, 4, 5),
+};
+
+static const struct SpriteFrameImage sPicTable_RedPlayerUnderwater[] = {
+    overworld_frame(gObjectEventPic_RedPlayerUnderwater, 4, 4, 0),
+    overworld_frame(gObjectEventPic_RedPlayerUnderwater, 4, 4, 1),
+    overworld_frame(gObjectEventPic_RedPlayerUnderwater, 4, 4, 2),
+    overworld_frame(gObjectEventPic_RedPlayerUnderwater, 4, 4, 0),
+    overworld_frame(gObjectEventPic_RedPlayerUnderwater, 4, 4, 0),
+    overworld_frame(gObjectEventPic_RedPlayerUnderwater, 4, 4, 1),
+    overworld_frame(gObjectEventPic_RedPlayerUnderwater, 4, 4, 1),
+    overworld_frame(gObjectEventPic_RedPlayerUnderwater, 4, 4, 2),
+    overworld_frame(gObjectEventPic_RedPlayerUnderwater, 4, 4, 2),
+};
+
+static const struct SpriteFrameImage sPicTable_RedPlayerFieldMove[] = {
+    overworld_ascending_frames(gObjectEventPic_RedPlayerFieldMove, 4, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_RedPlayerWatering[] = {
+    overworld_frame(gObjectEventPic_RedPlayerWatering, 4, 4, 0),
+    overworld_frame(gObjectEventPic_RedPlayerWatering, 4, 4, 2),
+    overworld_frame(gObjectEventPic_RedPlayerWatering, 4, 4, 4),
+    overworld_frame(gObjectEventPic_RedPlayerWatering, 4, 4, 1),
+    overworld_frame(gObjectEventPic_RedPlayerWatering, 4, 4, 1),
+    overworld_frame(gObjectEventPic_RedPlayerWatering, 4, 4, 3),
+    overworld_frame(gObjectEventPic_RedPlayerWatering, 4, 4, 3),
+    overworld_frame(gObjectEventPic_RedPlayerWatering, 4, 4, 5),
+    overworld_frame(gObjectEventPic_RedPlayerWatering, 4, 4, 5),
+};
+
+static const struct SpriteFrameImage sPicTable_RedPlayerDecorating[] = {
+    obj_frame_tiles(gObjectEventPic_RedPlayerDecorating),
+};
+
+static const struct SpriteFrameImage sPicTable_LeafPlayerNormal[] = {
+    overworld_ascending_frames(gObjectEventPic_LeafPlayerNormalRunning, 2, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_LeafPlayerAcroBike[] = {
+    overworld_ascending_frames(gObjectEventPic_LeafPlayerAcroBike, 4, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_LeafPlayerSurfing[] = {
+    overworld_frame(gObjectEventPic_LeafPlayerSurfing, 4, 4, 0),
+    overworld_frame(gObjectEventPic_LeafPlayerSurfing, 4, 4, 2),
+    overworld_frame(gObjectEventPic_LeafPlayerSurfing, 4, 4, 4),
+    overworld_frame(gObjectEventPic_LeafPlayerSurfing, 4, 4, 0),
+    overworld_frame(gObjectEventPic_LeafPlayerSurfing, 4, 4, 0),
+    overworld_frame(gObjectEventPic_LeafPlayerSurfing, 4, 4, 2),
+    overworld_frame(gObjectEventPic_LeafPlayerSurfing, 4, 4, 2),
+    overworld_frame(gObjectEventPic_LeafPlayerSurfing, 4, 4, 4),
+    overworld_frame(gObjectEventPic_LeafPlayerSurfing, 4, 4, 4),
+    overworld_frame(gObjectEventPic_LeafPlayerSurfing, 4, 4, 1),
+    overworld_frame(gObjectEventPic_LeafPlayerSurfing, 4, 4, 3),
+    overworld_frame(gObjectEventPic_LeafPlayerSurfing, 4, 4, 5),
+};
+
+static const struct SpriteFrameImage sPicTable_LeafPlayerUnderwater[] = {
+    overworld_frame(gObjectEventPic_LeafPlayerUnderwater, 4, 4, 0),
+    overworld_frame(gObjectEventPic_LeafPlayerUnderwater, 4, 4, 1),
+    overworld_frame(gObjectEventPic_LeafPlayerUnderwater, 4, 4, 2),
+    overworld_frame(gObjectEventPic_LeafPlayerUnderwater, 4, 4, 0),
+    overworld_frame(gObjectEventPic_LeafPlayerUnderwater, 4, 4, 0),
+    overworld_frame(gObjectEventPic_LeafPlayerUnderwater, 4, 4, 1),
+    overworld_frame(gObjectEventPic_LeafPlayerUnderwater, 4, 4, 1),
+    overworld_frame(gObjectEventPic_LeafPlayerUnderwater, 4, 4, 2),
+    overworld_frame(gObjectEventPic_LeafPlayerUnderwater, 4, 4, 2),
+};
+
+static const struct SpriteFrameImage sPicTable_LeafPlayerFieldMove[] = {
+    overworld_ascending_frames(gObjectEventPic_LeafPlayerFieldMove, 4, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_LeafPlayerWatering[] = {
+    overworld_frame(gObjectEventPic_LeafPlayerWatering, 4, 4, 0),
+    overworld_frame(gObjectEventPic_LeafPlayerWatering, 4, 4, 2),
+    overworld_frame(gObjectEventPic_LeafPlayerWatering, 4, 4, 4),
+    overworld_frame(gObjectEventPic_LeafPlayerWatering, 4, 4, 1),
+    overworld_frame(gObjectEventPic_LeafPlayerWatering, 4, 4, 1),
+    overworld_frame(gObjectEventPic_LeafPlayerWatering, 4, 4, 3),
+    overworld_frame(gObjectEventPic_LeafPlayerWatering, 4, 4, 3),
+    overworld_frame(gObjectEventPic_LeafPlayerWatering, 4, 4, 5),
+    overworld_frame(gObjectEventPic_LeafPlayerWatering, 4, 4, 5),
+};
+
+static const struct SpriteFrameImage sPicTable_LeafPlayerDecorating[] = {
+    obj_frame_tiles(gObjectEventPic_LeafPlayerDecorating),
+};
+
 #endif // IS_HNS
 

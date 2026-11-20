@@ -21,16 +21,16 @@ const struct PlayerCharacterInfo gPlayerCharacterInfo[PLAYER_CHARACTER_COUNT] =
         .backPic = TRAINER_PIC_BACK_RED,
         .avatarGfxIds =
         {
-            [PLAYER_AVATAR_STATE_NORMAL]     = OBJ_EVENT_GFX_RED_NORMAL,
+            [PLAYER_AVATAR_STATE_NORMAL]     = OBJ_EVENT_GFX_RED_PLAYER_NORMAL,
             [PLAYER_AVATAR_STATE_MACH_BIKE]  = OBJ_EVENT_GFX_RED_BIKE,
-            [PLAYER_AVATAR_STATE_ACRO_BIKE]  = OBJ_EVENT_GFX_GOLD_ACRO_BIKE_HNS,   // fallback: Gold, no Red acro bike sheet yet
-            [PLAYER_AVATAR_STATE_SURFING]    = OBJ_EVENT_GFX_RED_SURF,
-            [PLAYER_AVATAR_STATE_UNDERWATER] = OBJ_EVENT_GFX_GOLD_UNDERWATER_HNS,  // fallback: Gold, no Red underwater sheet yet
-            [PLAYER_AVATAR_STATE_FIELD_MOVE] = OBJ_EVENT_GFX_RED_FIELD_MOVE,
+            [PLAYER_AVATAR_STATE_ACRO_BIKE]  = OBJ_EVENT_GFX_RED_PLAYER_ACRO_BIKE,
+            [PLAYER_AVATAR_STATE_SURFING]    = OBJ_EVENT_GFX_RED_PLAYER_SURFING,
+            [PLAYER_AVATAR_STATE_UNDERWATER] = OBJ_EVENT_GFX_RED_PLAYER_UNDERWATER,
+            [PLAYER_AVATAR_STATE_FIELD_MOVE] = OBJ_EVENT_GFX_RED_PLAYER_FIELD_MOVE,
             [PLAYER_AVATAR_STATE_FISHING]    = OBJ_EVENT_GFX_RED_FISH,
-            [PLAYER_AVATAR_STATE_WATERING]   = OBJ_EVENT_GFX_GOLD_WATERING_HNS,    // fallback: Gold, no Red watering sheet yet
+            [PLAYER_AVATAR_STATE_WATERING]   = OBJ_EVENT_GFX_RED_PLAYER_WATERING,
         },
-        .decoratingGfxId = OBJ_EVENT_GFX_GOLD_DECORATING_HNS,                       // fallback: Gold, no Red decorating sheet yet
+        .decoratingGfxId = OBJ_EVENT_GFX_RED_PLAYER_DECORATING,
         .paletteTag = OBJ_EVENT_PAL_TAG_PLAYER_RED,
     },
     [PLAYER_CHARACTER_LEAF] =
@@ -45,16 +45,16 @@ const struct PlayerCharacterInfo gPlayerCharacterInfo[PLAYER_CHARACTER_COUNT] =
         .backPic = TRAINER_PIC_BACK_LEAF,
         .avatarGfxIds =
         {
-            [PLAYER_AVATAR_STATE_NORMAL]     = OBJ_EVENT_GFX_GREEN_NORMAL,
+            [PLAYER_AVATAR_STATE_NORMAL]     = OBJ_EVENT_GFX_LEAF_PLAYER_NORMAL,
             [PLAYER_AVATAR_STATE_MACH_BIKE]  = OBJ_EVENT_GFX_GREEN_BIKE,
-            [PLAYER_AVATAR_STATE_ACRO_BIKE]  = OBJ_EVENT_GFX_KRIS_ACRO_BIKE_HNS,   // fallback: Kris, no Leaf acro bike sheet yet
-            [PLAYER_AVATAR_STATE_SURFING]    = OBJ_EVENT_GFX_GREEN_SURF,
-            [PLAYER_AVATAR_STATE_UNDERWATER] = OBJ_EVENT_GFX_KRIS_UNDERWATER_HNS,  // fallback: Kris, no Leaf underwater sheet yet
-            [PLAYER_AVATAR_STATE_FIELD_MOVE] = OBJ_EVENT_GFX_GREEN_FIELD_MOVE,
+            [PLAYER_AVATAR_STATE_ACRO_BIKE]  = OBJ_EVENT_GFX_LEAF_PLAYER_ACRO_BIKE,
+            [PLAYER_AVATAR_STATE_SURFING]    = OBJ_EVENT_GFX_LEAF_PLAYER_SURFING,
+            [PLAYER_AVATAR_STATE_UNDERWATER] = OBJ_EVENT_GFX_LEAF_PLAYER_UNDERWATER,
+            [PLAYER_AVATAR_STATE_FIELD_MOVE] = OBJ_EVENT_GFX_LEAF_PLAYER_FIELD_MOVE,
             [PLAYER_AVATAR_STATE_FISHING]    = OBJ_EVENT_GFX_GREEN_FISH,
-            [PLAYER_AVATAR_STATE_WATERING]   = OBJ_EVENT_GFX_KRIS_WATERING_HNS,    // fallback: Kris, no Leaf watering sheet yet
+            [PLAYER_AVATAR_STATE_WATERING]   = OBJ_EVENT_GFX_LEAF_PLAYER_WATERING,
         },
-        .decoratingGfxId = OBJ_EVENT_GFX_KRIS_DECORATING_HNS,                       // fallback: Kris, no Leaf decorating sheet yet
+        .decoratingGfxId = OBJ_EVENT_GFX_LEAF_PLAYER_DECORATING,
         .paletteTag = OBJ_EVENT_PAL_TAG_PLAYER_GREEN,
     },
     [PLAYER_CHARACTER_GOLD] =

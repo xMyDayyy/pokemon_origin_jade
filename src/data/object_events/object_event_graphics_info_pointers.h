@@ -551,6 +551,20 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_KrisFieldMo
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_KrisFishing_hns;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_KrisWatering_hns;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_KrisDecorating_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RedPlayerNormal;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RedPlayerAcroBike;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RedPlayerSurfing;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RedPlayerUnderwater;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RedPlayerFieldMove;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RedPlayerWatering;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RedPlayerDecorating;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LeafPlayerNormal;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LeafPlayerAcroBike;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LeafPlayerSurfing;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LeafPlayerUnderwater;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LeafPlayerFieldMove;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LeafPlayerWatering;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LeafPlayerDecorating;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_AlolaOak_hns;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
@@ -1095,6 +1109,20 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_KRIS_FISHING_HNS] =      &gObjectEventGraphicsInfo_KrisFishing_hns,
     [OBJ_EVENT_GFX_KRIS_WATERING_HNS] =     &gObjectEventGraphicsInfo_KrisWatering_hns,
     [OBJ_EVENT_GFX_KRIS_DECORATING_HNS] =   &gObjectEventGraphicsInfo_KrisDecorating_hns,
+    [OBJ_EVENT_GFX_RED_PLAYER_NORMAL] = &gObjectEventGraphicsInfo_RedPlayerNormal,
+    [OBJ_EVENT_GFX_RED_PLAYER_ACRO_BIKE] = &gObjectEventGraphicsInfo_RedPlayerAcroBike,
+    [OBJ_EVENT_GFX_RED_PLAYER_SURFING] = &gObjectEventGraphicsInfo_RedPlayerSurfing,
+    [OBJ_EVENT_GFX_RED_PLAYER_UNDERWATER] = &gObjectEventGraphicsInfo_RedPlayerUnderwater,
+    [OBJ_EVENT_GFX_RED_PLAYER_FIELD_MOVE] = &gObjectEventGraphicsInfo_RedPlayerFieldMove,
+    [OBJ_EVENT_GFX_RED_PLAYER_WATERING] = &gObjectEventGraphicsInfo_RedPlayerWatering,
+    [OBJ_EVENT_GFX_RED_PLAYER_DECORATING] = &gObjectEventGraphicsInfo_RedPlayerDecorating,
+    [OBJ_EVENT_GFX_LEAF_PLAYER_NORMAL] = &gObjectEventGraphicsInfo_LeafPlayerNormal,
+    [OBJ_EVENT_GFX_LEAF_PLAYER_ACRO_BIKE] = &gObjectEventGraphicsInfo_LeafPlayerAcroBike,
+    [OBJ_EVENT_GFX_LEAF_PLAYER_SURFING] = &gObjectEventGraphicsInfo_LeafPlayerSurfing,
+    [OBJ_EVENT_GFX_LEAF_PLAYER_UNDERWATER] = &gObjectEventGraphicsInfo_LeafPlayerUnderwater,
+    [OBJ_EVENT_GFX_LEAF_PLAYER_FIELD_MOVE] = &gObjectEventGraphicsInfo_LeafPlayerFieldMove,
+    [OBJ_EVENT_GFX_LEAF_PLAYER_WATERING] = &gObjectEventGraphicsInfo_LeafPlayerWatering,
+    [OBJ_EVENT_GFX_LEAF_PLAYER_DECORATING] = &gObjectEventGraphicsInfo_LeafPlayerDecorating,
 #endif // IS_HNS
 };
 
