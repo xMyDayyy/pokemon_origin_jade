@@ -300,12 +300,11 @@ LavaridgeTown_Text_MayNiceBadgesTakeThis:
 #else
 	.string "MAY: {PLAYER}{KUN}! Long time no see!\p"
 	.string "Oh? While I visited the hot springs,\n"
-	.string "you got the LAVARIDGE GYM BADGE.\p"
-	.string "You must have collected\n"
-	.string "good POKéMON…\l"
-	.string "No, I believe you raised some.\p"
-	.string "I guess it would be okay for you to\n"
-	.string "have this.$"
+	.string "you got the LAVARIDGE GYM BADGE.\l"
+	.string "Of course you did…\p"
+	.string "I can tell from your POKéMON. I'm\n"
+	.string "nowhere near that far yet.\p"
+	.string "I think you'll put this to good use.$"
 #endif
 
 LavaridgeTown_Text_MayExplainGoGogglesChallengeDad:
@@ -325,10 +324,10 @@ LavaridgeTown_Text_MayExplainGoGogglesChallengeDad:
 	.string "MAY: With those GO-GOGGLES, you'll\n"
 	.string "have no trouble getting through the\l"
 	.string "desert near ROUTE 111.\p"
-	.string "But, wow, {PLAYER}{KUN}…\n"
-	.string "Challenging GYMS…\p"
-	.string "You're trying hard because you don't\n"
-	.string "want to lose to me, I bet!\p"
+	.string "And you're really collecting BADGES\n"
+	.string "here… You wouldn't even need to.\p"
+	.string "But fine. If you walk this road once\n"
+	.string "more, I'll walk it too and catch up.\p"
 	.string "{PLAYER}{KUN}, I think I should challenge\n"
 	.string "NORMAN in PETALBURG GYM.\p"
 	.string "See you again!$"

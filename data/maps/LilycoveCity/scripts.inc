@@ -465,17 +465,14 @@ LilycoveCity_Text_MayShoppingLetsBattle:
 	.string "Trainer, den ich kenne.\p"
 	.string "Und das bist du!$"
 #else
-	.string "MAY: Oh, hey?\n"
-	.string "{PLAYER}{KUN}, are you shopping, too?\p"
-	.string "I bought a whole bunch of DOLLS and\n"
-	.string "POSTERS.\p"
-	.string "Of course, I've also caught a lot of\n"
-	.string "POKéMON, and I'm raising them\l"
-	.string "properly, too.\p"
-	.string "Actually, I'm more worried if you're\n"
-	.string "raising POKéMON properly, {PLAYER}{KUN}.\p"
-	.string "I'll battle with you, so you can show\n"
-	.string "me your POKéMON, {PLAYER}{KUN}.$"
+	.string "MAY: {PLAYER}!\p"
+	.string "I've got everything my team still\n"
+	.string "needed right here.\p"
+	.string "Six POKéMON, every single one\n"
+	.string "raised by me.\p"
+	.string "Someday I'll beat the strongest\n"
+	.string "TRAINER I know.\p"
+	.string "And that's you!$"
 #endif
 
 LilycoveCity_Text_MayNotRaisingPokemon:
@@ -484,18 +481,16 @@ LilycoveCity_Text_MayNotRaisingPokemon:
 	.string "Dann eben später. Ich laufe dir nicht\n"
 	.string "weg, {PLAYER}.$"
 #else
-	.string "MAY: Oh, why? {PLAYER}{KUN}, haven't you\n"
-	.string "been raising your POKéMON?\p"
-	.string "That's not a very good showing as a\n"
-	.string "TRAINER…$"
+	.string "MAY: Not now?\p"
+	.string "Later, then. I'm not going anywhere,\n"
+	.string "{PLAYER}.$"
 #endif
 
 LilycoveCity_Text_MayBattleMe:
 #if GERMAN
 	.string "Maike: Komm schon. Einmal noch.$"
 #else
-	.string "MAY: Come on, battle with me, so I can\n"
-	.string "check out your POKéMON!$"
+	.string "MAY: Come on. One more time.$"
 #endif
 
 LilycoveCity_Text_MayWontBeBeaten:
@@ -503,8 +498,8 @@ LilycoveCity_Text_MayWontBeBeaten:
 	.string "Maike: Diesmal gebe ich nichts her.\n"
 	.string "Nicht eines.$"
 #else
-	.string "MAY: The POKéMON I raised won't be\n"
-	.string "beaten by your POKéMON, {PLAYER}{KUN}!$"
+	.string "MAY: This time I'm not giving you\n"
+	.string "anything. Not a single one.$"
 #endif
 
 LilycoveCity_Text_MayDefeat:
@@ -516,10 +511,10 @@ LilycoveCity_Text_MayDefeat:
 	.string "Beim nächsten Mal reiße ich sie auf.$"
 #else
 	.string "… … … … … … … …\p"
-	.string "I remember the battle I had with you,\n"
-	.string "{PLAYER}{KUN}, on ROUTE 103.\p"
-	.string "That battle helped you become this\n"
-	.string "strong, {PLAYER}{KUN}, didn't it?$"
+	.string "On ROUTE 103, you were a wall.\p"
+	.string "Today you were a door that opened\n"
+	.string "just a crack.\p"
+	.string "Next time, I'll tear it wide open.$"
 #endif
 
 LilycoveCity_Text_MayGoingBackToLittleroot:
@@ -529,11 +524,10 @@ LilycoveCity_Text_MayGoingBackToLittleroot:
 	.string "Danach trainiere ich weiter.\p"
 	.string "Ich habe schließlich noch etwas vor.$"
 #else
-	.string "MAY: I'm thinking of going back to\n"
-	.string "LITTLEROOT soon.\p"
-	.string "I've caught a decent group of POKéMON,\n"
-	.string "and my POKéDEX is coming along, so\l"
-	.string "I'm going home to show my dad.$"
+	.string "MAY: I'm going to LITTLEROOT for a bit\n"
+	.string "to show my dad my POKéDEX.\p"
+	.string "After that, I'll keep training.\p"
+	.string "I still have plans, after all.$"
 #endif
 
 LilycoveCity_Text_MayYouGoingToCollectBadges:

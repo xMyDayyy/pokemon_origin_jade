@@ -502,12 +502,11 @@ Route119_Text_MayIntro:
 	.string "Darauf habe ich lange hingearbeitet.\p"
 	.string "Sehen wir nach, ob es reicht!$"
 #else
-	.string "MAY: {PLAYER}{KUN}!\n"
-	.string "Where were you? I was looking for you!\p"
-	.string "How much stronger have you gotten?\n"
-	.string "Let me check for you!\p"
-	.string "Ready with your POKéMON?\n"
-	.string "Of course you are! Go!$"
+	.string "MAY: {PLAYER}! Six POKéMON.\n"
+	.string "My team is finally complete.\p"
+	.string "I've worked toward this for a long\n"
+	.string "time.\p"
+	.string "Let's see if it's enough!$"
 #endif
 
 Route119_Text_MayDefeat:
@@ -516,10 +515,9 @@ Route119_Text_MayDefeat:
 	.string "Aber du hast es gemerkt, oder?\n"
 	.string "Ich bin nicht mehr die von Route 103.$"
 #else
-	.string "Achah!\n"
-	.string "{PLAYER}{KUN}, you're strong!\p"
-	.string "I was worried that you might be\n"
-	.string "struggling with your training.$"
+	.string "Not yet.\p"
+	.string "But you noticed, didn't you?\n"
+	.string "I'm not who I was on ROUTE 103.$"
 #endif
 
 Route119_Text_MayPresentForYou:
