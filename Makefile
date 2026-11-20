@@ -6,6 +6,16 @@ GAME_CODE    := BPEE
 BUILD_NAME   := jade
 MAP_VERSION  := hns
 
+# Language: make (German) or make GAME_LANG=ENGLISH.
+# English builds use their own object directory and ROM name.
+GAME_LANG ?= GERMAN
+ifeq ($(GAME_LANG),ENGLISH)
+	LANGFLAG := -DLANG_ENGLISH
+	BUILD_NAME := jade_en
+else
+	LANGFLAG :=
+endif
+
 ifneq (,$(filter-out jade,$(BUILD)))
   $(error Only Origin Jade is built: use make or make jade, not BUILD=$(BUILD))
 endif
@@ -17,7 +27,13 @@ KEEP_TEMPS  ?= 0
 
 # `File name`.gba
 FILE_NAME := Pokemon_Origin_Jade
+ifeq ($(GAME_LANG),ENGLISH)
+  FILE_NAME := Pokemon_Origin_Jade_EN
+endif
 BUILD_DIR := build
+# Records the language of the last build; generated files that bake it in depend on it.
+LANG_STAMP := build/lang.stamp
+$(shell mkdir -p build && (test "$$(cat $(LANG_STAMP) 2>/dev/null)" = "$(GAME_LANG)" || echo $(GAME_LANG) > $(LANG_STAMP)))
 
 # Compares the ROM to a checksum of the original - only makes sense using when non-modern
 COMPARE     ?= 0
@@ -130,12 +146,6 @@ O_LEVEL ?= g
 else
 O_LEVEL ?= 2
 endif
-GAME_LANG ?= GERMAN
-ifeq ($(GAME_LANG),ENGLISH)
-	LANGFLAG := -DLANG_ENGLISH
-else
-	LANGFLAG :=
-endif
 
 CPPFLAGS := $(INCLUDE_CPP_ARGS) -Wno-trigraphs -DMODERN=1 -DTESTING=0 -D$(GAME_VERSION) $(LANGFLAG) -std=gnu17
 ifeq ($(RELEASE),1)
@@ -207,6 +217,12 @@ MAPJSON      := $(TOOLS_DIR)/mapjson/mapjson$(EXE)
 JSONPROC     := $(TOOLS_DIR)/jsonproc/jsonproc$(EXE)
 TRAINERPROC  := $(TOOLS_DIR)/trainerproc/trainerproc$(EXE)
 
+# English builds take the English source of a graphic from graphics_en/ when there is one.
+ifeq ($(GAME_LANG),ENGLISH)
+  GFX    := sh $(TOOLS_DIR)/lang_gfx.sh $(GFX)
+  SMOLTM := sh $(TOOLS_DIR)/lang_gfx.sh $(SMOLTM)
+endif
+
 # Learnset helper is a Python script
 LEARNSET_HELPERS_DIR := $(TOOLS_DIR)/learnset_helpers
 LEARNSET_HELPERS_DATA_DIR := $(LEARNSET_HELPERS_DIR)/porymoves_files
@@ -268,7 +284,7 @@ ifeq ($(SETUP_PREREQS),1)
     $(error Errors occurred while building tools. See error messages above for more details)
   endif
   # Oh and also generate mapjson sources before we use `SCANINC`.
-  $(foreach line, $(shell $(MAKE) MAP_VERSION=$(MAP_VERSION) generated | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
+  $(foreach line, $(shell $(MAKE) GAME_LANG=$(GAME_LANG) MAP_VERSION=$(MAP_VERSION) generated | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
   ifneq ($(.SHELLSTATUS),0)
     $(error Errors occurred while generating map-related sources. See error messages above for more details)
   endif
@@ -357,6 +373,14 @@ include spritesheet_rules.mk
 include json_data_rules.mk
 include audio_rules.mk
 include trainer_rules.mk
+
+# Files made from a graphic in graphics_en/ are made again when the language changes.
+LANG_GFX_SRC := $(patsubst graphics_en/%,graphics/%,$(shell find graphics_en -type f 2>/dev/null))
+LANG_GFX_GEN := $(foreach f,$(filter %.png,$(LANG_GFX_SRC)),$(f:.png=.1bpp) $(f:.png=.4bpp) $(f:.png=.8bpp) $(f:.png=.gbapal)) \
+                $(foreach f,$(filter %.pal,$(LANG_GFX_SRC)),$(f:.pal=.gbapal)) \
+                $(foreach f,$(filter %.bin,$(LANG_GFX_SRC)),$(f).smolTM $(f).lz) \
+                $(patsubst $(FONTGFXDIR)/latin_%.png,$(FONTGFXDIR)/%.latfont,$(filter $(FONTGFXDIR)/latin_%.png,$(LANG_GFX_SRC)))
+$(LANG_GFX_GEN): $(LANG_STAMP)
 
 # NOTE: Tools must have been built prior (FIXME)
 # so you can't really call this rule directly

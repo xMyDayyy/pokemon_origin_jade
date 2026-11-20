@@ -212,18 +212,33 @@ static const u8 sText_TooImportantToToss[] = _("That's much too\nimportant to to
 
 static const u8 *const sItemStorage_OptionDescriptions[] =
 {
+#if GERMAN
     [MENU_WITHDRAW] = COMPOUND_STRING("Nimm Items von deinem PC."),
     [MENU_DEPOSIT]  = COMPOUND_STRING("Lagere Items auf deinem PC."),
     [MENU_TOSS]     = COMPOUND_STRING("Wirf gelagerte Items weg."),
+#else
+    [MENU_WITHDRAW] = COMPOUND_STRING("Take out items from the PC."),
+    [MENU_DEPOSIT]  = COMPOUND_STRING("Store items in the PC."),
+    [MENU_TOSS]     = COMPOUND_STRING("Throw away items stored in the PC."),
+#endif
     [MENU_EXIT]     = gText_GoBackPrevMenu,
 };
 
 static const struct MenuAction sPlayerPCMenuActions[] =
 {
+#if GERMAN
     [MENU_ITEMSTORAGE] = { COMPOUND_STRING("Item-Lager"), {PlayerPC_ItemStorage} },
+#else
+    [MENU_ITEMSTORAGE] = { COMPOUND_STRING("ITEM STORAGE"), {PlayerPC_ItemStorage} },
+#endif
     [MENU_MAILBOX]     = { sText_Mailbox,                   {PlayerPC_Mailbox} },
+#if GERMAN
     [MENU_DECORATION]  = { COMPOUND_STRING("Dekoration"),   {PlayerPC_Decoration} },
     [MENU_TURNOFF]     = { COMPOUND_STRING("Ausschalten"),     {PlayerPC_TurnOff} }
+#else
+    [MENU_DECORATION]  = { COMPOUND_STRING("DECORATION"),   {PlayerPC_Decoration} },
+    [MENU_TURNOFF]     = { COMPOUND_STRING("TURN OFF"),     {PlayerPC_TurnOff} }
+#endif
 };
 
 static const u8 sBedroomPC_OptionOrder[] =
@@ -259,9 +274,15 @@ static const u16 sNewGamePCItems[][2] =
 
 const struct MenuAction gMailboxMailOptions[] =
 {
+#if GERMAN
     { COMPOUND_STRING("Lesen"),        {Mailbox_DoMailRead} },
     { COMPOUND_STRING("In Beutel Geben"), {Mailbox_MoveToBag} },
     { COMPOUND_STRING("Geben"),        {Mailbox_Give} },
+#else
+    { COMPOUND_STRING("READ"),        {Mailbox_DoMailRead} },
+    { COMPOUND_STRING("MOVE TO BAG"), {Mailbox_MoveToBag} },
+    { COMPOUND_STRING("GIVE"),        {Mailbox_Give} },
+#endif
     { gText_Cancel2,                  {Mailbox_Cancel} }
 };
 

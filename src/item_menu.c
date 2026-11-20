@@ -322,20 +322,40 @@ static const struct MenuAction sItemMenuActions[] = {
     [ACTION_GIVE]              = {gMenuText_Give,               {ItemMenu_Give}},
     [ACTION_CANCEL]            = {gText_Cancel2,                {ItemMenu_Cancel}},
     [ACTION_BATTLE_USE]        = {gMenuText_Use,                {ItemMenu_UseInBattle}},
+#if GERMAN
     [ACTION_CHECK]             = {COMPOUND_STRING("Prüfen"),     {ItemMenu_UseOutOfBattle}},
     [ACTION_WALK]              = {COMPOUND_STRING("Laufen"),      {ItemMenu_UseOutOfBattle}},
     [ACTION_DESELECT]          = {COMPOUND_STRING("SELECT"),  {ItemMenu_CheckWhichRegister}},
     [ACTION_CHECK_TAG]         = {COMPOUND_STRING("Prüfen"), {ItemMenu_CheckTag}},
+#else
+    [ACTION_CHECK]             = {COMPOUND_STRING("CHECK"),     {ItemMenu_UseOutOfBattle}},
+    [ACTION_WALK]              = {COMPOUND_STRING("WALK"),      {ItemMenu_UseOutOfBattle}},
+    [ACTION_DESELECT]          = {COMPOUND_STRING("DESELECT"),  {ItemMenu_CheckWhichRegister}},
+    [ACTION_CHECK_TAG]         = {COMPOUND_STRING("CHECK TAG"), {ItemMenu_CheckTag}},
+#endif
     [ACTION_CONFIRM]           = {gMenuText_Confirm,            {Task_FadeAndCloseBagMenu}},
+#if GERMAN
     [ACTION_SHOW]              = {COMPOUND_STRING("Zeigen"),      {ItemMenu_Show}},
+#else
+    [ACTION_SHOW]              = {COMPOUND_STRING("SHOW"),      {ItemMenu_Show}},
+#endif
     [ACTION_GIVE_FAVOR_LADY]   = {gMenuText_Give2,              {ItemMenu_GiveFavorLady}},
     [ACTION_CONFIRM_QUIZ_LADY] = {gMenuText_Confirm,            {ItemMenu_ConfirmQuizLady}},
+#if GERMAN
     [ACTION_BY_NAME]           = {COMPOUND_STRING("Alphabet"),      {ItemMenu_SortByName}},
     [ACTION_BY_TYPE]           = {COMPOUND_STRING("Kategorie"),      {ItemMenu_SortByType}},
     [ACTION_BY_AMOUNT]         = {COMPOUND_STRING("Anzahl"),    {ItemMenu_SortByAmount}},
     [ACTION_BY_INDEX]          = {COMPOUND_STRING("Nummer"),     {ItemMenu_SortByIndex}},
     [ACTION_REGISTER_TAP]      = {COMPOUND_STRING("Tippen"),      {ItemMenu_Register}},
     [ACTION_REGISTER_HOLD]     = {COMPOUND_STRING("Halten"),     {ItemMenu_RegisterHold}},
+#else
+    [ACTION_BY_NAME]           = {COMPOUND_STRING("NAME"),      {ItemMenu_SortByName}},
+    [ACTION_BY_TYPE]           = {COMPOUND_STRING("TYPE"),      {ItemMenu_SortByType}},
+    [ACTION_BY_AMOUNT]         = {COMPOUND_STRING("AMOUNT"),    {ItemMenu_SortByAmount}},
+    [ACTION_BY_INDEX]          = {COMPOUND_STRING("INDEX"),     {ItemMenu_SortByIndex}},
+    [ACTION_REGISTER_TAP]      = {COMPOUND_STRING("TAP"),      {ItemMenu_Register}},
+    [ACTION_REGISTER_HOLD]     = {COMPOUND_STRING("HOLD"),     {ItemMenu_RegisterHold}},
+#endif
     [ACTION_DUMMY]             = {gText_EmptyString2, {NULL}}
 };
 
@@ -1348,7 +1368,11 @@ static void Task_BagMenu_HandleInput(u8 taskId)
             {
                 if ((gBagMenu->numItemStacks[gBagPosition.pocket] - 1) <= 1) //can't sort with 0 or 1 item in bag
                 {
+#if GERMAN
                     static const u8 sText_NothingToSort[] = _("Es gibt nichts zu sortieren!");
+#else
+                    static const u8 sText_NothingToSort[] = _("There's nothing to sort!");
+#endif
                     PlaySE(SE_FAILURE);
                     DisplayItemMessage(taskId, 1, sText_NothingToSort, HandleErrorMessage);
                     break;
@@ -2882,10 +2906,17 @@ static const u8 sText_ItemsSorted[] = _("Items sorted by {STR_VAR_1}!");
 #endif
 static const u8 *const sSortTypeStrings[] =
 {
+#if GERMAN
     [SORT_ALPHABETICALLY] = COMPOUND_STRING("Alphabet"),
     [SORT_BY_TYPE] = COMPOUND_STRING("Kategorie"),
     [SORT_BY_AMOUNT] = COMPOUND_STRING("Anzahl"),
     [SORT_BY_INDEX] = COMPOUND_STRING("Nummer")
+#else
+    [SORT_ALPHABETICALLY] = COMPOUND_STRING("NAME"),
+    [SORT_BY_TYPE] = COMPOUND_STRING("TYPE"),
+    [SORT_BY_AMOUNT] = COMPOUND_STRING("AMOUNT"),
+    [SORT_BY_INDEX] = COMPOUND_STRING("INDEX")
+#endif
 };
 
 static const u8 sBagMenuSortItems[] =

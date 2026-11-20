@@ -78,8 +78,16 @@ const u8 gText_ExpandedPlaceholder_Silver[] = _("Silber");
 #else
 const u8 gText_ExpandedPlaceholder_Silver[] = _("SILVER");
 #endif
+#if GERMAN
 const u8 gText_EggNickname[POKEMON_NAME_LENGTH + 1] = _("Ei");
+#else
+const u8 gText_EggNickname[POKEMON_NAME_LENGTH + 1] = _("EGG");
+#endif
+#if GERMAN
 const u8 gText_Pokemon[POKEMON_NAME_LENGTH + 1] = _("Pokémon");
+#else
+const u8 gText_Pokemon[POKEMON_NAME_LENGTH + 1] = _("POKéMON");
+#endif
 #if GERMAN
 const u8 gText_Player[] = _("Player");
 #else
@@ -740,15 +748,29 @@ const u8 gText_ReturnToVar1[] = _("Return to\n{STR_VAR_1}.");
 
 const u8 *const gPocketNamesStringsTable[] =
 {
+#if GERMAN
     [POCKET_ITEMS] =        COMPOUND_STRING("Items"),
     [POCKET_POKE_BALLS] =   COMPOUND_STRING("Pokébälle"),
     [POCKET_TM_HM]  =       COMPOUND_STRING("TMs & VMs"),
     [POCKET_BERRIES] =      COMPOUND_STRING("Beeren"),
     [POCKET_KEY_ITEMS] =    COMPOUND_STRING("Basis Items"),
     [POCKET_MEDICINE] =     COMPOUND_STRING("Medizin"),
+#else
+    [POCKET_ITEMS] =        COMPOUND_STRING("ITEMS"),
+    [POCKET_POKE_BALLS] =   COMPOUND_STRING("POKé BALLS"),
+    [POCKET_TM_HM]  =       COMPOUND_STRING("TMs & HMs"),
+    [POCKET_BERRIES] =      COMPOUND_STRING("BERRIES"),
+    [POCKET_KEY_ITEMS] =    COMPOUND_STRING("KEY ITEMS"),
+    [POCKET_MEDICINE] =     COMPOUND_STRING("MEDICINE"),
+#endif
 #if I_COMBINE_BAG_POCKETS == FALSE
+#if GERMAN
     [POCKET_BATTLE_ITEMS] = COMPOUND_STRING("Kampf"),
     [POCKET_TREASURES] =    COMPOUND_STRING("Schätze"),
+#else
+    [POCKET_BATTLE_ITEMS] = COMPOUND_STRING("BATTLE"),
+    [POCKET_TREASURES] =    COMPOUND_STRING("TREASURES"),
+#endif
 #endif
 };
 

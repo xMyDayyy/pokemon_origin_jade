@@ -273,7 +273,11 @@ BurnedTower_Text_NardSeen:
 	.string "power of fire better than anyone!$"
 #endif
 BurnedTower_Text_NardBeaten:
+#if GERMAN
 	.string "Danke für den heißen Kampf.$"
+#else
+	.string "Thanks for such a heated battle!$"
+#endif
 BurnedTower_Text_NardAfter:
 #if GERMAN
 	.string "Dieser Turm ist durch einen Blitzschlag\n"

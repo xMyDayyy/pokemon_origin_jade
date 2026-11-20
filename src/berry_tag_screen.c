@@ -145,11 +145,19 @@ static const struct WindowTemplate sWindowTemplates[] =
 static const u8 *const sBerryFirmnessStrings[] =
 {
     [BERRY_FIRMNESS_UNKNOWN]    = COMPOUND_STRING("???"),
+#if GERMAN
     [BERRY_FIRMNESS_VERY_SOFT]  = COMPOUND_STRING("Sehr weich"),
     [BERRY_FIRMNESS_SOFT]       = COMPOUND_STRING("Weich"),
     [BERRY_FIRMNESS_HARD]       = COMPOUND_STRING("Hart"),
     [BERRY_FIRMNESS_VERY_HARD]  = COMPOUND_STRING("Sehr hart"),
     [BERRY_FIRMNESS_SUPER_HARD] = COMPOUND_STRING("Steinhart")
+#else
+    [BERRY_FIRMNESS_VERY_SOFT]  = COMPOUND_STRING("Very soft"),
+    [BERRY_FIRMNESS_SOFT]       = COMPOUND_STRING("Soft"),
+    [BERRY_FIRMNESS_HARD]       = COMPOUND_STRING("Hard"),
+    [BERRY_FIRMNESS_VERY_HARD]  = COMPOUND_STRING("Very hard"),
+    [BERRY_FIRMNESS_SUPER_HARD] = COMPOUND_STRING("Super hard")
+#endif
 };
 
 // this file's functions
@@ -185,7 +193,7 @@ static const u8 sText_FirmSlash[] = _("Güte:");
 static const u8 sText_FirmSlash[] = _("FIRM /");
 #endif
 static const u8 sText_Var1DotVar2[] = {PLACEHOLDER_BEGIN, 0x02, CHAR_PERIOD, PLACEHOLDER_BEGIN, 0x03, CHAR_DBL_QUOTE_RIGHT, EOS};
-static const u8 sText_Var1DotVar2_Metric[] = _("{STR_VAR_1},{STR_VAR_2} cm");
+static const u8 sText_Var1DotVar2_Metric[] = _(DE_EN("{STR_VAR_1},{STR_VAR_2} cm", "{STR_VAR_1}.{STR_VAR_2} cm"));
 static const u8 sText_NumberVar1Var2[] = _("{NO}{STR_VAR_1} {STR_VAR_2}");
 #if GERMAN
 static const u8 sText_BerryTag[] = _("Beere");

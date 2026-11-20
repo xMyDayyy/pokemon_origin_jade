@@ -201,23 +201,43 @@ static const u16 sTextPal[] = INCBIN_U16("graphics/interface/option_menu_text_cu
 // =============================================================================
 
 static const u8 *const sChoices_OnOff[] = {
+#if GERMAN
     COMPOUND_STRING("Ein"),
     COMPOUND_STRING("Aus"),
+#else
+    COMPOUND_STRING("ON"),
+    COMPOUND_STRING("OFF"),
+#endif
 };
 
 static const u8 *const sChoices_ShiftSet[] = {
+#if GERMAN
     COMPOUND_STRING("Wechsel"),
     COMPOUND_STRING("Folge"),
+#else
+    COMPOUND_STRING("SHIFT"),
+    COMPOUND_STRING("SET"),
+#endif
 };
 
 static const u8 *const sChoices_MonoStereo[] = {
+#if GERMAN
     COMPOUND_STRING("Mono"),
     COMPOUND_STRING("Stereo"),
+#else
+    COMPOUND_STRING("MONO"),
+    COMPOUND_STRING("STEREO"),
+#endif
 };
 
 static const u8 *const sChoices_ButtonMode[] = {
+#if GERMAN
     COMPOUND_STRING("Normal"),
     COMPOUND_STRING("L/R"),
+#else
+    COMPOUND_STRING("NORMAL"),
+    COMPOUND_STRING("LR"),
+#endif
     COMPOUND_STRING("L=A"),
 };
 
@@ -229,22 +249,41 @@ static const u8 *const sChoices_TextSpeed[] = {
 };
 
 static const u8 *const sChoices_MetricImperial[] = {
+#if GERMAN
     COMPOUND_STRING("Metrisch"),
     COMPOUND_STRING("Imperial"),
+#else
+    COMPOUND_STRING("METRIC"),
+    COMPOUND_STRING("IMPERIAL"),
+#endif
 };
 
 static const u8 *const sChoices_OldModern[] = {
+#if GERMAN
     COMPOUND_STRING("Alt"),
     COMPOUND_STRING("Modern"),
+#else
+    COMPOUND_STRING("OLD"),
+    COMPOUND_STRING("MODERN"),
+#endif
 };
 
 static const u8 *const sChoices_Gen3Gen4[] = {
+#if GERMAN
     COMPOUND_STRING("Gen 3"),
     COMPOUND_STRING("Gen 4"),
+#else
+    COMPOUND_STRING("GEN 3"),
+    COMPOUND_STRING("GEN 4"),
+#endif
 };
 
 static const u8 *const sChoices_RunType[] = {
+#if GERMAN
     COMPOUND_STRING("Aus"),
+#else
+    COMPOUND_STRING("NO"),
+#endif
     COMPOUND_STRING("L+R+A"),
     COMPOUND_STRING("B{RIGHT_ARROW}A"),
     COMPOUND_STRING("B"),
@@ -276,41 +315,87 @@ static const u8 *const sDesc_TextSpeed[] = {
     sText_Desc_TextSpeed,
 };
 static const u8 *const sDesc_BattleScene[] = {
+#if GERMAN
     COMPOUND_STRING("Zeige {PKMN} Animationen\nund Attacken."),
     COMPOUND_STRING("Zeige {PKMN} Animationen\nund Attacken nicht."),
+#else
+    COMPOUND_STRING("Show the {PKMN} animations\nand attack animations."),
+    COMPOUND_STRING("Skip the {PKMN} animations\nand attack animations."),
+#endif
 };
 static const u8 *const sDesc_BattleStyle[] = {
+#if GERMAN
     COMPOUND_STRING("Option das eigene {PKMN} zu wechseln,\nnachdem der Gegner besiegt wurde."),
     COMPOUND_STRING("Kein Wechseln des {PKMN}\nnach besiegen des Gegners."),
+#else
+    COMPOUND_STRING("Get the option to switch your\n{PKMN} after the enemies faints."),
+    COMPOUND_STRING("No free switch after fainting the\nenemies {PKMN}."),
+#endif
 };
 static const u8 *const sDesc_ButtonMode[] = {
+#if GERMAN
     COMPOUND_STRING("Normale Steuerung."),
     COMPOUND_STRING("In manchen Szenarien funktionieren\nL und R als Links und Rechts."),
     COMPOUND_STRING("L funktioniert als weiterer\nA-Knopf."),
+#else
+    COMPOUND_STRING("All buttons work as normal."),
+    COMPOUND_STRING("On some screens the L and R buttons\nact as left and right."),
+    COMPOUND_STRING("The L button acts as another A\nbutton for one-handed play."),
+#endif
 };
 static const u8 *const sDesc_Follower[] = {
+#if GERMAN
     COMPOUND_STRING("Das Erste {PKMN} im Team\nfolgt dir."),
     COMPOUND_STRING("Kein folgendes {PKMN}."),
+#else
+    COMPOUND_STRING("Let the first {PKMN} in your\nparty follow you."),
+    COMPOUND_STRING("Walk alone."),
+#endif
 };
 static const u8 *const sDesc_LargeFollower[] = {
+#if GERMAN
     COMPOUND_STRING("Große {PKMN} folgen dir.\nKann grafische Probleme verursachen."),
     COMPOUND_STRING("Große {PKMN} folgen nicht.\nEmpfohlen."),
+#else
+    COMPOUND_STRING("Enable large {PKMN} followers.\nCan cause graphical issues."),
+    COMPOUND_STRING("Disable large {PKMN} followers.\nRecommended."),
+#endif
 };
 static const u8 *const sDesc_Autorun[] = {
+#if GERMAN
     COMPOUND_STRING("Rennen ohne B drücken zu müssen."),
     COMPOUND_STRING("Drücke und halte B zum Rennen."),
+#else
+    COMPOUND_STRING("Run without pressing B."),
+    COMPOUND_STRING("Press and hold B to run."),
+#endif
 };
 static const u8 *const sDesc_AutorunSurf[] = {
+#if GERMAN
     COMPOUND_STRING("Surfe schneller ohne B zu drücken."),
     COMPOUND_STRING("Drücke und halte B zum\nschnellen Surfen."),
+#else
+    COMPOUND_STRING("Surf faster without pressing B."),
+    COMPOUND_STRING("Press and hold B to surf faster."),
+#endif
 };
 static const u8 *const sDesc_Fishing[] = {
+#if GERMAN
     COMPOUND_STRING("Automatisches Angeln."),
     COMPOUND_STRING("Normales Angeln.\nDrücken zum einholen!"),
+#else
+    COMPOUND_STRING("Automatically reel while fishing."),
+    COMPOUND_STRING("Manually reel while fishing.\nFish like you always fished!"),
+#endif
 };
 static const u8 *const sDesc_FasterJoy[] = {
+#if GERMAN
     COMPOUND_STRING("Schwester Joy heilt dich schneller."),
     COMPOUND_STRING("Schwester Joy heilt dich mit\nnormaler Animation."),
+#else
+    COMPOUND_STRING("NURSE JOY heals you faster."),
+    COMPOUND_STRING("NURSE JOY heals you with the\nusual animation."),
+#endif
 };
 static const u8 *const sDesc_UnitType[] = {
 #if GERMAN
@@ -322,57 +407,123 @@ static const u8 *const sDesc_UnitType[] = {
 #endif
 };
 static const u8 *const sDesc_MatchCall[] = {
+#if GERMAN
     COMPOUND_STRING("Trainer können dich anrufen\nund Rückkämpfe verlangen."),
     COMPOUND_STRING("Keine Anrufe. Spezielle\nEvents finden trotzdem statt."),
+#else
+    COMPOUND_STRING("TRAINERs will be able to call you,\noffering rematches and info."),
+    COMPOUND_STRING("You will not receive calls.\nSpecial events will still occur."),
+#endif
 };
 static const u8 *const sDesc_FrameType[] = {
+#if GERMAN
     COMPOUND_STRING("Suche dir einen Rahmen für\ndas Fenster aus."),
+#else
+    COMPOUND_STRING("Choose the frame surrounding the\nwindows."),
+#endif
 };
 static const u8 *const sDesc_FastIntro[] = {
+#if GERMAN
     COMPOUND_STRING("Überspringe die Rutschanimation\nbei Kämpfen."),
     COMPOUND_STRING("Kämpfe laden mit normaler Animation."),
+#else
+    COMPOUND_STRING("Skip the sliding animation\nand enter battles faster."),
+    COMPOUND_STRING("Battles load at the usual speed."),
+#endif
 };
 static const u8 *const sDesc_FastBattles[] = {
+#if GERMAN
     COMPOUND_STRING("Überspringe alle Verzögerungen\nin Kämpfen."),
     COMPOUND_STRING("Manuelles überspringen. Du kannst\nA oder B drücken."),
+#else
+    COMPOUND_STRING("Skips all delays in battles, which\nmakes them faster."),
+    COMPOUND_STRING("Manual delay skipping. You can\npress A or B to skip delays."),
+#endif
 };
 static const u8 *const sDesc_NewBackgrounds[] = {
+#if GERMAN
     COMPOUND_STRING("Original Terrain-Hintergründe."),
     COMPOUND_STRING("Moderne Terrain-Hintergründe\nvon HnS."),
+#else
+    COMPOUND_STRING("Original battle terrain backgrounds."),
+    COMPOUND_STRING("Modernized battle terrain\nbackgrounds, from HnS."),
+#endif
 };
 static const u8 *const sDesc_NewBattleUI[] = {
+#if GERMAN
     COMPOUND_STRING("Original Gen-III-Kampf-UI."),
     COMPOUND_STRING("Modernes Gen-IV-Kampf-UI."),
+#else
+    COMPOUND_STRING("Original GEN III Battle UI."),
+    COMPOUND_STRING("Modernized GEN IV Battle UI."),
+#endif
 };
 static const u8 *const sDesc_BallPrompt[] = {
+#if GERMAN
     COMPOUND_STRING("Drücke {R_BUTTON} im Kampf für Pokebälle.\nHalte {L_BUTTON}/{R_BUTTON} um {PKMN}Bälle zu tauschen."),
     COMPOUND_STRING("Kein Fenster für\nschnelle {PKMN}Bälle."),
+#else
+    COMPOUND_STRING("Press {R_BUTTON} in battle to use Pokeballs.\nHold {L_BUTTON}/{R_BUTTON} to swap {PKMN}BALLS."),
+    COMPOUND_STRING("Disables the prompt to use\n{PKMN}BALLS quickly."),
+#endif
 };
 static const u8 *const sDesc_RunType[] = {
+#if GERMAN
     COMPOUND_STRING("Kein schnelles Flüchten."),
     COMPOUND_STRING("Halte {L_BUTTON}+{R_BUTTON}, dann {A_BUTTON}, um aus\nKämpfen zu fliehen."),
     COMPOUND_STRING("Drücke {B_BUTTON} um die Option Flüchten\ndirekt ausgewählt zu haben."),
     COMPOUND_STRING("Drücke {B_BUTTON}, um aus Kämpfen zu fliehen,\nbevor sie begonnen haben."),
+#else
+    COMPOUND_STRING("No quick running from battles."),
+    COMPOUND_STRING("Hold {L_BUTTON}+{R_BUTTON}, then {A_BUTTON} to run from\nbattles before they start."),
+    COMPOUND_STRING("Press {B_BUTTON} to move the cursor to the RUN\noption after the battle started."),
+    COMPOUND_STRING("Press {B_BUTTON} to run from battles before\nthey start."),
+#endif
 };
 static const u8 *const sDesc_LRRun[] = {
+#if GERMAN
     COMPOUND_STRING("Zeigt ein Fenster, das dir anzeigt,\ndass du fliehen kannst."),
     COMPOUND_STRING("Fluchtfenster deaktiviert.\nKnöpfe funktionieren trotzdem."),
+#else
+    COMPOUND_STRING("Enables a prompt to show that you\ncan run away from battles."),
+    COMPOUND_STRING("Disables said prompt to flee.\nButton combo still works."),
+#endif
 };
 static const u8 *const sDesc_Sound[] = {
+#if GERMAN
     COMPOUND_STRING("Ton für alle Lautsprecher gleich.\nEmpfohlen für Konsole."),
     COMPOUND_STRING("Ton links und rechts getrennt.\nGut für Kopfhörer."),
+#else
+    COMPOUND_STRING("Sound is the same in all speakers.\nRecommended for original hardware."),
+    COMPOUND_STRING("Play the left and right audio channel\nseparately. Great with headphones."),
+#endif
 };
 static const u8 *const sDesc_Music[] = {
+#if GERMAN
     COMPOUND_STRING("Musik an.\nWechsle Map zum Anwenden."),
     COMPOUND_STRING("Musik aus.\nWechsle Map zum Anwenden."),
+#else
+    COMPOUND_STRING("Enables music playback.\nChange maps to take effect."),
+    COMPOUND_STRING("Disables music playback.\nChange maps to take effect."),
+#endif
 };
 static const u8 *const sDesc_BikeMusic[] = {
+#if GERMAN
     COMPOUND_STRING("Fahrrad-Musik an."),
     COMPOUND_STRING("Fahrrad-Musik aus."),
+#else
+    COMPOUND_STRING("Enables BIKE music."),
+    COMPOUND_STRING("Disables BIKE music."),
+#endif
 };
 static const u8 *const sDesc_SurfMusic[] = {
+#if GERMAN
     COMPOUND_STRING("Surf-Musik an."),
     COMPOUND_STRING("Surf-Musik aus."),
+#else
+    COMPOUND_STRING("Enables SURF music."),
+    COMPOUND_STRING("Disables SURF music."),
+#endif
 };
 
 // =============================================================================
@@ -381,79 +532,131 @@ static const u8 *const sDesc_SurfMusic[] = {
 
 static const struct OptionMenuItem sTabItems_Main[] = {
     [ITEM_MAIN_TEXTSPEED] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Text-Ges."),
+#else
+        .name         = COMPOUND_STRING("TEXT SPEED"),
+#endif
         .descriptions = sDesc_TextSpeed,
         .numChoices   = 4,
         .choiceNames  = sChoices_TextSpeed,
     },
     [ITEM_MAIN_BATTLESCENE] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Kampfszene"),
+#else
+        .name         = COMPOUND_STRING("BATTLE SCENE"),
+#endif
         .descriptions = sDesc_BattleScene,
         .numChoices   = 2,
         .choiceNames  = sChoices_OnOff,
     },
     [ITEM_MAIN_BATTLESTYLE] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Kampfstil"),
+#else
+        .name         = COMPOUND_STRING("BATTLE STYLE"),
+#endif
         .descriptions = sDesc_BattleStyle,
         .numChoices   = 2,
         .choiceNames  = sChoices_ShiftSet,
     },
     [ITEM_MAIN_BUTTONMODE] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Steuerung"),
+#else
+        .name         = COMPOUND_STRING("BUTTON MODE"),
+#endif
         .descriptions = sDesc_ButtonMode,
         .numChoices   = 3,
         .choiceNames  = sChoices_ButtonMode,
     },
     [ITEM_MAIN_FOLLOWER] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Folgen"),
+#else
+        .name         = COMPOUND_STRING("FOLLOWER"),
+#endif
         .descriptions = sDesc_Follower,
         .numChoices   = 2,
         .choiceNames  = sChoices_OnOff,
     },
     [ITEM_MAIN_LARGE_FOLLOWER] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Große Begleiter"),
+#else
+        .name         = COMPOUND_STRING("BIG FOLLOWERS"),
+#endif
         .descriptions = sDesc_LargeFollower,
         .numChoices   = 2,
         .choiceNames  = sChoices_OnOff,
     },
     [ITEM_MAIN_AUTORUN] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Auto Laufen"),
+#else
+        .name         = COMPOUND_STRING("AUTORUN"),
+#endif
         .descriptions = sDesc_Autorun,
         .numChoices   = 2,
         .choiceNames  = sChoices_OnOff,
     },
     [ITEM_MAIN_AUTORUN_SURF] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Auto Surfen"),
+#else
+        .name         = COMPOUND_STRING("AUTORUN (SURF)"),
+#endif
         .descriptions = sDesc_AutorunSurf,
         .numChoices   = 2,
         .choiceNames  = sChoices_OnOff,
     },
     [ITEM_MAIN_FISHING] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Einfach Angeln"),
+#else
+        .name         = COMPOUND_STRING("EASIER FISHING"),
+#endif
         .descriptions = sDesc_Fishing,
         .numChoices   = 2,
         .choiceNames  = sChoices_OnOff,
     },
     [ITEM_MAIN_FASTER_JOY] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Schnelles Heilen"),
+#else
+        .name         = COMPOUND_STRING("FASTER JOY"),
+#endif
         .descriptions = sDesc_FasterJoy,
         .numChoices   = 2,
         .choiceNames  = sChoices_OnOff,
     },
     [ITEM_MAIN_UNIT_TYPE] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Einheiten"),
+#else
+        .name         = COMPOUND_STRING("UNIT SYSTEM"),
+#endif
         .descriptions = sDesc_UnitType,
         .numChoices   = 2,
         .choiceNames  = sChoices_MetricImperial,
     },
     [ITEM_MAIN_MATCHCALL] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Anrufe"),
+#else
+        .name         = COMPOUND_STRING("MATCH CALLS"),
+#endif
         .descriptions = sDesc_MatchCall,
         .numChoices   = 2,
         .choiceNames  = sChoices_OnOff,
     },
     [ITEM_MAIN_FRAMETYPE] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Rahmen"),
+#else
+        .name         = COMPOUND_STRING("FRAME"),
+#endif
         .descriptions = sDesc_FrameType,
         .numChoices   = FRAME_TYPE_SPECIAL,
         .choiceNames  = NULL,
@@ -462,43 +665,71 @@ static const struct OptionMenuItem sTabItems_Main[] = {
 
 static const struct OptionMenuItem sTabItems_Battle[] = {
     [ITEM_BATTLE_FAST_INTRO] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Schnelles Intro"),
+#else
+        .name         = COMPOUND_STRING("FAST INTRO"),
+#endif
         .descriptions = sDesc_FastIntro,
         .numChoices   = 2,
         .choiceNames  = sChoices_OnOff,
     },
     [ITEM_BATTLE_FAST_BATTLES] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Schnelle Kämpfe"),
+#else
+        .name         = COMPOUND_STRING("FAST BATTLES"),
+#endif
         .descriptions = sDesc_FastBattles,
         .numChoices   = 2,
         .choiceNames  = sChoices_OnOff,
     },
     [ITEM_BATTLE_NEW_BACKGROUNDS] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Terrain"),
+#else
+        .name         = COMPOUND_STRING("BATTLE TERRAIN"),
+#endif
         .descriptions = sDesc_NewBackgrounds,
         .numChoices   = 2,
         .choiceNames  = sChoices_OldModern,
     },
     [ITEM_BATTLE_NEW_BATTLEUI] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Kampf-UI"),
+#else
+        .name         = COMPOUND_STRING("BATTLE UI"),
+#endif
         .descriptions = sDesc_NewBattleUI,
         .numChoices   = 2,
         .choiceNames  = sChoices_Gen3Gen4,
     },
     [ITEM_BATTLE_BALL_PROMPT] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Fang-Fenster"),
+#else
+        .name         = COMPOUND_STRING("BALL PROMPT"),
+#endif
         .descriptions = sDesc_BallPrompt,
         .numChoices   = 2,
         .choiceNames  = sChoices_OnOff,
     },
     [ITEM_BATTLE_RUN_TYPE] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Flüchten"),
+#else
+        .name         = COMPOUND_STRING("QUICK RUN"),
+#endif
         .descriptions = sDesc_RunType,
         .numChoices   = 4,
         .choiceNames  = sChoices_RunType,
     },
     [ITEM_BATTLE_LR_RUN] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Flucht-Anzeige"),
+#else
+        .name         = COMPOUND_STRING("RUN PROMPT"),
+#endif
         .descriptions = sDesc_LRRun,
         .numChoices   = 2,
         .choiceNames  = sChoices_OnOff,
@@ -507,25 +738,41 @@ static const struct OptionMenuItem sTabItems_Battle[] = {
 
 static const struct OptionMenuItem sTabItems_Sound[] = {
     [ITEM_SOUND_SOUND] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Ton"),
+#else
+        .name         = COMPOUND_STRING("SOUND"),
+#endif
         .descriptions = sDesc_Sound,
         .numChoices   = 2,
         .choiceNames  = sChoices_MonoStereo,
     },
     [ITEM_SOUND_MUSIC] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Musik"),
+#else
+        .name         = COMPOUND_STRING("MUSIC"),
+#endif
         .descriptions = sDesc_Music,
         .numChoices   = 2,
         .choiceNames  = sChoices_OnOff,
     },
     [ITEM_SOUND_BIKE_MUSIC] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Fahrrad Musik"),
+#else
+        .name         = COMPOUND_STRING("BIKE MUSIC"),
+#endif
         .descriptions = sDesc_BikeMusic,
         .numChoices   = 2,
         .choiceNames  = sChoices_OnOff,
     },
     [ITEM_SOUND_SURF_MUSIC] = {
+#if GERMAN
         .name         = COMPOUND_STRING("Surf Musik"),
+#else
+        .name         = COMPOUND_STRING("SURF MUSIC"),
+#endif
         .descriptions = sDesc_SurfMusic,
         .numChoices   = 2,
         .choiceNames  = sChoices_OnOff,
@@ -544,9 +791,15 @@ struct TabDef
 };
 
 static const struct TabDef sTabs[TAB_COUNT] = {
+#if GERMAN
     [TAB_MAIN]   = { COMPOUND_STRING("Optionen"),        sTabItems_Main,   ITEM_MAIN_COUNT },
     [TAB_BATTLE] = { COMPOUND_STRING("Kampfoptionen"), sTabItems_Battle, ITEM_BATTLE_COUNT },
     [TAB_SOUND]  = { COMPOUND_STRING("Ton"),          sTabItems_Sound,  ITEM_SOUND_COUNT },
+#else
+    [TAB_MAIN]   = { COMPOUND_STRING("OPTIONS"),        sTabItems_Main,   ITEM_MAIN_COUNT },
+    [TAB_BATTLE] = { COMPOUND_STRING("BATTLE OPTIONS"), sTabItems_Battle, ITEM_BATTLE_COUNT },
+    [TAB_SOUND]  = { COMPOUND_STRING("SOUND"),          sTabItems_Sound,  ITEM_SOUND_COUNT },
+#endif
 };
 
 // =============================================================================
@@ -708,7 +961,11 @@ static void DrawFrameTypeChoice(u8 selection, int y, bool8 active)
     }
     text[i] = EOS;
 
+#if GERMAN
     DrawRightSideChoiceText(COMPOUND_STRING("Typ"), 104, y + 1, FALSE, active);
+#else
+    DrawRightSideChoiceText(COMPOUND_STRING("TYPE"), 104, y + 1, FALSE, active);
+#endif
     DrawRightSideChoiceText(text, 128, y + 1, TRUE, active);
 }
 

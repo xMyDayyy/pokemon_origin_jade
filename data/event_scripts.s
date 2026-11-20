@@ -1241,7 +1241,11 @@ Common_EventScript_HnsMomCall::
 	end
 
 Common_Text_HnsMomName:
+#if GERMAN
 	.string "Mama$"
+#else
+	.string "MOM$"
+#endif
 
 Common_Text_HnsRegisteredMom:
 #if GERMAN
@@ -1548,11 +1552,20 @@ Common_EventScript_PartyIsFull::
 	end
 
 Common_Text_ReceivedMon:
+#if GERMAN
 	.string "{PLAYER} erhält {STR_VAR_1}!$"
+#else
+	.string "{PLAYER} received {STR_VAR_1}!$"
+#endif
 
 Common_Text_PartyIsFull:
+#if GERMAN
 	.string "Whoa, warte. Du kannst nicht\n"
 	.string "mehr Pokémon mitnehmen.$"	
+#else
+	.string "Whoa, wait. You can't carry any\n"
+	.string "more POKéMON.$"	
+#endif
 
 #if IS_HNS
 Common_Text_HnsNormanName:
@@ -1618,35 +1631,72 @@ Common_EventScript_PlayerHandedOverTheItem::
 
 @ The below and surf.inc could be split into some text/notices.inc
 gText_PokemartSign::
+#if GERMAN
 	.string "“Ausgewählte nützliche Waren!”\n"
 	.string "POKéMON MARKT$"
+#else
+	.string "“Selected items for your convenience!”\n"
+	.string "POKéMON MART$"
+#endif
 
 gText_PokemonCenterSign::
+#if GERMAN
 	.string "“Heile deine erschöpften Partner!”\n"
 	.string "POKéMON-CENTER$"
+#else
+	.string "“Rejuvenate your tired partners!”\n"
+	.string "POKéMON CENTER$"
+#endif
 
 gText_MomOrDadMightLikeThisProgram::
+#if GERMAN
 	.string "{STR_VAR_1} mag das vielleicht.\n"
 	.string "… … … … … … … … … … … … … … … …\p"
 	.string "Ich sollte gehen!$"
+#else
+	.string "{STR_VAR_1} might like this program.\n"
+	.string "… … … … … … … … … … … … … … … …\p"
+	.string "Better get going!$"
+#endif
 
 gText_WhichFloorWouldYouLike::
+#if GERMAN
 	.string "SEEGRASULB EINKAUFSZENTRUM.\p"
 	.string "Welches Stockwerk?$"
+#else
+	.string "Welcome to LILYCOVE DEPARTMENT STORE.\p"
+	.string "Which floor would you like?$"
+#endif
 
 gText_SandstormIsVicious::
+#if GERMAN
 	.string "Der Sandsturm wütet.\n"
 	.string "Unmöglich zu passieren.$"
+#else
+	.string "The sandstorm is vicious.\n"
+	.string "It's impossible to keep going.$"
+#endif
 
 gText_SelectWithoutRegisteredItem::
+#if GERMAN
 	.string "Ein Item in der Tasche\n"
 	.string "kann mit SELECT in die Schnellauswahl.$"
+#else
+	.string "An item in the BAG can be\n"
+	.string "registered to SELECT for easy use.$"
+#endif
 
 gText_SelectWithoutRegisteredHoldItem::
+#if GERMAN
 	.string "Ein BASIS-ITEM kann mit\n"
 	.string "SELECT in die Schnellauswahl.$"
+#else
+	.string "A KEY ITEM can be registered\n"
+	.string "to holding SELECT for easy use.$"
+#endif
 
 gText_PokemonTrainerSchoolEmail::
+#if GERMAN
 	.string "Da ist eine E-Mail von der Pokémon\n"
 	.string "Trainerschule.\p"
 	.string "… … … … … …\p"
@@ -1656,26 +1706,59 @@ gText_PokemonTrainerSchoolEmail::
 	.string "durch die Attacken, die er seinen\l"
 	.string "Pokémon beibringt, erprobt.\p"
 	.string "… … … … … …$"
+#else
+	.string "There's an e-mail from POKéMON TRAINER\n"
+	.string "SCHOOL.\p"
+	.string "… … … … … …\p"
+	.string "A POKéMON may learn up to four moves.\p"
+	.string "A TRAINER's expertise is tested on the\n"
+	.string "move sets chosen for POKéMON.\p"
+	.string "… … … … … …$"
+#endif
 
 gText_PlayerHouseBootPC::
+#if GERMAN
 	.string "{PLAYER} startet den PC.$"
+#else
+	.string "{PLAYER} booted up the PC.$"
+#endif
 
 gText_PokeblockLinkCanceled::
+#if GERMAN
 	.string "Der link wurde abgebrochen.$"
+#else
+	.string "The link was canceled.$"
+#endif
 
 gText_UnusedNicknameReceivedPokemon::
+#if GERMAN
 	.string "Möchtest du dem\n"
 	.string "{STR_VAR_2} einen Spitznamen geben?$"
+#else
+	.string "Want to give a nickname to\n"
+	.string "the {STR_VAR_2} you received?$"
+#endif
 
 gText_PlayerWhitedOut::
+#if GERMAN
 	.string "{PLAYER} hat keine\n"
 	.string "POKéMON mehr!\p{PLAYER} wird ohnmächtig!$"
+#else
+	.string "{PLAYER} is out of usable\n"
+	.string "POKéMON!\p{PLAYER} whited out!$"
+#endif
 
 gText_FirstShouldRestoreMonsHealth::
+#if GERMAN
 	.string "Du solltest deine\n"
 	.string "POKéMON vollständig heilen.$"
+#else
+	.string "First, you should restore your\n"
+	.string "POKéMON to full health.$"
+#endif
 
 gText_MonsHealedShouldBuyPotions::
+#if GERMAN
 	.string "Deine POKéMON wurden komplett\n"
 	.string "geheilt.\p"
 	.string "Wenn die Energie oder die KP\n"
@@ -1685,20 +1768,46 @@ gText_MonsHealedShouldBuyPotions::
 	.string "solltest du dir ein paar TRÄNKE\l"
 	.string "im POKéMON-MARKT kaufen.\p"
 	.string "Wir wünschen dir viel Erfolg!$"
+#else
+	.string "Your POKéMON have been healed\n"
+	.string "to perfect health.\p"
+	.string "If your POKéMON's energy, HP,\n"
+	.string "is down, please come see us.\p"
+	.string "If you're planning to go far in the\n"
+	.string "field, you should buy some POTIONS\l"
+	.string "at the POKéMON MART.\p"
+	.string "We hope you excel!$"
+#endif
 
 gText_MonsHealed::
+#if GERMAN
 	.string "Deine POKéMON wurden komplett\n"
 	.string "geheilt.\p"
 	.string "Wir wünschen dir viel Erfolg!$"
+#else
+	.string "Your POKéMON have been healed\n"
+	.string "to perfect health.\p"
+	.string "We hope you excel!$"
+#endif
 
 gText_HadQuiteAnExperienceTakeRest::
+#if GERMAN
 	.string "Mama: {PLAYER}!\p"
 	.string "Das hört sich an, als hättest du\n"
 	.string "eine Menge erlebt!\p"
 	.string "Du solltest eine\n"
 	.string "kurze Pause einlegen.$"
+#else
+	.string "MOM: {PLAYER}!\n"
+	.string "Welcome home.\p"
+	.string "It sounds like you had quite\n"
+	.string "an experience.\p"
+	.string "Maybe you should take a quick\n"
+	.string "rest.$"
+#endif
 
 gText_MomExplainHPGetPotions::
+#if GERMAN
 	.string "Mama: Sehr gut! Du und deine\n"
 	.string "Pokémon sehen großartig aus!\p"
 	.string "Prof. Eich hat sich soeben\n"
@@ -1714,18 +1823,44 @@ gText_MomExplainHPGetPotions::
 	.string "Supermarkt auffüllen.\p"
 	.string "Lass mich stolz auf dich sein!\p"
 	.string "Achte auf dich!$"
+#else
+	.string "MOM: Oh, good! You and your\n"
+	.string "POKéMON are looking great.\p"
+	.string "I just heard from {STR_VAR_1}.\p"
+	.string "He said that POKéMON's energy is\n"
+	.string "measured in HP.\p"
+	.string "If your POKéMON lose their HP,\n"
+	.string "you can restore them at any\l"
+	.string "POKéMON CENTER.\p"
+	.string "If you're going to travel far away,\n"
+	.string "the smart TRAINER stocks up on\l"
+	.string "POTIONS at the POKéMON MART.\p"
+	.string "Make me proud, honey!\p"
+	.string "Take care!$"
+#endif
 
 #if IS_HNS
 gText_RegisteredTrainerinPokeNav::
+#if GERMAN
 	.string "{STR_VAR_1} {STR_VAR_2} wurde\n"
 	.string "im PokéCom registriert.$"
 #else
+	.string "Registered {STR_VAR_1} {STR_VAR_2}\n"
+	.string "in the POKéGEAR.$"
+#endif
+#else
 gText_RegisteredTrainerinPokeNav::
+#if GERMAN
 	.string "{STR_VAR_1} {STR_VAR_2} wurde\n"
 	.string "im PokéNav registriert.$"
+#else
+	.string "Registered {STR_VAR_1} {STR_VAR_2}\n"
+	.string "in the POKéGEAR.$"
+#endif
 #endif
 
 gText_ComeBackWithSecretPower::
+#if GERMAN
 	.string "Kennst du die TM GEHEIMPOWER?\p"
 	.string "Unsere Gruppe liebt die TM\n"
 	.string "GEHEIMPOWER.\p"
@@ -1733,8 +1868,18 @@ gText_ComeBackWithSecretPower::
 	.string "Komm zurück und zeig sie mir.\p"
 	.string "Dann nehmen wir dich auf und\n"
 	.string "verkaufen dir heimlich gute Waren.$"
+#else
+	.string "Do you know the TM SECRET POWER?\p"
+	.string "Our group, we love the TM SECRET\n"
+	.string "POWER.\p"
+	.string "One of our members will give it to you.\n"
+	.string "Come back and show me if you get it.\p"
+	.string "We'll accept you as a member and sell\n"
+	.string "you good stuff in secrecy.$"
+#endif
 
 gText_PokerusExplanation::
+#if GERMAN
 	.string "Deine POKéMON könnten mit dem\n"
 	.string "POKéRUS infiziert sein.\p"
 	.string "Über den POKéRUS ist wenig bekannt,\n"
@@ -1743,61 +1888,134 @@ gText_PokerusExplanation::
 	.string "POKéMON anheften.\p"
 	.string "Infizierte POKéMON entwickeln sich\n"
 	.string "außergewöhnlich gut.$"
+#else
+	.string "Your POKéMON may be infected with\n"
+	.string "POKéRUS.\p"
+	.string "Little is known about the POKéRUS\n"
+	.string "except that they are microscopic life-\l"
+	.string "forms that attach to POKéMON.\p"
+	.string "While infected, POKéMON are said to\n"
+	.string "grow exceptionally well.$"
+#endif
 
 	.include "data/text/surf.inc"
 
 gText_DoorOpenedFarAway::
+#if GERMAN
 	.string "Es klang, als hätte sich irgendwo\n"
 	.string "in weiter Ferne eine Tür geöffnet.$"
+#else
+	.string "It sounded as if a door opened\n"
+	.string "somewhere far away.$"
+#endif
 
 gText_BigHoleInTheWall::
+#if GERMAN
 	.string "In der Wand ist ein großes Loch.$"
+#else
+	.string "There is a big hole in the wall.$"
+#endif
 
 gText_SorryWirelessClubAdjustments::
+#if GERMAN
 	.string "Es tut mir sehr leid.\n"
 	.string "Der POKéMON WIRELESS-CLUB\l"
 	.string "wird derzeit umgestellt.$"
+#else
+	.string "I'm terribly sorry.\n"
+	.string "The POKéMON WIRELESS CLUB is\l"
+	.string "undergoing adjustments now.$"
+#endif
 
 gText_UndergoingAdjustments::
+#if GERMAN
 	.string "Es scheint gerade umgestellt\n"
 	.string "zu werden…$"
+#else
+	.string "It appears to be undergoing\n"
+	.string "adjustments…$"
+#endif
 
 @ Unused
 gText_SorryTradeCenterInspections::
+#if GERMAN
 	.string "Es tut mir sehr leid. Das TAUSCH-\n"
 	.string "CENTER wird derzeit gewartet.$"
+#else
+	.string "I'm terribly sorry. The TRADE CENTER\n"
+	.string "is undergoing inspections.$"
+#endif
 
 @ Unused
 gText_SorryRecordCornerPreparation::
+#if GERMAN
 	.string "Es tut mir sehr leid. Die REKORD-\n"
 	.string "ECKE wird gerade vorbereitet.$"
+#else
+	.string "I'm terribly sorry. The RECORD CORNER\n"
+	.string "is under preparation.$"
+#endif
 
 gText_PlayerHandedOverTheItem::
+#if GERMAN
 	.string "{PLAYER} übergab das\n"
 	.string "{STR_VAR_1}.$"
+#else
+	.string "{PLAYER} handed over the\n"
+	.string "{STR_VAR_1}.$"
+#endif
 
 gText_ThankYouForAccessingMysteryGift::
+#if GERMAN
 	.string "Danke für den Zugriff auf das\n"
 	.string "GEHEIMGESCHEHEN-System.$"
+#else
+	.string "Thank you for accessing the\n"
+	.string "MYSTERY GIFT System.$"
+#endif
 
 gText_PlayerFoundOneTMHM::
+#if GERMAN
 	.string "{PLAYER} fand eine {STR_VAR_1}\n"
 	.string "{STR_VAR_2}!$"
+#else
+	.string "{PLAYER} found one {STR_VAR_1}\n"
+	.string "{STR_VAR_2}!$"
+#endif
 
 gText_PlayerFoundTMHMs::
+#if GERMAN
 	.string "{PLAYER} fand {STR_VAR_3} {STR_VAR_1}\n"
 	.string "{STR_VAR_2}!$"
+#else
+	.string "{PLAYER} found {STR_VAR_3} {STR_VAR_1}\n"
+	.string "{STR_VAR_2}!$"
+#endif
 
 gText_Sudowoodo_Attacked::
+#if GERMAN
 	.string "Der seltsame Baum mag die\n"
 	.string "WAILMER-KANNE nicht!\p"
 	.string "Der seltsame Baum greift an!$"
+#else
+	.string "The weird tree doesn't like the\n"
+	.string "WAILMER PAIL!\p"
+	.string "The weird tree attacked!$"
+#endif
 
 gText_LegendaryFlewAway::
+#if GERMAN
 	.string "{STR_VAR_1} flog davon!$"
+#else
+	.string "The {STR_VAR_1} flew away!$"
+#endif
 
 gText_WantWhichFloor::
+#if GERMAN
 	.string "Welches Stockwerk?$"
+#else
+	.string "Which floor do you want?$"
+#endif
 
 	.include "data/text/pc_transfer.inc"
 	.include "data/text/questionnaire.inc"
@@ -1930,7 +2148,11 @@ EventScript_TryDarkenRuins::
 	return
 
 Text_MonFlewAway::
+#if GERMAN
 	.string "{STR_VAR_1} flog davon!$"
+#else
+	.string "The {STR_VAR_1} flew away!$"
+#endif
 
 @ Call for legendary bird trio
 Text_Gyaoo::

@@ -3,6 +3,7 @@
     {
       "id": "MAPSEC_LITTLEROOT_TOWN",
       "name": "Wurzelheim",
+      "name_en": "LITTLEROOT TOWN",
       "x": 4,
       "y": 11,
       "width": 1,
@@ -12,6 +13,7 @@
     {
       "id": "MAPSEC_OLDALE_TOWN",
       "name": "Rosaltstadt",
+      "name_en": "OLDALE TOWN",
       "x": 4,
       "y": 9,
       "width": 1,
@@ -21,6 +23,7 @@
     {
       "id": "MAPSEC_DEWFORD_TOWN",
       "name": "Faustauhaven",
+      "name_en": "DEWFORD TOWN",
       "x": 2,
       "y": 14,
       "width": 1,
@@ -30,6 +33,7 @@
     {
       "id": "MAPSEC_LAVARIDGE_TOWN",
       "name": "Bad Lavastadt",
+      "name_en": "LAVARIDGE TOWN",
       "x": 5,
       "y": 3,
       "width": 1,
@@ -39,6 +43,7 @@
     {
       "id": "MAPSEC_FALLARBOR_TOWN",
       "name": "Laubwechselfeld",
+      "name_en": "FALLARBOR TOWN",
       "x": 3,
       "y": 0,
       "width": 1,
@@ -48,6 +53,7 @@
     {
       "id": "MAPSEC_VERDANTURF_TOWN",
       "name": "Wiesenflur",
+      "name_en": "VERDANTURF TOWN",
       "x": 4,
       "y": 6,
       "width": 1,
@@ -57,6 +63,7 @@
     {
       "id": "MAPSEC_PACIFIDLOG_TOWN",
       "name": "Floßbrunn",
+      "name_en": "PACIFIDLOG TOWN",
       "x": 17,
       "y": 10,
       "width": 1,
@@ -66,6 +73,7 @@
     {
       "id": "MAPSEC_PETALBURG_CITY",
       "name": "Blütenburg City",
+      "name_en": "PETALBURG CITY",
       "x": 1,
       "y": 9,
       "width": 1,
@@ -75,6 +83,7 @@
     {
       "id": "MAPSEC_SLATEPORT_CITY",
       "name": "Graphitport City",
+      "name_en": "SLATEPORT CITY",
       "x": 8,
       "y": 10,
       "width": 1,
@@ -84,6 +93,7 @@
     {
       "id": "MAPSEC_MAUVILLE_CITY",
       "name": "Malvenfroh City",
+      "name_en": "MAUVILLE CITY",
       "x": 8,
       "y": 6,
       "width": 2,
@@ -93,6 +103,7 @@
     {
       "id": "MAPSEC_RUSTBORO_CITY",
       "name": "Metarost City",
+      "name_en": "RUSTBORO CITY",
       "x": 0,
       "y": 5,
       "width": 1,
@@ -102,6 +113,7 @@
     {
       "id": "MAPSEC_FORTREE_CITY",
       "name": "Baumhausen City",
+      "name_en": "FORTREE CITY",
       "x": 12,
       "y": 0,
       "width": 1,
@@ -111,6 +123,7 @@
     {
       "id": "MAPSEC_LILYCOVE_CITY",
       "name": "Seegrasulb City",
+      "name_en": "LILYCOVE CITY",
       "x": 18,
       "y": 3,
       "width": 2,
@@ -120,6 +133,7 @@
     {
       "id": "MAPSEC_MOSSDEEP_CITY",
       "name": "Moosbach City",
+      "name_en": "MOSSDEEP CITY",
       "x": 24,
       "y": 5,
       "width": 2,
@@ -129,6 +143,7 @@
     {
       "id": "MAPSEC_SOOTOPOLIS_CITY",
       "name": "Xeneroville",
+      "name_en": "SOOTOPOLIS CITY",
       "x": 21,
       "y": 7,
       "width": 1,
@@ -138,6 +153,7 @@
     {
       "id": "MAPSEC_EVER_GRANDE_CITY",
       "name": "Prachtpolis City",
+      "name_en": "EVER GRANDE CITY",
       "x": 27,
       "y": 8,
       "width": 1,
@@ -147,6 +163,7 @@
     {
       "id": "MAPSEC_ROUTE_101",
       "name": "Route 101",
+      "name_en": "ROUTE 101",
       "x": 4,
       "y": 10,
       "width": 1,
@@ -156,6 +173,7 @@
     {
       "id": "MAPSEC_ROUTE_102",
       "name": "Route 102",
+      "name_en": "ROUTE 102",
       "x": 2,
       "y": 9,
       "width": 2,
@@ -165,6 +183,7 @@
     {
       "id": "MAPSEC_ROUTE_103",
       "name": "Route 103",
+      "name_en": "ROUTE 103",
       "x": 4,
       "y": 8,
       "width": 4,
@@ -174,6 +193,7 @@
     {
       "id": "MAPSEC_ROUTE_104",
       "name": "Route 104",
+      "name_en": "ROUTE 104",
       "x": 0,
       "y": 7,
       "width": 1,
@@ -183,6 +203,7 @@
     {
       "id": "MAPSEC_ROUTE_105",
       "name": "Route 105",
+      "name_en": "ROUTE 105",
       "x": 0,
       "y": 10,
       "width": 1,
@@ -192,6 +213,7 @@
     {
       "id": "MAPSEC_ROUTE_106",
       "name": "Route 106",
+      "name_en": "ROUTE 106",
       "x": 0,
       "y": 13,
       "width": 2,
@@ -201,6 +223,7 @@
     {
       "id": "MAPSEC_ROUTE_107",
       "name": "Route 107",
+      "name_en": "ROUTE 107",
       "x": 3,
       "y": 14,
       "width": 3,
@@ -210,6 +233,7 @@
     {
       "id": "MAPSEC_ROUTE_108",
       "name": "Route 108",
+      "name_en": "ROUTE 108",
       "x": 6,
       "y": 14,
       "width": 2,
@@ -219,6 +243,7 @@
     {
       "id": "MAPSEC_ROUTE_109",
       "name": "Route 109",
+      "name_en": "ROUTE 109",
       "x": 8,
       "y": 12,
       "width": 1,
@@ -228,6 +253,7 @@
     {
       "id": "MAPSEC_ROUTE_110",
       "name": "Route 110",
+      "name_en": "ROUTE 110",
       "x": 8,
       "y": 7,
       "width": 1,
@@ -237,6 +263,7 @@
     {
       "id": "MAPSEC_ROUTE_111",
       "name": "Route 111",
+      "name_en": "ROUTE 111",
       "x": 8,
       "y": 0,
       "width": 1,
@@ -246,6 +273,7 @@
     {
       "id": "MAPSEC_ROUTE_112",
       "name": "Route 112",
+      "name_en": "ROUTE 112",
       "x": 6,
       "y": 3,
       "width": 2,
@@ -255,6 +283,7 @@
     {
       "id": "MAPSEC_ROUTE_113",
       "name": "Route 113",
+      "name_en": "ROUTE 113",
       "x": 4,
       "y": 0,
       "width": 4,
@@ -264,6 +293,7 @@
     {
       "id": "MAPSEC_ROUTE_114",
       "name": "Route 114",
+      "name_en": "ROUTE 114",
       "x": 1,
       "y": 0,
       "width": 2,
@@ -273,6 +303,7 @@
     {
       "id": "MAPSEC_ROUTE_115",
       "name": "Route 115",
+      "name_en": "ROUTE 115",
       "x": 0,
       "y": 2,
       "width": 1,
@@ -282,6 +313,7 @@
     {
       "id": "MAPSEC_ROUTE_116",
       "name": "Route 116",
+      "name_en": "ROUTE 116",
       "x": 1,
       "y": 5,
       "width": 4,
@@ -291,6 +323,7 @@
     {
       "id": "MAPSEC_ROUTE_117",
       "name": "Route 117",
+      "name_en": "ROUTE 117",
       "x": 5,
       "y": 6,
       "width": 3,
@@ -300,6 +333,7 @@
     {
       "id": "MAPSEC_ROUTE_118",
       "name": "Route 118",
+      "name_en": "ROUTE 118",
       "x": 10,
       "y": 6,
       "width": 2,
@@ -309,6 +343,7 @@
     {
       "id": "MAPSEC_ROUTE_119",
       "name": "Route 119",
+      "name_en": "ROUTE 119",
       "x": 11,
       "y": 0,
       "width": 1,
@@ -318,6 +353,7 @@
     {
       "id": "MAPSEC_ROUTE_120",
       "name": "Route 120",
+      "name_en": "ROUTE 120",
       "x": 13,
       "y": 0,
       "width": 1,
@@ -327,6 +363,7 @@
     {
       "id": "MAPSEC_ROUTE_121",
       "name": "Route 121",
+      "name_en": "ROUTE 121",
       "x": 14,
       "y": 3,
       "width": 4,
@@ -336,6 +373,7 @@
     {
       "id": "MAPSEC_ROUTE_122",
       "name": "Route 122",
+      "name_en": "ROUTE 122",
       "x": 16,
       "y": 4,
       "width": 1,
@@ -345,6 +383,7 @@
     {
       "id": "MAPSEC_ROUTE_123",
       "name": "Route 123",
+      "name_en": "ROUTE 123",
       "x": 12,
       "y": 6,
       "width": 5,
@@ -354,6 +393,7 @@
     {
       "id": "MAPSEC_ROUTE_124",
       "name": "Route 124",
+      "name_en": "ROUTE 124",
       "x": 20,
       "y": 3,
       "width": 4,
@@ -363,6 +403,7 @@
     {
       "id": "MAPSEC_ROUTE_125",
       "name": "Route 125",
+      "name_en": "ROUTE 125",
       "x": 24,
       "y": 3,
       "width": 2,
@@ -372,6 +413,7 @@
     {
       "id": "MAPSEC_ROUTE_126",
       "name": "Route 126",
+      "name_en": "ROUTE 126",
       "x": 20,
       "y": 6,
       "width": 3,
@@ -381,6 +423,7 @@
     {
       "id": "MAPSEC_ROUTE_127",
       "name": "Route 127",
+      "name_en": "ROUTE 127",
       "x": 23,
       "y": 6,
       "width": 3,
@@ -390,6 +433,7 @@
     {
       "id": "MAPSEC_ROUTE_128",
       "name": "Route 128",
+      "name_en": "ROUTE 128",
       "x": 23,
       "y": 9,
       "width": 4,
@@ -399,6 +443,7 @@
     {
       "id": "MAPSEC_ROUTE_129",
       "name": "Route 129",
+      "name_en": "ROUTE 129",
       "x": 24,
       "y": 10,
       "width": 2,
@@ -408,6 +453,7 @@
     {
       "id": "MAPSEC_ROUTE_130",
       "name": "Route 130",
+      "name_en": "ROUTE 130",
       "x": 21,
       "y": 10,
       "width": 3,
@@ -417,6 +463,7 @@
     {
       "id": "MAPSEC_ROUTE_131",
       "name": "Route 131",
+      "name_en": "ROUTE 131",
       "x": 18,
       "y": 10,
       "width": 3,
@@ -426,6 +473,7 @@
     {
       "id": "MAPSEC_ROUTE_132",
       "name": "Route 132",
+      "name_en": "ROUTE 132",
       "x": 15,
       "y": 10,
       "width": 2,
@@ -435,6 +483,7 @@
     {
       "id": "MAPSEC_ROUTE_133",
       "name": "Route 133",
+      "name_en": "ROUTE 133",
       "x": 12,
       "y": 10,
       "width": 3,
@@ -444,6 +493,7 @@
     {
       "id": "MAPSEC_ROUTE_134",
       "name": "Route 134",
+      "name_en": "ROUTE 134",
       "x": 9,
       "y": 10,
       "width": 3,
@@ -453,6 +503,7 @@
     {
       "id": "MAPSEC_UNDERWATER_124",
       "name": "Unterwasser",
+      "name_en": "UNDERWATER",
       "x": 20,
       "y": 3,
       "width": 4,
@@ -462,6 +513,7 @@
     {
       "id": "MAPSEC_UNDERWATER_126",
       "name": "Unterwasser",
+      "name_en": "UNDERWATER",
       "x": 20,
       "y": 6,
       "width": 3,
@@ -471,6 +523,7 @@
     {
       "id": "MAPSEC_UNDERWATER_127",
       "name": "Unterwasser",
+      "name_en": "UNDERWATER",
       "x": 23,
       "y": 6,
       "width": 3,
@@ -480,6 +533,7 @@
     {
       "id": "MAPSEC_UNDERWATER_128",
       "name": "Unterwasser",
+      "name_en": "UNDERWATER",
       "x": 23,
       "y": 9,
       "width": 4,
@@ -489,6 +543,7 @@
     {
       "id": "MAPSEC_UNDERWATER_SOOTOPOLIS",
       "name": "Unterwasser",
+      "name_en": "UNDERWATER",
       "x": 21,
       "y": 7,
       "width": 1,
@@ -498,6 +553,7 @@
     {
       "id": "MAPSEC_GRANITE_CAVE",
       "name": "Granithöhle",
+      "name_en": "GRANITE CAVE",
       "x": 1,
       "y": 13,
       "width": 1,
@@ -507,6 +563,7 @@
     {
       "id": "MAPSEC_MT_CHIMNEY",
       "name": "Schlotberg",
+      "name_en": "MT. CHIMNEY",
       "x": 6,
       "y": 2,
       "width": 1,
@@ -516,6 +573,7 @@
     {
       "id": "MAPSEC_SAFARI_ZONE",
       "name": "Safari-Zone",
+      "name_en": "SAFARI ZONE",
       "x": 16,
       "y": 2,
       "width": 1,
@@ -525,6 +583,7 @@
     {
       "id": "MAPSEC_BATTLE_FRONTIER",
       "name": "Kampfzone",
+      "name_en": "BATTLE FRONTIER",
       "x": 22,
       "y": 12,
       "width": 1,
@@ -534,6 +593,7 @@
     {
       "id": "MAPSEC_PETALBURG_WOODS",
       "name": "Blütenburgwald",
+      "name_en": "PETALBURG WOODS",
       "x": 0,
       "y": 8,
       "width": 1,
@@ -543,6 +603,7 @@
     {
       "id": "MAPSEC_RUSTURF_TUNNEL",
       "name": "Metaflurtunnel",
+      "name_en": "RUSTURF TUNNEL",
       "x": 2,
       "y": 5,
       "width": 1,
@@ -552,6 +613,7 @@
     {
       "id": "MAPSEC_ABANDONED_SHIP",
       "name": "Schiffswrack",
+      "name_en": "ABANDONED SHIP",
       "x": 6,
       "y": 14,
       "width": 1,
@@ -561,6 +623,7 @@
     {
       "id": "MAPSEC_NEW_MAUVILLE",
       "name": "Neu Malvenfroh",
+      "name_en": "NEW MAUVILLE",
       "x": 8,
       "y": 7,
       "width": 1,
@@ -570,6 +633,7 @@
     {
       "id": "MAPSEC_METEOR_FALLS",
       "name": "Meteorfälle",
+      "name_en": "METEOR FALLS",
       "x": 0,
       "y": 3,
       "width": 1,
@@ -579,6 +643,7 @@
     {
       "id": "MAPSEC_METEOR_FALLS2",
       "name": "Meteorfälle",
+      "name_en": "METEOR FALLS",
       "x": 1,
       "y": 2,
       "width": 1,
@@ -588,6 +653,7 @@
     {
       "id": "MAPSEC_MT_PYRE",
       "name": "Pyroberg",
+      "name_en": "MT. PYRE",
       "x": 16,
       "y": 4,
       "width": 1,
@@ -597,6 +663,7 @@
     {
       "id": "MAPSEC_AQUA_HIDEOUT_OLD",
       "name": "{AQUA}s Versteck",
+      "name_en": "{AQUA} HIDEOUT",
       "x": 19,
       "y": 3,
       "width": 1,
@@ -606,6 +673,7 @@
     {
       "id": "MAPSEC_SHOAL_CAVE",
       "name": "Küstenhöhle",
+      "name_en": "SHOAL CAVE",
       "x": 24,
       "y": 4,
       "width": 1,
@@ -615,6 +683,7 @@
     {
       "id": "MAPSEC_SEAFLOOR_CAVERN",
       "name": "Tiefseehöhle",
+      "name_en": "SEAFLOOR CAVERN",
       "x": 24,
       "y": 9,
       "width": 1,
@@ -624,6 +693,7 @@
     {
       "id": "MAPSEC_UNDERWATER_SEAFLOOR_CAVERN",
       "name": "Tiefseehöhle",
+      "name_en": "UNDERWATER",
       "x": 24,
       "y": 9,
       "width": 1,
@@ -633,6 +703,7 @@
     {
       "id": "MAPSEC_VICTORY_ROAD",
       "name": "Siegesstraße",
+      "name_en": "VICTORY ROAD",
       "x": 27,
       "y": 9,
       "width": 1,
@@ -642,6 +713,7 @@
     {
       "id": "MAPSEC_MIRAGE_ISLAND",
       "name": "Wundereiland",
+      "name_en": "MIRAGE ISLAND",
       "x": 17,
       "y": 10,
       "width": 1,
@@ -651,6 +723,7 @@
     {
       "id": "MAPSEC_CAVE_OF_ORIGIN",
       "name": "Urzeithöhle",
+      "name_en": "CAVE OF ORIGIN",
       "x": 21,
       "y": 7,
       "width": 1,
@@ -660,6 +733,7 @@
     {
       "id": "MAPSEC_SOUTHERN_ISLAND",
       "name": "Insel im Süden",
+      "name_en": "SOUTHERN ISLAND",
       "x": 12,
       "y": 14,
       "width": 1,
@@ -669,6 +743,7 @@
     {
       "id": "MAPSEC_FIERY_PATH",
       "name": "Feuriger Pfad",
+      "name_en": "FIERY PATH",
       "x": 6,
       "y": 3,
       "width": 1,
@@ -678,6 +753,7 @@
     {
       "id": "MAPSEC_FIERY_PATH2",
       "name": "Feuriger Pfad",
+      "name_en": "FIERY PATH",
       "x": 7,
       "y": 3,
       "width": 1,
@@ -687,6 +763,7 @@
     {
       "id": "MAPSEC_JAGGED_PASS",
       "name": "Steilpass",
+      "name_en": "JAGGED PASS",
       "x": 6,
       "y": 3,
       "width": 1,
@@ -696,6 +773,7 @@
     {
       "id": "MAPSEC_JAGGED_PASS2",
       "name": "Steilpass",
+      "name_en": "JAGGED PASS",
       "x": 7,
       "y": 2,
       "width": 1,
@@ -705,6 +783,7 @@
     {
       "id": "MAPSEC_SEALED_CHAMBER",
       "name": "Siegelkammer",
+      "name_en": "SEALED CHAMBER",
       "x": 11,
       "y": 10,
       "width": 1,
@@ -714,6 +793,7 @@
     {
       "id": "MAPSEC_UNDERWATER_SEALED_CHAMBER",
       "name": "Siegelkammer",
+      "name_en": "UNDERWATER",
       "x": 11,
       "y": 10,
       "width": 1,
@@ -723,6 +803,7 @@
     {
       "id": "MAPSEC_SCORCHED_SLAB",
       "name": "Sonnengrotte",
+      "name_en": "SCORCHED SLAB",
       "x": 13,
       "y": 0,
       "width": 1,
@@ -732,6 +813,7 @@
     {
       "id": "MAPSEC_ISLAND_CAVE",
       "name": "Inselhöhle",
+      "name_en": "ISLAND CAVE",
       "x": 0,
       "y": 10,
       "width": 1,
@@ -741,6 +823,7 @@
     {
       "id": "MAPSEC_DESERT_RUINS",
       "name": "Wüstenruine",
+      "name_en": "DESERT RUINS",
       "x": 8,
       "y": 3,
       "width": 1,
@@ -750,6 +833,7 @@
     {
       "id": "MAPSEC_ANCIENT_TOMB",
       "name": "Grabmal",
+      "name_en": "ANCIENT TOMB",
       "x": 13,
       "y": 2,
       "width": 1,
@@ -759,11 +843,13 @@
     {
       "id": "MAPSEC_INSIDE_OF_TRUCK",
       "name": "Im Möbelwagen",
+      "name_en": "INSIDE OF TRUCK",
       "in_hns": true
     },
     {
       "id": "MAPSEC_SKY_PILLAR",
       "name": "Himmelturm",
+      "name_en": "SKY PILLAR",
       "x": 19,
       "y": 10,
       "width": 1,
@@ -773,6 +859,7 @@
     {
       "id": "MAPSEC_SECRET_BASE",
       "name": "Geheimbasis",
+      "name_en": "SECRET BASE",
       "in_hns": true
     },
     {
@@ -782,6 +869,7 @@
     {
       "id": "MAPSEC_PALLET_TOWN",
       "name": "Alabastia",
+      "name_en": "PALLET TOWN",
       "x": 4,
       "y": 11,
       "width": 1,
@@ -791,6 +879,7 @@
     {
       "id": "MAPSEC_VIRIDIAN_CITY",
       "name": "Vertania City",
+      "name_en": "VIRIDIAN CITY",
       "x": 4,
       "y": 8,
       "width": 1,
@@ -800,6 +889,7 @@
     {
       "id": "MAPSEC_PEWTER_CITY",
       "name": "Marmoria City",
+      "name_en": "PEWTER CITY",
       "x": 4,
       "y": 4,
       "width": 1,
@@ -809,6 +899,7 @@
     {
       "id": "MAPSEC_CERULEAN_CITY",
       "name": "Azuria City",
+      "name_en": "CERULEAN CITY",
       "x": 14,
       "y": 3,
       "width": 1,
@@ -818,6 +909,7 @@
     {
       "id": "MAPSEC_LAVENDER_TOWN",
       "name": "Lavandia",
+      "name_en": "LAVENDER TOWN",
       "x": 18,
       "y": 6,
       "width": 1,
@@ -827,6 +919,7 @@
     {
       "id": "MAPSEC_VERMILION_CITY",
       "name": "Orania City",
+      "name_en": "VERMILION CITY",
       "x": 14,
       "y": 9,
       "width": 1,
@@ -836,6 +929,7 @@
     {
       "id": "MAPSEC_CELADON_CITY",
       "name": "Prismania City",
+      "name_en": "CELADON CITY",
       "x": 11,
       "y": 6,
       "width": 1,
@@ -845,6 +939,7 @@
     {
       "id": "MAPSEC_FUCHSIA_CITY",
       "name": "Fuchsania City",
+      "name_en": "FUCHSIA CITY",
       "x": 12,
       "y": 12,
       "width": 1,
@@ -854,6 +949,7 @@
     {
       "id": "MAPSEC_CINNABAR_ISLAND",
       "name": "Zinnoberinsel",
+      "name_en": "CINNABAR ISLAND",
       "x": 4,
       "y": 14,
       "width": 1,
@@ -863,6 +959,7 @@
     {
       "id": "MAPSEC_INDIGO_PLATEAU",
       "name": "Indigo Plateau",
+      "name_en": "INDIGO PLATEAU",
       "x": 2,
       "y": 3,
       "width": 1,
@@ -872,6 +969,7 @@
     {
       "id": "MAPSEC_SAFFRON_CITY",
       "name": "Saffronia City",
+      "name_en": "SAFFRON CITY",
       "x": 14,
       "y": 6,
       "width": 1,
@@ -881,6 +979,7 @@
     {
       "id": "MAPSEC_ROUTE_4_POKECENTER",
       "name": "Route 4",
+      "name_en": "ROUTE 4",
       "x": 8,
       "y": 3,
       "width": 1,
@@ -890,6 +989,7 @@
     {
       "id": "MAPSEC_ROUTE_10_POKECENTER",
       "name": "Route 10",
+      "name_en": "ROUTE 10",
       "x": 18,
       "y": 3,
       "width": 1,
@@ -899,6 +999,7 @@
     {
       "id": "MAPSEC_ROUTE_1",
       "name": "Route 1",
+      "name_en": "ROUTE 1",
       "x": 4,
       "y": 9,
       "width": 1,
@@ -908,6 +1009,7 @@
     {
       "id": "MAPSEC_ROUTE_2",
       "name": "Route 2",
+      "name_en": "ROUTE 2",
       "x": 4,
       "y": 5,
       "width": 1,
@@ -917,6 +1019,7 @@
     {
       "id": "MAPSEC_ROUTE_3",
       "name": "Route 3",
+      "name_en": "ROUTE 3",
       "x": 5,
       "y": 4,
       "width": 4,
@@ -926,6 +1029,7 @@
     {
       "id": "MAPSEC_ROUTE_4",
       "name": "Route 4",
+      "name_en": "ROUTE 4",
       "x": 8,
       "y": 3,
       "width": 6,
@@ -935,6 +1039,7 @@
     {
       "id": "MAPSEC_ROUTE_5",
       "name": "Route 5",
+      "name_en": "ROUTE 5",
       "x": 14,
       "y": 4,
       "width": 1,
@@ -944,6 +1049,7 @@
     {
       "id": "MAPSEC_ROUTE_6",
       "name": "Route 6",
+      "name_en": "ROUTE 6",
       "x": 14,
       "y": 7,
       "width": 1,
@@ -953,6 +1059,7 @@
     {
       "id": "MAPSEC_ROUTE_7",
       "name": "Route 7",
+      "name_en": "ROUTE 7",
       "x": 12,
       "y": 6,
       "width": 2,
@@ -962,6 +1069,7 @@
     {
       "id": "MAPSEC_ROUTE_8",
       "name": "Route 8",
+      "name_en": "ROUTE 8",
       "x": 15,
       "y": 6,
       "width": 3,
@@ -971,6 +1079,7 @@
     {
       "id": "MAPSEC_ROUTE_9",
       "name": "Route 9",
+      "name_en": "ROUTE 9",
       "x": 15,
       "y": 3,
       "width": 3,
@@ -980,6 +1089,7 @@
     {
       "id": "MAPSEC_ROUTE_10",
       "name": "Route 10",
+      "name_en": "ROUTE 10",
       "x": 18,
       "y": 3,
       "width": 1,
@@ -989,6 +1099,7 @@
     {
       "id": "MAPSEC_ROUTE_11",
       "name": "Route 11",
+      "name_en": "ROUTE 11",
       "x": 15,
       "y": 9,
       "width": 3,
@@ -998,6 +1109,7 @@
     {
       "id": "MAPSEC_ROUTE_12",
       "name": "Route 12",
+      "name_en": "ROUTE 12",
       "x": 18,
       "y": 7,
       "width": 1,
@@ -1007,6 +1119,7 @@
     {
       "id": "MAPSEC_ROUTE_13",
       "name": "Route 13",
+      "name_en": "ROUTE 13",
       "x": 16,
       "y": 11,
       "width": 2,
@@ -1016,6 +1129,7 @@
     {
       "id": "MAPSEC_ROUTE_14",
       "name": "Route 14",
+      "name_en": "ROUTE 14",
       "x": 15,
       "y": 11,
       "width": 1,
@@ -1025,6 +1139,7 @@
     {
       "id": "MAPSEC_ROUTE_15",
       "name": "Route 15",
+      "name_en": "ROUTE 15",
       "x": 13,
       "y": 12,
       "width": 2,
@@ -1034,6 +1149,7 @@
     {
       "id": "MAPSEC_ROUTE_16",
       "name": "Route 16",
+      "name_en": "ROUTE 16",
       "x": 7,
       "y": 6,
       "width": 4,
@@ -1043,6 +1159,7 @@
     {
       "id": "MAPSEC_ROUTE_17",
       "name": "Route 17",
+      "name_en": "ROUTE 17",
       "x": 7,
       "y": 7,
       "width": 1,
@@ -1052,6 +1169,7 @@
     {
       "id": "MAPSEC_ROUTE_18",
       "name": "Route 18",
+      "name_en": "ROUTE 18",
       "x": 7,
       "y": 12,
       "width": 5,
@@ -1061,6 +1179,7 @@
     {
       "id": "MAPSEC_ROUTE_19",
       "name": "Route 19",
+      "name_en": "ROUTE 19",
       "x": 12,
       "y": 13,
       "width": 1,
@@ -1070,6 +1189,7 @@
     {
       "id": "MAPSEC_ROUTE_20",
       "name": "Route 20",
+      "name_en": "ROUTE 20",
       "x": 5,
       "y": 14,
       "width": 7,
@@ -1079,6 +1199,7 @@
     {
       "id": "MAPSEC_ROUTE_21",
       "name": "Route 21",
+      "name_en": "ROUTE 21",
       "x": 4,
       "y": 12,
       "width": 1,
@@ -1088,6 +1209,7 @@
     {
       "id": "MAPSEC_ROUTE_22",
       "name": "Route 22",
+      "name_en": "ROUTE 22",
       "x": 2,
       "y": 8,
       "width": 2,
@@ -1097,6 +1219,7 @@
     {
       "id": "MAPSEC_ROUTE_23",
       "name": "Route 23",
+      "name_en": "ROUTE 23",
       "x": 2,
       "y": 4,
       "width": 1,
@@ -1106,6 +1229,7 @@
     {
       "id": "MAPSEC_ROUTE_24",
       "name": "Route 24",
+      "name_en": "ROUTE 24",
       "x": 14,
       "y": 1,
       "width": 1,
@@ -1115,6 +1239,7 @@
     {
       "id": "MAPSEC_ROUTE_25",
       "name": "Route 25",
+      "name_en": "ROUTE 25",
       "x": 15,
       "y": 1,
       "width": 2,
@@ -1124,6 +1249,7 @@
     {
       "id": "MAPSEC_VIRIDIAN_FOREST",
       "name": "Vertania-Wald",
+      "name_en": "VIRIDIAN FOREST",
       "x": 4,
       "y": 6,
       "width": 1,
@@ -1133,6 +1259,7 @@
     {
       "id": "MAPSEC_MT_MOON",
       "name": "Mondberg",
+      "name_en": "MT. MOON",
       "x": 9,
       "y": 3,
       "width": 1,
@@ -1142,6 +1269,7 @@
     {
       "id": "MAPSEC_S_S_ANNE",
       "name": "M.S. Anne",
+      "name_en": "S.S. ANNE",
       "x": 14,
       "y": 9,
       "width": 1,
@@ -1151,6 +1279,7 @@
     {
       "id": "MAPSEC_UNDERGROUND_PATH",
       "name": "Tunnelpfad",
+      "name_en": "UNDERGROUND PATH",
       "x": 14,
       "y": 7,
       "width": 1,
@@ -1160,6 +1289,7 @@
     {
       "id": "MAPSEC_UNDERGROUND_PATH_2",
       "name": "Tunnelpfad",
+      "name_en": "UNDERGROUND PATH",
       "x": 12,
       "y": 6,
       "width": 1,
@@ -1169,6 +1299,7 @@
     {
       "id": "MAPSEC_DIGLETTS_CAVE",
       "name": "Digdas Höhle",
+      "name_en": "DIGLETT'S CAVE",
       "x": 15,
       "y": 9,
       "width": 1,
@@ -1178,6 +1309,7 @@
     {
       "id": "MAPSEC_KANTO_VICTORY_ROAD",
       "name": "Siegesstraße",
+      "name_en": "VICTORY ROAD",
       "x": 2,
       "y": 4,
       "width": 1,
@@ -1187,6 +1319,7 @@
     {
       "id": "MAPSEC_ROCKET_HIDEOUT",
       "name": "Rocket HQ",
+      "name_en": "ROCKET HIDEOUT",
       "x": 11,
       "y": 6,
       "width": 1,
@@ -1196,6 +1329,7 @@
     {
       "id": "MAPSEC_SILPH_CO",
       "name": "Silph Co.",
+      "name_en": "SILPH CO.",
       "x": 14,
       "y": 6,
       "width": 1,
@@ -1205,6 +1339,7 @@
     {
       "id": "MAPSEC_POKEMON_MANSION",
       "name": "Pokémon-Haus",
+      "name_en": "POKéMON MANSION",
       "x": 4,
       "y": 14,
       "width": 1,
@@ -1214,6 +1349,7 @@
     {
       "id": "MAPSEC_KANTO_SAFARI_ZONE",
       "name": "Safari-Zone",
+      "name_en": "SAFARI ZONE",
       "x": 12,
       "y": 12,
       "width": 1,
@@ -1223,6 +1359,7 @@
     {
       "id": "MAPSEC_POKEMON_LEAGUE",
       "name": "Pokémon Liga",
+      "name_en": "POKéMON LEAGUE",
       "x": 2,
       "y": 3,
       "width": 1,
@@ -1232,6 +1369,7 @@
     {
       "id": "MAPSEC_ROCK_TUNNEL",
       "name": "Felstunnel",
+      "name_en": "ROCK TUNNEL",
       "x": 18,
       "y": 5,
       "width": 1,
@@ -1241,6 +1379,7 @@
     {
       "id": "MAPSEC_SEAFOAM_ISLANDS",
       "name": "Seeschauminseln",
+      "name_en": "SEAFOAM ISLANDS",
       "x": 8,
       "y": 14,
       "width": 1,
@@ -1250,6 +1389,7 @@
     {
       "id": "MAPSEC_POKEMON_TOWER",
       "name": "Pokémon Turm",
+      "name_en": "POKéMON TOWER",
       "x": 18,
       "y": 6,
       "width": 1,
@@ -1259,6 +1399,7 @@
     {
       "id": "MAPSEC_CERULEAN_CAVE",
       "name": "Azuria-Höhle",
+      "name_en": "CERULEAN CAVE",
       "x": 13,
       "y": 3,
       "width": 1,
@@ -1268,6 +1409,7 @@
     {
       "id": "MAPSEC_POWER_PLANT",
       "name": "Kraftwerk",
+      "name_en": "POWER PLANT",
       "x": 18,
       "y": 4,
       "width": 1,
@@ -1277,6 +1419,7 @@
     {
       "id": "MAPSEC_ONE_ISLAND",
       "name": "Eiland Eins",
+      "name_en": "ONE ISLAND",
       "x": 1,
       "y": 8,
       "width": 1,
@@ -1285,6 +1428,7 @@
     {
       "id": "MAPSEC_TWO_ISLAND",
       "name": "Eiland Zwei",
+      "name_en": "TWO ISLAND",
       "x": 9,
       "y": 9,
       "width": 1,
@@ -1293,6 +1437,7 @@
     {
       "id": "MAPSEC_THREE_ISLAND",
       "name": "Eiland Drei",
+      "name_en": "THREE ISLAND",
       "x": 18,
       "y": 12,
       "width": 1,
@@ -1301,6 +1446,7 @@
     {
       "id": "MAPSEC_FOUR_ISLAND",
       "name": "Eiland Vier",
+      "name_en": "FOUR ISLAND",
       "x": 3,
       "y": 4,
       "width": 1,
@@ -1309,6 +1455,7 @@
     {
       "id": "MAPSEC_FIVE_ISLAND",
       "name": "Eiland Fünf",
+      "name_en": "FIVE ISLAND",
       "x": 16,
       "y": 11,
       "width": 1,
@@ -1317,6 +1464,7 @@
     {
       "id": "MAPSEC_SEVEN_ISLAND",
       "name": "Eiland Sieben",
+      "name_en": "SEVEN ISLAND",
       "x": 5,
       "y": 8,
       "width": 1,
@@ -1325,6 +1473,7 @@
     {
       "id": "MAPSEC_SIX_ISLAND",
       "name": "Eiland Sechs",
+      "name_en": "SIX ISLAND",
       "x": 17,
       "y": 5,
       "width": 1,
@@ -1333,6 +1482,7 @@
     {
       "id": "MAPSEC_KINDLE_ROAD",
       "name": "Glühweg",
+      "name_en": "KINDLE ROAD",
       "x": 2,
       "y": 3,
       "width": 1,
@@ -1341,6 +1491,7 @@
     {
       "id": "MAPSEC_TREASURE_BEACH",
       "name": "Schatzgestade",
+      "name_en": "TREASURE BEACH",
       "x": 1,
       "y": 9,
       "width": 1,
@@ -1349,6 +1500,7 @@
     {
       "id": "MAPSEC_CAPE_BRINK",
       "name": "Kap Kante",
+      "name_en": "CAPE BRINK",
       "x": 9,
       "y": 7,
       "width": 1,
@@ -1357,6 +1509,7 @@
     {
       "id": "MAPSEC_BOND_BRIDGE",
       "name": "Bundbrücke",
+      "name_en": "BOND BRIDGE",
       "x": 13,
       "y": 12,
       "width": 4,
@@ -1365,6 +1518,7 @@
     {
       "id": "MAPSEC_THREE_ISLE_PORT",
       "name": "Tri-Eiland Hafen",
+      "name_en": "THREE ISLE PORT",
       "x": 18,
       "y": 13,
       "width": 2,
@@ -1373,6 +1527,7 @@
     {
       "id": "MAPSEC_RESORT_GORGEOUS",
       "name": "Ferienparadies",
+      "name_en": "RESORT GORGEOUS",
       "x": 16,
       "y": 9,
       "width": 3,
@@ -1381,6 +1536,7 @@
     {
       "id": "MAPSEC_WATER_LABYRINTH",
       "name": "Wasserirrgarten",
+      "name_en": "WATER LABYRINTH",
       "x": 14,
       "y": 10,
       "width": 3,
@@ -1389,6 +1545,7 @@
     {
       "id": "MAPSEC_FIVE_ISLE_MEADOW",
       "name": "Eiland 5-Weide",
+      "name_en": "FIVE ISLE MEADOW",
       "x": 17,
       "y": 10,
       "width": 1,
@@ -1397,6 +1554,7 @@
     {
       "id": "MAPSEC_MEMORIAL_PILLAR",
       "name": "Gedenksäule",
+      "name_en": "MEMORIAL PILLAR",
       "x": 18,
       "y": 12,
       "width": 1,
@@ -1405,6 +1563,7 @@
     {
       "id": "MAPSEC_OUTCAST_ISLAND",
       "name": "Fern-Eiland",
+      "name_en": "OUTCAST ISLAND",
       "x": 15,
       "y": 0,
       "width": 1,
@@ -1413,6 +1572,7 @@
     {
       "id": "MAPSEC_GREEN_PATH",
       "name": "Grüner Pfad",
+      "name_en": "GREEN PATH",
       "x": 15,
       "y": 3,
       "width": 3,
@@ -1421,6 +1581,7 @@
     {
       "id": "MAPSEC_WATER_PATH",
       "name": "Wasserweg",
+      "name_en": "WATER PATH",
       "x": 18,
       "y": 3,
       "width": 1,
@@ -1429,6 +1590,7 @@
     {
       "id": "MAPSEC_RUIN_VALLEY",
       "name": "Ruinental",
+      "name_en": "RUIN VALLEY",
       "x": 16,
       "y": 7,
       "width": 2,
@@ -1437,6 +1599,7 @@
     {
       "id": "MAPSEC_TRAINER_TOWER",
       "name": "Trainerturm",
+      "name_en": "TRAINER TOWER",
       "x": 5,
       "y": 6,
       "width": 1,
@@ -1445,6 +1608,7 @@
     {
       "id": "MAPSEC_CANYON_ENTRANCE",
       "name": "Schluchteingang",
+      "name_en": "CANYON ENTRANCE",
       "x": 5,
       "y": 9,
       "width": 1,
@@ -1453,6 +1617,7 @@
     {
       "id": "MAPSEC_SEVAULT_CANYON",
       "name": "7-Schatzschlucht",
+      "name_en": "SEVAULT CANYON",
       "x": 6,
       "y": 9,
       "width": 1,
@@ -1461,6 +1626,7 @@
     {
       "id": "MAPSEC_TANOBY_RUINS",
       "name": "Tanibo-Ruinen",
+      "name_en": "TANOBY RUINS",
       "x": 3,
       "y": 12,
       "width": 7,
@@ -1469,6 +1635,7 @@
     {
       "id": "MAPSEC_SEVII_ISLE_22",
       "name": "Sevii Eiland 22",
+      "name_en": "SEVII ISLE 22",
       "x": 9,
       "y": 12,
       "width": 1,
@@ -1478,6 +1645,7 @@
     {
       "id": "MAPSEC_SEVII_ISLE_23",
       "name": "Sevii Eiland 23",
+      "name_en": "SEVII ISLE 23",
       "x": 3,
       "y": 14,
       "width": 6,
@@ -1487,6 +1655,7 @@
     {
       "id": "MAPSEC_SEVII_ISLE_24",
       "name": "Sevii Eiland 24",
+      "name_en": "SEVII ISLE 24",
       "x": 2,
       "y": 12,
       "width": 1,
@@ -1496,6 +1665,7 @@
     {
       "id": "MAPSEC_NAVEL_ROCK_FRLG",
       "name": "Nabelfels",
+      "name_en": "NAVEL ROCK",
       "x": 10,
       "y": 8,
       "width": 1,
@@ -1504,6 +1674,7 @@
     {
       "id": "MAPSEC_MT_EMBER",
       "name": "Glutberg",
+      "name_en": "MT. EMBER",
       "x": 2,
       "y": 3,
       "width": 1,
@@ -1512,6 +1683,7 @@
     {
       "id": "MAPSEC_BERRY_FOREST",
       "name": "Beerenforst",
+      "name_en": "BERRY FOREST",
       "x": 14,
       "y": 12,
       "width": 1,
@@ -1520,6 +1692,7 @@
     {
       "id": "MAPSEC_ICEFALL_CAVE",
       "name": "Eiskaskadenhöhle",
+      "name_en": "ICEFALL CAVE",
       "x": 3,
       "y": 4,
       "width": 1,
@@ -1528,6 +1701,7 @@
     {
       "id": "MAPSEC_ROCKET_WAREHOUSE",
       "name": "Rocket-Lager",
+      "name_en": "ROCKET WAREHOUSE",
       "x": 17,
       "y": 11,
       "width": 1,
@@ -1536,6 +1710,7 @@
     {
       "id": "MAPSEC_TRAINER_TOWER_2",
       "name": "Trainerturm",
+      "name_en": "TRAINER TOWER",
       "x": 5,
       "y": 6,
       "width": 1,
@@ -1544,6 +1719,7 @@
     {
       "id": "MAPSEC_DOTTED_HOLE",
       "name": "Punktloch",
+      "name_en": "DOTTED HOLE",
       "x": 16,
       "y": 8,
       "width": 1,
@@ -1552,6 +1728,7 @@
     {
       "id": "MAPSEC_LOST_CAVE",
       "name": "Verlorene Höhle",
+      "name_en": "LOST CAVE",
       "x": 18,
       "y": 9,
       "width": 1,
@@ -1560,6 +1737,7 @@
     {
       "id": "MAPSEC_PATTERN_BUSH",
       "name": "Musterbuschwald",
+      "name_en": "PATTERN BUSH",
       "x": 17,
       "y": 3,
       "width": 1,
@@ -1568,6 +1746,7 @@
     {
       "id": "MAPSEC_ALTERING_CAVE_FRLG",
       "name": "Wandelhöhle",
+      "name_en": "ALTERING CAVE",
       "x": 15,
       "y": 0,
       "width": 1,
@@ -1576,6 +1755,7 @@
     {
       "id": "MAPSEC_TANOBY_CHAMBERS",
       "name": "Tanibo-Kammer",
+      "name_en": "TANOBY CHAMBERS",
       "x": 9,
       "y": 12,
       "width": 1,
@@ -1585,6 +1765,7 @@
     {
       "id": "MAPSEC_THREE_ISLE_PATH",
       "name": "Tri-Eiland-Pfad",
+      "name_en": "THREE ISLE PATH",
       "x": 18,
       "y": 13,
       "width": 1,
@@ -1593,6 +1774,7 @@
     {
       "id": "MAPSEC_TANOBY_KEY",
       "name": "Tanibo-Schlüssel",
+      "name_en": "TANOBY KEY",
       "x": 6,
       "y": 9,
       "width": 1,
@@ -1601,6 +1783,7 @@
     {
       "id": "MAPSEC_BIRTH_ISLAND_FRLG",
       "name": "Entstehungsinsel",
+      "name_en": "BIRTH ISLAND",
       "x": 18,
       "y": 13,
       "width": 1,
@@ -1609,6 +1792,7 @@
     {
       "id": "MAPSEC_MONEAN_CHAMBER",
       "name": "Einamon-Kammer",
+      "name_en": "MONEAN CHAMBER",
       "x": 9,
       "y": 12,
       "width": 1,
@@ -1617,6 +1801,7 @@
     {
       "id": "MAPSEC_LIPTOO_CHAMBER",
       "name": "Pezwulp-Kammer",
+      "name_en": "LIPTOO CHAMBER",
       "x": 9,
       "y": 12,
       "width": 1,
@@ -1625,6 +1810,7 @@
     {
       "id": "MAPSEC_WEEPTH_CHAMBER",
       "name": "Dreicke-Kammer",
+      "name_en": "WEEPTH CHAMBER",
       "x": 9,
       "y": 12,
       "width": 1,
@@ -1633,6 +1819,7 @@
     {
       "id": "MAPSEC_DILFORD_CHAMBER",
       "name": "Vierzisse-Kammer",
+      "name_en": "DILFORD CHAMBER",
       "x": 9,
       "y": 12,
       "width": 1,
@@ -1641,6 +1828,7 @@
     {
       "id": "MAPSEC_SCUFIB_CHAMBER",
       "name": "Fünibisku-Kammer",
+      "name_en": "SCUFIB CHAMBER",
       "x": 9,
       "y": 12,
       "width": 1,
@@ -1649,6 +1837,7 @@
     {
       "id": "MAPSEC_RIXY_CHAMBER",
       "name": "Lilechs-Kammer",
+      "name_en": "RIXY CHAMBER",
       "x": 9,
       "y": 12,
       "width": 1,
@@ -1657,6 +1846,7 @@
     {
       "id": "MAPSEC_VIAPOIS_CHAMBER",
       "name": "Sieborbia-Kammer",
+      "name_en": "VIAPOIS CHAMBER",
       "x": 9,
       "y": 12,
       "width": 1,
@@ -1664,16 +1854,19 @@
     },
     {
       "id": "MAPSEC_EMBER_SPA",
-      "name": "Gluttherme"
+      "name": "Gluttherme",
+      "name_en": "EMBER SPA"
     },
     {
       "id": "MAPSEC_SPECIAL_AREA",
       "name": "SPECIAL AREA",
+      "name_en": "SPECIAL AREA",
       "in_hns": true
     },
     {
       "id": "MAPSEC_AQUA_HIDEOUT",
       "name": "Aquas Versteck",
+      "name_en": "AQUA HIDEOUT",
       "x": 19,
       "y": 3,
       "width": 1,
@@ -1683,6 +1876,7 @@
     {
       "id": "MAPSEC_MAGMA_HIDEOUT",
       "name": "Magmas Versteck",
+      "name_en": "MAGMA HIDEOUT",
       "x": 6,
       "y": 3,
       "width": 1,
@@ -1692,6 +1886,7 @@
     {
       "id": "MAPSEC_MIRAGE_TOWER",
       "name": "Wunderturm",
+      "name_en": "MIRAGE TOWER",
       "x": 8,
       "y": 2,
       "width": 1,
@@ -1701,16 +1896,19 @@
     {
       "id": "MAPSEC_BIRTH_ISLAND",
       "name": "Entstehungsinsel",
+      "name_en": "BIRTH ISLAND",
       "in_hns": true
     },
     {
       "id": "MAPSEC_FARAWAY_ISLAND",
       "name": "Ferneiland",
+      "name_en": "FARAWAY ISLAND",
       "in_hns": true
     },
     {
       "id": "MAPSEC_ARTISAN_CAVE",
       "name": "Höhlenatelier",
+      "name_en": "ARTISAN CAVE",
       "x": 22,
       "y": 12,
       "width": 1,
@@ -1720,21 +1918,25 @@
     {
       "id": "MAPSEC_MARINE_CAVE",
       "name": "Ozeanhöhle",
+      "name_en": "MARINE CAVE",
       "in_hns": true
     },
     {
       "id": "MAPSEC_UNDERWATER_MARINE_CAVE",
       "name": "Ozeanhöhle",
+      "name_en": "UNDERWATER",
       "in_hns": true
     },
     {
       "id": "MAPSEC_TERRA_CAVE",
       "name": "Terrahöhle",
+      "name_en": "TERRA CAVE",
       "in_hns": true
     },
     {
       "id": "MAPSEC_UNDERWATER_105",
       "name": "Route 105",
+      "name_en": "UNDERWATER",
       "x": 0,
       "y": 10,
       "width": 1,
@@ -1744,6 +1946,7 @@
     {
       "id": "MAPSEC_UNDERWATER_125",
       "name": "Route 125",
+      "name_en": "UNDERWATER",
       "x": 24,
       "y": 3,
       "width": 2,
@@ -1753,6 +1956,7 @@
     {
       "id": "MAPSEC_UNDERWATER_129",
       "name": "Route 129",
+      "name_en": "UNDERWATER",
       "x": 24,
       "y": 10,
       "width": 2,
@@ -1762,6 +1966,7 @@
     {
       "id": "MAPSEC_DESERT_UNDERPASS",
       "name": "Wüstentunnel",
+      "name_en": "DESERT UNDERPASS",
       "x": 2,
       "y": 0,
       "width": 1,
@@ -1771,6 +1976,7 @@
     {
       "id": "MAPSEC_ALTERING_CAVE",
       "name": "Wandelhöhle",
+      "name_en": "ALTERING CAVE",
       "x": 6,
       "y": 8,
       "width": 1,
@@ -1780,62 +1986,74 @@
     {
       "id": "MAPSEC_NAVEL_ROCK",
       "name": "Nabelfels",
+      "name_en": "NAVEL ROCK",
       "in_hns": true
     },
     {
       "id": "MAPSEC_MELEMELE_ISLAND",
       "name": "MELEMELE ISLE",
+      "name_en": "MELEMELE ISLE",
       "in_hns": true,
       "region": "REGION_ALOLA"
     },
     {
       "id": "MAPSEC_AKALA_ISLAND",
       "name": "AKALA ISLE",
+      "name_en": "AKALA ISLE",
       "in_hns": true
     },
     {
       "id": "MAPSEC_ULAULA_ISLAND",
       "name": "ULA'ULA ISLE",
+      "name_en": "ULA'ULA ISLE",
       "in_hns": true
     },
     {
       "id": "MAPSEC_PONI_ISLAND",
       "name": "PONI ISLE",
+      "name_en": "PONI ISLE",
       "in_hns": true
     },
     {
       "id": "MAPSEC_ALOLA_OCEAN",
       "name": "MELMELE SEA",
+      "name_en": "MELMELE SEA",
       "in_hns": true
     },
     {
       "id": "MAPSEC_AKALA_CAVE",
       "name": "AKALA CAVE",
+      "name_en": "AKALA CAVE",
       "in_hns": true
     },
     {
       "id": "MAPSEC_AKALA_FOREST",
       "name": "AKALA FOREST",
+      "name_en": "AKALA FOREST",
       "in_hns": true
     },
     {
       "id": "MAPSEC_PONI_CAVE",
       "name": "PONI CAVE",
+      "name_en": "PONI CAVE",
       "in_hns": true
     },
     {
       "id": "MAPSEC_ULAULA_CAVE",
       "name": "MT. LANIKALA",
+      "name_en": "MT. LANIKALA",
       "in_hns": true
     },
     {
       "id": "MAPSEC_ULAULA_CAVE_2",
       "name": "ULA'ULA CAVE",
+      "name_en": "ULA'ULA CAVE",
       "in_hns": true
     },
     {
       "id": "MAPSEC_TRAINER_HILL",
       "name": "Trainerberg",
+      "name_en": "TRAINER HILL",
       "x": 8,
       "y": 4,
       "width": 1,
@@ -1848,6 +2066,7 @@
       "height": 1,
       "id": "MAPSEC_ABANDONED_SHIP",
       "name": "Schiffswrack",
+      "name_en": "ABANDONED SHIP",
       "width": 1,
       "x": 6,
       "y": 14
@@ -1856,6 +2075,7 @@
       "height": 1,
       "id": "MAPSEC_BATTLE_FRONTIER",
       "name": "Kampfzone",
+      "name_en": "BATTLE FRONTIER",
       "width": 1,
       "x": 22,
       "y": 12
@@ -1864,6 +2084,7 @@
       "height": 1,
       "id": "MAPSEC_BIRTH_ISLAND",
       "name": "Entstehungsinsel",
+      "name_en": "BIRTH ISLAND",
       "width": 1,
       "x": 0,
       "y": 0
@@ -1872,6 +2093,7 @@
       "height": 1,
       "id": "MAPSEC_FARAWAY_ISLAND",
       "name": "Ferneiland",
+      "name_en": "FARAWAY ISLAND",
       "width": 1,
       "x": 0,
       "y": 0
@@ -1880,6 +2102,7 @@
       "height": 1,
       "id": "MAPSEC_LILYCOVE_CITY",
       "name": "Seegrasulb City",
+      "name_en": "LILYCOVE CITY",
       "width": 2,
       "x": 18,
       "y": 3
@@ -1888,6 +2111,7 @@
       "height": 1,
       "id": "MAPSEC_SAFARI_ZONE",
       "name": "Safari-Zone",
+      "name_en": "SAFARI ZONE",
       "width": 1,
       "x": 2,
       "y": 9
@@ -1896,6 +2120,7 @@
       "height": 1,
       "id": "MAPSEC_SOUTHERN_ISLAND",
       "name": "Insel im Süden",
+      "name_en": "SOUTHERN ISLAND",
       "width": 1,
       "x": 12,
       "y": 14
@@ -1904,6 +2129,7 @@
       "height": 1,
       "id": "MAPSEC_TRAINER_HILL",
       "name": "Trainerberg",
+      "name_en": "TRAINER HILL",
       "width": 1,
       "x": 5,
       "y": 3
@@ -1911,48 +2137,59 @@
     {
       "id": "MAPSEC_MELEMELE_ISLAND",
       "name": "MELEMELE ISLE",
+      "name_en": "MELEMELE ISLE",
       "region": "REGION_ALOLA"
     },
     {
       "id": "MAPSEC_AKALA_ISLAND",
-      "name": "AKALA ISLE"
+      "name": "AKALA ISLE",
+      "name_en": "AKALA ISLE"
     },
     {
       "id": "MAPSEC_ULAULA_ISLAND",
-      "name": "ULA'ULA ISLE"
+      "name": "ULA'ULA ISLE",
+      "name_en": "ULA'ULA ISLE"
     },
     {
       "id": "MAPSEC_PONI_ISLAND",
-      "name": "PONI ISLE"
+      "name": "PONI ISLE",
+      "name_en": "PONI ISLE"
     },
     {
       "id": "MAPSEC_ALOLA_OCEAN",
-      "name": "MELEMELE SEA"
+      "name": "MELEMELE SEA",
+      "name_en": "MELEMELE SEA"
     },
     {
       "id": "MAPSEC_AKALA_CAVE",
-      "name": "AKALA CAVE"
+      "name": "AKALA CAVE",
+      "name_en": "AKALA CAVE"
     },
     {
       "id": "MAPSEC_AKALA_FOREST",
-      "name": "AKALA FOREST"
+      "name": "AKALA FOREST",
+      "name_en": "AKALA FOREST"
     },
     {
       "id": "MAPSEC_PONI_CAVE",
-      "name": "PONI CAVE"
+      "name": "PONI CAVE",
+      "name_en": "PONI CAVE"
     },
     {
       "id": "MAPSEC_ULAULA_CAVE",
-      "name": "MT. LANIKALA"
+      "name": "MT. LANIKALA",
+      "name_en": "MT. LANIKALA"
     },
     {
       "id": "MAPSEC_ULAULA_CAVE_2",
-      "name": "ULA'ULA CAVE"
+      "name": "ULA'ULA CAVE",
+      "name_en": "ULA'ULA CAVE"
     },
     {
       "height": 1,
       "id": "MAPSEC_VICTORY_ROAD",
       "name": "Siegesstraße",
+      "name_en": "VICTORY ROAD",
       "width": 1,
       "x": 24,
       "y": 5
@@ -1961,6 +2198,7 @@
       "height": 1,
       "id": "MAPSEC_PALLET_TOWN",
       "name": "Alabastia",
+      "name_en": "PALLET TOWN",
       "width": 1,
       "x": 4,
       "y": 11
@@ -1969,6 +2207,7 @@
       "height": 1,
       "id": "MAPSEC_VIRIDIAN_CITY",
       "name": "Vertania City",
+      "name_en": "VIRIDIAN CITY",
       "width": 1,
       "x": 4,
       "y": 8
@@ -1977,6 +2216,7 @@
       "height": 1,
       "id": "MAPSEC_PEWTER_CITY",
       "name": "Marmoria City",
+      "name_en": "PEWTER CITY",
       "width": 1,
       "x": 4,
       "y": 4
@@ -1985,6 +2225,7 @@
       "height": 1,
       "id": "MAPSEC_CERULEAN_CITY",
       "name": "Azuria City",
+      "name_en": "CERULEAN CITY",
       "width": 1,
       "x": 14,
       "y": 3
@@ -1993,6 +2234,7 @@
       "height": 1,
       "id": "MAPSEC_LAVENDER_TOWN",
       "name": "Lavandia",
+      "name_en": "LAVENDER TOWN",
       "width": 1,
       "x": 18,
       "y": 6
@@ -2001,6 +2243,7 @@
       "height": 1,
       "id": "MAPSEC_VERMILION_CITY",
       "name": "Orania City",
+      "name_en": "VERMILION CITY",
       "width": 1,
       "x": 14,
       "y": 9
@@ -2009,6 +2252,7 @@
       "height": 1,
       "id": "MAPSEC_CELADON_CITY",
       "name": "Prismania City",
+      "name_en": "CELADON CITY",
       "width": 1,
       "x": 11,
       "y": 6
@@ -2017,6 +2261,7 @@
       "height": 1,
       "id": "MAPSEC_FUCHSIA_CITY",
       "name": "Fuchsania City",
+      "name_en": "FUCHSIA CITY",
       "width": 1,
       "x": 12,
       "y": 12
@@ -2025,6 +2270,7 @@
       "height": 1,
       "id": "MAPSEC_CINNABAR_ISLAND",
       "name": "Zinnoberinsel",
+      "name_en": "CINNABAR ISLAND",
       "width": 1,
       "x": 4,
       "y": 14
@@ -2033,6 +2279,7 @@
       "height": 1,
       "id": "MAPSEC_INDIGO_PLATEAU",
       "name": "Indigo Plateau",
+      "name_en": "INDIGO PLATEAU",
       "width": 1,
       "x": 2,
       "y": 3
@@ -2041,6 +2288,7 @@
       "height": 1,
       "id": "MAPSEC_SAFFRON_CITY",
       "name": "Saffronia City",
+      "name_en": "SAFFRON CITY",
       "width": 1,
       "x": 14,
       "y": 6
@@ -2049,6 +2297,7 @@
       "height": 2,
       "id": "MAPSEC_ROUTE_1",
       "name": "Route 1",
+      "name_en": "ROUTE 1",
       "width": 1,
       "x": 4,
       "y": 9
@@ -2057,6 +2306,7 @@
       "height": 3,
       "id": "MAPSEC_ROUTE_2",
       "name": "Route 2",
+      "name_en": "ROUTE 2",
       "width": 1,
       "x": 4,
       "y": 5
@@ -2065,6 +2315,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_3",
       "name": "Route 3",
+      "name_en": "ROUTE 3",
       "width": 4,
       "x": 5,
       "y": 4
@@ -2073,6 +2324,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_4",
       "name": "Route 4",
+      "name_en": "ROUTE 4",
       "width": 6,
       "x": 8,
       "y": 3
@@ -2081,6 +2333,7 @@
       "height": 2,
       "id": "MAPSEC_ROUTE_5",
       "name": "Route 5",
+      "name_en": "ROUTE 5",
       "width": 1,
       "x": 14,
       "y": 4
@@ -2089,6 +2342,7 @@
       "height": 2,
       "id": "MAPSEC_ROUTE_6",
       "name": "Route 6",
+      "name_en": "ROUTE 6",
       "width": 1,
       "x": 14,
       "y": 7
@@ -2097,6 +2351,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_7",
       "name": "Route 7",
+      "name_en": "ROUTE 7",
       "width": 2,
       "x": 12,
       "y": 6
@@ -2105,6 +2360,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_8",
       "name": "Route 8",
+      "name_en": "ROUTE 8",
       "width": 3,
       "x": 15,
       "y": 6
@@ -2113,6 +2369,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_9",
       "name": "Route 9",
+      "name_en": "ROUTE 9",
       "width": 3,
       "x": 15,
       "y": 3
@@ -2121,6 +2378,7 @@
       "height": 3,
       "id": "MAPSEC_ROUTE_10",
       "name": "Route 10",
+      "name_en": "ROUTE 10",
       "width": 1,
       "x": 18,
       "y": 3
@@ -2129,6 +2387,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_11",
       "name": "Route 11",
+      "name_en": "ROUTE 11",
       "width": 3,
       "x": 15,
       "y": 9
@@ -2137,6 +2396,7 @@
       "height": 5,
       "id": "MAPSEC_ROUTE_12",
       "name": "Route 12",
+      "name_en": "ROUTE 12",
       "width": 1,
       "x": 18,
       "y": 7
@@ -2145,6 +2405,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_13",
       "name": "Route 13",
+      "name_en": "ROUTE 13",
       "width": 2,
       "x": 16,
       "y": 11
@@ -2153,6 +2414,7 @@
       "height": 2,
       "id": "MAPSEC_ROUTE_14",
       "name": "Route 14",
+      "name_en": "ROUTE 14",
       "width": 1,
       "x": 15,
       "y": 11
@@ -2161,6 +2423,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_15",
       "name": "Route 15",
+      "name_en": "ROUTE 15",
       "width": 2,
       "x": 13,
       "y": 12
@@ -2169,6 +2432,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_16",
       "name": "Route 16",
+      "name_en": "ROUTE 16",
       "width": 4,
       "x": 7,
       "y": 6
@@ -2177,6 +2441,7 @@
       "height": 5,
       "id": "MAPSEC_ROUTE_17",
       "name": "Route 17",
+      "name_en": "ROUTE 17",
       "width": 1,
       "x": 7,
       "y": 7
@@ -2185,6 +2450,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_18",
       "name": "Route 18",
+      "name_en": "ROUTE 18",
       "width": 5,
       "x": 7,
       "y": 12
@@ -2193,6 +2459,7 @@
       "height": 2,
       "id": "MAPSEC_ROUTE_19",
       "name": "Route 19",
+      "name_en": "ROUTE 19",
       "width": 1,
       "x": 12,
       "y": 13
@@ -2201,6 +2468,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_20",
       "name": "Route 20",
+      "name_en": "ROUTE 20",
       "width": 7,
       "x": 5,
       "y": 14
@@ -2209,6 +2477,7 @@
       "height": 2,
       "id": "MAPSEC_ROUTE_21",
       "name": "Route 21",
+      "name_en": "ROUTE 21",
       "width": 1,
       "x": 4,
       "y": 12
@@ -2217,6 +2486,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_22",
       "name": "Route 22",
+      "name_en": "ROUTE 22",
       "width": 2,
       "x": 2,
       "y": 8
@@ -2225,6 +2495,7 @@
       "height": 2,
       "id": "MAPSEC_ROUTE_24",
       "name": "Route 24",
+      "name_en": "ROUTE 24",
       "width": 1,
       "x": 14,
       "y": 1
@@ -2233,6 +2504,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_25",
       "name": "Route 25",
+      "name_en": "ROUTE 25",
       "width": 2,
       "x": 15,
       "y": 1
@@ -2241,6 +2513,7 @@
       "height": 1,
       "id": "MAPSEC_VIRIDIAN_FOREST",
       "name": "Vertania-Wald",
+      "name_en": "VIRIDIAN FOREST",
       "width": 1,
       "x": 4,
       "y": 6
@@ -2249,6 +2522,7 @@
       "height": 1,
       "id": "MAPSEC_MT_MOON",
       "name": "Mondberg",
+      "name_en": "MT. MOON",
       "width": 1,
       "x": 9,
       "y": 3
@@ -2257,6 +2531,7 @@
       "height": 1,
       "id": "MAPSEC_DIGLETTS_CAVE",
       "name": "Digdas Höhle",
+      "name_en": "DIGLETT'S CAVE",
       "width": 1,
       "x": 15,
       "y": 9
@@ -2265,6 +2540,7 @@
       "height": 1,
       "id": "MAPSEC_ROCKET_HIDEOUT",
       "name": "Rocket-Versteck",
+      "name_en": "ROCKET HIDEOUT",
       "width": 1,
       "x": 11,
       "y": 6
@@ -2273,6 +2549,7 @@
       "height": 1,
       "id": "MAPSEC_ROCK_TUNNEL",
       "name": "Felstunnel",
+      "name_en": "ROCK TUNNEL",
       "width": 1,
       "x": 18,
       "y": 5
@@ -2281,6 +2558,7 @@
       "height": 1,
       "id": "MAPSEC_SEAFOAM_ISLANDS",
       "name": "Seeschauminseln",
+      "name_en": "SEAFOAM ISLANDS",
       "width": 1,
       "x": 8,
       "y": 14
@@ -2289,6 +2567,7 @@
       "height": 1,
       "id": "MAPSEC_CERULEAN_CAVE",
       "name": "Azuria-Höhle",
+      "name_en": "CERULEAN CAVE",
       "width": 1,
       "x": 13,
       "y": 3
@@ -2297,6 +2576,7 @@
       "height": 1,
       "id": "MAPSEC_POWER_PLANT",
       "name": "Kraftwerk",
+      "name_en": "POWER PLANT",
       "width": 1,
       "x": 18,
       "y": 4
@@ -2305,6 +2585,7 @@
       "height": 4,
       "id": "MAPSEC_ROUTE_23",
       "name": "Route 23",
+      "name_en": "ROUTE 23",
       "width": 1,
       "x": 2,
       "y": 4
@@ -2313,6 +2594,7 @@
       "height": 1,
       "id": "MAPSEC_KANTO_VICTORY_ROAD",
       "name": "Siegesstraße",
+      "name_en": "VICTORY ROAD",
       "width": 1,
       "x": 2,
       "y": 4
@@ -2321,6 +2603,7 @@
       "height": 1,
       "id": "MAPSEC_POKEMON_LEAGUE",
       "name": "Pokémon-Liga",
+      "name_en": "POKéMON LEAGUE",
       "width": 1,
       "x": 2,
       "y": 3
@@ -2329,6 +2612,7 @@
       "height": 1,
       "id": "MAPSEC_POKEMON_TOWER",
       "name": "Pokémon-Turm",
+      "name_en": "POKéMON TOWER",
       "width": 1,
       "x": 18,
       "y": 6
@@ -2337,6 +2621,7 @@
       "height": 1,
       "id": "MAPSEC_POKEMON_MANSION",
       "name": "Pokémon-Villa",
+      "name_en": "POKéMON MANSION",
       "width": 1,
       "x": 4,
       "y": 14
@@ -2345,6 +2630,7 @@
       "height": 1,
       "id": "MAPSEC_SILPH_CO",
       "name": "Silph Co.",
+      "name_en": "SILPH CO.",
       "width": 1,
       "x": 14,
       "y": 6
@@ -2353,6 +2639,7 @@
       "height": 1,
       "id": "MAPSEC_S_S_ANNE",
       "name": "M.S. Anne",
+      "name_en": "S.S. ANNE",
       "width": 1,
       "x": 14,
       "y": 9
@@ -2361,6 +2648,7 @@
       "height": 1,
       "id": "MAPSEC_KANTO_SAFARI_ZONE",
       "name": "Safari-Zone",
+      "name_en": "SAFARI ZONE",
       "width": 1,
       "x": 12,
       "y": 12
@@ -2369,6 +2657,7 @@
       "height": 1,
       "id": "MAPSEC_UNDERGROUND_PATH",
       "name": "Untergrundpfad",
+      "name_en": "UNDERGROUND PATH",
       "width": 1,
       "x": 14,
       "y": 6
@@ -2377,6 +2666,7 @@
       "height": 1,
       "id": "MAPSEC_UNDERGROUND_PATH_2",
       "name": "Untergrundpfad",
+      "name_en": "UNDERGROUND PATH",
       "width": 1,
       "x": 14,
       "y": 6
@@ -2385,6 +2675,7 @@
       "height": 1,
       "id": "MAPSEC_SPECIAL_AREA",
       "name": "Sonderbereich",
+      "name_en": "SPECIAL AREA",
       "width": 1,
       "x": 0,
       "y": 0
@@ -2393,6 +2684,7 @@
       "height": 1,
       "id": "MAPSEC_NEW_BARK_TOWN",
       "name": "Neuborkia",
+      "name_en": "NEW BARK TOWN",
       "width": 1,
       "x": 19,
       "y": 10
@@ -2401,6 +2693,7 @@
       "height": 1,
       "id": "MAPSEC_CHERRYGROVE_CITY",
       "name": "Rosalia City",
+      "name_en": "CHERRYGROVE CITY",
       "width": 1,
       "x": 14,
       "y": 10
@@ -2409,6 +2702,7 @@
       "height": 1,
       "id": "MAPSEC_VIOLET_CITY",
       "name": "Viola City",
+      "name_en": "VIOLET CITY",
       "width": 1,
       "x": 12,
       "y": 4
@@ -2417,6 +2711,7 @@
       "height": 1,
       "id": "MAPSEC_AZALEA_TOWN",
       "name": "Azalea City",
+      "name_en": "AZALEA TOWN",
       "width": 1,
       "x": 10,
       "y": 13
@@ -2425,6 +2720,7 @@
       "height": 2,
       "id": "MAPSEC_GOLDENROD_CITY",
       "name": "Dukatia City",
+      "name_en": "GOLDENROD CITY",
       "width": 1,
       "x": 8,
       "y": 8
@@ -2433,6 +2729,7 @@
       "height": 1,
       "id": "MAPSEC_ECRUTEAK_CITY",
       "name": "Teak City",
+      "name_en": "ECRUTEAK CITY",
       "width": 1,
       "x": 10,
       "y": 2
@@ -2441,6 +2738,7 @@
       "height": 1,
       "id": "MAPSEC_OLIVINE_CITY",
       "name": "Oliviana City",
+      "name_en": "OLIVINE CITY",
       "width": 1,
       "x": 6,
       "y": 4
@@ -2449,6 +2747,7 @@
       "height": 1,
       "id": "MAPSEC_CIANWOOD_CITY",
       "name": "Anemonia City",
+      "name_en": "CIANWOOD CITY",
       "width": 1,
       "x": 4,
       "y": 11
@@ -2457,6 +2756,7 @@
       "height": 1,
       "id": "MAPSEC_MAHOGANY_TOWN",
       "name": "Mahagonia City",
+      "name_en": "MAHOGANY TOWN",
       "width": 1,
       "x": 15,
       "y": 2
@@ -2465,6 +2765,7 @@
       "height": 1,
       "id": "MAPSEC_BLACKTHORN_CITY",
       "name": "Ebenholz City",
+      "name_en": "BLACKTHORN CITY",
       "width": 1,
       "x": 18,
       "y": 2
@@ -2473,6 +2774,7 @@
       "height": 5,
       "id": "MAPSEC_ROUTE_26",
       "name": "Route 26",
+      "name_en": "ROUTE 26",
       "width": 1,
       "x": 24,
       "y": 6
@@ -2481,6 +2783,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_27",
       "name": "Route 27",
+      "name_en": "ROUTE 27",
       "width": 4,
       "x": 20,
       "y": 10
@@ -2489,6 +2792,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_28",
       "name": "Route 28",
+      "name_en": "ROUTE 28",
       "width": 3,
       "x": 21,
       "y": 5
@@ -2497,6 +2801,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_29",
       "name": "Route 29",
+      "name_en": "ROUTE 29",
       "width": 4,
       "x": 15,
       "y": 10
@@ -2505,6 +2810,7 @@
       "height": 5,
       "id": "MAPSEC_ROUTE_30",
       "name": "Route 30",
+      "name_en": "ROUTE 30",
       "width": 1,
       "x": 14,
       "y": 5
@@ -2513,6 +2819,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_31",
       "name": "Route 31",
+      "name_en": "ROUTE 31",
       "width": 2,
       "x": 13,
       "y": 4
@@ -2521,6 +2828,7 @@
       "height": 6,
       "id": "MAPSEC_ROUTE_32",
       "name": "Route 32",
+      "name_en": "ROUTE 32",
       "width": 1,
       "x": 12,
       "y": 5
@@ -2529,6 +2837,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_33",
       "name": "Route 33",
+      "name_en": "ROUTE 33",
       "width": 2,
       "x": 11,
       "y": 13
@@ -2537,6 +2846,7 @@
       "height": 2,
       "id": "MAPSEC_ROUTE_34",
       "name": "Route 34",
+      "name_en": "ROUTE 34",
       "width": 1,
       "x": 8,
       "y": 10
@@ -2545,6 +2855,7 @@
       "height": 3,
       "id": "MAPSEC_ROUTE_35",
       "name": "Route 35",
+      "name_en": "ROUTE 35",
       "width": 1,
       "x": 8,
       "y": 5
@@ -2553,6 +2864,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_36",
       "name": "Route 36",
+      "name_en": "ROUTE 36",
       "width": 3,
       "x": 9,
       "y": 4
@@ -2561,6 +2873,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_37",
       "name": "Route 37",
+      "name_en": "ROUTE 37",
       "width": 1,
       "x": 10,
       "y": 3
@@ -2569,6 +2882,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_38",
       "name": "Route 38",
+      "name_en": "ROUTE 38",
       "width": 3,
       "x": 7,
       "y": 2
@@ -2577,6 +2891,7 @@
       "height": 2,
       "id": "MAPSEC_ROUTE_39",
       "name": "Route 39",
+      "name_en": "ROUTE 39",
       "width": 1,
       "x": 6,
       "y": 2
@@ -2585,6 +2900,7 @@
       "height": 5,
       "id": "MAPSEC_ROUTE_40",
       "name": "Route 40",
+      "name_en": "ROUTE 40",
       "width": 1,
       "x": 5,
       "y": 4
@@ -2593,6 +2909,7 @@
       "height": 3,
       "id": "MAPSEC_ROUTE_41",
       "name": "Route 41",
+      "name_en": "ROUTE 41",
       "width": 1,
       "x": 5,
       "y": 9
@@ -2601,6 +2918,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_42",
       "name": "Route 42",
+      "name_en": "ROUTE 42",
       "width": 4,
       "x": 11,
       "y": 2
@@ -2609,6 +2927,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_43",
       "name": "Route 43",
+      "name_en": "ROUTE 43",
       "width": 1,
       "x": 15,
       "y": 1
@@ -2617,6 +2936,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_44",
       "name": "Route 44",
+      "name_en": "ROUTE 44",
       "width": 2,
       "x": 16,
       "y": 2
@@ -2625,6 +2945,7 @@
       "height": 4,
       "id": "MAPSEC_ROUTE_45",
       "name": "Route 45",
+      "name_en": "ROUTE 45",
       "width": 1,
       "x": 18,
       "y": 3
@@ -2633,6 +2954,7 @@
       "height": 4,
       "id": "MAPSEC_ROUTE_46",
       "name": "Route 46",
+      "name_en": "ROUTE 46",
       "width": 1,
       "x": 17,
       "y": 6
@@ -2641,6 +2963,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_47",
       "name": "Route 47",
+      "name_en": "ROUTE 47",
       "width": 1,
       "x": 2,
       "y": 11
@@ -2649,6 +2972,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_48",
       "name": "Route 48",
+      "name_en": "ROUTE 48",
       "width": 1,
       "x": 2,
       "y": 10
@@ -2657,6 +2981,7 @@
       "height": 1,
       "id": "MAPSEC_BURNED_TOWER",
       "name": "Turmruine",
+      "name_en": "BURNED TOWER",
       "width": 1,
       "x": 9,
       "y": 1
@@ -2665,6 +2990,7 @@
       "height": 1,
       "id": "MAPSEC_CLIFF_CAVE",
       "name": "Felsschlundhöhle",
+      "name_en": "CLIFF CAVE",
       "width": 1,
       "x": 3,
       "y": 11
@@ -2673,6 +2999,7 @@
       "height": 2,
       "id": "MAPSEC_DARK_CAVE",
       "name": "Dunkelhöhle",
+      "name_en": "DARK CAVE",
       "width": 3,
       "x": 15,
       "y": 4
@@ -2681,6 +3008,7 @@
       "height": 1,
       "id": "MAPSEC_DRAGONS_DEN",
       "name": "Drachenhöhle",
+      "name_en": "DRAGON'S DEN",
       "width": 1,
       "x": 18,
       "y": 1
@@ -2689,6 +3017,7 @@
       "height": 2,
       "id": "MAPSEC_EMBEDDED_TOWER",
       "name": "Felsenherzturm",
+      "name_en": "EMBEDDED TOWER",
       "width": 1,
       "x": 1,
       "y": 10
@@ -2697,6 +3026,7 @@
       "height": 1,
       "id": "MAPSEC_ICE_PATH",
       "name": "Eispfad",
+      "name_en": "ICE PATH",
       "width": 1,
       "x": 17,
       "y": 1
@@ -2705,6 +3035,7 @@
       "height": 2,
       "id": "MAPSEC_ILEX_FOREST",
       "name": "Steineichenwald",
+      "name_en": "ILEX FOREST",
       "width": 2,
       "x": 8,
       "y": 12
@@ -2713,6 +3044,7 @@
       "height": 1,
       "id": "MAPSEC_LAKE_OF_RAGE",
       "name": "See des Zorns",
+      "name_en": "LAKE OF RAGE",
       "width": 1,
       "x": 15,
       "y": 0
@@ -2721,6 +3053,7 @@
       "height": 1,
       "id": "MAPSEC_MT_MORTAR",
       "name": "Kesselberg",
+      "name_en": "MT. MORTAR",
       "width": 1,
       "x": 12,
       "y": 1
@@ -2729,6 +3062,7 @@
       "height": 1,
       "id": "MAPSEC_ROCKET_HIDEOUT_HNS",
       "name": "Rocket HQ",
+      "name_en": "ROCKET HIDEOUT",
       "width": 1,
       "x": 15,
       "y": 2
@@ -2737,6 +3071,7 @@
       "height": 4,
       "id": "MAPSEC_VICTORY_ROAD_HNS",
       "name": "Siegesstraße",
+      "name_en": "VICTORY ROAD",
       "width": 1,
       "x": 16,
       "y": 4
@@ -2745,6 +3080,7 @@
       "height": 1,
       "id": "MAPSEC_MT_SILVER",
       "name": "Silberberg",
+      "name_en": "MT. SILVER",
       "width": 1,
       "x": 20,
       "y": 5
@@ -2753,6 +3089,7 @@
       "height": 1,
       "id": "MAPSEC_SINJOH",
       "name": "SINJOH",
+      "name_en": "SINJOH",
       "width": 1,
       "x": 20,
       "y": 3
@@ -2761,6 +3098,7 @@
       "height": 1,
       "id": "MAPSEC_SNOWSWEPT_CAVERN",
       "name": "SNOWSWEPT CAVERN",
+      "name_en": "SNOWSWEPT CAVERN",
       "width": 1,
       "x": 20,
       "y": 3
@@ -2769,6 +3107,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_49",
       "name": "ROUTE 49",
+      "name_en": "ROUTE 49",
       "width": 1,
       "x": 20,
       "y": 3
@@ -2777,6 +3116,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_50",
       "name": "ROUTE 50",
+      "name_en": "ROUTE 50",
       "width": 1,
       "x": 20,
       "y": 3
@@ -2785,6 +3125,7 @@
       "height": 1,
       "id": "MAPSEC_NEW_SINJOH",
       "name": "NEW SINJOH",
+      "name_en": "NEW SINJOH",
       "width": 1,
       "x": 20,
       "y": 3
@@ -2793,6 +3134,7 @@
       "height": 1,
       "id": "MAPSEC_SINJOH_RUINS",
       "name": "SINJOH RUINS",
+      "name_en": "SINJOH RUINS",
       "width": 1,
       "x": 20,
       "y": 3
@@ -2801,6 +3143,7 @@
       "height": 1,
       "id": "MAPSEC_NATIONAL_PARK",
       "name": "Nationalpark",
+      "name_en": "NATIONAL PARK",
       "width": 1,
       "x": 8,
       "y": 4
@@ -2809,6 +3152,7 @@
       "height": 1,
       "id": "MAPSEC_OLIVINE_LIGHTHOUSE",
       "name": "Leuchtturm",
+      "name_en": "OLIVINE LIGHTHOUSE",
       "width": 1,
       "x": 7,
       "y": 4
@@ -2817,6 +3161,7 @@
       "height": 2,
       "id": "MAPSEC_RUINS_OF_ALPH",
       "name": "Alph-Ruinen",
+      "name_en": "RUINS OF ALPH",
       "width": 2,
       "x": 10,
       "y": 5
@@ -2825,6 +3170,7 @@
       "height": 1,
       "id": "MAPSEC_SAFARI_ZONE_GATE",
       "name": "Safari-Eingang",
+      "name_en": "SAFARI ZONE GATE",
       "width": 1,
       "x": 2,
       "y": 9
@@ -2833,6 +3179,7 @@
       "height": 1,
       "id": "MAPSEC_SLOWPOKE_WELL",
       "name": "Flegmon-Brunnen",
+      "name_en": "SLOWPOKE WELL",
       "width": 1,
       "x": 10,
       "y": 12
@@ -2841,6 +3188,7 @@
       "height": 1,
       "id": "MAPSEC_SPROUT_TOWER",
       "name": "Knofensa-Turm",
+      "name_en": "SPROUT TOWER",
       "width": 1,
       "x": 12,
       "y": 3
@@ -2849,6 +3197,7 @@
       "height": 1,
       "id": "MAPSEC_SS_AQUA",
       "name": "M.S. Aqua",
+      "name_en": "S.S. AQUA",
       "width": 10,
       "x": 14,
       "y": 14
@@ -2857,6 +3206,7 @@
       "height": 1,
       "id": "MAPSEC_TIN_TOWER",
       "name": "Glockenturm",
+      "name_en": "TIN TOWER",
       "width": 1,
       "x": 10,
       "y": 1
@@ -2865,6 +3215,7 @@
       "height": 1,
       "id": "MAPSEC_TOHJO_FALLS",
       "name": "Tohjo-Fälle",
+      "name_en": "TOHJO FALLS",
       "width": 1,
       "x": 20,
       "y": 9
@@ -2873,6 +3224,7 @@
       "height": 2,
       "id": "MAPSEC_UNION_CAVE",
       "name": "Einheitstunnel",
+      "name_en": "UNION CAVE",
       "width": 1,
       "x": 12,
       "y": 11
@@ -2881,6 +3233,7 @@
       "height": 1,
       "id": "MAPSEC_WHIRL_ISLANDS",
       "name": "Strudelinseln",
+      "name_en": "WHIRL ISLANDS",
       "width": 1,
       "x": 6,
       "y": 11
@@ -2889,6 +3242,7 @@
       "height": 1,
       "id": "MAPSEC_LITTLEROOT_TOWN",
       "name": "Wurzelheim",
+      "name_en": "LITTLEROOT TOWN",
       "width": 1,
       "x": 4,
       "y": 11
@@ -2897,6 +3251,7 @@
       "height": 1,
       "id": "MAPSEC_OLDALE_TOWN",
       "name": "Rosaltstadt",
+      "name_en": "OLDALE TOWN",
       "width": 1,
       "x": 4,
       "y": 9
@@ -2905,6 +3260,7 @@
       "height": 1,
       "id": "MAPSEC_DEWFORD_TOWN",
       "name": "Faustauhaven",
+      "name_en": "DEWFORD TOWN",
       "width": 1,
       "x": 2,
       "y": 14
@@ -2913,6 +3269,7 @@
       "height": 1,
       "id": "MAPSEC_LAVARIDGE_TOWN",
       "name": "Bad Lavastadt",
+      "name_en": "LAVARIDGE TOWN",
       "width": 1,
       "x": 5,
       "y": 3
@@ -2921,6 +3278,7 @@
       "height": 1,
       "id": "MAPSEC_FALLARBOR_TOWN",
       "name": "Laubwechselfeld",
+      "name_en": "FALLARBOR TOWN",
       "width": 1,
       "x": 3,
       "y": 0
@@ -2929,6 +3287,7 @@
       "height": 1,
       "id": "MAPSEC_VERDANTURF_TOWN",
       "name": "Wiesenflur",
+      "name_en": "VERDANTURF TOWN",
       "width": 1,
       "x": 4,
       "y": 6
@@ -2937,6 +3296,7 @@
       "height": 1,
       "id": "MAPSEC_PACIFIDLOG_TOWN",
       "name": "Floßbrunn",
+      "name_en": "PACIFIDLOG TOWN",
       "width": 1,
       "x": 17,
       "y": 10
@@ -2945,6 +3305,7 @@
       "height": 1,
       "id": "MAPSEC_PETALBURG_CITY",
       "name": "Blütenburg City",
+      "name_en": "PETALBURG CITY",
       "width": 1,
       "x": 1,
       "y": 9
@@ -2953,6 +3314,7 @@
       "height": 2,
       "id": "MAPSEC_SLATEPORT_CITY",
       "name": "Graphitport City",
+      "name_en": "SLATEPORT CITY",
       "width": 1,
       "x": 8,
       "y": 10
@@ -2961,6 +3323,7 @@
       "height": 1,
       "id": "MAPSEC_MAUVILLE_CITY",
       "name": "Malvenfroh City",
+      "name_en": "MAUVILLE CITY",
       "width": 2,
       "x": 8,
       "y": 6
@@ -2969,6 +3332,7 @@
       "height": 2,
       "id": "MAPSEC_RUSTBORO_CITY",
       "name": "Metarost City",
+      "name_en": "RUSTBORO CITY",
       "width": 1,
       "x": 0,
       "y": 5
@@ -2977,6 +3341,7 @@
       "height": 1,
       "id": "MAPSEC_FORTREE_CITY",
       "name": "Baumhausen City",
+      "name_en": "FORTREE CITY",
       "width": 1,
       "x": 12,
       "y": 0
@@ -2985,6 +3350,7 @@
       "height": 1,
       "id": "MAPSEC_MOSSDEEP_CITY",
       "name": "Moosbach City",
+      "name_en": "MOSSDEEP CITY",
       "width": 2,
       "x": 24,
       "y": 5
@@ -2993,6 +3359,7 @@
       "height": 1,
       "id": "MAPSEC_SOOTOPOLIS_CITY",
       "name": "Xeneroville",
+      "name_en": "SOOTOPOLIS CITY",
       "width": 1,
       "x": 21,
       "y": 7
@@ -3001,6 +3368,7 @@
       "height": 2,
       "id": "MAPSEC_EVER_GRANDE_CITY",
       "name": "Prachtpolis City",
+      "name_en": "EVER GRANDE CITY",
       "width": 1,
       "x": 27,
       "y": 8
@@ -3009,6 +3377,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_101",
       "name": "Route 101",
+      "name_en": "ROUTE 101",
       "width": 1,
       "x": 4,
       "y": 10
@@ -3017,6 +3386,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_102",
       "name": "Route 102",
+      "name_en": "ROUTE 102",
       "width": 2,
       "x": 2,
       "y": 9
@@ -3025,6 +3395,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_103",
       "name": "Route 103",
+      "name_en": "ROUTE 103",
       "width": 4,
       "x": 4,
       "y": 8
@@ -3033,6 +3404,7 @@
       "height": 3,
       "id": "MAPSEC_ROUTE_104",
       "name": "Route 104",
+      "name_en": "ROUTE 104",
       "width": 1,
       "x": 0,
       "y": 7
@@ -3041,6 +3413,7 @@
       "height": 3,
       "id": "MAPSEC_ROUTE_105",
       "name": "Route 105",
+      "name_en": "ROUTE 105",
       "width": 1,
       "x": 0,
       "y": 10
@@ -3049,6 +3422,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_106",
       "name": "Route 106",
+      "name_en": "ROUTE 106",
       "width": 2,
       "x": 0,
       "y": 13
@@ -3057,6 +3431,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_107",
       "name": "Route 107",
+      "name_en": "ROUTE 107",
       "width": 3,
       "x": 3,
       "y": 14
@@ -3065,6 +3440,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_108",
       "name": "Route 108",
+      "name_en": "ROUTE 108",
       "width": 2,
       "x": 6,
       "y": 14
@@ -3073,6 +3449,7 @@
       "height": 3,
       "id": "MAPSEC_ROUTE_109",
       "name": "Route 109",
+      "name_en": "ROUTE 109",
       "width": 1,
       "x": 8,
       "y": 12
@@ -3081,6 +3458,7 @@
       "height": 3,
       "id": "MAPSEC_ROUTE_110",
       "name": "Route 110",
+      "name_en": "ROUTE 110",
       "width": 1,
       "x": 8,
       "y": 7
@@ -3089,6 +3467,7 @@
       "height": 6,
       "id": "MAPSEC_ROUTE_111",
       "name": "Route 111",
+      "name_en": "ROUTE 111",
       "width": 1,
       "x": 8,
       "y": 0
@@ -3097,6 +3476,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_112",
       "name": "Route 112",
+      "name_en": "ROUTE 112",
       "width": 2,
       "x": 6,
       "y": 3
@@ -3105,6 +3485,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_113",
       "name": "Route 113",
+      "name_en": "ROUTE 113",
       "width": 4,
       "x": 4,
       "y": 0
@@ -3113,6 +3494,7 @@
       "height": 3,
       "id": "MAPSEC_ROUTE_114",
       "name": "Route 114",
+      "name_en": "ROUTE 114",
       "width": 2,
       "x": 1,
       "y": 0
@@ -3121,6 +3503,7 @@
       "height": 3,
       "id": "MAPSEC_ROUTE_115",
       "name": "Route 115",
+      "name_en": "ROUTE 115",
       "width": 1,
       "x": 0,
       "y": 2
@@ -3129,6 +3512,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_116",
       "name": "Route 116",
+      "name_en": "ROUTE 116",
       "width": 4,
       "x": 1,
       "y": 5
@@ -3137,6 +3521,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_117",
       "name": "Route 117",
+      "name_en": "ROUTE 117",
       "width": 3,
       "x": 5,
       "y": 6
@@ -3145,6 +3530,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_118",
       "name": "Route 118",
+      "name_en": "ROUTE 118",
       "width": 2,
       "x": 10,
       "y": 6
@@ -3153,6 +3539,7 @@
       "height": 6,
       "id": "MAPSEC_ROUTE_119",
       "name": "Route 119",
+      "name_en": "ROUTE 119",
       "width": 1,
       "x": 11,
       "y": 0
@@ -3161,6 +3548,7 @@
       "height": 4,
       "id": "MAPSEC_ROUTE_120",
       "name": "Route 120",
+      "name_en": "ROUTE 120",
       "width": 1,
       "x": 13,
       "y": 0
@@ -3169,6 +3557,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_121",
       "name": "Route 121",
+      "name_en": "ROUTE 121",
       "width": 4,
       "x": 14,
       "y": 3
@@ -3177,6 +3566,7 @@
       "height": 2,
       "id": "MAPSEC_ROUTE_122",
       "name": "Route 122",
+      "name_en": "ROUTE 122",
       "width": 1,
       "x": 16,
       "y": 4
@@ -3185,6 +3575,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_123",
       "name": "Route 123",
+      "name_en": "ROUTE 123",
       "width": 5,
       "x": 12,
       "y": 6
@@ -3193,6 +3584,7 @@
       "height": 3,
       "id": "MAPSEC_ROUTE_124",
       "name": "Route 124",
+      "name_en": "ROUTE 124",
       "width": 4,
       "x": 20,
       "y": 3
@@ -3201,6 +3593,7 @@
       "height": 2,
       "id": "MAPSEC_ROUTE_125",
       "name": "Route 125",
+      "name_en": "ROUTE 125",
       "width": 2,
       "x": 24,
       "y": 3
@@ -3209,6 +3602,7 @@
       "height": 3,
       "id": "MAPSEC_ROUTE_126",
       "name": "Route 126",
+      "name_en": "ROUTE 126",
       "width": 3,
       "x": 20,
       "y": 6
@@ -3217,6 +3611,7 @@
       "height": 3,
       "id": "MAPSEC_ROUTE_127",
       "name": "Route 127",
+      "name_en": "ROUTE 127",
       "width": 3,
       "x": 23,
       "y": 6
@@ -3225,6 +3620,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_128",
       "name": "Route 128",
+      "name_en": "ROUTE 128",
       "width": 4,
       "x": 23,
       "y": 9
@@ -3233,6 +3629,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_129",
       "name": "Route 129",
+      "name_en": "ROUTE 129",
       "width": 2,
       "x": 24,
       "y": 10
@@ -3241,6 +3638,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_130",
       "name": "Route 130",
+      "name_en": "ROUTE 130",
       "width": 3,
       "x": 21,
       "y": 10
@@ -3249,6 +3647,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_131",
       "name": "Route 131",
+      "name_en": "ROUTE 131",
       "width": 3,
       "x": 18,
       "y": 10
@@ -3257,6 +3656,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_132",
       "name": "Route 132",
+      "name_en": "ROUTE 132",
       "width": 2,
       "x": 15,
       "y": 10
@@ -3265,6 +3665,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_133",
       "name": "Route 133",
+      "name_en": "ROUTE 133",
       "width": 3,
       "x": 12,
       "y": 10
@@ -3273,6 +3674,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_134",
       "name": "Route 134",
+      "name_en": "ROUTE 134",
       "width": 3,
       "x": 9,
       "y": 10
@@ -3281,6 +3683,7 @@
       "height": 3,
       "id": "MAPSEC_UNDERWATER_124",
       "name": "Unterwasser",
+      "name_en": "UNDERWATER",
       "width": 4,
       "x": 20,
       "y": 3
@@ -3289,6 +3692,7 @@
       "height": 3,
       "id": "MAPSEC_UNDERWATER_126",
       "name": "Unterwasser",
+      "name_en": "UNDERWATER",
       "width": 3,
       "x": 20,
       "y": 6
@@ -3297,6 +3701,7 @@
       "height": 3,
       "id": "MAPSEC_UNDERWATER_127",
       "name": "Unterwasser",
+      "name_en": "UNDERWATER",
       "width": 3,
       "x": 23,
       "y": 6
@@ -3305,6 +3710,7 @@
       "height": 1,
       "id": "MAPSEC_UNDERWATER_128",
       "name": "Unterwasser",
+      "name_en": "UNDERWATER",
       "width": 4,
       "x": 23,
       "y": 9
@@ -3313,6 +3719,7 @@
       "height": 1,
       "id": "MAPSEC_UNDERWATER_SOOTOPOLIS",
       "name": "Unterwasser",
+      "name_en": "UNDERWATER",
       "width": 1,
       "x": 21,
       "y": 7
@@ -3321,6 +3728,7 @@
       "height": 1,
       "id": "MAPSEC_GRANITE_CAVE",
       "name": "Granithöhle",
+      "name_en": "GRANITE CAVE",
       "width": 1,
       "x": 1,
       "y": 13
@@ -3329,6 +3737,7 @@
       "height": 1,
       "id": "MAPSEC_MT_CHIMNEY",
       "name": "Schlotberg",
+      "name_en": "MT. CHIMNEY",
       "width": 1,
       "x": 6,
       "y": 2
@@ -3337,6 +3746,7 @@
       "height": 1,
       "id": "MAPSEC_PETALBURG_WOODS",
       "name": "Blütenburgwald",
+      "name_en": "PETALBURG WOODS",
       "width": 1,
       "x": 0,
       "y": 8
@@ -3345,6 +3755,7 @@
       "height": 1,
       "id": "MAPSEC_RUSTURF_TUNNEL",
       "name": "Metaflurtunnel",
+      "name_en": "RUSTURF TUNNEL",
       "width": 1,
       "x": 2,
       "y": 5
@@ -3353,6 +3764,7 @@
       "height": 1,
       "id": "MAPSEC_NEW_MAUVILLE",
       "name": "Neu Malvenfroh",
+      "name_en": "NEW MAUVILLE",
       "width": 1,
       "x": 8,
       "y": 7
@@ -3361,6 +3773,7 @@
       "height": 1,
       "id": "MAPSEC_METEOR_FALLS",
       "name": "Meteorfälle",
+      "name_en": "METEOR FALLS",
       "width": 1,
       "x": 0,
       "y": 3
@@ -3369,6 +3782,7 @@
       "height": 1,
       "id": "MAPSEC_METEOR_FALLS2",
       "name": "Meteorfälle",
+      "name_en": "METEOR FALLS",
       "width": 1,
       "x": 1,
       "y": 2
@@ -3377,6 +3791,7 @@
       "height": 1,
       "id": "MAPSEC_MT_PYRE",
       "name": "Pyroberg",
+      "name_en": "MT. PYRE",
       "width": 1,
       "x": 16,
       "y": 4
@@ -3385,6 +3800,7 @@
       "height": 1,
       "id": "MAPSEC_AQUA_HIDEOUT_OLD",
       "name": "{AQUA}s Versteck",
+      "name_en": "{AQUA} HIDEOUT",
       "width": 1,
       "x": 19,
       "y": 3
@@ -3393,6 +3809,7 @@
       "height": 1,
       "id": "MAPSEC_SHOAL_CAVE",
       "name": "Küstenhöhle",
+      "name_en": "SHOAL CAVE",
       "width": 1,
       "x": 24,
       "y": 4
@@ -3401,6 +3818,7 @@
       "height": 1,
       "id": "MAPSEC_SEAFLOOR_CAVERN",
       "name": "Tiefseehöhle",
+      "name_en": "SEAFLOOR CAVERN",
       "width": 1,
       "x": 24,
       "y": 9
@@ -3409,6 +3827,7 @@
       "height": 1,
       "id": "MAPSEC_UNDERWATER_SEAFLOOR_CAVERN",
       "name": "Tiefseehöhle",
+      "name_en": "UNDERWATER",
       "width": 1,
       "x": 24,
       "y": 9
@@ -3417,6 +3836,7 @@
       "height": 1,
       "id": "MAPSEC_MIRAGE_ISLAND",
       "name": "Wundereiland",
+      "name_en": "MIRAGE ISLAND",
       "width": 1,
       "x": 17,
       "y": 10
@@ -3425,6 +3845,7 @@
       "height": 1,
       "id": "MAPSEC_CAVE_OF_ORIGIN",
       "name": "Urzeithöhle",
+      "name_en": "CAVE OF ORIGIN",
       "width": 1,
       "x": 21,
       "y": 7
@@ -3433,6 +3854,7 @@
       "height": 1,
       "id": "MAPSEC_FIERY_PATH",
       "name": "Feuriger Pfad",
+      "name_en": "FIERY PATH",
       "width": 1,
       "x": 6,
       "y": 3
@@ -3441,6 +3863,7 @@
       "height": 1,
       "id": "MAPSEC_FIERY_PATH2",
       "name": "Feuriger Pfad",
+      "name_en": "FIERY PATH",
       "width": 1,
       "x": 7,
       "y": 3
@@ -3449,6 +3872,7 @@
       "height": 1,
       "id": "MAPSEC_JAGGED_PASS",
       "name": "Steilpass",
+      "name_en": "JAGGED PASS",
       "width": 1,
       "x": 6,
       "y": 3
@@ -3457,6 +3881,7 @@
       "height": 1,
       "id": "MAPSEC_JAGGED_PASS2",
       "name": "Steilpass",
+      "name_en": "JAGGED PASS",
       "width": 1,
       "x": 7,
       "y": 2
@@ -3465,6 +3890,7 @@
       "height": 1,
       "id": "MAPSEC_SEALED_CHAMBER",
       "name": "Siegelkammer",
+      "name_en": "SEALED CHAMBER",
       "width": 1,
       "x": 11,
       "y": 10
@@ -3473,6 +3899,7 @@
       "height": 1,
       "id": "MAPSEC_UNDERWATER_SEALED_CHAMBER",
       "name": "Siegelkammer",
+      "name_en": "UNDERWATER",
       "width": 1,
       "x": 11,
       "y": 10
@@ -3481,6 +3908,7 @@
       "height": 1,
       "id": "MAPSEC_SCORCHED_SLAB",
       "name": "Sonnengrotte",
+      "name_en": "SCORCHED SLAB",
       "width": 1,
       "x": 13,
       "y": 0
@@ -3489,6 +3917,7 @@
       "height": 1,
       "id": "MAPSEC_ISLAND_CAVE",
       "name": "Inselhöhle",
+      "name_en": "ISLAND CAVE",
       "width": 1,
       "x": 0,
       "y": 10
@@ -3497,6 +3926,7 @@
       "height": 1,
       "id": "MAPSEC_DESERT_RUINS",
       "name": "Wüstenruine",
+      "name_en": "DESERT RUINS",
       "width": 1,
       "x": 8,
       "y": 3
@@ -3505,6 +3935,7 @@
       "height": 1,
       "id": "MAPSEC_ANCIENT_TOMB",
       "name": "Grabmal",
+      "name_en": "ANCIENT TOMB",
       "width": 1,
       "x": 13,
       "y": 2
@@ -3513,6 +3944,7 @@
       "height": 1,
       "id": "MAPSEC_INSIDE_OF_TRUCK",
       "name": "Im Möbelwagen",
+      "name_en": "INSIDE OF TRUCK",
       "width": 1,
       "x": 0,
       "y": 0
@@ -3521,6 +3953,7 @@
       "height": 1,
       "id": "MAPSEC_SKY_PILLAR",
       "name": "Himmelturm",
+      "name_en": "SKY PILLAR",
       "width": 1,
       "x": 19,
       "y": 10
@@ -3529,6 +3962,7 @@
       "height": 1,
       "id": "MAPSEC_SECRET_BASE",
       "name": "Geheimbasis",
+      "name_en": "SECRET BASE",
       "width": 1,
       "x": 0,
       "y": 0
@@ -3540,6 +3974,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_4_POKECENTER",
       "name": "Route 4",
+      "name_en": "ROUTE 4",
       "width": 1,
       "x": 8,
       "y": 3
@@ -3548,6 +3983,7 @@
       "height": 1,
       "id": "MAPSEC_ROUTE_10_POKECENTER",
       "name": "Route 10",
+      "name_en": "ROUTE 10",
       "width": 1,
       "x": 18,
       "y": 3
@@ -3556,6 +3992,7 @@
       "height": 3,
       "id": "MAPSEC_SEVII_ISLE_22",
       "name": "Sevii Eiland 22",
+      "name_en": "SEVII ISLE 22",
       "width": 1,
       "x": 9,
       "y": 12
@@ -3564,6 +4001,7 @@
       "height": 1,
       "id": "MAPSEC_SEVII_ISLE_23",
       "name": "Sevii Eiland 23",
+      "name_en": "SEVII ISLE 23",
       "width": 6,
       "x": 3,
       "y": 14
@@ -3572,6 +4010,7 @@
       "height": 3,
       "id": "MAPSEC_SEVII_ISLE_24",
       "name": "Sevii Eiland 24",
+      "name_en": "SEVII ISLE 24",
       "width": 1,
       "x": 2,
       "y": 12
@@ -3580,6 +4019,7 @@
       "height": 1,
       "id": "MAPSEC_TANOBY_CHAMBERS",
       "name": "Tanibo-Kammer",
+      "name_en": "TANOBY CHAMBERS",
       "width": 1,
       "x": 9,
       "y": 12
@@ -3588,6 +4028,7 @@
       "height": 1,
       "id": "MAPSEC_AQUA_HIDEOUT",
       "name": "Aquas Versteck",
+      "name_en": "AQUA HIDEOUT",
       "width": 1,
       "x": 19,
       "y": 3
@@ -3596,6 +4037,7 @@
       "height": 1,
       "id": "MAPSEC_MAGMA_HIDEOUT",
       "name": "Magmas Versteck",
+      "name_en": "MAGMA HIDEOUT",
       "width": 1,
       "x": 6,
       "y": 3
@@ -3604,6 +4046,7 @@
       "height": 1,
       "id": "MAPSEC_MIRAGE_TOWER",
       "name": "Wunderturm",
+      "name_en": "MIRAGE TOWER",
       "width": 1,
       "x": 8,
       "y": 2
@@ -3612,6 +4055,7 @@
       "height": 1,
       "id": "MAPSEC_ARTISAN_CAVE",
       "name": "Höhlenatelier",
+      "name_en": "ARTISAN CAVE",
       "width": 1,
       "x": 22,
       "y": 12
@@ -3620,6 +4064,7 @@
       "height": 1,
       "id": "MAPSEC_MARINE_CAVE",
       "name": "Ozeanhöhle",
+      "name_en": "MARINE CAVE",
       "width": 1,
       "x": 0,
       "y": 0
@@ -3628,6 +4073,7 @@
       "height": 1,
       "id": "MAPSEC_UNDERWATER_MARINE_CAVE",
       "name": "Ozeanhöhle",
+      "name_en": "UNDERWATER",
       "width": 1,
       "x": 0,
       "y": 0
@@ -3636,6 +4082,7 @@
       "height": 1,
       "id": "MAPSEC_TERRA_CAVE",
       "name": "Terrahöhle",
+      "name_en": "TERRA CAVE",
       "width": 1,
       "x": 0,
       "y": 0
@@ -3644,6 +4091,7 @@
       "height": 3,
       "id": "MAPSEC_UNDERWATER_105",
       "name": "Route 105",
+      "name_en": "UNDERWATER",
       "width": 1,
       "x": 0,
       "y": 10
@@ -3652,6 +4100,7 @@
       "height": 2,
       "id": "MAPSEC_UNDERWATER_125",
       "name": "Route 125",
+      "name_en": "UNDERWATER",
       "width": 2,
       "x": 24,
       "y": 3
@@ -3660,6 +4109,7 @@
       "height": 1,
       "id": "MAPSEC_UNDERWATER_129",
       "name": "Route 129",
+      "name_en": "UNDERWATER",
       "width": 2,
       "x": 24,
       "y": 10
@@ -3668,6 +4118,7 @@
       "height": 1,
       "id": "MAPSEC_DESERT_UNDERPASS",
       "name": "Wüstentunnel",
+      "name_en": "DESERT UNDERPASS",
       "width": 1,
       "x": 2,
       "y": 0
@@ -3676,6 +4127,7 @@
       "height": 1,
       "id": "MAPSEC_ALTERING_CAVE",
       "name": "Wandelhöhle",
+      "name_en": "ALTERING CAVE",
       "width": 1,
       "x": 6,
       "y": 8
@@ -3684,6 +4136,7 @@
       "height": 1,
       "id": "MAPSEC_NAVEL_ROCK",
       "name": "Nabelfels",
+      "name_en": "NAVEL ROCK",
       "width": 1,
       "x": 0,
       "y": 0

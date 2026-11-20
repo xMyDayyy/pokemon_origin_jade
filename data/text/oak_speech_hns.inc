@@ -87,6 +87,7 @@ gText_Oak_ChallengeSelected::
 	.string "Herausforderung!$"
 #else
 	.string "That sounds like the right\n"
+	.string "level of challenge to me!$"
 #endif
 
 gText_Oak_WhatsYourName::

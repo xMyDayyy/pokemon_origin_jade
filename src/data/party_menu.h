@@ -660,7 +660,11 @@ static const u8 *const sActionStringTable[] =
     [PARTY_MSG_ALREADY_HOLDING_ONE]    = gText_AlreadyHoldingOne,
     [PARTY_MSG_WHICH_APPLIANCE]        = gText_WhichAppliance,
     [PARTY_MSG_CHOOSE_SECOND_FUSION]   = gText_NextFusionMon,
+#if GERMAN
     [PARTY_MSG_NO_POKEMON]             = COMPOUND_STRING("Du hast keine Pokémon."),
+#else
+    [PARTY_MSG_NO_POKEMON]             = COMPOUND_STRING("You have no POKéMON."),
+#endif
     [PARTY_MSG_CHOOSE_MON_FOR_BOX]     = gText_SendWhichMonToPC,
     [PARTY_MSG_MOVE_ITEM_WHERE]        = gText_MoveItemWhere,
 };
@@ -702,26 +706,52 @@ struct
     TaskFunc func;
 } static const sCursorOptions[MENU_FIELD_MOVES] =
 {
+#if GERMAN
     [MENU_SUMMARY]         = {COMPOUND_STRING("Bericht"),         CursorCb_Summary},
     [MENU_SWITCH]          = {COMPOUND_STRING("Tauschen"),          CursorCb_Switch},
+#else
+    [MENU_SUMMARY]         = {COMPOUND_STRING("SUMMARY"),         CursorCb_Summary},
+    [MENU_SWITCH]          = {COMPOUND_STRING("SWITCH"),          CursorCb_Switch},
+#endif
     [MENU_CANCEL1]         = {gText_Cancel2,                      CursorCb_Cancel1},
+#if GERMAN
     [MENU_ITEM]            = {COMPOUND_STRING("Item"),            CursorCb_Item},
+#else
+    [MENU_ITEM]            = {COMPOUND_STRING("ITEM"),            CursorCb_Item},
+#endif
     [MENU_GIVE]            = {gMenuText_Give,                     CursorCb_Give},
+#if GERMAN
     [MENU_TAKE_ITEM]       = {COMPOUND_STRING("Nehmen"),            CursorCb_TakeItem},
     [MENU_MOVE_ITEM]       = {COMPOUND_STRING("Bewegen"),            CursorCb_MoveItem},
     [MENU_MAIL]            = {COMPOUND_STRING("Brief"),           CursorCb_Mail},
     [MENU_TAKE_MAIL]       = {COMPOUND_STRING("Nehmen"),            CursorCb_TakeMail},
     [MENU_READ]            = {COMPOUND_STRING("Lesen"),            CursorCb_Read},
+#else
+    [MENU_TAKE_ITEM]       = {COMPOUND_STRING("TAKE"),            CursorCb_TakeItem},
+    [MENU_MOVE_ITEM]       = {COMPOUND_STRING("MOVE"),            CursorCb_MoveItem},
+    [MENU_MAIL]            = {COMPOUND_STRING("MAIL"),            CursorCb_Mail},
+    [MENU_TAKE_MAIL]       = {COMPOUND_STRING("TAKE"),            CursorCb_TakeMail},
+    [MENU_READ]            = {COMPOUND_STRING("READ"),            CursorCb_Read},
+#endif
     [MENU_CANCEL2]         = {gText_Cancel2,                      CursorCb_Cancel2},
+#if GERMAN
     [MENU_SHIFT]           = {COMPOUND_STRING("Tauschen"),           CursorCb_SendMon},
     [MENU_SEND_OUT]        = {COMPOUND_STRING("Aussenden"),        CursorCb_SendMon},
     [MENU_ENTER]           = {COMPOUND_STRING("Eintragen"),       CursorCb_Enter},
     [MENU_NO_ENTRY]        = {COMPOUND_STRING("Kein Eintrag"),        CursorCb_NoEntry},
     [MENU_STORE]           = {COMPOUND_STRING("Lagern"),           CursorCb_Store},
+#else
+    [MENU_SHIFT]           = {COMPOUND_STRING("SHIFT"),           CursorCb_SendMon},
+    [MENU_SEND_OUT]        = {COMPOUND_STRING("SEND OUT"),        CursorCb_SendMon},
+    [MENU_ENTER]           = {COMPOUND_STRING("ENTER"),           CursorCb_Enter},
+    [MENU_NO_ENTRY]        = {COMPOUND_STRING("NO ENTRY"),        CursorCb_NoEntry},
+    [MENU_STORE]           = {COMPOUND_STRING("STORE"),           CursorCb_Store},
+#endif
     [MENU_REGISTER]        = {gText_Register,                     CursorCb_Register},
     [MENU_TRADE1]          = {sText_Trade4,                       CursorCb_Trade1},
     [MENU_TRADE2]          = {sText_Trade4,                       CursorCb_Trade2},
     [MENU_TOSS]            = {gMenuText_Toss,                     CursorCb_Toss},
+#if GERMAN
     [MENU_LEVEL_UP_MOVES]  = {COMPOUND_STRING("Level Attacken"),     CursorCb_ChangeLevelUpMoves},
 	[MENU_EGG_MOVES]       = {COMPOUND_STRING("Ei Attacken"),       CursorCb_ChangeEggMoves},
 	[MENU_TM_MOVES]        = {COMPOUND_STRING("TM Attacken"),        CursorCb_ChangeTMMoves},
@@ -736,6 +766,22 @@ struct
     [MENU_CHANGE_FORM]     = {COMPOUND_STRING("Form ändern"),     CursorCb_ChangeForm},
     [MENU_CHANGE_ABILITY]  = {COMPOUND_STRING("Fähigkeit ändern"),  CursorCb_ChangeAbility},
     [MENU_PKMN_FOLLOWER]   = {COMPOUND_STRING("Folgen"), CursorCb_PkmnFollower},
+#else
+    [MENU_LEVEL_UP_MOVES]  = {COMPOUND_STRING("LEVEL MOVES"),     CursorCb_ChangeLevelUpMoves},
+    [MENU_EGG_MOVES]       = {COMPOUND_STRING("EGG MOVES"),       CursorCb_ChangeEggMoves},
+    [MENU_TM_MOVES]        = {COMPOUND_STRING("TM MOVES"),        CursorCb_ChangeTMMoves},
+    [MENU_TUTOR_MOVES]     = {COMPOUND_STRING("TUTOR MOVES"),     CursorCb_ChangeTutorMoves},
+    [MENU_SUB_MOVES]       = {COMPOUND_STRING("LEARN MOVES"),     CursorCb_LearnMovesSubMenu},
+    [MENU_CATALOG_BULB]    = {COMPOUND_STRING("Light bulb"),      CursorCb_CatalogBulb},
+    [MENU_CATALOG_OVEN]    = {COMPOUND_STRING("Microwave oven"),  CursorCb_CatalogOven},
+    [MENU_CATALOG_WASHING] = {COMPOUND_STRING("Washing machine"), CursorCb_CatalogWashing},
+    [MENU_CATALOG_FRIDGE]  = {COMPOUND_STRING("Refrigerator"),    CursorCb_CatalogFridge},
+    [MENU_CATALOG_FAN]     = {COMPOUND_STRING("Electric fan"),    CursorCb_CatalogFan},
+    [MENU_CATALOG_MOWER]   = {COMPOUND_STRING("Lawn mower"),      CursorCb_CatalogMower},
+    [MENU_CHANGE_FORM]     = {COMPOUND_STRING("Change form"),     CursorCb_ChangeForm},
+    [MENU_CHANGE_ABILITY]  = {COMPOUND_STRING("Change Ability"),  CursorCb_ChangeAbility},
+    [MENU_PKMN_FOLLOWER]   = {COMPOUND_STRING("{PKMN} FOLLOWER"), CursorCb_PkmnFollower},
+#endif
 };
 
 static const u8 sPartyMenuAction_SummarySwitchCancel[] = {MENU_SUMMARY, MENU_SWITCH, MENU_CANCEL1};

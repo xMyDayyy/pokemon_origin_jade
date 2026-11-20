@@ -1767,9 +1767,15 @@ static void MoveSelectionDisplayMoveDescription(enum BattlerId battler)
     }
 
     u8 pwr_num[3], acc_num[3];
+#if GERMAN
     u8 cat_desc[7] = _("Kat: ");
     u8 pwr_desc[7] = _("Stä: ");
     u8 acc_desc[7] = _("Gen: ");
+#else
+    u8 cat_desc[7] = _("CAT: ");
+    u8 pwr_desc[7] = _("PWR: ");
+    u8 acc_desc[7] = _("ACC: ");
+#endif
     u8 cat_start[] = _("{CLEAR_TO 0x03}");
     u8 pwr_start[] = _("{CLEAR_TO 0x38}");
     u8 acc_start[] = _("{CLEAR_TO 0x6C}");
@@ -2037,7 +2043,11 @@ static void PlayerHandleChooseAction(enum BattlerId battler)
     enum BattlerId partner = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
     if (B_SHOW_PARTNER_TARGET && gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && IsBattlerAlive(partner))
     {
+#if GERMAN
         StringCopy(gStringVar1, COMPOUND_STRING("Partner setzt ein:\n"));
+#else
+        StringCopy(gStringVar1, COMPOUND_STRING("Partner will use:\n"));
+#endif
         enum Move move = GetBattlerChosenMove(partner);
         StringAppend(gStringVar1, GetMoveName(move));
         enum MoveTarget moveTarget = GetBattlerMoveTargetType(partner, move);

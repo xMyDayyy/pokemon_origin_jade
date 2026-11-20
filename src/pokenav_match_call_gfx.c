@@ -220,9 +220,15 @@ static const struct WindowTemplate sMatchCallInfoBoxWindowTemplate =
 
 static const u8 *const sMatchCallOptionTexts[MATCH_CALL_OPTION_COUNT] =
 {
+#if GERMAN
     [MATCH_CALL_OPTION_CALL]   = COMPOUND_STRING("Anrufen"),
     [MATCH_CALL_OPTION_CHECK]  = COMPOUND_STRING("Prüfen"),
     [MATCH_CALL_OPTION_CANCEL] = COMPOUND_STRING("Abbrechen")
+#else
+    [MATCH_CALL_OPTION_CALL]   = COMPOUND_STRING("CALL"),
+    [MATCH_CALL_OPTION_CHECK]  = COMPOUND_STRING("CHECK"),
+    [MATCH_CALL_OPTION_CANCEL] = COMPOUND_STRING("CANCEL")
+#endif
 };
 
 // The series of 5 dots that appear when someone is called with Match Call

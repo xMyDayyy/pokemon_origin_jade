@@ -27,7 +27,13 @@ const struct RegionMapLocation gRegionMapEntries[] = {
 {% else %}
         .height = 1,
 {% endif %}
-{% if existsIn(map_section, "name") %}
+{% if existsIn(map_section, "name_en") %}
+#if GERMAN
+        .name = COMPOUND_STRING("{{ map_section.name }}"),
+#else
+        .name = COMPOUND_STRING("{{ map_section.name_en }}"),
+#endif
+{% else if existsIn(map_section, "name") %}
         .name = COMPOUND_STRING("{{ map_section.name }}"),
 {% else %}
         .name = (const u8[])_(""),
@@ -61,7 +67,13 @@ const struct RegionMapLocation gRegionMapEntries[] = {
 {% else %}
         .height = 1,
 {% endif %}
-{% if existsIn(map_section, "name") %}
+{% if existsIn(map_section, "name_en") %}
+#if GERMAN
+        .name = COMPOUND_STRING("{{ map_section.name }}"),
+#else
+        .name = COMPOUND_STRING("{{ map_section.name_en }}"),
+#endif
+{% else if existsIn(map_section, "name") %}
         .name = COMPOUND_STRING("{{ map_section.name }}"),
 {% else %}
         .name = (const u8[])_(""),

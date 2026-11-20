@@ -2308,7 +2308,11 @@ static const struct NamingScreenTemplate sPlayerNamingScreenTemplate =
     .addGenderIcon = FALSE,
     .initialPage = KBPAGE_LETTERS_UPPER,
     .unused = 35,
+#if GERMAN
     .title = COMPOUND_STRING("Dein Name?"),
+#else
+    .title = COMPOUND_STRING("YOUR NAME?"),
+#endif
 };
 
 static const struct NamingScreenTemplate sPCBoxNamingTemplate =
@@ -2319,7 +2323,11 @@ static const struct NamingScreenTemplate sPCBoxNamingTemplate =
     .addGenderIcon = FALSE,
     .initialPage = KBPAGE_LETTERS_UPPER,
     .unused = 19,
+#if GERMAN
     .title = COMPOUND_STRING("Name der Box?"),
+#else
+    .title = COMPOUND_STRING("BOX NAME?"),
+#endif
 };
 
 static const struct NamingScreenTemplate sMonNamingScreenTemplate =
@@ -2330,8 +2338,12 @@ static const struct NamingScreenTemplate sMonNamingScreenTemplate =
     .addGenderIcon = TRUE,
     .initialPage = KBPAGE_LETTERS_UPPER,
     .unused = 35,
+#if GERMAN
     // Appended to the species name, at most 15 characters.
     .title = COMPOUND_STRING(" benennen?"),
+#else
+    .title = COMPOUND_STRING("{STR_VAR_1}'s nickname?"),
+#endif
 };
 
 static const struct NamingScreenTemplate sWaldaWordsScreenTemplate =
@@ -2342,7 +2354,11 @@ static const struct NamingScreenTemplate sWaldaWordsScreenTemplate =
     .addGenderIcon = FALSE,
     .initialPage = KBPAGE_LETTERS_UPPER,
     .unused = 11,
+#if GERMAN
     .title = COMPOUND_STRING("Sag ihm die Worte!"),
+#else
+    .title = COMPOUND_STRING("Tell him the words."),
+#endif
 };
 
 static const struct NamingScreenTemplate sCodeScreenTemplate =

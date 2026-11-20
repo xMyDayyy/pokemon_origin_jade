@@ -23,17 +23,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),
         .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LEAF_GUARD },
         .bodyColor = BODY_COLOR_GREEN,
+#if GERMAN
         .speciesName = _("Endivie"),
+#else
+        .speciesName = _("CHIKORITA"),
+#endif
         .cryId = CRY_CHIKORITA,
         .natDexNum = NATIONAL_DEX_CHIKORITA,
+#if GERMAN
         .categoryName = _("Laub"),
+#else
+        .categoryName = _("Leaf"),
+#endif
         .height = 9,
         .weight = 64,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Im Kampf wedelt Endivie mit seinem Blatt,\n"
             "um den Feind fern zu halten. Das Blatt\n"
             "verströmt einen tollen Duft, der Pkmn be-\n"
             "ruhigt und eine nette Atmosphäre schafft."),
+#else
+            "It waves its leaf around to keep foes\n"
+            "at bay. However, a sweet fragrance also\n"
+            "wafts from the leaf, creating a friendly\n"
+            "atmosphere that becalms the battlers."),
+#endif
         .pokemonScale = 512,
         .pokemonOffset = 20,
         .trainerScale = 256,
@@ -93,17 +108,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),
         .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LEAF_GUARD },
         .bodyColor = BODY_COLOR_GREEN,
+#if GERMAN
         .speciesName = _("Lorblatt"),
+#else
+        .speciesName = _("BAYLEEF"),
+#endif
         .cryId = CRY_BAYLEEF,
         .natDexNum = NATIONAL_DEX_BAYLEEF,
+#if GERMAN
         .categoryName = _("Laub"),
+#else
+        .categoryName = _("Leaf"),
+#endif
         .height = 12,
         .weight = 158,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Lorblatts Nacken ist mit zusammengeroll-\n"
             "ten Blättern behangen. In jedem Blatt be-\n"
             "findet sich ein kleiner Trieb eines Baumes.\n"
             "Die Triebe bringen Menschen auf Trab."),
+#else
+            "A Bayleef's neck is ringed by curled-up\n"
+            "leaves. Inside each leaf is a small tree\n"
+            "shoot. The fragrance of this shoot\n"
+            "makes people peppy."),
+#endif
         .pokemonScale = 296,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -167,17 +197,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),
         .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LEAF_GUARD },
         .bodyColor = BODY_COLOR_GREEN,
+#if GERMAN
         .speciesName = _("Meganie"),
+#else
+        .speciesName = _("MEGANIUM"),
+#endif
         .cryId = CRY_MEGANIUM,
         .natDexNum = NATIONAL_DEX_MEGANIUM,
+#if GERMAN
         .categoryName = _("Kräuter"),
+#else
+        .categoryName = _("Herb"),
+#endif
         .height = 18,
         .weight = 1005,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Der Duft von MEGANIEs Blume besänftigt\n"
             "Gemüter. Im Kampf gibt dieses Pkmn mehr\n"
             "von seinem beruhigenden Duftstoff ab, um\n"
             "den Kampfgeist des Gegners zu schwächen."),
+#else
+            "The fragrance of a Meganium's flower\n"
+            "soothes and calms emotions. In battle,\n"
+            "it gives off more of its becalming scent\n"
+            "to blunt the foe's fighting spirit."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 277,
@@ -250,20 +295,35 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),
         .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LEAF_GUARD },
         .bodyColor = BODY_COLOR_GREEN,
+#if GERMAN
         .speciesName = _("Meganie"),
+#else
+        .speciesName = _("MEGANIUM"),
+#endif
     #if P_MODIFIED_MEGA_CRIES
         .cryId = CRY_MEGANIUM_MEGA,
     #else
         .cryId = CRY_MEGANIUM,
     #endif // P_MODIFIED_MEGA_CRIES
         .natDexNum = NATIONAL_DEX_MEGANIUM,
+#if GERMAN
         .categoryName = _("Kräuter"),
+#else
+        .categoryName = _("Herb"),
+#endif
         .height = 24,
         .weight = 2010,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Der Solarstrahl, der von seinen vier Blumen\n"
         "abgefeuert wird, ist von immenser Stärke.\n"
         "Er wird auch Mega-Solarkanone genannt."),
+#else
+            "This Pokémon can fire a tremendously\n"
+            "powerful Solar Beam from its four\n"
+            "flowers. Another name for this is\n"
+            "Mega Sol Cannon."),
+#endif
         .frontPic = gMonFrontPic_MeganiumMega,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
@@ -310,17 +370,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_FLASH_FIRE },
         .bodyColor = BODY_COLOR_YELLOW,
+#if GERMAN
         .speciesName = _("Feurigel"),
+#else
+        .speciesName = _("CYNDAQUIL"),
+#endif
         .cryId = CRY_CYNDAQUIL,
         .natDexNum = NATIONAL_DEX_CYNDAQUIL,
+#if GERMAN
         .categoryName = _("Feuermaus"),
+#else
+        .categoryName = _("Fire Mouse"),
+#endif
         .height = 5,
         .weight = 79,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Feurigel lässt Flammen aus seinem Rücken\n"
             "lodern, um sich zu schützen. Sie sind sehr\n"
             "groß, wenn es wütend ist, aber klein, wenn\n"
             "es müde und erschöpft ist."),
+#else
+            "It flares flames from its back to protect\n"
+            "itself. The fire burns vigorously if the\n"
+            "Pokémon is angry. When it is tired,\n"
+            "it sputters with incomplete combustion."),
+#endif
         .pokemonScale = 539,
         .pokemonOffset = 21,
         .trainerScale = 256,
@@ -381,17 +456,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_FLASH_FIRE },
         .bodyColor = BODY_COLOR_YELLOW,
+#if GERMAN
         .speciesName = _("Igelavar"),
+#else
+        .speciesName = _("QUILAVA"),
+#endif
         .cryId = CRY_QUILAVA,
         .natDexNum = NATIONAL_DEX_QUILAVA,
+#if GERMAN
         .categoryName = _("Vulkan"),
+#else
+        .categoryName = _("Volcano"),
+#endif
         .height = 9,
         .weight = 190,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Igelavar hält seine Gegner mit Flammen\n"
             "auf Distanz. Es nutzt seine Gewandtheit\n"
             "dazu, Angriffen auszuweichen und seinen\n"
             "Gegner gleichzeitig zu versengen."),
+#else
+            "It intimidates foes with intense gusts of\n"
+            "flames and superheated air. Its quick\n"
+            "nimbleness lets it dodge attacks even\n"
+            "while scorching an enemy."),
+#endif
         .pokemonScale = 329,
         .pokemonOffset = 11,
         .trainerScale = 256,
@@ -460,17 +550,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_FLASH_FIRE },
         .bodyColor = BODY_COLOR_YELLOW,
+#if GERMAN
         .speciesName = _("Tornupto"),
+#else
+        .speciesName = _("TYPHLOSION"),
+#endif
         .cryId = CRY_TYPHLOSION,
         .natDexNum = NATIONAL_DEX_TYPHLOSION,
+#if GERMAN
         .categoryName = _("Vulkan"),
+#else
+        .categoryName = _("Volcano"),
+#endif
         .height = 17,
         .weight = 795,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Tornupto versteckt sich hinter einem\n"
             "Hitzeschild, den es mit Hilfe seiner\n"
             "Flammen erzeugt. Es erzeugt Explosionen,\n"
             "die alles in Schutt und Asche legen."),
+#else
+            "It can hide behind a shimmering heat haze\n"
+            "that it creates using its intense flames.\n"
+            "Typhlosion create blazing explosive\n"
+            "blasts that burn everything to cinders."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 268,
@@ -530,9 +635,17 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_FRISK },
         .bodyColor = BODY_COLOR_YELLOW,
 #if P_SEPARATE_REGIONAL_FORMS
+#if GERMAN
         .speciesName = _("Tornupto-H"),
 #else
+        .speciesName = _("TYPHLOSION-H"),
+#endif
+#else
+#if GERMAN
         .speciesName = _("Tornupto"),
+#else
+        .speciesName = _("TYPHLOSION"),
+#endif
 #endif
         .cryId = CRY_TYPHLOSION,
 #if P_SEPARATE_REGIONAL_FORMS
@@ -540,14 +653,25 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #else
         .natDexNum = NATIONAL_DEX_TYPHLOSION,
 #endif
+#if GERMAN
         .categoryName = _("Irrlicht"),
+#else
+        .categoryName = _("Ghost Flame"),
+#endif
         .height = 16,
         .weight = 698,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Wohl hat die Energie des heiligen Berges\n"
         "sein Äußeres beeinflusst. Es heißt,\n"
         "es reinige verlorene Seelen in seinen\n"
         "Flammen und führe sie ins Jenseits."),
+#else
+            "Said to purify lost, forsaken souls with\n"
+            "its flames and guide them to the afterlife.\n"
+            "It's believed its form was influenced by\n"
+            "the energy of Mt. Coronet in ancient times."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 268,
@@ -610,17 +734,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),
         .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHEER_FORCE },
         .bodyColor = BODY_COLOR_BLUE,
+#if GERMAN
         .speciesName = _("Karnimani"),
+#else
+        .speciesName = _("TOTODILE"),
+#endif
         .cryId = CRY_TOTODILE,
         .natDexNum = NATIONAL_DEX_TOTODILE,
+#if GERMAN
         .categoryName = _("Großmaul"),
+#else
+        .categoryName = _("Big Jaw"),
+#endif
         .height = 6,
         .weight = 95,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Karnimani ist zwar sehr klein, aber seine\n"
             "Kiefer sind sehr stark. Es denkt, dass es\n"
             "nur spielerisch knabbert, aber sein Biss\n"
             "kann zu schweren Verletzungen führen."),
+#else
+            "Despite its small body, Totodile's jaws\n"
+            "are very powerful. While it may think it is\n"
+            "just playfully nipping, its bite has enough\n"
+            "strength to cause serious injury."),
+#endif
         .pokemonScale = 487,
         .pokemonOffset = 20,
         .trainerScale = 256,
@@ -684,17 +823,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHEER_FORCE },
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = TRUE,
+#if GERMAN
         .speciesName = _("Tyracroc"),
+#else
+        .speciesName = _("CROCONAW"),
+#endif
         .cryId = CRY_CROCONAW,
         .natDexNum = NATIONAL_DEX_CROCONAW,
+#if GERMAN
         .categoryName = _("Großmaul"),
+#else
+        .categoryName = _("Big Jaw"),
+#endif
         .height = 11,
         .weight = 250,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Hat Tyracroc einen Feind mit seinen Kie-\n"
             "fern eingeklemmt, lässt es ihn nicht mehr\n"
             "los. Seine angelhakenförmigen Zähne\n"
             "kann man nicht mehr entfernen."),
+#else
+            "Once its jaws clamp down on its foe, it will\n"
+            "absolutely not let go. Because the tips of\n"
+            "its fangs are forked back like fishhooks,\n"
+            "they become irremovably embedded."),
+#endif
         .pokemonScale = 378,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -758,17 +912,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),
         .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHEER_FORCE },
         .bodyColor = BODY_COLOR_BLUE,
+#if GERMAN
         .speciesName = _("Impergator"),
+#else
+        .speciesName = _("FERALIGATR"),
+#endif
         .cryId = CRY_FERALIGATR,
         .natDexNum = NATIONAL_DEX_FERALIGATR,
+#if GERMAN
         .categoryName = _("Großmaul"),
+#else
+        .categoryName = _("Big Jaw"),
+#endif
         .height = 23,
         .weight = 888,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Impergator schüchtert seine Feinde\n"
         "mit seinem riesigen Maul ein. Im Kampf\n"
         "rennt es mit riesiger Geschwindigkeit\n"
         "auf den Gegner los und greift ihn an."),
+#else
+            "It opens its huge mouth to intimidate\n"
+            "enemies. In battle, it runs using its thick\n"
+            "and powerful hind legs to charge the\n"
+            "foe with incredible speed."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 342,
@@ -831,21 +1000,36 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),
         .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHEER_FORCE },
         .bodyColor = BODY_COLOR_BLUE,
+#if GERMAN
         .speciesName = _("Impergator"),
+#else
+        .speciesName = _("FERALIGATR"),
+#endif
     #if P_MODIFIED_MEGA_CRIES
         .cryId = CRY_FERALIGATR_MEGA,
     #else
         .cryId = CRY_FERALIGATR,
     #endif // P_MODIFIED_MEGA_CRIES
         .natDexNum = NATIONAL_DEX_FERALIGATR,
+#if GERMAN
         .categoryName = _("Doppelmaul"),
+#else
+        .categoryName = _("Double Jaw"),
+#endif
         .height = 23,
         .weight = 1088,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Aus der kapuzenartigen\n"
         "Flosse und seinen Armen formt\n"
         "es einen gigantischen Kiefer, mit dem es\n"
         "zehnmal stärker zubeißen kann als zuvor."),
+#else
+            "With its arms and hoodlike fin, this\n"
+            "Pokémon forms a gigantic set of jaws\n"
+            "with a bite 10 times as powerful\n"
+            "as Mega Feraligatr's actual jaws."),
+#endif
         .frontPic = gMonFrontPic_FeraligatrMega,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
@@ -892,17 +1076,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_RUN_AWAY, ABILITY_KEEN_EYE, ABILITY_FRISK },
         .bodyColor = BODY_COLOR_BROWN,
+#if GERMAN
         .speciesName = _("Wiesor"),
+#else
+        .speciesName = _("SENTRET"),
+#endif
         .cryId = CRY_SENTRET,
         .natDexNum = NATIONAL_DEX_SENTRET,
+#if GERMAN
         .categoryName = _("Späher"),
+#else
+        .categoryName = _("Scout"),
+#endif
         .height = 8,
         .weight = 60,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Wenn Wiesor schläft, hält immer jemand\n"
             "Wache. Bei Gefahr weckt die Wache die\n"
             "anderen auf. Wird es von seinen Artgenos-\n"
             "sen getrennt, kann es nicht mehr schlafen."),
+#else
+            "They take turns standing guard when it\n"
+            "is time to sleep. The sentry awakens the\n"
+            "others if it senses danger. If one becomes\n"
+            "separated, it turns sleepless with fear."),
+#endif
         .pokemonScale = 439,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -962,17 +1161,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_RUN_AWAY, ABILITY_KEEN_EYE, ABILITY_FRISK },
         .bodyColor = BODY_COLOR_BROWN,
+#if GERMAN
         .speciesName = _("Wiesenior"),
+#else
+        .speciesName = _("FURRET"),
+#endif
         .cryId = CRY_FURRET,
         .natDexNum = NATIONAL_DEX_FURRET,
+#if GERMAN
         .categoryName = _("Langleib"),
+#else
+        .categoryName = _("Long Body"),
+#endif
         .height = 18,
         .weight = 325,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Es ist schlank. Wird es angegriffen, kann\n"
         "es sich durch enge Zwischenräume\n"
         "schlängeln und entkommen. Trotz seiner\n"
         "kurzen Gliedmaßen ist es sehr flink."),
+#else
+            "A Furret has a very slim build. When under\n"
+            "attack, it can squirm through narrow\n"
+            "spaces and get away. In spite of its short\n"
+            "limbs, it is very nimble and fleet."),
+#endif
         .pokemonScale = 346,
         .pokemonOffset = 11,
         .trainerScale = 256,
@@ -1030,17 +1244,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
         .abilities = { ABILITY_INSOMNIA, ABILITY_KEEN_EYE, ABILITY_TINTED_LENS },
         .bodyColor = BODY_COLOR_BROWN,
+#if GERMAN
         .speciesName = _("Hoothoot"),
+#else
+        .speciesName = _("HOOTHOOT"),
+#endif
         .cryId = CRY_HOOTHOOT,
         .natDexNum = NATIONAL_DEX_HOOTHOOT,
+#if GERMAN
         .categoryName = _("Eule"),
+#else
+        .categoryName = _("Owl"),
+#endif
         .height = 7,
         .weight = 212,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Hoothoot besitzt ein inneres Organ, das\n"
             "die Erdumdrehung wahrnimmt. Dieses Organ\n"
             "ermöglicht es ihm, jeden Tag zur selben\n"
             "Zeit zu schreien."),
+#else
+            "It has an internal organ that senses\n"
+            "the earth's rotation. Using this special\n"
+            "organ, a Hoothoot begins hooting at\n"
+            "precisely the same time every day."),
+#endif
         .pokemonScale = 380,
         .pokemonOffset = -2,
         .trainerScale = 256,
@@ -1115,17 +1344,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
         .abilities = { ABILITY_INSOMNIA, ABILITY_KEEN_EYE, ABILITY_TINTED_LENS },
         .bodyColor = BODY_COLOR_BROWN,
+#if GERMAN
         .speciesName = _("Noctuh"),
+#else
+        .speciesName = _("NOCTOWL"),
+#endif
         .cryId = CRY_NOCTOWL,
         .natDexNum = NATIONAL_DEX_NOCTOWL,
+#if GERMAN
         .categoryName = _("Eule"),
+#else
+        .categoryName = _("Owl"),
+#endif
         .height = 16,
         .weight = 408,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Dank seines Sehvermögens, mit dem es\n"
         "auch bei wenig Licht sehen kann, und dank\n"
         "seiner Flügel, mit denen es geräuschlos\n"
         "fliegt, entgeht Noctuh keine Beute."),
+#else
+            "It unfailingly catches prey in darkness.\n"
+            "Noctowl owe their success to superior\n"
+            "vision that allows them to see in minimal\n"
+            "light, and to their supple and silent wings."),
+#endif
         .pokemonScale = 278,
         .pokemonOffset = 3,
         .trainerScale = 256,
@@ -1183,17 +1427,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
         .abilities = { ABILITY_SWARM, ABILITY_EARLY_BIRD, ABILITY_RATTLED },
         .bodyColor = BODY_COLOR_RED,
+#if GERMAN
         .speciesName = _("Ledyba"),
+#else
+        .speciesName = _("LEDYBA"),
+#endif
         .cryId = CRY_LEDYBA,
         .natDexNum = NATIONAL_DEX_LEDYBA,
+#if GERMAN
         .categoryName = _("Fünf-Punkt"),
+#else
+        .categoryName = _("Five Star"),
+#endif
         .height = 10,
         .weight = 108,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Ledyba sondert eine duftende Flüssigkeit\n"
             "ab. Darüber kommuniziert es mit anderen.\n"
             "Es übermittelt seine Gefühle, indem es die\n"
             "Duftnote des Sekrets verändert."),
+#else
+            "Ledyba communicate using a fluid that\n"
+            "they secrete from where the legs join the\n"
+            "body. They are said to convey feelings to\n"
+            "others by altering the fluid's scent."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -1266,17 +1525,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
         .abilities = { ABILITY_SWARM, ABILITY_EARLY_BIRD, ABILITY_IRON_FIST },
         .bodyColor = BODY_COLOR_RED,
+#if GERMAN
         .speciesName = _("Ledian"),
+#else
+        .speciesName = _("LEDIAN"),
+#endif
         .cryId = CRY_LEDIAN,
         .natDexNum = NATIONAL_DEX_LEDIAN,
+#if GERMAN
         .categoryName = _("Fünf-Punkt"),
+#else
+        .categoryName = _("Five Star"),
+#endif
         .height = 14,
         .weight = 356,
         .description = COMPOUND_STRING(
+#if GERMAN
             "In Ländern mit frischer Luft und Sternen\n"
             "am Himmel leben unzählig viele Ledian.\n"
             "Dafür gibt es einen guten Grund: Es\n"
             "nutzt das Licht der Sterne als Energie."),
+#else
+            "It is said that in lands with clean air,\n"
+            "where the stars fill the sky, there live\n"
+            "many Ledian. For good reason, they use\n"
+            "the light of the stars as energy."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 2,
         .trainerScale = 256,
@@ -1350,17 +1624,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
         .abilities = { ABILITY_SWARM, ABILITY_INSOMNIA, ABILITY_SNIPER },
         .bodyColor = BODY_COLOR_GREEN,
+#if GERMAN
         .speciesName = _("Webarak"),
+#else
+        .speciesName = _("SPINARAK"),
+#endif
         .cryId = CRY_SPINARAK,
         .natDexNum = NATIONAL_DEX_SPINARAK,
+#if GERMAN
         .categoryName = _("Fadenwurf"),
+#else
+        .categoryName = _("String Spit"),
+#endif
         .height = 5,
         .weight = 85,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Das von Webarak gesponnene Netz ist sein\n"
             "zweites Nervensystem. Es kann anhand der\n"
             "feinen Vibrationen der Netzfäden bestim-\n"
             "men, welche Beute sich darauf befindet."),
+#else
+            "The web it spins can be considered its\n"
+            "second nervous system. It is said that a\n"
+            "Spinarak determines its prey by the tiny\n"
+            "vibrations it feels through the web."),
+#endif
         .pokemonScale = 414,
         .pokemonOffset = 21,
         .trainerScale = 256,
@@ -1430,17 +1719,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
         .abilities = { ABILITY_SWARM, ABILITY_INSOMNIA, ABILITY_SNIPER },
         .bodyColor = BODY_COLOR_RED,
+#if GERMAN
         .speciesName = _("Ariados"),
+#else
+        .speciesName = _("ARIADOS"),
+#endif
         .cryId = CRY_ARIADOS,
         .natDexNum = NATIONAL_DEX_ARIADOS,
+#if GERMAN
         .categoryName = _("Langbein"),
+#else
+        .categoryName = _("Long Leg"),
+#endif
         .height = 11,
         .weight = 335,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Ariados hat kleine hakenförmige Krallen\n"
             "an seinen Füßen. Damit kann es an Decken\n"
             "und Wänden entlang flitzen. Es erdrückt\n"
             "seine Gegner mit starkem Seidenfaden."),
+#else
+            "Its feet are tipped with tiny hooked claws\n"
+            "that enable it to scuttle on ceilings and\n"
+            "vertical walls. It constricts its foe with\n"
+            "thin and strong silk webbing."),
+#endif
         .pokemonScale = 316,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -1501,17 +1805,28 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2),
         .abilities = { ABILITY_VOLT_ABSORB, ABILITY_ILLUMINATE, ABILITY_WATER_ABSORB },
         .bodyColor = BODY_COLOR_BLUE,
+#if GERMAN
         .speciesName = _("Lampi"),
+#else
+        .speciesName = _("CHINCHOU"),
+#endif
         .cryId = CRY_CHINCHOU,
         .natDexNum = NATIONAL_DEX_CHINCHOU,
         .categoryName = _("Angler"),
         .height = 5,
         .weight = 120,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Bei Gefahr entlädt es positive und\n"
             "negative Ladungen zwischen seinen\n"
             "Antennen. Es lebt so tief verborgen,\n"
             "dass es kein Sonnenlicht kennt."),
+#else
+            "When it senses danger, it discharges\n"
+            "positive and negative electricity from its\n"
+            "two antennae. It lives in depths beyond\n"
+            "sunlight's reach."),
+#endif
         .pokemonScale = 424,
         .pokemonOffset = -2,
         .trainerScale = 256,
@@ -1575,17 +1890,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2),
         .abilities = { ABILITY_VOLT_ABSORB, ABILITY_ILLUMINATE, ABILITY_WATER_ABSORB },
         .bodyColor = BODY_COLOR_BLUE,
+#if GERMAN
         .speciesName = _("Lanturn"),
+#else
+        .speciesName = _("LANTURN"),
+#endif
         .cryId = CRY_LANTURN,
         .natDexNum = NATIONAL_DEX_LANTURN,
+#if GERMAN
         .categoryName = _("Leuchte"),
+#else
+        .categoryName = _("Light"),
+#endif
         .height = 12,
         .weight = 225,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Seine Leuchten sind sehr stark. Sie\n"
             "wurden aus Teilen seiner Rückenflosse\n"
             "gebildet. Lanturn erhellt die finstersten\n"
             "Meeresgründe."),
+#else
+            "The light-emitting orbs on its back are\n"
+            "very bright. They are formed from a part of\n"
+            "its dorsal fin. This Pokémon illuminates\n"
+            "the inky darkness of deep seas."),
+#endif
         .pokemonScale = 269,
         .pokemonOffset = 6,
         .trainerScale = 256,
@@ -1651,17 +1981,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_HUSTLE, ABILITY_SERENE_GRACE, ABILITY_SUPER_LUCK },
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
+#if GERMAN
         .speciesName = _("Togepi"),
+#else
+        .speciesName = _("TOGEPI"),
+#endif
         .cryId = CRY_TOGEPI,
         .natDexNum = NATIONAL_DEX_TOGEPI,
+#if GERMAN
         .categoryName = _("Zackenball"),
+#else
+        .categoryName = _("Spike Ball"),
+#endif
         .height = 3,
         .weight = 15,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Togepi nutzt die positiven Emotionen, wie\n"
             "Freude und Mitgefühl, von Menschen und\n"
             "Pokémon als Energie. Es speichert Glücks-\n"
             "gefühle in seiner Schale und teilt sie."),
+#else
+            "As its energy, it uses the feelings of\n"
+            "compassion and pleasure exuded by\n"
+            "people and Pokémon. It stores up happy\n"
+            "feelings in its shell, then shares them out."),
+#endif
         .pokemonScale = 507,
         .pokemonOffset = 23,
         .trainerScale = 256,
@@ -1721,17 +2066,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_HUSTLE, ABILITY_SERENE_GRACE, ABILITY_SUPER_LUCK },
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
+#if GERMAN
         .speciesName = _("Togetic"),
+#else
+        .speciesName = _("TOGETIC"),
+#endif
         .cryId = CRY_TOGETIC,
         .natDexNum = NATIONAL_DEX_TOGETIC,
+#if GERMAN
         .categoryName = _("Freude"),
+#else
+        .categoryName = _("Happiness"),
+#endif
         .height = 6,
         .weight = 32,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Togetic ist ein Pokémon, das Glück\n"
             "bringt. Wenn es jemanden trifft, der\n"
             "reinen Herzens ist, zeigt es sich und\n"
             "teilt sein Glück mit dieser Person."),
+#else
+            "It is said to be a Pokémon that brings good\n"
+            "fortune. When it spots someone who is pure\n"
+            "of heart, a Togetic appears and shares its\n"
+            "happiness with that person."),
+#endif
         .pokemonScale = 424,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -1800,16 +2160,31 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_HUSTLE, ABILITY_SERENE_GRACE, ABILITY_SUPER_LUCK },
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
+#if GERMAN
         .speciesName = _("Togekiss"),
+#else
+        .speciesName = _("TOGEKISS"),
+#endif
         .cryId = CRY_TOGEKISS,
         .natDexNum = NATIONAL_DEX_TOGEKISS,
+#if GERMAN
         .categoryName = _("Jubilierer"),
+#else
+        .categoryName = _("Jubilee"),
+#endif
         .height = 15,
         .weight = 380,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Es heißt, Togekiss erscheine in\n"
             "friedlichen Zeiten und verteile alle\n"
             "möglichen Wohltaten."),
+#else
+            "As everyone knows, it visits peaceful\n"
+            "regions, bringing them gifts of kindness\n"
+            "and sweet blessings. It will never appear\n"
+            "where there is strife."),
+#endif
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -1874,17 +2249,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
         .abilities = { ABILITY_SYNCHRONIZE, ABILITY_EARLY_BIRD, ABILITY_MAGIC_BOUNCE },
         .bodyColor = BODY_COLOR_GREEN,
+#if GERMAN
         .speciesName = _("Natu"),
+#else
+        .speciesName = _("NATU"),
+#endif
         .cryId = CRY_NATU,
         .natDexNum = NATIONAL_DEX_NATU,
+#if GERMAN
         .categoryName = _("Kleinvogel"),
+#else
+        .categoryName = _("Tiny Bird"),
+#endif
         .height = 2,
         .weight = 20,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Natu klettert auf kleine Bäume in der\n"
         "Wüste, um die neuen Triebe anzuknabbern.\n"
         "Seine Augen scheinen stets etwas zu\n"
         "beobachten."),
+#else
+            "It runs up short trees that grow on the\n"
+            "savanna to peck at new shoots.\n"
+            "A Natu's eyes look as if they are\n"
+            "always observing something."),
+#endif
         .pokemonScale = 610,
         .pokemonOffset = 25,
         .trainerScale = 256,
@@ -1948,17 +2338,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
         .abilities = { ABILITY_SYNCHRONIZE, ABILITY_EARLY_BIRD, ABILITY_MAGIC_BOUNCE },
         .bodyColor = BODY_COLOR_GREEN,
+#if GERMAN
         .speciesName = _("Xatu"),
+#else
+        .speciesName = _("XATU"),
+#endif
         .cryId = CRY_XATU,
         .natDexNum = NATIONAL_DEX_XATU,
+#if GERMAN
         .categoryName = _("Mystik"),
+#else
+        .categoryName = _("Mystic"),
+#endif
         .height = 15,
         .weight = 150,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Es kann in die Zukunft blicken.\n"
             "Menschen unterschiedlicher Nationen\n"
             "glaubten lange Zeit, dass Xatu ein\n"
             "Abgesandter einer anderen Welt sei."),
+#else
+            "It has the enigmatic power of foreseeing\n"
+            "the future. Some people in different lands\n"
+            "have long believed that Xatu are\n"
+            "emissaries from another world."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 6,
         .trainerScale = 318,
@@ -2035,17 +2440,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_STATIC, ABILITY_NONE, ABILITY_PLUS },
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
+#if GERMAN
         .speciesName = _("Voltilamm"),
+#else
+        .speciesName = _("MAREEP"),
+#endif
         .cryId = CRY_MAREEP,
         .natDexNum = NATIONAL_DEX_MAREEP,
+#if GERMAN
         .categoryName = _("Wolle"),
+#else
+        .categoryName = _("Wool"),
+#endif
         .height = 6,
         .weight = 78,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Voltilamms flauschiges, wollenes Fell er-\n"
             "zeugt durch Reibung statische Aufladung.\n"
             "Je höher die elektrische Ladung wird,\n"
             "desto heller leuchtet seine Glühbirne."),
+#else
+            "Its fluffy wool rubs together and builds\n"
+            "a static charge. The more energy is\n"
+            "charged, the more brightly the lightbulb\n"
+            "at the tip of its tail glows."),
+#endif
         .pokemonScale = 379,
         .pokemonOffset = 18,
         .trainerScale = 256,
@@ -2108,17 +2528,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_FIELD),
         .abilities = { ABILITY_STATIC, ABILITY_NONE, ABILITY_PLUS },
         .bodyColor = BODY_COLOR_PINK,
+#if GERMAN
         .speciesName = _("Waaty"),
+#else
+        .speciesName = _("FLAAFFY"),
+#endif
         .cryId = CRY_FLAAFFY,
         .natDexNum = NATIONAL_DEX_FLAAFFY,
+#if GERMAN
         .categoryName = _("Wolle"),
+#else
+        .categoryName = _("Wool"),
+#endif
         .height = 8,
         .weight = 133,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Die Qualität von Waatys Wolle verändert\n"
             "sich, so dass mit wenig Wolle große Auf-\n"
             "ladungen erzeugt werden. Die kahlen Stel-\n"
             "len sind gegen Elektrizität abgeschirmt."),
+#else
+            "Its fleece quality changes to generate\n"
+            "strong static electricity with a small\n"
+            "amount of wool. The bare, slick parts of its\n"
+            "hide are shielded against electricity."),
+#endif
         .pokemonScale = 372,
         .pokemonOffset = 15,
         .trainerScale = 256,
@@ -2186,17 +2621,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_FIELD),
         .abilities = { ABILITY_STATIC, ABILITY_NONE, ABILITY_PLUS },
         .bodyColor = BODY_COLOR_YELLOW,
+#if GERMAN
         .speciesName = _("Ampharos"),
+#else
+        .speciesName = _("AMPHAROS"),
+#endif
         .cryId = CRY_AMPHAROS,
         .natDexNum = NATIONAL_DEX_AMPHAROS,
+#if GERMAN
         .categoryName = _("Leuchte"),
+#else
+        .categoryName = _("Light"),
+#endif
         .height = 14,
         .weight = 615,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Es Licht ist so stark, dass es sogar aus\n"
         "dem Weltraum gesehen werden kann. In der\n"
         "Antike benutzten die Menschen sein\n"
         "Licht, um Signale auszutauschen."),
+#else
+            "It gives off so much light that it can be\n"
+            "seen even from space. People in the old\n"
+            "days used its light to send signals back\n"
+            "and forth with others far away."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -2257,21 +2707,36 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_FIELD),
         .abilities = { ABILITY_MOLD_BREAKER, ABILITY_MOLD_BREAKER, ABILITY_MOLD_BREAKER },
         .bodyColor = BODY_COLOR_YELLOW,
+#if GERMAN
         .speciesName = _("Ampharos"),
+#else
+        .speciesName = _("AMPHAROS"),
+#endif
     #if P_MODIFIED_MEGA_CRIES
         .cryId = CRY_AMPHAROS_MEGA,
     #else
         .cryId = CRY_AMPHAROS,
     #endif // P_MODIFIED_MEGA_CRIES
         .natDexNum = NATIONAL_DEX_AMPHAROS,
+#if GERMAN
         .categoryName = _("Leuchte"),
+#else
+        .categoryName = _("Light"),
+#endif
         .height = 14,
         .weight = 615,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Überschüssige Energien\n"
         "der Mega-Entwicklung haben seine\n"
         "Gene stimuliert. Dadurch wuchs das einst\n"
         "verloren gegangene Fell wieder nach."),
+#else
+            "Massive amounts of energy intensely\n"
+            "stimulated Ampharos's cells, apparently\n"
+            "awakening its long-sleeping dragon's\n"
+            "blood."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -2338,17 +2803,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_THICK_FAT, ABILITY_HUGE_POWER, ABILITY_SAP_SIPPER },
         .bodyColor = BODY_COLOR_BLUE,
+#if GERMAN
         .speciesName = _("Azurill"),
+#else
+        .speciesName = _("AZURILL"),
+#endif
         .cryId = CRY_AZURILL,
         .natDexNum = NATIONAL_DEX_AZURILL,
+#if GERMAN
         .categoryName = _("Gepunktet"),
+#else
+        .categoryName = _("Polka Dot"),
+#endif
         .height = 2,
         .weight = 20,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Azurills mit Nährstoffen gefüllter\n"
         "Schwanz ist elastisch wie ein Gummiball.\n"
         "An sonnigen Tagen treffen sie sich\n"
         "am Ufer und planschen einfach so herum."),
+#else
+            "Its tail, which is packed with nutrition,\n"
+            "is very bouncy like a rubber ball. On sunny\n"
+            "days they gather at the edge of water and\n"
+            "splash about for fun."),
+#endif
         .pokemonScale = 603,
         .pokemonOffset = 23,
         .trainerScale = 256,
@@ -2416,16 +2896,31 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FAIRY),
         .abilities = { ABILITY_THICK_FAT, ABILITY_HUGE_POWER, ABILITY_SAP_SIPPER },
         .bodyColor = BODY_COLOR_BLUE,
+#if GERMAN
         .speciesName = _("Marill"),
+#else
+        .speciesName = _("MARILL"),
+#endif
         .cryId = CRY_MARILL,
         .natDexNum = NATIONAL_DEX_MARILL,
+#if GERMAN
         .categoryName = _("Aquamaus"),
+#else
+        .categoryName = _("Aqua Mouse"),
+#endif
         .height = 4,
         .weight = 85,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Sein Fell ist wasserabweisend. Daher kann\n"
         "Marill mit hoher Geschwindigkeit, ohne vom\n"
         "Wasser gebremst zu werden, schwimmen."),
+#else
+            "Its body is covered with water-repellent\n"
+            "fur. Because of the fur, it can swim\n"
+            "through water at high speed without being\n"
+            "slowed by the water's resistance."),
+#endif
         .pokemonScale = 476,
         .pokemonOffset = 20,
         .trainerScale = 256,
@@ -2497,17 +2992,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_THICK_FAT, ABILITY_HUGE_POWER, ABILITY_SAP_SIPPER },
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = TRUE,
+#if GERMAN
         .speciesName = _("Azumarill"),
+#else
+        .speciesName = _("AZUMARILL"),
+#endif
         .cryId = CRY_AZUMARILL,
         .natDexNum = NATIONAL_DEX_AZUMARILL,
+#if GERMAN
         .categoryName = _("Aquahase"),
+#else
+        .categoryName = _("Aqua Rabbit"),
+#endif
         .height = 8,
         .weight = 285,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Azumarill ist quasi den ganzen Tag im\n"
         "Wasser. Sowohl die Farbe als auch das\n"
         "Muster seines Körpers dienen als Tarnung\n"
         "vor Feinden im Wasser."),
+#else
+            "It lives in water virtually all day long.\n"
+            "Its body color and pattern act as\n"
+            "camouflage that makes it tough for\n"
+            "enemies to spot in water."),
+#endif
         .pokemonScale = 448,
         .pokemonOffset = 16,
         .trainerScale = 256,
@@ -2569,16 +3079,27 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_STURDY, ABILITY_ROCK_HEAD, ABILITY_RATTLED },
         .bodyColor = BODY_COLOR_BROWN,
+#if GERMAN
         .speciesName = _("Mobai"),
+#else
+        .speciesName = _("BONSLY"),
+#endif
         .cryId = CRY_BONSLY,
         .natDexNum = NATIONAL_DEX_BONSLY,
         .categoryName = _("Bonsai"),
         .height = 5,
         .weight = 150,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Überschüssige Flüssigkeit leitet\n"
             "es durch die Augen ab. Es wirkt\n"
             "nur so, als würde es weinen."),
+#else
+            "Bonsly prefers an arid atmosphere.\n"
+            "In order to adjust the level of fluids\n"
+            "in its body, it exudes water from its eyes.\n"
+            "This makes it appear to be crying."),
+#endif
         .pokemonScale = 432,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -2640,17 +3161,28 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
         .abilities = { ABILITY_STURDY, ABILITY_ROCK_HEAD, ABILITY_RATTLED },
         .bodyColor = BODY_COLOR_BROWN,
+#if GERMAN
         .speciesName = _("Mogelbaum"),
+#else
+        .speciesName = _("SUDOWOODO"),
+#endif
         .cryId = CRY_SUDOWOODO,
         .natDexNum = NATIONAL_DEX_SUDOWOODO,
         .categoryName = _("Imitation"),
         .height = 12,
         .weight = 380,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Es tarnt sich als Baum, um Angriffen aus\n"
         "dem Weg zu gehen. Da seine Vorderbeine\n"
         "aber das ganze Jahr über grünen, fällt\n"
         "seine Tarnung im Winter leicht auf."),
+#else
+            "It mimics a tree to avoid being attacked\n"
+            "by enemies. But since its forelegs\n"
+            "remain green throughout the year, it is\n"
+            "easily identified as a fake in the winter."),
+#endif
         .pokemonScale = 305,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -2730,17 +3262,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_INFILTRATOR },
     #endif
         .bodyColor = BODY_COLOR_PINK,
+#if GERMAN
         .speciesName = _("Hoppspross"),
+#else
+        .speciesName = _("HOPPIP"),
+#endif
         .cryId = CRY_HOPPIP,
         .natDexNum = NATIONAL_DEX_HOPPIP,
+#if GERMAN
         .categoryName = _("Löwenzahn"),
+#else
+        .categoryName = _("Cottonweed"),
+#endif
         .height = 4,
         .weight = 5,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Es lässt sich vom Wind treiben. Bemerkt\n"
         "es, dass ein Sturm aufkommt, verbindet es\n"
         "seine Blätter mit anderen seiner Art,\n"
         "damit es nicht davongeweht wird."),
+#else
+            "This Pokémon drifts and floats with the\n"
+            "wind. If it senses the approach of strong\n"
+            "winds, a Hoppip links leaves with others\n"
+            "to prepare against being blown away."),
+#endif
         .pokemonScale = 562,
         .pokemonOffset = -7,
         .trainerScale = 256,
@@ -2805,17 +3352,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_INFILTRATOR },
     #endif
         .bodyColor = BODY_COLOR_GREEN,
+#if GERMAN
         .speciesName = _("Hubelupf"),
+#else
+        .speciesName = _("SKIPLOOM"),
+#endif
         .cryId = CRY_SKIPLOOM,
         .natDexNum = NATIONAL_DEX_SKIPLOOM,
+#if GERMAN
         .categoryName = _("Löwenzahn"),
+#else
+        .categoryName = _("Cottonweed"),
+#endif
         .height = 6,
         .weight = 10,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Hubelupfs Blume beginnt bei 18 Grad\n"
         "zu blühen. Wie weit sich die Blüte öffnet,\n"
         "hängt von der Temperatur ab. Daher wird\n"
         "es manchmal als Thermometer eingesetzt."),
+#else
+            "It blossoms when the temperature rises\n"
+            "above 64 degrees F. Because its flower's\n"
+            "blooming changes with the temperature,\n"
+            "it is sometimes used as a thermometer."),
+#endif
         .pokemonScale = 387,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -2891,17 +3453,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_INFILTRATOR },
     #endif
         .bodyColor = BODY_COLOR_BLUE,
+#if GERMAN
         .speciesName = _("Papungha"),
+#else
+        .speciesName = _("JUMPLUFF"),
+#endif
         .cryId = CRY_JUMPLUFF,
         .natDexNum = NATIONAL_DEX_JUMPLUFF,
+#if GERMAN
         .categoryName = _("Löwenzahn"),
+#else
+        .categoryName = _("Cottonweed"),
+#endif
         .height = 8,
         .weight = 30,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Papungha nutzt den Südwind, um das Meer\n"
             "zu überqueren und in ferne Länder zu flie-\n"
             "gen. Es sinkt zu Boden, wenn es während\n"
             "des Fluges auf kalte Luftschichten stößt."),
+#else
+            "Jumpluff ride warm southern winds to\n"
+            "cross the sea and fly to foreign lands.\n"
+            "This Pokémon lands when it encounters\n"
+            "cold air while it is floating."),
+#endif
         .pokemonScale = 418,
         .pokemonOffset = -4,
         .trainerScale = 256,
@@ -2964,17 +3541,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_RUN_AWAY, ABILITY_PICKUP, ABILITY_SKILL_LINK },
         .bodyColor = BODY_COLOR_PURPLE,
+#if GERMAN
         .speciesName = _("Griffel"),
+#else
+        .speciesName = _("AIPOM"),
+#endif
         .cryId = CRY_AIPOM,
         .natDexNum = NATIONAL_DEX_AIPOM,
+#if GERMAN
         .categoryName = _("Langschweif"),
+#else
+        .categoryName = _("Long Tail"),
+#endif
         .height = 8,
         .weight = 115,
         .description = COMPOUND_STRING(
+#if GERMAN
             "An Griffels Schweif befindet sich ein\n"
             "handähnliches Anhängsel, mit dem es ge-\n"
             "schickt umgehen kann. Da es häufig den\n"
             "Schweif einsetzt, sind seine Hände plump."),
+#else
+            "Its tail ends with a dexterous, handlike\n"
+            "appendage. However, because it uses the\n"
+            "tail so much, Aipom's real hands have\n"
+            "become rather clumsy."),
+#endif
         .pokemonScale = 363,
         .pokemonOffset = 6,
         .trainerScale = 256,
@@ -3048,16 +3640,31 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_TECHNICIAN, ABILITY_PICKUP, ABILITY_SKILL_LINK },
         .bodyColor = BODY_COLOR_PURPLE,
+#if GERMAN
         .speciesName = _("Ambidiffel"),
+#else
+        .speciesName = _("AMBIPOM"),
+#endif
         .cryId = CRY_AMBIPOM,
         .natDexNum = NATIONAL_DEX_AMBIPOM,
+#if GERMAN
         .categoryName = _("Langschweif"),
+#else
+        .categoryName = _("Long Tail"),
+#endif
         .height = 12,
         .weight = 203,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Ambidiffel bewohnt hohe Bäume.\n"
         "Man sagt, sie kommunizieren miteinander,\n"
         "indem sie einander beim Schweif fassen."),
+#else
+            "They live on large trees. Split into two,\n"
+            "the tails are so adept at handling and\n"
+            "doing things, Ambipom rarely uses\n"
+            "its hands now."),
+#endif
         .pokemonScale = 282,
         .pokemonOffset = 3,
         .trainerScale = 256,
@@ -3134,17 +3741,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_EARLY_BIRD },
     #endif
         .bodyColor = BODY_COLOR_YELLOW,
+#if GERMAN
         .speciesName = _("Sonnkern"),
+#else
+        .speciesName = _("SUNKERN"),
+#endif
         .cryId = CRY_SUNKERN,
         .natDexNum = NATIONAL_DEX_SUNKERN,
+#if GERMAN
         .categoryName = _("Samen"),
+#else
+        .categoryName = _("Seed"),
+#endif
         .height = 3,
         .weight = 18,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Sonnkern versucht, sich wenig zu bewegen,\n"
             "um alle gespeicherten Nährstoffe für\n"
             "seine Entwicklung aufzusparen. Außer\n"
             "Morgentau nimmt es nichts weiter zu sich."),
+#else
+            "Sunkern try to minimize movement to\n"
+            "conserve the nutrients they have stored\n"
+            "in their bodies for evolution. They will\n"
+            "not eat, subsisting only on morning dew."),
+#endif
         .pokemonScale = 541,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -3210,17 +3832,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_EARLY_BIRD },
     #endif
         .bodyColor = BODY_COLOR_YELLOW,
+#if GERMAN
         .speciesName = _("Sonnflora"),
+#else
+        .speciesName = _("SUNFLORA"),
+#endif
         .cryId = CRY_SUNFLORA,
         .natDexNum = NATIONAL_DEX_SUNFLORA,
+#if GERMAN
         .categoryName = _("Sonne"),
+#else
+        .categoryName = _("Sun"),
+#endif
         .height = 8,
         .weight = 85,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Es verwandelt Solarenergie in Nährstoffe.\n"
         "Tagsüber, wenn es warm ist, ist es aktiv.\n"
         "Wenn aber die Sonne untergegangen ist,\n"
         "hört es auf sich zu bewegen."),
+#else
+            "Sunflora convert solar energy into\n"
+            "nutrition. They are highly active in the\n"
+            "warm daytime but suddenly stop moving as\n"
+            "soon as the sun sets."),
+#endif
         .pokemonScale = 444,
         .pokemonOffset = 15,
         .trainerScale = 256,
@@ -3280,17 +3917,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
         .abilities = { ABILITY_SPEED_BOOST, ABILITY_COMPOUND_EYES, ABILITY_FRISK },
         .bodyColor = BODY_COLOR_RED,
+#if GERMAN
         .speciesName = _("Yanma"),
+#else
+        .speciesName = _("YANMA"),
+#endif
         .cryId = CRY_YANMA,
         .natDexNum = NATIONAL_DEX_YANMA,
+#if GERMAN
         .categoryName = _("Libelle"),
+#else
+        .categoryName = _("Clear Wing"),
+#endif
         .height = 12,
         .weight = 380,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Yanma hat einen Blickwinkel von 360 Grad,\n"
             "ohne die Augen zu bewegen. Es ist ein\n"
             "toller Flieger und geübt darin, im Flug\n"
             "anzuhalten oder zu wenden."),
+#else
+            "It can see 360 degrees without moving\n"
+            "its eyes. It is a great flier capable of\n"
+            "making sudden stops and turning midair to\n"
+            "quickly chase down targeted prey."),
+#endif
         .pokemonScale = 274,
         .pokemonOffset = -1,
         .trainerScale = 256,
@@ -3373,16 +4025,31 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
         .abilities = { ABILITY_SPEED_BOOST, ABILITY_TINTED_LENS, ABILITY_FRISK },
         .bodyColor = BODY_COLOR_GREEN,
+#if GERMAN
         .speciesName = _("Yanmega"),
+#else
+        .speciesName = _("YANMEGA"),
+#endif
         .cryId = CRY_YANMEGA,
         .natDexNum = NATIONAL_DEX_YANMEGA,
+#if GERMAN
         .categoryName = _("Agrion"),
+#else
+        .categoryName = _("Ogre Darner"),
+#endif
         .height = 19,
         .weight = 515,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Yanmega kann mühelos einen Erwachsenen\n"
         "umhertragen. Die Federn an seinem\n"
         "Hinterteil stabilisieren seinen Flug."),
+#else
+            "This six-legged Pokémon is easily capable\n"
+            "of transporting an adult in flight. It is\n"
+            "adept at biting apart foes while flying\n"
+            "by at high speed."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,
@@ -3466,17 +4133,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FIELD),
         .abilities = { ABILITY_DAMP, ABILITY_WATER_ABSORB, ABILITY_UNAWARE },
         .bodyColor = BODY_COLOR_BLUE,
+#if GERMAN
         .speciesName = _("Felino"),
+#else
+        .speciesName = _("WOOPER"),
+#endif
         .cryId = CRY_WOOPER,
         .natDexNum = NATIONAL_DEX_WOOPER,
+#if GERMAN
         .categoryName = _("Fisch"),
+#else
+        .categoryName = _("Water Fish"),
+#endif
         .height = 4,
         .weight = 85,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Felino lebt eigentlich im Wasser. Manchmal\n"
             "kommt es jedoch an Land, um nach Nahrung\n"
             "zu suchen. An Land bedeckt es seinen\n"
             "Körper mit einem schleimigen Giftfilm."),
+#else
+            "Wooper usually live in water but come\n"
+            "out onto land seeking food occasionally.\n"
+            "On land, they coat their bodies with a\n"
+            "gooey, toxic film."),
+#endif
         .pokemonScale = 479,
         .pokemonOffset = 21,
         .trainerScale = 256,
@@ -3549,17 +4231,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FIELD),
         .abilities = { ABILITY_DAMP, ABILITY_WATER_ABSORB, ABILITY_UNAWARE },
         .bodyColor = BODY_COLOR_BLUE,
+#if GERMAN
         .speciesName = _("Morlord"),
+#else
+        .speciesName = _("QUAGSIRE"),
+#endif
         .cryId = CRY_QUAGSIRE,
         .natDexNum = NATIONAL_DEX_QUAGSIRE,
+#if GERMAN
         .categoryName = _("Fisch"),
+#else
+        .categoryName = _("Water Fish"),
+#endif
         .height = 14,
         .weight = 750,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Morlord jagt seine Nahrung, indem es im\n"
             "Wasser sein Maul weit aufmacht und auf\n"
             "Beute wartet. Da es sich nicht bewegt,\n"
             "wird es auch nicht besonders hungrig."),
+#else
+            "A Quagsire hunts by leaving its mouth wide\n"
+            "open in water and waiting for its prey to\n"
+            "blunder in. Because it doesn't move, it\n"
+            "does not get very hungry."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -3630,9 +4327,17 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_POISON_POINT, ABILITY_WATER_ABSORB, ABILITY_UNAWARE },
         .bodyColor = BODY_COLOR_BROWN,
 #if P_SEPARATE_REGIONAL_FORMS
+#if GERMAN
         .speciesName = _("Felino-P"),
 #else
+        .speciesName = _("WOOPER-P"),
+#endif
+#else
+#if GERMAN
         .speciesName = _("Felino"),
+#else
+        .speciesName = _("WOOPER"),
+#endif
 #endif
         .cryId = CRY_WOOPER,
 #if P_SEPARATE_REGIONAL_FORMS
@@ -3640,13 +4345,24 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #else
         .natDexNum = NATIONAL_DEX_WOOPER,
 #endif
+#if GERMAN
         .categoryName = _("Giftfisch"),
+#else
+        .categoryName = _("Poison Fish"),
+#endif
         .height = 4,
         .weight = 110,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Dieses Pokémon lebt in Eiswasser. Wird es\n"
         "an Land kalt, verlässt es das Wasser und\n"
         "sucht nach Futter."),
+#else
+            "After losing a territorial struggle,\n"
+            "Wooper began living on land.\n"
+            "The Pokémon changed over time, developing\n"
+            "a poisonous film to protect its body."),
+#endif
         .pokemonScale = 479,
         .pokemonOffset = 21,
         .trainerScale = 256,
@@ -3709,17 +4425,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FIELD),
         .abilities = { ABILITY_POISON_POINT, ABILITY_WATER_ABSORB, ABILITY_UNAWARE },
         .bodyColor = BODY_COLOR_BROWN,
+#if GERMAN
         .speciesName = _("Suelord"),
+#else
+        .speciesName = _("CLODSIRE"),
+#endif
         .cryId = CRY_CLODSIRE,
         .natDexNum = NATIONAL_DEX_CLODSIRE,
+#if GERMAN
         .categoryName = _("Dornfisch"),
+#else
+        .categoryName = _("Spiny Fish"),
+#endif
         .height = 18,
         .weight = 2230,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Wird Suelord angegriffen, wehrt\n"
         "es sich, indem es dicke Stacheln ausfährt.\n"
         "Setzt es diese riskante Attacke\n"
         "ein, ist es bereit, aufs Ganze zu gehen."),
+#else
+            "When attacked, this Pokémon will\n"
+            "retaliate by sticking thick spines out\n"
+            "from its body. It's a risky move\n"
+            "that puts everything on the line."),
+#endif
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -3779,17 +4510,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_INSOMNIA, ABILITY_NONE, ABILITY_PRANKSTER },
     #endif
         .bodyColor = BODY_COLOR_BLACK,
+#if GERMAN
         .speciesName = _("Kramurx"),
+#else
+        .speciesName = _("MURKROW"),
+#endif
         .cryId = CRY_MURKROW,
         .natDexNum = NATIONAL_DEX_MURKROW,
+#if GERMAN
         .categoryName = _("Finsternis"),
+#else
+        .categoryName = _("Darkness"),
+#endif
         .height = 5,
         .weight = 21,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Kramurx wurde als vermeintlicher Über-\n"
             "bringer des Unheils gefürchtet. Es hat ein\n"
             "großes Interesse an allem, was funkelt und\n"
             "glitzert. Es stiehlt auch Ringe von Frauen."),
+#else
+            "Murkrow were feared as the alleged\n"
+            "bearers of ill fortune. It shows strong\n"
+            "interest in anything that sparkles. It will\n"
+            "even try to steal rings from women."),
+#endif
         .pokemonScale = 401,
         .pokemonOffset = -8,
         .trainerScale = 256,
@@ -3865,16 +4611,31 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
         .abilities = { ABILITY_INSOMNIA, ABILITY_SUPER_LUCK, ABILITY_MOXIE },
         .bodyColor = BODY_COLOR_BLACK,
+#if GERMAN
         .speciesName = _("Kramshef"),
+#else
+        .speciesName = _("HONCHKROW"),
+#endif
         .cryId = CRY_HONCHKROW,
         .natDexNum = NATIONAL_DEX_HONCHKROW,
+#if GERMAN
         .categoryName = _("Anführer"),
+#else
+        .categoryName = _("Big Boss"),
+#endif
         .height = 9,
         .weight = 273,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Kramshef kennt kein Erbarmen.\n"
             "Einem untergebenen Kramurx wird\n"
             "es niemals einen Fehler verzeihen."),
+#else
+            "Becoming active at night, it is known\n"
+            "to swarm with numerous Murkrow in tow.\n"
+            "It is said that it never forgives the\n"
+            "mistakes of its cronies."),
+#endif
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -3936,17 +4697,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_GRAY,
+#if GERMAN
         .speciesName = _("Traunfugil"),
+#else
+        .speciesName = _("MISDREAVUS"),
+#endif
         .cryId = CRY_MISDREAVUS,
         .natDexNum = NATIONAL_DEX_MISDREAVUS,
+#if GERMAN
         .categoryName = _("Kreischer"),
+#else
+        .categoryName = _("Screech"),
+#endif
         .height = 7,
         .weight = 10,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Traunfugil erschreckt Menschen mit einem\n"
             "markerschütternden Schrei. Mit seinen\n"
             "roten Kugeln nimmt es die Ängste seiner\n"
             "Feinde auf und wandelt sie in Nahrung um."),
+#else
+            "A Misdreavus frightens people with a\n"
+            "creepy, sobbing cry. It apparently uses\n"
+            "its red spheres to absorb the fear of foes\n"
+            "as its nutrition."),
+#endif
         .pokemonScale = 407,
         .pokemonOffset = -8,
         .trainerScale = 256,
@@ -4017,16 +4793,31 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_PURPLE,
+#if GERMAN
         .speciesName = _("Traunmagil"),
+#else
+        .speciesName = _("MISMAGIUS"),
+#endif
         .cryId = CRY_MISMAGIUS,
         .natDexNum = NATIONAL_DEX_MISMAGIUS,
+#if GERMAN
         .categoryName = _("Magisch"),
+#else
+        .categoryName = _("Magical"),
+#endif
         .height = 9,
         .weight = 44,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Traunmagils bizarrer, bannfluchartiger\n"
         "Ruf quält seine Gegner. Es verschwindet\n"
         "so plötzlich, wie es auftaucht."),
+#else
+            "Its cries sound like incantations.\n"
+            "Those hearing it are tormented by\n"
+            "headaches and hallucinations.\n"
+            "It appears where you least expect it."),
+#endif
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -4096,7 +4887,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },                                  \
         .bodyColor = BODY_COLOR_BLACK,                                                                  \
         .noFlip = _noFlip,                                                                              \
-        .speciesName = _("Icognito"),                                                                      \
+        .speciesName = _(DE_EN("Icognito", "UNOWN")),                                                      \
         .cryId = CRY_UNOWN,                                                                             \
         .natDexNum = NATIONAL_DEX_UNOWN,                                                                \
         .categoryName = _("Symbol"),                                                                    \
@@ -4191,17 +4982,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_SHADOW_TAG, ABILITY_NONE, ABILITY_TELEPATHY },
         .bodyColor = BODY_COLOR_BLUE,
+#if GERMAN
         .speciesName = _("Isso"),
+#else
+        .speciesName = _("WYNAUT"),
+#endif
         .cryId = CRY_WYNAUT,
         .natDexNum = NATIONAL_DEX_WYNAUT,
+#if GERMAN
         .categoryName = _("Strahlekind"),
+#else
+        .categoryName = _("Bright"),
+#endif
         .height = 6,
         .weight = 140,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Isso liebt süße Früchte. Geschickt\n"
             "pflückt es mit seinen ohrenartigen Armen\n"
             "Obst. Sie versammeln sich in Obstgärten,\n"
             "da sie vom Geruch angezogen werden."),
+#else
+            "A Wynaut loves to eat sweet fruits.\n"
+            "It cleverly picks fruits using its earlike\n"
+            "arms. They gather in fruit gardens, drawn\n"
+            "by the fragrance."),
+#endif
         .pokemonScale = 484,
         .pokemonOffset = 19,
         .trainerScale = 256,
@@ -4264,17 +5070,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
         .abilities = { ABILITY_SHADOW_TAG, ABILITY_NONE, ABILITY_TELEPATHY },
         .bodyColor = BODY_COLOR_BLUE,
+#if GERMAN
         .speciesName = _("Woingenau"),
+#else
+        .speciesName = _("WOBBUFFET"),
+#endif
         .cryId = CRY_WOBBUFFET,
         .natDexNum = NATIONAL_DEX_WOBBUFFET,
+#if GERMAN
         .categoryName = _("Geduld"),
+#else
+        .categoryName = _("Patient"),
+#endif
         .height = 13,
         .weight = 285,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Woingenau ist sehr ruhig. Wird jedoch sein\n"
             "schwarzer Schwanz angegriffen, schlägt es\n"
             "erbarmungslos zurück. Es lebt in Höhlen, wo\n"
             "es den Einbruch der Nacht erwartet."),
+#else
+            "Usually docile, a Wobbuffet strikes back\n"
+            "ferociously if its black tail is attacked.\n"
+            "It makes its lair in caves where it waits\n"
+            "for nightfall."),
+#endif
         .pokemonScale = 274,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -4353,17 +5174,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_INNER_FOCUS, ABILITY_EARLY_BIRD, ABILITY_SAP_SIPPER },
         .bodyColor = BODY_COLOR_YELLOW,
+#if GERMAN
         .speciesName = _("Girafarig"),
+#else
+        .speciesName = _("GIRAFARIG"),
+#endif
         .cryId = CRY_GIRAFARIG,
         .natDexNum = NATIONAL_DEX_GIRAFARIG,
+#if GERMAN
         .categoryName = _("Langhals"),
+#else
+        .categoryName = _("Long Neck"),
+#endif
         .height = 15,
         .weight = 415,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Girafarig ist ein Pflanzenfresser, denn\n"
             "es ernährt sich von Gräsern und Pflanzen.\n"
             "Beim Essen macht sein Schwanz auch\n"
             "Esslaute und gibt vor zu kauen."),
+#else
+            "A Girafarig is an herbivore--it eats\n"
+            "grass and tree shoots. While it is eating,\n"
+            "its tail makes chewing and swallowing\n"
+            "motions as if it were also eating."),
+#endif
         .pokemonScale = 281,
         .pokemonOffset = 1,
         .trainerScale = 256,
@@ -4438,17 +5274,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_CUD_CHEW, ABILITY_ARMOR_TAIL, ABILITY_SAP_SIPPER },
         .bodyColor = BODY_COLOR_BROWN,
+#if GERMAN
         .speciesName = _("Farigiraf"),
+#else
+        .speciesName = _("FARIGIRAF"),
+#endif
         .cryId = CRY_FARIGIRAF,
         .natDexNum = NATIONAL_DEX_FARIGIRAF,
+#if GERMAN
         .categoryName = _("Langhals"),
+#else
+        .categoryName = _("Long Neck"),
+#endif
         .height = 32,
         .weight = 1600,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Aufgrund der synchronisierten\n"
         "Gehirnströme von Kopf und Schweif sind\n"
         "seine Psycho-Kräfte zehnmal so stark wie\n"
         "die von Girafarig."),
+#else
+            "Now that the brain waves from the\n"
+            "head and tail are synced up, the\n"
+            "psychic power of this Pokémon is 10\n"
+            "times stronger than Girafarig's."),
+#endif
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -4504,17 +5355,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
         .abilities = { ABILITY_STURDY, ABILITY_NONE, ABILITY_OVERCOAT },
         .bodyColor = BODY_COLOR_GRAY,
+#if GERMAN
         .speciesName = _("Tannza"),
+#else
+        .speciesName = _("PINECO"),
+#endif
         .cryId = CRY_PINECO,
         .natDexNum = NATIONAL_DEX_PINECO,
+#if GERMAN
         .categoryName = _("Beutelwurm"),
+#else
+        .categoryName = _("Bagworm"),
+#endif
         .height = 6,
         .weight = 72,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Tannza hängt an Ästen und wartet auf\n"
             "Beute. Schüttelt man es bei einer\n"
             "Mahlzeit vom Baum, explodiert es ohne\n"
             "Vorwarnung."),
+#else
+            "A Pineco hangs from a tree branch and\n"
+            "waits for prey. While eating, if it is\n"
+            "disturbed by someone shaking its tree, it\n"
+            "falls on the ground and suddenly explodes."),
+#endif
         .pokemonScale = 445,
         .pokemonOffset = 2,
         .trainerScale = 256,
@@ -4578,17 +5444,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
         .abilities = { ABILITY_STURDY, ABILITY_NONE, ABILITY_OVERCOAT },
         .bodyColor = BODY_COLOR_PURPLE,
+#if GERMAN
         .speciesName = _("Forstellka"),
+#else
+        .speciesName = _("FORRETRESS"),
+#endif
         .cryId = CRY_FORRETRESS,
         .natDexNum = NATIONAL_DEX_FORRETRESS,
+#if GERMAN
         .categoryName = _("Beutelwurm"),
+#else
+        .categoryName = _("Bagworm"),
+#endif
         .height = 12,
         .weight = 1258,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Forstellka versteckt sich in seiner\n"
             "Schale. Sie öffnet sich, wenn es nach\n"
             "Beute schnappt. Dies geht jedoch so\n"
             "schnell, dass man das Innere nicht sieht."),
+#else
+            "It keeps itself inside its steel shell.\n"
+            "The shell is opened when it is catching\n"
+            "prey, but it is so quick that the shell's\n"
+            "inside cannot be seen."),
+#endif
         .pokemonScale = 293,
         .pokemonOffset = 5,
         .trainerScale = 256,
@@ -4654,17 +5535,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY, ABILITY_RATTLED },
         .bodyColor = BODY_COLOR_YELLOW,
+#if GERMAN
         .speciesName = _("Dummisel"),
+#else
+        .speciesName = _("DUNSPARCE"),
+#endif
         .cryId = CRY_DUNSPARCE,
         .natDexNum = NATIONAL_DEX_DUNSPARCE,
+#if GERMAN
         .categoryName = _("Schlange"),
+#else
+        .categoryName = _("Land Snake"),
+#endif
         .height = 15,
         .weight = 140,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Dummisel hat einen Bohrer als Schweif.\n"
             "Damit gräbt es sich rückwärts in den\n"
             "Boden. Es baut seinen Nestkomplex tief\n"
             "unter der Erdoberfläche auf."),
+#else
+            "Its drill-tipped tail is used to burrow into\n"
+            "the ground backwards. This Pokémon is\n"
+            "known to make its nest in complex shapes\n"
+            "deep under the ground."),
+#endif
         .pokemonScale = 316,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -4729,17 +5625,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY, ABILITY_RATTLED },
         .bodyColor = BODY_COLOR_YELLOW,
+#if GERMAN
         .speciesName = _("Dummimisel"),
+#else
+        .speciesName = _("DUDUNSPARCE"),
+#endif
         .cryId = CRY_DUDUNSPARCE,
         .natDexNum = NATIONAL_DEX_DUDUNSPARCE,
+#if GERMAN
         .categoryName = _("Erdschlange"),
+#else
+        .categoryName = _("Land Snake"),
+#endif
         .height = 36,
         .weight = 392,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Mit seinem harten Schweif\n"
         "höhlt es tief unter der Erde Felsgestein\n"
         "aus, um seinen Bau zu graben. Dessen\n"
         "Gänge können bis zu 10 km lang werden."),
+#else
+            "This Pokémon uses its hard tail to\n"
+            "make its nest by boring holes into\n"
+            "bedrock deep underground. The nest\n"
+            "can reach lengths of over six miles."),
+#endif
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -4794,16 +5705,31 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY, ABILITY_RATTLED },
         .bodyColor = BODY_COLOR_YELLOW,
+#if GERMAN
         .speciesName = _("Dummimisel"),
+#else
+        .speciesName = _("DUDUNSPARCE"),
+#endif
         .cryId = CRY_DUDUNSPARCE,
         .natDexNum = NATIONAL_DEX_DUDUNSPARCE,
+#if GERMAN
         .categoryName = _("Erdschlange"),
+#else
+        .categoryName = _("Land Snake"),
+#endif
         .height = 45,
         .weight = 474,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Es hat ein sehr sanftes Gemüt. Pokémon,\n"
         "die sich in sein Nest verirren, trägt\n"
         "es auf seinem Rücken zurück zum Eingang."),
+#else
+            "A recent study uncovered that the\n"
+            "number of segments a Dudunsparce's\n"
+            "body has is determined by the\n"
+            "Pokémon's genes."),
+#endif
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -4861,17 +5787,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
         .abilities = { ABILITY_HYPER_CUTTER, ABILITY_SAND_VEIL, ABILITY_IMMUNITY },
         .bodyColor = BODY_COLOR_PURPLE,
+#if GERMAN
         .speciesName = _("Skorgla"),
+#else
+        .speciesName = _("GLIGAR"),
+#endif
         .cryId = CRY_GLIGAR,
         .natDexNum = NATIONAL_DEX_GLIGAR,
+#if GERMAN
         .categoryName = _("Flugskorpi"),
+#else
+        .categoryName = _("Fly Scorpion"),
+#endif
         .height = 11,
         .weight = 648,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Skorgla segelt lautlos durch die Lüfte.\n"
         "Es verankert sich mit Hilfe der Krallen\n"
         "und riesigen Scheren am Gesicht eines\n"
         "Feindes und vergiftet ihn anschließend."),
+#else
+            "It glides without making a single sound.\n"
+            "It grasps the face of its foe using its\n"
+            "hind and large front claws, then stabs\n"
+            "with its poison barb."),
+#endif
         .pokemonScale = 350,
         .pokemonOffset = -1,
         .trainerScale = 256,
@@ -4947,16 +5888,31 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
         .abilities = { ABILITY_HYPER_CUTTER, ABILITY_SAND_VEIL, ABILITY_POISON_HEAL },
         .bodyColor = BODY_COLOR_PURPLE,
+#if GERMAN
         .speciesName = _("Skorgro"),
+#else
+        .speciesName = _("GLISCOR"),
+#endif
         .cryId = CRY_GLISCOR,
         .natDexNum = NATIONAL_DEX_GLISCOR,
+#if GERMAN
         .categoryName = _("Zahnskorpi"),
+#else
+        .categoryName = _("Fang Scorp"),
+#endif
         .height = 20,
         .weight = 425,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Skorgro fliegt völlig lautlos.\n"
         "Erst fängt es seine Beute mit seinem\n"
         "langen Schweif, dann saugt es sie aus."),
+#else
+            "Gliscor observes prey while hanging\n"
+            "upside down from branches. Its flight is\n"
+            "soundless. When the chance presents\n"
+            "itself, it swoops!"),
+#endif
         .pokemonScale = 261,
         .pokemonOffset = 1,
         .trainerScale = 334,
@@ -5022,17 +5978,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_FAIRY),
         .abilities = { ABILITY_INTIMIDATE, ABILITY_RUN_AWAY, ABILITY_RATTLED },
         .bodyColor = BODY_COLOR_PINK,
+#if GERMAN
         .speciesName = _("Snubbull"),
+#else
+        .speciesName = _("SNUBBULL"),
+#endif
         .cryId = CRY_SNUBBULL,
         .natDexNum = NATIONAL_DEX_SNUBBULL,
+#if GERMAN
         .categoryName = _("Fee"),
+#else
+        .categoryName = _("Fairy"),
+#endif
         .height = 6,
         .weight = 78,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Indem es seine Zähne fletscht und ein\n"
             "Furcht erregendes Gesicht macht, schlägt\n"
             "Snubbull kleinere Pokémon in die Flucht.\n"
             "Darüber ist es jedoch etwas traurig."),
+#else
+            "By baring its fangs and making a scary\n"
+            "face, it sends smaller Pokémon scurrying\n"
+            "in terror. The Snubbull does seem a\n"
+            "little sad at making its foes flee."),
+#endif
         .pokemonScale = 465,
         .pokemonOffset = 19,
         .trainerScale = 256,
@@ -5098,17 +6069,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_RATTLED },
     #endif
         .bodyColor = BODY_COLOR_PURPLE,
+#if GERMAN
         .speciesName = _("Granbull"),
+#else
+        .speciesName = _("GRANBULL"),
+#endif
         .cryId = CRY_GRANBULL,
         .natDexNum = NATIONAL_DEX_GRANBULL,
+#if GERMAN
         .categoryName = _("Fee"),
+#else
+        .categoryName = _("Fairy"),
+#endif
         .height = 14,
         .weight = 487,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Granbull besitzt einen besonders aus-\n"
             "geprägten Unterkiefer. Wegen seiner\n"
             "schweren Zähne wackelt es mit dem Kopf.\n"
             "Es beißt nur zu, wenn es erschreckt wird."),
+#else
+            "It has a particularly well-developed lower\n"
+            "jaw. The huge fangs are heavy, causing\n"
+            "it to tilt its head. Unless it is startled,\n"
+            "it will not try to bite."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -5173,17 +6159,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2),
         .abilities = { ABILITY_POISON_POINT, ABILITY_SWIFT_SWIM, ABILITY_INTIMIDATE },
         .bodyColor = BODY_COLOR_GRAY,
+#if GERMAN
         .speciesName = _("Baldorfish"),
+#else
+        .speciesName = _("QWILFISH"),
+#endif
         .cryId = CRY_QWILFISH,
         .natDexNum = NATIONAL_DEX_QWILFISH,
+#if GERMAN
         .categoryName = _("Ballon"),
+#else
+        .categoryName = _("Balloon"),
+#endif
         .height = 5,
         .weight = 39,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Baldorfish saugt Wasser ein, um sich auf-\n"
             "zublasen. Es nutzt den Druck des Wassers\n"
             "dazu, Giftstacheln aus seinem Körper zu\n"
             "verschießen. Schwimmen fällt ihm schwer."),
+#else
+            "A Qwilfish uses the pressure of water\n"
+            "it swallows to shoot toxic quills all at\n"
+            "once from all over its body. It finds\n"
+            "swimming to be somewhat challenging."),
+#endif
         .pokemonScale = 430,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -5251,9 +6252,17 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = TRUE,
 #if P_SEPARATE_REGIONAL_FORMS
+#if GERMAN
         .speciesName = _("Baldorfish-H"),
 #else
+        .speciesName = _("QWILFISH-H"),
+#endif
+#else
+#if GERMAN
         .speciesName = _("Baldorfish"),
+#else
+        .speciesName = _("QWILFISH"),
+#endif
 #endif
         .cryId = CRY_QWILFISH,
 #if P_SEPARATE_REGIONAL_FORMS
@@ -5261,14 +6270,25 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #else
         .natDexNum = NATIONAL_DEX_QWILFISH,
 #endif
+#if GERMAN
         .categoryName = _("Ballon"),
+#else
+        .categoryName = _("Balloon"),
+#endif
         .height = 5,
         .weight = 39,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Es lebt ufernah in Gewässern kalter\n"
         "Gefilde. Verglichen mit den Baldorfish\n"
         "anderer Regionen sind seine Giftstacheln\n"
         "dicker und kürzer."),
+#else
+            "A form of Qwilfish from the distant past.\n"
+            "Fishers detest this troublesome Pokémon\n"
+            "because it sprays poison from its spines,\n"
+            "getting it everywhere."),
+#endif
         .pokemonScale = 430,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -5333,17 +6353,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_POISON_POINT, ABILITY_SWIFT_SWIM, ABILITY_INTIMIDATE },
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = TRUE,
+#if GERMAN
         .speciesName = _("Myriador"),
+#else
+        .speciesName = _("OVERQWIL"),
+#endif
         .cryId = CRY_OVERQWIL,
         .natDexNum = NATIONAL_DEX_OVERQWIL,
+#if GERMAN
         .categoryName = _("Tausenddorn"),
+#else
+        .categoryName = _("Pin Cluster"),
+#endif
         .height = 25,
         .weight = 605,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Sein brutales Wesen sowie\n"
         "die speergleichen Stacheln haben ihm\n"
         "den Beinamen “Meeresdämon” beschert. Es\n"
         "schlürft Gift, das ihm als Nahrung dient."),
+#else
+            "Its lancelike spikes and savage\n"
+            "temperament have earned it the\n"
+            "nickname “Sea Fiend”.\n"
+            "It slurps up poison to nourish itself."),
+#endif
         .pokemonScale = 257,
         .pokemonOffset = 10,
         .trainerScale = 423,
@@ -5406,17 +6441,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_STURDY, ABILITY_NONE, ABILITY_CONTRARY },
     #endif
         .bodyColor = BODY_COLOR_YELLOW,
+#if GERMAN
         .speciesName = _("Pottrott"),
+#else
+        .speciesName = _("SHUCKLE"),
+#endif
         .cryId = CRY_SHUCKLE,
         .natDexNum = NATIONAL_DEX_SHUCKLE,
+#if GERMAN
         .categoryName = _("Schimmel"),
+#else
+        .categoryName = _("Mold"),
+#endif
         .height = 6,
         .weight = 205,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Pottrott versteckt sich unter\n"
         "Steinen, wenn es gesammelte Beeren zu\n"
         "sich nimmt. Die Beeren vermischen sich mit\n"
         "seinen Körperflüssigkeiten zu einem Saft."),
+#else
+            "A Shuckle hides under rocks, keeping its\n"
+            "body concealed inside its shell while\n"
+            "eating stored berries. The berries mix with\n"
+            "its body fluids to become a juice."),
+#endif
         .pokemonScale = 485,
         .pokemonOffset = 18,
         .trainerScale = 256,
@@ -5476,17 +6526,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
         .abilities = { ABILITY_SWARM, ABILITY_GUTS, ABILITY_MOXIE },
         .bodyColor = BODY_COLOR_BLUE,
+#if GERMAN
         .speciesName = _("Skaraborn"),
+#else
+        .speciesName = _("HERACROSS"),
+#endif
         .cryId = CRY_HERACROSS,
         .natDexNum = NATIONAL_DEX_HERACROSS,
+#if GERMAN
         .categoryName = _("Einzelhorn"),
+#else
+        .categoryName = _("Single Horn"),
+#endif
         .height = 15,
         .weight = 540,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Es versammelt sich mit seinen\n"
         "Artgenossen im Wald, um nach Baumharz\n"
         "zu suchen. Skaraborn ist stolz auf\n"
         "sein Horn, mit dem es Gegner herumwirft."),
+#else
+            "They gather in forests seeking the sweet\n"
+            "sap of trees. It is completely clad in a\n"
+            "steel-hard shell. It is proud of its horn,\n"
+            "which it uses to fling foes."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -5564,20 +6629,35 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
         .abilities = { ABILITY_SKILL_LINK, ABILITY_SKILL_LINK, ABILITY_SKILL_LINK },
         .bodyColor = BODY_COLOR_BLUE,
+#if GERMAN
         .speciesName = _("Skaraborn"),
+#else
+        .speciesName = _("HERACROSS"),
+#endif
     #if P_MODIFIED_MEGA_CRIES
         .cryId = CRY_HERACROSS_MEGA,
     #else
         .cryId = CRY_HERACROSS,
     #endif // P_MODIFIED_MEGA_CRIES
         .natDexNum = NATIONAL_DEX_HERACROSS,
+#if GERMAN
         .categoryName = _("Einzelhorn"),
+#else
+        .categoryName = _("Single Horn"),
+#endif
         .height = 17,
         .weight = 625,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Der Klammergriff seiner beiden Hörner\n"
             "ermöglicht es ihm, das 500-fache seines\n"
             "Körpergewichts zu tragen."),
+#else
+            "A tremendous influx of energy builds it up,\n"
+            "but when Mega Evolution ends, Heracross\n"
+            "is bothered by terrible soreness in its\n"
+            "muscles."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -5642,17 +6722,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_INNER_FOCUS, ABILITY_KEEN_EYE, ABILITY_PICKPOCKET },
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = TRUE,
+#if GERMAN
         .speciesName = _("Sniebel"),
+#else
+        .speciesName = _("SNEASEL"),
+#endif
         .cryId = CRY_SNEASEL,
         .natDexNum = NATIONAL_DEX_SNEASEL,
+#if GERMAN
         .categoryName = _("Stichklaue"),
+#else
+        .categoryName = _("Sharp Claw"),
+#endif
         .height = 9,
         .weight = 280,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Sniebel klettert an Bäumen hoch, indem es\n"
             "seine Krallen in die Rinde schlägt. Es\n"
             "sucht nach unbewachten Nestern und\n"
             "stiehlt die Eier, wenn die Eltern weg sind."),
+#else
+            "A Sneasel scales trees by punching its\n"
+            "hooked claws into the bark. It seeks out\n"
+            "unguarded nests and steals eggs for food\n"
+            "while the parents are away."),
+#endif
         .pokemonScale = 413,
         .pokemonOffset = -3,
         .trainerScale = 256,
@@ -5734,16 +6829,31 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_PICKPOCKET },
         .bodyColor = BODY_COLOR_BLACK,
+#if GERMAN
         .speciesName = _("Snibunna"),
+#else
+        .speciesName = _("WEAVILE"),
+#endif
         .cryId = CRY_WEAVILE,
         .natDexNum = NATIONAL_DEX_WEAVILE,
+#if GERMAN
         .categoryName = _("Stichklaue"),
+#else
+        .categoryName = _("Sharp Claw"),
+#endif
         .height = 11,
         .weight = 340,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Es lebt in schneereichen Gebieten.\n"
             "Snibunna senden einander Signale,\n"
             "indem sie Zeichen in Rinde ritzen."),
+#else
+            "They travel in groups of four or five,\n"
+            "leaving signs for one another on trees\n"
+            "and rocks. They bring down their prey\n"
+            "with coordinated attacks."),
+#endif
         .pokemonScale = 320,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -5817,9 +6927,17 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = TRUE,
 #if P_SEPARATE_REGIONAL_FORMS
+#if GERMAN
         .speciesName = _("Sniebel-H"),
 #else
+        .speciesName = _("SNEASEL-H"),
+#endif
+#else
+#if GERMAN
         .speciesName = _("Sniebel"),
+#else
+        .speciesName = _("SNEASEL"),
+#endif
 #endif
         .cryId = CRY_SNEASEL,
 #if P_SEPARATE_REGIONAL_FORMS
@@ -5827,14 +6945,25 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #else
         .natDexNum = NATIONAL_DEX_SNEASEL,
 #endif
+#if GERMAN
         .categoryName = _("Stichklaue"),
+#else
+        .categoryName = _("Sharp Claw"),
+#endif
         .height = 9,
         .weight = 270,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Seine robusten Krallen eignen sich ideal\n"
         "dazu, steile Felswände zu erklimmen. Von\n"
         "den Spitzen tropft Gift, welches die\n"
         "Nerven seiner Beute lähmt."),
+#else
+            "Its sturdy, curved claws are ideal for\n"
+            "traversing precipitous cliffs. From the\n"
+            "tips of these claws drips a venom that\n"
+            "infiltrates the nerves of any prey caught."),
+#endif
         .pokemonScale = 413,
         .pokemonOffset = -3,
         .trainerScale = 256,
@@ -5912,17 +7041,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_PRESSURE, ABILITY_UNBURDEN, ABILITY_POISON_TOUCH },
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = TRUE,
+#if GERMAN
         .speciesName = _("Snieboss"),
+#else
+        .speciesName = _("SNEASLER"),
+#endif
         .cryId = CRY_SNEASLER,
         .natDexNum = NATIONAL_DEX_SNEASLER,
+#if GERMAN
         .categoryName = _("Kletterei"),
+#else
+        .categoryName = _("Free Climb"),
+#endif
         .height = 13,
         .weight = 430,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Im frostigen Hochland kann diesem\n"
             "Einzelgänger kein Pokémon das Wasser\n"
             "reichen, da er neben starkem Gift über\n"
             "herausragende Fähigkeiten verfügt."),
+#else
+            "Because of its wicked poison and daunting\n"
+            "physical prowess, no other species could\n"
+            "hope to best it on frozen highlands. It\n"
+            "prefers solitude and doesn't form packs."),
+#endif
         .pokemonScale = 272,
         .pokemonOffset = 3,
         .trainerScale = 256,
@@ -5984,17 +7128,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     #endif
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
+#if GERMAN
         .speciesName = _("Teddiursa"),
+#else
+        .speciesName = _("TEDDIURSA"),
+#endif
         .cryId = CRY_TEDDIURSA,
         .natDexNum = NATIONAL_DEX_TEDDIURSA,
+#if GERMAN
         .categoryName = _("Kleinbär"),
+#else
+        .categoryName = _("Little Bear"),
+#endif
         .height = 6,
         .weight = 88,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Teddiursa leckt gern seine mit Honig be-\n"
             "deckten Pranken ab. Es bereitet seinen\n"
             "eigenen Honig zu, indem es die von Bibor\n"
             "gesammelten Früchte und Pollen vermengt."),
+#else
+            "It licks its palms that are sweetened by\n"
+            "being soaked in honey. A Teddiursa makes\n"
+            "its own honey by blending fruits and pollen\n"
+            "collected by Beedrill."),
+#endif
         .pokemonScale = 455,
         .pokemonOffset = 19,
         .trainerScale = 256,
@@ -6056,17 +7215,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_GUTS, ABILITY_NONE, ABILITY_UNNERVE },
     #endif
         .bodyColor = BODY_COLOR_BROWN,
+#if GERMAN
         .speciesName = _("Ursaring"),
+#else
+        .speciesName = _("URSARING"),
+#endif
         .cryId = CRY_URSARING,
         .natDexNum = NATIONAL_DEX_URSARING,
+#if GERMAN
         .categoryName = _("Schläfer"),
+#else
+        .categoryName = _("Hibernator"),
+#endif
         .height = 18,
         .weight = 1258,
         .description = COMPOUND_STRING(
+#if GERMAN
             "In den von Ursaring bewohnten Wäldern\n"
             "gibt es viele Flüsse und Bäume, in denen\n"
             "es Nahrung findet. Es läuft täglich durch\n"
             "den Wald, um nach Essbarem zu suchen."),
+#else
+            "In forests, it is said that there are many\n"
+            "streams and towering trees where an\n"
+            "Ursaring gathers food. It walks through\n"
+            "its forest collecting food every day."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -6144,17 +7318,31 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_GUTS, ABILITY_BULLETPROOF, ABILITY_UNNERVE },
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
+#if GERMAN
         .speciesName = _("Ursaluna"),
+#else
+        .speciesName = _("URSALUNA"),
+#endif
         .cryId = CRY_URSALUNA,
         .natDexNum = NATIONAL_DEX_URSALUNA,
+#if GERMAN
         .categoryName = _("Torf"),
+#else
+        .categoryName = _("Peat"),
+#endif
         .height = 24,
         .weight = 2900,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Vermutlich ist das sumpfige Gelände\n"
         "Hisuis der Grund für seine robuste Statur\n"
         "sowie die neu errungene Fähigkeit, Torf\n"
         "nach Belieben manipulieren zu können."),
+#else
+            "Swampy terrain gives Ursaluna its burly\n"
+            "physique and newfound capacity to\n"
+            "manipulate peat at will."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 369,
@@ -6209,17 +7397,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_MINDS_EYE, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
+#if GERMAN
         .speciesName = _("Ursaluna"),
+#else
+        .speciesName = _("URSALUNA"),
+#endif
         .cryId = CRY_URSALUNA_BLOODMOON,
         .natDexNum = NATIONAL_DEX_URSALUNA,
+#if GERMAN
         .categoryName = _("Torf"),
+#else
+        .categoryName = _("Peat"),
+#endif
         .height = 27,
         .weight = 3330,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Es überquerte den Ozean\n"
         "und erreichte fremdes Land, wo es ums\n"
         "Überleben kämpfte und dabei besondere\n"
         "Fertigkeiten und Merkmale erlangte."),
+#else
+            "It crossed the sea and drifted\n"
+            "ashore in a new land. Surviving in this\n"
+            "place led it to take on a unique\n"
+            "appearance and gain special powers."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 369,
@@ -6276,17 +7479,28 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
         .abilities = { ABILITY_MAGMA_ARMOR, ABILITY_FLAME_BODY, ABILITY_WEAK_ARMOR },
         .bodyColor = BODY_COLOR_RED,
+#if GERMAN
         .speciesName = _("Schneckmag"),
+#else
+        .speciesName = _("SLUGMA"),
+#endif
         .cryId = CRY_SLUGMA,
         .natDexNum = NATIONAL_DEX_SLUGMA,
         .categoryName = _("Lava"),
         .height = 7,
         .weight = 350,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Diese Pkmn-Art lebt in vulkanischen Ge-\n"
             "bieten. Kühlt sich sein Körper ab, erhärtet\n"
             "seine Haut und es wird bewegungsunfähig.\n"
             "Daher schläft es neben Magma."),
+#else
+            "It is a species of Pokémon that lives in\n"
+            "volcanic areas. If its body cools, its skin\n"
+            "hardens and immobilizes it. To avoid that,\n"
+            "it sleeps near magma."),
+#endif
         .pokemonScale = 329,
         .pokemonOffset = 15,
         .trainerScale = 256,
@@ -6354,17 +7568,28 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_MAGMA_ARMOR, ABILITY_FLAME_BODY, ABILITY_WEAK_ARMOR },
         .bodyColor = BODY_COLOR_RED,
         .noFlip = TRUE,
+#if GERMAN
         .speciesName = _("Magcargo"),
+#else
+        .speciesName = _("MAGCARGO"),
+#endif
         .cryId = CRY_MAGCARGO,
         .natDexNum = NATIONAL_DEX_MAGCARGO,
         .categoryName = _("Lava"),
         .height = 8,
         .weight = 550,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Das Haus auf seinem Rücken\n"
         "ist erhärtetes Magma. Zehntausende\n"
         "von Jahren in Vulkankratern ließen\n"
         "den Körper von Magcargo zu Magma werden."),
+#else
+            "The shell on its back is made of hardened\n"
+            "magma. Tens of thousands of years spent\n"
+            "living in volcanic craters have turned\n"
+            "Magcargo's bodies into magma."),
+#endif
         .pokemonScale = 332,
         .pokemonOffset = 15,
         .trainerScale = 256,
@@ -6429,17 +7654,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_OBLIVIOUS, ABILITY_NONE, ABILITY_THICK_FAT },
     #endif
         .bodyColor = BODY_COLOR_BROWN,
+#if GERMAN
         .speciesName = _("Quiekel"),
+#else
+        .speciesName = _("SWINUB"),
+#endif
         .cryId = CRY_SWINUB,
         .natDexNum = NATIONAL_DEX_SWINUB,
+#if GERMAN
         .categoryName = _("Ferkel"),
+#else
+        .categoryName = _("Pig"),
+#endif
         .height = 4,
         .weight = 65,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Auf Nahrungssuche schnüffelt Quiekel am\n"
             "Boden entlang. Seine Lieblingsspeise ist\n"
             "ein Pilz, der unter verwesendem Gras\n"
             "wächst. Manchmal findet es heiße Quellen."),
+#else
+            "It roots for food by rubbing its snout\n"
+            "against the ground. Its favorite food is a\n"
+            "mushroom that grows under dried grass.\n"
+            "It occasionally roots out hot springs."),
+#endif
         .pokemonScale = 324,
         .pokemonOffset = 20,
         .trainerScale = 256,
@@ -6504,17 +7744,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_OBLIVIOUS, ABILITY_NONE, ABILITY_THICK_FAT },
     #endif
         .bodyColor = BODY_COLOR_BROWN,
+#if GERMAN
         .speciesName = _("Keifel"),
+#else
+        .speciesName = _("PILOSWINE"),
+#endif
         .cryId = CRY_PILOSWINE,
         .natDexNum = NATIONAL_DEX_PILOSWINE,
+#if GERMAN
         .categoryName = _("Schwein"),
+#else
+        .categoryName = _("Swine"),
+#endif
         .height = 11,
         .weight = 558,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Keifel hat ein dichtes Fell aus langen\n"
             "Haaren. Dadurch ist es gegen eisige Kälte\n"
             "gewappnet. Es benutzt seine Hauer, um an\n"
             "die Nahrung unter dem Eis zu gelangen."),
+#else
+            "A Piloswine is covered by a thick coat\n"
+            "of long hair for enduring freezing cold.\n"
+            "It uses its tusks to dig up food that has\n"
+            "been buried under ice."),
+#endif
         .pokemonScale = 306,
         .pokemonOffset = 10,
         .trainerScale = 256,
@@ -6595,16 +7850,31 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_OBLIVIOUS, ABILITY_SNOW_CLOAK, ABILITY_THICK_FAT },
         .bodyColor = BODY_COLOR_BROWN,
+#if GERMAN
         .speciesName = _("Mamutel"),
+#else
+        .speciesName = _("MAMOSWINE"),
+#endif
         .cryId = CRY_MAMOSWINE,
         .natDexNum = NATIONAL_DEX_MAMOSWINE,
+#if GERMAN
         .categoryName = _("Doppelstoßzahn"),
+#else
+        .categoryName = _("Twin Tusk"),
+#endif
         .height = 25,
         .weight = 2910,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Es existiert schon seit Urzeiten.\n"
             "Mamutel wurde sogar schon in\n"
             "10 000 Jahre altem Eis gefunden."),
+#else
+            "A frozen Mamoswine was dug from ice\n"
+            "dating back 10,000 years. It woke up to\n"
+            "much amazement. This Pokémon has been\n"
+            "around for a long, long, long time."),
+#endif
         .pokemonScale = 257,
         .pokemonOffset = 6,
         .trainerScale = 423,
@@ -6683,17 +7953,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_WATER_3),
         .abilities = { ABILITY_HUSTLE, ABILITY_NATURAL_CURE, ABILITY_REGENERATOR },
         .bodyColor = BODY_COLOR_PINK,
+#if GERMAN
         .speciesName = _("Corasonn"),
+#else
+        .speciesName = _("CORSOLA"),
+#endif
         .cryId = CRY_CORSOLA,
         .natDexNum = NATIONAL_DEX_CORSOLA,
+#if GERMAN
         .categoryName = _("Koralle"),
+#else
+        .categoryName = _("Coral"),
+#endif
         .height = 6,
         .weight = 50,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Corasonn lebt in den Gewässern der\n"
             "Südsee. Wird die See verschmutzt,\n"
             "entfärben sich die Korallenarme und\n"
             "zerbröseln ganz langsam."),
+#else
+            "Corsola live in warm southern seas.\n"
+            "If the sea becomes polluted, the beautiful\n"
+            "coral stalks become discolored and crumble\n"
+            "away in tatters."),
+#endif
         .pokemonScale = 410,
         .pokemonOffset = 15,
         .trainerScale = 256,
@@ -6756,9 +8041,17 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_CURSED_BODY },
         .bodyColor = BODY_COLOR_WHITE,
 #if P_SEPARATE_REGIONAL_FORMS
+#if GERMAN
         .speciesName = _("Corasonn-G"),
 #else
+        .speciesName = _("CORSOLA-G"),
+#endif
+#else
+#if GERMAN
         .speciesName = _("Corasonn"),
+#else
+        .speciesName = _("CORSOLA"),
+#endif
 #endif
         .cryId = CRY_CORSOLA,
 #if P_SEPARATE_REGIONAL_FORMS
@@ -6766,14 +8059,25 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #else
         .natDexNum = NATIONAL_DEX_CORSOLA,
 #endif
+#if GERMAN
         .categoryName = _("Koralle"),
+#else
+        .categoryName = _("Coral"),
+#endif
         .height = 6,
         .weight = 5,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Man findet es oft an Orten,\n"
         "die vor langer Zeit vom Meer bedeckt\n"
         "waren. Wer es mit einem Stein verwechselt\n"
         "und herumkickt, wird verflucht."),
+#else
+            "Sudden climate change wiped out this\n"
+            "ancient kind of Corsola. With its branches,\n"
+            "it absorbs others' life-force. It curses\n"
+            "those unaware that kick it by accident."),
+#endif
         .pokemonScale = 410,
         .pokemonOffset = 15,
         .trainerScale = 256,
@@ -6837,17 +8141,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_PERISH_BODY },
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
+#if GERMAN
         .speciesName = _("Gorgasonn"),
+#else
+        .speciesName = _("CURSOLA"),
+#endif
         .cryId = CRY_CURSOLA,
         .natDexNum = NATIONAL_DEX_CURSOLA,
+#if GERMAN
         .categoryName = _("Koralle"),
+#else
+        .categoryName = _("Coral"),
+#endif
         .height = 10,
         .weight = 4,
         .description = COMPOUND_STRING(
+#if GERMAN
         "In ihm wuchs eine mysteriöse Kraft und so\n"
         "löste es sich von seinem Panzer los. Sein\n"
         "geisterhaftes Ektoplasma schützt die\n"
         "Seele im Kern."),
+#else
+            "Its shell is overflowing with its\n"
+            "heightened otherworldly energy. The\n"
+            "ectoplasm serves as protection for this\n"
+            "Pokémon's core spirit."),
+#endif
         .pokemonScale = 305,
         .pokemonOffset = 7,
         .trainerScale = 257,
@@ -6907,17 +8226,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_HUSTLE, ABILITY_NONE, ABILITY_MOODY },
     #endif
         .bodyColor = BODY_COLOR_GRAY,
+#if GERMAN
         .speciesName = _("Remoraid"),
+#else
+        .speciesName = _("REMORAID"),
+#endif
         .cryId = CRY_REMORAID,
         .natDexNum = NATIONAL_DEX_REMORAID,
+#if GERMAN
         .categoryName = _("Hochdruck"),
+#else
+        .categoryName = _("Jet"),
+#endif
         .height = 6,
         .weight = 120,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Remoraid spritzt eingesogenes Wasser\n"
             "mittels seiner Bauchmuskeln heraus, um\n"
             "fliegende Beute zu erlegen. Rückt seine\n"
             "Entwicklung näher, geht es flussabwärts."),
+#else
+            "A Remoraid uses its abdominal muscles\n"
+            "to forcefully expel swallowed water, then\n"
+            "shoot down flying prey. When evolution\n"
+            "approaches, it travels down rivers."),
+#endif
         .pokemonScale = 316,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -6981,17 +8315,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_SUCTION_CUPS, ABILITY_NONE, ABILITY_MOODY },
     #endif
         .bodyColor = BODY_COLOR_RED,
+#if GERMAN
         .speciesName = _("Octillery"),
+#else
+        .speciesName = _("OCTILLERY"),
+#endif
         .cryId = CRY_OCTILLERY,
         .natDexNum = NATIONAL_DEX_OCTILLERY,
+#if GERMAN
         .categoryName = _("Hochdruck"),
+#else
+        .categoryName = _("Jet"),
+#endif
         .height = 9,
         .weight = 285,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Octillery saugt sich mit seinen Tentakeln\n"
             "am Feind fest. Es betäubt seinen Gegner,\n"
             "bevor es ihm den Rest gibt. Ist ein Feind\n"
             "zu stark, speit es Tinte aus und flüchtet."),
+#else
+            "It ensnares its foe with its suction-\n"
+            "cupped tentacles before delivering the\n"
+            "finishing blow. If the foe turns out to be\n"
+            "too strong, it spews ink to escape."),
+#endif
         .pokemonScale = 296,
         .pokemonOffset = 3,
         .trainerScale = 256,
@@ -7066,17 +8415,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_VITAL_SPIRIT, ABILITY_HUSTLE, ABILITY_INSOMNIA },
         .bodyColor = BODY_COLOR_RED,
         .noFlip = TRUE,
+#if GERMAN
         .speciesName = _("Botogel"),
+#else
+        .speciesName = _("DELIBIRD"),
+#endif
         .cryId = CRY_DELIBIRD,
         .natDexNum = NATIONAL_DEX_DELIBIRD,
+#if GERMAN
         .categoryName = _("Lieferant"),
+#else
+        .categoryName = _("Delivery"),
+#endif
         .height = 9,
         .weight = 160,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Botogel sammelt seine Nahrung im Schweif.\n"
             "Ein Entdecker bestieg einst dank eines\n"
             "Botogels, das seine Nahrung mit ihm\n"
             "teilte, einen der höchsten Berge der Welt."),
+#else
+            "It carries food bundled up in its tail.\n"
+            "There was a famous explorer who\n"
+            "managed to scale Mt. Everest thanks\n"
+            "to a Delibird sharing its food."),
+#endif
         .pokemonScale = 293,
         .pokemonOffset = 11,
         .trainerScale = 256,
@@ -7137,16 +8501,31 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_SWIFT_SWIM, ABILITY_WATER_ABSORB, ABILITY_WATER_VEIL },
         .bodyColor = BODY_COLOR_BLUE,
+#if GERMAN
         .speciesName = _("Mantirps"),
+#else
+        .speciesName = _("MANTYKE"),
+#endif
         .cryId = CRY_MANTYKE,
         .natDexNum = NATIONAL_DEX_MANTYKE,
+#if GERMAN
         .categoryName = _("Flugrochen"),
+#else
+        .categoryName = _("Kite"),
+#endif
         .height = 10,
         .weight = 650,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Da es nah an der Meeresoberfläche\n"
             "schwimmt, kann man sein Rücken-\n"
             "muster von Schiffen aus erspähen."),
+#else
+            "When it swims close to the surface\n"
+            "of the ocean, people aboard ships are\n"
+            "able to observe the pattern on its back.\n"
+            "It often swims in a school of Remoraid."),
+#endif
         .pokemonScale = 305,
         .pokemonOffset = 7,
         .trainerScale = 257,
@@ -7214,17 +8593,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_SWIFT_SWIM, ABILITY_WATER_ABSORB, ABILITY_WATER_VEIL },
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = P_GBA_STYLE_SPECIES_GFX,
+#if GERMAN
         .speciesName = _("Mantax"),
+#else
+        .speciesName = _("MANTINE"),
+#endif
         .cryId = CRY_MANTINE,
         .natDexNum = NATIONAL_DEX_MANTINE,
+#if GERMAN
         .categoryName = _("Flugrochen"),
+#else
+        .categoryName = _("Kite"),
+#endif
         .height = 21,
         .weight = 2200,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Ist es schön, sieht man Mantax-Schwärme\n"
             "elegant über die Ozeanwellen springen.\n"
             "Durch Remoraid, die an ihm haften und ihn\n"
             "begleiten, fühlt es sich nicht belästigt."),
+#else
+            "On sunny days, schools of Mantine can be\n"
+            "seen elegantly leaping over the waves.\n"
+            "It is not bothered by the Remoraid that\n"
+            "hitches rides."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 342,
@@ -7287,17 +8681,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
         .abilities = { ABILITY_KEEN_EYE, ABILITY_STURDY, ABILITY_WEAK_ARMOR },
         .bodyColor = BODY_COLOR_GRAY,
+#if GERMAN
         .speciesName = _("Panzaeron"),
+#else
+        .speciesName = _("SKARMORY"),
+#endif
         .cryId = CRY_SKARMORY,
         .natDexNum = NATIONAL_DEX_SKARMORY,
+#if GERMAN
         .categoryName = _("Flugstahl"),
+#else
+        .categoryName = _("Armor Bird"),
+#endif
         .height = 17,
         .weight = 505,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Panzaerons Körper und Flügel sind aus\n"
             "Stahl. Einst haben die Menschen seine\n"
             "abgefallenen Federn zu Schwertern und\n"
             "Messern weiterverarbeitet."),
+#else
+            "A Pokémon that has a body and wings of\n"
+            "steel. People in the past used feathers\n"
+            "fallen from Skarmory to make swords and\n"
+            "knives."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 271,
@@ -7358,21 +8767,36 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
         .abilities = { ABILITY_KEEN_EYE, ABILITY_STURDY, ABILITY_WEAK_ARMOR },
         .bodyColor = BODY_COLOR_GRAY,
+#if GERMAN
         .speciesName = _("Panzaeron"),
+#else
+        .speciesName = _("SKARMORY"),
+#endif
     #if P_MODIFIED_MEGA_CRIES
         .cryId = CRY_SKARMORY_MEGA,
     #else
         .cryId = CRY_SKARMORY,
     #endif // P_MODIFIED_MEGA_CRIES
         .natDexNum = NATIONAL_DEX_SKARMORY,
+#if GERMAN
         .categoryName = _("Flugstahl"),
+#else
+        .categoryName = _("Armor Bird"),
+#endif
         .height = 17,
         .weight = 404,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Es fliegt schneller als der Schall. Feinde\n"
         "bläst es mit einer Druckwelle davon und\n"
         "bringt sie dann mit seinen Krallen zur\n"
         "Strecke."),
+#else
+            "Due to the effects of Mega Evolution,\n"
+            "its pincers have taken a more\n"
+            "diabolical form, ripping anything\n"
+            "they pierce to shreds."),
+#endif
         .frontPic = gMonFrontPic_SkarmoryMega,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
@@ -7420,17 +8844,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_EARLY_BIRD, ABILITY_FLASH_FIRE, ABILITY_UNNERVE },
         .bodyColor = BODY_COLOR_BLACK,
+#if GERMAN
         .speciesName = _("Hunduster"),
+#else
+        .speciesName = _("HOUNDOUR"),
+#endif
         .cryId = CRY_HOUNDOUR,
         .natDexNum = NATIONAL_DEX_HOUNDOUR,
+#if GERMAN
         .categoryName = _("Hades"),
+#else
+        .categoryName = _("Dark"),
+#endif
         .height = 6,
         .weight = 108,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Hunduster jagen in Gruppen. Sie kommuni-\n"
             "zieren miteinander über verschiedene Ge-\n"
             "heularten und treiben ihre Feinde in die\n"
             "Enge. Ihre Zusammenarbeit ist einzigartig."),
+#else
+            "Houndour communicate with each other\n"
+            "using a variety of cries to corner their\n"
+            "prey. This Pokémon's remarkable teamwork\n"
+            "is simply unparalleled."),
+#endif
         .pokemonScale = 393,
         .pokemonOffset = 16,
         .trainerScale = 256,
@@ -7488,17 +8927,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_EARLY_BIRD, ABILITY_FLASH_FIRE, ABILITY_UNNERVE },
         .bodyColor = BODY_COLOR_BLACK,
+#if GERMAN
         .speciesName = _("Hundemon"),
+#else
+        .speciesName = _("HOUNDOOM"),
+#endif
         .cryId = CRY_HOUNDOOM,
         .natDexNum = NATIONAL_DEX_HOUNDOOM,
+#if GERMAN
         .categoryName = _("Hades"),
+#else
+        .categoryName = _("Dark"),
+#endif
         .height = 14,
         .weight = 350,
         .description = COMPOUND_STRING(
+#if GERMAN
             "In einer Gruppe von Hundemon ist\n"
             "dasjenige mit den nach hinten gebogenen\n"
             "Hörnern der Anführer. Sie legen den\n"
             "Anführer durch Kämpfe fest."),
+#else
+            "In a Houndoom pack, the one with its horns\n"
+            "raked sharply back serves a leadership\n"
+            "role. They choose their leader by fighting\n"
+            "among themselves."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -7570,21 +9024,35 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_SOLAR_POWER, ABILITY_SOLAR_POWER, ABILITY_SOLAR_POWER },
         .bodyColor = BODY_COLOR_BLACK,
+#if GERMAN
         .speciesName = _("Hundemon"),
+#else
+        .speciesName = _("HOUNDOOM"),
+#endif
     #if P_MODIFIED_MEGA_CRIES
         .cryId = CRY_HOUNDOOM_MEGA,
     #else
         .cryId = CRY_HOUNDOOM,
     #endif // P_MODIFIED_MEGA_CRIES
         .natDexNum = NATIONAL_DEX_HOUNDOOM,
+#if GERMAN
         .categoryName = _("Hades"),
+#else
+        .categoryName = _("Dark"),
+#endif
         .height = 19,
         .weight = 495,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Seine extrem hohe Körpertemperatur hat\n"
         "zur Folge, dass die Spitze seiner Rute\n"
         "sowie seine roten Klauen zu schmelzen\n"
         "beginnen."),
+#else
+            "Its red claws and the tips of its tail are\n"
+            "melting from high internal temperatures\n"
+            "that are painful to Houndoom itself.\n"),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -7646,17 +9114,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_PICKUP, ABILITY_NONE, ABILITY_SAND_VEIL },
         .bodyColor = BODY_COLOR_BLUE,
+#if GERMAN
         .speciesName = _("Phanpy"),
+#else
+        .speciesName = _("PHANPY"),
+#endif
         .cryId = CRY_PHANPY,
         .natDexNum = NATIONAL_DEX_PHANPY,
+#if GERMAN
         .categoryName = _("Langrüssel"),
+#else
+        .categoryName = _("Long Nose"),
+#endif
         .height = 5,
         .weight = 335,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Phanpys große Ohren dienen als Fächer.\n"
             "Wird es ihm zu warm, fächelt es mit den\n"
             "Ohren, um sich abzukühlen. Selbst junge\n"
             "Exemplare sind schon sehr stark."),
+#else
+            "Phanpy's big ears serve as broad fans.\n"
+            "When it becomes hot, it flaps the ears\n"
+            "busily to cool down. Even the young are\n"
+            "very strong."),
+#endif
         .pokemonScale = 465,
         .pokemonOffset = 21,
         .trainerScale = 256,
@@ -7722,17 +9205,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_STURDY, ABILITY_NONE, ABILITY_SAND_VEIL },
         .bodyColor = BODY_COLOR_GRAY,
+#if GERMAN
         .speciesName = _("Donphan"),
+#else
+        .speciesName = _("DONPHAN"),
+#endif
         .cryId = CRY_DONPHAN,
         .natDexNum = NATIONAL_DEX_DONPHAN,
+#if GERMAN
         .categoryName = _("Panzer"),
+#else
+        .categoryName = _("Armor"),
+#endif
         .height = 11,
         .weight = 1200,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Donphan ist so stark, dass es selbst\n"
             "Kipplaster umwerfen kann. Seine Haut ist\n"
             "felsenhart und normale Angriffe\n"
             "hinterlassen nicht mal einen Kratzer."),
+#else
+            "A Donphan is so strong it can easily haul\n"
+            "a dump truck. Its hide has toughened to a\n"
+            "rock-hard state. An ordinary sort of\n"
+            "attack won't even leave a scratch."),
+#endif
         .pokemonScale = 313,
         .pokemonOffset = 9,
         .trainerScale = 256,
@@ -7808,17 +9306,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_SAP_SIPPER },
     #endif
         .bodyColor = BODY_COLOR_BROWN,
+#if GERMAN
         .speciesName = _("Damhirplex"),
+#else
+        .speciesName = _("STANTLER"),
+#endif
         .cryId = CRY_STANTLER,
         .natDexNum = NATIONAL_DEX_STANTLER,
+#if GERMAN
         .categoryName = _("Vielender"),
+#else
+        .categoryName = _("Big Horn"),
+#endif
         .height = 14,
         .weight = 712,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Damhirplex hat ein prächtiges Geweih, für\n"
             "das hohe Preise gezahlt werden, da es als\n"
             "Kunstwerk gilt. Daher wurde es\n"
             "gejagt und wäre beinahe ausgestorben."),
+#else
+            "Stantler's magnificent antlers were\n"
+            "once traded at high prices as works of art.\n"
+            "As a result, this Pokémon was hunted\n"
+            "close to extinction."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -7880,17 +9393,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_INTIMIDATE, ABILITY_FRISK, ABILITY_SAP_SIPPER },
         .bodyColor = BODY_COLOR_GRAY,
+#if GERMAN
         .speciesName = _("Damythir"),
+#else
+        .speciesName = _("WYRDEER"),
+#endif
         .cryId = CRY_WYRDEER,
         .natDexNum = NATIONAL_DEX_WYRDEER,
+#if GERMAN
         .categoryName = _("Vielender"),
+#else
+        .categoryName = _("Big Horn"),
+#endif
         .height = 18,
         .weight = 951,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Die schwarzen Kugeln leuchten\n"
         "ominös, wenn es unsichtbare Wände\n"
         "erschafft. Sein Barthaar ist als Material\n"
         "für warme Winterkleidung hoch geschätzt."),
+#else
+            "The black orbs shine with an uncanny light\n"
+            "when it is erecting invisible barriers.\n"
+            "The fur shed from its beard retains heat\n"
+            "and is useful for winter clothing."),
+#endif
         .pokemonScale = 267,
         .pokemonOffset = 2,
         .trainerScale = 286,
@@ -7951,17 +9479,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     #endif
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
+#if GERMAN
         .speciesName = _("Farbeagle"),
+#else
+        .speciesName = _("SMEARGLE"),
+#endif
         .cryId = CRY_SMEARGLE,
         .natDexNum = NATIONAL_DEX_SMEARGLE,
+#if GERMAN
         .categoryName = _("Maler"),
+#else
+        .categoryName = _("Painter"),
+#endif
         .height = 12,
         .weight = 580,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Farbeagle markiert sein Revier mit einer\n"
             "Flüssigkeit, die aus seiner Schweifspitze\n"
             "austritt. Es wurden über 5000 Markierun-\n"
             "gen entdeckt, die es hinterlassen hat."),
+#else
+            "A Smeargle marks its territory using a\n"
+            "fluid that leaks out from the tip of its\n"
+            "tail. About 5,000 different marks left by\n"
+            "this Pokémon have been found."),
+#endif
         .pokemonScale = 287,
         .pokemonOffset = 5,
         .trainerScale = 256,
@@ -8028,17 +9571,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_THICK_FAT, ABILITY_NONE, ABILITY_SAP_SIPPER },
     #endif
         .bodyColor = BODY_COLOR_PINK,
+#if GERMAN
         .speciesName = _("Miltank"),
+#else
+        .speciesName = _("MILTANK"),
+#endif
         .cryId = CRY_MILTANK,
         .natDexNum = NATIONAL_DEX_MILTANK,
+#if GERMAN
         .categoryName = _("Milchkuh"),
+#else
+        .categoryName = _("Milk Cow"),
+#endif
         .height = 12,
         .weight = 755,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Miltank gibt täglich 20 Liter Milch. Sie ist\n"
             "süßlich und bei Kindern und Erwachsenen\n"
             "beliebt. Menschen, die keine Milch trinken,\n"
             "essen sie stattdessen als Joghurt."),
+#else
+            "It gives over five gallons of milk daily.\n"
+            "Its sweet milk is enjoyed by children and\n"
+            "grown-ups alike. People who can't drink\n"
+            "milk turn it into yogurt and eat it instead."),
+#endif
         .pokemonScale = 280,
         .pokemonOffset = 5,
         .trainerScale = 256,
@@ -8108,17 +9666,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_VOLT_ABSORB },
     #endif
         .bodyColor = BODY_COLOR_YELLOW,
+#if GERMAN
         .speciesName = _("Raikou"),
+#else
+        .speciesName = _("RAIKOU"),
+#endif
         .cryId = CRY_RAIKOU,
         .natDexNum = NATIONAL_DEX_RAIKOU,
+#if GERMAN
         .categoryName = _("Donner"),
+#else
+        .categoryName = _("Thunder"),
+#endif
         .height = 19,
         .weight = 1780,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Raikou ist so schnell wie der Blitz. Sein\n"
             "Gebrüll sendet Schockwellen aus, die\n"
             "wie Donnerschläge durch die Luft beben\n"
             "und den Boden erschüttern."),
+#else
+            "Raikou embodies the speed of lightning.\n"
+            "Its roars send shock waves shuddering\n"
+            "through the air and ground as if\n"
+            "lightning bolts were crashing down."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 345,
@@ -8190,17 +9763,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_FLASH_FIRE },
     #endif
         .bodyColor = BODY_COLOR_BROWN,
+#if GERMAN
         .speciesName = _("Entei"),
+#else
+        .speciesName = _("ENTEI"),
+#endif
         .cryId = CRY_ENTEI,
         .natDexNum = NATIONAL_DEX_ENTEI,
+#if GERMAN
         .categoryName = _("Vulkan"),
+#else
+        .categoryName = _("Volcano"),
+#endif
         .height = 21,
         .weight = 1980,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Entei verfügt über die Leidenschaft von\n"
             "Magma. Es wurde bei einem Vulkanaus-\n"
             "bruch geboren und bringt Feuersbrünste\n"
             "hervor, die alles auslöschen."),
+#else
+            "Entei embodies the passion of magma.\n"
+            "It is thought to have been born in the\n"
+            "eruption of a volcano. It blasts fire that\n"
+            "consumes all that it touches."),
+#endif
         .pokemonScale = 259,
         .pokemonOffset = 0,
         .trainerScale = 345,
@@ -8271,16 +9859,31 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_WATER_ABSORB },
     #endif
         .bodyColor = BODY_COLOR_BLUE,
+#if GERMAN
         .speciesName = _("Suicune"),
+#else
+        .speciesName = _("SUICUNE"),
+#endif
         .cryId = CRY_SUICUNE,
         .natDexNum = NATIONAL_DEX_SUICUNE,
+#if GERMAN
         .categoryName = _("Polarlicht"),
+#else
+        .categoryName = _("Aurora"),
+#endif
         .height = 20,
         .weight = 1870,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Suicune wohnt die Reinheit einer Quelle\n"
             "inne. Es bewegt sich graziös und hat die\n"
             "Macht, schmutziges Wasser zu reinigen."),
+#else
+            "Suicune embodies the compassion of\n"
+            "a pure spring of water. It runs across\n"
+            "the land with gliding elegance. It has the\n"
+            "power to purify dirty water."),
+#endif
         .pokemonScale = 269,
         .pokemonOffset = 0,
         .trainerScale = 345,
@@ -8340,17 +9943,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER),
         .abilities = { ABILITY_GUTS, ABILITY_NONE, ABILITY_SAND_VEIL },
         .bodyColor = BODY_COLOR_GREEN,
+#if GERMAN
         .speciesName = _("Larvitar"),
+#else
+        .speciesName = _("LARVITAR"),
+#endif
         .cryId = CRY_LARVITAR,
         .natDexNum = NATIONAL_DEX_LARVITAR,
+#if GERMAN
         .categoryName = _("Felshaut"),
+#else
+        .categoryName = _("Rock Skin"),
+#endif
         .height = 6,
         .weight = 720,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Larvitar wird unter der Erde geboren.\n"
             "Um an die Oberfläche zu gelangen, muss\n"
             "es sich durch das Erdreich fressen. Erst\n"
             "dann bekommt es seine Eltern zu Gesicht."),
+#else
+            "A Larvitar is born deep under the ground.\n"
+            "It must eat its way through the soil above\n"
+            "and reach the surface for it to see its\n"
+            "parents' faces."),
+#endif
         .pokemonScale = 472,
         .pokemonOffset = 18,
         .trainerScale = 256,
@@ -8410,17 +10028,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER),
         .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_GRAY,
+#if GERMAN
         .speciesName = _("Pupitar"),
+#else
+        .speciesName = _("PUPITAR"),
+#endif
         .cryId = CRY_PUPITAR,
         .natDexNum = NATIONAL_DEX_PUPITAR,
+#if GERMAN
         .categoryName = _("Hartschale"),
+#else
+        .categoryName = _("Hard Shell"),
+#endif
         .height = 12,
         .weight = 1520,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Pupitar erzeugt in seinem Körper ein Gas,\n"
             "das es kraftvoll ausstößt, um sich wie ein\n"
             "Düsenflugzeug anzutreiben. Sein Körper\n"
             "ist sehr robust und hält Stahl stand."),
+#else
+            "A Pupitar creates a gas inside its body\n"
+            "that it ejects under compression to propel\n"
+            "itself like a jet. Its body can withstand\n"
+            "a collision with solid steel."),
+#endif
         .pokemonScale = 292,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -8483,17 +10116,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER),
         .abilities = { ABILITY_SAND_STREAM, ABILITY_NONE, ABILITY_UNNERVE },
         .bodyColor = BODY_COLOR_GREEN,
+#if GERMAN
         .speciesName = _("Despotar"),
+#else
+        .speciesName = _("TYRANITAR"),
+#endif
         .cryId = CRY_TYRANITAR,
         .natDexNum = NATIONAL_DEX_TYRANITAR,
+#if GERMAN
         .categoryName = _("Panzer"),
+#else
+        .categoryName = _("Armor"),
+#endif
         .height = 20,
         .weight = 2020,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Es ist erstaunlich stark. Es kann einen\n"
         "ganzen Berg vernichten, um sein Nest zu\n"
         "bauen. Es wandert in den Bergen umher und\n"
         "sucht nach Gegnern für einen Kampf."),
+#else
+            "A Tyranitar is so overwhelmingly powerful,\n"
+            "it can bring down a whole mountain to make\n"
+            "its nest. It roams in mountains seeking\n"
+            "new opponents to fight."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 345,
@@ -8554,21 +10202,36 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER),
         .abilities = { ABILITY_SAND_STREAM, ABILITY_SAND_STREAM, ABILITY_SAND_STREAM },
         .bodyColor = BODY_COLOR_GREEN,
+#if GERMAN
         .speciesName = _("Despotar"),
+#else
+        .speciesName = _("TYRANITAR"),
+#endif
     #if P_MODIFIED_MEGA_CRIES
         .cryId = CRY_TYRANITAR_MEGA,
     #else
         .cryId = CRY_TYRANITAR,
     #endif // P_MODIFIED_MEGA_CRIES
         .natDexNum = NATIONAL_DEX_TYRANITAR,
+#if GERMAN
         .categoryName = _("Panzer"),
+#else
+        .categoryName = _("Armor"),
+#endif
         .height = 25,
         .weight = 2550,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Die gewaltige aufgenommene\n"
         "Energie hat seine Rückenpartie\n"
         "zum Bersten gebracht. Es wird\n"
         "von blinder Zerstörungswut getrieben."),
+#else
+            "Due to the colossal power poured into it,\n"
+            "this Pokémon's back split right open. Its\n"
+            "destructive instincts are the only thing\n"
+            "keeping it moving."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 345,
@@ -8636,17 +10299,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_MULTISCALE },
         .bodyColor = BODY_COLOR_WHITE,
+#if GERMAN
         .speciesName = _("Lugia"),
+#else
+        .speciesName = _("LUGIA"),
+#endif
         .cryId = CRY_LUGIA,
         .natDexNum = NATIONAL_DEX_LUGIA,
+#if GERMAN
         .categoryName = _("Taucher"),
+#else
+        .categoryName = _("Diving"),
+#endif
         .height = 52,
         .weight = 2160,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Lugias Flügel haben eine zerstörerische\n"
             "Kraft. Bereits ein leichtes Flattern kann\n"
             "Häuser hinfortwehen. Daher hat es sich\n"
             "dafür entschieden, tief im Meer zu leben."),
+#else
+            "Lugia is so powerful even a light\n"
+            "fluttering of its wings can blow apart\n"
+            "houses. As a result, it chooses to live out\n"
+            "of sight deep under the sea."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 721,
@@ -8727,17 +10405,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_REGENERATOR },
         .bodyColor = BODY_COLOR_RED,
+#if GERMAN
         .speciesName = _("Ho-Oh"),
+#else
+        .speciesName = _("HO-OH"),
+#endif
         .cryId = CRY_HO_OH,
         .natDexNum = NATIONAL_DEX_HO_OH,
+#if GERMAN
         .categoryName = _("Regenbogen"),
+#else
+        .categoryName = _("Rainbow"),
+#endif
         .height = 38,
         .weight = 1990,
         .description = COMPOUND_STRING(
+#if GERMAN
         "Ho-Ohs Federn leuchten\n"
         "in sieben Farben, je nachdem aus welchem\n"
         "Winkel das Licht auf sie fällt. Die Federn\n"
         "sollen ihrem Besitzer Glück bringen."),
+#else
+            "Its feathers--which glow in seven colors\n"
+            "depending on the angle at which they are\n"
+            "struck by light--are thought to bring joy.\n"
+            "It is said to live at the foot of a rainbow."),
+#endif
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 610,
@@ -8807,17 +10500,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_NATURAL_CURE, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_GREEN,
+#if GERMAN
         .speciesName = _("Celebi"),
+#else
+        .speciesName = _("CELEBI"),
+#endif
         .cryId = CRY_CELEBI,
         .natDexNum = NATIONAL_DEX_CELEBI,
+#if GERMAN
         .categoryName = _("Zeitreise"),
+#else
+        .categoryName = _("Time Travel"),
+#endif
         .height = 6,
         .weight = 50,
         .description = COMPOUND_STRING(
+#if GERMAN
             "Dieses Pokémon kommt aus der Zukunft und\n"
             "ist durch die Zeit gereist. Solange Celebi\n"
             "auftaucht, ist der Menschheit angeblich\n"
             "eine rosige Zukunft beschieden."),
+#else
+            "This Pokémon came from the future by\n"
+            "crossing over time. It is thought that so\n"
+            "long as Celebi appears, a bright and\n"
+            "shining future awaits us."),
+#endif
         .pokemonScale = 393,
         .pokemonOffset = -10,
         .trainerScale = 256,

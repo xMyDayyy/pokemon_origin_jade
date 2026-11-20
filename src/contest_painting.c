@@ -64,20 +64,36 @@ static const u32 sPictureFrameTilemap_HallLobby[] = INCBIN_U32("graphics/picture
 
 static const u8 *const sContestCategoryNames_Unused[] =
 {
+#if GERMAN
     [CONTEST_CATEGORY_COOL]   = COMPOUND_STRING("Cool."),
     [CONTEST_CATEGORY_BEAUTY] = COMPOUND_STRING("Schön."),
     [CONTEST_CATEGORY_CUTE]   = COMPOUND_STRING("Anmut"),
     [CONTEST_CATEGORY_SMART]  = COMPOUND_STRING("Klug."),
     [CONTEST_CATEGORY_TOUGH]  = COMPOUND_STRING("Stärke"),
+#else
+    [CONTEST_CATEGORY_COOL]   = COMPOUND_STRING("COOLNESS"),
+    [CONTEST_CATEGORY_BEAUTY] = COMPOUND_STRING("BEAUTY"),
+    [CONTEST_CATEGORY_CUTE]   = COMPOUND_STRING("CUTENESS"),
+    [CONTEST_CATEGORY_SMART]  = COMPOUND_STRING("SMARTNESS"),
+    [CONTEST_CATEGORY_TOUGH]  = COMPOUND_STRING("TOUGHNESS"),
+#endif
 };
 
 static const u8 *const sContestRankNames[] =
 {
+#if GERMAN
     [CONTEST_RANK_NORMAL] = COMPOUND_STRING("Normal-Klasse"),
     [CONTEST_RANK_SUPER]  = COMPOUND_STRING("Super-Klasse"),
     [CONTEST_RANK_HYPER]  = COMPOUND_STRING("Hyper-Klasse"),
     [CONTEST_RANK_MASTER] = COMPOUND_STRING("Master-Klasse"),
     [CONTEST_RANK_LINK]   = COMPOUND_STRING("Link"),
+#else
+    [CONTEST_RANK_NORMAL] = COMPOUND_STRING("NORMAL RANK"),
+    [CONTEST_RANK_SUPER]  = COMPOUND_STRING("SUPER RANK"),
+    [CONTEST_RANK_HYPER]  = COMPOUND_STRING("HYPER RANK"),
+    [CONTEST_RANK_MASTER] = COMPOUND_STRING("MASTER RANK"),
+    [CONTEST_RANK_LINK]   = COMPOUND_STRING("LINK"),
+#endif
 };
 
 static const struct BgTemplate sBgTemplates[] =
@@ -106,6 +122,7 @@ static const struct WindowTemplate sWindowTemplate =
 
 static const u8 *const sMuseumCaptions[NUM_PAINTING_CAPTIONS * CONTEST_CATEGORIES_COUNT] =
 {
+#if GERMAN
     [0 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_COOL]   = COMPOUND_STRING("Super-mega-cool ist\ndieses umwerfende {STR_VAR_1}"),
     [1 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_COOL]   = COMPOUND_STRING("Das anbetungswürdige\nPokémon: {STR_VAR_1}"),
     [2 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_COOL]   = COMPOUND_STRING("Phantastisch, großartig -\nschlicht brillant: {STR_VAR_1}"),
@@ -121,6 +138,23 @@ static const u8 *const sMuseumCaptions[NUM_PAINTING_CAPTIONS * CONTEST_CATEGORIE
     [0 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_TOUGH]  = COMPOUND_STRING("Der energische, kraftstrotzende\nÜberflieger: {STR_VAR_1}"),
     [1 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_TOUGH]  = COMPOUND_STRING("Stark, stärker, am stärksten -\ndas allerstärkste {STR_VAR_1}"),
     [2 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_TOUGH]  = COMPOUND_STRING("Das mächtige, prächtige - das\nstärkste Pokémon: {STR_VAR_1}"),
+#else
+    [0 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_COOL]   = COMPOUND_STRING("Nonstop supercool--\nthe inestimable {STR_VAR_1}"),
+    [1 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_COOL]   = COMPOUND_STRING("Hey, there!\nThe good-looking POKéMON {STR_VAR_1}"),
+    [2 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_COOL]   = COMPOUND_STRING("The marvelous, wonderful, and\nvery great {STR_VAR_1}"),
+    [0 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_BEAUTY] = COMPOUND_STRING("This century's last Venus--\nthe beautiful {STR_VAR_1}"),
+    [1 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_BEAUTY] = COMPOUND_STRING("{STR_VAR_1}'s dazzling,\nglittering smile"),
+    [2 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_BEAUTY] = COMPOUND_STRING("POKéMON CENTER's super idol--\nthe incomparable {STR_VAR_1}"),
+    [0 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_CUTE]   = COMPOUND_STRING("The lovely and sweet {STR_VAR_1}"),
+    [1 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_CUTE]   = COMPOUND_STRING("The pretty {STR_VAR_1}'s\nwinning portrait"),
+    [2 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_CUTE]   = COMPOUND_STRING("Give us a wink!\nThe cutie POKéMON {STR_VAR_1}"),
+    [0 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_SMART]  = COMPOUND_STRING("The smartness maestro--\nthe wise POKéMON {STR_VAR_1}"),
+    [1 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_SMART]  = COMPOUND_STRING("{STR_VAR_1}--the one chosen\nabove all POKéMON"),
+    [2 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_SMART]  = COMPOUND_STRING("The excellent {STR_VAR_1}'s\nmoment of elegance"),
+    [0 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_TOUGH]  = COMPOUND_STRING("The powerfully muscular\nspeedster {STR_VAR_1}"),
+    [1 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_TOUGH]  = COMPOUND_STRING("The strong, stronger, and\nstrongest {STR_VAR_1}"),
+    [2 + NUM_PAINTING_CAPTIONS * CONTEST_CATEGORY_TOUGH]  = COMPOUND_STRING("The mighty tough\nhyper POKéMON {STR_VAR_1}"),
+#endif
 };
 
 static const struct OamData sContestPaintingMonOamData =

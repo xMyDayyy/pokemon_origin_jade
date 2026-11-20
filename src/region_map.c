@@ -170,138 +170,662 @@ static const u8 sRegionMapPlayerIcon_KrisGfx[] = INCBIN_U8("graphics/pokenav/reg
 #if IS_HNS
 // Coordinates on the combined JK map (despite the name).
 static const struct RegionMapLocation sRegionMapEntries_Johto[] = {
+#if GERMAN
     [MAPSEC_VIOLET_CITY]       = { 7,  5,  1, 1, COMPOUND_STRING("Viola City") },
+#else
+    [MAPSEC_VIOLET_CITY]       = { 7,  5,  1, 1, COMPOUND_STRING("VIOLET CITY") },
+#endif
+#if GERMAN
     [MAPSEC_AZALEA_TOWN]       = { 6,  12, 1, 1, COMPOUND_STRING("Azalea City") },
+#else
+    [MAPSEC_AZALEA_TOWN]       = { 6,  12, 1, 1, COMPOUND_STRING("AZALEA TOWN") },
+#endif
+#if GERMAN
     [MAPSEC_GOLDENROD_CITY]    = { 5,  7,  1, 2, COMPOUND_STRING("Dukatia City") },
+#else
+    [MAPSEC_GOLDENROD_CITY]    = { 5,  7,  1, 2, COMPOUND_STRING("GOLDENROD CITY") },
+#endif
+#if GERMAN
     [MAPSEC_ECRUTEAK_CITY]     = { 6,  3,  1, 1, COMPOUND_STRING("Teak City") },
+#else
+    [MAPSEC_ECRUTEAK_CITY]     = { 6,  3,  1, 1, COMPOUND_STRING("ECRUTEAK CITY") },
+#endif
+#if GERMAN
     [MAPSEC_OLIVINE_CITY]      = { 3,  6,  1, 1, COMPOUND_STRING("Oliviana City") },
+#else
+    [MAPSEC_OLIVINE_CITY]      = { 3,  6,  1, 1, COMPOUND_STRING("OLIVINE CITY") },
+#endif
+#if GERMAN
     [MAPSEC_CIANWOOD_CITY]     = { 1,  9,  1, 1, COMPOUND_STRING("Anemonia City") },
+#else
+    [MAPSEC_CIANWOOD_CITY]     = { 1,  9,  1, 1, COMPOUND_STRING("CIANWOOD CITY") },
+#endif
+#if GERMAN
     [MAPSEC_SAFARI_ZONE_GATE]  = { 0,  7,  1, 1, COMPOUND_STRING("Safari-Eingang") },
+#else
+    [MAPSEC_SAFARI_ZONE_GATE]  = { 0,  7,  1, 1, COMPOUND_STRING("SAFARI ZONE GATE") },
+#endif
+#if GERMAN
     [MAPSEC_MAHOGANY_TOWN]     = { 9,  3,  1, 1, COMPOUND_STRING("Mahagonia City") },
+#else
+    [MAPSEC_MAHOGANY_TOWN]     = { 9,  3,  1, 1, COMPOUND_STRING("MAHOGANY TOWN") },
+#endif
+#if GERMAN
     [MAPSEC_BLACKTHORN_CITY]   = { 12, 3,  1, 1, COMPOUND_STRING("Ebenholz City") },
+#else
+    [MAPSEC_BLACKTHORN_CITY]   = { 12, 3,  1, 1, COMPOUND_STRING("BLACKTHORN CITY") },
+#endif
+#if GERMAN
     [MAPSEC_CHERRYGROVE_CITY]  = { 9,  11, 1, 1, COMPOUND_STRING("Rosalia City") },
+#else
+    [MAPSEC_CHERRYGROVE_CITY]  = { 9,  11, 1, 1, COMPOUND_STRING("CHERRYGROVE CITY") },
+#endif
+#if GERMAN
     [MAPSEC_NEW_BARK_TOWN]     = { 13, 11, 1, 1, COMPOUND_STRING("Neuborkia") },
+#else
+    [MAPSEC_NEW_BARK_TOWN]     = { 13, 11, 1, 1, COMPOUND_STRING("NEW BARK TOWN") },
+#endif
+#if GERMAN
     [MAPSEC_INDIGO_PLATEAU]    = { 16, 2,  1, 2, COMPOUND_STRING("Indigo Plateau") },
+#else
+    [MAPSEC_INDIGO_PLATEAU]    = { 16, 2,  1, 2, COMPOUND_STRING("INDIGO PLATEAU") },
+#endif
+#if GERMAN
     [MAPSEC_BATTLE_FRONTIER]   = { 12, 14, 1, 1, COMPOUND_STRING("Kampfzone") },
+#else
+    [MAPSEC_BATTLE_FRONTIER]   = { 12, 14, 1, 1, COMPOUND_STRING("BATTLE FRONTIER") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_26]          = { 16, 8, 1, 4, COMPOUND_STRING("Route 26") },
+#else
+    [MAPSEC_ROUTE_26]          = { 16, 8,  1, 4, COMPOUND_STRING("ROUTE 26") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_27]          = { 14, 11, 3, 1, COMPOUND_STRING("Route 27") },
+#else
+    [MAPSEC_ROUTE_27]          = { 14, 11, 3, 1, COMPOUND_STRING("ROUTE 27") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_28]          = { 15, 7,  1, 1, COMPOUND_STRING("Route 28") },
+#else
+    [MAPSEC_ROUTE_28]          = { 15, 7,  1, 1, COMPOUND_STRING("ROUTE 28") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_29]          = { 10, 11, 3, 1, COMPOUND_STRING("Route 29") },
+#else
+    [MAPSEC_ROUTE_29]          = { 10, 11, 3, 1, COMPOUND_STRING("ROUTE 29") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_30]          = { 9,  6,  1, 5, COMPOUND_STRING("Route 30") },
+#else
+    [MAPSEC_ROUTE_30]          = { 9,  6,  1, 5, COMPOUND_STRING("ROUTE 30") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_31]          = { 8,  5,  2, 1, COMPOUND_STRING("Route 31") },
+#else
+    [MAPSEC_ROUTE_31]          = { 8,  5,  2, 1, COMPOUND_STRING("ROUTE 31") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_32]          = { 7,  6,  1, 5, COMPOUND_STRING("Route 32") },
+#else
+    [MAPSEC_ROUTE_32]          = { 7,  6,  1, 5, COMPOUND_STRING("ROUTE 32") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_33]          = { 7,  12, 1, 1, COMPOUND_STRING("Route 33") },
+#else
+    [MAPSEC_ROUTE_33]          = { 7,  12, 1, 1, COMPOUND_STRING("ROUTE 33") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_34]          = { 5,  9,  1, 2, COMPOUND_STRING("Route 34") },
+#else
+    [MAPSEC_ROUTE_34]          = { 5,  9,  1, 2, COMPOUND_STRING("ROUTE 34") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_35]          = { 5,  6,  1, 1, COMPOUND_STRING("Route 35") },
+#else
+    [MAPSEC_ROUTE_35]          = { 5,  6,  1, 1, COMPOUND_STRING("ROUTE 35") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_36]          = { 6,  5,  1, 1, COMPOUND_STRING("Route 36") },
+#else
+    [MAPSEC_ROUTE_36]          = { 6,  5,  1, 1, COMPOUND_STRING("ROUTE 36") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_37]          = { 6,  4,  1, 1, COMPOUND_STRING("Route 37") },
+#else
+    [MAPSEC_ROUTE_37]          = { 6,  4,  1, 1, COMPOUND_STRING("ROUTE 37") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_38]          = { 4,  3,  2, 1, COMPOUND_STRING("Route 38") },
+#else
+    [MAPSEC_ROUTE_38]          = { 4,  3,  2, 1, COMPOUND_STRING("ROUTE 38") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_39]          = { 3,  3,  1, 3, COMPOUND_STRING("Route 39") },
+#else
+    [MAPSEC_ROUTE_39]          = { 3,  3,  1, 3, COMPOUND_STRING("ROUTE 39") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_40]          = { 2,  6,  1, 3, COMPOUND_STRING("Route 40") },
+#else
+    [MAPSEC_ROUTE_40]          = { 2,  6,  1, 3, COMPOUND_STRING("ROUTE 40") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_41]          = { 2,  9,  1, 1, COMPOUND_STRING("Route 41") },
+#else
+    [MAPSEC_ROUTE_41]          = { 2,  9,  1, 1, COMPOUND_STRING("ROUTE 41") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_42]          = { 7,  3,  2, 1, COMPOUND_STRING("Route 42") },
+#else
+    [MAPSEC_ROUTE_42]          = { 7,  3,  2, 1, COMPOUND_STRING("ROUTE 42") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_43]          = { 9,  2,  1, 1, COMPOUND_STRING("Route 43") },
+#else
+    [MAPSEC_ROUTE_43]          = { 9,  2,  1, 1, COMPOUND_STRING("ROUTE 43") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_44]          = { 10, 3,  2, 1, COMPOUND_STRING("Route 44") },
+#else
+    [MAPSEC_ROUTE_44]          = { 10, 3,  2, 1, COMPOUND_STRING("ROUTE 44") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_45]          = { 12, 4,  1, 5, COMPOUND_STRING("Route 45") },
+#else
+    [MAPSEC_ROUTE_45]          = { 12, 4,  1, 5, COMPOUND_STRING("ROUTE 45") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_46]          = { 11, 8,  1, 3, COMPOUND_STRING("Route 46") },
+#else
+    [MAPSEC_ROUTE_46]          = { 11, 8,  1, 3, COMPOUND_STRING("ROUTE 46") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_47]          = { 0,  9,  1, 1, COMPOUND_STRING("Route 47") },
+#else
+    [MAPSEC_ROUTE_47]          = { 0,  9,  1, 1, COMPOUND_STRING("ROUTE 47") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_48]          = { 0,  8,  1, 1, COMPOUND_STRING("Route 48") },
+#else
+    [MAPSEC_ROUTE_48]          = { 0,  8,  1, 1, COMPOUND_STRING("ROUTE 48") },
+#endif
+#if GERMAN
     [MAPSEC_SAFARI_ZONE]       = { 0,  6,  1, 1, COMPOUND_STRING("Safari-Zone") },
+#else
+    [MAPSEC_SAFARI_ZONE]       = { 0,  6,  1, 1, COMPOUND_STRING("SAFARI ZONE") },
+#endif
+#if GERMAN
     [MAPSEC_VICTORY_ROAD_HNS]  = { 16, 4,  1, 4, COMPOUND_STRING("Siegesstraße") },
+#else
+    [MAPSEC_VICTORY_ROAD_HNS]  = { 16, 4,  1, 4, COMPOUND_STRING("VICTORY ROAD") },
+#endif
+#if GERMAN
     [MAPSEC_PALLET_TOWN]       = { 19, 11, 1, 1, COMPOUND_STRING("Alabastia") },
+#else
+    [MAPSEC_PALLET_TOWN]       = { 19, 11, 1, 1, COMPOUND_STRING("PALLET TOWN") },
+#endif
+#if GERMAN
     [MAPSEC_VIRIDIAN_CITY]     = { 19, 7,  1, 1, COMPOUND_STRING("Vertania City") },
+#else
+    [MAPSEC_VIRIDIAN_CITY]     = { 19, 7,  1, 1, COMPOUND_STRING("VIRIDIAN CITY") },
+#endif
+#if GERMAN
     [MAPSEC_PEWTER_CITY]       = { 19, 2,  1, 1, COMPOUND_STRING("Marmoria City") },
+#else
+    [MAPSEC_PEWTER_CITY]       = { 19, 2,  1, 1, COMPOUND_STRING("PEWTER CITY") },
+#endif
+#if GERMAN
     [MAPSEC_CERULEAN_CITY]     = { 24, 2,  1, 1, COMPOUND_STRING("Azuria City") },
+#else
+    [MAPSEC_CERULEAN_CITY]     = { 24, 2,  1, 1, COMPOUND_STRING("CERULEAN CITY") },
+#endif
+#if GERMAN
     [MAPSEC_LAVENDER_TOWN]     = { 27, 5,  1, 1, COMPOUND_STRING("Lavandia") },
+#else
+    [MAPSEC_LAVENDER_TOWN]     = { 27, 5,  1, 1, COMPOUND_STRING("LAVENDER TOWN") },
+#endif
+#if GERMAN
     [MAPSEC_VERMILION_CITY]    = { 24, 7,  1, 1, COMPOUND_STRING("Orania City") },
+#else
+    [MAPSEC_VERMILION_CITY]    = { 24, 7,  1, 1, COMPOUND_STRING("VERMILION CITY") },
+#endif
+#if GERMAN
     [MAPSEC_CELADON_CITY]      = { 22, 5,  1, 1, COMPOUND_STRING("Prismania City") },
+#else
+    [MAPSEC_CELADON_CITY]      = { 22, 5,  1, 1, COMPOUND_STRING("CELADON CITY") },
+#endif
+#if GERMAN
     [MAPSEC_FUCHSIA_CITY]      = { 24, 11, 1, 1, COMPOUND_STRING("Fuchsania City") },
+#else
+    [MAPSEC_FUCHSIA_CITY]      = { 24, 11, 1, 1, COMPOUND_STRING("FUCHSIA CITY") },
+#endif
+#if GERMAN
     [MAPSEC_SOUTHERN_ISLAND]   = { 9,  14, 1, 1, COMPOUND_STRING("Insel im Süden") },
+#else
+    [MAPSEC_SOUTHERN_ISLAND]   = { 9,  14, 1, 1, COMPOUND_STRING("SOUTHERN ISLAND") },
+#endif
+#if GERMAN
     [MAPSEC_FARAWAY_ISLAND]    = { 9,  14, 1, 1, COMPOUND_STRING("Ferneiland") },
+#else
+    [MAPSEC_FARAWAY_ISLAND]    = { 9,  14, 1, 1, COMPOUND_STRING("FARAWAY ISLAND") },
+#endif
+#if GERMAN
     [MAPSEC_BIRTH_ISLAND]      = { 9,  14, 1, 1, COMPOUND_STRING("Entstehungsinsel") },
+#else
+    [MAPSEC_BIRTH_ISLAND]      = { 9,  14, 1, 1, COMPOUND_STRING("BIRTH ISLAND") },
+#endif
+#if GERMAN
     [MAPSEC_CINNABAR_ISLAND]   = { 19, 13, 1, 1, COMPOUND_STRING("Zinnoberinsel") },
+#else
+    [MAPSEC_CINNABAR_ISLAND]   = { 19, 13, 1, 1, COMPOUND_STRING("CINNABAR ISLAND") },
+#endif
+#if GERMAN
     [MAPSEC_SAFFRON_CITY]      = { 24, 5,  1, 1, COMPOUND_STRING("Saffronia City") },
+#else
+    [MAPSEC_SAFFRON_CITY]      = { 24, 5,  1, 1, COMPOUND_STRING("SAFFRON CITY") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_1]           = { 19, 8,  1, 3, COMPOUND_STRING("Route 1") },
+#else
+    [MAPSEC_ROUTE_1]           = { 19, 8,  1, 3, COMPOUND_STRING("ROUTE 1") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_2]           = { 19, 3,  1, 4, COMPOUND_STRING("Route 2") },
+#else
+    [MAPSEC_ROUTE_2]           = { 19, 3,  1, 4, COMPOUND_STRING("ROUTE 2") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_3]           = { 20, 2,  2, 1, COMPOUND_STRING("Route 3") },
+#else
+    [MAPSEC_ROUTE_3]           = { 20, 2,  2, 1, COMPOUND_STRING("ROUTE 3") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_4]           = { 21, 2, 1, 1, COMPOUND_STRING("Route 4") },
+#else
+    [MAPSEC_ROUTE_4]           = { 21, 2,  1, 1, COMPOUND_STRING("ROUTE 4") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_5]           = { 24, 3,  1, 2, COMPOUND_STRING("Route 5") },
+#else
+    [MAPSEC_ROUTE_5]           = { 24, 3,  1, 2, COMPOUND_STRING("ROUTE 5") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_6]           = { 24, 6,  1, 1, COMPOUND_STRING("Route 6") },
+#else
+    [MAPSEC_ROUTE_6]           = { 24, 6,  1, 1, COMPOUND_STRING("ROUTE 6") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_7]           = { 23, 5,  1, 1, COMPOUND_STRING("Route 7") },
+#else
+    [MAPSEC_ROUTE_7]           = { 23, 5,  1, 1, COMPOUND_STRING("ROUTE 7") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_8]           = { 25, 5,  2, 1, COMPOUND_STRING("Route 8") },
+#else
+    [MAPSEC_ROUTE_8]           = { 25, 5,  2, 1, COMPOUND_STRING("ROUTE 8") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_9]           = { 25, 2,  3, 1, COMPOUND_STRING("Route 9") },
+#else
+    [MAPSEC_ROUTE_9]           = { 25, 2,  3, 1, COMPOUND_STRING("ROUTE 9") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_10]          = { 27, 3,  1, 1, COMPOUND_STRING("Route 10") },
+#else
+    [MAPSEC_ROUTE_10]          = { 27, 3,  1, 1, COMPOUND_STRING("ROUTE 10") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_11]          = { 25, 7,  2, 1, COMPOUND_STRING("Route 11") },
+#else
+    [MAPSEC_ROUTE_11]          = { 25, 7,  2, 1, COMPOUND_STRING("ROUTE 11") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_12]          = { 27, 6,  1, 4, COMPOUND_STRING("Route 12") },
+#else
+    [MAPSEC_ROUTE_12]          = { 27, 6,  1, 4, COMPOUND_STRING("ROUTE 12") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_13]          = { 26, 10, 2, 1, COMPOUND_STRING("Route 13") },
+#else
+    [MAPSEC_ROUTE_13]          = { 26, 10, 2, 1, COMPOUND_STRING("ROUTE 13") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_14]          = { 26, 11, 1, 1, COMPOUND_STRING("Route 14") },
+#else
+    [MAPSEC_ROUTE_14]          = { 26, 11, 1, 1, COMPOUND_STRING("ROUTE 14") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_15]          = { 25, 11, 1, 1, COMPOUND_STRING("Route 15") },
+#else
+    [MAPSEC_ROUTE_15]          = { 25, 11, 1, 1, COMPOUND_STRING("ROUTE 15") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_16]          = { 21, 5,  1, 1, COMPOUND_STRING("Route 16") },
+#else
+    [MAPSEC_ROUTE_16]          = { 21, 5,  1, 1, COMPOUND_STRING("ROUTE 16") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_17]          = { 21, 6,  1, 6, COMPOUND_STRING("Route 17") },
+#else
+    [MAPSEC_ROUTE_17]          = { 21, 6,  1, 6, COMPOUND_STRING("ROUTE 17") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_18]          = { 22, 11, 2, 1, COMPOUND_STRING("Route 18") },
+#else
+    [MAPSEC_ROUTE_18]          = { 22, 11, 2, 1, COMPOUND_STRING("ROUTE 18") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_19]          = { 22, 12, 3, 2, COMPOUND_STRING("Route 19") },
+#else
+    [MAPSEC_ROUTE_19]          = { 22, 12, 3, 2, COMPOUND_STRING("ROUTE 19") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_20]          = { 20, 13, 2, 1, COMPOUND_STRING("Route 20") },
+#else
+    [MAPSEC_ROUTE_20]          = { 20, 13, 2, 1, COMPOUND_STRING("ROUTE 20") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_21]          = { 19, 12, 1, 1, COMPOUND_STRING("Route 21") },
+#else
+    [MAPSEC_ROUTE_21]          = { 19, 12, 1, 1, COMPOUND_STRING("ROUTE 21") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_22]          = { 17, 7,  2, 1, COMPOUND_STRING("Route 22") },
+#else
+    [MAPSEC_ROUTE_22]          = { 17, 7,  2, 1, COMPOUND_STRING("ROUTE 22") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_23]          = { 16, 4,  1, 4, COMPOUND_STRING("Route 23") },
+#else
+    [MAPSEC_ROUTE_23]          = { 16, 4,  1, 4, COMPOUND_STRING("ROUTE 23") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_24]          = { 24, 0,  1, 2, COMPOUND_STRING("Route 24") },
+#else
+    [MAPSEC_ROUTE_24]          = { 24, 0,  1, 2, COMPOUND_STRING("ROUTE 24") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_25]          = { 25, 0,  1, 1, COMPOUND_STRING("Route 25") },
+#else
+    [MAPSEC_ROUTE_25]          = { 25, 0,  1, 1, COMPOUND_STRING("ROUTE 25") },
+#endif
+#if GERMAN
     [MAPSEC_VIRIDIAN_FOREST]   = { 19, 4,  1, 2, COMPOUND_STRING("Vertania-Wald") },
+#else
+    [MAPSEC_VIRIDIAN_FOREST]   = { 19, 4,  1, 2, COMPOUND_STRING("VIRIDIAN FOREST") },
+#endif
+#if GERMAN
     [MAPSEC_MT_MOON]           = { 22, 2, 1, 1, COMPOUND_STRING("Mondberg") },
+#else
+    [MAPSEC_MT_MOON]           = { 22, 2,  1, 1, COMPOUND_STRING("MT. MOON") },
+#endif
+#if GERMAN
     [MAPSEC_DIGLETTS_CAVE]     = { 20, 3,  6, 4, COMPOUND_STRING("Digdas Höhle") },
+#else
+    [MAPSEC_DIGLETTS_CAVE]     = { 20, 3,  6, 4, COMPOUND_STRING("DIGLETT'S CAVE") },
+#endif
+#if GERMAN
     [MAPSEC_ROCKET_HIDEOUT_HNS]    = { 9,  3,  1, 1, COMPOUND_STRING("Rocket-Versteck") },
+#else
+    [MAPSEC_ROCKET_HIDEOUT_HNS] = { 9,  3,  1, 1, COMPOUND_STRING("ROCKET HIDEOUT") },
+#endif
+#if GERMAN
     [MAPSEC_ROCK_TUNNEL]       = { 27, 3,  1, 1, COMPOUND_STRING("Felstunnel") },
+#else
+    [MAPSEC_ROCK_TUNNEL]       = { 27, 3,  1, 1, COMPOUND_STRING("ROCK TUNNEL") },
+#endif
+#if GERMAN
     [MAPSEC_SEAFOAM_ISLANDS]   = { 22, 13, 1, 1, COMPOUND_STRING("Seeschauminseln") },
+#else
+    [MAPSEC_SEAFOAM_ISLANDS]   = { 22, 13, 1, 1, COMPOUND_STRING("SEAFOAM ISLANDS") },
+#endif
+#if GERMAN
     [MAPSEC_CERULEAN_CAVE]     = { 23, 1,  1, 1, COMPOUND_STRING("Azuria-Höhle") },
+#else
+    [MAPSEC_CERULEAN_CAVE]     = { 23, 1,  1, 1, COMPOUND_STRING("CERULEAN CAVE") },
+#endif
+#if GERMAN
     [MAPSEC_POWER_PLANT]       = { 27, 3,  1, 1, COMPOUND_STRING("Kraftwerk") },
+#else
+    [MAPSEC_POWER_PLANT]       = { 27, 3,  1, 1, COMPOUND_STRING("POWER PLANT") },
+#endif
     // Origin Jade: FRLG Kanto mapsecs. Every mapsec used outside Hoenn needs an entry here.
+#if GERMAN
     [MAPSEC_ROCKET_HIDEOUT]    = { 22, 5,  1, 1, COMPOUND_STRING("Rocket-Versteck") },
+#else
+    [MAPSEC_ROCKET_HIDEOUT]    = { 22, 5,  1, 1, COMPOUND_STRING("ROCKET HIDEOUT") },
+#endif
+#if GERMAN
     [MAPSEC_KANTO_VICTORY_ROAD] = { 16, 4, 1, 4, COMPOUND_STRING("Siegesstraße") },
+#else
+    [MAPSEC_KANTO_VICTORY_ROAD] = { 16, 4, 1, 4, COMPOUND_STRING("VICTORY ROAD") },
+#endif
+#if GERMAN
     [MAPSEC_POKEMON_LEAGUE]    = { 16, 2,  1, 2, COMPOUND_STRING("Pokémon-Liga") },
+#else
+    [MAPSEC_POKEMON_LEAGUE]    = { 16, 2,  1, 2, COMPOUND_STRING("POKéMON LEAGUE") },
+#endif
+#if GERMAN
     [MAPSEC_POKEMON_TOWER]     = { 27, 5,  1, 1, COMPOUND_STRING("Pokémon-Turm") },
+#else
+    [MAPSEC_POKEMON_TOWER]     = { 27, 5,  1, 1, COMPOUND_STRING("POKéMON TOWER") },
+#endif
+#if GERMAN
     [MAPSEC_POKEMON_MANSION]   = { 19, 13, 1, 1, COMPOUND_STRING("Pokémon-Villa") },
+#else
+    [MAPSEC_POKEMON_MANSION]   = { 19, 13, 1, 1, COMPOUND_STRING("POKéMON MANSION") },
+#endif
+#if GERMAN
     [MAPSEC_SILPH_CO]          = { 24, 5,  1, 1, COMPOUND_STRING("Silph Co.") },
+#else
+    [MAPSEC_SILPH_CO]          = { 24, 5,  1, 1, COMPOUND_STRING("SILPH CO.") },
+#endif
+#if GERMAN
     [MAPSEC_S_S_ANNE]          = { 24, 7,  1, 1, COMPOUND_STRING("M.S. Anne") },
+#else
+    [MAPSEC_S_S_ANNE]          = { 24, 7,  1, 1, COMPOUND_STRING("S.S. ANNE") },
+#endif
+#if GERMAN
     [MAPSEC_KANTO_SAFARI_ZONE] = { 24, 11, 1, 1, COMPOUND_STRING("Safari-Zone") },
+#else
+    [MAPSEC_KANTO_SAFARI_ZONE] = { 24, 11, 1, 1, COMPOUND_STRING("SAFARI ZONE") },
+#endif
+#if GERMAN
     [MAPSEC_UNDERGROUND_PATH]  = { 24, 5,  1, 1, COMPOUND_STRING("Untergrundpfad") },
+#else
+    [MAPSEC_UNDERGROUND_PATH]  = { 24, 5,  1, 1, COMPOUND_STRING("UNDERGROUND PATH") },
+#endif
+#if GERMAN
     [MAPSEC_UNDERGROUND_PATH_2] = { 24, 5, 1, 1, COMPOUND_STRING("Untergrundpfad") },
+#else
+    [MAPSEC_UNDERGROUND_PATH_2] = { 24, 5, 1, 1, COMPOUND_STRING("UNDERGROUND PATH") },
+#endif
+#if GERMAN
     [MAPSEC_SPECIAL_AREA]      = { 0,  0,  1, 1, COMPOUND_STRING("Sonderbereich") },
+#else
+    [MAPSEC_SPECIAL_AREA]      = { 0,  0,  1, 1, COMPOUND_STRING("SPECIAL AREA") },
+#endif
+#if GERMAN
     [MAPSEC_DARK_CAVE]         = { 10, 5,  1, 1, COMPOUND_STRING("Dunkelhöhle") },
+#else
+    [MAPSEC_DARK_CAVE]         = { 10, 5,  1, 1, COMPOUND_STRING("DARK CAVE") },
+#endif
+#if GERMAN
     [MAPSEC_UNION_CAVE]        = { 7,  11, 1, 2, COMPOUND_STRING("Einheitstunnel") },
+#else
+    [MAPSEC_UNION_CAVE]        = { 7,  11, 1, 2, COMPOUND_STRING("UNION CAVE") },
+#endif
+#if GERMAN
     [MAPSEC_ILEX_FOREST]       = { 5,  11, 1, 2, COMPOUND_STRING("Steineichenwald") },
+#else
+    [MAPSEC_ILEX_FOREST]       = { 5,  11, 1, 2, COMPOUND_STRING("ILEX FOREST") },
+#endif
+#if GERMAN
     [MAPSEC_NATIONAL_PARK]     = { 5,  5,  1, 1, COMPOUND_STRING("Nationalpark") },
+#else
+    [MAPSEC_NATIONAL_PARK]     = { 5,  5,  1, 1, COMPOUND_STRING("NATIONAL PARK") },
+#endif
+#if GERMAN
     [MAPSEC_WHIRL_ISLANDS]     = { 2,  9,  1, 1, COMPOUND_STRING("Strudelinseln") },
+#else
+    [MAPSEC_WHIRL_ISLANDS]     = { 2,  9,  1, 1, COMPOUND_STRING("WHIRL ISLANDS") },
+#endif
+#if GERMAN
     [MAPSEC_CLIFF_CAVE]        = { 0,  9,  1, 1, COMPOUND_STRING("Felsschlundhöhle") },
+#else
+    [MAPSEC_CLIFF_CAVE]        = { 0,  9,  1, 1, COMPOUND_STRING("CLIFF CAVE") },
+#endif
+#if GERMAN
     [MAPSEC_MT_MORTAR]         = { 10, 3,  1, 1, COMPOUND_STRING("Kesselberg") },
+#else
+    [MAPSEC_MT_MORTAR]         = { 10, 3,  1, 1, COMPOUND_STRING("MT MORTAR") },
+#endif
+#if GERMAN
     [MAPSEC_LAKE_OF_RAGE]      = { 9,  1,  1, 1, COMPOUND_STRING("See des Zorns") },
+#else
+    [MAPSEC_LAKE_OF_RAGE]      = { 9,  1,  1, 1, COMPOUND_STRING("LAKE OF RAGE") },
+#endif
+#if GERMAN
     [MAPSEC_ICE_PATH]          = { 11, 2,  2, 1, COMPOUND_STRING("Eispfad") },
+#else
+    [MAPSEC_ICE_PATH]          = { 11, 2,  2, 1, COMPOUND_STRING("ICE PATH") },
+#endif
+#if GERMAN
     [MAPSEC_MT_SILVER]         = { 14, 7,  1, 1, COMPOUND_STRING("Silberberg") },
+#else
+    [MAPSEC_MT_SILVER]         = { 14, 7,  1, 1, COMPOUND_STRING("MT. SILVER") },
+#endif
+#if GERMAN
     [MAPSEC_SNOWSWEPT_CAVERN]  = { 14, 6,  1, 1, COMPOUND_STRING("Schneegrotte") },
+#else
+    [MAPSEC_SNOWSWEPT_CAVERN]  = { 14, 6,  1, 1, COMPOUND_STRING("SNOWSWEPT CAVERN") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_49]          = { 14, 6,  1, 1, COMPOUND_STRING("Route 49") },
+#else
+    [MAPSEC_ROUTE_49]          = { 14, 6,  1, 1, COMPOUND_STRING("ROUTE 49") },
+#endif
+#if GERMAN
     [MAPSEC_NEW_SINJOH]        = { 14, 5,  1, 1, COMPOUND_STRING("Neu-Sinjoh") },
+#else
+    [MAPSEC_NEW_SINJOH]        = { 14, 5,  1, 1, COMPOUND_STRING("NEW SINJOH") },
+#endif
+#if GERMAN
     [MAPSEC_ROUTE_50]          = { 14, 4,  1, 1, COMPOUND_STRING("Route 50") },
+#else
+    [MAPSEC_ROUTE_50]          = { 14, 4,  1, 1, COMPOUND_STRING("ROUTE 50") },
+#endif
+#if GERMAN
     [MAPSEC_SINJOH_RUINS]      = { 14, 3,  1, 1, COMPOUND_STRING("Sinjoh-Ruinen") },
+#else
+    [MAPSEC_SINJOH_RUINS]      = { 14, 3,  1, 1, COMPOUND_STRING("SINJOH RUINS") },
+#endif
+#if GERMAN
     [MAPSEC_TOHJO_FALLS]       = { 14, 10, 1, 1, COMPOUND_STRING("Tohjo-Fälle") },
+#else
+    [MAPSEC_TOHJO_FALLS]       = { 14, 10, 1, 1, COMPOUND_STRING("TOHJO FALLS") },
+#endif
+#if GERMAN
     [MAPSEC_SPROUT_TOWER]      = { 7,  5,  1, 1, COMPOUND_STRING("Knofensa-Turm") },
+#else
+    [MAPSEC_SPROUT_TOWER]      = { 7,  5,  1, 1, COMPOUND_STRING("SPROUT TOWER") },
+#endif
+#if GERMAN
     [MAPSEC_SLOWPOKE_WELL]     = { 6,  12, 1, 1, COMPOUND_STRING("Flegmon-Brunnen") },
+#else
+    [MAPSEC_SLOWPOKE_WELL]     = { 6,  12, 1, 1, COMPOUND_STRING("SLOWPOKE WELL") },
+#endif
+#if GERMAN
     [MAPSEC_BURNED_TOWER]      = { 6,  3,  1, 1, COMPOUND_STRING("Turmruine") },
+#else
+    [MAPSEC_BURNED_TOWER]      = { 6,  3,  1, 1, COMPOUND_STRING("BURNED TOWER") },
+#endif
+#if GERMAN
     [MAPSEC_TIN_TOWER]         = { 6,  2,  1, 1, COMPOUND_STRING("Glockenturm") },
+#else
+    [MAPSEC_TIN_TOWER]         = { 6,  2,  1, 1, COMPOUND_STRING("TIN TOWER") },
+#endif
+#if GERMAN
     [MAPSEC_DRAGONS_DEN]       = { 12, 2,  1, 1, COMPOUND_STRING("Drachenhöhle") },
+#else
+    [MAPSEC_DRAGONS_DEN]       = { 12, 2,  1, 1, COMPOUND_STRING("DRAGON'S DEN") },
+#endif
+#if GERMAN
     [MAPSEC_RUINS_OF_ALPH]     = { 6,  6,  1, 1, COMPOUND_STRING("Alph-Ruinen") },
+#else
+    [MAPSEC_RUINS_OF_ALPH]     = { 6,  6,  1, 1, COMPOUND_STRING("RUINS OF ALPH") },
+#endif
+#if GERMAN
     [MAPSEC_SS_AQUA]           = { 9,  14, 10, 1, COMPOUND_STRING("M.S. Aqua") },
+#else
+    [MAPSEC_SS_AQUA]           = { 9,  14, 10, 1, COMPOUND_STRING("S.S. AQUA") },
+#endif
+#if GERMAN
     [MAPSEC_EMBEDDED_TOWER]    = { 1,  10, 1, 1, COMPOUND_STRING("Felsenherzturm") },
+#else
+    [MAPSEC_EMBEDDED_TOWER]    = { 1,  10, 1, 1, COMPOUND_STRING("EMBEDDED TOWER") },
+#endif
+#if GERMAN
     [MAPSEC_OLIVINE_LIGHTHOUSE] = { 3, 6,  1, 1, COMPOUND_STRING("Leuchtturm") },
+#else
+    [MAPSEC_OLIVINE_LIGHTHOUSE] = { 3, 6,  1, 1, COMPOUND_STRING("LIGHTHOUSE") },
+#endif
+#if GERMAN
     [MAPSEC_TRAINER_HILL]      = { 2,  5,  1, 1, COMPOUND_STRING("Trainerberg") },
+#else
+    [MAPSEC_TRAINER_HILL]      = { 2,  5,  1, 1, COMPOUND_STRING("TRAINER HILL") },
+#endif
+#if GERMAN
     [MAPSEC_MELEMELE_ISLAND]   = { 26, 13, 1, 1, COMPOUND_STRING("Mele-Mele") },
+#else
+    [MAPSEC_MELEMELE_ISLAND]   = { 26, 13, 1, 1, COMPOUND_STRING("MELEMELE ISLE") },
+#endif
+#if GERMAN
     [MAPSEC_AKALA_ISLAND]     = { 27, 12, 1, 1, COMPOUND_STRING("Akala") },
+#else
+    [MAPSEC_AKALA_ISLAND]     = { 27, 12, 1, 1, COMPOUND_STRING("AKALA ISLE") },
+#endif
+#if GERMAN
     [MAPSEC_ULAULA_ISLAND]    = { 27, 13, 1, 1, COMPOUND_STRING("Ula-Ula") },
+#else
+    [MAPSEC_ULAULA_ISLAND]    = { 27, 13, 1, 1, COMPOUND_STRING("ULA'ULA ISLE") },
+#endif
+#if GERMAN
     [MAPSEC_PONI_ISLAND]      = { 25, 13, 1, 1, COMPOUND_STRING("Poni") },
+#else
+    [MAPSEC_PONI_ISLAND]      = { 25, 13, 1, 1, COMPOUND_STRING("PONI ISLE") },
+#endif
+#if GERMAN
     [MAPSEC_ALOLA_OCEAN]      = { 25, 12, 1, 1, COMPOUND_STRING("Alola-Meer") },
+#else
+    [MAPSEC_ALOLA_OCEAN]      = { 25, 12, 1, 1, COMPOUND_STRING("ALOLA SEA") },
+#endif
+#if GERMAN
     [MAPSEC_AKALA_CAVE]       = { 27, 14, 1, 1, COMPOUND_STRING("Akala-Höhle") },
+#else
+    [MAPSEC_AKALA_CAVE]       = { 27, 14, 1, 1, COMPOUND_STRING("AKALA CAVE") },
+#endif
+#if GERMAN
     [MAPSEC_AKALA_FOREST]     = { 27, 11, 1, 1, COMPOUND_STRING("Akala-Wald") },
+#else
+    [MAPSEC_AKALA_FOREST]     = { 27, 11, 1, 1, COMPOUND_STRING("AKALA FOREST") },
+#endif
+#if GERMAN
     [MAPSEC_PONI_CAVE]        = { 25, 14, 1, 1, COMPOUND_STRING("Poni-Höhle") },
+#else
+    [MAPSEC_PONI_CAVE]        = { 25, 14, 1, 1, COMPOUND_STRING("PONI CAVE") },
+#endif
+#if GERMAN
     [MAPSEC_ULAULA_CAVE]     = { 26, 14, 1, 1, COMPOUND_STRING("Ula-Ula-Höhle") },
+#else
+    [MAPSEC_ULAULA_CAVE]     = { 26, 14, 1, 1, COMPOUND_STRING("ULA'ULA CAVE") },
+#endif
+#if GERMAN
     [MAPSEC_ULAULA_CAVE_2]   = { 26, 12, 1, 1, COMPOUND_STRING("Ula-Ula-Höhle") },};
+#else
+    [MAPSEC_ULAULA_CAVE_2]   = { 26, 12, 1, 1, COMPOUND_STRING("ULA'ULA CAVE") },};
+#endif
 #endif
 
 const struct RegionMapLocation *GetActiveRegionMapEntries(void)
@@ -2696,7 +3220,7 @@ static void SetFlyMapCallback(void callback(void))
 }
 
 #if IS_HNS
-static const u8 sText_SwitchMap[] = _("{SELECT_BUTTON} Wechsel");
+static const u8 sText_SwitchMap[] = _(DE_EN("{SELECT_BUTTON} Wechsel", "{SELECT_BUTTON}MAP"));
 #endif
 
 // "Wohin?" and, once Hoenn is known, the right-aligned switch hint. Both must fit in 112 px.

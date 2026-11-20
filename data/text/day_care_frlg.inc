@@ -81,8 +81,8 @@ DayCare_Text_SeeWifeIfYouWantToPickUpMon::
 	.string "Wenn du dein Pokémon abholen\n"
 	.string "willst, sprich mit meiner Frau.$"
 #else
-	.string "ポケモンを　ひきとりたい　ときは\n"
-	.string "ばさんに　いって　おくれ$"
+	.string "If you want to pick up your POKéMON,\n"
+	.string "talk to my wife.$"
 #endif
 
 DayCare_Text_YourMonsAreDoingFine::
@@ -221,7 +221,7 @@ DayCare_Text_TakeBackWhichMon::
 	.string "Welches Pokémon möchtest du\n"
 	.string "abholen?$"
 #else
-	.string "どっちの　ポケモンを　ひきとるかい？$"
+	.string "Which POKéMON will you take back?$"
 #endif
 
 DayCare_Text_ItWillCostX::

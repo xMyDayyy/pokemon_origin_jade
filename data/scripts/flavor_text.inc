@@ -127,8 +127,7 @@ Text_NothingButPokemonBooks::
 #if GERMAN
 	.string "Nichts als Bücher über Pokémon$"
 #else
-	.string "ほんだなに　ならんでいるのは\n"
-	.string "ポケモンの　ほん　ばかりだ$"
+	.string "It's crammed full of POKéMON books.$"
 #endif
 
 Text_ATownMap::

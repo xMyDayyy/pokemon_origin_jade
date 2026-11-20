@@ -1741,8 +1741,13 @@ BattleFrontier_BattleTowerLobby_Text_ExplainLinkMultisChallenge_hns:
 #endif
 
 BattleFrontier_BattleTowerLobby_Text_PleaseSelectTwoMons2_hns:
+#if GERMAN
 	.string "Bitte wähle zwei Pokémon aus, die\n"
 	.string "antreten sollen.$"
+#else
+	.string "Now please select the two POKéMON\n"
+	.string "that are to be entered.$"
+#endif
 
 @ Unused
 BattleFrontier_BattleTowerLobby_Text_ChoseSameMonAsFriend_hns:
@@ -1799,17 +1804,31 @@ BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlMode_hns:
 
 @ Unused
 BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlModeSameMon_hns:
+#if GERMAN
 	.string "Dein Freund hat eine andere\n"
 	.string "Kampfkategorie gewählt.\p"
 	.string "Dein Freund hat sich ebenfalls für das\n"
 	.string "Pokémon {STR_VAR_1} entschieden.$"
+#else
+	.string "Your friend has chosen a different\n"
+	.string "battle level.\p"
+	.string "Your friend has also selected\n"
+	.string "the POKéMON {STR_VAR_1}.$"
+#endif
 
 @ Unused
 BattleFrontier_BattleTowerLobby_Text_FriendChoseDifferentLvlModeSameMons_hns:
+#if GERMAN
 	.string "Dein Freund hat eine andere\n"
 	.string "Kampfkategorie gewählt.\p"
 	.string "Dein Freund hat auch die Pokémon\n"
 	.string "{STR_VAR_1} und {STR_VAR_2} gewählt.$"
+#else
+	.string "Your friend has chosen a different\n"
+	.string "battle level.\p"
+	.string "Your friend has also selected the\n"
+	.string "POKéMON {STR_VAR_1} and {STR_VAR_2}.$"
+#endif
 
 BattleFrontier_BattleTowerLobby_Text_ChooseDifferentMonsMatchLvlMode_hns:
 #if GERMAN

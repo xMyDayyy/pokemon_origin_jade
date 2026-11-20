@@ -47,7 +47,8 @@ MoveRelearner_Text_AnythingElse:
 	.string "Gibt es noch etwas, womit ich dienen\n"
 	.string "kann?$"
 #else
-	.string "Is there anything else I may do for you?$"
+	.string "Is there anything else I may do\n"
+	.string "for you?$"
 #endif
 
 MoveRelearner_Text_ChoosePkmn:
