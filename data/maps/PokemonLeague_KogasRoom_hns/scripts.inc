@@ -28,7 +28,8 @@ PokemonLeague_KogasRoom_EventScript_Koga::
 
 PokemonLeague_KogasRoom_EventScript_KogaRematch::
 	goto_if_unset FLAG_IS_KANTO_CHAMPION, PokemonLeague_KogasRoom_EventScript_KogaRematchStandard
-	goto_if_ge VAR_SINJOH_STORYLINE, 13, PokemonLeague_KogasRoom_EventScript_KogaRematchPostOBC
+	@ Origin Jade: Sinjoh is locked, the post-OBC team comes with the Johto title.
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, PokemonLeague_KogasRoom_EventScript_KogaRematchPostOBC
 
 PokemonLeague_KogasRoom_EventScript_KogaRematchStandard::
 	msgbox PokemonLeague_KogasRoom_Text_RematchBefore, MSGBOX_DEFAULT

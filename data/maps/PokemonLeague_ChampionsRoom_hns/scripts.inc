@@ -54,7 +54,8 @@ PokemonLeague_WillsRoom_EventScript_Lance::
 
 PokemonLeague_WillsRoom_EventScript_LanceRematch::
 	goto_if_unset FLAG_IS_KANTO_CHAMPION, PokemonLeague_WillsRoom_EventScript_LanceRematchStandard
-	goto_if_ge VAR_SINJOH_STORYLINE, 13, PokemonLeague_WillsRoom_EventScript_LanceRematchPostOBC
+	@ Origin Jade: Sinjoh is locked, the post-OBC team comes with the Johto title.
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, PokemonLeague_WillsRoom_EventScript_LanceRematchPostOBC
 
 PokemonLeague_WillsRoom_EventScript_LanceRematchStandard::
 	msgbox PokemonLeague_ChampionsRoom_Text_RematchBattleIntro, MSGBOX_DEFAULT

@@ -32,7 +32,8 @@ MtSilver_SummitDay_EventScript_Red::
 	msgbox MtSilver_SummitDay_Text_Red, MSGBOX_DEFAULT
 	closemessage
 	goto_if_unset FLAG_IS_KANTO_CHAMPION, MtSilver_SummitDay_EventScript_RedStandard
-	goto_if_ge VAR_SINJOH_STORYLINE, 13, MtSilver_SummitDay_EventScript_RedPostOBC
+	@ Origin Jade: Sinjoh is locked, the post-OBC team comes with the Johto title.
+	goto_if_set FLAG_IS_JOHTO_CHAMPION, MtSilver_SummitDay_EventScript_RedPostOBC
 
 MtSilver_SummitDay_EventScript_RedStandard::
 	trainerbattle_no_intro TRAINER_RED_HNS, MtSilver_SummitDay_Text_RedBeaten
