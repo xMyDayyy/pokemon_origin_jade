@@ -14221,15 +14221,15 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Force Setup First Turn
+AI: Basic Trainer
 
-Slugma
+Wingull
 Level: 3
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Overheat
-- Ancient Power
-- Earth Power
-- Shell Smash
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Lotad
 Level: 3
@@ -14242,10 +14242,10 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Torchic
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Overheat
-- Rock Slide
-- Work Up
-- Toxic
+- Flare Blitz
+- Hi Jump Kick
+- Brave Bird
+- Swords Dance
 
 === TRAINER_BRENDAN_ROUTE_110_TREECKO ===
 Name: DE_EN(Brix, BRENDAN)
@@ -14258,7 +14258,7 @@ AI: Basic Trainer
 
 Wingull
 Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Surf
 - Hurricane
 - Ice Beam
@@ -14266,15 +14266,31 @@ IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Lombre
 Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Surf
 - Giga Drain
 - Ice Beam
 - Synthesis
 
+Poochyena
+Level: 17
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
+
+Zigzagoon
+Level: 17
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Extreme Speed
+- Double Edge
+- Shadow Claw
+- Belly Drum
+
 Combusken
 Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Flare Blitz
 - Hi Jump Kick
 - Brave Bird
@@ -14291,7 +14307,7 @@ AI: Basic Trainer
 
 Pelipper
 Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Surf
 - Hurricane
 - Ice Beam
@@ -14299,23 +14315,39 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Lombre
 Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Surf
 - Giga Drain
 - Ice Beam
 - Synthesis
 
-Bulbasaur
+Mightyena
 Level: 28
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Sludge Wave
-- Giga Drain
-- Earthquake
-- Sleep Powder
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
+
+Zigzagoon
+Level: 28
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Extreme Speed
+- Double Edge
+- Shadow Claw
+- Belly Drum
+
+Tropius
+Level: 28
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Leaf Storm
+- Air Slash
+- Calm Mind
+- Roost
 
 Combusken
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Flare Blitz
 - Hi Jump Kick
 - Brave Bird
@@ -16312,31 +16344,39 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
+
+Wingull
+Level: 13
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Surf
+- Hurricane
+- Ice Beam
+- Roost
 
 Lotad
-Level: 13
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+Level: 12
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Surf
 - Giga Drain
 - Ice Beam
 - Synthesis
 
-Mudkip
-Level: 12
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Earthquake
-- Waterfall
-- Ice Punch
-- Bulk Up
-
 Torchic
 Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Flare Blitz
-- Focus Blast
-- Thunder Punch
+- Hi Jump Kick
+- Brave Bird
 - Swords Dance
+
+Poochyena
+Level: 13
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
 
 === TRAINER_BRENDAN_RUSTBORO_MUDKIP ===
 Name: DE_EN(Brix, BRENDAN)
@@ -18352,7 +18392,7 @@ AI: Basic Trainer
 
 Tropius
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Leaf Storm
 - Air Slash
 - Calm Mind
@@ -18360,7 +18400,7 @@ IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Pelipper
 Level: 32
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Surf
 - Hurricane
 - Ice Beam
@@ -18368,23 +18408,31 @@ IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Ludicolo
 Level: 32
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Surf
 - Giga Drain
 - Ice Beam
 - Synthesis
 
-Magnemite
+Mightyena
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Thunderbolt
-- Discharge
-- Flash Cannon
-- Thunder Wave
+- Crunch
+- Play Rough
+- Iron Tail
+- Toxic
+
+Linoone
+Level: 31
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Extreme Speed
+- Double Edge
+- Shadow Claw
+- Belly Drum
 
 Combusken
 Level: 34
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Flare Blitz
 - Hi Jump Kick
 - Brave Bird
