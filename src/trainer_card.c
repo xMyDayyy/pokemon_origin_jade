@@ -737,7 +737,8 @@ static u8 GetHnSTrainerStars(struct TrainerCard *trainerCard)
         stars++;
     if (FlagGet(FLAG_IS_HOENN_CHAMPION))
         stars++;
-    if (FlagGet(TrainerIdToFlagId(TRAINER_RED_HNS)))
+    // Red's script sets it after either of his teams.
+    if (FlagGet(FLAG_DEFEATED_RED))
         stars++;
 
     return stars;
