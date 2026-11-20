@@ -133,11 +133,11 @@ enum Language
 // Bag constants
 #if I_COMBINE_BAG_POCKETS == TRUE
 #define BAG_ITEMS_COUNT (200 + 36)
-#define BAG_KEYITEMS_COUNT 60
+#define BAG_KEYITEMS_COUNT 70 // Origin Jade: three regions; 10 slots taken from medicine
 #define BAG_POKEBALLS_COUNT 39 // 29 + padding
 #define BAG_TMHM_COUNT 160 // 110 + padding
 #define BAG_BERRIES_COUNT 66 // 46 + padding
-#define BAG_MEDICINE_COUNT (60 + 32) // 40 + padding
+#define BAG_MEDICINE_COUNT (50 + 32) // Origin Jade: was 60 + 32; same bag size in the save
 #else
 #define BAG_ITEMS_COUNT 200
 #define BAG_KEYITEMS_COUNT 60
