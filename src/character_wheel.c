@@ -32,13 +32,13 @@
 
 // Ellipse the feet stand on (screen pixels)
 #define WHEEL_CENTER_X      120
-#define WHEEL_CENTER_Y      116
-#define WHEEL_RADIUS_X      80
-#define WHEEL_RADIUS_Y      32
+#define WHEEL_CENTER_Y      108
+#define WHEEL_RADIUS_X      88
+#define WHEEL_RADIUS_Y      44
 #define WHEEL_FEET_Y        31      // pic centre to feet at full size
 
 #define WHEEL_SCALE_BACK    128     // size at the back, Q8 (0.5); front is 256
-#define WHEEL_DARK_MAX      11      // BlendPalette coefficient (of 16) towards black at the back
+#define WHEEL_DARK_MAX      7       // BlendPalette coefficient (of 16) towards black at the back
 #define WHEEL_TURN_FRAMES   16      // one step, eased out
 #define WHEEL_FADE_STEPS    16      // BLDALPHA fade 0..16 in, 16..0 out, one step per frame
 
