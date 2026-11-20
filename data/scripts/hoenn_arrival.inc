@@ -750,7 +750,7 @@ BirchsLab_Text_BinderExplain:
 	.string "Die Mappe zeigt die Orden von Hoenn\n"
 	.string "auf deiner Trainerkarte.$"
 #else
-	.string "PROF. BIRCH: TROY said you like to\n"
+	.string "PROF. BIRCH: STEVEN said you like to\n"
 	.string "keep proof of your victories.\p"
 	.string "It will display your HOENN BADGES\n"
 	.string "on your TRAINER CARD.$"

@@ -794,8 +794,13 @@ SlateportCity_BattleTentLobby_Text_ExplainMonRules:
 #endif
 	.string "Diese stehen auf Level 30.$"
 #else
+#if IS_HNS
+	.string "The POKéMON of the FACTORY\n"
+	.string "BATTLE TENT are all rentals.\p"
+#else
 	.string "The POKéMON of the SLATEPORT\n"
 	.string "BATTLE TENT are all rentals.\p"
+#endif
 	.string "All rental POKéMON are kept at\n"
 	.string "Level 30.$"
 #endif
@@ -889,7 +894,11 @@ VerdanturfTown_BattleTentLobby_Text_RulesAreListed:
 #endif
 	.string "hängen öffentlich aus.$"
 #else
+#if IS_HNS
+	.string "The PALACE BATTLE TENT\n"
+#else
 	.string "The VERDANTURF BATTLE TENT\n"
+#endif
 	.string "rules are listed.$"
 #endif
 

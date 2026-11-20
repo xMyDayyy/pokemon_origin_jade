@@ -86,10 +86,11 @@ BlackthornCity_Text_ElmCall:
 	.string "Komm doch mal im Labor vorbei.\n"
 	.string "Ich zähle auf dich!$"
 #else
-	.string "PROF.ELM: Hello, {PLAYER}?\p"
-	.string "I have something here for you.\n"
-	.string "Could you swing by my LAB?\p"
-	.string "See you later!$"
+	.string "Hello, {PLAYER}?\p"
+	.string "PROF. OAK left something here\n"
+	.string "for you.\p"
+	.string "Could you swing by my LAB?\n"
+	.string "I'm counting on you!$"
 #endif
 
 BlackThornCity_EventScript_Sage::

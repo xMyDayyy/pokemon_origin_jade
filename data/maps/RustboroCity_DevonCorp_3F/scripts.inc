@@ -339,6 +339,15 @@ RustboroCity_DevonCorp_3F_Text_ExplainExpShare:
 	.string "aufzuziehen.$"
 #endif
 #else
+#if IS_HNS
+	.string "MR. STONE: A POKéMON holding that\n"
+	.string "EXP. SHARE S will be given some of the\l"
+	.string "EXP Points from battle.\p"
+	.string "It will get EXP Points even if it didn't\n"
+	.string "actually battle.\p"
+	.string "I would say EXP. SHARE S is quite\n"
+	.string "useful for raising weak POKéMON.$"
+#else
 	.string "MR. STONE: A POKéMON holding that\n"
 	.string "EXP. SHARE will be given some of the\l"
 	.string "EXP Points from battle.\p"
@@ -346,6 +355,7 @@ RustboroCity_DevonCorp_3F_Text_ExplainExpShare:
 	.string "actually battle.\p"
 	.string "I would say EXP. SHARE is quite useful\n"
 	.string "for raising weak POKéMON.$"
+#endif
 #endif
 
 RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends:
