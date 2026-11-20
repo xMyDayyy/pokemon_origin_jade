@@ -127,7 +127,7 @@ CeruleanCity_House1_Text_ObeyLv30Cut::
 	.string "Ferner kannst du den Zerschneider\n"
 	.string "außerhalb von Kämpfen nutzen!$"
 #else
-	.string "POKéMON up to Lv. 30 will obey\n"
+	.string "POKéMON up to Lv. 20 will obey\n"
 	.string "you.\p"
 	.string "That includes even outsiders you\n"
 	.string "obtain in trades.\p"
@@ -159,7 +159,7 @@ CeruleanCity_House1_Text_ObeyLv50Strength::
 	.string "Zusätzlich kannst du außerhalb von\n"
 	.string "Kämpfen Stärke einsetzen.$"
 #else
-	.string "POKéMON up to Lv. 50 will obey\n"
+	.string "POKéMON up to Lv. 30 will obey\n"
 	.string "you.\p"
 	.string "That includes even outsiders you\n"
 	.string "obtain in trades.\p"
@@ -193,7 +193,7 @@ CeruleanCity_House1_Text_ObeyLv70RockSmash::
 	.string "Du kannst den Zerschmetterer nun auch\n"
 	.string "außerhalb eines Kampfes anwenden.$"
 #else
-	.string "POKéMON up to Lv. 70 will obey\n"
+	.string "POKéMON up to Lv. 40 will obey\n"
 	.string "you.\p"
 	.string "That includes even outsiders you\n"
 	.string "obtain in trades.\p"
@@ -221,6 +221,7 @@ CeruleanCity_House1_Text_AllMonsWillObeyYou::
 	.string "Mit acht Orden folgen dir Pokémon\n"
 	.string "bis Level 50!$"
 #else
-	.string "All POKéMON will obey you!$"
+	.string "With eight BADGES, POKéMON up to\n"
+	.string "Lv. 50 will obey you!$"
 #endif
 

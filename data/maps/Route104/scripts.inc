@@ -1162,7 +1162,7 @@ Route104_Text_RouteSignPetalburg:
 	.string "Route 104\n"
 	.string "{RIGHT_ARROW} Blütenburg City$"
 #else
-	.string "ROUTE 1O4\n"
+	.string "ROUTE 104\n"
 	.string "{RIGHT_ARROW} PETALBURG CITY$"
 #endif
 
@@ -1171,7 +1171,7 @@ Route104_Text_RouteSignRustboro:
 	.string "Route 104\n"
 	.string "{UP_ARROW} Metarost City$"
 #else
-	.string "ROUTE 1O4\n"
+	.string "ROUTE 104\n"
 	.string "{UP_ARROW} RUSTBORO CITY$"
 #endif
 
