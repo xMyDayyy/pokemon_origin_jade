@@ -281,7 +281,7 @@ const u8 gText_ExecuteSearchSwitch[] = _("Execute search/switch.");
 #if GERMAN
 const u8 gText_DexHoennTitle[] = _("Johto Dex");
 #else
-const u8 gText_DexHoennTitle[] = _("HOENN DEX");
+const u8 gText_DexHoennTitle[] = _("JOHTO DEX");
 #endif
 #else
 #if GERMAN
@@ -388,7 +388,7 @@ const u8 gText_DexSearchColorPink[] = _("PINK");
 #if GERMAN
 const u8 gText_DexHoennDescription[] = _("Johto Pokédex");
 #else
-const u8 gText_DexHoennDescription[] = _("HOENN region's POKéDEX");
+const u8 gText_DexHoennDescription[] = _("JOHTO region's POKéDEX");
 #endif
 #else
 #if GERMAN
