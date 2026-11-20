@@ -59,10 +59,6 @@ KNOWN = {
     ("MAP_RUINS_OF_ALPH_LAB_HNS", "SPECIES_ANORITH"): "belebt das Klauenfossil, das es nur in Hoenn gibt",
     ("MAP_ROUTE4", "SPECIES_JIRACHI"): "erst nach der ersten Fahrt nach Hoenn",
     "MAP_SAFARI_ZONE_LOW_RIGHT_HNS": "öffnet erst nach Baobas Questreihe, nach der ersten Fahrt nach Hoenn",
-    ("MAP_SAFARI_ZONE_GATE_SAFARI_ZONE_ENTRANCE_HNS", "SPECIES_BELDUM"): "Testskript ohne Aufruf",
-    ("MAP_SAFARI_ZONE_GATE_SAFARI_ZONE_ENTRANCE_HNS", "SPECIES_CASTFORM"): "Testskript ohne Aufruf",
-    ("MAP_SAFARI_ZONE_GATE_SAFARI_ZONE_ENTRANCE_HNS", "SPECIES_MEDICHAM"): "Testskript ohne Aufruf",
-    ("MAP_SAFARI_ZONE_GATE_SAFARI_ZONE_ENTRANCE_HNS", "SPECIES_BAGON"): "Testskript ohne Aufruf",
 }
 
 MON_GFX = re.compile(r"OBJ_EVENT_GFX_MON_BASE\s*\+\s*(SPECIES_\w+)")
