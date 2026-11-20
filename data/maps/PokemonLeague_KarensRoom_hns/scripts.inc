@@ -28,8 +28,8 @@ PokemonLeague_KarensRoom_EventScript_Karen::
 
 PokemonLeague_KarensRoom_EventScript_KarenRematch::
 	goto_if_unset FLAG_IS_KANTO_CHAMPION, PokemonLeague_KarensRoom_EventScript_KarenRematchStandard
-	@ Origin Jade: Sinjoh is locked, the post-OBC team comes with the Johto title.
-	goto_if_set FLAG_IS_JOHTO_CHAMPION, PokemonLeague_KarensRoom_EventScript_KarenRematchPostOBC
+	@ Origin Jade: team 2 after the Johto title, the post-OBC team once Red is beaten.
+	goto_if_set FLAG_DEFEATED_RED, PokemonLeague_KarensRoom_EventScript_KarenRematchPostOBC
 
 PokemonLeague_KarensRoom_EventScript_KarenRematchStandard::
 	msgbox PokemonLeague_KarensRoom_Text_RematchBefore, MSGBOX_DEFAULT
