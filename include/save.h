@@ -16,11 +16,12 @@
 
 #define SPECIAL_SECTOR_SENTINEL 0xB39D
 
-#define SAVE_VERSION       6
+#define SAVE_VERSION       7
 #define SAVE_VERSION_MAGIC 0xE8F828BC
 // Older saves are refused (LoadGameSave reports SAVE_STATUS_OUTDATED) and
 // the game starts fresh. 6: PokeCom rematch flag block.
-#define SAVE_VERSION_MIN_SUPPORTED 6
+// 7: bag pockets resized (key items 70, medicine 82), player character byte.
+#define SAVE_VERSION_MIN_SUPPORTED 7
 
 #define SECTOR_ID_SAVEBLOCK2          0
 #define SECTOR_ID_SAVEBLOCK1_START    1
