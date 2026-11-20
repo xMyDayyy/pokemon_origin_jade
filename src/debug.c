@@ -15,6 +15,7 @@
 #include "event_object_movement.h"
 #include "event_scripts.h"
 #include "field_message_box.h"
+#include "field_player_avatar.h"
 #include "field_screen_effect.h"
 #include "field_weather.h"
 #include "follower_npc.h"
@@ -36,6 +37,7 @@
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
+#include "player_character.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
@@ -379,6 +381,7 @@ static void DebugAction_BerryFunctions_Weeds(u8 taskId);
 static void DebugAction_Player_Name(u8 taskId);
 static void DebugAction_Player_Gender(u8 taskId);
 static void DebugAction_Player_Id(u8 taskId);
+static void DebugAction_Player_Character(u8 taskId);
 
 extern const u8 Debug_FlagsNotSetOverworldConfigMessage[];
 extern const u8 Debug_FlagsNotSetBattleConfigMessage[];
@@ -675,6 +678,7 @@ static const struct DebugMenuOption sDebugMenu_Actions_Player[] =
 {
     { COMPOUND_STRING("Player name"),    DebugAction_Player_Name },
     { COMPOUND_STRING("Toggle gender"),  DebugAction_Player_Gender },
+    { COMPOUND_STRING("Next character"), DebugAction_Player_Character },
     { COMPOUND_STRING("New Trainer ID"), DebugAction_Player_Id },
     { NULL }
 };
@@ -1849,12 +1853,35 @@ static void DebugAction_Player_Name(u8 taskId)
     DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, 0, CB2_ReturnToFieldContinueScript);
 }
 
+// Redraws the player after a character or gender change
+static void Debug_RefreshPlayerAvatar(void)
+{
+    gPlayerAvatar.gender = gSaveBlock2Ptr->playerGender;
+    ObjectEventSetGraphicsId(&gObjectEvents[gPlayerAvatar.objectEventId], GetPlayerAvatarGraphicsIdByCurrentState());
+}
+
+// Also clears the character: the look then follows the gender, as in an old save
 static void DebugAction_Player_Gender(u8 taskId)
 {
     if (gSaveBlock2Ptr->playerGender == MALE)
         gSaveBlock2Ptr->playerGender = FEMALE;
     else
         gSaveBlock2Ptr->playerGender = MALE;
+    gSaveBlock2Ptr->playerCharacter = PLAYER_CHARACTER_NONE;
+    Debug_RefreshPlayerAvatar();
+    Debug_DestroyMenu_Full(taskId);
+    ScriptContext_Enable();
+}
+
+// Red, Leaf, Gold, Kris, Brendan, May, Red...; sets the gender too
+static void DebugAction_Player_Character(u8 taskId)
+{
+    u8 character = GetPlayerCharacter() + 1;
+
+    if (character >= PLAYER_CHARACTER_COUNT)
+        character = PLAYER_CHARACTER_RED;
+    SetPlayerCharacter(character);
+    Debug_RefreshPlayerAvatar();
     Debug_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
 }
