@@ -755,28 +755,3 @@ BirchsLab_Text_BinderExplain:
 	.string "It will display your HOENN BADGES\n"
 	.string "on your TRAINER CARD.$"
 #endif
-
-BirchsLab_Text_HoennGoodLuck:
-#if GERMAN
-	.string "Prof. Birk: Blütenburg City liegt\n"
-	.string "im Westen, Metarost City im Norden.\p"
-	.string "Beide haben Arenen - falls es dich\n"
-	.string "danach juckt.\p"
-	.string "Ach ja: Meine Tochter Maike ist\n"
-	.string "oben auf Route 103 unterwegs.\p"
-	.string "Sie würde dich sicher gern kennenlernen\n"
-	.string "- schau doch vorbei!\p"
-	.string "Und jetzt raus mit dir.\n"
-	.string "Viel Spaß, {PLAYER}!$"
-#else
-	.string "PROF. BIRCH: PETALBURG CITY lies\n"
-	.string "west, RUSTBORO to the north.\p"
-	.string "Both have GYMS - in case you feel\n"
-	.string "the itch.\p"
-	.string "Oh, and my daughter MAY is out\n"
-	.string "on ROUTE 103 up north.\p"
-	.string "I'm sure she'd love to meet you -\n"
-	.string "why not drop by?\p"
-	.string "Now off you go.\n"
-	.string "Have fun, {PLAYER}!$"
-#endif
