@@ -248,11 +248,12 @@ VioletCity_PokeCenter_Text_Gentleman:
 	.string "lassen.\p"
 	.string "Keiner weiß so recht, wer das war.$"
 #else
-	.string "It was around three years ago.\p"
-	.string "TEAM ROCKET was up to no good\n"
+	.string "Over in KANTO, not long ago,\n"
+	.string "TEAM ROCKET was up to no good\l"
 	.string "with POKéMON.\p"
 	.string "But justice prevailed--a young\n"
-	.string "kid broke 'em up.$"
+	.string "TRAINER broke 'em up.\p"
+	.string "Nobody really knows who it was.$"
 #endif
 
 VioletCity_PokeCenter_Text_Youngster:
@@ -265,6 +266,7 @@ VioletCity_PokeCenter_Text_Youngster:
 #else
 	.string "POKéMON are smart. They won't\n"
 	.string "obey a trainer they don't respect.\p"
-	.string "Without the right GYM BADGES,\n"
-	.string "they will just do as they please.$"
+	.string "And the LEAGUE here in JOHTO has\n"
+	.string "its own rules. BADGES from other\l"
+	.string "regions only count so much.$"
 #endif

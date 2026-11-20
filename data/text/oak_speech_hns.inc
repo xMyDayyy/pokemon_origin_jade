@@ -112,9 +112,10 @@ gText_Oak_YourePlayer::
 	.string "Alabastia, schöner Ort.\p"
 	.string "$"
 #else
-	.string "{PLAYER}{KUN}, are you ready?\p"
-	.string "Your very own adventure is about\n"
-	.string "to unfold.\p"
+	.string "Ah, okay!\p"
+	.string "Now I've got it! You're {PLAYER}{KUN},\n"
+	.string "and you live in PALLET TOWN.\l"
+	.string "Nice place.\p"
 	.string "$"
 #endif
 
@@ -132,10 +133,14 @@ gText_Oak_AreYouReady::
 	.string "ich erwarte dich dort.\p"
 	.string "$"
 #else
+	.string "{PLAYER}{KUN}, are you ready?\p"
+	.string "Your very own POKéMON adventure\n"
+	.string "awaits you.\p"
 	.string "You'll face fun times and tough\n"
 	.string "challenges.\p"
 	.string "A world of dreams and adventures\n"
-	.string "with POKéMON awaits! Let's go!\p"
-	.string "I'll be seeing you later!\p"
+	.string "with POKéMON awaits! Get ready!\p"
+	.string "Come to my POKéMON LAB later.\n"
+	.string "I'll be waiting for you there.\p"
 	.string "$"
 #endif
