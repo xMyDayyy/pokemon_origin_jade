@@ -29,6 +29,7 @@
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
+#include "player_character.h"
 #include "pokemon.h"
 #include "pokeball.h"
 #include "random.h"
@@ -3606,32 +3607,10 @@ u8 LoadObjectEventPaletteCopy(u16 originalTag, u16 copyTag)
     return LoadSpritePalette(&palette);
 }
 
-u8 LoadPlayerObjectEventPalette(enum Gender gender)
+// Palette of the local player's character (field effects drawn with the player palette)
+u8 LoadPlayerObjectEventPalette(void)
 {
-    u16 paletteTag;
-    switch (gender)
-    {
-    default:
-    case MALE:
-#if IS_HNS
-        paletteTag = OBJ_EVENT_PAL_TAG_GOLD_HNS;
-#elif IS_FRLG
-        paletteTag = OBJ_EVENT_PAL_TAG_PLAYER_RED;
-#else
-        paletteTag = OBJ_EVENT_PAL_TAG_BRENDAN;
-#endif
-        break;
-    case FEMALE:
-#if IS_HNS
-        paletteTag = OBJ_EVENT_PAL_TAG_KRIS_HNS;
-#elif IS_FRLG
-        paletteTag = OBJ_EVENT_PAL_TAG_PLAYER_GREEN;
-#else
-        paletteTag = OBJ_EVENT_PAL_TAG_MAY;
-#endif
-        break;
-    }
-    return LoadObjectEventPalette(paletteTag);
+    return LoadObjectEventPalette(GetPlayerCharacterInfo()->paletteTag);
 }
 
 static void UNUSED LoadObjectEventPaletteSet(u16 *paletteTags)

@@ -22,6 +22,7 @@
 #include "metatile_behavior.h"
 #include "overworld.h"
 #include "palette.h"
+#include "player_character.h"
 #include "player_pc.h"
 #include "script.h"
 #include "secret_base.h"
@@ -1440,10 +1441,7 @@ static void SetUpPlacingDecorationPlayerAvatar(u8 taskId, struct PlaceDecoration
         x -= 8;
 
 #if IS_HNS
-    if (gSaveBlock2Ptr->playerGender == MALE)
-        sDecor_CameraSpriteObjectIdx2 = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_GOLD_DECORATING_HNS, SpriteCallbackDummy, x, 72, 0);
-    else
-        sDecor_CameraSpriteObjectIdx2 = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_KRIS_DECORATING_HNS, SpriteCallbackDummy, x, 72, 0);
+    sDecor_CameraSpriteObjectIdx2 = CreateObjectGraphicsSprite(GetPlayerCharacterInfo()->decoratingGfxId, SpriteCallbackDummy, x, 72, 0);
 #else
     if (gSaveBlock2Ptr->playerGender == MALE)
         sDecor_CameraSpriteObjectIdx2 = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_BRENDAN_DECORATING, SpriteCallbackDummy, x, 72, 0);
@@ -2373,10 +2371,7 @@ static void SetUpPuttingAwayDecorationPlayerAvatar(void)
     gFieldCamera.spriteId = CreateSprite(&sPuttingAwayCursorSpriteTemplate, 120, 80, 0);
     
 #if IS_HNS
-    if (gSaveBlock2Ptr->playerGender == MALE)
-        sDecor_CameraSpriteObjectIdx2 = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_GOLD_DECORATING_HNS, SpriteCallbackDummy, 136, 72, 0);
-    else
-        sDecor_CameraSpriteObjectIdx2 = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_KRIS_DECORATING_HNS, SpriteCallbackDummy, 136, 72, 0);
+    sDecor_CameraSpriteObjectIdx2 = CreateObjectGraphicsSprite(GetPlayerCharacterInfo()->decoratingGfxId, SpriteCallbackDummy, 136, 72, 0);
 #else
     if (gSaveBlock2Ptr->playerGender == MALE)
         sDecor_CameraSpriteObjectIdx2 = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_BRENDAN_DECORATING, SpriteCallbackDummy, 136, 72, 0);
@@ -2776,7 +2771,12 @@ static void InitializeCameraSprite1(struct Sprite *sprite)
 static void LoadPlayerSpritePalette(void)
 {
 #if IS_HNS
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    // Red and Leaf use Gold's and Kris's colours
+    if (GetPlayerCharacter() == PLAYER_CHARACTER_BRENDAN)
+        LoadSpritePalette(&sSpritePal_PuttingAwayCursorBrendan);
+    else if (GetPlayerCharacter() == PLAYER_CHARACTER_MAY)
+        LoadSpritePalette(&sSpritePal_PuttingAwayCursorMay);
+    else if (gSaveBlock2Ptr->playerGender == MALE)
         LoadSpritePalette(&sSpritePal_PuttingAwayCursorGold);
     else
         LoadSpritePalette(&sSpritePal_PuttingAwayCursorKris);

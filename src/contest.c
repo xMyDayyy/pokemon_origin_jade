@@ -15,6 +15,7 @@
 #include "menu.h"
 #include "overworld.h"
 #include "palette.h"
+#include "player_character.h"
 #include "random.h"
 #include "new_game.h"
 #include "script.h"
@@ -2985,7 +2986,9 @@ void CreateContestMonFromParty(u8 partyIndex)
     if (gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK)
         StripPlayerNameForLinkContest(name);
     memcpy(gContestMons[gContestPlayerMonIndex].trainerName, name, PLAYER_NAME_LENGTH + 1);
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (!(gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK))
+        gContestMons[gContestPlayerMonIndex].trainerGfxId = GetPlayerCharacterGfxId(); // link contests: fixed Emerald link palettes
+    else if (gSaveBlock2Ptr->playerGender == MALE)
         gContestMons[gContestPlayerMonIndex].trainerGfxId = OBJ_EVENT_GFX_LINK_BRENDAN;
     else
         gContestMons[gContestPlayerMonIndex].trainerGfxId = OBJ_EVENT_GFX_LINK_MAY;

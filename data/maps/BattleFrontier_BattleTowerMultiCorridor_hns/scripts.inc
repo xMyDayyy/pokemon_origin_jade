@@ -16,13 +16,7 @@ BattleFrontier_BattleTowerMultiCorridor_OnTransition_hns:
 
 BattleFrontier_BattleTowerMultiCorridor_EventScript_SetObjGfx_hns::
 	tower_setpartnergfx
-	checkplayergender
-	goto_if_eq VAR_RESULT, FEMALE, BattleFrontier_BattleTowerMultiCorridor_EventScript_SetPlayerGfxFemale_hns
-	setvar VAR_OBJ_GFX_ID_F, OBJ_EVENT_GFX_GOLD_NORMAL_HNS
-	return
-
-BattleFrontier_BattleTowerMultiCorridor_EventScript_SetPlayerGfxFemale_hns::
-	setvar VAR_OBJ_GFX_ID_F, OBJ_EVENT_GFX_KRIS_NORMAL_HNS
+	specialvar VAR_OBJ_GFX_ID_F, GetPlayerCharacterGfxId
 	return
 
 BattleFrontier_BattleTowerMultiCorridor_EventScript_SetLinkPlayerGfx_hns::

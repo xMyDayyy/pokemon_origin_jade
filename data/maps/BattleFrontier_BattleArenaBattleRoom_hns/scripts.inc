@@ -19,17 +19,7 @@ BattleFrontier_BattleArenaBattleRoom_OnTransition_hns:
 	end
 
 BattleFrontier_BattleArenaBattleRoom_EventScript_SetPlayerGfx_hns::
-	checkplayergender
-	goto_if_eq VAR_RESULT, MALE, BattleFrontier_BattleArenaBattleRoom_EventScript_SetPlayerGfx_hnsMale_hns
-	goto_if_eq VAR_RESULT, FEMALE, BattleFrontier_BattleArenaBattleRoom_EventScript_SetPlayerGfx_hnsFemale_hns
-	return
-
-BattleFrontier_BattleArenaBattleRoom_EventScript_SetPlayerGfx_hnsMale_hns::
-	setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_GOLD_NORMAL_HNS
-	return
-
-BattleFrontier_BattleArenaBattleRoom_EventScript_SetPlayerGfx_hnsFemale_hns::
-	setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_KRIS_NORMAL_HNS
+	specialvar VAR_OBJ_GFX_ID_1, GetPlayerCharacterGfxId
 	return
 
 BattleFrontier_BattleArenaBattleRoom_OnFrame_hns:

@@ -20,6 +20,7 @@
 #include "move.h"
 #include "overworld.h"
 #include "palette.h"
+#include "player_character.h"
 #include "pokedex.h"
 #include "random.h"
 #include "sound.h"
@@ -5025,7 +5026,7 @@ static void TryAddInterviewObjectEvents(void)
 
     // Add object for player (facing right)
     spriteId = CreateObjectGraphicsSprite(
-        gSaveBlock2Ptr->playerGender == MALE ? OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL : OBJ_EVENT_GFX_RIVAL_MAY_NORMAL,
+        GetPlayerCharacterGfxId(),
         SpriteCallbackDummy,
         52,
         40,
