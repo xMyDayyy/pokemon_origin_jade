@@ -404,7 +404,8 @@ Route27_Text_JoseNoRoom:
 
 TohjoFalls_Text_Sign:
 #if GERMAN
-	.string "Die Tohjo-Fälle Die Grenzlinie zwischen\n"
+	.string "Die Tohjo-Fälle\p"
+	.string "Die Grenzlinie zwischen\n"
 	.string "Kanto und Johto$"
 #else
     .string "TOHJO FALLS\p"
