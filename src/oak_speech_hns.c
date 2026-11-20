@@ -47,6 +47,7 @@ extern const u8 gText_Oak_WhatChallenge[];
 extern const u8 gText_Oak_ChallengeSelected[];
 extern const u8 gText_Oak_WhatsYourName[];
 extern const u8 gText_Oak_SoItsPlayer[];
+extern const u8 gText_Oak_RememberYou[];
 extern const u8 gText_Oak_YourePlayer[];
 extern const u8 gText_Oak_AreYouReady[];
 
@@ -72,13 +73,16 @@ static void NewGameHnsSpeech_StartFadeOutTarget1InTarget2(u8, u8);
 static void NewGameHnsSpeech_StartFadePlatformIn(u8, u8);
 static void Task_NewGameHnsSpeech_SlidePlatformAway(u8);
 static void Task_NewGameHnsSpeech_StartPlayerFadeIn(u8);
+#if !OJ_CHARACTER_WHEEL // list only
 static void Task_NewGameHnsSpeech_WaitForPlayerFadeIn(u8);
+#endif
+#if !OJ_CHARACTER_WHEEL // list only
 static void Task_NewGameHnsSpeech_WhoAreYou(u8);
+#endif
 static void Task_NewGameHnsSpeech_WaitToShowCharacterMenu(u8);
 #if OJ_CHARACTER_WHEEL
 static void Task_NewGameHnsSpeech_ShowCharacterWheel(u8);
 static void Task_NewGameHnsSpeech_CharacterChosen(u8);
-static void Task_NewGameHnsSpeech_WaitForChosenCharacter(u8);
 #else
 static void Task_NewGameHnsSpeech_ChooseCharacter(u8);
 static void NewGameHnsSpeech_ShowCharacterMenu(u8);
@@ -86,14 +90,22 @@ static void Task_NewGameHnsSpeech_SlideOutOldCharacterSprite(u8);
 static void Task_NewGameHnsSpeech_SlideInNewCharacterSprite(u8);
 static s8 NewGameHnsSpeech_ProcessCharacterMenuInput(void);
 #endif
+#if !OJ_CHARACTER_WHEEL // list only
 static void NewGameHnsSpeech_ClearGenderWindow(u8, u8);
+#endif
 static void Task_NewGameHnsSpeech_ChallengeDisclaimer(u8);
 static void Task_NewGameHnsSpeech_WaitDisclaimerText(u8);
 static void Task_NewGameHnsSpeech_WaitPressDisclaimer(u8);
 static void Task_NewGameHnsSpeech_ChallengeMenu(u8);
+#if !OJ_CHARACTER_WHEEL // list only
 static void Task_NewGameHnsSpeech_WhatsYourName(u8);
+#endif
+#if !OJ_CHARACTER_WHEEL // list only
 static void Task_NewGameHnsSpeech_WaitForWhatsYourNameToPrint(u8);
+#endif
+#if !OJ_CHARACTER_WHEEL // list only
 static void Task_NewGameHnsSpeech_WaitPressBeforeNameChoice(u8);
+#endif
 static void Task_NewGameHnsSpeech_StartNamingScreen(u8);
 static void CB2_NewGameHnsSpeech_ReturnFromNamingScreen(void);
 static void CB2_NewGameHnsSpeech_ReturnFromChallengeMenu(void);
@@ -102,8 +114,15 @@ static void Task_NewGameHnsSpeech_ReturnFromChallengeMenuShowTextbox(u8);
 static void Task_NewGameHnsSpeech_WaitForTextAfterChallengeMenu(u8);
 static void Task_NewGameHnsSpeech_ReturnFromNamingScreenShowTextbox(u8);
 static void Task_NewGameHnsSpeech_SoItsPlayerName(u8);
+#if OJ_CHARACTER_WHEEL
+static void Task_NewGameHnsSpeech_WaitPressAfterName(u8);
+#endif
+#if !OJ_CHARACTER_WHEEL // list only
 static void Task_NewGameHnsSpeech_CreateNameYesNo(u8);
+#endif
+#if !OJ_CHARACTER_WHEEL // list only
 static void Task_NewGameHnsSpeech_ProcessNameYesNoMenu(u8);
+#endif
 static void Task_NewGameHnsSpeech_SlidePlatformAway2(u8);
 static void Task_NewGameHnsSpeech_ReshowProfessorMon(u8);
 static void Task_NewGameHnsSpeech_WaitForSpriteFadeInAndTextPrinter(u8);
@@ -122,7 +141,9 @@ static void SpriteCB_MovePlayerDownWhileShrinking(struct Sprite *);
 static u8 NewGameHnsSpeech_CreateMonSprite(u8, u8);
 static u8 NewGameHnsSpeech_CreatePlayerSprite(u8);
 static void NewGameHnsSpeech_DestroyPlayerSprite(u8);
+#if !OJ_CHARACTER_WHEEL // list only
 static void NewGameHnsSpeech_ClearGenderWindowTilemap(u8, u8, u8, u8, u8, u8);
+#endif
 static void LoadMainMenuWindowFrameTiles(u8, u16);
 static void DrawMainMenuWindowBorder(const struct WindowTemplate *, u16);
 
@@ -472,6 +493,10 @@ static void Task_NewGameHnsSpeech_StartPlayerFadeIn(u8 taskId)
         }
         else
         {
+#if OJ_CHARACTER_WHEEL
+            // "Und wer bist du?" leads straight into the wheel
+            gTasks[taskId].func = Task_NewGameHnsSpeech_ShowCharacterWheel;
+#else
             u8 spriteId = gTasks[taskId].tPlayerSpriteId;
 
             gSprites[spriteId].x = 180;
@@ -481,10 +506,12 @@ static void Task_NewGameHnsSpeech_StartPlayerFadeIn(u8 taskId)
             NewGameHnsSpeech_StartFadeInTarget1OutTarget2(taskId, 2);
             NewGameHnsSpeech_StartFadePlatformOut(taskId, 1);
             gTasks[taskId].func = Task_NewGameHnsSpeech_WaitForPlayerFadeIn;
+#endif
         }
     }
 }
 
+#if !OJ_CHARACTER_WHEEL // list only
 static void Task_NewGameHnsSpeech_WaitForPlayerFadeIn(u8 taskId)
 {
     if (gTasks[taskId].tIsDoneFadingSprites)
@@ -493,7 +520,9 @@ static void Task_NewGameHnsSpeech_WaitForPlayerFadeIn(u8 taskId)
         gTasks[taskId].func = Task_NewGameHnsSpeech_WhoAreYou;
     }
 }
+#endif
 
+#if !OJ_CHARACTER_WHEEL // list only
 static void Task_NewGameHnsSpeech_WhoAreYou(u8 taskId)
 {
     NewGameHnsSpeech_ClearWindow(0);
@@ -501,6 +530,7 @@ static void Task_NewGameHnsSpeech_WhoAreYou(u8 taskId)
     AddTextPrinterForMessage(TRUE);
     gTasks[taskId].func = Task_NewGameHnsSpeech_WaitToShowCharacterMenu;
 }
+#endif
 
 #if OJ_CHARACTER_WHEEL
 // The wheel takes the place of the trainer pic, its platform and the text box
@@ -528,31 +558,12 @@ static void Task_NewGameHnsSpeech_ShowCharacterWheel(u8 taskId)
     }
 }
 
-// The wheel has saved the choice and freed its sprites: show the chosen trainer pic as the list does
+// The wheel has saved the choice and freed its sprites: straight on to the naming screen
 static void Task_NewGameHnsSpeech_CharacterChosen(u8 taskId)
 {
-    u8 spriteId = NewGameHnsSpeech_CreatePlayerSprite(GetPlayerCharacter());
-
-    NewGameHnsSpeech_ClearGenderWindow(1, TRUE);
-    DrawDialogFrameWithCustomTile(0, TRUE, HNS_DLG_BASE_TILE_NUM);
     gTasks[taskId].tCharacter = GetPlayerCharacter();
-    gTasks[taskId].tPlayerSpriteId = spriteId;
-    gSprites[spriteId].x = 180;
-    gSprites[spriteId].y = 60;
-    gSprites[spriteId].invisible = FALSE;
-    gSprites[spriteId].oam.objMode = ST_OAM_OBJ_BLEND;
-    NewGameHnsSpeech_StartFadeInTarget1OutTarget2(taskId, 2);
-    NewGameHnsSpeech_StartFadePlatformOut(taskId, 1);
-    gTasks[taskId].func = Task_NewGameHnsSpeech_WaitForChosenCharacter;
-}
-
-static void Task_NewGameHnsSpeech_WaitForChosenCharacter(u8 taskId)
-{
-    if (gTasks[taskId].tIsDoneFadingSprites)
-    {
-        gSprites[gTasks[taskId].tPlayerSpriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
-        gTasks[taskId].func = Task_NewGameHnsSpeech_WhatsYourName;
-    }
+    BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+    gTasks[taskId].func = Task_NewGameHnsSpeech_StartNamingScreen;
 }
 #else
 static void Task_NewGameHnsSpeech_WaitToShowCharacterMenu(u8 taskId)
@@ -694,6 +705,7 @@ static void Task_NewGameHnsSpeech_FadeOutToChallengeMenu(u8 taskId)
     }
 }
 
+#if !OJ_CHARACTER_WHEEL // list only
 static void Task_NewGameHnsSpeech_WhatsYourName(u8 taskId)
 {
     NewGameHnsSpeech_ClearWindow(0);
@@ -701,13 +713,17 @@ static void Task_NewGameHnsSpeech_WhatsYourName(u8 taskId)
     AddTextPrinterForMessage(TRUE);
     gTasks[taskId].func = Task_NewGameHnsSpeech_WaitForWhatsYourNameToPrint;
 }
+#endif
 
+#if !OJ_CHARACTER_WHEEL // list only
 static void Task_NewGameHnsSpeech_WaitForWhatsYourNameToPrint(u8 taskId)
 {
     if (!RunTextPrintersAndIsPrinter0Active())
         gTasks[taskId].func = Task_NewGameHnsSpeech_WaitPressBeforeNameChoice;
 }
+#endif
 
+#if !OJ_CHARACTER_WHEEL // list only
 static void Task_NewGameHnsSpeech_WaitPressBeforeNameChoice(u8 taskId)
 {
     if ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON)))
@@ -716,6 +732,7 @@ static void Task_NewGameHnsSpeech_WaitPressBeforeNameChoice(u8 taskId)
         gTasks[taskId].func = Task_NewGameHnsSpeech_StartNamingScreen;
     }
 }
+#endif
 
 // Kept when the naming screen is confirmed empty: the character's own name
 static void NewGameHnsSpeech_SetDefaultPlayerName(void)
@@ -737,10 +754,30 @@ static void Task_NewGameHnsSpeech_StartNamingScreen(u8 taskId)
         FreeAndDestroyMonPicSprite(gTasks[taskId].tMonSpriteId);
         NewGameHnsSpeech_SetDefaultPlayerName();
         DestroyTask(taskId);
+#if OJ_CHARACTER_WHEEL
+        gNamingScreenBackOnEmpty = TRUE;
+        gNamingScreenWentBack = FALSE;
+#endif
         DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, 0, CB2_NewGameHnsSpeech_ReturnFromNamingScreen);
     }
 }
 
+#if OJ_CHARACTER_WHEEL
+// The character is only the look: Oak remembers the player, no yes/no question
+static void Task_NewGameHnsSpeech_SoItsPlayerName(u8 taskId)
+{
+    NewGameHnsSpeech_ClearWindow(0);
+    StringExpandPlaceholders(gStringVar4, gText_Oak_RememberYou);
+    AddTextPrinterForMessage(TRUE);
+    gTasks[taskId].func = Task_NewGameHnsSpeech_WaitPressAfterName;
+}
+
+static void Task_NewGameHnsSpeech_WaitPressAfterName(u8 taskId)
+{
+    if (!RunTextPrintersAndIsPrinter0Active() && ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON))))
+        gTasks[taskId].func = Task_NewGameHnsSpeech_ChallengeDisclaimer;
+}
+#else
 static void Task_NewGameHnsSpeech_SoItsPlayerName(u8 taskId)
 {
     NewGameHnsSpeech_ClearWindow(0);
@@ -772,6 +809,8 @@ static void Task_NewGameHnsSpeech_ProcessNameYesNoMenu(u8 taskId)
         gTasks[taskId].func = Task_NewGameHnsSpeech_WhoAreYou;
     }
 }
+
+#endif
 
 static void Task_NewGameHnsSpeech_SlidePlatformAway2(u8 taskId)
 {
@@ -1322,11 +1361,14 @@ static s8 NewGameHnsSpeech_ProcessCharacterMenuInput(void)
 }
 #endif
 
+#if !OJ_CHARACTER_WHEEL // list only
 static void NewGameHnsSpeech_ClearGenderWindowTilemap(u8 bg, u8 x, u8 y, u8 width, u8 height, u8 unused)
 {
     FillBgTilemapBufferRect(bg, 0, x + 255, y + 255, width + 2, height + 2, 2);
 }
+#endif
 
+#if !OJ_CHARACTER_WHEEL // list only
 static void NewGameHnsSpeech_ClearGenderWindow(u8 windowId, bool8 copyToVram)
 {
     CallWindowFunction(windowId, NewGameHnsSpeech_ClearGenderWindowTilemap);
@@ -1335,6 +1377,7 @@ static void NewGameHnsSpeech_ClearGenderWindow(u8 windowId, bool8 copyToVram)
     if (copyToVram == TRUE)
         CopyWindowToVram(windowId, COPYWIN_FULL);
 }
+#endif
 
 static void NewGameHnsSpeech_ClearWindow(u8 windowId)
 {
@@ -1361,6 +1404,15 @@ static void Task_NewGameHnsSpeech_ReturnFromNamingScreenShowTextbox(u8 taskId)
 {
     if (gTasks[taskId].tTimer-- <= 0)
     {
+#if OJ_CHARACTER_WHEEL
+        if (gNamingScreenWentBack)
+        {
+            // B on an empty name: choose the character again
+            gNamingScreenWentBack = FALSE;
+            gTasks[taskId].func = Task_NewGameHnsSpeech_WaitToShowCharacterMenu;
+            return;
+        }
+#endif
         DrawDialogFrameWithCustomTile(0, TRUE, HNS_DLG_BASE_TILE_NUM);
         gTasks[taskId].func = Task_NewGameHnsSpeech_SoItsPlayerName;
     }

@@ -426,6 +426,9 @@ static const u8 sText_MoveOkBack[] = _("{DPAD_NONE}Bewegen {A_BUTTON}O.K. {B_BUT
 static const u8 sText_MoveOkBack[] = _("{DPAD_NONE}MOVE  {A_BUTTON}OK  {B_BUTTON}BACK");
 #endif
 
+bool8 gNamingScreenBackOnEmpty;
+bool8 gNamingScreenWentBack;
+
 void DoNamingScreen(u8 templateNum, u8 *destBuffer, u16 monSpecies, u16 monGender, u32 monPersonality, bool8 isShiny, MainCallback returnCallback)
 {
     sNamingScreen = Alloc(sizeof(struct NamingScreenData));
@@ -724,6 +727,7 @@ static bool8 MainState_Exit(void)
 {
     if (!gPaletteFade.active)
     {
+        gNamingScreenBackOnEmpty = FALSE;
 #if !IS_HNS
         if (sNamingScreen->templateNum == NAMING_SCREEN_PLAYER)
             SeedRngAndSetTrainerId();
@@ -1628,6 +1632,16 @@ static bool8 HandleKeyboardEvent(void)
     }
     else if (input == INPUT_B_BUTTON)
     {
+        if (gNamingScreenBackOnEmpty && GetTextEntryPosition() == 0)
+        {
+            // Back to the screen before (intro: character selection), name not saved
+            PlaySE(SE_SELECT);
+            gNamingScreenWentBack = TRUE;
+            SetInputState(INPUT_STATE_DISABLED);
+            SetCursorFlashing(FALSE);
+            sNamingScreen->state = STATE_FADE_OUT;
+            return TRUE;
+        }
         DeleteTextCharacter();
         return FALSE;
     }
