@@ -1,6 +1,7 @@
 #include "global.h"
 #include "trainer_pokemon_sprites.h"
 #include "bg.h"
+#include "character_wheel.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
@@ -74,16 +75,23 @@ static void Task_NewGameHnsSpeech_StartPlayerFadeIn(u8);
 static void Task_NewGameHnsSpeech_WaitForPlayerFadeIn(u8);
 static void Task_NewGameHnsSpeech_WhoAreYou(u8);
 static void Task_NewGameHnsSpeech_WaitToShowCharacterMenu(u8);
+#if OJ_CHARACTER_WHEEL
+static void Task_NewGameHnsSpeech_ShowCharacterWheel(u8);
+static void Task_NewGameHnsSpeech_CharacterChosen(u8);
+static void Task_NewGameHnsSpeech_WaitForChosenCharacter(u8);
+#else
 static void Task_NewGameHnsSpeech_ChooseCharacter(u8);
 static void NewGameHnsSpeech_ShowCharacterMenu(u8);
+static void Task_NewGameHnsSpeech_SlideOutOldCharacterSprite(u8);
+static void Task_NewGameHnsSpeech_SlideInNewCharacterSprite(u8);
+static s8 NewGameHnsSpeech_ProcessCharacterMenuInput(void);
+#endif
 static void NewGameHnsSpeech_ClearGenderWindow(u8, u8);
 static void Task_NewGameHnsSpeech_ChallengeDisclaimer(u8);
 static void Task_NewGameHnsSpeech_WaitDisclaimerText(u8);
 static void Task_NewGameHnsSpeech_WaitPressDisclaimer(u8);
 static void Task_NewGameHnsSpeech_ChallengeMenu(u8);
 static void Task_NewGameHnsSpeech_WhatsYourName(u8);
-static void Task_NewGameHnsSpeech_SlideOutOldCharacterSprite(u8);
-static void Task_NewGameHnsSpeech_SlideInNewCharacterSprite(u8);
 static void Task_NewGameHnsSpeech_WaitForWhatsYourNameToPrint(u8);
 static void Task_NewGameHnsSpeech_WaitPressBeforeNameChoice(u8);
 static void Task_NewGameHnsSpeech_StartNamingScreen(u8);
@@ -114,7 +122,6 @@ static void SpriteCB_MovePlayerDownWhileShrinking(struct Sprite *);
 static u8 NewGameHnsSpeech_CreateMonSprite(u8, u8);
 static u8 NewGameHnsSpeech_CreatePlayerSprite(u8);
 static void NewGameHnsSpeech_DestroyPlayerSprite(u8);
-static s8 NewGameHnsSpeech_ProcessCharacterMenuInput(void);
 static void NewGameHnsSpeech_ClearGenderWindowTilemap(u8, u8, u8, u8, u8, u8);
 static void LoadMainMenuWindowFrameTiles(u8, u16);
 static void DrawMainMenuWindowBorder(const struct WindowTemplate *, u16);
@@ -141,6 +148,18 @@ static const struct WindowTemplate sNewGameHnsSpeechTextWindows[] =
         .paletteNum = 15,
         .baseBlock = 1
     },
+#if OJ_CHARACTER_WHEEL
+    {
+        // Character wheel: question and name of the character in front
+        .bg = 0,
+        .tilemapLeft = 7,
+        .tilemapTop = 1,
+        .width = 16,
+        .height = 2,
+        .paletteNum = 15,
+        .baseBlock = 0x6D
+    },
+#else
     {
         // Character list, six entries
         .bg = 0,
@@ -151,6 +170,7 @@ static const struct WindowTemplate sNewGameHnsSpeechTextWindows[] =
         .paletteNum = 15,
         .baseBlock = 0x6D
     },
+#endif
     {
         .bg = 0,
         .tilemapLeft = 3,
@@ -482,6 +502,59 @@ static void Task_NewGameHnsSpeech_WhoAreYou(u8 taskId)
     gTasks[taskId].func = Task_NewGameHnsSpeech_WaitToShowCharacterMenu;
 }
 
+#if OJ_CHARACTER_WHEEL
+// The wheel takes the place of the trainer pic, its platform and the text box
+static void Task_NewGameHnsSpeech_WaitToShowCharacterMenu(u8 taskId)
+{
+    if (!RunTextPrintersAndIsPrinter0Active())
+    {
+        gSprites[gTasks[taskId].tPlayerSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
+        NewGameHnsSpeech_StartFadeOutTarget1InTarget2(taskId, 2);
+        NewGameHnsSpeech_StartFadePlatformIn(taskId, 1);
+        gTasks[taskId].func = Task_NewGameHnsSpeech_ShowCharacterWheel;
+    }
+}
+
+static void Task_NewGameHnsSpeech_ShowCharacterWheel(u8 taskId)
+{
+    if (gTasks[taskId].tIsDoneFadingSprites)
+    {
+        // The wheel loads all six trainer pics itself
+        NewGameHnsSpeech_DestroyPlayerSprite(gTasks[taskId].tPlayerSpriteId);
+        ClearDialogWindowAndFrameToTransparent(0, TRUE);
+        DrawMainMenuWindowBorder(&sNewGameHnsSpeechTextWindows[1], 0xF3);
+        gTasks[taskId].func = TaskDummy;
+        StartCharacterWheel(gTasks[taskId].tCharacter, 1, taskId, Task_NewGameHnsSpeech_CharacterChosen);
+    }
+}
+
+// The wheel has saved the choice and freed its sprites: show the chosen trainer pic as the list does
+static void Task_NewGameHnsSpeech_CharacterChosen(u8 taskId)
+{
+    u8 spriteId = NewGameHnsSpeech_CreatePlayerSprite(GetPlayerCharacter());
+
+    NewGameHnsSpeech_ClearGenderWindow(1, TRUE);
+    DrawDialogFrameWithCustomTile(0, TRUE, HNS_DLG_BASE_TILE_NUM);
+    gTasks[taskId].tCharacter = GetPlayerCharacter();
+    gTasks[taskId].tPlayerSpriteId = spriteId;
+    gSprites[spriteId].x = 180;
+    gSprites[spriteId].y = 60;
+    gSprites[spriteId].invisible = FALSE;
+    gSprites[spriteId].oam.objMode = ST_OAM_OBJ_BLEND;
+    NewGameHnsSpeech_StartFadeInTarget1OutTarget2(taskId, 2);
+    NewGameHnsSpeech_StartFadePlatformOut(taskId, 1);
+    gTasks[taskId].func = Task_NewGameHnsSpeech_WaitForChosenCharacter;
+}
+
+static void Task_NewGameHnsSpeech_WaitForChosenCharacter(u8 taskId)
+{
+    if (gTasks[taskId].tIsDoneFadingSprites)
+    {
+        gSprites[gTasks[taskId].tPlayerSpriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
+        gTasks[taskId].func = Task_NewGameHnsSpeech_WhatsYourName;
+    }
+}
+#else
 static void Task_NewGameHnsSpeech_WaitToShowCharacterMenu(u8 taskId)
 {
     if (!RunTextPrintersAndIsPrinter0Active())
@@ -553,6 +626,7 @@ static void Task_NewGameHnsSpeech_SlideInNewCharacterSprite(u8 taskId)
         }
     }
 }
+#endif
 
 static void Task_NewGameHnsSpeech_ChallengeDisclaimer(u8 taskId)
 {
@@ -1226,6 +1300,7 @@ static void NewGameHnsSpeech_StartFadePlatformOut(u8 taskId, u8 delay)
 #undef tDelay
 #undef tDelayTimer
 
+#if !OJ_CHARACTER_WHEEL
 // The names come from gPlayerCharacterInfo, printed like PrintMenuTable does
 static void NewGameHnsSpeech_ShowCharacterMenu(u8 cursorPos)
 {
@@ -1245,6 +1320,7 @@ static s8 NewGameHnsSpeech_ProcessCharacterMenuInput(void)
 {
     return Menu_ProcessInputNoWrap();
 }
+#endif
 
 static void NewGameHnsSpeech_ClearGenderWindowTilemap(u8 bg, u8 x, u8 y, u8 width, u8 height, u8 unused)
 {
