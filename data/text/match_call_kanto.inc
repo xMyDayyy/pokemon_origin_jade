@@ -10,7 +10,7 @@ MatchCall_Kanto_Ben_Battle::
 	.string "zwischen den Brennnesseln!\p"
 	.string "Komm zu Route 3 und kämpf mit mir!$"
 #else
-	.string "Hey, {PLAYER}! It's Egon.\p"
+	.string "Hey, {PLAYER}! It's BEN.\p"
 	.string "I'm still wearing shorts! They're so\n"
 	.string "comfy!\p"
 	.string "Come to ROUTE 3 and battle me!$"
@@ -23,7 +23,7 @@ MatchCall_Kanto_Ben_General::
 	.string "Brennnesseln versteckt.\p"
 	.string "Und ich in Shorts hinterher… Autsch!$"
 #else
-	.string "Hey, {PLAYER}! It's Egon.\p"
+	.string "Hey, {PLAYER}! It's BEN.\p"
 	.string "My {STR_VAR_3} hid in the tall grass.\p"
 	.string "And I went after it in shorts… Ouch!$"
 #endif
@@ -37,7 +37,7 @@ MatchCall_Kanto_Colton_Battle::
 	.string "Meine Käfer sind jetzt stärker. Komm zu\n"
 	.string "Route 3!$"
 #else
-	.string "Hey, {PLAYER}! It's Attila!\p"
+	.string "Hey, {PLAYER}! It's COLTON!\p"
 	.string "Remember? I saw you in\n"
 	.string "VIRIDIAN FOREST!\p"
 	.string "My bugs are tougher now. Come to\n"
@@ -52,7 +52,7 @@ MatchCall_Kanto_Colton_General::
 	.string "Mein {STR_VAR_3} hat sich total\n"
 	.string "erschrocken!$"
 #else
-	.string "Hey, {PLAYER}! It's Attila.\p"
+	.string "Hey, {PLAYER}! It's COLTON.\p"
 	.string "Today I saw a POKéMON you don't find in\n"
 	.string "forests!\p"
 	.string "My {STR_VAR_3} got a real fright!$"
@@ -66,7 +66,7 @@ MatchCall_Kanto_Janice_Battle::
 	.string "Dann starr lieber mich an!\p"
 	.string "Ich warte auf Route 3!$"
 #else
-	.string "Hi, {PLAYER}! It's Ricarda.\p"
+	.string "Hi, {PLAYER}! It's JANICE.\p"
 	.string "Are you staring at someone again?\n"
 	.string "Stare at me instead!\p"
 	.string "I'm waiting on ROUTE 3!$"
@@ -79,7 +79,7 @@ MatchCall_Kanto_Janice_General::
 	.string "Mein {STR_VAR_3} hat ihn verjagt!\p"
 	.string "Selbst schuld!$"
 #else
-	.string "Hi, {PLAYER}! It's Ricarda.\p"
+	.string "Hi, {PLAYER}! It's JANICE.\p"
 	.string "A boy stared at me today. My\n"
 	.string "{STR_VAR_3} chased him off!\p"
 	.string "Serves him right!$"
@@ -93,7 +93,7 @@ MatchCall_Kanto_Crissy_Battle::
 	.string "Pilz-Pokémon gefangen!\p"
 	.string "Komm zu Route 4, dann zeig ich sie dir!$"
 #else
-	.string "Hi, {PLAYER}! It's Adelheid.\p"
+	.string "Hi, {PLAYER}! It's CRISSY.\p"
 	.string "I caught more mushroom POKéMON on\n"
 	.string "MT. MOON!\p"
 	.string "Come to ROUTE 4 and I'll show you!$"
@@ -107,7 +107,7 @@ MatchCall_Kanto_Crissy_General::
 	.string "Ich glaube, es liebt den Mondberg\n"
 	.string "genauso wie ich!$"
 #else
-	.string "Hi, {PLAYER}! It's Adelheid.\p"
+	.string "Hi, {PLAYER}! It's CRISSY.\p"
 	.string "My {STR_VAR_3} gathered mushrooms\n"
 	.string "again today.\p"
 	.string "I think it loves MT. MOON as much as I\n"
@@ -122,7 +122,7 @@ MatchCall_Kanto_Timmy_Battle::
 	.string "Dann komm zu Route 24! Ich mache dir\n"
 	.string "das Leben schwer!$"
 #else
-	.string "Hey, {PLAYER}! It's Frieder!\p"
+	.string "Hey, {PLAYER}! It's TIMMY!\p"
 	.string "You love NUGGET BRIDGE, don't you?\p"
 	.string "Then come to ROUTE 24! I won't be easy!$"
 #endif
@@ -135,7 +135,7 @@ MatchCall_Kanto_Timmy_General::
 	.string "Mein {STR_VAR_3} hat alle\n"
 	.string "aufgehalten! Na ja, fast alle…$"
 #else
-	.string "Hey, {PLAYER}! It's Frieder.\p"
+	.string "Hey, {PLAYER}! It's TIMMY.\p"
 	.string "Five TRAINERS came over NUGGET BRIDGE\n"
 	.string "today.\p"
 	.string "My {STR_VAR_3} stopped them all! Well,\n"
@@ -151,7 +151,7 @@ MatchCall_Kanto_Reli_Battle::
 	.string "Mach doch eine Pause auf Route 24! Mit\n"
 	.string "einem Kampf!$"
 #else
-	.string "Hi, {PLAYER}! It's Una.\p"
+	.string "Hi, {PLAYER}! It's RELI.\p"
 	.string "I bet you're busy again… Aren't you\n"
 	.string "getting tired?\p"
 	.string "Take a break on ROUTE 24! With a battle!$"
@@ -165,7 +165,7 @@ MatchCall_Kanto_Reli_General::
 	.string "Jetzt bin ich müde. Und mein\n"
 	.string "{STR_VAR_3} schläft schon!$"
 #else
-	.string "Hi, {PLAYER}! It's Una.\p"
+	.string "Hi, {PLAYER}! It's RELI.\p"
 	.string "I walked across NUGGET BRIDGE ten\n"
 	.string "times today.\p"
 	.string "Now I'm tired. And my {STR_VAR_3}'s\n"
@@ -181,7 +181,7 @@ MatchCall_Kanto_Ali_Battle::
 	.string "Komm zu Route 24 und beweis mir das\n"
 	.string "Gegenteil!$"
 #else
-	.string "Hi, {PLAYER}! It's Doris.\p"
+	.string "Hi, {PLAYER}! It's ALI.\p"
 	.string "I was only No. 2, but I was really the\n"
 	.string "best, right?\p"
 	.string "Come to ROUTE 24 and prove me wrong!$"
@@ -195,7 +195,7 @@ MatchCall_Kanto_Ali_General::
 	.string "Pah! Mein {STR_VAR_3} sieht das ganz\n"
 	.string "anders!$"
 #else
-	.string "Hi, {PLAYER}! It's Doris.\p"
+	.string "Hi, {PLAYER}! It's ALI.\p"
 	.string "The others on the bridge say I'm the\n"
 	.string "weakest.\p"
 	.string "Hmph! My {STR_VAR_3} doesn't think\n"
@@ -210,7 +210,7 @@ MatchCall_Kanto_Chad_Battle::
 	.string "müssen erneut kämpfen!\p"
 	.string "Ich warte auf Route 25!$"
 #else
-	.string "Hey, {PLAYER}! It's Jannik.\p"
+	.string "Hey, {PLAYER}! It's CHAD.\p"
 	.string "I've got that feeling again… We have to\n"
 	.string "battle again!\p"
 	.string "I'm waiting on ROUTE 25!$"
@@ -224,7 +224,7 @@ MatchCall_Kanto_Chad_General::
 	.string "Genau wie ich's dir gesagt hab! Gute\n"
 	.string "Taktik, oder?$"
 #else
-	.string "Yo, {PLAYER}! It's Jannik.\p"
+	.string "Yo, {PLAYER}! It's CHAD.\p"
 	.string "My {STR_VAR_3} got confused, so I\n"
 	.string "switched it out right away.\p"
 	.string "Just like I told you! Good tactic, huh?$"
@@ -238,7 +238,7 @@ MatchCall_Kanto_Kelsey_Battle::
 	.string "Endlich bin ich in Form!\p"
 	.string "Komm zu Route 25, dann kämpfen wir!$"
 #else
-	.string "Hi, {PLAYER}! It's Ruth!\p"
+	.string "Hi, {PLAYER}! It's KELSEY!\p"
 	.string "I'm feeling really good today! My\n"
 	.string "conditioning's finally back!\p"
 	.string "Come to ROUTE 25 and let's battle!$"
@@ -251,7 +251,7 @@ MatchCall_Kanto_Kelsey_General::
 	.string "{STR_VAR_3} verloren! Hihi!\p"
 	.string "Aber er ist trotzdem cool!$"
 #else
-	.string "Hi, {PLAYER}! It's Ruth.\p"
+	.string "Hi, {PLAYER}! It's KELSEY.\p"
 	.string "My boyfriend lost to my {STR_VAR_3}!\n"
 	.string "Tee-hee!\p"
 	.string "He's still cool, though!$"
@@ -265,7 +265,7 @@ MatchCall_Kanto_Franklin_Battle::
 	.string "noch Benzin im Tank!\p"
 	.string "Komm zu Route 25 für einen Kampf!$"
 #else
-	.string "Hey, {PLAYER}! It's Kasper!\p"
+	.string "Hey, {PLAYER}! It's FRANKLIN!\p"
 	.string "I trained up on MT. MOON, and I've still\n"
 	.string "got gas in the tank!\p"
 	.string "Come to ROUTE 25 for a battle!$"
@@ -279,7 +279,7 @@ MatchCall_Kanto_Franklin_General::
 	.string "Aber mein {STR_VAR_3} hat es\n"
 	.string "verscheucht. Wahahaha!$"
 #else
-	.string "Hey, {PLAYER}! It's Kasper.\p"
+	.string "Hey, {PLAYER}! It's FRANKLIN.\p"
 	.string "A ZUBAT tried to bite me again in\n"
 	.string "MT. MOON!\p"
 	.string "But my {STR_VAR_3} chased it off.\n"
@@ -294,7 +294,7 @@ MatchCall_Kanto_Nob_Battle::
 	.string "vorher will ich kämpfen!\p"
 	.string "Komm zu Route 25!$"
 #else
-	.string "Hey, {PLAYER}! It's Minoru!\p"
+	.string "Hey, {PLAYER}! It's NOB!\p"
 	.string "I'm on my way to the cape again. But\n"
 	.string "first I want a battle!\p"
 	.string "Come to ROUTE 25!$"
@@ -308,7 +308,7 @@ MatchCall_Kanto_Nob_General::
 	.string "Mein {STR_VAR_3} wirkt dagegen ganz\n"
 	.string "normal. Wahahaha!$"
 #else
-	.string "Hey, {PLAYER}! It's Minoru.\p"
+	.string "Hey, {PLAYER}! It's NOB.\p"
 	.string "I saw so many rare POKéMON at the cape!\p"
 	.string "My {STR_VAR_3} looks plain next to\n"
 	.string "them. Wahahaha!$"
@@ -322,7 +322,7 @@ MatchCall_Kanto_Ricky_Battle::
 	.string "Belauschst du uns etwa wieder?\p"
 	.string "Komm zu Route 6, dann klären wir das!$"
 #else
-	.string "Psst, {PLAYER}! It's Günther.\p"
+	.string "Psst, {PLAYER}! It's RICKY.\p"
 	.string "You're that nosy kid… Are you\n"
 	.string "eavesdropping again?\p"
 	.string "Come to ROUTE 6 and we'll settle this!$"
@@ -335,7 +335,7 @@ MatchCall_Kanto_Ricky_General::
 	.string "eine neue Attacke!\p"
 	.string "Flüster… Tuschel… Mehr sag ich nicht!$"
 #else
-	.string "Psst, {PLAYER}! It's Günther.\p"
+	.string "Psst, {PLAYER}! It's RICKY.\p"
 	.string "Here's a secret: my {STR_VAR_3}\n"
 	.string "learned a new move!\p"
 	.string "Whisper… Whisper… That's all I'm saying!$"
@@ -349,7 +349,7 @@ MatchCall_Kanto_Jeff_Battle::
 	.string "fühl mich sicher!\p"
 	.string "Komm zu Route 6 für einen Kampf!$"
 #else
-	.string "Hey, {PLAYER}! It's Raphael.\p"
+	.string "Hey, {PLAYER}! It's JEFF.\p"
 	.string "I've got more POKéMON with me now, so I\n"
 	.string "feel safer!\p"
 	.string "Come to ROUTE 6 for a battle!$"
@@ -363,7 +363,7 @@ MatchCall_Kanto_Jeff_General::
 	.string "Na ja, im Dunkeln vielleicht ein\n"
 	.string "bisschen…$"
 #else
-	.string "Hey, {PLAYER}! It's Raphael.\p"
+	.string "Hey, {PLAYER}! It's JEFF.\p"
 	.string "With {STR_VAR_3} at my side, I'm not\n"
 	.string "scared anymore.\p"
 	.string "Well, maybe a little in the dark…$"
@@ -377,7 +377,7 @@ MatchCall_Kanto_Isabelle_Battle::
 	.string "viel stärker geworden!\p"
 	.string "Komm zu Route 6, dann zeig ich's dir!$"
 #else
-	.string "Hi, {PLAYER}! It's Hedwig.\p"
+	.string "Hi, {PLAYER}! It's ISABELLE.\p"
 	.string "I think I know your secret now! I've\n"
 	.string "gotten much stronger!\p"
 	.string "Come to ROUTE 6 and I'll show you!$"
@@ -391,7 +391,7 @@ MatchCall_Kanto_Isabelle_General::
 	.string "Ist das dein Geheimnis? Einfach jeden\n"
 	.string "Tag trainieren?$"
 #else
-	.string "Hi, {PLAYER}! It's Hedwig.\p"
+	.string "Hi, {PLAYER}! It's ISABELLE.\p"
 	.string "I train with {STR_VAR_3} every day.\p"
 	.string "Is that your secret? Just training\n"
 	.string "every day?$"
@@ -405,7 +405,7 @@ MatchCall_Kanto_Yasu_Battle::
 	.string "Klasse bin ich immer noch der Beste!\p"
 	.string "Komm zu Route 11!$"
 #else
-	.string "Yo, {PLAYER}! It's Valentin!\p"
+	.string "Yo, {PLAYER}! It's YASU!\p"
 	.string "I train morning and night. I'm still the\n"
 	.string "best in my class!\p"
 	.string "Come to ROUTE 11!$"
@@ -418,7 +418,7 @@ MatchCall_Kanto_Yasu_General::
 	.string "{STR_VAR_3} trainiert.\p"
 	.string "Deshalb bin ich der Beste!$"
 #else
-	.string "Yo, {PLAYER}! It's Valentin.\p"
+	.string "Yo, {PLAYER}! It's YASU.\p"
 	.string "I got up at five today to train with\n"
 	.string "{STR_VAR_3}.\p"
 	.string "That's why I'm the best!$"
@@ -432,7 +432,7 @@ MatchCall_Kanto_Bernie_Battle::
 	.string "stehen unter Hochspannung!\p"
 	.string "Komm zu Route 11 für einen Kampf!$"
 #else
-	.string "Hello, {PLAYER}. It's Hasso.\p"
+	.string "Hello, {PLAYER}. It's BERNIE.\p"
 	.string "My shift's over! My POKéMON are fully\n"
 	.string "charged!\p"
 	.string "Come to ROUTE 11 for a battle!$"
@@ -446,7 +446,7 @@ MatchCall_Kanto_Bernie_General::
 	.string "Dafür bekommt es heute Abend eine\n"
 	.string "Extraportion!$"
 #else
-	.string "Hello, {PLAYER}. It's Hasso.\p"
+	.string "Hello, {PLAYER}. It's BERNIE.\p"
 	.string "My {STR_VAR_3} helped me at work\n"
 	.string "today.\p"
 	.string "It gets an extra helping tonight!$"
@@ -461,7 +461,7 @@ MatchCall_Kanto_Darian_Battle::
 	.string "Komm zu Route 11. Vielleicht ist heute\n"
 	.string "mein Tag…$"
 #else
-	.string "Hello, {PLAYER}… It's Marco.\p"
+	.string "Hello, {PLAYER}… It's DARIAN.\p"
 	.string "I've never won before… But I've got a\n"
 	.string "good feeling today!\p"
 	.string "Come to ROUTE 11. Maybe today's my day…$"
@@ -475,7 +475,7 @@ MatchCall_Kanto_Darian_General::
 	.string "Aber {STR_VAR_3} hat es gefressen…\n"
 	.string "Typisch.$"
 #else
-	.string "Hello, {PLAYER}… It's Marco.\p"
+	.string "Hello, {PLAYER}… It's DARIAN.\p"
 	.string "I found a four-leaf clover today!\p"
 	.string "But {STR_VAR_3} ate it… Typical.$"
 #endif
@@ -489,7 +489,7 @@ MatchCall_Kanto_Chris_Battle::
 	.string "Komm zu Route 9, dann sehen wir, wer das\n"
 	.string "bessere Team hat!$"
 #else
-	.string "Hey, {PLAYER}! It's Chris.\p"
+	.string "Hey, {PLAYER}! It's CHRIS.\p"
 	.string "I haven't forgotten your good-looking\n"
 	.string "POKéMON!\p"
 	.string "Come to ROUTE 9 and we'll see whose\n"
@@ -503,7 +503,7 @@ MatchCall_Kanto_Chris_General::
 	.string "richtig fit aussieht.\p"
 	.string "Deine Pokémon haben mich angespornt!$"
 #else
-	.string "Hey, {PLAYER}! It's Chris.\p"
+	.string "Hey, {PLAYER}! It's CHRIS.\p"
 	.string "Everyone says my {STR_VAR_3} looks\n"
 	.string "really fit.\p"
 	.string "Your POKéMON inspired me!$"
@@ -517,7 +517,7 @@ MatchCall_Kanto_Alicia_Battle::
 	.string "hart trainiert!\p"
 	.string "Komm zu Route 9!$"
 #else
-	.string "Hi, {PLAYER}! It's Ingeborg.\p"
+	.string "Hi, {PLAYER}! It's ALICIA.\p"
 	.string "This time, you're mine! I've trained\n"
 	.string "really hard!\p"
 	.string "Come to ROUTE 9!$"
@@ -531,7 +531,7 @@ MatchCall_Kanto_Alicia_General::
 	.string "Zum Glück hat mich {STR_VAR_3}\n"
 	.string "rausgeführt.$"
 #else
-	.string "Hi, {PLAYER}! It's Ingeborg.\p"
+	.string "Hi, {PLAYER}! It's ALICIA.\p"
 	.string "I went into ROCK TUNNEL. I couldn't see\n"
 	.string "a thing without FLASH!\p"
 	.string "Luckily, {STR_VAR_3} led me out.$"
@@ -545,7 +545,7 @@ MatchCall_Kanto_Jeremy_Battle::
 	.string "Komm zu Route 9, dann haben wir Spaß!\n"
 	.string "Wahahaha!$"
 #else
-	.string "Bwahaha! {PLAYER}! It's Jens!\p"
+	.string "Bwahaha! {PLAYER}! It's JEREMY!\p"
 	.string "I'm bored again, eh!\p"
 	.string "Come to ROUTE 9 and let's have some\n"
 	.string "fun!$"
@@ -559,7 +559,7 @@ MatchCall_Kanto_Jeremy_General::
 	.string "{STR_VAR_3} ist schon eingeschlafen.\n"
 	.string "Wahahaha!$"
 #else
-	.string "Hey, {PLAYER}! It's Jens.\p"
+	.string "Hey, {PLAYER}! It's JEREMY.\p"
 	.string "I'm sitting by ROCK TUNNEL waiting for\n"
 	.string "opponents.\p"
 	.string "{STR_VAR_3} already fell asleep.\n"
@@ -574,7 +574,7 @@ MatchCall_Kanto_Mark_Battle::
 	.string "du sie sehen?\p"
 	.string "Komm zu Route 10!$"
 #else
-	.string "Hi, {PLAYER}! It's Mark.\p"
+	.string "Hi, {PLAYER}! It's MARK.\p"
 	.string "My collection has grown! Want to see it?\p"
 	.string "Come to ROUTE 10!$"
 #endif
@@ -586,7 +586,7 @@ MatchCall_Kanto_Mark_General::
 	.string "meiner Sammlung.\p"
 	.string "Zu Hause hat es ein eigenes Zimmer!$"
 #else
-	.string "Hi, {PLAYER}! It's Mark.\p"
+	.string "Hi, {PLAYER}! It's MARK.\p"
 	.string "My {STR_VAR_3} is the jewel of my\n"
 	.string "collection.\p"
 	.string "It has its own room at home!$"
@@ -600,7 +600,7 @@ MatchCall_Kanto_Herman_Battle::
 	.string "gezeigt? Sie sind jetzt viel stärker!\p"
 	.string "Komm zu Route 10!$"
 #else
-	.string "Hi, {PLAYER}! It's Benno.\p"
+	.string "Hi, {PLAYER}! It's HERMAN.\p"
 	.string "Did I show you my POKéMON? They're much\n"
 	.string "stronger now!\p"
 	.string "Come to ROUTE 10!$"
@@ -613,7 +613,7 @@ MatchCall_Kanto_Herman_General::
 	.string "Aber mein {STR_VAR_3} fragt dauernd\n"
 	.string "nach dir. Also ruf ich an.$"
 #else
-	.string "Hi, {PLAYER}! It's Benno.\p"
+	.string "Hi, {PLAYER}! It's HERMAN.\p"
 	.string "I still don't like you!\p"
 	.string "But my {STR_VAR_3} keeps asking\n"
 	.string "about you. So I'm calling.$"
@@ -627,7 +627,7 @@ MatchCall_Kanto_Trent_Battle::
 	.string "erfrischend!\p"
 	.string "Komm zu Route 10, ich will kämpfen!$"
 #else
-	.string "Hey, {PLAYER}! It's Heimke!\p"
+	.string "Hey, {PLAYER}! It's TRENT!\p"
 	.string "Ah! The mountain air is delicious again!\p"
 	.string "Come to ROUTE 10, I want to battle!$"
 #endif
@@ -639,7 +639,7 @@ MatchCall_Kanto_Trent_General::
 	.string "mir schwindelig!\p"
 	.string "{STR_VAR_3} lacht mich aus…$"
 #else
-	.string "Hey, {PLAYER}! It's Heimke.\p"
+	.string "Hey, {PLAYER}! It's TRENT.\p"
 	.string "I took a really deep breath. Now I'm\n"
 	.string "dizzy!\p"
 	.string "{STR_VAR_3} is laughing at me…$"
@@ -653,7 +653,7 @@ MatchCall_Kanto_Megan_Battle::
 	.string "kämpfen kann ich!\p"
 	.string "Komm zu Route 8!$"
 #else
-	.string "Hi, {PLAYER}! It's Leila.\p"
+	.string "Hi, {PLAYER}! It's MEGAN.\p"
 	.string "I'm still standing around here… But I\n"
 	.string "can battle!\p"
 	.string "Come to ROUTE 8!$"
@@ -666,7 +666,7 @@ MatchCall_Kanto_Megan_General::
 	.string "{STR_VAR_3} heute zugewinkt!\p"
 	.string "Vielleicht ist er doch nicht so gemein.$"
 #else
-	.string "Hi, {PLAYER}! It's Leila.\p"
+	.string "Hi, {PLAYER}! It's MEGAN.\p"
 	.string "The gatekeeper waved at my\n"
 	.string "{STR_VAR_3} today!\p"
 	.string "Maybe he's not so mean after all.$"
@@ -681,7 +681,7 @@ MatchCall_Kanto_Glenn_Battle::
 	.string "Komm zu Route 8, dann teste ich sie an\n"
 	.string "dir!$"
 #else
-	.string "Hello, {PLAYER}. It's Gerrit.\p"
+	.string "Hello, {PLAYER}. It's GLENN.\p"
 	.string "My new strategy is ready! Are you\n"
 	.string "following my advice?\p"
 	.string "Come to ROUTE 8 and I'll test it on you!$"
@@ -695,7 +695,7 @@ MatchCall_Kanto_Glenn_General::
 	.string "Ich habe den Faden verloren. Ich ruf\n"
 	.string "später noch mal an.$"
 #else
-	.string "Hello, {PLAYER}. It's Gerrit.\p"
+	.string "Hello, {PLAYER}. It's GLENN.\p"
 	.string "First {STR_VAR_3}… and… and… then…\n"
 	.string "Hmm.\p"
 	.string "I lost my train of thought. I'll call\n"
@@ -710,7 +710,7 @@ MatchCall_Kanto_Rich_Battle::
 	.string "knack ich den Jackpot!\p"
 	.string "Komm zu Route 8, wir spielen eine Runde!$"
 #else
-	.string "Yo, {PLAYER}! It's Rick!\p"
+	.string "Yo, {PLAYER}! It's RICH!\p"
 	.string "I'm on a winning streak! Today I'm\n"
 	.string "hitting the jackpot!\p"
 	.string "Come to ROUTE 8 for a round!$"
@@ -724,7 +724,7 @@ MatchCall_Kanto_Rich_General::
 	.string "Aber mein {STR_VAR_3} bringt mir\n"
 	.string "bestimmt bald wieder Glück!$"
 #else
-	.string "Yo, {PLAYER}! It's Rick.\p"
+	.string "Yo, {PLAYER}! It's RICH.\p"
 	.string "I lost all my coins at the GAME CORNER\n"
 	.string "in CELADON…\p"
 	.string "But my {STR_VAR_3} is sure to bring me\n"
@@ -764,7 +764,7 @@ MatchCall_Kanto_Jaren_Battle::
 	.string "Dieses Mal bin ich nicht so gnädig!\p"
 	.string "Komm zu Route 8, wenn du dich traust!$"
 #else
-	.string "Hey, kid! It's Kamillo.\p"
+	.string "Hey, kid! It's JAREN.\p"
 	.string "Don't expect mercy this time!\p"
 	.string "Come to ROUTE 8 if you dare!$"
 #endif
@@ -776,7 +776,7 @@ MatchCall_Kanto_Jaren_General::
 	.string "Radfahrer erschreckt.\p"
 	.string "Der ist glatt umgekippt! Hahaha!$"
 #else
-	.string "Hey, kid! It's Kamillo.\p"
+	.string "Hey, kid! It's JAREN.\p"
 	.string "My {STR_VAR_3} scared a cyclist\n"
 	.string "today.\p"
 	.string "He fell right over! Hahaha!$"
@@ -791,7 +791,7 @@ MatchCall_Kanto_Elliot_Battle::
 	.string "Mein Team ist bereit. Komm doch zu\n"
 	.string "Route 12!$"
 #else
-	.string "Hello, {PLAYER}. It's Alois.\p"
+	.string "Hello, {PLAYER}. It's ELLIOT.\p"
 	.string "Still no work for me… But plenty of time\n"
 	.string "to fish!\p"
 	.string "My team's ready. Why not come to\n"
@@ -806,7 +806,7 @@ MatchCall_Kanto_Elliot_General::
 	.string "Aber das Angeln aufzugeben ist einfach\n"
 	.string "zu schwer!$"
 #else
-	.string "Hello, {PLAYER}. It's Alois.\p"
+	.string "Hello, {PLAYER}. It's ELLIOT.\p"
 	.string "I hooked a {STR_VAR_3} today. Still no\n"
 	.string "work, though…\p"
 	.string "But it's just too hard to give up\n"
@@ -821,7 +821,7 @@ MatchCall_Kanto_Luca_Battle::
 	.string "Elektrizität ist meine Stärke!\p"
 	.string "Komm zu Route 12!$"
 #else
-	.string "Yo, {PLAYER}! It's Xaver!\p"
+	.string "Yo, {PLAYER}! It's LUCA!\p"
 	.string "My POKéMON are fully charged!\n"
 	.string "Electricity's my specialty!\p"
 	.string "Come to ROUTE 12!$"
@@ -835,7 +835,7 @@ MatchCall_Kanto_Luca_General::
 	.string "Ich hab immer noch keine Ahnung von\n"
 	.string "denen…$"
 #else
-	.string "Yo, {PLAYER}! It's Xaver.\p"
+	.string "Yo, {PLAYER}! It's LUCA.\p"
 	.string "I went fishing with {STR_VAR_3}. A sea\n"
 	.string "POKéMON bit!\p"
 	.string "I still don't know a thing about them…$"
@@ -874,7 +874,7 @@ MatchCall_Kanto_Sheila_Battle::
 	.string "vergessen? Ich nicht!\p"
 	.string "Komm zu Route 13!$"
 #else
-	.string "Hello, {PLAYER}! It's Sylvia.\p"
+	.string "Hello, {PLAYER}! It's SHEILA.\p"
 	.string "Have you forgotten our battle yet? I\n"
 	.string "haven't!\p"
 	.string "Come to ROUTE 13!$"
@@ -888,7 +888,7 @@ MatchCall_Kanto_Sheila_General::
 	.string "Ich kenne mich also schon besser mit\n"
 	.string "Pokémon aus. Ein bisschen…$"
 #else
-	.string "Hello, {PLAYER}! It's Sylvia.\p"
+	.string "Hello, {PLAYER}! It's SHEILA.\p"
 	.string "I learned which moves {STR_VAR_3}\n"
 	.string "knows!\p"
 	.string "So I know more about POKéMON now. A\n"
@@ -903,7 +903,7 @@ MatchCall_Kanto_Robert_Battle::
 	.string "begleiten mich überallhin!\p"
 	.string "Komm zu Route 13!$"
 #else
-	.string "Hi, {PLAYER}! It's Fritjof.\p"
+	.string "Hi, {PLAYER}! It's ROBERT.\p"
 	.string "My bird POKéMON are ready! They go\n"
 	.string "everywhere with me!\p"
 	.string "Come to ROUTE 13!$"
@@ -917,7 +917,7 @@ MatchCall_Kanto_Robert_General::
 	.string "Fliegen kann ich immer noch nicht… Aber\n"
 	.string "ich gebe nicht auf!$"
 #else
-	.string "Hi, {PLAYER}! It's Fritjof.\p"
+	.string "Hi, {PLAYER}! It's ROBERT.\p"
 	.string "I practiced flapping my arms with\n"
 	.string "{STR_VAR_3} today.\p"
 	.string "I still can't fly… But I won't give up!$"
@@ -931,7 +931,7 @@ MatchCall_Kanto_Susie_Battle::
 	.string "beste Trainerin sein!\p"
 	.string "Komm zu Route 13!$"
 #else
-	.string "Hi, {PLAYER}! It's Janka!\p"
+	.string "Hi, {PLAYER}! It's SUSIE!\p"
 	.string "I've been training hard! I want to be\n"
 	.string "the best TRAINER!\p"
 	.string "Come to ROUTE 13!$"
@@ -944,7 +944,7 @@ MatchCall_Kanto_Susie_General::
 	.string "Tag nach der Schule.\p"
 	.string "Bald bin ich eine richtig gute Trainerin!$"
 #else
-	.string "Hi, {PLAYER}! It's Janka.\p"
+	.string "Hi, {PLAYER}! It's SUSIE.\p"
 	.string "My {STR_VAR_3} and I practice every\n"
 	.string "day after school.\p"
 	.string "Soon I'll be a really good TRAINER!$"
@@ -958,7 +958,7 @@ MatchCall_Kanto_Lukas_Battle::
 	.string "Los!\p"
 	.string "Komm zu Route 14!$"
 #else
-	.string "C'mon, c'mon, {PLAYER}! It's Darius!\p"
+	.string "C'mon, c'mon, {PLAYER}! It's LUKAS!\p"
 	.string "Let's go, let's go, let's go!\p"
 	.string "Come to ROUTE 14!$"
 #endif
@@ -972,7 +972,7 @@ MatchCall_Kanto_Lukas_General::
 	.string "Ich kann einfach nicht stillsitzen!$"
 #else
 	.string "What, what, what? Oh, {PLAYER}! It's\n"
-	.string "Darius.\p"
+	.string "LUKAS.\p"
 	.string "My {STR_VAR_3}'s so fast today! Go,\n"
 	.string "go, go!\p"
 	.string "I just can't sit still!$"
@@ -986,7 +986,7 @@ MatchCall_Kanto_Benny_Battle::
 	.string "dennoch kämpfen!\p"
 	.string "Komm zu Route 14.$"
 #else
-	.string "Hi, {PLAYER}. It's Genadi.\p"
+	.string "Hi, {PLAYER}. It's BENNY.\p"
 	.string "I'm not really into it… But okay, let's\n"
 	.string "battle!\p"
 	.string "Come to ROUTE 14.$"
@@ -1000,7 +1000,7 @@ MatchCall_Kanto_Benny_General::
 	.string "Unter diesem riesigen Himmel ist alles\n"
 	.string "so unwichtig…$"
 #else
-	.string "Hi, {PLAYER}. It's Genadi.\p"
+	.string "Hi, {PLAYER}. It's BENNY.\p"
 	.string "I'm lying in the grass, looking at the\n"
 	.string "sky with {STR_VAR_3}.\p"
 	.string "Everything's so insignificant under\n"
@@ -1015,7 +1015,7 @@ MatchCall_Kanto_Carter_Battle::
 	.string "Attacken beigebracht!\p"
 	.string "Komm zu Route 14 und sieh selbst!$"
 #else
-	.string "Hi, {PLAYER}! It's Armin.\p"
+	.string "Hi, {PLAYER}! It's CARTER.\p"
 	.string "I used TMs to teach my POKéMON good\n"
 	.string "moves!\p"
 	.string "Come to ROUTE 14 and see for yourself!$"
@@ -1029,7 +1029,7 @@ MatchCall_Kanto_Carter_General::
 	.string "Ich kann mich einfach nicht\n"
 	.string "entscheiden!$"
 #else
-	.string "Hi, {PLAYER}! It's Armin.\p"
+	.string "Hi, {PLAYER}! It's CARTER.\p"
 	.string "Which TM should I teach {STR_VAR_3}\n"
 	.string "next?\p"
 	.string "I just can't decide!$"
@@ -1043,7 +1043,7 @@ MatchCall_Kanto_Marlon_Battle::
 	.string "das Fliegen beigebracht?\p"
 	.string "Dann flieg zu Route 14!$"
 #else
-	.string "Hi, {PLAYER}! It's Anton.\p"
+	.string "Hi, {PLAYER}! It's MARLON.\p"
 	.string "Have you taught your bird POKéMON how\n"
 	.string "to FLY?\p"
 	.string "Then fly over to ROUTE 14!$"
@@ -1057,7 +1057,7 @@ MatchCall_Kanto_Marlon_General::
 	.string "Ich will nichts anderes als\n"
 	.string "Vogel-Pokémon trainieren!$"
 #else
-	.string "Hi, {PLAYER}! It's Anton.\p"
+	.string "Hi, {PLAYER}! It's MARLON.\p"
 	.string "I watched {STR_VAR_3} train for hours\n"
 	.string "today.\p"
 	.string "I don't want to raise anything but bird\n"
@@ -1073,7 +1073,7 @@ MatchCall_Kanto_Grace_Battle::
 	.string "Komm zu Route 15, ich will gegen dich\n"
 	.string "kämpfen!$"
 #else
-	.string "Hello, {PLAYER}! It's Ilona.\p"
+	.string "Hello, {PLAYER}! It's GRACE.\p"
 	.string "You're such a cutie! So like a darling\n"
 	.string "POKéMON!\p"
 	.string "Come to ROUTE 15, I want to battle you!$"
@@ -1086,7 +1086,7 @@ MatchCall_Kanto_Grace_General::
 	.string "umgebunden.\p"
 	.string "Jetzt ist es fast so niedlich wie du!$"
 #else
-	.string "Hello, {PLAYER}! It's Ilona.\p"
+	.string "Hello, {PLAYER}! It's GRACE.\p"
 	.string "I tied a ribbon on {STR_VAR_3}.\p"
 	.string "Now it's almost as cute as you!$"
 #endif
@@ -1099,7 +1099,7 @@ MatchCall_Kanto_Chester_Battle::
 	.string "an dich denken!\p"
 	.string "Komm zu Route 15!$"
 #else
-	.string "Hi, {PLAYER}! It's Vitali.\p"
+	.string "Hi, {PLAYER}! It's CHESTER.\p"
 	.string "My birds shiver just thinking about\n"
 	.string "you!\p"
 	.string "Come to ROUTE 15!$"
@@ -1113,7 +1113,7 @@ MatchCall_Kanto_Chester_General::
 	.string "Keine Wirkung! Hahaha! Das weiß doch\n"
 	.string "jeder!$"
 #else
-	.string "Hi, {PLAYER}! It's Vitali.\p"
+	.string "Hi, {PLAYER}! It's CHESTER.\p"
 	.string "An opponent used EARTHQUAKE on\n"
 	.string "{STR_VAR_3}.\p"
 	.string "No effect! Hahaha! Everyone knows\n"
@@ -1128,7 +1128,7 @@ MatchCall_Kanto_Becky_Battle::
 	.string "Einen Versuch hab ich noch!\p"
 	.string "Komm zu Route 15!$"
 #else
-	.string "Hi, {PLAYER}! It's Heidi.\p"
+	.string "Hi, {PLAYER}! It's BECKY.\p"
 	.string "You still look gentle! I'll give it one\n"
 	.string "more go!\p"
 	.string "Come to ROUTE 15!$"
@@ -1142,7 +1142,7 @@ MatchCall_Kanto_Becky_General::
 	.string "Zum Glück hat ihn {STR_VAR_3}\n"
 	.string "verscheucht. Weg war er!$"
 #else
-	.string "Hi, {PLAYER}! It's Heidi.\p"
+	.string "Hi, {PLAYER}! It's BECKY.\p"
 	.string "A BIKER rode right past me today!\p"
 	.string "Luckily, {STR_VAR_3} scared him off.\n"
 	.string "He was gone in a flash!$"
@@ -1183,7 +1183,7 @@ MatchCall_Kanto_Ruben_Battle::
 	.string "Pokémon können es kaum erwarten!\p"
 	.string "Komm zu Route 16!$"
 #else
-	.string "Hey, {PLAYER}! It's Trutz.\p"
+	.string "Hey, {PLAYER}! It's RUBEN.\p"
 	.string "We'll have ourselves a good time! My\n"
 	.string "POKéMON can't wait!\p"
 	.string "Come to ROUTE 16!$"
@@ -1197,7 +1197,7 @@ MatchCall_Kanto_Ruben_General::
 	.string "Der ist schreiend davongelaufen!\n"
 	.string "Hehehe!$"
 #else
-	.string "Hey, {PLAYER}! It's Trutz.\p"
+	.string "Hey, {PLAYER}! It's RUBEN.\p"
 	.string "My {STR_VAR_3} startled a hiker\n"
 	.string "today!\p"
 	.string "He ran off screaming! Hehehe!$"
@@ -1211,7 +1211,7 @@ MatchCall_Kanto_Camron_Battle::
 	.string "brauche einen Sandsack!\p"
 	.string "Komm zu Route 16!$"
 #else
-	.string "Hey, {PLAYER}! It's Lenny!\p"
+	.string "Hey, {PLAYER}! It's CAMRON!\p"
 	.string "I'm feeling hungry and mean! I need a\n"
 	.string "punching bag!\p"
 	.string "Come to ROUTE 16!$"
@@ -1225,7 +1225,7 @@ MatchCall_Kanto_Camron_General::
 	.string "Bald strotzt es noch mehr vor Kraft als\n"
 	.string "ich!$"
 #else
-	.string "Hey, {PLAYER}! It's Lenny.\p"
+	.string "Hey, {PLAYER}! It's CAMRON.\p"
 	.string "My {STR_VAR_3} gets fiercer every\n"
 	.string "day!\p"
 	.string "Soon it'll be even more ferocious than\n"
@@ -1267,7 +1267,7 @@ MatchCall_Kanto_Jaxon_Battle::
 	.string "gut?\p"
 	.string "Komm zum Radweg auf Route 17!$"
 #else
-	.string "Hey, {PLAYER}! It's Konrad!\p"
+	.string "Hey, {PLAYER}! It's JAXON!\p"
 	.string "Does your BIKE still handle so well?\p"
 	.string "Come to CYCLING ROAD on ROUTE 17!$"
 #endif
@@ -1280,7 +1280,7 @@ MatchCall_Kanto_Jaxon_General::
 	.string "Zum Glück hat {STR_VAR_3} mich\n"
 	.string "aufgefangen.$"
 #else
-	.string "Hey, {PLAYER}! It's Konrad.\p"
+	.string "Hey, {PLAYER}! It's JAXON.\p"
 	.string "I fell off my BIKE again. That slope!\p"
 	.string "Luckily, {STR_VAR_3} caught me.$"
 #endif
@@ -1293,7 +1293,7 @@ MatchCall_Kanto_Isaiah_Battle::
 	.string "Komm schon!\p"
 	.string "Ich warte auf Route 17!$"
 #else
-	.string "Hey, kiddo! It's Kaspar!\p"
+	.string "Hey, kiddo! It's ISAIAH!\p"
 	.string "I'm mighty proud of my team! Come on!\p"
 	.string "I'm waiting on ROUTE 17!$"
 #endif
@@ -1305,7 +1305,7 @@ MatchCall_Kanto_Isaiah_General::
 	.string "Bauchplatscher geübt.\p"
 	.string "Der ganze Radweg hat gebebt! Hahaha!$"
 #else
-	.string "Hey, kiddo! It's Kaspar.\p"
+	.string "Hey, kiddo! It's ISAIAH.\p"
 	.string "I practiced belly-bumps with\n"
 	.string "{STR_VAR_3} today.\p"
 	.string "All of CYCLING ROAD shook! Hahaha!$"
@@ -1318,7 +1318,7 @@ MatchCall_Kanto_Corey_Battle::
 	.string "Sei ein Rebell! Kämpf mit mir!\p"
 	.string "Komm zu Route 17!$"
 #else
-	.string "Hey, {PLAYER}! It's Hajo!\p"
+	.string "Hey, {PLAYER}! It's COREY!\p"
 	.string "Be a rebel! Battle me!\p"
 	.string "Come to ROUTE 17!$"
 #endif
@@ -1330,7 +1330,7 @@ MatchCall_Kanto_Corey_General::
 	.string "mich gehört.\p"
 	.string "Ein echter Rebell! Ich bin so stolz!$"
 #else
-	.string "Hey, {PLAYER}! It's Hajo.\p"
+	.string "Hey, {PLAYER}! It's COREY.\p"
 	.string "My {STR_VAR_3} wouldn't listen to me\n"
 	.string "today.\p"
 	.string "A true rebel! I'm so proud!$"
@@ -1344,7 +1344,7 @@ MatchCall_Kanto_Wilton_Battle::
 	.string "abgesucht. Das war nicht leicht…\p"
 	.string "Komm zu Route 18!$"
 #else
-	.string "Hi, {PLAYER}! It's Pascal.\p"
+	.string "Hi, {PLAYER}! It's WILTON.\p"
 	.string "I checked every grassy area for new\n"
 	.string "POKéMON. It wasn't easy…\p"
 	.string "Come to ROUTE 18!$"
@@ -1358,7 +1358,7 @@ MatchCall_Kanto_Wilton_General::
 	.string "{STR_VAR_3} fliegt einfach. Das ist\n"
 	.string "unfair!$"
 #else
-	.string "Hi, {PLAYER}! It's Pascal.\p"
+	.string "Hi, {PLAYER}! It's WILTON.\p"
 	.string "I'm still walking through tall grass on\n"
 	.string "foot.\p"
 	.string "{STR_VAR_3} just flies. That's not\n"
@@ -1373,7 +1373,7 @@ MatchCall_Kanto_Jacob_Battle::
 	.string "Komm her, wenn du es mir abnehmen\n"
 	.string "willst!$"
 #else
-	.string "Hey, {PLAYER}! It's Roman.\p"
+	.string "Hey, {PLAYER}! It's JACOB.\p"
 	.string "I'm telling you: ROUTE 18 is my turf!\p"
 	.string "Come here if you want to take it from\n"
 	.string "me!$"
@@ -1386,7 +1386,7 @@ MatchCall_Kanto_Jacob_General::
 	.string "Pokémon gejagt.\p"
 	.string "Mein Gebiet ist einfach das beste!$"
 #else
-	.string "Hey, {PLAYER}! It's Roman.\p"
+	.string "Hey, {PLAYER}! It's JACOB.\p"
 	.string "I went catching POKéMON with\n"
 	.string "{STR_VAR_3} again today.\p"
 	.string "My turf is simply the best!$"
@@ -1400,7 +1400,7 @@ MatchCall_Kanto_Matthew_Battle::
 	.string "lieber!\p"
 	.string "Komm zu Route 19, dann kämpfen wir!$"
 #else
-	.string "Hey, {PLAYER}! It's Umberto!\p"
+	.string "Hey, {PLAYER}! It's MATTHEW!\p"
 	.string "Still surfing? I'd rather swim!\p"
 	.string "Come to ROUTE 19 and let's battle!$"
 #endif
@@ -1412,7 +1412,7 @@ MatchCall_Kanto_Matthew_General::
 	.string "nach Fuchsania City geschwommen!\p"
 	.string "Und wieder zurück!$"
 #else
-	.string "Hey, {PLAYER}! It's Umberto.\p"
+	.string "Hey, {PLAYER}! It's MATTHEW.\p"
 	.string "I swam all the way to FUCHSIA CITY with\n"
 	.string "{STR_VAR_3} today!\p"
 	.string "And back again!$"
@@ -1427,7 +1427,7 @@ MatchCall_Kanto_Tony_Battle::
 	.string "Es hat nicht geklappt! Komm zu\n"
 	.string "Route 19!$"
 #else
-	.string "Hi, {PLAYER}. It's Kevin.\p"
+	.string "Hi, {PLAYER}. It's TONY.\p"
 	.string "I looked at the sea to forget losing to\n"
 	.string "you.\p"
 	.string "It didn't work! Come to ROUTE 19!$"
@@ -1440,7 +1440,7 @@ MatchCall_Kanto_Tony_General::
 	.string "{STR_VAR_3} aufs Meer.\p"
 	.string "Das beruhigt so schön…$"
 #else
-	.string "Hi, {PLAYER}. It's Kevin.\p"
+	.string "Hi, {PLAYER}. It's TONY.\p"
 	.string "I'm on the beach, looking at the sea\n"
 	.string "with {STR_VAR_3}.\p"
 	.string "It's so calming…$"
@@ -1454,7 +1454,7 @@ MatchCall_Kanto_Alice_Battle::
 	.string "nicht!\p"
 	.string "Komm zu Route 19, bevor ich verbrenne!$"
 #else
-	.string "Hi, {PLAYER}! It's Alice!\p"
+	.string "Hi, {PLAYER}! It's ALICE!\p"
 	.string "Swimming's great! Sunburns aren't!\p"
 	.string "Come to ROUTE 19 before I burn!$"
 #endif
@@ -1467,7 +1467,7 @@ MatchCall_Kanto_Alice_General::
 	.string "Er ist total durchgefroren.\n"
 	.string "{STR_VAR_3} hat nur gelacht.$"
 #else
-	.string "Hi, {PLAYER}! It's Alice.\p"
+	.string "Hi, {PLAYER}! It's ALICE.\p"
 	.string "My boyfriend's finally back from\n"
 	.string "SEAFOAM ISLANDS!\p"
 	.string "He's frozen stiff. {STR_VAR_3} just\n"
@@ -1482,7 +1482,7 @@ MatchCall_Kanto_Darrin_Battle::
 	.string "Dann komm zu Route 20!\p"
 	.string "Ich zeig dir, wie's geht!$"
 #else
-	.string "Hey, {PLAYER}! It's Manuel!\p"
+	.string "Hey, {PLAYER}! It's DARRIN!\p"
 	.string "Still can't swim? Then come to ROUTE 20!\p"
 	.string "I'll show you how it's done!$"
 #endif
@@ -1495,7 +1495,7 @@ MatchCall_Kanto_Darrin_General::
 	.string "Es ist einfach abgetaucht… Schwimmen\n"
 	.string "ist doch besser!$"
 #else
-	.string "Hey, {PLAYER}! It's Manuel.\p"
+	.string "Hey, {PLAYER}! It's DARRIN.\p"
 	.string "I tried riding on {STR_VAR_3}.\p"
 	.string "It just dove under… Swimming is better\n"
 	.string "after all!$"
@@ -1509,7 +1509,7 @@ MatchCall_Kanto_Melissa_Battle::
 	.string "Route 20!\p"
 	.string "Danach schwimmen wir zur Zinnoberinsel!$"
 #else
-	.string "Hi, {PLAYER}! It's Melissa.\p"
+	.string "Hi, {PLAYER}! It's MELISSA.\p"
 	.string "I'm ready for a battle! Come to\n"
 	.string "ROUTE 20!\p"
 	.string "Then we'll swim to CINNABAR!$"
@@ -1523,7 +1523,7 @@ MatchCall_Kanto_Melissa_General::
 	.string "Mein {STR_VAR_3} fand das langweilig.\n"
 	.string "Hihi!$"
 #else
-	.string "Hi, {PLAYER}! It's Melissa.\p"
+	.string "Hi, {PLAYER}! It's MELISSA.\p"
 	.string "The POKéMON LAB on CINNABAR is\n"
 	.string "studying fossils.\p"
 	.string "My {STR_VAR_3} found it boring.\n"
@@ -1538,7 +1538,7 @@ MatchCall_Kanto_Missy_Battle::
 	.string "Zinnoberinsel herübergeschwommen!\p"
 	.string "Komm zu Route 20 für einen Kampf!$"
 #else
-	.string "Hi, {PLAYER}! It's Marion.\p"
+	.string "Hi, {PLAYER}! It's MISSY.\p"
 	.string "I swam here from CINNABAR ISLAND\n"
 	.string "again!\p"
 	.string "Come to ROUTE 20 for a battle!$"
@@ -1552,7 +1552,7 @@ MatchCall_Kanto_Missy_General::
 	.string "Aber {STR_VAR_3} hatte Angst. Wir\n"
 	.string "sind schnell wieder raus.$"
 #else
-	.string "Hi, {PLAYER}! It's Marion.\p"
+	.string "Hi, {PLAYER}! It's MISSY.\p"
 	.string "I dared to go into the POKéMON MANSION!\p"
 	.string "But {STR_VAR_3} got scared. We got\n"
 	.string "out fast.$"
@@ -1566,7 +1566,7 @@ MatchCall_Kanto_Wade_Battle::
 	.string "gemacht! Willst du noch ein Match?\p"
 	.string "Komm zu Route 21!$"
 #else
-	.string "Hey, {PLAYER}! It's Alain.\p"
+	.string "Hey, {PLAYER}! It's WADE.\p"
 	.string "I got a big haul again! Wanna go for it\n"
 	.string "once more?\p"
 	.string "Come to ROUTE 21!$"
@@ -1578,7 +1578,7 @@ MatchCall_Kanto_Wade_General::
 	.string "Rate mal, was ich heute gefangen habe!\p"
 	.string "…Richtig. Karpador. Schon wieder.$"
 #else
-	.string "Hey, {PLAYER}! It's Alain.\p"
+	.string "Hey, {PLAYER}! It's WADE.\p"
 	.string "Guess what I caught today!\p"
 	.string "…Right. MAGIKARP. Again.$"
 #endif
@@ -1618,7 +1618,7 @@ MatchCall_Kanto_Jack_Battle::
 	.string "sie gefangen habe: im Meer!\p"
 	.string "Komm zu Route 21!$"
 #else
-	.string "Hey, {PLAYER}! It's Pedro!\p"
+	.string "Hey, {PLAYER}! It's JACK!\p"
 	.string "I train my POKéMON where I caught them:\n"
 	.string "at sea!\p"
 	.string "Come to ROUTE 21!$"
@@ -1632,7 +1632,7 @@ MatchCall_Kanto_Jack_General::
 	.string "Die Wellen waren riesig! Aber wir haben\n"
 	.string "durchgehalten!$"
 #else
-	.string "Hey, {PLAYER}! It's Pedro.\p"
+	.string "Hey, {PLAYER}! It's JACK.\p"
 	.string "I trained {STR_VAR_3} far out at sea.\p"
 	.string "The waves were huge! But we held on!$"
 #endif
@@ -1645,7 +1645,7 @@ MatchCall_Kanto_Roland_Battle::
 	.string "einen Kampf!\p"
 	.string "Komm zu Route 21!$"
 #else
-	.string "Ahh, {PLAYER}! It's Thomas!\p"
+	.string "Ahh, {PLAYER}! It's ROLAND!\p"
 	.string "Feel the sun and the wind! And a battle!\p"
 	.string "Come to ROUTE 21!$"
 #endif
@@ -1657,7 +1657,7 @@ MatchCall_Kanto_Roland_General::
 	.string "eingerieben. Und {STR_VAR_3} auch!\p"
 	.string "Diesmal werde ich nicht geröstet!$"
 #else
-	.string "Ahh, {PLAYER}! It's Thomas.\p"
+	.string "Ahh, {PLAYER}! It's ROLAND.\p"
 	.string "I put on sunscreen. And on\n"
 	.string "{STR_VAR_3} too!\p"
 	.string "This time I won't get roasted!$"
