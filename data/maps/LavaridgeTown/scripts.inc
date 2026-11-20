@@ -48,8 +48,10 @@ LavaridgeTown_EventScript_RivalGiveGoGoggles::
 	call_if_ne VAR_0x8008, 9, LavaridgeTown_EventScript_RivalExitHerbShop
 	delay 20
 #if IS_HNS
-	@ Origin Jade: the Hoenn rival is always May.
-	call LavaridgeTown_EventScript_PlayMayMusic
+	@ Origin Jade: the Hoenn rival is May, or Brendan if the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	call_if_ne VAR_RESULT, PLAYER_CHARACTER_MAY, LavaridgeTown_EventScript_PlayMayMusic
+	call_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, LavaridgeTown_EventScript_PlayBrendanMusic
 #else
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, LavaridgeTown_EventScript_PlayMayMusic
@@ -58,7 +60,9 @@ LavaridgeTown_EventScript_RivalGiveGoGoggles::
 	call_if_eq VAR_0x8008, 9, LavaridgeTown_EventScript_RivalApproachPlayer1
 	call_if_ne VAR_0x8008, 9, LavaridgeTown_EventScript_RivalApproachPlayer2
 #if IS_HNS
-	@ HnS: the rival is always May.
+	@ Origin Jade: the Hoenn rival is May, or Brendan if the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, LavaridgeTown_EventScript_BrendanGiveGoGoggles
 	goto LavaridgeTown_EventScript_MayGiveGoGoggles
 #else
 	checkplayergender
@@ -75,7 +79,6 @@ LavaridgeTown_EventScript_MayGiveGoGoggles::
 	goto LavaridgeTown_EventScript_RivalExit
 	end
 
-#if !IS_HNS
 LavaridgeTown_EventScript_BrendanGiveGoGoggles::
 	msgbox LavaridgeTown_Text_BrendanNiceBadgesTakeThis, MSGBOX_DEFAULT
 	giveitem ITEM_GO_GOGGLES
@@ -83,7 +86,6 @@ LavaridgeTown_EventScript_BrendanGiveGoGoggles::
 	msgbox LavaridgeTown_Text_BrendanExplainGoGogglesChallengeDad, MSGBOX_DEFAULT
 	goto LavaridgeTown_EventScript_RivalExit
 	end
-#endif
 
 LavaridgeTown_EventScript_RivalExit::
 	closemessage
@@ -335,48 +337,49 @@ LavaridgeTown_Text_MayExplainGoGogglesChallengeDad:
 
 LavaridgeTown_Text_BrendanNiceBadgesTakeThis:
 #if GERMAN
-	.string "Maike: {PLAYER}, wie geht es dir?\p"
-	.string "Hmm… Das ist eine beachtliche\n"
-	.string "Sammlung von Orden.\p"
-	.string "Also gut.\n"
-	.string "Hier, dies schenke ich dir.$"
+	.string "Brix: {PLAYER}! Wir haben uns\n"
+	.string "lange nicht gesehen!\p"
+	.string "Oh? Während ich in den Heißen Quellen\n"
+	.string "war, hast du den Orden der Arena von\l"
+	.string "Bad Lavastadt geholt. Klar hast du das…\p"
+	.string "Ich sehe es an deinen Pokémon. So weit\n"
+	.string "bin ich noch lange nicht.\p"
+	.string "Ich denke, das hier wirst du gut\n"
+	.string "gebrauchen können.$"
 #else
-	.string "BRENDAN: {PLAYER}, hey, it's been a while.\n"
-	.string "How's it going?\p"
-	.string "Hmm…\n"
-	.string "That's a decent collection of BADGES.\p"
-	.string "All right, then.\n"
-	.string "You may as well have this.$"
+	.string "BRENDAN: {PLAYER}! Long time no see!\p"
+	.string "Oh? While I visited the hot springs,\n"
+	.string "you got the LAVARIDGE GYM BADGE.\l"
+	.string "Of course you did…\p"
+	.string "I can tell from your POKéMON. I'm\n"
+	.string "nowhere near that far yet.\p"
+	.string "I think you'll put this to good use.$"
 #endif
 
-#if !IS_HNS
 LavaridgeTown_Text_BrendanExplainGoGogglesChallengeDad:
 #if GERMAN
-	.string "Maike: Nimm das mit, wenn du in die Wüste\n"
-	.string "in der Nähe von Route 111 willst.\p"
-	.string "Da sollten sich einige Pokémon fangen\n"
-	.string "lassen, die Wüstenbewohner sind. Schau\l"
-	.string "dich nach ihnen um.\p"
-	.string "Und ich…\n"
-	.string "Ich werde wohl Norman, den Arenaleiter\l"
-	.string "in Blütenburg City, herausfordern.\p"
-	.string "Im Gegensatz zu dir, macht dein Vater\n"
-	.string "einen sehr starken Eindruck.\p"
-	.string "Man sieht sich!$"
+	.string "Brix: Mit diesem Wüstenglas wirst du\n"
+	.string "keine Probleme haben, durch die Wüste\l"
+	.string "in der Nähe von Route 111 zu gehen.\p"
+	.string "Und du sammelst hier wirklich Orden…\n"
+	.string "Du hättest es nicht nötig.\p"
+	.string "Aber gut. Gehst du den Weg noch einmal,\n"
+	.string "gehe ich ihn mit und hole auf.\p"
+	.string "Und irgendwann fordere ich meinen\n"
+	.string "Vater heraus - Norman, in der Arena\l"
+	.string "von Blütenburg City.\p"
+	.string "{PLAYER}, man sieht sich!$"
 #else
-	.string "BRENDAN: Keep those with you if you're\n"
-	.string "planning on going into that desert near\l"
-	.string "ROUTE 111.\p"
-	.string "There should be some POKéMON that\n"
-	.string "are exclusively desert-dwellers.\l"
-	.string "You might look around for those.\p"
-	.string "As for me…\n"
-	.string "I'm considering challenging NORMAN,\l"
-	.string "the GYM LEADER of PETALBURG.\p"
-	.string "Unlike you, {PLAYER}, your dad looks like\n"
-	.string "he really is tough.\p"
-	.string "See you around!$"
-#endif
+	.string "BRENDAN: With those GO-GOGGLES, you'll\n"
+	.string "have no trouble getting through the\l"
+	.string "desert near ROUTE 111.\p"
+	.string "And you're really collecting BADGES\n"
+	.string "here… You wouldn't even need to.\p"
+	.string "But fine. If you walk this road once\n"
+	.string "more, I'll walk it too and catch up.\p"
+	.string "And someday I'll challenge my dad -\n"
+	.string "NORMAN, at the PETALBURG GYM.\p"
+	.string "See you again!$"
 #endif
 
 LavaridgeTown_Text_HaveEggWillYouTakeIt:

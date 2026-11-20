@@ -1,7 +1,9 @@
 Common_EventScript_SetupRivalGfxId::
 #if defined(POKEMON_HNS)
-	@ HnS: the rival is always May.
+	@ HnS: the rival is May, or Brendan if the player is May.
 	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_MAY_NORMAL
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, EventScript_SetupRivalGfxIdMale
 	@ Must be return, not end: this script is called.
 	return
 #endif
@@ -20,8 +22,10 @@ EventScript_SetupRivalGfxIdMale::
 
 Common_EventScript_SetupRivalOnBikeGfxId::
 #if IS_HNS
-	@ HnS: the rival is always May.
+	@ HnS: the rival is May, or Brendan if the player is May.
 	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_RIVAL_MAY_MACH_BIKE
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, EventScript_SetupRivalOnBikeGfxIdMale
 	return
 #endif
 	checkplayergender

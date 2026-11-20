@@ -20,6 +20,9 @@ Route103_EventScript_OpenAlteringCave::
 Route103_EventScript_Rival::
 	lockall
 #if defined(POKEMON_HNS)
+	@ Origin Jade: the Hoenn rival is May, or Brendan if the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, Route103_EventScript_RivalBrendanHns
 	goto Route103_EventScript_RivalMayHns
 #endif
 #if IS_HNS
@@ -45,6 +48,24 @@ Route103_EventScript_RivalMayHns::
 	msgbox Route103_Text_MayHnsLetsBattle, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_TREECKO, Route103_Text_MayHnsDefeated
 	msgbox Route103_Text_MayHnsAfterBattle, MSGBOX_DEFAULT
+	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
+	goto Route103_EventScript_RivalExitHns
+	end
+
+@ Brendan (Norman's son) when the player is May: same scene, May's team.
+Route103_EventScript_RivalBrendanHns::
+	msgbox Route103_Text_BrendanHnsMusing, MSGBOX_DEFAULT
+	closemessage
+	playbgm MUS_ENCOUNTER_BRENDAN, TRUE
+	applymovement LOCALID_ROUTE103_RIVAL, Common_Movement_FacePlayer
+	waitmovement 0
+	applymovement LOCALID_ROUTE103_RIVAL, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_ROUTE103_RIVAL, Common_Movement_Delay48
+	waitmovement 0
+	msgbox Route103_Text_BrendanHnsLetsBattle, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_TREECKO, Route103_Text_BrendanHnsDefeated
+	msgbox Route103_Text_BrendanHnsAfterBattle, MSGBOX_DEFAULT
 	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
 	goto Route103_EventScript_RivalExitHns
 	end
@@ -154,6 +175,79 @@ Route103_Text_MayHnsAfterBattle:
 	.string "you - and next time I will get\l"
 	.string "closer.\p"
 	.string "That's a promise to myself!\p"
+	.string "Wait, I'll put myself in your POKéGEAR\n"
+	.string "- then you can find me any time!\p"
+	.string "I'm heading back to the LAB.\n"
+	.string "See you soon, {PLAYER}!$"
+#endif
+
+Route103_Text_BrendanHnsMusing:
+#if GERMAN
+	.string "Brix: Mal sehen…\n"
+	.string "Hier oben müssten sich doch ein paar\l"
+	.string "starke Pokémon rumtreiben…$"
+#else
+	.string "BRENDAN: Let's see…\n"
+	.string "There should be some strong\l"
+	.string "POKéMON around here…$"
+#endif
+
+Route103_Text_BrendanHnsLetsBattle:
+#if GERMAN
+	.string "Ah, du musst {PLAYER} sein!\p"
+	.string "Prof. Birk sagt, du kommst vom\n"
+	.string "Festland und sollst ziemlich stark sein.\p"
+	.string "Ich bin Brix. Ich helfe dem Prof bei\n"
+	.string "seiner Forschung.\p"
+	.string "Mein Vater ist Norman, der Arenaleiter\n"
+	.string "von Blütenburg City. Eines Tages trete\l"
+	.string "ich in seine Fußstapfen!\p"
+	.string "Lass uns kämpfen - mal sehen, ob du so\n"
+	.string "gut bist, wie alle sagen!$"
+#else
+	.string "Ah, you must be {PLAYER}!\p"
+	.string "PROF. BIRCH says you're from the\n"
+	.string "mainland and supposed to be strong.\p"
+	.string "I'm BRENDAN. I help the PROF with\n"
+	.string "his research.\p"
+	.string "My dad is NORMAN, the GYM LEADER of\n"
+	.string "PETALBURG CITY. Someday I'll follow\l"
+	.string "in his footsteps!\p"
+	.string "Let's battle - let's see if you're as\n"
+	.string "good as everyone says!$"
+#endif
+
+Route103_Text_BrendanHnsDefeated:
+#if GERMAN
+	.string "Wow… Okay, das war wohl eine Nummer\n"
+	.string "zu groß für mich!$"
+#else
+	.string "Whoa… Okay, I guess that was a\n"
+	.string "little out of my league!$"
+#endif
+
+Route103_Text_BrendanHnsAfterBattle:
+#if GERMAN
+	.string "Brix: Verloren! Na gut - jetzt weiß\n"
+	.string "ich wenigstens, wo ich stehe.\p"
+	.string "Du bist ab jetzt meine Messlatte.\p"
+	.string "Jedes Mal, wenn wir uns wiedersehen,\n"
+	.string "fordere ich dich heraus - und beim\l"
+	.string "nächsten Mal komme ich näher ran.\p"
+	.string "Normans Sohn gibt nicht so schnell auf!\p"
+	.string "Warte, ich trage mich in deinem PokéCom\n"
+	.string "ein - dann findest du mich jederzeit!\p"
+	.string "Ich gehe zurück ins Labor.\n"
+	.string "Bis bald, {PLAYER}!$"
+#else
+	.string "BRENDAN: I lost! Well, at least now I\n"
+	.string "know where I stand.\p"
+	.string "From now on you're my benchmark.\p"
+	.string "Every time we meet I will challenge\n"
+	.string "you - and next time I will get\l"
+	.string "closer.\p"
+	.string "NORMAN's son doesn't give up that\n"
+	.string "easily!\p"
 	.string "Wait, I'll put myself in your POKéGEAR\n"
 	.string "- then you can find me any time!\p"
 	.string "I'm heading back to the LAB.\n"

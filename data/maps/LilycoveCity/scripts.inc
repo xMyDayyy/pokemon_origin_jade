@@ -244,7 +244,9 @@ LilycoveCity_EventScript_Rival::
 	lock
 	faceplayer
 #if IS_HNS
-	@ HnS: the rival is always May.
+	@ Origin Jade: the Hoenn rival is May, or Brendan if the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, LilycoveCity_EventScript_Brendan
 	goto LilycoveCity_EventScript_May
 #else
 	checkplayergender
@@ -292,10 +294,15 @@ LilycoveCity_EventScript_Brendan::
 	call_if_unset FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_BrendanAskToBattle
 	goto_if_eq VAR_RESULT, NO, LilycoveCity_EventScript_DeclineBrendanBattle
 	msgbox LilycoveCity_Text_BrendanWontBeBeaten, MSGBOX_DEFAULT
+#if IS_HNS
+	@ Origin Jade: Brendan has May's team (Treecko set).
+	goto LilycoveCity_EventScript_BattleBrendanTreecko
+#else
 	switch VAR_STARTER_MON
 	case 0, LilycoveCity_EventScript_BattleBrendanTreecko
 	case 1, LilycoveCity_EventScript_BattleBrendanTorchic
 	case 2, LilycoveCity_EventScript_BattleBrendanMudkip
+#endif
 	end
 
 LilycoveCity_EventScript_BrendanAskToBattleAgain::
@@ -597,137 +604,145 @@ LilycoveCity_Text_MayYouGoingToBattleFrontier:
 
 LilycoveCity_Text_BrendanShoppingLetsBattle:
 #if GERMAN
-	.string "Maike: Oh, du bist es, {PLAYER}.\p"
-	.string "Ich mache Besorgungen für meinen\n"
-	.string "Vater. Nein, ich kaufe keine Puppen!\p"
-	.string "Wir haben uns lange nicht mehr\n"
-	.string "gesehen. \p"
-	.string "Sollen wir kämpfen, um zu sehen, wer\n"
-	.string "seine Pokémon besser trainiert?$"
+	.string "Brix: {PLAYER}!\p"
+	.string "Ich habe hier alles zusammen, was mein\n"
+	.string "Team noch gebraucht hat.\p"
+	.string "Sechs Pokémon, jedes einzelne von mir\n"
+	.string "großgezogen.\p"
+	.string "Irgendwann schlage ich den stärksten\n"
+	.string "Trainer, den ich kenne.\p"
+	.string "Und das bist du!$"
 #else
-	.string "BRENDAN: Oh, hey, it's {PLAYER}.\p"
-	.string "I'm running an errand for my dad.\n"
-	.string "No, I'm not buying any DOLLS.\p"
-	.string "Anyways, it's been a while.\p"
-	.string "Want to have a battle to see who's been\n"
-	.string "raising POKéMON better?$"
+	.string "BRENDAN: {PLAYER}!\p"
+	.string "I've got everything my team still\n"
+	.string "needed right here.\p"
+	.string "Six POKéMON, every single one\n"
+	.string "raised by me.\p"
+	.string "Someday I'll beat the strongest\n"
+	.string "TRAINER I know.\p"
+	.string "And that's you!$"
 #endif
 
 LilycoveCity_Text_BrendanNoConfidence:
 #if GERMAN
-	.string "Maike: Oh, hast du ein Problem? Nicht\n"
-	.string "genügend Selbstbewusstsein, was?$"
+	.string "Brix: Jetzt nicht?\p"
+	.string "Dann eben später. Ich laufe dir nicht\n"
+	.string "weg, {PLAYER}.$"
 #else
-	.string "BRENDAN: Oh, what's the matter?\n"
-	.string "Don't have the confidence?$"
+	.string "BRENDAN: Not now?\p"
+	.string "Later, then. I'm not going anywhere,\n"
+	.string "{PLAYER}.$"
 #endif
 
 LilycoveCity_Text_BrendanBattleMe:
 #if GERMAN
-	.string "Maike: Sollen wir kämpfen, um zu sehen,\n"
-	.string "wer seine Pokémon besser trainiert?$"
+	.string "Brix: Komm schon. Einmal noch.$"
 #else
-	.string "BRENDAN: Want to battle to see who's\n"
-	.string "been raising POKéMON better?$"
+	.string "BRENDAN: Come on. One more time.$"
 #endif
 
 LilycoveCity_Text_BrendanWontBeBeaten:
 #if GERMAN
-	.string "Maike: Aah, ich werde doch nicht\n"
-	.string "gegen {PLAYER} verlieren! Niemals!$"
+	.string "Brix: Diesmal gebe ich nichts her.\n"
+	.string "Nicht eines.$"
 #else
-	.string "BRENDAN: Aww, but you know I'm not\n"
-	.string "going to lose to no {PLAYER}.$"
+	.string "BRENDAN: This time I'm not giving you\n"
+	.string "anything. Not a single one.$"
 #endif
 
 LilycoveCity_Text_BrendanDefeat:
 #if GERMAN
-	.string "Ach… Du hast dich stark verbessert.\p"
-	.string "Das schmerzt - und dabei hatte ich als\n"
-	.string "Trainer sogar einen Vorsprung…$"
+	.string "… … … … … … … …\p"
+	.string "Auf Route 103 warst du eine Wand.\p"
+	.string "Heute warst du eine Tür, die sich\n"
+	.string "einen Spalt geöffnet hat.\p"
+	.string "Beim nächsten Mal reiße ich sie auf.$"
 #else
-	.string "Humph…\n"
-	.string "You've done a lot of raising.\p"
-	.string "That stings a bit--I had a head start\n"
-	.string "on you as a TRAINER…$"
+	.string "… … … … … … … …\p"
+	.string "On ROUTE 103, you were a wall.\p"
+	.string "Today you were a door that opened\n"
+	.string "just a crack.\p"
+	.string "Next time, I'll tear it wide open.$"
 #endif
 
 LilycoveCity_Text_BrendanGoingBackToLittleroot:
 #if GERMAN
-	.string "Maike: Ich…\n"
-	.string "Ich gehe nach Hause, nach Wurzelheim.\p"
-	.string "Weißt du, ich helfe meinem Vater bei dem\n"
-	.string "Pokédex. Es geht ganz anständig voran\l"
-	.string "und ich sollte ihm das mal zeigen.$"
+	.string "Brix: Ich fahre kurz nach Wurzelheim\n"
+	.string "und zeige Prof. Birk meinen Pokédex.\p"
+	.string "Danach trainiere ich weiter.\p"
+	.string "Ich will schließlich in die\n"
+	.string "Fußstapfen meines Vaters treten.$"
 #else
-	.string "BRENDAN: I…\n"
-	.string "I plan on going home to LITTLEROOT.\p"
-	.string "You know I'm helping out my dad on his\n"
-	.string "POKéDEX. It's coming together pretty\l"
-	.string "decently, so I should go show him.$"
+	.string "BRENDAN: I'm going to LITTLEROOT for\n"
+	.string "a bit to show PROF. BIRCH my POKéDEX.\p"
+	.string "After that, I'll keep training.\p"
+	.string "I want to follow in my dad's\n"
+	.string "footsteps, after all.$"
 #endif
 
 LilycoveCity_Text_BrendanYouGoingToCollectBadges:
 #if GERMAN
-	.string "Und, {PLAYER}, was wirst du tun?\p"
-	.string "Wirst du alle Orden der Arenen sammeln\n"
-	.string "und die Pokémon Liga herausfordern?\p"
-	.string "Vielleicht werde ich das auch machen…\p"
-	.string "Gut, bleib am Ball!$"
+	.string "{PLAYER}, was wirst du machen?\p"
+	.string "Alle Orden der Arenen sammeln und die\n"
+	.string "Pokémon Liga herausfordern?\p"
+	.string "Nun, während du deine Orden sammelst,\n"
+	.string "werde ich weiter an meinem Pokédex\l"
+	.string "arbeiten. Ich werde ihn eher\l"
+	.string "vollständig haben als du, wetten?\p"
+	.string "Bis dann!$"
 #else
 	.string "{PLAYER}, what are you going to do?\p"
 	.string "Collect all the GYM BADGES and take\n"
 	.string "the POKéMON LEAGUE challenge?\p"
-	.string "Maybe I'll do that, too…\p"
-	.string "Well, anyway, hang in there!$"
+	.string "Well, while you're collecting BADGES,\n"
+	.string "{PLAYER}, I'm going to work on my\l"
+	.string "POKéDEX. I'll complete it before you!\p"
+	.string "See you!$"
 #endif
 
 LilycoveCity_Text_BrendanYouGoingToPokemonLeague:
 #if GERMAN
-	.string "Und, {PLAYER}, was wirst du tun?\p"
-	.string "Da du so stark geworden bist, wirst du\n"
-	.string "die Pokémon Liga herausfordern?\p"
-	.string "Hey, ich habe meine Pokémon bestimmt\n"
-	.string "viel besser trainiert und sollte\l"
-	.string "eigentlich stärker sein als du…\p"
-	.string "Nun ja, bleib am Ball!$"
+	.string "Und, {PLAYER}, was wirst du\n"
+	.string "machen?\p"
+	.string "Wirst du die Pokémon Liga heraus-\n"
+	.string "fordern?\p"
+	.string "Oder wirst du deinen Pokédex vervoll-\n"
+	.string "ständigen?\p"
+	.string "Ich habe gegen dich verloren, aber den\n"
+	.string "Pokédex werde ich eher vollständig\l"
+	.string "haben als du!\p"
+	.string "Man sieht sich!$"
 #else
 	.string "{PLAYER}, what are you going to do?\p"
-	.string "Since you're that strong, are you\n"
-	.string "taking the POKéMON LEAGUE challenge?\p"
-	.string "Heh, even me--if I trained my POKéMON\n"
-	.string "a bit more, I should be stronger than\l"
-	.string "you, {PLAYER}.\p"
-	.string "Well, anyway, hang in there!$"
+	.string "Are you taking the POKéMON LEAGUE\n"
+	.string "challenge?\p"
+	.string "Or, are you going to complete your\n"
+	.string "POKéDEX?\p"
+	.string "I might've lost to you in battling,\n"
+	.string "but I'll finish my POKéDEX before you!\p"
+	.string "See you!$"
 #endif
 
 LilycoveCity_Text_BrendanYouGoingToBattleFrontier:
 #if GERMAN
-	.string "Und, {PLAYER}, was machst du nun?\p"
+	.string "Und, {PLAYER}, was wirst du\n"
+	.string "machen?\p"
 	.string "Wirst du zur Kampfzone gehen?\p"
-	.string "Oder wirst du deinen Pokédex\n"
-	.string "vervollständigen?\p"
-	.string "Da du so stark geworden bist, solltest\n"
-	.string "du zur Kampfzone gehen.\p"
-	.string "Häh, wenn ich meine Pokémon besser\n"
-	.string "trainiere, sollte ich eigentlich stärker\l"
-	.string "werden als du…\p"
-	.string "Vielleicht sollte ich zur Kampfzone\n"
-	.string "gehen.\p"
-	.string "Wie dem auch sei… Bleib am Ball!$"
+	.string "Oder wirst du deinen Pokédex vervoll-\n"
+	.string "ständigen?\p"
+	.string "Ich habe gegen dich verloren, aber den\n"
+	.string "Pokédex werde ich eher vollständig\l"
+	.string "haben als du!\p"
+	.string "Man sieht sich!$"
 #else
 	.string "{PLAYER}, what are you going to do?\p"
 	.string "Are you taking the BATTLE FRONTIER\n"
 	.string "challenge?\p"
 	.string "Or, are you going to complete your\n"
 	.string "POKéDEX?\p"
-	.string "Since you're that strong, you should\n"
-	.string "consider the BATTLE FRONTIER.\p"
-	.string "Heh, if I train my POKéMON a bit more,\n"
-	.string "I'll get stronger than you, {PLAYER}.\p"
-	.string "Maybe I should go to the BATTLE\n"
-	.string "FRONTIER.\p"
-	.string "Well, anyway, hang in there!$"
+	.string "I might've lost to you in battling,\n"
+	.string "but I'll finish my POKéDEX before you!\p"
+	.string "See you!$"
 #endif
 
 LilycoveCity_Text_MovedLootIntoHideoutToday:

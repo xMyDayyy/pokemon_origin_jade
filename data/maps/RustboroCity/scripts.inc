@@ -749,7 +749,9 @@ RustboroCity_EventScript_Rival::
 
 RustboroCity_EventScript_PlayRivalMusic::
 #if IS_HNS
-	@ Origin Jade: the Hoenn rival is always May.
+	@ Origin Jade: the Hoenn rival is May, or Brendan if the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, RustboroCity_EventScript_PlayBrendanMusic
 	goto RustboroCity_EventScript_PlayMayMusic
 #else
 	checkplayergender
@@ -896,6 +898,9 @@ RustboroCity_EventScript_RivalTrigger7::
 
 RustboroCity_EventScript_RivalEncounter::
 #if IS_HNS
+	@ Origin Jade: the Hoenn rival is May, or Brendan if the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, RustboroCity_EventScript_BrendanEncounter
 	goto RustboroCity_EventScript_MayEncounter
 #else
 	checkplayergender
@@ -986,6 +991,10 @@ RustboroCity_EventScript_BrendanEncounter::
 	goto_if_set FLAG_DEFEATED_RIVAL_RUSTBORO, RustboroCity_EventScript_BrendanBrineyHint
 	goto_if_set FLAG_MET_RIVAL_RUSTBORO, RustboroCity_EventScript_BrendanAskToBattle
 	setflag FLAG_MET_RIVAL_RUSTBORO
+#if IS_HNS
+	@ Origin Jade: Brendan registers on Route 103 instead, like May.
+	msgbox RustboroCity_Text_BrendanHiLetsRegister, MSGBOX_DEFAULT
+#else
 	msgbox RustboroCity_Text_BrendanHiLetsRegister, MSGBOX_DEFAULT
 	closemessage
 	delay 30
@@ -994,9 +1003,11 @@ RustboroCity_EventScript_BrendanEncounter::
 	waitfanfare
 	closemessage
 	delay 30
+#endif
 	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
 	setvar VAR_RUSTBORO_CITY_STATE, 8
 	setvar VAR_ROUTE104_STATE, 2
+	setvar VAR_0x8008, 0
 	msgbox RustboroCity_Text_BrendanPassedBrineyWantToBattle, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, RustboroCity_EventScript_BattleBrendan
 	msgbox RustboroCity_Text_BrendanNoConfidenceInPokemon, MSGBOX_DEFAULT
@@ -1005,6 +1016,7 @@ RustboroCity_EventScript_BrendanEncounter::
 	end
 
 RustboroCity_EventScript_BrendanAskToBattle::
+	setvar VAR_0x8008, 1
 	msgbox RustboroCity_Text_BrendanWantToBattle, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, RustboroCity_EventScript_BattleBrendan
 	msgbox RustboroCity_Text_BrendanNoConfidenceInPokemon, MSGBOX_DEFAULT
@@ -1013,10 +1025,15 @@ RustboroCity_EventScript_BrendanAskToBattle::
 
 RustboroCity_EventScript_BattleBrendan::
 	msgbox RustboroCity_Text_BrendanIWontGoEasy, MSGBOX_DEFAULT
+#if IS_HNS
+	@ Origin Jade: Brendan has May's team (Treecko set).
+	goto RustboroCity_EventScript_BattleBrendanTreecko
+#else
 	switch VAR_STARTER_MON
 	case 0, RustboroCity_EventScript_BattleBrendanTreecko
 	case 1, RustboroCity_EventScript_BattleBrendanTorchic
 	case 2, RustboroCity_EventScript_BattleBrendanMudkip
+#endif
 	end
 
 RustboroCity_EventScript_BrendanBrineyHint::
@@ -1450,25 +1467,22 @@ RustboroCity_Text_MayMrBrineyHint:
 
 RustboroCity_Text_BrendanHiLetsRegister:
 #if GERMAN
-	.string "Maike: Oh, hey, {PLAYER}!\p"
-	.string "Dein PokéCom besitzt die Trainer/Ruf-\n"
-	.string "Funktion! Cool!\p"
-	.string "Wir tragen uns gegenseitig ein, dann\n"
-	.string "können wir jederzeit miteinander reden!\p"
-	.string "… … … … …\n"
-	.string "…$"
+	.string "Brix: Oh, hey, {PLAYER}!\p"
+	.string "Ich habe gehört, du warst schon in der\n"
+	.string "Arena.\p"
+	.string "So weit bin ich noch nicht… aber das\n"
+	.string "kommt noch!$"
 #else
 	.string "BRENDAN: Oh, hey, {PLAYER}!\p"
-	.string "You had a MATCH CALL feature put\n"
-	.string "on your POKéGEAR! Cool!\p"
-	.string "Let's register each other so we can\n"
-	.string "get in touch anytime!\p"
-	.string "… … … … … …$"
+	.string "I heard you have already been to the\n"
+	.string "GYM.\p"
+	.string "I'm not that far yet… but I'll get\n"
+	.string "there!$"
 #endif
 
 RustboroCity_Text_RegisteredBrendan:
 #if GERMAN
-	.string "Maike wurde im PokéCom-Verzeichnis\n"
+	.string "Brix wurde im PokéCom-Verzeichnis\n"
 	.string "eingetragen.$"
 #else
 	.string "Registered BRENDAN\n"
@@ -1477,77 +1491,71 @@ RustboroCity_Text_RegisteredBrendan:
 
 RustboroCity_Text_BrendanPassedBrineyWantToBattle:
 #if GERMAN
-	.string "Maike: Ich habe Mr. Brack im\n"
-	.string "Blütenburgwald gesehen, {PLAYER}.\p"
-	.string "Ich wette, er ist auf dem Weg zu\n"
+	.string "Brix: Ach, übrigens. Ich habe Mr.\n"
+	.string "Brack im Blütenburgwald gesehen.\p"
+	.string "Ich glaube, er ist auf dem Weg zu\n"
 	.string "seiner Hütte am Meer.\p"
-	.string "{PLAYER}, wie sieht es mit deinem\n"
-	.string "Pokédex aus?\p"
-	.string "Meiner ist eine Wucht.\p"
-	.string "Zeig mir, wie gut du geworden bist.\n"
-	.string "Ich werde dich jetzt testen!$"
+	.string "Und du siehst aus, als hättest du\n"
+	.string "Zeit für einen Kampf.$"
 #else
-	.string "BRENDAN: By the way, {PLAYER}, I walked\n"
-	.string "by MR. BRINEY in PETALBURG WOODS.\p"
-	.string "I bet he was on his way home to his\n"
-	.string "cottage by the sea.\p"
-	.string "{PLAYER}, how's your POKéDEX?\n"
-	.string "Have you filled in any pages yet?\p"
-	.string "Mine rules.\p"
-	.string "Want to have a battle to test how\n"
-	.string "far you've progressed?$"
+	.string "BRENDAN: Oh, by the way. I saw\n"
+	.string "MR. BRINEY in PETALBURG WOODS.\p"
+	.string "I think he was heading for his cottage\n"
+	.string "by the sea.\p"
+	.string "And you look like you have time for\n"
+	.string "a battle.$"
 #endif
 
 RustboroCity_Text_BrendanNoConfidenceInPokemon:
 #if GERMAN
-	.string "Maike: Oh, hast du ein Problem? Nicht\n"
-	.string "genügend Selbstbewusstsein und\l"
-	.string "Vertrauen in deine Pokémon, was?$"
+	.string "Brix: Was, gerade keine Zeit?\n"
+	.string "Na gut.\p"
+	.string "Wenn du doch Lust hast - ich bin\n"
+	.string "jederzeit bereit.$"
 #else
-	.string "BRENDAN: What's the matter? Don't have\n"
-	.string "any confidence in your POKéMON?$"
+	.string "BRENDAN: What, no time right now?\n"
+	.string "Fine.\p"
+	.string "If you feel like it after all - I am\n"
+	.string "ready any time.$"
 #endif
 
 RustboroCity_Text_BrendanWantToBattle:
 #if GERMAN
-	.string "Maike: Wie geht’s? Lust auf einen\n"
-	.string "Kampf?$"
+	.string "Brix: Was hältst du von einem Kampf?$"
 #else
-	.string "BRENDAN: What's up?\n"
-	.string "Want to have a battle with me?$"
+	.string "BRENDAN: So, what do you think?\n"
+	.string "How about a little battle here?$"
 #endif
 
 RustboroCity_Text_BrendanIWontGoEasy:
 #if GERMAN
-	.string "Maike: Ich weiß, du bist gerade erst ein\n"
-	.string "Trainer geworden, aber ich werde mich\l"
-	.string "nicht zurückhalten.$"
+	.string "Brix: Diesmal habe ich trainiert.\p"
+	.string "Zeig mir, wie weit ich noch weg bin!$"
 #else
-	.string "BRENDAN: I know you just became\n"
-	.string "a TRAINER, but I won't go easy!$"
+	.string "BRENDAN: This time I've trained.\p"
+	.string "Show me how far off I still am!$"
 #endif
 
 RustboroCity_Text_BrendanDefeat:
 #if GERMAN
-	.string "Hmm… Du bist sehr gut.$"
+	.string "Näher dran als beim letzten Mal.\p"
+	.string "Aber eben nur näher.$"
 #else
-	.string "Hmm…\n"
-	.string "You're pretty good.$"
+	.string "Closer than last time.\p"
+	.string "But only closer.$"
 #endif
 
 RustboroCity_Text_BrendanMrBrineyHint:
 #if GERMAN
-	.string "Maike: Kennst du eigentlich Mr. Brack?\n"
-	.string "Den Typ, den ich getroffen habe?\p"
-	.string "Du bist gerade erst hierher gezogen,\n"
-	.string "daher weißt du das vielleicht noch\l"
-	.string "nicht, aber Mr. Brack war mal Seefahrer.$"
+	.string "Brix: Ach, übrigens. Ich habe Mr.\n"
+	.string "Brack im Blütenburgwald gesehen.\p"
+	.string "Er war früher Seefahrer, erzählt man\n"
+	.string "sich hier.$"
 #else
-	.string "BRENDAN: By the way, you know\n"
-	.string "MR. BRINEY? The guy I just passed?\p"
-	.string "I bet you didn't know this, since you\n"
-	.string "just moved here, {PLAYER}, but\l"
-	.string "MR. BRINEY was once a great sailor.$"
+	.string "BRENDAN: Oh, by the way. I saw\n"
+	.string "MR. BRINEY in PETALBURG WOODS.\p"
+	.string "He used to be a sailor, so they say\n"
+	.string "around here.$"
 #endif
 
 RustboroCity_Text_TunnelNearingCompletion:

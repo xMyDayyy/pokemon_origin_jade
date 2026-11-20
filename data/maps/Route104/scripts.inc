@@ -82,7 +82,9 @@ Route104_EventScript_RivalTrigger::
 @ Unused, shares script with Rustboro encounter instead
 Route104_EventScript_PlayRivalMusic::
 #if IS_HNS
-	@ HnS: the rival is always May.
+	@ Origin Jade: the Hoenn rival is May, or Brendan if the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, Route104_EventScript_PlayBrendanMusic
 	goto Route104_EventScript_PlayMayMusic
 #else
 	checkplayergender
@@ -101,7 +103,9 @@ Route104_EventScript_PlayBrendanMusic::
 
 Route104_EventScript_RivalEncounter::
 #if IS_HNS
-	@ HnS: the rival is always May.
+	@ Origin Jade: the Hoenn rival is May, or Brendan if the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, Route104_EventScript_BrendanEncounter
 	goto Route104_EventScript_MayEncounter
 #else
 	checkplayergender
@@ -238,10 +242,15 @@ Route104_EventScript_BrendanAskToBattle::
 
 Route104_EventScript_BattleBrendan::
 	msgbox Route104_Text_BrendanIntro, MSGBOX_DEFAULT
+#if IS_HNS
+	@ Origin Jade: Brendan has May's team (Treecko set).
+	goto Route104_EventScript_BattleBrendanTreecko
+#else
 	switch VAR_STARTER_MON
 	case 0, Route104_EventScript_BattleBrendanTreecko
 	case 1, Route104_EventScript_BattleBrendanTorchic
 	case 2, Route104_EventScript_BattleBrendanMudkip
+#endif
 	end
 
 Route104_EventScript_BrendanDefeated::
@@ -1291,24 +1300,20 @@ Route104_Text_MayPostBattle:
 
 Route104_Text_BrendanWeShouldRegister:
 #if GERMAN
-	.string "Maike: Hey, {PLAYER}!\p"
-	.string "Cool! Devon hat deinen PokéCom mit\n"
-	.string "einem Trainer/Ruf-System\l"
-	.string "ausgestattet?\p"
-	.string "Wir sollten uns gegenseitig eintragen,\n"
-	.string "dann können wir jederzeit miteinander\l"
-	.string "reden.$"
+	.string "Brix: Hey, da bist du ja!\p"
+	.string "Ich habe mich gleich in deinem PokéCom\n"
+	.string "eingetragen - falls du das noch nicht\l"
+	.string "gemerkt hast.$"
 #else
-	.string "BRENDAN: Oh, hey, {PLAYER}!\p"
-	.string "Cool, you had DEVON install the MATCH\n"
-	.string "CALL system on your POKéGEAR!\p"
-	.string "Let's register each other in our\n"
-	.string "POKéGEARS so we can keep in touch.$"
+	.string "BRENDAN: Hey, there you are!\p"
+	.string "I've already put myself in your\n"
+	.string "POKéGEAR - in case you had not\l"
+	.string "noticed.$"
 #endif
 
 Route104_Text_RegisteredBrendan:
 #if GERMAN
-	.string "{PLAYER} trägt Maike in das\n"
+	.string "{PLAYER} trägt Brix in das\n"
 	.string "PokéCom-Verzeichnis ein.$"
 #else
 	.string "{PLAYER} registered BRENDAN\n"
@@ -1317,74 +1322,72 @@ Route104_Text_RegisteredBrendan:
 
 Route104_Text_BrendanHowsYourPokedex:
 #if GERMAN
-	.string "Maike: {PLAYER}, wie sieht es mit\n"
-	.string "deinem Pokédex aus?$"
+	.string "Brix: Na, {PLAYER}? Kommst du in\n"
+	.string "Hoenn voran?$"
 #else
-	.string "BRENDAN: {PLAYER}, how's your POKéDEX?\n"
-	.string "Have you filled in any pages yet?$"
+	.string "BRENDAN: So, {PLAYER}? Are you\n"
+	.string "making headway in HOENN?$"
 #endif
 
 Route104_Text_BrendanDoingGreatLetsBattle:
 #if GERMAN
-	.string "Mir? Mir geht es gut! Alles bestens!\p"
-	.string "Willst du mal sehen, wie gut ich im\n"
-	.string "Kampf bin?$"
+	.string "Ich habe seit unserem Kampf hart\n"
+	.string "trainiert.\p"
+	.string "Zeit für die nächste Runde -\n"
+	.string "kämpfst du mit mir?$"
 #else
-	.string "Me, I'm doing great!\p"
-	.string "Want to check out how good I am with\n"
-	.string "a battle?$"
+	.string "I've trained hard since our battle.\p"
+	.string "Time for round two -\n"
+	.string "will you battle me?$"
 #endif
 
 Route104_Text_BrendanNoConfidence:
 #if GERMAN
-	.string "Maike: Oh, hast du ein Problem? Nicht\n"
-	.string "genügend Selbstbewusstsein und\l"
-	.string "Vertrauen in deine Pokémon, was?$"
+	.string "Brix: Was, gerade keine Zeit?\n"
+	.string "Na gut.\p"
+	.string "Wenn du doch Lust hast - ich bin\n"
+	.string "jederzeit bereit.$"
 #else
-	.string "BRENDAN: What's the matter? Don't have\n"
-	.string "any confidence in your POKéMON?$"
+	.string "BRENDAN: What, no time right now?\n"
+	.string "Fine.\p"
+	.string "If you feel like it after all - I am\n"
+	.string "ready any time.$"
 #endif
 
 Route104_Text_BrendanLetsBattle:
 #if GERMAN
-	.string "Maike: Wie geht’s? Lust auf einen\n"
-	.string "Kampf?$"
+	.string "Brix: Na, kämpfst du mit mir?$"
 #else
-	.string "BRENDAN: What's up?\n"
-	.string "Want to have a battle with me?$"
+	.string "BRENDAN: So, will you battle me?$"
 #endif
 
 Route104_Text_BrendanIntro:
 #if GERMAN
-	.string "Maike: Ich weiß, du bist gerade erst ein\n"
-	.string "Trainer geworden, aber ich werde mich\l"
-	.string "nicht zurückhalten.$"
+	.string "Brix: Diesmal komme ich näher ran.\n"
+	.string "Pass bloß auf!$"
 #else
-	.string "BRENDAN: I know you just became\n"
-	.string "a TRAINER, but I won't go easy!$"
+	.string "BRENDAN: This time I'll get closer.\n"
+	.string "Watch out!$"
 #endif
 
 Route104_Text_BrendanDefeat:
 #if GERMAN
-	.string "Hmm… Du bist sehr gut.$"
+	.string "Näher dran als beim letzten Mal.\p"
+	.string "Aber eben nur näher.$"
 #else
-	.string "Hmm…\n"
-	.string "You're pretty good.$"
+	.string "Whoa!\n"
+	.string "You're better than I expected!$"
 #endif
 
 Route104_Text_BrendanPostBattle:
 #if GERMAN
-	.string "Maike: Du bist sehr gut im Umgang mit\n"
-	.string "Pokémon geworden.\p"
-	.string "Aber du solltest deine Pokémon nicht\n"
-	.string "nur kämpfen lassen.\p"
-	.string "Mach es wie Mr. Brack. Es ist wichtig,\n"
-	.string "dass man sich mit ihnen anfreundet.$"
+	.string "Brix: Schon wieder verloren…\p"
+	.string "Aber näher dran als beim letzten Mal!\p"
+	.string "Ich messe mich weiter an dir,\n"
+	.string "{PLAYER}.$"
 #else
-	.string "BRENDAN: You've gotten pretty decent\n"
-	.string "at handling POKéMON.\p"
-	.string "But, you know, you shouldn't just be\n"
-	.string "making POKéMON battle.\p"
-	.string "Like MR. BRINEY, it's important to\n"
-	.string "become friends with your POKéMON.$"
+	.string "BRENDAN: Beaten again…\p"
+	.string "But closer than last time!\p"
+	.string "I will keep measuring myself against\n"
+	.string "you, {PLAYER}.$"
 #endif

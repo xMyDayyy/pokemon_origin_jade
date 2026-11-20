@@ -323,9 +323,15 @@ MossdeepCity_SpaceCenter_2F_EventScript_StevenFacePlayerWest::
 
 MossdeepCity_SpaceCenter_2F_EventScript_RivalRayquazaCall::
 	lockall
+#if IS_HNS
+	@ Origin Jade: Brendan calls when he is the rival (player May).
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, MossdeepCity_SpaceCenter_2F_EventScript_BrendanHnsRayquazaCall
+#endif
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, MossdeepCity_SpaceCenter_2F_EventScript_MayRayquazaCall
 	call_if_eq VAR_RESULT, FEMALE, MossdeepCity_SpaceCenter_2F_EventScript_BrendanRayquazaCall
+MossdeepCity_SpaceCenter_2F_EventScript_RivalRayquazaCallEnd::
 	closemessage
 	clearflag FLAG_DEFEATED_MAGMA_SPACE_CENTER
 	releaseall
@@ -340,6 +346,13 @@ MossdeepCity_SpaceCenter_2F_EventScript_BrendanRayquazaCall::
 	pokenavcall MatchCall_Text_BrendanRayquazaCall
 	waitmessage
 	return
+
+#if IS_HNS
+MossdeepCity_SpaceCenter_2F_EventScript_BrendanHnsRayquazaCall::
+	pokenavcall MatchCall_Text_BrendanHnsRayquazaCall
+	waitmessage
+	goto MossdeepCity_SpaceCenter_2F_EventScript_RivalRayquazaCallEnd
+#endif
 
 MossdeepCity_SpaceCenter_2F_Text_MossdeepIdealForRockets:
 #if GERMAN

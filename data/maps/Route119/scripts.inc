@@ -40,8 +40,10 @@ Route119_EventScript_RivalEncounter::
 	lockall
 	addobject LOCALID_ROUTE119_RIVAL_ON_BIKE
 #if IS_HNS
-	@ Origin Jade: the Hoenn rival is always May.
-	call Route119_EventScript_PlayMayMusic
+	@ Origin Jade: the Hoenn rival is May, or Brendan if the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	call_if_ne VAR_RESULT, PLAYER_CHARACTER_MAY, Route119_EventScript_PlayMayMusic
+	call_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, Route119_EventScript_PlayBrendanMusic
 #else
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, Route119_EventScript_PlayMayMusic
@@ -59,6 +61,9 @@ Route119_EventScript_RivalEncounter::
 	addobject LOCALID_ROUTE119_RIVAL
 	delay 30
 #if IS_HNS
+	@ Origin Jade: the Hoenn rival is May, or Brendan if the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, Route119_EventScript_BattleBrendan
 	goto Route119_EventScript_BattleMay
 #else
 	checkplayergender
@@ -113,10 +118,15 @@ Route119_EventScript_DefeatedMay::
 
 Route119_EventScript_BattleBrendan::
 	msgbox Route119_Text_BrendanIntro, MSGBOX_DEFAULT
+#if IS_HNS
+	@ Origin Jade: Brendan has May's team (Treecko set).
+	goto Route119_EventScript_BattleBrendanTreecko
+#else
 	switch VAR_STARTER_MON
 	case 0, Route119_EventScript_BattleBrendanTreecko
 	case 1, Route119_EventScript_BattleBrendanTorchic
 	case 2, Route119_EventScript_BattleBrendanMudkip
+#endif
 	end
 
 Route119_EventScript_BattleBrendanTreecko::
@@ -540,58 +550,45 @@ Route119_Text_MayExplainFly:
 
 Route119_Text_BrendanIntro:
 #if GERMAN
-	.string "Maike: {PLAYER}! Schaust du dich\n"
-	.string "auch hier nach Pokémon um?\p"
-	.string "Zeig mir, wie gut du geworden bist.\n"
-	.string "Ich werde dich jetzt testen!\p"
-	.string "Nun!\n"
-	.string "Das ist ein Kampf, also kämpfen wir!$"
+	.string "Brix: {PLAYER}! Sechs Pokémon.\n"
+	.string "Mein Team ist endlich vollzählig.\p"
+	.string "Darauf habe ich lange hingearbeitet.\p"
+	.string "Mal sehen, ob es reicht!$"
 #else
-	.string "BRENDAN: {PLAYER}! So this is where\n"
-	.string "you've been looking for POKéMON?\p"
-	.string "Let me see how good you got.\n"
-	.string "I'll test you!\p"
-	.string "Now!\n"
-	.string "It's a battle, so battle!$"
+	.string "BRENDAN: {PLAYER}! Six POKéMON.\n"
+	.string "My team is finally complete.\p"
+	.string "I've worked toward this for a long\n"
+	.string "time.\p"
+	.string "Let's see if it's enough!$"
 #endif
 
 Route119_Text_BrendanDefeat:
 #if GERMAN
-	.string "Hmm… Du bist verdammt gut geworden.$"
+	.string "Noch nicht.\p"
+	.string "Aber du hast es gemerkt, oder?\n"
+	.string "Ich bin nicht mehr der von Route 103.$"
 #else
-	.string "Hmm…\n"
-	.string "You've gotten pretty darn decent.$"
+	.string "Not yet.\p"
+	.string "But you noticed, didn't you?\n"
+	.string "I'm not who I was on ROUTE 103.$"
 #endif
 
 Route119_Text_BrendanIllGiveYouThis:
 #if GERMAN
-	.string "Maike: Ich sage, du bist so gut, dass\n"
-	.string "du überall nach Pokémon suchen kannst.\p"
-	.string "Hier, das ist für dich.\n"
-	.string "Probier es aus.$"
+	.string "Brix: Du bist der Grund, warum ich\n"
+	.string "so weit gekommen bin.$"
 #else
-	.string "BRENDAN: I'd say you're good enough\n"
-	.string "to search for POKéMON anywhere.\p"
-	.string "Here, I'll give you this.\n"
-	.string "Try it out.$"
+	.string "BRENDAN: You're the reason I've come\n"
+	.string "this far.$"
 #endif
 
 Route119_Text_BrendanExplainFly:
 #if GERMAN
-	.string "Maike: Setze es ein, und deine Pokémon\n"
-	.string "Fliegen dich sofort an jeden Ort, an dem\l"
-	.string "du schon einmal warst.\p"
-	.string "Aber du brauchst den Orden der Arena\n"
-	.string "von Baumhausen City dafür.\p"
-	.string "Nun ja, ich muss jetzt weiter. Bis\n"
-	.string "bald.$"
+	.string "Brix: Ich trainiere weiter.\p"
+	.string "Wir sehen uns wieder, {PLAYER}.$"
 #else
-	.string "BRENDAN: Use FLY, and your POKéMON\n"
-	.string "instantly carries you to any town\l"
-	.string "you've already visited.\p"
-	.string "But you need the FORTREE GYM BADGE \n"
-	.string "to do that.\p"
-	.string "Anyway, I have to move along.$"
+	.string "BRENDAN: I'll keep training.\p"
+	.string "We'll meet again, {PLAYER}.$"
 #endif
 
 Route119_Text_ScottWayToGoBeSeeingYou:

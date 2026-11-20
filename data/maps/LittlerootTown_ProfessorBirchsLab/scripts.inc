@@ -628,6 +628,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_BrendanWhereShouldIGoNext::
 	return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_RivalFuturePlans::
+#if IS_HNS
+	@ Origin Jade: Brendan is the rival when the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHnsWhatNext
+#endif
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, LittlerootTown_ProfessorBirchsLab_EventScript_MayWhatNextImStayingHere
 	call_if_eq VAR_RESULT, FEMALE, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanPreferCollectingSlowly
@@ -643,6 +648,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_BrendanPreferCollectingSlowly:
 	return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_RivalHaveYouGoneToBattleFrontier::
+#if IS_HNS
+	@ Origin Jade: Brendan is the rival when the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHnsHaveYouGoneToBattleFrontier
+#endif
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, LittlerootTown_ProfessorBirchsLab_EventScript_MayHaveYouGoneToBattleFrontier
 	call_if_eq VAR_RESULT, FEMALE, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHaveYouGoneToBattleFrontier
@@ -658,6 +668,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHaveYouGoneToBattleFrontier
 	return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_RivalTakeBreakFromFieldwork::
+#if IS_HNS
+	@ Origin Jade: Brendan is the rival when the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHnsTakeBreakFromFieldwork
+#endif
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, LittlerootTown_ProfessorBirchsLab_EventScript_MayTakeBreakFromFieldwork
 	call_if_eq VAR_RESULT, FEMALE, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanTakeBreakFromFieldwork
@@ -671,6 +686,23 @@ LittlerootTown_ProfessorBirchsLab_EventScript_MayTakeBreakFromFieldwork::
 LittlerootTown_ProfessorBirchsLab_EventScript_BrendanTakeBreakFromFieldwork::
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanTakeBreakFromFieldwork, MSGBOX_DEFAULT
 	return
+
+#if IS_HNS
+LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHnsWhatNext::
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanHnsWhatNextImStayingHere, MSGBOX_DEFAULT
+	release
+	end
+
+LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHnsHaveYouGoneToBattleFrontier::
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanHnsHaveYouGoneToBattleFrontier, MSGBOX_DEFAULT
+	release
+	end
+
+LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHnsTakeBreakFromFieldwork::
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanHnsTakeBreakFromFieldwork, MSGBOX_DEFAULT
+	release
+	end
+#endif
 
 LittlerootTown_ProfessorBirchsLab_EventScript_PC::
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_PCUsedForResearch, MSGBOX_SIGN
@@ -1172,6 +1204,19 @@ LittlerootTown_ProfessorBirchsLab_Text_BrendanTakeBreakFromFieldwork:
 	.string "for a while.$"
 #endif
 
+LittlerootTown_ProfessorBirchsLab_Text_BrendanHnsTakeBreakFromFieldwork:
+#if GERMAN
+	.string "Brix: Ich glaube, ich gönne mir eine\n"
+	.string "kurze Pause von der Arbeit draußen.\p"
+	.string "Ich werde dem Prof hier ein bisschen\n"
+	.string "helfen.$"
+#else
+	.string "BRENDAN: I think I'll take a short\n"
+	.string "break from fieldwork.\p"
+	.string "I think I'll help the PROF here for\n"
+	.string "a while.$"
+#endif
+
 LittlerootTown_ProfessorBirchsLab_Text_CompletedDexChoosePokemon:
 #if GERMAN
 	.string "Prof. Birk: Oh, {PLAYER}{KUN}!\n"
@@ -1385,6 +1430,26 @@ LittlerootTown_ProfessorBirchsLab_Text_BrendanPreferCollectingSlowly:
 	.string "steadily raising the one I chose.$"
 #endif
 
+LittlerootTown_ProfessorBirchsLab_Text_BrendanHnsWhatNextImStayingHere:
+#if GERMAN
+	.string "Brix: {PLAYER}, jetzt…\n"
+	.string "Was wirst du jetzt tun?\p"
+	.string "Wirst du weiter in Kämpfen antreten\n"
+	.string "und deine Fähigkeiten verbessern?\p"
+	.string "Oder versuchst du, den Nationalen\n"
+	.string "Pokédex vollständig zu bekommen?\p"
+	.string "Ich werde hier bleiben und dem Prof\n"
+	.string "helfen.$"
+#else
+	.string "BRENDAN: {PLAYER}, after this…\n"
+	.string "What are you going to do?\p"
+	.string "Are you going to keep battling\n"
+	.string "and sharpening your skills?\p"
+	.string "Or are you going to try filling\n"
+	.string "the NATIONAL POKéDEX?\p"
+	.string "I'm staying here to help the PROF.$"
+#endif
+
 LittlerootTown_ProfessorBirchsLab_Text_MayHaveYouGoneToBattleFrontier:
 #if GERMAN
 	.string "Maike: Oh, hi {PLAYER}{KUN}!\n"
@@ -1402,6 +1467,16 @@ LittlerootTown_ProfessorBirchsLab_Text_BrendanHaveYouGoneToBattleFrontier:
 #else
 	.string "MAY: Hey, {PLAYER}!\n"
 	.string "Have you gone out to that place,\l"
+	.string "the BATTLE FRONTIER?$"
+#endif
+
+LittlerootTown_ProfessorBirchsLab_Text_BrendanHnsHaveYouGoneToBattleFrontier:
+#if GERMAN
+	.string "Brix: Hey, {PLAYER}!\n"
+	.string "Hast du schon die Kampfzone besucht?$"
+#else
+	.string "BRENDAN: Hey, {PLAYER}!\n"
+	.string "Have you gone to that place,\l"
 	.string "the BATTLE FRONTIER?$"
 #endif
 

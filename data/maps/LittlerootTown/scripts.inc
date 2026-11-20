@@ -1239,7 +1239,11 @@ LittlerootTown_EventScript_HoennSendOffApproachRight::
 	goto LittlerootTown_EventScript_HoennSendOffTalk
 
 LittlerootTown_EventScript_HoennSendOffTalk::
+	@ Origin Jade: Birch names the rival, Brendan when the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, LittlerootTown_EventScript_HoennSendOffTalkBrendan
 	msgbox LittlerootTown_Text_HoennSendOff, MSGBOX_DEFAULT
+LittlerootTown_EventScript_HoennSendOffTalkDone::
 	closemessage
 	goto_if_eq VAR_0x8008, 1, LittlerootTown_EventScript_HoennSendOffReturnRight
 	applymovement LOCALID_LITTLEROOT_BIRCH, LittlerootTown_Movement_HoennSendOffReturn
@@ -1250,6 +1254,10 @@ LittlerootTown_EventScript_HoennSendOffReturnRight::
 	applymovement LOCALID_LITTLEROOT_BIRCH, LittlerootTown_Movement_HoennSendOffReturnRight
 	waitmovement 0
 	goto LittlerootTown_EventScript_HoennSendOffLeave
+
+LittlerootTown_EventScript_HoennSendOffTalkBrendan::
+	msgbox LittlerootTown_Text_HoennSendOffBrendan, MSGBOX_DEFAULT
+	goto LittlerootTown_EventScript_HoennSendOffTalkDone
 
 LittlerootTown_EventScript_HoennSendOffLeave::
 	removeobject LOCALID_LITTLEROOT_BIRCH
@@ -1315,6 +1323,32 @@ LittlerootTown_Text_HoennSendOff:
 	.string "My daughter MAY is out on\n"
 	.string "ROUTE 103 up north.\p"
 	.string "I'm sure she'd love to meet you.\p"
+	.string "Otherwise you should head to\n"
+	.string "RUSTBORO CITY - there's a GYM there.\p"
+	.string "The GYM in PETALBURG CITY is\n"
+	.string "being rebuilt at the moment.\p"
+	.string "Well then: safe travels, {PLAYER}!$"
+#endif
+
+LittlerootTown_Text_HoennSendOffBrendan:
+#if GERMAN
+	.string "Birk: {PLAYER}! Einen Moment noch!\p"
+	.string "Brix, der Sohn von Norman, hilft mir\n"
+	.string "bei meiner Forschung. Er ist oben auf\l"
+	.string "Route 103 unterwegs.\p"
+	.string "Er würde dich sicher gern\n"
+	.string "kennenlernen.\p"
+	.string "Ansonsten solltest du nach Metarost\n"
+	.string "City gehen - dort gibt es eine Arena.\p"
+	.string "Die Arena in Blütenburg City wird\n"
+	.string "zurzeit umgebaut.\p"
+	.string "Nun denn: Gute Reise, {PLAYER}!$"
+#else
+	.string "BIRCH: {PLAYER}! One moment!\p"
+	.string "BRENDAN, NORMAN's son, helps me with\n"
+	.string "my research. He's out on ROUTE 103\l"
+	.string "up north.\p"
+	.string "I'm sure he'd love to meet you.\p"
 	.string "Otherwise you should head to\n"
 	.string "RUSTBORO CITY - there's a GYM there.\p"
 	.string "The GYM in PETALBURG CITY is\n"

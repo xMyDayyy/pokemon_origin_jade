@@ -371,8 +371,10 @@ Route110_EventScript_RivalTrigger3::
 Route110_EventScript_RivalScene::
 	lockall
 #if IS_HNS
-	@ Origin Jade: the Hoenn rival is always May.
-	call Route110_EventScript_PlayMayMusic
+	@ Origin Jade: the Hoenn rival is May, or Brendan if the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	call_if_ne VAR_RESULT, PLAYER_CHARACTER_MAY, Route110_EventScript_PlayMayMusic
+	call_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, Route110_EventScript_PlayBrendanMusic
 #else
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, Route110_EventScript_PlayMayMusic
@@ -389,6 +391,9 @@ Route110_EventScript_RivalScene::
 	call_if_eq VAR_0x8008, 2, Route110_EventScript_RivalApproachPlayer2
 	call_if_eq VAR_0x8008, 3, Route110_EventScript_RivalApproachPlayer3
 #if IS_HNS
+	@ Origin Jade: the Hoenn rival is May, or Brendan if the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, Route110_EventScript_BrendanBattle
 	goto Route110_EventScript_MayBattle
 #else
 	checkplayergender
@@ -443,10 +448,15 @@ Route110_EventScript_MayDefeated::
 
 Route110_EventScript_BrendanBattle::
 	msgbox Route110_Text_BrendanLetsBattle, MSGBOX_DEFAULT
+#if IS_HNS
+	@ Origin Jade: Brendan has May's team (Treecko set).
+	goto Route110_EventScript_BrendanBattleTreecko
+#else
 	switch VAR_STARTER_MON
 	case 0, Route110_EventScript_BrendanBattleTreecko
 	case 1, Route110_EventScript_BrendanBattleTorchic
 	case 2, Route110_EventScript_BrendanBattleMudkip
+#endif
 	end
 
 Route110_EventScript_BrendanBattleTreecko::
@@ -868,57 +878,53 @@ Route110_Text_MayExplainItemfinder:
 
 Route110_Text_BrendanLetsBattle:
 #if GERMAN
-	.string "Maike: Hey, {PLAYER}.\n"
-	.string "Hier treibst du dich also herum.\l"
-	.string "Wie geht es?\p"
-	.string "Hast du deine Pokémon gut aufgezogen?\n"
-	.string "Ich werde das für dich überprüfen.$"
+	.string "Brix: {PLAYER}! Seit Metarost habe\n"
+	.string "ich keinen Tag ausgelassen.\p"
+	.string "Mein Team ist gewachsen - und ich\n"
+	.string "bin es auch.\p"
+	.string "Noch eine Runde. Bist du bereit?$"
 #else
-	.string "BRENDAN: Hey, {PLAYER}.\n"
-	.string "So this is where you were.\l"
-	.string "How's it going?\p"
-	.string "Have you been raising your POKéMON?\n"
-	.string "I'll check for you.$"
+	.string "BRENDAN: {PLAYER}! I haven't skipped\n"
+	.string "a single day since RUSTBORO.\p"
+	.string "My team has grown - and so have I.\p"
+	.string "One more round. Ready?$"
 #endif
 
 Route110_Text_BrendanDefeated:
 #if GERMAN
-	.string "Hmm… Du bist sehr gut.$"
+	.string "Wieder nicht.\p"
+	.string "Aber diesmal hast du länger gebraucht.\n"
+	.string "Das zählt für mich.$"
 #else
-	.string "Hmm…\n"
-	.string "You're pretty good.$"
+	.string "Not this time either.\p"
+	.string "But you needed longer today.\n"
+	.string "That counts for me.$"
 #endif
 
 Route110_Text_BrendanTakeThis:
 #if GERMAN
-	.string "Maike: {PLAYER}, du hast trainiert, ohne\n"
-	.string "dass ich etwas davon mitbekommen\l"
-	.string "habe…\p"
-	.string "Aber genug!\n"
-	.string "Hier, das ist für dich!$"
+	.string "Brix: Du hast doch bestimmt noch\n"
+	.string "deinen Itemradar dabei?\p"
+	.string "Gut. Ich will dich in Bestform, wenn\n"
+	.string "ich dich endlich schlage.$"
 #else
-	.string "BRENDAN: {PLAYER}, you've trained\n"
-	.string "without me noticing…\p"
-	.string "Good enough!\n"
-	.string "Here, take this.$"
+	.string "BRENDAN: You still carry your\n"
+	.string "ITEMFINDER, right?\p"
+	.string "Good. I want you at your best when\n"
+	.string "I finally beat you.$"
 #endif
 
 Route110_Text_BrendanExplainItemfinder:
 #if GERMAN
-	.string "Maike: Das ist ein Detektor.\p"
-	.string "Probier ihn mal aus. \p"
-	.string "Ist irgendwo ein Item versteckt, gibt\n"
-	.string "er ein Geräusch von sich.\p"
-	.string "Wie auch immer, ich suche jetzt weiter\n"
-	.string "nach Pokémon.$"
+	.string "Brix: Hier in Hoenn liegt nämlich\n"
+	.string "so einiges versteckt herum.\p"
+	.string "Bis zum nächsten Mal, {PLAYER}.\p"
+	.string "Beim nächsten Mal wird es knapp.$"
 #else
-	.string "BRENDAN: That's an ITEMFINDER.\p"
-	.string "Use it to root around for items that\n"
-	.string "aren't visible.\p"
-	.string "If it senses something, it emits\n"
-	.string "a sound.\p"
-	.string "Anyway, I'm off to look for new\n"
-	.string "POKéMON.$"
+	.string "BRENDAN: There's quite a lot hidden\n"
+	.string "around HOENN, you know.\p"
+	.string "Okay, {PLAYER}, let's meet again!\p"
+	.string "Next time, it'll be close.$"
 #endif
 
 Route110_Text_RideBikeAtFullSpeed:

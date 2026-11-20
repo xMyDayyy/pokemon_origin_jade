@@ -66,8 +66,10 @@ EverGrandeCity_ChampionsRoom_EventScript_Defeated::
 #endif
 	playse SE_DOOR
 #if IS_HNS
-	@ Origin Jade: the Hoenn rival is always May.
-	call EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic
+	@ Origin Jade: the Hoenn rival is May, or Brendan if the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	call_if_ne VAR_RESULT, PLAYER_CHARACTER_MAY, EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic
+	call_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, EverGrandeCity_ChampionsRoom_EventScript_PlayBrendanMusic
 #else
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic
@@ -76,7 +78,9 @@ EverGrandeCity_ChampionsRoom_EventScript_Defeated::
 	addobject LOCALID_CHAMPIONS_ROOM_RIVAL
 	call EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer
 #if IS_HNS
-	@ HnS: the rival is always May.
+	@ Origin Jade: the Hoenn rival is May, or Brendan if the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, EverGrandeCity_ChampionsRoom_EventScript_BrendanAdvice
 	goto EverGrandeCity_ChampionsRoom_EventScript_MayAdvice
 #else
 	checkplayergender
@@ -146,9 +150,13 @@ EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF::
 	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	msgbox EverGrandeCity_ChampionsRoom_Text_WallaceWaitOutside, MSGBOX_DEFAULT
+#if IS_HNS
+	call EverGrandeCity_ChampionsRoom_EventScript_RivalCongratulations
+#else
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations
 	call_if_eq VAR_RESULT, FEMALE, EverGrandeCity_ChampionsRoom_EventScript_BrendanCongratulations
+#endif
 	closemessage
 	applymovement LOCALID_CHAMPIONS_ROOM_WALLACE, EverGrandeCity_ChampionsRoom_Movement_WallaceExit
 	applymovement LOCALID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_PlayerExit
@@ -199,6 +207,21 @@ EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations::
 EverGrandeCity_ChampionsRoom_EventScript_BrendanCongratulations::
 	msgbox EverGrandeCity_ChampionsRoom_Text_BrendanCongratulations, MSGBOX_DEFAULT
 	return
+
+#if IS_HNS
+@ Origin Jade: Brendan is the rival when the player is May and has his own words.
+@ Otherwise May, as before by gender (the female player's text is May's, too).
+EverGrandeCity_ChampionsRoom_EventScript_RivalCongratulations::
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, EverGrandeCity_ChampionsRoom_EventScript_BrendanHnsCongratulations
+	checkplayergender
+	goto_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations
+	goto EverGrandeCity_ChampionsRoom_EventScript_BrendanCongratulations
+
+EverGrandeCity_ChampionsRoom_EventScript_BrendanHnsCongratulations::
+	msgbox EverGrandeCity_ChampionsRoom_Text_BrendanHnsCongratulations, MSGBOX_DEFAULT
+	return
+#endif
 
 EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer::
 	applymovement LOCALID_CHAMPIONS_ROOM_RIVAL, EverGrandeCity_ChampionsRoom_Movement_RivalApproachPlayer
@@ -393,24 +416,26 @@ EverGrandeCity_ChampionsRoom_Text_MayItsAlreadyOver:
 
 EverGrandeCity_ChampionsRoom_Text_BrendanAdvice:
 #if GERMAN
-	.string "Maike: {PLAYER}!\p"
-	.string "Möchtest du nicht ein paar Tipps,\n"
-	.string "bevor du den Champ herausforderst?$"
+	.string "Brix: {PLAYER}!\p"
+	.string "Ich muss dir unbedingt einen Rat geben,\n"
+	.string "bevor du gegen den Champ antrittst!$"
 #else
 	.string "BRENDAN: {PLAYER}!\p"
-	.string "How would you like some advice before\n"
-	.string "you challenge the CHAMPION?…$"
+	.string "Here's some advice before you challenge\n"
+	.string "the CHAMPION…$"
 #endif
 
 EverGrandeCity_ChampionsRoom_Text_BrendanYouveWon:
 #if GERMAN
-	.string "Maike: {PLAYER}!\p"
-	.string "Willst du mir etwa sagen…\n"
-	.string "Du hast den Champ besiegt?!?!?!$"
+	.string "Brix: Wie? Waswaswas?\p"
+	.string "{PLAYER}… Das kann nicht sein…\n"
+	.string "Es ist schon vorbei?$"
 #else
-	.string "BRENDAN: {PLAYER}…\p"
-	.string "Are you trying to tell me…\n"
-	.string "You've beaten the CHAMPION?$"
+	.string "BRENDAN: Huh?\n"
+	.string "What, what, what?\p"
+	.string "{PLAYER}…\n"
+	.string "Could it be that…\l"
+	.string "It's already over?$"
 #endif
 
 EverGrandeCity_ChampionsRoom_Text_BirchArriveRatePokedex:
@@ -519,6 +544,25 @@ EverGrandeCity_ChampionsRoom_Text_BrendanCongratulations:
 	.string "It can't be helped if that's the rule.\p"
 	.string "{PLAYER}, way to go!\n"
 	.string "Congratulations!$"
+#endif
+
+EverGrandeCity_ChampionsRoom_Text_BrendanHnsCongratulations:
+#if GERMAN
+	.string "Brix: Grummel…\p"
+	.string "… … … … … … … …\n"
+	.string "… … … … … … … …\p"
+	.string "Ich mache nur Spaß! Ist schon okay!\n"
+	.string "So sind die Regeln!\p"
+	.string "{PLAYER}!\n"
+	.string "Ehrlich. Herzlichen Glückwunsch!$"
+#else
+	.string "BRENDAN: Groan…\p"
+	.string "… … … … … … … …\n"
+	.string "… … … … … … … …\p"
+	.string "I'm just joking! That's okay!\n"
+	.string "That's the rule!\p"
+	.string "{PLAYER}!\n"
+	.string "Honestly, congratulations!$"
 #endif
 
 EverGrandeCity_ChampionsRoom_Text_RematchIntro:

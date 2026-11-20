@@ -245,7 +245,9 @@ RivalsHouse_2F_EventScript_Rival::
 	lockall
 	goto_if_set FLAG_MET_RIVAL_LILYCOVE, RivalsHouse_2F_EventScript_RivalPostLilycove
 #if IS_HNS
-	@ HnS: the rival is always May.
+	@ Origin Jade: the Hoenn rival is May, or Brendan if the player is May.
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, RivalsHouse_2F_EventScript_Brendan
 	goto RivalsHouse_2F_EventScript_May
 #else
 	checkplayergender
@@ -267,9 +269,15 @@ RivalsHouse_2F_EventScript_Brendan::
 RivalsHouse_2F_EventScript_RivalPostLilycove::
 	applymovement VAR_LAST_TALKED, Common_Movement_FacePlayer
 	waitmovement 0
+#if IS_HNS
+	@ Origin Jade: Brendan has his own words when he is the rival (player May).
+	specialvar VAR_RESULT, GetPlayerCharacter
+	goto_if_eq VAR_RESULT, PLAYER_CHARACTER_MAY, RivalsHouse_2F_EventScript_BrendanHnsPostLilycove
+#endif
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, RivalsHouse_2F_EventScript_MayPostLilycove
 	call_if_eq VAR_RESULT, FEMALE, RivalsHouse_2F_EventScript_BrendanPostLilycove
+RivalsHouse_2F_EventScript_RivalPostLilycoveEnd::
 	setflag FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE
 	releaseall
 	end
@@ -291,6 +299,17 @@ RivalsHouse_2F_EventScript_MayWhereShouldIGoNext::
 RivalsHouse_2F_EventScript_BrendanWhereShouldIGoNext::
 	msgbox RivalsHouse_2F_Text_BrendanWhereShouldIGoNext, MSGBOX_DEFAULT
 	return
+
+#if IS_HNS
+RivalsHouse_2F_EventScript_BrendanHnsPostLilycove::
+	goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE, RivalsHouse_2F_EventScript_BrendanHnsWhereShouldIGoNext
+	msgbox RivalsHouse_2F_Text_BrendanHnsJustCheckingMyPokedex, MSGBOX_DEFAULT
+	goto RivalsHouse_2F_EventScript_RivalPostLilycoveEnd
+
+RivalsHouse_2F_EventScript_BrendanHnsWhereShouldIGoNext::
+	msgbox RivalsHouse_2F_Text_BrendanHnsWhereShouldIGoNext, MSGBOX_DEFAULT
+	goto RivalsHouse_2F_EventScript_RivalPostLilycoveEnd
+#endif
 
 LittlerootTown_MaysHouse_2F_EventScript_PC::
 	lockall
@@ -515,4 +534,38 @@ RivalsHouse_2F_Text_BrendanWhereShouldIGoNext:
 	.string "Hey, {PLAYER}, if I see you while I'm out\n"
 	.string "catching POKéMON, I can pitch you a\l"
 	.string "battle if you'd like.$"
+#endif
+
+RivalsHouse_2F_Text_BrendanHnsJustCheckingMyPokedex:
+#if GERMAN
+	.string "Brix: {PLAYER}!\p"
+	.string "Ich prüfe gerade meinen Pokédex.\p"
+	.string "Es gibt eine Menge Pokémon, die ich\n"
+	.string "gesehen, aber nicht gefangen habe.\p"
+	.string "Und es gibt viele, von denen ich\n"
+	.string "annehme, dass sie sich bald entwickeln.\p"
+	.string "Jetzt überlege ich, wo ich hingehen\n"
+	.string "soll, um weitere Pokémon zu fangen.$"
+#else
+	.string "BRENDAN: {PLAYER}!\p"
+	.string "I was just checking my POKéDEX.\p"
+	.string "There's still a lot of POKéMON that\n"
+	.string "I've seen but haven't caught.\p"
+	.string "And there are many others that\n"
+	.string "I think will evolve.\p"
+	.string "I wonder where I should go catch\n"
+	.string "some POKéMON next?$"
+#endif
+
+RivalsHouse_2F_Text_BrendanHnsWhereShouldIGoNext:
+#if GERMAN
+	.string "Brix: Ich überlege, wo ich hingehen\n"
+	.string "soll, um weitere Pokémon zu fangen.\p"
+	.string "Wäre es nicht lustig, wenn wir uns\n"
+	.string "dabei über den Weg laufen würden?$"
+#else
+	.string "BRENDAN: I wonder where I should go\n"
+	.string "catch some POKéMON next?\p"
+	.string "Wouldn't it be funny if we ran into\n"
+	.string "each other, {PLAYER}?$"
 #endif

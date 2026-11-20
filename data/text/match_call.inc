@@ -5178,6 +5178,38 @@ MatchCall_Text_BrendanRayquazaCall:
 	.string "… … … … … Click!$"
 #endif
 
+MatchCall_Text_BrendanHnsRayquazaCall:
+#if GERMAN
+	.string "… … … … … …\n"
+	.string "… … … … … Beep!\p"
+	.string "Brix: Hey, {PLAYER}!\p"
+	.string "Ich war vor kurzem in Flossbrunn.\p"
+	.string "Da habe ich am Himmel ein riesiges\n"
+	.string "grünes Pokémon fliegen sehen!\p"
+	.string "Ich…\n"
+	.string "Ich hatte so etwas noch nie zuvor\l"
+	.string "gesehen.\p"
+	.string "Ich frag mich, was für eins das war.\n"
+	.string "Ob das wohl eine bahnbrechende\l"
+	.string "Entdeckung war?\p"
+	.string "… … … … … …\n"
+	.string "… … … … … Klick!$"
+#else
+	.string "… … … … … …\n"
+	.string "… … … … … Beep!\p"
+	.string "BRENDAN: Hey, {PLAYER}!\p"
+	.string "I was just in PACIFIDLOG a little\n"
+	.string "while ago.\p"
+	.string "I saw a giant green POKéMON\n"
+	.string "flying high in the sky.\p"
+	.string "I…\n"
+	.string "I've never seen anything like it.\p"
+	.string "I wonder what it was.\n"
+	.string "Is this maybe a major discovery?\p"
+	.string "… … … … … …\n"
+	.string "… … … … … Click!$"
+#endif
+
 MatchCall_Text_May1::
 #if GERMAN
 	.string "Maike: Hi {PLAYER}{KUN}!\p"
