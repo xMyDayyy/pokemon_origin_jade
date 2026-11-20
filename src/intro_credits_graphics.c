@@ -733,6 +733,7 @@ const struct SpritePalette gSpritePalettes_CreditsHnS[] =
 {
     { .data = sSuicuneCredits_Pal, .tag = TAG_SUICUNE },
     { .data = sMayCredits_Pal,     .tag = TAG_MAY },
+    { .data = sBrendanCredits_Pal, .tag = TAG_BRENDAN },
     {}
 };
 #endif

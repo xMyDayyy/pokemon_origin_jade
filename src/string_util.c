@@ -1,5 +1,6 @@
 #include "global.h"
 #include "string_util.h"
+#include "player_character.h"
 #include "constants/region_map_sections.h"
 #include "text.h"
 #include "strings.h"
@@ -499,9 +500,10 @@ static const u8 *ExpandPlaceholder_RivalName(void)
 #endif
 
 #if IS_HNS
-    // Origin Jade: {RIVAL} is May in Hoenn, Blue in Kanto and Silver in Johto.
+    // Origin Jade: {RIVAL} is May in Hoenn (Brendan if the player is May), Blue in Kanto
+    // and Silver in Johto.
     if (IsHoennMapsec(gMapHeader.regionMapSectionId))
-        return gText_ExpandedPlaceholder_May;
+        return IsHoennRivalBrendan() ? gText_ExpandedPlaceholder_Brendan : gText_ExpandedPlaceholder_May;
 
     // Johto maps with a Kanto mapsec use the Johto rival, see IsJohtoMapWithKantoMapsec.
     if (gMapHeader.regionMapSectionId >= KANTO_MAPSEC_START

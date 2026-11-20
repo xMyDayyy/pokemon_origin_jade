@@ -176,6 +176,12 @@ const struct PlayerCharacterInfo *GetPlayerCharacterInfo(void)
     return &gPlayerCharacterInfo[GetPlayerCharacter()];
 }
 
+// The Hoenn rival is May, except for May herself: then it is Brendan.
+bool8 IsHoennRivalBrendan(void)
+{
+    return GetPlayerCharacter() == PLAYER_CHARACTER_MAY;
+}
+
 // Saves the character and its gender, so gender texts and checkplayergender keep working.
 void SetPlayerCharacter(u8 character)
 {

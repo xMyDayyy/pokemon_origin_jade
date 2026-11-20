@@ -5736,6 +5736,284 @@ MatchCall_Text_Brendan15::
 	.string "envious!$"
 #endif
 
+MatchCall_Text_BrendanHns1::
+#if GERMAN
+	.string "Brix: Hey, {PLAYER}!\p"
+	.string "Mr. Brack hat sich als Matrose zur\n"
+	.string "Ruhe gesetzt. Aber manchmal fährt\l"
+	.string "er noch mit seinem Haustier Pecko\p"
+	.string "zur See hinaus. Er muss das Meer\n"
+	.string "sehr lieben.$"
+#else
+	.string "BRENDAN: Hey, {PLAYER}!\p"
+	.string "MR. BRINEY retired as a SAILOR,\n"
+	.string "but I still see him out on the sea\l"
+	.string "with his pet PEEKO sometimes.\p"
+	.string "He must love the sea still.$"
+#endif
+
+MatchCall_Text_BrendanHns2::
+#if GERMAN
+	.string "Brix: Hey, {PLAYER}!\p"
+	.string "Wusstest du, dass auch die\n"
+	.string "kleineren Orte wie Blütenburg City\l"
+	.string "und Faustauhaven Arenen haben?\p"
+	.string "Und die riesige Hafenstadt\n"
+	.string "Graphitport City hat keine Arena.\p"
+	.string "Wenn sie dort doch eines Tages\n"
+	.string "eine Arena bauen, werde ich mich\l"
+	.string "als Arenaleiter bewerben…$"
+#else
+	.string "BRENDAN: Hey, {PLAYER}!\p"
+	.string "You know how little towns like\n"
+	.string "PETALBURG and DEWFORD have GYMS?\p"
+	.string "For some reason, the big port of\n"
+	.string "SLATEPORT doesn't have a GYM.\p"
+	.string "When they finally build a GYM\n"
+	.string "there, I should apply to be the\l"
+	.string "LEADER.$"
+#endif
+
+MatchCall_Text_BrendanHns3::
+#if GERMAN
+	.string "Brix: Hey, {PLAYER}!\p"
+	.string "Erinnerst du dich an einen Mann\n"
+	.string "namens Zerschneider in Metarost\l"
+	.string "City? Er hatte sein Haus dort.\p"
+	.string "Ich habe herausgefunden, dass\n"
+	.string "sein jüngerer Bruder in Malvenfroh\l"
+	.string "City lebt.\p"
+	.string "Rate mal, wie der heißt!\p"
+	.string "… … … … … … … … … … … …\p"
+	.string "Der Zertrümmerer!$"
+#else
+	.string "BRENDAN: Hey, {PLAYER}!\p"
+	.string "Do you remember a man named\n"
+	.string "the CUTTER in RUSTBORO?\l"
+	.string "He had a house there, remember?\p"
+	.string "Well, I found out his younger\n"
+	.string "brother lives in MAUVILLE.\p"
+	.string "Can you guess his name?\p"
+	.string "… … … … … …\n"
+	.string "… … … … … …\p"
+	.string "The ROCK SMASH GUY!$"
+#endif
+
+MatchCall_Text_BrendanHns4::
+#if GERMAN
+	.string "Brix: {PLAYER}?\p"
+	.string "Metaflurtunnel… Der heißt so, weil\n"
+	.string "er Metarost City und Wiesenflur\l"
+	.string "verbindet.$"
+#else
+	.string "BRENDAN: {PLAYER}?\p"
+	.string "RUSTURF TUNNEL…\n"
+	.string "They named it that because it\l"
+	.string "joins RUSTBORO and VERDANTURF.$"
+#endif
+
+MatchCall_Text_BrendanHns5::
+#if GERMAN
+	.string "Brix: {PLAYER}, wie geht’s?\p"
+	.string "Ich bin gerade auf der Route 111.\p"
+	.string "Ich werde jetzt eine Rast\n"
+	.string "einlegen. Hier gibt es eine nette\l"
+	.string "alte Dame, bei der man sich\l"
+	.string "ausruhen kann.\p"
+	.string "Sie lebt nördlich der Wüste.$"
+#else
+	.string "BRENDAN: {PLAYER}, how are you?\p"
+	.string "I'm out on ROUTE 111 now.\p"
+	.string "I'm going to get a rest at an old\n"
+	.string "lady's house.\p"
+	.string "She lives just north of\n"
+	.string "the desert.$"
+#endif
+
+MatchCall_Text_BrendanHns6::
+#if GERMAN
+	.string "Brix: Hey, {PLAYER}!\p"
+	.string "Hast du schon mal etwas über den\n"
+	.string "Wunderturm in der Wüste gehört?\p"
+	.string "Man sagt, er ist wie eine Fata\n"
+	.string "Morgana, sichtbar und dann wieder\l"
+	.string "unsichtbar.\p"
+	.string "Ich würde ihn zu gerne mal sehen!$"
+#else
+	.string "BRENDAN: Hey, {PLAYER}!\p"
+	.string "Did you know about the MIRAGE\n"
+	.string "TOWER in the desert?\p"
+	.string "They say, like a mirage, it seems\n"
+	.string "to mysteriously come and go.\p"
+	.string "I wish I could see it.$"
+#endif
+
+MatchCall_Text_BrendanHns7::
+#if GERMAN
+	.string "Brix: {PLAYER}! Juhuu!\n"
+	.string "Ich bin jetzt auf der Route 119.\p"
+	.string "Hier gibt es einen breiten Fluss.\n"
+	.string "Und es regnet sehr oft.\p"
+	.string "Ich bin schon ganz durchnässt.$"
+#else
+	.string "BRENDAN: {PLAYER}, yahoo!\n"
+	.string "I'm on ROUTE 119 now.\p"
+	.string "There's a big river here, and\n"
+	.string "it often rains.\p"
+	.string "I got soaked!$"
+#endif
+
+MatchCall_Text_BrendanHns8::
+#if GERMAN
+	.string "Brix: Hi, {PLAYER}.\p"
+	.string "Der Pyroberg ist eine\n"
+	.string "Gedenkstätte für die Pokémon, die\l"
+	.string "nicht mehr unter uns weilen.\p"
+	.string "Daher gibt es dort sehr viele\n"
+	.string "Geist-Pokémon.$"
+#else
+	.string "BRENDAN: {PLAYER}, hi.\p"
+	.string "MT. PYRE is a memorial to POKéMON\n"
+	.string "whose lives have ended.\p"
+	.string "Maybe as a result, it's infested\n"
+	.string "with many GHOST-type POKéMON!$"
+#endif
+
+MatchCall_Text_BrendanHns9::
+#if GERMAN
+	.string "Brix: Hey, {PLAYER}!\p"
+	.string "Ich wollte eigentlich zu den\n"
+	.string "Heißen Quellen in Bad Lavastadt\l"
+	.string "gehen.\p"
+	.string "Aber auf dem Weg dorthin, am\n"
+	.string "Steilpass, sind mir einige dunkle\l"
+	.string "Gestalten über den Weg gelaufen.\p"
+	.string "Das war eine merkwürdige\n"
+	.string "Situation…$"
+#else
+	.string "BRENDAN: Hey, {PLAYER}!\p"
+	.string "I was thinking of going to the hot\n"
+	.string "spring in LAVARIDGE.\p"
+	.string "But on the way, around JAGGED\n"
+	.string "PASS, I ran into some bad-looking\l"
+	.string "characters. The mood was ugly!$"
+#endif
+
+MatchCall_Text_BrendanHns10::
+#if GERMAN
+	.string "Brix: Hey, {PLAYER}. Hast du die\n"
+	.string "Nachrichten gesehen?\p"
+	.string "Sie haben gesagt, dass Kapt. Brigg\n"
+	.string "die Tiefseehöhle während einer\l"
+	.string "Expedition entdeckt hat.$"
+#else
+	.string "BRENDAN: Hey, {PLAYER}!\n"
+	.string "Did you see the news?\p"
+	.string "They say CAPT. STERN discovered\n"
+	.string "the SEAFLOOR CAVERN while on his\l"
+	.string "submarine expedition.$"
+#endif
+
+MatchCall_Text_BrendanHns11::
+#if GERMAN
+	.string "Brix: Hey, {PLAYER}!\n"
+	.string "Ist das nicht klasse?\p"
+	.string "Hoenns Meer ist riesig! Du bist\n"
+	.string "bestimmt schon kreuz und quer\l"
+	.string "gesurft.\p"
+	.string "Aber wusstest du auch das schon?\p"
+	.string "Hier bei uns kannst du mit einer\n"
+	.string "Attacke bis auf den Meeresgrund\l"
+	.string "tauchen!$"
+#else
+	.string "BRENDAN: Hey, {PLAYER}! Don't you\n"
+	.string "think it's neat?\p"
+	.string "HOENN's sea is huge! I bet you've\n"
+	.string "surfed all across it already.\p"
+	.string "But did you know this?\p"
+	.string "Around here, there's a POKéMON\n"
+	.string "move that lets you dive all the way\l"
+	.string "to the bottom of the sea!$"
+#endif
+
+MatchCall_Text_BrendanHns12::
+#if GERMAN
+	.string "Brix: Hey, {PLAYER}! Ich hoffe,\n"
+	.string "bei dir ist alles in Ordnung!\p"
+	.string "Warst du auch schon mal auf dem\n"
+	.string "Meer und bist nicht\l"
+	.string "weitergekommen?\p"
+	.string "Dann musst du einfach tauchen und\n"
+	.string "dir unter Wasser einen Weg suchen.\p"
+	.string "Und wenn du dann dein Ziel erreicht\n"
+	.string "hast, tauchst du einfach wieder\l"
+	.string "auf. Das ist ein Kinderspiel.$"
+#else
+	.string "BRENDAN: Hey, {PLAYER}!\n"
+	.string "Hope things are okay!\p"
+	.string "Have you been on the sea and\n"
+	.string "found your way to the other side\l"
+	.string "blocked?\p"
+	.string "Try diving deep underwater and\n"
+	.string "following trenches.\p"
+	.string "When you get to the other side,\n"
+	.string "come up to the surface. Easy!$"
+#endif
+
+MatchCall_Text_BrendanHns13::
+#if GERMAN
+	.string "Brix: Hey, {PLAYER}!\p"
+	.string "Wie läuft’s? Füllst du deinen\n"
+	.string "Pokédex?\p"
+	.string "Ich habe ein Gerücht gehört. Es\n"
+	.string "soll irgendwo da draußen uralte\l"
+	.string "Pokémon geben. Drei Stück!\p"
+	.string "Die würde ich mir sooo gerne mal\n"
+	.string "ansehen…$"
+#else
+	.string "BRENDAN: Hey, {PLAYER}!\p"
+	.string "How's it going?\n"
+	.string "Are you filling your POKéDEX?\p"
+	.string "I heard a rumor that there are\n"
+	.string "super-ancient POKéMON out there.\l"
+	.string "And there are three of them!\p"
+	.string "I would love to see even one…$"
+#endif
+
+MatchCall_Text_BrendanHns14::
+#if GERMAN
+	.string "Brix: {PLAYER}! Ich habe da\n"
+	.string "Gerüchte gehört.\p"
+	.string "Du hast den Arenaleiter von\n"
+	.string "Xeneroville besiegt?\p"
+	.string "Dann ist dein Weg nicht mehr weit,\n"
+	.string "weißt du das?$"
+#else
+	.string "BRENDAN: {PLAYER}!\n"
+	.string "I heard the rumors!\p"
+	.string "You beat the SOOTOPOLIS GYM\n"
+	.string "LEADER?\p"
+	.string "That means you don't have far\n"
+	.string "to go, do you?$"
+#endif
+
+MatchCall_Text_BrendanHns15::
+#if GERMAN
+	.string "Brix: In ganz Hoenn gibt es\n"
+	.string "keinen Trainer, der deinen Namen\l"
+	.string "nicht kennt, {PLAYER}!\p"
+	.string "Und wenn ich den Leuten erzähle,\n"
+	.string "dass ich mit dir befreundet bin…\l"
+	.string "Dann sind sie alle überrascht!$"
+#else
+	.string "BRENDAN: There isn't a TRAINER\n"
+	.string "in all of HOENN who doesn't know who\l"
+	.string "you are, {PLAYER}!\p"
+	.string "When I tell people that I'm friends\n"
+	.string "with you, {PLAYER}, they're all\l"
+	.string "surprised!$"
+#endif
+
 MatchCall_Text_Wally1::
 #if GERMAN
 	.string "Heiko: Oh, {PLAYER}!\p"

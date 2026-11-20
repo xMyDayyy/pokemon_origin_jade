@@ -19,6 +19,7 @@ struct PlayerCharacterInfo
 extern const struct PlayerCharacterInfo gPlayerCharacterInfo[PLAYER_CHARACTER_COUNT];
 
 u8 GetPlayerCharacter(void);
+bool8 IsHoennRivalBrendan(void);
 const struct PlayerCharacterInfo *GetPlayerCharacterInfo(void);
 void SetPlayerCharacter(u8 character);
 u16 GetPlayerCharacterGfxId(void);

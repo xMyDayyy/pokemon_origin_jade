@@ -6,6 +6,7 @@
 #include "battle.h"
 #include "gym_leader_rematch.h"
 #include "match_call.h"
+#include "player_character.h"
 #include "pokenav.h"
 #include "strings.h"
 #include "constants/region_map_sections.h"
@@ -377,6 +378,43 @@ static const struct MatchCallRival sBrendanMatchCallHeader =
     .name = gText_ExpandedPlaceholder_Brendan,
 #endif
     .textData = sBrendanTextScripts
+};
+
+// Origin Jade: when the player is May, the female player's entry above is Brendan,
+// Norman's son, with his own calls (see GetActiveRival).
+#if GERMAN
+static const u8 gText_BrendanRivalMatchCallDesc[] = _("Normans Sohn");
+#else
+static const u8 gText_BrendanRivalMatchCallDesc[] = _("NORMAN's SON");
+#endif
+
+static const match_call_text_data_t sBrendanRivalTextScripts[] = {
+    { MatchCall_Text_BrendanHns1,  ALWAYS_AVAILABLE,                    NO_FLAG_TO_SET },
+    { MatchCall_Text_BrendanHns2,  FLAG_DEFEATED_DEWFORD_GYM,           NO_FLAG_TO_SET },
+    { MatchCall_Text_BrendanHns3,  FLAG_DELIVERED_DEVON_GOODS,          NO_FLAG_TO_SET },
+    { MatchCall_Text_BrendanHns4,  FLAG_HIDE_MAUVILLE_CITY_WALLY,       NO_FLAG_TO_SET },
+    { MatchCall_Text_BrendanHns5,  FLAG_HOENN_RECEIVED_HM_STRENGTH,     NO_FLAG_TO_SET },
+    { MatchCall_Text_BrendanHns6,  FLAG_DEFEATED_LAVARIDGE_GYM,         NO_FLAG_TO_SET },
+    { MatchCall_Text_BrendanHns7,  FLAG_DEFEATED_PETALBURG_GYM,         NO_FLAG_TO_SET },
+    { MatchCall_Text_BrendanHns8,  FLAG_RECEIVED_CASTFORM,              NO_FLAG_TO_SET },
+    { MatchCall_Text_BrendanHns9,  FLAG_RECEIVED_RED_OR_BLUE_ORB,       NO_FLAG_TO_SET },
+    { MatchCall_Text_BrendanHns10, FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, NO_FLAG_TO_SET },
+    { MatchCall_Text_BrendanHns11, FLAG_MET_TEAM_AQUA_HARBOR,           NO_FLAG_TO_SET },
+    { MatchCall_Text_BrendanHns12, FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, NO_FLAG_TO_SET },
+    { MatchCall_Text_BrendanHns13, FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, NO_FLAG_TO_SET },
+    { MatchCall_Text_BrendanHns14, FLAG_DEFEATED_SOOTOPOLIS_GYM,        NO_FLAG_TO_SET },
+    { MatchCall_Text_BrendanHns15, FLAG_IS_HOENN_CHAMPION,              NO_FLAG_TO_SET },
+    MATCH_CALL_TEXT_END
+};
+
+static const struct MatchCallRival sBrendanRivalMatchCallHeader =
+{
+    .type = MC_TYPE_RIVAL,
+    .playerGender = FEMALE,
+    .flag = FLAG_ENABLE_RIVAL_MATCH_CALL,
+    .desc = gText_BrendanRivalMatchCallDesc,
+    .name = gText_ExpandedPlaceholder_Brendan,
+    .textData = sBrendanRivalTextScripts
 };
 
 static const match_call_text_data_t sWallyTextScripts[] = {
@@ -1684,9 +1722,23 @@ static void MatchCall_GetMessage_Wally(match_call_t matchCall, u8 *dest)
     MatchCall_BufferCallMessageText(matchCall.wally->textData, dest);
 }
 
+#if IS_HNS
+// The female player's entry is the active rival: Brendan when the player is May, else May.
+static const struct MatchCallRival *GetActiveRival(match_call_t matchCall)
+{
+    if (matchCall.rival == &sBrendanMatchCallHeader && IsHoennRivalBrendan())
+        return &sBrendanRivalMatchCallHeader;
+    return matchCall.rival;
+}
+#endif
+
 static void MatchCall_GetMessage_Rival(match_call_t matchCall, u8 *dest)
 {
+#if IS_HNS
+    MatchCall_BufferCallMessageText(GetActiveRival(matchCall)->textData, dest);
+#else
     MatchCall_BufferCallMessageText(matchCall.rival->textData, dest);
+#endif
 }
 
 static void MatchCall_GetMessage_Birch(match_call_t matchCall, u8 *dest)
@@ -1787,10 +1839,12 @@ static void MatchCall_GetNameAndDesc_Wally(match_call_t matchCall, const u8 **de
 
 static void MatchCall_GetNameAndDesc_Rival(match_call_t matchCall, const u8 **desc, const u8 **name)
 {
-    *desc = matchCall.rival->desc;
 #if IS_HNS
-    *name = gText_ExpandedPlaceholder_May;
+    // Both HnS entries are named May; only Brendan's own entry carries his name.
+    *desc = GetActiveRival(matchCall)->desc;
+    *name = GetActiveRival(matchCall)->name;
 #else
+    *desc = matchCall.rival->desc;
     *name = matchCall.rival->name;
 #endif
 }
@@ -1829,6 +1883,11 @@ int MatchCall_GetOverrideFacilityClass(u32 idx)
 {
     u32 i;
 
+#if IS_HNS
+    // The female player's rival entry shows the active rival, not always Brendan.
+    if (idx == MC_HEADER_BRENDAN)
+        return IsHoennRivalBrendan() ? FACILITY_CLASS_BRENDAN : FACILITY_CLASS_MAY;
+#endif
     for (i = 0; i < ARRAY_COUNT(sCheckPageOverrides); i++)
     {
         if (sCheckPageOverrides[i].idx == idx)
