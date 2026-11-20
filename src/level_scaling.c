@@ -791,12 +791,16 @@ u8 ScaleTrainerMonLevel(const struct Trainer *trainer, u16 trainerId, u8 level, 
 #if LEVEL_REMAP == TRUE
 #if REMATCH_LEVEL_BAND == TRUE
     // Phone rematches: just below the player. Kanto gym leader rematches: just above.
+    // League rematches and Red: at least just above, no upper limit.
     if (partyMaxLevel != 0 && IsNormalPhoneRematchBattle(trainerId))
         return ApplyRematchLevelBand(RemapTrainerLevel(trainer, level), RemapTrainerLevel(trainer, partyMaxLevel),
                                      -REMATCH_BAND_BELOW, -REMATCH_BAND_ABOVE);
     if (partyMaxLevel != 0 && IsKantoLeaderRematchBattle(trainerId))
         return ApplyRematchLevelBand(RemapTrainerLevel(trainer, level), RemapTrainerLevel(trainer, partyMaxLevel),
                                      LEADER_REMATCH_BAND_LOW, LEADER_REMATCH_BAND_HIGH);
+    if (partyMaxLevel != 0 && IsLeagueRematchBattle(trainerId))
+        return ApplyRematchLevelBand(RemapTrainerLevel(trainer, level), RemapTrainerLevel(trainer, partyMaxLevel),
+                                     LEAGUE_REMATCH_BAND_LOW, MAX_LEVEL);
 #endif
     return RemapTrainerLevel(trainer, level);
 #endif

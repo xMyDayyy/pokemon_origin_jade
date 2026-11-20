@@ -51,6 +51,9 @@
 // and Blue (FLAG_TEMP_KANTO_LEADER_REMATCH) are meant to be a challenge: their ace
 // goes to clamp(ace, P + LEADER_REMATCH_BAND_LOW, P + LEADER_REMATCH_BAND_HIGH).
 // Which team comes still depends on the badges (Kanto leaders: on the Johto title).
+// The Johto league rematch teams (Elite Four and Lance _2 and POSTOBC) and Red
+// (IsLeagueRematchBattle) get only a floor: their ace is at least
+// P + LEAGUE_REMATCH_BAND_LOW, a higher fixed level stays.
 // P = level of a normal player's strongest Pokemon at the progress step. The step
 // only moves forward: Kanto badges 0-8, Kanto title, Johto badges 0-8, Johto title,
 // Hoenn badges 0-8, Hoenn title (30 steps). A title step and the next region's
@@ -62,6 +65,7 @@
 #define REMATCH_BAND_ABOVE           1     // ace at most P - 1
 #define LEADER_REMATCH_BAND_LOW      1     // Kanto leader ace at least P + 1
 #define LEADER_REMATCH_BAND_HIGH     4     // Kanto leader ace at most P + 4
+#define LEAGUE_REMATCH_BAND_LOW      1     // league rematch / Red ace at least P + 1, no upper limit
 #define REMATCH_BAND_PLAYER_LEVELS            \
 {                                             \
     /* Kanto 0-8 badges, title */             \

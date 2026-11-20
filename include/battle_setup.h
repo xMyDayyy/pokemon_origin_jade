@@ -106,6 +106,7 @@ bool32 HasEnoughBadgesForRematch(void);
 bool32 HasEnoughBadgesForRematchOf(u32 rematchIdx);
 bool32 IsNormalPhoneRematchBattle(u16 trainerId);
 bool32 IsKantoLeaderRematchBattle(u16 trainerId);
+bool32 IsLeagueRematchBattle(u16 trainerId);
 bool32 DoesSomeoneWantRematchIn(u16 mapGroup, u16 mapNum);
 bool32 IsRematchTrainerIn(u16 mapGroup, u16 mapNum);
 u16 GetLastBeatenRematchTrainerId(u16 trainerId);

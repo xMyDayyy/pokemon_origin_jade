@@ -2635,6 +2635,34 @@ bool32 IsKantoLeaderRematchBattle(u16 trainerId)
 #endif
 }
 
+// Johto league rematch teams (after the Johto title) and Red: by trainer id, so
+// every way into these battles gets the level floor without a script flag.
+bool32 IsLeagueRematchBattle(u16 trainerId)
+{
+#if defined(POKEMON_HNS)
+    switch (trainerId)
+    {
+    case TRAINER_WILL_2_HNS:
+    case TRAINER_KOGA_2_HNS:
+    case TRAINER_BRUNO_2_HNS:
+    case TRAINER_KAREN_2_HNS:
+    case TRAINER_LANCE_2_HNS:
+    case TRAINER_WILL_POSTOBC_HNS:
+    case TRAINER_KOGA_POSTOBC_HNS:
+    case TRAINER_BRUNO_POSTOBC_HNS:
+    case TRAINER_KAREN_POSTOBC_HNS:
+    case TRAINER_LANCE_POSTOBC_HNS:
+    case TRAINER_RED_HNS:
+    case TRAINER_RED_POSTOBC_HNS:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+#else
+    return FALSE;
+#endif
+}
+
 #define STEP_COUNTER_MAX 255
 
 void IncrementRematchStepCounter(void)
