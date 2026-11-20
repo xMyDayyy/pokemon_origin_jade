@@ -62026,7 +62026,7 @@
               {
                 "min_level": 43,
                 "max_level": 45,
-                "species": "SPECIES_GRAVELER_ALOLA"
+                "species": "SPECIES_GRAVELER"
               },
               {
                 "min_level": 43,
@@ -62656,7 +62656,7 @@
               {
                 "min_level": 43,
                 "max_level": 45,
-                "species": "SPECIES_DIGLETT_ALOLA"
+                "species": "SPECIES_DIGLETT"
               },
               {
                 "min_level": 43,
@@ -62666,7 +62666,7 @@
               {
                 "min_level": 43,
                 "max_level": 45,
-                "species": "SPECIES_DIGLETT_ALOLA"
+                "species": "SPECIES_DIGLETT"
               },
               {
                 "min_level": 43,
@@ -62715,12 +62715,12 @@
               {
                 "min_level": 43,
                 "max_level": 45,
-                "species": "SPECIES_SANDSHREW_ALOLA"
+                "species": "SPECIES_SANDSHREW"
               },
               {
                 "min_level": 43,
                 "max_level": 45,
-                "species": "SPECIES_VULPIX_ALOLA"
+                "species": "SPECIES_VULPIX"
               },
               {
                 "min_level": 43,
@@ -62863,7 +62863,7 @@
               {
                 "min_level": 50,
                 "max_level": 70,
-                "species": "SPECIES_SNEASLER"
+                "species": "SPECIES_WEAVILE"
               },
               {
                 "min_level": 50,
@@ -62878,7 +62878,7 @@
               {
                 "min_level": 50,
                 "max_level": 70,
-                "species": "SPECIES_SNEASLER"
+                "species": "SPECIES_WEAVILE"
               }
             ]
           },
@@ -63041,7 +63041,7 @@
               {
                 "min_level": 45,
                 "max_level": 70,
-                "species": "SPECIES_SNEASLER"
+                "species": "SPECIES_WEAVILE"
               },
               {
                 "min_level": 45,
@@ -63066,7 +63066,7 @@
               {
                 "min_level": 45,
                 "max_level": 60,
-                "species": "SPECIES_OVERQWIL"
+                "species": "SPECIES_QWILFISH"
               },
               {
                 "min_level": 45,
@@ -63126,12 +63126,12 @@
               {
                 "min_level": 45,
                 "max_level": 50,
-                "species": "SPECIES_OVERQWIL"
+                "species": "SPECIES_QWILFISH"
               },
               {
                 "min_level": 45,
                 "max_level": 60,
-                "species": "SPECIES_OVERQWIL"
+                "species": "SPECIES_QWILFISH"
               }
             ]
           }

@@ -15160,54 +15160,54 @@ Double Battle: No
 AI: Smart Trainer
 Mugshot: Green
 
-Raichu Alola
+Raichu
 Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Nasty Plot
 - Thunderbolt
-- Psychic
+- Focus Blast
 - Substitute
 
-Exeggutor Alola @ Choice Specs
+Exeggutor @ Choice Specs
 Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 252 SpA / 4 SpD / 252 Spe
 Modest Nature
-- Draco Meteor
+- Psychic
 - Leaf Storm
-- Flamethrower
+- Sludge Bomb
 - Giga Drain
 
 
-Ninetales Alola @ Light Clay
+Ninetales @ Heat Rock
 Level: 70
-Ability: Snow Warning
+Ability: Drought
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 0 Atk / 0 Def / 4 SpA / 0 SpD / 252 Spe
 Timid Nature
-- Freeze Dry
+- Flamethrower
 - Hypnosis
-- Hail
-- Aurora Veil
+- Sunny Day
+- Solar Beam
 
-Golem Alola @ Choice Band
+Golem @ Choice Band
 Level: 70
-Ability: Magnet Pull
+Ability: Sturdy
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 0 HP / 252 Atk / 0 Def / 4 SpA / 0 SpD / 252 Spe
 Adamant Nature
 - Stone Edge
 - Fire Punch
 - Earthquake
-- Volt Switch
+- Sucker Punch
 
-Muk Alola @ Assault Vest
+Muk @ Assault Vest
 Level: 70
 Ability: Poison Touch
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 4 HP / 252 Atk / 0 Def / 0 SpA / 252 SpD / 0 Spe
 Adamant Nature
-- Pursuit
+- Shadow Sneak
 - Gunk Shot
 - Knock Off
 - Fire Punch
@@ -15236,7 +15236,7 @@ AI: Smart Trainer
 Flygon @ Assault Vest
 Level: 70
 
-Typhlosion Hisui @ Focus Sash
+Typhlosion @ Focus Sash
 Level: 70
 
 Arbok
@@ -15248,7 +15248,7 @@ Level: 70
 Sharpedo
 Level: 70
 
-Noivern @ Choice Specs
+Altaria @ Choice Specs
 Level: 70
 EVs: 0 HP / 0 Atk / 0 Def / 255 SpA / 6 SpD / 255 Spe
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
@@ -15835,13 +15835,13 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Check Bad Move
 
-Raticate-Alola  
-Ability: Hustle  
-Level: 61 
-- Crunch  
-- Bulk Up  
-- Last Resort  
-- Quick Attack  
+Raticate
+Ability: Hustle
+Level: 61
+- Crunch
+- Swords Dance
+- Last Resort
+- Quick Attack
 
 Scizor  
 Ability: Technician  
@@ -16180,13 +16180,13 @@ IVs: 0 Atk
 - Whirlpool  
 - Agility  
 
-Exeggutor-Alola @ White Herb  
-Ability: Frisk  
-Level: 70 
-- Light Screen  
-- Draco Meteor  
-- Outrage  
-- Seed Bomb  
+Exeggutor @ White Herb
+Ability: Chlorophyll
+Level: 70
+- Light Screen
+- Leaf Storm
+- Zen Headbutt
+- Seed Bomb
 
 === TRAINER_MUALANI_HNS ===
 Name: DE_EN(Mualani, MUALANI)
@@ -16270,14 +16270,14 @@ Music: Hg Suspicious 1
 Double Battle: No
 AI: Check Bad Move
 
-Dugtrio-Alola @ Focus Sash  
-Ability: Sand Force  
-Level: 70  
-EVs: 252 Atk / 252 Spe  
-- Earthquake  
-- Iron Head  
-- Stealth Rock  
-- Swords Dance  
+Dugtrio @ Focus Sash
+Ability: Sand Force
+Level: 70
+EVs: 252 Atk / 252 Spe
+- Earthquake
+- Stone Edge
+- Stealth Rock
+- Swords Dance
 
 Steelix @ Assault Vest  
 Ability: Rock Head  
@@ -16310,15 +16310,15 @@ Relaxed Nature
 - Iron Defense  
 - Rock Tomb
 
-Perrserker @ Iron Plate  
-Ability: Steely Spirit  
-Level: 70 
-EVs: 248 HP / 252 Atk / 8 SpD  
-Adamant Nature  
-- Iron Tail  
-- Hone Claws  
-- Play Rough  
-- Trailblaze  
+Mawile @ Iron Plate
+Ability: Intimidate
+Level: 70
+EVs: 248 HP / 252 Atk / 8 SpD
+Adamant Nature
+- Iron Head
+- Swords Dance
+- Play Rough
+- Sucker Punch
 
 === TRAINER_SKYLAR_HNS ===
 Name: DE_EN(Skylar, SKYLAR)
@@ -16555,13 +16555,13 @@ Level: 70
 - Rollout  
 - Gyro Ball
 
-Obstagoon  
-Ability: Reckless  
-Level: 70 
-- Double-Edge  
-- Obstruct  
-- Cross Poison  
-- Baby-Doll Eyes  
+Linoone
+Ability: Quick Feet
+Level: 70
+- Double-Edge
+- Extreme Speed
+- Gunk Shot
+- Baby-Doll Eyes
 
 === TRAINER_MORTY_POSTOBC_HNS ===
 Name: DE_EN(Jens, MORTY)
@@ -16599,15 +16599,15 @@ Level: 70
 - Will-O-Wisp  
 - Pain Split  
 
-Typhlosion-Hisui  
-Ability: Blaze  
-Level: 70 
-Quirky Nature  
-IVs: 0 Atk  
-- Infernal Parade  
-- Lava Plume  
-- Confuse Ray  
-- Calm Mind  
+Banette
+Ability: Cursed Body
+Level: 70
+Quirky Nature
+IVs: 0 Atk
+- Shadow Ball
+- Will-O-Wisp
+- Confuse Ray
+- Calm Mind
 
 Mismagius  
 Ability: Levitate  
@@ -16662,21 +16662,21 @@ Level: 70
 - Drain Punch  
 - Stomping Tantrum  
 
-Sirfetch’d @ Leek  
-Ability: Scrappy  
-Level: 70 
-- Leaf Blade  
-- Protect  
-- Quick Attack  
-- Meteor Assault  
-
-Sneasler  
-Ability: Poison Touch  
+Breloom @ Toxic Orb
+Ability: Poison Heal
 Level: 70
-- Dire Claw  
-- Close Combat  
-- Fake Out  
-- Night Slash  
+- Spore
+- Seed Bomb
+- Mach Punch
+- Protect
+
+Hitmonlee
+Ability: Reckless
+Level: 70
+- High Jump Kick
+- Fake Out
+- Poison Jab
+- Knock Off
 
 Poliwrath @ Sitrus Berry  
 Ability: Water Absorb  
@@ -16705,13 +16705,13 @@ Level: 70
 - Steel Wing  
 - Stealth Rock  
 
-Sandslash-Alola  
-Ability: Snow Cloak  
-Level: 72 
-- Curse  
-- Avalanche  
-- Iron Head  
-- Spikes  
+Forretress
+Ability: Sturdy
+Level: 72
+- Curse
+- Payback
+- Iron Head
+- Spikes
 
 Corsola @ Damp Rock  
 Ability: Regenerator  
@@ -16732,14 +16732,13 @@ IVs: 0 Atk / 0 Spe
 - Flash Cannon  
 - Magnet Rise  
 
-Perrserker  
-Ability: Steely Spirit  
-Level: 70 
-IVs: 0 Spe  
-- Gyro Ball  
-- Play Rough  
-- Swords Dance  
-- Gunk Shot  
+Mawile
+Ability: Intimidate
+Level: 70
+- Iron Head
+- Play Rough
+- Swords Dance
+- Sucker Punch
 
 Steelix @ Quick Claw  
 Ability: Rock Head  
@@ -16768,23 +16767,23 @@ Level: 70
 - Beat Up  
 - Icicle Crash  
 
-Mr. Rime  
-Ability: Ice Body  
+Jynx
+Ability: Dry Skin
 Level: 71
-IVs: 0 Atk  
-- Teeter Dance  
-- Snowscape  
-- Psyshock  
-- Trick Room  
+IVs: 0 Atk
+- Lovely Kiss
+- Ice Beam
+- Psyshock
+- Trick Room
 
-Ninetales-Alola @ Light Clay  
-Ability: Snow Warning  
+Lapras @ Leftovers
+Ability: Water Absorb
 Level: 70
-IVs: 0 Atk  
-- Aurora Veil  
-- Blizzard  
-- Moonblast  
-- Freeze-Dry  
+IVs: 0 Atk
+- Freeze-Dry
+- Blizzard
+- Hydro Pump
+- Sing
 
 Slowking  
 Ability: Regenerator  
@@ -16839,13 +16838,13 @@ Level: 69
 - Poison Jab  
 - Roost
 
-Exeggutor-Alola @ Sitrus Berry  
-Ability: Harvest  
-Level: 70  
-- Wood Hammer  
-- Dragon Hammer  
-- Leech Seed  
-- Moonlight  
+Altaria @ Sitrus Berry
+Ability: Natural Cure
+Level: 70
+- Dragon Pulse
+- Moonblast
+- Cotton Guard
+- Roost
 
 Salamence  
 Ability: Moxie  
