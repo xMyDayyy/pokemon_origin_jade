@@ -1204,7 +1204,7 @@ Route104_Text_MayWeShouldRegister:
 #else
 	.string "MAY: Oh, there you are!\p"
 	.string "I've already put myself in your\n"
-	.string "POKéCOM - in case you had not\l"
+	.string "POKéGEAR - in case you had not\l"
 	.string "noticed.$"
 #endif
 

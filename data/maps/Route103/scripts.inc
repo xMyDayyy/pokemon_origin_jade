@@ -154,7 +154,7 @@ Route103_Text_MayHnsAfterBattle:
 	.string "you - and next time I will get\l"
 	.string "closer.\p"
 	.string "That's a promise to myself!\p"
-	.string "Wait, I'll put myself in your POKéCOM\n"
+	.string "Wait, I'll put myself in your POKéGEAR\n"
 	.string "- then you can find me any time!\p"
 	.string "I'm heading back to the LAB.\n"
 	.string "See you soon, {PLAYER}!$"

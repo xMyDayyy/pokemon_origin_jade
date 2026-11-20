@@ -333,7 +333,7 @@ RustboroCity_DevonCorp_2F_Text_WowThatsAPokenav:
 	.string "die Gefühle der Pokémon lernen möchte.$"
 #else
 	.string "Oh, wow!\n"
-	.string "That's a POKéCOM!\p"
+	.string "That's a POKéGEAR!\p"
 	.string "It came about as a result of our\n"
 	.string "PRESIDENT's desire to learn about\l"
 	.string "the feelings of POKéMON.$"

@@ -821,7 +821,7 @@ Route104_Text_WinstonRegister1:
 	.string "Schließlich habe ich sehr viel Geld.$"
 #else
 	.string "Hmm?\n"
-	.string "So you have a POKéCOM too.\p"
+	.string "So you have a POKéGEAR too.\p"
 	.string "I'll register you right away.\n"
 	.string "After all, I have a great deal of\l"
 	.string "money.$"
@@ -835,7 +835,7 @@ Route104_Text_WinstonRegister2:
 	.string "Schließlich habe ich sehr viel Geld.$"
 #else
 	.string "Hmm?\n"
-	.string "So you have a POKéCOM too.\p"
+	.string "So you have a POKéGEAR too.\p"
 	.string "I'll register you right away.\n"
 	.string "After all, I have a great deal of\l"
 	.string "money.$"
