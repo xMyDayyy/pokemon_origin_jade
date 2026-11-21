@@ -86,6 +86,10 @@ the current beta is **v0.9.1**.
 - **No trading needed**: every species and every item can be obtained in
   one game.
 - **Challenges** for a new game: Nuzlocke, randomizer, level caps and more.
+- **Everything from Heart & Soul and pokeemerald-expansion**, partly
+  adapted for three regions: follower Pokémon, the HGSS-style Pokédex,
+  modern battle mechanics and many quality-of-life features. Full list:
+  [Heart & Soul features](https://github.com/PokemonHnS-Development/pokehns-expansion/blob/master/FEATURES.md).
 
 # Playing
 
