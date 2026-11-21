@@ -37,9 +37,10 @@
 # About
 
 **Pokémon Origin Jade** is a GBA ROM hack that takes you on one journey
-through three regions: **Kanto** on the FireRed/LeafGreen maps, **Johto**
-from Pokémon Heart & Soul, and **Hoenn** from Emerald. It is available in
-**German and English**; the current beta is **v0.9.1**.
+through three regions: **Kanto** with the FireRed/LeafGreen story on the
+modern-looking maps of Heart & Soul, **Johto** from Pokémon Heart & Soul,
+and **Hoenn** from Emerald. It is available in **German and English**;
+the current beta is **v0.9.1**.
 
 # Features
 
@@ -55,10 +56,10 @@ from Pokémon Heart & Soul, and **Hoenn** from Emerald. It is available in
 - **Fixed levels per area**: trainers and wild Pokémon have set levels
   that rise from Kanto through Johto to Hoenn; they no longer follow your
   team. Experience is tuned per region.
-- **Kanto in the FireRed/LeafGreen style**, with day and night encounters,
-  trainers who register in your PokéGear and call for rematches, and gym
-  leader rematches after the Kanto title (stronger again after the Johto
-  title).
+- **Kanto with the FireRed/LeafGreen story** on the modern-looking maps
+  of Heart & Soul, with day and night encounters, trainers who register
+  in your PokéGear and call for rematches, and gym leader rematches after
+  the Kanto title (stronger again after the Johto title).
 - **Stronger league after the title**: the Johto Elite Four and Lance bring
   new teams after the Johto title and again after you beat Red on
   Mt. Silver. In league rematches and against Red the strongest Pokémon is
