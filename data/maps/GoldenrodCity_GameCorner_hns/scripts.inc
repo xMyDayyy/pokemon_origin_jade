@@ -35,7 +35,7 @@ GoldenrodCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange::
 
 GoldenrodCity_GameCorner_PrizeRoom_EventScript_Abra::
 	setvar VAR_TEMP_1, SPECIES_ABRA
-	setvar VAR_TEMP_2, 120
+	setvar VAR_TEMP_2, 180
 	goto GoldenrodCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeMon
 	end
 
@@ -53,13 +53,13 @@ GoldenrodCity_GameCorner_PrizeRoom_EventScript_Munchlax::
 
 GoldenrodCity_GameCorner_PrizeRoom_EventScript_Dratini::
 	setvar VAR_TEMP_1, SPECIES_DRATINI
-	setvar VAR_TEMP_2, 5500
+	setvar VAR_TEMP_2, 2800
 	goto GoldenrodCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeMon
 	end
 
 GoldenrodCity_GameCorner_PrizeRoom_EventScript_Porygon::
 	setvar VAR_TEMP_1, SPECIES_PORYGON
-	setvar VAR_TEMP_2, 6500
+	setvar VAR_TEMP_2, 9999
 	goto GoldenrodCity_GameCorner_PrizeRoom_EventScript_ConfirmPrizeMon
 	end
 

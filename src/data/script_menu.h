@@ -429,17 +429,17 @@ static const struct MenuAction MultichoiceList_GameCornerDolls2[] =
 static const struct MenuAction MultichoiceList_PrizeMons[] = 
 {
 #if GERMAN
-    {COMPOUND_STRING("Abra{CLEAR_TO 0x61}120 M.")},
+    {COMPOUND_STRING("Abra{CLEAR_TO 0x61}180 M.")},
     {COMPOUND_STRING("Piepi{CLEAR_TO 0x61}500 M.")},
     {COMPOUND_STRING("Mampfaxo{CLEAR_TO 0x58}2.800 M.")},
-    {COMPOUND_STRING("Dratini{CLEAR_TO 0x58}5.500 M.")},
-    {COMPOUND_STRING("Porygon{CLEAR_TO 0x58}6.500 M.")},
+    {COMPOUND_STRING("Dratini{CLEAR_TO 0x58}2.800 M.")},
+    {COMPOUND_STRING("Porygon{CLEAR_TO 0x58}9.999 M.")},
 #else
-    {COMPOUND_STRING("ABRA{CLEAR_TO 0x61}120 C.")},
+    {COMPOUND_STRING("ABRA{CLEAR_TO 0x61}180 C.")},
     {COMPOUND_STRING("CLEFAIRY{CLEAR_TO 0x61}500 C.")},
     {COMPOUND_STRING("MUNCHLAX{CLEAR_TO 0x58}2,800 C.")},
-    {COMPOUND_STRING("DRATINI{CLEAR_TO 0x58}5,500 C.")},
-    {COMPOUND_STRING("PORYGON{CLEAR_TO 0x58}6,500 C.")},
+    {COMPOUND_STRING("DRATINI{CLEAR_TO 0x58}2,800 C.")},
+    {COMPOUND_STRING("PORYGON{CLEAR_TO 0x58}9,999 C.")},
 #endif
     {gText_Exit},
 };
