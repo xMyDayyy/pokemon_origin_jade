@@ -297,11 +297,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Cyndaquil::
 	goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6, LittlerootTown_ProfessorBirchsLab_EventScript_AlreadyChoseJohtoStarter
 	applymovement LOCALID_BIRCHS_LAB_BIRCH, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
-	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CYNDAQUIL
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TORCHIC
 	showmonpic VAR_TEMP_TRANSFERRED_SPECIES, 10, 3
 	bufferspeciesname STR_VAR_1, VAR_TEMP_TRANSFERRED_SPECIES
-	call_if_eq VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CYNDAQUIL, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeCyndaquil
-	call_if_ne VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CYNDAQUIL, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeOtherStarter
+	call_if_eq VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TORCHIC, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeCyndaquil
+	call_if_ne VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TORCHIC, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeOtherStarter
 	goto_if_eq VAR_RESULT, NO, LittlerootTown_ProfessorBirchsLab_EventScript_TakeYourTime
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_GiveCyndaquil
 	end
@@ -311,11 +311,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Totodile::
 	goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6, LittlerootTown_ProfessorBirchsLab_EventScript_AlreadyChoseJohtoStarter
 	applymovement LOCALID_BIRCHS_LAB_BIRCH, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
-	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TOTODILE
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_MUDKIP
 	showmonpic VAR_TEMP_TRANSFERRED_SPECIES, 10, 3
 	bufferspeciesname STR_VAR_1, VAR_TEMP_TRANSFERRED_SPECIES
-	call_if_eq VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TOTODILE, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeTotodile
-	call_if_ne VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TOTODILE, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeOtherStarter
+	call_if_eq VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_MUDKIP, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeTotodile
+	call_if_ne VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_MUDKIP, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeOtherStarter
 	goto_if_eq VAR_RESULT, NO, LittlerootTown_ProfessorBirchsLab_EventScript_TakeYourTime
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_GiveTotodile
 	end
@@ -325,11 +325,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Chikorita::
 	goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6, LittlerootTown_ProfessorBirchsLab_EventScript_AlreadyChoseJohtoStarter
 	applymovement LOCALID_BIRCHS_LAB_BIRCH, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
-	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CHIKORITA
+	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TREECKO
 	showmonpic VAR_TEMP_TRANSFERRED_SPECIES, 10, 3
 	bufferspeciesname STR_VAR_1, VAR_TEMP_TRANSFERRED_SPECIES
-	call_if_eq VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CHIKORITA, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeChikorita
-	call_if_ne VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_CHIKORITA, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeOtherStarter
+	call_if_eq VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TREECKO, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeChikorita
+	call_if_ne VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_TREECKO, LittlerootTown_ProfessorBirchsLab_EventScript_AskTakeOtherStarter
 	goto_if_eq VAR_RESULT, NO, LittlerootTown_ProfessorBirchsLab_EventScript_TakeYourTime
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_GiveChikorita
 	end
@@ -471,7 +471,9 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedChikorita::
 	end
 
 @ Gives the Johto starter in VAR_TEMP_TRANSFERRED_SPECIES with the shininess of its preview
-@ (FLAG_SHINY_STARTER_1-3 = Chikorita, Cyndaquil, Totodile, rolled by showmonpic).
+@ (FLAG_SHINY_STARTER_1-3 = Treecko, Torchic, Mudkip, rolled by showmonpic).
+@ Origin Jade: the balls labelled Cyndaquil/Totodile/Chikorita hold the Hoenn starters
+@ of the same type (Torchic/Mudkip/Treecko).
 LittlerootTown_ProfessorBirchsLab_EventScript_GiveJohtoStarterNotShiny::
 	givemon VAR_TEMP_TRANSFERRED_SPECIES, 5, ITEM_NONE, BALL_POKE, NATURE_RANDOM, NUM_ABILITY_PERSONALITY, MON_GENDER_RANDOM, 0, 0, 0, 0, 0, 0, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, USE_RANDOM_IVS, MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT, SHINY_MODE_NEVER
 	return
@@ -1240,9 +1242,9 @@ LittlerootTown_ProfessorBirchsLab_Text_CompletedDexChoosePokemon:
 	.string "Nimm es als Anerkennung der\n"
 	.string "fantastischen Arbeit, die du geleistet\l"
 	.string "hast.\p"
-	.string "Ich schenke dir ein seltenes Pokémon,\n"
-	.string "das nur in einer anderen Region zu\l"
-	.string "finden ist.\p"
+	.string "Ich schenke dir eines der Pokémon,\n"
+	.string "die ich sonst jungen Trainern hier\l"
+	.string "in Hoenn für ihre erste Reise mitgebe.\p"
 	.string "Such dir eines von diesen drei Pokémon\n"
 	.string "aus.$"
 #else
@@ -1257,22 +1259,23 @@ LittlerootTown_ProfessorBirchsLab_Text_CompletedDexChoosePokemon:
 	.string "I have a gift for you.\p"
 	.string "Consider it my show of appreciation\n"
 	.string "for the fantastic work you've done.\p"
-	.string "My gift is a rare POKéMON only found\n"
-	.string "in another region!\p"
+	.string "My gift is one of the POKéMON I\n"
+	.string "usually give to new TRAINERS here\l"
+	.string "in HOENN for their first journey!\p"
 	.string "You can have any one of these\n"
 	.string "three POKéMON!$"
 #endif
 
 LittlerootTown_ProfessorBirchsLab_Text_CanHaveAnyOneOfRarePokemon:
 #if GERMAN
-	.string "Prof. Birk: Dies sind seltene Pokémon,\n"
-	.string "die in anderen Regionen beheimatet\l"
-	.string "sind.\p"
+	.string "Prof. Birk: Das sind die Pokémon, die\n"
+	.string "ich jungen Trainern hier in Hoenn\l"
+	.string "für ihre erste Reise mitgebe.\p"
 	.string "Such dir eines von den drei Pokémon\n"
 	.string "aus.$"
 #else
-	.string "PROF. BIRCH: These are rare POKéMON\n"
-	.string "only found in another region!\p"
+	.string "PROF. BIRCH: These are the POKéMON I\n"
+	.string "give to new TRAINERS here in HOENN!\p"
 	.string "You can have any one of these\n"
 	.string "three POKéMON!$"
 #endif
@@ -1280,40 +1283,40 @@ LittlerootTown_ProfessorBirchsLab_Text_CanHaveAnyOneOfRarePokemon:
 LittlerootTown_ProfessorBirchsLab_Text_YoullTakeCyndaquil:
 #if GERMAN
 	.string "Prof. Birk: Das Feuer-Pokémon\n"
-	.string "Feurigel hat dein Interesse geweckt?\p"
+	.string "Flemmli hat dein Interesse geweckt?\p"
 	.string "Du bist clever wie immer!\p"
-	.string "Du möchtest Feurigel haben?$"
+	.string "Du möchtest Flemmli haben?$"
 #else
 	.string "PROF. BIRCH: The FIRE POKéMON\n"
-	.string "CYNDAQUIL caught your eye!\p"
+	.string "TORCHIC caught your eye!\p"
 	.string "You're as sharp as ever!\p"
-	.string "So the CYNDAQUIL is your choice?$"
+	.string "So the TORCHIC is your choice?$"
 #endif
 
 LittlerootTown_ProfessorBirchsLab_Text_YoullTakeTotodile:
 #if GERMAN
 	.string "Prof. Birk: Das Wasser-Pokémon\n"
-	.string "Karnimani hat dein Interesse geweckt?\p"
+	.string "Hydropi hat dein Interesse geweckt?\p"
 	.string "Eine gute Wahl!\p"
-	.string "Du möchtest Karnimani haben?$"
+	.string "Du möchtest Hydropi haben?$"
 #else
 	.string "PROF. BIRCH: The WATER POKéMON\n"
-	.string "TOTODILE is your choice!\p"
+	.string "MUDKIP is your choice!\p"
 	.string "You know how to pick a good one.\p"
-	.string "So, you'll take the TOTODILE?$"
+	.string "So, you'll take the MUDKIP?$"
 #endif
 
 LittlerootTown_ProfessorBirchsLab_Text_YoullTakeChikorita:
 #if GERMAN
 	.string "Prof. Birk: Das Pflanzen-Pokémon\n"
-	.string "Endivie hat dein Interesse geweckt?\p"
+	.string "Geckarbor hat dein Interesse geweckt?\p"
 	.string "Du weißt, was gut für dich ist!\p"
-	.string "Du möchtest Endivie haben?$"
+	.string "Du möchtest Geckarbor haben?$"
 #else
 	.string "PROF. BIRCH: The GRASS POKéMON\n"
-	.string "CHIKORITA is your choice!\p"
+	.string "TREECKO is your choice!\p"
 	.string "You sure know what you're doing.\p"
-	.string "So, you'll take the CHIKORITA?$"
+	.string "So, you'll take the TREECKO?$"
 #endif
 
 LittlerootTown_ProfessorBirchsLab_Text_YoullTakeOtherStarter:

@@ -2670,12 +2670,12 @@ static s32 GetStarterPreviewBall(u16 species)
           && VarGet(VAR_DEX_UPGRADE_JOHTO_STARTER_STATE) >= 4
           && VarGet(VAR_DEX_UPGRADE_JOHTO_STARTER_STATE) < 6)
     {
-        // Birch's scripts pass the species itself.
-        if (species == SPECIES_CHIKORITA)
+        // Birch's scripts pass the species itself (Origin Jade: the Hoenn starters).
+        if (species == SPECIES_TREECKO)
             ball = 0;
-        else if (species == SPECIES_CYNDAQUIL)
+        else if (species == SPECIES_TORCHIC)
             ball = 1;
-        else if (species == SPECIES_TOTODILE)
+        else if (species == SPECIES_MUDKIP)
             ball = 2;
         else
             return -1;
