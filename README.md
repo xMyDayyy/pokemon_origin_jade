@@ -115,7 +115,7 @@ Check tools and rules for changes: [`DEVELOPMENT.md`](DEVELOPMENT.md).
 Origin Jade stands on a chain of projects. If you use it, credit Origin
 Jade and keep the full chain:
 
-- **Pokémon Heart & Soul** (pokemonHnS-expansion) 2.0.5 by the HnS team,
+- **Pokémon Heart & Soul** (pokemonHnS-expansion) 2.0.6 by the HnS team,
   [PokemonHnS-Development/pokehns-expansion](https://github.com/PokemonHnS-Development/pokehns-expansion).
   Its contributors are listed in [`CREDITS.md`](CREDITS.md).
 - **Modern Emerald** by resetes12,
@@ -134,7 +134,7 @@ to retain the full chain of credits, and, with a more recent
 pokeemerald-expansion, to credit RHH with the version number. For example:
 
 ```
-Pokémon Origin Jade is based on Pokémon Heart & Soul 2.0.5
+Pokémon Origin Jade is based on Pokémon Heart & Soul 2.0.6
 (pokemonHnS-expansion), built on resetes12's Modern Emerald and RHH's
 pokeemerald-expansion 1.15.1, which build on pret's pokeemerald.
 ```
