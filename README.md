@@ -28,9 +28,9 @@
     <td align="center"><img src="docs/images/legend_lugia_may_field.png" width="220" alt="May facing Lugia in the Whirl Islands"><br><img src="docs/images/legend_lugia_may_battle.png" width="220" alt="Lugia battle as May"><br>Lugia, playing as May</td>
   </tr>
   <tr>
+    <td align="center"><img src="docs/images/gsball_oak.png" width="220" alt="Prof. Oak gives the GS Ball"><br>Prof. Oak's GS Ball: off to Johto</td>
     <td align="center"><img src="docs/images/troy_lab_1.png" width="220" alt="Prof. Oak introduces Steven in his lab"><br>Steven visits Prof. Oak's lab</td>
     <td align="center"><img src="docs/images/troy_lab_3.png" width="220" alt="Obtained the Hoenn Ticket"><br>...and brings the Hoenn Ticket</td>
-    <td align="center"><img src="docs/images/collage.png" width="220" alt="Collage of Origin Jade screenshots"><br>Six heroes, six legends</td>
   </tr>
 </table>
 
