@@ -382,6 +382,7 @@ static void DebugAction_Player_Name(u8 taskId);
 static void DebugAction_Player_Gender(u8 taskId);
 static void DebugAction_Player_Id(u8 taskId);
 static void DebugAction_Player_Character(u8 taskId);
+static void DebugAction_Player_SetCharacter(u8 taskId, u32 character);
 
 extern const u8 Debug_FlagsNotSetOverworldConfigMessage[];
 extern const u8 Debug_FlagsNotSetBattleConfigMessage[];
@@ -674,10 +675,23 @@ static const struct DebugMenuOption sDebugMenu_Actions_Give[] =
     { NULL }
 };
 
+// Origin Jade: pick the player character directly (look only; gender follows the character)
+static const struct DebugMenuOption sDebugMenu_Actions_Player_Characters[] =
+{
+    { COMPOUND_STRING("Red"),     DebugAction_Player_SetCharacter, (void *)PLAYER_CHARACTER_RED },
+    { COMPOUND_STRING("Leaf"),    DebugAction_Player_SetCharacter, (void *)PLAYER_CHARACTER_LEAF },
+    { COMPOUND_STRING("Gold"),    DebugAction_Player_SetCharacter, (void *)PLAYER_CHARACTER_GOLD },
+    { COMPOUND_STRING("Kris"),    DebugAction_Player_SetCharacter, (void *)PLAYER_CHARACTER_KRIS },
+    { COMPOUND_STRING("Brendan"), DebugAction_Player_SetCharacter, (void *)PLAYER_CHARACTER_BRENDAN },
+    { COMPOUND_STRING("May"),     DebugAction_Player_SetCharacter, (void *)PLAYER_CHARACTER_MAY },
+    { NULL }
+};
+
 static const struct DebugMenuOption sDebugMenu_Actions_Player[] =
 {
     { COMPOUND_STRING("Player name"),    DebugAction_Player_Name },
     { COMPOUND_STRING("Toggle gender"),  DebugAction_Player_Gender },
+    { COMPOUND_STRING("Character…"),     DebugAction_OpenSubMenu, sDebugMenu_Actions_Player_Characters },
     { COMPOUND_STRING("Next character"), DebugAction_Player_Character },
     { COMPOUND_STRING("New Trainer ID"), DebugAction_Player_Id },
     { NULL }
@@ -1413,6 +1427,10 @@ static void DebugTask_HandleMenuInput_General(u8 taskId)
             {
                 DebugAction_Trainers_ChooseTrainer(taskId, (u32)option.actionParams);
             }
+            else if (option.action == DebugAction_Player_SetCharacter)
+            {
+                DebugAction_Player_SetCharacter(taskId, (u32)option.actionParams);
+            }
             else
             {
                 ((DebugFunc)option.action)(taskId);
@@ -1874,6 +1892,14 @@ static void DebugAction_Player_Gender(u8 taskId)
 }
 
 // Red, Leaf, Gold, Kris, Brendan, May, Red...; sets the gender too
+static void DebugAction_Player_SetCharacter(u8 taskId, u32 character)
+{
+    SetPlayerCharacter(character);
+    Debug_RefreshPlayerAvatar();
+    Debug_DestroyMenu_Full(taskId);
+    ScriptContext_Enable();
+}
+
 static void DebugAction_Player_Character(u8 taskId)
 {
     u8 character = GetPlayerCharacter() + 1;
