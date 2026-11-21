@@ -1,16 +1,27 @@
-# Pokémon Origin Jade
-
 ![Pokémon Origin Jade](logo.png)
 
-Pokémon Origin Jade is a ROM hack for the Game Boy Advance: one journey
-through three regions, Kanto first, then Johto, then Hoenn. Kanto uses the
-FireRed/LeafGreen maps, Johto comes from Pokémon Heart & Soul 2.0.5, Hoenn
-from Emerald. It is built on pokemonHnS-expansion (Heart & Soul) and RHH's
-pokeemerald-expansion.
+# About Pokémon Origin Jade
 
-The game is available in German and English. The current beta is v0.9.1.
+![Pokémon Origin Jade collage](docs/images/collage.png)
 
-## Features
+**Pokémon Origin Jade** is a GBA ROM hack that takes you on one journey
+through three regions: Kanto first, then Johto, then Hoenn.
+Kanto uses the FireRed/LeafGreen maps, Johto comes from
+[Pokémon Heart & Soul 2.0.5](https://github.com/PokemonHnS-Development/pokehns-expansion),
+Hoenn from Emerald.
+It is built on **`pokemonHnS-expansion`** (Heart & Soul) and
+[RHH's **`pokeemerald-expansion`**](https://github.com/rh-hideout/pokeemerald-expansion),
+which in turn build on [pret's **`pokeemerald`**](https://github.com/pret/pokeemerald)
+decompilation project.
+
+> Start in Pallet Town, win three leagues, meet the legends of all three
+> regions, and play it as Red, Leaf, Gold, Kris, Brendan or May.
+
+The game is available in **German and English**. The current beta is
+**v0.9.1**; saves from older beta versions do not load in it, so start a
+new game.
+
+# Features
 
 - **Three regions in a row**, each with its own badges, league and title.
   Field moves follow the region's rules (Kanto badges, Johto permits,
@@ -40,6 +51,9 @@ The game is available in German and English. The current beta is v0.9.1.
 - **Celebi**: carry Oak's GS Ball to Prof. Elm. Once you have caught
   Raikou, Entei and Suicune, Elm sends it to Kurt, and the ball leads you
   to the shrine in Ilex Forest.
+- **Legendary battles in their own scenery**: Rayquaza on Sky Pillar,
+  Kyogre and Groudon in their caves and Ho-Oh on Tin Tower each have a
+  battle background of their own.
 - **Region rule**: Pokémon of a region show up once the story reaches it.
 - **Steven's story**: after the Johto title Steven (Troy in the German
   version) brings the Hoenn Ticket to Prof. Oak's lab.
@@ -49,16 +63,15 @@ The game is available in German and English. The current beta is v0.9.1.
   one game.
 - **Challenges** for a new game: Nuzlocke, randomizer, level caps and more.
 
-## Screenshots
+# Screenshots
 
-<table>
-  <tr>
-    <td align="center"><img src="docs/images/title.png" width="240" alt="Title screen"><br>Title screen</td>
-    <td align="center"><img src="docs/images/character_wheel.gif" width="240" alt="Character wheel turning through all six characters"><br>Choosing a character</td>
-  </tr>
-</table>
+## Choose your character
 
-### Steven visits Prof. Oak's lab
+<p align="center">
+  <img src="docs/images/character_wheel.gif" width="480" alt="Character wheel turning through Red, Leaf, Gold, Kris, Brendan and May">
+</p>
+
+## Steven visits Prof. Oak's lab
 
 <table>
   <tr>
@@ -67,32 +80,38 @@ The game is available in German and English. The current beta is v0.9.1.
   </tr>
 </table>
 
-### Legendary encounters with different characters
+## Six characters, six legends
 
 <table>
   <tr>
-    <td align="center"><img src="docs/images/legend_rayquaza_leaf_field.png" width="240" alt="Leaf facing Rayquaza on Sky Pillar"><br><img src="docs/images/legend_rayquaza_leaf_battle.png" width="240" alt="Rayquaza battle as Leaf"><br>Rayquaza on Sky Pillar, playing as Leaf</td>
     <td align="center"><img src="docs/images/legend_hooh_red_field.png" width="240" alt="Red facing Ho-Oh on the Tin Tower roof"><br><img src="docs/images/legend_hooh_red_battle.png" width="240" alt="Ho-Oh battle as Red"><br>Ho-Oh on Tin Tower, playing as Red</td>
+    <td align="center"><img src="docs/images/legend_rayquaza_leaf_field.png" width="240" alt="Leaf facing Rayquaza on Sky Pillar"><br><img src="docs/images/legend_rayquaza_leaf_battle.png" width="240" alt="Rayquaza battle as Leaf"><br>Rayquaza on Sky Pillar, playing as Leaf</td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/images/legend_lugia_may_field.png" width="240" alt="May facing Lugia in the Whirl Islands"><br><img src="docs/images/legend_lugia_may_battle.png" width="240" alt="Lugia battle as May"><br>Lugia in the Whirl Islands, playing as May</td>
     <td align="center"><img src="docs/images/legend_mewtwo_gold_field.png" width="240" alt="Gold facing Mewtwo in Cerulean Cave"><br><img src="docs/images/legend_mewtwo_gold_battle.png" width="240" alt="Mewtwo battle as Gold"><br>Mewtwo in Cerulean Cave, playing as Gold</td>
+    <td align="center"><img src="docs/images/legend_groudon_kris_field.png" width="240" alt="Groudon approaching Kris in Terra Cave"><br><img src="docs/images/legend_groudon_kris_battle.png" width="240" alt="Groudon battle as Kris"><br>Groudon in Terra Cave, playing as Kris</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/images/legend_kyogre_brendan_field.png" width="240" alt="Kyogre approaching Brendan in Marine Cave"><br><img src="docs/images/legend_kyogre_brendan_battle.png" width="240" alt="Kyogre battle as Brendan"><br>Kyogre in Marine Cave, playing as Brendan</td>
+    <td align="center"><img src="docs/images/legend_lugia_may_field.png" width="240" alt="May facing Lugia in the Whirl Islands"><br><img src="docs/images/legend_lugia_may_battle.png" width="240" alt="Lugia battle as May"><br>Lugia in the Whirl Islands, playing as May</td>
   </tr>
 </table>
 
-## Playing
+# Playing
 
 Apply the BPS patch to a clean Pokémon Emerald ROM (USA/Europe,
 SHA-1 `f3ae088181bf583e55daf962a92bb46f4f1d07b7`), for example with
 [Rom Patcher JS](https://www.marcrobledo.com/RomPatcher.js/) or Floating
 IPS. Patches are published with each beta release.
 
-The beta is still in progress: saves from older beta versions do not load
-in v0.9.1, so start a new game. Trades and link battles come from Heart &
-Soul and were not tested; linking with the official games or other ROM
-hacks is not supported.
+# Multiplayer compatibility
 
-## Building
+- Trades and link battles come from Heart & Soul and were not tested in
+  Origin Jade.
+- Origin Jade is not compatible with the official Pokémon games, Heart &
+  Soul or other **`pokeemerald-expansion`** projects.
+
+# Building
 
 Install `gcc-arm-none-eabi`, `binutils-arm-none-eabi`,
 `libnewlib-arm-none-eabi`, `libpng-dev` and Python 3, then:
@@ -104,7 +123,7 @@ Install `gcc-arm-none-eabi`, `binutils-arm-none-eabi`,
 
 Check tools and rules for changes: [`DEVELOPMENT.md`](DEVELOPMENT.md).
 
-## Credits
+# Credits
 
 Origin Jade stands on a chain of projects. If you use it, credit Origin
 Jade and keep the full chain:
