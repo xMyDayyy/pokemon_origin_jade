@@ -96,19 +96,21 @@ AzaleaTown_KurtsHouse_EventScript_ReturnFromWell::
 	release
 	end
 
+@ Elm sent Oak's GS Ball after his call (FLAG_ELM_SENT_GS_BALL_TO_KURT); Kurt examines
+@ it once, below state 8. The player does not carry it: Kurt gives it back outside.
 AzaleaTown_KurtsHouse_EventScript_KurtCheckGSBall::
-	checkitem ITEM_GS_BALL
-	goto_if_eq VAR_RESULT, TRUE, AzaleaTown_KurtsHouse_EventScript_KurtGsBall
-	return
+	goto_if_lt VAR_AZALEA_TOWN_STATE, 8, AzaleaTown_KurtsHouse_EventScript_KurtGsBallFromElm
+	goto AzaleaTown_KurtsHouse_EventScript_KurtApricorns
 
 AzaleaTown_KurtsHouse_EventScript_Kurt::
 	lock
 	faceplayer
 	goto_if_eq VAR_AZALEA_TOWN_STATE, 8, AzaleaTown_KurtsHouse_EventScript_KurtGsBall2
 	goto_if_eq VAR_AZALEA_TOWN_STATE, 9, AzaleaTown_KurtsHouse_EventScript_KurtGsBall3
+	goto_if_set FLAG_ELM_SENT_GS_BALL_TO_KURT, AzaleaTown_KurtsHouse_EventScript_KurtCheckGSBall
+AzaleaTown_KurtsHouse_EventScript_KurtApricorns::
 	msgbox KurtsHouse_Text_KurtAskYouHaveAnApricorn, MSGBOX_DEFAULT
 	closemessage
-	call_if_unset FLAG_CAUGHT_CELEBI, AzaleaTown_KurtsHouse_EventScript_KurtCheckGSBall
 AzaleaTown_KurtsHouse_EventScript_Kurt2::
 	special CreateKurtBallShop
 	waitstate
@@ -168,10 +170,10 @@ AzaleaTown_KurtsHouse_EventScript_KurtCancel::
 	release
 	end
 
-AzaleaTown_KurtsHouse_EventScript_KurtGsBall::
+AzaleaTown_KurtsHouse_EventScript_KurtGsBallFromElm::
+	msgbox KurtsHouse_Text_KurtParcelFromElm, MSGBOX_DEFAULT
 	msgbox KurtsHouse_Text_KurtWhatIsThat, MSGBOX_DEFAULT
 	closemessage
-	removeitem ITEM_GS_BALL
 	playse SE_BANG
 	applymovement LOCALID_AZALEA_TOWN_KURT, AzaleaTownKurt_Movement_Making_Ball
 	waitmovement 0
@@ -210,6 +212,23 @@ AzaleaTown_KurtsHouse_EventScript_KurtGsBall3::
 	goto AzaleaTown_KurtsHouse_EventScript_Kurt2
 	release
 	end
+KurtsHouse_Text_KurtParcelFromElm:
+#if GERMAN
+	.string "Kurt: Ah, {PLAYER}! Gut, dass du\n"
+	.string "da bist.\p"
+	.string "Prof. Lind hat mir ein Päckchen\n"
+	.string "geschickt. Ich soll mir den Ball\l"
+	.string "darin mit dir zusammen ansehen.\p"
+	.string "Dann wollen wir mal…$"
+#else
+	.string "KURT: Ah, {PLAYER}! Good, you're\n"
+	.string "here.\p"
+	.string "PROF. ELM sent me a parcel. He\n"
+	.string "asked me to look at the BALL inside\l"
+	.string "together with you.\p"
+	.string "Let's see…$"
+#endif
+
 KurtsHouse_Text_BallAnyway:
 #if GERMAN
 	.string "Wie auch immer, soll ich dir ein\n"

@@ -48,8 +48,9 @@ RuinsOfAlph_PuzzleAndRewardChambers_EventScript_OldAmber::
 	finditem ITEM_OLD_AMBER
 	end
 
-RuinsOfAlph_PuzzleAndRewardChambers_EventScript_GSBALL::
-	finditem ITEM_GS_BALL
+@ Reward of the Ho-Oh puzzle. The only GS Ball is Prof. Oak's (Elm -> Kurt -> Ilex Forest).
+RuinsOfAlph_B1F_EventScript_MasterBall::
+	finditem ITEM_MASTER_BALL
 	end
 
 RuinsOfAlph_B1F_Text_Presence:

@@ -49,6 +49,9 @@
 #define VAR_JOHTO_STARTER_MON       (OJ_VARS_JOHTO + 2)
 // Legendary flee cooldowns, 2 bits per encounter (src/legendaries_oj.c).
 #define VAR_LEGENDARY_FLEE_JOHTO    (OJ_VARS_JOHTO + 3)
+// Steps since Raikou, Entei and Suicune were all caught, up to Elm's GS Ball call
+// (ShouldDoElmGsBallCall, src/field_specials.c).
+#define VAR_ELM_GS_BALL_CALL_STEPS  (OJ_VARS_JOHTO + 4)
 
 // ---------------------------------------------------------------------
 // Hoenn (OJ_VARS_HOENN + 0 to + 23)

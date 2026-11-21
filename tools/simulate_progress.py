@@ -83,7 +83,8 @@ Model (an upper bound of what a player can reach):
     while every path pushes the player back without changing the trigger),
     map scripts (ON_TRANSITION, ON_LOAD, ON_RESUME, ON_RETURN_TO_FIELD,
     ON_DIVE_WARP always, ON_FRAME/ON_WARP_INTO tables while the value is
-    possible).
+    possible), scripts C starts on a step (STEP_SCRIPTS) once an outdoor
+    map is reached and their gate flag may be set.
 
 Limits (read the results with these in mind):
   * Upper bound: whatever the report calls unreachable cannot be reached
@@ -179,6 +180,16 @@ FALLTHROUGH_END = ("end", "return", "goto", "gotostd", ".byte", ".2byte", ".4byt
 STEP_CALLBACK_VARS = {
     "STEP_CB_SOOTOPOLIS_ICE": ("VAR_ICE_STEP_COUNT",),
 }
+
+# Scripts that TryStartStepCountScript (src/field_control_avatar.c) starts on an
+# outdoor step: label -> flag that must possibly be set first. The rest of the C
+# condition is not modelled (upper bound): Elm's GS Ball call waits for the three
+# beasts caught in C (RecordRoamerCaught, RecordLegendaryBattleOutcome), here only
+# for their release at the Burned Tower.
+STEP_SCRIPTS = {
+    "Common_EventScript_HnsElmGsBallCall": "FLAG_RELEASED_BEASTS",
+}
+OUTDOOR_MAP_TYPES = ("MAP_TYPE_TOWN", "MAP_TYPE_CITY", "MAP_TYPE_ROUTE", "MAP_TYPE_OCEAN_ROUTE")
 
 # Layouts on which trainerhill_inhoennhill returns TRUE (IsHnsTrainerHill).
 HOENN_TRAINER_HILL_LAYOUTS = {"LAYOUT_TRAINER_HILL_ENTRANCE", "LAYOUT_TRAINER_HILL_1F", "LAYOUT_TRAINER_HILL_2F",
@@ -2290,6 +2301,11 @@ class Fixpoint:
                 ctx["trigger"] = ("f", k)
             if ok:
                 out[("coord", mid, ci)] = (c["script"], ctx)
+        outdoor = sorted(mid for mid in ex.tiles
+                         if sim.mapinfo(mid) and sim.mapinfo(mid).map.map_type in OUTDOOR_MAP_TYPES)
+        for label, gate in STEP_SCRIPTS.items():
+            if outdoor and sim.state.flag(sim.flag_key(gate)) & FLAG_SET:
+                out[("step", outdoor[0], label)] = (label, {"map": outdoor[0], "kind": "step"})
         return out
 
     def object_reachable(self, info, tiles, positions, o):
@@ -2544,6 +2560,8 @@ def describe_source(sim, source):
         return "%s Metatile (%d/%d)" % (name, source[2], source[3])
     if kind in ("map", "frame"):
         return "%s %s" % (name, source[2])
+    if kind == "step":
+        return "Schrittzähler in C (%s)" % source[2]
     return str(source)
 
 

@@ -206,8 +206,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RuinsOfAlph_PuzzleAndRewardChambers_EventScript_GSBALL",
-      "flag": "FLAG_ITEM_GS_BALL"
+      "script": "RuinsOfAlph_B1F_EventScript_MasterBall",
+      "flag": "FLAG_ITEM_RUINS_OF_ALPH_B1F_MASTER_BALL"
     }
   ],
   "warp_events": [

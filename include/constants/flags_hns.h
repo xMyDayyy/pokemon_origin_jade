@@ -459,7 +459,8 @@
 #define FLAG_ITEM_DOME_FOSSIL                       (HNS_ITEM_BALL_START + 228)
 #define FLAG_ITEM_HELIX_FOSSIL                      (HNS_ITEM_BALL_START + 229)
 #define FLAG_ITEM_OLD_AMBER                         (HNS_ITEM_BALL_START + 230)
-#define FLAG_ITEM_GS_BALL                           (HNS_ITEM_BALL_START + 231)
+// Origin Jade: Master Ball (was the GS Ball; the only GS Ball is Oak's).
+#define FLAG_ITEM_RUINS_OF_ALPH_B1F_MASTER_BALL     (HNS_ITEM_BALL_START + 231)
 #define FLAG_ITEM_LUCKY_PUNCH                       (HNS_ITEM_BALL_START + 232)
 #define FLAG_HIDDEN_ITEM_MACHINE_PART               (HNS_ITEM_BALL_START + 233)
 

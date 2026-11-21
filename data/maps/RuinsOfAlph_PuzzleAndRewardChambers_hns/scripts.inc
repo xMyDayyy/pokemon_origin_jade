@@ -251,7 +251,7 @@ RuinsOfAlph_PuzzleAndRewardChambers_MapScript_HoohSuccess::
 	playse SE_CLICK
 	special DrawWholeMapView
 	delay 30
-	clearflag FLAG_ITEM_GS_BALL
+	clearflag FLAG_ITEM_RUINS_OF_ALPH_B1F_MASTER_BALL
 	applymovement OBJ_EVENT_ID_PLAYER, RuinsOfAlph_PuzzleAndRewardChambers_Movement_Fall
 	delay 30
 	special SpawnCameraObject

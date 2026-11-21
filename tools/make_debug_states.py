@@ -374,6 +374,7 @@ C_WRITERS = {
     "VAR_LEGENDARY_FLEE_KANTO": "RecordLegendaryBattleOutcome, UpdateLegendaryFleeCooldowns (src/legendaries_oj.c)",
     "FLAG_JOHTO_UNLOCKED": "TryUnlockJohtoOnMapLoad (src/region_rule_oj.c)",
     "FLAG_DEFEATED_CARTER_REMATCH": "CB2_EndRematchBattle (src/battle_setup.c)",
+    "FLAG_ELM_SENT_GS_BALL_TO_KURT": "Common_EventScript_HnsElmGsBallCall, started by ShouldDoElmGsBallCall (src/field_specials.c)",
 }
 
 # Flags reset on every day change, never part of the state.
@@ -667,6 +668,7 @@ MANUAL_FLAGS_B = {
     "FLAG_HIDE_SSAQUA_ROOM_SSE_GRANDDAUGHTER": 0, "FLAG_HIDE_SSAQUA_SAILOR": 0,
     "FLAG_SSAQUA_METAL_COAT_PENDING": 0,               # Metal Coat handed over at the reunion
     "FLAG_HIDE_TOHJO_GIOVANNI": 1,                     # Celebi's scene at Tohjo Falls
+    "FLAG_ELM_SENT_GS_BALL_TO_KURT": 1,                # Elm's GS Ball call after the three beasts came
 }
 
 # State B: vars, as MANUAL_VARS.

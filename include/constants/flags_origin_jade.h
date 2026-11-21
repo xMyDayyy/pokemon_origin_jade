@@ -141,6 +141,9 @@
 #define FLAG_HIDDEN_ITEM_ICE_PATH_B3F_SNOWBALL       (OJ_FLAGS_JOHTO + 34)
 // The S.S. Aqua grandpa still owes the Metal Coat: the bag was full at the reunion.
 #define FLAG_SSAQUA_METAL_COAT_PENDING               (OJ_FLAGS_JOHTO + 35)
+// Elm's call after the third legendary beast came: he sent Oak's GS Ball to Kurt
+// (Kurt examines it at VAR_AZALEA_TOWN_STATE below 8). Steps in VAR_ELM_GS_BALL_CALL_STEPS.
+#define FLAG_ELM_SENT_GS_BALL_TO_KURT                (OJ_FLAGS_JOHTO + 36)
 
 // ---------------------------------------------------------------------
 // Hoenn (OJ_FLAGS_HOENN + 0 to + 95)

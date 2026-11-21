@@ -1241,6 +1241,55 @@ Common_EventScript_HnsMomCall::
 	releaseall
 	end
 
+@ Elm's call 200 steps after the third legendary beast, started by ShouldDoElmGsBallCall.
+@ He sends Oak's GS Ball (taken in his lab) to Kurt; Kurt gives it back in Azalea Town.
+Common_EventScript_HnsElmGsBallCall::
+	lockall
+	setflag FLAG_ELM_SENT_GS_BALL_TO_KURT
+	setspeaker Common_Text_HnsElmName
+	pokenavcall Common_Text_HnsElmGsBallCall
+	waitmessage
+	delay 30
+	closemessage
+	delay 30
+	releaseall
+	end
+
+Common_Text_HnsElmName:
+#if GERMAN
+	.string "Lind$"
+#else
+	.string "PROF.ELM$"
+#endif
+
+Common_Text_HnsElmGsBallCall:
+#if GERMAN
+	.string "Hallo, {PLAYER}?\p"
+	.string "Ich habe gehört, dass du Raikou,\n"
+	.string "Entei und Suicune gefangen hast.\l"
+	.string "Unglaublich!\p"
+	.string "Ich muss dir etwas gestehen: Aus\n"
+	.string "Prof. Eichs GS-Ball werde ich\l"
+	.string "einfach nicht schlau.\p"
+	.string "Aber ich habe einen Bekannten in\n"
+	.string "Azalea City, der sich mit Pokébällen\l"
+	.string "viel besser auskennt: Kurt.\p"
+	.string "Ich habe ihm den Ball geschickt.\n"
+	.string "Besuch ihn doch, er erwartet dich!$"
+#else
+	.string "Hello, {PLAYER}?\p"
+	.string "I heard you caught RAIKOU, ENTEI\n"
+	.string "and SUICUNE. Incredible!\p"
+	.string "I have to admit something: I still\n"
+	.string "can't figure out PROF. OAK's\l"
+	.string "GS BALL.\p"
+	.string "But I know someone in AZALEA TOWN\n"
+	.string "who knows POKé BALLS far better\l"
+	.string "than I do: KURT.\p"
+	.string "I've sent the BALL to him.\n"
+	.string "Go and see him, he's expecting you!$"
+#endif
+
 Common_Text_HnsMomName:
 #if GERMAN
 	.string "Mama$"

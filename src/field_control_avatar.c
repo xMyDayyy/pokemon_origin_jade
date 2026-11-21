@@ -874,6 +874,11 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
             ScriptContext_SetupScript(Common_EventScript_HnsMomCall);
             return TRUE;
         }
+        if (ShouldDoElmGsBallCall() == TRUE)
+        {
+            ScriptContext_SetupScript(Common_EventScript_HnsElmGsBallCall);
+            return TRUE;
+        }
 #endif
         if (ShouldDoRivalRayquazaCall() == TRUE)
         {

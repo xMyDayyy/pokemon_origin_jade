@@ -631,6 +631,45 @@ bool32 ShouldDoMomCall(void)
     return TRUE;
 }
 
+// Steps after the third legendary beast is caught until Elm's GS Ball call.
+#define ELM_GS_BALL_CALL_STEPS 200
+
+// Elm's call that he sent Oak's GS Ball to Kurt (Common_EventScript_HnsElmGsBallCall).
+// Every step counts once Raikou, Entei and Suicune are all caught, in any order and
+// however they were caught; the call itself waits for an outdoor step. Never after
+// the call or once Kurt has examined the ball.
+bool32 ShouldDoElmGsBallCall(void)
+{
+#if IS_HNS
+    u16 *steps;
+
+    if (FlagGet(FLAG_ELM_SENT_GS_BALL_TO_KURT))
+        return FALSE;
+    if (!FlagGet(FLAG_CAUGHT_RAIKOU) || !FlagGet(FLAG_CAUGHT_ENTEI) || !FlagGet(FLAG_CAUGHT_SUICUNE))
+        return FALSE;
+    // Elm has Oak's ball (handed over in his lab), Kurt's scene has not started.
+    if (VarGet(VAR_JOHTO_HANDOVER) < 3 || VarGet(VAR_AZALEA_TOWN_STATE) >= 8)
+        return FALSE;
+
+    steps = GetVarPointer(VAR_ELM_GS_BALL_CALL_STEPS);
+    if (*steps < ELM_GS_BALL_CALL_STEPS && ++(*steps) < ELM_GS_BALL_CALL_STEPS)
+        return FALSE;
+
+    switch (gMapHeader.mapType)
+    {
+    case MAP_TYPE_TOWN:
+    case MAP_TYPE_CITY:
+    case MAP_TYPE_ROUTE:
+    case MAP_TYPE_OCEAN_ROUTE:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+#else
+    return FALSE;
+#endif
+}
+
 bool32 ShouldDoRivalRayquazaCall(void)
 {
     if (HOENN_CALL_WAITS())
