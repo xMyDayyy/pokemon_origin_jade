@@ -54,7 +54,7 @@ the current beta is **v0.9.1**.
   name to go back to the wheel.
 - **Your Hoenn rival** is May, or Brendan if you play as May.
 - **Fixed levels per area**: trainers and wild Pokémon have set levels
-  that rise from Kanto through Johto to Hoenn; they no longer follow your
+  that rise from Kanto through Johto to Hoenn. They no longer follow your
   team. Experience is tuned per region.
 - **Kanto with the FireRed/LeafGreen story** on the modern-looking maps
   of Heart & Soul, with day and night encounters, trainers who register
@@ -76,7 +76,7 @@ the current beta is **v0.9.1**.
   Kyogre and Groudon in their caves and Ho-Oh on Tin Tower each have a
   battle background of their own.
 - **One map for all regions**: the PokéGear map shows Kanto and Johto
-  together; switch to Hoenn and back by scrolling up or down or pressing
+  together. Switch to Hoenn and back by scrolling up or down or pressing
   Select once you have been there.
 - **Region rule**: Pokémon of a region show up once the story reaches it.
 - **Steven's story**: after the Johto title Steven (Troy in the German
@@ -100,7 +100,7 @@ IPS. Patches are published with each beta release.
 
 Saves from older beta versions do not load in v0.9.1, so start a new game.
 Trades and link battles come from Heart & Soul and were not tested in
-Origin Jade; linking with the official games or other ROM hacks is not
+Origin Jade. Linking with the official games or other ROM hacks is not
 supported.
 
 # Building
@@ -117,7 +117,7 @@ Check tools and rules for changes: [`DEVELOPMENT.md`](DEVELOPMENT.md).
 
 # Credits
 
-- **PekingEnte** – graphics, including the title screen artwork, and the
+- **PekingEnte**: graphics, including the title screen artwork, and the
   documentation website (coming with the full release).
 
 Origin Jade stands on a chain of projects. If you use it, credit Origin
