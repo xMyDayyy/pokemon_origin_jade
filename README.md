@@ -1,25 +1,45 @@
-![Pokémon Origin Jade](logo.png)
+<p align="center">
+  <img src="logo.png" alt="Pokémon Origin Jade">
+</p>
 
-# About Pokémon Origin Jade
+<p align="center">
+  <b>Three regions. One journey. Six heroes to choose from.</b><br>
+  Start in Pallet Town, win the leagues of Kanto, Johto and Hoenn,<br>
+  and meet the legends of all three regions.
+</p>
 
-![Pokémon Origin Jade collage](docs/images/collage.png)
+<p align="center">
+  <img src="docs/images/character_wheel.gif" width="400" alt="Character wheel turning through Red, Leaf, Gold, Kris, Brendan and May">
+  <img src="docs/images/map_switch.gif" width="400" alt="PokéGear map scrolling over Kanto and Johto and switching to Hoenn">
+</p>
+<p align="center">
+  <i>Pick your hero on the character wheel · one PokéGear map for Kanto, Johto and Hoenn</i>
+</p>
+
+<table align="center">
+  <tr>
+    <td align="center"><img src="docs/images/legend_hooh_red_field.png" width="220" alt="Red facing Ho-Oh on the Tin Tower roof"><br><img src="docs/images/legend_hooh_red_battle.png" width="220" alt="Ho-Oh battle as Red"><br>Ho-Oh, playing as Red</td>
+    <td align="center"><img src="docs/images/legend_rayquaza_leaf_field.png" width="220" alt="Leaf facing Rayquaza on Sky Pillar"><br><img src="docs/images/legend_rayquaza_leaf_battle.png" width="220" alt="Rayquaza battle as Leaf"><br>Rayquaza, playing as Leaf</td>
+    <td align="center"><img src="docs/images/legend_mewtwo_gold_field.png" width="220" alt="Gold facing Mewtwo in Cerulean Cave"><br><img src="docs/images/legend_mewtwo_gold_battle.png" width="220" alt="Mewtwo battle as Gold"><br>Mewtwo, playing as Gold</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/images/legend_groudon_kris_field.png" width="220" alt="Groudon approaching Kris in Terra Cave"><br><img src="docs/images/legend_groudon_kris_battle.png" width="220" alt="Groudon battle as Kris"><br>Groudon, playing as Kris</td>
+    <td align="center"><img src="docs/images/legend_kyogre_brendan_field.png" width="220" alt="Kyogre approaching Brendan in Marine Cave"><br><img src="docs/images/legend_kyogre_brendan_battle.png" width="220" alt="Kyogre battle as Brendan"><br>Kyogre, playing as Brendan</td>
+    <td align="center"><img src="docs/images/legend_lugia_may_field.png" width="220" alt="May facing Lugia in the Whirl Islands"><br><img src="docs/images/legend_lugia_may_battle.png" width="220" alt="Lugia battle as May"><br>Lugia, playing as May</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/images/troy_lab_1.png" width="220" alt="Prof. Oak introduces Steven in his lab"><br>Steven visits Prof. Oak's lab</td>
+    <td align="center"><img src="docs/images/troy_lab_3.png" width="220" alt="Obtained the Hoenn Ticket"><br>...and brings the Hoenn Ticket</td>
+    <td align="center"><img src="docs/images/collage.png" width="220" alt="Collage of Origin Jade screenshots"><br>Six heroes, six legends</td>
+  </tr>
+</table>
+
+# About
 
 **Pokémon Origin Jade** is a GBA ROM hack that takes you on one journey
-through three regions: Kanto first, then Johto, then Hoenn.
-Kanto uses the FireRed/LeafGreen maps, Johto comes from
-[Pokémon Heart & Soul 2.0.5](https://github.com/PokemonHnS-Development/pokehns-expansion),
-Hoenn from Emerald.
-It is built on **`pokemonHnS-expansion`** (Heart & Soul) and
-[RHH's **`pokeemerald-expansion`**](https://github.com/rh-hideout/pokeemerald-expansion),
-which in turn build on [pret's **`pokeemerald`**](https://github.com/pret/pokeemerald)
-decompilation project.
-
-> Start in Pallet Town, win three leagues, meet the legends of all three
-> regions, and play it as Red, Leaf, Gold, Kris, Brendan or May.
-
-The game is available in **German and English**. The current beta is
-**v0.9.1**; saves from older beta versions do not load in it, so start a
-new game.
+through three regions: **Kanto** on the FireRed/LeafGreen maps, **Johto**
+from Pokémon Heart & Soul, and **Hoenn** from Emerald. It is available in
+**German and English**; the current beta is **v0.9.1**.
 
 # Features
 
@@ -54,6 +74,8 @@ new game.
 - **Legendary battles in their own scenery**: Rayquaza on Sky Pillar,
   Kyogre and Groudon in their caves and Ho-Oh on Tin Tower each have a
   battle background of their own.
+- **One map for all regions**: the PokéGear map shows Kanto and Johto
+  together and switches to Hoenn once you have been there.
 - **Region rule**: Pokémon of a region show up once the story reaches it.
 - **Steven's story**: after the Johto title Steven (Troy in the German
   version) brings the Hoenn Ticket to Prof. Oak's lab.
@@ -63,40 +85,6 @@ new game.
   one game.
 - **Challenges** for a new game: Nuzlocke, randomizer, level caps and more.
 
-# Screenshots
-
-## Choose your character
-
-<p align="center">
-  <img src="docs/images/character_wheel.gif" width="480" alt="Character wheel turning through Red, Leaf, Gold, Kris, Brendan and May">
-</p>
-
-## Steven visits Prof. Oak's lab
-
-<table>
-  <tr>
-    <td align="center"><img src="docs/images/troy_lab_1.png" width="240" alt="Prof. Oak introduces Steven in his lab"><br>Prof. Oak introduces Steven</td>
-    <td align="center"><img src="docs/images/troy_lab_3.png" width="240" alt="Obtained the Hoenn Ticket"><br>Steven hands over the Hoenn Ticket</td>
-  </tr>
-</table>
-
-## Six characters, six legends
-
-<table>
-  <tr>
-    <td align="center"><img src="docs/images/legend_hooh_red_field.png" width="240" alt="Red facing Ho-Oh on the Tin Tower roof"><br><img src="docs/images/legend_hooh_red_battle.png" width="240" alt="Ho-Oh battle as Red"><br>Ho-Oh on Tin Tower, playing as Red</td>
-    <td align="center"><img src="docs/images/legend_rayquaza_leaf_field.png" width="240" alt="Leaf facing Rayquaza on Sky Pillar"><br><img src="docs/images/legend_rayquaza_leaf_battle.png" width="240" alt="Rayquaza battle as Leaf"><br>Rayquaza on Sky Pillar, playing as Leaf</td>
-  </tr>
-  <tr>
-    <td align="center"><img src="docs/images/legend_mewtwo_gold_field.png" width="240" alt="Gold facing Mewtwo in Cerulean Cave"><br><img src="docs/images/legend_mewtwo_gold_battle.png" width="240" alt="Mewtwo battle as Gold"><br>Mewtwo in Cerulean Cave, playing as Gold</td>
-    <td align="center"><img src="docs/images/legend_groudon_kris_field.png" width="240" alt="Groudon approaching Kris in Terra Cave"><br><img src="docs/images/legend_groudon_kris_battle.png" width="240" alt="Groudon battle as Kris"><br>Groudon in Terra Cave, playing as Kris</td>
-  </tr>
-  <tr>
-    <td align="center"><img src="docs/images/legend_kyogre_brendan_field.png" width="240" alt="Kyogre approaching Brendan in Marine Cave"><br><img src="docs/images/legend_kyogre_brendan_battle.png" width="240" alt="Kyogre battle as Brendan"><br>Kyogre in Marine Cave, playing as Brendan</td>
-    <td align="center"><img src="docs/images/legend_lugia_may_field.png" width="240" alt="May facing Lugia in the Whirl Islands"><br><img src="docs/images/legend_lugia_may_battle.png" width="240" alt="Lugia battle as May"><br>Lugia in the Whirl Islands, playing as May</td>
-  </tr>
-</table>
-
 # Playing
 
 Apply the BPS patch to a clean Pokémon Emerald ROM (USA/Europe,
@@ -104,12 +92,10 @@ SHA-1 `f3ae088181bf583e55daf962a92bb46f4f1d07b7`), for example with
 [Rom Patcher JS](https://www.marcrobledo.com/RomPatcher.js/) or Floating
 IPS. Patches are published with each beta release.
 
-# Multiplayer compatibility
-
-- Trades and link battles come from Heart & Soul and were not tested in
-  Origin Jade.
-- Origin Jade is not compatible with the official Pokémon games, Heart &
-  Soul or other **`pokeemerald-expansion`** projects.
+Saves from older beta versions do not load in v0.9.1, so start a new game.
+Trades and link battles come from Heart & Soul and were not tested in
+Origin Jade; linking with the official games or other ROM hacks is not
+supported.
 
 # Building
 
