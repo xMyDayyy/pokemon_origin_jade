@@ -13,7 +13,7 @@
   <img src="docs/images/map_switch.gif" width="400" alt="PokéGear map switching from Kanto and Johto down to Hoenn and back">
 </p>
 <p align="center">
-  <i>Pick your hero on the character wheel · one PokéGear map for Kanto, Johto and Hoenn</i>
+  <i>Pick your hero on the character wheel · switch maps by scrolling up or down or pressing Select</i>
 </p>
 
 <table align="center">
@@ -76,7 +76,8 @@ the current beta is **v0.9.1**.
   Kyogre and Groudon in their caves and Ho-Oh on Tin Tower each have a
   battle background of their own.
 - **One map for all regions**: the PokéGear map shows Kanto and Johto
-  together and switches to Hoenn once you have been there.
+  together; switch to Hoenn and back by scrolling up or down or pressing
+  Select once you have been there.
 - **Region rule**: Pokémon of a region show up once the story reaches it.
 - **Steven's story**: after the Johto title Steven (Troy in the German
   version) brings the Hoenn Ticket to Prof. Oak's lab.
