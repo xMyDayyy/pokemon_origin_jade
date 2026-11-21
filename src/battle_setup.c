@@ -990,6 +990,10 @@ static const struct {
     // CAVE_WATER (brown cave, pond bg even on land)
     {MAP_EMBEDDED_TOWER_HNS,                     BATTLE_ENVIRONMENT_CAVE},
     // RAYQUAZA (sky bg)
+    // Origin Jade: Emerald's legendary backgrounds for the Hoenn weather trio
+    {MAP_SKY_PILLAR_TOP,                         BATTLE_ENVIRONMENT_RAYQUAZA},
+    {MAP_MARINE_CAVE_END,                        BATTLE_ENVIRONMENT_KYOGRE},
+    {MAP_TERRA_CAVE_END,                         BATTLE_ENVIRONMENT_GROUDON},
     {MAP_TIN_TOWER_ROOF_DAY_HNS,                 BATTLE_ENVIRONMENT_RAYQUAZA},
     {MAP_TIN_TOWER_ROOF_NIGHT_HNS,               BATTLE_ENVIRONMENT_RAYQUAZA},
     // GRAY_CAVE
