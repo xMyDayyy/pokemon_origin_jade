@@ -113,6 +113,9 @@ Check tools and rules for changes: [`DEVELOPMENT.md`](DEVELOPMENT.md).
 
 # Credits
 
+- **PekingEnte** – graphics, including the title screen artwork, and the
+  documentation website (coming with the full release).
+
 Origin Jade stands on a chain of projects. If you use it, credit Origin
 Jade and keep the full chain:
 
