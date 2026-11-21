@@ -10,7 +10,7 @@
 
 <p align="center">
   <img src="docs/images/character_wheel.gif" width="400" alt="Character wheel turning through Red, Leaf, Gold, Kris, Brendan and May">
-  <img src="docs/images/map_switch.gif" width="400" alt="PokéGear map scrolling over Kanto and Johto and switching to Hoenn">
+  <img src="docs/images/map_switch.gif" width="400" alt="PokéGear map switching from Kanto and Johto down to Hoenn and back">
 </p>
 <p align="center">
   <i>Pick your hero on the character wheel · one PokéGear map for Kanto, Johto and Hoenn</i>
@@ -18,14 +18,14 @@
 
 <table align="center">
   <tr>
-    <td align="center"><img src="docs/images/legend_hooh_red_field.png" width="220" alt="Red facing Ho-Oh on the Tin Tower roof"><br><img src="docs/images/legend_hooh_red_battle.png" width="220" alt="Ho-Oh battle as Red"><br>Ho-Oh, playing as Red</td>
-    <td align="center"><img src="docs/images/legend_rayquaza_leaf_field.png" width="220" alt="Leaf facing Rayquaza on Sky Pillar"><br><img src="docs/images/legend_rayquaza_leaf_battle.png" width="220" alt="Rayquaza battle as Leaf"><br>Rayquaza, playing as Leaf</td>
     <td align="center"><img src="docs/images/legend_mewtwo_gold_field.png" width="220" alt="Gold facing Mewtwo in Cerulean Cave"><br><img src="docs/images/legend_mewtwo_gold_battle.png" width="220" alt="Mewtwo battle as Gold"><br>Mewtwo, playing as Gold</td>
+    <td align="center"><img src="docs/images/legend_hooh_red_field.png" width="220" alt="Red facing Ho-Oh on the Tin Tower roof"><br><img src="docs/images/legend_hooh_red_battle.png" width="220" alt="Ho-Oh battle as Red"><br>Ho-Oh, playing as Red</td>
+    <td align="center"><img src="docs/images/legend_lugia_may_field.png" width="220" alt="May facing Lugia in the Whirl Islands"><br><img src="docs/images/legend_lugia_may_battle.png" width="220" alt="Lugia battle as May"><br>Lugia, playing as May</td>
   </tr>
   <tr>
     <td align="center"><img src="docs/images/legend_groudon_kris_field.png" width="220" alt="Groudon approaching Kris in Terra Cave"><br><img src="docs/images/legend_groudon_kris_battle.png" width="220" alt="Groudon battle as Kris"><br>Groudon, playing as Kris</td>
     <td align="center"><img src="docs/images/legend_kyogre_brendan_field.png" width="220" alt="Kyogre approaching Brendan in Marine Cave"><br><img src="docs/images/legend_kyogre_brendan_battle.png" width="220" alt="Kyogre battle as Brendan"><br>Kyogre, playing as Brendan</td>
-    <td align="center"><img src="docs/images/legend_lugia_may_field.png" width="220" alt="May facing Lugia in the Whirl Islands"><br><img src="docs/images/legend_lugia_may_battle.png" width="220" alt="Lugia battle as May"><br>Lugia, playing as May</td>
+    <td align="center"><img src="docs/images/legend_rayquaza_leaf_field.png" width="220" alt="Leaf facing Rayquaza on Sky Pillar"><br><img src="docs/images/legend_rayquaza_leaf_battle.png" width="220" alt="Rayquaza battle as Leaf"><br>Rayquaza, playing as Leaf</td>
   </tr>
   <tr>
     <td align="center"><img src="docs/images/gsball_oak.png" width="220" alt="Prof. Oak gives the GS Ball"><br>Prof. Oak's GS Ball: off to Johto</td>
