@@ -831,12 +831,21 @@ class CFunctions:
     specials and callnatives (FlagSet/FlagClear/VarSet and gSpecialVar_Result)."""
 
     def __init__(self):
+        # name -> body/place of the definition a call from another file reaches
+        # (the first non-static one in sorted file order, else the first one).
         self.bodies = {}
         self.where = {}
+        # (file, name) -> body: every definition, so that a call resolves to the
+        # static function of the caller's own file first (two files may each
+        # have a static function of the same name).
+        self.local = {}
+        self.file_of = {}
         self._effects = {}
-        func = re.compile(r"^[A-Za-z_][\w \t\*]*?\b([A-Za-z_]\w*)\s*\(([^;{}]*)\)\s*\n?\{", re.M)
-        for root, _, files in os.walk(repo_path("src")):
-            for f in files:
+        func = re.compile(r"^([A-Za-z_][\w \t\*]*?)\b([A-Za-z_]\w*)\s*\(([^;{}]*)\)\s*\n?\{", re.M)
+        found = []
+        for root, dirs, files in os.walk(repo_path("src")):
+            dirs.sort()
+            for f in sorted(files):
                 if not f.endswith(".c"):
                     continue
                 p = os.path.join(root, f)
@@ -844,7 +853,7 @@ class CFunctions:
                     continue
                 text = open(p, encoding="utf-8", errors="replace").read()
                 for m in func.finditer(text):
-                    name = m.group(1)
+                    name = m.group(2)
                     if name in ("if", "while", "for", "switch", "return"):
                         continue
                     start = m.end()
@@ -857,11 +866,18 @@ class CFunctions:
                         elif c == "}":
                             depth -= 1
                         j += 1
-                    if name not in self.bodies:
-                        self.bodies[name] = text[start:j]
-                        self.where[name] = "%s:%d" % (rel(p), text.count("\n", 0, m.start()) + 1)
+                    is_static = re.search(r"\bstatic\b", m.group(1)) is not None
+                    where = "%s:%d" % (rel(p), text.count("\n", 0, m.start()) + 1)
+                    self.local.setdefault((rel(p), name), text[start:j])
+                    found.append((is_static, name, text[start:j], where, rel(p)))
+        for want_static in (False, True):
+            for is_static, name, body, where, path in found:
+                if is_static == want_static and name not in self.bodies:
+                    self.bodies[name] = body
+                    self.where[name] = where
+                    self.file_of[name] = path
 
-    def effects(self, name, depth=2, seen=None):
+    def effects(self, name, depth=2, seen=None, caller_file=None):
         """{'set': flags, 'clear': flags, 'vars': vars, 'result': bool}.
         Top-level results are cached; treat them as read-only."""
         if seen is None:
@@ -869,21 +885,22 @@ class CFunctions:
             if key not in self._effects:
                 self._effects[key] = self.effects(name, depth, set())
             return self._effects[key]
+        path = caller_file if (caller_file, name) in self.local else self.file_of.get(name)
         out = {"set": set(), "clear": set(), "vars": set(), "result": False, "found": name in self.bodies}
-        if name in seen or name not in self.bodies:
+        if (path, name) in seen or (path, name) not in self.local:
             return out
-        seen.add(name)
-        body = re.sub(r"//[^\n]*|/\*.*?\*/", "", self.bodies[name], flags=re.S)
+        seen.add((path, name))
+        body = re.sub(r"//[^\n]*|/\*.*?\*/", "", self.local[(path, name)], flags=re.S)
         out["set"] |= set(re.findall(r"\bFlagSet\(\s*(FLAG_\w+)\s*\)", body))
         out["clear"] |= set(re.findall(r"\bFlagClear\(\s*(FLAG_\w+)\s*\)", body))
         out["vars"] |= set(re.findall(r"\bVarSet\(\s*(VAR_\w+)\s*,", body))
         if re.search(r"gSpecialVar_Result\s*=[^=]", body):
             out["result"] = True
         if depth > 0:
-            for callee in set(re.findall(r"\b([A-Z]\w+)\s*\(", body)):
+            for callee in sorted(set(re.findall(r"\b([A-Z]\w+)\s*\(", body))):
                 if callee in ("FlagSet", "FlagClear", "VarSet", "FlagGet", "VarGet"):
                     continue
-                sub = self.effects(callee, depth - 1, seen)
+                sub = self.effects(callee, depth - 1, seen, path)
                 out["set"] |= sub["set"]
                 out["clear"] |= sub["clear"]
                 out["vars"] |= sub["vars"]

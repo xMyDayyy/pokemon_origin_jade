@@ -340,15 +340,8 @@ UNTOUCHED = {
     "VAR_SECRET_BASE_INITIALIZED": "bedroom decorations, set on every visit of the player's room in Pallet Town "
                                    "and of New Bark's house",
     # C writes of specials the scripts call.
-    "FLAG_HIDE_FANCLUB_BOY": "Emerald's fan club (Lilycove), not the jade build's Script_UpdateTrainerFanClubGameClear",
-    "FLAG_HIDE_FANCLUB_LADY": "Emerald's fan club (Lilycove), not the jade build's Script_UpdateTrainerFanClubGameClear",
-    "FLAG_HIDE_FANCLUB_LITTLE_BOY": "Emerald's fan club (Lilycove), not the jade build's "
-                                    "Script_UpdateTrainerFanClubGameClear",
-    "FLAG_HIDE_FANCLUB_OLD_LADY": "Emerald's fan club (Lilycove), not the jade build's Script_UpdateTrainerFanClubGameClear",
-    "FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER": "Emerald's fan club (Lilycove), not the jade build's "
-                                               "Script_UpdateTrainerFanClubGameClear",
-    "VAR_LILYCOVE_FAN_CLUB_STATE": "Emerald's fan club (Lilycove), not the jade build's "
-                                   "Script_UpdateTrainerFanClubGameClear",
+    "VAR_SAFFRON_FANCLUB_LOSE_FAN_TIMER": "play time hour of the Saffron fan club, set when the Kanto Hall of Fame "
+                                          "starts the fan club; the state does not run that special",
     "VAR_RUSTURF_TUNNEL_STATE": "Emerald's Rusturf Tunnel part of the same special",
     "FLAG_HIDE_MAP_NAME_POPUP": "credits scene state",
     "FLAG_SHOWN_BOX_WAS_FULL_MESSAGE": "message state of a full PC box",
@@ -367,10 +360,6 @@ UNTOUCHED = {
 
 # Writers in C the effect scan of the specials does not see: name -> function.
 C_WRITERS = {
-    "FLAG_HIDE_SAFFRON_FAN_CLUB_BLACKBELT": "Script_UpdateTrainerFanClubGameClear (src/trainer_fan_club.c)",
-    "FLAG_HIDE_SAFFRON_FAN_CLUB_ROCKER": "Script_UpdateTrainerFanClubGameClear (src/trainer_fan_club.c)",
-    "FLAG_HIDE_SAFFRON_FAN_CLUB_WOMAN": "Script_UpdateTrainerFanClubGameClear (src/trainer_fan_club.c)",
-    "FLAG_HIDE_SAFFRON_FAN_CLUB_BEAUTY": "Script_UpdateTrainerFanClubGameClear (src/trainer_fan_club.c)",
     "VAR_LEGENDARY_FLEE_KANTO": "RecordLegendaryBattleOutcome, UpdateLegendaryFleeCooldowns (src/legendaries_oj.c)",
     "FLAG_JOHTO_UNLOCKED": "TryUnlockJohtoOnMapLoad (src/region_rule_oj.c)",
     "FLAG_DEFEATED_CARTER_REMATCH": "CB2_EndRematchBattle (src/battle_setup.c)",
@@ -1067,7 +1056,7 @@ class Maps:
     def __init__(self):
         layouts = {l["id"]: l for l in load_json("data/layouts/layouts.json")["layouts"] if l}
         self.all = {}
-        for path in glob.glob(os.path.join(REPO, "data/maps/*/map.json")):
+        for path in sorted(glob.glob(os.path.join(REPO, "data/maps/*/map.json"))):
             with open(path, encoding="utf-8") as f:
                 d = json.load(f)
             d["_dir"] = os.path.basename(os.path.dirname(path))
@@ -2685,16 +2674,26 @@ def c_functions():
 
 
 def c_tokens(funcs, name, depth=2, seen=None):
-    seen = seen if seen is not None else set()
-    if name in seen or name not in funcs:
+    """FLAG_/VAR_ tokens of a C function and of everything it calls up to `depth`
+    calls deep. Breadth-first, so the result does not depend on the order in
+    which callees are visited (a depth-first walk with a shared `seen` set gave
+    different results from run to run)."""
+    if name not in funcs:
         return set()
-    seen.add(name)
-    body = funcs[name]
-    toks = set(re.findall(r"\b((?:FLAG|VAR)_[A-Z0-9_]+)\b", body))
-    if depth:
-        for callee in set(re.findall(r"\b([A-Z]\w+)\s*\(", body)):
-            if callee != name:
-                toks |= c_tokens(funcs, callee, depth - 1, seen)
+    toks = set()
+    visited = {name}
+    frontier = [name]
+    for level in range(depth + 1):
+        nxt = set()
+        for f in frontier:
+            body = funcs[f]
+            toks |= set(re.findall(r"\b((?:FLAG|VAR)_[A-Z0-9_]+)\b", body))
+            if level < depth:
+                for callee in re.findall(r"\b([A-Z]\w+)\s*\(", body):
+                    if callee in funcs and callee not in visited:
+                        nxt.add(callee)
+        visited |= nxt
+        frontier = sorted(nxt)
     return toks
 
 
@@ -2747,7 +2746,7 @@ def overlap(run):
                 for t in tok.findall(a):
                     any_refs[t].add(label["file"])
     c_refs = collections.defaultdict(set)
-    for path in glob.glob(os.path.join(REPO, "src/**/*.[ch]"), recursive=True):
+    for path in sorted(glob.glob(os.path.join(REPO, "src/**/*.[ch]"), recursive=True)):
         rel = os.path.relpath(path, REPO)
         if rel in ("src/debug.c", HEADER, HEADER_B):
             continue
