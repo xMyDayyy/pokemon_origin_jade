@@ -3217,6 +3217,46 @@ static void RemoveObjectEventIfOutsideView(struct ObjectEvent *objectEvent)
     RemoveObjectEvent(objectEvent);
 }
 
+// Overworld mons that only show by day or by night: after a battle or a menu,
+// drop the one whose time has passed and spawn the one whose time has come,
+// so the player can see on return whether the mon is still there.
+static bool32 IsDayNightPokemonFlag(u16 flagId)
+{
+    return IS_HNS && (flagId == FLAG_DAY_POKEMON || flagId == FLAG_NIGHT_POKEMON);
+}
+
+void RefreshDayNightObjectEvents(void)
+{
+    u32 i;
+
+    if (!IS_HNS || gMapHeader.events == NULL || CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE || InTrainerHill())
+        return;
+
+    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
+    {
+        struct ObjectEvent *objectEvent = &gObjectEvents[i];
+        if (objectEvent->active && !objectEvent->isPlayer
+         && IsDayNightPokemonFlag(GetObjectEventFlagIdByObjectEventId(i)) && FlagGet(GetObjectEventFlagIdByObjectEventId(i)))
+            RemoveObjectEvent(objectEvent);
+    }
+
+    s16 left = gSaveBlock1Ptr->pos.x - 2;
+    s16 right = gSaveBlock1Ptr->pos.x + MAP_OFFSET_W + 2;
+    s16 top = gSaveBlock1Ptr->pos.y;
+    s16 bottom = gSaveBlock1Ptr->pos.y + MAP_OFFSET_H + 2;
+
+    for (i = 0; i < gMapHeader.events->objectEventCount; i++)
+    {
+        struct ObjectEventTemplate *template = &gSaveBlock1Ptr->objectEventTemplates[i];
+        s16 npcX = template->x + MAP_OFFSET;
+        s16 npcY = template->y + MAP_OFFSET;
+
+        if (IsDayNightPokemonFlag(template->flagId) && !FlagGet(template->flagId)
+         && top <= npcY && bottom >= npcY && left <= npcX && right >= npcX)
+            TrySpawnObjectEventTemplate(template, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, 0, 0);
+    }
+}
+
 void SpawnObjectEventsOnReturnToField(s16 x, s16 y)
 {
     u32 i;

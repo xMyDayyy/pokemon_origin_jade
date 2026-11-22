@@ -2687,6 +2687,11 @@ static void InitObjectEventsLocal(void)
 static void InitObjectEventsReturnToField(void)
 {
     SpawnObjectEventsOnReturnToField(0, 0);
+    if (IS_HNS)
+    {
+        UpdateTimeOfDay();
+        RefreshDayNightObjectEvents();
+    }
     RotatingGate_InitPuzzleAndGraphics();
     RunOnReturnToFieldMapScript();
 }
