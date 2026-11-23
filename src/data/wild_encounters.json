@@ -15288,7 +15288,7 @@
               {
                 "min_level": 17,
                 "max_level": 17,
-                "species": "SPECIES_PARAS"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 25,
@@ -15308,7 +15308,7 @@
               {
                 "min_level": 17,
                 "max_level": 17,
-                "species": "SPECIES_PARAS"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 18,
@@ -15318,7 +15318,7 @@
               {
                 "min_level": 17,
                 "max_level": 17,
-                "species": "SPECIES_PARAS"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 18,
@@ -15442,7 +15442,7 @@
               {
                 "min_level": 17,
                 "max_level": 17,
-                "species": "SPECIES_PARAS"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 25,
@@ -15462,7 +15462,7 @@
               {
                 "min_level": 17,
                 "max_level": 17,
-                "species": "SPECIES_PARAS"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 18,
@@ -15472,7 +15472,7 @@
               {
                 "min_level": 17,
                 "max_level": 17,
-                "species": "SPECIES_PARAS"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 18,
@@ -16674,7 +16674,7 @@
               {
                 "min_level": 18,
                 "max_level": 18,
-                "species": "SPECIES_PARAS"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 24,
@@ -16694,7 +16694,7 @@
               {
                 "min_level": 18,
                 "max_level": 18,
-                "species": "SPECIES_PARAS"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 19,
@@ -16704,7 +16704,7 @@
               {
                 "min_level": 18,
                 "max_level": 18,
-                "species": "SPECIES_PARAS"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 22,
@@ -16828,7 +16828,7 @@
               {
                 "min_level": 18,
                 "max_level": 18,
-                "species": "SPECIES_PARAS"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 24,
@@ -16848,7 +16848,7 @@
               {
                 "min_level": 18,
                 "max_level": 18,
-                "species": "SPECIES_PARAS"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 19,
@@ -16858,7 +16858,7 @@
               {
                 "min_level": 18,
                 "max_level": 18,
-                "species": "SPECIES_PARAS"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 22,
@@ -33178,12 +33178,12 @@
               {
                 "min_level": 8,
                 "max_level": 8,
-                "species": "SPECIES_RATTATA"
+                "species": "SPECIES_DROWZEE"
               },
               {
                 "min_level": 9,
                 "max_level": 9,
-                "species": "SPECIES_RATTATA"
+                "species": "SPECIES_DROWZEE"
               },
               {
                 "min_level": 11,
@@ -33203,7 +33203,7 @@
               {
                 "min_level": 11,
                 "max_level": 11,
-                "species": "SPECIES_RATTATA"
+                "species": "SPECIES_DROWZEE"
               },
               {
                 "min_level": 9,
@@ -33213,7 +33213,7 @@
               {
                 "min_level": 11,
                 "max_level": 11,
-                "species": "SPECIES_RATTATA"
+                "species": "SPECIES_DROWZEE"
               }
             ]
           },
@@ -33332,12 +33332,12 @@
               {
                 "min_level": 8,
                 "max_level": 8,
-                "species": "SPECIES_RATTATA"
+                "species": "SPECIES_DROWZEE"
               },
               {
                 "min_level": 9,
                 "max_level": 9,
-                "species": "SPECIES_RATTATA"
+                "species": "SPECIES_DROWZEE"
               },
               {
                 "min_level": 11,
@@ -33357,7 +33357,7 @@
               {
                 "min_level": 11,
                 "max_level": 11,
-                "species": "SPECIES_RATTATA"
+                "species": "SPECIES_DROWZEE"
               },
               {
                 "min_level": 9,
@@ -33367,7 +33367,7 @@
               {
                 "min_level": 11,
                 "max_level": 11,
-                "species": "SPECIES_RATTATA"
+                "species": "SPECIES_DROWZEE"
               }
             ]
           },
@@ -33625,7 +33625,7 @@
               {
                 "min_level": 19,
                 "max_level": 19,
-                "species": "SPECIES_PIDGEY"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 17,
@@ -33645,7 +33645,7 @@
               {
                 "min_level": 20,
                 "max_level": 20,
-                "species": "SPECIES_PIDGEY"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 20,
@@ -33779,7 +33779,7 @@
               {
                 "min_level": 19,
                 "max_level": 19,
-                "species": "SPECIES_SPEAROW"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 17,
@@ -33799,7 +33799,7 @@
               {
                 "min_level": 20,
                 "max_level": 20,
-                "species": "SPECIES_SPEAROW"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 20,
@@ -34087,7 +34087,7 @@
               {
                 "min_level": 19,
                 "max_level": 19,
-                "species": "SPECIES_PIDGEY"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 17,
@@ -34107,7 +34107,7 @@
               {
                 "min_level": 20,
                 "max_level": 20,
-                "species": "SPECIES_PIDGEY"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 20,
@@ -34241,7 +34241,7 @@
               {
                 "min_level": 19,
                 "max_level": 19,
-                "species": "SPECIES_SPEAROW"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 17,
@@ -34261,7 +34261,7 @@
               {
                 "min_level": 20,
                 "max_level": 20,
-                "species": "SPECIES_SPEAROW"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 20,
@@ -34549,7 +34549,7 @@
               {
                 "min_level": 19,
                 "max_level": 19,
-                "species": "SPECIES_PIDGEY"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 17,
@@ -34569,7 +34569,7 @@
               {
                 "min_level": 20,
                 "max_level": 20,
-                "species": "SPECIES_PIDGEY"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 20,
@@ -34618,7 +34618,7 @@
               {
                 "min_level": 19,
                 "max_level": 19,
-                "species": "SPECIES_SPEAROW"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 17,
@@ -34638,7 +34638,7 @@
               {
                 "min_level": 20,
                 "max_level": 20,
-                "species": "SPECIES_SPEAROW"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 20,
@@ -34756,7 +34756,7 @@
               {
                 "min_level": 19,
                 "max_level": 19,
-                "species": "SPECIES_PIDGEY"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 17,
@@ -34776,7 +34776,7 @@
               {
                 "min_level": 20,
                 "max_level": 20,
-                "species": "SPECIES_PIDGEY"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 20,
@@ -34825,7 +34825,7 @@
               {
                 "min_level": 19,
                 "max_level": 19,
-                "species": "SPECIES_SPEAROW"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 17,
@@ -34845,7 +34845,7 @@
               {
                 "min_level": 20,
                 "max_level": 20,
-                "species": "SPECIES_SPEAROW"
+                "species": "SPECIES_VENONAT"
               },
               {
                 "min_level": 20,
