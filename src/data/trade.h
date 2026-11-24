@@ -1434,7 +1434,7 @@ static const struct InGameTrade sIngameTrades[] =
     },
         [INGAME_TRADE_NIDORAN] = 
     {
-#if defined(FIRERED)
+#if defined(FIRERED) || defined(POKEMON_HNS)
 #if GERMAN
         .nickname = _("Niedoman"),
 #else
@@ -1506,7 +1506,7 @@ static const struct InGameTrade sIngameTrades[] =
     },
     [INGAME_TRADE_NIDORINOA] = 
     {
-#if defined(FIRERED)
+#if defined(FIRERED) || defined(POKEMON_HNS)
 #if GERMAN
         .nickname = _("Ridonino"),
 #else
@@ -1574,7 +1574,7 @@ static const struct InGameTrade sIngameTrades[] =
 #endif
         .otGender = MALE,
         .sheen = 10,
-#if defined(FIRERED)
+#if defined(FIRERED) || defined(POKEMON_HNS)
         .requestedSpecies = SPECIES_GOLDUCK
 #else
         .requestedSpecies = SPECIES_SLOWBRO

@@ -167,6 +167,9 @@ static bool8 ShouldForceCyclingRoadDownward(void)
 
 void MovePlayerOnBike(enum Direction direction, u16 newKeys, u16 heldKeys)
 {
+    // Origin Jade: holding B brakes on the Cycling Road slope as in FireRed, so test before the mask.
+    bool32 braking = (heldKeys & B_BUTTON) != 0;
+
     // Origin Jade: B is masked outside Hoenn only, as in AcroBike_GetJumpDirection.
     if ((IS_HNS || IS_FRLG) && GetCurrentRegion() != REGION_HOENN)
     {
@@ -174,7 +177,7 @@ void MovePlayerOnBike(enum Direction direction, u16 newKeys, u16 heldKeys)
         heldKeys &= ~B_BUTTON;
     }
 
-    if (ShouldForceCyclingRoadDownward() && heldKeys == 0)
+    if (ShouldForceCyclingRoadDownward() && heldKeys == 0 && !braking)
     {
         enum Collision collision = GetBikeCollision(DIR_SOUTH);
 

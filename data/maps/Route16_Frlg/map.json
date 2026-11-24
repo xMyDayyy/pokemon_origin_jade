@@ -271,7 +271,7 @@
       "item": "ITEM_LEFTOVERS",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE16_LEFTOVERS",
       "quantity": 1,
-      "underfoot": true
+      "underfoot": false
     }
   ],
   "floor_number": 0,
