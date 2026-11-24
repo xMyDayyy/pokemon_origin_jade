@@ -175,6 +175,11 @@ void MovePlayerOnBike(enum Direction direction, u16 newKeys, u16 heldKeys)
     {
         newKeys &= ~B_BUTTON;
         heldKeys &= ~B_BUTTON;
+
+        // The Kanto bicycle uses the Acro handlers, whose slope state never looks at B.
+        // Braking without a direction returns to the normal state, which stops the bike.
+        if (braking && direction == DIR_NONE && gPlayerAvatar.acroBikeState == ACRO_STATE_SLOPE)
+            gPlayerAvatar.acroBikeState = ACRO_STATE_NORMAL;
     }
 
     if (ShouldForceCyclingRoadDownward() && heldKeys == 0 && !braking)
