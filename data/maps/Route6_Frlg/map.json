@@ -358,7 +358,7 @@
       "y": 5,
       "elevation": 3,
       "item": "ITEM_HEART_SCALE",
-      "flag": "FLAG_HIDDEN_ITEM_CINNABAR_ISLAND_HEART_SCALE_FRLG",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE6_HEART_SCALE_FRLG",
       "quantity": 1,
       "underfoot": false
     }
