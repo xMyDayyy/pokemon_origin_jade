@@ -441,8 +441,8 @@
     },
     {
       "type": "hidden_item",
-      "x": 74,
-      "y": 18,
+      "x": 59,
+      "y": 13,
       "elevation": 3,
       "item": "ITEM_HEART_SCALE",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE15_HEART_SCALE_FRLG",

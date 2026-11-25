@@ -351,6 +351,16 @@
       "flag": "FLAG_HIDDEN_ITEM_ROUTE6_RARE_CANDY",
       "quantity": 1,
       "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 28,
+      "y": 5,
+      "elevation": 3,
+      "item": "ITEM_HEART_SCALE",
+      "flag": "FLAG_HIDDEN_ITEM_CINNABAR_ISLAND_HEART_SCALE_FRLG",
+      "quantity": 1,
+      "underfoot": false
     }
   ],
   "floor_number": 0,
