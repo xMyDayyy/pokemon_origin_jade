@@ -4,6 +4,7 @@
 #include "global.h"
 
 struct Trainer;
+struct WildPokemon;
 
 // Level scaling for Hoenn, Johto and (after the Kanto title) Kanto, rules in
 // include/config/hoenn_scaling.h, johto_scaling.h and kanto_scaling.h.
@@ -16,6 +17,9 @@ struct Trainer;
 
 bool32 LevelScalingActive(void);
 u8 ScaleWildMonLevel(u8 level);
+// Surf and fishing (mons, count: the encounter table): in Johto and Hoenn the grass
+// range of the map or of a neighbour map without grass, else as ScaleWildMonLevel.
+u8 ScaleWaterWildMonLevel(u8 level, const struct WildPokemon *mons, u32 count);
 // Static and scripted encounters and roamers: never below the top of the map's wild band
 // (maps with Johto's or Hoenn's rules).
 u8 ScaleStaticMonLevel(u8 level);
