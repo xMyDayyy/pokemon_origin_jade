@@ -69,6 +69,8 @@ SaffronCity_MrPsychicsHouse_Text_YouveNoRoom::
 SaffronCity_MrPsychicsHouse_EventScript_MoveManiac::
 	lock
 	faceplayer
+	specialvar VAR_RESULT, IsRandomMovesActivated
+	goto_if_eq VAR_RESULT, TRUE, SaffronCity_MrPsychicsHouse_EventScript_Randomizer
 	goto_if_set FLAG_TEMP_1, SaffronCity_MrPsychicsHouse_EventScript_AskTeachMove
 	msgbox SaffronCity_MrPsychicsHouse_Text_TeachMonMoveForHeartScale
 	setflag FLAG_TEMP_1
@@ -207,4 +209,17 @@ SaffronCity_MrPsychicsHouse_Text_CantTeachAnEgg::
 #else
 	.string "Hunh? There isn't a single move\n"
 	.string "that I can teach an EGG.$"
+#endif
+
+@ Like the move relearner of Blackthorn City: no relearning while random moves are on.
+SaffronCity_MrPsychicsHouse_EventScript_Randomizer::
+	msgbox SaffronCity_MrPsychicsHouse_Text_SorryCantHelp, MSGBOX_DEFAULT
+	release
+	end
+
+SaffronCity_MrPsychicsHouse_Text_SorryCantHelp:
+#if GERMAN
+	.string "Sorry, ich kann dir nicht helfen.$"
+#else
+	.string "Sorry, I can't help you.$"
 #endif
