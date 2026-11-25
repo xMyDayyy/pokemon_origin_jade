@@ -80,9 +80,74 @@ static const u8 sLevelCapTable_Hard[] =
     [8] = 46,
 };
 
-// Post-league caps as in HnS, in Origin Jade's order: the first title (Kanto)
-// raises the cap to 75 for the second region (Johto, champion 73), the Johto title removes it.
-#define KANTO_MAX_LEVEL 75
+#if IS_HNS
+// Johto badges (VAR_JOHTO_BADGES), from the Kanto title on. Fixed levels of
+// config/level_remap.h (HnS levels, Johto ladder 3-56 -> 44-73), first teams.
+// Chuck, Jasmine and Pryce can come in any order, their teams follow how many of
+// the three are beaten (_1, _1_2, _1_3): normal takes the highest ace of the
+// possible next leaders, hard the lowest level of the weakest of them.
+// After eight badges Lance (champion).
+static const u8 sJohtoLevelCapTable_Normal[] =
+{
+    [0] = 48,  // Falkner
+    [1] = 51,  // Bugsy
+    [2] = 54,  // Whitney
+    [3] = 56,  // Morty
+    [4] = 62,  // Chuck 59, Jasmine 62, Pryce 60
+    [5] = 62,  // second of the three: 62 each
+    [6] = 63,  // third of the three: 63 each
+    [7] = 67,  // Clair
+    [8] = 73,  // Lance
+};
+
+static const u8 sJohtoLevelCapTable_Hard[] =
+{
+    [0] = 47,
+    [1] = 51,
+    [2] = 53,
+    [3] = 55,
+    [4] = 58,  // Chuck 58, Pryce 59, Jasmine 62
+    [5] = 60,  // Pryce 60, Chuck 61, Jasmine 62
+    [6] = 63,
+    [7] = 65,
+    [8] = 72,
+};
+
+// Hoenn badges, from the Johto title on (Emerald levels as in HnS, Hoenn ladder
+// 3-58 -> 67-100). After eight badges Wallace (champion).
+static const u8 sHoennLevelCapTable_Normal[] =
+{
+    [0] = 75,  // Roxanne
+    [1] = 77,  // Brawly
+    [2] = 80,  // Wattson
+    [3] = 83,  // Flannery
+    [4] = 85,  // Norman
+    [5] = 85,  // Winona
+    [6] = 90,  // Tate and Liza
+    [7] = 93,  // Juan
+    [8] = 100, // Wallace
+};
+
+static const u8 sHoennLevelCapTable_Hard[] =
+{
+    [0] = 74,
+    [1] = 75,
+    [2] = 77,
+    [3] = 80,
+    [4] = 83,
+    [5] = 83,
+    [6] = 89,
+    [7] = 90,
+    [8] = 98,
+};
+
+static u32 GetLadderCap(const u8 *normal, const u8 *hard, u32 badgeCount, u8 challengeLevelCap)
+{
+    if (badgeCount > 8)
+        badgeCount = 8;
+    return challengeLevelCap == 1 ? normal[badgeCount] : hard[badgeCount];
+}
+#endif
 
 u32 GetCurrentLevelCap(void)
 {
@@ -108,11 +173,14 @@ u32 GetCurrentLevelCap(void)
             badgeCount = 8;
 
 #if IS_HNS
-        if (FlagGet(FLAG_IS_JOHTO_CHAMPION))
+        // One ladder per region in Origin Jade's order (Kanto, Johto, Hoenn), each by
+        // the badges of its own region. After the last title no cap.
+        if (FlagGet(FLAG_IS_HOENN_CHAMPION))
             return MAX_LEVEL;
-
+        if (FlagGet(FLAG_IS_JOHTO_CHAMPION))
+            return GetLadderCap(sHoennLevelCapTable_Normal, sHoennLevelCapTable_Hard, GetHoennBadgeCount(), challengeLevelCap);
         if (FlagGet(FLAG_IS_KANTO_CHAMPION))
-            return KANTO_MAX_LEVEL;
+            return GetLadderCap(sJohtoLevelCapTable_Normal, sJohtoLevelCapTable_Hard, GetJohtoBadgeCount(), challengeLevelCap);
 #else
         if (FlagGet(FLAG_IS_CHAMPION))
             return MAX_LEVEL;

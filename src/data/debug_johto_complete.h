@@ -1031,7 +1031,7 @@ static const struct KantoCompleteItem sJohtoCompleteBag[] =
     { ITEM_HEALTH_MOCHI, 1 },
     { ITEM_HEAL_BALL, 1 },
     { ITEM_HEAL_POWDER, 2 },
-    { ITEM_HEART_SCALE, 1 },
+    { ITEM_HEART_SCALE, 3 },
     { ITEM_HEAVY_BALL, 1 },
     { ITEM_HELIX_FOSSIL, 1 },
     { ITEM_HM07, 1 },

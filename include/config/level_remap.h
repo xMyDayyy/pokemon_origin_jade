@@ -82,7 +82,7 @@
 // Base factor by region (where the battle takes place), in percent.
 #define REMAP_EXP_KANTO_LOW_UNTIL    20    // Kanto, receiving Pokemon up to this level:
 #define REMAP_EXP_KANTO_LOW_PERCENT  100
-#define REMAP_EXP_KANTO_PERCENT      71    // Kanto above it
+#define REMAP_EXP_KANTO_PERCENT      85    // Kanto above it (0.9.2: was 71)
 #define REMAP_EXP_JOHTO_PERCENT      22
 #define REMAP_EXP_HOENN_PERCENT      35    // also for maps outside the three regions
 

@@ -438,6 +438,16 @@
       "flag": "FLAG_HIDDEN_ITEM_ROUTE15_ROSE_INCENSE_FRLG",
       "quantity": 1,
       "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 74,
+      "y": 18,
+      "elevation": 3,
+      "item": "ITEM_HEART_SCALE",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE15_HEART_SCALE_FRLG",
+      "quantity": 1,
+      "underfoot": false
     }
   ],
   "floor_number": 0,

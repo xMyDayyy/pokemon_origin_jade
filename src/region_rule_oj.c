@@ -129,13 +129,27 @@ static bool32 IsAnyRandomizerOptionOn(void)
     return FALSE;
 }
 
+// Species of the Kanto Pokedex block (obtainable numbers 1 to 185): the 151 Kanto
+// species plus the babies and later stages of their lines (Pichu, Crobat, Steelix...).
+// They can be had in Kanto, so the region rule lets them hatch and be seen there.
+static bool32 IsKantoDexSpecies(u16 species)
+{
+#if SEPARATE_OBTAINABLE_DEX
+    u32 num = SpeciesToObtainablePokedexNum(species);
+
+    return num != 0 && num <= OBTAINABLE_DEX_MEW;
+#else
+    return FALSE;
+#endif
+}
+
 u16 GetUnlockedEggSpecies(u16 eggSpecies, u16 parentSpecies)
 {
     u16 line[8];
     u32 count = 0;
     u16 species = parentSpecies;
 
-    if (IsSpeciesRegionUnlocked(eggSpecies) || IsAnyRandomizerOptionOn())
+    if (IsSpeciesRegionUnlocked(eggSpecies) || IsKantoDexSpecies(eggSpecies) || IsAnyRandomizerOptionOn())
         return eggSpecies;
     // The line from the parent back to the egg species.
     while (species != SPECIES_NONE && count < ARRAY_COUNT(line))
@@ -152,13 +166,14 @@ u16 GetUnlockedEggSpecies(u16 eggSpecies, u16 parentSpecies)
         if (IsSpeciesRegionUnlocked(line[count]))
             return line[count];
     }
-    // No stage of the line unlocked (a Hitmontop parent before Johto): the egg stays.
+    // No stage of the line unlocked: the egg stays.
     return eggSpecies;
 }
 
 bool32 CanRegisterSeenSpecies(u16 species)
 {
     return IsSpeciesRegionUnlocked(species)
+        || IsKantoDexSpecies(species)
         || IsAnyRandomizerOptionOn()
         || GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT);
 }
