@@ -4473,6 +4473,8 @@ static void GetBattlerNick(enum BattlerId battler, u8 *dst)
     StringGet_Nickname(dst);
 }
 
+#if GERMAN
+// German puts the tag behind the name: "Taubsi (Gegner)".
 #define HANDLE_NICKNAME_STRING_CASE(battler)                            \
     GetBattlerNick(battler, text);                                      \
     if (!IsOnPlayerSide(battler))                                       \
@@ -4483,6 +4485,20 @@ static void GetBattlerNick(enum BattlerId battler, u8 *dst)
             StringAppend(text, sText_WildPkmnPrefix);                   \
     }                                                                   \
     toCpy = text;
+#else
+// English puts the prefix in front: "The opposing Pidgey".
+#define HANDLE_NICKNAME_STRING_CASE(battler)                            \
+    text[0] = EOS;                                                      \
+    if (!IsOnPlayerSide(battler))                                       \
+    {                                                                   \
+        if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)                     \
+            StringCopy(text, sText_FoePkmnPrefix);                      \
+        else                                                            \
+            StringCopy(text, sText_WildPkmnPrefix);                     \
+    }                                                                   \
+    GetBattlerNick(battler, text + StringLength(text));                 \
+    toCpy = text;
+#endif
 
 #define HANDLE_NICKNAME_STRING_LOWERCASE(battler)                       \
     if (!IsOnPlayerSide(battler))                       \

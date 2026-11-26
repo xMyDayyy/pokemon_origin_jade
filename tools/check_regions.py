@@ -57,6 +57,8 @@ ALLOWED = {
 KNOWN = {
     ("MAP_RUINS_OF_ALPH_LAB_HNS", "SPECIES_LILEEP"): "belebt das Wurzelfossil, das es nur in Hoenn gibt",
     ("MAP_RUINS_OF_ALPH_LAB_HNS", "SPECIES_ANORITH"): "belebt das Klauenfossil, das es nur in Hoenn gibt",
+    ("MAP_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM", "SPECIES_LILEEP"): "belebt das Wurzelfossil, das es nur in Hoenn gibt",
+    ("MAP_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM", "SPECIES_ANORITH"): "belebt das Klauenfossil, das es nur in Hoenn gibt",
     ("MAP_ROUTE4", "SPECIES_JIRACHI"): "erst nach der ersten Fahrt nach Hoenn",
     "MAP_SAFARI_ZONE_LOW_RIGHT_HNS": "öffnet erst nach Baobas Questreihe, nach der ersten Fahrt nach Hoenn",
 }

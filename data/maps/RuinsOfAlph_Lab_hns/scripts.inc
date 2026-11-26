@@ -445,29 +445,11 @@ RuinsOfAlph_Lab_EventScript_FinishReceivingOmanyte::
 
 RuinsOfAlph_Lab_EventScript_ReceiveKabuto::
 	setvar VAR_TEMP_1, SPECIES_KABUTO
-	@ Johto badge 4 (Morty) decides the level.
-	@ Keep the goto: givemon overwrites VAR_RESULT.
-	setvar VAR_0x8004, 3
-	special CheckJohtoBadge
-	goto_if_eq VAR_RESULT, TRUE, RuinsOfAlph_Lab_EventScript_ReceiveLateKabuto
-	call RuinsOfAlph_Lab_EventScript_GiveEarlyKabuto
-	goto RuinsOfAlph_Lab_EventScript_ReceiveKabutoCheckResult
-
-RuinsOfAlph_Lab_EventScript_ReceiveLateKabuto::
-	call RuinsOfAlph_Lab_EventScript_GiveLateKabuto
-RuinsOfAlph_Lab_EventScript_ReceiveKabutoCheckResult::
+	givemon SPECIES_KABUTO, 20
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, RuinsOfAlph_Lab_EventScript_ReceiveKabutoParty
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, RuinsOfAlph_Lab_EventScript_ReceiveKabutoPC
 	goto Common_EventScript_NoMoreRoomForPokemon
 	end
-
-RuinsOfAlph_Lab_EventScript_GiveEarlyKabuto::
-	givemon SPECIES_KABUTO, 5
-	return
-
-RuinsOfAlph_Lab_EventScript_GiveLateKabuto::
-	givemon SPECIES_KABUTO, 20
-	return
 
 RuinsOfAlph_Lab_EventScript_ReceiveKabutoParty::
 	call RuinsOfAlph_Lab_EventScript_ReceivedKabutoFanfare

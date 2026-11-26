@@ -457,7 +457,7 @@
     {
       "type": "hidden_item",
       "x": 18,
-      "y": 87,
+      "y": 88,
       "elevation": 3,
       "item": "ITEM_RARE_CANDY",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE17_RARE_CANDY",
@@ -477,7 +477,7 @@
     {
       "type": "hidden_item",
       "x": 18,
-      "y": 53,
+      "y": 54,
       "elevation": 3,
       "item": "ITEM_PP_UP",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE17_PP_UP",
