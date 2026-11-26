@@ -107,7 +107,7 @@ RustboroCity_DevonCorp_2F_EventScript_FossilMonReady::
 	bufferspeciesname STR_VAR_2, VAR_0x8007
 	msgbox RustboroCity_DevonCorp_2F_Text_FossilizedMonBroughtBackToLife, MSGBOX_DEFAULT
 	copyvar VAR_TEMP_TRANSFERRED_SPECIES, VAR_0x8007
-	givemon VAR_0x8007, 20
+	givemon VAR_0x8007, 40
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, RustboroCity_DevonCorp_2F_EventScript_ReceiveFossilMonParty
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, RustboroCity_DevonCorp_2F_EventScript_ReceiveFossilMonPC
 	goto Common_EventScript_NoMoreRoomForPokemon
