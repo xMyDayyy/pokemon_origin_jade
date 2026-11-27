@@ -27,6 +27,7 @@
 #include "overworld.h"
 #include "script.h"
 #include "challenge_menu.h"
+#include "level_scaling.h"
 
 
 // =============================================================================
@@ -111,6 +112,7 @@ enum {
     ITEM_DIFFICULTY_PARTY_LIMIT,
     ITEM_DIFFICULTY_LEVEL_CAP,
     ITEM_DIFFICULTY_EXP_MULTIPLIER,
+    ITEM_DIFFICULTY_EXP_SYSTEM,
     ITEM_DIFFICULTY_ITEM_PLAYER,
     ITEM_DIFFICULTY_ITEM_TRAINER,
     ITEM_DIFFICULTY_MAX_PARTY_IVS,
@@ -210,6 +212,7 @@ static const u8 sMidGameLockPolicy[TAB_COUNT * MAX_ITEMS_PER_TAB] = {
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_PARTY_LIMIT]    = LOCK_ONEWAY_DOWN,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_LEVEL_CAP]      = LOCK_ONEWAY_DOWN,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_EXP_MULTIPLIER] = LOCK_FREE,
+    [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_EXP_SYSTEM]     = LOCK_FREE,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_ITEM_PLAYER]    = LOCK_ONEWAY_DOWN,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_ITEM_TRAINER]   = LOCK_FREE,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_MAX_PARTY_IVS]  = LOCK_FREE,
@@ -803,6 +806,18 @@ static const u8 *const sChoices_ExpMult[] = {
     COMPOUND_STRING("x1.5"),
     COMPOUND_STRING("x2.0"),
     COMPOUND_STRING("x0.0"),
+};
+
+static const u8 *const sChoices_ExpSystem[] = {
+#if GERMAN
+    [OPTIONS_EXP_SYSTEM_JADE]   = COMPOUND_STRING("Jade"),
+    [OPTIONS_EXP_SYSTEM_HYBRID] = COMPOUND_STRING("Hybrid"),
+    [OPTIONS_EXP_SYSTEM_NORMAL] = COMPOUND_STRING("Normal"),
+#else
+    [OPTIONS_EXP_SYSTEM_JADE]   = COMPOUND_STRING("JADE"),
+    [OPTIONS_EXP_SYSTEM_HYBRID] = COMPOUND_STRING("HYBRID"),
+    [OPTIONS_EXP_SYSTEM_NORMAL] = COMPOUND_STRING("NORMAL"),
+#endif
 };
 
 static const u8 *const sChoices_TrainerIVs[] = {
@@ -1544,6 +1559,17 @@ static const u8 *const sDesc_ExpMult[] = {
     COMPOUND_STRING("{PKMN} gain ZERO EXP. Points!!!"),
 #endif
 };
+static const u8 *const sDesc_ExpSystem[] = {
+#if GERMAN
+    [OPTIONS_EXP_SYSTEM_JADE]   = COMPOUND_STRING("Balancing von Origin Jade. Empfohlen.\n{PKMN} weit über dem Gegner: weniger EP."),
+    [OPTIONS_EXP_SYSTEM_HYBRID] = COMPOUND_STRING("Zwischen Jade und Normal: mehr EP\nin Kanto, mildere Grenzen."),
+    [OPTIONS_EXP_SYSTEM_NORMAL] = COMPOUND_STRING("Standard EP ohne Jade Balancing.\nFeste Gegnerlevel, Überleveln möglich."),
+#else
+    [OPTIONS_EXP_SYSTEM_JADE]   = COMPOUND_STRING("Origin Jade's balancing. Recommended.\n{PKMN} far above the foe get less EXP."),
+    [OPTIONS_EXP_SYSTEM_HYBRID] = COMPOUND_STRING("Between Jade and Normal: more EXP\nin Kanto, milder limits."),
+    [OPTIONS_EXP_SYSTEM_NORMAL] = COMPOUND_STRING("Standard EXP without Jade balancing.\nFoes do not scale, you can overlevel."),
+#endif
+};
 static const u8 *const sDesc_ItemPlayer[] = {
 #if GERMAN
     COMPOUND_STRING("Spieler kann Kampfitems nutzen."),
@@ -1665,6 +1691,16 @@ static const struct ChallengeMenuItem sTabItems_Difficulty[] = {
         .descriptions = sDesc_ExpMult,
         .numChoices   = 4,
         .choiceNames  = sChoices_ExpMult,
+    },
+    [ITEM_DIFFICULTY_EXP_SYSTEM] = {
+#if GERMAN
+        .name         = COMPOUND_STRING("EP-System"),
+#else
+        .name         = COMPOUND_STRING("EXP SYSTEM"),
+#endif
+        .descriptions = sDesc_ExpSystem,
+        .numChoices   = OPTIONS_EXP_SYSTEM_COUNT,
+        .choiceNames  = sChoices_ExpSystem,
     },
     [ITEM_DIFFICULTY_ITEM_PLAYER] = {
 #if GERMAN
@@ -2816,6 +2852,7 @@ static void Task_ConfirmSaveYes(u8 taskId)
     cs->tx_Challenges_PartyLimit      = *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_PARTY_LIMIT);
     cs->tx_Challenges_LevelCap        = *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_LEVEL_CAP);
     cs->tx_Challenges_ExpMultiplier   = *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_EXP_MULTIPLIER);
+    cs->tx_Challenges_ExpSystem       = *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_EXP_SYSTEM);
     cs->tx_Challenges_NoItemPlayer    = *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_ITEM_PLAYER);
     cs->tx_Challenges_NoItemTrainer   = *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_ITEM_TRAINER);
     cs->tx_Challenges_NoEVs           = *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_NO_EVS);
@@ -3022,6 +3059,7 @@ void CB2_InitChallengeMenu(void)
             *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_PARTY_LIMIT)    = cs->tx_Challenges_PartyLimit;
             *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_LEVEL_CAP)      = cs->tx_Challenges_LevelCap;
             *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_EXP_MULTIPLIER) = cs->tx_Challenges_ExpMultiplier;
+            *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_EXP_SYSTEM)     = GetExpSystem();
             *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_ITEM_PLAYER)    = cs->tx_Challenges_NoItemPlayer;
             *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_ITEM_TRAINER)   = cs->tx_Challenges_NoItemTrainer;
             *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_NO_EVS)         = cs->tx_Challenges_NoEVs;

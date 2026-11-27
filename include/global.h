@@ -308,6 +308,10 @@ struct ChallengeSettings
     u8 tx_Challenges_Mirror_Thief:1;
     u8 tx_Challenges_NoEVs:1;
     u8 tx_Challenges_PCHeal:1;
+    // Origin Jade: EXP system (OPTIONS_EXP_SYSTEM_*), 0 = Jade. Bits 6-7 of the byte that
+    // starts with tx_Challenges_ExpMultiplier, padding before (tx_Challenges_Expensive:3
+    // does not fit there), so the layout does not change and old saves read 0.
+    u8 tx_Challenges_ExpSystem:2;
     u8 tx_Challenges_Expensive:3;
     u8 tx_Challenges_TrainerScalingIVs:2;
     u8 tx_Challenges_TrainerScalingEVs:2;

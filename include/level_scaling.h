@@ -35,7 +35,10 @@ u8 ScalePartnerMonLevel(u8 level, u8 partyMaxLevel);
 u16 ScaleTrainerMonSpecies(u16 species, u8 scaledLevel, u16 trainerId, u8 partyIndex);
 // Fixed levels (config/level_remap.h): percent of the experience a Pokemon of
 // receiverLevel gets for one of opponentLevel on the current map.
+// Depends on the EXP system (GetExpSystem): 100 in NORMAL.
 u32 GetRemapExpPercent(u8 receiverLevel, u8 opponentLevel);
+// EXP system of the challenge menu (OPTIONS_EXP_SYSTEM_*), JADE for invalid values.
+u32 GetExpSystem(void);
 
 // Not tied to scaling: also used by the region map, location names and HM licenses.
 bool32 IsHoennMapsec(u32 mapSecId);

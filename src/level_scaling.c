@@ -377,15 +377,25 @@ static u8 ApplyRematchLevelBand(u8 level, u8 ace, s32 low, s32 high)
 }
 #endif
 
+// Percent of the experience for one receiving Pokemon: receiverLevel is that
+// Pokemon's own level, so every receiver is judged on its own (config/level_remap.h).
 u32 GetRemapExpPercent(u8 receiverLevel, u8 opponentLevel)
 {
-    u32 percent;
+    u32 percent, system = GetExpSystem();
+    u32 above = REMAP_EXP_SOFT_ABOVE, abovePercent = REMAP_EXP_SOFT_ABOVE_PERCENT;
     bool32 settled = TRUE;
+
+    if (system == OPTIONS_EXP_SYSTEM_NORMAL)
+        return 100;
 
     switch (GetRemapRegion())
     {
     case REMAP_KANTO:
-        percent = receiverLevel <= REMAP_EXP_KANTO_LOW_UNTIL ? REMAP_EXP_KANTO_LOW_PERCENT : REMAP_EXP_KANTO_PERCENT;
+        // HYBRID: Kanto at the low factor for every level.
+        if (system == OPTIONS_EXP_SYSTEM_HYBRID || receiverLevel <= REMAP_EXP_KANTO_LOW_UNTIL)
+            percent = REMAP_EXP_KANTO_LOW_PERCENT;
+        else
+            percent = REMAP_EXP_KANTO_PERCENT;
         settled = FlagGet(FLAG_BADGE03_GET);
         break;
     case REMAP_JOHTO:
@@ -395,8 +405,13 @@ u32 GetRemapExpPercent(u8 receiverLevel, u8 opponentLevel)
         percent = REMAP_EXP_HOENN_PERCENT;
         break;
     }
-    if (receiverLevel > opponentLevel + REMAP_EXP_SOFT_ABOVE)
-        percent = percent * REMAP_EXP_SOFT_ABOVE_PERCENT / 100;
+    if (system == OPTIONS_EXP_SYSTEM_HYBRID)
+    {
+        above = REMAP_EXP_HYBRID_ABOVE;
+        abovePercent = REMAP_EXP_HYBRID_ABOVE_PERCENT;
+    }
+    if (receiverLevel > opponentLevel + above)
+        percent = percent * abovePercent / 100;
     else if (settled && receiverLevel + REMAP_EXP_SOFT_BELOW < opponentLevel)
         percent = 100;
     return percent;
@@ -1024,6 +1039,16 @@ u32 GetRemapExpPercent(u8 receiverLevel, u8 opponentLevel)
 }
 
 #endif
+
+// EXP system of the challenge menu; values outside the range count as Jade.
+u32 GetExpSystem(void)
+{
+    u32 system = gSaveBlock3Ptr->challengeSettings.tx_Challenges_ExpSystem;
+
+    if (system >= OPTIONS_EXP_SYSTEM_COUNT)
+        return OPTIONS_EXP_SYSTEM_JADE;
+    return system;
+}
 
 #if defined(POKEMON_HNS)
 
