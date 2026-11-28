@@ -71,6 +71,18 @@ static enum CancelerResult CancelerSkyDrop(struct BattleContext *ctx)
     // If Pokemon is being held in Sky Drop
     if (gBattleMons[ctx->battlerAtk].volatiles.semiInvulnerable == STATE_SKY_DROP)
     {
+        // Origin Jade: safety net. Held only while a Sky Drop user in the air still holds it;
+        // otherwise drop the stale state and let the move go on.
+        enum BattlerId holder = gBattleStruct->skyDropTargets[ctx->battlerAtk];
+        if (holder >= gBattlersCount
+         || gBattleStruct->skyDropTargets[holder] != ctx->battlerAtk
+         || gBattleMons[holder].volatiles.semiInvulnerable != STATE_ON_AIR
+         || !IsBattlerAlive(holder))
+        {
+            gBattleMons[ctx->battlerAtk].volatiles.semiInvulnerable = STATE_NONE;
+            gSprites[gBattlerSpriteIds[ctx->battlerAtk]].invisible = FALSE;
+            return CANCELER_RESULT_SUCCESS;
+        }
         gBattlescriptCurrInstr = BattleScript_MoveEnd;
         return CANCELER_RESULT_FAILURE;
     }

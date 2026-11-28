@@ -167,14 +167,22 @@ static bool8 ShouldForceCyclingRoadDownward(void)
 
 void MovePlayerOnBike(enum Direction direction, u16 newKeys, u16 heldKeys)
 {
+    // Origin Jade: holding B brakes on the Cycling Road slope as in FireRed, so test before the mask.
+    bool32 braking = (heldKeys & B_BUTTON) != 0;
+
     // Origin Jade: B is masked outside Hoenn only, as in AcroBike_GetJumpDirection.
     if ((IS_HNS || IS_FRLG) && GetCurrentRegion() != REGION_HOENN)
     {
         newKeys &= ~B_BUTTON;
         heldKeys &= ~B_BUTTON;
+
+        // The Kanto bicycle uses the Acro handlers, whose slope state never looks at B.
+        // Braking without a direction returns to the normal state, which stops the bike.
+        if (braking && direction == DIR_NONE && gPlayerAvatar.acroBikeState == ACRO_STATE_SLOPE)
+            gPlayerAvatar.acroBikeState = ACRO_STATE_NORMAL;
     }
 
-    if (ShouldForceCyclingRoadDownward() && heldKeys == 0)
+    if (ShouldForceCyclingRoadDownward() && heldKeys == 0 && !braking)
     {
         enum Collision collision = GetBikeCollision(DIR_SOUTH);
 

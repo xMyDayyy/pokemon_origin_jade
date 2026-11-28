@@ -12069,7 +12069,9 @@ void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBat
         *expAmount = (*expAmount * 150) / 100;
 
 #if LEVEL_REMAP == TRUE
-    // Fixed levels: experience by region and against the opponent's level (config/level_remap.h).
+    // Fixed levels: experience by region and against the opponent's level (config/level_remap.h),
+    // judged on this receiver's own level only. The NORMAL EXP system leaves it out.
+    if (GetExpSystem() != OPTIONS_EXP_SYSTEM_NORMAL)
     {
         u8 expGetterLvl = GetMonData(&gPlayerParty[expGetterMonId], MON_DATA_LEVEL);
         *expAmount = (*expAmount * (s32)GetRemapExpPercent(expGetterLvl, gBattleMons[faintedBattler].level)) / 100;

@@ -1098,6 +1098,16 @@ const u8 *CheckSkyDropState(enum BattlerId battler, enum SkyDropState skyDropSta
     u8 otherSkyDropper = gBattleStruct->skyDropTargets[battler];
     gBattleMons[battler].volatiles.semiInvulnerable = STATE_NONE;
 
+    // Only a real link (released targets keep SKY_DROP_RELEASED_TARGET here).
+    if (otherSkyDropper >= gBattlersCount)
+        return result;
+
+    // Origin Jade: let the held target go as well. Before, only the Sky Drop user was
+    // cleared, so a user that could not move on its second turn (fully paralyzed,
+    // asleep, flinched, confused...) left the target held in the sky forever.
+    if (gBattleMons[otherSkyDropper].volatiles.semiInvulnerable == STATE_SKY_DROP)
+        gBattleMons[otherSkyDropper].volatiles.semiInvulnerable = STATE_NONE;
+
     // Makes both attacker and target's sprites visible
     gSprites[gBattlerSpriteIds[battler]].invisible = FALSE;
     gSprites[gBattlerSpriteIds[otherSkyDropper]].invisible = FALSE;

@@ -232,7 +232,7 @@ DragonsDen_Shrine_Text_Question4:
 
 DragonsDen_Shrine_Text_Question5:
 #if GERMAN
-	.string "Starke Pokémon. Schwache Pokémon.\p"
+	.string "Starke Pokémon. Schwache Pokémon.\n"
 	.string "Was ist wichtiger?$"
 #else
     .string "Strong POKéMON. Weak POKéMON.\n"

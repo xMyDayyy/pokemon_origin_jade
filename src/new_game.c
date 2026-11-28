@@ -158,6 +158,9 @@ void SetDefaultChallengeSettings(void)
     // No one-type challenge (0 would be TYPE_NONE)
     gSaveblock3.challengeSettings.tx_Challenges_OneTypeChallenge = ONE_TYPE_OFF;
 
+    // Origin Jade EXP system
+    gSaveblock3.challengeSettings.tx_Challenges_ExpSystem    = OPTIONS_EXP_SYSTEM_JADE;
+
     // Randomizer defaults (shown when Randomizer is ON)
     gSaveblock3.challengeSettings.tx_Random_Similar          = 1;
     gSaveblock3.challengeSettings.tx_Random_MapBased         = 1;

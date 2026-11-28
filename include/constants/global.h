@@ -239,6 +239,12 @@ enum Gender
 #define OPTIONS_EXP_MULTIPLIER_2X   2   // 2x EXP multiplier    Easiest Difficulty
 #define OPTIONS_EXP_MULTIPLIER_0X   3   // 0x EXP multiplier    Hardest Difficulty
 
+// Origin Jade: EXP system (ChallengeSettings.tx_Challenges_ExpSystem), see config/level_remap.h.
+#define OPTIONS_EXP_SYSTEM_JADE     0   // region factors, over level rule above +4, catch up rule
+#define OPTIONS_EXP_SYSTEM_HYBRID   1   // Kanto 100 percent, Johto/Hoenn as Jade, over level rule above +6 (half)
+#define OPTIONS_EXP_SYSTEM_NORMAL   2   // expansion experience without Origin Jade changes
+#define OPTIONS_EXP_SYSTEM_COUNT    3
+
 enum __attribute__((packed)) Direction
 {
     DIR_NONE,

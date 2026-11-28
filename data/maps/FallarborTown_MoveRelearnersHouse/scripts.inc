@@ -5,6 +5,8 @@ FallarborTown_MoveRelearnersHouse_EventScript_MoveRelearner::
 	lockall
 	applymovement LOCALID_MOVE_RELEARNER, Common_Movement_FacePlayer
 	waitmovement 0
+	specialvar VAR_RESULT, IsRandomMovesActivated
+	goto_if_eq VAR_RESULT, TRUE, FallarborTown_MoveRelearnersHouse_EventScript_Randomizer
 	goto_if_set FLAG_TEMP_1, FallarborTown_MoveRelearnersHouse_EventScript_AskTeachMove
 	msgbox FallarborTown_MoveRelearnersHouse_Text_ImTheMoveTutor, MSGBOX_DEFAULT
 	setflag FLAG_TEMP_1
@@ -144,3 +146,16 @@ FallarborTown_MoveRelearnersHouse_Text_CantTeachEgg:
 	.string "I can teach an EGG.$"
 #endif
 
+@ Random moves: no relearner, like Blackthorn City and Saffron City.
+FallarborTown_MoveRelearnersHouse_EventScript_Randomizer::
+	msgbox FallarborTown_MoveRelearnersHouse_Text_SorryCantHelp, MSGBOX_DEFAULT
+	closemessage
+	releaseall
+	end
+
+FallarborTown_MoveRelearnersHouse_Text_SorryCantHelp:
+#if GERMAN
+	.string "Sorry, ich kann dir nicht helfen.$"
+#else
+	.string "Sorry, I can't help you.$"
+#endif

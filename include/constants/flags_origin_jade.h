@@ -84,6 +84,14 @@
 #define FLAG_RECEIVED_POKEMON_BOX_LINK                       (OJ_FLAGS_KANTO + 35)
 // Unused: the Catching Charm is no longer given.
 #define FLAG_RECEIVED_CATCHING_CHARM                         (OJ_FLAGS_KANTO + 36)
+// Hidden Heart Scales for the move relearner in Saffron City.
+#define FLAG_HIDDEN_ITEM_ROUTE12_HEART_SCALE_FRLG            (OJ_FLAGS_KANTO + 37)
+#define FLAG_HIDDEN_ITEM_ROUTE14_HEART_SCALE_FRLG            (OJ_FLAGS_KANTO + 38)
+#define FLAG_HIDDEN_ITEM_ROUTE15_HEART_SCALE_FRLG            (OJ_FLAGS_KANTO + 39)
+#define FLAG_HIDDEN_ITEM_ROUTE18_HEART_SCALE_FRLG            (OJ_FLAGS_KANTO + 40)
+#define FLAG_HIDDEN_ITEM_ROUTE19_HEART_SCALE_FRLG            (OJ_FLAGS_KANTO + 41)
+#define FLAG_HIDDEN_ITEM_ROUTE6_HEART_SCALE_FRLG             (OJ_FLAGS_KANTO + 42)
+#define FLAG_HIDDEN_ITEM_ROUTE8_HEART_SCALE_FRLG             (OJ_FLAGS_KANTO + 43)
 
 // ---------------------------------------------------------------------
 // Johto (OJ_FLAGS_JOHTO + 0 to + 159)

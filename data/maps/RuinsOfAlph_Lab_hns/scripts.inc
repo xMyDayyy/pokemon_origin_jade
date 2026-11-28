@@ -285,7 +285,7 @@ RuinsOfAlph_Lab_EventScript_AeroReady::
 
 RuinsOfAlph_Lab_EventScript_ReceiveLileep::
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_LILEEP
-	givemon SPECIES_LILEEP, 20
+	givemon SPECIES_LILEEP, 40
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, RuinsOfAlph_Lab_EventScript_ReceiveLileepParty
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, RuinsOfAlph_Lab_EventScript_ReceiveLileepPC
 	goto Common_EventScript_NoMoreRoomForPokemon
@@ -345,7 +345,7 @@ RuinsOfAlph_Lab_EventScript_FinishReceivingLileep::
 
 RuinsOfAlph_Lab_EventScript_ReceiveAnorith::
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_ANORITH
-	givemon SPECIES_ANORITH, 20
+	givemon SPECIES_ANORITH, 40
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, RuinsOfAlph_Lab_EventScript_ReceiveAnorithParty
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, RuinsOfAlph_Lab_EventScript_ReceiveAnorithPC
 	goto Common_EventScript_NoMoreRoomForPokemon
@@ -385,7 +385,7 @@ RuinsOfAlph_Lab_EventScript_FinishReceivingAnorith::
 
 RuinsOfAlph_Lab_EventScript_ReceiveOmanyte::
 	setvar VAR_TEMP_1, SPECIES_OMANYTE
-	givemon SPECIES_OMANYTE, 20
+	givemon SPECIES_OMANYTE, 40
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, RuinsOfAlph_Lab_EventScript_ReceiveOmanyteParty
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, RuinsOfAlph_Lab_EventScript_ReceiveOmanytePC
 	goto Common_EventScript_NoMoreRoomForPokemon
@@ -445,29 +445,11 @@ RuinsOfAlph_Lab_EventScript_FinishReceivingOmanyte::
 
 RuinsOfAlph_Lab_EventScript_ReceiveKabuto::
 	setvar VAR_TEMP_1, SPECIES_KABUTO
-	@ Johto badge 4 (Morty) decides the level.
-	@ Keep the goto: givemon overwrites VAR_RESULT.
-	setvar VAR_0x8004, 3
-	special CheckJohtoBadge
-	goto_if_eq VAR_RESULT, TRUE, RuinsOfAlph_Lab_EventScript_ReceiveLateKabuto
-	call RuinsOfAlph_Lab_EventScript_GiveEarlyKabuto
-	goto RuinsOfAlph_Lab_EventScript_ReceiveKabutoCheckResult
-
-RuinsOfAlph_Lab_EventScript_ReceiveLateKabuto::
-	call RuinsOfAlph_Lab_EventScript_GiveLateKabuto
-RuinsOfAlph_Lab_EventScript_ReceiveKabutoCheckResult::
+	givemon SPECIES_KABUTO, 40
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, RuinsOfAlph_Lab_EventScript_ReceiveKabutoParty
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, RuinsOfAlph_Lab_EventScript_ReceiveKabutoPC
 	goto Common_EventScript_NoMoreRoomForPokemon
 	end
-
-RuinsOfAlph_Lab_EventScript_GiveEarlyKabuto::
-	givemon SPECIES_KABUTO, 5
-	return
-
-RuinsOfAlph_Lab_EventScript_GiveLateKabuto::
-	givemon SPECIES_KABUTO, 20
-	return
 
 RuinsOfAlph_Lab_EventScript_ReceiveKabutoParty::
 	call RuinsOfAlph_Lab_EventScript_ReceivedKabutoFanfare
@@ -523,7 +505,7 @@ RuinsOfAlph_Lab_EventScript_FinishReceivingKabuto::
 
 RuinsOfAlph_Lab_EventScript_ReceiveAero::
 	setvar VAR_TEMP_1, SPECIES_AERODACTYL
-	givemon SPECIES_AERODACTYL, 20
+	givemon SPECIES_AERODACTYL, 40
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, RuinsOfAlph_Lab_EventScript_ReceiveAeroParty
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, RuinsOfAlph_Lab_EventScript_ReceiveAeroPC
 	goto Common_EventScript_NoMoreRoomForPokemon

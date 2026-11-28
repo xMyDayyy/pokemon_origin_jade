@@ -82,15 +82,28 @@
 // Base factor by region (where the battle takes place), in percent.
 #define REMAP_EXP_KANTO_LOW_UNTIL    20    // Kanto, receiving Pokemon up to this level:
 #define REMAP_EXP_KANTO_LOW_PERCENT  100
-#define REMAP_EXP_KANTO_PERCENT      71    // Kanto above it
+#define REMAP_EXP_KANTO_PERCENT      85    // Kanto above it (0.9.2: was 71)
 #define REMAP_EXP_JOHTO_PERCENT      22
 #define REMAP_EXP_HOENN_PERCENT      35    // also for maps outside the three regions
 
-// Soft limit per Pokemon, measured against the defeated or caught Pokemon:
+// Soft limit per receiving Pokemon, measured against the defeated or caught Pokemon.
+// Only the receiver's own level counts: a high level lead does not change the
+// experience of the Exp. Share members or of the second participant.
 // more than ABOVE levels higher -> only ABOVE_PERCENT of the experience,
 // more than BELOW levels lower -> no damping (from Kanto's third badge on).
 #define REMAP_EXP_SOFT_ABOVE         4
 #define REMAP_EXP_SOFT_ABOVE_PERCENT 25
 #define REMAP_EXP_SOFT_BELOW         6
+
+// EXP system in the challenge menu (ChallengeSettings.tx_Challenges_ExpSystem):
+//   JADE   (0, default): region factors and soft limits above.
+//   HYBRID (1): Kanto without its factor (100 percent at every level), Johto and
+//               Hoenn keep their region factors. The over level rule per receiver
+//               only above HYBRID_ABOVE levels and then HYBRID_ABOVE_PERCENT,
+//               catch up rule as Jade.
+//   NORMAL (2): no Origin Jade factor at all, only the expansion's scaled experience.
+// The EXP. MULTIPLIER option multiplies on top in every system.
+#define REMAP_EXP_HYBRID_ABOVE         6
+#define REMAP_EXP_HYBRID_ABOVE_PERCENT 50
 
 #endif // GUARD_CONFIG_LEVEL_REMAP_H

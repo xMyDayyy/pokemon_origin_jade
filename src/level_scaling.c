@@ -5,6 +5,7 @@
 #include "overworld.h"
 #include "pokemon.h"
 #include "random.h"
+#include "wild_encounter.h"
 #include "event_data.h"
 #include "battle_setup.h"
 #include "caps.h"
@@ -376,15 +377,25 @@ static u8 ApplyRematchLevelBand(u8 level, u8 ace, s32 low, s32 high)
 }
 #endif
 
+// Percent of the experience for one receiving Pokemon: receiverLevel is that
+// Pokemon's own level, so every receiver is judged on its own (config/level_remap.h).
 u32 GetRemapExpPercent(u8 receiverLevel, u8 opponentLevel)
 {
-    u32 percent;
+    u32 percent, system = GetExpSystem();
+    u32 above = REMAP_EXP_SOFT_ABOVE, abovePercent = REMAP_EXP_SOFT_ABOVE_PERCENT;
     bool32 settled = TRUE;
+
+    if (system == OPTIONS_EXP_SYSTEM_NORMAL)
+        return 100;
 
     switch (GetRemapRegion())
     {
     case REMAP_KANTO:
-        percent = receiverLevel <= REMAP_EXP_KANTO_LOW_UNTIL ? REMAP_EXP_KANTO_LOW_PERCENT : REMAP_EXP_KANTO_PERCENT;
+        // HYBRID: Kanto at the low factor for every level.
+        if (system == OPTIONS_EXP_SYSTEM_HYBRID || receiverLevel <= REMAP_EXP_KANTO_LOW_UNTIL)
+            percent = REMAP_EXP_KANTO_LOW_PERCENT;
+        else
+            percent = REMAP_EXP_KANTO_PERCENT;
         settled = FlagGet(FLAG_BADGE03_GET);
         break;
     case REMAP_JOHTO:
@@ -394,11 +405,133 @@ u32 GetRemapExpPercent(u8 receiverLevel, u8 opponentLevel)
         percent = REMAP_EXP_HOENN_PERCENT;
         break;
     }
-    if (receiverLevel > opponentLevel + REMAP_EXP_SOFT_ABOVE)
-        percent = percent * REMAP_EXP_SOFT_ABOVE_PERCENT / 100;
+    if (system == OPTIONS_EXP_SYSTEM_HYBRID)
+    {
+        above = REMAP_EXP_HYBRID_ABOVE;
+        abovePercent = REMAP_EXP_HYBRID_ABOVE_PERCENT;
+    }
+    if (receiverLevel > opponentLevel + above)
+        percent = percent * abovePercent / 100;
     else if (settled && receiverLevel + REMAP_EXP_SOFT_BELOW < opponentLevel)
         percent = 100;
     return percent;
+}
+
+// Surf and fishing in Johto and Hoenn use the grass range of the map (remapped
+// land levels), maps without grass the grass of a neighbour map: first this
+// table, then the map's own land table, then its map connections.
+struct WaterGrassDonor
+{
+    u16 map;
+    u16 donor;
+};
+
+static const struct WaterGrassDonor sWaterGrassDonors[] =
+{
+    // Johto
+    { MAP_OLIVINE_CITY_HNS,                 MAP_ROUTE39_HNS },
+    { MAP_OLIVINE_CITY_PORT_OUTSIDE_HNS,    MAP_ROUTE39_HNS },
+    { MAP_ROUTE40_HNS,                      MAP_ROUTE39_HNS },
+    { MAP_ROUTE41_HNS,                      MAP_ROUTE39_HNS },
+    { MAP_CIANWOOD_CITY_HNS,                MAP_ROUTE39_HNS },
+    { MAP_CLIFF_EDGE_GATE_HNS,              MAP_ROUTE47_HNS },
+    { MAP_DRAGONS_DEN_CAVERN_HNS,           MAP_ICE_PATH_B1F_HNS },
+    { MAP_LAKE_OF_RAGE_HNS,                 MAP_ROUTE43_HNS },
+    // Hoenn
+    { MAP_ROUTE105,                         MAP_ROUTE104 },
+    { MAP_ROUTE106,                         MAP_GRANITE_CAVE_1F },
+    { MAP_DEWFORD_TOWN,                     MAP_GRANITE_CAVE_1F },
+    { MAP_ROUTE107,                         MAP_GRANITE_CAVE_1F },
+    { MAP_ROUTE108,                         MAP_ROUTE110 },
+    { MAP_ABANDONED_SHIP_ROOMS_B1F,         MAP_ROUTE110 },
+    { MAP_ABANDONED_SHIP_HIDDEN_FLOOR_CORRIDORS, MAP_ROUTE110 },
+    { MAP_ROUTE109,                         MAP_ROUTE110 },
+    { MAP_SLATEPORT_CITY,                   MAP_ROUTE110 },
+    { MAP_PETALBURG_CITY,                   MAP_ROUTE102 },
+    { MAP_LILYCOVE_CITY,                    MAP_ROUTE121 },
+    { MAP_ROUTE122,                         MAP_MT_PYRE_1F },
+    { MAP_ROUTE124,                         MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM },
+    { MAP_UNDERWATER_ROUTE124,              MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM },
+    { MAP_ROUTE125,                         MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM },
+    { MAP_MOSSDEEP_CITY,                    MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM },
+    { MAP_ROUTE126,                         MAP_SEAFLOOR_CAVERN_ROOM1 },
+    { MAP_UNDERWATER_ROUTE126,              MAP_SEAFLOOR_CAVERN_ROOM1 },
+    { MAP_ROUTE127,                         MAP_SEAFLOOR_CAVERN_ROOM1 },
+    { MAP_ROUTE128,                         MAP_SEAFLOOR_CAVERN_ROOM1 },
+    { MAP_SEAFLOOR_CAVERN_ENTRANCE,         MAP_SEAFLOOR_CAVERN_ROOM1 },
+    { MAP_SOOTOPOLIS_CITY,                  MAP_CAVE_OF_ORIGIN_ENTRANCE },
+    { MAP_EVER_GRANDE_CITY,                 MAP_VICTORY_ROAD_1F },
+    // Route 130's grass is Mirage Island (5 to 50), not a fitting range
+    { MAP_ROUTE129,                         MAP_SKY_PILLAR_1F },
+    { MAP_ROUTE130,                         MAP_SKY_PILLAR_1F },
+    { MAP_ROUTE131,                         MAP_SKY_PILLAR_1F },
+    { MAP_PACIFIDLOG_TOWN,                  MAP_SKY_PILLAR_1F },
+    { MAP_ROUTE132,                         MAP_SKY_PILLAR_1F },
+    { MAP_ROUTE133,                         MAP_SKY_PILLAR_1F },
+    { MAP_ROUTE134,                         MAP_SKY_PILLAR_1F },
+};
+
+static u32 FindWildMonHeaderId(u32 mapGroup, u32 mapNum)
+{
+    u32 i;
+
+    for (i = 0; gWildMonHeaders[i].mapGroup != MAP_GROUP(MAP_UNDEFINED); i++)
+    {
+        if (gWildMonHeaders[i].mapGroup == mapGroup && gWildMonHeaders[i].mapNum == mapNum)
+            return i;
+    }
+    return HEADER_NONE;
+}
+
+// Original min and max level of the header's grass (same time of day variant
+// as the grass encounters use). FALSE without grass or with placeholder slots only.
+static bool32 GetGrassLevelRange(u32 headerId, u8 *lo, u8 *hi)
+{
+    const struct WildPokemonInfo *info;
+    u32 i, min = MAX_LEVEL, max = 0;
+
+    if (headerId == HEADER_NONE)
+        return FALSE;
+    info = gWildMonHeaders[headerId].encounterTypes[GetTimeOfDayForEncounters(headerId, WILD_AREA_LAND)].landMonsInfo;
+    if (info == NULL || info->wildPokemon == NULL)
+        return FALSE;
+    for (i = 0; i < LAND_WILD_COUNT; i++)
+    {
+        if (info->wildPokemon[i].species == SPECIES_NONE)
+            continue;
+        if (info->wildPokemon[i].minLevel < min)
+            min = info->wildPokemon[i].minLevel;
+        if (info->wildPokemon[i].maxLevel > max)
+            max = info->wildPokemon[i].maxLevel;
+    }
+    if (max == 0)
+        return FALSE;
+    *lo = min;
+    *hi = max;
+    return TRUE;
+}
+
+static bool32 GetWaterGrassRange(u8 *lo, u8 *hi)
+{
+    u32 i, mapGroup = gSaveBlock1Ptr->location.mapGroup, mapNum = gSaveBlock1Ptr->location.mapNum;
+    const struct MapConnections *connections;
+
+    for (i = 0; i < ARRAY_COUNT(sWaterGrassDonors); i++)
+    {
+        if (MAP_GROUP(sWaterGrassDonors[i].map) == mapGroup && MAP_NUM(sWaterGrassDonors[i].map) == mapNum)
+            return GetGrassLevelRange(FindWildMonHeaderId(MAP_GROUP(sWaterGrassDonors[i].donor), MAP_NUM(sWaterGrassDonors[i].donor)), lo, hi);
+    }
+    if (GetGrassLevelRange(GetCurrentMapWildMonHeaderId(), lo, hi))
+        return TRUE;
+    connections = gMapHeader.connections;
+    if (connections == NULL)
+        return FALSE;
+    for (i = 0; i < (u32)connections->count; i++)
+    {
+        if (GetGrassLevelRange(FindWildMonHeaderId(connections->connections[i].mapGroup, connections->connections[i].mapNum), lo, hi))
+            return TRUE;
+    }
+    return FALSE;
 }
 #endif
 
@@ -540,6 +673,42 @@ u8 ScaleWildMonLevel(u8 level)
     if (rules->originalLevelIsFloor && scaled < level)
         scaled = level;
     return scaled;
+}
+
+// Surf and fishing: the original level's place in the table's own range, moved
+// into the grass range of the map (Johto, Hoenn). Elsewhere as ScaleWildMonLevel.
+u8 ScaleWaterWildMonLevel(u8 level, const struct WildPokemon *mons, u32 count)
+{
+#if LEVEL_REMAP == TRUE
+    enum RemapRegion region = GetRemapRegion();
+    u8 grassLo, grassHi;
+    s32 lo, hi, srcLo = MAX_LEVEL, srcHi = 0, den;
+    u32 i;
+
+    if ((region == REMAP_JOHTO || region == REMAP_HOENN) && GetWaterGrassRange(&grassLo, &grassHi))
+    {
+        lo = RemapLevel(region, grassLo);
+        hi = RemapLevel(region, grassHi);
+        for (i = 0; i < count; i++)
+        {
+            if (mons[i].species == SPECIES_NONE)
+                continue;
+            if (mons[i].minLevel < srcLo)
+                srcLo = mons[i].minLevel;
+            if (mons[i].maxLevel > srcHi)
+                srcHi = mons[i].maxLevel;
+        }
+        if (level < srcLo)
+            level = srcLo;
+        if (level > srcHi)
+            level = srcHi;
+        den = srcHi - srcLo;
+        if (den <= 0)
+            return lo + Random() % (hi - lo + 1);
+        return lo + ((level - srcLo) * (hi - lo) + den / 2) / den;
+    }
+#endif
+    return ScaleWildMonLevel(level);
 }
 
 u8 GetScalingCeiling(void)
@@ -834,6 +1003,11 @@ u8 ScaleWildMonLevel(u8 level)
     return level;
 }
 
+u8 ScaleWaterWildMonLevel(u8 level, const struct WildPokemon *mons, u32 count)
+{
+    return level;
+}
+
 u8 ScaleStaticMonLevel(u8 level)
 {
     return level;
@@ -865,6 +1039,16 @@ u32 GetRemapExpPercent(u8 receiverLevel, u8 opponentLevel)
 }
 
 #endif
+
+// EXP system of the challenge menu; values outside the range count as Jade.
+u32 GetExpSystem(void)
+{
+    u32 system = gSaveBlock3Ptr->challengeSettings.tx_Challenges_ExpSystem;
+
+    if (system >= OPTIONS_EXP_SYSTEM_COUNT)
+        return OPTIONS_EXP_SYSTEM_JADE;
+    return system;
+}
 
 #if defined(POKEMON_HNS)
 

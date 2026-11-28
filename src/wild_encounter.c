@@ -698,7 +698,11 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum 
         break;
     }
 
-    level = ScaleWildMonLevel(ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, area));
+    level = ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, area);
+    if (area == WILD_AREA_WATER)
+        level = ScaleWaterWildMonLevel(level, wildMonInfo->wildPokemon, WATER_WILD_COUNT);
+    else
+        level = ScaleWildMonLevel(level);
     if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(level))
         return FALSE;
     if ((gMapHeader.mapLayoutId != LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS && gMapHeader.mapLayoutId != LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS_HNS) && flags & WILD_CHECK_KEEN_EYE && !IsAbilityAllowingEncounter(level))
@@ -718,7 +722,7 @@ static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 
 {
     u8 wildMonIndex = ChooseWildMonIndex_Fishing(rod);
     u16 wildMonSpecies = wildMonInfo->wildPokemon[wildMonIndex].species;
-    u8 level = ScaleWildMonLevel(ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, WILD_AREA_FISHING));
+    u8 level = ScaleWaterWildMonLevel(ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, WILD_AREA_FISHING), wildMonInfo->wildPokemon, FISH_WILD_COUNT);
 
     #if RANDOMIZER_AVAILABLE == TRUE
     wildMonSpecies = RandomizeWildEncounter(wildMonSpecies, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, WILD_AREA_FISHING, wildMonIndex);
@@ -1115,7 +1119,7 @@ void FishingWildEncounter(u8 rod)
     gIsFishingEncounter = TRUE;
     if (CheckFeebas() == TRUE)
     {
-        u8 level = ScaleWildMonLevel(ChooseWildMonLevel(&sWildFeebas, 0, WILD_AREA_FISHING));
+        u8 level = ScaleWaterWildMonLevel(ChooseWildMonLevel(&sWildFeebas, 0, WILD_AREA_FISHING), &sWildFeebas, 1);
 
         species = sWildFeebas.species;
         CreateWildMon(species, level);
